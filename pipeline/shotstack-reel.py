@@ -258,15 +258,19 @@ Return JSON only:
 # ═══════════════════════════════════════════════════════════════════════════════
 
 def generate_tts(text):
-    """Generate TTS via HeyGen Starfish. Returns (local_path, duration) or (None, 0)."""
+    """Generate TTS via HeyGen Starfish. Returns (local_path, duration) or (None, 0).
+    Applies loudnorm to -14 LUFS (social media standard)."""
     if not HEYGEN_KEY:
         print("❌ HeyGen API key not found")
         return None, 0
 
+    # Phonetic hint for TTS — help Seema pronounce "TheVideshi" correctly
+    tts_text = text.replace("thevideshi", "the Vidayshee").replace("TheVideshi", "The Vidayshee").replace("Videshi", "Vidayshee")
+
     r = requests.post(
         "https://api.heygen.com/v3/voices/speech",
         headers={"X-Api-Key": HEYGEN_KEY, "Content-Type": "application/json"},
-        json={"text": text, "voice_id": TTS_VOICE, "speed": 1.0},
+        json={"text": tts_text, "voice_id": TTS_VOICE, "speed": 1.0},
         timeout=30,
     )
 
@@ -288,14 +292,16 @@ def generate_tts(text):
         print(f"❌ Audio download failed: {audio_r.status_code}")
         return None, 0
 
-    # HeyGen returns WAV — convert to MP3
+    # HeyGen returns WAV — convert to MP3 with loudness normalization
     wav_path = BUILD_DIR / "ss-tts-raw.wav"
     mp3_path = BUILD_DIR / "ss-tts-voice.mp3"
     with open(wav_path, "wb") as f:
         f.write(audio_r.content)
 
     result = subprocess.run(
-        ["ffmpeg", "-y", "-i", str(wav_path), "-codec:a", "libmp3lame", "-q:a", "2", str(mp3_path)],
+        ["ffmpeg", "-y", "-i", str(wav_path),
+         "-af", "loudnorm=I=-14:TP=-1.5:LRA=11",
+         "-codec:a", "libmp3lame", "-q:a", "2", str(mp3_path)],
         capture_output=True, text=True,
     )
     try:
@@ -307,8 +313,100 @@ def generate_tts(text):
         print(f"❌ WAV→MP3 conversion failed")
         return None, 0
 
-    print(f"  🎙️ TTS audio: {duration:.1f}s")
+    print(f"  🎙️ TTS audio: {duration:.1f}s (normalized to -14 LUFS)")
     return str(mp3_path), duration
+
+
+def get_word_timestamps(audio_path, script_text):
+    """Get word-level timestamps from Whisper, using script text as spelling guide.
+    Returns list of {word, start, end} or None on failure."""
+    if not OPENAI_KEY:
+        print("  ⚠️ No OpenAI key — cannot get word timestamps")
+        return None
+
+    try:
+        with open(audio_path, "rb") as f:
+            r = requests.post(
+                "https://api.openai.com/v1/audio/transcriptions",
+                headers={"Authorization": f"Bearer {OPENAI_KEY}"},
+                files={"file": ("voice.mp3", f, "audio/mpeg")},
+                data={
+                    "model": "whisper-1",
+                    "response_format": "verbose_json",
+                    "timestamp_granularities[]": "word",
+                    "prompt": script_text,
+                    "language": "en",
+                },
+                timeout=60,
+            )
+        if r.status_code != 200:
+            print(f"  ⚠️ Whisper failed ({r.status_code}), falling back to rich-caption")
+            return None
+
+        words = r.json().get("words", [])
+        print(f"  📝 Whisper: {len(words)} words timestamped")
+        return words
+    except Exception as e:
+        print(f"  ⚠️ Whisper error: {e}, falling back to rich-caption")
+        return None
+
+
+def build_script_captions(words, script_text, hook_duration):
+    """Build HTML caption clips from Whisper timestamps + original script text.
+    Groups words into ~4-5 word phrases for readability."""
+    if not words:
+        return None
+
+    # Use Whisper timing but prefer script text for spelling accuracy
+    # Split script into words for spelling reference
+    script_words = script_text.split()
+
+    # Group into phrases of ~4-5 words, break at punctuation
+    phrases = []
+    current = []
+    for w in words:
+        current.append(w)
+        word_text = w.get("word", "")
+        if len(current) >= 5 or word_text.rstrip().endswith((".", "!", "?", ",")):
+            phrases.append(current)
+            current = []
+    if current:
+        phrases.append(current)
+
+    clips = []
+    for phrase in phrases:
+        text = " ".join(w.get("word", "") for w in phrase).strip().upper()
+        start = hook_duration + phrase[0]["start"]
+        end = hook_duration + phrase[-1]["end"]
+        duration = max(end - start, 0.5)
+
+        # Style matching the rich-caption look: white text, black stroke, centered
+        html = (
+            f"<div style=\"display:flex;align-items:center;justify-content:center;"
+            f"width:100%;height:100%;padding:0 40px;\">"
+            f"<div style=\"font-family:Inter;font-size:38px;font-weight:700;"
+            f"color:{WHITE};text-align:center;letter-spacing:1px;"
+            f"text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, "
+            f"-2px 2px 0 #000, 2px 2px 0 #000, 0 3px 6px rgba(0,0,0,0.5);\">"
+            f"{text}</div></div>"
+        )
+
+        clips.append({
+            "asset": {
+                "type": "html",
+                "html": html,
+                "width": 900,
+                "height": 200,
+            },
+            "start": round(start, 2),
+            "length": round(duration + 0.15, 2),
+            "position": "bottom",
+            "offset": {"x": 0, "y": 0.18},
+            "transition": {"in": "fade", "out": "fade"},
+        })
+
+    print(f"  📝 Built {len(clips)} caption clips from script text")
+    return {"clips": clips}
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -547,7 +645,8 @@ def build_lower_third_html(headline, category):
 
 def build_anchor_reel_timeline(
     voice_url, voice_duration, image_urls, music_url, music_volume,
-    hook_line1, hook_line2, headline, category
+    hook_line1, hook_line2, headline, category,
+    word_timestamps=None, script_text=None,
 ):
     """Build the complete Shotstack JSON timeline for an Anchor Reel."""
 
@@ -556,39 +655,47 @@ def build_anchor_reel_timeline(
     cta_start = hook_duration + total_voice_duration + 0.5  # 0.5s pause before CTA
     total_duration = cta_start + CTA_DURATION
 
-    # ── Track 1 (TOP): Rich Captions with word-by-word highlight ──
-    caption_track = {
-        "clips": [
-            {
-                "asset": {
-                    "type": "rich-caption",
-                    "src": "alias://voiceover",
-                    "font": {
-                        "family": "Inter",
-                        "size": 38,
-                        "color": WHITE,
-                        "weight": 700,
-                        "opacity": 1,
+    # ── Track 1 (TOP): Script-based captions (Whisper-timed) or rich-caption fallback ──
+    script_caps = None
+    if word_timestamps and script_text:
+        script_caps = build_script_captions(word_timestamps, script_text, hook_duration)
+
+    if script_caps:
+        caption_track = script_caps
+    else:
+        # Fallback: Shotstack auto-caption from audio (may mis-transcribe proper nouns)
+        caption_track = {
+            "clips": [
+                {
+                    "asset": {
+                        "type": "rich-caption",
+                        "src": "alias://voiceover",
+                        "font": {
+                            "family": "Inter",
+                            "size": 38,
+                            "color": WHITE,
+                            "weight": 700,
+                            "opacity": 1,
+                        },
+                        "animation": {"style": "highlight"},
+                        "active": {
+                            "font": {"color": GOLD, "opacity": 1},
+                            "stroke": {"width": 3, "color": "#000000", "opacity": 1},
+                        },
+                        "stroke": {"width": 2, "color": "#000000", "opacity": 0.8},
+                        "align": {"vertical": "bottom"},
+                        "style": {"textTransform": "uppercase"},
+                        "padding": {"top": 0, "right": 8, "bottom": 0, "left": 8},
                     },
-                    "animation": {"style": "highlight"},
-                    "active": {
-                        "font": {"color": GOLD, "opacity": 1},
-                        "stroke": {"width": 3, "color": "#000000", "opacity": 1},
-                    },
-                    "stroke": {"width": 2, "color": "#000000", "opacity": 0.8},
-                    "align": {"vertical": "bottom"},
-                    "style": {"textTransform": "uppercase"},
-                    "padding": {"top": 0, "right": 8, "bottom": 0, "left": 8},
-                },
-                "start": hook_duration,
-                "length": "end",
-                "width": 900,
-                "height": 200,
-                "position": "bottom",
-                "offset": {"x": 0, "y": 0.18},
-            }
-        ]
-    }
+                    "start": hook_duration,
+                    "length": "end",
+                    "width": 900,
+                    "height": 200,
+                    "position": "bottom",
+                    "offset": {"x": 0, "y": 0.18},
+                }
+            ]
+        }
 
     # ── Track 2: Logo watermark ──
     logo_track = {
@@ -1021,6 +1128,7 @@ def run_qa_gate(video_path, article, script_data):
     """
     AI quality gate: GPT-4o reviews extracted frames + script.
     Returns (passed: bool, score: int, notes: str).
+    Includes non-negotiable checks that auto-fail regardless of score.
     """
     if not OPENAI_KEY:
         print("  ⚠️ No OpenAI key — skipping QA gate")
@@ -1051,12 +1159,19 @@ Score 1-10. This is for Instagram/YouTube Shorts — fast-paced news content, no
 4. HOOK: Does the opening frame have bold text that grabs attention?
 5. FLOW: Good pacing, transitions between images?
 
+NON-NEGOTIABLE CHECKS (any fail = auto-fail, override score to 0):
+- SPELLING: Any misspelling of "TheVideshi", "thevideshi.com", or social handles (@the.videshi, @thevideshi)?
+  Watch for STT errors like "Divaji", "Vidashi", "Vidashee", "diva ji", or any garbled version.
+- OVERLAPPING TEXT: Are two text elements rendered on top of each other making them unreadable?
+- BRAND INTEGRITY: Is the website URL shown as anything other than "thevideshi.com"?
+
 Score 7+ = professional news reel. Score 5-6 = acceptable for social media. Below 5 = broken.
 
 Return JSON only:
 {{
-  "score": <1-10>,
-  "passed": <true if score >= 6>,
+  "score": <1-10, or 0 if any non-negotiable failed>,
+  "passed": <true if score >= 6 AND all non-negotiables pass>,
+  "non_negotiable_failures": ["list of failed non-negotiable checks, empty if all pass"],
   "issues": ["issue1", "issue2"],
   "severity": "HIGH" or "MEDIUM" or "LOW",
   "notes": "brief summary"
@@ -1094,10 +1209,17 @@ Return JSON only:
 
         result = json.loads(r.json()["choices"][0]["message"]["content"])
         score = result.get("score", 5)
-        passed = result.get("passed", score >= 6)
-        notes = result.get("notes", "")
+        non_neg = result.get("non_negotiable_failures", [])
         issues = result.get("issues", [])
         severity = result.get("severity", "LOW")
+        notes = result.get("notes", "")
+
+        # Non-negotiable failures override everything
+        if non_neg:
+            print(f"  🚫 NON-NEGOTIABLE FAILURES: {'; '.join(non_neg)}")
+            return False, 0, f"Non-negotiable: {'; '.join(non_neg)}"
+
+        passed = result.get("passed", score >= 6)
 
         if issues:
             print(f"  📋 Issues ({severity}): {'; '.join(issues)}")
@@ -1203,6 +1325,10 @@ def run_anchor_reel(article, dry_run=False, use_production=False):
     if not audio_path:
         return False
 
+    # 2b. Get word-level timestamps from Whisper (for script-accurate captions)
+    print("\n📝 Step 2b: Getting word timestamps from Whisper...")
+    word_timestamps = get_word_timestamps(audio_path, script_data["script"])
+
     # 3. Upload audio to Supabase for Shotstack
     print("\n☁️ Step 3: Uploading audio...")
     audio_storage = f"reels/audio/ss-{slug}-{int(time.time())}.mp3"
@@ -1235,6 +1361,8 @@ def run_anchor_reel(article, dry_run=False, use_production=False):
         hook_line2=script_data.get("hook_line2", "YOU NEED TO KNOW"),
         headline=headline,
         category=category,
+        word_timestamps=word_timestamps,
+        script_text=script_data["script"],
     )
 
     if not edit_json:
