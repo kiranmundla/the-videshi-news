@@ -50,17 +50,6 @@
   ],
   "rewrites": [
     {
-      "source": "/",
-      "has": [
-        {
-          "type": "header",
-          "key": "user-agent",
-          "value": ".*(Googlebot|bingbot|Baiduspider|YandexBot|DuckDuckBot|Slurp|facebookexternalhit|Twitterbot|LinkedInBot|Applebot|Discordbot|TelegramBot|WhatsApp).*"
-        }
-      ],
-      "destination": "/api/prerender-page?path=/"
-    },
-    {
       "source": "/sitemap.xml",
       "destination": "/api/sitemap.xml"
     },

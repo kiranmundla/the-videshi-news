@@ -577,12 +577,12 @@ function renderStaticPage(path: string): string | null {
       body: "<h1>Contact Us</h1><p>Have a tip, feedback, or want to partner with us? Reach out to our team.</p>",
     },
     "/travel": {
-      title: "Travel Guide for Indian Diaspora — The Videshi",
+      title: "Travel Guide for Indian Diaspora",
       description: "Travel guides, visa information, destination reviews, and travel tips for Indians abroad. Plan your next trip home or explore new destinations.",
       body: "<h1>Travel</h1><p>Destination guides, visa tips, and travel stories for the Indian diaspora.</p>",
     },
     "/immigration": {
-      title: "Immigration News & Trackers — The Videshi",
+      title: "Immigration News & Trackers",
       description: "Latest US immigration news, H-1B updates, green card tracker, visa bulletin, and policy changes affecting the Indian diaspora.",
       body: "<h1>Immigration</h1><p>Immigration news, visa updates, and policy tracking for Indians in America.</p>",
     },
