@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-09T11:46:13.980584+00:00",
+  "timestamp": "2026-06-09T12:16:30.309208+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
+    "pass": 7,
     "flag": 2,
     "fail": 0,
     "error": 0
@@ -11,15 +11,167 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "7ec89845-2324-4116-b13e-3ad9a93fc679",
-      "headline": "Lagaan Returns to Cinemas This Thursday. Twenty-Five Years Later, It Still Makes You Believe.",
-      "slug": "lagaan-25th-anniversary-re-release-aamir-khan-reunion-oscar-cricket-nri-20260609",
+      "id": "9bad45e9-92a9-4c88-abc7-9888ae4f6f85",
+      "headline": "Thirty Days to Get Out \u2014 The Rule That Would Cut Indian Students' Safety Net in Half",
+      "slug": "thirty-days-get-out-dhs-rule-indian-students-grace-period-20260609",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses changes to visa regulations that directly affect Indian students, making it relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include quotes or perspectives from Indian students currently studying in the US to provide a personal touch.",
+          "Add a section on potential responses or actions that Indian students and their communities can take in light of these changes."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "b4636805-d81e-4d9d-a1b1-32dc03d6720a",
+      "headline": "Seven Lakhs and a Denial Letter \u2014 The Consultancy Racket Preying on India's H-1B Lottery Losers",
+      "slug": "seven-lakhs-denial-letter-h1b-consultancy-racket-india-lottery-20260609",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses the concerns of Indian tech workers in the diaspora regarding H-1B lottery failures and consultancy fraud."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more personal stories or testimonials from affected individuals to enhance relatability.",
+          "Add a section on how to identify legitimate consultancies to provide practical advice to readers."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "7787274f-1e5c-4231-93dc-a7ed96e9616a",
+      "headline": "Seven Indian Workers Died on a Dubai Highway on Monday. Their Families Are Now Navigating the Hardest Part.",
+      "slug": "seven-indian-workers-killed-dubai-emirates-road-bus-crash-20260609",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively highlights the challenges faced by Indian workers in the Gulf and the impact on their families back in India, making it relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including quotes or perspectives from family members of the deceased to add a personal touch.",
+          "Add statistics or data on road safety for Indian workers in the Gulf to strengthen the argument."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "de06f427-1c96-44c9-b60b-cb568a07bfb4",
+      "headline": "Indian Cuisine Got Its Own Davos in London. Sanjeev Kapoor Walked Away With the Top Prize.",
+      "slug": "indian-restaurant-congress-london-sanjeev-kapoor-global-awards-20260609",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the event to the Indian diaspora in the UK, highlighting its significance for the community."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include quotes or reactions from attendees to enhance the personal connection to the diaspora.",
+          "Add more context about the impact of Indian cuisine on British culture to deepen the narrative."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "3436ba9b-2762-409a-86d5-f5e271a72f11",
+      "headline": "Tim Cook Said Goodbye at WWDC. His India Legacy Is What Happens Next.",
+      "slug": "tim-cook-wwdc-farewell-apple-india-ternus-successor-20260609",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [
           {
-            "article_id": "8925f71a-59ee-4aa9-a143-8185c2ec60d9",
-            "headline": "Lagaan Returns to Theatres for Three Days Only. Twenty-Five "
+            "article_id": "ab850946-51b2-47f3-98a3-b31843fd5fd5",
+            "headline": "Tim Cook's Last Keynote. Apple's Billion-Dollar Bet on Googl"
+          },
+          {
+            "article_id": "2f561a83-58f0-46ea-9db9-fda3fda339a4",
+            "headline": "Tim Cook Used His Last WWDC to Bet Everything on a New Siri."
+          },
+          {
+            "article_id": "3337412c-2c07-4735-ba69-78ca9c8e4a80",
+            "headline": "Apple Is About to Open an AI Agent App Store. Indian Develop"
           }
         ],
         "broken_embeds": []
@@ -28,23 +180,107 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 10,
+          "score": 9,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects Lagaan's significance to NRIs, highlighting its cultural impact and emotional resonance."
+          "quality": 8,
+          "note": "The article effectively connects Tim Cook's departure and Apple's strategy in India to the interests of the Indian diaspora, particularly in terms of manufacturing and AI developments."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes or reactions from diaspora audiences regarding Lagaan's impact.",
-          "Include more details about the re-release event to enhance reader engagement."
+          "Expand on the implications of AI localization for Indian users and the diaspora.",
+          "Include more direct quotes or insights from Indian industry experts to enhance credibility."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "c2f86a18-0f67-4518-a9a8-5b737a4c7822",
+      "headline": "TCS Is Now Building the Offices That Steal Its Engineers. That's the Point.",
+      "slug": "tcs-gvic-ai-native-gcc-business-unit-launch-20260609",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses opportunities for NRI tech professionals considering a return to India, making it relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more direct quotes from TCS executives to enhance credibility.",
+          "Include a brief overview of the implications for the Indian economy or tech industry to provide broader context."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "2df48b40-c850-4175-9a37-70645328fc67",
+      "headline": "Sriram Krishnan Is Leaving the White House. He Helped Write America's AI Playbook.",
+      "slug": "sriram-krishnan-white-house-ai-adviser-departure-20260609",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "f719ee15-daf5-4748-92cd-a473c7a4df4d",
+            "headline": "Sriram Krishnan Is Leaving the White House. He Shaped Americ"
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [
+          {
+            "url": "https://x.com/sriramk/status/2063302213926105273",
+            "problem": "irrelevant",
+            "explanation": "The tweet is about Krishnan's farewell but does not provide additional context or insights relevant to the article's focus on his impact on AI policy."
+          }
+        ],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to Sriram Krishnan or AI policy, which could mislead readers."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects Krishnan's influence on AI policy to the interests of the Indian diaspora, highlighting the implications for Indian engineers and tech leaders."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the image with one that features Sriram Krishnan or is directly related to AI policy.",
+          "Consider adding more quotes or insights from Krishnan's farewell to enhance the narrative."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://x.com/sriramk/status/2063302213926105273",
         "promoted to published"
       ],
       "revised": false,
@@ -70,18 +306,18 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the economic implications for the Indian diaspora, highlighting their financial and familial ties to India."
+          "note": "The article effectively connects the economic shifts in India to the implications for the Indian diaspora, particularly regarding investments and remittances."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the hero image with one that better represents the AI economy or the tech sector.",
-          "Include more specific examples of how the diaspora can engage with or respond to these economic changes."
+          "Replace the hero image with one that better represents AI technology or the global economy.",
+          "Expand on the implications for NRIs with specific examples or quotes from diaspora members."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
-        "Revised by gpt-4o-mini (707\u2192824 words)"
+        "Revised by gemini-2.5-flash (824\u2192609 words)"
       ],
       "revised": true,
       "unpublished": false,
@@ -112,7 +348,7 @@
         "duplicate_embeds": [],
         "suggestions": [
           "Replace the hero image with one that features Arjun Tendulkar or is directly related to the T20 Mumbai League.",
-          "Consider adding quotes from Arjun or commentary from cricket analysts to enhance the narrative."
+          "Consider adding quotes from Arjun or a coach to enhance the narrative and provide personal insights."
         ],
         "verdict": "flag"
       },
