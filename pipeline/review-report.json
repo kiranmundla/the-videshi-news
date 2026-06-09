@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-09T12:16:30.309208+00:00",
+  "timestamp": "2026-06-09T12:46:24.348139+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 7,
+    "pass": 6,
     "flag": 2,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "9bad45e9-92a9-4c88-abc7-9888ae4f6f85",
-      "headline": "Thirty Days to Get Out \u2014 The Rule That Would Cut Indian Students' Safety Net in Half",
-      "slug": "thirty-days-get-out-dhs-rule-indian-students-grace-period-20260609",
+      "id": "863e2ea9-f571-4e18-b3cf-eb1f404521f9",
+      "headline": "Haldiram's at Ten Billion Dollars: How the Namkeen in Your Pantry Became a Global Investment Target",
+      "slug": "haldirams-at-ten-billion-dollars-how-the-namkeen-in-your-pantry-became-a-global-",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -29,13 +29,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses changes to visa regulations that directly affect Indian students, making it relevant to the diaspora."
+          "note": "The article effectively connects Haldiram's brand to the diaspora experience, highlighting emotional ties and cultural significance."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes or perspectives from Indian students currently studying in the US to provide a personal touch.",
-          "Add a section on potential responses or actions that Indian students and their communities can take in light of these changes."
+          "Consider adding more quotes or insights from industry experts to enhance credibility.",
+          "Include a brief section on how Haldiram's products are perceived in international markets to provide a broader perspective."
         ],
         "verdict": "pass"
       },
@@ -47,9 +47,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "b4636805-d81e-4d9d-a1b1-32dc03d6720a",
-      "headline": "Seven Lakhs and a Denial Letter \u2014 The Consultancy Racket Preying on India's H-1B Lottery Losers",
-      "slug": "seven-lakhs-denial-letter-h1b-consultancy-racket-india-lottery-20260609",
+      "id": "fa5ceacf-5bcd-47b0-bf31-407f1add1bbf",
+      "headline": "A Mumbai Textile Mill and a Himalayan 16-Seater Just Rewrote India's Fine Dining Story",
+      "slug": "a-mumbai-textile-mill-and-a-himalayan-16-seater-just-rewrote-indias-fine-dining-",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -65,13 +65,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively addresses the concerns of Indian tech workers in the diaspora regarding H-1B lottery failures and consultancy fraud."
+          "note": "The article effectively connects the achievements of Indian restaurants to the diaspora's appreciation for authentic Indian cuisine."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more personal stories or testimonials from affected individuals to enhance relatability.",
-          "Add a section on how to identify legitimate consultancies to provide practical advice to readers."
+          "Consider adding quotes from diaspora food critics or chefs to enhance the connection with NRI readers.",
+          "Include more details about how these restaurants are perceived by the diaspora community."
         ],
         "verdict": "pass"
       },
@@ -83,9 +83,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "7787274f-1e5c-4231-93dc-a7ed96e9616a",
-      "headline": "Seven Indian Workers Died on a Dubai Highway on Monday. Their Families Are Now Navigating the Hardest Part.",
-      "slug": "seven-indian-workers-killed-dubai-emirates-road-bus-crash-20260609",
+      "id": "a4ef243e-6b12-4599-a97e-849ead505c3a",
+      "headline": "From Bikaner to Baker Street: London Crowns the First Global Indian Restaurant Award Winners",
+      "slug": "from-bikaner-to-baker-street-london-crowns-the-first-global-indian-restaurant-aw",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -101,13 +101,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively highlights the challenges faced by Indian workers in the Gulf and the impact on their families back in India, making it relevant to the diaspora."
+          "note": "The article effectively connects the event to the Indian diaspora, highlighting its significance for Indians abroad."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider including quotes or perspectives from family members of the deceased to add a personal touch.",
-          "Add statistics or data on road safety for Indian workers in the Gulf to strengthen the argument."
+          "Consider adding quotes from attendees or winners to enhance the personal connection to the event.",
+          "Include more details on how the awards will impact Indian restaurants globally to strengthen the narrative."
         ],
         "verdict": "pass"
       },
@@ -119,9 +119,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "de06f427-1c96-44c9-b60b-cb568a07bfb4",
-      "headline": "Indian Cuisine Got Its Own Davos in London. Sanjeev Kapoor Walked Away With the Top Prize.",
-      "slug": "indian-restaurant-congress-london-sanjeev-kapoor-global-awards-20260609",
+      "id": "bb6d84d6-cad1-4cde-88a5-fa80b0599d30",
+      "headline": "The Hormuz Blockade Has a Hole. Nearly 3 Million Barrels a Day Are Slipping Through.",
+      "slug": "hormuz-strait-leaking-oil-ghost-tankers-clandestine-transits-india-june-2026",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -130,157 +130,101 @@
       "llm_review": {
         "overall_score": 8,
         "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the event to the Indian diaspora in the UK, highlighting its significance for the community."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include quotes or reactions from attendees to enhance the personal connection to the diaspora.",
-          "Add more context about the impact of Indian cuisine on British culture to deepen the narrative."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "3436ba9b-2762-409a-86d5-f5e271a72f11",
-      "headline": "Tim Cook Said Goodbye at WWDC. His India Legacy Is What Happens Next.",
-      "slug": "tim-cook-wwdc-farewell-apple-india-ternus-successor-20260609",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "ab850946-51b2-47f3-98a3-b31843fd5fd5",
-            "headline": "Tim Cook's Last Keynote. Apple's Billion-Dollar Bet on Googl"
-          },
-          {
-            "article_id": "2f561a83-58f0-46ea-9db9-fda3fda339a4",
-            "headline": "Tim Cook Used His Last WWDC to Bet Everything on a New Siri."
-          },
-          {
-            "article_id": "3337412c-2c07-4735-ba69-78ca9c8e4a80",
-            "headline": "Apple Is About to Open an AI Agent App Store. Indian Develop"
-          }
-        ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects Tim Cook's departure and Apple's strategy in India to the interests of the Indian diaspora, particularly in terms of manufacturing and AI developments."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Expand on the implications of AI localization for Indian users and the diaspora.",
-          "Include more direct quotes or insights from Indian industry experts to enhance credibility."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "c2f86a18-0f67-4518-a9a8-5b737a4c7822",
-      "headline": "TCS Is Now Building the Offices That Steal Its Engineers. That's the Point.",
-      "slug": "tcs-gvic-ai-native-gcc-business-unit-launch-20260609",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses opportunities for NRI tech professionals considering a return to India, making it relevant to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more direct quotes from TCS executives to enhance credibility.",
-          "Include a brief overview of the implications for the Indian economy or tech industry to provide broader context."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "2df48b40-c850-4175-9a37-70645328fc67",
-      "headline": "Sriram Krishnan Is Leaving the White House. He Helped Write America's AI Playbook.",
-      "slug": "sriram-krishnan-white-house-ai-adviser-departure-20260609",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "f719ee15-daf5-4748-92cd-a473c7a4df4d",
-            "headline": "Sriram Krishnan Is Leaving the White House. He Shaped Americ"
-          }
-        ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://x.com/sriramk/status/2063302213926105273",
-            "problem": "irrelevant",
-            "explanation": "The tweet is about Krishnan's farewell but does not provide additional context or insights relevant to the article's focus on his impact on AI policy."
-          }
-        ],
         "image_match": {
           "score": 7,
-          "issue": "The image does not directly relate to Sriram Krishnan or AI policy, which could mislead readers."
+          "issue": "The image does not directly relate to the article's topic of oil and maritime issues."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects Krishnan's influence on AI policy to the interests of the Indian diaspora, highlighting the implications for Indian engineers and tech leaders."
+          "quality": 8,
+          "note": "The article discusses India's oil imports and economic implications, which are relevant to the Indian diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the image with one that features Sriram Krishnan or is directly related to AI policy.",
-          "Consider adding more quotes or insights from Krishnan's farewell to enhance the narrative."
+          "Consider using a more relevant image that depicts oil transport or maritime activity.",
+          "Add more context on how the situation affects NRIs specifically, perhaps through remittances or investments."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://x.com/sriramk/status/2063302213926105273",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "6e3fdad4-ae0a-441a-a484-fd49675d0850",
+      "headline": "India Sent a Delegation to Russia Last Month. It Came Back Talking About Coal Mines.",
+      "slug": "india-russia-coking-coal-nickel-sail-nmdc-acquisition-june-2026",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to coal mining or the specific topic of the article."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses India's strategic dealings with Russia, which is relevant to the Indian diaspora concerned about geopolitical implications."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that depicts coal mining or the specific context of the article.",
+          "Add a quote or perspective from an NRI expert on the implications of these deals for the diaspora."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "66d2cf05-44cc-4a7e-a984-29f2b0c0996e",
+      "headline": "The RBI Just Cut the Cost of Bringing Dollars Home. NRIs, This One Is for You.",
+      "slug": "rbi-forex-swap-nri-deposits-fcnr-ecb-rupee-defense-june-2026",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "4d6d9c0a-4167-403b-ab4d-b84d366fc044",
+            "headline": "India Gave Foreign Funds a Tax Holiday on Government Bonds. "
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses NRIs and explains the implications of RBI's measures for them."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from financial experts or diaspora members to enhance credibility and engagement.",
+          "Include a brief explanation of how NRIs can take advantage of the new measures for clarity."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
         "promoted to published"
       ],
       "revised": false,
@@ -297,27 +241,27 @@
         "broken_embeds": []
       },
       "llm_review": {
-        "overall_score": 7,
+        "overall_score": 8,
         "embed_issues": [],
         "image_match": {
           "score": 3,
-          "issue": "The hero image of the Bombay Stock Exchange does not directly relate to the article's focus on AI and the global economy."
+          "issue": "irrelevant"
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the economic shifts in India to the implications for the Indian diaspora, particularly regarding investments and remittances."
+          "note": "The article effectively discusses the implications of India's economic changes on the Indian diaspora, particularly in terms of investment and professional opportunities."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the hero image with one that better represents AI technology or the global economy.",
-          "Expand on the implications for NRIs with specific examples or quotes from diaspora members."
+          "Replace the hero image with one that is more relevant to the topic of AI and the stock market.",
+          "Consider adding quotes or insights from diaspora members to enhance the personal connection to the topic."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
-        "Revised by gemini-2.5-flash (824\u2192609 words)"
+        "Revised by gpt-4o-mini (609\u2192660 words)"
       ],
       "revised": true,
       "unpublished": false,
@@ -347,13 +291,13 @@
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the hero image with one that features Arjun Tendulkar or is directly related to the T20 Mumbai League.",
+          "Replace the hero image with one that features Arjun Tendulkar or is directly related to the match discussed.",
           "Consider adding quotes from Arjun or a coach to enhance the narrative and provide personal insights."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
-        "Revised by gpt-4o-mini (804\u2192804 words)"
+        "Revised by gemini-2.5-flash (804\u2192656 words)"
       ],
       "revised": true,
       "unpublished": false,
