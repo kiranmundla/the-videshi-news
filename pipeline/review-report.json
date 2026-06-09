@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-09T07:15:59.972086+00:00",
+  "timestamp": "2026-06-09T07:45:41.370221+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
+    "pass": 2,
     "flag": 1,
     "fail": 0,
     "error": 0
@@ -10,6 +10,78 @@
   "revisions": 1,
   "unpublished": 0,
   "articles": [
+    {
+      "id": "a74a9b37-5bf9-40d6-8c56-34fecbc09968",
+      "headline": "He Last Played a T20I in December 2023. Now Shreyas Iyer Is India's Captain.",
+      "slug": "shreyas-iyer-india-t20i-captain-suryakumar-yadav-replaced-tilak-varma-vice-captain-nri",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article connects well with NRIs by discussing the implications of leadership changes in the Indian cricket team, which is a point of interest for the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include quotes or reactions from NRI fans or cricket analysts to enhance the diaspora connection.",
+          "Add a brief section on how these changes might impact India's performance in upcoming international tournaments."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "2e0ba619-3b44-4dae-9a1d-84feae8add36",
+      "headline": "He Took Three Wickets and Scored 66 Off 34 Balls. At the Wankhede, Arjun Tendulkar Is Carving His Own Path.",
+      "slug": "arjun-tendulkar-66-not-out-3-wickets-t20-mumbai-league-wankhede-2026-nri",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 2,
+          "issue": "irrelevant"
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article connects well with NRI readers by discussing Arjun Tendulkar's performance in the context of his father's legacy."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the hero image with one that features Arjun Tendulkar or is more relevant to the article's content.",
+          "Consider adding quotes from Arjun or a coach to enhance the narrative and provide personal insights."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Revised by gpt-4o-mini (615\u2192642 words)"
+      ],
+      "revised": true,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
     {
       "id": "6b03a13b-d2dd-40b7-b064-ba7a639d0e88",
       "headline": "Peddi Made \u20b9250 Crore in Five Days. The Conversation It Started Is Worth More.",
@@ -20,76 +92,26 @@
         "broken_embeds": []
       },
       "llm_review": {
-        "overall_score": 6,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/p/DZMi_VhCGaF/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post does not appear to be directly related to the main topic of the article, which focuses on the film 'Peddi' and its controversy."
-          }
-        ],
+        "overall_score": 8,
+        "embed_issues": [],
         "image_match": {
           "score": 5,
-          "issue": "The image of Ram Charan at a trailer launch does not directly match the article's focus on the controversy surrounding the film's portrayal of women."
+          "issue": "The image does not directly relate to the article's focus on the film 'Peddi' and its controversy."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 7,
-          "note": "The article discusses a significant cultural issue in Indian cinema that resonates with the diaspora, particularly regarding gender representation."
+          "note": "The article discusses a significant cultural issue in Indian cinema that resonates with the diaspora audience, particularly regarding gender representation."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant Instagram embed with a more relevant source that discusses the film's controversy.",
-          "Consider using an image that directly relates to the film's themes or the controversy discussed in the article."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DZMi_VhCGaF/",
-        "Revised by gpt-4o-mini (781\u2192829 words)"
-      ],
-      "revised": true,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "3b54ce08-2a87-44b7-a5a3-02240dcf8320",
-      "headline": "Shraddha Kapoor Is Playing Maharashtra's Most Legendary Dancer. Nobody Saw This Coming.",
-      "slug": "shraddha-kapoor-eetha-vithabai-tamasha-biopic-august-rakshabandhan-maddock-nri-20260609",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/reel/DY2e3sEIqce/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram reel does not appear to be directly related to Shraddha Kapoor's role or the film 'Eetha', making it irrelevant to the article's subject."
-          }
-        ],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the film's themes to the diaspora audience, highlighting the cultural significance of Tamasha and Lavani."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the irrelevant Instagram embed with a more relevant source, such as a trailer or promotional material for 'Eetha'.",
-          "Consider adding quotes or insights from Shraddha Kapoor or the director to enhance the article's depth."
+          "Consider using an image that directly relates to the film 'Peddi' or its lead actors to enhance relevance.",
+          "Expand on the diaspora perspective by including how NRIs view the representation of women in Indian cinema."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/reel/DY2e3sEIqce/",
         "promoted to published"
       ],
       "revised": false,
