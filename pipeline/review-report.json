@@ -1,27 +1,202 @@
 {
-  "timestamp": "2026-06-09T17:45:15.724713+00:00",
+  "timestamp": "2026-06-09T18:16:22.144749+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 0,
+    "pass": 10,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
-  "revisions": 0,
+  "revisions": 1,
   "unpublished": 0,
   "articles": [
     {
-      "id": "38008ad9-40c3-456e-92e2-4ed0c9d04757",
-      "headline": "Mammootty Gets the Padma Bhushan. R Madhavan Gets the Padma Shri. Indian Cinema's Finest Are Finally Being Honoured.",
-      "slug": "mammootty-padma-bhushan-r-madhavan-padma-shri-satish-shah-ceremony-june-23-nri-20260609",
+      "id": "5eafb45e-93d5-47f0-a18e-07df2927b56c",
+      "headline": "Gulf NRIs Are Buying Indian Stocks While Wall Street Runs for the Door. The Numbers Explain Why.",
+      "slug": "gulf-nri-indian-equities-fpi-outflows-sebi-20260609",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "40715c8b-f492-4ab5-a519-7e8f4b2510e8",
-            "headline": "Mammootty and Mohanlal Reunited After 18 Years. The Film Flo"
-          }
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the financial behaviors of Gulf NRIs to broader economic trends, making it relevant for the diaspora audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes or testimonials from Gulf NRIs to enhance the personal connection and provide real-life examples.",
+          "Include a brief analysis of potential risks for NRIs investing in Indian stocks to provide a balanced view."
         ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "c0035acf-97d6-455e-ae24-1131230c3f51",
+      "headline": "The Rupee Crossed 95. For NRIs Wiring Money Home, Every Dollar Now Buys a Small Fortune.",
+      "slug": "rupee-95-nri-remittance-windfall-exchange-rate-20260609",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively discusses the implications of the rupee's depreciation on NRIs, making it relevant to the diaspora audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more specific examples or anecdotes from NRIs to enhance relatability.",
+          "Add a section on potential future trends or predictions regarding the rupee and its impact on NRIs."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "4a5759de-906e-4f60-b8e2-4cb6bd7bd503",
+      "headline": "IndiGo Is Building a Widebody Business Class \u2014 and It Could Reshape How NRIs Fly to India",
+      "slug": "indigo-a350-business-class-nri-long-haul-20260609",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 3,
+          "issue": "The image is of an Airbus A320neo, which does not match the article's focus on the A350-900."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively addresses the NRI audience by discussing how IndiGo's new business class could impact their travel options and costs."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Update the hero image to feature the Airbus A350-900 to better match the article's content.",
+          "Consider adding more details about the expected features of the new business class to enhance reader engagement."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Revised by gemini-2.5-flash (818\u2192466 words)"
+      ],
+      "revised": true,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "4028f102-f86c-4f0f-aa60-6a1184d6ab38",
+      "headline": "India's Monsoon Waterfalls Just Came Alive \u2014 Six Cascades NRIs Should Add to Their Trip Home",
+      "slug": "india-monsoon-waterfalls-nri-travel-guide-20260609",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively targets NRIs by providing travel tips and highlighting the accessibility of these waterfalls during the monsoon season."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more personal anecdotes or testimonials from NRIs who have visited these waterfalls to enhance relatability.",
+          "Include practical travel tips such as best times to visit, local cuisine to try, or cultural experiences to engage with while visiting these locations."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "d543004d-4481-4f43-893e-72d85ec3ab74",
+      "headline": "The World Cup Starts Thursday \u2014 Here's What Indians With Indian Passports Need to Know Before Boarding",
+      "slug": "world-cup-2026-indian-passport-visa-entry-guide-20260609",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image is relevant to travel but does not specifically depict the World Cup or Indian travelers."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article provides practical information for Indian passport holders, particularly NRIs, traveling to the World Cup, making it relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include specific tips or anecdotes from Indian travelers who have attended previous World Cups to enhance relatability.",
+          "Consider adding a section on cultural events or gatherings for Indian fans during the World Cup to further engage the diaspora."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "8f266c7a-bab4-4533-b6af-deedf6d9e445",
+      "headline": "Your Maggi Packet Just Got Smaller. So Did Everything Else. The Iran War Is Shrinking India's Grocery Aisle.",
+      "slug": "india-shrinkflation-price-hikes-iran-war-dabur-hul-nri-remittance-impact-20260609",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
@@ -34,13 +209,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects the achievements of Mammootty and R Madhavan to the emotional sentiments of the NRI community, highlighting their cultural significance."
+          "note": "The article effectively connects the economic impact of the Iran war and shrinkflation to the experiences of NRIs, making it relevant and engaging for the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes or reactions from NRIs to enhance the diaspora connection.",
-          "Include more context about the Padma Awards for readers unfamiliar with their significance."
+          "Consider adding more specific examples of how shrinkflation is affecting particular products that NRIs might be familiar with.",
+          "Include quotes or insights from NRIs to enhance the personal connection to the economic issues discussed."
         ],
         "verdict": "pass"
       },
@@ -52,19 +227,91 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "ab9a50a2-1db1-413a-84f0-13d7b45ebab2",
-      "headline": "Akshay Kumar Is Making India's First Alien Thriller. The Creature Designer Built the Actual Xenomorph.",
-      "slug": "akshay-kumar-samuk-alien-thriller-alec-gillis-practical-fx-bollywood-nri-20260609",
+      "id": "3e7a668d-0135-4213-8523-063b2c601e99",
+      "headline": "It Is Not How Much You Walk. It Is How You Walk. A New Study Says the Difference Is 67 Per Cent.",
+      "slug": "walking-pattern-cardiovascular-risk-continuous-sessions-south-asian-heart-20260609",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the study's findings to the South Asian diaspora's lifestyle and health risks."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a quote from a health expert to enhance credibility.",
+          "Include specific examples of how to incorporate the recommended walking sessions into daily routines."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "50940b2a-651d-40a3-8679-4e53e4efc883",
+      "headline": "The Most Powerful Obesity Drug Ever Tested Just Crushed Sleep Apnea and Knee Pain in a Single Trial. South Asians Are in the Crosshairs.",
+      "slug": "retatrutide-triple-g-obesity-drug-sleep-apnea-knee-pain-south-asian-ada-20260609",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the drug's implications for South Asians, highlighting their unique health risks."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific statistics or quotes from experts to strengthen the argument about the drug's impact on South Asians.",
+          "Include a section on potential accessibility issues for the drug in different regions to enhance the discussion on its market implications."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "cc31abf1-c9db-40a9-8506-ef8d76f2b05a",
+      "headline": "Google Just Ordered Three Million AI Chips From Intel. The Foundry Bet Is Paying Off.",
+      "slug": "intel-foundry-google-nvidia-chips-india-engineers-20260609",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [
           {
-            "article_id": "8843536b-0b24-44eb-b124-2b23817c2ae3",
-            "headline": "Welcome To The Jungle Drops Its Trailer Wednesday. Bollywood"
+            "article_id": "0f0701a4-2ab1-49f6-8cd0-91d24456cc5a",
+            "headline": "Every CEO Is Calling Lip-Bu Tan for More Chips. Intel's Come"
           },
           {
-            "article_id": "d337a9ee-71f2-4d04-98b0-99397c2e99fd",
-            "headline": "Bhooth Bangla Just Hit Netflix. Akshay Kumar and Priyadarsha"
+            "article_id": "67b0d5a1-6602-4e67-a966-388e9ba3bd16",
+            "headline": "Intel Was Dying. Then AI Agents Needed CPUs. Lip-Bu Tan Is R"
           }
         ],
         "broken_embeds": []
@@ -73,19 +320,91 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 6,
-          "issue": "The image of Akshay Kumar does not directly relate to the alien thriller theme."
+          "score": 5,
+          "issue": "The image does not directly relate to the article's focus on AI chips and Google's contract with Intel."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the film's genre shift to the interests of the NRI audience, highlighting cultural ties and expectations."
+          "quality": 8,
+          "note": "The article discusses the implications of Intel's operations in India, highlighting opportunities for Indian engineers, which is relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant hero image that reflects the alien thriller theme.",
-          "Expand on the potential impact of the film on the Indian film industry and diaspora audiences."
+          "Consider using a more relevant image that directly relates to AI chips or the partnership between Google and Intel.",
+          "Expand on the implications for the Indian diaspora in terms of job opportunities and industry trends."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "bc44a68f-84a5-4081-a2e6-323754f064da",
+      "headline": "US Senators Want to Plug the Last Hole in America's Chip Blockade. India Stands to Gain.",
+      "slug": "us-senators-tsmc-loophole-china-chip-india-semiconductor-20260609",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image of TSMC's fab is relevant to the topic of semiconductor manufacturing but does not directly relate to the US Senators' actions or India's semiconductor ambitions."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the semiconductor industry developments to Indian-American professionals, highlighting career and investment implications."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of how Indian semiconductor professionals are benefiting from these changes.",
+          "Include a quote from an Indian semiconductor professional to enhance the diaspora connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "973e700c-6456-4e78-90d1-bb47dc39f111",
+      "headline": "TCS Chairman Says AI Agents Will Match Its 500,000 Headcount. Hiring Will Slow.",
+      "slug": "tcs-chandrasekaran-ai-agents-headcount-hiring-slows-20260609",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the implications of TCS's AI strategy to Indian tech professionals in the US, highlighting potential impacts on H-1B visas and job competition."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes or insights from diaspora professionals to enhance relatability.",
+          "Include more data or examples on how AI is currently affecting job roles in the IT sector."
         ],
         "verdict": "pass"
       },
