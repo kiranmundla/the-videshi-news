@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-09T00:46:51.693969+00:00",
+  "timestamp": "2026-06-09T01:16:07.579500+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 5,
+    "pass": 0,
     "flag": 2,
     "fail": 0,
     "error": 0
@@ -11,81 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "d6238dfe-045f-46b3-991d-510e0632534b",
-      "headline": "Broadcom Missed One Number by $1.2 Billion. It Triggered the Worst Chip Selloff Since 2020.",
-      "slug": "broadcom-ai-chip-miss-semiconductor-crash-wipro-kospi-circuit-breaker-india-it-20260608",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 8,
-          "issue": "The image of Hock Tan is relevant as he is the CEO of Broadcom, which is the focus of the article."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses the impact of Broadcom's performance on Indian investors, which is relevant to the NRI audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more direct quotes or insights from Indian investors or analysts to strengthen the diaspora connection.",
-          "Add a brief section on how NRIs can navigate the current market conditions in relation to the tech sector."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "467372b8-8941-4f3e-b672-104be5c85c90",
-      "headline": "The Great Indian Spice Race: How Diaspora Brands and Legacy Giants Are Battling for America's Kitchen",
-      "slug": "great-indian-spice-race-diaspora-brands-legacy-giants-battling-americas-kitchen",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the spice market dynamics to the identity and preferences of Indian Americans, making it relevant for the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include quotes or testimonials from diaspora consumers to enhance relatability.",
-          "Add more data or examples of how these brands are marketed specifically to NRI audiences."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "8e79a2df-8edc-4659-836a-2a07d2674931",
-      "headline": "Farzi, Rishtedar, Yellow Chilli: India's Biggest Restaurant Brands Are Finally Storming America",
-      "slug": "farzi-rishtedar-yellow-chilli-indias-biggest-restaurant-brands-storming-america",
+      "id": "63ab7d03-e88e-4de8-b897-10a7fd5e8044",
+      "headline": "Kangana Ranaut Delivered a Baby While Terrorists Walked the Halls. This Is the 26/11 Story Nobody Told.",
+      "slug": "bharat-bhhagya-viddhaata-kangana-ranaut-2611-cama-hospital-nurses-nri-20260609",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -95,175 +23,90 @@
         "overall_score": 8,
         "embed_issues": [
           {
-            "url": "https://www.instagram.com/p/DZKoE7CIA4C/",
+            "url": "https://www.instagram.com/p/DZPnBeSAorz/",
             "problem": "irrelevant",
-            "explanation": "The Instagram post does not appear to be directly related to the article's subject of Indian restaurant brands opening in America."
+            "explanation": "The Instagram post does not appear to be directly related to the main subject of the article, which focuses on the film and the story of the nurse during the 26/11 attacks."
+          },
+          {
+            "url": "https://youtube.com/watch?v=8n7bXkykd60",
+            "problem": "irrelevant",
+            "explanation": "The YouTube link is not directly relevant to the article's focus on the film and the nurse's story."
           }
         ],
         "image_match": {
           "score": 5,
-          "issue": "The image does not match the article's focus on specific Indian restaurant brands and their American locations."
+          "issue": "The image of Kangana Ranaut does not directly relate to the specific subject of the article, which is about a nurse during the 26/11 attacks."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article discusses the expansion of Indian restaurants in America, which is relevant to the NRI community, but the connection could be more explicitly articulated."
+          "quality": 9,
+          "note": "The article effectively connects the story to the diaspora experience, highlighting the emotional impact of the 26/11 attacks on NRIs."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant Instagram embed with a more relevant one that showcases the restaurants mentioned.",
-          "Include more explicit connections to how these restaurant openings impact the NRI community in America."
+          "Replace the irrelevant Instagram and YouTube links with embeds that are more directly related to the film or the nurse's story.",
+          "Consider using a more relevant image that reflects the theme of the article, such as a still from the film or a representation of the hospital."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DZKoE7CIA4C/",
-        "Revised by gpt-4o-mini (768\u2192877 words)"
+        "Removed irrelevant embed: https://www.instagram.com/p/DZPnBeSAorz/",
+        "Removed irrelevant embed: https://youtube.com/watch?v=8n7bXkykd60",
+        "Revised by gpt-4o-mini (619\u2192657 words)"
       ],
       "revised": true,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "17cf5fd1-df80-47c9-929b-7d14cfa014fd",
-      "headline": "Mango Diplomacy: How a Seattle Tasting Event With Costco Signals India's Boldest Fruit Export Push Yet",
-      "slug": "mango-diplomacy-seattle-tasting-costco-indias-boldest-fruit-export-push",
+      "id": "c75424b6-08da-4bd8-a40a-a760bf1e0442",
+      "headline": "Manoj Bajpayee Is Playing the Man Who Saved India From Bankruptcy. The Tickets Cost What They Did in 1990.",
+      "slug": "governor-manoj-bajpayee-rbi-1990-crisis-ticket-pricing-june-12-nri-20260609",
       "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the cultural significance of mangoes to the Indian diaspora, highlighting emotional ties and culinary traditions."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from attendees or participants at the event to enhance the narrative.",
-          "Include more statistics or data on the growth of Indian mango exports to provide a clearer picture of the market dynamics."
+        "duplicate_embeds": [
+          "https://www.instagram.com/p/DZNf8z3j2oR/"
         ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "5e6924ff-ef0d-4d74-a96b-dfd0bcd36572",
-      "headline": "Trump Gets the Owner's Box. Mamdani Bought Standing Room. Both Are at the Knicks Game Tonight.",
-      "slug": "mamdani-trump-knicks-nba-finals-game-3-madison-square-garden-indian-origin-mayor-20260608",
-      "pre_checks": {
-        "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/DZNf8z3j2oR/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not appear to be directly related to the film 'Governor' or its themes, making it irrelevant to the article."
+          },
+          {
+            "url": "https://youtube.com/watch?v=Mvm0bRY0Qyg",
+            "problem": "duplicate",
+            "explanation": "The YouTube link to the trailer is mentioned in the body and should not be repeated."
+          }
+        ],
         "image_match": {
           "score": 7,
-          "issue": "The image of Zohran Mamdani is relevant but does not directly depict the Knicks game or the context of the article."
+          "issue": "The image of Manoj Bajpayee is relevant to the article, but it lacks a direct connection to the specific film 'Governor' as it does not depict a scene or promotional material from the movie."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects Mamdani's multicultural identity and political significance to the Indian diaspora."
+          "note": "The article effectively connects the film's themes to the experiences of the Indian diaspora, highlighting the impact of the 1991 liberalization on NRIs."
         },
         "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider including a more relevant image that depicts the Knicks game or the atmosphere at Madison Square Garden.",
-          "Add a quote or perspective from an NRI or diaspora member regarding Mamdani's impact to strengthen the diaspora angle."
+        "duplicate_embeds": [
+          "https://youtube.com/watch?v=Mvm0bRY0Qyg"
         ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "b9911414-3635-4f24-b131-198f0b2ec3a8",
-      "headline": "ZEE Grabbed the FIFA World Cup Rights Ten Days Before Kickoff. It Paid 40% Less Than FIFA Wanted.",
-      "slug": "zee-fifa-world-cup-2026-broadcast-rights-unite8-sports-india-60-million-20260608",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image is relevant to the FIFA World Cup but does not specifically relate to ZEE's acquisition of the broadcasting rights."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the broadcasting rights acquisition to the Indian diaspora in the U.S., highlighting the significance of the World Cup being in their vicinity."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
         "suggestions": [
-          "Consider including more details about how ZEE's coverage will cater specifically to the Indian diaspora's preferences.",
-          "Add quotes or reactions from Indian football fans or industry experts to enhance the article's depth."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "e5507cff-4dce-4f86-8010-82aa4f316b40",
-      "headline": "The Hundred-Thousand-Dollar Wall Just Fell \u2014 A Federal Judge Says Trump's H-1B Fee Is an Illegal Tax",
-      "slug": "100k-h1b-fee-struck-down-judge-sorokin-illegal-tax-20260608",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 5,
-          "issue": "The image does not directly relate to the article's topic of H-1B visas or immigration."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article discusses the impact of the ruling on Indian workers and IT firms, which is highly relevant to the Indian diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the hero image with one that directly relates to H-1B visas or immigration.",
-          "Include quotes or reactions from Indian professionals or organizations to enhance the diaspora perspective."
+          "Replace the irrelevant Instagram link with a more relevant social media post related to the film.",
+          "Ensure that the YouTube trailer link is only included once in the article."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
-        "Revised by gpt-4o-mini (892\u2192924 words)"
+        "Removed duplicate embed(s)",
+        "Removed irrelevant embed: https://www.instagram.com/p/DZNf8z3j2oR/",
+        "Revised by gpt-4o-mini (662\u2192688 words)"
       ],
       "revised": true,
       "unpublished": false,
