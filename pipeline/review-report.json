@@ -1,95 +1,101 @@
 {
-  "timestamp": "2026-06-09T02:45:19.622629+00:00",
+  "timestamp": "2026-06-09T03:15:59.181513+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
-    "flag": 0,
+    "pass": 4,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
-  "revisions": 0,
+  "revisions": 1,
   "unpublished": 0,
   "articles": [
     {
-      "id": "2f561a83-58f0-46ea-9db9-fda3fda339a4",
-      "headline": "Tim Cook Used His Last WWDC to Bet Everything on a New Siri. Apple Has Been Late Before.",
-      "slug": "apple-siri-ai-wwdc-2026-tim-cook-last-keynote-gemini-india-iphone",
+      "id": "a9a3f623-d4c3-4cf7-98ff-ba3bd71011a8",
+      "headline": "Suriya's \u20b9304 Crore Monster Karuppu Lands on Prime Video Thursday. The Diaspora Finally Gets Its Turn.",
+      "slug": "karuppu-suriya-prime-video-ott-304-crore-tamil-blockbuster-nri-20260609",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [
           {
-            "article_id": "ab850946-51b2-47f3-98a3-b31843fd5fd5",
-            "headline": "Tim Cook's Last Keynote. Apple's Billion-Dollar Bet on Googl"
+            "url": "https://youtube.com/watch?v=JpVl_-1YgIo",
+            "problem": "irrelevant",
+            "explanation": "The YouTube link does not provide relevant content related to the article's focus on the film's release on Prime Video."
           },
           {
-            "article_id": "3337412c-2c07-4735-ba69-78ca9c8e4a80",
-            "headline": "Apple Is About to Open an AI Agent App Store. Indian Develop"
+            "url": "https://www.instagram.com/p/DZUFFW3gDoN/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not appear to be directly related to the film's release or its themes."
           }
         ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image of Tim Cook is relevant to the article as it discusses his final WWDC keynote, but it lacks a direct connection to Siri or AI."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the significance of Siri AI's improvements to the Indian market and its implications for Indian users and developers."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider including a more relevant image that directly relates to Siri or AI technology.",
-          "Expand on the implications of Siri AI for Indian languages to provide more depth."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "9c82b8ec-d6b0-44c8-8541-5e5e81ff05b2",
-      "headline": "OpenAI Just Filed for Its IPO. SpaceX Goes Public Thursday. Anthropic Filed Last Week.",
-      "slug": "openai-ipo-filing-spacex-anthropic-aravind-srinivas-perplexity-ai-trillion-june-2026",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "8e786059-b67d-4dc5-a5d6-b2e9de814d7c",
-            "headline": "OpenAI Is Turning ChatGPT Into a Superapp. Its 900 Million U"
-          }
-        ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image features Sam Altman, which is relevant to OpenAI, but does not directly relate to the IPO topic."
+          "score": 5,
+          "issue": "The image does not depict Suriya or any relevant scene from the film, which may confuse readers."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects the IPO developments to the Indian diaspora, particularly through the insights of Aravind Srinivas."
+          "note": "The article effectively connects the film's release to the diaspora audience, highlighting accessibility and relevant themes."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that directly represents the IPO theme.",
-          "Add more quotes or insights from Indian diaspora investors to enhance the connection."
+          "Replace the hero image with one that features Suriya or a scene from 'Karuppu' to better match the article's content.",
+          "Consider adding more relevant social media embeds that directly relate to the film's themes or promotional content."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://youtube.com/watch?v=JpVl_-1YgIo",
+        "Removed irrelevant embed: https://www.instagram.com/p/DZUFFW3gDoN/",
+        "Revised by gpt-4o-mini (756\u2192780 words)"
+      ],
+      "revised": true,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "6f62dbb9-5050-450f-adf7-787fd3ee0741",
+      "headline": "K-Pop Met Punjabi Pop and the Internet Lost Its Mind. BOOMPALA Just Changed the Rules.",
+      "slug": "le-sserafim-guru-randhawa-boompala-kpop-punjabi-collab-nri-20260609",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DZPpbgnS-ZN/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel is not directly related to the article's main topic of the BOOMPALA remix and its significance."
+          }
+        ],
+        "image_match": {
+          "score": 7,
+          "issue": "The image of Guru Randhawa is relevant to the article, but it does not directly depict the collaboration with LE SSERAFIM."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the collaboration to the Indian diaspora, highlighting its significance for Indian listeners abroad."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the irrelevant Instagram embed with a more relevant social media post that highlights the collaboration.",
+          "Consider adding more context about the significance of K-Pop in the Indian music scene to enhance the diaspora angle."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DZPpbgnS-ZN/",
         "promoted to published"
       ],
       "revised": false,
@@ -97,9 +103,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "b956d186-419b-43a1-83b1-d9be099e54f1",
-      "headline": "Iran and Israel Say They Have Stopped Shooting. India Says It Is Watching.",
-      "slug": "iran-israel-halt-strikes-india-utmost-concern-hormuz-oil-97-june-2026",
+      "id": "fa3c1ca9-c60f-47a2-aa0c-853176d0e640",
+      "headline": "Micron's Gujarat Fab Just Got Its Biggest Validation. NVIDIA Needs Its Chips.",
+      "slug": "micron-gujarat-fab-nvidia-hbm4-sanjay-mehrotra-india-semiconductor-20260609",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -109,19 +115,116 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image of the Strait of Hormuz is relevant but does not directly depict the conflict between Iran and Israel."
+          "score": 5,
+          "issue": "The image of Sanjay Mehrotra does not directly relate to the Gujarat fab or its operations."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses India's economic stakes and implications for NRIs, particularly regarding oil imports and market impacts."
+          "note": "The article effectively connects the semiconductor developments in India to NRI investors, highlighting the significance of Micron's progress."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes or perspectives from Indian officials to enhance the diaspora connection.",
-          "Consider adding a brief background on the historical context of Iran-Israel relations for better reader understanding."
+          "Consider using an image that directly represents the Gujarat fab or semiconductor manufacturing to enhance relevance.",
+          "Add more context on how NRI investors can engage with or benefit from the developments in the Indian semiconductor industry."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "22364619-82b7-4724-8ddd-9de6b6a0c7cf",
+      "headline": "NVIDIA Just Built a CPU for AI Agents, Not Humans. The Data Centre Will Never Be the Same.",
+      "slug": "nvidia-vera-cpu-agentic-ai-data-centre-intel-amd-20260609",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "8834f22b-67e4-400e-80e6-b66bd1a9a652",
+            "headline": "DeepSeek Just Topped America's Fastest-Growing Software List"
+          },
+          {
+            "article_id": "f3734f76-7cff-45c6-b37b-52bf9b3d5790",
+            "headline": "Jensen Huang Is in Seoul Eating Fried Chicken. He Left With "
+          },
+          {
+            "article_id": "ab998f6e-2f30-4634-b75a-f7dc6d722a21",
+            "headline": "NVIDIA Just Open-Sourced the Biggest AI Model in America. It"
+          },
+          {
+            "article_id": "0efb413b-3749-43b7-a1c1-e11a2277d04d",
+            "headline": "Jensen Huang Just Declared War on Apple and Intel. His Weapo"
+          },
+          {
+            "article_id": "69dfdff2-0944-4d6a-a008-12225f958050",
+            "headline": "Jensen Huang Called Marvell the Next Trillion-Dollar Company"
+          },
+          {
+            "article_id": "7b2ad390-8149-4d60-aa59-680522566b8e",
+            "headline": "Nvidia Just Built a PC Chip That Runs AI Models Locally. App"
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image of Jen-Hsun Huang is relevant as he is a key figure in NVIDIA, but it does not directly depict the new CPU or its applications."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the implications of NVIDIA's new CPU for Indian engineers, making it relevant to the Indian diaspora in tech."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more specific examples of how the new CPU could impact Indian engineers' work.",
+          "Add a quote or insight from an Indian engineer or expert to strengthen the diaspora connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "72263b44-3847-4bce-9903-f229c72a4f37",
+      "headline": "Oracle Is Cutting 30,000 Jobs by June 15. India Lost 12,000 of Them.",
+      "slug": "oracle-30000-layoffs-india-12000-iit-nit-revoked-20260609",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 6,
+          "issue": "The image does not directly relate to the job cuts or the Indian context."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively discusses the implications of Oracle's layoffs on Indian Americans and visa concerns."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more visuals or infographics that illustrate the impact of the layoffs on the Indian workforce.",
+          "Include quotes or testimonials from affected employees to provide a personal touch to the narrative."
         ],
         "verdict": "pass"
       },
