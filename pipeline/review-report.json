@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-09T07:45:41.370221+00:00",
+  "timestamp": "2026-06-09T08:15:44.621574+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 3,
     "flag": 1,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "a74a9b37-5bf9-40d6-8c56-34fecbc09968",
-      "headline": "He Last Played a T20I in December 2023. Now Shreyas Iyer Is India's Captain.",
-      "slug": "shreyas-iyer-india-t20i-captain-suryakumar-yadav-replaced-tilak-varma-vice-captain-nri",
+      "id": "521126d0-1a8b-4f03-8798-0a0877158e0b",
+      "headline": "The Green Card Escape Hatch Is Closing \u2014 NIW Denials Now Outpace the 'Harder' EB-1A Category",
+      "slug": "niw-denial-rate-outpaces-eb1a-indian-green-card-escape-20260609",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -23,19 +23,120 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image is relevant to the topic of immigration but does not specifically depict anything related to green cards or the immigration process."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article connects well with NRIs by discussing the implications of leadership changes in the Indian cricket team, which is a point of interest for the diaspora."
+          "quality": 9,
+          "note": "The article directly addresses Indian tech workers in the U.S., making it highly relevant to the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes or reactions from NRI fans or cricket analysts to enhance the diaspora connection.",
-          "Add a brief section on how these changes might impact India's performance in upcoming international tournaments."
+          "Consider including a quote from an immigration attorney or expert to add authority to the claims made.",
+          "Add a section on potential strategies for applicants facing NIW denials to provide practical advice."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "edc1c472-2b8c-46d0-8e82-bf1071299392",
+      "headline": "Anthropic, OpenAI and Nvidia Are Hiring More Foreign Workers Than Ever \u2014 While Everyone Else Pulls Back",
+      "slug": "anthropic-openai-nvidia-h1b-filings-surge-ai-talent-war-20260609",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "8834f22b-67e4-400e-80e6-b66bd1a9a652",
+            "headline": "DeepSeek Just Topped America's Fastest-Growing Software List"
+          },
+          {
+            "article_id": "f3734f76-7cff-45c6-b37b-52bf9b3d5790",
+            "headline": "Jensen Huang Is in Seoul Eating Fried Chicken. He Left With "
+          },
+          {
+            "article_id": "22364619-82b7-4724-8ddd-9de6b6a0c7cf",
+            "headline": "NVIDIA Just Built a CPU for AI Agents, Not Humans. The Data "
+          },
+          {
+            "article_id": "ab998f6e-2f30-4634-b75a-f7dc6d722a21",
+            "headline": "NVIDIA Just Open-Sourced the Biggest AI Model in America. It"
+          },
+          {
+            "article_id": "0efb413b-3749-43b7-a1c1-e11a2277d04d",
+            "headline": "Jensen Huang Just Declared War on Apple and Intel. His Weapo"
+          },
+          {
+            "article_id": "69dfdff2-0944-4d6a-a008-12225f958050",
+            "headline": "Jensen Huang Called Marvell the Next Trillion-Dollar Company"
+          },
+          {
+            "article_id": "7b2ad390-8149-4d60-aa59-680522566b8e",
+            "headline": "Nvidia Just Built a PC Chip That Runs AI Models Locally. App"
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 5,
+          "issue": "The image of Jensen Huang does not directly relate to the article's focus on H-1B visa hiring trends across multiple companies."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the significant role of Indian nationals in the H-1B visa program, which is highly relevant to the Indian diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that better represents the theme of H-1B visa hiring trends or the companies mentioned.",
+          "Add a section discussing the implications of these hiring trends specifically for the Indian diaspora."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "d8086eb7-f17e-42a0-8bb0-09c65995eaf4",
+      "headline": "No More Flights Home \u2014 America Will Now Stamp Your H-1B Visa Without You Leaving the Country",
+      "slug": "domestic-visa-renewal-h1b-india-20000-state-department-20260609",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image is relevant to the topic of immigration but does not specifically depict H-1B workers or visa stamping."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article directly addresses the concerns of Indian H-1B workers in the U.S., making it highly relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including quotes or reactions from Indian H-1B workers to add a personal touch.",
+          "Add a section on potential implications for employers and the job market."
         ],
         "verdict": "pass"
       },
@@ -59,62 +160,26 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 2,
+          "score": 3,
           "issue": "irrelevant"
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article connects well with NRI readers by discussing Arjun Tendulkar's performance in the context of his father's legacy."
+          "quality": 9,
+          "note": "The article effectively connects Arjun's journey to the experiences of NRIs, discussing family expectations and identity."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the hero image with one that features Arjun Tendulkar or is more relevant to the article's content.",
-          "Consider adding quotes from Arjun or a coach to enhance the narrative and provide personal insights."
+          "Replace the hero image with one that features Arjun Tendulkar or is directly related to the match discussed.",
+          "Consider adding quotes from Arjun or his teammates to enhance the narrative."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
-        "Revised by gpt-4o-mini (615\u2192642 words)"
+        "Revised by gpt-4o-mini (642\u2192674 words)"
       ],
       "revised": true,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "6b03a13b-d2dd-40b7-b064-ba7a639d0e88",
-      "headline": "Peddi Made \u20b9250 Crore in Five Days. The Conversation It Started Is Worth More.",
-      "slug": "peddi-janhvi-kapoor-objectification-controversy-industry-backlash-ram-charan-nri-20260609",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 5,
-          "issue": "The image does not directly relate to the article's focus on the film 'Peddi' and its controversy."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses a significant cultural issue in Indian cinema that resonates with the diaspora audience, particularly regarding gender representation."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that directly relates to the film 'Peddi' or its lead actors to enhance relevance.",
-          "Expand on the diaspora perspective by including how NRIs view the representation of women in Indian cinema."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
     }
