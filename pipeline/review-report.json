@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-09T14:46:37.546433+00:00",
+  "timestamp": "2026-06-09T15:16:25.825966+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 5,
     "flag": 2,
     "fail": 0,
     "error": 0
@@ -11,31 +11,31 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "d58c6ae0-5624-45e3-a2a6-d3638b00acb6",
-      "headline": "Congress Tells Modi: You Pocketed the Cheap Oil. Now Swallow the Expensive Kind.",
-      "slug": "congress-promise-vs-reality-modi-oil-economy-sixth-largest-rupee-20260609",
+      "id": "9228f499-4dad-47ec-928f-f87c35b52d0c",
+      "headline": "NVIDIA Dropped a Bomb on Qualcomm's PC Strategy. The Stock Says Everything.",
+      "slug": "qualcomm-nvidia-rtx-spark-crisis-indian-engineers-20260609",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
-        "overall_score": 7,
+        "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 8,
-          "issue": "The image of a petrol pump is relevant to the article's discussion on fuel prices and the economy."
+          "score": 7,
+          "issue": "The image of Cristiano Amon is relevant as he is the CEO of Qualcomm, but the article focuses more on NVIDIA's impact on Qualcomm rather than on Amon himself."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article discusses the impact of economic changes on NRIs, particularly regarding remittances and investment opportunities."
+          "quality": 9,
+          "note": "The article effectively highlights the impact of Qualcomm's stock decline on Indian engineers, making a strong connection to the Indian diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes from NRI perspectives to enhance the diaspora angle.",
-          "Add a brief conclusion summarizing the potential long-term effects on the Indian economy and diaspora."
+          "Consider including more direct quotes from Indian engineers or industry experts to enhance the diaspora perspective.",
+          "Add a brief conclusion summarizing the implications for Qualcomm and the broader tech industry."
         ],
         "verdict": "pass"
       },
@@ -47,15 +47,51 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "9f5a4021-b630-472b-9e78-515e3cab3c70",
-      "headline": "A Delhi Hotel Was Licensed for Six Rooms. It Was Running Twenty-Five. Twenty-Two People Are Dead.",
-      "slug": "delhi-malviya-nagar-fire-22-dead-flourish-stays-hotel-safety-violations-20260609",
+      "id": "8c73c79d-2902-4afb-b003-a07c308e9ea6",
+      "headline": "Lock Upp Just Landed on Netflix. Ektaa Kapoor's Most Unhinged Show Goes Global.",
+      "slug": "lock-upp-netflix-june-27-ektaa-kapoor-reality-show-global-nri-20260609",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 5,
+          "issue": "The image of Ektaa Kapoor does not directly relate to the content of the article about the show Lock Upp."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively highlights how Lock Upp's availability on Netflix caters to the Indian diaspora, emphasizing the accessibility of Indian content for viewers abroad."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that directly relates to the show Lock Upp or its promotional material.",
+          "Add more details about the show's reception or specific audience reactions to enhance engagement."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "67b0d5a1-6602-4e67-a966-388e9ba3bd16",
+      "headline": "Intel Was Dying. Then AI Agents Needed CPUs. Lip-Bu Tan Is Riding the Accident.",
+      "slug": "intel-lip-bu-tan-cpu-agentic-ai-turnaround-india-20260609",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [
           {
-            "article_id": "8c5ac207-5781-48cf-a339-84d9b84e5a86",
-            "headline": "A Cook's Negligence, a Hotel with No Fire Clearance, and 21 "
+            "article_id": "0f0701a4-2ab1-49f6-8cd0-91d24456cc5a",
+            "headline": "Every CEO Is Calling Lip-Bu Tan for More Chips. Intel's Come"
           }
         ],
         "broken_embeds": []
@@ -65,18 +101,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image does not directly depict the hotel or fire incident, but it is relevant to the topic of hospitality."
+          "issue": "The image features Lip-Bu Tan but does not directly relate to the article's focus on Intel's turnaround and AI."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article connects the tragedy to NRIs by discussing the risks they face when visiting India, making it relevant to the diaspora."
+          "note": "The article discusses the impact of Intel's restructuring on Indian engineers, making it relevant to the Indian diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes from officials or witnesses to enhance the narrative.",
-          "Add a section on how the diaspora can engage with or support fire safety initiatives in India."
+          "Include more direct quotes or insights from Indian engineers to enhance the diaspora connection.",
+          "Consider using a more relevant image that directly ties to the themes of AI and Intel's turnaround."
         ],
         "verdict": "pass"
       },
@@ -84,6 +120,90 @@
         "promoted to published"
       ],
       "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "ed9619e6-dd2a-4245-a4f7-64e015d39658",
+      "headline": "Zepto Just Filed for an $837 Million IPO. India's Grocery Wars Are Heading to the Stock Market.",
+      "slug": "zepto-ipo-837-million-quick-commerce-nri-investors-20260609",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article connects well with NRI investors by discussing the implications of Zepto's IPO on their portfolios."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more context about the competitive landscape for NRIs unfamiliar with the Indian grocery market.",
+          "Include quotes or insights from industry experts to enhance credibility and depth."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "b2f7e1c9-b400-47c5-977b-c9a87ebe11c7",
+      "headline": "Shah Rukh Khan Said No to Jailer 2. Hrithik Roshan Said Tell Me More.",
+      "slug": "hrithik-roshan-jailer-2-cameo-rajinikanth-srk-king-nri-20260609",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "0809b36f-af6c-4cf8-a786-c8c1f20da015",
+            "headline": "Hrithik Roshan Wanted \u20b9500 Crore for Krrish 4. His Father Ju"
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/DZKs2dVorgG/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not appear to be directly related to the article's main topic about Shah Rukh Khan and Hrithik Roshan's involvement in Jailer 2."
+          }
+        ],
+        "image_match": {
+          "score": 7,
+          "issue": "The image features Hrithik Roshan, which is relevant to the article, but it lacks a direct connection to the specific context of Jailer 2."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the film's significance to NRIs, highlighting the nostalgia and excitement for diaspora audiences."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the irrelevant Instagram embed with a more relevant source or quote related to Jailer 2.",
+          "Consider using a more contextually relevant image that directly ties to the film or the actors' involvement."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/DZKs2dVorgG/",
+        "Revised by gpt-4o-mini (606\u2192661 words)"
+      ],
+      "revised": true,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
     },
@@ -97,15 +217,15 @@
         "broken_embeds": []
       },
       "llm_review": {
-        "overall_score": 6,
+        "overall_score": 7,
         "embed_issues": [],
         "image_match": {
           "score": 8,
-          "issue": "The image of the Vizag Steel Plant entrance is relevant to the article's topic."
+          "issue": "The image of the Vizag Steel Plant entrance is relevant but does not depict the specific incident."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
+          "quality": 6,
           "note": "The article discusses a significant industrial accident that may resonate with the Indian diaspora concerned about worker safety and industrial practices in India."
         },
         "factual_flags": [],
@@ -114,12 +234,12 @@
           "Include quotes from affected families or workers to add a personal touch.",
           "Provide more context on the implications of the accident for the future of the Vizag Steel Plant and its workers."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
-        "Revised by gpt-4o-mini (810\u2192906 words)"
+        "promoted to published"
       ],
-      "revised": true,
+      "revised": false,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
     },
@@ -137,7 +257,7 @@
         "embed_issues": [],
         "image_match": {
           "score": 5,
-          "issue": "The image does not match the article's topic of chess; it appears to be unrelated."
+          "issue": "The image does not match the article's subject matter as it appears to be unrelated to Gukesh Dommaraju or chess."
         },
         "diaspora_angle": {
           "present": true,
@@ -147,13 +267,13 @@
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the hero image with one that features Gukesh Dommaraju or a relevant chess scene.",
+          "Replace the hero image with one that features Gukesh Dommaraju or is relevant to chess.",
           "Consider adding quotes or reactions from diaspora chess communities to enhance the connection."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
-        "Revised by gpt-4o-mini (722\u2192747 words)"
+        "Revised by gemini-2.5-flash (747\u2192749 words)"
       ],
       "revised": true,
       "unpublished": false,
