@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-08T23:45:43.025636+00:00",
+  "timestamp": "2026-06-09T00:16:14.973241+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
+    "pass": 7,
     "flag": 1,
     "fail": 0,
     "error": 0
@@ -11,17 +11,228 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "b2f3f872-c81e-4f67-8900-443017e2b818",
-      "headline": "Cocktail 2 Is the Most Wanted Film in India Right Now. The Trailer Numbers Are Obscene.",
-      "slug": "cocktail-2-imdb-most-anticipated-youtube-charts-shahid-kriti-rashmika-nri-20260608",
+      "id": "67c33c7f-b1e7-41a7-90f2-eb414e3472c8",
+      "headline": "Humanoid Robots Just Got a Delivery Date. Indian Factories Should Pay Attention.",
+      "slug": "humanoid-robots-factory-floor-hyundai-boston-dynamics-india-20260609",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "45b898e7-2abc-40e0-8bad-103f10760fd7",
-            "headline": "Cocktail 2 Is the Most Anticipated Indian Film on IMDb. It H"
-          }
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses the potential impact of humanoid robots on Indian manufacturing, which is relevant to the Indian diaspora, particularly those in engineering and technology sectors."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more direct quotes or insights from Indian industry leaders to strengthen the connection to the Indian context.",
+          "Expand on the implications for NRI engineers and how they can engage with the evolving robotics landscape in India."
         ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "fa09533b-25c2-46cb-bcc1-b3bf77147ec9",
+      "headline": "Siri Finally Grew Up. Apple Needed Google's AI to Get There.",
+      "slug": "apple-wwdc-siri-ai-standalone-app-gemini-golden-gate-20260609",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 8,
+          "issue": "The image is relevant to the article's topic about Apple's Siri and AI advancements."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses implications for Indian developers and IT professionals, making it relevant for the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more specific examples of how Siri AI could benefit Indian developers.",
+          "Clarify the timeline for Siri AI's rollout in India to enhance relevance for the diaspora."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "72b72f9f-d856-4181-8980-775eacc0c7c7",
+      "headline": "One Judge Said Yes, Another Said No \u2014 The H-1B Fee Split That Only the Supreme Court Can Resolve",
+      "slug": "circuit-split-h1b-fee-sorokin-howell-supreme-court-20260609",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the implications of H-1B visa fees specifically for Indian-born professionals, making it relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from affected individuals or organizations to provide personal perspectives on the impact of the fee.",
+          "Include a brief overview of the H-1B visa process for readers who may not be familiar with it."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "7c1c31e5-a787-4c3f-a98c-fab281021fcb",
+      "headline": "Two Years and Go Home \u2014 The Bill That Would Kill the Promise Every Indian H-1B Worker Lives By",
+      "slug": "chip-roy-dual-intent-kill-h1b-two-year-visa-bill-20260609",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the implications of proposed immigration legislation on Indian H-1B workers, directly relevant to the Indian diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include quotes or testimonials from affected H-1B workers to enhance emotional engagement.",
+          "Add a section on potential responses or actions from the Indian community or advocacy groups."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "1a102e1d-9013-456f-aa4a-d86ae3a89e93",
+      "headline": "An Indian American Couple Pledged $1 Million to Feed America's Hungry. Their Movement Has Already Delivered 30 Million Meals.",
+      "slug": "hungermitao-asava-million-dollar-pledge-feeding-america-diaspora-20260609",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the philanthropic efforts of the Indian American couple to the broader Indian diaspora, emphasizing cultural values and community involvement."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes or testimonials from beneficiaries of the HungerMitao movement to enhance emotional engagement.",
+          "Include more statistics or data on the impact of the movement to strengthen the argument about its significance."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "b2252798-aa39-4612-b511-e7a842aac491",
+      "headline": "America's Top Aerospace Body Just Gave Its Highest Honour to India's Moon Mission. The Diaspora Noticed.",
+      "slug": "chandrayaan-3-goddard-astronautics-award-aiaa-isro-diaspora-20260609",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the achievements of ISRO with the Indian diaspora's contributions in the aerospace sector, making it relevant and engaging for NRI readers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from diaspora members or experts in the aerospace field to enhance the personal connection.",
+          "Include more statistics or data about the impact of the Indian diaspora in the aerospace industry to strengthen the argument."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "c9ef5493-92d9-42ef-9fa3-052e854b68f3",
+      "headline": "Eight Indian Americans Just Won a Fellowship That Pays $90,000 for Being an Immigrant. Here's What They Study.",
+      "slug": "soros-fellowship-eight-indian-americans-graduate-scholars-20260609",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
@@ -29,18 +240,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image features Shahid Kapoor but does not directly relate to the film 'Cocktail 2' specifically."
+          "issue": "The image does not directly relate to the specific topic of the fellowship or the individuals mentioned."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the film's themes to the diaspora audience, highlighting cultural relevance."
+          "quality": 8,
+          "note": "The article effectively connects the achievements of Indian Americans to the broader context of immigration and education, resonating well with NRI readers."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant hero image that directly features 'Cocktail 2' or its promotional material.",
-          "Add more specific statistics or quotes from the cast or director to enhance credibility."
+          "Consider using a more relevant image that reflects the fellowship or the individuals involved.",
+          "Add quotes or personal anecdotes from the fellows to enhance the narrative and connection to the diaspora."
         ],
         "verdict": "pass"
       },
@@ -76,7 +287,7 @@
         "duplicate_embeds": [],
         "suggestions": [
           "Replace the hero image with one that is more relevant to the topic of immigration or H-1B visas.",
-          "Consider adding quotes or reactions from Indian professionals or organizations to enhance the diaspora connection."
+          "Consider adding quotes from affected Indian workers or companies to enhance the human interest angle."
         ],
         "verdict": "flag"
       },
