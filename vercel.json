@@ -74,6 +74,17 @@
       "destination": "/api/verify-turnstile"
     },
     {
+      "source": "/",
+      "has": [
+        {
+          "type": "header",
+          "key": "user-agent",
+          "value": ".*(Googlebot|bingbot|Baiduspider|YandexBot|DuckDuckBot|Slurp|facebookexternalhit|Twitterbot|LinkedInBot|Applebot|Discordbot|TelegramBot|WhatsApp).*"
+        }
+      ],
+      "destination": "/api/prerender-page?path=/"
+    },
+    {
       "source": "/articles/:slug",
       "has": [
         {
@@ -82,7 +93,62 @@
           "value": ".*(Googlebot|bingbot|Baiduspider|YandexBot|DuckDuckBot|Slurp|facebookexternalhit|Twitterbot|LinkedInBot|Applebot|Discordbot|TelegramBot|WhatsApp).*"
         }
       ],
-      "destination": "/api/prerender?slug=:slug"
+      "destination": "/api/prerender-page?path=/articles/:slug"
+    },
+    {
+      "source": "/events/:slug",
+      "has": [
+        {
+          "type": "header",
+          "key": "user-agent",
+          "value": ".*(Googlebot|bingbot|Baiduspider|YandexBot|DuckDuckBot|Slurp|facebookexternalhit|Twitterbot|LinkedInBot|Applebot|Discordbot|TelegramBot|WhatsApp).*"
+        }
+      ],
+      "destination": "/api/prerender-page?path=/events/:slug"
+    },
+    {
+      "source": "/directory/:slug",
+      "has": [
+        {
+          "type": "header",
+          "key": "user-agent",
+          "value": ".*(Googlebot|bingbot|Baiduspider|YandexBot|DuckDuckBot|Slurp|facebookexternalhit|Twitterbot|LinkedInBot|Applebot|Discordbot|TelegramBot|WhatsApp).*"
+        }
+      ],
+      "destination": "/api/prerender-page?path=/directory/:slug"
+    },
+    {
+      "source": "/classifieds/:slug",
+      "has": [
+        {
+          "type": "header",
+          "key": "user-agent",
+          "value": ".*(Googlebot|bingbot|Baiduspider|YandexBot|DuckDuckBot|Slurp|facebookexternalhit|Twitterbot|LinkedInBot|Applebot|Discordbot|TelegramBot|WhatsApp).*"
+        }
+      ],
+      "destination": "/api/prerender-page?path=/classifieds/:slug"
+    },
+    {
+      "source": "/cars/:path*",
+      "has": [
+        {
+          "type": "header",
+          "key": "user-agent",
+          "value": ".*(Googlebot|bingbot|Baiduspider|YandexBot|DuckDuckBot|Slurp|facebookexternalhit|Twitterbot|LinkedInBot|Applebot|Discordbot|TelegramBot|WhatsApp).*"
+        }
+      ],
+      "destination": "/api/prerender-page?path=/cars/:path*"
+    },
+    {
+      "source": "/:path",
+      "has": [
+        {
+          "type": "header",
+          "key": "user-agent",
+          "value": ".*(Googlebot|bingbot|Baiduspider|YandexBot|DuckDuckBot|Slurp|facebookexternalhit|Twitterbot|LinkedInBot|Applebot|Discordbot|TelegramBot|WhatsApp).*"
+        }
+      ],
+      "destination": "/api/prerender-page?path=/:path"
     },
     {
       "source": "/(.*)",
