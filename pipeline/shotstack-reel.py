@@ -731,14 +731,25 @@ def build_anchor_reel_timeline(
 
     broll_track = {"clips": broll_clips}
 
-    # ── CTA end card (video clip at the end of B-roll track) ──
-    broll_clips.append({
-        "asset": {"type": "video", "src": CTA_VIDEO_URL, "volume": 1.0},
-        "start": round(cta_start, 2),
-        "length": CTA_DURATION,
-        "fit": "cover",
-        "transition": {"in": "fade"},
-    })
+    # ── CTA: Branded end card (HTML overlay on dark background) ──
+    end_html, end_css = build_end_card_html()
+    end_card_track = {
+        "clips": [
+            {
+                "asset": {
+                    "type": "html",
+                    "html": end_html,
+                    "css": end_css,
+                    "width": 1080,
+                    "height": 1920,
+                },
+                "start": round(cta_start, 2),
+                "length": CTA_DURATION,
+                "position": "center",
+                "transition": {"in": "fade"},
+            }
+        ]
+    }
 
     # ── Track 6 (BOTTOM): Voice-over audio with alias ──
     voice_track = {
@@ -766,6 +777,7 @@ def build_anchor_reel_timeline(
             logo_track,
             hook_track,
             lower_third_track,
+            end_card_track,   # Branded end card
             broll_track,      # Visual base
             voice_track,      # Audio (bottom)
         ],
@@ -986,8 +998,116 @@ def download_reel(url, output_path):
 # KAVYA CTA END CARD
 # ═══════════════════════════════════════════════════════════════════════════════
 
-CTA_VIDEO_URL = f"{STORAGE_BASE}/reels/end-card-cta-v3.mp4"
-CTA_DURATION = 3.0  # End card is 3 seconds
+CTA_DURATION = 4.0  # Branded end card duration
+
+# Social handles
+SOCIAL_HANDLES = {
+    "website": "thevideshi.com",
+    "instagram": "@the.videshi",
+    "youtube": "@the.videshi",
+    "threads": "@the.videshi",
+    "x": "@thevideshi",
+    "whatsapp": "The Videshi",
+}
+
+
+def build_end_card_html():
+    """Build branded end card with logo + social handles."""
+    html = """<div class='end-card'>
+  <div class='end-logo'>THE VIDESHI</div>
+  <div class='end-tagline'>News for the Indian Diaspora</div>
+  <div class='end-divider'></div>
+  <div class='end-url'>thevideshi.com</div>
+  <div class='end-socials'>
+    <div class='end-social-row'>
+      <span class='end-icon'>▶</span><span class='end-handle'>@the.videshi</span>
+    </div>
+    <div class='end-social-row'>
+      <span class='end-icon'>◉</span><span class='end-handle'>@the.videshi</span>
+    </div>
+    <div class='end-social-row'>
+      <span class='end-icon'>◈</span><span class='end-handle'>@the.videshi</span>
+    </div>
+    <div class='end-social-row'>
+      <span class='end-icon'>✕</span><span class='end-handle'>@thevideshi</span>
+    </div>
+    <div class='end-social-row'>
+      <span class='end-icon'>◆</span><span class='end-handle'>The Videshi</span>
+    </div>
+  </div>
+</div>"""
+
+    css = """
+.end-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #0a1628 0%, #131d2e 50%, #0a1628 100%);
+  padding: 40px;
+  box-sizing: border-box;
+}
+.end-logo {
+  font-family: 'Inter';
+  font-size: 56px;
+  font-weight: 700;
+  color: #D4AF37;
+  letter-spacing: 6px;
+  margin-bottom: 8px;
+}
+.end-tagline {
+  font-family: 'Inter';
+  font-size: 18px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.5);
+  letter-spacing: 2px;
+  margin-bottom: 28px;
+}
+.end-divider {
+  width: 60px;
+  height: 2px;
+  background: #D4AF37;
+  margin-bottom: 28px;
+  opacity: 0.6;
+}
+.end-url {
+  font-family: 'Inter';
+  font-size: 22px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 1px;
+  margin-bottom: 32px;
+}
+.end-socials {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+.end-social-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.end-icon {
+  font-size: 16px;
+  color: #D4AF37;
+  width: 20px;
+  text-align: center;
+}
+.end-handle {
+  font-family: 'Inter';
+  font-size: 18px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.7);
+  letter-spacing: 0.5px;
+}
+""".strip()
+
+    return html, css
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
