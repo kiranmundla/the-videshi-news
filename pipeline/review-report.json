@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-09T01:45:22.059679+00:00",
+  "timestamp": "2026-06-09T02:15:32.315072+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 4,
+    "pass": 6,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,45 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "f0386680-a9f3-485b-a763-5b256779ddf4",
-      "headline": "The World Cup Starts on Wednesday. For NRIs, It Is in Their Backyard for the First Time.",
-      "slug": "fifa-world-cup-2026-nri-viewer-guide-us-canada-mexico-schedule-broadcast-nri",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 5,
-          "issue": "The image of MetLife Stadium is relevant to the article's content about the World Cup, but it does not directly match the headline's focus on NRIs and their experience."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the World Cup to the NRI experience, highlighting attendance opportunities and Indian connections."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that more directly represents the NRI experience at the World Cup.",
-          "Add more personal anecdotes or quotes from NRIs to enhance the connection to the diaspora."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "25adc161-fd7b-4d86-916c-07bb616f5116",
-      "headline": "Bumrah Was Rested for Ireland and England. He Was Not Rested for the Asian Games.",
-      "slug": "bumrah-rested-ireland-england-not-asian-games-india-full-strength-squad-japan-2026-nri",
+      "id": "695ceff3-6349-463a-bb36-21806f91c992",
+      "headline": "India Just Made Government Bonds Tax-Free for Foreign Investors. Here Is What NRIs Need to Know.",
+      "slug": "india-scraps-capital-gains-tax-government-bonds-foreign-investors-nri-guide-2026",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -65,13 +29,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the Asian Games cricket event to the Indian diaspora in Japan, highlighting the opportunity for NRIs to watch Bumrah play."
+          "note": "The article effectively connects the tax changes to NRIs, explaining both direct and indirect impacts on their investments."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more details about the significance of the Asian Games for the Indian cricket team and its history.",
-          "Include quotes from players or selectors to enhance the narrative and provide more depth."
+          "Include more specific examples of how NRIs can take advantage of the new tax-free status.",
+          "Add a section addressing potential risks or considerations for NRIs in light of these changes."
         ],
         "verdict": "pass"
       },
@@ -83,45 +47,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "63ab7d03-e88e-4de8-b897-10a7fd5e8044",
-      "headline": "Kangana Ranaut Delivered a Baby While Terrorists Walked the Halls. This Is the 26/11 Story Nobody Told.",
-      "slug": "bharat-bhhagya-viddhaata-kangana-ranaut-2611-cama-hospital-nurses-nri-20260609",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image of Kangana Ranaut does not directly relate to the article's focus on the nurse and the 26/11 incident."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the 26/11 incident to the NRI experience, highlighting emotional resonance and the significance of the story for the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that directly relates to the story of Anjali Kulthe or the hospital setting to enhance relevance.",
-          "Add more context about Kangana Ranaut's role in the film and her connection to the narrative to strengthen the article."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "c75424b6-08da-4bd8-a40a-a760bf1e0442",
-      "headline": "Manoj Bajpayee Is Playing the Man Who Saved India From Bankruptcy. The Tickets Cost What They Did in 1990.",
-      "slug": "governor-manoj-bajpayee-rbi-1990-crisis-ticket-pricing-june-12-nri-20260609",
+      "id": "234baea2-cc36-4482-ab2e-2039223a4b62",
+      "headline": "India's Rail Tourism Push Just Got 200 New Trains \u2014 and NRIs Are the Target Audience",
+      "slug": "irctc-rail-tourism-vande-bharat-expansion-nri-20260609",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -136,14 +64,158 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the film's themes to the experiences of NRIs, highlighting the impact of India's economic liberalization on the diaspora."
+          "quality": 8,
+          "note": "The article effectively connects the new train services to the interests of NRIs, particularly in terms of tourism and convenience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more direct quotes from the film or its creators to enhance engagement.",
-          "Include a brief overview of the film's reception or critical expectations to provide context."
+          "Include more personal anecdotes or testimonials from NRIs who have experienced the new train services to enhance relatability.",
+          "Add a section on how NRIs can book these train services or any special offers available to them."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "16886c73-230a-44e6-b5dc-81e2c9210f59",
+      "headline": "Delta Is Coming Back to India \u2014 and This Time It's Using IndiGo's Entire Network to Get You There",
+      "slug": "delta-indigo-alliance-nri-us-india-flights-20260609",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses the needs and frustrations of the Indian American diaspora regarding travel to India."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes or insights from Indian travelers or travel experts to enhance the personal connection.",
+          "Include more specific examples of how the new alliance will impact travel times or costs for NRIs."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "9a585fd2-16e1-46a8-a891-9cc79d03c4c7",
+      "headline": "Puri's Family Travel Searches Just Jumped 68% \u2014 and NRI Parents Should Take the Hint",
+      "slug": "puri-wayanad-goa-india-summer-family-travel-surge-nri-20260609",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects travel trends to NRI families, highlighting specific destinations and their appeal."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples or testimonials from NRI families who have traveled to these destinations to enhance relatability.",
+          "Include tips for NRI families on how to plan their trips effectively, considering travel logistics and cultural experiences."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "37134d31-8f3e-4cac-951c-d79429434e9d",
+      "headline": "Global Mental Health Just Hit Its Lowest Recorded Level. The Diaspora's Silence Makes It Worse.",
+      "slug": "axa-mind-health-report-2026-mental-health-lowest-ever-south-asian-diaspora-stigma",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the global mental health crisis to the South Asian diaspora, discussing cultural perceptions and barriers to seeking help."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples or anecdotes from the diaspora to illustrate the points made about mental health perceptions.",
+          "Include a call to action for the diaspora community to engage more openly with mental health issues."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "f74751c7-529c-4180-9a6f-149db8d1df72",
+      "headline": "The Crease in Your Earlobe May Be Warning You About Your Heart. South Asians Should Pay Attention.",
+      "slug": "franks-sign-earlobe-crease-heart-disease-south-asian-cardiovascular-risk-2026",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses the specific cardiovascular risks faced by South Asians, making it relevant to the diaspora audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include a brief summary or conclusion to reinforce the importance of recognizing Frank's sign.",
+          "Add a personal anecdote or testimonial from a South Asian individual regarding their experience with heart health to enhance relatability."
         ],
         "verdict": "pass"
       },
