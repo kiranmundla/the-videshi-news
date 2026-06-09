@@ -1,19 +1,19 @@
 {
-  "timestamp": "2026-06-09T16:15:17.975067+00:00",
+  "timestamp": "2026-06-09T16:45:59.491868+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 0,
+    "pass": 4,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
-  "revisions": 0,
+  "revisions": 1,
   "unpublished": 0,
   "articles": [
     {
-      "id": "c396900a-27d9-4070-9d39-41bcdc77900f",
-      "headline": "Fourteen Thousand Dollars More Per Position \u2014 The Wage Hike That Could Price India Out of H-1B",
-      "slug": "dol-prevailing-wage-hike-h1b-indian-workers-perm-20260609",
+      "id": "7b7eb8d3-e990-41d3-8890-8e6f8963122f",
+      "headline": "Siraj Is Rested. Prasidh Krishna Will Bowl in Ireland and England.",
+      "slug": "siraj-rested-prasidh-krishna-replacement-ireland-england-t20i-shreyas-iyer-nri",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -23,19 +23,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": "The image is relevant to the topic of immigration and H-1B visas, depicting employment-based immigrant petitions."
+          "score": 2,
+          "issue": "irrelevant"
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article discusses changes to H-1B visa policies that directly affect Indian workers, making it highly relevant to the Indian diaspora."
+          "quality": 7,
+          "note": "The article mentions where NRI viewers can watch the matches, connecting it to the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes or insights from immigration experts or affected individuals to enhance the article's depth.",
-          "Add a section discussing potential responses or adaptations by Indian tech firms to these changes."
+          "Replace the hero image with one that features Mohammad Siraj or Prasidh Krishna to better match the article's content.",
+          "Consider adding more context about the significance of the matches for the Indian team and its diaspora audience."
         ],
         "verdict": "pass"
       },
@@ -47,9 +47,45 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "eb840e15-396f-4ccc-bc5b-4797259164d1",
-      "headline": "Your Odds Just Changed \u2014 Inside the First Wage-Weighted H-1B Lottery",
-      "slug": "fy2027-wage-weighted-h1b-lottery-indian-workers-odds-20260609",
+      "id": "bac46e4b-0c90-4048-9c78-fba239d82eaa",
+      "headline": "Rohit Sharma Cleared Fit. He Will Play Against Afghanistan on Saturday.",
+      "slug": "rohit-sharma-fitness-cleared-afghanistan-odi-series-dharamsala-pandya-coe-nri",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 2,
+          "issue": "irrelevant"
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects with NRI cricket fans by discussing the significance of Rohit and Pandya's fitness for upcoming matches."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the hero image with one that features Rohit Sharma or is directly related to the cricket series to enhance relevance.",
+          "Consider adding quotes from Rohit Sharma or Hardik Pandya regarding their fitness and readiness to engage readers further."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Revised by gpt-4o-mini (545\u2192627 words)"
+      ],
+      "revised": true,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "f1c91156-e273-47b9-b0fe-f7377830b2cc",
+      "headline": "The US and Iran Say a Deal Is Days Away. India Needs It More Than Anyone at the Table.",
+      "slug": "us-iran-deal-hormuz-india-oil-relief-ceasefire-60-days-20260609",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -65,13 +101,90 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses changes to the H-1B lottery system, which directly impacts Indian professionals and the diaspora community."
+          "note": "The article effectively connects the geopolitical situation to the interests of NRIs, particularly regarding oil prices and economic stability."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes or insights from immigration experts to enhance credibility.",
-          "Add a section on potential future implications for Indian professionals in the U.S. job market."
+          "Add more direct quotes from Indian officials to strengthen the connection to India's perspective.",
+          "Include a brief overview of the potential impact on Indian expatriates in the Gulf region."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "091f1a72-16a4-4be6-9683-e9fe5021d601",
+      "headline": "TCS Will Have Half a Million AI Agents Within Three Years. Hiring Will Shrink.",
+      "slug": "tcs-half-million-ai-agents-chandrasekaran-agm-hiring-slowdown-20260609",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 5,
+          "issue": "The image of N. Chandrasekaran is relevant but does not directly illustrate the topic of AI agents."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the implications of TCS's AI strategy to the concerns of NRIs in the IT sector."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant hero image that visually represents AI technology or its impact on the workforce.",
+          "Add quotes or perspectives from diaspora professionals to enhance the connection with NRI readers."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "be4e0584-65b9-4788-9258-82e8d316a520",
+      "headline": "Modi Heads to France and Slovakia This Week. It Is India's First PM Visit to Bratislava Ever.",
+      "slug": "modi-france-slovakia-visit-g7-bharat-innovates-first-ever-bratislava-20260609",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "4636ec34-9f32-4b77-ad33-2863967795ae",
+            "headline": "Modi Convenes Economic War Room as West Asia Crisis Tests In"
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively highlights the significance of Modi's visit for the Indian diaspora in Slovakia and France, making it relevant for NRI readers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from Modi or French/Slovak officials to enhance the article's depth.",
+          "Include more specific examples of how the diaspora can benefit from the startup event in Nice."
         ],
         "verdict": "pass"
       },
