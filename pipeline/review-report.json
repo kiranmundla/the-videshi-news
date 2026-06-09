@@ -1,41 +1,41 @@
 {
-  "timestamp": "2026-06-09T14:16:22.889647+00:00",
+  "timestamp": "2026-06-09T14:46:37.546433+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 6,
-    "flag": 1,
+    "pass": 2,
+    "flag": 2,
     "fail": 0,
     "error": 0
   },
-  "revisions": 1,
+  "revisions": 2,
   "unpublished": 0,
   "articles": [
     {
-      "id": "8b81c0c8-fc60-4a29-9f03-2fa14911057c",
-      "headline": "Forget Goa \u2014 India's Himalayan Treks Are the Hottest Travel Trend of 2026, and NRIs Should Book Now",
-      "slug": "himalayan-treks-monsoon-season-nri-guide-20260609",
+      "id": "d58c6ae0-5624-45e3-a2a6-d3638b00acb6",
+      "headline": "Congress Tells Modi: You Pocketed the Cheap Oil. Now Swallow the Expensive Kind.",
+      "slug": "congress-promise-vs-reality-modi-oil-economy-sixth-largest-rupee-20260609",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
-        "overall_score": 8,
+        "overall_score": 7,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 8,
+          "issue": "The image of a petrol pump is relevant to the article's discussion on fuel prices and the economy."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the travel trends in India to the interests of NRIs, particularly in terms of timing and destination appeal."
+          "note": "The article discusses the impact of economic changes on NRIs, particularly regarding remittances and investment opportunities."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more personal anecdotes or testimonials from NRIs who have experienced these treks to enhance relatability.",
-          "Include links to specific trekking companies or booking platforms for NRIs to facilitate easy planning."
+          "Include more direct quotes from NRI perspectives to enhance the diaspora angle.",
+          "Add a brief conclusion summarizing the potential long-term effects on the Indian economy and diaspora."
         ],
         "verdict": "pass"
       },
@@ -47,84 +47,17 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "bb82f1c7-4755-4d89-9d25-93b9ad59ad7f",
-      "headline": "Global Hotel Chains Are Betting Billions on India's Temple Towns \u2014 and the Returns Are Already Biblical",
-      "slug": "marriott-hilton-india-pilgrimage-hotel-boom-nri-20260609",
+      "id": "9f5a4021-b630-472b-9e78-515e3cab3c70",
+      "headline": "A Delhi Hotel Was Licensed for Six Rooms. It Was Running Twenty-Five. Twenty-Two People Are Dead.",
+      "slug": "delhi-malviya-nagar-fire-22-dead-flourish-stays-hotel-safety-violations-20260609",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the growth of luxury hotels in temple towns to the changing travel patterns of NRIs, making it relevant for the diaspora audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes or insights from NRI travelers to enhance the diaspora perspective.",
-          "Include more statistics or data on the growth of religious tourism specifically related to NRIs."
+        "duplicate_images": [
+          {
+            "article_id": "8c5ac207-5781-48cf-a339-84d9b84e5a86",
+            "headline": "A Cook's Negligence, a Hotel with No Fire Clearance, and 21 "
+          }
         ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "d7b04b65-535c-4b4d-ad60-7113dad5be51",
-      "headline": "The World Cup Starts Thursday \u2014 and NRIs in America Have the Easiest Ticket in the Building",
-      "slug": "fifa-world-cup-2026-nri-america-guide-20260609",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the World Cup to the Indian American community, highlighting their unique advantages and experiences."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes or anecdotes from Indian Americans who plan to attend the World Cup to enhance relatability.",
-          "Include more specific information about how NRIs can navigate ticket purchasing and hotel bookings."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "c2f7c5be-a75e-4d86-9eb1-dd87b7e78c88",
-      "headline": "Indian Companies Just Invested a Record $20.5 Billion in America. It Is the Largest From Any Country This Year.",
-      "slug": "indian-companies-record-20-billion-us-investment-selectusa-2026-nri-impact",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
@@ -132,54 +65,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image does not directly relate to the investment theme but is visually appealing."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the investment news to the interests and implications for the NRI community."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that directly represents investment or business to enhance relevance.",
-          "Add more specific examples of how these investments will impact the NRI community."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "178f7760-de2c-4287-8593-e9899deb61ab",
-      "headline": "A Vaccine That Prevents Cancer Before It Starts Just Got the Green Light. Here Is Why South Asians Should Care.",
-      "slug": "moderna-oxford-lynch-syndrome-mrna-cancer-prevention-vaccine-south-asian-20260609",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
+          "issue": "The image does not directly depict the hotel or fire incident, but it is relevant to the topic of hospitality."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the topic of the vaccine to the South Asian community, highlighting the specific risks and underdiagnosis of Lynch syndrome within this demographic."
+          "note": "The article connects the tragedy to NRIs by discussing the risks they face when visiting India, making it relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes or testimonials from South Asian health professionals or patients to enhance relatability.",
-          "Add a section on how South Asians can access genetic counseling and screening programs."
+          "Include more direct quotes from officials or witnesses to enhance the narrative.",
+          "Add a section on how the diaspora can engage with or support fire safety initiatives in India."
         ],
         "verdict": "pass"
       },
@@ -191,38 +88,38 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "97fc2e3c-b21d-4311-a3fc-513673085b26",
-      "headline": "American Doctors Are Finally Getting Nutrition Training. It Still Will Not Cover Your Dadi's Kitchen.",
-      "slug": "us-medical-schools-nutrition-education-mandate-south-asian-diet-gap-2026",
+      "id": "46b5f462-e8c3-46d1-a2bc-e89f01f25dd4",
+      "headline": "Eight Workers Burned Alive at Vizag Steel Plant. A Crane Carrying Molten Iron Collapsed.",
+      "slug": "vizag-steel-plant-molten-iron-explosion-eight-killed-rinl-safety-20260609",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
-        "overall_score": 8,
+        "overall_score": 6,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the article's focus on nutrition training for doctors and South Asian dietary needs."
+          "score": 8,
+          "issue": "The image of the Vizag Steel Plant entrance is relevant to the article's topic."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively addresses the specific nutritional needs of the South Asian diaspora in the U.S. and how current medical training may not meet those needs."
+          "quality": 7,
+          "note": "The article discusses a significant industrial accident that may resonate with the Indian diaspora concerned about worker safety and industrial practices in India."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that more directly represents South Asian cuisine or nutrition to enhance relevance.",
-          "Add a quote or perspective from an NRI regarding their experiences with healthcare and nutrition in the U.S. for a more personal touch."
+          "Include quotes from affected families or workers to add a personal touch.",
+          "Provide more context on the implications of the accident for the future of the Vizag Steel Plant and its workers."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
-        "promoted to published"
+        "Revised by gpt-4o-mini (810\u2192906 words)"
       ],
-      "revised": false,
+      "revised": true,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
     },
@@ -240,7 +137,7 @@
         "embed_issues": [],
         "image_match": {
           "score": 5,
-          "issue": "The image does not match the article's topic of Gukesh's performance in chess; it appears to be unrelated."
+          "issue": "The image does not match the article's topic of chess; it appears to be unrelated."
         },
         "diaspora_angle": {
           "present": true,
@@ -250,13 +147,13 @@
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the hero image with one that directly relates to Gukesh Dommaraju's recent chess performance.",
+          "Replace the hero image with one that features Gukesh Dommaraju or a relevant chess scene.",
           "Consider adding quotes or reactions from diaspora chess communities to enhance the connection."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
-        "Revised by gpt-4o-mini (693\u2192722 words)"
+        "Revised by gpt-4o-mini (722\u2192747 words)"
       ],
       "revised": true,
       "unpublished": false,
