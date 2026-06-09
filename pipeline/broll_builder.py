@@ -22,7 +22,6 @@ from difflib import SequenceMatcher
 import requests
 
 OPENAI_KEY = os.environ.get("OPENAI_API_KEY", "")
-PEXELS_KEY = os.environ.get("PEXELS_API_KEY", "")
 BUILD_DIR = Path(__file__).parent / "reels" / "build"
 
 
@@ -140,72 +139,81 @@ Return ONLY valid JSON (no markdown fences):
 
 def source_broll_images(segments, article):
     """
-    Find images for each BROLL segment.
-    Priority: article image (first BROLL only) → Pexels → web fallback.
+    Find images for each BROLL segment from the article's own assets only.
+    No external search — the article pipeline already sourced the best images.
+    
+    Sources (in order):
+    1. Article image_url
+    2. Images embedded in article body (markdown ![](url) or <img>)
+    3. YouTube thumbnails from <youtube> tags in body
+    
+    If no images available, B-roll segments fall back to anchor (Kavya stays on screen).
     
     Returns list of image paths (same length as segments, None for ANCHOR segments).
     """
+    # Collect all available images from the article
+    available_images = []
+    
+    # 1. Article main image
     article_image = article.get("image_url", "")
+    if article_image:
+        available_images.append(("article_main", article_image))
+    
+    # 2. Images in article body
+    body = article.get("body") or ""
+    
+    # Markdown images: ![alt](url)
+    md_images = re.findall(r'!\[.*?\]\((https?://[^\s)]+)\)', body)
+    for url in md_images:
+        if url != article_image:  # Don't duplicate main image
+            available_images.append(("body_image", url))
+    
+    # HTML images: <img src="url">
+    html_images = re.findall(r'<img[^>]+src=["\']([^"\']+)["\']', body)
+    for url in html_images:
+        if url not in [u for _, u in available_images]:
+            available_images.append(("body_image", url))
+    
+    # 3. YouTube thumbnails
+    yt_ids = re.findall(r'<youtube>.*?(?:youtube\.com/watch\?v=|youtu\.be/)([\w-]+).*?</youtube>', body)
+    if not yt_ids:
+        yt_ids = re.findall(r'(?:youtube\.com/watch\?v=|youtu\.be/)([\w-]+)', body)
+    for yt_id in yt_ids:
+        # maxresdefault is 1280x720 — perfect for our 16:9 content band
+        available_images.append(("youtube_thumb", f"https://img.youtube.com/vi/{yt_id}/maxresdefault.jpg"))
+    
+    if not available_images:
+        print("  ⚠️ No images found in article — B-roll segments will use anchor")
+    else:
+        print(f"  📸 Found {len(available_images)} images in article: {', '.join(src for src, _ in available_images)}")
+
+    # Assign images to BROLL segments (round-robin if more B-roll than images)
     image_paths = []
-    used_article_image = False
+    img_idx = 0
+    broll_count = sum(1 for s in segments if s["type"] == "broll")
 
     for i, seg in enumerate(segments):
         if seg["type"] != "broll":
             image_paths.append(None)
             continue
 
-        query = seg.get("image_query", "")
+        if not available_images:
+            image_paths.append(None)
+            continue
+
+        source_type, url = available_images[img_idx % len(available_images)]
         img_path = BUILD_DIR / f"broll-img-{i}.jpg"
 
-        # Try article image first (only for the first BROLL)
-        if article_image and not used_article_image:
-            if _download_image(article_image, img_path):
-                print(f"  🖼️ B-roll {i}: Using article image")
-                image_paths.append(str(img_path))
-                used_article_image = True
-                continue
-
-        # Try Pexels
-        if PEXELS_KEY and query:
-            pexels_url = _search_pexels(query)
-            if pexels_url and _download_image(pexels_url, img_path):
-                print(f"  🖼️ B-roll {i}: Pexels — {query}")
-                image_paths.append(str(img_path))
-                continue
-
-        # Fallback: try alternate Pexels query
-        if PEXELS_KEY:
-            desc = seg.get("image_description", query)
-            # Simplify the query for better Pexels results
-            simple_query = " ".join(desc.split()[:4])
-            pexels_url = _search_pexels(simple_query)
-            if pexels_url and _download_image(pexels_url, img_path):
-                print(f"  🖼️ B-roll {i}: Pexels fallback — {simple_query}")
-                image_paths.append(str(img_path))
-                continue
-
-        print(f"  ⚠️ B-roll {i}: No image found for '{query}'")
-        image_paths.append(None)
+        if _download_image(url, img_path):
+            print(f"  🖼️ B-roll {i}: {source_type} — {url[:80]}")
+            image_paths.append(str(img_path))
+            img_idx += 1
+        else:
+            print(f"  ⚠️ B-roll {i}: Failed to download {source_type}")
+            image_paths.append(None)
+            img_idx += 1
 
     return image_paths
-
-
-def _search_pexels(query):
-    """Search Pexels for landscape photos. Returns URL or None."""
-    try:
-        result = subprocess.run(
-            ["curl", "-s", "-H", f"Authorization: {PEXELS_KEY}",
-             f"https://api.pexels.com/v1/search?query={requests.utils.quote(query)}&per_page=3&orientation=landscape"],
-            capture_output=True, text=True, timeout=10
-        )
-        data = json.loads(result.stdout)
-        photos = data.get("photos", [])
-        if photos:
-            # Prefer 'large' for quality without being too big
-            return photos[0].get("src", {}).get("large") or photos[0].get("src", {}).get("original")
-    except Exception as e:
-        print(f"    Pexels error: {e}")
-    return None
 
 
 def _download_image(url, output_path):
@@ -227,15 +235,16 @@ def _download_image(url, output_path):
 def render_broll_frame(image_path, headline, badge_text, output_path, duration, fps=25):
     """
     Create a portrait video frame (1080x1920) with the B-roll image
-    in the same branded news layout as the anchor frame.
+    in the branded news layout. Unlike the anchor frame where the avatar
+    sits in a small 16:9 band, B-roll images fill most of the frame.
     
     Layout:
-    - Navy header: THE VIDESHI logo + badge + headline (same as anchor)
+    - Navy header: THE VIDESHI logo + badge + headline (~300px)
     - Gold accent line
-    - Image band (where Kavya normally sits) — scaled to fill 1080px wide
-    - Gold accent line
-    - Navy caption zone (same as anchor — captions appear here)
-    - Bottom branding bar
+    - Image area (fills from y=300 to y=1500 = ~1200px tall, much larger than avatar band)
+    - Gold accent line  
+    - Caption zone (~340px for captions)
+    - Bottom branding bar (80px)
     
     Returns path to silent video segment.
     """
@@ -254,10 +263,19 @@ def render_broll_frame(image_path, headline, badge_text, output_path, duration, 
 
     img_w, img_h = map(int, probe.stdout.strip().split("x"))
 
-    # Scale image to fill 1080px wide, cap height at 607px (same as avatar band)
+    # B-roll image gets a MUCH larger area than the avatar band
+    # Header takes ~300px, caption zone ~340px, branding 80px = 720px overhead
+    # Image area: 1920 - 720 = 1200px tall
+    image_y = 300       # Start below header
+    image_h = 1200      # Much taller than avatar's 607px
     target_w = 1080
-    target_h = min(607, int(img_h * target_w / img_w))
-    avatar_y = 340  # Same position as avatar band
+
+    # Scale image to fill the area (cover mode: fill width and height, crop excess)
+    scale_by_w = target_w / img_w
+    scale_by_h = image_h / img_h
+    scale = max(scale_by_w, scale_by_h)  # Cover: use larger scale to fill
+    scaled_w = int(img_w * scale)
+    scaled_h = int(img_h * scale)
 
     # Word-wrap headline
     headline_lines = _wrap_headline(headline, max_chars=28, max_lines=3)
@@ -306,16 +324,18 @@ def render_broll_frame(image_path, headline, badge_text, output_path, duration, 
     drawtext_chain = ",\n    ".join(drawtext_parts)
 
     # Ken Burns: gentle zoom/pan on the image for visual interest
-    # Slow zoom from 100% to 110% over the duration
-    zoom_filter = f"zoompan=z='min(zoom+0.0005,1.1)':d={int(duration * fps)}:x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':s={target_w}x{target_h}:fps={fps}"
+    # Scale to cover the target area, then crop to exact size
+    # Slow zoom from 100% to 108% over the duration
+    zoom_filter = f"zoompan=z='min(zoom+0.0003,1.08)':d={int(duration * fps)}:x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':s={scaled_w}x{scaled_h}:fps={fps}"
+    crop_filter = f"crop={target_w}:{image_h}:(in_w-{target_w})/2:(in_h-{image_h})/2"
 
     filter_complex = f"""
-    [1:v]{zoom_filter}[zoomed];
+    [1:v]{zoom_filter},{crop_filter}[content];
     [0:v]setpts=PTS-STARTPTS[canvas];
-    [canvas][zoomed]overlay=0:{avatar_y}:shortest=1[base];
+    [canvas][content]overlay=0:{image_y}:shortest=1[base];
     [base]
-    drawbox=x=0:y={avatar_y - 5}:w=1080:h=3:c=#D4AF37:t=fill,
-    drawbox=x=0:y={avatar_y + target_h + 2}:w=1080:h=3:c=#D4AF37:t=fill,
+    drawbox=x=0:y={image_y - 3}:w=1080:h=3:c=#D4AF37:t=fill,
+    drawbox=x=0:y={image_y + image_h}:w=1080:h=3:c=#D4AF37:t=fill,
     drawbox=x=0:y=1840:w=1080:h=80:c=#0A1520:t=fill,
     {drawtext_chain}
     [out]
@@ -419,6 +439,12 @@ def map_segments_to_timeline(segments, srt_entries):
 
     # Fill in any missing timestamps using neighbors
     _fill_missing_timestamps(segments, srt_entries)
+
+    # Ensure last segment extends to the actual end of audio
+    # (prevents end card from cutting off Kavya mid-sentence)
+    if segments and srt_entries:
+        audio_end = srt_entries[-1]["end"] + 0.5  # 500ms buffer after last word
+        segments[-1]["end_time"] = max(segments[-1].get("end_time", 0), audio_end)
 
     for seg in segments:
         dur = seg.get('end_time', 0) - seg.get('start_time', 0)

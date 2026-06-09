@@ -122,7 +122,7 @@ def get_recent_articles(hours=24, limit=20):
         f"{SUPABASE_URL}/rest/v1/p2_articles",
         headers=SB_HEADERS,
         params={
-            "select": "id,headline,subheadline,slug,category,vertical,body,published_at",
+            "select": "id,headline,subheadline,slug,category,vertical,body,image_url,published_at",
             "status": "eq.published",
             "published_at": f"gte.{since}",
             "order": "published_at.desc",
@@ -910,14 +910,6 @@ def run(args):
         if script_data and srt_path:
             print("  🖼️ Sourcing B-roll images...")
             segments = script_data["segments"]
-            
-            # Load Pexels key if available
-            pexels_env = Path.home() / "workspace" / ".env.pexels"
-            if pexels_env.exists():
-                with open(pexels_env) as f:
-                    for line in f:
-                        if line.startswith("PEXELS_API_KEY="):
-                            os.environ["PEXELS_API_KEY"] = line.strip().split("=", 1)[1]
             
             broll_images = source_broll_images(segments, article)
             
