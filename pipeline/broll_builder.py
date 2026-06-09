@@ -323,10 +323,10 @@ def render_broll_frame(image_path, headline, badge_text, output_path, duration, 
 
     drawtext_chain = ",\n    ".join(drawtext_parts)
 
-    # Ken Burns: gentle zoom/pan on the image for visual interest
+    # Ken Burns: very gentle slow zoom for subtle motion (no shake)
     # Scale to cover the target area, then crop to exact size
-    # Slow zoom from 100% to 108% over the duration
-    zoom_filter = f"zoompan=z='min(zoom+0.0003,1.08)':d={int(duration * fps)}:x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':s={scaled_w}x{scaled_h}:fps={fps}"
+    # Slow zoom from 100% to 103% — smooth and subtle, no jitter
+    zoom_filter = f"zoompan=z='min(zoom+0.00008,1.03)':d={int(duration * fps)}:x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':s={scaled_w}x{scaled_h}:fps={fps}"
     crop_filter = f"crop={target_w}:{image_h}:(in_w-{target_w})/2:(in_h-{image_h})/2"
 
     filter_complex = f"""
@@ -512,25 +512,29 @@ def _estimate_timeline(segments):
 
 # ─── 5. Assembly with Crossfade ──────────────────────────────────────────────
 
-def assemble_broll_reel(anchor_video, segments, broll_image_paths, headline, badge_text, output_path, fps=25):
+def assemble_broll_reel(anchor_video, segments, broll_image_paths, headline, badge_text, output_path, fps=25, fullframe_anchor=None):
     """
     Assemble the final reel by interleaving anchor video and B-roll frames.
     
-    - anchor_video: the full portrait-fixed Kavya video (with her audio)
+    - anchor_video: the portrait-fixed Kavya video (branded layout, with audio)
     - segments: list with type, start_time, end_time
     - broll_image_paths: list of image paths (None for anchor segments)
     - output_path: final assembled video
+    - fullframe_anchor: optional full-frame center-cropped Kavya video (immersive).
+                        If provided, ANCHOR segments use this instead of branded layout.
     
     Strategy:
     1. Extract the full audio track from anchor_video
     2. For each segment, create either:
-       - An anchor clip (trim from anchor_video)
+       - An anchor clip (from fullframe_anchor if available, else anchor_video)
        - A B-roll clip (render image frame, no audio)
     3. Concatenate all clips with crossfade transitions
     4. Lay the continuous audio back over the assembled video
     """
     anchor_video = str(anchor_video)
     output_path = str(output_path)
+    # Use full-frame crop for anchor segments when available
+    anchor_source = str(fullframe_anchor) if fullframe_anchor else anchor_video
 
     # Step 1: Extract full audio
     audio_path = str(BUILD_DIR / "broll-full-audio.aac")
@@ -552,9 +556,9 @@ def assemble_broll_reel(anchor_video, segments, broll_image_paths, headline, bad
         clip_path = str(BUILD_DIR / f"broll-clip-{i}.mp4")
 
         if seg["type"] == "anchor":
-            # Trim from the anchor video (video only, no audio)
+            # Trim from the full-frame anchor (or branded layout fallback)
             subprocess.run(
-                ["ffmpeg", "-y", "-i", anchor_video,
+                ["ffmpeg", "-y", "-i", anchor_source,
                  "-ss", str(start), "-t", str(duration),
                  "-an", "-c:v", "libx264", "-crf", "18", "-preset", "fast",
                  clip_path],
@@ -567,9 +571,9 @@ def assemble_broll_reel(anchor_video, segments, broll_image_paths, headline, bad
                 clip_path, duration, fps
             )
         else:
-            # No image available for B-roll, fall back to anchor
+            # No image available for B-roll, fall back to full-frame anchor
             subprocess.run(
-                ["ffmpeg", "-y", "-i", anchor_video,
+                ["ffmpeg", "-y", "-i", anchor_source,
                  "-ss", str(start), "-t", str(duration),
                  "-an", "-c:v", "libx264", "-crf", "18", "-preset", "fast",
                  clip_path],
@@ -662,14 +666,45 @@ def assemble_broll_reel(anchor_video, segments, broll_image_paths, headline, bad
             )
 
     # Step 4: Mux the continuous audio back onto the assembled video
-    subprocess.run(
-        ["ffmpeg", "-y",
-         "-i", concat_video, "-i", audio_path,
-         "-c:v", "copy", "-c:a", "aac",
-         "-shortest",
-         output_path],
-        capture_output=True, timeout=60
+    # Use -shortest on VIDEO stream only — pad video with last frame to match audio
+    # This prevents xfade transitions from eating Kavya's last words
+    # Get audio duration to pad video if needed
+    audio_dur_probe = subprocess.run(
+        ["ffprobe", "-v", "quiet", "-show_entries", "format=duration",
+         "-of", "default=noprint_wrappers=1:nokey=1", audio_path],
+        capture_output=True, text=True, timeout=10
     )
+    video_dur_probe = subprocess.run(
+        ["ffprobe", "-v", "quiet", "-show_entries", "format=duration",
+         "-of", "default=noprint_wrappers=1:nokey=1", concat_video],
+        capture_output=True, text=True, timeout=10
+    )
+    audio_dur = float(audio_dur_probe.stdout.strip()) if audio_dur_probe.stdout.strip() else 0
+    video_dur = float(video_dur_probe.stdout.strip()) if video_dur_probe.stdout.strip() else 0
+
+    if video_dur < audio_dur - 0.1:
+        # Video is shorter than audio (xfade ate time) — pad video with tpad (freeze last frame)
+        pad_time = audio_dur - video_dur + 0.5  # small extra buffer
+        print(f"  📐 Padding video +{pad_time:.1f}s to match audio ({video_dur:.1f}s → {audio_dur:.1f}s)")
+        subprocess.run(
+            ["ffmpeg", "-y",
+             "-i", concat_video, "-i", audio_path,
+             "-filter_complex", f"[0:v]tpad=stop_mode=clone:stop_duration={pad_time}[v]",
+             "-map", "[v]", "-map", "1:a",
+             "-c:v", "libx264", "-crf", "18", "-preset", "fast",
+             "-c:a", "aac", "-shortest",
+             output_path],
+            capture_output=True, timeout=120
+        )
+    else:
+        subprocess.run(
+            ["ffmpeg", "-y",
+             "-i", concat_video, "-i", audio_path,
+             "-c:v", "copy", "-c:a", "aac",
+             "-shortest",
+             output_path],
+            capture_output=True, timeout=60
+        )
 
     if Path(output_path).exists():
         dur_probe = subprocess.run(

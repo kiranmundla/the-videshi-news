@@ -352,6 +352,75 @@ def _wrap_headline(headline, max_chars=28, max_lines=3):
     return lines[:max_lines]
 
 
+def crop_avatar_fullframe(video_path, output_path):
+    """
+    Center-crop 16:9 HeyGen avatar video to 9:16 portrait (1080x1920).
+    Kavya fills the entire frame — immersive news anchor look.
+    
+    From 1920x1080 source:
+    - Crop center 608px-wide vertical strip (608x1080)
+    - Scale up to 1080x1920
+    - Add subtle dark gradient at bottom for caption readability
+    - Minimal branding overlay (small watermark only)
+    
+    Returns True on success.
+    """
+    video_path = str(video_path)
+    output_path = str(output_path)
+    
+    # Probe input dimensions
+    probe = subprocess.run(
+        ["ffprobe", "-v", "quiet", "-select_streams", "v:0",
+         "-show_entries", "stream=width,height", "-of", "csv=s=x:p=0", video_path],
+        capture_output=True, text=True, timeout=10
+    )
+    if probe.returncode != 0:
+        print(f"  ❌ Can't probe video: {video_path}")
+        return False
+    
+    src_w, src_h = map(int, probe.stdout.strip().split("x"))
+    
+    # Calculate center crop for 9:16 from 16:9
+    # Target aspect = 9/16 = 0.5625
+    crop_w = int(src_h * 9 / 16)  # 1080 * 9/16 = 607.5 → 607
+    crop_x = (src_w - crop_w) // 2  # Center horizontally
+    
+    # Build filter:
+    # 1. Center-crop to 9:16 strip
+    # 2. Scale up to 1080x1920
+    # 3. Add gradient overlay at bottom for captions
+    # 4. Small watermark
+    filter_complex = f"""
+    [0:v]crop={crop_w}:{src_h}:{crop_x}:0,
+    scale=1080:1920:flags=lanczos,
+    drawbox=x=0:y=1650:w=1080:h=270:c=black@0.4:t=fill,
+    drawbox=x=0:y=1600:w=1080:h=50:c=black@0.2:t=fill,
+    drawtext=text='THE VIDESHI':
+        fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf:
+        fontsize=20:fontcolor=#D4AF37@0.6:x=w-text_w-20:y=30
+    [out]
+    """
+    
+    cmd = [
+        "ffmpeg", "-y",
+        "-i", video_path,
+        "-filter_complex", filter_complex,
+        "-map", "[out]", "-map", "0:a",
+        "-c:v", "libx264", "-crf", "18", "-preset", "fast",
+        "-c:a", "copy",
+        output_path
+    ]
+    
+    result = subprocess.run(cmd, capture_output=True, text=True, timeout=180)
+    
+    if result.returncode != 0:
+        print(f"  ❌ Full-frame crop failed: {result.stderr[-300:]}")
+        return False
+    
+    print(f"  ✅ Full-frame portrait crop — Kavya fills entire frame")
+    return True
+
+
 def normalize_audio_social(video_path, output_path, target_lufs=-14):
     """Normalize audio to social media loudness standard (-14 LUFS)."""
     cmd = [
