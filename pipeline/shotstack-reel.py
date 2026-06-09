@@ -47,7 +47,7 @@ WHITE = "#ffffff"
 RED_BADGE = "#C41E3A"
 
 # TTS
-TTS_VOICE = "166aa8d7acd1495a839d34024ccb1505"  # HeyGen Seema Professional
+TTS_VOICE = "99fdc056cb054503a9bb53dee01a9e7e"  # Kavya - Voice 1 (matches HeyGen avatar)
 
 # Category → music mapping
 CATEGORY_MUSIC = {
@@ -322,7 +322,7 @@ def generate_tts(text):
 
     result = subprocess.run(
         ["ffmpeg", "-y", "-i", str(wav_path),
-         "-af", "loudnorm=I=-14:TP=-1.5:LRA=11",
+         "-af", "loudnorm=I=-10:TP=-1.0:LRA=11",
          "-codec:a", "libmp3lame", "-q:a", "2", str(mp3_path)],
         capture_output=True, text=True,
     )
@@ -335,7 +335,7 @@ def generate_tts(text):
         print(f"❌ WAV→MP3 conversion failed")
         return None, 0
 
-    print(f"  🎙️ TTS audio: {duration:.1f}s (normalized to -14 LUFS)")
+    print(f"  🎙️ TTS audio: {duration:.1f}s (Kavya voice, normalized to -10 LUFS)")
     return str(mp3_path), duration
 
 
@@ -1409,8 +1409,15 @@ def run_anchor_reel(article, dry_run=False, use_production=False):
     # 8. Download rendered reel (already includes CTA — no ffmpeg needed)
     print("\n📥 Step 8: Downloading reel...")
     ts = datetime.now().strftime("%Y%m%d-%H%M")
-    final_name = f"ss-reel-{slug[:60]}-{ts}.mp4"
-    final_path = REELS_DIR / final_name
+    # Sandbox renders go to reels/sandbox/ to prevent accidental posting
+    if use_production:
+        final_name = f"ss-reel-{slug[:60]}-{ts}.mp4"
+        final_path = REELS_DIR / final_name
+    else:
+        sandbox_dir = REELS_DIR / "sandbox"
+        sandbox_dir.mkdir(exist_ok=True)
+        final_name = f"ss-reel-{slug[:60]}-{ts}.mp4"
+        final_path = sandbox_dir / final_name
     if not download_reel(output_url, str(final_path)):
         return False
 

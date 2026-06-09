@@ -1681,5 +1681,23 @@
       "platform": "threads",
       "type": "video_reel"
     }
-  ]
+  ],
+  "18036917822619771": {
+    "reel_id": "8a1de6bf-29a1-4088-a2c7-6d8fc7bd1a00",
+    "article_slug": "nri-remittances-record-43-billion-q4-fy26-current-acco",
+    "headline": "NRI Remittances Hit $43.5 Billion in One Quarter",
+    "threads_post_id": "18036917822619771",
+    "posted_at": "2026-06-09T23:26:59.592227+00:00",
+    "platform": "threads",
+    "type": "video_reel"
+  },
+  "18109404766822229": {
+    "reel_id": "9ac8c1ac-0fa5-49c1-82d9-3606f5373a05",
+    "article_slug": "welcome-to-the-jungle-akshay-kumar-ensemble-comedy-june-26-nri-20260603",
+    "headline": "Welcome To The Jungle Has Akshay Kumar, Fifteen Co-Stars, and the Promise That Nobody Has to Think for Two Hours.",
+    "threads_post_id": "18109404766822229",
+    "posted_at": "2026-06-09T23:27:56.155839+00:00",
+    "platform": "threads",
+    "type": "video_reel"
+  }
 }

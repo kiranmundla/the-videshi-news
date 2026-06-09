@@ -1,64 +1,15 @@
 {
-  "timestamp": "2026-06-09T23:15:37.597008+00:00",
+  "timestamp": "2026-06-09T23:45:09.981434+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 1,
+    "pass": 1,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
-  "revisions": 1,
+  "revisions": 0,
   "unpublished": 0,
   "articles": [
-    {
-      "id": "d730ebef-f0c0-4482-b3bc-3e87281c673e",
-      "headline": "Huma Qureshi Is India's First Desi Hitwoman. And She's Coming for Alia Bhatt's Opening Weekend.",
-      "slug": "baby-do-die-do-huma-qureshi-hitwoman-alpha-alia-bhatt-july-3-clash-nri-20260609",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/reel/DZWuqRlABdT/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram reel does not seem to directly relate to the article's main focus on Huma Qureshi's role in 'Baby Do Die Do' and its competition with 'Alpha'."
-          },
-          {
-            "url": "https://youtube.com/watch?v=YXPVEtFCb9s",
-            "problem": "irrelevant",
-            "explanation": "While the YouTube link is to the teaser, it is not clear if it adds significant value to the article's narrative."
-          }
-        ],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses the potential availability of the film for diaspora audiences, making a relevant connection."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace or remove the Instagram embed with a more relevant link that directly relates to the film or its themes.",
-          "Consider adding more context about the film's release strategy for diaspora audiences to enhance engagement."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/reel/DZWuqRlABdT/",
-        "Removed irrelevant embed: https://youtube.com/watch?v=YXPVEtFCb9s",
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
     {
       "id": "c528fa85-3e2a-452f-8fc2-426ca25a8cca",
       "headline": "Sunny Deol Just Lit a Torch Through Partition. Batwara 1947 Arrives on Independence Day.",
@@ -70,71 +21,21 @@
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/reel/DZWoKAeJ15M/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram reel does not appear to be directly related to the film or its themes, making it less relevant to the article's focus."
-          },
-          {
-            "url": "https://youtube.com/watch?v=MGhF6wuDcSI",
-            "problem": "duplicate",
-            "explanation": "The YouTube link is mentioned in the body but does not provide additional context or content beyond what is already described."
-          }
-        ],
+        "embed_issues": [],
         "image_match": {
           "score": 9,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the film's themes of Partition to the personal experiences of the diaspora, making it relatable and impactful."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [
-          "https://youtube.com/watch?v=MGhF6wuDcSI"
-        ],
-        "suggestions": [
-          "Replace the irrelevant Instagram link with a more relevant social media post related to the film.",
-          "Consider providing more context or analysis on how the film's themes resonate with the diaspora experience."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/reel/DZWoKAeJ15M/",
-        "Revised by gemini-2.5-flash (692\u2192590 words)"
-      ],
-      "revised": true,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "16feed14-5182-4709-ae04-f434fba3b2a1",
-      "headline": "Germany and France Just Scrapped the Transit Visa for Indians. Here's Why It Matters.",
-      "slug": "germany-france-scrap-transit-visa-indians-frankfurt-paris-travel-20260609",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 3,
-          "issue": "The image does not relate to the article's topic about transit visas and travel."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively discusses the implications of the visa change for the Indian diaspora, particularly in terms of travel logistics and maintaining connections."
+          "quality": 8,
+          "note": "The article effectively connects the film's themes of Partition to the personal experiences of the diaspora, making it relevant for NRI readers."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the hero image with one that is more relevant to the topic of travel or visas.",
-          "Add a brief section summarizing the potential economic impact of increased travel on the Indian diaspora."
+          "Consider adding more quotes or insights from the cast or director to enhance the article's depth.",
+          "Include a brief discussion on the historical context of Partition for readers who may not be familiar with it."
         ],
         "verdict": "pass"
       },
