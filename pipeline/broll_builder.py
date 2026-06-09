@@ -536,175 +536,87 @@ def assemble_broll_reel(anchor_video, segments, broll_image_paths, headline, bad
     # Use full-frame crop for anchor segments when available
     anchor_source = str(fullframe_anchor) if fullframe_anchor else anchor_video
 
-    # Step 1: Extract full audio
-    audio_path = str(BUILD_DIR / "broll-full-audio.aac")
-    subprocess.run(
-        ["ffmpeg", "-y", "-i", anchor_video, "-vn", "-acodec", "copy", audio_path],
-        capture_output=True, timeout=30
-    )
+    # ── Overlay approach: never separate audio from video ──
+    # The anchor_source video has perfect lip sync from HeyGen.
+    # We keep it as the continuous base track (audio + video untouched).
+    # B-roll images are rendered as silent clips and overlaid ON TOP of
+    # the anchor at the exact timestamps — audio passes through untouched,
+    # so lip sync is guaranteed frame-accurate.
 
-    # Step 2: Create individual segment clips
-    clip_paths = []
+    # Step 1: Render each B-roll segment as a silent 1080x1920 video clip
+    broll_clips = []  # list of (clip_path, start_time, duration)
     for i, seg in enumerate(segments):
+        if seg["type"] != "broll" or not broll_image_paths[i]:
+            continue
+
         start = seg.get("start_time", 0)
         end = seg.get("end_time", start + 3)
         duration = end - start
-
         if duration < 0.5:
             continue
 
         clip_path = str(BUILD_DIR / f"broll-clip-{i}.mp4")
+        result = render_broll_frame(
+            broll_image_paths[i], headline, badge_text,
+            clip_path, duration, fps
+        )
+        if result and Path(clip_path).exists():
+            broll_clips.append((clip_path, start, duration))
 
-        if seg["type"] == "anchor":
-            # Trim from the full-frame anchor (or branded layout fallback)
-            subprocess.run(
-                ["ffmpeg", "-y", "-i", anchor_source,
-                 "-ss", str(start), "-t", str(duration),
-                 "-an", "-c:v", "libx264", "-crf", "18", "-preset", "fast",
-                 clip_path],
-                capture_output=True, timeout=60
-            )
-        elif seg["type"] == "broll" and broll_image_paths[i]:
-            # Render B-roll frame
-            render_broll_frame(
-                broll_image_paths[i], headline, badge_text,
-                clip_path, duration, fps
-            )
-        else:
-            # No image available for B-roll, fall back to full-frame anchor
-            subprocess.run(
-                ["ffmpeg", "-y", "-i", anchor_source,
-                 "-ss", str(start), "-t", str(duration),
-                 "-an", "-c:v", "libx264", "-crf", "18", "-preset", "fast",
-                 clip_path],
-                capture_output=True, timeout=60
-            )
-
-        if Path(clip_path).exists():
-            clip_paths.append(clip_path)
-
-    if not clip_paths:
-        print("  ❌ No clips generated")
-        return None
-
-    # Step 3: Normalize and concatenate clips with crossfade
-    concat_video = str(BUILD_DIR / "broll-concat-video.mp4")
-    
-    if len(clip_paths) == 1:
-        concat_video = clip_paths[0]
-    else:
-        # Use xfade filter for smooth crossfade transitions
-        xfade_duration = 0.3  # 300ms crossfade
-        
-        # Build filter chain for sequential xfade
-        inputs = []
-        for cp in clip_paths:
-            inputs.extend(["-i", cp])
-        
-        # For N clips we need N-1 xfade operations
-        # Each xfade shortens total by xfade_duration
-        filter_parts = []
-        
-        # Get clip durations
-        clip_durations = []
-        for cp in clip_paths:
-            probe = subprocess.run(
-                ["ffprobe", "-v", "quiet", "-show_entries", "format=duration",
-                 "-of", "default=noprint_wrappers=1:nokey=1", cp],
-                capture_output=True, text=True, timeout=10
-            )
-            clip_durations.append(float(probe.stdout.strip()))
-        
-        if len(clip_paths) == 2:
-            offset = clip_durations[0] - xfade_duration
-            filter_parts.append(
-                f"[0:v][1:v]xfade=transition=fade:duration={xfade_duration}:offset={max(0, offset)}[out]"
-            )
-            filter_str = ";".join(filter_parts)
-            cmd = ["ffmpeg", "-y"] + inputs + [
-                "-filter_complex", filter_str,
-                "-map", "[out]",
-                "-c:v", "libx264", "-crf", "18", "-preset", "fast",
-                "-pix_fmt", "yuv420p",
-                concat_video
-            ]
-        else:
-            # Chain xfades: [0][1]xfade→[v1], [v1][2]xfade→[v2], ...
-            cumulative_offset = 0
-            prev_label = "0:v"
-            for j in range(1, len(clip_paths)):
-                cumulative_offset += clip_durations[j - 1] - (xfade_duration if j > 1 else 0)
-                offset = cumulative_offset - xfade_duration
-                out_label = "out" if j == len(clip_paths) - 1 else f"v{j}"
-                filter_parts.append(
-                    f"[{prev_label}][{j}:v]xfade=transition=fade:duration={xfade_duration}:offset={max(0, offset)}[{out_label}]"
-                )
-                prev_label = out_label
-
-            filter_str = ";".join(filter_parts)
-            cmd = ["ffmpeg", "-y"] + inputs + [
-                "-filter_complex", filter_str,
-                "-map", "[out]",
-                "-c:v", "libx264", "-crf", "18", "-preset", "fast",
-                "-pix_fmt", "yuv420p",
-                concat_video
-            ]
-
-        result = subprocess.run(cmd, capture_output=True, text=True, timeout=120)
-        if result.returncode != 0:
-            print(f"  ⚠️ Crossfade failed, falling back to concat: {result.stderr[-200:]}")
-            # Fallback: simple concat
-            list_file = str(BUILD_DIR / "broll-concat-list.txt")
-            with open(list_file, "w") as f:
-                for cp in clip_paths:
-                    f.write(f"file '{cp}'\n")
-            subprocess.run(
-                ["ffmpeg", "-y", "-f", "concat", "-safe", "0", "-i", list_file,
-                 "-c:v", "libx264", "-crf", "18", "-preset", "fast",
-                 "-pix_fmt", "yuv420p", concat_video],
-                capture_output=True, timeout=60
-            )
-
-    # Step 4: Mux the continuous audio back onto the assembled video
-    # Use -shortest on VIDEO stream only — pad video with last frame to match audio
-    # This prevents xfade transitions from eating Kavya's last words
-    # Get audio duration to pad video if needed
-    audio_dur_probe = subprocess.run(
-        ["ffprobe", "-v", "quiet", "-show_entries", "format=duration",
-         "-of", "default=noprint_wrappers=1:nokey=1", audio_path],
-        capture_output=True, text=True, timeout=10
-    )
-    video_dur_probe = subprocess.run(
-        ["ffprobe", "-v", "quiet", "-show_entries", "format=duration",
-         "-of", "default=noprint_wrappers=1:nokey=1", concat_video],
-        capture_output=True, text=True, timeout=10
-    )
-    audio_dur = float(audio_dur_probe.stdout.strip()) if audio_dur_probe.stdout.strip() else 0
-    video_dur = float(video_dur_probe.stdout.strip()) if video_dur_probe.stdout.strip() else 0
-
-    if video_dur < audio_dur - 0.1:
-        # Video is shorter than audio (xfade ate time) — pad video with tpad (freeze last frame)
-        pad_time = audio_dur - video_dur + 0.5  # small extra buffer
-        print(f"  📐 Padding video +{pad_time:.1f}s to match audio ({video_dur:.1f}s → {audio_dur:.1f}s)")
+    if not broll_clips:
+        # No B-roll to overlay — just copy the anchor source as-is
+        print("  ℹ️ No B-roll clips — using anchor video directly")
         subprocess.run(
-            ["ffmpeg", "-y",
-             "-i", concat_video, "-i", audio_path,
-             "-filter_complex", f"[0:v]tpad=stop_mode=clone:stop_duration={pad_time}[v]",
-             "-map", "[v]", "-map", "1:a",
+            ["ffmpeg", "-y", "-i", anchor_source,
              "-c:v", "libx264", "-crf", "18", "-preset", "fast",
-             "-c:a", "aac", "-shortest",
-             output_path],
+             "-c:a", "copy", output_path],
             capture_output=True, timeout=120
         )
-    else:
-        subprocess.run(
-            ["ffmpeg", "-y",
-             "-i", concat_video, "-i", audio_path,
-             "-c:v", "copy", "-c:a", "aac",
-             "-shortest",
-             output_path],
-            capture_output=True, timeout=60
+        if Path(output_path).exists():
+            print(f"  ✅ B-roll assembly complete (anchor only)")
+            return output_path
+        print("  ❌ B-roll assembly failed")
+        return None
+
+    # Step 2: Overlay B-roll clips onto the continuous anchor video
+    # Build ffmpeg command with multiple inputs and chained overlays
+    # Input 0 = anchor_source (continuous, with audio)
+    # Input 1..N = B-roll clips (silent, overlaid at specific times)
+    inputs = ["-i", anchor_source]
+    for clip_path, _, _ in broll_clips:
+        inputs.extend(["-i", clip_path])
+
+    # Build overlay filter chain
+    # Each overlay uses enable='between(t,start,end)' to show only during its segment
+    filter_parts = []
+    prev_label = "0:v"
+    for j, (clip_path, start, duration) in enumerate(broll_clips):
+        input_idx = j + 1
+        end_time = start + duration
+        out_label = "out" if j == len(broll_clips) - 1 else f"v{j}"
+        filter_parts.append(
+            f"[{prev_label}][{input_idx}:v]overlay=0:0:"
+            f"enable='between(t,{start:.3f},{end_time:.3f})':"
+            f"shortest=0[{out_label}]"
         )
+        prev_label = out_label
+
+    filter_str = ";".join(filter_parts)
+
+    cmd = ["ffmpeg", "-y"] + inputs + [
+        "-filter_complex", filter_str,
+        "-map", "[out]", "-map", "0:a",
+        "-c:v", "libx264", "-crf", "18", "-preset", "fast",
+        "-c:a", "copy",
+        "-pix_fmt", "yuv420p",
+        output_path
+    ]
+
+    result = subprocess.run(cmd, capture_output=True, text=True, timeout=180)
+
+    if result.returncode != 0:
+        print(f"  ❌ Overlay assembly failed: {result.stderr[-400:]}")
+        return None
 
     if Path(output_path).exists():
         dur_probe = subprocess.run(
