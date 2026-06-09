@@ -1,45 +1,29 @@
 #!/usr/bin/env python3
 """
-News Writer — June 9, 2026 batch
-Writes 3 news articles with proper image sourcing and Supabase insertion.
+News writer for The Videshi — June 9, 2026
+Generates 3 news articles, sources images, uploads to Supabase.
 """
 
-import requests
-import json
-import os
-import sys
-import uuid
-import re
+import requests, json, os, io, re, time, uuid, urllib.parse
 from datetime import datetime, timezone
-from io import BytesIO
-
-try:
-    from PIL import Image
-except ImportError:
-    os.system("pip install Pillow -q")
-    from PIL import Image
+from PIL import Image
 
 # Load environment
 def load_env(path):
-    if os.path.exists(path):
-        with open(path) as f:
-            for line in f:
-                line = line.strip()
-                if line and not line.startswith('#') and '=' in line:
-                    key, val = line.split('=', 1)
-                    # strip quotes and export prefix
-                    key = key.replace('export ', '').strip()
-                    val = val.strip().strip('"').strip("'")
-                    os.environ[key] = val
+    with open(os.path.expanduser(path)) as f:
+        for line in f:
+            line = line.strip()
+            if line and not line.startswith('#') and '=' in line:
+                key, val = line.split('=', 1)
+                os.environ.setdefault(key.strip(), val.strip())
 
-load_env(os.path.expanduser('~/.env.supabase'))
-load_env(os.path.expanduser('~/workspace/.env.pexels'))
+load_env('~/.env.supabase')
+load_env('~/workspace/.env.pexels')
 
-SUPABASE_URL = os.environ.get('SUPABASE_URL', '')
-SUPABASE_KEY = os.environ.get('SUPABASE_SERVICE_ROLE_KEY', '')
-PEXELS_KEY = os.environ.get('PEXELS_API_KEY', '')
-
-HEADERS_SB = {
+SUPABASE_URL = os.environ['SUPABASE_URL']
+SUPABASE_KEY = os.environ['SUPABASE_SERVICE_ROLE_KEY']
+PEXELS_API_KEY = os.environ['PEXELS_API_KEY']
+HEADERS = {
     "apikey": SUPABASE_KEY,
     "Authorization": f"Bearer {SUPABASE_KEY}",
     "Content-Type": "application/json",
@@ -48,11 +32,18 @@ HEADERS_SB = {
 
 UA = "TheVideshi/1.0 (thevideshi.com)"
 
-# ---- Image sourcing functions ----
+def compress_image(img_bytes, max_width=1200, quality=80):
+    img = Image.open(io.BytesIO(img_bytes))
+    if img.mode in ('RGBA', 'P'):
+        img = img.convert('RGB')
+    if img.width > max_width:
+        ratio = max_width / img.width
+        img = img.resize((max_width, int(img.height * ratio)), Image.LANCZOS)
+    buf = io.BytesIO()
+    img.save(buf, format='JPEG', quality=quality, optimize=True)
+    return buf.getvalue()
 
 def fetch_wikipedia_person_image(person_name):
-    """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
-    import urllib.parse
     encoded = urllib.parse.quote(person_name.replace(' ', '_'))
     try:
         r = requests.get(
@@ -71,7 +62,6 @@ def fetch_wikipedia_person_image(person_name):
     return None
 
 def fetch_wikimedia_commons_images(search_query, limit=5):
-    """Search Wikimedia Commons for CC-licensed images."""
     params = {
         "action": "query",
         "generator": "search",
@@ -79,7 +69,7 @@ def fetch_wikimedia_commons_images(search_query, limit=5):
         "gsrnamespace": "6",
         "gsrlimit": str(limit),
         "prop": "imageinfo",
-        "iiprop": "url|size|mime|extmetadata",
+        "iiprop": "url|size|mime",
         "iiurlwidth": "1200",
         "format": "json"
     }
@@ -110,453 +100,383 @@ def fetch_wikimedia_commons_images(search_query, limit=5):
                     "mime": mime
                 })
             if results:
-                print(f"  ✓ Wikimedia Commons: {len(results)} images found for '{search_query}'")
+                print(f"  ✓ Wikimedia Commons: {len(results)} images for '{search_query}'")
             return results
     except Exception as e:
-        print(f"  ⚠ Wikimedia Commons error for '{search_query}': {e}")
+        print(f"  ⚠ Wikimedia Commons error: {e}")
     return []
 
-
 def fetch_pexels_image(query):
-    """Fetch an image from Pexels using curl-like approach."""
-    if not PEXELS_KEY:
-        print("  ⚠ No Pexels API key")
-        return None
     try:
-        import subprocess
-        result = subprocess.run([
-            'curl', '-sS', '-H', f'Authorization: {PEXELS_KEY}',
-            f'https://api.pexels.com/v1/search?query={requests.utils.quote(query)}&per_page=5&orientation=landscape'
-        ], capture_output=True, text=True, timeout=15)
-        data = json.loads(result.stdout)
-        photos = data.get("photos", [])
-        for photo in photos:
-            url = photo.get("src", {}).get("large2x") or photo.get("src", {}).get("original")
-            if url:
-                print(f"  ✓ Pexels image found for '{query}': {url[:80]}...")
-                return url
+        r = requests.get(
+            "https://api.pexels.com/v1/search",
+            params={"query": query, "per_page": 5, "orientation": "landscape"},
+            headers={"Authorization": PEXELS_API_KEY},
+            timeout=10
+        )
+        if r.status_code == 200:
+            photos = r.json().get("photos", [])
+            for p in photos:
+                url = p.get("src", {}).get("large2x") or p.get("src", {}).get("original")
+                if url:
+                    print(f"  ✓ Pexels image: {url[:80]}...")
+                    return url
     except Exception as e:
         print(f"  ⚠ Pexels error: {e}")
     return None
 
-
-def compress_image(img_bytes, max_width=1200, quality=80):
-    """Resize and compress image. Returns JPEG bytes."""
-    img = Image.open(BytesIO(img_bytes))
-    if img.mode in ('RGBA', 'P'):
-        img = img.convert('RGB')
-    if img.width > max_width:
-        ratio = max_width / img.width
-        img = img.resize((max_width, int(img.height * ratio)), Image.LANCZOS)
-    buf = BytesIO()
-    img.save(buf, format='JPEG', quality=quality, optimize=True)
-    result = buf.getvalue()
-    print(f"  ✓ Compressed image: {len(result)//1024}KB ({img.width}x{img.height})")
-    return result
-
-
 def download_image(url):
-    """Download an image and return bytes."""
     try:
         r = requests.get(url, headers={"User-Agent": UA}, timeout=20)
         if r.status_code == 200 and len(r.content) > 5000:
             ct = r.headers.get("Content-Type", "")
-            if "image" in ct or len(r.content) > 10000:
-                print(f"  ✓ Downloaded {len(r.content)//1024}KB from {url[:60]}...")
+            if "image" in ct or url.endswith(('.jpg', '.jpeg', '.png', '.webp')):
                 return r.content
-        else:
-            print(f"  ⚠ Download failed: status={r.status_code}, size={len(r.content)}")
+        print(f"  ⚠ Image download failed: status={r.status_code}, size={len(r.content)}")
     except Exception as e:
-        print(f"  ⚠ Download error: {e}")
+        print(f"  ⚠ Image download error: {e}")
     return None
-
 
 def upload_to_supabase(img_bytes, filename):
-    """Upload image to Supabase storage bucket 'article-images'."""
-    bucket = "article-images"
-    url = f"{SUPABASE_URL}/storage/v1/object/{bucket}/{filename}"
-    headers = {
-        "apikey": SUPABASE_KEY,
-        "Authorization": f"Bearer {SUPABASE_KEY}",
-        "Content-Type": "image/jpeg",
-        "x-upsert": "true"
-    }
-    try:
-        r = requests.post(url, headers=headers, data=img_bytes, timeout=30)
-        if r.status_code in (200, 201):
-            public_url = f"{SUPABASE_URL}/storage/v1/object/public/{bucket}/{filename}"
-            print(f"  ✓ Uploaded to Supabase: {public_url[:80]}...")
-            return public_url
-        else:
-            print(f"  ⚠ Upload failed: {r.status_code} {r.text[:200]}")
-    except Exception as e:
-        print(f"  ⚠ Upload error: {e}")
-    return None
-
-
-def source_and_upload_image(slug, person_name=None, topic_queries=None, pexels_query=None):
-    """Multi-source image search → download → compress → upload. Returns (url, attribution, caption_hint)."""
-    candidates = []
-
-    # Source 1: Wikipedia (for person articles)
-    if person_name:
-        wiki_url = fetch_wikipedia_person_image(person_name)
-        if wiki_url:
-            candidates.append({"url": wiki_url, "source": "wikipedia", "priority": 1})
-
-    # Source 2: Wikimedia Commons
-    if topic_queries:
-        for tq in topic_queries:
-            commons = fetch_wikimedia_commons_images(tq, limit=3)
-            for c in commons[:2]:
-                candidates.append({"url": c["url"], "source": "wikimedia_commons", "priority": 2, "title": c.get("title", "")})
-            if commons:
-                break
-
-    # Source 3: Pexels (fallback for scenes/topics, NOT for people)
-    if pexels_query and not person_name:
-        pex_url = fetch_pexels_image(pexels_query)
-        if pex_url:
-            candidates.append({"url": pex_url, "source": "pexels", "priority": 3})
-
-    # Pick best
-    if not candidates:
-        print(f"  ⚠ No image found for {slug}")
-        return None, None, None
-
-    candidates.sort(key=lambda x: x["priority"])
-    best = candidates[0]
-
-    # Download, compress, upload
-    raw = download_image(best["url"])
-    if not raw:
-        # Try next candidate
-        for c in candidates[1:]:
-            raw = download_image(c["url"])
-            if raw:
-                best = c
-                break
-    if not raw:
-        print(f"  ⚠ Could not download any image for {slug}")
-        return None, None, None
-
-    compressed = compress_image(raw)
-    if len(compressed) < 5000:
-        print(f"  ⚠ Compressed image too small ({len(compressed)} bytes), skipping")
-        return None, None, None
-
-    filename = f"{slug}.jpg"
-    final_url = upload_to_supabase(compressed, filename)
-    if not final_url:
-        return None, None, None
-
-    attribution = "Wikimedia Commons" if best["source"] in ("wikipedia", "wikimedia_commons") else "Pexels"
-    return final_url, attribution, best.get("title", "")
-
+    """Upload compressed image to Supabase storage bucket 'article-images'"""
+    compressed = compress_image(img_bytes)
+    size_kb = len(compressed) / 1024
+    print(f"  Compressed image: {size_kb:.0f} KB")
+    
+    upload_url = f"{SUPABASE_URL}/storage/v1/object/article-images/{filename}"
+    r = requests.post(
+        upload_url,
+        headers={
+            "apikey": SUPABASE_KEY,
+            "Authorization": f"Bearer {SUPABASE_KEY}",
+            "Content-Type": "image/jpeg",
+            "x-upsert": "true"
+        },
+        data=compressed,
+        timeout=30
+    )
+    if r.status_code in (200, 201):
+        public_url = f"{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}"
+        print(f"  ✓ Uploaded to Supabase: {public_url[:80]}...")
+        return public_url
+    else:
+        print(f"  ⚠ Upload failed: {r.status_code} {r.text[:200]}")
+        return None
 
 def insert_article(article):
-    """Insert article into Supabase p2_articles table."""
-    url = f"{SUPABASE_URL}/rest/v1/p2_articles"
-    r = requests.post(url, headers=HEADERS_SB, json=article, timeout=30)
+    """Insert article into p2_articles"""
+    r = requests.post(
+        f"{SUPABASE_URL}/rest/v1/p2_articles",
+        headers=HEADERS,
+        json=article,
+        timeout=30
+    )
     if r.status_code in (200, 201):
         data = r.json()
-        art_id = data[0]["id"] if isinstance(data, list) and data else data.get("id", "?")
-        print(f"  ✓ Article inserted: {art_id} — {article['headline'][:60]}...")
+        art_id = data[0]["id"] if isinstance(data, list) else data.get("id")
+        print(f"  ✓ Article inserted: {art_id}")
         return art_id
     else:
         print(f"  ✗ Insert failed: {r.status_code} {r.text[:300]}")
         return None
 
-
-# =====================================================================
-# ARTICLE 1: NEET Re-Exam — IAF Security
-# =====================================================================
-def write_article_1():
-    print("\n" + "="*70)
-    print("ARTICLE 1: NEET Re-Exam — IAF to Transport Question Papers")
-    print("="*70)
-
-    slug = "neet-2026-re-exam-iaf-air-force-question-papers-lockdown-security-june-21"
-
-    headline = "The Indian Air Force Will Fly NEET Papers to 18 Military Hubs. The Paper Setters Are Already in Lockdown."
-
-    subheadline = "After the May exam was cancelled over a leaked paper that matched 120 questions, India is treating the June 21 re-exam like a military operation. For 22.79 lakh students, a second chance hinges on a chain of custody that now runs through the armed forces."
-
-    body = """India's National Testing Agency has done something it has never attempted in any previous entrance examination: it has handed the physical security of NEET question papers to the Indian Air Force.
-
-Specialised IAF aircraft will airlift sealed exam packets from a single classified printing facility to 18 strategically chosen military base hubs across the country. From those hubs, the materials will travel under armed escort to 551 cities and thousands of exam centres for the June 21 re-exam. The move, confirmed by NTA Director General Abhishek Singh, marks the first time India's armed forces have been formally embedded in the logistics of a civilian entrance test.
-
-"For the first time, the Indian Air Force is being engaged to transport question papers, reflecting the importance being accorded to maintaining the integrity and security of the examination process," a government release stated after Singh briefed Telangana's chief secretary on preparations.
-
-## Why the Air Force Got Involved
-
-The original NEET-UG 2026 exam, held on May 3 for more than 22.79 lakh medical aspirants, was cancelled barely nine days later. A handwritten "guess paper" had surfaced on Telegram and WhatsApp before the test — and it matched between 120 and 140 of the actual questions. The Central Bureau of Investigation is now running a criminal probe into the leak. Multiple arrests have followed. In Parliament, the opposition demanded the education minister's resignation.
-
-It was the second consecutive year that NEET's integrity had been compromised. In 2025, NTA faced similar allegations, though it managed to avoid a full cancellation. This time, the government had no choice. It scrapped the exam and ordered a re-test within 30 days, a timeline officials privately called a "massive logistical challenge."
-
-## Paper Setters Under Total Lockdown
-
-The security overhaul extends far beyond transport. According to a Times of India report, every person involved in the question paper chain — setters, moderators, translators, proofreaders — has been moved to an undisclosed location and placed under lockdown until June 21.
-
-Mobile phones, laptops, smartwatches, and all communication devices have been confiscated. Internet access is cut off entirely. Entry and exit from the facility are being monitored around the clock. The NTA has adopted what officials described as a "zero trust" policy: no single individual has access to the complete chain of operations, from creation through printing to packaging.
-
-"The integrity of the examination process is fully intact, and every safeguard is in place to ensure a fair and secure examination for all candidates," the NTA said in a statement, while simultaneously warning Telegram channels hawking fake papers that strict legal action would follow.
-
-## A New Kind of Exam Logistics
-
-The June 21 re-exam will be conducted in pen-and-paper format from 2 PM to 5:15 PM across India and in 14 cities abroad. City intimation slips were released on June 8, and admit cards are expected by June 14. Around 73,000 students will sit the exam across 208 centres in Telangana alone.
-
-The operational framework involves the NTA coordinating with the Ministry of Defence, state police departments, and district administrations simultaneously. Telangana's Director General of Police Mahesh Bhagwat emphasised "close coordination between the police department and district administration" to ensure smooth exam-day operations, including infrastructure, power supply, transportation, and drinking water at every centre.
-
-## The Diaspora Angle
-
-For NRI families, the NEET saga has reinforced long-standing anxieties about India's competitive examination system. NEET is the sole gateway to undergraduate medical seats in India — including the handful reserved for NRI and OCI quota candidates. The May cancellation forced students who had travelled from the Gulf, the US, and the UK to sit for the exam to rebook flights and extend stays.
-
-The 14 overseas exam centres remain part of the re-exam plan, but the NTA has not clarified whether IAF-grade security protocols extend to those locations. For the roughly 8,000 students who were reportedly defrauded by Telegram groups selling fake papers at prices as high as ₹10 lakh each, the re-exam is a second chance that feels more fragile than it should.
-
-The question now is whether military-grade logistics can restore trust in an exam that determines the fate of India's future doctors. The answer arrives on June 21."""
-
-    # Image sourcing - search for NEET exam / Indian Air Force related
-    print("\n  Sourcing image...")
-    img_url, img_attr, _ = source_and_upload_image(
-        slug,
-        topic_queries=["Indian Air Force C-17 transport", "Indian Air Force aircraft", "NEET examination India"],
-        pexels_query="indian air force military aircraft"
-    )
-
-    article = {
-        "headline": headline,
-        "subheadline": subheadline,
-        "body": body,
-        "slug": slug,
-        "category": "news",
-        "vertical": "news",
-        "status": "review",
-        "is_editorial": False,
-        "image_url": img_url or "",
-        "image_caption": "An Indian Air Force transport aircraft — IAF planes will deliver NEET question papers to 18 military hubs nationwide",
-        "image_attribution": img_attr or "Wikimedia Commons",
-        "sources": json.dumps([
-            {"name": "Careers360", "url": "https://news.careers360.com"},
-            {"name": "Jagran Josh", "url": "https://www.jagranjosh.com"},
-            {"name": "Shiksha", "url": "https://www.shiksha.com"},
-            {"name": "Medical Dialogues", "url": "https://medicaldialogues.in"},
-            {"name": "The Daily Jagran", "url": "https://www.thedailyjagran.com"}
-        ]),
-        "published_at": datetime.now(timezone.utc).isoformat()
-    }
-
-    return insert_article(article)
+def source_image(person_name=None, wiki_queries=None, pexels_query=None, slug="article"):
+    """Multi-source image search. Returns (url, attribution) or (None, None)."""
+    candidates = []
+    
+    # Wikipedia person image
+    if person_name:
+        wiki_img = fetch_wikipedia_person_image(person_name)
+        if wiki_img:
+            candidates.append({"url": wiki_img, "source": "wikipedia", "priority": 1})
+    
+    # Wikimedia Commons
+    if wiki_queries:
+        for q in wiki_queries:
+            results = fetch_wikimedia_commons_images(q)
+            for r in results[:2]:
+                candidates.append({"url": r["url"], "source": "wikimedia_commons", "priority": 2})
+    
+    # Pexels
+    if pexels_query:
+        px = fetch_pexels_image(pexels_query)
+        if px:
+            candidates.append({"url": px, "source": "pexels", "priority": 3})
+    
+    # Try candidates in priority order
+    for c in sorted(candidates, key=lambda x: x["priority"]):
+        img_bytes = download_image(c["url"])
+        if img_bytes and len(img_bytes) > 5000:
+            filename = f"{slug}.jpg"
+            public_url = upload_to_supabase(img_bytes, filename)
+            if public_url:
+                attr = "Wikimedia Commons" if c["source"] in ("wikipedia", "wikimedia_commons") else "Pexels"
+                return public_url, attr
+    
+    return None, None
 
 
-# =====================================================================
-# ARTICLE 2: INDIA Bloc Opposition Meeting
-# =====================================================================
-def write_article_2():
-    print("\n" + "="*70)
-    print("ARTICLE 2: INDIA Bloc Opposition Meeting")
-    print("="*70)
+# ============================================================
+# ARTICLE 1: EB-2 India Visa Retrogression
+# ============================================================
+print("\n" + "="*60)
+print("ARTICLE 1: EB-2 India Visa Retrogression")
+print("="*60)
 
-    slug = "india-bloc-opposition-meeting-kharge-modi-misgovernance-unity-june-2026"
+art1_slug = "eb2-india-retrogression-june-2026-green-card-10-months-backward"
+art1_headline = "The US Just Moved the EB-2 India Green Card Line Backward by 10 Months. Thousands Are Stuck Again."
+art1_subheadline = "The June 2026 visa bulletin pushed the EB-2 India final action date to September 2013 — erasing nearly a year of progress for Indian professionals waiting for permanent residency."
 
-    headline = "India's Opposition Just Met in Delhi. Kharge Told Them the Economy Is Broken and Modi's Government Is the Reason."
+art1_body = """The June 2026 US Visa Bulletin delivered a gut punch to hundreds of thousands of Indian professionals waiting for employment-based green cards. The EB-2 India final action date — the cutoff that determines who can file for permanent residency — moved backward by more than 10 months, landing at September 1, 2013.
 
-    subheadline = "The INDIA bloc's latest show of unity comes as inflation crosses the RBI's target, fuel prices climb for the fourth time in three weeks, and the opposition tries to build on a rare Lok Sabha victory."
+The retrogression effectively erases a year's worth of forward movement. Applicants who had been tracking their priority dates, gathering documents, and preparing I-485 filings now face an indefinite wait all over again.
 
-    body = """Congress president Mallikarjun Kharge convened a meeting of the Opposition INDIA bloc in New Delhi on June 8, urging the coalition's leaders to fortify their unity and confront what he called the Modi government's "misgovernance" across political, economic, social, and foreign policy fronts.
+## What Changed
 
-The meeting, attended by leaders from multiple opposition parties, was the most significant gathering of the INDIA alliance since its dramatic Lok Sabha victory in April, when the bloc defeated the government's delimitation bills.
+The US State Department's June bulletin pushed the EB-2 India date back from roughly July 2014 to September 2013. The EB-1 India category also slipped about three and a half months, to December 15, 2022. Both shifts were driven by the same problem: demand from India-chargeable applicants overwhelmed the fiscal year's remaining visa numbers.
 
-## Kharge's Indictment
+For now, USCIS will continue accepting employment-based adjustment filings using the more generous Dates for Filing chart. But the bulletin carried a stark warning: further retrogression, or even an "unavailable" designation, may follow before the fiscal year ends in September if India's pro-rated limits run out.
 
-Kharge used the meeting to lay out a sweeping case against the ruling BJP. He argued that the "economic environment is extremely negative" and that new investments are not arriving at the pace needed to generate employment. He pointed to what he described as the "complete mismanagement" of the country's examination system — a reference to the NEET paper leak scandal and CBSE marking errors — saying the hopes of lakhs of students were being betrayed.
+## Why It Keeps Happening
 
-"The assault on the Constitution continues, and probe agencies are persistently being used as tools to harass, intimidate, and bully political opponents," Kharge said in his opening address.
+The structural problem has not changed in decades. The US caps employment-based green cards at 140,000 per year, with a 7% per-country limit. India and China consistently exceed their allocations, creating backlogs that stretch over a decade for EB-2 applicants. A software engineer who filed a labor certification in 2014 is still waiting. A physician who filed in 2015 has no visibility on when approval might come.
 
-He also targeted the government's Special Intensive Revision of electoral rolls, claiming that the voting rights of millions of people were being "stripped away" through the process — a charge the BJP has repeatedly denied.
+The per-country cap — originally designed to ensure diversity in immigration — has become the single biggest bottleneck for skilled Indian workers. With roughly 1 million Indians in the EB-2 and EB-3 queues combined, the math is unforgiving: at current processing rates, some applicants face wait times exceeding 50 years.
 
-## The April Precedent
+## The Human Cost
 
-Kharge reminded the room of the April 17 vote in the Lok Sabha, where the INDIA bloc united to defeat the Modi government's delimitation bills — a rare legislative setback for the ruling coalition. He framed that moment as proof that coordinated opposition action could work.
+The retrogression lands at a particularly difficult time. Indian professionals on H-1B visas cannot change employers freely while waiting in the green card queue. They cannot start companies. Their spouses on H-4 visas face their own employment restrictions. Children who age out at 21 lose their place in line entirely — a cruel provision that has separated families.
 
-"On April 17, 2026, we demonstrated our unity and solidarity in the Lok Sabha in a very decisive manner, when we all came together firmly to defeat the Modi government's malicious bills on delimitation," Kharge said. "Now we must strengthen that same spirit even further."
+"Every retrogression announcement sends a wave of anxiety through Indian tech workers," said one immigration attorney who advises Fortune 500 companies on visa strategy. "These are people who have been in the US for 10, 15, sometimes 20 years. They pay taxes, buy homes, raise children here. And every few months, the line moves backward."
 
-The delimitation defeat was widely seen as a turning point. It showed that cracks in the BJP's parliamentary dominance could be exploited when the opposition presented a unified front. Since then, however, the coalition has struggled to maintain momentum on the ground, with state-level rivalries and competing leadership ambitions threatening cohesion.
+The National Interest Waiver route — which bypasses the labor certification requirement — offers no relief either. NIW applicants share the same EB-2 India queue, so the retrogression hits them equally.
 
-## The Economic Backdrop
+## What NRIs Can Do Now
 
-The meeting unfolded against a deteriorating economic backdrop that lends weight to the opposition's critique. India's consumer price inflation is expected to hit the RBI's 4% target in May — after staying below it for 15 consecutive months — driven by soaring vegetable prices and fuel cost pass-throughs from the Iran-related oil crisis.
+Immigration experts recommend several steps for those caught in the retrogression. Applicants with pending I-485 filings retain their employment authorization and advance parole benefits. Those who haven't filed should monitor the Dates for Filing chart, which may still allow new filings even as the Final Action Date moves backward.
 
-State-owned fuel retailers have raised petrol and diesel prices four times since mid-May. Petrol is now 7.8% more expensive; diesel, 8.6% higher. Oil Minister Hardeep Singh Puri acknowledged on June 8 that prices "cannot remain at their current height for a very long time" but warned the situation could become "worrying" if the Gulf crisis expands.
+Some are exploring the EB-1 route, which requires demonstrating extraordinary ability or being a multinational manager. Others are considering EB-5 investor visas, though the $800,000 minimum investment puts that option out of reach for most.
 
-Indian markets fell to two-month lows on Monday, with the Nifty 50 shedding 1.04% and the Sensex dropping 0.97%. The rupee has been under sustained pressure, and the RBI last week unveiled a $50 billion dollar-defence package — including FCNR deposit incentives for NRI investors — to stem the bleeding.
+The only systemic fix — raising or eliminating the per-country cap — requires Congressional action. Bills like the Eagle Act have stalled repeatedly, most recently in 2024. With Congress focused on the Iran conflict and midterm elections, immigration reform is nowhere near the legislative agenda.
 
-## What the NRI Diaspora Watches
+For now, the wait continues. The October 2026 bulletin, which opens a new fiscal year, may bring some forward movement. But after a decade of broken promises and incremental progress followed by sharp retreats, few in the Indian professional community are holding their breath."""
 
-For the Indian diaspora, the INDIA bloc's positioning matters less as ideology than as signal. NRIs sending remittances home — India received $43 billion in Q4 FY26, enough to tip the current account into a rare surplus — watch domestic economic stability closely. Rising fuel prices flow directly into food costs. Inflation erodes the purchasing power of the rupees their families receive.
+print("Sourcing image for Article 1...")
+art1_img_url, art1_img_attr = source_image(
+    wiki_queries=["United States visa immigration office", "USCIS immigration"],
+    pexels_query="US immigration visa passport office",
+    slug=art1_slug
+)
 
-The FCNR scheme, which the RBI expanded specifically to attract NRI deposits, is a direct acknowledgement that the government needs diaspora capital to stabilise the currency. If the opposition succeeds in making the economic pain a central electoral narrative, the calculus for NRI investors shifts.
+art1_data = {
+    "headline": art1_headline,
+    "subheadline": art1_subheadline,
+    "body": art1_body,
+    "slug": art1_slug,
+    "category": "news",
+    "vertical": "news",
+    "status": "review",
+    "is_editorial": False,
+    "sources": json.dumps([
+        "US Department of State Visa Bulletin June 2026",
+        "WR Immigration analysis",
+        "Fragomen immigration advisory",
+        "Asanify EOR & Compliance Digest June 6 2026"
+    ]),
+    "image_url": art1_img_url or "",
+    "image_caption": "A US Citizenship and Immigration Services facility processes visa applications",
+    "image_attribution": art1_img_attr or "Wikimedia Commons",
+    "published_at": datetime.now(timezone.utc).isoformat()
+}
+
+art1_id = insert_article(art1_data)
+
+# ============================================================
+# ARTICLE 2: India Inc Shrinkflation
+# ============================================================
+print("\n" + "="*60)
+print("ARTICLE 2: India Inc Shrinkflation")
+print("="*60)
+
+art2_slug = "india-inc-shrinkflation-price-hikes-iran-war-consumer-squeeze-20260609"
+art2_headline = "Your Biscuit Packet Is Smaller. Your Petrol Bill Is Higher. India Inc Is Passing the War to You."
+art2_subheadline = "From Hindustan Unilever to Maruti Suzuki, Indian companies are hiking prices and shrinking product sizes as the Iran war drives up oil, freight, and raw material costs across the board."
+
+art2_body = """The war is no longer just on television. It is in your grocery bill, at the petrol pump, and in the subtly smaller packet of biscuits that costs the same as it did three months ago.
+
+Indian companies — from consumer giants to automakers to airlines — are scrambling to protect their margins as the Iran war sends oil prices, freight costs, and insurance premiums spiralling. The playbook is familiar: raise prices where consumers will tolerate it, and quietly shrink the product where they will not.
+
+## The Shrinkflation Playbook
+
+Hindustan Unilever, Godrej Consumer Products, and Dabur India have already rolled out low- to mid-single-digit price hikes across their product portfolios. Britannia is preparing similar moves. But in mass-market segments — where the price-sensitive Indian consumer watches every rupee — the strategy is different.
+
+"We are reducing grammage because we can't breach those price points," said Mohit Malhotra, global CEO at Dabur, describing the dilemma facing companies selling at ₹10 to ₹20 price points. A ₹10 packet of chips that weighed 30 grams last quarter might now weigh 25 grams. The consumer pays the same. The company survives another quarter.
+
+This is shrinkflation — the practice of reducing product size or quantity while keeping the price unchanged. It is economically identical to a price hike, but psychologically invisible. And it is spreading across India's consumer economy faster than the official inflation numbers suggest.
+
+## Beyond FMCG
+
+The squeeze is not limited to biscuits and shampoo. Automakers Maruti Suzuki, Mahindra & Mahindra, Tata Motors, and Hyundai Motor India have all announced price hikes in recent weeks. "We were left with no choice," said Partho Banerjee, Maruti's senior executive officer for marketing and sales. "Raising prices is not good for customers, especially first-time buyers."
+
+Airlines IndiGo and Air India are trimming capacity on fuel-heavy international routes and increasing fares. Aviation turbine fuel costs have risen sharply with Brent crude hovering near $97 a barrel — up roughly 40% since the conflict began in February.
+
+Even India's massive food delivery and restaurant sector is feeling it. Cooking oil prices are up. Packaging costs are up. Delivery fuel surcharges have appeared on platforms that spent years conditioning consumers to expect free delivery.
+
+## Why India Gets Hit Harder
+
+India imports roughly 90% of its crude oil. When global oil prices rise, the impact cascades through the economy — not just at the petrol pump, but through freight charges, packaging costs, and the price of every petrochemical-derived input from plastics to fertilisers.
+
+"We are among the world's most vulnerable countries," economist Jayati Ghosh warned, pointing to the triple threat of higher oil costs, weaker Gulf demand reducing remittances, and potential capital outflows as global investors seek safer markets.
+
+The rupee's decline has compounded the problem. A weaker currency means imports cost more in rupee terms, creating a vicious cycle: higher oil prices weaken the rupee, which makes oil even more expensive, which drives more inflation.
+
+## The Consumer Squeeze
+
+For Indian households, the arithmetic is brutal. Fuel prices have been raised four times in three weeks. Food inflation — driven by heatwaves, delayed monsoons, and rising input costs — was already a concern before the war. The Consumer Price Index crossed the RBI's 4% target in May for the first time since late 2025.
+
+Salaried workers and gig economy participants are feeling the squeeze most acutely. Wages have not kept pace with the cost increases. Rural consumers, who drive a significant share of FMCG demand, are pulling back on discretionary purchases.
 
 ## What Comes Next
 
-The INDIA bloc meeting did not produce specific policy proposals or a unified economic counter-platform. That absence is the coalition's persistent weakness: it has proved more effective at blocking the government's agenda than at articulating its own.
+Analysts expect another round of price hikes by July if Brent crude stays above $90. Companies that have so far absorbed cost increases to protect market share will reach the limits of their balance sheets.
 
-But with monsoon session approaching, fuel prices still climbing, and the NEET scandal unresolved, the opposition has a growing list of grievances to weaponise. Whether Kharge can hold the coalition together long enough to turn those grievances into sustained political pressure will determine if the April victory was a beginning or a peak."""
+The RBI faces an impossible choice: raise interest rates to fight inflation, which would slow an already-pressured economy, or hold rates and risk letting inflation spiral. Friday's $50 billion forex defense measures bought time, but did not address the underlying cost problem.
 
-    # Image sourcing - Mallikarjun Kharge
-    print("\n  Sourcing image...")
-    img_url, img_attr, _ = source_and_upload_image(
-        slug,
-        person_name="Mallikarjun Kharge",
-        topic_queries=["Mallikarjun Kharge Congress president", "INDIA bloc opposition meeting"]
-    )
+For consumers, the message is clear: the Iran war's economic impact is no longer abstract. It is measured in smaller packets, higher EMIs, and a monthly budget that no longer stretches as far as it used to."""
 
-    article = {
-        "headline": headline,
-        "subheadline": subheadline,
-        "body": body,
-        "slug": slug,
-        "category": "news",
-        "vertical": "news",
-        "status": "review",
-        "is_editorial": False,
-        "image_url": img_url or "",
-        "image_caption": "Congress president Mallikarjun Kharge addresses party leaders at the INDIA bloc meeting in New Delhi",
-        "image_attribution": img_attr or "Wikimedia Commons",
-        "sources": json.dumps([
-            {"name": "Livemint", "url": "https://www.livemint.com"},
-            {"name": "Reuters", "url": "https://www.reuters.com"},
-            {"name": "The Indian Eye", "url": "https://theindianeye.com"}
-        ]),
-        "published_at": datetime.now(timezone.utc).isoformat()
-    }
+print("Sourcing image for Article 2...")
+art2_img_url, art2_img_attr = source_image(
+    wiki_queries=["Indian market shopping grocery", "India retail store consumer goods"],
+    pexels_query="Indian grocery store market shopping",
+    slug=art2_slug
+)
 
-    return insert_article(article)
+art2_data = {
+    "headline": art2_headline,
+    "subheadline": art2_subheadline,
+    "body": art2_body,
+    "slug": art2_slug,
+    "category": "news",
+    "vertical": "news",
+    "status": "review",
+    "is_editorial": False,
+    "sources": json.dumps([
+        "Reuters - India Inc hikes prices shrinks packs as Iran war squeezes margins",
+        "Reuters - Indian economy government finances see mounting costs from Iran war",
+        "Dabur India CEO Mohit Malhotra comments",
+        "Maruti Suzuki executive Partho Banerjee statement"
+    ]),
+    "image_url": art2_img_url or "",
+    "image_caption": "An Indian consumer goods store stocked with household products and groceries",
+    "image_attribution": art2_img_attr or "Pexels",
+    "published_at": datetime.now(timezone.utc).isoformat()
+}
 
+art2_id = insert_article(art2_data)
 
-# =====================================================================
-# ARTICLE 3: Monsoon Late Arrival + Economic Impact
-# =====================================================================
-def write_article_3():
-    print("\n" + "="*70)
-    print("ARTICLE 3: Monsoon Arrival — Late Onset, Economic Implications")
-    print("="*70)
+# ============================================================
+# ARTICLE 3: India Economy Mounting Costs from Iran War
+# ============================================================
+print("\n" + "="*60)
+print("ARTICLE 3: India Economy Mounting Costs of Iran War")
+print("="*60)
 
-    slug = "india-southwest-monsoon-2026-late-arrival-kerala-economic-impact-agriculture"
+art3_slug = "india-economy-iran-war-cost-gdp-growth-slowdown-supply-shocks-20260609"
+art3_headline = "India's Goldilocks Economy Is Over. The Iran War Broke It."
+art3_subheadline = "GDP growth projected to slow to 6.7% in FY27 as oil at $97, a weak rupee, and fertiliser shortages create overlapping supply shocks that the RBI cannot simply cut its way out of."
 
-    headline = "The Monsoon Arrived Three Days Late. For an Economy Already Burning Through Oil Reserves, That Delay Matters."
+art3_body = """Six months ago, RBI Governor Sanjay Malhotra described India's economy as being in a "rare Goldilocks phase" — growth was strong, inflation was falling, and the fiscal position was improving. That phrase has aged poorly.
 
-    subheadline = "The southwest monsoon hit Kerala on June 4, later than the June 1 normal. As it crawls toward Mumbai and Delhi, India's farmers, power grid managers, and inflation watchers are all counting the same thing: days."
+The Iran war, now in its fourth month, has methodically dismantled every pillar of that optimism. Oil is at $97 a barrel. The rupee has weakened past its worst levels. Foreign institutional investors pulled $20 billion out of India in March and April alone. Forex reserves have shrunk by $27-28 billion since the conflict began. And the worst may not be over.
 
-    body = """The southwest monsoon made landfall over Kerala on June 4, three days after its normal onset date of June 1. By June 8, the India Meteorological Department declared it had advanced into Karnataka, parts of Maharashtra and Andhra Pradesh, and most of the northeastern states. Mumbai could see its first monsoon rains between June 10 and 15. Delhi will wait until the last week of June.
+## The Growth Downgrade
 
-In an ordinary year, a three-day delay would merit a paragraph in the weather section. This is not an ordinary year.
+Economists at CareEdge Ratings now project India's GDP growth will moderate to around 6.7% in the current financial year (FY27), down from 7.7% in FY26. The Asian Development Bank is even more bearish, forecasting a 0.7 percentage-point drag on growth across all of Asia if oil averages $96 a barrel this year. In a severe scenario of $200 oil, the ADB warns growth would fall by 1.2% and inflation would hit 7.4%.
 
-## An Economy Running Hot
+India's current account deficit is expected to widen to 2.1% of GDP, more than doubling from around 1% in FY26. The widening is driven by higher oil import bills, disrupted trade routes, and weaker invisibles — the services exports and remittances that have traditionally cushioned India's external balance.
 
-India is absorbing the worst energy supply shock since the 2022 Russia-Ukraine crisis. The Strait of Hormuz, which carried a fifth of the world's oil before the US-Israel war on Iran, remains largely blocked. Brent crude touched $98 on Monday before settling around $94. India, which sourced more than 40% of its crude imports and 90% of its LPG through that corridor, has been forced to diversify at higher cost.
+"The West Asia crisis is going to impact the Indian economy through various channels," said Rajani Sinha, Chief Economist at CareEdge Ratings. "Not just growth and inflation, but it's also going to adversely impact government finances and, very worryingly, India's balance of payments situation."
 
-Fuel prices have risen four times since mid-May. Inflation hit the RBI's 4% target in May after staying below it for 15 straight months. The Reserve Bank held rates last week but deployed a $50 billion dollar-defence package to protect the rupee. The economy is growing, but it is growing expensive.
+## The Overlapping Shocks
 
-Into this, the monsoon arrives — late and watched more closely than usual.
+What makes this crisis different from past oil shocks is the number of fronts it is hitting simultaneously. The Strait of Hormuz closure has disrupted not just oil but fertiliser supplies. India sources 34% of its fertiliser imports from the Middle East. With the kharif sowing season approaching and an El Niño weather phenomenon threatening drought conditions, the fertiliser disruption could translate directly into lower agricultural output and higher food prices.
 
-## Why Three Days Matters
+"India is set for a series of supply shocks," said Michael Langham, emerging markets economist at Aberdeen Investments. "The ability of the RBI to look through the energy price shock from the Strait of Hormuz will be increasingly difficult given the overlapping nature of these supply shocks."
 
-The southwest monsoon delivers roughly 70% of India's annual rainfall. It determines the fate of the kharif crop — rice, pulses, cotton, soybean — which accounts for about half of India's total food grain output. Agriculture contributes 17-20% of GDP and supports the livelihoods of nearly 60% of the population.
+Gulf demand for Indian goods and services has also weakened, adding pressure on exports. Remittances from the Gulf — a critical source of foreign exchange for states like Kerala, Andhra Pradesh, and Tamil Nadu — are expected to slow as construction and services activity in the region contracts.
 
-A delayed onset pushes back the sowing window. Farmers in rain-dependent regions cannot plant until the soil has absorbed enough moisture. Every day of delay compresses the growing season and increases the risk of crop stress later.
+## The RBI's Impossible Position
 
-The delay also affects hydroelectric power generation. India's reservoirs need monsoon inflows to sustain generation through the summer peak demand period. With thermal power plants already consuming more coal to compensate for higher energy demand — partly driven by a severe heatwave across northern and central India — every additional day without monsoon rain adds pressure to the grid.
+The central bank has been fighting on multiple fronts. Last Friday, it unveiled a $50 billion forex defense package, including concessional swap facilities for NRI deposits, expanded leverage allowances for foreign currency deposits, and separate swap facilities for public sector external commercial borrowings.
 
-## The Advance So Far
+On investment policy, the RBI has doubled the individual investment limit for NRIs and OCI cardholders in listed Indian companies from 5% to 10%, and raised the aggregate foreign portfolio limit from 10% to 24%. The moves are designed to attract diaspora capital at a time when other sources of foreign exchange are drying up.
 
-The IMD's monsoon tracker shows the Northern Limit of Monsoon passing through Kannur, Chennai, and parts of the west-central Bay of Bengal as of June 8. It has fully covered Nagaland, Manipur, and Mizoram, and entered Tripura, Assam, and Arunachal Pradesh.
+But these are defensive measures. They buy time without solving the underlying problem: India's economy is structurally exposed to a prolonged energy disruption, and the tools to address it — rate cuts, fiscal stimulus, diplomatic resolution — are all constrained.
 
-The immediate forecast is encouraging: the IMD expects heavy to very heavy rainfall across Kerala, Karnataka, and Tamil Nadu over the coming week. Karnataka may see isolated spells of extremely heavy rainfall between June 8 and 10. Conditions are favourable for further advance into Maharashtra, Telangana, and Odisha.
+Rate cuts would risk stoking inflation that has already crossed the RBI's 4% target. Fiscal stimulus would widen a deficit already strained by fuel subsidies and defence spending. And diplomatic resolution depends on Washington and Tehran, not New Delhi.
 
-But the heatwave has not retreated. The IMD has warned that parts of northwest, central, and peninsular India will continue to experience heat-wave conditions even as the monsoon pushes north. The juxtaposition — extreme heat in the interior, heavy rain on the coasts — creates its own risks, including flash flooding in rain-receiving areas and drought stress in heatwave zones.
+## What FY26 Tells Us
 
-## The Kharif Calculus
+India's FY26 numbers were strong enough to provide a buffer. GDP grew 7.7% for the full year, with the January-March quarter coming in at 7.8% — beating most forecasts. Manufacturing expanded 10.7%. Private consumption rose 7.7%. Government infrastructure spending remained robust.
 
-In 2025, the monsoon arrived in Delhi on June 29, two days later than the long-term average. Despite the delay, kharif output was broadly on target because subsequent rainfall distribution was adequate. The lesson: onset timing matters, but total monsoon performance matters more.
+But those numbers were largely delivered before the Iran war's full economic impact hit. The March quarter benefited from policy tailwinds and domestic momentum that are now fading. The question is not whether the war will slow India's economy — it already has. The question is by how much, and for how long.
 
-This year, the IMD has forecast a normal monsoon overall, with cumulative rainfall expected to be within the 96-104% range of the long-period average. If that forecast holds, the late start will be a footnote.
+## The Diaspora Angle
 
-If it does not — if the monsoon stalls, or if distribution turns erratic as El Niño patterns have historically caused — the consequences will compound with the oil crisis already underway. Food inflation, which has been the single largest contributor to CPI pressure in recent months, would accelerate. The RBI, which chose to hold rates despite crossing its 4% target, would face calls to tighten.
+For NRIs watching from abroad, the crisis creates both risk and opportunity. The RBI's new investment rules make it significantly easier to invest in Indian markets. The rupee's weakness means dollar-denominated remittances buy more in India. And the government's foreign asset disclosure scheme — offering immunity for undisclosed overseas assets up to ₹1 crore — suggests Delhi is actively courting diaspora capital.
 
-## What the Diaspora Sends Home
+But the investment case depends on the war ending. If Hormuz remains closed into the second half of 2026, the growth outlook deteriorates further, the rupee weakens further, and the stock market — already at two-month lows — has more room to fall.
 
-India received $43 billion in NRI remittances in the last quarter of FY26 — enough to produce a surprise current account surplus. Those remittances flow disproportionately into rural and semi-urban India, where they supplement agricultural income and fund household consumption.
+India entered 2026 as the world's strongest major economy. It may not exit the year with that title intact."""
 
-When monsoon fails, remittance families feel it first: food prices rise, water scarcity forces additional spending, and the purchasing power of the rupees they receive shrinks. When monsoon succeeds, it acts as a stabiliser, keeping food affordable and rural demand healthy.
+print("Sourcing image for Article 3...")
+# Try RBI Governor or Indian economy imagery
+art3_img_url, art3_img_attr = source_image(
+    person_name="Sanjay Malhotra RBI",
+    wiki_queries=["Reserve Bank of India Mumbai building", "Indian economy stock exchange Bombay"],
+    pexels_query="Indian rupee currency economy finance",
+    slug=art3_slug
+)
 
-For now, the forecast says normal. The monsoon is advancing. The first real test arrives when it reaches the Indo-Gangetic plain — the rice bowl and the wheat belt — sometime in the last week of June. Until then, India watches the sky and counts the days."""
+art3_data = {
+    "headline": art3_headline,
+    "subheadline": art3_subheadline,
+    "body": art3_body,
+    "slug": art3_slug,
+    "category": "news",
+    "vertical": "news",
+    "status": "review",
+    "is_editorial": False,
+    "sources": json.dumps([
+        "Reuters - Indian economy government finances see mounting costs from Iran war",
+        "Reuters - Indian shares decline to two-month lows on oil spike",
+        "CareEdge Ratings - Rajani Sinha GDP and CAD projections",
+        "Asian Development Bank growth forecast",
+        "Brookings Institution - Iran war Asia economic security analysis",
+        "Aberdeen Investments - Michael Langham supply shock analysis"
+    ]),
+    "image_url": art3_img_url or "",
+    "image_caption": "The Reserve Bank of India headquarters in Mumbai, the nerve centre of India's monetary policy response",
+    "image_attribution": art3_img_attr or "Wikimedia Commons",
+    "published_at": datetime.now(timezone.utc).isoformat()
+}
 
-    # Image sourcing - monsoon India
-    print("\n  Sourcing image...")
-    img_url, img_attr, _ = source_and_upload_image(
-        slug,
-        topic_queries=["India monsoon rainfall Kerala", "southwest monsoon India"],
-        pexels_query="monsoon rain India"
-    )
+art3_id = insert_article(art3_data)
 
-    article = {
-        "headline": headline,
-        "subheadline": subheadline,
-        "body": body,
-        "slug": slug,
-        "category": "news",
-        "vertical": "news",
-        "status": "review",
-        "is_editorial": False,
-        "image_url": img_url or "",
-        "image_caption": "Monsoon clouds over the Indian coast — the southwest monsoon arrived in Kerala on June 4, three days late",
-        "image_attribution": img_attr or "Pexels",
-        "sources": json.dumps([
-            {"name": "Livemint", "url": "https://www.livemint.com"},
-            {"name": "Reuters", "url": "https://www.reuters.com"},
-            {"name": "Skymet Weather", "url": "https://www.skymetweather.com"},
-            {"name": "IMD", "url": "https://mausam.imd.gov.in"},
-            {"name": "India Meteorological Department", "url": "https://www.imd.gov.in"}
-        ]),
-        "published_at": datetime.now(timezone.utc).isoformat()
-    }
+# ============================================================
+# SUMMARY
+# ============================================================
+print("\n" + "="*60)
+print("SUMMARY")
+print("="*60)
+results = [
+    ("EB-2 India Retrogression", art1_slug, art1_id, art1_img_url),
+    ("India Inc Shrinkflation", art2_slug, art2_id, art2_img_url),
+    ("India Economy Iran War Cost", art3_slug, art3_id, art3_img_url),
+]
+for title, slug, aid, img in results:
+    status = "✓" if aid else "✗"
+    img_status = "✓ image" if img else "⚠ no image"
+    print(f"  {status} {title}: {slug} ({img_status})")
 
-    return insert_article(article)
-
-
-# =====================================================================
-# MAIN
-# =====================================================================
-if __name__ == "__main__":
-    print("="*70)
-    print("The Videshi — News Writer Batch")
-    print(f"Date: {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')}")
-    print("="*70)
-
-    results = []
-    
-    # Write Article 1
-    art1 = write_article_1()
-    results.append(("NEET IAF Security", art1))
-
-    # Write Article 2
-    art2 = write_article_2()
-    results.append(("INDIA Bloc Meeting", art2))
-
-    # Write Article 3
-    art3 = write_article_3()
-    results.append(("Monsoon Late Arrival", art3))
-
-    # Summary
-    print("\n" + "="*70)
-    print("SUMMARY")
-    print("="*70)
-    success = 0
-    for name, art_id in results:
-        status = "✓" if art_id else "✗"
-        print(f"  {status} {name}: {art_id or 'FAILED'}")
-        if art_id:
-            success += 1
-    print(f"\n  {success}/{len(results)} articles published successfully")
-    print("="*70)
+print("\nDone.")
