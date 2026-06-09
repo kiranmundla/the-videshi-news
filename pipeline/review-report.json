@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-09T20:15:17.942678+00:00",
+  "timestamp": "2026-06-09T20:45:18.127879+00:00",
   "mode": "fix",
   "stats": {
     "pass": 2,
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "aa635d82-1b91-40bd-8390-1a17c04fbb82",
-      "headline": "Harvard Can No Longer Enrol Foreign Students \u2014 and Every Indian F-1 Holder Should Be Watching",
-      "slug": "harvard-sevp-revoked-indian-students-f1-visa-impact-20260609",
+      "id": "378dda49-74d9-42ee-8751-9f32054e8e09",
+      "headline": "The US House Just Cleared a $70 Billion Bill to Fund ICE Through the End of Trump's Term.",
+      "slug": "us-house-70-billion-ice-funding-bill-immigration-enforcement-indian-diaspora-20260609",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -23,19 +23,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image of the US Capitol is relevant but does not directly illustrate the topic of immigration enforcement or ICE funding."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively addresses the concerns of Indian families regarding the implications of the Harvard decision on international student enrollment, particularly for Indian F-1 visa holders."
+          "quality": 9,
+          "note": "The article effectively connects the implications of the funding bill to the Indian community and NRI residents, discussing specific immigration challenges they face."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes or reactions from Indian students or families to enhance the personal connection.",
-          "Provide more context on how this decision might affect future immigration policies for Indian students."
+          "Consider using an image that directly relates to immigration enforcement or ICE to enhance relevance.",
+          "Add more quotes or perspectives from Indian American community leaders to strengthen the diaspora angle."
         ],
         "verdict": "pass"
       },
@@ -47,31 +47,36 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "3db44a0f-0367-45f9-a3e9-dce632158146",
-      "headline": "Three Hundred and Thirty-Eight \u2014 That's How Many People Want Trump's Million-Dollar Gold Card",
-      "slug": "trump-gold-card-338-applicants-india-wealthy-eb5-20260609",
+      "id": "b588b0cb-82d3-406a-8266-00d16c30a923",
+      "headline": "A New Bill Wants to Kill the H-1B Green Card Pipeline. Every Indian Worker in America Should Read It.",
+      "slug": "chip-roy-h1b-green-card-pipeline-bill-opt-elimination-indian-workers-20260609",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "b3bbd346-c9f1-4ee1-9bf8-1005302fefa2",
+            "headline": "Seven Per Cent \u2014 The Hidden Provision That Would Slash India"
+          }
+        ],
         "broken_embeds": []
       },
       "llm_review": {
-        "overall_score": 7,
+        "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 6,
-          "issue": "The image does not directly relate to the topic of immigration or the Gold Card program."
+          "score": 5,
+          "issue": "The image of Chip Roy is relevant to the article but does not visually represent the H-1B visa topic directly."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article discusses the implications of the Gold Card program specifically for wealthy Indian families, making it relevant to the Indian diaspora."
+          "quality": 9,
+          "note": "The article effectively connects the implications of the bill to the Indian diaspora, highlighting the impact on Indian professionals in the US."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that directly relates to immigration or the Gold Card program to enhance relevance.",
-          "Add quotes or insights from immigration experts or Indian investors to provide more depth and personal perspectives."
+          "Consider using an image that more directly represents the H-1B visa or Indian professionals in the US.",
+          "Add quotes or perspectives from Indian professionals affected by the bill to enhance the human angle."
         ],
         "verdict": "pass"
       },

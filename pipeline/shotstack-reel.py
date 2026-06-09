@@ -265,7 +265,8 @@ def generate_tts(text):
         return None, 0
 
     # Phonetic hint for TTS — help Seema pronounce "TheVideshi" correctly
-    tts_text = text.replace("thevideshi", "the Vidayshee").replace("TheVideshi", "The Vidayshee").replace("Videshi", "Vidayshee")
+    # "Videshi" = vi-THEY-shee (विदेशी) — the "de" sounds like "they", not "day"
+    tts_text = text.replace("thevideshi", "the Vitheyshee").replace("TheVideshi", "The Vitheyshee").replace("Videshi", "Vitheyshee")
 
     r = requests.post(
         "https://api.heygen.com/v3/voices/speech",
