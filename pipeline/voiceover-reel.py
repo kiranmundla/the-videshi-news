@@ -63,7 +63,7 @@ BUILD_DIR.mkdir(parents=True, exist_ok=True)
 
 # TTS config — HeyGen Starfish is default (best quality)
 TTS_PROVIDER = "heygen"  # "heygen", "openai", or "elevenlabs"
-TTS_VOICE = "d2f4f24783d04e22ab49ee8fdc3715e0"  # HeyGen: Chill Brian (Starfish); OpenAI: nova; ElevenLabs: cb9diBQeYWIGJS9i52kX
+TTS_VOICE = "166aa8d7acd1495a839d34024ccb1505"  # HeyGen: Seema - Professional (Starfish); OpenAI: nova; ElevenLabs: cb9diBQeYWIGJS9i52kX
 TTS_MODEL = "tts-1-hd"
 TTS_SPEED = 1.0
 
@@ -1114,7 +1114,7 @@ if __name__ == "__main__":
     if args.voice:
         TTS_VOICE = args.voice
     elif TTS_PROVIDER == "heygen":
-        TTS_VOICE = "d2f4f24783d04e22ab49ee8fdc3715e0"  # Chill Brian (Starfish)
+        TTS_VOICE = "166aa8d7acd1495a839d34024ccb1505"  # Seema - Professional (Starfish)
     elif TTS_PROVIDER == "openai":
         TTS_VOICE = "nova"
     elif TTS_PROVIDER == "elevenlabs":
