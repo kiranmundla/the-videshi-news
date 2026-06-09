@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-09T06:16:35.968901+00:00",
+  "timestamp": "2026-06-09T06:46:12.779681+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 10,
+    "pass": 3,
     "flag": 2,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "4fd60534-351e-4d7b-b3ce-85254cdc6e51",
-      "headline": "Nepal Is Getting a Ritz-Carlton \u2014 and NRIs Planning Himalayan Trips Just Got a Luxury Upgrade",
-      "slug": "ritz-carlton-kathmandu-jw-marriott-siliguri-nri-20260609",
+      "id": "498a1d4e-48dd-4bdd-9b67-251e05305e92",
+      "headline": "New York's State Senate Just Voted to Proclaim August 15 as India Independence Day.",
+      "slug": "new-york-senate-india-independence-day-resolution-j1935-august-15-indian-american-20260609",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -23,19 +23,93 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image of the New York State Senate chamber is relevant but does not directly depict the celebration of India Independence Day."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the luxury hotel openings to the needs and preferences of NRI travelers, highlighting the significance of these developments for diaspora tourism."
+          "quality": 9,
+          "note": "The article effectively highlights the contributions of the Indian-American community and connects the resolution to broader diaspora engagement."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from industry experts or travelers to enhance credibility and engagement.",
-          "Include more specific details about the expected amenities and services at the new hotels to attract potential travelers."
+          "Consider including a quote or perspective from a prominent NRI figure to enhance the diaspora connection.",
+          "Add a brief historical context about India's Independence Day for readers who may not be familiar."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "4c33a5d3-e72a-438e-9b53-2fc9b9c5f548",
+      "headline": "India Is Buying Oil from Venezuela, Brazil, Angola and Nigeria. The Hormuz Shift May Be Permanent.",
+      "slug": "india-oil-diversification-latin-america-africa-venezuela-brazil-hormuz-20260609",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 5,
+          "issue": "The image does not directly relate to the article's focus on oil imports and geopolitical shifts."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses India's economic strategies and implications for NRIs, particularly in relation to currency stability and investment opportunities."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more specific examples of how these changes in oil sourcing impact NRIs financially.",
+          "Consider using a more relevant image that depicts oil trade or geopolitical discussions."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Revised by gpt-4o-mini (693\u2192789 words)"
+      ],
+      "revised": true,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "23506f74-b7e8-4c04-b352-99663d08295b",
+      "headline": "A US Fighter Jet Hit an Oil Tanker in the Gulf of Oman. All 24 Sailors on Board Were Indian.",
+      "slug": "mt-marivex-us-strike-oil-tanker-24-indian-sailors-oman-rescue-hormuz-blockade-20260609",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 8,
+          "issue": "The image of the F/A-18 Super Hornet is relevant to the article's topic about a U.S. fighter jet, but it does not directly depict the oil tanker or the incident itself."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the safety of Indian sailors and the implications for the Indian government, which is relevant to the Indian diaspora."
+        },
+        "factual_flags": [
+          "Confusion regarding the vessel's registration as identified by Sharma and other sources."
+        ],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Clarify the discrepancy regarding the vessel's registration to avoid confusion.",
+          "Include more direct quotes from Indian officials to enhance credibility and engagement."
         ],
         "verdict": "pass"
       },
@@ -57,35 +131,28 @@
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://x.com/airindia/status/2062423722611634513",
-            "problem": "irrelevant",
-            "explanation": "The tweet does not provide relevant information about the partnership or its implications for NRIs."
-          }
-        ],
+        "embed_issues": [],
         "image_match": {
           "score": 9,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively highlights the implications of the partnership for the Indian diaspora, making it relevant and engaging for NRI readers."
+          "quality": 8,
+          "note": "The article effectively highlights the benefits of the partnership for NRIs, making it relevant and engaging for the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant tweet embed with a more relevant source that discusses the partnership or its benefits for NRIs.",
-          "Consider adding a quote from an NRI or industry expert to further emphasize the impact of the partnership on the diaspora."
+          "Include quotes or testimonials from NRIs to enhance the personal connection to the topic.",
+          "Add a brief section on how this partnership might affect ticket prices or travel frequency for NRIs."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://x.com/airindia/status/2062423722611634513",
-        "Revised by gpt-4o-mini (654\u2192704 words)"
+        "promoted to published"
       ],
-      "revised": true,
+      "revised": false,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
     },
@@ -96,369 +163,56 @@
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
-        "broken_embeds": []
+        "broken_embeds": [
+          {
+            "url": "https://x.com/isro/status/1798365851219665243",
+            "problem": "broken",
+            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
+          },
+          {
+            "url": "https://x.com/iitmadras/status/1798305094901309855",
+            "problem": "broken",
+            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
+          },
+          {
+            "url": "https://x.com/sarvam_ai/status/1765089063229679072",
+            "problem": "broken",
+            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
+          }
+        ]
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://instagram.com/p/C71j_57P9yR/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not appear to be directly related to the deep-tech startups or the Bharat Innovates event."
+          }
+        ],
         "image_match": {
           "score": 5,
-          "issue": "The image does not directly relate to deep-tech startups or the specific event in France."
+          "issue": "The image of a rocket launch does not directly match the article's focus on deep-tech startups and their innovations."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively highlights the significance of the event for NRI investors and professionals, connecting them to India's technological advancements."
+          "note": "The article effectively connects the developments in India's deep-tech sector to opportunities for NRI professionals and investors, highlighting a sense of national pride."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that reflects the theme of deep-tech startups or the specific event in France.",
-          "Expand on the implications of the showcased startups for NRI investors to enhance the diaspora angle."
+          "Replace the irrelevant Instagram embed with a more relevant link or remove it altogether.",
+          "Consider using an image that better represents the theme of deep-tech startups or the Bharat Innovates event."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
-        "Revised by gemini-2.5-flash (615\u2192713 words)"
+        "Removed 3 broken/hallucinated embed(s)",
+        "Removed irrelevant embed: https://instagram.com/p/C71j_57P9yR/",
+        "Revised by gemini-2.5-flash (709\u2192709 words)"
       ],
       "revised": true,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "fe2bccb0-0923-41c1-b9b6-9758e38867e5",
-      "headline": "Nikesh Arora Just Declared Cybersecurity's AI Apocalypse Dead. His $200 Billion Company Proves It.",
-      "slug": "nikesh-arora-palo-alto-networks-cybersecurity-ai-boom-20260609",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article highlights Nikesh Arora's Indian roots and career trajectory, making it relevant to the Indian diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more quotes or insights from Nikesh Arora to enhance the narrative.",
-          "Include a brief section on the implications of AI in cybersecurity for NRI professionals."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "95dee9ed-165f-4f57-9276-61ddeba76b56",
-      "headline": "Shantanu Narayen Is Leaving Adobe. He Turned a $1 Billion Company Into a $25 Billion AI Empire.",
-      "slug": "shantanu-narayen-adobe-ceo-stepping-down-firefly-successor-20260609",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects Narayen's departure to the Indian diaspora, highlighting the significance of his role and the implications for Indian tech professionals."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from industry experts or analysts to enhance credibility.",
-          "Include more context on the impact of Narayen's leadership on the global tech landscape."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "1fd3f8e5-af85-47e4-996d-c8b1bdacd63a",
-      "headline": "Wealthy Indians Are Choosing Dubai Over Delhi. The Tax Maths Leaves Little Room for Debate.",
-      "slug": "wealthy-indians-dubai-over-delhi-real-estate-nri-investment-20260609",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively discusses the appeal of Dubai for wealthy Indians, highlighting cultural and logistical factors that resonate with the NRI community."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes or testimonials from NRIs who have made the move to Dubai to enhance relatability.",
-          "Include more data or statistics on the growth of the Indian expatriate community in Dubai to strengthen the argument."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "c981d59c-bd4c-4a87-ba94-51dd1ad426df",
-      "headline": "India Sent Its Largest-Ever Business Delegation to Canada. Here's What They Want.",
-      "slug": "piyush-goyal-largest-india-business-delegation-canada-cepa-20260609",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "d9c077a6-daa5-481b-96e6-b8071768c971",
-            "headline": "Ninety-Nine Percent Done \u2014 The India-US Trade Deal That Hasn"
-          },
-          {
-            "article_id": "8b8ee11a-4b6f-4f4e-8d04-a83539684763",
-            "headline": "India and Canada Just Agreed to Triple Their Trade to $50 Bi"
-          },
-          {
-            "article_id": "018efc96-cc18-44b0-b3c4-4c64a4bc58df",
-            "headline": "India and the US Are '99 Percent Done' on a Trade Deal. The "
-          }
-        ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image of Piyush Goyal is relevant as he is a key figure in the delegation, but it could be more directly related to the business aspect of the delegation."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively highlights the role of the Indian diaspora in Canada as a crucial element in enhancing bilateral trade relations."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider including more specific examples of Indian companies participating in the delegation to enhance the article's depth.",
-          "Add quotes from participants or experts to provide more personal insights into the significance of the delegation."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "08373e04-707b-4689-b46f-01e239af054d",
-      "headline": "Indian-Owned Businesses in Britain Just Hit a Record. The Numbers Are Staggering.",
-      "slug": "indian-owned-businesses-uk-record-1912-firms-105-billion-20260609",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to Indian-owned businesses in Britain."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively highlights the impact of Indian-owned businesses on the NRI community in Britain."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that directly represents Indian-owned businesses in Britain for better relevance.",
-          "Add quotes or testimonials from Indian business owners in Britain to enhance the personal connection to the diaspora."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "bfdc11aa-c61c-44f0-8fea-4a3a2a20d7e1",
-      "headline": "A Federal Judge Just Killed Trump's $100,000 H-1B Fee. The Legal War Is Far From Over.",
-      "slug": "h1b-visa-100000-fee-struck-down-judge-sorokin-indian-tech-workers-nri-20260609",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 5,
-          "issue": "The image of the courthouse does not directly relate to the topic of H-1B visas or the legal ruling."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively highlights the impact of the ruling on Indian tech workers and the broader Indian diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that directly relates to H-1B visas or Indian tech workers to enhance relevance.",
-          "Add more context or quotes from affected Indian tech workers to deepen the personal impact of the ruling."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "312cab02-c688-4035-a897-c3defb562ec3",
-      "headline": "A Single Gut Bacterium Can Decide Whether You Survive Sepsis. Your Diet May Have Already Chosen Sides.",
-      "slug": "gut-bacteria-sepsis-survival-nature-study-south-asian-microbiome-diet-20260609",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the findings to the South Asian diaspora, particularly regarding the health of elderly parents in India."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more specific examples of dietary changes that NRIs can make to maintain gut health.",
-          "Include quotes or insights from health professionals to enhance credibility."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "5d5a691b-91af-478f-b751-5dd94575e26e",
-      "headline": "Scientists Found the Molecular Switch That Drives Alzheimer's Brain Inflammation. It Can Be Turned Off.",
-      "slug": "sting-protein-alzheimers-brain-inflammation-switch-scripps-south-asian-20260609",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the research findings to the South Asian diaspora, highlighting the relevance of Alzheimer's disease and its risk factors."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more specific examples of how diaspora communities can adapt their lifestyles to mitigate Alzheimer's risk.",
-          "Include quotes from experts or researchers to enhance credibility and engagement."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "d3cea8bd-4f24-4cb2-a91a-354db396149d",
-      "headline": "Gullak Season 5 Is Here. The Mishras Still Live in Your Heart and They Know It.",
-      "slug": "gullak-season-5-sonyliv-mishra-family-diaspora-comfort-watch-nri-20260609",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image of Jameel Khan does not directly relate to the article's focus on the show 'Gullak' as a whole."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the show's themes to the emotional experiences of the Indian diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant hero image that represents the show 'Gullak' as a whole rather than focusing on a single actor.",
-          "Add more specific examples of how the show has impacted the diaspora community to strengthen the connection."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
     }
