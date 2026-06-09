@@ -1,19 +1,62 @@
 {
-  "timestamp": "2026-06-09T04:45:47.027090+00:00",
+  "timestamp": "2026-06-09T05:16:01.496353+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 4,
-    "flag": 1,
+    "pass": 0,
+    "flag": 3,
     "fail": 0,
     "error": 0
   },
-  "revisions": 1,
+  "revisions": 3,
   "unpublished": 0,
   "articles": [
     {
-      "id": "005452c0-578b-493b-b0f9-ceb3cf688989",
-      "headline": "Sindhu Is the Third Seed in Sydney. Sen and Srikanth Are Not There. Satwik Is Injured.",
-      "slug": "pv-sindhu-australian-open-2026-sydney-ayush-shetty-satwik-chirag-injured-nri",
+      "id": "0809b36f-af6c-4cf8-a786-c8c1f20da015",
+      "headline": "Hrithik Roshan Wanted \u20b9500 Crore for Krrish 4. His Father Just Called That 'Nonsense.'",
+      "slug": "krrish-4-hrithik-roshan-500-crore-budget-rakesh-roshan-yrf-directorial-debut-nri-20260609",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/DZKs2dVorgG/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not appear to be directly related to the Krrish franchise or the budget discussion, making it irrelevant to the article's topic."
+          }
+        ],
+        "image_match": {
+          "score": 8,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the Krrish franchise to the emotional ties of the Indian diaspora, highlighting its significance beyond just commercial success."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the irrelevant Instagram embed with a more relevant source or quote related to the Krrish franchise.",
+          "Consider adding more context about the Krrish franchise's impact on the diaspora to strengthen the connection."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/DZKs2dVorgG/",
+        "Revised by gpt-4o-mini (757\u2192789 words)"
+      ],
+      "revised": true,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "d3cea8bd-4f24-4cb2-a91a-354db396149d",
+      "headline": "Gullak Season 5 Is Here. The Mishras Still Live in Your Heart and They Know It.",
+      "slug": "gullak-season-5-sonyliv-mishra-family-diaspora-comfort-watch-nri-20260609",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -21,28 +64,35 @@
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/DY2FXdtjCN3/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not appear to be directly related to the content of the article about Gullak Season 5."
+          }
+        ],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 5,
+          "issue": "The image of Jameel Khan does not directly relate to the article's focus on the Mishra family and the show as a whole."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article connects well with the Indian diaspora in Australia by highlighting the opportunity to watch Indian badminton live."
+          "quality": 9,
+          "note": "The article effectively connects the show's themes to the emotional experiences of the Indian diaspora, making it relatable and poignant."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more details about the significance of the tournament for the Indian players.",
-          "Add quotes or insights from players or coaches to enhance the narrative."
+          "Replace the irrelevant Instagram embed with a more relevant one that highlights a scene or theme from Gullak.",
+          "Consider using an image that features the Mishra family or a scene from the show to better match the article's content."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
-        "promoted to published"
+        "Removed irrelevant embed: https://www.instagram.com/p/DY2FXdtjCN3/",
+        "Revised by gemini-2.5-flash (748\u2192749 words)"
       ],
-      "revised": false,
+      "revised": true,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
     },
@@ -60,135 +110,27 @@
         "embed_issues": [],
         "image_match": {
           "score": 8,
-          "issue": "The image of Hardik Pandya is relevant to the article's topic about his fitness and return to ODI cricket."
+          "issue": "The image of Hardik Pandya is relevant to the article as it discusses his fitness and return to the ODI squad."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article connects well with the diaspora by discussing the significance of the ODI series for cricket fans abroad, especially in the context of competing sports events."
+          "note": "The article effectively connects the ODI series to the interests of the NRI community, highlighting the significance of the matches amidst other global sports events."
         },
         "factual_flags": [
-          "The article mentions Pandya's last ODI was in March 2025, which is inconsistent with the current date of June 2026."
+          "The article mentions Pandya's last ODI was in March 2025, which is inconsistent with the current date."
         ],
         "duplicate_embeds": [],
         "suggestions": [
           "Correct the date of Pandya's last ODI to ensure factual accuracy.",
-          "Consider adding more context about the significance of the ODI series for NRIs, perhaps by including quotes or reactions from diaspora fans."
+          "Consider adding more context about the significance of the ODI series for the diaspora beyond just the scheduling."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
-        "Revised by gpt-4o-mini (766\u2192826 words)"
+        "Revised by gpt-4o-mini (826\u2192850 words)"
       ],
       "revised": true,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "6db203a5-2889-4b34-a76d-06180bbb9184",
-      "headline": "The Monsoon Arrived Three Days Late. For an Economy Already Burning Through Oil Reserves, That Delay Matters.",
-      "slug": "india-southwest-monsoon-2026-late-arrival-kerala-economic-impact-agriculture",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses the economic implications of the monsoon delay, which is relevant to NRIs concerned about India's agricultural economy and energy crisis."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more direct quotes or insights from experts to enhance credibility.",
-          "Add a brief section on how the diaspora can support or engage with agricultural initiatives in India."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "a52e7d9e-e88d-40bf-8277-77ba5c5bff18",
-      "headline": "India's Opposition Just Met in Delhi. Kharge Told Them the Economy Is Broken and Modi's Government Is the Reason.",
-      "slug": "india-bloc-opposition-meeting-kharge-modi-misgovernance-unity-june-2026",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the opposition's actions and economic conditions to the interests of the NRI diaspora, particularly regarding remittances and economic stability."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from other opposition leaders to provide a broader perspective on the meeting.",
-          "Include more context on the implications of the opposition's actions for the upcoming elections."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "8319b0fd-b67c-4e6f-b72c-b347a16e3d86",
-      "headline": "The Indian Air Force Will Fly NEET Papers to 18 Military Hubs. The Paper Setters Are Already in Lockdown.",
-      "slug": "neet-2026-re-exam-iaf-air-force-question-papers-lockdown-security-june-21",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the NEET exam situation to the concerns of NRI families, highlighting the impact of the cancellation on their travel and logistics."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from NRI students or families to enhance the diaspora perspective.",
-          "Include more details on how the NEET process affects NRI students specifically, such as the implications of the exam's integrity on their opportunities."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
     }
