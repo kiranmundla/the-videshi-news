@@ -1,13 +1,13 @@
 {
-  "timestamp": "2026-06-09T09:16:47.132582+00:00",
+  "timestamp": "2026-06-09T09:46:13.655665+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
-    "flag": 4,
+    "pass": 2,
+    "flag": 2,
     "fail": 0,
     "error": 0
   },
-  "revisions": 4,
+  "revisions": 2,
   "unpublished": 0,
   "articles": [
     {
@@ -24,23 +24,25 @@
         "embed_issues": [],
         "image_match": {
           "score": 3,
-          "issue": "The hero image of the Bombay Stock Exchange does not directly relate to the article's focus on AI and market capitalisation."
+          "issue": "irrelevant"
         },
         "diaspora_angle": {
           "present": true,
           "quality": 7,
-          "note": "The article discusses the implications for NRIs, particularly in relation to their investment portfolios."
+          "note": "The article discusses the impact of India's economic situation on NRIs, particularly those with investments in both India and the US."
         },
-        "factual_flags": [],
+        "factual_flags": [
+          "The article mentions data from 2026, which is inconsistent with the current year (2023)."
+        ],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the hero image with one that better represents the AI economy or the tech sector.",
-          "Expand on the NRI perspective to provide more actionable insights or advice for Indian Americans."
+          "Update the year references to reflect the current timeline accurately.",
+          "Consider using a more relevant image that reflects the topic of AI and the stock market."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
-        "Revised by gpt-4o-mini (673\u2192739 words)"
+        "Revised by gemini-2.5-flash (739\u2192739 words)"
       ],
       "revised": true,
       "unpublished": false,
@@ -57,69 +59,7 @@
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://x.com/intel/status/2063999492425134329",
-            "problem": "irrelevant",
-            "explanation": "The tweet from Intel does not provide relevant context or information directly related to the article's focus on the semiconductor market's impact on NRI portfolios."
-          }
-        ],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not specifically depict semiconductors or technology, which could enhance the article's relevance."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the semiconductor market's fluctuations to the financial impact on Indian American investors, making it highly relevant for the diaspora audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the irrelevant Intel tweet with a more relevant social media post that discusses the semiconductor market or NRI investments.",
-          "Consider using an image that directly relates to semiconductors or technology to better match the article's content."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Removed irrelevant embed: https://x.com/intel/status/2063999492425134329",
-        "Revised by gpt-4o-mini (585\u2192652 words)"
-      ],
-      "revised": true,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "c614e23a-33ed-4d07-935b-4f6e63311d01",
-      "headline": "Sundar Pichai Is Paying Elon Musk $920 Million a Month to Rent GPUs. That's the AI Economy Now.",
-      "slug": "google-spacex-920m-gpu-deal-pichai-musk-ipo-20260609",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "145abe18-fa8f-485e-acc8-bcbc84068775",
-            "headline": "Google Is Quietly Gutting Its Cybersecurity Teams. Sundar Pi"
-          },
-          {
-            "article_id": "1fbc6afa-3d22-4b48-8e68-b7405af36b82",
-            "headline": "Google Just Brought AI to the World's Cheapest Phones. India"
-          },
-          {
-            "article_id": "8212dd4f-5523-4112-b656-b20811f3ee40",
-            "headline": "Sundar Pichai Just Raised $80 Billion. Warren Buffett Wrote "
-          }
-        ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://x.com/sundarpichai/status/2062203848673161267",
-            "problem": "irrelevant",
-            "explanation": "The tweet does not appear to be directly related to the main topic of the article regarding the GPU rental deal between Sundar Pichai and Elon Musk."
-          }
-        ],
+        "embed_issues": [],
         "image_match": {
           "score": 9,
           "issue": null
@@ -127,18 +67,17 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the deal to Indian Americans in tech, highlighting Sundar Pichai's background and the implications for NRI investors."
+          "note": "The article effectively connects the semiconductor market fluctuations to the financial interests of Indian Americans, making it relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant tweet embed with a more relevant source or commentary on the GPU rental deal.",
-          "Consider adding more context on how this deal impacts the broader AI landscape, especially for Indian tech companies."
+          "Consider adding more specific examples of how the market fluctuations have historically affected NRI investments.",
+          "Include quotes or insights from Indian American investors to enhance relatability and depth."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://x.com/sundarpichai/status/2062203848673161267",
         "promoted to published"
       ],
       "revised": false,
@@ -156,35 +95,28 @@
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/p/DZKZRY7oBC6/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post does not seem to relate directly to the film or its themes, making it less relevant to the article's focus."
-          }
-        ],
+        "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image is a poster for 'Manjummel Boys', which is relevant but not directly related to 'Balan: The Boy'."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively discusses the film's multilingual release and its significance for diaspora audiences, making it relatable."
+          "note": "The article discusses the film's multilingual release and its significance for diaspora audiences, connecting well with NRI readers."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant Instagram embed with a more relevant social media post related to 'Balan: The Boy'.",
-          "Consider using a hero image that directly represents 'Balan: The Boy' instead of 'Manjummel Boys' for better alignment with the article's focus."
+          "Consider adding more direct quotes from the directors or actors to enhance the article's depth.",
+          "Include a brief overview of the directors' previous works to provide context for their collaboration."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DZKZRY7oBC6/",
-        "Revised by gpt-4o-mini (737\u2192762 words)"
+        "promoted to published"
       ],
-      "revised": true,
+      "revised": false,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
     },
@@ -202,7 +134,7 @@
         "embed_issues": [],
         "image_match": {
           "score": 3,
-          "issue": "irrelevant"
+          "issue": "The image features Sachin Tendulkar and his family, which is not directly relevant to Arjun Tendulkar's performance."
         },
         "diaspora_angle": {
           "present": true,
@@ -212,13 +144,13 @@
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the hero image with one that features Arjun Tendulkar or is directly related to the match discussed.",
-          "Consider adding quotes from Arjun or his coach to enhance the narrative and provide personal insights."
+          "Replace the hero image with one that features Arjun Tendulkar in action during the match.",
+          "Consider adding quotes from Arjun or his coach to enhance the narrative."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
-        "Revised by gpt-4o-mini (705\u2192730 words)"
+        "Revised by gpt-4o-mini (730\u2192754 words)"
       ],
       "revised": true,
       "unpublished": false,
