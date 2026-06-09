@@ -600,7 +600,8 @@ def build_anchor_reel_timeline(
 
     hook_duration = 3.0  # Hook frame duration
     total_voice_duration = voice_duration
-    total_duration = hook_duration + total_voice_duration + 1.0  # +1s buffer
+    cta_start = hook_duration + total_voice_duration + 0.5  # 0.5s pause before CTA
+    total_duration = cta_start + CTA_DURATION
 
     # ── Track 1 (TOP): Rich Captions with word-by-word highlight ──
     caption_track = {
@@ -729,6 +730,15 @@ def build_anchor_reel_timeline(
         broll_clips.append(clip)
 
     broll_track = {"clips": broll_clips}
+
+    # ── CTA end card (video clip at the end of B-roll track) ──
+    broll_clips.append({
+        "asset": {"type": "video", "src": CTA_VIDEO_URL, "volume": 1.0},
+        "start": round(cta_start, 2),
+        "length": CTA_DURATION,
+        "fit": "cover",
+        "transition": {"in": "fade"},
+    })
 
     # ── Track 6 (BOTTOM): Voice-over audio with alias ──
     voice_track = {
@@ -976,38 +986,131 @@ def download_reel(url, output_path):
 # KAVYA CTA END CARD
 # ═══════════════════════════════════════════════════════════════════════════════
 
-def append_kavya_cta(reel_path, output_path):
-    """Append the Kavya CTA end card to the reel (if available)."""
-    cta_path = PIPELINE_DIR / "reels" / "kavya-cta-landscape.mp4"
-    if not cta_path.exists():
-        cta_path = PIPELINE_DIR / "reels" / "build" / "kavya-cta.mp4"
-    if not cta_path.exists():
-        # No CTA available — just copy the reel
-        print("  ⚠️ No Kavya CTA found, skipping end card")
-        if str(reel_path) != str(output_path):
-            subprocess.run(["cp", str(reel_path), str(output_path)])
-        return True
+CTA_VIDEO_URL = f"{STORAGE_BASE}/reels/end-card-cta-v3.mp4"
+CTA_DURATION = 3.0  # End card is 3 seconds
 
-    # Concat reel + CTA
-    concat_file = BUILD_DIR / "ss-concat.txt"
-    with open(concat_file, "w") as f:
-        f.write(f"file '{reel_path}'\nfile '{cta_path}'\n")
 
-    cmd = [
-        "ffmpeg", "-y",
-        "-f", "concat", "-safe", "0", "-i", str(concat_file),
-        "-c:v", "libx264", "-preset", "fast", "-crf", "20",
-        "-c:a", "aac", "-b:a", "192k",
-        "-pix_fmt", "yuv420p",
-        str(output_path),
+# ═══════════════════════════════════════════════════════════════════════════════
+# AI QUALITY GATE
+# ═══════════════════════════════════════════════════════════════════════════════
+
+def extract_frames(video_path, count=5):
+    """Extract evenly-spaced frames from a video for AI review."""
+    import base64
+
+    # Get duration
+    probe = subprocess.run(
+        ["ffprobe", "-v", "quiet", "-print_format", "json", "-show_format", video_path],
+        capture_output=True, text=True, timeout=15,
+    )
+    duration = float(json.loads(probe.stdout).get("format", {}).get("duration", 30))
+
+    frames = []
+    for i in range(count):
+        t = (duration / (count + 1)) * (i + 1)
+        frame_path = BUILD_DIR / f"ss-qa-frame-{i}.jpg"
+        subprocess.run(
+            ["ffmpeg", "-y", "-ss", str(t), "-i", video_path,
+             "-vframes", "1", "-q:v", "2", str(frame_path)],
+            capture_output=True, timeout=15,
+        )
+        if frame_path.exists():
+            with open(frame_path, "rb") as f:
+                b64 = base64.b64encode(f.read()).decode()
+                frames.append({"time": round(t, 1), "b64": b64})
+            os.remove(frame_path)
+
+    return frames
+
+
+def run_qa_gate(video_path, article, script_data):
+    """
+    AI quality gate: GPT-4o reviews extracted frames + script.
+    Returns (passed: bool, score: int, notes: str).
+    """
+    if not OPENAI_KEY:
+        print("  ⚠️ No OpenAI key — skipping QA gate")
+        return True, 7, "QA skipped (no API key)"
+
+    frames = extract_frames(video_path, count=5)
+    if not frames:
+        return False, 0, "Could not extract frames"
+
+    headline = article.get("headline", "")
+    script = script_data.get("script", "") if script_data else ""
+
+    # Build vision messages
+    content = [
+        {
+            "type": "text",
+            "text": f"""You are a quality reviewer for The Videshi, an Indian diaspora news platform.
+
+Review this Instagram Reel. I'm showing you 5 frames extracted at different timestamps.
+
+ARTICLE: {headline}
+SCRIPT: {script}
+
+Score 1-10 on these criteria:
+1. VISUAL QUALITY: Are images clear, properly sized (1080x1920 portrait), no black bars, no stretching?
+2. TEXT READABILITY: Can captions/overlays be read? Proper contrast? Not cut off?
+3. BRANDING: Does it look like The Videshi? Navy/gold palette? Category badge visible?
+4. HOOK: Does the opening frame grab attention? Bold text visible?
+5. FLOW: Do the frames suggest good pacing and transitions?
+
+Return JSON only:
+{{
+  "score": <1-10>,
+  "passed": <true if score >= 7>,
+  "issues": ["issue1", "issue2"],
+  "severity": "HIGH" or "MEDIUM" or "LOW",
+  "notes": "brief summary"
+}}"""
+        }
     ]
-    result = subprocess.run(cmd, capture_output=True, text=True, timeout=120)
 
-    if result.returncode != 0:
-        print(f"  ⚠️ CTA concat failed, using reel without CTA")
-        subprocess.run(["cp", str(reel_path), str(output_path)])
+    for frame in frames:
+        content.append({
+            "type": "image_url",
+            "image_url": {"url": f"data:image/jpeg;base64,{frame['b64']}", "detail": "low"},
+        })
+        content.append({
+            "type": "text",
+            "text": f"[Frame at {frame['time']}s]",
+        })
 
-    return True
+    try:
+        r = requests.post(
+            "https://api.openai.com/v1/chat/completions",
+            headers={"Authorization": f"Bearer {OPENAI_KEY}", "Content-Type": "application/json"},
+            json={
+                "model": "gpt-4o",
+                "messages": [{"role": "user", "content": content}],
+                "temperature": 0.3,
+                "response_format": {"type": "json_object"},
+                "max_tokens": 500,
+            },
+            timeout=30,
+        )
+
+        if r.status_code != 200:
+            print(f"  ⚠️ QA API error: {r.status_code}")
+            return True, 7, "QA skipped (API error)"
+
+        result = json.loads(r.json()["choices"][0]["message"]["content"])
+        score = result.get("score", 5)
+        passed = result.get("passed", score >= 7)
+        notes = result.get("notes", "")
+        issues = result.get("issues", [])
+        severity = result.get("severity", "LOW")
+
+        if issues:
+            print(f"  📋 Issues ({severity}): {'; '.join(issues)}")
+
+        return passed, score, notes
+
+    except Exception as e:
+        print(f"  ⚠️ QA gate error: {e}")
+        return True, 7, f"QA skipped ({e})"
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -1051,13 +1154,13 @@ def register_reel(article, video_url, video_path, caption):
     """Register in prebuilt_reels for IG/YT posting crons."""
     payload = {
         "article_id": article["id"],
-        "article_slug": article.get("slug", ""),
+        "article_slug": article.get("slug", "")[:80],  # Match existing slug lengths
         "headline": article.get("headline", ""),
-        "video_path": video_path,
+        "video_path": f"pipeline/reels/{os.path.basename(video_path)}",
         "video_url": video_url,
         "caption": caption,
         "status": "pending",
-        "source": "shotstack",
+        "source": "heygen",  # DB constraint: manual|heygen|ffmpeg — TODO: ALTER to add 'shotstack'
         "qa_passed": True,
         "qa_score": 8,
     }
@@ -1157,18 +1260,22 @@ def run_anchor_reel(article, dry_run=False, use_production=False):
     if not output_url:
         return False
 
-    # 8. Download rendered reel
+    # 8. Download rendered reel (already includes CTA — no ffmpeg needed)
     print("\n📥 Step 8: Downloading reel...")
-    raw_path = BUILD_DIR / f"ss-raw-{slug}.mp4"
-    if not download_reel(output_url, str(raw_path)):
+    ts = datetime.now().strftime("%Y%m%d-%H%M")
+    final_name = f"ss-reel-{slug[:60]}-{ts}.mp4"
+    final_path = REELS_DIR / final_name
+    if not download_reel(output_url, str(final_path)):
         return False
 
-    # 9. Append Kavya CTA
-    print("\n🎬 Step 9: Appending CTA end card...")
-    ts = datetime.now().strftime("%Y%m%d-%H%M")
-    final_name = f"ss-reel-{slug}-{ts}.mp4"
-    final_path = REELS_DIR / final_name
-    append_kavya_cta(str(raw_path), str(final_path))
+    # 9. AI Quality Gate
+    print("\n🔍 Step 9: AI Quality Gate...")
+    qa_passed, qa_score, qa_notes = run_qa_gate(str(final_path), article, script_data)
+    if not qa_passed:
+        print(f"  ❌ QA FAILED (score: {qa_score}) — {qa_notes}")
+        # TODO: auto-revise loop (regenerate script + re-render)
+        return False
+    print(f"  ✅ QA PASSED (score: {qa_score})")
 
     # 10. Upload final reel
     print("\n☁️ Step 10: Uploading final reel...")

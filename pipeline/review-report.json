@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-09T18:45:43.868259+00:00",
+  "timestamp": "2026-06-09T19:15:41.190581+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
+    "pass": 1,
     "flag": 1,
     "fail": 0,
     "error": 0
@@ -11,35 +11,47 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "43b7bbc3-9f41-49c0-88fa-d7b22bbf7a4b",
-      "headline": "NRI Remittances Hit $43.5 Billion in One Quarter. The Gulf Crisis Is the Reason.",
-      "slug": "nri-remittances-record-43-billion-q4-fy26-current-account-surplus-gulf-crisis-20260609",
+      "id": "9b7fc8aa-9412-4556-8b16-5817bb71751a",
+      "headline": "Nine Films. Four Weeks. \u20b91,400 Crore on the Line. June Is Bollywood's Hunger Games.",
+      "slug": "june-2026-bollywood-box-office-battle-nine-films-1400-crore-nri-20260609",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "b2f3f872-c81e-4f67-8900-443017e2b818",
+            "headline": "Cocktail 2 Is the Most Wanted Film in India Right Now. The T"
+          }
+        ],
         "broken_embeds": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://youtube.com/watch?v=XXxUqLHq1xg",
+            "problem": "irrelevant",
+            "explanation": "The YouTube link does not appear to be directly related to the films discussed in the article."
+          }
+        ],
         "image_match": {
-          "score": 5,
-          "issue": "The image of the Reserve Bank of India does not directly relate to the topic of NRI remittances or the Gulf crisis."
+          "score": 6,
+          "issue": "The image features Shahid Kapoor, which is relevant to the article, but it does not represent the overall theme of the article about multiple films."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively discusses the impact of the Gulf crisis on NRI remittances, making it relevant to the diaspora audience."
+          "note": "The article effectively connects the film releases to the viewing habits of NRIs, discussing their options for theatrical and OTT viewing."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that directly relates to NRI workers or remittances for better visual alignment with the article's topic.",
-          "Add a quote or perspective from an NRI worker to enhance the personal connection to the diaspora experience."
+          "Replace the YouTube link with a more relevant embed related to the films mentioned.",
+          "Consider using a more representative image that encompasses the theme of multiple film releases."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
+        "Removed irrelevant embed: https://youtube.com/watch?v=XXxUqLHq1xg",
         "promoted to published"
       ],
       "revised": false,
@@ -47,108 +59,56 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "df6aeb60-0c04-4cab-8330-3316e0e9cf90",
-      "headline": "Seven Indian Workers Died on a Dubai Highway. A Truck Stopped. A Bus Didn't.",
-      "slug": "dubai-emirates-road-crash-seven-indian-workers-killed-minibus-truck-20260609",
+      "id": "f4dcbfcf-4702-428e-9082-10e66b87c2f4",
+      "headline": "Bhooth Bangla Hits Netflix Thursday. The Diaspora Can Finally Stop Asking.",
+      "slug": "bhooth-bangla-netflix-ott-release-june-12-akshay-priyadarshan-horror-comedy-nri-20260609",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively highlights the plight of Indian migrant workers in the Gulf, connecting their experiences to the Indian diaspora's concerns about safety and remittances."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include quotes or reactions from family members of the deceased workers to add a personal touch.",
-          "Provide more context on the safety regulations for worker transport vehicles in the Gulf region."
+        "duplicate_images": [
+          {
+            "article_id": "8843536b-0b24-44eb-b124-2b23817c2ae3",
+            "headline": "Welcome To The Jungle Drops Its Trailer Wednesday. Bollywood"
+          },
+          {
+            "article_id": "d337a9ee-71f2-4d04-98b0-99397c2e99fd",
+            "headline": "Bhooth Bangla Just Hit Netflix. Akshay Kumar and Priyadarsha"
+          },
+          {
+            "article_id": "ab9a50a2-1db1-413a-84f0-13d7b45ebab2",
+            "headline": "Akshay Kumar Is Making India's First Alien Thriller. The Cre"
+          }
         ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "864b1110-ef90-4e3f-b067-23c7abdb3d9b",
-      "headline": "Iran Downed a US Apache Over the Strait of Hormuz. India's Fragile Oil Lifeline Just Got More Fragile.",
-      "slug": "iran-shoots-down-us-apache-hormuz-india-oil-ceasefire-shahed-drone-20260609",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
         "overall_score": 7,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DZMsRbuNhYs/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel does not appear to be directly related to the film 'Bhooth Bangla' or its themes, making it less relevant to the article."
+          }
+        ],
         "image_match": {
-          "score": 8,
-          "issue": "The image of the Apache helicopter is relevant to the article's topic."
+          "score": 3,
+          "issue": "The image features Akshay Kumar but does not relate to 'Bhooth Bangla' specifically, as it is from a different event."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses the impact of geopolitical events on India's economy and NRI remittances, which is relevant to the diaspora."
+          "note": "The article effectively connects with the diaspora by discussing their anticipation for the film's release on Netflix and their cultural ties to Bollywood."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes or perspectives from Indian officials or economists to strengthen the connection to India's interests.",
-          "Add a brief section on how the Indian diaspora in the Gulf is reacting to the situation, which could enhance the diaspora angle."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "4a5759de-906e-4f60-b8e2-4cb6bd7bd503",
-      "headline": "IndiGo Is Building a Widebody Business Class \u2014 and It Could Reshape How NRIs Fly to India",
-      "slug": "indigo-a350-business-class-nri-long-haul-20260609",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 3,
-          "issue": "irrelevant"
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article directly addresses NRIs and discusses how IndiGo's new business class could impact their travel options."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the hero image with one that features an IndiGo aircraft or business class interior to better match the article's focus.",
-          "Expand on the potential impact of IndiGo's new business class on NRI travel habits and preferences."
+          "Replace the hero image with one that specifically features 'Bhooth Bangla' or its promotional material.",
+          "Ensure that all embedded links, especially social media, are directly relevant to the film and its content."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
-        "Revised by gemini-2.5-flash (466\u2192567 words)"
+        "Removed irrelevant embed: https://www.instagram.com/reel/DZMsRbuNhYs/",
+        "Revised by gpt-4o-mini (688\u2192784 words)"
       ],
       "revised": true,
       "unpublished": false,
