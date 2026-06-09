@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-09T19:45:25.597268+00:00",
+  "timestamp": "2026-06-09T20:15:17.942678+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 4,
+    "pass": 2,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,89 +11,12 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "ddfc58df-891c-4b32-9c8f-18364d823dec",
-      "headline": "He Bowled Six Dot Balls When Sri Lanka Needed a Run a Ball. On Debut, Anukul Roy Won India A the Match.",
-      "slug": "anukul-roy-india-a-debut-match-winning-spell-sri-lanka-dambulla-tri-series-2026-nri",
+      "id": "aa635d82-1b91-40bd-8390-1a17c04fbb82",
+      "headline": "Harvard Can No Longer Enrol Foreign Students \u2014 and Every Indian F-1 Holder Should Be Watching",
+      "slug": "harvard-sevp-revoked-indian-students-f1-visa-impact-20260609",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image of the scoreboard does not directly relate to Anukul Roy's performance or the match narrative."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article connects well with diaspora cricket fans by discussing the significance of the Dambulla tri-series and the potential of young Indian cricketers."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that directly relates to Anukul Roy or his performance to enhance the visual connection to the article.",
-          "Add a brief background on the significance of the Dambulla tri-series for readers unfamiliar with it."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "d9367609-7ddf-458a-a625-af7cce8d2fde",
-      "headline": "The World Cup Starts on Thursday. The Chaos Started Months Ago.",
-      "slug": "fifa-world-cup-2026-controversy-tickets-visa-protests-nri-guide-chaos-north-america",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 8,
-          "issue": "The image of Estadio Azteca matches the article's topic about the World Cup, but it could be more directly related to the chaos mentioned."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses ticket pricing and accessibility for Indian-American families, which connects well with the diaspora audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more direct quotes from affected fans or stakeholders to enhance the emotional impact.",
-          "Add a brief section on how the diaspora community is reacting to these controversies."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "596def8f-a2b8-4e1f-b7ac-584e98e24d00",
-      "headline": "He Won the World Cup Six Months Ago. He Lost the Captaincy Last Week. His First Words Were About Someone Else.",
-      "slug": "suryakumar-yadav-graceful-response-captaincy-loss-shreyas-iyer-mumbai-cricket-legacy-nri",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "2988ef46-e92d-4b09-8e84-b89e17aa3bed",
-            "headline": "Three Consecutive India T20I Captains Stood Together at Wank"
-          }
-        ],
         "broken_embeds": []
       },
       "llm_review": {
@@ -106,13 +29,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article connects well with diaspora cricket fans, highlighting the significance of Mumbai's cricket culture and its impact on the global stage."
+          "note": "The article effectively addresses the concerns of Indian families regarding the implications of the Harvard decision on international student enrollment, particularly for Indian F-1 visa holders."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes or reactions from diaspora fans to enhance the connection.",
-          "Include more context about the significance of the captaincy change for the Indian cricket team."
+          "Include quotes or reactions from Indian students or families to enhance the personal connection.",
+          "Provide more context on how this decision might affect future immigration policies for Indian students."
         ],
         "verdict": "pass"
       },
@@ -124,44 +47,31 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "f4dcbfcf-4702-428e-9082-10e66b87c2f4",
-      "headline": "Bhooth Bangla Hits Netflix Thursday. The Diaspora Can Finally Stop Asking.",
-      "slug": "bhooth-bangla-netflix-ott-release-june-12-akshay-priyadarshan-horror-comedy-nri-20260609",
+      "id": "3db44a0f-0367-45f9-a3e9-dce632158146",
+      "headline": "Three Hundred and Thirty-Eight \u2014 That's How Many People Want Trump's Million-Dollar Gold Card",
+      "slug": "trump-gold-card-338-applicants-india-wealthy-eb5-20260609",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "8843536b-0b24-44eb-b124-2b23817c2ae3",
-            "headline": "Welcome To The Jungle Drops Its Trailer Wednesday. Bollywood"
-          },
-          {
-            "article_id": "d337a9ee-71f2-4d04-98b0-99397c2e99fd",
-            "headline": "Bhooth Bangla Just Hit Netflix. Akshay Kumar and Priyadarsha"
-          },
-          {
-            "article_id": "ab9a50a2-1db1-413a-84f0-13d7b45ebab2",
-            "headline": "Akshay Kumar Is Making India's First Alien Thriller. The Cre"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
-        "overall_score": 8,
+        "overall_score": 7,
         "embed_issues": [],
         "image_match": {
-          "score": 5,
-          "issue": "The image of Akshay Kumar does not directly relate to the film 'Bhooth Bangla' as it is from a different project."
+          "score": 6,
+          "issue": "The image does not directly relate to the topic of immigration or the Gold Card program."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the film's release to the diaspora's desire to reconnect with Indian cinema."
+          "note": "The article discusses the implications of the Gold Card program specifically for wealthy Indian families, making it relevant to the Indian diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that directly relates to 'Bhooth Bangla' for better visual relevance.",
-          "Add more quotes or insights from diaspora audiences to enhance the connection."
+          "Consider using an image that directly relates to immigration or the Gold Card program to enhance relevance.",
+          "Add quotes or insights from immigration experts or Indian investors to provide more depth and personal perspectives."
         ],
         "verdict": "pass"
       },
