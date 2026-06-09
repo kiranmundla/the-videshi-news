@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-09T09:46:13.655665+00:00",
+  "timestamp": "2026-06-09T10:16:23.529525+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 5,
     "flag": 2,
     "fail": 0,
     "error": 0
@@ -10,6 +10,186 @@
   "revisions": 2,
   "unpublished": 0,
   "articles": [
+    {
+      "id": "81e7bc90-8dcf-4f07-94cf-692c49f7fed9",
+      "headline": "Goldman Sachs Just Pushed Fed Rate Cuts to 2027. Here Is What It Means for Every NRI With Money in Both Countries.",
+      "slug": "goldman-sachs-fed-rate-cuts-2027-nri-impact-mortgage-rupee-india-home-loans-20260609",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the implications of Fed rate changes to NRIs, discussing their investments in both the US and India."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Add more specific examples of how NRIs can adjust their investment strategies in light of the new rate forecasts.",
+          "Include quotes or insights from financial experts to enhance credibility and depth."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "edee4262-4fe6-4d7d-896a-18987e15bb04",
+      "headline": "Antibiotic Resistance Genes Now Contaminate Every Ocean on Earth. India's Coastline Is One of the Most Exposed.",
+      "slug": "antibiotic-resistance-genes-oceans-sea-care-india-coastline-seafood-nri-20260609",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image depicts a coastal scene, which is relevant to the article's topic on ocean contamination, but it lacks a direct connection to antibiotic resistance."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the issue of antibiotic resistance in oceans to the Indian diaspora, emphasizing the implications for NRIs regarding seafood safety and environmental health."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including specific examples of how antibiotic resistance has affected seafood safety in India to strengthen the diaspora connection.",
+          "Add a call to action for NRIs to engage with local environmental initiatives or support policies addressing antibiotic use in aquaculture."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "8413c412-5c34-4bf4-bb61-3f52ce69d785",
+      "headline": "A South Asian Man Reversed His Diabetes for a Decade. He Did It Without Giving Up Indian Food.",
+      "slug": "south-asian-diabetes-remission-ten-years-low-carb-indian-diet-frontiers-study-20260609",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the diabetes issue to the South Asian diaspora, discussing cultural dietary practices and their impact on health."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes or testimonials from the patient or researchers to enhance the personal connection.",
+          "Include more statistics or studies related to diabetes in the diaspora to strengthen the argument."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "51ac4cb0-817a-495f-ac5e-e4d4fa7b0b38",
+      "headline": "Modi Told Indians to Stop Traveling Abroad \u2014 and Global Hotel Chains Are Betting Billions That They'll Listen",
+      "slug": "modi-domestic-travel-push-hotel-boom-nri-20260609",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the impact of domestic travel trends on NRIs, making it relevant to the diaspora audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more direct quotes from Modi or industry experts to enhance credibility.",
+          "Add a section on how NRIs can take advantage of the changing hotel landscape in India."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "4156ad6e-82e2-459e-b913-710fd4f7b258",
+      "headline": "India Just Made Facial Recognition Mandatory at Its Busiest Airports \u2014 and Every NRI Needs to Download This App Before Flying",
+      "slug": "digiyatra-biometric-mandatory-airports-nri-20260609",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses the concerns and requirements for NRIs regarding the new DigiYatra system, making it relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include a section on how NRIs can obtain an Aadhaar number if they don't have one.",
+          "Add a brief comparison of DigiYatra with similar systems in other countries to provide context."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
     {
       "id": "fa784254-f3a1-4f40-bad0-451fde805d20",
       "headline": "India Just Got Demoted. Taiwan and South Korea Stole Its Place in the Global AI Economy.",
@@ -24,99 +204,25 @@
         "embed_issues": [],
         "image_match": {
           "score": 3,
-          "issue": "irrelevant"
+          "issue": "The image of the Bombay Stock Exchange does not directly relate to the article's focus on AI and market capitalisation."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 7,
-          "note": "The article discusses the impact of India's economic situation on NRIs, particularly those with investments in both India and the US."
+          "note": "The article discusses the implications for NRIs, particularly in relation to their investment portfolios."
         },
-        "factual_flags": [
-          "The article mentions data from 2026, which is inconsistent with the current year (2023)."
-        ],
+        "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Update the year references to reflect the current timeline accurately.",
-          "Consider using a more relevant image that reflects the topic of AI and the stock market."
+          "Replace the hero image with something more relevant to AI or technology to better match the article's content.",
+          "Expand on the NRI perspective to provide more insights or actionable advice for Indian Americans regarding their investments."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
-        "Revised by gemini-2.5-flash (739\u2192739 words)"
+        "Revised by gemini-2.5-flash (739\u2192679 words)"
       ],
       "revised": true,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "58b14609-a26c-4dec-8b92-dacb453203e9",
-      "headline": "A $1.3 Trillion Chip Rout, Then a Monday Bounce. NRI Portfolios Felt Every Dollar.",
-      "slug": "chip-selloff-1-trillion-rebound-nri-investors-20260609",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the semiconductor market fluctuations to the financial interests of Indian Americans, making it relevant to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more specific examples of how the market fluctuations have historically affected NRI investments.",
-          "Include quotes or insights from Indian American investors to enhance relatability and depth."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "06b14d72-b244-44e6-ab9f-84a356bed732",
-      "headline": "Malayalam Cinema's Two Hottest Directors Made a Film Together. It Just Played Cannes.",
-      "slug": "balan-the-boy-chidambaram-jithu-madhavan-cannes-malayalam-multilingual-june-19-nri-20260609",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses the film's multilingual release and its significance for diaspora audiences, connecting well with NRI readers."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more direct quotes from the directors or actors to enhance the article's depth.",
-          "Include a brief overview of the directors' previous works to provide context for their collaboration."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
     },
@@ -133,8 +239,8 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 3,
-          "issue": "The image features Sachin Tendulkar and his family, which is not directly relevant to Arjun Tendulkar's performance."
+          "score": 2,
+          "issue": "irrelevant"
         },
         "diaspora_angle": {
           "present": true,
@@ -144,13 +250,13 @@
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the hero image with one that features Arjun Tendulkar in action during the match.",
-          "Consider adding quotes from Arjun or his coach to enhance the narrative."
+          "Replace the hero image with one that features Arjun Tendulkar or is directly related to the match discussed.",
+          "Consider adding quotes from Arjun or commentary from cricket analysts to enhance the narrative."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
-        "Revised by gpt-4o-mini (730\u2192754 words)"
+        "Revised by gpt-4o-mini (754\u2192804 words)"
       ],
       "revised": true,
       "unpublished": false,
