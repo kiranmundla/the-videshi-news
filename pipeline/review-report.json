@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-09T10:16:23.529525+00:00",
+  "timestamp": "2026-06-09T10:46:17.826563+00:00",
   "mode": "fix",
   "stats": {
     "pass": 5,
@@ -11,9 +11,50 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "81e7bc90-8dcf-4f07-94cf-692c49f7fed9",
-      "headline": "Goldman Sachs Just Pushed Fed Rate Cuts to 2027. Here Is What It Means for Every NRI With Money in Both Countries.",
-      "slug": "goldman-sachs-fed-rate-cuts-2027-nri-impact-mortgage-rupee-india-home-loans-20260609",
+      "id": "9b56ad68-3a93-40bf-b2f0-b271f46cbbc9",
+      "headline": "He Is Fifteen. He Won the Orange Cap. Now He Is in India's Asian Games Squad.",
+      "slug": "vaibhav-sooryavanshi-15-asian-games-2026-squad-ipl-orange-cap-youngest-nri",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "85657348-1d02-471b-b303-93a5e4792581",
+            "headline": "He Is 15. His Mother Wakes at 3 AM for His Cricket. The BCCI"
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image features Vaibhav Sooryavanshi meeting PM Modi, which is somewhat relevant but does not directly relate to his cricket achievements or the Asian Games."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the significance of the Asian Games for the Indian diaspora in Japan, highlighting the community's opportunity to watch India play live."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that directly relates to Sooryavanshi's cricket achievements or the Asian Games.",
+          "Expand on the impact of Sooryavanshi's achievements on the perception of young talent in Indian cricket for a more engaging narrative."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "dcdf9ba3-04b0-4614-ae65-fc81ff3fa013",
+      "headline": "He Left India at 23 to Study Computer Science. Now an Oscar-Winning Producer Has Made a Film About His Cricket.",
+      "slug": "saurabh-netravalkar-documentary-long-game-willow-tv-oracle-usa-cricket-nri",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -28,14 +69,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the implications of Fed rate changes to NRIs, discussing their investments in both the US and India."
+          "quality": 9,
+          "note": "The article effectively connects Netravalkar's journey to the experiences of NRIs, highlighting themes of persistence and identity."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Add more specific examples of how NRIs can adjust their investment strategies in light of the new rate forecasts.",
-          "Include quotes or insights from financial experts to enhance credibility and depth."
+          "Consider adding quotes from Netravalkar's colleagues or friends to provide more personal insights into his dual life.",
+          "Include more details about the documentary's reception or critical reviews to enhance the article's depth."
         ],
         "verdict": "pass"
       },
@@ -47,9 +88,98 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "edee4262-4fe6-4d7d-896a-18987e15bb04",
-      "headline": "Antibiotic Resistance Genes Now Contaminate Every Ocean on Earth. India's Coastline Is One of the Most Exposed.",
-      "slug": "antibiotic-resistance-genes-oceans-sea-care-india-coastline-seafood-nri-20260609",
+      "id": "8b151d97-cacc-465e-ad1d-d6842aa78ae1",
+      "headline": "India and the US Expect a Trade Deal Within Weeks. The Tariff Threat Still Looms.",
+      "slug": "india-us-trade-deal-section-301-tariff-guarantee-piyush-goyal-june-2026",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "d9c077a6-daa5-481b-96e6-b8071768c971",
+            "headline": "Ninety-Nine Percent Done \u2014 The India-US Trade Deal That Hasn"
+          },
+          {
+            "article_id": "8b8ee11a-4b6f-4f4e-8d04-a83539684763",
+            "headline": "India and Canada Just Agreed to Triple Their Trade to $50 Bi"
+          },
+          {
+            "article_id": "018efc96-cc18-44b0-b3c4-4c64a4bc58df",
+            "headline": "India and the US Are '99 Percent Done' on a Trade Deal. The "
+          },
+          {
+            "article_id": "c981d59c-bd4c-4a87-ba94-51dd1ad426df",
+            "headline": "India Sent Its Largest-Ever Business Delegation to Canada. H"
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image of Piyush Goyal is relevant as he is a key figure in trade negotiations, but it could be more directly related to the specific trade deal discussed."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses trade relations that impact the Indian diaspora, particularly in terms of economic opportunities and trade policies."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include quotes or perspectives from diaspora members or businesses affected by the trade deal to enhance the diaspora angle.",
+          "Consider adding a brief section on how the trade deal could impact Indian expatriates in the US."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "2c2cb3c4-99a5-4289-bf5a-b1d1a2bf7adf",
+      "headline": "NASA's Chief Just Arrived in India. An Indian Astronaut Is Headed to the ISS.",
+      "slug": "nasa-isro-bill-nelson-india-astronaut-iss-chandrayaan-3-goddard-award-20260609",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": "The image of NASA Administrator Bill Nelson is relevant to the article as it discusses his visit to India."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article connects to the Indian diaspora by highlighting India's growing role in space exploration and collaboration with the US, which is of interest to NRIs."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include quotes from Indian officials to provide a more balanced perspective.",
+          "Add a section on how these developments may impact the Indian diaspora in the US."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "241047c0-3e27-44e2-8bf7-57fecd17d4e3",
+      "headline": "A Federal Judge Just Killed Trump's $100,000 H-1B Fee. Indian Tech Exhaled.",
+      "slug": "h1b-100k-fee-struck-down-judge-sorokin-indian-tech-workers-visa-20260609",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -60,126 +190,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image depicts a coastal scene, which is relevant to the article's topic on ocean contamination, but it lacks a direct connection to antibiotic resistance."
+          "issue": "The image does not directly relate to the topic of H-1B visas or immigration."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects the issue of antibiotic resistance in oceans to the Indian diaspora, emphasizing the implications for NRIs regarding seafood safety and environmental health."
+          "note": "The article effectively discusses the implications of the ruling on Indian workers and IT firms, making it highly relevant to the Indian diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider including specific examples of how antibiotic resistance has affected seafood safety in India to strengthen the diaspora connection.",
-          "Add a call to action for NRIs to engage with local environmental initiatives or support policies addressing antibiotic use in aquaculture."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "8413c412-5c34-4bf4-bb61-3f52ce69d785",
-      "headline": "A South Asian Man Reversed His Diabetes for a Decade. He Did It Without Giving Up Indian Food.",
-      "slug": "south-asian-diabetes-remission-ten-years-low-carb-indian-diet-frontiers-study-20260609",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the diabetes issue to the South Asian diaspora, discussing cultural dietary practices and their impact on health."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes or testimonials from the patient or researchers to enhance the personal connection.",
-          "Include more statistics or studies related to diabetes in the diaspora to strengthen the argument."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "51ac4cb0-817a-495f-ac5e-e4d4fa7b0b38",
-      "headline": "Modi Told Indians to Stop Traveling Abroad \u2014 and Global Hotel Chains Are Betting Billions That They'll Listen",
-      "slug": "modi-domestic-travel-push-hotel-boom-nri-20260609",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses the impact of domestic travel trends on NRIs, making it relevant to the diaspora audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more direct quotes from Modi or industry experts to enhance credibility.",
-          "Add a section on how NRIs can take advantage of the changing hotel landscape in India."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "4156ad6e-82e2-459e-b913-710fd4f7b258",
-      "headline": "India Just Made Facial Recognition Mandatory at Its Busiest Airports \u2014 and Every NRI Needs to Download This App Before Flying",
-      "slug": "digiyatra-biometric-mandatory-airports-nri-20260609",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively addresses the concerns and requirements for NRIs regarding the new DigiYatra system, making it relevant to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include a section on how NRIs can obtain an Aadhaar number if they don't have one.",
-          "Add a brief comparison of DigiYatra with similar systems in other countries to provide context."
+          "Consider using an image that directly relates to H-1B visas or Indian tech workers to enhance relevance.",
+          "Add quotes or reactions from Indian tech industry leaders to provide more depth and perspective."
         ],
         "verdict": "pass"
       },
@@ -204,23 +226,23 @@
         "embed_issues": [],
         "image_match": {
           "score": 3,
-          "issue": "The image of the Bombay Stock Exchange does not directly relate to the article's focus on AI and market capitalisation."
+          "issue": "The image of the Bombay Stock Exchange does not directly relate to the topic of AI economy and market capitalisation."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 7,
-          "note": "The article discusses the implications for NRIs, particularly in relation to their investment portfolios."
+          "note": "The article discusses the implications for NRIs with investments in India, making it relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the hero image with something more relevant to AI or technology to better match the article's content.",
-          "Expand on the NRI perspective to provide more insights or actionable advice for Indian Americans regarding their investments."
+          "Replace the hero image with something more relevant to AI or technology to better match the article's focus.",
+          "Expand on the NRI perspective to provide more insights on how these market changes specifically affect Indian Americans."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
-        "Revised by gemini-2.5-flash (739\u2192679 words)"
+        "Revised by gemini-2.5-flash (679\u2192723 words)"
       ],
       "revised": true,
       "unpublished": false,
@@ -239,7 +261,7 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 2,
+          "score": 3,
           "issue": "irrelevant"
         },
         "diaspora_angle": {
@@ -250,13 +272,13 @@
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the hero image with one that features Arjun Tendulkar or is directly related to the match discussed.",
-          "Consider adding quotes from Arjun or commentary from cricket analysts to enhance the narrative."
+          "Replace the hero image with one that features Arjun Tendulkar or is directly related to the T20 Mumbai League.",
+          "Consider adding quotes from Arjun or his teammates to enhance the narrative and provide personal insights."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
-        "Revised by gpt-4o-mini (754\u2192804 words)"
+        "Revised by gpt-4o-mini (804\u2192804 words)"
       ],
       "revised": true,
       "unpublished": false,
