@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-09T22:45:55.336428+00:00",
+  "timestamp": "2026-06-09T23:15:37.597008+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 5,
+    "pass": 2,
     "flag": 1,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "879434b7-ad83-4531-884b-5ec55a890df1",
-      "headline": "The World Is Running Out of Oil Reserves. India Cannot Afford to Wait.",
-      "slug": "eia-oil-inventories-multi-decade-lows-india-energy-crisis-hormuz-20260609",
+      "id": "d730ebef-f0c0-4482-b3bc-3e87281c673e",
+      "headline": "Huma Qureshi Is India's First Desi Hitwoman. And She's Coming for Alia Bhatt's Opening Weekend.",
+      "slug": "baby-do-die-do-huma-qureshi-hitwoman-alpha-alia-bhatt-july-3-clash-nri-20260609",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -21,28 +21,91 @@
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DZWuqRlABdT/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel does not seem to directly relate to the article's main focus on Huma Qureshi's role in 'Baby Do Die Do' and its competition with 'Alpha'."
+          },
+          {
+            "url": "https://youtube.com/watch?v=YXPVEtFCb9s",
+            "problem": "irrelevant",
+            "explanation": "While the YouTube link is to the teaser, it is not clear if it adds significant value to the article's narrative."
+          }
+        ],
         "image_match": {
-          "score": 7,
-          "issue": "The image depicts an oil-related theme, but it lacks specific relevance to the article's focus on India's oil crisis."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses India's oil dependency and economic implications, which are relevant to the Indian diaspora concerned about their homeland's economic stability."
+          "note": "The article discusses the potential availability of the film for diaspora audiences, making a relevant connection."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more specific data or quotes from Indian officials to strengthen the connection to India's situation.",
-          "Consider adding a section on how the diaspora can contribute or respond to India's oil crisis."
+          "Replace or remove the Instagram embed with a more relevant link that directly relates to the film or its themes.",
+          "Consider adding more context about the film's release strategy for diaspora audiences to enhance engagement."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DZWuqRlABdT/",
+        "Removed irrelevant embed: https://youtube.com/watch?v=YXPVEtFCb9s",
         "promoted to published"
       ],
       "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "c528fa85-3e2a-452f-8fc2-426ca25a8cca",
+      "headline": "Sunny Deol Just Lit a Torch Through Partition. Batwara 1947 Arrives on Independence Day.",
+      "slug": "batwara-1947-sunny-deol-first-look-aamir-khan-partition-independence-day-nri-20260609",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DZWoKAeJ15M/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel does not appear to be directly related to the film or its themes, making it less relevant to the article's focus."
+          },
+          {
+            "url": "https://youtube.com/watch?v=MGhF6wuDcSI",
+            "problem": "duplicate",
+            "explanation": "The YouTube link is mentioned in the body but does not provide additional context or content beyond what is already described."
+          }
+        ],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the film's themes of Partition to the personal experiences of the diaspora, making it relatable and impactful."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [
+          "https://youtube.com/watch?v=MGhF6wuDcSI"
+        ],
+        "suggestions": [
+          "Replace the irrelevant Instagram link with a more relevant social media post related to the film.",
+          "Consider providing more context or analysis on how the film's themes resonate with the diaspora experience."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DZWoKAeJ15M/",
+        "Revised by gemini-2.5-flash (692\u2192590 words)"
+      ],
+      "revised": true,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
     },
@@ -57,188 +120,25 @@
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/p/DZG_iULDCbs/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post does not appear to be related to the topic of transit visas for Indians traveling through Germany and France."
-          }
-        ],
+        "embed_issues": [],
         "image_match": {
           "score": 3,
-          "issue": "The image does not relate to the article's topic about transit visas or travel."
+          "issue": "The image does not relate to the article's topic about transit visas and travel."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively addresses the impact of the visa changes on NRIs and Indian travelers, making it relevant to the diaspora."
+          "note": "The article effectively discusses the implications of the visa change for the Indian diaspora, particularly in terms of travel logistics and maintaining connections."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the hero image with one that is more relevant to travel or the topic of visas.",
-          "Consider adding quotes or reactions from Indian travelers or travel industry experts to enhance the article's engagement."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DZG_iULDCbs/",
-        "Revised by gpt-4o-mini (723\u2192808 words)"
-      ],
-      "revised": true,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "67ee0356-182c-4f9f-b8a2-425a88e9b78e",
-      "headline": "Iran Walked Away From the Table. India's Oil Clock Just Started Ticking Faster.",
-      "slug": "iran-suspends-ceasefire-talks-us-strikes-qeshm-india-oil-inventories-20260609",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 8,
-          "issue": "The image depicts a U.S. Navy ship in the Strait of Hormuz, which is relevant to the article's topic about Iran and oil trade, but it could be more directly related to India's oil crisis."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses the implications for India's economy and Indian workers in the Gulf, which connects well with the diaspora audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more direct quotes or perspectives from Indian officials or experts to strengthen the connection to India's situation.",
-          "Add a brief overview of how the Indian diaspora in the Gulf is affected by the oil crisis to enhance the diaspora angle."
+          "Replace the hero image with one that is more relevant to the topic of travel or visas.",
+          "Add a brief section summarizing the potential economic impact of increased travel on the Indian diaspora."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "a16dc21c-0bbe-4309-bd14-c1dab2a94a69",
-      "headline": "Lord's Got a Demerit Point. The 'Home of Cricket' Produced the Shortest Completed Test Since 1888.",
-      "slug": "lords-cricket-ground-demerit-point-unsatisfactory-pitch-england-new-zealand-test-2026-nri",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article connects to Indian fans and the implications for India's matches in the World Test Championship."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include quotes or reactions from Indian players or fans to enhance the diaspora connection.",
-          "Add a brief historical context about Lord's and its significance to Indian cricket."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "be4a3d3b-8273-4e30-b7c9-45c03d211c46",
-      "headline": "Bangladesh Beat Australia at Home in an ODI for the First Time. The Margin Was 86 Runs.",
-      "slug": "bangladesh-beat-australia-first-home-odi-win-mosaddek-hossain-nahid-rana-dhaka-2026-nri",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the significance of the victory to the Bangladeshi diaspora, highlighting its importance beyond just cricket."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from players or coaches to enhance the narrative.",
-          "Include more context about the historical significance of the match for readers unfamiliar with Bangladesh's cricketing history."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "ee1717eb-3b39-4101-912c-35ae86a1ed51",
-      "headline": "David Dhawan Just Directed His Final Film. Varun Showed Up. So Did \u20b927 Crore.",
-      "slug": "david-dhawan-final-film-hai-jawani-varun-dhawan-box-office-romcom-nri-20260609",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "76f6061d-f549-43d6-bee9-c0261e1b1da9",
-            "headline": "David Dhawan's Last Film Just Opened. It's Exactly the Chaos"
-          }
-        ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [
-          {
-            "url": "https://www.youtube.com/watch?v=HaiJawaniTrailer",
-            "problem": "irrelevant",
-            "explanation": "The YouTube link is for the trailer of the film, which is relevant to the article's subject."
-          }
-        ],
-        "image_match": {
-          "score": 8,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the film's release and its implications for NRIs, discussing ticket prices and streaming habits."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more direct quotes from critics or audience reactions to enhance the article's depth.",
-          "Include a brief overview of David Dhawan's impact on Bollywood to provide context for readers unfamiliar with his work."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "Removed irrelevant embed: https://www.youtube.com/watch?v=HaiJawaniTrailer",
         "promoted to published"
       ],
       "revised": false,
