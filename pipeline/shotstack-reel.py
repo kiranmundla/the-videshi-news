@@ -190,11 +190,24 @@ def pick_article(articles, existing_slugs):
 # SCRIPT GENERATION
 # ═══════════════════════════════════════════════════════════════════════════════
 
-def generate_script(article):
+def generate_script(article, force_new=False):
+    """Generate script for article. Caches to disk so re-renders reuse the same script."""
     headline = article.get("headline", "")
     subheadline = article.get("subheadline", "")
     body = (article.get("body") or "")[:3000]
     category = article.get("category", "")
+    slug = article.get("slug", "unknown")
+
+    # Script cache — reuse if already generated
+    cache_path = BUILD_DIR / f"script-{slug}.json"
+    if not force_new and cache_path.exists():
+        try:
+            cached = json.loads(cache_path.read_text())
+            print(f"  📝 Using cached script ({len(cached['script'].split())} words)")
+            print(f"  📝 Hook: {cached.get('hook_line1', '')} / {cached.get('hook_line2', '')}")
+            return cached
+        except Exception:
+            pass  # Corrupted cache — regenerate
 
     prompt = f"""You write viral Instagram Reel scripts for The Videshi — news for the Indian diaspora.
 
@@ -250,6 +263,14 @@ Return JSON only:
     result = json.loads(r.json()["choices"][0]["message"]["content"])
     print(f"  📝 Script: {len(result['script'].split())} words")
     print(f"  📝 Hook: {result.get('hook_line1', '')} / {result.get('hook_line2', '')}")
+
+    # Cache script so re-renders use the same words
+    try:
+        cache_path.write_text(json.dumps(result, indent=2))
+        print(f"  💾 Script cached: {cache_path.name}")
+    except Exception as e:
+        print(f"  ⚠️ Cache write failed: {e}")
+
     return result
 
 
