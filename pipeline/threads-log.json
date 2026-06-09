@@ -1663,5 +1663,23 @@
     "slug": "iran-shoots-down-us-apache-hormuz-india-oil-ceasefire-shahed-drone-20260609",
     "threads_post_id": "18594047944017320",
     "posted_at": "2026-06-09T19:28:58.269130Z"
-  }
+  },
+  "reel_posts": [
+    {
+      "reel_id": "893b9314",
+      "headline": "NRI Remittances Hit $43.5 Billion in One Quarter. The Gulf Crisis Is the Reason.",
+      "post_id": "18102888869084513",
+      "posted_at": "2026-06-09T22:57:02+00:00",
+      "platform": "threads",
+      "type": "video_reel"
+    },
+    {
+      "reel_id": "3eca413c",
+      "headline": "NRI Remittances Hit $43.5 Billion in One Quarter. The Gulf Crisis Is the Reason.",
+      "post_id": "18601559281059367",
+      "posted_at": "2026-06-09T22:57:02+00:00",
+      "platform": "threads",
+      "type": "video_reel"
+    }
+  ]
 }
