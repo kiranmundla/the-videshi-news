@@ -74,7 +74,7 @@
       "destination": "/api/verify-turnstile"
     },
     {
-      "source": "/",
+      "source": "/:index()",
       "has": [
         {
           "type": "header",
