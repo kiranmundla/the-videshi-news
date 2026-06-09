@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-09T13:45:38.429378+00:00",
+  "timestamp": "2026-06-09T14:16:22.889647+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
+    "pass": 6,
     "flag": 1,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "260138e8-61ee-4a22-8df2-d1c2f1b6518c",
-      "headline": "Gaikwad Scored a Hundred. Sooryavanshi Scored Fourteen. In Dambulla, the Old Hand Had the Answers.",
-      "slug": "ruturaj-gaikwad-century-india-a-sri-lanka-a-tri-series-dambulla-sooryavanshi-14-tilak-varma-nri",
+      "id": "8b81c0c8-fc60-4a29-9f03-2fa14911057c",
+      "headline": "Forget Goa \u2014 India's Himalayan Treks Are the Hottest Travel Trend of 2026, and NRIs Should Book Now",
+      "slug": "himalayan-treks-monsoon-season-nri-guide-20260609",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -29,13 +29,193 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the cricket match to the interests of the Indian diaspora, highlighting the significance of the A-team matches and the players' potential."
+          "note": "The article effectively connects the travel trends in India to the interests of NRIs, particularly in terms of timing and destination appeal."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more context about the significance of the tri-series for the players involved.",
-          "Include quotes from players or coaches to enhance the narrative and provide personal insights."
+          "Consider adding more personal anecdotes or testimonials from NRIs who have experienced these treks to enhance relatability.",
+          "Include links to specific trekking companies or booking platforms for NRIs to facilitate easy planning."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "bb82f1c7-4755-4d89-9d25-93b9ad59ad7f",
+      "headline": "Global Hotel Chains Are Betting Billions on India's Temple Towns \u2014 and the Returns Are Already Biblical",
+      "slug": "marriott-hilton-india-pilgrimage-hotel-boom-nri-20260609",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the growth of luxury hotels in temple towns to the changing travel patterns of NRIs, making it relevant for the diaspora audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes or insights from NRI travelers to enhance the diaspora perspective.",
+          "Include more statistics or data on the growth of religious tourism specifically related to NRIs."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "d7b04b65-535c-4b4d-ad60-7113dad5be51",
+      "headline": "The World Cup Starts Thursday \u2014 and NRIs in America Have the Easiest Ticket in the Building",
+      "slug": "fifa-world-cup-2026-nri-america-guide-20260609",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the World Cup to the Indian American community, highlighting their unique advantages and experiences."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes or anecdotes from Indian Americans who plan to attend the World Cup to enhance relatability.",
+          "Include more specific information about how NRIs can navigate ticket purchasing and hotel bookings."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "c2f7c5be-a75e-4d86-9eb1-dd87b7e78c88",
+      "headline": "Indian Companies Just Invested a Record $20.5 Billion in America. It Is the Largest From Any Country This Year.",
+      "slug": "indian-companies-record-20-billion-us-investment-selectusa-2026-nri-impact",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the investment theme but is visually appealing."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the investment news to the interests and implications for the NRI community."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that directly represents investment or business to enhance relevance.",
+          "Add more specific examples of how these investments will impact the NRI community."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "178f7760-de2c-4287-8593-e9899deb61ab",
+      "headline": "A Vaccine That Prevents Cancer Before It Starts Just Got the Green Light. Here Is Why South Asians Should Care.",
+      "slug": "moderna-oxford-lynch-syndrome-mrna-cancer-prevention-vaccine-south-asian-20260609",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the topic of the vaccine to the South Asian community, highlighting the specific risks and underdiagnosis of Lynch syndrome within this demographic."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include quotes or testimonials from South Asian health professionals or patients to enhance relatability.",
+          "Add a section on how South Asians can access genetic counseling and screening programs."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "97fc2e3c-b21d-4311-a3fc-513673085b26",
+      "headline": "American Doctors Are Finally Getting Nutrition Training. It Still Will Not Cover Your Dadi's Kitchen.",
+      "slug": "us-medical-schools-nutrition-education-mandate-south-asian-diet-gap-2026",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the article's focus on nutrition training for doctors and South Asian dietary needs."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively addresses the specific nutritional needs of the South Asian diaspora in the U.S. and how current medical training may not meet those needs."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that more directly represents South Asian cuisine or nutrition to enhance relevance.",
+          "Add a quote or perspective from an NRI regarding their experiences with healthcare and nutrition in the U.S. for a more personal touch."
         ],
         "verdict": "pass"
       },
@@ -60,23 +240,23 @@
         "embed_issues": [],
         "image_match": {
           "score": 5,
-          "issue": "The image does not match the article's topic of chess; it appears to be unrelated."
+          "issue": "The image does not match the article's topic of Gukesh's performance in chess; it appears to be unrelated."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects Gukesh's performance to the concerns of Indian chess fans in the diaspora."
+          "quality": 9,
+          "note": "The article effectively connects Gukesh's performance to the emotional investment of the Indian diaspora in chess."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the hero image with one that features Gukesh Dommaraju or a relevant chess scene.",
-          "Consider adding quotes or reactions from diaspora fans to enhance the connection."
+          "Replace the hero image with one that directly relates to Gukesh Dommaraju's recent chess performance.",
+          "Consider adding quotes or reactions from diaspora chess communities to enhance the connection."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
-        "Revised by gpt-4o-mini (606\u2192693 words)"
+        "Revised by gpt-4o-mini (693\u2192722 words)"
       ],
       "revised": true,
       "unpublished": false,
