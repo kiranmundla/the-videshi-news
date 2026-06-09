@@ -203,13 +203,71 @@ Return JSON only:
 def generate_tts(text, output_path):
     """Generate voice-over audio from text using configured TTS provider."""
     
-    if TTS_PROVIDER == "openai":
+    if TTS_PROVIDER == "heygen":
+        return _tts_heygen(text, output_path)
+    elif TTS_PROVIDER == "openai":
         return _tts_openai(text, output_path)
     elif TTS_PROVIDER == "elevenlabs":
         return _tts_elevenlabs(text, output_path)
     else:
         print(f"❌ Unknown TTS provider: {TTS_PROVIDER}")
         return False
+
+
+def _tts_heygen(text, output_path):
+    """Generate audio via HeyGen Starfish TTS (v3 API)."""
+    if not HEYGEN_KEY:
+        print("❌ HeyGen API key not found. Set up ~/workspace/.env.heygen")
+        return False
+    
+    r = requests.post(
+        "https://api.heygen.com/v3/voices/speech",
+        headers={"X-Api-Key": HEYGEN_KEY, "Content-Type": "application/json"},
+        json={
+            "text": text,
+            "voice_id": TTS_VOICE,
+            "speed": TTS_SPEED
+        },
+        timeout=30
+    )
+    
+    if r.status_code != 200:
+        print(f"❌ HeyGen TTS failed: {r.status_code} {r.text[:200]}")
+        return False
+    
+    data = r.json().get("data", {})
+    audio_url = data.get("audio_url")
+    duration = data.get("duration", 0)
+    
+    if not audio_url:
+        print(f"❌ HeyGen TTS returned no audio_url")
+        return False
+    
+    # Download the audio file
+    audio_r = requests.get(audio_url, timeout=30)
+    if audio_r.status_code != 200:
+        print(f"❌ HeyGen audio download failed: {audio_r.status_code}")
+        return False
+    
+    # HeyGen returns WAV — convert to mp3 for consistency
+    wav_path = str(output_path) + ".wav"
+    with open(wav_path, 'wb') as f:
+        f.write(audio_r.content)
+    
+    # Convert WAV to MP3
+    result = subprocess.run(
+        ["ffmpeg", "-y", "-i", wav_path, "-codec:a", "libmp3lame", "-q:a", "2", str(output_path)],
+        capture_output=True, text=True
+    )
+    os.remove(wav_path)
+    
+    if result.returncode != 0:
+        print(f"❌ WAV→MP3 conversion failed: {result.stderr[:200]}")
+        return False
+    
+    size_kb = os.path.getsize(output_path) / 1024
+    print(f"  ✅ HeyGen TTS audio: {output_path} ({size_kb:.0f} KB, {duration:.1f}s)")
+    return True
 
 
 def _tts_openai(text, output_path):
@@ -273,23 +331,100 @@ def _tts_elevenlabs(text, output_path):
 # ── Image Sourcing ───────────────────────────────────────────────────────────
 
 def source_images(image_queries, article, count=5):
-    """Source B-roll images from article + Pexels. Returns list of local paths."""
+    """Source B-roll images: article hero + related articles from same category.
+    Falls back to Pexels only if not enough related articles found."""
     images = []
     
-    # 1. Article's own image first
+    # 1. Article's own hero image first
     article_img = article.get('image_url', '')
     if article_img:
         img_path = BUILD_DIR / "vo-broll-0.jpg"
         if _download_image(article_img, img_path):
             images.append(str(img_path))
     
-    # 2. Pexels for remaining
-    for i, query in enumerate(image_queries[:count - len(images)]):
+    # 2. Related articles from same category (Wikipedia-sourced images)
+    related_images = _fetch_related_article_images(article, count=count - len(images) + 3)
+    for img_url in related_images:
+        if len(images) >= count:
+            break
         img_path = BUILD_DIR / f"vo-broll-{len(images)}.jpg"
-        if _fetch_pexels_image(query, img_path):
+        if _download_image(img_url, img_path):
             images.append(str(img_path))
     
-    print(f"  Sourced {len(images)} B-roll images")
+    # 3. Pexels fallback only if we still need more
+    if len(images) < count:
+        for i, query in enumerate(image_queries[:count - len(images)]):
+            img_path = BUILD_DIR / f"vo-broll-{len(images)}.jpg"
+            if _fetch_pexels_image(query, img_path):
+                images.append(str(img_path))
+    
+    print(f"  Sourced {len(images)} B-roll images ({len(images) - (1 if article_img else 0)} from related articles)")
+    return images
+
+
+def _fetch_related_article_images(article, count=6):
+    """Fetch hero images from related articles in the same category."""
+    category = article.get('category', '')
+    article_id = article.get('id', '')
+    
+    if not category:
+        return []
+    
+    # Get recent published articles from the same category with images
+    r = requests.get(
+        f"{SB_URL}/rest/v1/p2_articles",
+        params={
+            "status": "eq.published",
+            "category": f"eq.{category}",
+            "id": f"neq.{article_id}",
+            "image_url": "neq.null",
+            "order": "published_at.desc",
+            "limit": count + 5,  # fetch extra in case some fail
+            "select": "id,image_url,headline"
+        },
+        headers={"apikey": SB_KEY, "Authorization": f"Bearer {SB_KEY}"},
+        timeout=15
+    )
+    
+    if r.status_code != 200:
+        print(f"  ⚠️ Related articles fetch failed: {r.status_code}")
+        return []
+    
+    articles = r.json()
+    
+    # If same category has too few, also grab from other categories
+    if len(articles) < count:
+        r2 = requests.get(
+            f"{SB_URL}/rest/v1/p2_articles",
+            params={
+                "status": "eq.published",
+                "category": f"neq.{category}",
+                "id": f"neq.{article_id}",
+                "image_url": "neq.null",
+                "order": "published_at.desc",
+                "limit": count - len(articles) + 3,
+                "select": "id,image_url,headline"
+            },
+            headers={"apikey": SB_KEY, "Authorization": f"Bearer {SB_KEY}"},
+            timeout=15
+        )
+        if r2.status_code == 200:
+            articles.extend(r2.json())
+    
+    # Deduplicate by image_url and filter out empty/short URLs
+    seen = set()
+    urls = []
+    article_img = article.get('image_url', '')
+    for a in articles:
+        url = a.get('image_url', '')
+        if url and url != article_img and url not in seen and len(url) > 10:
+            seen.add(url)
+            urls.append(url)
+            if len(urls) >= count:
+                break
+    
+    print(f"  Found {len(urls)} related article images (category: {category})")
+    return urls
     return images
 
 
@@ -969,14 +1104,20 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Voice-Over Reel Builder")
     parser.add_argument("--article-id", help="Specific article UUID")
     parser.add_argument("--no-upload", action="store_true", help="Skip Supabase upload")
-    parser.add_argument("--voice", default="nova", help="TTS voice (default: nova)")
-    parser.add_argument("--provider", default="openai", choices=["openai", "elevenlabs"],
+    parser.add_argument("--voice", default=None, help="TTS voice (default depends on provider)")
+    parser.add_argument("--provider", default="heygen", choices=["heygen", "openai", "elevenlabs"],
                         help="TTS provider")
     args = parser.parse_args()
     
-    if args.voice:
-        TTS_VOICE = args.voice
     if args.provider:
         TTS_PROVIDER = args.provider
+    if args.voice:
+        TTS_VOICE = args.voice
+    elif TTS_PROVIDER == "heygen":
+        TTS_VOICE = "d2f4f24783d04e22ab49ee8fdc3715e0"  # Chill Brian (Starfish)
+    elif TTS_PROVIDER == "openai":
+        TTS_VOICE = "nova"
+    elif TTS_PROVIDER == "elevenlabs":
+        TTS_VOICE = "cb9diBQeYWIGJS9i52kX"  # Indian Anchorwoman
     
     run(args)
