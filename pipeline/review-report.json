@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-09T02:15:32.315072+00:00",
+  "timestamp": "2026-06-09T02:45:19.622629+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 6,
+    "pass": 3,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,31 +11,40 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "695ceff3-6349-463a-bb36-21806f91c992",
-      "headline": "India Just Made Government Bonds Tax-Free for Foreign Investors. Here Is What NRIs Need to Know.",
-      "slug": "india-scraps-capital-gains-tax-government-bonds-foreign-investors-nri-guide-2026",
+      "id": "2f561a83-58f0-46ea-9db9-fda3fda339a4",
+      "headline": "Tim Cook Used His Last WWDC to Bet Everything on a New Siri. Apple Has Been Late Before.",
+      "slug": "apple-siri-ai-wwdc-2026-tim-cook-last-keynote-gemini-india-iphone",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "ab850946-51b2-47f3-98a3-b31843fd5fd5",
+            "headline": "Tim Cook's Last Keynote. Apple's Billion-Dollar Bet on Googl"
+          },
+          {
+            "article_id": "3337412c-2c07-4735-ba69-78ca9c8e4a80",
+            "headline": "Apple Is About to Open an AI Agent App Store. Indian Develop"
+          }
+        ],
         "broken_embeds": []
       },
       "llm_review": {
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image of Tim Cook is relevant to the article as it discusses his final WWDC keynote, but it lacks a direct connection to Siri or AI."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the tax changes to NRIs, explaining both direct and indirect impacts on their investments."
+          "note": "The article effectively connects the significance of Siri AI's improvements to the Indian market and its implications for Indian users and developers."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more specific examples of how NRIs can take advantage of the new tax-free status.",
-          "Add a section addressing potential risks or considerations for NRIs in light of these changes."
+          "Consider including a more relevant image that directly relates to Siri or AI technology.",
+          "Expand on the implications of Siri AI for Indian languages to provide more depth."
         ],
         "verdict": "pass"
       },
@@ -47,31 +56,36 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "234baea2-cc36-4482-ab2e-2039223a4b62",
-      "headline": "India's Rail Tourism Push Just Got 200 New Trains \u2014 and NRIs Are the Target Audience",
-      "slug": "irctc-rail-tourism-vande-bharat-expansion-nri-20260609",
+      "id": "9c82b8ec-d6b0-44c8-8541-5e5e81ff05b2",
+      "headline": "OpenAI Just Filed for Its IPO. SpaceX Goes Public Thursday. Anthropic Filed Last Week.",
+      "slug": "openai-ipo-filing-spacex-anthropic-aravind-srinivas-perplexity-ai-trillion-june-2026",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "8e786059-b67d-4dc5-a5d6-b2e9de814d7c",
+            "headline": "OpenAI Is Turning ChatGPT Into a Superapp. Its 900 Million U"
+          }
+        ],
         "broken_embeds": []
       },
       "llm_review": {
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image features Sam Altman, which is relevant to OpenAI, but does not directly relate to the IPO topic."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the new train services to the interests of NRIs, particularly in terms of tourism and convenience."
+          "quality": 9,
+          "note": "The article effectively connects the IPO developments to the Indian diaspora, particularly through the insights of Aravind Srinivas."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more personal anecdotes or testimonials from NRIs who have experienced the new train services to enhance relatability.",
-          "Add a section on how NRIs can book these train services or any special offers available to them."
+          "Consider using a more relevant image that directly represents the IPO theme.",
+          "Add more quotes or insights from Indian diaspora investors to enhance the connection."
         ],
         "verdict": "pass"
       },
@@ -83,9 +97,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "16886c73-230a-44e6-b5dc-81e2c9210f59",
-      "headline": "Delta Is Coming Back to India \u2014 and This Time It's Using IndiGo's Entire Network to Get You There",
-      "slug": "delta-indigo-alliance-nri-us-india-flights-20260609",
+      "id": "b956d186-419b-43a1-83b1-d9be099e54f1",
+      "headline": "Iran and Israel Say They Have Stopped Shooting. India Says It Is Watching.",
+      "slug": "iran-israel-halt-strikes-india-utmost-concern-hormuz-oil-97-june-2026",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -95,127 +109,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image of the Strait of Hormuz is relevant but does not directly depict the conflict between Iran and Israel."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively addresses the needs and frustrations of the Indian American diaspora regarding travel to India."
+          "note": "The article discusses India's economic stakes and implications for NRIs, particularly regarding oil imports and market impacts."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes or insights from Indian travelers or travel experts to enhance the personal connection.",
-          "Include more specific examples of how the new alliance will impact travel times or costs for NRIs."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "9a585fd2-16e1-46a8-a891-9cc79d03c4c7",
-      "headline": "Puri's Family Travel Searches Just Jumped 68% \u2014 and NRI Parents Should Take the Hint",
-      "slug": "puri-wayanad-goa-india-summer-family-travel-surge-nri-20260609",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects travel trends to NRI families, highlighting specific destinations and their appeal."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more specific examples or testimonials from NRI families who have traveled to these destinations to enhance relatability.",
-          "Include tips for NRI families on how to plan their trips effectively, considering travel logistics and cultural experiences."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "37134d31-8f3e-4cac-951c-d79429434e9d",
-      "headline": "Global Mental Health Just Hit Its Lowest Recorded Level. The Diaspora's Silence Makes It Worse.",
-      "slug": "axa-mind-health-report-2026-mental-health-lowest-ever-south-asian-diaspora-stigma",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the global mental health crisis to the South Asian diaspora, discussing cultural perceptions and barriers to seeking help."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more specific examples or anecdotes from the diaspora to illustrate the points made about mental health perceptions.",
-          "Include a call to action for the diaspora community to engage more openly with mental health issues."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "f74751c7-529c-4180-9a6f-149db8d1df72",
-      "headline": "The Crease in Your Earlobe May Be Warning You About Your Heart. South Asians Should Pay Attention.",
-      "slug": "franks-sign-earlobe-crease-heart-disease-south-asian-cardiovascular-risk-2026",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively addresses the specific cardiovascular risks faced by South Asians, making it relevant to the diaspora audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include a brief summary or conclusion to reinforce the importance of recognizing Frank's sign.",
-          "Add a personal anecdote or testimonial from a South Asian individual regarding their experience with heart health to enhance relatability."
+          "Include more direct quotes or perspectives from Indian officials to enhance the diaspora connection.",
+          "Consider adding a brief background on the historical context of Iran-Israel relations for better reader understanding."
         ],
         "verdict": "pass"
       },
