@@ -297,14 +297,18 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
     return len(events) > 0
 
 
-def burn_captions_news_layout(video_path, srt_path, output_path):
+def burn_captions_news_layout(video_path, srt_path, output_path, margin_v=700):
     """
     Burn captions positioned for the news layout.
     Uses ASS format for precise positioning in the caption zone.
+    
+    margin_v: distance from bottom in px.
+              700 = middle of branded layout caption zone (default, legacy)
+              250 = near bottom, works for full-frame anchor + branded B-roll mixed layout
     """
     ass_path = str(srt_path).rsplit('.', 1)[0] + '_positioned.ass'
     
-    if not create_positioned_captions(srt_path, ass_path):
+    if not create_positioned_captions(srt_path, ass_path, margin_v=margin_v):
         return False
     
     cmd = [

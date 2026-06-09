@@ -1,55 +1,19 @@
 {
-  "timestamp": "2026-06-09T00:16:14.973241+00:00",
+  "timestamp": "2026-06-09T00:46:51.693969+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 7,
-    "flag": 1,
+    "pass": 5,
+    "flag": 2,
     "fail": 0,
     "error": 0
   },
-  "revisions": 1,
+  "revisions": 2,
   "unpublished": 0,
   "articles": [
     {
-      "id": "67c33c7f-b1e7-41a7-90f2-eb414e3472c8",
-      "headline": "Humanoid Robots Just Got a Delivery Date. Indian Factories Should Pay Attention.",
-      "slug": "humanoid-robots-factory-floor-hyundai-boston-dynamics-india-20260609",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses the potential impact of humanoid robots on Indian manufacturing, which is relevant to the Indian diaspora, particularly those in engineering and technology sectors."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more direct quotes or insights from Indian industry leaders to strengthen the connection to the Indian context.",
-          "Expand on the implications for NRI engineers and how they can engage with the evolving robotics landscape in India."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "fa09533b-25c2-46cb-bcc1-b3bf77147ec9",
-      "headline": "Siri Finally Grew Up. Apple Needed Google's AI to Get There.",
-      "slug": "apple-wwdc-siri-ai-standalone-app-gemini-golden-gate-20260609",
+      "id": "d6238dfe-045f-46b3-991d-510e0632534b",
+      "headline": "Broadcom Missed One Number by $1.2 Billion. It Triggered the Worst Chip Selloff Since 2020.",
+      "slug": "broadcom-ai-chip-miss-semiconductor-crash-wipro-kospi-circuit-breaker-india-it-20260608",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -60,18 +24,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 8,
-          "issue": "The image is relevant to the article's topic about Apple's Siri and AI advancements."
+          "issue": "The image of Hock Tan is relevant as he is the CEO of Broadcom, which is the focus of the article."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 7,
-          "note": "The article discusses implications for Indian developers and IT professionals, making it relevant for the diaspora."
+          "note": "The article discusses the impact of Broadcom's performance on Indian investors, which is relevant to the NRI audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more specific examples of how Siri AI could benefit Indian developers.",
-          "Clarify the timeline for Siri AI's rollout in India to enhance relevance for the diaspora."
+          "Include more direct quotes or insights from Indian investors or analysts to strengthen the diaspora connection.",
+          "Add a brief section on how NRIs can navigate the current market conditions in relation to the tech sector."
         ],
         "verdict": "pass"
       },
@@ -83,9 +47,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "72b72f9f-d856-4181-8980-775eacc0c7c7",
-      "headline": "One Judge Said Yes, Another Said No \u2014 The H-1B Fee Split That Only the Supreme Court Can Resolve",
-      "slug": "circuit-split-h1b-fee-sorokin-howell-supreme-court-20260609",
+      "id": "467372b8-8941-4f3e-b672-104be5c85c90",
+      "headline": "The Great Indian Spice Race: How Diaspora Brands and Legacy Giants Are Battling for America's Kitchen",
+      "slug": "great-indian-spice-race-diaspora-brands-legacy-giants-battling-americas-kitchen",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -101,13 +65,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses the implications of H-1B visa fees specifically for Indian-born professionals, making it relevant to the diaspora."
+          "note": "The article effectively connects the spice market dynamics to the identity and preferences of Indian Americans, making it relevant for the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from affected individuals or organizations to provide personal perspectives on the impact of the fee.",
-          "Include a brief overview of the H-1B visa process for readers who may not be familiar with it."
+          "Include quotes or testimonials from diaspora consumers to enhance relatability.",
+          "Add more data or examples of how these brands are marketed specifically to NRI audiences."
         ],
         "verdict": "pass"
       },
@@ -119,9 +83,52 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "7c1c31e5-a787-4c3f-a98c-fab281021fcb",
-      "headline": "Two Years and Go Home \u2014 The Bill That Would Kill the Promise Every Indian H-1B Worker Lives By",
-      "slug": "chip-roy-dual-intent-kill-h1b-two-year-visa-bill-20260609",
+      "id": "8e79a2df-8edc-4659-836a-2a07d2674931",
+      "headline": "Farzi, Rishtedar, Yellow Chilli: India's Biggest Restaurant Brands Are Finally Storming America",
+      "slug": "farzi-rishtedar-yellow-chilli-indias-biggest-restaurant-brands-storming-america",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/DZKoE7CIA4C/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not appear to be directly related to the article's subject of Indian restaurant brands opening in America."
+          }
+        ],
+        "image_match": {
+          "score": 5,
+          "issue": "The image does not match the article's focus on specific Indian restaurant brands and their American locations."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses the expansion of Indian restaurants in America, which is relevant to the NRI community, but the connection could be more explicitly articulated."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the irrelevant Instagram embed with a more relevant one that showcases the restaurants mentioned.",
+          "Include more explicit connections to how these restaurant openings impact the NRI community in America."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/DZKoE7CIA4C/",
+        "Revised by gpt-4o-mini (768\u2192877 words)"
+      ],
+      "revised": true,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "17cf5fd1-df80-47c9-929b-7d14cfa014fd",
+      "headline": "Mango Diplomacy: How a Seattle Tasting Event With Costco Signals India's Boldest Fruit Export Push Yet",
+      "slug": "mango-diplomacy-seattle-tasting-costco-indias-boldest-fruit-export-push",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -136,14 +143,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article discusses the implications of proposed immigration legislation on Indian H-1B workers, directly relevant to the Indian diaspora."
+          "quality": 9,
+          "note": "The article effectively connects the cultural significance of mangoes to the Indian diaspora, highlighting emotional ties and culinary traditions."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes or testimonials from affected H-1B workers to enhance emotional engagement.",
-          "Add a section on potential responses or actions from the Indian community or advocacy groups."
+          "Consider adding quotes from attendees or participants at the event to enhance the narrative.",
+          "Include more statistics or data on the growth of Indian mango exports to provide a clearer picture of the market dynamics."
         ],
         "verdict": "pass"
       },
@@ -155,81 +162,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "1a102e1d-9013-456f-aa4a-d86ae3a89e93",
-      "headline": "An Indian American Couple Pledged $1 Million to Feed America's Hungry. Their Movement Has Already Delivered 30 Million Meals.",
-      "slug": "hungermitao-asava-million-dollar-pledge-feeding-america-diaspora-20260609",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the philanthropic efforts of the Indian American couple to the broader Indian diaspora, emphasizing cultural values and community involvement."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes or testimonials from beneficiaries of the HungerMitao movement to enhance emotional engagement.",
-          "Include more statistics or data on the impact of the movement to strengthen the argument about its significance."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "b2252798-aa39-4612-b511-e7a842aac491",
-      "headline": "America's Top Aerospace Body Just Gave Its Highest Honour to India's Moon Mission. The Diaspora Noticed.",
-      "slug": "chandrayaan-3-goddard-astronautics-award-aiaa-isro-diaspora-20260609",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the achievements of ISRO with the Indian diaspora's contributions in the aerospace sector, making it relevant and engaging for NRI readers."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from diaspora members or experts in the aerospace field to enhance the personal connection.",
-          "Include more statistics or data about the impact of the Indian diaspora in the aerospace industry to strengthen the argument."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "c9ef5493-92d9-42ef-9fa3-052e854b68f3",
-      "headline": "Eight Indian Americans Just Won a Fellowship That Pays $90,000 for Being an Immigrant. Here's What They Study.",
-      "slug": "soros-fellowship-eight-indian-americans-graduate-scholars-20260609",
+      "id": "5e6924ff-ef0d-4d74-a96b-dfd0bcd36572",
+      "headline": "Trump Gets the Owner's Box. Mamdani Bought Standing Room. Both Are at the Knicks Game Tonight.",
+      "slug": "mamdani-trump-knicks-nba-finals-game-3-madison-square-garden-indian-origin-mayor-20260608",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -240,18 +175,54 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image does not directly relate to the specific topic of the fellowship or the individuals mentioned."
+          "issue": "The image of Zohran Mamdani is relevant but does not directly depict the Knicks game or the context of the article."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the achievements of Indian Americans to the broader context of immigration and education, resonating well with NRI readers."
+          "quality": 9,
+          "note": "The article effectively connects Mamdani's multicultural identity and political significance to the Indian diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that reflects the fellowship or the individuals involved.",
-          "Add quotes or personal anecdotes from the fellows to enhance the narrative and connection to the diaspora."
+          "Consider including a more relevant image that depicts the Knicks game or the atmosphere at Madison Square Garden.",
+          "Add a quote or perspective from an NRI or diaspora member regarding Mamdani's impact to strengthen the diaspora angle."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "b9911414-3635-4f24-b131-198f0b2ec3a8",
+      "headline": "ZEE Grabbed the FIFA World Cup Rights Ten Days Before Kickoff. It Paid 40% Less Than FIFA Wanted.",
+      "slug": "zee-fifa-world-cup-2026-broadcast-rights-unite8-sports-india-60-million-20260608",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image is relevant to the FIFA World Cup but does not specifically relate to ZEE's acquisition of the broadcasting rights."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the broadcasting rights acquisition to the Indian diaspora in the U.S., highlighting the significance of the World Cup being in their vicinity."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including more details about how ZEE's coverage will cater specifically to the Indian diaspora's preferences.",
+          "Add quotes or reactions from Indian football fans or industry experts to enhance the article's depth."
         ],
         "verdict": "pass"
       },
@@ -275,24 +246,24 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 3,
-          "issue": "irrelevant"
+          "score": 5,
+          "issue": "The image does not directly relate to the article's topic of H-1B visas or immigration."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article discusses the impact of the ruling on Indian workers, which is highly relevant to the diaspora audience."
+          "note": "The article discusses the impact of the ruling on Indian workers and IT firms, which is highly relevant to the Indian diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the hero image with one that is more relevant to the topic of immigration or H-1B visas.",
-          "Consider adding quotes from affected Indian workers or companies to enhance the human interest angle."
+          "Replace the hero image with one that directly relates to H-1B visas or immigration.",
+          "Include quotes or reactions from Indian professionals or organizations to enhance the diaspora perspective."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
-        "Revised by gpt-4o-mini (892\u2192892 words)"
+        "Revised by gpt-4o-mini (892\u2192924 words)"
       ],
       "revised": true,
       "unpublished": false,

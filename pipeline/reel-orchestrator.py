@@ -871,8 +871,9 @@ def run(args):
 
         # 3e2. Portrait conversion — ALWAYS convert 16:9 HeyGen output to 9:16 news layout
         #      HeyGen avatars are 16:9 source footage. We own the portrait conversion.
-        from portrait_fix import fix_avatar_portrait, burn_captions_news_layout
+        from portrait_fix import fix_avatar_portrait, burn_captions_news_layout, crop_avatar_fullframe
         portrait_fixed = BUILD_DIR / f"avatar-portrait-fixed-{video_id}.mp4"
+        fullframe_avatar = BUILD_DIR / f"avatar-fullframe-{video_id}.mp4"
         headline = article.get('headline', '')
         
         # Tell portrait_fix this is native 16:9 input
@@ -899,6 +900,9 @@ def run(args):
         }
         badge = badge_map.get(category, "THE VIDESHI")
         
+        # Create full-frame center crop (Kavya fills entire screen — for anchor segments)
+        crop_avatar_fullframe(raw_avatar, fullframe_avatar)
+        # Create branded layout (for B-roll fallback / non-B-roll flow)
         fix_avatar_portrait(raw_avatar, portrait_fixed, headline, lb_info, badge_text=badge)
         working_avatar = portrait_fixed
 
@@ -923,14 +927,16 @@ def run(args):
             broll_assembled = BUILD_DIR / f"avatar-broll-{video_id}.mp4"
             broll_result = assemble_broll_reel(
                 working_avatar, segments, broll_images,
-                headline, badge, str(broll_assembled)
+                headline, badge, str(broll_assembled),
+                fullframe_anchor=fullframe_avatar
             )
             
             if broll_result:
                 # Burn captions onto the B-roll assembled version
+                # Use lower margin (250) for mixed full-frame + branded layout
                 from portrait_fix import burn_captions_news_layout
                 captioned = BUILD_DIR / f"avatar-captioned-{video_id}.mp4"
-                if burn_captions_news_layout(broll_assembled, srt_path, captioned):
+                if burn_captions_news_layout(broll_assembled, srt_path, captioned, margin_v=250):
                     avatar_video = captioned
                 else:
                     avatar_video = broll_assembled
