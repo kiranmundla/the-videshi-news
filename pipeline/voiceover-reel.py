@@ -48,20 +48,22 @@ def load_env(path):
 OAI = load_env("~/workspace/.env.openai")
 SB = load_env("~/workspace/.env.supabase")
 PEXELS = load_env("~/workspace/.env.pexels")
+HG = load_env("~/workspace/.env.heygen")
 
 OPENAI_KEY = OAI.get("OPENAI_API_KEY", "")
 SB_URL = "https://lboecaekpynbpyijrbfz.supabase.co"
 SB_KEY = SB.get("SUPABASE_SERVICE_ROLE_KEY", "") or SB.get("SUPABASE_ANON_KEY", "")
 PEXELS_KEY = PEXELS.get("PEXELS_API_KEY", "")
+HEYGEN_KEY = HG.get("HEYGEN_API_KEY", "")
 
 PIPELINE_DIR = Path(__file__).parent
 BUILD_DIR = PIPELINE_DIR / "reels" / "build"
 REELS_DIR = PIPELINE_DIR / "reels"
 BUILD_DIR.mkdir(parents=True, exist_ok=True)
 
-# TTS config — swap provider here when ElevenLabs is set up
-TTS_PROVIDER = "openai"  # "openai" or "elevenlabs"
-TTS_VOICE = "nova"  # OpenAI: nova/shimmer; ElevenLabs: cb9diBQeYWIGJS9i52kX
+# TTS config — HeyGen Starfish is default (best quality)
+TTS_PROVIDER = "heygen"  # "heygen", "openai", or "elevenlabs"
+TTS_VOICE = "d2f4f24783d04e22ab49ee8fdc3715e0"  # HeyGen: Chill Brian (Starfish); OpenAI: nova; ElevenLabs: cb9diBQeYWIGJS9i52kX
 TTS_MODEL = "tts-1-hd"
 TTS_SPEED = 1.0
 
@@ -130,47 +132,56 @@ def pick_article(articles, existing_slugs):
 # ── Script Generation ────────────────────────────────────────────────────────
 
 def generate_voiceover_script(article):
-    """Generate a voice-over script optimized for B-roll visuals (no anchor segments)."""
+    """Generate a voice-over script optimized for viral Instagram Reels."""
     headline = article.get('headline', '')
+    subheadline = article.get('subheadline', '')
     body = (article.get('body') or '')[:3000]
     category = article.get('category', '')
     
-    prompt = f"""You are a scriptwriter for The Videshi, an Indian diaspora news platform.
-Write a 25-35 second voice-over narration script for an Instagram Reel.
+    prompt = f"""You write viral Instagram Reel scripts for The Videshi — news for the Indian diaspora.
 
-This is VOICE-OVER ONLY — no on-screen anchor. The visuals will be B-roll images.
-Write in a clear, authoritative, engaging news anchor tone.
+This is a VOICE-OVER reel. No anchor on screen. Visuals are B-roll images that change every 5-7 seconds.
 
-Article headline: {headline}
+ARTICLE:
+Headline: {headline}
+Subheadline: {subheadline}
 Category: {category}
-Body (excerpt): {body[:2000]}
+Body: {body[:2500]}
 
-Requirements:
-- 70-90 words (25-35 seconds at natural speaking pace)
-- Open with a strong hook line (first 3 seconds must grab attention)
-- Conversational but professional tone
-- Reference the Indian diaspora angle when natural
-- End with a forward-looking statement or call to curiosity
-- NO stage directions, just the spoken text
-- NO "Welcome to The Videshi" or self-references
+SCRIPT RULES:
+1. HOOK (first 3 seconds): Start with a jaw-dropping fact, a bold claim, or a "wait what?" moment. This decides if people keep watching. No pleasantries, no setup — hit them immediately.
+2. TENSION: Build intrigue. Use contrast, stakes, or a narrative arc. "Here's why that matters for every NRI watching this."
+3. PAYOFF: Land with a punch — a surprising twist, a forward-looking take, or a line that makes them want to share it.
+4. TONE: Talk like a smart friend who just found out something wild and is telling you about it. Confident, punchy, slightly urgent. NOT a news robot. NOT a YouTuber begging for likes.
+5. PACING: Short sentences. Vary rhythm. One-word sentences are fine. Let the voice breathe.
+6. LENGTH: 60-80 words. That's 25-30 seconds spoken. Tight. Every word earns its place.
+7. SPECIFICS: Include at least one concrete number, name, or detail. Vague = boring.
+8. NO "Welcome to The Videshi", NO "Follow for more", NO emoji, NO hashtags — this is spoken word.
+9. End with "Full story at thevideshi dot com" ONLY if it flows naturally. Otherwise skip it.
 
-Also provide 4-6 image search queries for B-roll visuals that match the script segments.
+HOOK TEXT (shown on screen before voice starts):
+- hook_line1: 3-5 words, ALL CAPS. The "stop scrolling" line. Bold, surprising, specific.
+- hook_line2: 3-5 words, ALL CAPS. Adds context or intrigue.
+- Bad examples: "BREAKING NEWS TODAY" (generic), "YOU WON'T BELIEVE THIS" (clickbait)
+- Good examples: "₹304 CRORE. CANCELLED SHOWS." / "HE STILL BROKE RECORDS"
 
-Return JSON:
+IMAGE QUERIES: 4-5 search terms for Pexels stock photos that would make strong B-roll behind the narration. Be specific and visual — "crowded Indian movie theater" not "cinema". Avoid searching for specific celebrities (stock sites won't have them).
+
+Return JSON only:
 {{
-  "script": "the full spoken narration text",
-  "image_queries": ["query1", "query2", "query3", "query4"],
-  "hook_line1": "SHORT HOOK (max 5 words, all caps)",
-  "hook_line2": "SECOND LINE (max 5 words, all caps)"
+  "script": "the spoken narration",
+  "image_queries": ["specific visual query 1", "query 2", "query 3", "query 4"],
+  "hook_line1": "BOLD HOOK LINE",
+  "hook_line2": "CONTEXT LINE"
 }}"""
 
     r = requests.post(
         "https://api.openai.com/v1/chat/completions",
         headers={"Authorization": f"Bearer {OPENAI_KEY}", "Content-Type": "application/json"},
         json={
-            "model": "gpt-4o-mini",
+            "model": "gpt-4o",
             "messages": [{"role": "user", "content": prompt}],
-            "temperature": 0.7,
+            "temperature": 0.8,
             "response_format": {"type": "json_object"}
         },
         timeout=30
@@ -183,6 +194,7 @@ Return JSON:
     result = json.loads(r.json()["choices"][0]["message"]["content"])
     print(f"  Script: {len(result['script'].split())} words")
     print(f"  Hook: {result.get('hook_line1', '')} / {result.get('hook_line2', '')}")
+    print(f"  Script text: {result['script'][:150]}...")
     return result
 
 
@@ -633,6 +645,7 @@ def add_music_and_hook(content_video, hook_video, end_card_video, output_path, c
     """
     Final assembly: hook + content + end card, with background music underneath.
     Audio from content_video (voice-over + captions) stays on top.
+    Hook/end card get silent audio added for concat compatibility.
     """
     # Pick music
     music_dir = PIPELINE_DIR / "music"
@@ -642,19 +655,45 @@ def add_music_and_hook(content_video, hook_video, end_card_video, output_path, c
         music_file = music_dir / "dramatic-dark-suspense-thriller.mp3"
     
     if not music_file.exists():
-        # Fallback: just concat without music
         music_file = None
     
-    # Concat: hook + content + end card
+    # Helper: add silent audio track to video-only files
+    def ensure_audio(video_path, out_path):
+        """Add silent audio if the file has no audio stream."""
+        probe = subprocess.run(
+            ["ffprobe", "-v", "error", "-select_streams", "a",
+             "-show_entries", "stream=codec_type", "-of", "csv=p=0", str(video_path)],
+            capture_output=True, text=True, timeout=10
+        )
+        if "audio" in probe.stdout:
+            return str(video_path)  # already has audio
+        subprocess.run(
+            ["ffmpeg", "-y", "-i", str(video_path),
+             "-f", "lavfi", "-i", "anullsrc=r=24000:cl=mono",
+             "-c:v", "copy", "-c:a", "aac", "-shortest", str(out_path)],
+            capture_output=True, text=True, timeout=30
+        )
+        return str(out_path) if os.path.exists(out_path) else str(video_path)
+    
+    # Prepare segments with audio
+    segments_for_concat = []
+    
+    if hook_video and os.path.exists(hook_video):
+        hook_with_audio = str(BUILD_DIR / "vo-hook-audio.mp4")
+        segments_for_concat.append(ensure_audio(hook_video, hook_with_audio))
+    
+    segments_for_concat.append(str(content_video))
+    
+    if end_card_video and os.path.exists(end_card_video):
+        ec_with_audio = str(BUILD_DIR / "vo-endcard-audio.mp4")
+        segments_for_concat.append(ensure_audio(end_card_video, ec_with_audio))
+    
+    # Concat all segments
     concat_file = BUILD_DIR / "vo-final-concat.txt"
     with open(concat_file, 'w') as f:
-        if hook_video and os.path.exists(hook_video):
-            f.write(f"file '{hook_video}'\n")
-        f.write(f"file '{content_video}'\n")
-        if end_card_video and os.path.exists(end_card_video):
-            f.write(f"file '{end_card_video}'\n")
+        for seg in segments_for_concat:
+            f.write(f"file '{seg}'\n")
     
-    # Step 1: concat video segments
     concat_out = BUILD_DIR / "vo-concatenated.mp4"
     cmd = [
         "ffmpeg", "-y", "-f", "concat", "-safe", "0", "-i", str(concat_file),
@@ -663,13 +702,13 @@ def add_music_and_hook(content_video, hook_video, end_card_video, output_path, c
         "-pix_fmt", "yuv420p",
         str(concat_out)
     ]
-    subprocess.run(cmd, capture_output=True, text=True, timeout=120)
+    result = subprocess.run(cmd, capture_output=True, text=True, timeout=120)
     
     if not concat_out.exists():
-        print("❌ Concat failed")
+        print(f"❌ Concat failed: {result.stderr[-200:]}")
         return False
     
-    # Step 2: add background music (low volume under voice)
+    # Add background music (low volume under voice)
     if music_file:
         cmd = [
             "ffmpeg", "-y",

@@ -1,13 +1,13 @@
 {
-  "timestamp": "2026-06-09T05:16:01.496353+00:00",
+  "timestamp": "2026-06-09T05:45:58.379804+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 0,
-    "flag": 3,
+    "pass": 2,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
-  "revisions": 3,
+  "revisions": 1,
   "unpublished": 0,
   "articles": [
     {
@@ -20,36 +20,29 @@
         "broken_embeds": []
       },
       "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/p/DZKs2dVorgG/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post does not appear to be directly related to the Krrish franchise or the budget discussion, making it irrelevant to the article's topic."
-          }
-        ],
+        "overall_score": 8,
+        "embed_issues": [],
         "image_match": {
-          "score": 8,
+          "score": 9,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the Krrish franchise to the emotional ties of the Indian diaspora, highlighting its significance beyond just commercial success."
+          "note": "The article effectively connects the film's impact on the Indian diaspora, highlighting cultural ties and shared experiences."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant Instagram embed with a more relevant source or quote related to the Krrish franchise.",
-          "Consider adding more context about the Krrish franchise's impact on the diaspora to strengthen the connection."
+          "Include more quotes or perspectives from Hrithik Roshan or Yash Raj Films to provide a balanced view.",
+          "Add a brief section on the previous Krrish films' performances to contextualize the expectations for Krrish 4."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DZKs2dVorgG/",
-        "Revised by gpt-4o-mini (757\u2192789 words)"
+        "promoted to published"
       ],
-      "revised": true,
+      "revised": false,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
     },
@@ -66,14 +59,14 @@
         "overall_score": 8,
         "embed_issues": [
           {
-            "url": "https://www.instagram.com/p/DY2FXdtjCN3/",
+            "url": "https://instagram.com/p/C7lR18oP9sV/",
             "problem": "irrelevant",
             "explanation": "The Instagram post does not appear to be directly related to the content of the article about Gullak Season 5."
           }
         ],
         "image_match": {
           "score": 5,
-          "issue": "The image of Jameel Khan does not directly relate to the article's focus on the Mishra family and the show as a whole."
+          "issue": "The image of Jameel Khan does not directly relate to the article's focus on the Mishra family and the show Gullak."
         },
         "diaspora_angle": {
           "present": true,
@@ -83,14 +76,14 @@
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant Instagram embed with a more relevant one that highlights a scene or theme from Gullak.",
+          "Replace the irrelevant Instagram embed with a more relevant one that showcases a scene or moment from Gullak.",
           "Consider using an image that features the Mishra family or a scene from the show to better match the article's content."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DY2FXdtjCN3/",
-        "Revised by gemini-2.5-flash (748\u2192749 words)"
+        "Removed irrelevant embed: https://instagram.com/p/C7lR18oP9sV/",
+        "Revised by gpt-4o-mini (748\u2192833 words)"
       ],
       "revised": true,
       "unpublished": false,
@@ -110,27 +103,25 @@
         "embed_issues": [],
         "image_match": {
           "score": 8,
-          "issue": "The image of Hardik Pandya is relevant to the article as it discusses his fitness and return to the ODI squad."
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
           "note": "The article effectively connects the ODI series to the interests of the NRI community, highlighting the significance of the matches amidst other global sports events."
         },
-        "factual_flags": [
-          "The article mentions Pandya's last ODI was in March 2025, which is inconsistent with the current date."
-        ],
+        "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Correct the date of Pandya's last ODI to ensure factual accuracy.",
-          "Consider adding more context about the significance of the ODI series for the diaspora beyond just the scheduling."
+          "Add more context about Hardik Pandya's previous performances to enhance the narrative.",
+          "Include quotes from Pandya or coaches to provide a more personal touch to the story."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
-        "Revised by gpt-4o-mini (826\u2192850 words)"
+        "promoted to published"
       ],
-      "revised": true,
+      "revised": false,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
     }
