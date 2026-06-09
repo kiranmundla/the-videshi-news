@@ -1,19 +1,73 @@
 {
-  "timestamp": "2026-06-09T20:45:18.127879+00:00",
+  "timestamp": "2026-06-09T21:16:08.657998+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 0,
+    "pass": 4,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
-  "revisions": 0,
+  "revisions": 1,
   "unpublished": 0,
   "articles": [
     {
-      "id": "378dda49-74d9-42ee-8751-9f32054e8e09",
-      "headline": "The US House Just Cleared a $70 Billion Bill to Fund ICE Through the End of Trump's Term.",
-      "slug": "us-house-70-billion-ice-funding-bill-immigration-enforcement-indian-diaspora-20260609",
+      "id": "ee1717eb-3b39-4101-912c-35ae86a1ed51",
+      "headline": "David Dhawan Just Directed His Final Film. Varun Showed Up. So Did \u20b927 Crore.",
+      "slug": "david-dhawan-final-film-hai-jawani-varun-dhawan-box-office-romcom-nri-20260609",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "76f6061d-f549-43d6-bee9-c0261e1b1da9",
+            "headline": "David Dhawan's Last Film Just Opened. It's Exactly the Chaos"
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/DZMfuByjLyh/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not appear to be directly related to the film or the topic of David Dhawan's final film."
+          },
+          {
+            "url": "https://youtube.com/watch?v=rFOdIv1jwhc",
+            "problem": "irrelevant",
+            "explanation": "The YouTube link should be checked for relevance to the article's subject matter."
+          }
+        ],
+        "image_match": {
+          "score": 7,
+          "issue": "The image of David Dhawan is relevant to the article's topic, but it lacks a direct connection to the specific film discussed."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the film's release and its implications for NRIs, discussing ticket prices and streaming availability."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the irrelevant Instagram embed with a more relevant one related to the film or David Dhawan.",
+          "Ensure the YouTube link is directly related to the film or its promotion."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/DZMfuByjLyh/",
+        "Removed irrelevant embed: https://youtube.com/watch?v=rFOdIv1jwhc",
+        "Revised by gpt-4o-mini (737\u2192770 words)"
+      ],
+      "revised": true,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "c39be125-6a95-46ac-9a57-b65693207920",
+      "headline": "Ali Fazal Puts On a Uniform and Walks Into 1978 Delhi. Raakh Might Be the Darkest Thing You Stream This Year.",
+      "slug": "raakh-ali-fazal-sonali-bendre-prime-video-ranga-billa-true-crime-nri-20260609",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -21,21 +75,73 @@
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/DZX759Jipz6/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not seem to directly relate to the main subject of the article, which is about the series 'Raakh' and its themes."
+          }
+        ],
         "image_match": {
           "score": 7,
-          "issue": "The image of the US Capitol is relevant but does not directly illustrate the topic of immigration enforcement or ICE funding."
+          "issue": "The image features Ali Fazal but does not directly relate to the series 'Raakh' or its 1978 setting."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects the implications of the funding bill to the Indian community and NRI residents, discussing specific immigration challenges they face."
+          "note": "The article effectively highlights the global accessibility of 'Raakh' on Prime Video, making it relevant for the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that directly relates to immigration enforcement or ICE to enhance relevance.",
-          "Add more quotes or perspectives from Indian American community leaders to strengthen the diaspora angle."
+          "Replace the irrelevant Instagram embed with a more relevant one that connects to the series or its themes.",
+          "Consider using an image that directly relates to 'Raakh' or its 1978 Delhi setting for better alignment with the article's content."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/DZX759Jipz6/",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "c40c653f-6d73-4fe9-a0c8-1f27e8abeeea",
+      "headline": "OpenAI Just Filed for an IPO. A $4 Trillion Listing Wave Is About to Hit.",
+      "slug": "openai-ipo-filing-spacex-anthropic-4-trillion-listing-wave-20260609",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "9c82b8ec-d6b0-44c8-8541-5e5e81ff05b2",
+            "headline": "OpenAI Just Filed for Its IPO. SpaceX Goes Public Thursday. "
+          },
+          {
+            "article_id": "8e786059-b67d-4dc5-a5d6-b2e9de814d7c",
+            "headline": "OpenAI Is Turning ChatGPT Into a Superapp. Its 900 Million U"
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image features Sam Altman, which is relevant to OpenAI, but may not directly represent the IPO theme."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively addresses the concerns of NRI investors regarding the upcoming IPOs and their impact on tech portfolios."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more directly relevant image that encapsulates the IPO theme.",
+          "Add a brief section summarizing the potential implications of these IPOs specifically for NRI investors."
         ],
         "verdict": "pass"
       },
@@ -47,15 +153,15 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "b588b0cb-82d3-406a-8266-00d16c30a923",
-      "headline": "A New Bill Wants to Kill the H-1B Green Card Pipeline. Every Indian Worker in America Should Read It.",
-      "slug": "chip-roy-h1b-green-card-pipeline-bill-opt-elimination-indian-workers-20260609",
+      "id": "ce924d7c-bc94-40dc-831d-990a94ede780",
+      "headline": "Cerebras Just IPO'd at $44 Billion. Nine Analysts Say Buy the Dip.",
+      "slug": "cerebras-ipo-44-billion-nine-analysts-buy-inference-20260609",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [
           {
-            "article_id": "b3bbd346-c9f1-4ee1-9bf8-1005302fefa2",
-            "headline": "Seven Per Cent \u2014 The Hidden Provision That Would Slash India"
+            "article_id": "fea782a4-f6f8-480b-9f20-450d33578d5e",
+            "headline": "India's Chip Designers Just Landed on a Global Stage. France"
           }
         ],
         "broken_embeds": []
@@ -65,18 +171,54 @@
         "embed_issues": [],
         "image_match": {
           "score": 5,
-          "issue": "The image of Chip Roy is relevant to the article but does not visually represent the H-1B visa topic directly."
+          "issue": "The image of a silicon wafer is relevant to the topic of AI hardware but does not directly match the headline about Cerebras' IPO."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the implications of the bill to the Indian diaspora, highlighting the impact on Indian professionals in the US."
+          "quality": 8,
+          "note": "The article connects the implications of Cerebras' technology to the employment of Indian engineers and NRI investment interests."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that more directly represents the H-1B visa or Indian professionals in the US.",
-          "Add quotes or perspectives from Indian professionals affected by the bill to enhance the human angle."
+          "Consider using a more relevant image that directly relates to Cerebras or its products.",
+          "Expand on the implications for NRI investors to strengthen the diaspora angle."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "92585645-4043-4e1a-b3b1-72fdf1ac1894",
+      "headline": "AI Is Now America's Top Reason for Firing People. H-1B Workers Are Watching the Clock.",
+      "slug": "ai-top-reason-us-job-cuts-h1b-workers-60-day-clock-20260609",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the topic of AI and job layoffs, but it is a generic tech-related image."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively addresses the concerns of Indian H-1B workers in the U.S. regarding job security due to AI layoffs."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that directly represents AI or job layoffs.",
+          "Add a quote or perspective from an NRI professional to enhance the diaspora connection."
         ],
         "verdict": "pass"
       },
