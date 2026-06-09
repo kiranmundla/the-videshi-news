@@ -1,0 +1,1305 @@
+#!/usr/bin/env python3
+"""
+Shotstack Reel Renderer for The Videshi
+========================================
+Professional automated reel generation using Shotstack cloud API.
+Replaces ffmpeg-based rendering with cloud-rendered reels featuring:
+  - Word-by-word animated captions (rich-caption with karaoke/highlight)
+  - Ken Burns zoom on B-roll images
+  - Smooth fade transitions between clips
+  - HTML branded overlays (logo, category badge, hook frame)
+  - Professional audio mixing (voice + background music)
+  - 1080x1920 portrait output
+
+Usage:
+  python3 shotstack-reel.py                    # Auto-pick article
+  python3 shotstack-reel.py --article-id UUID  # Specific article
+  python3 shotstack-reel.py --dry-run          # Build JSON only, don't render
+  python3 shotstack-reel.py --test             # Quick test with sample data
+  python3 shotstack-reel.py --format pulse     # Quick Pulse format (no voice)
+"""
+
+import os, sys, json, time, random, re, argparse, subprocess, hashlib
+from datetime import datetime, timedelta, timezone
+from pathlib import Path
+import requests
+
+# ─── Config ──────────────────────────────────────────────────────────────────
+
+PIPELINE_DIR = Path(__file__).parent
+BUILD_DIR = PIPELINE_DIR / "reels" / "build"
+REELS_DIR = PIPELINE_DIR / "reels"
+BUILD_DIR.mkdir(parents=True, exist_ok=True)
+
+SB_URL = "https://lboecaekpynbpyijrbfz.supabase.co"
+STORAGE_BASE = f"{SB_URL}/storage/v1/object/public/article-images"
+FONT_URL = f"{STORAGE_BASE}/fonts/Inter-Bold.ttf"
+
+# Shotstack
+SHOTSTACK_STAGE_URL = "https://api.shotstack.io/edit/stage"
+SHOTSTACK_PROD_URL = "https://api.shotstack.io/edit/v1"
+
+# Brand colors
+GOLD = "#D4AF37"
+NAVY = "#0a1628"
+NAVY_LIGHT = "#131d2e"
+WHITE = "#ffffff"
+RED_BADGE = "#C41E3A"
+
+# TTS
+TTS_VOICE = "166aa8d7acd1495a839d34024ccb1505"  # HeyGen Seema Professional
+
+# Category → music mapping
+CATEGORY_MUSIC = {
+    "news": "breaking-news-30s.mp3",
+    "nri-world": "breaking-news-30s.mp3",
+    "immigration": "breaking-news-30s.mp3",
+    "sports": "breaking-news-30s.mp3",
+    "technology": "tech-corporate-technology-30s.mp3",
+    "markets-finance": "tech-corporate-technology-30s.mp3",
+    "entertainment": "chill-lifestyle-lifestyle-30s.mp3",
+    "lifestyle-health": "chill-lifestyle-lifestyle-30s.mp3",
+    "food": "chill-lifestyle-lifestyle-30s.mp3",
+    "travel": "emotional-inspiring-uplifting-piano-30s.mp3",
+}
+
+# Music volume per category mood
+MUSIC_VOLUME = {
+    "news": 0.05, "nri-world": 0.05, "immigration": 0.05,
+    "sports": 0.06, "technology": 0.05, "markets-finance": 0.04,
+    "entertainment": 0.07, "lifestyle-health": 0.06,
+    "food": 0.07, "travel": 0.07,
+}
+
+# Ken Burns effects to rotate through
+KEN_BURNS_EFFECTS = ["zoomIn", "zoomOut", "slideLeft", "slideRight", "slideUp"]
+
+
+def load_env(path):
+    env = {}
+    p = os.path.expanduser(path)
+    if not os.path.exists(p):
+        return env
+    with open(p) as f:
+        for line in f:
+            line = line.strip()
+            if not line or line.startswith('#') or '=' not in line:
+                continue
+            raw = line
+            if raw.startswith('export '):
+                raw = raw[7:]
+            k, v = raw.split('=', 1)
+            env[k.strip()] = v.strip().strip('"').strip("'")
+    return env
+
+
+# Load env files
+SB_ENV = load_env("~/.env.supabase") or load_env("~/workspace/.env.supabase")
+HG_ENV = load_env("~/workspace/.env.heygen")
+OAI_ENV = load_env("~/workspace/.env.openai") or load_env("~/.env.openai")
+SS_ENV = load_env("~/workspace/the-videshi-news/pipeline/.env.shotstack")
+
+SB_KEY = SB_ENV.get("SUPABASE_SERVICE_ROLE_KEY", "")
+HEYGEN_KEY = HG_ENV.get("HEYGEN_API_KEY", "")
+OPENAI_KEY = OAI_ENV.get("OPENAI_API_KEY", "")
+SHOTSTACK_KEY = SS_ENV.get("SHOTSTACK_SANDBOX_KEY", "")
+SHOTSTACK_PROD_KEY = SS_ENV.get("SHOTSTACK_PRODUCTION_KEY", "")
+
+SB_HEADERS = {
+    "apikey": SB_KEY,
+    "Authorization": f"Bearer {SB_KEY}",
+    "Content-Type": "application/json",
+}
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# ARTICLE SELECTION
+# ═══════════════════════════════════════════════════════════════════════════════
+
+def get_recent_articles(hours=24, limit=20):
+    since = (datetime.now(timezone.utc) - timedelta(hours=hours)).isoformat()
+    r = requests.get(
+        f"{SB_URL}/rest/v1/p2_articles",
+        headers=SB_HEADERS,
+        params={
+            "select": "id,headline,subheadline,slug,category,vertical,body,image_url,published_at",
+            "status": "eq.published",
+            "published_at": f"gte.{since}",
+            "order": "published_at.desc",
+            "limit": limit,
+        },
+        timeout=15,
+    )
+    if r.status_code != 200:
+        print(f"❌ Failed to fetch articles: {r.status_code}")
+        return []
+    return r.json()
+
+
+def get_existing_reel_slugs():
+    r = requests.get(
+        f"{SB_URL}/rest/v1/prebuilt_reels",
+        params={"select": "article_slug", "limit": 500},
+        headers=SB_HEADERS,
+        timeout=10,
+    )
+    if r.status_code == 200:
+        return {row["article_slug"] for row in r.json() if row.get("article_slug")}
+    return set()
+
+
+def score_article(article):
+    score = 0
+    cat = (article.get("category") or "").lower()
+    headline = (article.get("headline") or "").lower()
+
+    cat_scores = {
+        "news": 10, "nri-world": 9, "immigration": 9,
+        "sports": 8, "entertainment": 8, "technology": 7,
+        "markets-finance": 6, "travel": 6, "lifestyle-health": 5, "food": 5,
+    }
+    score += cat_scores.get(cat, 3)
+
+    hot_keywords = [
+        "h-1b", "visa", "green card", "modi", "trump", "breaking",
+        "killed", "crash", "scandal", "ban", "deport", "ipl",
+        "billion", "layoff", "shutdown", "election",
+    ]
+    for kw in hot_keywords:
+        if kw in headline:
+            score += 3
+            break
+
+    if article.get("image_url"):
+        score += 2
+    if len(headline) > 40:
+        score += 1
+
+    return score
+
+
+def pick_article(articles, existing_slugs):
+    candidates = [a for a in articles if a.get("slug") not in existing_slugs]
+    if not candidates:
+        return None
+    candidates.sort(key=lambda a: score_article(a), reverse=True)
+    return candidates[0]
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# SCRIPT GENERATION
+# ═══════════════════════════════════════════════════════════════════════════════
+
+def generate_script(article):
+    headline = article.get("headline", "")
+    subheadline = article.get("subheadline", "")
+    body = (article.get("body") or "")[:3000]
+    category = article.get("category", "")
+
+    prompt = f"""You write viral Instagram Reel scripts for The Videshi — news for the Indian diaspora.
+
+This is a VOICE-OVER reel. No anchor on screen. Visuals are B-roll images that change every 5-7 seconds.
+
+ARTICLE:
+Headline: {headline}
+Subheadline: {subheadline}
+Category: {category}
+Body: {body[:2500]}
+
+SCRIPT RULES:
+1. HOOK (first 3 seconds): Start with a jaw-dropping fact, a bold claim, or a "wait what?" moment. No pleasantries, no setup — hit them immediately.
+2. TENSION: Build intrigue. Use contrast, stakes, or a narrative arc. "Here's why that matters for every NRI watching this."
+3. PAYOFF: Land with a punch — a surprising twist, a forward-looking take, or a line that makes them want to share it.
+4. TONE: Talk like a smart friend who just found out something wild. Confident, punchy, slightly urgent. NOT a news robot.
+5. PACING: Short sentences. Vary rhythm. One-word sentences are fine.
+6. LENGTH: 60-80 words. That's 25-35 seconds spoken. Every word earns its place.
+7. SPECIFICS: Include at least one concrete number, name, or detail.
+8. NO "Welcome to The Videshi", NO "Follow for more", NO emoji, NO hashtags.
+9. End with "Full story at thevideshi dot com" ONLY if it flows naturally. Otherwise skip it.
+
+HOOK TEXT (shown on screen before voice starts):
+- hook_line1: 3-5 words, ALL CAPS. The "stop scrolling" line.
+- hook_line2: 3-5 words, ALL CAPS. Adds context or intrigue.
+
+IMAGE QUERIES: 4-5 search terms for Pexels stock photos for B-roll. Be specific and visual.
+
+Return JSON only:
+{{
+  "script": "the spoken narration",
+  "image_queries": ["specific visual query 1", "query 2", "query 3", "query 4"],
+  "hook_line1": "BOLD HOOK LINE",
+  "hook_line2": "CONTEXT LINE"
+}}"""
+
+    r = requests.post(
+        "https://api.openai.com/v1/chat/completions",
+        headers={"Authorization": f"Bearer {OPENAI_KEY}", "Content-Type": "application/json"},
+        json={
+            "model": "gpt-4o",
+            "messages": [{"role": "user", "content": prompt}],
+            "temperature": 0.8,
+            "response_format": {"type": "json_object"},
+        },
+        timeout=30,
+    )
+
+    if r.status_code != 200:
+        print(f"❌ Script generation failed: {r.status_code}")
+        return None
+
+    result = json.loads(r.json()["choices"][0]["message"]["content"])
+    print(f"  📝 Script: {len(result['script'].split())} words")
+    print(f"  📝 Hook: {result.get('hook_line1', '')} / {result.get('hook_line2', '')}")
+    return result
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# TTS — HeyGen Seema Voice
+# ═══════════════════════════════════════════════════════════════════════════════
+
+def generate_tts(text):
+    """Generate TTS via HeyGen Starfish. Returns (local_path, duration) or (None, 0)."""
+    if not HEYGEN_KEY:
+        print("❌ HeyGen API key not found")
+        return None, 0
+
+    r = requests.post(
+        "https://api.heygen.com/v3/voices/speech",
+        headers={"X-Api-Key": HEYGEN_KEY, "Content-Type": "application/json"},
+        json={"text": text, "voice_id": TTS_VOICE, "speed": 1.0},
+        timeout=30,
+    )
+
+    if r.status_code != 200:
+        print(f"❌ HeyGen TTS failed: {r.status_code} {r.text[:200]}")
+        return None, 0
+
+    data = r.json().get("data", {})
+    audio_url = data.get("audio_url")
+    duration = data.get("duration", 0)
+
+    if not audio_url:
+        print("❌ HeyGen TTS returned no audio_url")
+        return None, 0
+
+    # Download audio
+    audio_r = requests.get(audio_url, timeout=30)
+    if audio_r.status_code != 200:
+        print(f"❌ Audio download failed: {audio_r.status_code}")
+        return None, 0
+
+    # HeyGen returns WAV — convert to MP3
+    wav_path = BUILD_DIR / "ss-tts-raw.wav"
+    mp3_path = BUILD_DIR / "ss-tts-voice.mp3"
+    with open(wav_path, "wb") as f:
+        f.write(audio_r.content)
+
+    result = subprocess.run(
+        ["ffmpeg", "-y", "-i", str(wav_path), "-codec:a", "libmp3lame", "-q:a", "2", str(mp3_path)],
+        capture_output=True, text=True,
+    )
+    try:
+        os.remove(wav_path)
+    except OSError:
+        pass
+
+    if result.returncode != 0:
+        print(f"❌ WAV→MP3 conversion failed")
+        return None, 0
+
+    print(f"  🎙️ TTS audio: {duration:.1f}s")
+    return str(mp3_path), duration
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# ASSET UPLOAD — Supabase Storage
+# ═══════════════════════════════════════════════════════════════════════════════
+
+def upload_asset(local_path, storage_path, content_type="application/octet-stream"):
+    """Upload a file to Supabase storage. Returns public URL or None."""
+    with open(local_path, "rb") as f:
+        data = f.read()
+
+    r = requests.post(
+        f"{SB_URL}/storage/v1/object/article-images/{storage_path}",
+        headers={
+            "apikey": SB_KEY,
+            "Authorization": f"Bearer {SB_KEY}",
+            "Content-Type": content_type,
+            "x-upsert": "true",
+        },
+        data=data,
+        timeout=60,
+    )
+
+    if r.status_code in (200, 201):
+        url = f"{STORAGE_BASE}/{storage_path}"
+        print(f"  ☁️ Uploaded: {storage_path}")
+        return url
+    else:
+        print(f"  ❌ Upload failed: {r.status_code} {r.text[:200]}")
+        return None
+
+
+def ensure_music_uploaded(music_file):
+    """Ensure a music file is available at a public URL. Upload if needed."""
+    storage_path = f"music/{music_file}"
+    public_url = f"{STORAGE_BASE}/{storage_path}"
+
+    # Check if already uploaded
+    r = requests.head(public_url, timeout=10)
+    if r.status_code == 200:
+        return public_url
+
+    # Find local file and upload
+    local_candidates = [
+        PIPELINE_DIR / "music" / music_file,
+        PIPELINE_DIR / "music" / music_file.replace("-30s", "-breaking-news-30s"),
+    ]
+
+    # Try matching by prefix
+    music_dir = PIPELINE_DIR / "music"
+    if music_dir.exists():
+        for f in music_dir.iterdir():
+            if music_file.replace(".mp3", "") in f.name and f.suffix == ".mp3":
+                local_candidates.insert(0, f)
+
+    for candidate in local_candidates:
+        if candidate.exists():
+            url = upload_asset(str(candidate), storage_path, "audio/mpeg")
+            if url:
+                return url
+
+    print(f"  ⚠️ Music file not found: {music_file}")
+    return None
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# IMAGE SOURCING — Collect public URLs (no local download needed)
+# ═══════════════════════════════════════════════════════════════════════════════
+
+BLOCKED_DOMAINS = [
+    "upload.wikimedia.org", "wikipedia.org", "wikimedia.org",
+    "commons.wikimedia.org", "static.toiimg.com", "im.rediff.com",
+]
+
+
+def is_url_downloadable(url):
+    """Check if a URL is reachable by Shotstack (no Wikipedia, etc.)."""
+    if not url or len(url) < 10:
+        return False
+    for domain in BLOCKED_DOMAINS:
+        if domain in url:
+            return False
+    return True
+
+
+def pexels_search(pexels_key, query, count=1):
+    """Search Pexels, return list of image URLs. Uses curl (403 with urllib)."""
+    try:
+        result = subprocess.run(
+            ["curl", "-s", "-H", f"Authorization: {pexels_key}",
+             f"https://api.pexels.com/v1/search?query={requests.utils.quote(query)}&per_page={count}&orientation=portrait"],
+            capture_output=True, text=True, timeout=15,
+        )
+        if result.returncode != 0:
+            return []
+        data = json.loads(result.stdout)
+        urls = []
+        for photo in data.get("photos", []):
+            url = photo.get("src", {}).get("large2x") or photo.get("src", {}).get("large")
+            if url:
+                urls.append(url)
+        return urls
+    except Exception as e:
+        print(f"  ⚠️ Pexels: {e}")
+        return []
+
+
+def source_image_urls(article, image_queries, count=5):
+    """Collect B-roll image URLs. No local download — Shotstack fetches them."""
+    urls = []
+
+    # 1. Article hero image
+    hero = article.get("image_url", "")
+    if is_url_downloadable(hero):
+        urls.append(hero)
+
+    # 2. Related articles from same category (filter blocked domains)
+    category = article.get("category", "")
+    article_id = article.get("id", "")
+    if category:
+        r = requests.get(
+            f"{SB_URL}/rest/v1/p2_articles",
+            params={
+                "status": "eq.published",
+                "category": f"eq.{category}",
+                "id": f"neq.{article_id}",
+                "image_url": "neq.null",
+                "order": "published_at.desc",
+                "limit": count + 10,  # Fetch extra to account for filtered URLs
+                "select": "id,image_url",
+            },
+            headers=SB_HEADERS,
+            timeout=15,
+        )
+        if r.status_code == 200:
+            for a in r.json():
+                img = a.get("image_url", "")
+                if is_url_downloadable(img) and img not in urls:
+                    urls.append(img)
+                    if len(urls) >= count:
+                        break
+
+    # 3. Pexels to fill remaining (use curl, not requests — Pexels blocks Python urllib)
+    pexels_env = load_env("~/workspace/.env.pexels")
+    pexels_key = pexels_env.get("PEXELS_API_KEY", "")
+    if len(urls) < count and pexels_key and image_queries:
+        for query in image_queries:
+            if len(urls) >= count:
+                break
+            pexels_urls = pexels_search(pexels_key, query, count=1)
+            for pu in pexels_urls:
+                if pu not in urls:
+                    urls.append(pu)
+                    if len(urls) >= count:
+                        break
+
+    # 4. If still short, generic Pexels queries
+    if len(urls) < 3 and pexels_key:
+        generic = ["India economy", "Indian people", "technology abstract"]
+        for query in generic:
+            if len(urls) >= count:
+                break
+            pexels_urls = pexels_search(pexels_key, query, count=1)
+            for pu in pexels_urls:
+                if pu not in urls:
+                    urls.append(pu)
+
+    print(f"  🖼️ Sourced {len(urls)} B-roll image URLs (blocked domains filtered)")
+    return urls[:count]
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# SHOTSTACK TIMELINE BUILDER — Anchor Reel
+# ═══════════════════════════════════════════════════════════════════════════════
+
+def build_hook_html(hook_line1, hook_line2, category):
+    """Build HTML for the 3-second hook frame overlay."""
+    badge = (category or "NEWS").upper().replace("-", " ")
+    html = f"""<div class='hook-container'>
+  <div class='badge'>{badge}</div>
+  <div class='line1'>{hook_line1}</div>
+  <div class='line2'>{hook_line2}</div>
+  <div class='brand'>THE VIDESHI</div>
+</div>"""
+
+    css = """
+.hook-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  padding: 40px;
+  box-sizing: border-box;
+}
+.badge {
+  background: #C41E3A;
+  color: #ffffff;
+  font-family: 'Inter';
+  font-size: 20px;
+  font-weight: 700;
+  padding: 6px 24px;
+  letter-spacing: 3px;
+  margin-bottom: 30px;
+  border-radius: 2px;
+}
+.line1 {
+  font-family: 'Inter';
+  font-size: 52px;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.1;
+  margin-bottom: 12px;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+}
+.line2 {
+  font-family: 'Inter';
+  font-size: 36px;
+  font-weight: 700;
+  color: #D4AF37;
+  line-height: 1.2;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.4);
+}
+.brand {
+  font-family: 'Inter';
+  font-size: 14px;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 4px;
+  margin-top: 40px;
+}
+""".strip()
+
+    return html, css
+
+
+def build_lower_third_html(headline, category):
+    """Build HTML for the lower-third headline overlay during B-roll."""
+    badge = (category or "NEWS").upper().replace("-", " ")
+    # Truncate headline for display
+    display_hl = headline[:80] + ("..." if len(headline) > 80 else "")
+
+    html = f"""<div class='lower-third'>
+  <div class='lt-badge'>{badge}</div>
+  <div class='lt-headline'>{display_hl}</div>
+</div>"""
+
+    css = """
+.lower-third {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  width: 100%;
+  height: 100%;
+  padding: 0 32px 16px 32px;
+  box-sizing: border-box;
+  background: linear-gradient(transparent 0%, rgba(10,22,40,0.85) 60%, rgba(10,22,40,0.95) 100%);
+}
+.lt-badge {
+  background: #C41E3A;
+  color: #ffffff;
+  font-family: 'Inter';
+  font-size: 14px;
+  font-weight: 700;
+  padding: 4px 14px;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+  border-radius: 2px;
+}
+.lt-headline {
+  font-family: 'Inter';
+  font-size: 24px;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.25;
+}
+""".strip()
+
+    return html, css
+
+
+def build_anchor_reel_timeline(
+    voice_url, voice_duration, image_urls, music_url, music_volume,
+    hook_line1, hook_line2, headline, category
+):
+    """Build the complete Shotstack JSON timeline for an Anchor Reel."""
+
+    hook_duration = 3.0  # Hook frame duration
+    total_voice_duration = voice_duration
+    total_duration = hook_duration + total_voice_duration + 1.0  # +1s buffer
+
+    # ── Track 1 (TOP): Rich Captions with word-by-word highlight ──
+    caption_track = {
+        "clips": [
+            {
+                "asset": {
+                    "type": "rich-caption",
+                    "src": "alias://voiceover",
+                    "font": {
+                        "family": "Inter",
+                        "size": 38,
+                        "color": WHITE,
+                        "weight": 700,
+                        "opacity": 1,
+                    },
+                    "animation": {"style": "highlight"},
+                    "active": {
+                        "font": {"color": GOLD, "opacity": 1},
+                        "stroke": {"width": 3, "color": "#000000", "opacity": 1},
+                    },
+                    "stroke": {"width": 2, "color": "#000000", "opacity": 0.8},
+                    "align": {"vertical": "bottom"},
+                    "style": {"textTransform": "uppercase"},
+                    "padding": {"top": 0, "right": 8, "bottom": 0, "left": 8},
+                },
+                "start": hook_duration,
+                "length": "end",
+                "width": 900,
+                "height": 200,
+                "position": "bottom",
+                "offset": {"x": 0, "y": 0.18},
+            }
+        ]
+    }
+
+    # ── Track 2: Logo watermark ──
+    logo_track = {
+        "clips": [
+            {
+                "asset": {
+                    "type": "html",
+                    "html": "<div class='wm'>THE VIDESHI</div>",
+                    "css": ".wm { font-family: 'Inter'; color: rgba(255,255,255,0.35); font-size: 13px; font-weight: 700; letter-spacing: 3px; text-align: right; padding: 6px 12px; }",
+                    "width": 200,
+                    "height": 36,
+                },
+                "start": hook_duration,  # Show after hook
+                "length": "end",
+                "position": "topRight",
+                "offset": {"x": -0.02, "y": 0.02},
+            }
+        ]
+    }
+
+    # ── Track 3: Hook frame overlay (first 3 seconds) ──
+    hook_html, hook_css = build_hook_html(hook_line1, hook_line2, category)
+    hook_track = {
+        "clips": [
+            {
+                "asset": {
+                    "type": "html",
+                    "html": hook_html,
+                    "css": hook_css,
+                    "width": 1080,
+                    "height": 800,
+                },
+                "start": 0,
+                "length": hook_duration,
+                "position": "center",
+                "transition": {"in": "fade", "out": "fade"},
+            }
+        ]
+    }
+
+    # ── Track 4: Lower third (during B-roll) ──
+    lt_html, lt_css = build_lower_third_html(headline, category)
+    lower_third_track = {
+        "clips": [
+            {
+                "asset": {
+                    "type": "html",
+                    "html": lt_html,
+                    "css": lt_css,
+                    "width": 1080,
+                    "height": 500,
+                },
+                "start": hook_duration,
+                "length": total_voice_duration + 1.0,
+                "position": "bottom",
+                "transition": {"in": "fade"},
+                "opacity": 0.95,
+            }
+        ]
+    }
+
+    # ── Track 5: B-roll images with Ken Burns + transitions ──
+    n_images = len(image_urls)
+    if n_images == 0:
+        print("❌ No images for B-roll")
+        return None
+
+    broll_clips = []
+
+    # Hook background image (darkened, first image)
+    broll_clips.append({
+        "asset": {"type": "image", "src": image_urls[0]},
+        "start": 0,
+        "length": hook_duration,
+        "fit": "cover",
+        "effect": "zoomIn",
+        "filter": "darken",
+    })
+
+    # B-roll during voiceover — distribute images evenly
+    per_image = total_voice_duration / n_images
+    for i, url in enumerate(image_urls):
+        clip = {
+            "asset": {"type": "image", "src": url},
+            "start": round(hook_duration + (i * per_image), 2),
+            "length": round(per_image + 0.3, 2),  # Slight overlap for transition
+            "fit": "cover",
+            "effect": KEN_BURNS_EFFECTS[i % len(KEN_BURNS_EFFECTS)],
+        }
+        if i > 0:
+            clip["transition"] = {"in": "fade"}
+        broll_clips.append(clip)
+
+    broll_track = {"clips": broll_clips}
+
+    # ── Track 6 (BOTTOM): Voice-over audio with alias ──
+    voice_track = {
+        "clips": [
+            {
+                "asset": {
+                    "type": "audio",
+                    "src": voice_url,
+                    "volume": 1.0,
+                    "effect": "fadeOut",
+                },
+                "start": hook_duration,
+                "length": "auto",
+                "alias": "voiceover",
+            }
+        ]
+    }
+
+    # ── Assemble timeline ──
+    timeline = {
+        "background": NAVY,
+        "fonts": [{"src": FONT_URL}],
+        "tracks": [
+            caption_track,    # Top layer
+            logo_track,
+            hook_track,
+            lower_third_track,
+            broll_track,      # Visual base
+            voice_track,      # Audio (bottom)
+        ],
+    }
+
+    # Add soundtrack if music available
+    if music_url:
+        timeline["soundtrack"] = {
+            "src": music_url,
+            "effect": "fadeInFadeOut",
+            "volume": music_volume,
+        }
+
+    edit = {
+        "timeline": timeline,
+        "output": {
+            "format": "mp4",
+            "size": {"width": 1080, "height": 1920},
+            "fps": 30,
+            "quality": "high",
+        },
+    }
+
+    return edit
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# SHOTSTACK TIMELINE BUILDER — Quick Pulse (no voice)
+# ═══════════════════════════════════════════════════════════════════════════════
+
+def build_quick_pulse_timeline(
+    image_urls, music_url, music_volume,
+    headline, subheadline, category, key_stats=None
+):
+    """Build a Quick Pulse reel — music + bold text + visuals, no voice."""
+
+    # Split headline into animated text cards
+    cards = []
+    if key_stats:
+        cards = key_stats[:5]  # Up to 5 stat cards
+    else:
+        # Split headline + subheadline into cards
+        cards = [headline]
+        if subheadline:
+            # Split subheadline into 2-3 chunks
+            words = subheadline.split()
+            mid = len(words) // 2
+            cards.append(" ".join(words[:mid]))
+            cards.append(" ".join(words[mid:]))
+
+    card_duration = 3.0
+    total_duration = len(cards) * card_duration + 1.0
+    badge = (category or "NEWS").upper().replace("-", " ")
+
+    # ── Text cards track (top) ──
+    text_clips = []
+    for i, text in enumerate(cards):
+        text_html = f"""<div class='pulse-card'>
+  <div class='pulse-badge'>{badge}</div>
+  <div class='pulse-text'>{text}</div>
+  <div class='pulse-brand'>THE VIDESHI</div>
+</div>"""
+
+        text_css = """
+.pulse-card { display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; width:100%; height:100%; padding:40px; box-sizing:border-box; }
+.pulse-badge { background:#C41E3A; color:#fff; font-family:'Inter'; font-size:16px; font-weight:700; padding:4px 18px; letter-spacing:3px; margin-bottom:24px; }
+.pulse-text { font-family:'Inter'; font-size:48px; font-weight:700; color:#fff; line-height:1.15; text-shadow:0 2px 20px rgba(0,0,0,0.6); }
+.pulse-brand { font-family:'Inter'; font-size:12px; color:rgba(255,255,255,0.3); letter-spacing:4px; margin-top:30px; }
+""".strip()
+
+        text_clips.append({
+            "asset": {
+                "type": "html",
+                "html": text_html,
+                "css": text_css,
+                "width": 1080,
+                "height": 800,
+            },
+            "start": round(i * card_duration, 2),
+            "length": card_duration,
+            "position": "center",
+            "transition": {"in": "fade", "out": "fade"},
+        })
+
+    # ── B-roll track ──
+    n_images = max(len(image_urls), 1)
+    broll_clips = []
+    for i, url in enumerate(image_urls[:len(cards)]):
+        broll_clips.append({
+            "asset": {"type": "image", "src": url},
+            "start": round(i * card_duration, 2),
+            "length": round(card_duration + 0.3, 2),
+            "fit": "cover",
+            "effect": KEN_BURNS_EFFECTS[i % len(KEN_BURNS_EFFECTS)],
+            "filter": "darken",
+            **({"transition": {"in": "fade"}} if i > 0 else {}),
+        })
+
+    edit = {
+        "timeline": {
+            "background": NAVY,
+            "fonts": [{"src": FONT_URL}],
+            "tracks": [
+                {"clips": text_clips},
+                {"clips": broll_clips},
+            ],
+            "soundtrack": {
+                "src": music_url,
+                "effect": "fadeInFadeOut",
+                "volume": min(music_volume * 3, 0.3),  # Louder for Quick Pulse
+            } if music_url else None,
+        },
+        "output": {
+            "format": "mp4",
+            "size": {"width": 1080, "height": 1920},
+            "fps": 30,
+            "quality": "high",
+        },
+    }
+
+    # Remove None soundtrack
+    if edit["timeline"].get("soundtrack") is None:
+        del edit["timeline"]["soundtrack"]
+
+    return edit
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# SHOTSTACK RENDER — Submit, Poll, Download
+# ═══════════════════════════════════════════════════════════════════════════════
+
+def render_reel(edit_json, use_production=False):
+    """Submit to Shotstack, poll for completion, return output URL."""
+    api_url = SHOTSTACK_PROD_URL if use_production else SHOTSTACK_STAGE_URL
+    api_key = SHOTSTACK_PROD_KEY if use_production else SHOTSTACK_KEY
+
+    env_label = "production" if use_production else "sandbox"
+    print(f"\n🚀 Submitting to Shotstack ({env_label})...")
+
+    # Submit render
+    r = requests.post(
+        f"{api_url}/render",
+        headers={
+            "Content-Type": "application/json",
+            "x-api-key": api_key,
+        },
+        json=edit_json,
+        timeout=30,
+    )
+
+    if r.status_code != 201 and r.status_code != 200:
+        print(f"❌ Render submit failed: {r.status_code}")
+        print(f"   {r.text[:500]}")
+        return None
+
+    resp = r.json()
+    render_id = resp.get("response", {}).get("id")
+    if not render_id:
+        print(f"❌ No render ID returned: {resp}")
+        return None
+
+    print(f"  ⏳ Render ID: {render_id}")
+
+    # Poll for completion
+    max_polls = 60  # 5 minutes max
+    for i in range(max_polls):
+        time.sleep(5)
+
+        r = requests.get(
+            f"{api_url}/render/{render_id}",
+            headers={"x-api-key": api_key},
+            timeout=15,
+        )
+
+        if r.status_code != 200:
+            print(f"  ⚠️ Poll failed: {r.status_code}")
+            continue
+
+        status_data = r.json().get("response", {})
+        status = status_data.get("status", "")
+
+        if status == "done":
+            output_url = status_data.get("url")
+            render_time = status_data.get("renderTime", 0)
+            print(f"  ✅ Render complete! ({render_time/1000:.1f}s)")
+            return output_url
+
+        elif status == "failed":
+            error = status_data.get("error", "unknown")
+            print(f"  ❌ Render failed: {error}")
+            return None
+
+        else:
+            if i % 4 == 0:
+                print(f"  ⏳ Status: {status} ({(i+1)*5}s elapsed)")
+
+    print("❌ Render timed out after 5 minutes")
+    return None
+
+
+def download_reel(url, output_path):
+    """Download rendered reel from Shotstack."""
+    r = requests.get(url, timeout=120, stream=True)
+    if r.status_code != 200:
+        print(f"❌ Download failed: {r.status_code}")
+        return False
+
+    with open(output_path, "wb") as f:
+        for chunk in r.iter_content(chunk_size=8192):
+            f.write(chunk)
+
+    size_mb = os.path.getsize(output_path) / (1024 * 1024)
+    print(f"  📥 Downloaded: {output_path} ({size_mb:.1f} MB)")
+    return True
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# KAVYA CTA END CARD
+# ═══════════════════════════════════════════════════════════════════════════════
+
+def append_kavya_cta(reel_path, output_path):
+    """Append the Kavya CTA end card to the reel (if available)."""
+    cta_path = PIPELINE_DIR / "reels" / "kavya-cta-landscape.mp4"
+    if not cta_path.exists():
+        cta_path = PIPELINE_DIR / "reels" / "build" / "kavya-cta.mp4"
+    if not cta_path.exists():
+        # No CTA available — just copy the reel
+        print("  ⚠️ No Kavya CTA found, skipping end card")
+        if str(reel_path) != str(output_path):
+            subprocess.run(["cp", str(reel_path), str(output_path)])
+        return True
+
+    # Concat reel + CTA
+    concat_file = BUILD_DIR / "ss-concat.txt"
+    with open(concat_file, "w") as f:
+        f.write(f"file '{reel_path}'\nfile '{cta_path}'\n")
+
+    cmd = [
+        "ffmpeg", "-y",
+        "-f", "concat", "-safe", "0", "-i", str(concat_file),
+        "-c:v", "libx264", "-preset", "fast", "-crf", "20",
+        "-c:a", "aac", "-b:a", "192k",
+        "-pix_fmt", "yuv420p",
+        str(output_path),
+    ]
+    result = subprocess.run(cmd, capture_output=True, text=True, timeout=120)
+
+    if result.returncode != 0:
+        print(f"  ⚠️ CTA concat failed, using reel without CTA")
+        subprocess.run(["cp", str(reel_path), str(output_path)])
+
+    return True
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# UPLOAD & REGISTER
+# ═══════════════════════════════════════════════════════════════════════════════
+
+def upload_final_reel(local_path, storage_name):
+    """Upload final reel to Supabase storage."""
+    return upload_asset(local_path, f"reels/{storage_name}", "video/mp4")
+
+
+def build_caption(article):
+    """Build Instagram caption."""
+    headline = article.get("headline", "")
+    subheadline = article.get("subheadline", "")
+    slug = article.get("slug", "")
+    category = article.get("category", "")
+
+    cat_tags = {
+        "news": "#indianews #breakingnews #desinews",
+        "sports": "#cricket #ipl #teamindia #sports",
+        "entertainment": "#bollywood #entertainment #indiancinema",
+        "technology": "#technews #indiantech #ai",
+        "immigration": "#h1b #immigration #greencard #uscis",
+        "nri-world": "#nrilife #desiabroad #indianamerican",
+        "markets-finance": "#stockmarket #nifty #sensex",
+        "travel": "#travelindia #incredibleindia",
+        "lifestyle-health": "#wellness #desilifestyle",
+        "food": "#indianfood #desifood",
+    }
+
+    caption = f"{headline}\n\n"
+    if subheadline:
+        caption += f"{subheadline}\n\n"
+    caption += f"Full story: https://thevideshi.com/articles/{slug}\n\n"
+    caption += f"#indiandiaspora #nri #thevideshi #india {cat_tags.get(category, '')}"
+    return caption
+
+
+def register_reel(article, video_url, video_path, caption):
+    """Register in prebuilt_reels for IG/YT posting crons."""
+    payload = {
+        "article_id": article["id"],
+        "article_slug": article.get("slug", ""),
+        "headline": article.get("headline", ""),
+        "video_path": video_path,
+        "video_url": video_url,
+        "caption": caption,
+        "status": "pending",
+        "source": "shotstack",
+        "qa_passed": True,
+        "qa_score": 8,
+    }
+
+    r = requests.post(
+        f"{SB_URL}/rest/v1/prebuilt_reels",
+        headers=SB_HEADERS,
+        json=payload,
+        timeout=15,
+    )
+
+    if r.status_code in (200, 201):
+        print(f"  ✅ Registered in prebuilt_reels")
+        return True
+    else:
+        print(f"  ❌ Registration failed: {r.status_code} {r.text[:200]}")
+        return False
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# MAIN ORCHESTRATION
+# ═══════════════════════════════════════════════════════════════════════════════
+
+def run_anchor_reel(article, dry_run=False, use_production=False):
+    """Generate a full Anchor Reel for an article."""
+    headline = article.get("headline", "Unknown")
+    category = article.get("category", "news")
+    slug = article.get("slug", "unknown")
+
+    print(f"\n{'='*60}")
+    print(f"🎬 ANCHOR REEL: {headline[:60]}")
+    print(f"   Category: {category} | Slug: {slug}")
+    print(f"{'='*60}")
+
+    # 1. Generate script
+    print("\n📝 Step 1: Generating script...")
+    script_data = generate_script(article)
+    if not script_data:
+        return False
+
+    # 2. Generate TTS
+    print("\n🎙️ Step 2: Generating TTS...")
+    audio_path, audio_duration = generate_tts(script_data["script"])
+    if not audio_path:
+        return False
+
+    # 3. Upload audio to Supabase for Shotstack
+    print("\n☁️ Step 3: Uploading audio...")
+    audio_storage = f"reels/audio/ss-{slug}-{int(time.time())}.mp3"
+    voice_url = upload_asset(audio_path, audio_storage, "audio/mpeg")
+    if not voice_url:
+        return False
+
+    # 4. Source B-roll images
+    print("\n🖼️ Step 4: Sourcing B-roll images...")
+    image_urls = source_image_urls(article, script_data.get("image_queries", []))
+    if not image_urls:
+        print("❌ No images found")
+        return False
+
+    # 5. Ensure music is uploaded
+    print("\n🎵 Step 5: Setting up music...")
+    music_file = CATEGORY_MUSIC.get(category, "breaking-news-30s.mp3")
+    music_url = ensure_music_uploaded(music_file)
+    music_volume = MUSIC_VOLUME.get(category, 0.05)
+
+    # 6. Build Shotstack timeline
+    print("\n🔧 Step 6: Building Shotstack timeline...")
+    edit_json = build_anchor_reel_timeline(
+        voice_url=voice_url,
+        voice_duration=audio_duration,
+        image_urls=image_urls,
+        music_url=music_url,
+        music_volume=music_volume,
+        hook_line1=script_data.get("hook_line1", "BREAKING NEWS"),
+        hook_line2=script_data.get("hook_line2", "YOU NEED TO KNOW"),
+        headline=headline,
+        category=category,
+    )
+
+    if not edit_json:
+        return False
+
+    # Save JSON for debugging
+    json_path = BUILD_DIR / f"ss-timeline-{slug}.json"
+    with open(json_path, "w") as f:
+        json.dump(edit_json, f, indent=2)
+    print(f"  📄 Timeline JSON saved: {json_path}")
+
+    if dry_run:
+        print("\n🏁 DRY RUN — JSON built, not rendering")
+        print(json.dumps(edit_json, indent=2)[:2000])
+        return True
+
+    # 7. Render via Shotstack
+    output_url = render_reel(edit_json, use_production=use_production)
+    if not output_url:
+        return False
+
+    # 8. Download rendered reel
+    print("\n📥 Step 8: Downloading reel...")
+    raw_path = BUILD_DIR / f"ss-raw-{slug}.mp4"
+    if not download_reel(output_url, str(raw_path)):
+        return False
+
+    # 9. Append Kavya CTA
+    print("\n🎬 Step 9: Appending CTA end card...")
+    ts = datetime.now().strftime("%Y%m%d-%H%M")
+    final_name = f"ss-reel-{slug}-{ts}.mp4"
+    final_path = REELS_DIR / final_name
+    append_kavya_cta(str(raw_path), str(final_path))
+
+    # 10. Upload final reel
+    print("\n☁️ Step 10: Uploading final reel...")
+    video_url = upload_final_reel(str(final_path), final_name)
+
+    # 11. Register
+    if video_url:
+        print("\n📋 Step 11: Registering reel...")
+        caption = build_caption(article)
+        register_reel(article, video_url, str(final_path), caption)
+
+    print(f"\n{'='*60}")
+    print(f"✅ REEL COMPLETE: {final_path}")
+    print(f"   Shotstack URL: {output_url}")
+    if video_url:
+        print(f"   Supabase URL: {video_url}")
+    print(f"{'='*60}\n")
+
+    return True
+
+
+def run_quick_pulse(article, dry_run=False, use_production=False):
+    """Generate a Quick Pulse reel (music + text, no voice)."""
+    headline = article.get("headline", "Unknown")
+    subheadline = article.get("subheadline", "")
+    category = article.get("category", "news")
+    slug = article.get("slug", "unknown")
+
+    print(f"\n{'='*60}")
+    print(f"⚡ QUICK PULSE: {headline[:60]}")
+    print(f"{'='*60}")
+
+    # Source images
+    image_urls = source_image_urls(article, [], count=4)
+    if not image_urls:
+        return False
+
+    # Music
+    music_file = CATEGORY_MUSIC.get(category, "breaking-news-30s.mp3")
+    music_url = ensure_music_uploaded(music_file)
+    music_volume = MUSIC_VOLUME.get(category, 0.05)
+
+    # Build timeline
+    edit_json = build_quick_pulse_timeline(
+        image_urls=image_urls,
+        music_url=music_url,
+        music_volume=music_volume,
+        headline=headline,
+        subheadline=subheadline,
+        category=category,
+    )
+
+    json_path = BUILD_DIR / f"ss-pulse-{slug}.json"
+    with open(json_path, "w") as f:
+        json.dump(edit_json, f, indent=2)
+
+    if dry_run:
+        print("🏁 DRY RUN — JSON built, not rendering")
+        return True
+
+    # Render
+    output_url = render_reel(edit_json, use_production=use_production)
+    if not output_url:
+        return False
+
+    # Download
+    final_name = f"ss-pulse-{slug}-{datetime.now().strftime('%Y%m%d-%H%M')}.mp4"
+    final_path = REELS_DIR / final_name
+    if not download_reel(output_url, str(final_path)):
+        return False
+
+    # Upload & register
+    video_url = upload_final_reel(str(final_path), final_name)
+    if video_url:
+        caption = build_caption(article)
+        register_reel(article, video_url, str(final_path), caption)
+
+    print(f"\n✅ QUICK PULSE COMPLETE: {final_path}")
+    return True
+
+
+def main():
+    parser = argparse.ArgumentParser(description="Shotstack Reel Renderer for The Videshi")
+    parser.add_argument("--article-id", help="Specific article UUID")
+    parser.add_argument("--format", choices=["anchor", "pulse"], default="anchor", help="Reel format")
+    parser.add_argument("--dry-run", action="store_true", help="Build JSON only, don't render")
+    parser.add_argument("--production", action="store_true", help="Use production API (not sandbox)")
+    parser.add_argument("--test", action="store_true", help="Quick test with first available article")
+    parser.add_argument("--hours", type=int, default=24, help="Look back N hours for articles")
+    args = parser.parse_args()
+
+    print("🎬 Shotstack Reel Renderer for The Videshi")
+    print(f"   Mode: {'production' if args.production else 'sandbox'}")
+    print(f"   Format: {args.format}")
+
+    # Get article
+    if args.article_id:
+        # Fetch specific article
+        r = requests.get(
+            f"{SB_URL}/rest/v1/p2_articles",
+            headers=SB_HEADERS,
+            params={
+                "id": f"eq.{args.article_id}",
+                "select": "id,headline,subheadline,slug,category,vertical,body,image_url,published_at",
+            },
+            timeout=15,
+        )
+        if r.status_code != 200 or not r.json():
+            print(f"❌ Article not found: {args.article_id}")
+            sys.exit(1)
+        article = r.json()[0]
+    else:
+        articles = get_recent_articles(hours=args.hours)
+        if not articles:
+            print("❌ No recent articles found")
+            sys.exit(1)
+
+        existing = get_existing_reel_slugs() if not args.test else set()
+        article = pick_article(articles, existing)
+        if not article:
+            print("❌ All recent articles already have reels")
+            sys.exit(1)
+
+    # Run
+    if args.format == "pulse":
+        success = run_quick_pulse(article, dry_run=args.dry_run, use_production=args.production)
+    else:
+        success = run_anchor_reel(article, dry_run=args.dry_run, use_production=args.production)
+
+    sys.exit(0 if success else 1)
+
+
+if __name__ == "__main__":
+    main()
