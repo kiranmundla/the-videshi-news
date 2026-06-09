@@ -1,15 +1,87 @@
 {
-  "timestamp": "2026-06-09T01:16:07.579500+00:00",
+  "timestamp": "2026-06-09T01:45:22.059679+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 0,
-    "flag": 2,
+    "pass": 4,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
-  "revisions": 2,
+  "revisions": 0,
   "unpublished": 0,
   "articles": [
+    {
+      "id": "f0386680-a9f3-485b-a763-5b256779ddf4",
+      "headline": "The World Cup Starts on Wednesday. For NRIs, It Is in Their Backyard for the First Time.",
+      "slug": "fifa-world-cup-2026-nri-viewer-guide-us-canada-mexico-schedule-broadcast-nri",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 5,
+          "issue": "The image of MetLife Stadium is relevant to the article's content about the World Cup, but it does not directly match the headline's focus on NRIs and their experience."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the World Cup to the NRI experience, highlighting attendance opportunities and Indian connections."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that more directly represents the NRI experience at the World Cup.",
+          "Add more personal anecdotes or quotes from NRIs to enhance the connection to the diaspora."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "25adc161-fd7b-4d86-916c-07bb616f5116",
+      "headline": "Bumrah Was Rested for Ireland and England. He Was Not Rested for the Asian Games.",
+      "slug": "bumrah-rested-ireland-england-not-asian-games-india-full-strength-squad-japan-2026-nri",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the Asian Games cricket event to the Indian diaspora in Japan, highlighting the opportunity for NRIs to watch Bumrah play."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more details about the significance of the Asian Games for the Indian cricket team and its history.",
+          "Include quotes from players or selectors to enhance the narrative and provide more depth."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
     {
       "id": "63ab7d03-e88e-4de8-b897-10a7fd5e8044",
       "headline": "Kangana Ranaut Delivered a Baby While Terrorists Walked the Halls. This Is the 26/11 Story Nobody Told.",
@@ -21,41 +93,28 @@
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/p/DZPnBeSAorz/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post does not appear to be directly related to the main subject of the article, which focuses on the film and the story of the nurse during the 26/11 attacks."
-          },
-          {
-            "url": "https://youtube.com/watch?v=8n7bXkykd60",
-            "problem": "irrelevant",
-            "explanation": "The YouTube link is not directly relevant to the article's focus on the film and the nurse's story."
-          }
-        ],
+        "embed_issues": [],
         "image_match": {
-          "score": 5,
-          "issue": "The image of Kangana Ranaut does not directly relate to the specific subject of the article, which is about a nurse during the 26/11 attacks."
+          "score": 7,
+          "issue": "The image of Kangana Ranaut does not directly relate to the article's focus on the nurse and the 26/11 incident."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects the story to the diaspora experience, highlighting the emotional impact of the 26/11 attacks on NRIs."
+          "note": "The article effectively connects the 26/11 incident to the NRI experience, highlighting emotional resonance and the significance of the story for the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant Instagram and YouTube links with embeds that are more directly related to the film or the nurse's story.",
-          "Consider using a more relevant image that reflects the theme of the article, such as a still from the film or a representation of the hospital."
+          "Consider using an image that directly relates to the story of Anjali Kulthe or the hospital setting to enhance relevance.",
+          "Add more context about Kangana Ranaut's role in the film and her connection to the narrative to strengthen the article."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DZPnBeSAorz/",
-        "Removed irrelevant embed: https://youtube.com/watch?v=8n7bXkykd60",
-        "Revised by gpt-4o-mini (619\u2192657 words)"
+        "promoted to published"
       ],
-      "revised": true,
+      "revised": false,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
     },
@@ -64,51 +123,34 @@
       "headline": "Manoj Bajpayee Is Playing the Man Who Saved India From Bankruptcy. The Tickets Cost What They Did in 1990.",
       "slug": "governor-manoj-bajpayee-rbi-1990-crisis-ticket-pricing-june-12-nri-20260609",
       "pre_checks": {
-        "duplicate_embeds": [
-          "https://www.instagram.com/p/DZNf8z3j2oR/"
-        ],
+        "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/p/DZNf8z3j2oR/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post does not appear to be directly related to the film 'Governor' or its themes, making it irrelevant to the article."
-          },
-          {
-            "url": "https://youtube.com/watch?v=Mvm0bRY0Qyg",
-            "problem": "duplicate",
-            "explanation": "The YouTube link to the trailer is mentioned in the body and should not be repeated."
-          }
-        ],
+        "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image of Manoj Bajpayee is relevant to the article, but it lacks a direct connection to the specific film 'Governor' as it does not depict a scene or promotional material from the movie."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects the film's themes to the experiences of the Indian diaspora, highlighting the impact of the 1991 liberalization on NRIs."
+          "note": "The article effectively connects the film's themes to the experiences of NRIs, highlighting the impact of India's economic liberalization on the diaspora."
         },
         "factual_flags": [],
-        "duplicate_embeds": [
-          "https://youtube.com/watch?v=Mvm0bRY0Qyg"
-        ],
+        "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant Instagram link with a more relevant social media post related to the film.",
-          "Ensure that the YouTube trailer link is only included once in the article."
+          "Consider adding more direct quotes from the film or its creators to enhance engagement.",
+          "Include a brief overview of the film's reception or critical expectations to provide context."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
-        "Removed duplicate embed(s)",
-        "Removed irrelevant embed: https://www.instagram.com/p/DZNf8z3j2oR/",
-        "Revised by gpt-4o-mini (662\u2192688 words)"
+        "promoted to published"
       ],
-      "revised": true,
+      "revised": false,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
     }
