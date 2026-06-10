@@ -1,232 +1,227 @@
 #!/usr/bin/env python3
-"""News writer for The Videshi — June 6, 2026 evening run."""
+"""News writer run - June 10, 2026 evening cycle"""
 
 import json
 import os
-import subprocess
-import sys
+import requests
 from datetime import datetime, timezone
 
-# Load Supabase creds
-env_path = os.path.expanduser("~/.env.supabase")
-with open(env_path) as f:
-    for line in f:
-        line = line.strip()
-        if line and not line.startswith("#") and "=" in line:
-            key, _, val = line.partition("=")
-            val = val.strip().strip('"').strip("'")
-            os.environ[key.strip()] = val
+# Load Supabase credentials
+env_lines = open(os.path.expanduser("~/.env.supabase")).readlines()
+env = {}
+for line in env_lines:
+    line = line.strip()
+    if line and not line.startswith("#") and "=" in line:
+        k, v = line.split("=", 1)
+        env[k.strip()] = v.strip().strip('"').strip("'")
 
-SUPABASE_URL = os.environ["SUPABASE_URL"]
-SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
+SUPABASE_URL = env.get("SUPABASE_URL", "")
+SUPABASE_KEY = env.get("SUPABASE_SERVICE_ROLE_KEY", "")
 
-def insert_article(article):
-    """Insert a single article into Supabase."""
-    payload = json.dumps(article)
-    result = subprocess.run(
-        [
-            "curl", "-sS", "-w", "\n%{http_code}",
-            f"{SUPABASE_URL}/rest/v1/p2_articles",
-            "-H", f"apikey: {SUPABASE_KEY}",
-            "-H", f"Authorization: Bearer {SUPABASE_KEY}",
-            "-H", "Content-Type: application/json",
-            "-H", "Prefer: return=representation",
-            "-d", payload,
-        ],
-        capture_output=True, text=True, timeout=30
-    )
-    output = result.stdout.strip()
-    lines = output.split("\n")
-    http_code = lines[-1] if lines else "000"
-    body = "\n".join(lines[:-1])
-    print(f"  → HTTP {http_code} for '{article['headline'][:60]}...'")
-    if http_code.startswith("2"):
-        print(f"  ✓ Published: {article['slug']}")
-        return True
-    else:
-        print(f"  ✗ FAILED: {body[:300]}")
-        return False
+HEADERS = {
+    "apikey": SUPABASE_KEY,
+    "Authorization": f"Bearer {SUPABASE_KEY}",
+    "Content-Type": "application/json",
+    "Prefer": "return=representation",
+}
 
-now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+now_utc = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
 articles = []
 
-# ── ARTICLE 1: India E85 Ethanol Launch ─────────────────────────────
-
+# ============================================================
+# ARTICLE 1: H-1B $100,000 Fee Struck Down
+# ============================================================
 articles.append({
-    "headline": "India Launches E85 Fuel at ₹20 Below Petrol. The Flex-Fuel Era Has Begun.",
-    "subheadline": "The oil minister unveiled 85-percent-ethanol fuel on World Environment Day, with Maruti Suzuki, Hero MotoCorp and Toyota already rolling out compatible vehicles. The timing, with crude above $100 and the Strait of Hormuz partially closed, is not accidental.",
-    "slug": "india-launches-e85-ethanol-fuel-flex-vehicles-puri-world-environment-day-20260606",
+    "headline": "A Federal Judge Just Killed Trump's $100,000 H-1B Fee. The Administration Says It Will Appeal.",
+    "subheadline": "The ruling by US District Judge Leo Sorokin in Massachusetts is the most significant legal setback yet for the administration's campaign to restrict skilled immigration. Indian professionals, who hold roughly 72% of all H-1B visas, stand to benefit the most.",
+    "slug": "federal-judge-strikes-down-trump-100000-h1b-visa-fee-sorokin-massachusetts-indian-workers-20260610",
     "category": "news",
-    "vertical": "news",
-    "status": "published",
+    "status": "review",
     "is_editorial": False,
-    "published_at": now,
-    "image_url": "https://upload.wikimedia.org/wikipedia/commons/4/4d/Hardeep_Singh_Puri_with_PM_Modi_%28cropped%29.jpg",
-    "image_caption": "Union Petroleum Minister Hardeep Singh Puri, who launched E85 fuel in New Delhi",
+    "published_at": now_utc,
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/a/aa/Leo_Sorokin_%28cropped%29.jpg",
+    "image_caption": "US District Judge Leo Sorokin, who ruled the $100,000 H-1B fee was an unlawful tax",
     "image_attribution": "Wikimedia Commons",
     "sources": json.dumps([
         {"name": "Reuters", "url": "https://www.reuters.com"},
-        {"name": "Outlook Business", "url": "https://www.outlookbusiness.com"},
-        {"name": "Livemint", "url": "https://www.livemint.com"},
-        {"name": "ChiniMandi", "url": "https://www.chinimandi.com"}
+        {"name": "Bloomberg Law", "url": "https://news.bloomberglaw.com"},
+        {"name": "People Matters", "url": "https://www.peoplematters.in"},
+        {"name": "Connected to India", "url": "https://www.connectedtoindia.com"}
     ]),
-    "body": """India on Friday launched E85 fuel — gasoline blended with 85 percent ethanol — at a price roughly ₹20 per litre below conventional petrol, in what the government is calling the opening chapter of the country's flex-fuel era. Union Petroleum and Natural Gas Minister Hardeep Singh Puri unveiled the fuel at an IndianOil retail outlet in New Delhi on World Environment Day, flanked by executives from automakers that have already begun delivering E85-compatible vehicles to showrooms.
+    "body": """The most expensive barrier to hiring foreign tech workers in the United States lasted nine months. On Monday, a federal judge in Massachusetts struck it down.
 
-The rollout began at 48 public-sector fuel stations nationwide, with plans to expand to 500 outlets by December 2026 and approximately 5,000 by the end of 2027. E85 contains between 80 and 85 percent ethanol blended with conventional petrol, and can only be used in flex-fuel vehicles — cars and two-wheelers engineered to run on ethanol concentrations ranging from E20 to E100.
+US District Judge Leo Sorokin ruled that the **$100,000 fee** President Donald Trump imposed on new H-1B visa applications last September was an unlawful tax that exceeded the executive branch's authority. The government said it would appeal.
 
-## Context and Background
+The decision lands like a thunderclap across the American technology sector — and nowhere louder than in Indian households that depend on the H-1B programme for their livelihoods. Indian nationals account for roughly **72% of all H-1B visas issued**, and tens of thousands of engineers, researchers, doctors, and data scientists from India enter the US workforce through the programme every year.
 
-The timing of the launch is difficult to separate from the geopolitical crisis in the Persian Gulf. With the Strait of Hormuz partially blocked since the start of the Iran war in February, crude oil prices have climbed above $100 a barrel and India's annual oil import bill — already the third largest in the world — has swelled further. India imports roughly 88.5 percent of its crude, a dependency that every disruption in West Asia converts into a direct fiscal and inflationary hit.
+## What the Fee Was Designed to Do
 
-Against that backdrop, ethanol offers a domestically produced alternative that does not require a single barrel to cross the strait. India achieved its target of 20 percent ethanol blending in petrol in 2025, five years ahead of schedule. Since 2014, blending has risen from 1.53 percent to 20 percent, saving the country more than ₹1.84 lakh crore in foreign exchange and reducing crude oil imports by nearly 302 lakh metric tonnes, according to the petroleum ministry.
+The Trump administration introduced the one-time $100,000 charge through a presidential proclamation in September 2025. Before the policy, employers generally paid between $2,000 and $5,000 in government filing fees depending on the petition category.
 
-## Current Developments
+The administration argued that the fee would discourage abuse of the H-1B programme and protect American workers from foreign competition. In his proclamation, Trump contended that "abuses of the H-1B program present a national security threat by discouraging Americans from pursuing careers in science and technology."
 
-Three automakers are already in the market with E85-compatible models. Maruti Suzuki has released a flex-fuel variant of its best-selling WagonR. Hero MotoCorp has launched flex-fuel versions of its Splendor and HF Deluxe motorcycles — significant given that India's two-wheeler fleet exceeds 30 crore vehicles. Toyota showcased a flex-fuel Innova at the Delhi launch event.
+Critics in the technology industry called it a de facto ban. At $100,000 per petition, sponsoring a mid-level software engineer from Hyderabad or Pune would cost more than many of those engineers would earn in their first year.
 
-Puri sought to address consumer anxiety immediately. After the E85 launch, motorists flooded social media with questions about whether their existing E20-compatible vehicles would become obsolete. The petroleum ministry issued a formal clarification: E85 is an entirely separate fuel category, dispensed only through dedicated pumps with distinct signage. Existing E20 and standard petrol vehicles will continue to be manufactured and fuelled as before.
+## Why the Court Said No
 
-"E85 should not be confused with E20 fuel," Puri said in a video response on social media. "The introduction of E85 does not mean the end of E20 or petrol vehicles."
+A coalition of **20 Democratic state attorneys general**, led by California, challenged the measure. They argued that the president had effectively created a new tax without congressional approval.
 
-## Diaspora Impact
+Judge Sorokin agreed. In his ruling, he wrote that the "substance and application" of the payment demonstrated that it functioned as a tax — regardless of how the administration labelled it. Under US law, only Congress has the power to impose taxes.
 
-For the Indian diaspora, the E85 push carries echoes of a familiar playbook. Flex-fuel vehicles have been mainstream in Brazil and increasingly common in the United States, where E85 is widely available at gas stations across the Midwest. NRIs in those markets already understand the trade-offs — lower fuel cost per litre offset by slightly reduced fuel efficiency due to ethanol's lower calorific value.
+The court also found that neither the State Department nor US Citizenship and Immigration Services had the legal authority to implement such a charge unilaterally.
 
-The more consequential signal is macroeconomic. Each percentage point of additional ethanol blending reduces India's oil import bill and, by extension, the current account deficit that has historically pressured the rupee. A weaker rupee directly erodes the purchasing power of remittances, which totalled $129 billion in 2025 — the largest flow for any country.
+## The Diaspora Reacts
 
-The government has also framed E85 as a farmer income programme. Ethanol in India is produced from sugarcane, agricultural waste, grains, bamboo and seaweed. The ministry estimates that if 50 percent of newly sold vehicles become flex-fuel compatible, it could generate demand for over 311 crore litres of additional ethanol and channel nearly ₹12,403 crore in extra income to Indian farmers.
+Indian diaspora organisations in the US welcomed the decision, though with a note of caution.
 
-## What's Next
+"All stakeholders connected with H-1B visas will heave a sigh of relief after the court order, but one wonders if this is truly the end of the matter," said **Sanjeev Joshipura**, Executive Director of Indiaspora. He warned that the administration could still create procedural hurdles for H-1B holders that would not run afoul of the law.
 
-The government plans to raise India's overall ethanol blending level to nearly 26 percent by 2030–31. Achieving that will require not just consumer adoption of flex-fuel vehicles, but a parallel buildout of ethanol production capacity, which has already expanded nearly fivefold to approximately 2,000 crore litres. The petroleum ministry is also working on a programme to boost compressed biogas production, opening a second front in India's biofuel strategy.
+**Khanderao Kand**, Chief of Policy and Strategy at the Foundation for India and Indian Diaspora Studies, called the ruling essential for preserving American competitiveness. "Access to highly skilled global talent remains essential for the continued growth of the US's technology, healthcare, and advanced manufacturing sectors," he said.
 
-Whether E85 remains a niche curiosity or becomes a genuine mass-market fuel will depend on how quickly the vehicle ecosystem scales. For now, the government is betting that $100 crude oil and a ₹20-per-litre discount will do the persuading."""
+## The Landscape Has Already Changed
+
+Even with the $100,000 fee gone, the H-1B system is not what it was. The Department of Homeland Security has already scrapped the old random lottery in favour of a **salary-based selection model** that prioritises higher-paid applicants. Companies that file multiple petitions for the same person now face fraud charges.
+
+The fee reversal removes a financial sledgehammer, but the broader direction of US immigration policy — making it harder, slower, and more expensive for skilled workers to enter the country — remains firmly in place. For the roughly 700,000 Indian nationals in the decades-long green card backlog, Monday's ruling changes little about the wait ahead.
+
+What it does change is the immediate math for employers deciding whether to hire abroad at all. And for Indian professionals waiting on their next petition, the $100,000 question just got a $100,000 answer."""
 })
 
-# ── ARTICLE 2: Hegseth Calls India "Critical Anchor" ────────────────
-
+# ============================================================
+# ARTICLE 2: India Rejects US Section 301 Overcapacity Charges
+# ============================================================
 articles.append({
-    "headline": "The Pentagon Just Called India a 'Critical Anchor.' Then It Offered to Co-Produce Javelin Missiles.",
-    "subheadline": "At the Shangri-La Dialogue in Singapore, US Secretary of Defense Pete Hegseth described India as essential to Indo-Pacific stability and confirmed joint production of Javelin anti-tank guided munitions — a level of defence-industrial integration Washington has reserved for its closest allies.",
-    "slug": "hegseth-india-critical-anchor-javelin-co-production-shangri-la-2026-20260606",
+    "headline": "India Fires Back at Washington: 'We Don't Have Overcapacity in Anything.'",
+    "subheadline": "India's top trade official rejected US allegations of surplus manufacturing capacity in textiles and steel, calling them a new narrative outside WTO rules. The pushback comes as both sides race toward a trade deal before Section 301 tariffs kick in.",
+    "slug": "india-rejects-us-section-301-overcapacity-textiles-steel-trade-deal-20260610",
     "category": "news",
-    "vertical": "news",
-    "status": "published",
+    "status": "review",
     "is_editorial": False,
-    "published_at": now,
-    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Pete_Hegseth_Official_Portrait.jpg/3840px-Pete_Hegseth_Official_Portrait.jpg",
-    "image_caption": "US Secretary of Defense Pete Hegseth at the Shangri-La Dialogue in Singapore",
+    "published_at": now_utc,
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Textile_manufacturing_in_Meerut%2C_India.jpg/1280px-Textile_manufacturing_in_Meerut%2C_India.jpg",
+    "image_caption": "Textile manufacturing in Meerut, India — the sector at the centre of the US-India trade dispute",
     "image_attribution": "Wikimedia Commons",
     "sources": json.dumps([
-        {"name": "The Indian Eye", "url": "https://www.theindianeye.com"},
-        {"name": "US Department of War", "url": "https://www.war.gov"},
-        {"name": "Defence Connect Australia", "url": "https://www.defenceconnect.com.au"},
-        {"name": "Pacific Forum", "url": "https://www.pacforum.org"}
+        {"name": "Reuters", "url": "https://www.reuters.com"},
+        {"name": "The Hindu BusinessLine", "url": "https://www.thehindubusinessline.com"}
     ]),
-    "body": """US Secretary of Defense Pete Hegseth on Saturday elevated India's role in American Indo-Pacific strategy to its most explicit public framing yet, calling the country a "critical anchor" for regional stability and confirming that Washington and New Delhi have committed to jointly producing Javelin anti-tank guided munitions.
+    "body": """India does not have surplus manufacturing capacity in textiles or steel, no matter what Washington says. That was the message from **Amitabh Kumar**, India's additional trade secretary and Director General of Trade Remedies, who pushed back on Wednesday against allegations at the heart of a US trade investigation that could trigger punishing new tariffs.
 
-Speaking on the second day of the Shangri-La Dialogue in Singapore — Asia's premier defence summit — Hegseth placed India alongside traditional US treaty allies in a speech that outlined the Trump administration's vision for deterring China and managing the ongoing Iran conflict simultaneously.
+"Overcapacity is a country's perspective," Kumar told reporters. "We don't think we have overcapacity in anything."
 
-## Context and Background
+The rebuttal is India's most pointed public response yet to a **Section 301 investigation** launched by the Office of the US Trade Representative in March. The probe targets India alongside 15 other countries over policies Washington says allow factories to keep producing beyond what market conditions support — from solar modules and petrochemicals to steel and textiles.
 
-"In South Asia, India is a critical anchor to hold the line," Hegseth said. "A powerful India acting in its own self-interest advances our shared goal of maintaining a balance of power across the region."
+## The Core Argument
 
-The language represents a deliberate escalation in diplomatic signalling. Previous administrations have described India as a "strategic partner" or a "net security provider." The term "critical anchor" places India in a structural category — not just a partner to consult, but a load-bearing element of the regional security architecture. Coming from a Pentagon chief who struggled to name ASEAN members during his confirmation hearing earlier this year, the specificity was striking.
+Washington points to India's $42 billion goods trade surplus with the United States in 2025 as evidence of structural overcapacity. India says that number ignores a basic fact: its 1.4 billion people consume far less per capita than almost any major economy.
 
-Hegseth went further, praising India's military modernisation in terms typically reserved for formal allies. "India is modernising its military to carry its share of the security burden, particularly in the Indian Ocean," he said. "It's building out the heavy industrial and logistics capacity to sustain high-end military operations, including the ability to repair and maintain our shared platforms and support US Navy vessels operating forward in the theatre."
+Kumar's argument was blunt and specific. India's per capita consumption of textile products, particularly man-made fibre and technical textiles, is "abysmal." The country is a net importer of man-made fibres, not a dumper.
 
-## Current Developments
+"This country has a hot climate, tropical climate. We wear cotton," Kumar said. "How do we have overcapacity?"
 
-The most consequential line in Hegseth's address was the Javelin announcement. "We've also committed to pursuing co-production with India to advance capabilities like Javelin anti-tank guided munitions," he said. "Real, tangible steps to improve the collective readiness of our forces."
+On steel, the logic was the same. India may be the world's second-largest producer, but its per capita steel consumption is among the lowest globally. The country's output reflects its development needs — roads, bridges, railways, housing — not excess production aimed at flooding foreign markets.
 
-Javelin missiles are made by a Lockheed Martin–Raytheon joint venture and have been among the most closely guarded weapons systems in the US arsenal. Co-production — as distinct from simple procurement — involves transferring manufacturing know-how and establishing production lines on Indian soil. Until recently, this level of defence-industrial integration was reserved for a small circle: the United Kingdom, Australia, Japan and a handful of NATO allies.
+## What Washington Really Wants
 
-Hegseth also disclosed that the US and India held their first-ever joint industry-government experts exchange last month to develop autonomous systems under the newly established US-India Autonomous Systems Industry Alliance. "This kind of industrial muscle isn't just a long-term goal, it's an immediate operational imperative," he said.
+Trade analysts say the overcapacity allegations are leverage, not the endgame. Washington is using the threat of Section 301 tariffs to press India on three fronts: opening its agricultural markets, purchasing more American energy and defence products, and reducing barriers to US goods.
 
-The remarks came alongside Defence Secretary Rajesh Kumar Singh's 10 bilateral meetings on the Shangri-La sidelines — with counterparts from the US, Australia, Japan, South Korea, France, the United Kingdom, Canada, NATO, and several ASEAN nations — underscoring India's emergence as the most sought-after interlocutor at the summit.
+The United States has also proposed an additional 12.5% tariff on imports from India and several other countries over allegations of forced labour — charges India has flatly rejected.
 
-## Diaspora Impact
+Meanwhile, India is pushing for a bilateral trade deal that would include preferential tariffs compared to competitors like China and Vietnam. Trade Minister **Piyush Goyal** said last week that the first tranche of an agreement could be concluded by mid-July.
 
-For the more than five million Indian Americans in the United States, the deepening US-India defence relationship carries both strategic and economic implications. Defence co-production agreements typically spawn supply chains that run through both countries, creating engineering and manufacturing opportunities in American cities with large Indian diaspora populations.
+## Why NRIs Should Care
 
-The Javelin co-production specifically opens a corridor for Indian defence firms — and the diaspora professionals who work across both ecosystems — to participate in the highest-value segment of the bilateral relationship. Several Indian-American entrepreneurs are already involved in the US-India Autonomous Systems Industry Alliance announced by Hegseth.
+For the Indian diaspora in the United States, the trade friction hits multiple pressure points at once. A trade war would raise prices on Indian-made goods Americans buy — from generic pharmaceuticals and cotton garments to auto parts and IT services. It could also complicate the broader diplomatic relationship at a moment when Modi and Trump are expected to meet at the G7 summit in France next week, with H-1B visas and energy cooperation on the agenda.
 
-## What's Next
+India's formal submission to the USTR has already rejected the allegations, stating that Washington provided no "cogent rationale or prima facie evidence" to support its claims. Kumar added that overcapacity is a concept that does not exist in any trade remedial law under the WTO framework.
 
-The framework for deeper integration is moving fast. Earlier this week, India and the US agreed to sign a 10-year Defence Framework — the first formal agreement of its kind, replacing the ad-hoc renewal of shorter-term memoranda. Separately, the Pentagon confirmed that discussions are underway for India to co-produce and repair US military platforms, including possibly servicing US Navy vessels at Indian shipyards.
+"It is a new narrative," he said.
 
-Whether the "critical anchor" framing survives beyond rhetoric will depend on execution. The Javelin co-production timeline, the autonomous systems alliance's first deliverables, and the 10-year framework's binding provisions will determine whether Saturday's speech was a diplomatic gesture or a structural shift. For now, Washington is making its bet in public."""
+New narrative or not, the tariff clock is ticking. And the gap between what Washington demands and what New Delhi is willing to concede will define the most consequential trade negotiation either country has entered in years."""
 })
 
-# ── ARTICLE 3: India-Australia Defence Ties ──────────────────────────
-
+# ============================================================
+# ARTICLE 3: India Bond Tax Exemption Draws Foreign Inflows
+# ============================================================
 articles.append({
-    "headline": "India and Australia Just Widened Their Defence Partnership. Maritime Security Is the Centrepiece.",
-    "subheadline": "Rajnath Singh and Australian counterpart Richard Marles agreed to expand cooperation in maritime security, cybersecurity and emerging technologies — a step Australia's government described by calling India a 'top-tier security partner.'",
-    "slug": "india-australia-defence-partnership-rajnath-marles-maritime-cyber-20260606",
+    "headline": "India Scrapped Taxes on Foreign Bond Investments. A Billion Dollars Showed Up in Three Days.",
+    "subheadline": "The government eliminated withholding and capital gains taxes on foreign holdings of government bonds, broadened market access, and incentivised NRI deposits — all in a single emergency package designed to stabilise the rupee and counter the oil shock.",
+    "slug": "india-scraps-bond-tax-foreign-investors-billion-dollar-inflows-rbi-rupee-oil-20260610",
     "category": "news",
-    "vertical": "news",
-    "status": "published",
+    "status": "review",
     "is_editorial": False,
-    "published_at": now,
-    "image_url": "https://upload.wikimedia.org/wikipedia/commons/6/63/2025_Rajnath_Singh_%28cropped%29.jpg",
-    "image_caption": "Indian Defence Minister Rajnath Singh, who met his Australian counterpart in New Delhi",
+    "published_at": now_utc,
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Tower_and_building_of_Reserve_Bank_of_India%2C_Mumbai_02.jpg/1280px-Tower_and_building_of_Reserve_Bank_of_India%2C_Mumbai_02.jpg",
+    "image_caption": "The Reserve Bank of India headquarters in Mumbai",
     "image_attribution": "Wikimedia Commons",
     "sources": json.dumps([
-        {"name": "The Indian Eye", "url": "https://www.theindianeye.com"},
-        {"name": "Ministry of Defence India", "url": "https://www.mod.gov.in"},
-        {"name": "Reuters", "url": "https://www.reuters.com"}
+        {"name": "Reuters", "url": "https://www.reuters.com"},
+        {"name": "State Street Investment Management", "url": "https://www.statestreet.com"}
     ]),
-    "body": """India and Australia have agreed to significantly broaden their defence partnership, adding maritime security, cybersecurity and emerging technologies to a relationship that Australia's government now describes with language it typically reserves for its closest Western allies: "top-tier security partner."
+    "body": """For years, India's government bond market was one of the hardest places in Asia for foreign investors to put money. The taxes were steep, the access was limited, and the paperwork was relentless.
 
-Defence Minister Rajnath Singh met his Australian counterpart, Deputy Prime Minister and Minister for Defence Richard Marles, in New Delhi this week for talks that produced a commitment to expand and diversify defence-industry collaboration. The Ministry of Defence said the two sides agreed to deepen cooperation across counter-terrorism, hydrographic security and joint innovation in critical and emerging technologies.
+Last Friday, policymakers tore most of those barriers down in a single afternoon. And the money started moving immediately.
 
-## Context and Background
+More than **$1 billion** worth of Indian government debt was bought by foreign investors in just three trading sessions after the announcement — matching the total foreign inflows into the market for the entire year before it. Yields on government bonds have already fallen 10 to 30 basis points across the curve, with shorter maturities seeing the biggest drops.
 
-The India-Australia defence relationship has evolved rapidly over the past five years, accelerated by the Quad framework and growing shared concern over China's military assertiveness in the Indo-Pacific. The two countries signed a Mutual Logistics Support Agreement in 2020, enabling their navies to use each other's bases for replenishment — a privilege that signals deep operational trust.
+## What Changed
 
-Joint exercises have expanded in scope and frequency. The Malabar naval exercise, which India conducts with the US, Japan and Australia, has grown into one of the Indo-Pacific's most complex multinational drills. Indian and Australian forces also participate in the bilateral AUSINDEX exercise and have begun interoperability trials across maritime, land and air domains.
+The package, rolled out by the government and the Reserve Bank of India in a coordinated response to the oil shock battering Indian assets, had three major components.
 
-But the relationship's structural limitation has been the absence of deep defence-industrial links. Unlike India's emerging co-production arrangements with the United States — including the newly announced Javelin missile co-production — the India-Australia defence trade has remained modest, dominated by small-scale procurements rather than joint manufacturing.
+First, the government **scrapped withholding and capital gains taxes** on foreign investments in government bonds. This was the single biggest deterrent for institutional investors, who had long complained that India's tax treatment made its bonds uncompetitive against peers like Indonesia and South Korea.
 
-## Current Developments
+Second, policymakers **broadened the pool of government securities** available to foreigners without investment limits. Previously, foreign participation was tightly capped, and many bonds were off-limits entirely.
 
-The New Delhi meeting appears designed to change that. Marles and Singh agreed to identify specific areas for defence-industry collaboration, moving beyond the logistics and exercise framework into the commercial spine of the relationship. The focus areas — cybersecurity, critical minerals, space and autonomous systems — are domains where Australia brings world-class capabilities and India brings scale and engineering depth.
+Third, the RBI introduced **concessional forex swap facilities** to encourage banks to raise foreign currency deposits from non-resident Indians and for companies to tap overseas borrowings. The move effectively eliminates forex hedging costs for lenders, lowering the cost of mobilising dollar liquidity.
 
-Australia is a global leader in mining and processing the critical minerals that underpin modern defence systems, from lithium for batteries to rare earths for precision-guided munitions. India's push to build a domestic semiconductor and defence-electronics ecosystem — underscored by the NITI Aayog semiconductor roadmap released this week — creates a natural complementarity.
+## Why Now
 
-"Both sides are now seeking to deepen interoperability across maritime, land and air domains," the Indian defence ministry said in a statement. The agreement also covers hydrographic security — the mapping and monitoring of undersea terrain — a domain of increasing strategic importance as submarine warfare and undersea cables become central to Indo-Pacific security planning.
+The timing is not subtle. India's external balance sheet has been under siege since the Iran war began in February. Brent crude has been trading near $90 a barrel, with spikes above $98 during escalation cycles. The rupee has weakened to 95.26 per dollar. Foreign investors have pulled $29 billion out of Indian equities in 2026 alone.
 
-The maritime dimension is particularly significant. The Indian Ocean remains the most important waterway for both countries' trade and energy security. The Strait of Hormuz crisis has underlined how quickly a disruption in one chokepoint can cascade across the entire ocean. India's growing naval presence — including its third aircraft carrier programme and expanded submarine fleet — aligns with Australia's own investment in nuclear-powered submarines under the AUKUS framework.
+The government needed to find new sources of dollar inflows — fast. Bond markets, which were barely registering foreign interest, became the obvious target.
 
-## Diaspora Impact
+"We believe that these changes are a game-changer for debt flows," said **Jennifer Taylor**, head of emerging market debt at State Street Investment Management, which manages about $5.6 trillion in assets. She said the tax removal makes Indian government bonds more attractive on a relative basis and should boost foreign participation across the yield curve.
 
-The roughly 800,000 people of Indian origin in Australia form one of the country's fastest-growing diaspora communities and have become an informal bridge between the two countries' strategic establishments. Several Indian-Australian professionals work across both countries' defence research agencies, and the bilateral relationship increasingly draws on this human capital for technical and policy expertise.
+## The NRI Connection
 
-For NRIs in Australia, the deepening defence partnership also signals stability in the broader bilateral relationship, which has occasionally been strained by trade disputes and visa policy changes. A robust defence link creates structural incentives for both governments to manage other irritants constructively.
+The package includes specific sweeteners for the Indian diaspora. The concessional swap facility means banks can now offer higher rates on NRI dollar deposits without bearing the forex risk themselves. Several Indian banks are already offering NRI depositors up to 7% on dollar-denominated accounts, a rate competitive with US high-yield savings accounts but backed by state-owned lenders.
 
-The cooperation in critical minerals and space technology could also create career and investment pathways for diaspora professionals in both countries, as joint ventures in these sectors scale up.
+For NRIs who have been watching the rupee slide and wondering whether to park money in India, the calculus just shifted. Higher deposit rates, reduced tax friction on bond investments, and an RBI clearly willing to defend the currency all tilt the equation toward sending more remittances home.
 
-## What's Next
+## The Bigger Picture
 
-The next milestone will be the identification of specific defence co-production projects flowing from the New Delhi agreement. Both sides are expected to present a joint workplan at the next Australia-India 2+2 ministerial dialogue, which brings together the two countries' foreign and defence ministers.
+The bond-tax overhaul also strengthens India's case for inclusion in global bond indexes — a long-running ambition that could unlock tens of billions in passive inflows. India was added to the JPMorgan Government Bond Index-Emerging Markets last year, but full inclusion in other major indexes has been held back by exactly the kind of access and tax barriers that were just removed.
 
-The broader trajectory is clear: India and Australia are building a defence relationship that goes beyond diplomatic symbolism and joint exercises into the hard infrastructure of interoperability and industrial integration. Whether they can move at the speed the Indo-Pacific demands remains the open question."""
+BlackRock, the world's largest asset manager, said on Wednesday that India's market has been "over-punished" for lacking a direct AI play and for its oil import dependence. The firm called the country one of its "highest-conviction" medium- to long-term emerging market trades.
+
+Whether the bond inflows sustain depends largely on one variable no policymaker in Mumbai can control: the price of oil. If the Iran war escalates further and Brent pushes past $100, no tax incentive will be enough to offset the structural drag on India's current account. But for now, the money is moving in the right direction — and faster than anyone expected."""
 })
 
-# ── INSERT ALL ───────────────────────────────────────────────────────
+# ============================================================
+# INSERT INTO SUPABASE
+# ============================================================
+inserted = 0
+for article in articles:
+    print(f"\nInserting: {article['headline'][:70]}...")
+    
+    resp = requests.post(
+        f"{SUPABASE_URL}/rest/v1/p2_articles",
+        headers=HEADERS,
+        json=article,
+        timeout=30
+    )
+    
+    if resp.status_code in (200, 201):
+        data = resp.json()
+        if isinstance(data, list) and data:
+            print(f"  ✓ Inserted: id={data[0].get('id','?')}, slug={data[0].get('slug','?')}")
+            inserted += 1
+        else:
+            print(f"  ✓ Inserted (response: {str(data)[:100]})")
+            inserted += 1
+    else:
+        print(f"  ✗ FAILED ({resp.status_code}): {resp.text[:200]}")
 
-print(f"\n{'='*60}")
-print(f"Inserting {len(articles)} articles at {now}")
-print(f"{'='*60}\n")
-
-success = 0
-for i, article in enumerate(articles, 1):
-    print(f"\n[{i}/{len(articles)}] {article['headline'][:70]}...")
-    if insert_article(article):
-        success += 1
-
-print(f"\n{'='*60}")
-print(f"Done: {success}/{len(articles)} articles published successfully")
-print(f"{'='*60}")
+print(f"\n{'='*50}")
+print(f"Done. {inserted}/{len(articles)} articles inserted with status='review'.")

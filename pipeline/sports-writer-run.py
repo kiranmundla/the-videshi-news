@@ -1,169 +1,389 @@
 #!/usr/bin/env python3
-"""Sports writer for The Videshi - June 10, 2026 batch"""
+"""
+Sports writer for The Videshi — June 10, 2026 run.
+Produces 2 articles, sources images, uploads to Supabase.
+"""
 
-import json
-import os
-import uuid
-import requests
+import os, json, requests, uuid, re, time, subprocess
 from datetime import datetime, timezone
+from io import BytesIO
 
-# Load env
+# ---- env ----
 def load_env(path):
-    with open(os.path.expanduser(path)) as f:
+    if not os.path.exists(path):
+        return
+    with open(path) as f:
         for line in f:
             line = line.strip()
-            if line and not line.startswith('#') and '=' in line:
-                key, _, val = line.partition('=')
-                val = val.strip().strip('"').strip("'")
-                os.environ[key.strip()] = val
+            if not line or line.startswith('#'):
+                continue
+            if line.startswith('export '):
+                line = line[7:]
+            k, _, v = line.partition('=')
+            v = v.strip().strip('"').strip("'")
+            os.environ[k.strip()] = v
 
-load_env('~/.env.supabase')
+load_env(os.path.expanduser('~/.env.supabase'))
+load_env(os.path.expanduser('~/workspace/.env.pexels'))
 
 SUPABASE_URL = os.environ['SUPABASE_URL']
 SUPABASE_KEY = os.environ['SUPABASE_SERVICE_ROLE_KEY']
+PEXELS_KEY = os.environ.get('PEXELS_API_KEY', '')
 
 HEADERS = {
-    'apikey': SUPABASE_KEY,
-    'Authorization': f'Bearer {SUPABASE_KEY}',
-    'Content-Type': 'application/json',
-    'Prefer': 'return=representation'
+    "apikey": SUPABASE_KEY,
+    "Authorization": f"Bearer {SUPABASE_KEY}",
+    "Content-Type": "application/json",
+    "Prefer": "return=representation"
 }
 
+UA = {"User-Agent": "TheVideshi/1.0 (thevideshi.com)"}
+
+# ---- helpers ----
+
+def fetch_wikipedia_person_image(person_name):
+    encoded = person_name.replace(' ', '_')
+    try:
+        r = requests.get(
+            f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
+            headers=UA, timeout=10
+        )
+        if r.status_code == 200:
+            data = r.json()
+            img = data.get("originalimage", {}).get("source") or data.get("thumbnail", {}).get("source")
+            if img:
+                print(f"  ✓ Wikipedia image for '{person_name}': {img[:80]}...")
+                return img
+    except Exception as e:
+        print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
+    return None
+
+
+def fetch_wikimedia_commons_images(search_query, limit=5):
+    params = {
+        "action": "query",
+        "generator": "search",
+        "gsrsearch": search_query,
+        "gsrnamespace": "6",
+        "gsrlimit": str(limit),
+        "prop": "imageinfo",
+        "iiprop": "url|size|mime",
+        "iiurlwidth": "1200",
+        "format": "json"
+    }
+    try:
+        r = requests.get(
+            "https://commons.wikimedia.org/w/api.php",
+            params=params, headers=UA, timeout=15
+        )
+        if r.status_code == 200:
+            data = r.json()
+            pages = data.get("query", {}).get("pages", {})
+            results = []
+            for pid, page in pages.items():
+                ii = page.get("imageinfo", [{}])[0]
+                mime = ii.get("mime", "")
+                if not mime.startswith("image/") or mime == "image/svg+xml":
+                    continue
+                if ii.get("width", 0) < 300:
+                    continue
+                results.append({
+                    "url": ii.get("thumburl") or ii.get("url", ""),
+                    "original_url": ii.get("url", ""),
+                    "title": page.get("title", ""),
+                    "width": ii.get("width", 0),
+                    "height": ii.get("height", 0),
+                })
+            return results
+    except Exception as e:
+        print(f"  ⚠ Wikimedia Commons error: {e}")
+    return []
+
+
+def compress_and_upload(img_url, filename):
+    """Download, compress via PIL, upload to Supabase article-images bucket."""
+    try:
+        r = requests.get(img_url, headers=UA, timeout=20)
+        if r.status_code != 200:
+            print(f"  ⚠ Download failed ({r.status_code}): {img_url[:80]}")
+            return None
+        if len(r.content) < 5000:
+            print(f"  ⚠ Image too small ({len(r.content)} bytes)")
+            return None
+
+        from PIL import Image
+        img = Image.open(BytesIO(r.content))
+        if img.mode in ('RGBA', 'P'):
+            img = img.convert('RGB')
+        max_w = 1200
+        if img.width > max_w:
+            ratio = max_w / img.width
+            img = img.resize((max_w, int(img.height * ratio)), Image.LANCZOS)
+        buf = BytesIO()
+        img.save(buf, format='JPEG', quality=80, optimize=True)
+        compressed = buf.getvalue()
+        print(f"  ✓ Compressed to {len(compressed)//1024}KB ({img.width}x{img.height})")
+
+        # Upload to Supabase storage
+        upload_url = f"{SUPABASE_URL}/storage/v1/object/article-images/{filename}"
+        up_headers = {
+            "apikey": SUPABASE_KEY,
+            "Authorization": f"Bearer {SUPABASE_KEY}",
+            "Content-Type": "image/jpeg",
+            "x-upsert": "true"
+        }
+        ur = requests.post(upload_url, headers=up_headers, data=compressed, timeout=30)
+        if ur.status_code in (200, 201):
+            public_url = f"{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}"
+            print(f"  ✓ Uploaded: {public_url[:80]}...")
+            return public_url
+        else:
+            print(f"  ⚠ Upload failed ({ur.status_code}): {ur.text[:200]}")
+            return None
+    except Exception as e:
+        print(f"  ⚠ compress_and_upload error: {e}")
+        return None
+
+
 def insert_article(article):
-    """Insert article into Supabase."""
+    """Insert article into p2_articles."""
     r = requests.post(
         f"{SUPABASE_URL}/rest/v1/p2_articles",
         headers=HEADERS,
-        json=article
+        json=article,
+        timeout=30
     )
     if r.status_code in (200, 201):
         data = r.json()
-        if isinstance(data, list) and data:
-            print(f"  ✓ Inserted: {data[0].get('slug')} (id={data[0].get('id')})")
-            return True
-    print(f"  ✗ Error: {r.status_code} - {r.text[:300]}")
-    return False
+        art_id = data[0]['id'] if isinstance(data, list) else data['id']
+        print(f"  ✓ Article inserted: {art_id}")
+        return art_id
+    else:
+        print(f"  ✗ Insert failed ({r.status_code}): {r.text[:300]}")
+        return None
 
-now = datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
-
-articles = []
 
 # ============================================================
-# ARTICLE 1: Gill's ODI Captaincy Challenge
+# ARTICLE 1: Manav Suthar dream debut
 # ============================================================
-articles.append({
-    'id': str(uuid.uuid4()),
-    'headline': "Gill Has Won Every Test He Has Captained. In ODIs, He Has Lost Every Series.",
-    'subheadline': "As India assembles in Mohali for the first bilateral ODI series against Afghanistan, the real question is not about the opponents — it is about what happens inside the dressing room before the 2027 World Cup.",
-    'body': """Shubman Gill has a problem that most young captains would envy — and dread in equal measure. At 26, he has led India to their biggest-ever Test victory, an innings-and-300-run demolition of Afghanistan that ended on Monday in New Chandigarh. In the longest format, his record is unblemished. In ODIs, it is the opposite.
 
-Since taking over as India's full-time ODI captain last October, Gill has presided over series defeats in Australia and at home against New Zealand. The only ODI series India won during this stretch — against South Africa — came when Gill was sidelined with a neck injury. The paradox is hard to ignore.
+def write_manav_suthar_article():
+    print("\n=== ARTICLE 1: Manav Suthar Dream Debut ===")
 
-Now, as India's ODI squad assembles in Mohali this week ahead of the three-match series against Afghanistan starting Saturday in Dharamsala, the conversation has shifted from the pitch to the dressing room.
+    slug = "manav-suthar-test-cap-319-dream-debut-gavaskar-praise-rajasthan-spin-hope-nri"
+    headline = "He Took Six Wickets in His First Innings. Gavaskar Said It Had Nothing to Do With the Pitch."
+    subheadline = "Manav Suthar became only the tenth Indian bowler to claim a five-wicket haul on Test debut. The 23-year-old left-arm spinner from Rajasthan earned Test Cap No. 319 — and the respect of a legend."
 
-## Two Formats, Two Different Captains
+    body = """The numbers alone would have been enough: 6 for 33 in the first innings, seven wickets in the match, Player of the Match on debut, and India's biggest-ever Test victory — by an innings and 300 runs. But what Manav Suthar did against Afghanistan in Mullanpur last week was more than a statistical debut. It was a statement of method.
 
-In Tests, Gill inherited a squad in transition. Rohit Sharma, Virat Kohli, and Ravichandran Ashwin had all retired from the format, leaving him to build from scratch with a group of hungry young players who had nothing to prove to anyone but themselves. The results have been emphatic.
+Sunil Gavaskar, who has watched every Indian spinner from Bishen Bedi to Ravichandran Ashwin, saw something specific. Speaking on JioStar after the match, the legendary opener went out of his way to separate Suthar's performance from the usual narrative about Indian spinners thriving on helpful pitches.
 
-The ODI setup is a different animal entirely. Rohit, now 39, remains in the squad and firmly believes he can lead India one better than the 2023 World Cup final heartbreak. Kohli, turning 38 in November, recently made it clear he does not want to be in an environment where he is made to prove his value. Though Kohli will miss the Afghanistan series due to a hamstring injury sustained during the IPL final, his shadow looms large.
+"People say a spin bowler is successful in India because he gets help from the pitch, the conditions are favourable for him," Gavaskar said. "But I would say, here against Afghanistan, take the pitch out of the equation. Bowling comes down to skill and control. And that is exactly what this young man showed."
 
-Sources close to the BCCI told the Times of India that several senior players have been in constant touch with the board's power centres to get clarity about their roles in the lead-up to the 2027 World Cup in South Africa.
+## The Spell That Announced Him
 
-## Gambhir's Unfinished Business
+Suthar, a left-arm orthodox spinner, dismantled Afghanistan's batting order with a combination of flight, dip, and relentless accuracy. His six-wicket haul in the first innings saw him trap Hashmatullah Shahidi lbw, clean bowl Sediqullah Atal, and catch-and-bowl Afsar Zazai. The common thread was not extravagant turn. It was precision.
 
-Head coach Gautam Gambhir has stamped his authority on India's T20I and Test setups. The T20 World Cup triumph in March bore his fingerprints across every selection and tactical decision, and chief selector Ajit Agarkar was fully aligned. But in ODIs, Gambhir has largely let things take their course.
+"He knows exactly where each ball is going to land," Gavaskar continued. "That kind of control is rare. When you have drift and can land the ball in the right spot consistently, you don't need a turning track to take wickets. He wasn't just lucky — he was clever and accurate."
 
-"With such big players in the team, Gill needs to have a stronger say in the dressing room," a BCCI source said. "Gambhir hasn't got involved in the planning as intently as he has done in the other two formats."
+Former England spinner Graeme Swann echoed the assessment, noting Suthar's tactical awareness from the very first over. "What impressed me most was his ability to adapt as his spell progressed," Swann said. "Initially, he was attacking around the off-stump line, but he quickly recognised the amount of turn available and adjusted his line straighter, forcing the batters to play more often."
 
-The Afghanistan series, then, is not really about Afghanistan. It is the formal onset of India's 2027 World Cup preparation, and the first real test of whether Gill and Gambhir can align a dressing room that includes two former captains with very different ideas about their futures.
+## From Rajasthan Domestic Cricket to Cap 319
 
-## The Series Itself
+Suthar's path to the Indian Test team was paved through sheer domestic weight. The 23-year-old had been a prolific wicket-taker for Rajasthan in first-class cricket and earned his Gujarat Titans IPL contract on the back of consistent performances. But it was his Ranji Trophy numbers — and the maturity he showed in high-pressure matches — that caught the selectors' attention.
 
-India's ODI squad reflects the tension between continuity and renewal. Gill leads, with Shreyas Iyer as vice-captain. Rohit and Hardik Pandya, both cleared fit by the BCCI's Centre of Excellence after IPL injuries, will join the squad. Yashasvi Jaiswal comes in as Kohli's replacement.
+His debut in Mullanpur placed him in an elite club: only the tenth Indian bowler, and the seventh spinner, to claim a five-for on Test debut. The names above him on that list read like a who's who of Indian cricket: Narendra Hirwani (8/61 vs West Indies, 1988), Ravichandran Ashwin (6/47 vs West Indies, 2011), Dilip Doshi (6/103 vs Australia, 1979), and Axar Patel (5/60 vs England, 2021).
 
-Three uncapped players — left-arm seamer Prince Yadav, towering pacer Gurnoor Brar, and Ranji Trophy sensation Harsh Dubey — are in the 15, offering Gill the chance to shape the squad's next cycle. This is the first-ever bilateral ODI series between India and Afghanistan, moving beyond their sole previous meeting at the 2023 World Cup in Delhi.
+Suthar's figures of 6 for 33 are now the second-best by an Indian spinner on debut, behind only Hirwani's legendary haul 38 years ago.
 
-The matches are in Dharamsala (June 13), Lucknow (June 17), and Chennai (June 20), all starting at 1:30 PM IST.
+## What It Means for Indian Cricket
 
-## The Diaspora Watches
+With Ravindra Jadeja and Axar Patel rested for the upcoming ODI series against Afghanistan, India's selectors have signalled their intent to build depth in the spin department ahead of the 2027 ODI World Cup cycle. Suthar's debut makes the case that the pipeline is delivering.
 
-For NRI cricket fans, the series offers a window into what Indian cricket will look like by the time the World Cup arrives in South Africa. The transition from the Rohit-Kohli era has been gradual and occasionally awkward. Gill's Test captaincy has shown he can lead with clarity when given a clean slate. Whether he can do the same with two legends still in the room — and a coach who has not yet fully engaged in the ODI project — is the question that makes this series worth watching, regardless of the opposition.
+Captain Shubman Gill was direct in his post-match assessment. "India can take 20 wickets anywhere," he said, a statement that carries more weight when you consider that Suthar, alongside Prasidh Krishna (3/37), gave India four bowling options capable of running through any batting lineup.
 
-The scorecards will take care of themselves. What happens in Mohali this week, before a ball is bowled, may matter more.
+For Suthar, the task now is to prove Gavaskar right on flatter pitches. "This was a highly encouraging debut and he has shown the attributes to be a strong contender at the Test level going forward," Gavaskar concluded. "But the real test for any spinner comes on flatter pitches where greater variety and adaptability are required."
 
-*Sources: Times of India, CricTracker, Star Sports*""",
-    'slug': 'shubman-gill-odi-captaincy-challenge-india-afghanistan-bilateral-series-2027-world-cup-nri',
-    'category': 'sports',
-    'vertical': 'sports',
-    'image_url': 'https://upload.wikimedia.org/wikipedia/commons/3/34/Shubman_Gill_2023_%28cropped%29.jpg',
-    'image_caption': "Shubman Gill, India's ODI captain, faces his biggest leadership test yet",
-    'image_attribution': 'Wikimedia Commons',
-    'status': 'review',
-    'is_editorial': False,
-    'published_at': now,
-    'sources': json.dumps(['Times of India', 'CricTracker', 'Star Sports', 'ICC'])
-})
+Suthar himself offered the simplest summary. "The biggest lesson is that consistency is everything," he said after the match. "You have to keep bowling in the same area over and over again. That's the most important thing in Test cricket."
+
+## What the Diaspora Should Know
+
+For NRIs who follow Indian cricket through scorecards and highlights, Suthar's name may have appeared suddenly. But the domestic cricket ecosystem that produced him — Rajasthan's first-class programme, the IPL's Gujarat Titans setup, the BCCI's Centre of Excellence — has been quietly building this kind of depth for years. Suthar is not an overnight sensation. He is the product of a system that now produces international-calibre spinners as a matter of routine.
+
+The first ODI against Afghanistan begins in Dharamsala on June 13. Suthar is not in the white-ball squad. But after Mullanpur, his name is on every selector's list for the tours that follow.
+
+**Sources:** Reuters, JioStar (Cricket Live), Sky Sports, Mint, CricTracker"""
+
+    # Image sourcing — Wikipedia for Manav Suthar
+    print("  Sourcing image for Manav Suthar...")
+    img_url = fetch_wikipedia_person_image("Manav Suthar")
+    if not img_url:
+        img_url = fetch_wikipedia_person_image("Manav Suthar (cricketer)")
+    
+    # Also try Wikimedia Commons
+    commons = fetch_wikimedia_commons_images("Manav Suthar cricket India spinner")
+    if not commons:
+        commons = fetch_wikimedia_commons_images("India cricket spinner test debut")
+    
+    # Pick best candidate
+    final_url = None
+    attribution = "Wikimedia Commons"
+    caption = "Manav Suthar celebrates a wicket during his debut Test against Afghanistan in Mullanpur"
+
+    if img_url:
+        final_url = compress_and_upload(img_url, f"{slug}.jpg")
+    elif commons:
+        best = commons[0]
+        final_url = compress_and_upload(best["url"], f"{slug}.jpg")
+    
+    if not final_url:
+        print("  ⚠ No suitable image found, proceeding without image")
+
+    article = {
+        "headline": headline,
+        "subheadline": subheadline,
+        "body": body,
+        "slug": slug,
+        "category": "sports",
+        "status": "review",
+        "is_editorial": False,
+        "published_at": datetime.now(timezone.utc).isoformat(),
+        "sources": json.dumps([
+            {"name": "Reuters", "url": "https://www.reuters.com"},
+            {"name": "JioStar Cricket Live", "url": "https://www.jiostar.com"},
+            {"name": "Sky Sports", "url": "https://www.skysports.com"},
+            {"name": "CricTracker", "url": "https://www.crictracker.com"},
+            {"name": "Mint", "url": "https://www.livemint.com"}
+        ])
+    }
+    if final_url:
+        article["image_url"] = final_url
+        article["image_caption"] = caption
+        article["image_attribution"] = attribution
+
+    return insert_article(article)
+
 
 # ============================================================
-# ARTICLE 2: India Wins 102 Gold at Inaugural World Yogasana Championships
+# ARTICLE 2: India Women T20 World Cup — Mandhana X-Factor
 # ============================================================
-articles.append({
-    'id': str(uuid.uuid4()),
-    'headline': "India Won 102 Gold Medals. The Nearest Country Won Three. Yogasana Is Now a Global Sport.",
-    'subheadline': "The inaugural World Yogasana Championship in Ahmedabad drew 522 athletes from 79 countries. India's dominance was total — but the real story is the ancient practice's sprint toward Olympic recognition.",
-    'body': """When the first-ever World Yogasana Championship concluded at the EKA Arena in Ahmedabad on Sunday, India's medal haul read like a misprint: 102 gold, 8 silver, 4 bronze. Japan, the nearest rival, had three gold. Argentina's entire delegation consisted of one athlete — Nabila Barraza from Lionel Messi's hometown — who walked away with two gold and three silver.
 
-The numbers tell only part of the story. The championship, held from June 4 to 8, was a five-day exercise in turning an ancient Indian spiritual practice into a globally competitive sporting discipline — one with a formal Code of Points, age-grouped categories, and a stated pathway toward Olympic recognition.
+def write_mandhana_xfactor_article():
+    print("\n=== ARTICLE 2: Smriti Mandhana X-Factor in England ===")
 
-## From Ashram to Arena
+    slug = "smriti-mandhana-india-women-t20-world-cup-2026-england-x-factor-shafali-verma-pakistan-opener-nri"
+    headline = "She Has Scored 650 Runs in England at 38.23. Now the T20 World Cup Is There."
+    subheadline = "Smriti Mandhana's outstanding record in English conditions makes her India's most valuable asset as the Women's T20 World Cup begins on June 12. Aakash Chopra explains why the Powerplay could decide everything."
 
-Yogasana as a competitive sport is a relatively recent phenomenon. The discipline involves athletes performing defined postures — asanas — judged on precision, difficulty, form, and control. Think of it as the intersection of gymnastics and meditation, scored like figure skating.
+    body = """Smriti Mandhana averages 29.88 across 160 T20I innings. That is excellent. But take only her innings in England — 19 of them — and the average climbs to 38.23, with 650 runs to her name. That is a different player altogether.
 
-India had already signalled its intent at the Asian Yogasana Sport Championship in Delhi in April 2025, where the team swept 83 gold medals. The World Championship was the next logical step, and its scale surprised even organisers: 522 athletes from 79 countries, with 31 nations winning at least one medal.
+The Women's T20 World Cup begins on Thursday, June 12, in England and Wales. India open their campaign against Pakistan at Edgbaston in Birmingham on Saturday, June 14. And the single most important variable in whether India lift the trophy at Lord's on July 5 may be Mandhana's comfort in conditions she has come to own.
 
-Prime Minister Narendra Modi inaugurated the event via video conference, calling yoga "India's timeless gift to humanity." The venue, Ahmedabad's EKA Arena, will also host events at the 2030 Commonwealth Games — a connection that underscores the ambitions behind the championship.
+## The Chopra Analysis
 
-## The Competition Itself
+Aakash Chopra, speaking on his YouTube channel, did not mince words. He identified Mandhana and opening partner Shafali Verma as India's biggest X-factors — and the Powerplay as the phase that will decide their tournament.
 
-India fielded a 122-member contingent across six age categories, ranging from Sub-Junior (10–14 years) to Senior C (45–55 years). Events tested artistic, rhythmic, and strength-based yogasana skills in both individual and pairs routines.
+"The Indian girls have won the 50-over World Cup. Can they win the 20-over World Cup? That's the big question," Chopra said. "Where do you win T20 games? One is if you control the Powerplay with the bat and with the ball. With the bat, Shafali Verma's consistent avatar is very, very good. Smriti Mandhana will be there with her."
 
-Beyond India's dominance, the medal table revealed genuine global interest. Nepal emerged as the second most successful contingent by total medals (52, including 36 silver), while Uzbekistan claimed 25 medals. Athletes from 31 countries medalled — a respectable spread for an inaugural edition of any discipline.
+The logic is straightforward. In T20 cricket, the Powerplay sets the tone. Teams that score fast in the first six overs and take early wickets rarely lose. India's opening pair — Mandhana's classical timing married to Shafali's explosive aggression — gives them one of the most destructive Powerplay combinations in the women's game.
 
-The championship was backed by the Ministry of Youth Affairs and Sports, the Ministry of Ayush, the Sports Authority of India, and the Gujarat state government. World Yogasana, the international governing body, organised the event alongside Yogasana Bharat, its Indian affiliate.
+"Smriti Mandhana in England is another beast altogether," Chopra added. "She has scored a lot of runs there. So, Smriti Mandhana and Shafali Verma, as your Powerplay players, can actually control the game. One of them should bat deep into the innings, which they can."
 
-## The American Connection
+## Why England Suits Her
 
-What gives the championship particular diaspora resonance is that it was preceded by the United States Yogasana Championship in Connecticut, which served as the selection platform for Team USA. The event was supported by the Consulate General of India in New York, the Hindu Diaspora Foundation, and the Hindu Temple Society of North America.
+Mandhana's game is built on timing rather than power. She plays through the line, trusts the pace of the ball, and drives with a precision that English conditions — true bounce, carry, and occasional movement — reward handsomely. Where many subcontinental batters struggle against the lateral movement of a new ball in England, Mandhana has consistently found ways to score through it.
 
-For the millions of Indian-Americans who practice yoga — often in forms far removed from competitive asana — the spectacle of their cultural heritage becoming a medal sport on the world stage carries a specific kind of pride. It is one thing for yoga to be mainstream wellness in Brooklyn and Bangalore alike. It is another for it to have a Code of Points, a world championship, and Olympic aspirations.
+Her record there is not a statistical quirk. She performed in the 2017 ODI World Cup in England, dominated in bilateral series, and has arrived for the 2026 tournament after a targeted 25-day preparation camp at the NCA in Bengaluru followed by eight days acclimatising in the UK.
 
-## The Road to the Olympics
+"It's been a good 25 days of prep," Mandhana said. "We had batters and bowlers camp at Bangalore at NCA and that was also very targeted and specific, keeping in mind this tour. A lot of girls, it's their first England tour so it was important for them to come here early and get used to the conditions."
 
-The organisers have been explicit about the goal: Olympic recognition. Yogasana was included as a demonstration sport at the Khelo India Youth Games in 2023, and the World Championship in Ahmedabad is designed to build the institutional infrastructure — a global governing body, standardised rules, international participation — that the International Olympic Committee requires before considering a new discipline.
+## Warm-Up Form
 
-Whether yogasana can bridge the gap from demonstration sport to Olympic programme is an open question. But after 522 athletes from 79 countries competed across five days in a purpose-built arena, the trajectory is unmistakable.
+India arrived in Cardiff with momentum. They beat West Indies by 26 runs in their first warm-up on June 8, posting 179/8 before restricting the Windies to 153/8. Bharti Fulmali scored an unbeaten fifty, while Radha Yadav and Shreyanka Patil shared seven wickets between them.
 
-The ancient practice has new ambitions. India, unsurprisingly, is leading the way.
+Their second warm-up, against England on Wednesday in Cardiff, was disrupted by rain — England were 92/1 in the 13th over when play was halted. India remain unbeaten in their tournament preparation.
 
-*Sources: The Bridge, IANS, World Yogasana, The Indian Eye*""",
-    'slug': 'india-102-gold-inaugural-world-yogasana-championship-ahmedabad-olympic-recognition-nri',
-    'category': 'sports',
-    'vertical': 'sports',
-    'image_url': 'https://upload.wikimedia.org/wikipedia/commons/6/63/EKA_Arena_Stadium%28TransStadia%29.jpg',
-    'image_caption': "EKA Arena in Ahmedabad, venue of the inaugural World Yogasana Championship",
-    'image_attribution': 'Wikimedia Commons',
-    'status': 'review',
-    'is_editorial': False,
-    'published_at': now,
-    'sources': json.dumps(['The Bridge', 'IANS', 'World Yogasana', 'The Indian Eye'])
-})
+## The Bowling Question
 
-# Insert all articles
-print(f"\n📝 Inserting {len(articles)} sports articles...\n")
-success = 0
-for i, article in enumerate(articles, 1):
-    print(f"Article {i}: {article['headline'][:70]}...")
-    if insert_article(article):
-        success += 1
+Chopra also flagged bowling in the death overs as India's defining challenge. "Since it's England and it would swing, Renuka Singh Thakur's value increases," he said. "But death overs — that will be the big challenge, because we get our spinners to bowl the death overs many times. How we bowl in the death overs might actually define how far we go."
 
-print(f"\n✅ Done: {success}/{len(articles)} articles inserted successfully")
+India's pace attack, led by Arundhati Reddy in the absence of the injured Pooja Vastrakar, will be tested in seamer-friendly conditions. But Chopra believes India have the squad to beat both South Africa and Australia in their group, and go on to challenge for the title.
+
+## The NRI Angle
+
+For the Indian diaspora in the UK, this tournament offers an unprecedented opportunity. India play five group matches across Birmingham, Leeds, Manchester, Southampton, and London, all within easy travel distance of the country's largest South Asian populations. The India-Pakistan opener at Edgbaston is expected to draw one of the largest crowds in women's cricket history, with significant NRI attendance from the Birmingham and Leicester corridors.
+
+The tournament also has a streaming advantage for diaspora audiences in North America: all matches will be available on Willow TV in the US and Canada, with ICC.tv providing free global streaming.
+
+India's Group 1 schedule: Pakistan (June 14, Edgbaston), Netherlands (June 17, Headingley), South Africa (June 20, Hampshire), Bangladesh (June 25, Old Trafford), Australia (June 28, Lord's).
+
+If India finish in the top two — and with Mandhana in this form in these conditions, they should — the semi-finals are at The Oval on June 30 and July 2, with the final at Lord's on July 5.
+
+**Sources:** Sportskeeda, Yardbarker, CricTracker, ICC, Mint"""
+
+    # Image sourcing — Wikipedia for Smriti Mandhana
+    print("  Sourcing image for Smriti Mandhana...")
+    img_url = fetch_wikipedia_person_image("Smriti Mandhana")
+    
+    # Also try Commons
+    commons = fetch_wikimedia_commons_images("Smriti Mandhana cricket India women")
+    
+    final_url = None
+    attribution = "Wikimedia Commons"
+    caption = "Smriti Mandhana bats during a T20 International in England"
+
+    if img_url:
+        final_url = compress_and_upload(img_url, f"{slug}.jpg")
+    elif commons:
+        best = commons[0]
+        final_url = compress_and_upload(best["url"], f"{slug}.jpg")
+    
+    if not final_url:
+        print("  ⚠ No suitable image found, proceeding without image")
+
+    article = {
+        "headline": headline,
+        "subheadline": subheadline,
+        "body": body,
+        "slug": slug,
+        "category": "sports",
+        "status": "review",
+        "is_editorial": False,
+        "published_at": datetime.now(timezone.utc).isoformat(),
+        "sources": json.dumps([
+            {"name": "Sportskeeda", "url": "https://www.sportskeeda.com"},
+            {"name": "Yardbarker", "url": "https://www.yardbarker.com"},
+            {"name": "CricTracker", "url": "https://www.crictracker.com"},
+            {"name": "ICC Cricket", "url": "https://www.icc-cricket.com"},
+            {"name": "Mint", "url": "https://www.livemint.com"}
+        ])
+    }
+    if final_url:
+        article["image_url"] = final_url
+        article["image_caption"] = caption
+        article["image_attribution"] = attribution
+
+    return insert_article(article)
+
+
+# ============================================================
+# MAIN
+# ============================================================
+
+if __name__ == "__main__":
+    print(f"Sports writer run: {datetime.now(timezone.utc).isoformat()}")
+    
+    results = []
+    
+    art1_id = write_manav_suthar_article()
+    results.append(("Manav Suthar debut", art1_id))
+    
+    art2_id = write_mandhana_xfactor_article()
+    results.append(("Smriti Mandhana T20 WC", art2_id))
+    
+    print("\n=== SUMMARY ===")
+    for title, aid in results:
+        status = f"✓ {aid}" if aid else "✗ FAILED"
+        print(f"  {title}: {status}")
+    
+    print("\nDone.")
