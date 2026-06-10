@@ -995,7 +995,7 @@ def build_anchor_reel_timeline(
                 "start": 0,
                 "length": "end",
                 "position": "center",
-                "offset": {"x": 0.38, "y": -0.44},
+                "offset": {"x": 0.38, "y": 0.44},
                 "scale": 0.08,
                 "opacity": 0.9,
             },
@@ -1010,7 +1010,7 @@ def build_anchor_reel_timeline(
                 "start": 0,
                 "length": "end",
                 "position": "center",
-                "offset": {"x": 0.38, "y": -0.40},
+                "offset": {"x": 0.38, "y": 0.40},
             }
         ]
     }
