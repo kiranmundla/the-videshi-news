@@ -47,7 +47,7 @@ WHITE = "#ffffff"
 RED_BADGE = "#C41E3A"
 
 # TTS
-TTS_VOICE = "97dd67ab8ce242b6a9e7689cb00c6414"  # Monika — Indian English female anchor
+TTS_VOICE = "cb9diBQeYWIGJS9i52kX"  # Indian Anchorwoman — HeyGen built-in Indian English female
 
 # Category → music mapping
 CATEGORY_MUSIC = {
@@ -308,17 +308,17 @@ Return JSON only:
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
-# TTS — HeyGen Monika Voice (Indian English anchor)
+# TTS — HeyGen Indian Anchorwoman Voice
 # ═══════════════════════════════════════════════════════════════════════════════
 
 def generate_tts(text):
     """Generate TTS via HeyGen v2 preview endpoint. Returns (local_path, duration) or (None, 0).
-    Applies loudnorm to -12 LUFS."""
+    Applies loudnorm to -9 LUFS."""
     if not HEYGEN_KEY:
         print("❌ HeyGen API key not found")
         return None, 0
 
-    # Phonetic hint for TTS — help Monika pronounce "TheVideshi" correctly
+    # Phonetic hint for TTS — help pronounce "TheVideshi" correctly
     # "Videshi" = विदेशी (vi-they-shi) — soft dental द, pure ए vowel, crisp शी
     tts_text = text.replace("thevideshi", "the Vitheyshi").replace("TheVideshi", "The Vitheyshi").replace("Videshi", "Vitheyshi")
 
@@ -366,7 +366,7 @@ def generate_tts(text):
 
     result = subprocess.run(
         ["ffmpeg", "-y", "-i", str(wav_path),
-         "-af", "loudnorm=I=-12:TP=-1.0:LRA=11",
+         "-af", "loudnorm=I=-9:TP=-1.0:LRA=11",
          "-codec:a", "libmp3lame", "-q:a", "2", str(mp3_path)],
         capture_output=True, text=True,
     )
@@ -379,7 +379,7 @@ def generate_tts(text):
         print(f"❌ WAV→MP3 conversion failed")
         return None, 0
 
-    print(f"  🎙️ TTS audio: {duration:.1f}s (Monika voice, normalized to -12 LUFS)")
+    print(f"  🎙️ TTS audio: {duration:.1f}s (Indian Anchorwoman voice, normalized to -9 LUFS)")
     return str(mp3_path), duration
 
 
