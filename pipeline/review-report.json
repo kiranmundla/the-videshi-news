@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-10T10:15:42.327806+00:00",
+  "timestamp": "2026-06-10T10:45:36.144598+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 5,
+    "pass": 3,
     "flag": 1,
     "fail": 0,
     "error": 0
@@ -11,86 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "8a895b7d-953c-4f3d-92b4-640ed96c07da",
-      "headline": "Wipro Is Buying Back Shares at a 38 Per Cent Premium. Here Is What Every NRI Holder Needs to Know Before June 17.",
-      "slug": "wipro-15000-crore-buyback-250-per-share-nri-guide-june-2026-20260610",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "040fe2bf-5c62-470e-8c4d-5a37f5768720",
-            "headline": "Wipro Just Hit a Three-Year Low. The AI Bubble That Inflated"
-          }
-        ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article directly addresses NRI shareholders and provides relevant information about the buyback process, making it pertinent to the diaspora audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include a brief summary of the potential risks associated with the buyback for NRIs.",
-          "Add a section on how the buyback might affect Wipro's stock performance in the long term."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "42701550-11ea-4470-9e0f-4a70d63a0366",
-      "headline": "A Common Diabetes Drug Just Prevented Heart Failure in People Carrying a Genetic Time Bomb.",
-      "slug": "dapagliflozin-sglt2-cardiomyopathy-genetic-variant-heart-failure-nature-medicine-south-asian-20260610",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to diabetes or heart health, but it is a neutral, health-related image."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the findings to the Indian diaspora, highlighting the higher prevalence of diabetes in South Asians."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that directly represents diabetes or heart health.",
-          "Add a brief summary or conclusion to reinforce the key takeaways for readers."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "7eed1729-55bf-4481-b081-bf91d35d59c8",
-      "headline": "Your Organs Age at Different Speeds. A New Study Found the Sleep Range That Slows All of Them Down.",
-      "slug": "sleep-sweet-spot-organ-aging-clocks-columbia-nature-south-asian-diaspora-20260610",
+      "id": "5532e341-b050-49fb-b48a-b20c7bd0e0ac",
+      "headline": "Want a US Visa Interview in 10 Days? That Will Be $750 Extra.",
+      "slug": "us-state-department-750-premium-visa-interview-fast-track-b1-b2-fifa-world-cup-indians-20260610",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -105,14 +28,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the study's findings to the health risks faced by the South Asian diaspora, making it highly relevant."
+          "quality": 8,
+          "note": "The article discusses visa processes relevant to Indian applicants, making it pertinent to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more specific examples of how sleep impacts health in the South Asian community.",
-          "Include quotes or insights from South Asian health experts to strengthen the diaspora connection."
+          "Include more direct quotes from immigration experts to enhance credibility.",
+          "Add a section on how this new fee structure might impact Indian families specifically."
         ],
         "verdict": "pass"
       },
@@ -124,17 +47,12 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "3a6c6730-1983-4c2d-9df9-f4c7eb504f09",
-      "headline": "Sri Lanka Just Dropped Visa Fees for Indians \u2014 and Record Tourist Numbers Show the Bet Is Working",
-      "slug": "sri-lanka-free-visa-indians-record-tourism-nri-20260610",
+      "id": "8f7de156-e4a8-43ec-b9fa-a7e0baab3cc5",
+      "headline": "Three Uncapped Players, Three Different Roads. Before Dharamsala, Meet the Men Who Could Debut on Saturday.",
+      "slug": "prince-yadav-gurnoor-brar-harsh-dubey-india-odi-debut-afghanistan-dharamsala-2026-nri",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "41867dc1-19c9-4f37-a4f3-c2ebc5e426e4",
-            "headline": "Sri Lanka Just Dropped Visa Fees for Indians \u2014 Here's What N"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
@@ -147,13 +65,49 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively highlights the benefits of the visa waiver for NRI families, making it relevant to the diaspora audience."
+          "note": "The article connects well with the diaspora by highlighting players from regions with significant NRI populations and their journeys."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more statistics or testimonials from Indian tourists who have recently visited Sri Lanka to enhance credibility.",
-          "Include a section on cultural or culinary experiences that might appeal specifically to Indian travelers."
+          "Consider adding more context about the significance of the ODI series for the Indian cricket team and its fans.",
+          "Include quotes or reactions from the players or selectors to enhance engagement."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "cfb4fccf-1fc8-45d0-b6f9-1b145096536f",
+      "headline": "India Is Running Out of Cancer Drugs. The Iran War Made Platinum Too Expensive.",
+      "slug": "india-cancer-drug-shortage-cisplatin-carboplatin-platinum-price-surge-iran-war-20260610",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 6,
+          "issue": "The image does not directly relate to cancer drugs or the specific topic of chemotherapy."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses a critical health issue affecting many Indians, including the diaspora, who may have family members in India facing similar challenges."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that depicts cancer treatment or patients receiving chemotherapy.",
+          "Include quotes or perspectives from diaspora members to strengthen the connection to NRI readers."
         ],
         "verdict": "pass"
       },
@@ -177,62 +131,26 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 2,
+          "score": 3,
           "issue": "irrelevant"
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects the heritage hotel experience to the Indian diaspora, emphasizing cultural connections and travel opportunities."
+          "note": "The article effectively connects the heritage hotel experience to NRIs, emphasizing cultural ties and travel opportunities."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the hero image with one that directly represents the Oberoi Rajgarh Palace to enhance relevance.",
-          "Consider adding more specific travel tips or experiences for NRIs visiting the palace to further engage the audience."
+          "Replace the hero image with one that features the Oberoi Rajgarh Palace to better match the article's content.",
+          "Consider adding more specific travel tips or personal anecdotes from NRIs who have visited the hotel to enhance relatability."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
-        "Revised by gpt-4o-mini (582\u2192685 words)"
+        "Revised by gemini-2.5-flash (685\u2192378 words)"
       ],
       "revised": true,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "238527fc-183c-444d-ae8a-d0b3b300de3e",
-      "headline": "The World Cup Starts Thursday \u2014 and Getting There May Cost More Than Your Ticket",
-      "slug": "world-cup-2026-nri-hotels-transit-survival-guide-20260610",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image depicts SoFi Stadium, which is relevant to the World Cup context but does not specifically relate to the article's focus on travel logistics."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively addresses the concerns of Indian Americans regarding travel logistics for the World Cup, making it relevant to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more specific travel tips or resources for NRIs planning to attend the World Cup.",
-          "Consider adding quotes or insights from Indian American fans to enhance the personal connection."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
     }
