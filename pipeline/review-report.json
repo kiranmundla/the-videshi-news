@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-10T07:45:26.290240+00:00",
+  "timestamp": "2026-06-10T08:15:23.430716+00:00",
   "mode": "fix",
   "stats": {
     "pass": 3,
@@ -11,9 +11,81 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "ec4ef1f5-de9b-4633-98f2-fd43369dc6c2",
-      "headline": "The World Cup Starts Tomorrow. The Opening Ceremony Starts Ninety Minutes Before That.",
-      "slug": "fifa-world-cup-2026-opening-ceremony-day-one-nri-guide-diaspora",
+      "id": "692405d6-8d1d-4661-8ef1-88d693ca1667",
+      "headline": "Ten Indian Nationals Indicted in Boston for Staging Armed Robberies to Game the US Visa System",
+      "slug": "boston-10-indicted-staged-robberies-visa-fraud-patel-20260610",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 5,
+          "issue": "The image does not directly relate to the topic of armed robberies or immigration."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the implications of the indictment on the Indian American community, making it relevant to diaspora readers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that depicts the themes of crime or immigration.",
+          "Add quotes or perspectives from immigration experts or community leaders to enhance the diaspora angle."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "0b47b45b-0a18-4e45-a77d-6cf7d03ac57b",
+      "headline": "Twenty-One Indian Students Turned Away at Three US Airports in a Single Day",
+      "slug": "21-indian-students-deported-airports-andhra-telangana-20260610",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the specific incident of students being turned away at airports."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article addresses the challenges faced by Indian students in the US, which is relevant to the NRI community."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include quotes or testimonials from affected students or immigration experts to enhance the narrative.",
+          "Add a section on how Indian families can better prepare their students for studying abroad, based on the experiences shared."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "bb534c31-628d-4e40-b936-e5531c136299",
+      "headline": "Modi Will Raise H-1B Visas With Trump at the G7 \u2014 Here's What That Means for 730,000 Indian Workers",
+      "slug": "modi-trump-g7-h1b-visa-bilateral-france-20260610",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -29,94 +101,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the World Cup to the Indian diaspora, highlighting players of Indian origin and the significance of the event for Indian Americans."
+          "note": "The article effectively connects the H-1B visa discussion to the Indian diaspora, highlighting both practical and symbolic implications for Indian workers in the U.S."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more quotes or anecdotes from Indian American fans to enhance the emotional connection.",
-          "Include a brief overview of how the Indian diaspora has historically engaged with football to provide context."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "1895fe05-c70f-4353-af92-c5110d187fab",
-      "headline": "Ashwin Watched the Bowling Changes. That Was When He Knew Gill Had Grown.",
-      "slug": "shubman-gill-captaincy-evolution-ashwin-praise-odi-afghanistan-2027-world-cup-nri",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article connects well with NRI fans by referencing the transition of captaincy from Dhoni to Kohli to Rohit, and now to Gill, which resonates with the diaspora's cricketing history."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more quotes or insights from Gill or other players to enhance the narrative.",
-          "Include a brief background on Shubman Gill's journey to captaincy for readers who may not be familiar."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "1ce8ed80-1cec-40ea-bf11-096865957f78",
-      "headline": "Janhvi Kapoor Is About to Walk Into a Monster Movie. The Director Made Tumbbad.",
-      "slug": "janhvi-kapoor-creature-horror-rahi-anil-barve-tumbbad-jio-studios-nri-20260610",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "caaf8e12-5c4a-4b91-b1ef-5572a6ae7a8a",
-            "headline": "Peddi Made \u20b9250 Crore. Then Janhvi Kapoor's Leaked Chats Set"
-          },
-          {
-            "article_id": "462b9b81-56fd-4afc-bc9c-37b8f90bcdba",
-            "headline": "Peddi Made \u20b9150 Crore in Two Days. Then India Noticed What I"
-          }
-        ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article connects with the diaspora by discussing a significant Bollywood film and its potential impact on the genre, which is of interest to NRI audiences."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more direct quotes or insights from Janhvi Kapoor or Rahi Anil Barve to enhance the article's depth.",
-          "Add a brief section on the reception of horror films among the diaspora to strengthen the connection."
+          "Consider adding quotes from experts or stakeholders to enhance credibility.",
+          "Include more data or statistics on the impact of H-1B visa changes on Indian workers."
         ],
         "verdict": "pass"
       },
