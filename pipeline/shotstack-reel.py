@@ -74,6 +74,34 @@ MUSIC_VOLUME = {
 # Ken Burns effects to rotate through
 KEN_BURNS_EFFECTS = ["zoomIn", "zoomOut", "slideLeft", "slideRight", "slideUp"]
 
+# Category-aware transitions for B-roll scenes (instead of fade-only)
+CATEGORY_TRANSITIONS = {
+    "news": ["wipeLeft", "wipeRight", "carouselUp", "zoom"],
+    "nri-world": ["wipeLeft", "wipeRight", "carouselUp", "zoom"],
+    "immigration": ["fade", "wipeLeft", "carouselUp", "reveal"],
+    "entertainment": ["slideUp", "carouselLeft", "reveal", "fade"],
+    "sports": ["zoom", "carouselUp", "wipeLeft", "slideUp"],
+    "technology": ["fade", "reveal", "slideUp", "wipeRight"],
+    "markets-finance": ["fade", "reveal", "slideUp", "wipeRight"],
+    "travel": ["fade", "slideUp", "carouselUp", "reveal"],
+    "lifestyle-health": ["fade", "slideUp", "carouselLeft", "reveal"],
+    "food": ["fade", "slideUp", "carouselLeft", "reveal"],
+}
+
+# Caption animation style per category (for rich-caption fallback)
+CATEGORY_CAPTION_STYLE = {
+    "news": "pop",
+    "nri-world": "pop",
+    "immigration": "pop",
+    "entertainment": "bounce",
+    "sports": "slide",
+    "technology": "typewriter",
+    "markets-finance": "highlight",
+    "travel": "fade",
+    "lifestyle-health": "fade",
+    "food": "bounce",
+}
+
 
 def load_env(path):
     env = {}
@@ -949,6 +977,7 @@ def build_anchor_reel_timeline(
         caption_track = script_caps
     else:
         # Fallback: Shotstack auto-caption from audio (may mis-transcribe proper nouns)
+        caption_style = CATEGORY_CAPTION_STYLE.get(category, "highlight")
         caption_track = {
             "clips": [
                 {
@@ -962,7 +991,7 @@ def build_anchor_reel_timeline(
                             "weight": 700,
                             "opacity": 1,
                         },
-                        "animation": {"style": "highlight"},
+                        "animation": {"style": caption_style},
                         "active": {
                             "font": {"color": GOLD, "opacity": 1},
                             "stroke": {"width": 3, "color": "#000000", "opacity": 1},
@@ -1015,7 +1044,7 @@ def build_anchor_reel_timeline(
         ]
     }
 
-    # ── Track 3: Hook frame overlay (first 3 seconds) ──
+    # ── Track 3: Hook frame overlay (first 3 seconds) — ANIMATED ──
     hook_html, hook_css = build_hook_html(hook_line1, hook_line2, category)
     hook_track = {
         "clips": [
@@ -1030,7 +1059,15 @@ def build_anchor_reel_timeline(
                 "start": 0,
                 "length": hook_duration,
                 "position": "center",
-                "transition": {"out": "fade"},
+                "transition": {"in": "zoom", "out": "fade"},
+                # Tween: slide up slightly and settle with bounce
+                "offset": {
+                    "x": 0,
+                    "y": [
+                        {"from": -0.04, "to": 0, "start": 0, "length": 0.6,
+                         "interpolation": "bezier", "easing": "easeOutBack"},
+                    ],
+                },
             }
         ]
     }
@@ -1056,13 +1093,14 @@ def build_anchor_reel_timeline(
         ]
     }
 
-    # ── Track 5: B-roll images with Ken Burns + transitions ──
+    # ── Track 5: B-roll images with Ken Burns + category-aware transitions ──
     n_images = len(image_urls)
     if n_images == 0:
         print("❌ No images for B-roll")
         return None
 
     broll_clips = []
+    transitions = CATEGORY_TRANSITIONS.get(category, CATEGORY_TRANSITIONS.get("news"))
 
     # Hook background image (darkened, first image)
     broll_clips.append({
@@ -1085,12 +1123,12 @@ def build_anchor_reel_timeline(
             "effect": KEN_BURNS_EFFECTS[i % len(KEN_BURNS_EFFECTS)],
         }
         if i > 0:
-            clip["transition"] = {"in": "fade"}
+            clip["transition"] = {"in": transitions[i % len(transitions)]}
         broll_clips.append(clip)
 
     broll_track = {"clips": broll_clips}
 
-    # ── CTA: Branded end card (HTML overlay on dark background) ──
+    # ── CTA: Branded end card (HTML overlay on dark background) — animated slide up ──
     end_html, end_css = build_end_card_html()
     end_card_track = {
         "clips": [
@@ -1105,7 +1143,14 @@ def build_anchor_reel_timeline(
                 "start": round(cta_start, 2),
                 "length": CTA_DURATION,
                 "position": "center",
-                "transition": {"in": "fade"},
+                "transition": {"in": "slideUp"},
+                "offset": {
+                    "x": 0,
+                    "y": [
+                        {"from": -0.03, "to": 0, "start": 0, "length": 0.4,
+                         "interpolation": "bezier", "easing": "easeOutCubic"},
+                    ],
+                },
             }
         ]
     }
@@ -1156,6 +1201,8 @@ def build_anchor_reel_timeline(
             "size": {"width": 1080, "height": 1920},
             "fps": 30,
             "quality": "high",
+            "poster": {"capture": 1.5},       # Capture hook frame at 1.5s (peak of hook animation)
+            "thumbnail": {"capture": 1.5, "scale": 0.5},  # Half-size thumbnail
         },
     }
 
@@ -1253,6 +1300,8 @@ def build_quick_pulse_timeline(
             "size": {"width": 1080, "height": 1920},
             "fps": 30,
             "quality": "high",
+            "poster": {"capture": 1.5},
+            "thumbnail": {"capture": 1.5, "scale": 0.5},
         },
     }
 
@@ -1319,9 +1368,15 @@ def render_reel(edit_json, use_production=False):
 
         if status == "done":
             output_url = status_data.get("url")
+            poster_url = status_data.get("poster")
+            thumbnail_url = status_data.get("thumbnail")
             render_time = status_data.get("renderTime", 0)
             print(f"  ✅ Render complete! ({render_time/1000:.1f}s)")
-            return output_url
+            if poster_url:
+                print(f"  🖼️ Poster: {poster_url}")
+            if thumbnail_url:
+                print(f"  🖼️ Thumbnail: {thumbnail_url}")
+            return {"url": output_url, "poster": poster_url, "thumbnail": thumbnail_url}
 
         elif status == "failed":
             error = status_data.get("error", "unknown")
@@ -1356,7 +1411,7 @@ def download_reel(url, output_path):
 # KAVYA CTA END CARD
 # ═══════════════════════════════════════════════════════════════════════════════
 
-CTA_DURATION = 4.0  # Branded end card duration
+CTA_DURATION = 2.5  # Branded end card duration (reduced from 4.0 for better retention)
 
 # Social handles
 SOCIAL_HANDLES = {
@@ -1566,7 +1621,7 @@ def build_caption(article):
     return caption
 
 
-def register_reel(article, video_url, video_path, caption):
+def register_reel(article, video_url, video_path, caption, poster_url=None, thumbnail_url=None):
     """Register in prebuilt_reels for IG/YT posting crons."""
     payload = {
         "article_id": article["id"],
@@ -1581,6 +1636,12 @@ def register_reel(article, video_url, video_path, caption):
         "qa_score": 8,
     }
 
+    # Add poster/thumbnail if available (columns may not exist yet — handle gracefully)
+    if poster_url:
+        payload["poster_url"] = poster_url
+    if thumbnail_url:
+        payload["thumbnail_url"] = thumbnail_url
+
     r = requests.post(
         f"{SB_URL}/rest/v1/prebuilt_reels",
         headers=SB_HEADERS,
@@ -1591,6 +1652,23 @@ def register_reel(article, video_url, video_path, caption):
     if r.status_code in (200, 201):
         print(f"  ✅ Registered in prebuilt_reels")
         return True
+    elif r.status_code == 400 and ("poster_url" in r.text or "thumbnail_url" in r.text):
+        # Columns don't exist yet — retry without poster/thumbnail
+        print(f"  ⚠️ poster_url/thumbnail_url columns not in DB yet — registering without them")
+        payload.pop("poster_url", None)
+        payload.pop("thumbnail_url", None)
+        r2 = requests.post(
+            f"{SB_URL}/rest/v1/prebuilt_reels",
+            headers=SB_HEADERS,
+            json=payload,
+            timeout=15,
+        )
+        if r2.status_code in (200, 201):
+            print(f"  ✅ Registered in prebuilt_reels (without poster/thumb)")
+            return True
+        else:
+            print(f"  ❌ Registration failed: {r2.status_code} {r2.text[:200]}")
+            return False
     else:
         print(f"  ❌ Registration failed: {r.status_code} {r.text[:200]}")
         return False
@@ -1683,9 +1761,12 @@ def run_anchor_reel(article, dry_run=False, use_production=False):
         return True
 
     # 7. Render via Shotstack
-    output_url = render_reel(edit_json, use_production=use_production)
-    if not output_url:
+    render_result = render_reel(edit_json, use_production=use_production)
+    if not render_result:
         return False
+    output_url = render_result["url"]
+    poster_url = render_result.get("poster")
+    thumbnail_url = render_result.get("thumbnail")
 
     # 8. Download rendered reel (already includes CTA — no ffmpeg needed)
     print("\n📥 Step 8: Downloading reel...")
@@ -1702,6 +1783,18 @@ def run_anchor_reel(article, dry_run=False, use_production=False):
     if not download_reel(output_url, str(final_path)):
         return False
 
+    # 8b. Download poster & thumbnail if available
+    poster_local = None
+    thumb_local = None
+    if poster_url:
+        poster_local = BUILD_DIR / f"ss-poster-{slug[:60]}.jpg"
+        download_reel(poster_url, str(poster_local))
+        print(f"  🖼️ Poster saved: {poster_local}")
+    if thumbnail_url:
+        thumb_local = BUILD_DIR / f"ss-thumb-{slug[:60]}.jpg"
+        download_reel(thumbnail_url, str(thumb_local))
+        print(f"  🖼️ Thumbnail saved: {thumb_local}")
+
     # 9. AI Quality Gate
     print("\n🔍 Step 9: AI Quality Gate...")
     qa_passed, qa_score, qa_notes = run_qa_gate(str(final_path), article, script_data)
@@ -1711,21 +1804,35 @@ def run_anchor_reel(article, dry_run=False, use_production=False):
         return False
     print(f"  ✅ QA PASSED (score: {qa_score})")
 
-    # 10. Upload final reel
+    # 10. Upload final reel + poster/thumbnail
     print("\n☁️ Step 10: Uploading final reel...")
     video_url = upload_final_reel(str(final_path), final_name)
+
+    uploaded_poster_url = None
+    uploaded_thumb_url = None
+    if poster_local and poster_local.exists():
+        poster_storage = f"reels/posters/{os.path.basename(poster_local)}"
+        uploaded_poster_url = upload_asset(str(poster_local), poster_storage, "image/jpeg")
+    if thumb_local and thumb_local.exists():
+        thumb_storage = f"reels/thumbnails/{os.path.basename(thumb_local)}"
+        uploaded_thumb_url = upload_asset(str(thumb_local), thumb_storage, "image/jpeg")
 
     # 11. Register
     if video_url:
         print("\n📋 Step 11: Registering reel...")
         caption = build_caption(article)
-        register_reel(article, video_url, str(final_path), caption)
+        register_reel(article, video_url, str(final_path), caption,
+                      poster_url=uploaded_poster_url, thumbnail_url=uploaded_thumb_url)
 
     print(f"\n{'='*60}")
     print(f"✅ REEL COMPLETE: {final_path}")
     print(f"   Shotstack URL: {output_url}")
     if video_url:
         print(f"   Supabase URL: {video_url}")
+    if uploaded_poster_url:
+        print(f"   Poster URL: {uploaded_poster_url}")
+    if uploaded_thumb_url:
+        print(f"   Thumbnail URL: {uploaded_thumb_url}")
     print(f"{'='*60}\n")
 
     return True
@@ -1771,9 +1878,10 @@ def run_quick_pulse(article, dry_run=False, use_production=False):
         return True
 
     # Render
-    output_url = render_reel(edit_json, use_production=use_production)
-    if not output_url:
+    render_result = render_reel(edit_json, use_production=use_production)
+    if not render_result:
         return False
+    output_url = render_result["url"]
 
     # Download
     final_name = f"ss-pulse-{slug}-{datetime.now().strftime('%Y%m%d-%H%M')}.mp4"
