@@ -237,10 +237,21 @@ def generate_script(article, force_new=False):
         except Exception:
             pass  # Corrupted cache — regenerate
 
+    # Load QA feedback lessons from past runs
+    qa_lessons = load_qa_lessons()
+    qa_lessons_block = ""
+    if qa_lessons:
+        qa_lessons_block = f"""
+
+LESSONS FROM PAST QA REVIEWS (your previous reels had these issues — fix them this time):
+{qa_lessons}
+"""
+        print(f"  📚 Injecting {len(qa_lessons.splitlines())} QA lessons into prompt")
+
     prompt = f"""You write viral Instagram Reel scripts for The Videshi — news for the Indian diaspora.
 
 This is a VOICE-OVER reel. No anchor on screen. Visuals are B-roll images that change every 5-7 seconds.
-
+{qa_lessons_block}
 ARTICLE:
 Headline: {headline}
 Subheadline: {subheadline}
