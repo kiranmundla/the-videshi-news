@@ -227,8 +227,12 @@ SCRIPT RULES:
 5. PACING: Short sentences. Vary rhythm. One-word sentences are fine.
 6. LENGTH: 60-80 words. That's 25-35 seconds spoken. Every word earns its place.
 7. SPECIFICS: Include at least one concrete number, name, or detail.
-8. NO "Welcome to The Videshi", NO "Follow for more", NO emoji, NO hashtags.
-9. End with "Full story at thevideshi dot com" ONLY if it flows naturally. Otherwise skip it.
+8. NO "Welcome to The Videshi", NO emoji, NO hashtags.
+9. ALWAYS end with a spoken call-to-action. Use one of these (vary it):
+   - "Full story at thevideshi dot com"
+   - "Follow The Videshi for more"
+   - "More at thevideshi dot com"
+   This is the LAST line of the script. It must be there every time.
 
 HOOK TEXT (shown on screen before voice starts):
 - hook_line1: 3-5 words, ALL CAPS. The "stop scrolling" line.
