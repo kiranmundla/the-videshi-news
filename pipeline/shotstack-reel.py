@@ -65,10 +65,10 @@ CATEGORY_MUSIC = {
 
 # Music volume per category mood
 MUSIC_VOLUME = {
-    "news": 0.05, "nri-world": 0.05, "immigration": 0.05,
-    "sports": 0.06, "technology": 0.05, "markets-finance": 0.04,
-    "entertainment": 0.07, "lifestyle-health": 0.06,
-    "food": 0.07, "travel": 0.07,
+    "news": 0.10, "nri-world": 0.10, "immigration": 0.10,
+    "sports": 0.12, "technology": 0.10, "markets-finance": 0.08,
+    "entertainment": 0.14, "lifestyle-health": 0.12,
+    "food": 0.14, "travel": 0.14,
 }
 
 # Ken Burns effects to rotate through
@@ -313,7 +313,7 @@ Return JSON only:
 
 def generate_tts(text):
     """Generate TTS via HeyGen v2 preview endpoint. Returns (local_path, duration) or (None, 0).
-    Applies loudnorm to -9 LUFS."""
+    Applies loudnorm to -11 LUFS."""
     if not HEYGEN_KEY:
         print("❌ HeyGen API key not found")
         return None, 0
@@ -366,7 +366,7 @@ def generate_tts(text):
 
     result = subprocess.run(
         ["ffmpeg", "-y", "-i", str(wav_path),
-         "-af", "loudnorm=I=-9:TP=-1.0:LRA=11",
+         "-af", "loudnorm=I=-11:TP=-1.0:LRA=11",
          "-codec:a", "libmp3lame", "-q:a", "2", str(mp3_path)],
         capture_output=True, text=True,
     )
@@ -379,7 +379,7 @@ def generate_tts(text):
         print(f"❌ WAV→MP3 conversion failed")
         return None, 0
 
-    print(f"  🎙️ TTS audio: {duration:.1f}s (Indian Anchorwoman voice, normalized to -9 LUFS)")
+    print(f"  🎙️ TTS audio: {duration:.1f}s (Indian Anchorwoman voice, normalized to -11 LUFS)")
     return str(mp3_path), duration
 
 
@@ -1083,7 +1083,6 @@ def build_anchor_reel_timeline(
                     "type": "audio",
                     "src": voice_url,
                     "volume": 1.0,
-                    "effect": "fadeOut",
                 },
                 "start": hook_duration,
                 "length": "auto",
