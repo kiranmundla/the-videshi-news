@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-10T08:15:23.430716+00:00",
+  "timestamp": "2026-06-10T08:45:15.215373+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
+    "pass": 2,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,81 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "692405d6-8d1d-4661-8ef1-88d693ca1667",
-      "headline": "Ten Indian Nationals Indicted in Boston for Staging Armed Robberies to Game the US Visa System",
-      "slug": "boston-10-indicted-staged-robberies-visa-fraud-patel-20260610",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 5,
-          "issue": "The image does not directly relate to the topic of armed robberies or immigration."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses the implications of the indictment on the Indian American community, making it relevant to diaspora readers."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that depicts the themes of crime or immigration.",
-          "Add quotes or perspectives from immigration experts or community leaders to enhance the diaspora angle."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "0b47b45b-0a18-4e45-a77d-6cf7d03ac57b",
-      "headline": "Twenty-One Indian Students Turned Away at Three US Airports in a Single Day",
-      "slug": "21-indian-students-deported-airports-andhra-telangana-20260610",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the specific incident of students being turned away at airports."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article addresses the challenges faced by Indian students in the US, which is relevant to the NRI community."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include quotes or testimonials from affected students or immigration experts to enhance the narrative.",
-          "Add a section on how Indian families can better prepare their students for studying abroad, based on the experiences shared."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "bb534c31-628d-4e40-b936-e5531c136299",
-      "headline": "Modi Will Raise H-1B Visas With Trump at the G7 \u2014 Here's What That Means for 730,000 Indian Workers",
-      "slug": "modi-trump-g7-h1b-visa-bilateral-france-20260610",
+      "id": "6b8f7df2-5e0e-4829-ab41-8e9ce0f98000",
+      "headline": "A Federal Judge Just Killed the $100,000 H-1B Fee. Every Indian Worker in America Should Read the Fine Print.",
+      "slug": "us-court-strikes-down-100000-h1b-visa-fee-trump-indian-tech-workers-20260610",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -101,13 +29,49 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the H-1B visa discussion to the Indian diaspora, highlighting both practical and symbolic implications for Indian workers in the U.S."
+          "note": "The article discusses the implications of the ruling on Indian workers and diaspora groups, making it relevant to the NRI audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from experts or stakeholders to enhance credibility.",
-          "Include more data or statistics on the impact of H-1B visa changes on Indian workers."
+          "Include more direct quotes from Indian diaspora leaders to enhance the perspective.",
+          "Add a section on potential future implications for H-1B visa policies to provide a broader context."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "7a8406e9-464a-40ea-82cb-f0adba4b7f28",
+      "headline": "Modi Has Now Served Longer Than Nehru. No Elected Indian PM Has Lasted This Long.",
+      "slug": "modi-longest-serving-elected-prime-minister-surpasses-nehru-4399-days-20260610",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects Modi's tenure to the Indian diaspora, discussing policy changes and their implications for NRIs."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more direct quotes from diaspora members to enhance the personal connection.",
+          "Include statistics or data on how diaspora engagement has quantitatively changed under Modi's leadership."
         ],
         "verdict": "pass"
       },
