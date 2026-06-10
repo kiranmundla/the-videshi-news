@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-10T05:45:38.479893+00:00",
+  "timestamp": "2026-06-10T06:16:14.094365+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 0,
+    "pass": 11,
     "flag": 1,
     "fail": 0,
     "error": 0
@@ -10,6 +10,412 @@
   "revisions": 1,
   "unpublished": 0,
   "articles": [
+    {
+      "id": "09937f0f-a642-4cce-988b-ddda0f4ae39b",
+      "headline": "The World Just Released 400 Million Barrels of Emergency Oil \u2014 and Your Flight to India Is Still Getting More Expensive",
+      "slug": "iea-oil-release-nri-india-flight-prices-summer-20260610",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses the concerns of NRIs traveling to India, linking oil prices to flight costs."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more specific examples of how rising oil prices have historically affected flight prices to strengthen the argument.",
+          "Add a section on potential future trends in oil prices and their implications for NRI travelers."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "cc5aba30-54e3-4771-b36b-8d68f19f673b",
+      "headline": "India's Airports Just Got Ebola Screening Protocols \u2014 Here's What NRIs Flying Home This Summer Need to Know",
+      "slug": "india-ebola-airport-screening-dgca-nri-summer-travel-20260610",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to Ebola or airports, but it is a generic travel image."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article addresses NRIs directly, providing relevant information about travel protocols that affect them."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that depicts airports or health screenings.",
+          "Add a brief section summarizing the implications for NRIs traveling from specific regions."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "4ce5d520-099b-4143-807e-6b95025222b7",
+      "headline": "Air India Just Made It Possible to Fly International From Varanasi \u2014 and Dozens of Indian Cities Could Be Next",
+      "slug": "air-india-easy-connect-varanasi-hub-spoke-nri-20260610",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "e960b0ea-c21f-47b2-98d5-61822eb50f32",
+            "headline": "Summer Flights From the US Just Got 22% More Expensive \u2014 Her"
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 6,
+          "issue": "The image does not directly relate to the article's focus on Air India's new international flights from Varanasi."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively highlights the benefits of the new service for NRIs, particularly those with family in smaller cities."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including relevant images of Varanasi or Air India flights to enhance visual connection.",
+          "Add quotes from passengers or airline representatives to provide personal insights and enhance engagement."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "6f64525e-04ac-4ef8-b15c-f29d44b9b2f6",
+      "headline": "India Is Counting Its People \u2014 and Their Caste \u2014 for the First Time in 95 Years. Every NRI Should Be Paying Attention.",
+      "slug": "india-census-2027-caste-enumeration-delimitation-nri-20260610",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the census and caste enumeration to the interests of the Indian diaspora, particularly those from southern states."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more direct quotes from diaspora members or experts to enhance the connection to NRI perspectives.",
+          "Add a section discussing potential impacts of the census on NRIs, such as how it might affect their political engagement or identity."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "3d51c906-0b54-4a42-8f83-ff1819d60ab6",
+      "headline": "From Bellevue to Brooklyn, Indian Restaurants Are Opening at a Pace America Has Never Seen",
+      "slug": "indian-food-mainstream-america-farzi-dabba-rasa-20260610",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the rise of Indian restaurants in America, which is relevant to the Indian diaspora interested in culinary trends and cultural representation."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes or insights from diaspora members about their experiences with Indian cuisine in America.",
+          "Include more statistics or data on the growth of Indian restaurants in the U.S. to strengthen the article's claims."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "246e2dc8-6453-4aa6-98ec-0eb16eb249d7",
+      "headline": "Oil Just Crashed to a Seven-Week Low. The RBI Moved Within Hours. Here Is What Every NRI Should Know.",
+      "slug": "oil-crash-iran-israel-ceasefire-rbi-forex-swap-sensex-nri-rupee-20260610",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 5,
+          "issue": "The image of the Strait of Hormuz is relevant to the topic of oil prices but does not directly relate to the RBI's actions or the NRI perspective."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the financial implications of oil prices and RBI actions to NRIs, making it relevant for the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that directly relates to the RBI's actions or the financial implications for NRIs.",
+          "Expand on the potential long-term effects of the RBI's measures on NRI investments and remittances."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "f2046e08-673c-4c53-9bee-fe0c6a96f6ab",
+      "headline": "Three Million Prescriptions in Five Months. The Obesity Pill Is Here.",
+      "slug": "wegovy-pill-3-million-oral-glp1-obesity-south-asian-ada-2026-20260610",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses the specific health risks faced by South Asians, making it relevant to the diaspora audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Add more statistics or studies specifically related to the South Asian diaspora to strengthen the argument.",
+          "Include personal anecdotes or testimonials from South Asians who have used Wegovy to enhance relatability."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "fabcbf8a-f276-493e-a6e9-00b740d481ab",
+      "headline": "Your Gut Has Its Own Clock. A New Study Shows Eating After Midnight Breaks It.",
+      "slug": "gut-clock-late-night-eating-pnas-icc-cells-south-asian-diaspora-20260610",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the study's findings to the South Asian diaspora, particularly regarding late dinner culture and shift work."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a quote from a South Asian health expert to strengthen the diaspora connection.",
+          "Include practical tips for the diaspora on how to adjust meal timings based on the study's findings."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "50ca4565-1ff7-43a3-9040-274dd9f9e9de",
+      "headline": "Broadcom Just Raised $35 Billion for AI Infrastructure. India's Data Centre Gap Just Got Wider.",
+      "slug": "broadcom-apollo-blackstone-35-billion-ai-infrastructure-xpv-20260610",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "d6238dfe-045f-46b3-991d-510e0632534b",
+            "headline": "Broadcom Missed One Number by $1.2 Billion. It Triggered the"
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image of Hock Tan is relevant as he is a key figure in Broadcom, but it could be more directly related to AI infrastructure."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the implications of AI infrastructure financing to NRI investors and Indian engineers, making it relevant for the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including more visuals or infographics related to AI infrastructure to enhance reader engagement.",
+          "Add a brief section on how the Indian government is responding to the data center gap to provide a more comprehensive view."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "eba15ed1-7341-483f-a631-713b4ef2aeca",
+      "headline": "Apple Just Made Cloud AI Free for Most Developers. Indian Builders Should Pay Attention.",
+      "slug": "apple-wwdc-foundation-models-xcode-27-free-ai-developers-20260610",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the developments in Apple's AI offerings to the Indian developer community, highlighting specific benefits for Indian developers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of Indian developers or startups that could benefit from these changes.",
+          "Include a brief comparison of Apple's offerings with competitors to provide context."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "63e91eef-78d8-48dc-9bb4-11d1e83f8c38",
+      "headline": "A Data Centre Fire Just Exposed Google Cloud's India Problem.",
+      "slug": "google-cloud-india-data-centre-fire-outage-delhi-20260610",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the incident to the concerns of NRIs, particularly those working at Google and investors."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes or insights from industry experts to enhance credibility.",
+          "Include more data or statistics about the impact of such outages on businesses in India."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
     {
       "id": "563ed0e9-78d5-479c-943a-41db48bd87d8",
       "headline": "Dhamaal 4 Just Dropped Four Posters. There Are Crocodiles, Pirates, and Arshad Warsi Buried in Sand.",
@@ -28,19 +434,19 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article connects well with NRI audiences by discussing the film's appeal as comfort cinema."
+          "quality": 8,
+          "note": "The article effectively connects the film to NRI audiences by describing it as comfort cinema."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
           "Replace the hero image with one that is relevant to 'Dhamaal 4'.",
-          "Expand on the diaspora angle by including specific examples of how the film resonates with NRI audiences."
+          "Consider adding more details about the film's reception or expectations from the diaspora perspective."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
-        "Revised by gpt-4o-mini (757\u2192779 words)"
+        "Revised by gemini-2.5-flash (779\u2192769 words)"
       ],
       "revised": true,
       "unpublished": false,

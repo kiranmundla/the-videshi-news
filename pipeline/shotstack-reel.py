@@ -755,8 +755,12 @@ Return JSON only: {{"matches": [{{"scene": 1, "article_idx": 5}}, ...]}}"""
         except Exception as e:
             print(f"  ⚠️ AI matching failed: {e} — falling back to sequential")
 
-    # ── 3. Fill any remaining gaps with sequential article images ──
-    pool_urls = [a["image_url"] for a in article_pool if a["image_url"] not in used_in_this_reel]
+    # ── 3. Fill any remaining gaps with sequential curated article images ──
+    pool_urls_curated = [a["image_url"] for a in article_pool 
+                         if a["image_url"] not in used_in_this_reel and is_curated_image(a["image_url"])]
+    pool_urls_any = [a["image_url"] for a in article_pool 
+                     if a["image_url"] not in used_in_this_reel and a["image_url"] not in pool_urls_curated]
+    pool_urls = pool_urls_curated + pool_urls_any  # Curated first, Pexels last
     for i in range(len(matched_urls)):
         if matched_urls[i] is None and pool_urls:
             matched_urls[i] = pool_urls.pop(0)
@@ -979,20 +983,34 @@ def build_anchor_reel_timeline(
         }
 
     # ── Track 2: Logo + TheVideshi.com watermark (every frame) ──
+    # Use native image asset for logo (HTML <img> tags don't fetch in Shotstack renderer)
+    LOGO_URL = "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/branding/logo-192.png"
     logo_track = {
         "clips": [
             {
                 "asset": {
-                    "type": "html",
-                    "html": "<div class='wm'><img src='https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/branding/logo-192.png' class='logo'/><span class='url'>TheVideshi.com</span></div>",
-                    "css": ".wm { display: flex; align-items: center; gap: 6px; padding: 8px 14px; } .logo { width: 28px; height: 28px; border-radius: 4px; } .url { font-family: 'Inter'; color: rgba(255,255,255,0.75); font-size: 14px; font-weight: 700; letter-spacing: 1.5px; text-shadow: 1px 1px 3px rgba(0,0,0,0.6); }",
-                    "width": 260,
-                    "height": 44,
+                    "type": "image",
+                    "src": LOGO_URL,
                 },
                 "start": 0,
                 "length": "end",
                 "position": "topRight",
-                "offset": {"x": -0.01, "y": 0.02},
+                "offset": {"x": -0.03, "y": 0.03},
+                "scale": 0.06,
+                "opacity": 0.85,
+            },
+            {
+                "asset": {
+                    "type": "html",
+                    "html": "<div class='wm'>TheVideshi.com</div>",
+                    "css": ".wm { font-family: 'Inter'; color: rgba(255,255,255,0.8); font-size: 13px; font-weight: 700; letter-spacing: 1px; text-shadow: 1px 1px 4px rgba(0,0,0,0.7); text-align: right; padding: 4px 10px; }",
+                    "width": 200,
+                    "height": 30,
+                },
+                "start": 0,
+                "length": "end",
+                "position": "topRight",
+                "offset": {"x": -0.02, "y": 0.065},
             }
         ]
     }
