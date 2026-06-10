@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-10T13:15:21.694961+00:00",
+  "timestamp": "2026-06-10T13:45:23.452969+00:00",
   "mode": "fix",
   "stats": {
     "pass": 2,
@@ -11,57 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "6e2308fa-bfea-4905-b736-07b54c053c05",
-      "headline": "Manoj Bajpayee Just Became the Man Who Saved India from Bankruptcy. Governor Arrives Thursday.",
-      "slug": "governor-manoj-bajpayee-rbi-1991-crisis-india-gold-reserves-chinmay-mandlekar-nri-20260610",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "c75424b6-08da-4bd8-a40a-a760bf1e0442",
-            "headline": "Manoj Bajpayee Is Playing the Man Who Saved India From Bankr"
-          }
-        ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://youtube.com/watch?v=Mvm0bRY0Qyg",
-            "problem": "irrelevant",
-            "explanation": "The YouTube link does not provide relevant content related to the film or the economic crisis discussed in the article."
-          }
-        ],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the film's subject matter to the experiences and significance for the Indian diaspora, particularly those who emigrated during the economic reforms."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the irrelevant YouTube link with a more relevant embed, such as a trailer or promotional video for the film.",
-          "Consider adding more quotes or insights from the cast or crew to enhance the depth of the article."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "Removed irrelevant embed: https://youtube.com/watch?v=Mvm0bRY0Qyg",
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "41da8d86-bfbb-40d5-99a1-c933812f211e",
-      "headline": "Welcome to the Jungle Drops Its Trailer Tomorrow. Fifteen Stars. One Franchise. Pure Chaos.",
-      "slug": "welcome-to-the-jungle-trailer-tomorrow-akshay-suniel-paresh-comedy-franchise-nri-20260610",
+      "id": "ffec10e8-04e3-4886-978a-bdc6a92bdf3f",
+      "headline": "India Won 102 Gold Medals. The Nearest Country Won Three. Yogasana Is Now a Global Sport.",
+      "slug": "india-102-gold-inaugural-world-yogasana-championship-ahmedabad-olympic-recognition-nri",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -69,16 +21,52 @@
       },
       "llm_review": {
         "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the championship to the Indian diaspora, particularly highlighting the American connection and the pride felt by Indian-Americans."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from participants or officials to enhance the narrative.",
+          "Include more details about the future of yogasana as a sport and its potential impact on the global sports landscape."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "5e6af4f4-ae1f-4491-8b2e-dd4f7157a9ec",
+      "headline": "Gill Has Won Every Test He Has Captained. In ODIs, He Has Lost Every Series.",
+      "slug": "shubman-gill-odi-captaincy-challenge-india-afghanistan-bilateral-series-2027-world-cup-nri",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "b030b65f-8c9b-44b3-b675-558b9fb4b116",
+            "headline": "India Beat Afghanistan by an Innings and 300 Runs. It Is the"
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
         "embed_issues": [
           {
-            "url": "https://www.instagram.com/p/DZZMeBcT6_c/",
+            "url": "https://www.instagram.com/p/DZUrG0Zifcg/",
             "problem": "irrelevant",
-            "explanation": "The Instagram post does not appear to be directly related to the film or its promotional content."
-          },
-          {
-            "url": "https://youtube.com/watch?v=CEfuDgQeROQ",
-            "problem": "duplicate",
-            "explanation": "The YouTube link is mentioned in the body but is not necessary to include as it is not a unique source of information."
+            "explanation": "The Instagram post does not appear to be relevant to the article's focus on Shubman Gill's captaincy and performance in ODIs and Tests."
           }
         ],
         "image_match": {
@@ -87,21 +75,19 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the film's appeal to NRI audiences by discussing its cultural significance and nostalgic value."
+          "quality": 8,
+          "note": "The article connects well with NRI cricket fans by discussing the implications of the series for the future of Indian cricket."
         },
         "factual_flags": [],
-        "duplicate_embeds": [
-          "https://youtube.com/watch?v=CEfuDgQeROQ"
-        ],
+        "duplicate_embeds": [],
         "suggestions": [
-          "Remove the irrelevant Instagram link to maintain focus on the film's content.",
-          "Consider providing more context or quotes from the trailer to enhance engagement."
+          "Replace the irrelevant Instagram embed with a more relevant one that highlights Shubman Gill's captaincy or performance.",
+          "Consider adding quotes or insights from NRI cricket fans to enhance the diaspora connection."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DZZMeBcT6_c/",
+        "Removed irrelevant embed: https://www.instagram.com/p/DZUrG0Zifcg/",
         "promoted to published"
       ],
       "revised": false,
