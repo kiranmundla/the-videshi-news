@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-10T19:15:23.761381+00:00",
+  "timestamp": "2026-06-10T19:45:17.396296+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 0,
-    "flag": 2,
+    "pass": 1,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,53 +11,42 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "e8635795-c9c5-4483-a7cb-6041dbc6416c",
-      "headline": "An Instagram Influencer Just Outranked Shah Rukh Khan on IMDb. Maa Behen Is Netflix's Wildest Indian Hit.",
-      "slug": "maa-behen-netflix-dharna-durga-imdb-madhuri-triptii-global-hit-nri-20260610",
+      "id": "c91c9dfb-309b-48b6-9a71-ba783c333d55",
+      "headline": "India Will Play Twenty ODIs Before the 2027 World Cup. The Afghanistan Series Is Where the Rebuild Begins.",
+      "slug": "india-twenty-odis-2027-world-cup-rebuild-afghanistan-series-dharamsala-gill-jaiswal-nri",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "6c69bb6e-6519-4634-8a7b-dbd61a22269f",
-            "headline": "Madhuri Dixit Has a Dead Body in Her Kitchen. Also, the No. "
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
-        "overall_score": 8,
+        "overall_score": 7,
         "embed_issues": [
           {
-            "url": "https://www.instagram.com/reel/DZNAi80I2tO/",
+            "url": "https://www.instagram.com/p/DZPPR7UAA5_/",
             "problem": "irrelevant",
-            "explanation": "The Instagram reel does not appear to be directly related to the article's main subject of the film 'Maa Behen' or the influencer's rise."
-          },
-          {
-            "url": "https://youtube.com/watch?v=xYbLpsEhcfA",
-            "problem": "irrelevant",
-            "explanation": "The YouTube link is not specified as relevant to the article's content, making it unclear how it connects to the main topic."
+            "explanation": "The Instagram post is not directly related to the Afghanistan series or the rebuilding of the Indian ODI team."
           }
         ],
         "image_match": {
-          "score": 3,
-          "issue": "The image of Madhuri Dixit does not match the article's focus on Dharna Durga and her rise as an influencer."
+          "score": 8,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 7,
-          "note": "The article discusses the global impact of an Indian film and its reception, which resonates with the NRI audience."
+          "note": "The article mentions the timing of the matches in relation to NRI viewers, which connects with the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the hero image with one that features Dharna Durga or is more representative of the film 'Maa Behen'.",
-          "Ensure that embedded links are directly relevant to the content discussed in the article."
+          "Replace the irrelevant Instagram embed with a more relevant one that discusses the Afghanistan series or the players involved.",
+          "Expand on the diaspora angle by including quotes or reactions from NRIs regarding the upcoming series."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/reel/DZNAi80I2tO/",
-        "Removed irrelevant embed: https://youtube.com/watch?v=xYbLpsEhcfA",
+        "Removed irrelevant embed: https://www.instagram.com/p/DZPPR7UAA5_/",
         "promoted to published"
       ],
       "revised": false,
@@ -65,9 +54,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "0377e02d-c562-47a3-91df-b5616af015c9",
-      "headline": "Suriya's \u20b9300 Crore Karuppu Hits Prime Video Thursday. Tamil Cinema's God-Mode Epic Goes Global.",
-      "slug": "karuppu-suriya-prime-video-ott-300-crore-tamil-fantasy-diaspora-nri-20260610",
+      "id": "59cfe37c-ce5b-4c09-9950-c259be032852",
+      "headline": "India Has 745 Million Football Fans. Until Last Week, None of Them Had a Way to Watch the World Cup.",
+      "slug": "india-745-million-football-fans-fifa-world-cup-2026-broadcast-crisis-zee5-kerala-nri-watching-guide",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -75,18 +64,7 @@
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/p/DZUFFW3gDoN/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post does not appear to be directly related to the film 'Karuppu' or its themes, making it irrelevant to the article."
-          },
-          {
-            "url": "https://youtube.com/watch?v=JpVl_-1YgIo",
-            "problem": "irrelevant",
-            "explanation": "The YouTube link is not specified as being related to 'Karuppu', which could lead to confusion about its relevance."
-          }
-        ],
+        "embed_issues": [],
         "image_match": {
           "score": 9,
           "issue": null
@@ -94,19 +72,17 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the film's release to the diaspora audience, highlighting its availability in multiple languages and its significance for Tamil and Telugu viewers abroad."
+          "note": "The article effectively connects the World Cup to the Indian diaspora, highlighting time zone advantages and community engagement."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant Instagram and YouTube links with content that directly relates to the film or its themes.",
-          "Consider adding quotes or reactions from diaspora audiences to enhance the connection with NRI readers."
+          "Include more specific examples of community watch parties or events organized by the diaspora to enhance relatability.",
+          "Provide a brief overview of the significance of the World Cup for Indian fans, especially in the context of the absence of the national team."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DZUFFW3gDoN/",
-        "Removed irrelevant embed: https://youtube.com/watch?v=JpVl_-1YgIo",
         "promoted to published"
       ],
       "revised": false,
