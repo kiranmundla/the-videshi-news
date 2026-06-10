@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-10T00:16:02.190180+00:00",
+  "timestamp": "2026-06-10T00:46:13.794913+00:00",
   "mode": "fix",
   "stats": {
     "pass": 6,
@@ -11,42 +11,35 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "0faf3a95-384e-4c35-b9fa-75b6eaeb6593",
-      "headline": "Eight-Point-Five Million Dollars Paid, One Judge's Pen, and No Refund in Sight \u2014 The H-1B Fee Aftermath Nobody Is Explaining",
-      "slug": "85-employers-paid-100k-h1b-fee-refund-circuit-split-aftermath-20260610",
+      "id": "629403f9-14fb-44da-885a-eb112f5c8920",
+      "headline": "From Frozen Naan to NEXTY Gold: Indian Food's Quiet Conquest of the American Grocery Aisle",
+      "slug": "from-frozen-naan-to-nexty-gold-indian-foods-quiet-conquest-of-the-american-groce",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
-        "broken_embeds": [
-          {
-            "url": "https://x.com/USCIS/status/1929246017358045241",
-            "problem": "broken",
-            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
-          }
-        ]
+        "broken_embeds": []
       },
       "llm_review": {
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image of a Green Card is relevant but does not directly represent the H-1B visa topic."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively highlights the impact of the H-1B fee on Indian nationals, making it highly relevant to the diaspora."
+          "quality": 8,
+          "note": "The article effectively connects the growth of Indian food in American grocery stores to the diaspora's demand and influence."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider including more direct quotes from immigration lawyers or affected individuals to enhance the narrative.",
-          "Add a brief explanation of the H-1B visa process for readers who may not be familiar with it."
+          "Include more statistics or quotes from industry experts to strengthen the argument.",
+          "Consider adding a section on consumer reactions or testimonials to enhance relatability."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "Removed 1 broken/hallucinated embed(s)",
         "promoted to published"
       ],
       "revised": false,
@@ -54,42 +47,186 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "ebdc7db0-ebe1-4584-8cd6-aca643e08bd0",
-      "headline": "Sixty Days and a Suitcase \u2014 The Safety Net That 730,000 Indian H-1B Workers Can No Longer Trust",
-      "slug": "sixty-days-suitcase-h1b-grace-period-indian-workers-layoff-20260610",
+      "id": "8bf744a3-3c95-493c-a15c-c53bed71671f",
+      "headline": "The Mango Wars: How India's Favourite Fruit Became America's Hottest Culture-War Flashpoint",
+      "slug": "the-mango-wars-how-indias-favourite-fruit-became-americas-hottest-culture-war-fl",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
-        "broken_embeds": [
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [
           {
-            "url": "https://x.com/USCIS/status/1929246017358045241",
-            "problem": "broken",
-            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
+            "url": "https://www.instagram.com/reel/DYbQ45Hh-3j/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel does not appear to be directly related to the cultural significance of mangoes or the controversy discussed in the article."
           }
-        ]
+        ],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the mango's cultural significance to the Indian diaspora, highlighting its role in identity and nostalgia."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the irrelevant Instagram embed with a more relevant social media post that discusses the cultural significance of mangoes or the controversy.",
+          "Consider adding more statistics or quotes from Indian-American community members to strengthen the diaspora perspective."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DYbQ45Hh-3j/",
+        "Revised by gpt-4o-mini (773\u2192884 words)"
+      ],
+      "revised": true,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "21e68124-6626-4c89-ba09-ee04155e6e6d",
+      "headline": "Three Stars, Three Cities: Indian Chefs Make Michelin History Across America",
+      "slug": "three-stars-three-cities-indian-chefs-make-michelin-history-across-america",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
       },
       "llm_review": {
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image is relevant to the theme of immigration and the struggles of H-1B workers, but it could be more directly related to the specific context of job loss or the H-1B experience."
+          "issue": "The image does not specifically depict Indian cuisine or chefs, which could enhance the article's relevance."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively addresses the concerns of Indian H-1B workers, making it highly relevant to the Indian diaspora."
+          "note": "The article effectively connects the achievements of Indian chefs to the pride and significance felt within the Indian diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes or testimonials from affected H-1B workers to enhance the emotional impact.",
-          "Include more statistics or data on the impact of the proposed legislation to strengthen the argument."
+          "Include more images of the featured restaurants or dishes to enhance visual appeal.",
+          "Add quotes or reactions from the chefs themselves to provide a more personal touch."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "Removed 1 broken/hallucinated embed(s)",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "5a33b446-4b65-42c0-bf15-5bb0245ed40a",
+      "headline": "El Ni\u00f1o Just Crossed the Drought Threshold. India's Monsoon Is Already 18% Short.",
+      "slug": "el-nino-threshold-crossed-india-monsoon-18-percent-deficient-imd-downgrade-20260610",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image depicts a flooded paddy field, which is relevant to the topic of monsoon and agriculture, but the date in the image (July 2025) is misleading as it suggests a future event."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article connects well with the diaspora by discussing the impact of the monsoon on agricultural productivity, which is relevant to many NRIs with family ties to farming in India."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Update the image to one that reflects current conditions or remove the date from the image description.",
+          "Consider adding more direct quotes or perspectives from diaspora members to enhance the personal connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "91396c98-efb5-41fb-84cd-e5fc41a6812c",
+      "headline": "India's Jet Fuel Stabilisation Fund Just Went Live. Airlines Are Not Signing Up.",
+      "slug": "india-atf-aviation-fuel-stabilisation-fund-rs115-airlines-not-joining-20260610",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses implications for NRIs booking flights to India, making the connection relevant and natural."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more direct quotes from industry experts or officials to enhance credibility.",
+          "Add a brief section on potential future developments or reactions from airlines to keep readers informed."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "f3aa45c8-66da-4d69-b08c-a98d2c33223b",
+      "headline": "India's Gold Tariff Hike Was Supposed to Shrink the Trade Deficit. It Built a Smuggling Empire Instead.",
+      "slug": "india-gold-tariff-hike-smuggling-surge-100-metric-tons-grey-market-20260610",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image of gold bars is relevant but does not specifically depict the context of smuggling or the economic implications discussed in the article."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the gold market issues to NRIs, highlighting the impact on family purchases and the cultural significance of gold."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including a more specific image that illustrates the impact of smuggling on the gold market.",
+          "Add a quote or perspective from an NRI to further enhance the diaspora connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
         "promoted to published"
       ],
       "revised": false,
@@ -106,44 +243,6 @@
         "broken_embeds": []
       },
       "llm_review": {
-        "overall_score": 6,
-        "embed_issues": [],
-        "image_match": {
-          "score": 8,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses discrimination faced by Indian Americans, which is relevant to the diaspora experience."
-        },
-        "factual_flags": [
-          "The article mentions the year 2025 for survey data, which is inconsistent with the current year (2023)."
-        ],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Clarify the timeline of the survey data to avoid confusion regarding the year mentioned.",
-          "Include quotes or testimonials from Indian Americans to add a personal touch and enhance engagement."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Revised by gpt-4o-mini (907\u2192970 words)"
-      ],
-      "revised": true,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "8ccbd269-d60b-41f3-b81d-c80d03561759",
-      "headline": "America's Oldest National Indian American Council Just Turned Twenty. Its Founder Wants the Next Two Decades to Be Louder.",
-      "slug": "ncaia-twentieth-anniversary-jesse-singh-lifetime-award-maryland-20260610",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
@@ -153,121 +252,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively highlights the achievements and contributions of the Indian American community, making it relevant to diaspora readers."
+          "note": "The article discusses the experiences of Indian Americans, which directly relates to the diaspora community and their challenges."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes or testimonials from attendees to enhance the personal connection to the event.",
-          "Include more specific examples of the NCAIA's impact over the past two decades to strengthen the narrative."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "c5bd09d1-7053-4980-b5d2-fbd23cdba6ae",
-      "headline": "Sridhar Ramaswamy's Snowflake Just Posted $1.39 Billion in Revenue. His Warning for Indian IT Is Sharper.",
-      "slug": "sridhar-ramaswamy-snowflake-agentic-enterprise-revenue-20260610",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects Ramaswamy's background and the implications for the Indian IT sector, making it relevant for the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more direct quotes from Ramaswamy to enhance the article's engagement.",
-          "Include a brief section on how the Indian IT sector is currently responding to these challenges."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "266f40b8-987f-485a-bf2f-d6f3d1ca7f6b",
-      "headline": "India's UPI Just Landed in Cambodia. That Makes Nine Countries and Counting.",
-      "slug": "upi-cambodia-nepal-nine-countries-global-expansion-20260610",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects UPI's expansion to the convenience it offers to NRIs, particularly in terms of remittances and travel."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more specific examples of how UPI has benefited NRIs in the past.",
-          "Add a quote from an NRI user or expert to enhance the personal connection."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "a95fdcaa-e0c3-4997-9b88-c3df94eeb5af",
-      "headline": "Anthropic Just Released Its Most Powerful Public Model. Indian IT Giants Are Already Building the Safety Net.",
-      "slug": "anthropic-fable-5-mythos-class-indian-it-agent-security-20260610",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the advancements in AI technology to the opportunities and challenges faced by Indian engineers in the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more specific examples of how Indian IT firms are adapting to these changes in AI technology.",
-          "Add quotes or insights from Indian engineers or industry leaders to enhance the diaspora perspective."
+          "Include quotes or testimonials from Indian Americans to add a personal touch to the statistics.",
+          "Provide more context on the implications of the survey findings for the Indian American community."
         ],
         "verdict": "pass"
       },
