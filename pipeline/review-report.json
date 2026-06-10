@@ -1,13 +1,13 @@
 {
-  "timestamp": "2026-06-10T03:16:14.091030+00:00",
+  "timestamp": "2026-06-10T03:45:10.260789+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 5,
-    "flag": 1,
+    "pass": 1,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
-  "revisions": 1,
+  "revisions": 0,
   "unpublished": 0,
   "articles": [
     {
@@ -26,227 +26,21 @@
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/p/DZSudrJjeJL/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post does not appear to be directly related to the performance or the film being discussed."
-          }
-        ],
-        "image_match": {
-          "score": 6,
-          "issue": "The image of AR Rahman does not directly relate to the specific event at the India-Pakistan border."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the film and performance to the Indian diaspora, emphasizing its relevance and emotional impact."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the irrelevant Instagram embed with a more relevant social media post or image related to the performance.",
-          "Consider using an image that captures the essence of the performance at the border for better alignment with the article's theme."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DZSudrJjeJL/",
-        "Revised by gpt-4o-mini (756\u2192842 words)"
-      ],
-      "revised": true,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "3eefe877-6bf9-4aaa-ad99-6dc7796c8414",
-      "headline": "Ranveer Singh Is Building a Zombie Apocalypse. The Budget Is \u20b9300 Crore and the Director Made Scam 1992.",
-      "slug": "ranveer-singh-pralay-zombie-thriller-300-crore-kalyani-priyadarshan-bollywood-debut-nri-20260610",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "a861f811-6610-447f-bd1c-11aedb8773d7",
-            "headline": "Ranveer Singh Wrote a \u20b910 Crore Cheque to Leave Don 3. The I"
-          },
-          {
-            "article_id": "94efd851-7bed-4f4d-ad70-f5fdf773ced7",
-            "headline": "Ranveer Singh Is Making India's First \u20b9300 Crore Zombie Thri"
-          }
-        ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article connects well with diaspora readers by highlighting Kalyani Priyadarshan's crossover appeal and the evolution of Bollywood."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more details on the potential impact of the film on the Indian film industry.",
-          "Add quotes or insights from the director or cast to enhance the article's depth."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "6b7e80cc-8ce7-4954-b527-502d64b515d5",
-      "headline": "India Just Opened a Semiconductor Training Fab. The Hard Part Is Filling It.",
-      "slug": "iisc-semiconductor-training-fab-india-chip-workforce-20260610",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image is relevant to the topic of semiconductor training but does not specifically depict the Semiconductor Training Fab Facility."
+          "issue": "The image features AR Rahman but does not directly relate to the specific event at the India-Pakistan border."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively addresses the concerns and opportunities for Indian-origin professionals in the global semiconductor industry, making it relevant to the diaspora."
+          "note": "The article effectively connects the performance to the emotional ties of the Indian diaspora, making it relevant."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include a specific image of the Semiconductor Training Fab Facility to enhance relevance.",
-          "Expand on the potential impact of the semiconductor training on the Indian diaspora's decision to return."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "e04aebd7-2415-4953-b470-c5bcd88f4b5b",
-      "headline": "Claude Writes 80% of Anthropic's Code. The Company Wants a Pause Button Before It's Too Late.",
-      "slug": "anthropic-claude-80-percent-code-ai-pause-indian-engineers-20260610",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "aea2d97d-3fc2-4594-b2ff-1cb904101678",
-            "headline": "India Just Made Anthropic's Cybersecurity A-List. Only a Han"
-          }
-        ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image features Dario Amodei, a key figure at Anthropic, which is relevant to the article's topic about the company's AI model, Claude."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses the implications of AI advancements on Indian engineers, making it relevant to the NRI audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more direct quotes from Indian engineers or industry experts to strengthen the diaspora connection.",
-          "Include a brief section on how Indian engineers can adapt to these changes in the tech landscape."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "c4f77b77-04b3-436e-9f98-b81bbc852aac",
-      "headline": "Musk's xAI Got Caught Training on Claude's Outputs. It Kept Going Anyway.",
-      "slug": "xai-distilling-claude-grok-coding-models-anthropic-20260610",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "9e8fd671-bc07-44d2-ab32-aeecfd2e6677",
-            "headline": "SpaceX Is About to Become the Biggest IPO in History. Indian"
-          }
-        ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 6,
-          "issue": "The image of Elon Musk is relevant but does not directly relate to the specific topic of xAI's actions regarding Claude."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the implications of the xAI situation to Indian engineers and startups, making it relevant for the diaspora audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that directly relates to xAI or AI technology to enhance the visual connection to the article's content.",
-          "Add more context or quotes from Indian engineers or startups to strengthen the diaspora angle."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "96cc8731-a469-4338-8e8e-210a07483034",
-      "headline": "Annamalai Has Left the BJP. He Wants to Build Tamil Nadu's Next Political Party From Scratch.",
-      "slug": "annamalai-resigns-bjp-new-political-movement-tamil-nadu-2031-elections-20260610",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 8,
-          "issue": "The image of K. Annamalai matches the article's subject about his political activities."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 6,
-          "note": "The article briefly mentions the diaspora's interest but lacks depth in connecting the political developments to the diaspora's concerns."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Expand on the diaspora angle to include how Annamalai's political movement may impact Tamil NRIs or their interests.",
-          "Include more context on the significance of Annamalai's departure for the Tamil diaspora, perhaps through quotes or perspectives from diaspora leaders."
+          "Consider using an image that directly relates to the performance at the India-Pakistan border for better visual alignment.",
+          "Expand on the emotional impact of the performance on the diaspora to enhance the connection."
         ],
         "verdict": "pass"
       },
