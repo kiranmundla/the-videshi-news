@@ -1,7 +1,16 @@
 #!/usr/bin/env python3
-"""News writer: 3 articles for June 10, 2026"""
+"""
+News writer for The Videshi — June 10, 2026 evening batch
+3 articles: H-1B fee ruling, Section 301 trade, India bond tax reforms
+"""
 
-import json, os, requests, urllib.parse
+import json
+import os
+import re
+import subprocess
+import sys
+import time
+import urllib.parse
 from datetime import datetime, timezone
 
 # Load env
@@ -10,190 +19,512 @@ with open(env_path) as f:
     for line in f:
         line = line.strip()
         if line and not line.startswith("#") and "=" in line:
-            key, _, val = line.partition("=")
-            val = val.strip().strip('"').strip("'")
-            os.environ[key.strip()] = val
+            key, val = line.split("=", 1)
+            os.environ[key.strip()] = val.strip().strip('"').strip("'")
 
 SUPABASE_URL = os.environ["SUPABASE_URL"]
 SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
-HEADERS = {
-    "apikey": SUPABASE_KEY,
-    "Authorization": f"Bearer {SUPABASE_KEY}",
-    "Content-Type": "application/json",
-    "Prefer": "return=representation"
+
+PEXELS_KEY = None
+pexels_path = os.path.expanduser("~/.env.pexels") if os.path.exists(os.path.expanduser("~/.env.pexels")) else None
+if pexels_path:
+    with open(pexels_path) as f:
+        for line in f:
+            line = line.strip()
+            if line and not line.startswith("#") and "=" in line:
+                key, val = line.split("=", 1)
+                if "PEXELS" in key.upper():
+                    PEXELS_KEY = val.strip().strip('"').strip("'")
+
+
+def fetch_wikipedia_person_image(person_name):
+    """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
+    import requests
+    encoded = urllib.parse.quote(person_name.replace(' ', '_'))
+    try:
+        r = requests.get(
+            f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
+            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
+            timeout=10
+        )
+        if r.status_code == 200:
+            data = r.json()
+            img = data.get("originalimage", {}).get("source") or data.get("thumbnail", {}).get("source")
+            if img:
+                print(f"  ✓ Wikipedia image found for '{person_name}': {img[:80]}...")
+                return img
+    except Exception as e:
+        print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
+    return None
+
+
+def fetch_wikimedia_commons_images(search_query, limit=5):
+    """Search Wikimedia Commons for CC-licensed images."""
+    import requests
+    params = {
+        "action": "query",
+        "generator": "search",
+        "gsrsearch": search_query,
+        "gsrnamespace": "6",
+        "gsrlimit": str(limit),
+        "prop": "imageinfo",
+        "iiprop": "url|size|mime",
+        "iiurlwidth": "1200",
+        "format": "json"
+    }
+    try:
+        r = requests.get(
+            "https://commons.wikimedia.org/w/api.php",
+            params=params,
+            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
+            timeout=15
+        )
+        if r.status_code == 200:
+            data = r.json()
+            pages = data.get("query", {}).get("pages", {})
+            results = []
+            for page_id, page in pages.items():
+                imageinfo = page.get("imageinfo", [{}])[0]
+                url = imageinfo.get("thumburl") or imageinfo.get("url")
+                if url and imageinfo.get("mime", "").startswith("image/"):
+                    width = imageinfo.get("width", 0)
+                    height = imageinfo.get("height", 0)
+                    results.append({
+                        "url": url,
+                        "title": page.get("title", ""),
+                        "width": width,
+                        "height": height
+                    })
+            return results
+    except Exception as e:
+        print(f"  ⚠ Wikimedia Commons error for '{search_query}': {e}")
+    return []
+
+
+def fetch_pexels_image(query):
+    """Search Pexels for a relevant image. Uses curl (Python urllib gets 403)."""
+    if not PEXELS_KEY:
+        return None
+    try:
+        cmd = [
+            "curl", "-sS", "-H", f"Authorization: {PEXELS_KEY}",
+            f"https://api.pexels.com/v1/search?query={urllib.parse.quote(query)}&per_page=3&orientation=landscape"
+        ]
+        result = subprocess.run(cmd, capture_output=True, text=True, timeout=15)
+        if result.returncode == 0:
+            data = json.loads(result.stdout)
+            photos = data.get("photos", [])
+            if photos:
+                photo = photos[0]
+                url = photo.get("src", {}).get("large2x") or photo.get("src", {}).get("large")
+                if url:
+                    print(f"  ✓ Pexels image found for '{query}': {url[:80]}...")
+                    return url
+    except Exception as e:
+        print(f"  ⚠ Pexels error for '{query}': {e}")
+    return None
+
+
+def validate_image_url(url):
+    """Validate that an image URL returns HTTP 200 and is larger than 5KB."""
+    if not url:
+        return False
+    # Check for banned sources
+    banned = ["fbcdn.net", "cdninstagram.com", "lookaside.fbsbx.com", "_nc_ht=", "_nc_cat=", "ccb="]
+    for b in banned:
+        if b in url:
+            print(f"  ✗ BANNED source detected: {b}")
+            return False
+    try:
+        cmd = ["curl", "-sS", "-I", "-L", "--max-time", "10", url]
+        result = subprocess.run(cmd, capture_output=True, text=True, timeout=15)
+        headers = result.stdout.lower()
+        if "200" in headers and "content-type: image" in headers:
+            # Check size
+            for line in headers.split("\n"):
+                if "content-length:" in line:
+                    size = int(line.split(":")[1].strip())
+                    if size > 5000:
+                        print(f"  ✓ Image validated: {size} bytes")
+                        return True
+                    else:
+                        print(f"  ✗ Image too small: {size} bytes")
+                        return False
+            # No content-length but 200 + image type — likely okay (chunked)
+            print("  ✓ Image validated (no content-length, but 200 + image type)")
+            return True
+    except Exception as e:
+        print(f"  ⚠ Image validation error: {e}")
+    return False
+
+
+def insert_article(article):
+    """Insert article into Supabase."""
+    import requests
+    headers = {
+        "apikey": SUPABASE_KEY,
+        "Authorization": f"Bearer {SUPABASE_KEY}",
+        "Content-Type": "application/json",
+        "Prefer": "return=representation"
+    }
+    # Build sources as JSON string
+    raw_sources = article.get("sources", [])
+    if isinstance(raw_sources, list):
+        sources_json = json.dumps([{"name": s} if isinstance(s, str) else s for s in raw_sources])
+    else:
+        sources_json = json.dumps(raw_sources)
+
+    payload = {
+        "headline": article["headline"],
+        "subheadline": article["subheadline"],
+        "body": article["body"],
+        "slug": article["slug"],
+        "category": article["category"],
+        "vertical": article.get("vertical", "news"),
+        "status": "review",
+        "is_editorial": False,
+        "image_url": article.get("image_url", ""),
+        "image_caption": article.get("image_caption", ""),
+        "image_attribution": article.get("image_attribution", ""),
+        "sources": sources_json,
+        "published_at": datetime.now(timezone.utc).isoformat(),
+    }
+    try:
+        r = requests.post(
+            f"{SUPABASE_URL}/rest/v1/p2_articles",
+            headers=headers,
+            json=payload,
+            timeout=15
+        )
+        if r.status_code in (200, 201):
+            data = r.json()
+            if isinstance(data, list) and data:
+                art_id = data[0].get("id", "?")
+            else:
+                art_id = "?"
+            print(f"  ✓ Inserted: {article['headline'][:60]}... (id={art_id})")
+            return True
+        else:
+            print(f"  ✗ Insert failed ({r.status_code}): {r.text[:200]}")
+            return False
+    except Exception as e:
+        print(f"  ✗ Insert error: {e}")
+        return False
+
+
+# ============================================================
+# ARTICLE 1: H-1B $100K Fee Struck Down
+# ============================================================
+print("\n" + "="*60)
+print("ARTICLE 1: H-1B $100K Fee Struck Down")
+print("="*60)
+
+# Image sourcing — this is about a judge/court ruling, try Wikipedia for Judge Sorokin or US District Court
+# Better to search Commons for H-1B visa or US federal court
+print("Sourcing image...")
+img1_url = None
+img1_caption = ""
+img1_attribution = ""
+
+# Try Wikimedia Commons for H-1B visa / US immigration court
+commons_results = fetch_wikimedia_commons_images("H-1B visa United States immigration")
+if commons_results:
+    for r in commons_results:
+        if validate_image_url(r["url"]):
+            img1_url = r["url"]
+            img1_caption = "US immigration and visa processing"
+            img1_attribution = "Wikimedia Commons"
+            break
+
+if not img1_url:
+    commons_results = fetch_wikimedia_commons_images("United States federal courthouse Boston")
+    if commons_results:
+        for r in commons_results:
+            if validate_image_url(r["url"]):
+                img1_url = r["url"]
+                img1_caption = "US federal courthouse where the H-1B ruling was issued"
+                img1_attribution = "Wikimedia Commons"
+                break
+
+if not img1_url:
+    # Pexels fallback for generic visa/immigration scene (NOT about a named person)
+    pexels_url = fetch_pexels_image("US visa immigration office")
+    if pexels_url and validate_image_url(pexels_url):
+        img1_url = pexels_url
+        img1_caption = "US visa and immigration processing"
+        img1_attribution = "Pexels"
+
+article1 = {
+    "headline": "A Federal Judge Just Killed Trump's $100,000 H-1B Fee. Congress Wants to Bring It Back.",
+    "subheadline": "The ruling is a reprieve for Indian tech workers — but a Republican bill to codify the fee is already in motion, and the legal fight is headed to three appellate circuits.",
+    "slug": "federal-judge-strikes-down-100k-h1b-fee-protect-act-congress-indian-workers-20260610",
+    "category": "news",
+    "vertical": "immigration",
+    "image_url": img1_url or "",
+    "image_caption": img1_caption,
+    "image_attribution": img1_attribution,
+    "sources": [
+        "Associated Press",
+        "Reuters",
+        "Bloomberg Law",
+        "Analytics Insight",
+        "Daily Caller"
+    ],
+    "body": """A federal judge in Boston has struck down the Trump administration's $100,000 fee on new H-1B visa applications, calling it an unlawful tax that only Congress has the authority to impose.
+
+U.S. District Court Judge Leo Sorokin sided with a coalition of 20 state attorneys general on Monday, ruling that the executive branch exceeded its authority and violated the Administrative Procedure Act. "The Court finds that the Policy imposes a tax on H-1B petitions without the requisite delegation by Congress," Sorokin wrote in his decision.
+
+The ruling landed like a thunderclap across the Indian tech workforce in America. Nearly three-quarters of all H-1B approvals go to workers from India, and the $100,000 fee — introduced by Trump through a September 2025 proclamation — had effectively frozen the pipeline. Government data showed that by February 15 of this year, just 85 employers had actually paid the fee, down from tens of thousands of annual applications in prior years.
+
+## What the Fee Did
+
+Before the policy shift, sponsoring an H-1B worker cost employers between $2,000 and $5,000 depending on company size. Trump's proclamation raised that to $100,000 per application — a more than twentyfold increase that the administration justified as a way to prevent foreign workers from displacing Americans.
+
+The states that sued — led by Massachusetts and California — argued the fee made it nearly impossible to recruit doctors, teachers, and university researchers. "Today's victory protects the integrity of the H-1B visa program as a tool to address severe labor shortages in vital industries," Massachusetts Attorney General Andrea Joy Campbell said.
+
+The American Medical Association called the ruling "a victory for patients," noting that international medical graduates fill critical gaps in underserved and rural areas where physician shortages are most acute.
+
+## The Legal Mess Is Just Beginning
+
+Monday's decision directly contradicts an earlier federal court ruling in Washington, D.C., which upheld the fee after the U.S. Chamber of Commerce challenged it there. That case is now on appeal, with the higher fee still technically in effect until September 2026, when the proclamation is scheduled to expire. A third lawsuit — filed in San Francisco by religious groups and labor organisations — is still pending.
+
+The result is a circuit split in the making. Three federal appellate courts may end up issuing conflicting rulings on the same fee, virtually guaranteeing the issue will land before the Supreme Court.
+
+## Congress Is Already Moving
+
+Within hours of the ruling, Republican Utah Rep. Mike Kennedy promoted the PROTECT Act, a bill that would codify the $100,000 fee at the congressional level — the exact fix the judge's ruling demands. Kennedy's legislation requires any H-1B applicant to pay "either prevailing rates or $100,000 at a base" and aims to compel companies to prioritise American-born workers before turning to foreign nationals.
+
+"The ruling shows we needed somebody in Congress to actually take care of this," Kennedy told reporters.
+
+The White House, meanwhile, expressed confidence the decision would be "reversed on appeal." The Department of Homeland Security called the ruling "blatant judicial activism."
+
+## What This Means for Indian Workers
+
+For the roughly 500,000 Indian nationals currently on H-1B visas — and the hundreds of thousands more waiting in the green card backlog — the ruling is meaningful but fragile. The fee remains in legal limbo across multiple courts, and the PROTECT Act could reimpose it through legislation that would survive the judicial challenge Judge Sorokin mounted.
+
+The practical advice from immigration attorneys is unchanged: keep documentation current, monitor the July Visa Bulletin, and plan for the possibility that the fee returns in a new legal form before the year is out. The system is not fixed. But for the first time since September, the most punishing barrier to entry has a crack in it."""
 }
 
-now_iso = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+print(f"Article 1 ready: {article1['headline'][:70]}...")
+print(f"  Image: {'YES' if article1['image_url'] else 'NO'}")
+print(f"  Word count: {len(article1['body'].split())}")
 
-articles = []
 
-# ─────────────────────────────────────────────────
-# ARTICLE 1: Reliance-Meta 168MW AI Data Centre
-# ─────────────────────────────────────────────────
-articles.append({
-    "headline": "Reliance and Meta Are Building India's First Hyperscale AI Data Centre. It Will Run on Seawater.",
-    "subheadline": "The 168-megawatt facility in Jamnagar marks Meta's first built-to-suit data centre in the country, powered by renewables and cooled with desalinated seawater — and Reliance will run the whole thing.",
-    "slug": "reliance-meta-168mw-ai-data-centre-jamnagar-seawater-cooled-20260610",
+# ============================================================
+# ARTICLE 2: India Rejects Section 301 Overcapacity Charge
+# ============================================================
+print("\n" + "="*60)
+print("ARTICLE 2: India Rejects Section 301 Overcapacity Charge")
+print("="*60)
+
+# Image sourcing — about India trade / Amitabh Kumar
+print("Sourcing image...")
+img2_url = None
+img2_caption = ""
+img2_attribution = ""
+
+# Try Wikipedia for USTR or India trade ministry
+commons_results = fetch_wikimedia_commons_images("India United States trade meeting")
+if commons_results:
+    for r in commons_results:
+        if validate_image_url(r["url"]):
+            img2_url = r["url"]
+            img2_caption = "India-US trade discussions"
+            img2_attribution = "Wikimedia Commons"
+            break
+
+if not img2_url:
+    commons_results = fetch_wikimedia_commons_images("India steel factory textile industry")
+    if commons_results:
+        for r in commons_results:
+            if validate_image_url(r["url"]):
+                img2_url = r["url"]
+                img2_caption = "Indian steel and textile manufacturing"
+                img2_attribution = "Wikimedia Commons"
+                break
+
+if not img2_url:
+    pexels_url = fetch_pexels_image("India steel factory manufacturing")
+    if pexels_url and validate_image_url(pexels_url):
+        img2_url = pexels_url
+        img2_caption = "Indian manufacturing and steel production"
+        img2_attribution = "Pexels"
+
+article2 = {
+    "headline": "India Tells Washington: We Don't Have Overcapacity in Anything.",
+    "subheadline": "As the US ramps up Section 301 investigations and proposes a 12.5% tariff tier for India, New Delhi is pushing back — with population math, cotton weather, and a trade deal that keeps slipping away.",
+    "slug": "india-rejects-us-section-301-overcapacity-steel-textiles-trade-tariffs-20260610",
     "category": "news",
-    "status": "review",
-    "is_editorial": False,
-    "image_url": "https://upload.wikimedia.org/wikipedia/commons/6/69/Mukesh_Ambani.jpg",
-    "image_caption": "Mukesh Ambani, Chairman of Reliance Industries, who called the deal a 'transformative moment' for India's digital infrastructure",
-    "image_attribution": "Wikimedia Commons",
-    "published_at": now_iso,
-    "sources": json.dumps(["Reuters", "Inc42", "YourStory", "The Hindu BusinessLine", "Meta official statement"]),
-    "body": """India's largest private company and the world's largest social media company just shook hands on a deal that could reshape where the planet's AI infrastructure gets built.
+    "vertical": "politics",
+    "image_url": img2_url or "",
+    "image_caption": img2_caption,
+    "image_attribution": img2_attribution,
+    "sources": [
+        "Reuters",
+        "NBC Palm Springs / AP",
+        "US Trade Representative"
+    ],
+    "body": """India's top trade negotiator pushed back on Wednesday against American allegations that the country is dumping excess steel and textiles into global markets, setting the stage for a sharpening confrontation as the US prepares to impose new tariffs under Section 301.
 
-Reliance Industries and Meta Platforms announced on Wednesday that they will jointly develop a 168-megawatt AI-enabled data centre in Jamnagar, Gujarat. The facility — Meta's first custom-built data centre anywhere in India — will be constructed by Reliance and leased to Meta, with an option to scale further. It is expected to go live within two years.
+"Overcapacity is a country's perspective. We don't think we have overcapacity in anything," said Amitabh Kumar, India's additional trade secretary, responding to a US Trade Representative investigation that has named India among 16 countries accused of subsidising factories that overproduce beyond what their domestic markets can absorb.
 
-## Why Jamnagar
+The remarks came on the same day Washington released a sweeping Section 301 report covering 60 economies. The report proposes a minimum 10 percent tariff on goods from nations that have existing trade frameworks with the US — and a steeper 12.5 percent rate for countries that, in Washington's assessment, have failed to take even preliminary steps to eliminate forced labour from supply chains. India sits in the higher tier, alongside China, Japan, South Korea, and Brazil.
 
-The choice of location is deliberate. Jamnagar is already home to the world's largest oil refinery complex, and Reliance is now pivoting the city toward a very different kind of energy infrastructure. The data centre will run entirely on renewable power and use desalinated seawater for cooling — an unusual engineering choice that eliminates the freshwater burden that makes data centres controversial in water-stressed regions.
+## The Overcapacity Argument
 
-"Building India's first built-to-suit data centre for a global technology leader of Meta's scale demonstrates India's readiness to be at the forefront of the global AI revolution," Mukesh Ambani said in a statement. "Jamnagar will become a landmark destination for hyperscale AI computing."
+Washington's case against India rests on structural excess capacity in several industries: solar modules, petrochemicals, steel, and textiles. The US also points to India's $42 billion goods trade surplus with America in 2025 as evidence that Indian exports are displacing American production.
 
-Mark Zuckerberg called the facility a way to "scale our AI infrastructure globally while deepening our long-term investment in India's economy."
+Kumar's rebuttal was blunt and demographic. India's per-capita textile consumption is among the lowest in the world, he said, particularly for man-made fibre and technical textiles. "This country has a hot climate, tropical climate. We wear cotton. How do we have overcapacity?"
 
-## The Full Stack Play
+On steel, Kumar noted that India is the world's second-largest producer but that per-capita consumption remains far below the global average. Output reflects development needs — roads, bridges, housing, metro systems — not a strategy to flood foreign markets.
 
-Under the agreement, Reliance will act as a single-window solutions provider — handling design, construction, utility management, renewable power supply, network connectivity, and day-to-day operations. The setup leverages Jamnagar's proximity to India's western submarine cable landing stations and Jio's extensive fibre network, giving Meta low-latency connectivity to its 500-million-plus Indian user base.
+Trade analysts say the overcapacity framing is strategic. Washington is using the threat of Section 301 tariffs to pressure India into opening its markets for American agricultural products, energy, and defence equipment — the same priorities that have dominated bilateral trade talks for years.
 
-Meta is also separately partnering with CleanMax and Fourth Partner Energy to back nearly 1 gigawatt of new clean energy capacity in India. The total renewable energy commitment signals that Meta is not treating India as a secondary market — it is building foundational infrastructure here.
+## The Tariff Timeline
 
-## What It Means for the Diaspora
+The proposed tariffs are not immediate. The USTR has opened a public comment period that runs through July 6, 2026, followed by administrative hearings starting July 7. But the direction is clear: the US is rebuilding its tariff architecture around Section 301 — a legal mechanism with no statutory expiration dates or maximum percentage caps — after courts struck down earlier tariffs imposed under emergency powers.
 
-For NRIs watching India's tech trajectory, this deal is a marker. India has long been a services powerhouse — writing the code, running the call centres, managing the back offices. But hosting the physical AI infrastructure of a $1.5 trillion American tech giant is a qualitative shift. It puts India in the same conversation as the US, Ireland, and Singapore as a destination for hyperscale computing.
+For India, the 12.5 percent tier would compound the pain from existing tariffs and the broader economic drag from the Iran war, which has already lifted oil prices 30 percent, weakened the rupee, and forced the government to scramble for foreign currency.
 
-The partnership also builds on a relationship that started with Meta's $5.7 billion investment in Jio Platforms in 2020. That deal gave WhatsApp a payments layer and Facebook a distribution channel. This one gives Meta compute capacity and Reliance a foothold in one of the world's fastest-growing infrastructure markets.
+## The Trade Deal That Keeps Slipping
 
-## The Bigger Picture
+New Delhi has been pushing for a bilateral trade deal that would give Indian exports preferential tariff rates versus competitors. But the negotiations have stalled repeatedly, clouded by the Section 301 investigations, disputes over agricultural market access, and the growing political cost of appearing soft on trade in either capital.
 
-India's data centre market is projected to grow from 1.3 GW of installed capacity in 2025 to over 3 GW by 2028, driven by the AI boom and the government's push for data localisation. Reliance, Adani, Tata, and the Hiranandani Group are all racing to build capacity. But having Meta as an anchor tenant changes the economics — and the credibility — of Jamnagar's bet.
+The irony is not lost on trade watchers. India's economy grew 7.8 percent in the March quarter — among the fastest in the world — and its domestic market is precisely the prize American exporters want access to. But the path to a deal runs through the same overcapacity allegations that Kumar spent Wednesday morning rejecting.
 
-The deal also arrives as India grapples with the Iran war's impact on energy costs. A data centre powered entirely by renewables sidesteps the fossil fuel volatility that is squeezing Indian industry right now. In that sense, Jamnagar is not just an AI play. It is a hedge."""
-})
+## What NRIs Should Watch
 
-# ─────────────────────────────────────────────────
-# ARTICLE 2: Zoho Nathu La Server
-# ─────────────────────────────────────────────────
-articles.append({
-    "headline": "Zoho Just Built Its Own Server From Scratch. In Nagpur.",
-    "subheadline": "The Chennai-based SaaS giant spent five years designing a server platform in-house, with all intellectual property owned in India. It wants to cut AI inference costs by 30 percent and reduce dependence on foreign hardware.",
-    "slug": "zoho-nathu-la-server-designed-india-nagpur-ai-inference-sovereignty-20260610",
+For the Indian diaspora in America, the Section 301 escalation has a direct pocketbook impact. A 12.5 percent tariff on Indian goods would raise prices on textiles, pharmaceuticals, and manufactured products that flow into the US market. Indian IT services, which are not covered by goods tariffs, remain unaffected for now — but the broader deterioration in the trade relationship raises the risk of future restrictions on services trade and visa access.
+
+The public comment period closes July 6. The next round of formal hearings begins a day later. The window for de-escalation is narrow and closing."""
+}
+
+print(f"Article 2 ready: {article2['headline'][:70]}...")
+print(f"  Image: {'YES' if article2['image_url'] else 'NO'}")
+print(f"  Word count: {len(article2['body'].split())}")
+
+
+# ============================================================
+# ARTICLE 3: India Scraps Bond Taxes for Foreigners
+# ============================================================
+print("\n" + "="*60)
+print("ARTICLE 3: India Scraps Bond Taxes for Foreigners")
+print("="*60)
+
+print("Sourcing image...")
+img3_url = None
+img3_caption = ""
+img3_attribution = ""
+
+# Try Wikimedia Commons for RBI or Indian bond market
+commons_results = fetch_wikimedia_commons_images("Reserve Bank of India building Mumbai")
+if commons_results:
+    for r in commons_results:
+        if validate_image_url(r["url"]):
+            img3_url = r["url"]
+            img3_caption = "Reserve Bank of India headquarters in Mumbai"
+            img3_attribution = "Wikimedia Commons"
+            break
+
+if not img3_url:
+    wiki_img = fetch_wikipedia_person_image("Reserve Bank of India")
+    if wiki_img and validate_image_url(wiki_img):
+        img3_url = wiki_img
+        img3_caption = "Reserve Bank of India"
+        img3_attribution = "Wikimedia Commons"
+
+if not img3_url:
+    commons_results = fetch_wikimedia_commons_images("Indian government bond market Bombay Stock Exchange")
+    if commons_results:
+        for r in commons_results:
+            if validate_image_url(r["url"]):
+                img3_url = r["url"]
+                img3_caption = "Indian financial markets"
+                img3_attribution = "Wikimedia Commons"
+                break
+
+if not img3_url:
+    pexels_url = fetch_pexels_image("India financial district Mumbai stock exchange")
+    if pexels_url and validate_image_url(pexels_url):
+        img3_url = pexels_url
+        img3_caption = "India's financial district in Mumbai"
+        img3_attribution = "Pexels"
+
+
+article3 = {
+    "headline": "India Just Scrapped All Taxes on Foreign Bond Investments. A Billion Dollars Arrived in Three Days.",
+    "subheadline": "The emergency reforms — zero withholding tax, zero capital gains — are India's bid to join the Bloomberg Global Aggregate Index and reverse $29 billion in foreign outflows.",
+    "slug": "india-scraps-bond-tax-foreign-investors-bloomberg-index-billion-dollar-inflows-20260610",
     "category": "news",
-    "status": "review",
-    "is_editorial": False,
-    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Zoho_headquarters_in_chennai.jpg/1280px-Zoho_headquarters_in_chennai.jpg",
-    "image_caption": "Zoho Corporation headquarters in Chennai, the parent company behind the Nathu La server platform",
-    "image_attribution": "Wikimedia Commons",
-    "published_at": now_iso,
-    "sources": json.dumps(["Inc42", "The Hindu BusinessLine", "Business Wire", "Express Computer", "Morningstar"]),
-    "body": """When India talks about technology sovereignty, the conversation usually stops at software. Zoho just pushed it down to the bare metal.
+    "vertical": "news",
+    "image_url": img3_url or "",
+    "image_caption": img3_caption,
+    "image_attribution": img3_attribution,
+    "sources": [
+        "Reuters",
+        "State Street Investment Management",
+        "BNP Paribas Asset Management",
+        "M&G Investments"
+    ],
+    "body": """India has eliminated all taxes on foreign investments in government bonds — scrapping both withholding and capital gains levies in a single stroke — and the money is already flowing in. More than $1 billion worth of Indian government debt was purchased by overseas investors in just three trading sessions after the announcement, compared to $1.6 billion in the entire year up to that point.
 
-The Chennai-based enterprise SaaS giant has unveiled Nathu La, an indigenously designed server platform that was developed entirely in-house over five years by a team in Nagpur. The server runs on Intel Xeon 6 processors, uses custom-engineered motherboards and network interface cards, and delivers performance equivalent to existing alternatives — at 20 to 30 percent lower total cost of ownership and 12 to 18 percent less power consumption, according to the company.
+The reforms, unveiled on Friday as part of a broad emergency package, are designed to lure foreign capital back into an Indian debt market that has been hammered by the Iran war's oil shock, a weakening rupee, and $29 billion in foreign equity outflows since February.
 
-## Built in Small-Town India
+"We believe that these changes are a game-changer for debt flows," said Jennifer Taylor, head of emerging market debt at State Street Investment Management, which manages about $5.6 trillion in assets globally.
 
-The backstory is quintessentially Zoho. In 2020, the company quietly set up a small R&D team in Nagpur — not Bangalore, not Hyderabad, not even its own headquarters in Chennai — to work on designing a server from the ground up. The talent was recruited locally and trained in-house, consistent with founder Sridhar Vembu's long-standing conviction that world-class technology can be built outside India's metro bubbles.
+## What Changed
 
-"We are proud to build a server system that is truly designed in India and taking a step towards creating sovereign technology," said Shailesh Davey, CEO of Zoho Corporation. "The development of the Nathu La server reflects our commitment to creating complex technology powered by talent from smaller towns and villages."
+The package goes well beyond tax cuts. Policymakers broadened the pool of government securities available to foreigners without investment limits, introduced incentives for banks to raise foreign currency deposits from non-resident Indians, and eased rules for Indian companies to tap overseas borrowings.
 
-The company has already deployed a few hundred units, with 1,000 servers in production and pre-production and a target of 2,000 by the end of the year. The platform is designed for virtualisation, high-performance computing, AI inference, and storage workloads across Zoho's global SaaS infrastructure.
+The measures are a direct response to the pressure on India's external balances. The country's oil-and-gas import bill jumped 53 percent in April alone, and before the reforms, HSBC had projected India's balance of payments deficit would balloon to $65 billion in fiscal 2027. Citi has since revised its forecast sharply, now expecting a $5 billion surplus — a $65 billion swing driven largely by the capital-account reforms.
 
-## Why It Matters
+Government bond yields have already fallen 10 to 30 basis points across the curve, with shorter maturities seeing the steepest declines.
 
-India imports the overwhelming majority of its server hardware. The underlying intellectual property — board designs, firmware, systems management — has historically been owned by American, Taiwanese, and Chinese companies. In 2023, the Indian government imposed import restrictions on compute devices including servers, highlighting the vulnerability.
+## The Bloomberg Index Play
 
-Zoho's move makes it one of a handful of technology companies globally to own the full stack from hardware to software applications. The Nathu La platform includes in-house-designed motherboards, a proprietary Data Centre Secure Control Module, modular chassis configurations, and custom network interface cards. Assembly is handled by Indian electronics manufacturing partners. The company has filed five new patents covering thermal management and modular server architecture.
+Investors say the reforms could prove even more consequential over the longer term by paving the way for India's inclusion in the Bloomberg Global Aggregate Index — the flagship global bond benchmark tracked by trillions of dollars in assets.
 
-## The AI Inference Angle
+Bloomberg Index Services is expected to seek investor feedback later this month on whether Indian government bonds should be added. India's finance minister personally met with Reserve Bank of India officials ahead of the reforms to push for inclusion, according to a government official.
 
-The timing is not accidental. As enterprises race to deploy AI across their operations, the cost of running inference — the step where a trained model actually processes queries and generates outputs — is becoming a significant line item. For a company like Zoho, which runs AI features across dozens of SaaS products serving millions of users, even a 20 percent reduction in infrastructure cost compounds into serious savings.
+Niel Clement, portfolio manager for emerging market fixed income at BNP Paribas Asset Management (€1.6 trillion in assets), said the steps would "broaden opportunities for overseas investors, redirect flows to the onshore market, and provide a constructive boost to India's bid for inclusion."
 
-"With Zoho's strategy of using contextual, right-sized models, running on our own platform, now on our own servers, accelerated by our own GPU database, we are compounding the benefits accrued from owning and operating our entire technology stack," Davey said.
+M&G Investments, which manages £376 billion, said the tax exemptions have already boosted the near-term appeal of Indian government securities, and that Bloomberg index inclusion would be "a bigger driver of inflows" — similar to the transformative effect of India's entry into the JPMorgan emerging market debt index.
 
-## The Diaspora Connection
+## The Risks That Remain
 
-For NRIs in the tech industry — many of whom have spent careers building infrastructure for American hyperscalers — Zoho's achievement is both validation and provocation. The company is demonstrating that India can design competitive hardware, not just manufacture it under foreign licences. The Nagpur angle makes it sharper: this was not done at an IIT incubator or a Bangalore tech park, but at a centre specifically built to prove that India's Tier 2 and Tier 3 cities can produce cutting-edge engineering.
+Not everyone is rushing in. Currency risk remains the elephant in the room. The rupee has fallen 5.86 percent this year, trailing only the Indonesian rupiah as Asia's worst performer, and the depreciation has eroded the carry appeal that typically draws foreign bond investors.
 
-Zoho does not plan to commercialise the server platform yet. For now, Nathu La will serve Zoho's own infrastructure. But the IP is Indian, the talent is Indian, and the implications extend well beyond one company's data centres."""
-})
+"The bigger issue for offshore investors is still the currency," said Rong Ren Goh, head of macro and thematics for Asian fixed income at Eastspring Investments. He added that many investors are waiting for clearer signs of rupee stability before raising allocations.
 
-# ─────────────────────────────────────────────────
-# ARTICLE 3: H-1B $100K Fee Struck Down
-# ─────────────────────────────────────────────────
-articles.append({
-    "headline": "A Federal Judge Just Killed Trump's $100,000 H-1B Fee. The Fight Is Not Over.",
-    "subheadline": "The ruling strikes down a charge that threatened to choke the pipeline Indian tech workers have built careers around. But the White House plans to appeal, and other restrictions remain firmly in place.",
-    "slug": "federal-judge-strikes-down-trump-100000-h1b-visa-fee-indian-tech-workers-20260610",
-    "category": "news",
-    "status": "review",
-    "is_editorial": False,
-    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Capitol_at_Dusk_2.jpg/1280px-Capitol_at_Dusk_2.jpg",
-    "image_caption": "The US Capitol building in Washington, where Congress holds the exclusive authority to levy taxes that the judge ruled Trump overstepped",
-    "image_attribution": "Wikimedia Commons",
-    "published_at": now_iso,
-    "sources": json.dumps(["Reuters", "CNN", "Wall Street Journal", "Fox News", "Outlook Business", "Associated Press"]),
-    "body": """A federal judge in Boston has struck down the Trump administration's $100,000 fee on H-1B visa applications, ruling that the president imposed an unlawful tax that Congress never authorised. The decision is a landmark win for Indian tech professionals — but the relief may be temporary.
+The broader backdrop is also challenging. Global interest-rate volatility is elevated, energy prices remain unpredictable as the Iran war enters its fourth month, and the Federal Reserve appears unlikely to cut rates anytime soon — with U.S. CPI data released Wednesday showing inflation at a three-year high of 4.2 percent.
 
-US District Judge Leo Sorokin issued the ruling on Monday in a lawsuit brought by 20 Democratic state attorneys general. The judge concluded that the fee, introduced by presidential proclamation in September 2025, functioned as a tax rather than a lawful penalty, and that neither the president nor federal agencies had the authority to collect it.
+## What This Means for NRIs
 
-"The Court finds that the Policy imposes a tax on H-1B petitions without the requisite delegation by Congress," Sorokin wrote in a 42-page decision. "There are no statutory powers authorizing Defendants to implement a $100,000 tax on H-1B petitions."
+The reforms include specific incentives for non-resident Indians. Banks have been given concessional terms to mobilise NRI foreign currency deposits, which could translate into higher interest rates on FCNR and NRE accounts — a development already being flagged by Indian banks offering up to 7 percent on dollar deposits.
 
-## The Scale of the Threat
+For NRIs with capital to deploy, the zero-tax regime on government bonds creates a new investment channel that did not exist a week ago. The question is whether the rupee stabilises enough to make the returns worth the currency risk — and whether Bloomberg's decision on index inclusion, expected in the coming weeks, provides the structural bid that turns a policy experiment into a permanent shift."""
+}
 
-Before the fee was announced, employers typically paid between $2,000 and $5,000 to sponsor a foreign worker for an H-1B visa. Trump's $100,000 charge — a 20-to-50-fold increase — sent shockwaves through the tech industry and Indian diaspora communities. Some companies scrambled to bring workers back to the US before the policy took full effect, though the administration later clarified it would only apply to new petitions, not renewals.
+print(f"Article 3 ready: {article3['headline'][:70]}...")
+print(f"  Image: {'YES' if article3['image_url'] else 'NO'}")
+print(f"  Word count: {len(article3['body'].split())}")
 
-The fee was so prohibitive that only 85 payments had been made as of February, according to USCIS data cited in a March court filing. The programme itself serves 65,000 new visas annually, with another 20,000 reserved for workers with advanced degrees. Indian nationals received 283,397 H-1B visas in 2024 — more than 70 percent of the total, and six times the number issued to the next-largest group, Chinese nationals.
 
-## Why the Judge Ruled It Unlawful
-
-Sorokin drew on the Supreme Court's February ruling that struck down Trump's sweeping tariffs under a law meant for national emergencies. Under similar reasoning, the judge found that immigration law gives the president power to restrict entry of foreign nationals — but not to levy a tax on a legal programme.
-
-"Hiring workers pursuant to the H-1B programme is plainly lawful," the judge wrote. The fee did not penalise illegal behaviour; it taxed legal immigration — a power reserved exclusively for Congress.
-
-The ruling also found violations of the Administrative Procedure Act, which requires agencies to undergo public notice-and-comment before implementing major policy changes. The administration had bypassed that process entirely.
-
-## The Conflicting Rulings Problem
-
-This is where it gets complicated. In a separate challenge brought by the US Chamber of Commerce, Judge Beryl Howell in Washington DC sided with the Trump administration in December, finding the fee lawful. A third lawsuit, filed by religious groups and labour organisations in San Francisco, is still pending.
-
-The result is a split among federal courts — a situation that will likely force the issue to the appeals courts and potentially the Supreme Court. Until then, the legal landscape is uncertain.
-
-## What Stays in Place
-
-Indian diaspora organisations welcomed the ruling, but cautioned against premature celebration. Sanjeev Joshipura, Executive Director of Indiaspora, noted that the administration retains other tools to tighten the H-1B pipeline: enhanced vetting of applicants, a proposed selection process weighted toward higher-paid workers, and broader enforcement actions that fall short of outright legal violations.
-
-The White House called the ruling "crazy" and said it was confident the decision would be reversed on appeal. Spokesperson Taylor Rogers asserted that the president "has clear legal authority to restrict entry of any class of aliens he determines is not in America's best interests."
-
-## The Stakes for Indian Americans
-
-The H-1B programme is the entry point for a pipeline that has produced CEOs at Google, Microsoft, and IBM; thousands of founders at American startups; and a professional class that contributes an estimated $1 trillion annually to the US economy. The $100,000 fee was not just an administrative burden — it threatened to fundamentally alter the economics of hiring Indian talent in America.
-
-With the Modi-Trump bilateral at the G7 summit just days away, and H-1B visas reportedly on the agenda, Monday's ruling adds a powerful card to New Delhi's hand. But the game is far from over."""
-})
-
-# ─────────────────────────────────────────────────
+# ============================================================
 # INSERT ALL ARTICLES
-# ─────────────────────────────────────────────────
-for i, article in enumerate(articles):
-    print(f"\n{'='*60}")
-    print(f"Inserting article {i+1}: {article['headline'][:60]}...")
-    
-    resp = requests.post(
-        f"{SUPABASE_URL}/rest/v1/p2_articles",
-        headers=HEADERS,
-        json=article,
-        timeout=30
-    )
-    
-    if resp.status_code in (200, 201):
-        data = resp.json()
-        if isinstance(data, list) and len(data) > 0:
-            print(f"  ✓ Inserted: id={data[0].get('id','?')}, slug={data[0].get('slug','?')}")
-        else:
-            print(f"  ✓ Inserted (response: {str(data)[:100]})")
-    else:
-        print(f"  ✗ FAILED: {resp.status_code} — {resp.text[:300]}")
+# ============================================================
+print("\n" + "="*60)
+print("INSERTING ARTICLES")
+print("="*60)
 
-print("\n\nDone. All 3 articles submitted for review.")
+articles = [article1, article2, article3]
+success_count = 0
+for i, art in enumerate(articles, 1):
+    print(f"\n--- Article {i}: {art['headline'][:50]}...")
+    if insert_article(art):
+        success_count += 1
+    time.sleep(1)
+
+print(f"\n{'='*60}")
+print(f"DONE: {success_count}/{len(articles)} articles inserted with status='review'")
+print(f"{'='*60}")
