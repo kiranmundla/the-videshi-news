@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-10T16:45:29.746263+00:00",
+  "timestamp": "2026-06-10T17:15:17.985890+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
-    "flag": 2,
+    "pass": 1,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,139 +11,36 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "30cff232-2e05-4c53-a622-d1acd34e7ac2",
-      "headline": "India Has Never Qualified. In Kerala, the World Cup Fever Is Louder Than Anywhere.",
-      "slug": "kerala-world-cup-2026-fever-fans-banners-brazil-argentina-malappuram-palakkad-nri",
+      "id": "2fde4ad9-9c9d-4a7a-b329-f8c9ae3a5b1d",
+      "headline": "Kangana Ranaut's 26/11 Film Tells the Story Nobody Made for 18 Years. It Opens Thursday.",
+      "slug": "bharat-bhagya-vidhata-kangana-ranaut-26-11-cama-hospital-nurses-tax-free-nri-20260610",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects Kerala's football culture to the diaspora, highlighting fan activities in Gulf countries and the U.S."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include quotes or anecdotes from local fans or diaspora members to enhance the personal connection.",
-          "Add a brief historical context about Kerala's football culture to enrich the narrative."
+        "duplicate_images": [
+          {
+            "article_id": "63ab7d03-e88e-4de8-b897-10a7fd5e8044",
+            "headline": "Kangana Ranaut Delivered a Baby While Terrorists Walked the "
+          }
         ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "0cd65089-d5d2-4013-804a-eaa2efc38973",
-      "headline": "His Father Left the Stadium Out of Superstition. His Son Took Seven Wickets on Debut.",
-      "slug": "manav-suthar-test-debut-sri-ganganagar-rajasthan-family-dravid-advice-nri",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article connects with the Indian diaspora by highlighting the journey of a cricketer from a small town, which resonates with many NRIs who may have similar backgrounds."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include quotes or perspectives from diaspora members regarding their connection to cricket or Indian sports.",
-          "Add a brief section on how the Indian diaspora engages with cricket, perhaps mentioning viewership or support for players from their hometowns."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "b2aa3ec0-8c37-428e-8960-9f3f56ab6b3f",
-      "headline": "A Federal Judge Just Killed Trump's $100,000 H-1B Fee. The Fight Is Not Over.",
-      "slug": "federal-judge-strikes-down-trump-100000-h1b-visa-fee-indian-tech-workers-20260610",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 3,
-          "issue": "irrelevant"
+          "score": 7,
+          "issue": "The image of Kangana Ranaut does not directly relate to the film's subject matter, which focuses on nurses during the 26/11 attacks."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article discusses the impact of the ruling on Indian tech professionals, making it highly relevant to the diaspora."
+          "note": "The article effectively connects the film's narrative to the emotional impact of 26/11 on the diaspora, making it relevant for NRI readers."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the hero image with one that directly relates to immigration or H-1B visas to enhance relevance.",
-          "Consider adding quotes or reactions from more Indian diaspora members to enrich the narrative."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "97960047-135e-4133-aeef-839c7aad1a30",
-      "headline": "Zoho Just Built Its Own Server From Scratch. In Nagpur.",
-      "slug": "zoho-nathu-la-server-designed-india-nagpur-ai-inference-sovereignty-20260610",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 4,
-          "issue": "image does not depict the server or Nagpur"
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article connects well with NRIs in the tech industry, highlighting India's capabilities in hardware design."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider including a relevant image of the Nathu La server or the Nagpur facility to enhance visual relevance.",
-          "Add more quotes or insights from diaspora experts to strengthen the connection with NRI readers."
+          "Consider using an image that directly relates to the film's subject matter, such as a scene depicting the nurses or the hospital.",
+          "Add more context about the film's reception or critical reviews to enhance the article's depth."
         ],
         "verdict": "pass"
       },
@@ -155,9 +52,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "c0411dc2-8bd6-4e33-88f9-2984d3d9144f",
-      "headline": "Reliance and Meta Are Building India's First Hyperscale AI Data Centre. It Will Run on Seawater.",
-      "slug": "reliance-meta-168mw-ai-data-centre-jamnagar-seawater-cooled-20260610",
+      "id": "8283b27c-a159-404f-b41b-5c354e2f3030",
+      "headline": "Nora Fatehi Just Landed a FIFA World Cup Song. She Performs in Toronto on Thursday.",
+      "slug": "nora-fatehi-fifa-world-cup-2026-siir-siir-toronto-opening-ceremony-indian-crew-nri-20260610",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -165,25 +62,32 @@
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DZU2Om_RhMF/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel does not appear to be directly related to the FIFA World Cup or Nora Fatehi's performance, making it irrelevant to the article's main topic."
+          }
+        ],
         "image_match": {
-          "score": 3,
-          "issue": "irrelevant"
+          "score": 7,
+          "issue": "The image of Nora Fatehi does not directly relate to the FIFA World Cup or her performance in Toronto."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the deal to the NRI audience by discussing India's evolving role in global tech infrastructure."
+          "quality": 9,
+          "note": "The article effectively connects Nora Fatehi's achievements to the Indian diaspora, emphasizing representation and cultural influence."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the hero image with one that is more relevant to the topic of AI data centers or technology.",
-          "Consider adding quotes or perspectives from NRI stakeholders to enhance the diaspora connection."
+          "Replace the irrelevant Instagram link with a more relevant embed related to the FIFA World Cup or Nora Fatehi's performance.",
+          "Consider using an image that directly relates to the FIFA World Cup or her performance to enhance visual relevance."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DZU2Om_RhMF/",
         "promoted to published"
       ],
       "revised": false,
