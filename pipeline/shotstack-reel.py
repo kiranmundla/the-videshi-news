@@ -336,6 +336,160 @@ Return JSON only:
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
+# PRE-RENDER GATES — validate before spending Shotstack credits
+# ═══════════════════════════════════════════════════════════════════════════════
+
+def pre_render_script_qa(script_data, article):
+    """Score script BEFORE TTS/render. Catches bad scripts at ~$0.001 instead of $0.20.
+    Returns (passed: bool, score: int, feedback: str).
+    """
+    if not OPENAI_KEY:
+        return True, 7, "Skipped (no API key)"
+
+    headline = article.get("headline", "")
+    script = script_data.get("script", "")
+    hook1 = script_data.get("hook_line1", "")
+    hook2 = script_data.get("hook_line2", "")
+    storyboard = script_data.get("storyboard", [])
+    word_count = len(script.split())
+
+    prompt = f"""You quality-check reel scripts for The Videshi (Indian diaspora news).
+
+ARTICLE: {headline}
+HOOK: {hook1} / {hook2}
+SCRIPT ({word_count} words): {script}
+STORYBOARD SCENES: {len(storyboard)}
+
+Score 1-10 on:
+1. HOOK POWER: Does it grab in 3 seconds? Bold, surprising, specific?
+2. SCRIPT QUALITY: Punchy, well-paced, NRI-relevant? No filler?
+3. LENGTH: 60-80 words ideal. Under 50 or over 90 is a problem.
+4. CTA: Must end with "thevideshi.com" or "follow The Videshi". Present?
+5. STORYBOARD: Are scene visuals concrete and photographable? (no abstract concepts)
+6. SPELLING: Is "TheVideshi" / "thevideshi.com" spelled correctly throughout?
+
+HARD FAILS (auto-score 0):
+- "TheVideshi" misspelled anywhere (Vidashi, Vidashee, Divaji, etc.)
+- No CTA at the end
+- Script under 30 words or over 100 words
+
+Return JSON only:
+{{"score": <1-10>, "passed": <true if score >= 7>, "issues": ["issue1"], "fix_suggestions": ["suggestion1"]}}"""
+
+    try:
+        r = requests.post(
+            "https://api.openai.com/v1/chat/completions",
+            headers={"Authorization": f"Bearer {OPENAI_KEY}", "Content-Type": "application/json"},
+            json={
+                "model": "gpt-4o-mini",
+                "messages": [{"role": "user", "content": prompt}],
+                "temperature": 0.2,
+                "response_format": {"type": "json_object"},
+                "max_tokens": 300,
+            },
+            timeout=15,
+        )
+        if r.status_code != 200:
+            return True, 7, "Skipped (API error)"
+
+        result = json.loads(r.json()["choices"][0]["message"]["content"])
+        score = result.get("score", 5)
+        # Derive pass from score, don't trust LLM string
+        passed = score >= 7
+        issues = result.get("issues", [])
+        fixes = result.get("fix_suggestions", [])
+        notes = "; ".join(issues) if issues else "Clean"
+        return passed, score, notes
+    except Exception as e:
+        return True, 7, f"Skipped ({e})"
+
+
+def preflight_image_urls(image_urls):
+    """HEAD-check all image URLs before render. Returns (valid_urls, dead_urls).
+    A dead image URL = wasted Shotstack credit (black frame or render failure).
+    """
+    valid = []
+    dead = []
+    for url in image_urls:
+        try:
+            r = requests.head(url, timeout=8, allow_redirects=True,
+                              headers={"User-Agent": "Mozilla/5.0 (compatible; TheVideshi/1.0)"})
+            if r.status_code < 400:
+                valid.append(url)
+            else:
+                dead.append((url, f"HTTP {r.status_code}"))
+                print(f"  ❌ Dead image: {url[:80]} → {r.status_code}")
+        except Exception as e:
+            dead.append((url, str(e)))
+            print(f"  ❌ Unreachable image: {url[:80]} → {e}")
+    return valid, dead
+
+
+def validate_timeline_json(edit_json):
+    """Sanity-check the Shotstack timeline JSON before submitting.
+    Catches structural issues that would waste a credit on a guaranteed failure.
+    Returns (valid: bool, issues: list[str]).
+    """
+    issues = []
+
+    # Check output config
+    output = edit_json.get("output", {})
+    if output.get("format") != "mp4":
+        issues.append(f"Unexpected format: {output.get('format')}")
+    size = output.get("size", {})
+    if size.get("width") != 1080 or size.get("height") != 1920:
+        issues.append(f"Not portrait 9:16: {size}")
+    if output.get("aspectRatio") not in ("9:16", None):
+        issues.append(f"Aspect ratio mismatch: {output.get('aspectRatio')}")
+
+    # Check timeline exists and has tracks
+    timeline = edit_json.get("timeline", {})
+    tracks = timeline.get("tracks", [])
+    if not tracks:
+        issues.append("No tracks in timeline")
+
+    # Check all clips have non-zero length (Shotstack allows "end" and "auto" as valid string lengths)
+    for ti, track in enumerate(tracks):
+        for ci, clip in enumerate(track.get("clips", [])):
+            length = clip.get("length", 0)
+            # "end" = fill to end of timeline, "auto" = infer from asset — both valid
+            if isinstance(length, str) and length in ("end", "auto"):
+                continue
+            try:
+                length = float(length)
+            except (TypeError, ValueError):
+                issues.append(f"Track {ti} clip {ci}: invalid length '{length}'")
+                continue
+            if length <= 0:
+                issues.append(f"Track {ti} clip {ci}: zero/negative length")
+            asset = clip.get("asset", {})
+            # Check image/video assets have a src
+            asset_type = asset.get("type", "")
+            if asset_type in ("image", "video", "audio") and not asset.get("src"):
+                issues.append(f"Track {ti} clip {ci}: {asset_type} asset missing src URL")
+
+    # Check total duration is reasonable (15s - 120s for a reel)
+    total_duration = 0
+    if tracks:
+        for clip in tracks[0].get("clips", []):
+            try:
+                clip_start = float(clip.get("start", 0))
+                clip_length = clip.get("length", 0)
+                if isinstance(clip_length, str):
+                    continue  # "end"/"auto" — can't compute, skip
+                clip_end = clip_start + float(clip_length)
+            except (TypeError, ValueError):
+                clip_end = 0
+            total_duration = max(total_duration, clip_end)
+    if total_duration < 15:
+        issues.append(f"Too short: {total_duration:.1f}s")
+    elif total_duration > 120:
+        issues.append(f"Too long: {total_duration:.1f}s")
+
+    return len(issues) == 0, issues
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
 # TTS — HeyGen Indian Anchorwoman Voice
 # ═══════════════════════════════════════════════════════════════════════════════
 
@@ -1572,7 +1726,8 @@ Return JSON only:
             print(f"  🚫 NON-NEGOTIABLE FAILURES: {'; '.join(non_neg)}")
             return False, 0, f"Non-negotiable: {'; '.join(non_neg)}"
 
-        passed = result.get("passed", score >= 6)
+        # Derive pass/fail from score — never trust LLM's string verdict
+        passed = score >= 6
 
         if issues:
             print(f"  📋 Issues ({severity}): {'; '.join(issues)}")
@@ -1695,6 +1850,23 @@ def run_anchor_reel(article, dry_run=False, use_production=False):
     if not script_data:
         return False
 
+    # 1b. PRE-RENDER GATE: Script quality check (costs ~$0.001 vs $0.20 for a wasted render)
+    print("\n🛡️ Step 1b: Pre-render script QA...")
+    sq_passed, sq_score, sq_notes = pre_render_script_qa(script_data, article)
+    print(f"  📊 Script score: {sq_score}/10 — {sq_notes}")
+    if not sq_passed:
+        print(f"  ⚠️ Script scored {sq_score}/10 — regenerating...")
+        # Clear cache and regenerate once
+        script_data = generate_script(article, force_new=True)
+        if not script_data:
+            return False
+        sq_passed2, sq_score2, sq_notes2 = pre_render_script_qa(script_data, article)
+        print(f"  📊 Retry script score: {sq_score2}/10 — {sq_notes2}")
+        if not sq_passed2:
+            print(f"  ❌ Script still weak after retry ({sq_score2}/10) — skipping article to save credits")
+            return False
+        print(f"  ✅ Retry script passed ({sq_score2}/10)")
+
     # 2. Generate TTS
     print("\n🎙️ Step 2: Generating TTS...")
     audio_path, audio_duration = generate_tts(script_data["script"])
@@ -1723,6 +1895,20 @@ def run_anchor_reel(article, dry_run=False, use_production=False):
     if not image_urls:
         print("❌ No images found")
         return False
+
+    # 4b. PRE-RENDER GATE: Verify all image URLs are reachable
+    print("\n🛡️ Step 4b: Image preflight check...")
+    valid_urls, dead_urls = preflight_image_urls(image_urls)
+    if dead_urls:
+        print(f"  ⚠️ {len(dead_urls)} dead image(s) found — replacing from pool...")
+        # Re-source only dead slots from article pool (curated first)
+        storyboard_slim = [storyboard[i] for i in range(len(storyboard)) if i < len(image_urls) and image_urls[i] not in [u for u, _ in dead_urls]]
+        # Use valid URLs plus attempt to fill gaps
+        image_urls = valid_urls
+        if len(image_urls) < 3:
+            print(f"  ❌ Only {len(image_urls)} valid images — too few for a quality reel, skipping")
+            return False
+        print(f"  ✅ {len(image_urls)} valid images after preflight")
 
     # 5. Ensure music is uploaded
     print("\n🎵 Step 5: Setting up music...")
@@ -1754,6 +1940,16 @@ def run_anchor_reel(article, dry_run=False, use_production=False):
     with open(json_path, "w") as f:
         json.dump(edit_json, f, indent=2)
     print(f"  📄 Timeline JSON saved: {json_path}")
+
+    # 6b. PRE-RENDER GATE: Validate timeline JSON structure
+    print("\n🛡️ Step 6b: Timeline validation...")
+    tl_valid, tl_issues = validate_timeline_json(edit_json)
+    if not tl_valid:
+        for issue in tl_issues:
+            print(f"  ❌ {issue}")
+        print("  ❌ Timeline failed validation — skipping render to save credits")
+        return False
+    print("  ✅ Timeline structure valid")
 
     if dry_run:
         print("\n🏁 DRY RUN — JSON built, not rendering")

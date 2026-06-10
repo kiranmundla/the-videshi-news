@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-10T19:45:17.396296+00:00",
+  "timestamp": "2026-06-10T20:15:11.674352+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
-    "flag": 1,
+    "pass": 2,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,42 +11,44 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "c91c9dfb-309b-48b6-9a71-ba783c333d55",
-      "headline": "India Will Play Twenty ODIs Before the 2027 World Cup. The Afghanistan Series Is Where the Rebuild Begins.",
-      "slug": "india-twenty-odis-2027-world-cup-rebuild-afghanistan-series-dharamsala-gill-jaiswal-nri",
+      "id": "8912a051-979e-4e72-9304-6a1f63d0f24e",
+      "headline": "Four Bills, Twelve Lawmakers, One Target \u2014 The H-1B Programme Has Never Faced This",
+      "slug": "four-bills-republican-assault-h1b-programme-indian-workers-20260610",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "b588b0cb-82d3-406a-8266-00d16c30a923",
+            "headline": "A New Bill Wants to Kill the H-1B Green Card Pipeline. Every"
+          },
+          {
+            "article_id": "b3bbd346-c9f1-4ee1-9bf8-1005302fefa2",
+            "headline": "Seven Per Cent \u2014 The Hidden Provision That Would Slash India"
+          }
+        ],
         "broken_embeds": []
       },
       "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/p/DZPPR7UAA5_/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post is not directly related to the Afghanistan series or the rebuilding of the Indian ODI team."
-          }
-        ],
+        "overall_score": 8,
+        "embed_issues": [],
         "image_match": {
-          "score": 8,
-          "issue": null
+          "score": 5,
+          "issue": "The image of Chip Roy is relevant as he is a key figure in the article, but it does not visually represent the broader implications of the H-1B program or its impact on Indian workers."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article mentions the timing of the matches in relation to NRI viewers, which connects with the diaspora audience."
+          "quality": 8,
+          "note": "The article effectively highlights the impact of proposed legislation on Indian professionals, making it relevant to the NRI audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant Instagram embed with a more relevant one that discusses the Afghanistan series or the players involved.",
-          "Expand on the diaspora angle by including quotes or reactions from NRIs regarding the upcoming series."
+          "Include more statistics or quotes from affected Indian professionals to enhance the personal impact of the legislation.",
+          "Consider adding a section on potential responses or adaptations from the Indian diaspora in the US to these legislative changes."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DZPPR7UAA5_/",
         "promoted to published"
       ],
       "revised": false,
@@ -54,9 +56,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "59cfe37c-ce5b-4c09-9950-c259be032852",
-      "headline": "India Has 745 Million Football Fans. Until Last Week, None of Them Had a Way to Watch the World Cup.",
-      "slug": "india-745-million-football-fans-fifa-world-cup-2026-broadcast-crisis-zee5-kerala-nri-watching-guide",
+      "id": "0e09d8d4-a070-4ebf-aa15-813174ee86de",
+      "headline": "The Judge Killed the Fee \u2014 Now Congress Wants to Resurrect It",
+      "slug": "protect-act-congress-codify-100k-h1b-fee-kennedy-20260610",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -66,19 +68,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 6,
+          "issue": "The image does not directly relate to the topic of immigration or the H-1B visa specifically."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the World Cup to the Indian diaspora, highlighting time zone advantages and community engagement."
+          "quality": 9,
+          "note": "The article discusses the implications of the H-1B visa fee on Indian professionals, which is highly relevant to the Indian diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more specific examples of community watch parties or events organized by the diaspora to enhance relatability.",
-          "Provide a brief overview of the significance of the World Cup for Indian fans, especially in the context of the absence of the national team."
+          "Consider using an image that directly relates to immigration or H-1B visas for better visual alignment.",
+          "Add more context on how the proposed changes might affect Indian IT firms specifically."
         ],
         "verdict": "pass"
       },
