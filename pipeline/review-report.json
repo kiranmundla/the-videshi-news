@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-10T02:45:52.598232+00:00",
+  "timestamp": "2026-06-10T03:16:14.091030+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
+    "pass": 5,
     "flag": 1,
     "fail": 0,
     "error": 0
@@ -11,12 +11,69 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "c48fb1b2-08ff-4e0d-aa50-dfa3140e55c1",
-      "headline": "The US Just Approved a $428 Million Deal to Keep India's Apaches and Howitzers Running.",
-      "slug": "us-india-428-million-apache-m777-defence-support-deal-boeing-lockheed-20260610",
+      "id": "e2a167ee-1295-4289-aab6-c5af910982be",
+      "headline": "AR Rahman Played Maa Tujhe Salaam at the India-Pakistan Border. Nobody Was Ready.",
+      "slug": "ar-rahman-attari-border-maa-tujhe-salaam-main-vaapas-aaunga-first-reviews-nri-20260610",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "cb142095-9ec3-4a68-80a5-6559b391dfba",
+            "headline": "A.R. Rahman Just Performed at the India-Pakistan Border. No "
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/DZSudrJjeJL/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not appear to be directly related to the performance or the film being discussed."
+          }
+        ],
+        "image_match": {
+          "score": 6,
+          "issue": "The image of AR Rahman does not directly relate to the specific event at the India-Pakistan border."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the film and performance to the Indian diaspora, emphasizing its relevance and emotional impact."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the irrelevant Instagram embed with a more relevant social media post or image related to the performance.",
+          "Consider using an image that captures the essence of the performance at the border for better alignment with the article's theme."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/DZSudrJjeJL/",
+        "Revised by gpt-4o-mini (756\u2192842 words)"
+      ],
+      "revised": true,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "3eefe877-6bf9-4aaa-ad99-6dc7796c8414",
+      "headline": "Ranveer Singh Is Building a Zombie Apocalypse. The Budget Is \u20b9300 Crore and the Director Made Scam 1992.",
+      "slug": "ranveer-singh-pralay-zombie-thriller-300-crore-kalyani-priyadarshan-bollywood-debut-nri-20260610",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "a861f811-6610-447f-bd1c-11aedb8773d7",
+            "headline": "Ranveer Singh Wrote a \u20b910 Crore Cheque to Leave Don 3. The I"
+          },
+          {
+            "article_id": "94efd851-7bed-4f4d-ad70-f5fdf773ced7",
+            "headline": "Ranveer Singh Is Making India's First \u20b9300 Crore Zombie Thri"
+          }
+        ],
         "broken_embeds": []
       },
       "llm_review": {
@@ -29,13 +86,131 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article connects the defense relationship to the Indian diaspora's involvement in the U.S. defense sector, making it relevant."
+          "note": "The article connects well with diaspora readers by highlighting Kalyani Priyadarshan's crossover appeal and the evolution of Bollywood."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Expand on the implications of the defense relationship for NRIs, possibly including personal stories or quotes from Indian Americans in the defense industry.",
-          "Include more context on how these deals might affect India's geopolitical stance, especially in relation to China and Russia."
+          "Include more details on the potential impact of the film on the Indian film industry.",
+          "Add quotes or insights from the director or cast to enhance the article's depth."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "6b7e80cc-8ce7-4954-b527-502d64b515d5",
+      "headline": "India Just Opened a Semiconductor Training Fab. The Hard Part Is Filling It.",
+      "slug": "iisc-semiconductor-training-fab-india-chip-workforce-20260610",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image is relevant to the topic of semiconductor training but does not specifically depict the Semiconductor Training Fab Facility."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses the concerns and opportunities for Indian-origin professionals in the global semiconductor industry, making it relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include a specific image of the Semiconductor Training Fab Facility to enhance relevance.",
+          "Expand on the potential impact of the semiconductor training on the Indian diaspora's decision to return."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "e04aebd7-2415-4953-b470-c5bcd88f4b5b",
+      "headline": "Claude Writes 80% of Anthropic's Code. The Company Wants a Pause Button Before It's Too Late.",
+      "slug": "anthropic-claude-80-percent-code-ai-pause-indian-engineers-20260610",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "aea2d97d-3fc2-4594-b2ff-1cb904101678",
+            "headline": "India Just Made Anthropic's Cybersecurity A-List. Only a Han"
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image features Dario Amodei, a key figure at Anthropic, which is relevant to the article's topic about the company's AI model, Claude."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the implications of AI advancements on Indian engineers, making it relevant to the NRI audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more direct quotes from Indian engineers or industry experts to strengthen the diaspora connection.",
+          "Include a brief section on how Indian engineers can adapt to these changes in the tech landscape."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "c4f77b77-04b3-436e-9f98-b81bbc852aac",
+      "headline": "Musk's xAI Got Caught Training on Claude's Outputs. It Kept Going Anyway.",
+      "slug": "xai-distilling-claude-grok-coding-models-anthropic-20260610",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "9e8fd671-bc07-44d2-ab32-aeecfd2e6677",
+            "headline": "SpaceX Is About to Become the Biggest IPO in History. Indian"
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 6,
+          "issue": "The image of Elon Musk is relevant but does not directly relate to the specific topic of xAI's actions regarding Claude."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the implications of the xAI situation to Indian engineers and startups, making it relevant for the diaspora audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that directly relates to xAI or AI technology to enhance the visual connection to the article's content.",
+          "Add more context or quotes from Indian engineers or startups to strengthen the diaspora angle."
         ],
         "verdict": "pass"
       },
@@ -60,90 +235,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 8,
-          "issue": "The image of K. Annamalai matches the article's topic about his political activities."
+          "issue": "The image of K. Annamalai matches the article's subject about his political activities."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 6,
-          "note": "The article briefly mentions the Indian diaspora and the Tamil community, but the connection could be more developed."
+          "note": "The article briefly mentions the diaspora's interest but lacks depth in connecting the political developments to the diaspora's concerns."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Expand on the diaspora angle to include specific implications for Tamil NRIs.",
-          "Provide more context on how Annamalai's movement may impact Tamil Nadu's political landscape from a diaspora perspective."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Revised by gpt-4o-mini (814\u2192892 words)"
-      ],
-      "revised": true,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "4e995d52-accc-4a66-b3d2-5463c0d8ce1c",
-      "headline": "A Telangana Man Delivered Pizzas to a Vacant Apartment in Philadelphia. He Was Shot Dead.",
-      "slug": "anshul-kuncha-telangana-shot-dead-philadelphia-pizza-delivery-trap-20260610",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image depicts Philadelphia but does not directly relate to the specific incident or the individual involved."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the incident to broader concerns about the safety of Indian immigrants in the U.S., resonating with the diaspora community."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider including quotes or reactions from community leaders or organizations to enhance the diaspora perspective.",
-          "Add more context about the safety measures or resources available for immigrant workers in the U.S."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "9e8fd671-bc07-44d2-ab32-aeecfd2e6677",
-      "headline": "SpaceX Is About to Become the Biggest IPO in History. Indian Tech Workers Should Pay Attention.",
-      "slug": "spacex-ipo-largest-ever-250-billion-demand-indian-tech-workers-nri-impact-20260610",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image of Elon Musk is relevant to the article's topic about SpaceX, but it could be more directly related to the IPO aspect."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the SpaceX IPO to Indian tech workers in the U.S., highlighting its potential impact on their financial situations."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider including more specific examples of how the IPO might directly affect Indian tech workers' portfolios.",
-          "Add a section discussing potential risks or strategies for Indian professionals in light of the IPO."
+          "Expand on the diaspora angle to include how Annamalai's political movement may impact Tamil NRIs or their interests.",
+          "Include more context on the significance of Annamalai's departure for the Tamil diaspora, perhaps through quotes or perspectives from diaspora leaders."
         ],
         "verdict": "pass"
       },
