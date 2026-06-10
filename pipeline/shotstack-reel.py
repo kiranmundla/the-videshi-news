@@ -983,7 +983,7 @@ def build_anchor_reel_timeline(
         }
 
     # ── Track 2: Logo + TheVideshi.com watermark (every frame) ──
-    # Use native image asset for logo (HTML <img> tags don't fetch in Shotstack renderer)
+    # Use center position with manual offsets (topRight clips edges unreliably)
     LOGO_URL = "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/branding/logo-192.png"
     logo_track = {
         "clips": [
@@ -994,23 +994,23 @@ def build_anchor_reel_timeline(
                 },
                 "start": 0,
                 "length": "end",
-                "position": "topRight",
-                "offset": {"x": -0.03, "y": 0.03},
-                "scale": 0.06,
-                "opacity": 0.85,
+                "position": "center",
+                "offset": {"x": 0.38, "y": -0.44},
+                "scale": 0.08,
+                "opacity": 0.9,
             },
             {
                 "asset": {
                     "type": "html",
                     "html": "<div class='wm'>TheVideshi.com</div>",
-                    "css": ".wm { font-family: 'Inter'; color: rgba(255,255,255,0.8); font-size: 13px; font-weight: 700; letter-spacing: 1px; text-shadow: 1px 1px 4px rgba(0,0,0,0.7); text-align: right; padding: 4px 10px; }",
-                    "width": 200,
-                    "height": 30,
+                    "css": ".wm { font-family: 'Inter'; color: rgba(255,255,255,0.9); font-size: 16px; font-weight: 700; letter-spacing: 1.5px; text-shadow: 2px 2px 6px rgba(0,0,0,0.9); text-align: center; padding: 4px 10px; }",
+                    "width": 220,
+                    "height": 34,
                 },
                 "start": 0,
                 "length": "end",
-                "position": "topRight",
-                "offset": {"x": -0.02, "y": 0.065},
+                "position": "center",
+                "offset": {"x": 0.38, "y": -0.40},
             }
         ]
     }
