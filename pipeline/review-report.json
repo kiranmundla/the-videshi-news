@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-10T05:16:11.814563+00:00",
+  "timestamp": "2026-06-10T05:45:38.479893+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 0,
     "flag": 1,
     "fail": 0,
     "error": 0
@@ -21,112 +21,28 @@
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/p/DZWtG83OyAI/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post is relevant as it features Ajay Devgn, but it does not directly relate to the article's focus on the posters of Dhamaal 4."
-          }
-        ],
+        "embed_issues": [],
         "image_match": {
           "score": 3,
-          "issue": "The hero image does not match the article's topic about Dhamaal 4; it features Ajay Devgn at a different event."
+          "issue": "The hero image does not match the article's topic, which is about the film 'Dhamaal 4'."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 7,
-          "note": "The article connects well with NRI audiences by discussing the franchise's appeal as comfort cinema."
+          "note": "The article connects well with NRI audiences by discussing the film's appeal as comfort cinema."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the hero image with one that features the Dhamaal 4 posters or characters.",
-          "Clarify the relevance of the Instagram post or consider removing it if it doesn't add value."
+          "Replace the hero image with one that is relevant to 'Dhamaal 4'.",
+          "Expand on the diaspora angle by including specific examples of how the film resonates with NRI audiences."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DZWtG83OyAI/",
-        "Revised by gpt-4o-mini (715\u2192757 words)"
+        "Revised by gpt-4o-mini (757\u2192779 words)"
       ],
       "revised": true,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "0ef6b011-47e5-4524-a024-c18572a1ce31",
-      "headline": "Alpha Drops Its Teaser Today. The YRF Spy Universe Finally Has Its Most Dangerous Women.",
-      "slug": "alpha-teaser-alia-bhatt-sharvari-yrf-spy-universe-first-female-led-origin-story-nri-20260610",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image features Alia Bhatt, which is relevant to the article, but the context of the image (Cannes Film Festival) does not directly relate to the teaser or the film's theme."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the film's themes to NRI audiences, highlighting the significance of female representation in the franchise."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that directly relates to the film or its teaser.",
-          "Add more details about the film's potential impact on the diaspora audience's viewing habits."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "01de46cf-efdc-414b-a171-178877f572aa",
-      "headline": "Kohli Is Worth \u20b93,542 Crore. Shah Rukh Khan Is Second.",
-      "slug": "virat-kohli-india-most-valuable-celebrity-fortune-interbrand-brand-value-3542-crore-nri",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "f9659173-768a-49e4-bf72-46afe2a4ee60",
-            "headline": "Kohli Tore His Hamstring in the IPL Final. He Played Through"
-          }
-        ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects Kohli's brand value to the diaspora, highlighting cultural influence and purchasing power."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more statistics or data points to strengthen the analysis of Kohli's brand value.",
-          "Include quotes or insights from industry experts to provide additional credibility to the claims made."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
     }

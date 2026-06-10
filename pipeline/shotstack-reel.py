@@ -609,19 +609,20 @@ def save_used_image(photo_id):
 
 def source_storyboard_images(article, storyboard, count=5):
     """Source B-roll images scene-by-scene from the storyboard.
+    Priority: 1) Article hero  2) AI-matched same-category articles  3) Pexels last resort.
     Returns list of image URLs matched to each scene in order."""
     urls = []
-    used_ids = load_used_images()
-    used_in_this_reel = set()  # No duplicates within same reel
+    used_in_this_reel = set()
 
-    # Get article hero and related article images as a fallback pool
     hero = article.get("image_url", "")
-    fallback_pool = []
-    if is_url_downloadable(hero):
-        fallback_pool.append(hero)
-
     category = article.get("category", "")
     article_id = article.get("id", "")
+    headline = article.get("headline", "")
+
+    # ── 1. Build article image pool (same category + cross-category) ──
+    article_pool = []  # list of {"headline": ..., "image_url": ..., "id": ...}
+
+    # Same category — up to 40 recent articles
     if category:
         r = requests.get(
             f"{SB_URL}/rest/v1/p2_articles",
@@ -629,10 +630,10 @@ def source_storyboard_images(article, storyboard, count=5):
                 "status": "eq.published",
                 "category": f"eq.{category}",
                 "id": f"neq.{article_id}",
-                "image_url": "neq.null",
+                "image_url": "not.is.null",
                 "order": "published_at.desc",
-                "limit": 15,
-                "select": "id,image_url",
+                "limit": 40,
+                "select": "id,headline,image_url",
             },
             headers=SB_HEADERS,
             timeout=15,
@@ -640,51 +641,140 @@ def source_storyboard_images(article, storyboard, count=5):
         if r.status_code == 200:
             for a in r.json():
                 img = a.get("image_url", "")
-                if is_url_downloadable(img) and img not in fallback_pool:
-                    fallback_pool.append(img)
+                if is_url_downloadable(img):
+                    article_pool.append(a)
 
+    # Cross-category (news, nri-world) — fill gaps for niche categories
+    if len(article_pool) < 20:
+        for xcat in ["news", "nri-world"]:
+            if xcat == category:
+                continue
+            r = requests.get(
+                f"{SB_URL}/rest/v1/p2_articles",
+                params={
+                    "status": "eq.published",
+                    "category": f"eq.{xcat}",
+                    "image_url": "not.is.null",
+                    "order": "published_at.desc",
+                    "limit": 15,
+                    "select": "id,headline,image_url",
+                },
+                headers=SB_HEADERS,
+                timeout=15,
+            )
+            if r.status_code == 200:
+                for a in r.json():
+                    img = a.get("image_url", "")
+                    if is_url_downloadable(img) and a["id"] != article_id:
+                        article_pool.append(a)
+
+    print(f"  📚 Article image pool: {len(article_pool)} candidates ({category} + cross-category)")
+
+    # ── 2. AI-match storyboard scenes to article images ──
+    scenes = storyboard if storyboard else []
+    scene_descs = [s.get("visual", "") for s in scenes[:count]]
+
+    matched_urls = [None] * min(count, len(scene_descs))
+
+    # Scene 1 always uses the article's own hero image (most relevant)
+    if is_url_downloadable(hero):
+        matched_urls[0] = hero
+        used_in_this_reel.add(hero)
+        print(f"  🎬 Scene 1: {scene_descs[0][:60]}  →  article hero image")
+
+    # For remaining scenes, ask GPT to match from available pool
+    remaining_scenes = [(i, desc) for i, desc in enumerate(scene_descs) if matched_urls[i] is None]
+
+    if remaining_scenes and article_pool:
+        # Build compact list for GPT
+        pool_items = []
+        for idx, a in enumerate(article_pool[:30]):  # Cap at 30 to stay within token limits
+            pool_items.append(f"{idx}: {a['headline'][:80]}")
+        pool_text = "\n".join(pool_items)
+
+        scenes_text = "\n".join([f"Scene {i+1}: {desc}" for i, desc in remaining_scenes])
+
+        match_prompt = f"""You're selecting B-roll images for a news reel about: "{headline}"
+
+Available article images (each headline describes what the image shows):
+{pool_text}
+
+Scenes that need images:
+{scenes_text}
+
+For each scene, pick the article number (0-{len(pool_items)-1}) whose headline/topic best matches the visual needed.
+Each article can only be used ONCE. Prioritize RELEVANCE over variety.
+
+Return JSON only: {{"matches": [{{"scene": 1, "article_idx": 5}}, ...]}}"""
+
+        try:
+            mr = requests.post(
+                "https://api.openai.com/v1/chat/completions",
+                headers={"Authorization": f"Bearer {OPENAI_KEY}", "Content-Type": "application/json"},
+                json={
+                    "model": "gpt-4o-mini",
+                    "messages": [{"role": "user", "content": match_prompt}],
+                    "temperature": 0.2,
+                    "response_format": {"type": "json_object"},
+                },
+                timeout=20,
+            )
+            if mr.status_code == 200:
+                matches = json.loads(mr.json()["choices"][0]["message"]["content"]).get("matches", [])
+                used_pool_idxs = set()
+                for m in matches:
+                    scene_num = m.get("scene", 0)
+                    aidx = m.get("article_idx", -1)
+                    si = scene_num - 1  # 0-indexed
+                    if 0 <= si < len(matched_urls) and matched_urls[si] is None:
+                        if 0 <= aidx < len(article_pool[:30]) and aidx not in used_pool_idxs:
+                            img_url = article_pool[aidx]["image_url"]
+                            if img_url not in used_in_this_reel:
+                                matched_urls[si] = img_url
+                                used_in_this_reel.add(img_url)
+                                used_pool_idxs.add(aidx)
+                                ah = article_pool[aidx]["headline"][:50]
+                                print(f"  🎬 Scene {scene_num}: {scene_descs[si][:50]}  →  matched: \"{ah}\"")
+        except Exception as e:
+            print(f"  ⚠️ AI matching failed: {e} — falling back to sequential")
+
+    # ── 3. Fill any remaining gaps with sequential article images ──
+    pool_urls = [a["image_url"] for a in article_pool if a["image_url"] not in used_in_this_reel]
+    for i in range(len(matched_urls)):
+        if matched_urls[i] is None and pool_urls:
+            matched_urls[i] = pool_urls.pop(0)
+            used_in_this_reel.add(matched_urls[i])
+            print(f"  🎬 Scene {i+1}: {scene_descs[i][:50]}  →  sequential article image")
+
+    # ── 4. Pexels as absolute last resort ──
     pexels_env = load_env("~/workspace/.env.pexels")
     pexels_key = pexels_env.get("PEXELS_API_KEY", "")
+    used_ids = load_used_images()
 
-    scenes = storyboard if storyboard else []
-    for i, scene in enumerate(scenes[:count]):
-        found = False
-        queries = scene.get("search_queries", [])
-        visual_desc = scene.get("visual", "")
-
-        if pexels_key and queries:
-            # Search each query, collect candidates
-            candidates = []
+    for i in range(len(matched_urls)):
+        if matched_urls[i] is None and pexels_key:
+            queries = scenes[i].get("search_queries", []) if i < len(scenes) else []
             for query in queries[:2]:
                 results = pexels_search(pexels_key, query, count=3)
-                candidates.extend(results)
-
-            # Pick first candidate not already used (globally or in this reel)
-            for cand in candidates:
-                pid = cand["photo_id"]
-                if pid not in used_ids and pid not in used_in_this_reel and cand["url"] not in urls:
-                    urls.append(cand["url"])
-                    used_in_this_reel.add(pid)
-                    save_used_image(pid)
-                    print(f"  🎬 Scene {i+1}: {visual_desc[:60]}  →  Pexels #{pid}")
-                    found = True
+                for cand in results:
+                    pid = cand["photo_id"]
+                    if pid not in used_ids and cand["url"] not in used_in_this_reel:
+                        matched_urls[i] = cand["url"]
+                        used_in_this_reel.add(cand["url"])
+                        save_used_image(pid)
+                        print(f"  🎬 Scene {i+1}: {scene_descs[i][:50]}  →  Pexels #{pid} (last resort)")
+                        break
+                if matched_urls[i] is not None:
                     break
 
-        # Fallback to related article images
-        if not found and fallback_pool:
-            fb = fallback_pool.pop(0)
-            urls.append(fb)
-            print(f"  🎬 Scene {i+1}: {visual_desc[:60]}  →  fallback (article image)")
-            found = True
+    urls = [u for u in matched_urls if u is not None]
 
-        if not found:
-            print(f"  ⚠️ Scene {i+1}: no image found for '{visual_desc[:50]}'")
+    # Pad if still short
+    remaining_pool = [a["image_url"] for a in article_pool if a["image_url"] not in used_in_this_reel]
+    while len(urls) < count and remaining_pool:
+        urls.append(remaining_pool.pop(0))
 
-    # If storyboard gave fewer than needed, pad with remaining fallbacks
-    while len(urls) < count and fallback_pool:
-        urls.append(fallback_pool.pop(0))
-
-    print(f"  🖼️ Sourced {len(urls)} B-roll images via storyboard (dedup active)")
+    print(f"  🖼️ Sourced {len(urls)} B-roll images (article-first, AI-matched)")
     return urls
 
 
