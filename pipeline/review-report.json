@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-10T20:15:11.674352+00:00",
+  "timestamp": "2026-06-10T20:45:15.924017+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 3,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,40 +11,31 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "8912a051-979e-4e72-9304-6a1f63d0f24e",
-      "headline": "Four Bills, Twelve Lawmakers, One Target \u2014 The H-1B Programme Has Never Faced This",
-      "slug": "four-bills-republican-assault-h1b-programme-indian-workers-20260610",
+      "id": "08c08cc8-79ed-4e40-b81f-5efbd9728a84",
+      "headline": "ISRO Is Handing Its Biggest Rocket to the Private Sector. India's Space Economy Just Changed.",
+      "slug": "isro-lvm3-rocket-technology-transfer-private-sector-in-space-20260610",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "b588b0cb-82d3-406a-8266-00d16c30a923",
-            "headline": "A New Bill Wants to Kill the H-1B Green Card Pipeline. Every"
-          },
-          {
-            "article_id": "b3bbd346-c9f1-4ee1-9bf8-1005302fefa2",
-            "headline": "Seven Per Cent \u2014 The Hidden Provision That Would Slash India"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 5,
-          "issue": "The image of Chip Roy is relevant as he is a key figure in the article, but it does not visually represent the broader implications of the H-1B program or its impact on Indian workers."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively highlights the impact of proposed legislation on Indian professionals, making it relevant to the NRI audience."
+          "note": "The article effectively connects the development to the Indian diaspora's professional interests and national pride."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more statistics or quotes from affected Indian professionals to enhance the personal impact of the legislation.",
-          "Consider adding a section on potential responses or adaptations from the Indian diaspora in the US to these legislative changes."
+          "Consider adding quotes from more diverse sources within the Indian space industry to enhance credibility.",
+          "Include specific examples of how the private sector has previously impacted the space industry in other countries."
         ],
         "verdict": "pass"
       },
@@ -56,9 +47,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "0e09d8d4-a070-4ebf-aa15-813174ee86de",
-      "headline": "The Judge Killed the Fee \u2014 Now Congress Wants to Resurrect It",
-      "slug": "protect-act-congress-codify-100k-h1b-fee-kennedy-20260610",
+      "id": "eced5a87-c2a9-48cc-b3ea-f86de51eedc8",
+      "headline": "An Indian-Born CEO Filed Fake H-1B Petitions. Now the DOJ Wants His Citizenship Back.",
+      "slug": "doj-denaturalization-h1b-fraud-neeraj-sharma-magnavision-indian-citizenship-20260610",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -68,19 +59,55 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 6,
-          "issue": "The image does not directly relate to the topic of immigration or the H-1B visa specifically."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article discusses the implications of the H-1B visa fee on Indian professionals, which is highly relevant to the Indian diaspora."
+          "quality": 8,
+          "note": "The article discusses the implications of H-1B fraud on the Indian American community, making it relevant to diaspora readers."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that directly relates to immigration or H-1B visas for better visual alignment.",
-          "Add more context on how the proposed changes might affect Indian IT firms specifically."
+          "Include quotes from immigration attorneys or community leaders to enhance the article's depth.",
+          "Add a section discussing potential reforms or responses from the Indian American community regarding H-1B policies."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "8c7ac533-4c59-4b38-a96e-72ea5d8dc710",
+      "headline": "Modi and Trump Will Sit Down at the G7 Next Week. Here Is What Every NRI Should Watch For.",
+      "slug": "modi-trump-bilateral-g7-france-trade-visas-h1b-energy-20260610",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the Modi-Trump meeting to the interests of the NRI community, particularly regarding visas and trade."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from experts or officials to enhance credibility.",
+          "Include more specific examples of how the outcomes of the meeting could directly impact NRIs."
         ],
         "verdict": "pass"
       },
