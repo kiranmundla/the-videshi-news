@@ -1,22 +1,79 @@
 {
-  "timestamp": "2026-06-10T06:46:19.308665+00:00",
+  "timestamp": "2026-06-10T07:15:39.965708+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 2,
+    "pass": 1,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
-  "revisions": 2,
+  "revisions": 1,
   "unpublished": 0,
   "articles": [
     {
-      "id": "aaf5e8e6-41cc-4181-906b-262a4196c4e9",
-      "headline": "Three Companies Worth $4 Trillion Are About to Go Public. Thousands of Indian Engineers Hold the Lottery Tickets.",
-      "slug": "spacex-anthropic-openai-triple-ipo-4-trillion-indian-tech-workers-esop-20260610",
+      "id": "1ce8ed80-1cec-40ea-bf11-096865957f78",
+      "headline": "Janhvi Kapoor Is About to Walk Into a Monster Movie. The Director Made Tumbbad.",
+      "slug": "janhvi-kapoor-creature-horror-rahi-anil-barve-tumbbad-jio-studios-nri-20260610",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "caaf8e12-5c4a-4b91-b1ef-5572a6ae7a8a",
+            "headline": "Peddi Made \u20b9250 Crore. Then Janhvi Kapoor's Leaked Chats Set"
+          },
+          {
+            "article_id": "462b9b81-56fd-4afc-bc9c-37b8f90bcdba",
+            "headline": "Peddi Made \u20b9150 Crore in Two Days. Then India Noticed What I"
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/DZMi_VhCGaF/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not relate to Janhvi Kapoor's upcoming role in a creature horror film or the director Rahi Anil Barve."
+          }
+        ],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses the potential impact of the film on international audiences, particularly in the US, UK, and Canada, which connects well with the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the irrelevant Instagram embed with a more relevant one that showcases Janhvi Kapoor or the director Rahi Anil Barve.",
+          "Expand on the diaspora angle by including specific examples of how this film might resonate with NRI audiences."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/DZMi_VhCGaF/",
+        "Revised by gpt-4o-mini (777\u2192830 words)"
+      ],
+      "revised": true,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "8c59b822-23f3-45f9-bd29-89bf1ca29e2a",
+      "headline": "Vicky Kaushal Has Blocked 18 Months of His Life for One Film. This Is What Obsession Looks Like.",
+      "slug": "vicky-kaushal-mahavatar-18-months-parashurama-amar-kaushik-shraddha-kapoor-nri-20260610",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "c3cbd60f-c76a-4251-a566-40451840044c",
+            "headline": "Vicky Kaushal Has Blocked 18 Months of His Life for One Role"
+          }
+        ],
         "broken_embeds": []
       },
       "llm_review": {
@@ -28,14 +85,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the IPOs to the Indian diaspora, highlighting the significant stakes Indian-origin engineers have in these companies."
+          "quality": 7,
+          "note": "The article discusses a significant film project that connects with Indian mythology, which may resonate with the diaspora audience interested in cultural narratives."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more quotes or perspectives from Indian engineers to enhance the diaspora angle.",
-          "Include a brief explanation of what ESOP means for readers who may not be familiar with the term."
+          "Include more direct quotes or insights from Vicky Kaushal or Amar Kaushik to enhance the article's depth.",
+          "Add a section discussing the potential impact of this film on the global perception of Indian cinema, especially among NRI audiences."
         ],
         "verdict": "pass"
       },
@@ -43,121 +100,6 @@
         "promoted to published"
       ],
       "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "6bd47b13-3d16-4316-aaa0-9194dfbf73f0",
-      "headline": "India's Inflation Is About to Breach 4% for the First Time in 15 Months. The War Bill Has Arrived.",
-      "slug": "india-inflation-breaches-4-percent-15-months-fuel-hikes-vegetables-war-20260610",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 8,
-          "issue": "The image does not directly relate to inflation or economic themes."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses the impact of inflation on NRIs, particularly regarding remittances and purchasing power."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more specific examples of how inflation affects NRIs beyond remittances.",
-          "Consider using an image that visually represents economic themes or inflation."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "aa6abcf5-79f0-4cbf-91c2-485e4d80b215",
-      "headline": "Iran Just Hit US Bases in Jordan, Kuwait and Bahrain. India Has 8 Million Reasons to Worry.",
-      "slug": "iran-attacks-us-bases-jordan-kuwait-bahrain-india-gulf-diaspora-oil-crisis-20260610",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 6,
-        "embed_issues": [],
-        "image_match": {
-          "score": 4,
-          "issue": "The image does not directly relate to the article's content about military actions and geopolitical tensions."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article effectively discusses the implications for the Indian diaspora in the Gulf, particularly regarding safety and economic impacts."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more direct quotes or statements from Indian officials regarding the situation to enhance credibility.",
-          "Consider using a more relevant image that reflects the military or geopolitical theme of the article."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Revised by gpt-4o-mini (792\u2192842 words)"
-      ],
-      "revised": true,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "563ed0e9-78d5-479c-943a-41db48bd87d8",
-      "headline": "Dhamaal 4 Just Dropped Four Posters. There Are Crocodiles, Pirates, and Arshad Warsi Buried in Sand.",
-      "slug": "dhamaal-4-character-posters-ajay-devgn-arshad-warsi-treasure-hunt-july-10-nri-20260610",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://instagram.com/p/C8A-X_gS62I",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post is relevant as it features a character from the film, but it could be more directly tied to the content of the article."
-          }
-        ],
-        "image_match": {
-          "score": 3,
-          "issue": "The hero image does not match the article's topic, which is about the Dhamaal 4 posters."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article connects well with NRI audiences by discussing the film's appeal as comfort cinema."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the hero image with one that features the Dhamaal 4 posters or characters.",
-          "Enhance the relevance of the Instagram embed by providing more context or a direct quote from the post."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Removed irrelevant embed: https://instagram.com/p/C8A-X_gS62I",
-        "Revised by gpt-4o-mini (768\u2192802 words)"
-      ],
-      "revised": true,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
     }
