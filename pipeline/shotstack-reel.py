@@ -1942,6 +1942,362 @@ def register_reel(article, video_url, video_path, caption, poster_url=None, thum
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
+# CROSS-POST — push reel to all platforms immediately after QA pass
+# ═══════════════════════════════════════════════════════════════════════════════
+
+def load_env_file(path):
+    """Parse KEY=VALUE from a file."""
+    env = {}
+    full = os.path.expanduser(path)
+    if not os.path.exists(full):
+        return env
+    with open(full) as f:
+        for line in f:
+            line = line.strip()
+            if line and not line.startswith("#") and "=" in line:
+                k, v = line.split("=", 1)
+                env[k.strip()] = v.strip().strip('"').strip("'")
+    return env
+
+
+def cross_post_reel(article, video_url, video_path, caption, poster_url=None):
+    """Post reel to all platforms: Instagram, YouTube, Threads, Facebook, X.
+    Each platform is tried independently — one failure doesn't block others.
+    """
+    headline = article.get("headline", "")
+    slug = article.get("slug", "")
+    category = article.get("category", "news")
+
+    results = {}
+
+    # ── Instagram Reel ──
+    try:
+        ig_env = load_env_file("~/workspace/.env.instagram")
+        ig_token = ig_env.get("INSTAGRAM_ACCESS_TOKEN", "")
+        ig_user = ig_env.get("INSTAGRAM_USER_ID", "")
+        if ig_token and ig_user:
+            print("  📸 Instagram: Creating reel container...")
+            ig_caption = caption[:2200]  # IG caption limit
+            # Step 1: Create media container
+            cr = requests.post(
+                f"https://graph.instagram.com/v25.0/{ig_user}/media",
+                data={
+                    "media_type": "REELS",
+                    "video_url": video_url,
+                    "caption": ig_caption,
+                    "access_token": ig_token,
+                },
+                timeout=30,
+            )
+            if cr.status_code == 200 and cr.json().get("id"):
+                container_id = cr.json()["id"]
+                # Step 2: Wait for container to be ready
+                for _ in range(24):  # up to 2 min
+                    time.sleep(5)
+                    sr = requests.get(
+                        f"https://graph.instagram.com/v25.0/{container_id}",
+                        params={"fields": "status_code", "access_token": ig_token},
+                        timeout=15,
+                    )
+                    status = sr.json().get("status_code", "")
+                    if status == "FINISHED":
+                        break
+                    elif status == "ERROR":
+                        print(f"  ❌ Instagram: Container error")
+                        break
+                else:
+                    status = "TIMEOUT"
+
+                if status == "FINISHED":
+                    # Step 3: Publish
+                    pr = requests.post(
+                        f"https://graph.instagram.com/v25.0/{ig_user}/media_publish",
+                        data={"creation_id": container_id, "access_token": ig_token},
+                        timeout=30,
+                    )
+                    if pr.status_code == 200:
+                        ig_media_id = pr.json().get("id", "")
+                        print(f"  ✅ Instagram: Posted (media_id: {ig_media_id})")
+                        results["instagram"] = {"success": True, "media_id": ig_media_id}
+                    else:
+                        print(f"  ❌ Instagram: Publish failed ({pr.status_code})")
+                        results["instagram"] = {"success": False, "error": pr.text[:200]}
+                else:
+                    print(f"  ❌ Instagram: Container status: {status}")
+                    results["instagram"] = {"success": False, "error": f"container_{status}"}
+            else:
+                print(f"  ❌ Instagram: Container creation failed ({cr.status_code})")
+                results["instagram"] = {"success": False, "error": cr.text[:200]}
+        else:
+            print("  ⏭️ Instagram: No credentials configured")
+    except Exception as e:
+        print(f"  ❌ Instagram: {e}")
+        results["instagram"] = {"success": False, "error": str(e)}
+
+    # ── Threads ──
+    try:
+        threads_env = load_env_file("~/workspace/.env.threads")
+        threads_token = threads_env.get("THREADS_ACCESS_TOKEN", "")
+        threads_user = threads_env.get("THREADS_USER_ID", "26854521280856098")
+        if threads_token:
+            print("  🧵 Threads: Creating video post...")
+            threads_caption = caption[:500]
+            cr = requests.post(
+                f"https://graph.threads.net/v1.0/{threads_user}/threads",
+                data={
+                    "media_type": "VIDEO",
+                    "video_url": video_url,
+                    "text": threads_caption,
+                    "access_token": threads_token,
+                },
+                timeout=30,
+            )
+            if cr.status_code == 200 and cr.json().get("id"):
+                container_id = cr.json()["id"]
+                for _ in range(24):
+                    time.sleep(5)
+                    sr = requests.get(
+                        f"https://graph.threads.net/v1.0/{container_id}",
+                        params={"fields": "status", "access_token": threads_token},
+                        timeout=15,
+                    )
+                    status = sr.json().get("status", "")
+                    if status == "FINISHED":
+                        break
+                    elif status == "ERROR":
+                        break
+                else:
+                    status = "TIMEOUT"
+
+                if status == "FINISHED":
+                    pr = requests.post(
+                        f"https://graph.threads.net/v1.0/{threads_user}/threads_publish",
+                        data={"creation_id": container_id, "access_token": threads_token},
+                        timeout=30,
+                    )
+                    if pr.status_code == 200:
+                        post_id = pr.json().get("id", "")
+                        print(f"  ✅ Threads: Posted (post_id: {post_id})")
+                        results["threads"] = {"success": True, "post_id": post_id}
+                    else:
+                        print(f"  ❌ Threads: Publish failed ({pr.status_code})")
+                        results["threads"] = {"success": False, "error": pr.text[:200]}
+                else:
+                    print(f"  ❌ Threads: Container status: {status}")
+                    results["threads"] = {"success": False, "error": f"container_{status}"}
+            else:
+                print(f"  ❌ Threads: Container failed ({cr.status_code}): {cr.text[:200]}")
+                results["threads"] = {"success": False, "error": cr.text[:200]}
+        else:
+            print("  ⏭️ Threads: No credentials configured")
+    except Exception as e:
+        print(f"  ❌ Threads: {e}")
+        results["threads"] = {"success": False, "error": str(e)}
+
+    # ── Facebook Reel ──
+    try:
+        fb_env = load_env_file("~/workspace/.env.facebook")
+        fb_token = fb_env.get("FB_PAGE_ACCESS_TOKEN", "")
+        fb_page = fb_env.get("FB_PAGE_ID", "")
+        if fb_token and fb_page:
+            print("  📘 Facebook: Uploading reel...")
+            # Step 1: Initialize upload
+            init_r = requests.post(
+                f"https://graph.facebook.com/v25.0/{fb_page}/video_reels",
+                data={
+                    "upload_phase": "start",
+                    "access_token": fb_token,
+                },
+                timeout=30,
+            )
+            if init_r.status_code == 200:
+                video_id = init_r.json().get("video_id")
+                # Step 2: Upload video binary
+                with open(video_path, "rb") as vf:
+                    up_r = requests.post(
+                        f"https://rupload.facebook.com/video-upload/v25.0/{video_id}",
+                        headers={
+                            "Authorization": f"OAuth {fb_token}",
+                            "offset": "0",
+                            "file_size": str(os.path.getsize(video_path)),
+                        },
+                        data=vf.read(),
+                        timeout=120,
+                    )
+                if up_r.status_code == 200 and up_r.json().get("success"):
+                    # Step 3: Finish/publish
+                    fb_caption = caption[:2000]
+                    fin_r = requests.post(
+                        f"https://graph.facebook.com/v25.0/{fb_page}/video_reels",
+                        data={
+                            "upload_phase": "finish",
+                            "video_id": video_id,
+                            "title": headline[:100],
+                            "description": fb_caption,
+                            "access_token": fb_token,
+                        },
+                        timeout=30,
+                    )
+                    if fin_r.status_code == 200 and fin_r.json().get("success"):
+                        print(f"  ✅ Facebook: Reel posted (video_id: {video_id})")
+                        results["facebook"] = {"success": True, "video_id": video_id}
+                    else:
+                        print(f"  ❌ Facebook: Finish failed ({fin_r.status_code})")
+                        results["facebook"] = {"success": False, "error": fin_r.text[:200]}
+                else:
+                    print(f"  ❌ Facebook: Upload failed ({up_r.status_code})")
+                    results["facebook"] = {"success": False, "error": up_r.text[:200]}
+            else:
+                print(f"  ❌ Facebook: Init failed ({init_r.status_code})")
+                results["facebook"] = {"success": False, "error": init_r.text[:200]}
+        else:
+            print("  ⏭️ Facebook: No credentials configured")
+    except Exception as e:
+        print(f"  ❌ Facebook: {e}")
+        results["facebook"] = {"success": False, "error": str(e)}
+
+    # ── YouTube Short ──
+    try:
+        yt_env = load_env_file("~/workspace/.env.youtube")
+        yt_client_id = yt_env.get("YOUTUBE_CLIENT_ID", "")
+        yt_client_secret = yt_env.get("YOUTUBE_CLIENT_SECRET", "")
+        yt_refresh = yt_env.get("YOUTUBE_REFRESH_TOKEN", "")
+        if yt_client_id and yt_client_secret and yt_refresh:
+            print("  ▶️ YouTube: Uploading Short...")
+            # Get fresh access token
+            token_r = requests.post(
+                "https://oauth2.googleapis.com/token",
+                data={
+                    "client_id": yt_client_id,
+                    "client_secret": yt_client_secret,
+                    "refresh_token": yt_refresh,
+                    "grant_type": "refresh_token",
+                },
+                timeout=15,
+            )
+            if token_r.status_code == 200:
+                access_token = token_r.json()["access_token"]
+                # Category emoji
+                cat_emoji = {"news": "🇮🇳", "nri-world": "🌏", "travel": "✈️", "sports": "🏏",
+                             "entertainment": "🎬", "technology": "💻", "markets": "📈"}.get(category, "🇮🇳")
+                yt_title = f"{cat_emoji} {headline[:95]}" if len(headline) <= 95 else f"{cat_emoji} {headline[:92]}..."
+                yt_tags = ["Indian diaspora", "NRI", "India news", "TheVideshi", category]
+                yt_desc = f"{caption}\n\n🔗 Read more: https://thevideshi.com\n#Shorts #IndianDiaspora #NRI #{category.replace('-', '')}"
+
+                # Resumable upload
+                init_r = requests.post(
+                    "https://www.googleapis.com/upload/youtube/v3/videos?uploadType=resumable&part=snippet,status",
+                    headers={
+                        "Authorization": f"Bearer {access_token}",
+                        "Content-Type": "application/json",
+                    },
+                    json={
+                        "snippet": {
+                            "title": yt_title,
+                            "description": yt_desc[:5000],
+                            "tags": yt_tags,
+                            "categoryId": "25",  # News & Politics
+                        },
+                        "status": {
+                            "privacyStatus": "public",
+                            "selfDeclaredMadeForKids": False,
+                            "license": "youtube",
+                            "embeddable": True,
+                        },
+                    },
+                    timeout=30,
+                )
+                if init_r.status_code == 200:
+                    upload_url = init_r.headers.get("Location")
+                    with open(video_path, "rb") as vf:
+                        video_data = vf.read()
+                    up_r = requests.put(
+                        upload_url,
+                        headers={
+                            "Authorization": f"Bearer {access_token}",
+                            "Content-Type": "video/mp4",
+                            "Content-Length": str(len(video_data)),
+                        },
+                        data=video_data,
+                        timeout=120,
+                    )
+                    if up_r.status_code == 200:
+                        yt_id = up_r.json().get("id", "")
+                        print(f"  ✅ YouTube: Uploaded (id: {yt_id})")
+                        results["youtube"] = {"success": True, "video_id": yt_id}
+                        # Update youtube-log.json for dedup with posting cron
+                        yt_log_path = os.path.join(os.path.dirname(__file__), "youtube-log.json")
+                        try:
+                            with open(yt_log_path) as f:
+                                yt_log = json.load(f)
+                        except (FileNotFoundError, json.JSONDecodeError):
+                            yt_log = {}
+                        yt_log[yt_id] = {
+                            "filename": os.path.basename(video_path),
+                            "title": yt_title,
+                            "uploaded_at": datetime.now().isoformat(),
+                            "source": "shotstack-cross-post",
+                        }
+                        with open(yt_log_path, "w") as f:
+                            json.dump(yt_log, f, indent=2)
+                    else:
+                        print(f"  ❌ YouTube: Upload failed ({up_r.status_code})")
+                        results["youtube"] = {"success": False, "error": up_r.text[:200]}
+                else:
+                    print(f"  ❌ YouTube: Init failed ({init_r.status_code}): {init_r.text[:200]}")
+                    results["youtube"] = {"success": False, "error": init_r.text[:200]}
+            else:
+                print(f"  ❌ YouTube: Token refresh failed ({token_r.status_code})")
+                results["youtube"] = {"success": False, "error": token_r.text[:200]}
+        else:
+            print("  ⏭️ YouTube: No credentials configured")
+    except Exception as e:
+        print(f"  ❌ YouTube: {e}")
+        results["youtube"] = {"success": False, "error": str(e)}
+
+    # ── X (Twitter) ──
+    try:
+        x_env = load_env_file("~/workspace/.env.twitter")
+        x_ck = x_env.get("TWITTER_CONSUMER_KEY", "")
+        x_cs = x_env.get("TWITTER_CONSUMER_SECRET", "")
+        x_at = x_env.get("TWITTER_ACCESS_TOKEN", "")
+        x_ats = x_env.get("TWITTER_ACCESS_TOKEN_SECRET", "")
+        if x_ck and x_cs and x_at and x_ats:
+            print("  🐦 X: Uploading video...")
+            import tweepy
+            auth = tweepy.OAuth1UserHandler(x_ck, x_cs, x_at, x_ats)
+            api_v1 = tweepy.API(auth)
+            client = tweepy.Client(
+                consumer_key=x_ck, consumer_secret=x_cs,
+                access_token=x_at, access_token_secret=x_ats,
+            )
+            media = api_v1.media_upload(filename=video_path)
+            x_caption = f"🇮🇳 {headline[:200]}\n\n🔗 thevideshi.com\n\n#IndianDiaspora #NRI #India #{category.replace('-', '')}"
+            if len(x_caption) > 280:
+                x_caption = x_caption[:277] + "..."
+            response = client.create_tweet(text=x_caption, media_ids=[media.media_id])
+            tweet_id = response.data.get("id", "") if response.data else ""
+            print(f"  ✅ X: Posted (tweet_id: {tweet_id})")
+            results["x"] = {"success": True, "tweet_id": tweet_id}
+        else:
+            print("  ⏭️ X: No credentials configured")
+    except Exception as e:
+        print(f"  ❌ X: {e}")
+        results["x"] = {"success": False, "error": str(e)}
+
+    # ── Summary ──
+    posted = [p for p, r in results.items() if r.get("success")]
+    failed = [p for p, r in results.items() if not r.get("success")]
+    print(f"\n  📊 Cross-post: {len(posted)}/{len(results)} platforms")
+    if posted:
+        print(f"  ✅ Posted: {', '.join(posted)}")
+    if failed:
+        print(f"  ❌ Failed: {', '.join(failed)}")
+
+    return results
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
 # MAIN ORCHESTRATION
 # ═══════════════════════════════════════════════════════════════════════════════
 
@@ -2208,6 +2564,9 @@ def run_quick_pulse(article, dry_run=False, use_production=False):
     if video_url:
         caption = build_caption(article)
         register_reel(article, video_url, str(final_path), caption)
+        # Cross-post to all platforms
+        print("\n📢 Cross-posting to all platforms...")
+        cross_post_reel(article, video_url, str(final_path), caption)
 
     print(f"\n✅ QUICK PULSE COMPLETE: {final_path}")
     return True
