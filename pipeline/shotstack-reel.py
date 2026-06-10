@@ -47,7 +47,7 @@ WHITE = "#ffffff"
 RED_BADGE = "#C41E3A"
 
 # TTS
-TTS_VOICE = "99fdc056cb054503a9bb53dee01a9e7e"  # Kavya - Voice 1 (matches HeyGen avatar)
+TTS_VOICE = "97dd67ab8ce242b6a9e7689cb00c6414"  # Monika — Indian English female anchor
 
 # Category → music mapping
 CATEGORY_MUSIC = {
@@ -308,27 +308,27 @@ Return JSON only:
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
-# TTS — HeyGen Seema Voice
+# TTS — HeyGen Monika Voice (Indian English anchor)
 # ═══════════════════════════════════════════════════════════════════════════════
 
 def generate_tts(text):
-    """Generate TTS via HeyGen Starfish. Returns (local_path, duration) or (None, 0).
-    Applies loudnorm to -14 LUFS (social media standard)."""
+    """Generate TTS via HeyGen v2 preview endpoint. Returns (local_path, duration) or (None, 0).
+    Applies loudnorm to -12 LUFS."""
     if not HEYGEN_KEY:
         print("❌ HeyGen API key not found")
         return None, 0
 
-    # Phonetic hint for TTS — help Kavya pronounce "TheVideshi" correctly
+    # Phonetic hint for TTS — help Monika pronounce "TheVideshi" correctly
     # "Videshi" = विदेशी (vi-they-shi) — soft dental द, pure ए vowel, crisp शी
     tts_text = text.replace("thevideshi", "the Vitheyshi").replace("TheVideshi", "The Vitheyshi").replace("Videshi", "Vitheyshi")
 
-    # Retry with increasing timeout — Kavya voice can take longer than Seema
+    # Retry with increasing timeout
     for attempt in range(3):
         try:
             r = requests.post(
-                "https://api.heygen.com/v3/voices/speech",
+                f"https://api.heygen.com/v2/voices/{TTS_VOICE}/preview",
                 headers={"X-Api-Key": HEYGEN_KEY, "Content-Type": "application/json"},
-                json={"text": tts_text, "voice_id": TTS_VOICE, "speed": 1.0},
+                json={"text": tts_text, "voice_id": TTS_VOICE, "text_type": "text"},
                 timeout=60,
             )
             break
@@ -379,7 +379,7 @@ def generate_tts(text):
         print(f"❌ WAV→MP3 conversion failed")
         return None, 0
 
-    print(f"  🎙️ TTS audio: {duration:.1f}s (Kavya voice, normalized to -12 LUFS)")
+    print(f"  🎙️ TTS audio: {duration:.1f}s (Monika voice, normalized to -12 LUFS)")
     return str(mp3_path), duration
 
 
