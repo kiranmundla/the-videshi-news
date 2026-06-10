@@ -619,6 +619,14 @@ def source_storyboard_images(article, storyboard, count=5):
     article_id = article.get("id", "")
     headline = article.get("headline", "")
 
+    # Helper: check if an image URL is from a curated source (not generic stock)
+    def is_curated_image(url):
+        """Prefer Wikimedia, Supabase-hosted, and other editorial sources over Pexels."""
+        if not url:
+            return False
+        pexels_domains = ["images.pexels.com", "pexels.com"]
+        return not any(d in url for d in pexels_domains)
+
     # ── 1. Build article image pool (same category + cross-category) ──
     article_pool = []  # list of {"headline": ..., "image_url": ..., "id": ...}
 
@@ -670,25 +678,34 @@ def source_storyboard_images(article, storyboard, count=5):
 
     print(f"  📚 Article image pool: {len(article_pool)} candidates ({category} + cross-category)")
 
+    # Sort pool: curated images (Wikimedia, Supabase, etc) first, Pexels last
+    article_pool.sort(key=lambda a: (0 if is_curated_image(a.get("image_url", "")) else 1))
+    curated_count = sum(1 for a in article_pool if is_curated_image(a.get("image_url", "")))
+    print(f"  📸 {curated_count} curated (non-Pexels) + {len(article_pool) - curated_count} Pexels-sourced")
+
     # ── 2. AI-match storyboard scenes to article images ──
     scenes = storyboard if storyboard else []
     scene_descs = [s.get("visual", "") for s in scenes[:count]]
 
     matched_urls = [None] * min(count, len(scene_descs))
 
-    # Scene 1 always uses the article's own hero image (most relevant)
-    if is_url_downloadable(hero):
+    # Scene 1 uses article hero ONLY if it's a curated image (not Pexels)
+    if is_url_downloadable(hero) and is_curated_image(hero):
         matched_urls[0] = hero
         used_in_this_reel.add(hero)
-        print(f"  🎬 Scene 1: {scene_descs[0][:60]}  →  article hero image")
+        print(f"  🎬 Scene 1: {scene_descs[0][:60]}  →  article hero image (curated)")
+    elif is_url_downloadable(hero):
+        print(f"  ⚠️ Skipping article hero (Pexels-sourced, unreliable for reels)")
 
     # For remaining scenes, ask GPT to match from available pool
     remaining_scenes = [(i, desc) for i, desc in enumerate(scene_descs) if matched_urls[i] is None]
 
     if remaining_scenes and article_pool:
-        # Build compact list for GPT
+        # Build compact list for GPT — ONLY curated images, never Pexels
+        curated_pool = [a for a in article_pool if is_curated_image(a.get("image_url", ""))]
+        match_source = curated_pool[:30] if curated_pool else article_pool[:30]  # Pexels only if no curated at all
         pool_items = []
-        for idx, a in enumerate(article_pool[:30]):  # Cap at 30 to stay within token limits
+        for idx, a in enumerate(match_source):
             pool_items.append(f"{idx}: {a['headline'][:80]}")
         pool_text = "\n".join(pool_items)
 
@@ -727,13 +744,13 @@ Return JSON only: {{"matches": [{{"scene": 1, "article_idx": 5}}, ...]}}"""
                     aidx = m.get("article_idx", -1)
                     si = scene_num - 1  # 0-indexed
                     if 0 <= si < len(matched_urls) and matched_urls[si] is None:
-                        if 0 <= aidx < len(article_pool[:30]) and aidx not in used_pool_idxs:
-                            img_url = article_pool[aidx]["image_url"]
+                        if 0 <= aidx < len(match_source) and aidx not in used_pool_idxs:
+                            img_url = match_source[aidx]["image_url"]
                             if img_url not in used_in_this_reel:
                                 matched_urls[si] = img_url
                                 used_in_this_reel.add(img_url)
                                 used_pool_idxs.add(aidx)
-                                ah = article_pool[aidx]["headline"][:50]
+                                ah = match_source[aidx]["headline"][:50]
                                 print(f"  🎬 Scene {scene_num}: {scene_descs[si][:50]}  →  matched: \"{ah}\"")
         except Exception as e:
             print(f"  ⚠️ AI matching failed: {e} — falling back to sequential")
@@ -967,7 +984,7 @@ def build_anchor_reel_timeline(
             {
                 "asset": {
                     "type": "html",
-                    "html": "<div class='wm'><img src='https://thevideshi.com/logo-192.png' class='logo'/><span class='url'>TheVideshi.com</span></div>",
+                    "html": "<div class='wm'><img src='https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/branding/logo-192.png' class='logo'/><span class='url'>TheVideshi.com</span></div>",
                     "css": ".wm { display: flex; align-items: center; gap: 6px; padding: 8px 14px; } .logo { width: 28px; height: 28px; border-radius: 4px; } .url { font-family: 'Inter'; color: rgba(255,255,255,0.75); font-size: 14px; font-weight: 700; letter-spacing: 1.5px; text-shadow: 1px 1px 3px rgba(0,0,0,0.6); }",
                     "width": 260,
                     "height": 44,
