@@ -73,22 +73,24 @@ KEYWORDS = [
 
 # Cities (AllEvents URL slug format)
 CITIES = [
-    {"ae": "san-francisco", "display": "San Francisco", "state": "CA"},
-    {"ae": "san-jose", "display": "San Jose", "state": "CA"},
-    {"ae": "new-york", "display": "New York", "state": "NY"},
-    {"ae": "jersey-city", "display": "Jersey City", "state": "NJ"},
-    {"ae": "chicago", "display": "Chicago", "state": "IL"},
-    {"ae": "houston", "display": "Houston", "state": "TX"},
-    {"ae": "dallas", "display": "Dallas", "state": "TX"},
-    {"ae": "los-angeles", "display": "Los Angeles", "state": "CA"},
-    {"ae": "seattle", "display": "Seattle", "state": "WA"},
-    {"ae": "washington-dc", "display": "Washington", "state": "DC"},
-    {"ae": "boston", "display": "Boston", "state": "MA"},
-    {"ae": "atlanta", "display": "Atlanta", "state": "GA"},
-    {"ae": "philadelphia", "display": "Philadelphia", "state": "PA"},
-    {"ae": "detroit", "display": "Detroit", "state": "MI"},
-    {"ae": "fremont", "display": "Fremont", "state": "CA"},
-    {"ae": "edison", "display": "Edison", "state": "NJ"},
+    # Batch A — West Coast + Major metros (8 cities)
+    {"ae": "san-francisco", "display": "San Francisco", "state": "CA", "batch": "a"},
+    {"ae": "san-jose", "display": "San Jose", "state": "CA", "batch": "a"},
+    {"ae": "fremont", "display": "Fremont", "state": "CA", "batch": "a"},
+    {"ae": "los-angeles", "display": "Los Angeles", "state": "CA", "batch": "a"},
+    {"ae": "seattle", "display": "Seattle", "state": "WA", "batch": "a"},
+    {"ae": "new-york", "display": "New York", "state": "NY", "batch": "a"},
+    {"ae": "jersey-city", "display": "Jersey City", "state": "NJ", "batch": "a"},
+    {"ae": "edison", "display": "Edison", "state": "NJ", "batch": "a"},
+    # Batch B — South, Midwest, East (8 cities)
+    {"ae": "chicago", "display": "Chicago", "state": "IL", "batch": "b"},
+    {"ae": "houston", "display": "Houston", "state": "TX", "batch": "b"},
+    {"ae": "dallas", "display": "Dallas", "state": "TX", "batch": "b"},
+    {"ae": "washington-dc", "display": "Washington", "state": "DC", "batch": "b"},
+    {"ae": "boston", "display": "Boston", "state": "MA", "batch": "b"},
+    {"ae": "atlanta", "display": "Atlanta", "state": "GA", "batch": "b"},
+    {"ae": "philadelphia", "display": "Philadelphia", "state": "PA", "batch": "b"},
+    {"ae": "detroit", "display": "Detroit", "state": "MI", "batch": "b"},
 ]
 
 # Category rules
@@ -488,6 +490,7 @@ def main():
     parser = argparse.ArgumentParser(description="Scrape AllEvents.in for Indian diaspora events")
     parser.add_argument("--dry-run", action="store_true", help="Print events without inserting")
     parser.add_argument("--city", type=str, default=None, help="Single city slug (e.g. 'houston')")
+    parser.add_argument("--batch", type=str, default=None, choices=["a", "b"], help="Run batch a or b (8 cities each)")
     args = parser.parse_args()
 
     if not args.dry_run and (not SB_URL or not SB_KEY):
@@ -500,6 +503,9 @@ def main():
         if not cities:
             print(f"Unknown city: {args.city}. Available: {', '.join(c['ae'] for c in CITIES)}")
             sys.exit(1)
+    elif args.batch:
+        cities = [c for c in CITIES if c.get("batch") == args.batch]
+        print(f"📦 Running batch {args.batch.upper()}: {len(cities)} cities")
 
     # Get existing events for dedup
     existing_ids, existing_title_dates = set(), set()
