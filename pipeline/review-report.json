@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-10T22:45:29.871372+00:00",
+  "timestamp": "2026-06-10T23:15:13.378034+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 4,
-    "flag": 1,
+    "pass": 1,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,92 +11,20 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "e9d2c9ae-dd09-4fd9-9bf1-a74ca2faa2cd",
-      "headline": "Twenty-Three Parties Showed Up to Challenge the BJP. The One That Didn't May Matter More.",
-      "slug": "india-bloc-opposition-meeting-dmk-boycott-bjp-challenge-neet-20260610",
+      "id": "0e5d841d-46d4-422d-8d34-68ee230e999a",
+      "headline": "Manoj Bajpayee Had to Google 'Balance of Payments' to Play India's Most Powerful Banker. The Film Opens Thursday.",
+      "slug": "governor-manoj-bajpayee-rbi-1991-crisis-india-gold-pawned-nri-20260610",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [
           {
-            "article_id": "f2f76f37-e043-4bd2-986c-4fe9b2953c8d",
-            "headline": "23 Parties Will Meet Today. The DMK Won't Be There. The INDI"
+            "article_id": "c75424b6-08da-4bd8-a40a-a760bf1e0442",
+            "headline": "Manoj Bajpayee Is Playing the Man Who Saved India From Bankr"
           }
         ],
         "broken_embeds": []
       },
       "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 5,
-          "issue": "The image of Rahul Gandhi does not directly relate to the broader topic of the opposition coalition meeting."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article connects the political developments to the Indian diaspora's interest in the state of Indian democracy."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that reflects the INDIA bloc meeting or the coalition's dynamics.",
-          "Expand on the diaspora angle by including specific implications for NRIs regarding the political situation in India."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "47b421a2-b339-4461-a421-b73e09c97767",
-      "headline": "BlackRock Says the World Has Over-Punished India. Here Is Why It Is Still Betting Big.",
-      "slug": "blackrock-india-over-punished-investment-case-nifty-sensex-nri-20260610",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": "The image of the BSE building is relevant to the topic of India's equity market."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article directly addresses NRI investors and their concerns, providing insights relevant to their investment strategies."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more data or quotes from NRI investors to strengthen the diaspora angle.",
-          "Include a brief overview of the potential risks for NRIs in the current market to provide a balanced perspective."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "6de8e8f8-17e5-4e4e-854f-1c993df75853",
-      "headline": "India Is Building an 'Unsinkable Aircraft Carrier' 150 Kilometres From the Malacca Strait.",
-      "slug": "india-great-nicobar-unsinkable-aircraft-carrier-malacca-strait-airport-20260610",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
@@ -105,86 +33,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article discusses strategic implications for India's defense and trade, which are relevant to the NRI community."
+          "quality": 9,
+          "note": "The article effectively connects the film's historical context to the experiences of the NRI audience, particularly those over 40 who remember the 1991 crisis."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes from experts or officials to enhance credibility.",
-          "Add a section on how this project might impact the diaspora economically or socially."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "149532aa-08de-464f-8e44-459c52b1ade4",
-      "headline": "He Is Twenty-Three, Captaining India A, and Already the Vice-Captain of the Senior T20I Team.",
-      "slug": "tilak-varma-vice-captain-india-t20i-india-a-captain-sri-lanka-tri-series-nri",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article connects Varma's performance and recognition in the IPL to the Indian diaspora in the UK, making it relevant for NRI readers."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from Varma or selectors to enhance the narrative.",
-          "Include more context on the significance of the T20I series for the Indian team."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "f76b271d-cfae-4246-8843-8820638348ed",
-      "headline": "She Will Break the All-Time Record on Sunday. Her Response to the Retirement Question Was Three Words.",
-      "slug": "harmanpreet-kaur-women-t20-world-cup-2026-india-pakistan-edgbaston-nri",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the significance of the match to the NRI community in the UK, highlighting accessibility and community engagement."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from players or coaches to enhance the narrative.",
-          "Include more statistics or historical context about India-Pakistan women's cricket matches."
+          "Consider adding more quotes or insights from the director or supporting cast to enrich the article.",
+          "Include a brief overview of the film's reception or critical reviews to provide a more rounded perspective."
         ],
         "verdict": "pass"
       },
