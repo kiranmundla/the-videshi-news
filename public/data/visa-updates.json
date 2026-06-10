@@ -1,5 +1,14 @@
 [
   {
+    "id": "modi-trump-g7-h1b-talks",
+    "date": "2026-06-10",
+    "label": "Jun 10, 2026",
+    "headline": "Modi to raise H-1B visa issue with Trump at G7 summit in France",
+    "summary": "PM Modi is expected to hold bilateral talks with President Trump at the G7 summit in Evian-les-Bains, France (June 15\u201317), with H-1B visas, trade, and energy on the agenda. India is pushing back on recent visa restrictions that have rattled its tech workforce and outsourcing industry. The meeting follows Rubio's India visit last month and comes as both sides move toward a bilateral trade deal potentially closing by mid-July.",
+    "severity": "medium",
+    "source": "Reuters / Indian Government Source"
+  },
+  {
     "id": "state-dept-750-premium-visa-service",
     "date": "2026-06-09",
     "label": "Jun 9, 2026",
@@ -7,6 +16,15 @@
     "summary": "The State Department will offer a $750 add-on for B-1/B-2 visa applicants to schedule an interview within 10 business days \u2014 on top of the $185 base fee. The pilot runs July 1 through Dec 31 at select embassies/consulates (to be announced). Timed to ease FIFA World Cup 2026 visa backlogs. Critical for India where B1/B2 waits range from 5.5 months (Delhi/Chennai) to 7.5 months (Mumbai). Does NOT guarantee visa approval \u2014 only faster interview scheduling.",
     "severity": "high",
     "source": "US State Department / AP / Bloomberg Law"
+  },
+  {
+    "id": "h1b-100k-fee-struck-down",
+    "date": "2026-06-08",
+    "label": "Jun 8, 2026",
+    "headline": "Federal judge strikes down Trump's $100,000 H-1B visa fee \u2014 rules it an unlawful tax",
+    "summary": "U.S. District Judge Leo Sorokin in Boston vacated Trump's $100,000 H-1B visa fee in a lawsuit brought by 20 state attorneys general, ruling it an unauthorized tax Congress never approved. Prior fees were $2K\u2013$5K; only 85 employers had paid the $100K since September. The White House is appealing, citing a conflicting ruling from a D.C. judge who upheld the fee. The fee's fate now hinges on the appeals courts \u2014 but for now, it is vacated in its entirety.",
+    "severity": "high",
+    "source": "U.S. District Court / Reuters / USA TODAY"
   },
   {
     "id": "h1b-fake-degree-fraud-ring",
