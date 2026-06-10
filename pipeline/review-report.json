@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-10T14:45:12.056024+00:00",
+  "timestamp": "2026-06-10T15:15:35.188241+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 0,
+    "pass": 3,
+    "flag": 3,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "8e698fca-8bb1-401d-ae35-9b2f2944c623",
-      "headline": "Twenty-Four Indian Sailors Were on a Tanker Hit by a Suspected US Missile Off Oman. Two Are Missing.",
-      "slug": "indian-sailors-tanker-settebello-us-missile-strike-oman-strait-hormuz-20260610",
+      "id": "df1030dd-37d5-433c-86fe-694f6c3b77bc",
+      "headline": "Suriya's \u20b9304 Crore Blockbuster Karuppu Hits Amazon Prime Thursday. The Wait Is Over.",
+      "slug": "karuppu-suriya-amazon-prime-ott-release-june-12-304-crore-tamil-blockbuster-nri-20260610",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -29,13 +29,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively highlights the impact of the incident on the Indian diaspora, particularly regarding the safety of Indian nationals and the economic implications."
+          "note": "The article effectively highlights the film's global release and its accessibility for NRIs, making it relevant to the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes from Indian officials or experts to enhance credibility and provide more depth.",
-          "Add a brief background on the Settebello and its significance to Indian maritime interests."
+          "Add more details about the film's reception in international markets to enhance the diaspora angle.",
+          "Include quotes from critics or audience reactions to provide a more rounded perspective on the film's impact."
         ],
         "verdict": "pass"
       },
@@ -47,9 +47,154 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "d69074f7-c2bc-4c65-a465-f8dc588d25d7",
-      "headline": "Indian Banks Are Offering NRIs Up to 7% on Dollar Deposits. Here Is What Changed.",
-      "slug": "indian-banks-nri-deposit-rates-7-percent-rbi-hedging-subsidy-dollar-20260610",
+      "id": "5adc7383-62d9-43eb-88dc-1d390880691f",
+      "headline": "Tamil Cinema Lost Its Greatest Poet This Morning. Bharathiraja Is Gone at 84.",
+      "slug": "bharathiraja-passes-away-84-tamil-cinema-legend-rajinikanth-vijay-tribute-nri-20260610",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/DZZRvnbT36a/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post is a tribute but does not directly relate to the article's main focus on Bharathiraja's impact on Tamil cinema."
+          }
+        ],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects Bharathiraja's work to the diaspora experience, highlighting how his films resonate with NRIs."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider replacing the irrelevant Instagram link with a more relevant tribute or embed that directly relates to Bharathiraja's contributions.",
+          "Expand on the diaspora angle by including more specific examples of how his films influenced the NRI community."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/DZZRvnbT36a/",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "10d9eacb-3545-4eeb-8d52-dd7a73912965",
+      "headline": "Tech Mahindra and NVIDIA Built a Sovereign AI Lab. It Speaks Bhojpuri.",
+      "slug": "tech-mahindra-nvidia-sovereign-ai-project-indus-hindi-20260610",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "f3734f76-7cff-45c6-b37b-52bf9b3d5790",
+            "headline": "Jensen Huang Is in Seoul Eating Fried Chicken. He Left With "
+          },
+          {
+            "article_id": "22364619-82b7-4724-8ddd-9de6b6a0c7cf",
+            "headline": "NVIDIA Just Built a CPU for AI Agents, Not Humans. The Data "
+          },
+          {
+            "article_id": "69dfdff2-0944-4d6a-a008-12225f958050",
+            "headline": "Jensen Huang Called Marvell the Next Trillion-Dollar Company"
+          },
+          {
+            "article_id": "7b2ad390-8149-4d60-aa59-680522566b8e",
+            "headline": "Nvidia Just Built a PC Chip That Runs AI Models Locally. App"
+          },
+          {
+            "article_id": "edc1c472-2b8c-46d0-8e82-bf1071299392",
+            "headline": "Anthropic, OpenAI and Nvidia Are Hiring More Foreign Workers"
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 3,
+          "issue": "irrelevant"
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses AI advancements relevant to the Indian market, which may interest the diaspora, but lacks a direct connection to NRI experiences."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include a quote or perspective from an NRI expert in AI or technology to strengthen the diaspora connection.",
+          "Replace the hero image with one that directly relates to the topic of AI or the specific project mentioned."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "cd111ead-a101-43e0-9525-82e217e23598",
+      "headline": "Tata Electronics Wants a $30 Billion Chip Empire. The Dholera Fab Is Just the Start.",
+      "slug": "tata-electronics-30-billion-semiconductor-empire-india-20260610",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "091f1a72-16a4-4be6-9683-e9fe5021d601",
+            "headline": "TCS Will Have Half a Million AI Agents Within Three Years. H"
+          },
+          {
+            "article_id": "973e700c-6456-4e78-90d1-bb47dc39f111",
+            "headline": "TCS Chairman Says AI Agents Will Match Its 500,000 Headcount"
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 4,
+          "issue": "irrelevant"
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses the semiconductor industry and its implications for Indian-origin engineers abroad, making it relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the hero image with one that directly relates to semiconductors or Tata Electronics to enhance relevance.",
+          "Expand on the implications for NRIs in the semiconductor industry to strengthen the diaspora angle."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "df7a89f5-e4f6-4b6c-96f8-680bb4db57ed",
+      "headline": "India Just Froze Starlink's Launch. The Iran War Is the Reason.",
+      "slug": "india-freezes-starlink-approvals-iran-war-security-20260610",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -65,15 +210,56 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively addresses NRIs by discussing the benefits of new deposit rates and the RBI's initiatives aimed at attracting diaspora investments."
+          "note": "The article effectively connects the implications of Starlink's launch freeze to the Indian diaspora, particularly regarding internet access for families in rural areas."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from NRI investors or financial experts to enhance credibility and relatability.",
-          "Include a brief comparison of the new rates with historical rates to provide context for NRIs."
+          "Consider adding more direct quotes from Indian officials or experts to strengthen the article's credibility.",
+          "Include a brief overview of how Starlink's technology works for readers unfamiliar with satellite internet."
         ],
         "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "f2cbc658-dbae-4906-88ef-635022df78c3",
+      "headline": "India Has Slipped From the World's Fourth-Largest Economy to Sixth. The Opposition Just Published the Receipts.",
+      "slug": "congress-promise-reality-report-india-sixth-economy-rupee-record-modi-20260610",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "7c29ad18-0d4b-41d1-a7a0-e71036b5f88a",
+            "headline": "One Hundred Thousand Fake Degrees \u2014 and a System That Never "
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 5,
+          "issue": "The image of the new Parliament Building does not directly relate to the economic topic discussed in the article."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the economic situation to the diaspora by discussing the impact of the rupee's depreciation on Indian assets and remittances."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that reflects the economic theme of the article.",
+          "Provide more context or examples of how the economic changes specifically affect the diaspora beyond the currency depreciation."
+        ],
+        "verdict": "flag"
       },
       "actions_taken": [
         "promoted to published"
