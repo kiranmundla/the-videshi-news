@@ -263,13 +263,14 @@ article1 = {
     "status": "review",
     "is_editorial": False,
     "published_at": datetime.now(timezone.utc).isoformat(),
-    "sources": json.dumps([
+    "vertical": "lifestyle-health",
+    "sources": [
         {"name": "New England Journal of Medicine", "url": "https://www.nejm.org"},
         {"name": "USA TODAY", "url": "https://www.usatoday.com/story/graphics/2026/06/08/new-pancreatic-cancer-drug-treatment-daraxonrasib/90419728007/"},
         {"name": "Reuters", "url": "https://www.reuters.com"},
         {"name": "Revolution Medicines", "url": "https://ir.revmed.com"},
         {"name": "UCLA Health", "url": "https://www.uclahealth.org"}
-    ])
+    ]
 }
 
 if img1_url:
