@@ -1,48 +1,43 @@
 {
-  "timestamp": "2026-06-10T12:16:31.108769+00:00",
+  "timestamp": "2026-06-10T12:48:15.770542+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 7,
-    "flag": 1,
+    "pass": 1,
+    "flag": 2,
     "fail": 0,
     "error": 0
   },
-  "revisions": 1,
+  "revisions": 0,
   "unpublished": 0,
   "articles": [
     {
-      "id": "272d01ff-7129-4a51-90db-608ad0ef44fe",
-      "headline": "Lagaan Turns Twenty-Five, the Goodness Gracious Me Gang Reunites, and London's Indian Film Festival Has Never Been Bigger",
-      "slug": "liff-2026-aamir-khan-lagaan-goodness-gracious-me-reunion-ai-film-20260610",
+      "id": "53b6e2de-bfdc-482a-8fcc-10e0b7e14b57",
+      "headline": "India Has Mapped 197 Districts That Could Starve if the Monsoon Fails. The Government Has a Plan.",
+      "slug": "india-197-districts-el-nino-vulnerable-godzilla-monsoon-contingency-plan-20260610",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "6125f01f-699e-4b79-8756-f5989dff4a08",
-            "headline": "Aamir Khan Personally Knocked on a Door to Steal a Title. Th"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
-        "overall_score": 8,
+        "overall_score": 7,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 3,
+          "issue": "irrelevant"
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the events to the British Indian community, highlighting their cultural significance."
+          "note": "The article discusses the impact of agricultural crises on the Indian diaspora, particularly regarding remittances."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more quotes or anecdotes from diaspora audiences to enhance the personal connection.",
-          "Add a brief section on how the diaspora has influenced Indian cinema or vice versa."
+          "Replace the hero image with one that is more relevant to agriculture or the monsoon season.",
+          "Expand on the diaspora angle by including specific examples of how NRIs are affected by agricultural issues in India."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
         "promoted to published"
@@ -52,9 +47,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "0e65877c-ba2c-4bf6-9b84-e18c70742b21",
-      "headline": "Twenty-One Years and a Ton of Tamil Granite Later, Berlin Has One of Europe's Largest Hindu Temples",
-      "slug": "berlin-sri-ganesha-hindu-temple-europe-largest-neukolln-tamil-diaspora-20260610",
+      "id": "4c37e843-29d8-41b9-a094-9e321ee61955",
+      "headline": "The EB-2 Green Card Queue for Indians Just Slammed Shut. It Won't Reopen Until October.",
+      "slug": "eb2-india-green-card-unavailable-october-2026-retrogression-h1b-professionals",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -64,210 +59,23 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the temple's significance to the Tamil diaspora and their history in Germany."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include quotes from more diverse community members to enhance the representation of the Tamil diaspora.",
-          "Add a section on the cultural events planned at the temple to engage the diaspora further."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "93242aba-bc8b-4ca1-a378-d926b473fde8",
-      "headline": "Perplexity's Aravind Srinivas Wants a 2028 IPO. He's Not Waiting for OpenAI to Go First.",
-      "slug": "aravind-srinivas-perplexity-ipo-2028-indian-ai-founder-20260610",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively highlights the significance of Aravind Srinivas as an Indian-origin founder in the AI sector, connecting well with the diaspora audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more quotes or insights from Aravind Srinivas to enhance the personal narrative.",
-          "Include a brief section on the implications of Perplexity's IPO for the Indian tech ecosystem."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "b26a9151-7c7e-489d-85ec-7786da235416",
-      "headline": "Infineon Is Betting Real Money on India's Chip Fabs. That Changes Everything.",
-      "slug": "infineon-kaynes-cdil-india-chip-packaging-semiconductor-20260610",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the topic of semiconductor manufacturing."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article connects well with the Indian-origin semiconductor engineers in the U.S., highlighting their potential role in India's semiconductor ecosystem."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that depicts semiconductor manufacturing or technology.",
-          "Expand on the implications for the Indian diaspora in the semiconductor industry to enhance the diaspora angle."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "f0395be6-2975-484d-81da-12556a9427a4",
-      "headline": "Zoho Just Unveiled an India-Designed Server. The Hardware Sovereignty Play Is Real.",
-      "slug": "zoho-nathu-la-india-designed-server-hardware-sovereignty-20260610",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the topic to NRI tech professionals, highlighting a shift in India's hardware landscape."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes or insights from NRI professionals to enhance the diaspora connection.",
-          "Include more context on how this development impacts the global tech landscape."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "56e93aea-cc81-4855-bd30-94d01d814534",
-      "headline": "Every Employer in America May Soon Have to E-Verify You",
-      "slug": "mandatory-e-verify-act-2026-h1b-indian-workers-20260610",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the topic of E-Verify or immigration enforcement."
+          "score": 6,
+          "issue": "The image of the USCIS headquarters is somewhat relevant but does not directly relate to the EB-2 Green Card topic."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively discusses the implications of the E-Verify bill on Indian workers, particularly those on H-1B and other work visas, making it highly relevant to the diaspora."
+          "note": "The article effectively highlights the struggles of Indian professionals in the U.S. immigration system, making it highly relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that directly relates to immigration or employment verification to enhance relevance.",
-          "Add more statistics or quotes from experts to strengthen the argument about the impact of E-Verify on Indian workers."
+          "Consider using a more relevant image that directly represents the EB-2 Green Card process or Indian professionals.",
+          "Add a section discussing potential future changes or advocacy efforts that could impact the EB-2 category for Indian applicants."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "3d595dba-c1ac-4081-bd22-8017ed9c5d4f",
-      "headline": "Neeraj Sharma Filed Eleven Fake H-1B Petitions \u2014 Now America Wants His Citizenship Back",
-      "slug": "neeraj-sharma-h1b-fraud-denaturalization-india-20260610",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [
-          {
-            "url": "https://x.com/ABORRACHITAZ/status/1932087625032384702",
-            "problem": "broken",
-            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
-          }
-        ]
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses the implications of denaturalization for Indian Americans, making it relevant to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include quotes from affected individuals or immigration experts to enhance the narrative.",
-          "Add a section on how the Indian diaspora can advocate for fair immigration policies."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "Removed 1 broken/hallucinated embed(s)",
         "promoted to published"
       ],
       "revised": false,
@@ -287,26 +95,26 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 2,
-          "issue": "irrelevant"
+          "score": 3,
+          "issue": "The image does not match the article's topic about the Oberoi Rajgarh Palace."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects the luxury hotel experience to the interests of NRIs, emphasizing cultural heritage and family connections."
+          "note": "The article effectively connects the luxury experience at the Oberoi Rajgarh Palace to the interests of NRIs, emphasizing cultural heritage and meaningful travel."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the hero image with one that showcases the Oberoi Rajgarh Palace to match the article's focus.",
-          "Consider adding more specific testimonials or quotes from NRIs who have visited the palace to enhance the personal connection."
+          "Replace the hero image with one that features the Oberoi Rajgarh Palace to better align with the article's content.",
+          "Consider adding more quotes or testimonials from NRIs to further enhance the diaspora connection."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
-        "Revised by gpt-4o-mini (711\u2192765 words)"
+        "promoted to published"
       ],
-      "revised": true,
+      "revised": false,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
     }

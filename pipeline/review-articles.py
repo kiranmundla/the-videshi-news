@@ -581,7 +581,19 @@ BODY:
         result["llm_review"] = llm_result
         result["llm_source"] = llm_source
         score = llm_result.get("overall_score", "?")
-        verdict = llm_result.get("verdict", "?")
+        llm_verdict = llm_result.get("verdict", "?")
+        # Derive verdict from score — LLM sometimes returns wrong verdict for the score
+        if isinstance(score, (int, float)):
+            if score >= 7:
+                verdict = "pass"
+            elif score >= 4:
+                verdict = "flag"
+            else:
+                verdict = "fail"
+            if verdict != llm_verdict:
+                print(f"  ⚠️ LLM verdict '{llm_verdict}' overridden to '{verdict}' (score {score})")
+        else:
+            verdict = llm_verdict
         print(f"  📊 Score: {score}/10 | Verdict: {verdict} ({llm_source})")
         
         # ── Handle embed issues (remove irrelevant embeds) ──
