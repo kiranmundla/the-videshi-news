@@ -16,7 +16,24 @@ export default async function handler(req, res) {
     );
     const rows = await resp.json();
     if (!rows || !rows.length) {
-      // Article doesn't exist — return proper 404 so Google doesn't soft-404
+      // Check if article exists but is archived/unpublished → 410 Gone (faster deindexing)
+      const checkResp = await fetch(
+        `${supabaseUrl}/rest/v1/p2_articles?select=status,category&slug=eq.${encodeURIComponent(slug)}&limit=1`,
+        { headers: { apikey: supabaseKey, Authorization: `Bearer ${supabaseKey}` } }
+      );
+      const checkRows = await checkResp.json();
+      if (checkRows && checkRows.length && checkRows[0].status === "archived") {
+        // Article was published then archived — tell Google it's permanently gone
+        const cat = checkRows[0].category || "news";
+        res.setHeader("Cache-Control", "public, s-maxage=86400");
+        res.status(410).send(`<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>Article Removed — The Videshi</title>
+<meta name="robots" content="noindex"></head>
+<body><h1>410 — This article has been removed</h1>
+<p>Browse more stories: <a href="https://www.thevideshi.com/category/${cat}">${cat}</a> · <a href="https://www.thevideshi.com">Homepage</a></p></body></html>`);
+        return;
+      }
+      // Truly doesn't exist — return proper 404 so Google doesn't soft-404
       res.status(404).send(`<!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"><title>Article Not Found — The Videshi</title>
 <meta name="robots" content="noindex"></head>

@@ -222,8 +222,12 @@ def check_null_published_at(fix=False):
 # ─── Check 5: Aged articles ───────────────────────────────────────────────────
 
 def check_aged_articles(fix=False):
-    """Archive non-evergreen articles older than 7 days."""
-    cutoff_7d = utc_iso(datetime.now(timezone.utc) - timedelta(days=7))
+    """Archive non-evergreen articles older than 90 days.
+    
+    Previously 7 days — far too aggressive for SEO. Old articles are valuable
+    long-tail content. The review pipeline already catches quality issues.
+    """
+    cutoff_7d = utc_iso(datetime.now(timezone.utc) - timedelta(days=90))
     EVERGREEN = ("travel", "food")
     filters = (
         f"status=eq.published&published_at=lt.{cutoff_7d}"
