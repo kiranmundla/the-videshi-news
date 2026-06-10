@@ -1017,8 +1017,12 @@ Available article images (each headline describes what the image shows):
 Scenes that need images:
 {scenes_text}
 
-For each scene, pick the article number (0-{len(pool_items)-1}) whose headline/topic best matches the visual needed.
-Each article can only be used ONCE. Prioritize RELEVANCE over variety.
+RULES:
+1. For each scene, pick the article number (0-{len(pool_items)-1}) whose headline/topic DIRECTLY matches the visual needed.
+2. Each article can only be used ONCE.
+3. If NO article is a strong visual match for a scene, use "article_idx": -1 to SKIP it. Do NOT force a weak match.
+4. NEVER match an image of a political leader or public figure to a scene about a DIFFERENT topic (e.g. don't use a Modi image for a green card story, or a Trump image for a tech layoff story). The person in the image must be the subject of the scene.
+5. Generic institutional images (buildings, documents, flags) are OK for topically related scenes.
 
 Return JSON only: {{"matches": [{{"scene": 1, "article_idx": 5}}, ...]}}"""
 
@@ -1037,10 +1041,16 @@ Return JSON only: {{"matches": [{{"scene": 1, "article_idx": 5}}, ...]}}"""
             if mr.status_code == 200:
                 matches = json.loads(mr.json()["choices"][0]["message"]["content"]).get("matches", [])
                 used_pool_idxs = set()
+                skipped = 0
                 for m in matches:
                     scene_num = m.get("scene", 0)
                     aidx = m.get("article_idx", -1)
                     si = scene_num - 1  # 0-indexed
+                    if aidx == -1:
+                        skipped += 1
+                        if 0 <= si < len(scene_descs):
+                            print(f"  ⏭️ Scene {scene_num}: {scene_descs[si][:50]}  →  skipped (no good match)")
+                        continue
                     if 0 <= si < len(matched_urls) and matched_urls[si] is None:
                         if 0 <= aidx < len(match_source) and aidx not in used_pool_idxs:
                             img_url = match_source[aidx]["image_url"]
@@ -1053,7 +1063,17 @@ Return JSON only: {{"matches": [{{"scene": 1, "article_idx": 5}}, ...]}}"""
         except Exception as e:
             print(f"  ⚠️ AI matching failed: {e} — falling back to sequential")
 
-    # ── 3. Fill any remaining gaps with sequential curated article images ──
+    # ── 3. Fill any remaining gaps — prefer article's own hero, then sequential curated ──
+    # First try the article's own hero image (even if Pexels) for unfilled scenes
+    if hero and is_url_downloadable(hero):
+        for i in range(len(matched_urls)):
+            if matched_urls[i] is None and hero not in used_in_this_reel:
+                matched_urls[i] = hero
+                used_in_this_reel.add(hero)
+                print(f"  🎬 Scene {i+1}: {scene_descs[i][:50]}  →  article's own hero image (fallback)")
+                break  # Only use hero once
+
+    # Then fill with sequential curated article images
     pool_urls_curated = [a["image_url"] for a in article_pool 
                          if a["image_url"] not in used_in_this_reel and is_curated_image(a["image_url"])]
     pool_urls_any = [a["image_url"] for a in article_pool 
