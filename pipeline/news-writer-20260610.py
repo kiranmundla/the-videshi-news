@@ -1,494 +1,279 @@
 #!/usr/bin/env python3
 """
-The Videshi — News Writer (2026-06-10 batch)
-Writes 3 news articles, sources images from Wikipedia/Commons/Pexels,
-inserts into Supabase with status="review".
+News writer for The Videshi — June 10, 2026
+Two articles:
+1. Modi becomes India's longest-serving elected PM (4,399 days)
+2. US court strikes down $100,000 H-1B visa fee
 """
 
-import os, json, re, time, uuid, urllib.parse, subprocess
-import requests
+import json, os, sys, uuid, io, requests
 from datetime import datetime, timezone
+from PIL import Image
 
 # Load env
 def load_env(path):
-    env = {}
-    if os.path.exists(path):
-        with open(path) as f:
-            for line in f:
-                line = line.strip()
-                if line and not line.startswith('#') and '=' in line:
-                    k, v = line.split('=', 1)
-                    env[k.strip()] = v.strip()
-    return env
+    with open(os.path.expanduser(path)) as f:
+        for line in f:
+            line = line.strip()
+            if line and not line.startswith('#') and '=' in line:
+                k, v = line.split('=', 1)
+                os.environ[k] = v
 
-supabase_env = load_env(os.path.expanduser('~/.env.supabase'))
-pexels_env = load_env(os.path.expanduser('~/workspace/.env.pexels'))
+load_env('~/.env.supabase')
+load_env('~/workspace/.env.pexels')
 
-SUPABASE_URL = supabase_env['SUPABASE_URL']
-SUPABASE_KEY = supabase_env['SUPABASE_SERVICE_ROLE_KEY']
-PEXELS_API_KEY = pexels_env['PEXELS_API_KEY']
-
+SUPABASE_URL = os.environ['SUPABASE_URL']
+SUPABASE_KEY = os.environ['SUPABASE_SERVICE_ROLE_KEY']
 HEADERS = {
     "apikey": SUPABASE_KEY,
     "Authorization": f"Bearer {SUPABASE_KEY}",
     "Content-Type": "application/json",
     "Prefer": "return=representation"
 }
+UA = {"User-Agent": "TheVideshi/1.0 (thevideshi.com)"}
 
-# --- Image sourcing functions ---
+def compress_image(img_bytes, max_width=1200, quality=80):
+    img = Image.open(io.BytesIO(img_bytes))
+    if img.mode in ('RGBA', 'P'):
+        img = img.convert('RGB')
+    if img.width > max_width:
+        ratio = max_width / img.width
+        img = img.resize((max_width, int(img.height * ratio)), Image.LANCZOS)
+    buf = io.BytesIO()
+    img.save(buf, format='JPEG', quality=quality, optimize=True)
+    return buf.getvalue()
 
-def fetch_wikipedia_person_image(person_name):
-    """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
-    encoded = urllib.parse.quote(person_name.replace(' ', '_'))
-    try:
-        r = requests.get(
-            f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
-            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
-            timeout=10
-        )
-        if r.status_code == 200:
-            data = r.json()
-            img = data.get("originalimage", {}).get("source") or data.get("thumbnail", {}).get("source")
-            if img:
-                print(f"  ✓ Wikipedia image found for '{person_name}': {img[:80]}...")
-                return img
-    except Exception as e:
-        print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
-    return None
-
-
-def fetch_wikimedia_commons_images(search_query, limit=5):
-    """Search Wikimedia Commons for CC-licensed images. Returns list of {url, title}."""
-    params = {
-        "action": "query",
-        "generator": "search",
-        "gsrsearch": search_query,
-        "gsrnamespace": "6",
-        "gsrlimit": str(limit),
-        "prop": "imageinfo",
-        "iiprop": "url|size|mime",
-        "iiurlwidth": "1200",
-        "format": "json"
+def upload_to_supabase(img_bytes, filename):
+    """Upload image to Supabase storage bucket article-images"""
+    url = f"{SUPABASE_URL}/storage/v1/object/article-images/{filename}"
+    headers = {
+        "apikey": SUPABASE_KEY,
+        "Authorization": f"Bearer {SUPABASE_KEY}",
+        "Content-Type": "image/jpeg",
+        "x-upsert": "true"
     }
-    try:
-        r = requests.get(
-            "https://commons.wikimedia.org/w/api.php",
-            params=params,
-            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
-            timeout=15
-        )
-        if r.status_code == 200:
-            data = r.json()
-            pages = data.get("query", {}).get("pages", {})
-            results = []
-            for page_id, page in pages.items():
-                ii = page.get("imageinfo", [{}])[0]
-                url = ii.get("thumburl") or ii.get("url")
-                mime = ii.get("mime", "")
-                width = ii.get("width", 0)
-                if url and "image" in mime and width > 200:
-                    results.append({"url": url, "title": page.get("title", "")})
-            if results:
-                print(f"  ✓ Wikimedia Commons: {len(results)} images for '{search_query}'")
-            return results
-    except Exception as e:
-        print(f"  ⚠ Wikimedia Commons error: {e}")
-    return []
+    r = requests.post(url, headers=headers, data=img_bytes, timeout=30)
+    if r.status_code in (200, 201):
+        public_url = f"{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}"
+        print(f"  ✓ Uploaded {filename} ({len(img_bytes)} bytes) → {public_url[:80]}...")
+        return public_url
+    else:
+        print(f"  ✗ Upload failed: {r.status_code} {r.text[:200]}")
+        return None
 
-
-def fetch_pexels_image(query):
-    """Search Pexels for a relevant image. Returns URL or None. Uses curl to avoid 403."""
-    try:
-        result = subprocess.run(
-            ["curl", "-sS", "-H", f"Authorization: {PEXELS_API_KEY}",
-             f"https://api.pexels.com/v1/search?query={urllib.parse.quote(query)}&per_page=3&orientation=landscape"],
-            capture_output=True, text=True, timeout=15
-        )
-        if result.returncode == 0:
-            data = json.loads(result.stdout)
-            photos = data.get("photos", [])
-            if photos:
-                url = photos[0].get("src", {}).get("large2x") or photos[0].get("src", {}).get("original")
-                if url:
-                    print(f"  ✓ Pexels image found for '{query}': {url[:80]}...")
-                    return url
-    except Exception as e:
-        print(f"  ⚠ Pexels error: {e}")
+def download_image(url):
+    """Download image with proper User-Agent"""
+    r = requests.get(url, headers=UA, timeout=15)
+    if r.status_code == 200 and r.headers.get('Content-Type', '').startswith('image'):
+        return r.content
+    print(f"  ✗ Download failed: {r.status_code} for {url[:80]}")
     return None
-
-
-def validate_image_url(url):
-    """Validate that image URL returns HTTP 200 with image content-type and >5KB."""
-    if not url:
-        return False
-    # Block banned sources
-    banned = ['fbcdn.net', 'cdninstagram.com', 'lookaside.fbsbx.com']
-    if any(b in url for b in banned):
-        print(f"  ✗ Banned source: {url[:60]}")
-        return False
-    try:
-        r = requests.head(url, timeout=10, allow_redirects=True,
-                         headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-        ct = r.headers.get('Content-Type', '')
-        cl = int(r.headers.get('Content-Length', 0))
-        if r.status_code == 200 and 'image' in ct and cl > 5000:
-            print(f"  ✓ Image validated: {cl} bytes, {ct}")
-            return True
-        # Try GET if HEAD doesn't work well
-        r2 = requests.get(url, timeout=10, stream=True,
-                         headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-        ct2 = r2.headers.get('Content-Type', '')
-        cl2 = int(r2.headers.get('Content-Length', 0))
-        r2.close()
-        if r2.status_code == 200 and 'image' in ct2:
-            print(f"  ✓ Image validated (GET): {cl2} bytes, {ct2}")
-            return True
-    except Exception as e:
-        print(f"  ⚠ Image validation error: {e}")
-    return False
-
-
-def source_image(person_name=None, wiki_search=None, pexels_query=None):
-    """Multi-source image search. Returns (url, caption, attribution) or (None, None, None)."""
-    # 1. Try Wikipedia for person
-    if person_name:
-        img = fetch_wikipedia_person_image(person_name)
-        if img and validate_image_url(img):
-            return img, f"{person_name}", "Wikimedia Commons"
-
-    # 2. Try Wikimedia Commons
-    if wiki_search:
-        results = fetch_wikimedia_commons_images(wiki_search)
-        for r in results:
-            if validate_image_url(r["url"]):
-                title = r["title"].replace("File:", "").replace(".jpg", "").replace(".png", "").replace("_", " ")
-                return r["url"], title[:80], "Wikimedia Commons"
-
-    # 3. Try Pexels (only for non-person topics)
-    if pexels_query and not person_name:
-        img = fetch_pexels_image(pexels_query)
-        if img and validate_image_url(img):
-            return img, pexels_query.title(), "Pexels"
-
-    return None, None, None
-
 
 def insert_article(article):
-    """Insert article into Supabase p2_articles table."""
+    """Insert article into Supabase"""
     r = requests.post(
         f"{SUPABASE_URL}/rest/v1/p2_articles",
         headers=HEADERS,
-        json=article
+        json=article,
+        timeout=20
     )
     if r.status_code in (200, 201):
         data = r.json()
-        if isinstance(data, list) and data:
-            print(f"  ✓ Inserted: {data[0].get('slug', 'unknown')}")
-            return data[0]
-        print(f"  ✓ Inserted (no return data)")
-        return data
+        art_id = data[0]['id'] if isinstance(data, list) else data['id']
+        print(f"  ✓ Inserted article: {article['headline'][:60]}... (id: {art_id})")
+        return art_id
     else:
-        print(f"  ✗ Insert failed ({r.status_code}): {r.text[:300]}")
+        print(f"  ✗ Insert failed: {r.status_code} {r.text[:300]}")
         return None
 
+# ═══════════════════════════════════════════════════
+# ARTICLE 1: Modi becomes India's longest-serving elected PM
+# ═══════════════════════════════════════════════════
+print("\n" + "="*60)
+print("ARTICLE 1: Modi — Longest-Serving Elected PM")
+print("="*60)
 
-# ============================================================
-# ARTICLE 1: Iran Retaliates Against US Bases
-# ============================================================
+slug1 = "modi-longest-serving-elected-prime-minister-surpasses-nehru-4399-days-20260610"
 
-def write_article_1():
-    print("\n=== ARTICLE 1: Iran Retaliates Against US Bases ===")
+# Source image: Wikipedia official portrait
+print("\nSourcing image...")
+modi_img_url = "https://upload.wikimedia.org/wikipedia/commons/5/5f/The_official_portrait_of_Shri_Narendra_Modi%2C_the_Prime_Minister_of_the_Republic_of_India.jpg"
+modi_img_bytes = download_image(modi_img_url)
+modi_final_url = None
+if modi_img_bytes:
+    compressed = compress_image(modi_img_bytes)
+    print(f"  Compressed: {len(modi_img_bytes)} → {len(compressed)} bytes")
+    modi_final_url = upload_to_supabase(compressed, f"{slug1}.jpg")
 
-    headline = "Iran Just Hit US Bases in Jordan, Kuwait and Bahrain. India Has 8 Million Reasons to Worry."
-    subheadline = "The biggest military escalation since the April ceasefire puts India's Gulf diaspora, oil supply chain and economic recovery on a razor's edge."
-    slug = "iran-attacks-us-bases-jordan-kuwait-bahrain-india-gulf-diaspora-oil-crisis-20260610"
-    category = "news"
-    vertical = "news"
+body1 = """Narendra Modi has officially become India's longest-serving continuously elected Prime Minister, completing 4,399 consecutive days in office on June 10, 2026 — one more than the 4,398 days served by Jawaharlal Nehru after India's first general election in 1952.
 
-    body = """Iran's Revolutionary Guards launched long-range missiles at the US al-Azraq base in Jordan and sent drones at American installations in Kuwait and Bahrain on Wednesday, in the most violent exchange between Washington and Tehran since the two sides agreed to a tenuous ceasefire in April.
+The milestone lands one day after Modi marked the 12th anniversary of his first swearing-in, and two years into his unprecedented third consecutive term. No Indian prime minister has held the office through three unbroken democratic mandates.
 
-The attacks — targeting F-35 jet hangars, a command-and-control centre in Jordan, the Ali Al Salem base in Kuwait and the US Fifth Fleet headquarters in Bahrain — came hours after the United States struck nearly 20 Iranian air defence and radar sites near the Strait of Hormuz.
+## A Record Built on Three Consecutive Mandates
 
-Jordan said it intercepted five Iranian missiles. Bahrain sounded air raid sirens. Kuwait's army engaged hostile aerial targets and urged the public to follow safety instructions. A US official said initial assessments showed nearly all incoming missiles and drones were intercepted, with no immediate reports of harm to American personnel.
+Modi first took office on May 26, 2014, after leading the BJP to a landslide 282-seat majority — the first single-party majority in three decades. He returned in 2019 with an even larger margin of 303 seats, and in 2024 secured a third term at the head of a coalition government.
 
-## How It Started
+Nehru, India's first elected Prime Minister, served 4,398 days from May 13, 1952 to May 27, 1964. His earlier stint from 1947 to 1952 is typically excluded from the comparison, as he led an interim government before elections were institutionalised. Indira Gandhi served longer in total — over 14 years — but her tenure was interrupted when she was voted out in 1977 after the Emergency.
 
-The spiral began on Monday when an Iranian one-way attack drone brought down a US Apache helicopter near Oman's coast while it patrolled the Strait of Hormuz. The two American pilots were rescued uninjured by a US Navy surface drone after two hours in the water.
+Including his nearly 13-year stint as Chief Minister of Gujarat from October 2001 to May 2014, Modi has led an elected government for more than 8,900 days — the longest of any head of government in India's history.
 
-President Trump, who initially told The Wall Street Journal the incident "wasn't a big deal," then ordered retaliatory strikes. "I believe the response should be very strong, very powerful, and that's what this one is," he told ABC News.
+## Congratulations Pour In From Delhi to Washington
 
-US Central Command described the four-hour operation as "a proportional response to unjustified Iranian aggression," targeting air defence, ground control stations and surveillance radar sites near Qeshm island and the port city of Sirik.
+Union Parliamentary Affairs Minister Kiren Rijiju said Modi's contributions would be "etched in golden letters" in history, crediting his leadership for steering the country toward the vision of a "Viksit Bharat."
 
-Iran hit back within hours, warning it was ready to deliver a "crushing and decisive" response to any further American attack.
+US Senator John Cornyn, co-chair of the Senate India Caucus, called Modi's tenure "nothing short of transformational." In a post on X, Cornyn wrote: "From lifting 250 million out of poverty to making India the world's fastest-growing major economy, PM Modi's tenure has been nothing short of transformational. The US-India partnership has never been stronger."
 
-## India's Stakes in the Crossfire
+The National Democratic Alliance convened a high-level meeting at Bharat Mandapam in New Delhi on Wednesday to mark the occasion. Chief ministers, deputy chief ministers, and senior leadership from all 22 NDA-ruled states and Union Territories attended, along with Defence Minister Rajnath Singh and Home Minister Amit Shah.
 
-India has roughly 8.7 million citizens living and working across the Gulf states — the largest expatriate workforce in the region. Kuwait, Bahrain and the UAE host the densest concentrations of Indian labourers, nurses, engineers and professionals.
+## What This Means for the Diaspora
 
-Every escalation in this theatre directly threatens their safety. Just days ago, seven Indian workers were killed when a truck struck their minibus on Dubai's Emirates Road. The Indian embassy in each Gulf state has activated helpline numbers, but with missiles flying over civilian airspace, the calculus has changed.
+For the roughly 5.4 million Indian Americans and the broader NRI community worldwide, Modi's long tenure has meant a fundamental shift in how India engages with its diaspora. Under his watch, India introduced dual citizenship provisions, expanded the Overseas Citizen of India framework, and made diaspora engagement a centrepiece of foreign policy — from the "Howdy, Modi!" rally in Houston to the "Bharat Ki Baat" global outreach.
 
-Then there is oil. India ships in about 90% of its crude and sourced more than 40% of those imports through the Strait of Hormuz before the February conflict. Oil prices climbed about 1% in early Asian trade on Wednesday, with Brent crude at $92.29 a barrel. Fitch expects Brent to stay at $100-110 per barrel through July if the strait remains closed.
+His three terms have also coincided with a deepening US-India strategic partnership, expanded defence cooperation, and tech-sector linkages that have directly benefited Indian professionals abroad. The proposed semiconductor fabs, the iCET technology initiative, and the growing defence trade pipeline all accelerated during this period.
 
-Oil Minister Hardeep Singh Puri said on Monday that India has reserves to last 76-80 days and expects prices to drop in the coming months. But he also warned the situation could become "worrying" if the crisis expands to other theatres — which is precisely what happened hours later.
+## The Road Ahead
 
-## The Economic Blow
+Modi's record will continue to grow with each passing day. His current term runs until 2029, and he has shown no signs of slowing. The NDA meeting at Bharat Mandapam on Wednesday was expected to outline the government's roadmap for the remaining three years of its third term.
 
-India's oil-and-gas import bill jumped 53% in April from March. HSBC expects the country's balance of payments deficit to balloon to about $65 billion in 2026-27. The rupee has fallen to a record low of 95 against the dollar. State retailers have raised petrol and diesel prices four times since mid-May — a cumulative hike of nearly 8%.
+The milestone also reignites questions about succession within the BJP, a party that has been defined by Modi's dominance for over a decade. For now, the focus remains on governing through an economic environment shaped by the Iran conflict, rising oil prices, and the challenge of an El Niño-weakened monsoon.
 
-"India is set for a series of supply shocks," said Michael Langham, emerging markets economist at Aberdeen Investments. Apart from oil, India faces fertiliser supply disruptions from the war, just as farmers brace for an El Niño season that the IMD says could push monsoon rainfall to 90% of the long-period average — its lowest forecast in three years.
+Whether history judges the 4,399 days kindly will depend on what comes next. The record has been set. The question is what Modi does with the mandate that made it possible."""
 
-The RBI, which held rates steady last week, is now navigating a treacherous path. Inflation is expected to breach 4% in May for the first time in 15 months. Rate hike bets are rising. The "rare Goldilocks" phase that RBI Governor Sanjay Malhotra celebrated at the end of last year now looks like a distant memory.
+article1 = {
+    "headline": "Modi Has Now Served Longer Than Nehru. No Elected Indian PM Has Lasted This Long.",
+    "subheadline": "With 4,399 consecutive days in office, Narendra Modi surpasses Jawaharlal Nehru's post-independence record — the first PM to hold power through three unbroken democratic mandates.",
+    "body": body1,
+    "slug": slug1,
+    "category": "news",
+    "status": "review",
+    "is_editorial": False,
+    "image_url": modi_final_url or "",
+    "image_caption": "Official portrait of Prime Minister Narendra Modi, now India's longest-serving continuously elected PM",
+    "image_attribution": "Wikimedia Commons",
+    "vertical": "news",
+    "sources": json.dumps([
+        {"name": "Livemint", "url": "https://www.livemint.com"},
+        {"name": "Reuters", "url": "https://www.reuters.com"},
+        {"name": "PTI via Swadesi", "url": "https://www.swadesi.com"},
+        {"name": "The Bridge Chronicle", "url": "https://www.thebridgechronicle.com"}
+    ]),
+    "published_at": datetime.now(timezone.utc).isoformat()
+}
 
-## What Comes Next
+print("\nInserting article 1...")
+art1_id = insert_article(article1)
 
-The escalation shatters any remaining illusion that a US-Iran deal is imminent. Trump has repeatedly said the two sides are close to an agreement, but the ceasefire that took hold in April has now collapsed in all but name. Iran demands the lifting of sanctions, the release of frozen assets and recognition of its control over the strait. Washington wants a deal that prevents Iran from developing a nuclear weapon.
+# ═══════════════════════════════════════════════════
+# ARTICLE 2: US court strikes down $100K H-1B fee
+# ═══════════════════════════════════════════════════
+print("\n" + "="*60)
+print("ARTICLE 2: US Court Strikes Down $100K H-1B Fee")
+print("="*60)
 
-For the 8.7 million Indians across the Gulf, for the truck drivers fuelling at newly expensive pumps, for the housewives paying more for cooking gas — the war just got closer. And there is no diplomatic off-ramp in sight.
+slug2 = "us-court-strikes-down-100000-h1b-visa-fee-trump-indian-tech-workers-20260610"
 
-*Sources: Reuters, USA Today, Fitch Ratings, India Ministry of External Affairs*"""
+# Source image: Wikimedia Commons H-1B visa image
+print("\nSourcing image...")
+# Use the H-1B Visa Updates image from Wikimedia Commons
+h1b_img_url = "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/H-1B_Visa_Updates.jpg/1200px-H-1B_Visa_Updates.jpg"
+h1b_img_bytes = download_image(h1b_img_url)
+h1b_final_url = None
+if h1b_img_bytes:
+    compressed = compress_image(h1b_img_bytes)
+    print(f"  Compressed: {len(h1b_img_bytes)} → {len(compressed)} bytes")
+    h1b_final_url = upload_to_supabase(compressed, f"{slug2}.jpg")
 
-    # Image sourcing — try Commons for Strait of Hormuz / Gulf military
-    print("  Sourcing image...")
-    img_url, img_caption, img_attr = source_image(
-        wiki_search="Strait of Hormuz military",
-        pexels_query="oil tanker strait"
-    )
-    if not img_url:
-        img_url, img_caption, img_attr = source_image(
-            wiki_search="US military base Persian Gulf",
-            pexels_query="military aircraft carrier"
+# If Wikimedia image failed, try Pexels for "US visa passport"
+if not h1b_final_url:
+    print("  Trying Pexels fallback...")
+    pexels_key = os.environ.get('PEXELS_API_KEY', '')
+    if pexels_key:
+        r = requests.get(
+            "https://api.pexels.com/v1/search",
+            headers={"Authorization": pexels_key},
+            params={"query": "US visa stamp passport immigration", "per_page": 3},
+            timeout=10
         )
-    if not img_url:
-        img_url, img_caption, img_attr = source_image(
-            wiki_search="USS aircraft carrier Persian Gulf"
-        )
+        if r.status_code == 200:
+            photos = r.json().get('photos', [])
+            if photos:
+                pexels_url = photos[0]['src']['large2x']
+                pexels_bytes = download_image(pexels_url)
+                if pexels_bytes:
+                    compressed = compress_image(pexels_bytes)
+                    h1b_final_url = upload_to_supabase(compressed, f"{slug2}.jpg")
 
-    article = {
-        "headline": headline,
-        "subheadline": subheadline,
-        "slug": slug,
-        "body": body,
-        "category": category,
-        "vertical": vertical,
-        "status": "review",
-        "is_editorial": False,
-        "image_url": img_url,
-        "image_caption": img_caption or "Military vessels near the Strait of Hormuz",
-        "image_attribution": img_attr or "Wikimedia Commons",
-        "published_at": datetime.now(timezone.utc).isoformat(),
-        "sources": json.dumps(["Reuters", "USA Today", "Fitch Ratings", "India Ministry of External Affairs"]),
-    }
+body2 = """A US federal judge has struck down the $100,000 fee that the Trump administration imposed on new H-1B visa applications, ruling it an unlawful tax that Congress never authorised. The decision, handed down on Monday by US District Judge Leo Sorokin in Massachusetts, is the most significant legal setback yet for the administration's campaign to restrict skilled immigration through executive action.
 
-    return insert_article(article)
+For Indian professionals — who account for more than 70 per cent of all H-1B visas issued — the ruling removes what had become the single largest financial barrier to working in the United States.
 
+## What the Court Actually Said
 
-# ============================================================
-# ARTICLE 2: India Inflation Breaches 4%
-# ============================================================
+Judge Sorokin was unsparing. He found that the $100,000 fee, introduced through a presidential proclamation in September 2025, functioned as a tax regardless of how the administration described it. Since only Congress has the power to impose taxes, the fee was struck down as unconstitutional.
 
-def write_article_2():
-    print("\n=== ARTICLE 2: India Inflation Breaches 4% ===")
+Before the proclamation, employers typically paid between $2,000 and $5,000 in government filing fees to sponsor an H-1B worker. The hundred-fold increase had effectively priced out smaller companies, universities, hospitals, and research institutions from sponsoring foreign talent.
 
-    headline = "India's Inflation Is About to Breach 4% for the First Time in 15 Months. The War Bill Has Arrived."
-    subheadline = "Four fuel price hikes in May, a heatwave that crushed vegetable supply and a weakening rupee are ending India's longest low-inflation streak in years."
-    slug = "india-inflation-breaches-4-percent-15-months-fuel-hikes-vegetables-war-20260610"
-    category = "news"
-    vertical = "news"
+The lawsuit was brought by a coalition of 20 Democratic state attorneys general, who argued that the fee exceeded presidential authority under the Immigration and Nationality Act. Sorokin agreed, writing that the "substance and application" of the payment left no room for interpretation.
 
-    body = """India's consumer price inflation is expected to have hit the Reserve Bank of India's medium-term target of 4% in May, ending a 15-month streak of below-target readings that had given the economy rare breathing room.
+## The Backstory: Jaishankar, Rubio, and Quiet Diplomacy
 
-A Reuters poll of 38 economists forecasts the annual change in the consumer price index rose to 4.0% in May from 3.48% in April. The official number is due on June 12. Nobody expects a pleasant surprise.
+The fee had triggered alarm bells far beyond American courtrooms. In May, India's External Affairs Minister S. Jaishankar raised the issue directly with US Secretary of State Marco Rubio during what was described as a sensitive bilateral discussion. Rubio acknowledged that the administration's immigration overhaul was creating "some difficulties" but insisted it was not designed to target India specifically.
 
-## The Double Squeeze: Fuel and Food
+Behind the scenes, India's IT industry — whose top firms collectively hold thousands of H-1B petitions annually — had been lobbying aggressively. The fee threatened to upend a business model built on deploying Indian engineers to American clients, and companies like TCS, Infosys, and Wipro had begun modelling scenarios where they would absorb or pass through the cost.
 
-The culprits are painfully visible to anyone who buys groceries or fills a tank in India.
+## Relief, but Not the End of the Story
 
-State-owned fuel retailers raised petrol and diesel prices four times in May alone — the first increases in over a year, after the government held the line through state elections. Petrol is now roughly 7.8% more expensive than it was in mid-April. Diesel is up 8.6%.
+Indian diaspora groups welcomed the ruling with cautious optimism. Khanderao Kand of the Foundation for India and Indian Diaspora Studies said the decision "restores predictability and fairness to the employment-based immigration system" and preserves America's competitive advantage in technology, healthcare, and advanced manufacturing.
 
-The hikes reflect the pass-through of surging crude oil costs. Global oil prices have climbed 40% since the US-Israeli war on Iran restricted shipments through the Strait of Hormuz in February. India imports about 90% of its crude, making it one of the most exposed economies in the world.
+But Sanjeev Joshipura of Indiaspora struck a more measured tone. "All stakeholders connected with H-1B visas will heave a sigh of relief after the court order, but one wonders if this is truly the end of the matter," he told PTI. He warned that the administration could still impose procedural hurdles that do not technically violate the law.
 
-Union Bank of India estimates transport inflation jumped to 4.15% in May from negative 0.01% in April — a swing that alone lifted its contribution to headline inflation by 36 basis points.
+That caution is well-placed. The $100,000 fee was only one piece of a broader immigration overhaul. The Department of Homeland Security has already scrapped the old random lottery system for H-1B selection, replacing it with a salary-based merit model that took effect in February 2026. Duplicate petition filing — where companies submit multiple applications for the same worker to game the odds — is now classified as fraud.
 
-On the food side, a brutal heatwave across northern and central India crushed vegetable supply. Tomato, onion and potato prices — the politically sensitive trio that has toppled Indian governments in the past — rebounded sharply after months of deflation. Elevated temperatures disrupted cold chains and accelerated spoilage.
+## What Indian Workers Should Know Right Now
 
-"Persistence of elevated temperatures across several regions and war-led constraints have adversely impacted the supply of commodities," said Kanika Pasricha, chief economic adviser at Union Bank of India. "All segments of food inflation likely clocked positive month-on-month momentum."
+The ruling is effective immediately, meaning the $100,000 fee is no longer in force. However, the administration is expected to appeal. In the interim, here is what matters:
 
-## The End of the Goldilocks Phase
+Employers who were holding back on H-1B sponsorship due to cost can resume filing without the surcharge. The standard filing fees of $2,000 to $5,000 remain in place. The merit-based selection system is unaffected by this ruling — salary and qualifications still determine selection priority.
 
-At the end of last year, RBI Governor Sanjay Malhotra spoke of a "rare Goldilocks" moment for India — inflation falling, growth holding steady, the economy humming along. That window is now closing.
+For the roughly 300,000 Indian H-1B holders currently in the United States, the immediate impact is on renewals and employer changes rather than existing status. For the hundreds of thousands waiting in India for their chance, the path just got a little less expensive — though not necessarily shorter.
 
-The central bank held rates steady at its June meeting, as expected, but the commentary was more cautious. Malhotra said underlying inflation pressures remained benign but warned that "second-round effects warranted vigilance."
+The broader fight over skilled immigration is far from settled. Trump told reporters on Tuesday that "these federal judges are really giving us a hard time," signalling that the administration sees this as a battle, not a concession. The next move will likely come from the appeals court."""
 
-Interest rate swap markets tell a different story. They are now pricing in at least 25 basis points of rate hikes over the next three months and more than 75 basis points over the next year. For homebuyers with floating-rate loans and businesses dependent on cheap credit, this is the early tremor before the quake.
+article2 = {
+    "headline": "A Federal Judge Just Killed the $100,000 H-1B Fee. Every Indian Worker in America Should Read the Fine Print.",
+    "subheadline": "The Trump administration's most aggressive move against skilled immigration has been struck down as an unlawful tax — but the administration is expected to appeal, and the broader overhaul is far from over.",
+    "body": body2,
+    "slug": slug2,
+    "category": "news",
+    "status": "review",
+    "is_editorial": False,
+    "image_url": h1b_final_url or "",
+    "image_caption": "H-1B visa programme updates — the court ruled the $100,000 fee exceeded presidential authority",
+    "image_attribution": "Wikimedia Commons",
+    "vertical": "immigration",
+    "sources": json.dumps([
+        {"name": "Reuters", "url": "https://www.reuters.com"},
+        {"name": "PeopleMatters", "url": "https://www.peoplematters.in"},
+        {"name": "Livemint", "url": "https://www.livemint.com"},
+        {"name": "Connected to India", "url": "https://www.connectedtoindia.com"},
+        {"name": "ainvest.com", "url": "https://www.ainvest.com"}
+    ]),
+    "published_at": datetime.now(timezone.utc).isoformat()
+}
 
-## Compounding Shocks
+print("\nInserting article 2...")
+art2_id = insert_article(article2)
 
-The inflation breach does not arrive in isolation. It lands alongside a cascade of supply-side pressures that are all connected to the same geopolitical crisis.
-
-India's oil-and-gas import bill jumped 53% in April. The rupee hit a record low of 95 against the dollar. Foreign portfolio investors have pulled billions out of Indian equities. HSBC expects India's balance of payments deficit to swell to roughly $65 billion in the current fiscal year.
-
-And looming over all of it is El Niño. The Nino 3.4 index crossed the drought threshold of +0.80°C as of June 7. The IMD has already downgraded its monsoon forecast to 90% of the long-period average — the weakest outlook in three years. A poor monsoon would push food prices higher still, precisely when the economy can least afford it.
-
-"India is set for a series of supply shocks," said Michael Langham of Aberdeen Investments. "The ability of the RBI to look through the energy price shock will be increasingly difficult given the overlapping nature of these supply shocks."
-
-## What It Means for NRIs
-
-For the Indian diaspora sending money home, the calculus is shifting. The rupee's weakness means remittances buy more — NRI remittances hit a record $43.5 billion in the January-March quarter. But the purchasing power of those rupees is eroding as prices rise across the board.
-
-For families in India, the squeeze is immediate. Cooking gas subsidies have been cut. Fuel is more expensive. Vegetables cost more at the mandi. And the monsoon may not bring relief.
-
-The 15-month respite was real. It is now over. The question is not whether inflation will rise, but how high and for how long.
-
-*Sources: Reuters, Reserve Bank of India, Union Bank of India, India Meteorological Department, HSBC, Aberdeen Investments*"""
-
-    # Image sourcing — try for RBI or Indian market/economy
-    print("  Sourcing image...")
-    img_url, img_caption, img_attr = source_image(
-        wiki_search="Reserve Bank of India building Mumbai",
-        pexels_query="india market vegetables prices"
-    )
-    if not img_url:
-        img_url, img_caption, img_attr = source_image(
-            person_name="Sanjay Malhotra RBI Governor",
-            wiki_search="Indian rupee currency",
-            pexels_query="india fuel petrol pump"
-        )
-
-    article = {
-        "headline": headline,
-        "subheadline": subheadline,
-        "slug": slug,
-        "body": body,
-        "category": category,
-        "vertical": vertical,
-        "status": "review",
-        "is_editorial": False,
-        "image_url": img_url,
-        "image_caption": img_caption or "Reserve Bank of India headquarters in Mumbai",
-        "image_attribution": img_attr or "Wikimedia Commons",
-        "published_at": datetime.now(timezone.utc).isoformat(),
-        "sources": json.dumps(["Reuters", "Reserve Bank of India", "Union Bank of India", "India Meteorological Department", "HSBC", "Aberdeen Investments"]),
-    }
-
-    return insert_article(article)
-
-
-# ============================================================
-# ARTICLE 3: India Inc Shrinkflation
-# ============================================================
-
-def write_article_3():
-    print("\n=== ARTICLE 3: India Inc Shrinkflation ===")
-
-    headline = "India's Consumer Giants Are Shrinking Your Packet of Chips. The War Made Them Do It."
-    subheadline = "From Dabur to Maruti, Indian companies are raising prices or quietly reducing pack sizes as surging oil, freight costs and a weak rupee squeeze margins."
-    slug = "india-shrinkflation-price-hikes-dabur-maruti-hindustan-unilever-iran-war-20260610"
-    category = "news"
-    vertical = "news"
-
-    body = """The pack of biscuits looks the same on the shelf. The price tag has not changed. But pick it up and something feels off. It is lighter.
-
-Welcome to shrinkflation, India's quiet corporate response to a war that has sent input costs spiralling and left consumer demand too fragile to absorb a straightforward price increase.
-
-## The Squeeze on India Inc
-
-Consumer goods makers Hindustan Unilever, Godrej Consumer Products and Dabur India have rolled out low- to mid-single-digit price hikes across categories. Britannia Industries is preparing similar moves. But in the mass-market segments — the 10-rupee and 20-rupee packs that account for the bulk of rural and semi-urban sales — companies are doing something different: keeping the price and shrinking the product.
-
-"We are reducing grammage because we can't breach those price points," said Mohit Malhotra, global CEO at Dabur, in comments to Reuters.
-
-It is a familiar playbook in India, where decades of experience have taught FMCG companies that the 10-rupee price barrier is nearly sacred. Cross it, and a significant chunk of your customer base simply switches to a cheaper brand or stops buying.
-
-The trigger this time is the US-Israeli war on Iran. The conflict, now in its fourth month, has disrupted trade routes through the Strait of Hormuz, pushed crude oil prices up 40%, sent freight and insurance costs soaring and weakened the rupee to a record low of 95 against the dollar. India imports nearly 90% of its oil, and the cost ripples through every supply chain in the country — from the palm oil in soap to the diesel in delivery trucks.
-
-## Cars, Flights and Cooking Gas
-
-The squeeze is not limited to grocery aisles.
-
-Automakers Maruti Suzuki, Mahindra & Mahindra, Tata Motors and Hyundai Motor India have all hiked vehicle prices. "We were left with no choice," said Partho Banerjee, Maruti's senior executive officer for marketing and sales, adding that raising prices was "not good for customers, especially first-time buyers."
-
-Airlines IndiGo and Air India are trimming capacity, particularly on fuel-heavy international routes, and raising fares to offset higher aviation turbine fuel costs. State-owned fuel retailers have raised petrol and diesel prices four times since mid-May — a cumulative 8% increase.
-
-Even cooking gas, the lifeline of Indian kitchens, has not been spared. The government cut subsidies on LPG cylinders for households, pushing the effective price higher just as the summer heat drives up demand.
-
-## The Consumer Is Already Stretched
-
-The price hikes land on consumers whose budgets are already strained. India's retail inflation is expected to breach the 4% threshold in May for the first time in 15 months. Food prices are rising because of heatwave-driven supply disruptions. The rupee's record weakness makes everything imported — from electronics to edible oil — more expensive.
-
-"We are among the world's most vulnerable countries," said economist Jayati Ghosh, warning that higher oil and fertiliser costs, weaker Gulf demand, softer remittances and potential capital outflows could simultaneously stoke inflation and slow growth.
-
-India's opposition Congress party released a 76-page report this week accusing the Modi government of benefiting from years of low oil prices by raising taxes and collecting windfall gains, rather than passing relief to consumers. "Please don't do that. Swallow that bitter pill for a little while because you have been enjoying the fruits," said Rajeev Gowda, a senior Congress leader.
-
-## The Diaspora Dimension
-
-For NRI families visiting India this summer, the sticker shock will be real. Flight tickets are more expensive. Hotel rates in metros have climbed. The 10-rupee samosa might still cost 10 rupees, but it is smaller than it was in January.
-
-For those sending money home, the math is more complicated. The weak rupee means more purchasing power per dollar — NRI remittances hit a record $43.5 billion in a single quarter recently. But the value of those rupees is being steadily eroded by the price hikes on everything from milk to motorcycle fuel.
-
-Indian companies have navigated input cost cycles before. The oil shock of 2022, the commodity spike during COVID — each produced a round of grammage cuts and selective price increases that eventually unwound as costs normalised.
-
-But this time the shock has a geopolitical ceiling. Oil prices cannot fall meaningfully until the Strait of Hormuz reopens, and there is no timeline for that. The El Niño weather pattern is expected to suppress monsoon rainfall, keeping food inflation elevated. And the rupee has no obvious floor until foreign portfolio flows stabilise.
-
-For now, the pack gets lighter. The bill gets heavier. And the war that started 12,000 kilometres away in the Persian Gulf continues to tax every Indian household, one reduced grammage at a time.
-
-*Sources: Reuters, Dabur India, Maruti Suzuki, Hindustan Unilever, India Ministry of External Affairs, Congress Party*"""
-
-    # Image sourcing — Pexels for grocery/consumer goods (no named person)
-    print("  Sourcing image...")
-    img_url, img_caption, img_attr = source_image(
-        wiki_search="Indian grocery store FMCG",
-        pexels_query="india grocery store shopping"
-    )
-    if not img_url:
-        img_url, img_caption, img_attr = source_image(
-            pexels_query="supermarket shelves products"
-        )
-
-    article = {
-        "headline": headline,
-        "subheadline": subheadline,
-        "slug": slug,
-        "body": body,
-        "category": category,
-        "vertical": vertical,
-        "status": "review",
-        "is_editorial": False,
-        "image_url": img_url,
-        "image_caption": img_caption or "Grocery products on shelves in an Indian store",
-        "image_attribution": img_attr or "Pexels",
-        "published_at": datetime.now(timezone.utc).isoformat(),
-        "sources": json.dumps(["Reuters", "Dabur India", "Maruti Suzuki", "Hindustan Unilever", "Congress Party"]),
-    }
-
-    return insert_article(article)
-
-
-# ============================================================
-# MAIN
-# ============================================================
-
-if __name__ == "__main__":
-    print("=" * 60)
-    print("The Videshi — News Writer (2026-06-10)")
-    print("=" * 60)
-
-    results = []
-    for writer_fn in [write_article_1, write_article_2, write_article_3]:
-        try:
-            result = writer_fn()
-            results.append(result)
-        except Exception as e:
-            print(f"  ✗ Error: {e}")
-            import traceback
-            traceback.print_exc()
-            results.append(None)
-
-    print("\n" + "=" * 60)
-    print("SUMMARY")
-    print("=" * 60)
-    for i, r in enumerate(results, 1):
-        if r:
-            slug = r.get('slug', 'unknown') if isinstance(r, dict) else 'inserted'
-            print(f"  Article {i}: ✓ {slug}")
-        else:
-            print(f"  Article {i}: ✗ FAILED")
-    print("=" * 60)
+# ═══════════════════════════════════════════════════
+# Summary
+# ═══════════════════════════════════════════════════
+print("\n" + "="*60)
+print("SUMMARY")
+print("="*60)
+print(f"Article 1: {'✓' if art1_id else '✗'} Modi longest-serving PM")
+print(f"  Slug: {slug1}")
+print(f"  Image: {'✓' if modi_final_url else '✗'}")
+print(f"Article 2: {'✓' if art2_id else '✗'} H-1B $100K fee struck down")
+print(f"  Slug: {slug2}")
+print(f"  Image: {'✓' if h1b_final_url else '✗'}")
+print(f"\nBoth articles inserted with status='review' and is_editorial=False")
