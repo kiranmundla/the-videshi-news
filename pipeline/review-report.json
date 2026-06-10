@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-10T01:15:21.384220+00:00",
+  "timestamp": "2026-06-10T02:15:35.688613+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 6,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,45 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "657c1ef9-fcbc-4a18-ab94-9ec75725fa76",
-      "headline": "Harsh Varrdhan Kapoor Hasn't Quit Bollywood. He's Just Not in a Rush.",
-      "slug": "harsh-varrdhan-kapoor-four-year-hiatus-mystery-film-nolan-imax-nri-20260610",
+      "id": "0442fa9a-1d33-4233-9486-126bb80351f3",
+      "headline": "Emirates Is Fighting to Win Back Passengers as the Iran War Reshapes How NRIs Fly Home",
+      "slug": "emirates-iran-war-nri-flights-gulf-hub-disruption-20260610",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the article's focus on Emirates and the Iran war's impact on NRI travel."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively addresses the concerns of NRIs regarding travel disruptions and fare increases due to the Iran war."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that depicts Emirates or the travel experience of NRIs.",
+          "Expand on the section 'What NRIs Can Do Now' to provide more actionable advice for travelers."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "471314ce-cb2d-47ff-8a8e-2922c8e1177a",
+      "headline": "Saudi Arabia's Budget Airline Just Picked Hyderabad as Its Gateway to India \u2014 and Three Million Gulf NRIs Should Pay Attention",
+      "slug": "flyadeal-riyadh-hyderabad-gulf-nri-budget-20260610",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -29,13 +65,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses Harsh Varrdhan Kapoor's unique film choices that resonate with A24 audiences, appealing to the diaspora's taste for indie cinema."
+          "note": "The article effectively connects the new airline route to the interests of NRIs, particularly in terms of travel costs and family connections."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes from Harsh Varrdhan Kapoor to enhance the personal connection.",
-          "Add a brief section on how his work is perceived in the diaspora community to strengthen the connection."
+          "Consider adding quotes or testimonials from NRIs about their travel experiences or expectations regarding the new route.",
+          "Include more specific data or statistics about the number of NRIs traveling between India and Saudi Arabia to strengthen the diaspora angle."
         ],
         "verdict": "pass"
       },
@@ -47,51 +83,143 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "5d74d32a-d8c7-44ca-b632-f370d67a23c9",
-      "headline": "Cocktail 2 Just Invented the Bollywood Music Festival. Three Cities. One Film. Pure Mayhem.",
-      "slug": "cocktail-2-music-festival-shahid-kriti-rashmika-mumbai-delhi-pune-nri-20260610",
+      "id": "b62bc96e-9499-44e0-aadf-2bc89506936a",
+      "headline": "SWISS Is Launching Nonstop Zurich-Bengaluru Flights \u2014 and NRIs in Europe Just Got a Direct Line Home",
+      "slug": "swiss-zurich-bengaluru-nonstop-nri-europe-tech-20260610",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "b2f3f872-c81e-4f67-8900-443017e2b818",
-            "headline": "Cocktail 2 Is the Most Wanted Film in India Right Now. The T"
-          },
-          {
-            "article_id": "9b7fc8aa-9412-4556-8b16-5817bb71751a",
-            "headline": "Nine Films. Four Weeks. \u20b91,400 Crore on the Line. June Is Bo"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/reel/DZW4BDnNo_D/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram reel does not appear to be directly related to the article's main topic of the Cocktail 2 music festival."
-          }
-        ],
+        "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image of Shahid Kapoor is relevant to the article, but it does not directly depict the music festival or its promotional activities."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the film and its promotion to the NRI audience, highlighting the original Cocktail's significance to them."
+          "quality": 8,
+          "note": "The article effectively highlights the benefits of the new flight route for NRIs, particularly those from Karnataka, making it relevant and engaging for the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant Instagram embed with a more relevant social media post related to the music festival.",
-          "Consider adding more details about the festival's schedule or ticketing information for better reader engagement."
+          "Consider adding quotes or testimonials from NRIs who would benefit from the new route to enhance the personal connection.",
+          "Include more details about the booking process or any promotional offers to provide practical information for readers."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/reel/DZW4BDnNo_D/",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "cd59b0eb-5d8b-4aee-a70b-af51a8c65e5a",
+      "headline": "US Inflation Is About to Cross 4 Per Cent for the First Time in Three Years. Here Is What Every NRI Needs to Know.",
+      "slug": "us-may-cpi-inflation-4-percent-iran-war-fed-rates-nri-impact-20260610",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 8,
+          "issue": "The image is relevant to the topic of inflation and finance, but it could be more directly related to the specific content of the article."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses the concerns of NRIs regarding inflation and its impact on remittances and mortgages."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more specific examples or anecdotes from NRIs to enhance relatability.",
+          "Add a section on potential strategies NRIs can adopt to mitigate the effects of inflation."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "1bb5e3d9-e8e2-4e63-87ac-55cb1adb4e64",
+      "headline": "One in Three Americans Now Skip the Doctor Because They Cannot Afford It. The System May Be Three Years From Collapse.",
+      "slug": "americans-delay-medical-care-cost-healthcare-unsustainable-nri-insurance-20260610",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively highlights the challenges faced by Indian Americans in navigating the US healthcare system, making it relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more statistics or quotes from Indian American healthcare professionals to strengthen the diaspora angle.",
+          "Include a brief section on potential solutions or resources available for NRIs to navigate the healthcare system."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "71324e53-2089-48c2-aa60-8e30e462c3a3",
+      "headline": "The Government's Own Alcohol Study Was Buried. Now It's Out, and the Numbers Are Brutal.",
+      "slug": "us-alcohol-study-sidelined-trump-one-drink-risk-south-asian-diaspora-20260610",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image depicts a glass of alcohol, which is relevant to the article's topic on alcohol consumption and its risks."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the findings of the study to the Indian diaspora, highlighting unique health risks and changing drinking patterns."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more statistics or studies specifically related to the Indian diaspora's alcohol consumption for deeper context.",
+          "Include quotes or insights from health experts within the Indian community to strengthen the diaspora angle."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
         "promoted to published"
       ],
       "revised": false,
