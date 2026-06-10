@@ -249,6 +249,8 @@ CRITICAL RULES FOR SEARCH QUERIES:
 - ALWAYS include "Indian" or "India" in queries when the story is about India, Bollywood, Indian culture, or the diaspora. "Indian cinema hall" not "cinema hall". "Indian currency notes" not "currency notes".
 - Every scene's image must be DIFFERENT and RELEVANT. A story about remittances needs rupee notes, bank transfers, families — NOT steel factories or oil tankers.
 - Think STOCK PHOTO: what would a photographer actually shoot? "crowded Indian railway platform" works. "Rahul Gandhi speaking at rally" does not exist on Pexels.
+- AVOID scenes that would return protest photos, political signs, or text-heavy images. No "crowd running", "protest", "demonstration", "rally". Instead use evocative abstract visuals: "smoke rising over village rooftops", "old suitcase on empty train platform".
+- AVOID abstract concepts like "elements clashing" or "tension building" — these return random art. Use concrete, photographable subjects.
 
 Return JSON only:
 {{
