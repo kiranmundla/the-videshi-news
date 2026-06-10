@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-10T18:45:17.296318+00:00",
+  "timestamp": "2026-06-10T19:15:23.761381+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
-    "flag": 0,
+    "pass": 0,
+    "flag": 2,
     "fail": 0,
     "error": 0
   },
@@ -11,35 +11,53 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "773eebe0-9922-4734-9f6a-6b9b689da91b",
-      "headline": "India Just Scrapped All Taxes on Foreign Bond Investments. A Billion Dollars Arrived in Three Days.",
-      "slug": "india-scraps-bond-tax-foreign-investors-bloomberg-index-billion-dollar-inflows-20260610",
+      "id": "e8635795-c9c5-4483-a7cb-6041dbc6416c",
+      "headline": "An Instagram Influencer Just Outranked Shah Rukh Khan on IMDb. Maa Behen Is Netflix's Wildest Indian Hit.",
+      "slug": "maa-behen-netflix-dharna-durga-imdb-madhuri-triptii-global-hit-nri-20260610",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "6c69bb6e-6519-4634-8a7b-dbd61a22269f",
+            "headline": "Madhuri Dixit Has a Dead Body in Her Kitchen. Also, the No. "
+          }
+        ],
         "broken_embeds": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DZNAi80I2tO/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel does not appear to be directly related to the article's main subject of the film 'Maa Behen' or the influencer's rise."
+          },
+          {
+            "url": "https://youtube.com/watch?v=xYbLpsEhcfA",
+            "problem": "irrelevant",
+            "explanation": "The YouTube link is not specified as relevant to the article's content, making it unclear how it connects to the main topic."
+          }
+        ],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 3,
+          "issue": "The image of Madhuri Dixit does not match the article's focus on Dharna Durga and her rise as an influencer."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article discusses reforms that include specific incentives for NRIs, making it relevant to the diaspora."
+          "quality": 7,
+          "note": "The article discusses the global impact of an Indian film and its reception, which resonates with the NRI audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Expand on the specific incentives for NRIs to provide more context.",
-          "Include quotes or perspectives from NRI investors to enhance the diaspora angle."
+          "Replace the hero image with one that features Dharna Durga or is more representative of the film 'Maa Behen'.",
+          "Ensure that embedded links are directly relevant to the content discussed in the article."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DZNAi80I2tO/",
+        "Removed irrelevant embed: https://youtube.com/watch?v=xYbLpsEhcfA",
         "promoted to published"
       ],
       "revised": false,
@@ -47,9 +65,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "f73412b3-a806-4eb7-9656-c1ae2f6efbd1",
-      "headline": "India Tells Washington: We Don't Have Overcapacity in Anything.",
-      "slug": "india-rejects-us-section-301-overcapacity-steel-textiles-trade-tariffs-20260610",
+      "id": "0377e02d-c562-47a3-91df-b5616af015c9",
+      "headline": "Suriya's \u20b9300 Crore Karuppu Hits Prime Video Thursday. Tamil Cinema's God-Mode Epic Goes Global.",
+      "slug": "karuppu-suriya-prime-video-ott-300-crore-tamil-fantasy-diaspora-nri-20260610",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -57,43 +75,18 @@
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image features a meeting related to trade policy, which is relevant but not directly tied to the specific topic of overcapacity in steel and textiles."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses the implications of US tariffs on Indian goods, which directly affects the Indian diaspora in America."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider including more direct quotes from NRI perspectives on how tariffs impact their businesses or investments.",
-          "Add a brief historical context of India-US trade relations to enhance understanding."
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/DZUFFW3gDoN/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not appear to be directly related to the film 'Karuppu' or its themes, making it irrelevant to the article."
+          },
+          {
+            "url": "https://youtube.com/watch?v=JpVl_-1YgIo",
+            "problem": "irrelevant",
+            "explanation": "The YouTube link is not specified as being related to 'Karuppu', which could lead to confusion about its relevance."
+          }
         ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "e22e93ea-4b2c-4812-926f-2e407f6e4f2d",
-      "headline": "A Federal Judge Just Killed Trump's $100,000 H-1B Fee. Congress Wants to Bring It Back.",
-      "slug": "federal-judge-strikes-down-100k-h1b-fee-protect-act-congress-indian-workers-20260610",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
         "image_match": {
           "score": 9,
           "issue": null
@@ -101,17 +94,19 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses the implications of the ruling on Indian workers, which is highly relevant to the diaspora."
+          "note": "The article effectively connects the film's release to the diaspora audience, highlighting its availability in multiple languages and its significance for Tamil and Telugu viewers abroad."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes or perspectives from Indian diaspora organizations to enhance the diaspora angle.",
-          "Add a brief explanation of the H-1B visa process for readers unfamiliar with it."
+          "Replace the irrelevant Instagram and YouTube links with content that directly relates to the film or its themes.",
+          "Consider adding quotes or reactions from diaspora audiences to enhance the connection with NRI readers."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/DZUFFW3gDoN/",
+        "Removed irrelevant embed: https://youtube.com/watch?v=JpVl_-1YgIo",
         "promoted to published"
       ],
       "revised": false,
