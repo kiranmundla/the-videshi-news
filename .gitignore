@@ -35,3 +35,4 @@ reel-preview-*.jpg
 
 # Temporary writer scripts
 pipeline/travel-writer-*.py
+pipeline/reels/voice-samples/
