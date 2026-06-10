@@ -961,21 +961,21 @@ def build_anchor_reel_timeline(
             ]
         }
 
-    # ── Track 2: Logo watermark ──
+    # ── Track 2: Logo + TheVideshi.com watermark (every frame) ──
     logo_track = {
         "clips": [
             {
                 "asset": {
                     "type": "html",
-                    "html": "<div class='wm'>THE VIDESHI</div>",
-                    "css": ".wm { font-family: 'Inter'; color: rgba(255,255,255,0.35); font-size: 13px; font-weight: 700; letter-spacing: 3px; text-align: right; padding: 6px 12px; }",
-                    "width": 200,
-                    "height": 36,
+                    "html": "<div class='wm'><img src='https://thevideshi.com/logo-192.png' class='logo'/><span class='url'>TheVideshi.com</span></div>",
+                    "css": ".wm { display: flex; align-items: center; gap: 6px; padding: 8px 14px; } .logo { width: 28px; height: 28px; border-radius: 4px; } .url { font-family: 'Inter'; color: rgba(255,255,255,0.75); font-size: 14px; font-weight: 700; letter-spacing: 1.5px; text-shadow: 1px 1px 3px rgba(0,0,0,0.6); }",
+                    "width": 260,
+                    "height": 44,
                 },
-                "start": hook_duration,  # Show after hook
+                "start": 0,
                 "length": "end",
                 "position": "topRight",
-                "offset": {"x": -0.02, "y": 0.02},
+                "offset": {"x": -0.01, "y": 0.02},
             }
         ]
     }
