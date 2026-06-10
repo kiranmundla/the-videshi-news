@@ -1,43 +1,32 @@
 {
-  "timestamp": "2026-06-10T09:15:35.890701+00:00",
+  "timestamp": "2026-06-10T10:15:42.327806+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 4,
-    "flag": 0,
+    "pass": 5,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
-  "revisions": 0,
+  "revisions": 1,
   "unpublished": 0,
   "articles": [
     {
-      "id": "489af8e4-dd41-4819-abf4-f2958575c2f1",
-      "headline": "Imtiaz Ali Made a Partition Love Story. The First Reviews Say It's His Best Work in Years.",
-      "slug": "main-vaapas-aaunga-imtiaz-ali-first-reviews-partition-love-story-diljit-ar-rahman-nri-20260610",
+      "id": "8a895b7d-953c-4f3d-92b4-640ed96c07da",
+      "headline": "Wipro Is Buying Back Shares at a 38 Per Cent Premium. Here Is What Every NRI Holder Needs to Know Before June 17.",
+      "slug": "wipro-15000-crore-buyback-250-per-share-nri-guide-june-2026-20260610",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [
           {
-            "article_id": "c271aedb-a935-4183-8a86-a9a9915216cf",
-            "headline": "Diljit Dosanjh, AR Rahman and Imtiaz Ali Are About to Break "
+            "article_id": "040fe2bf-5c62-470e-8c4d-5a37f5768720",
+            "headline": "Wipro Just Hit a Three-Year Low. The AI Bubble That Inflated"
           }
         ],
         "broken_embeds": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/p/DZXbJ-TFOMe/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post does not appear to be directly related to the film's content or the reviews discussed in the article."
-          },
-          {
-            "url": "https://youtube.com/watch?v=PRUTWluKRW8",
-            "problem": "relevant",
-            "explanation": "The YouTube link to the trailer is relevant to the article's subject."
-          }
-        ],
+        "embed_issues": [],
         "image_match": {
           "score": 9,
           "issue": null
@@ -45,18 +34,17 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the film's themes of Partition to the experiences of the Indian diaspora, making it relatable."
+          "note": "The article directly addresses NRI shareholders and provides relevant information about the buyback process, making it pertinent to the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant Instagram link with a more relevant one, such as a review or discussion about the film.",
-          "Consider adding more context about the significance of Partition for the diaspora to enhance the connection."
+          "Include a brief summary of the potential risks associated with the buyback for NRIs.",
+          "Add a section on how the buyback might affect Wipro's stock performance in the long term."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DZXbJ-TFOMe/",
         "promoted to published"
       ],
       "revised": false,
@@ -64,9 +52,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "8cdb54fd-e14a-432f-bde5-34f01a4594e4",
-      "headline": "The Tokenpocalypse Is Here. Indian Engineers Are on the Front Line.",
-      "slug": "tokenpocalypse-ai-coding-cost-crisis-indian-engineers-20260610",
+      "id": "42701550-11ea-4470-9e0f-4a70d63a0366",
+      "headline": "A Common Diabetes Drug Just Prevented Heart Failure in People Carrying a Genetic Time Bomb.",
+      "slug": "dapagliflozin-sglt2-cardiomyopathy-genetic-variant-heart-failure-nature-medicine-south-asian-20260610",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -77,18 +65,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image is relevant to technology but does not specifically depict Indian engineers or the concept of the Tokenpocalypse."
+          "issue": "The image does not directly relate to diabetes or heart health, but it is a neutral, health-related image."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively highlights the implications of the Tokenpocalypse on Indian engineers, making it relevant to the diaspora audience."
+          "quality": 9,
+          "note": "The article effectively connects the findings to the Indian diaspora, highlighting the higher prevalence of diabetes in South Asians."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include specific examples or quotes from Indian engineers to enhance the diaspora connection.",
-          "Consider adding a section on potential solutions or adaptations Indian engineers might pursue in response to the Tokenpocalypse."
+          "Consider using a more relevant image that directly represents diabetes or heart health.",
+          "Add a brief summary or conclusion to reinforce the key takeaways for readers."
         ],
         "verdict": "pass"
       },
@@ -100,9 +88,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "23dbb477-4a43-437f-b989-84acbad12f9f",
-      "headline": "Arvind Krishna's IBM Just Bet on Google's AI. The Multi-Billion-Dollar Play Is Enterprise Plumbing.",
-      "slug": "ibm-arvind-krishna-google-cloud-agentic-ai-enterprise-20260610",
+      "id": "7eed1729-55bf-4481-b081-bf91d35d59c8",
+      "headline": "Your Organs Age at Different Speeds. A New Study Found the Sleep Range That Slows All of Them Down.",
+      "slug": "sleep-sweet-spot-organ-aging-clocks-columbia-nature-south-asian-diaspora-20260610",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -117,14 +105,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively highlights the impact of Arvind Krishna's leadership on IBM and its significance for the Indian diaspora, particularly in the context of employment and corporate transformation."
+          "quality": 9,
+          "note": "The article effectively connects the study's findings to the health risks faced by the South Asian diaspora, making it highly relevant."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more specific examples of how the partnership will impact Indian IT professionals.",
-          "Include quotes or insights from Indian IT professionals to enhance the diaspora connection."
+          "Consider adding more specific examples of how sleep impacts health in the South Asian community.",
+          "Include quotes or insights from South Asian health experts to strengthen the diaspora connection."
         ],
         "verdict": "pass"
       },
@@ -136,12 +124,17 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "9d01abfe-eb66-42e9-aa06-de81190adee2",
-      "headline": "ISRO Just Handed Its Biggest Rocket to the Private Sector. India's Launch Cadence Depends on It.",
-      "slug": "isro-lvm3-technology-transfer-private-sector-space-20260610",
+      "id": "3a6c6730-1983-4c2d-9df9-f4c7eb504f09",
+      "headline": "Sri Lanka Just Dropped Visa Fees for Indians \u2014 and Record Tourist Numbers Show the Bet Is Working",
+      "slug": "sri-lanka-free-visa-indians-record-tourism-nri-20260610",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "41867dc1-19c9-4f37-a4f3-c2ebc5e426e4",
+            "headline": "Sri Lanka Just Dropped Visa Fees for Indians \u2014 Here's What N"
+          }
+        ],
         "broken_embeds": []
       },
       "llm_review": {
@@ -154,13 +147,85 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the developments in India's space sector to investment opportunities and talent return for the Indian diaspora."
+          "note": "The article effectively highlights the benefits of the visa waiver for NRI families, making it relevant to the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more specific examples of how NRIs can engage with the Indian space sector, such as investment platforms or initiatives.",
-          "Include quotes or insights from diaspora members involved in the space industry to enhance relatability."
+          "Consider adding more statistics or testimonials from Indian tourists who have recently visited Sri Lanka to enhance credibility.",
+          "Include a section on cultural or culinary experiences that might appeal specifically to Indian travelers."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "3ddf1910-92f0-42d9-9012-681c08c8269f",
+      "headline": "India's Oberoi Rajgarh Palace Just Made the World's 16 Most Beautiful Hotels \u2014 and NRIs Should Take Note",
+      "slug": "oberoi-rajgarh-palace-worlds-most-beautiful-hotel-nri-20260610",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 2,
+          "issue": "irrelevant"
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the heritage hotel experience to the Indian diaspora, emphasizing cultural connections and travel opportunities."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the hero image with one that directly represents the Oberoi Rajgarh Palace to enhance relevance.",
+          "Consider adding more specific travel tips or experiences for NRIs visiting the palace to further engage the audience."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Revised by gpt-4o-mini (582\u2192685 words)"
+      ],
+      "revised": true,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "238527fc-183c-444d-ae8a-d0b3b300de3e",
+      "headline": "The World Cup Starts Thursday \u2014 and Getting There May Cost More Than Your Ticket",
+      "slug": "world-cup-2026-nri-hotels-transit-survival-guide-20260610",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image depicts SoFi Stadium, which is relevant to the World Cup context but does not specifically relate to the article's focus on travel logistics."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses the concerns of Indian Americans regarding travel logistics for the World Cup, making it relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more specific travel tips or resources for NRIs planning to attend the World Cup.",
+          "Consider adding quotes or insights from Indian American fans to enhance the personal connection."
         ],
         "verdict": "pass"
       },
