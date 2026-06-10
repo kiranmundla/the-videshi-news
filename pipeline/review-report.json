@@ -1,19 +1,67 @@
 {
-  "timestamp": "2026-06-10T04:15:16.214249+00:00",
+  "timestamp": "2026-06-10T04:45:50.666038+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 0,
+    "pass": 4,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
-  "revisions": 0,
+  "revisions": 1,
   "unpublished": 0,
   "articles": [
     {
-      "id": "07339adb-e39d-486d-b419-3ba0ebe0618c",
-      "headline": "Seventy Billion Dollars and a Message \u2014 The Enforcement Machine America Just Funded Through 2029",
-      "slug": "secure-america-act-70-billion-enforcement-indian-immigrants-20260610",
+      "id": "01de46cf-efdc-414b-a171-178877f572aa",
+      "headline": "Kohli Is Worth \u20b93,542 Crore. Shah Rukh Khan Is Second.",
+      "slug": "virat-kohli-india-most-valuable-celebrity-fortune-interbrand-brand-value-3542-crore-nri",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "f9659173-768a-49e4-bf72-46afe2a4ee60",
+            "headline": "Kohli Tore His Hamstring in the IPL Final. He Played Through"
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/DZCAuVxDWGQ/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not appear to be directly related to the article's subject of Kohli's brand value ranking."
+          }
+        ],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects Kohli's brand value to the purchasing power and cultural influence of the Indian diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the irrelevant Instagram embed with a more relevant one that highlights Kohli's brand or achievements.",
+          "Consider adding more statistics or examples of Kohli's impact on the diaspora market to strengthen the argument."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/DZCAuVxDWGQ/",
+        "Revised by gpt-4o-mini (700\u2192742 words)"
+      ],
+      "revised": true,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "b45cc0a6-b57a-409a-8c66-6be65343b98a",
+      "headline": "England Moved the Start Times. India's TV Audience Was the Reason.",
+      "slug": "ecb-reschedules-england-india-t20i-timings-indian-viewership-financial-dependence-nri",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -23,19 +71,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 6,
-          "issue": "The image does not directly relate to immigration enforcement or the specific content of the article."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the implications of the Secure America Act to Indian professionals and families in the U.S., highlighting specific concerns relevant to the diaspora."
+          "note": "The article effectively connects the scheduling changes to the interests of the Indian diaspora, highlighting their influence on English cricket."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that depicts immigration enforcement or the impact on immigrant communities.",
-          "Add more direct quotes or perspectives from Indian diaspora members to enhance relatability."
+          "Include quotes from cricket analysts or fans to add depth to the discussion on the impact of the schedule change.",
+          "Provide more context on how previous scheduling decisions have affected viewership and revenue."
         ],
         "verdict": "pass"
       },
@@ -47,15 +95,15 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "3bca8095-0f0e-4d22-bc91-7e67bd074154",
-      "headline": "Unavailable \u2014 The One Word That Just Froze Half a Million Indian Green Card Dreams",
-      "slug": "eb2-india-unavailable-june-visa-bulletin-green-card-frozen-20260610",
+      "id": "4e89b47f-ab73-4949-8e85-b0db05a8f7ee",
+      "headline": "US Inflation Is About to Hit a Three-Year High. Every Indian Immigrant Should Pay Attention.",
+      "slug": "us-cpi-inflation-three-year-high-may-2026-nri-impact-fed-rates-cost-of-living-20260610",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [
           {
-            "article_id": "ebdc7db0-ebe1-4584-8cd6-aca643e08bd0",
-            "headline": "Sixty Days and a Suitcase \u2014 The Safety Net That 730,000 Indi"
+            "article_id": "81e7bc90-8dcf-4f07-94cf-692c49f7fed9",
+            "headline": "Goldman Sachs Just Pushed Fed Rate Cuts to 2027. Here Is Wha"
           }
         ],
         "broken_embeds": []
@@ -70,13 +118,85 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses the impact of visa availability on Indian professionals, which is highly relevant to the NRI community."
+          "note": "The article effectively connects the inflation topic to the financial realities faced by Indian immigrants in the US."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from immigration experts or affected individuals to enhance the narrative.",
-          "Include more data or statistics on the number of applicants affected to provide a clearer picture."
+          "Include specific examples or anecdotes from Indian immigrants to enhance relatability.",
+          "Add a brief conclusion summarizing the potential long-term impacts of inflation on the Indian diaspora."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "de21dfb4-d4e8-4f31-afac-135e60aaf474",
+      "headline": "India Just Fell to Seventh in the Global Stock Market Rankings. AI Took Its Place.",
+      "slug": "india-falls-seventh-global-stock-market-taiwan-south-korea-ai-foreign-outflows-20260610",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses implications for NRI investors, making the diaspora angle relevant and well-integrated."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more specific examples of how NRI investors can navigate the changing market landscape.",
+          "Add a brief conclusion summarizing the key takeaways for NRI investors."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "3ff9cbff-c95f-4bf7-9a1a-955fdb350a14",
+      "headline": "India's Fertiliser Ministry Wants to Double Its Subsidy Budget. The Fiscal Year Is Three Months Old.",
+      "slug": "india-fertiliser-ministry-double-subsidy-iran-war-el-nino-food-crisis-20260610",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image of a field does relate to agriculture but lacks a direct connection to fertilisers specifically."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the fertiliser crisis to the financial implications for NRIs supporting families in India."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including specific examples of how food price inflation has affected NRIs in recent months.",
+          "Add a quote from a government official or expert to enhance credibility and provide additional insights."
         ],
         "verdict": "pass"
       },
