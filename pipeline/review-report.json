@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-10T08:45:15.215373+00:00",
+  "timestamp": "2026-06-10T09:15:35.890701+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 4,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,62 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "6b8f7df2-5e0e-4829-ab41-8e9ce0f98000",
-      "headline": "A Federal Judge Just Killed the $100,000 H-1B Fee. Every Indian Worker in America Should Read the Fine Print.",
-      "slug": "us-court-strikes-down-100000-h1b-visa-fee-trump-indian-tech-workers-20260610",
+      "id": "489af8e4-dd41-4819-abf4-f2958575c2f1",
+      "headline": "Imtiaz Ali Made a Partition Love Story. The First Reviews Say It's His Best Work in Years.",
+      "slug": "main-vaapas-aaunga-imtiaz-ali-first-reviews-partition-love-story-diljit-ar-rahman-nri-20260610",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "c271aedb-a935-4183-8a86-a9a9915216cf",
+            "headline": "Diljit Dosanjh, AR Rahman and Imtiaz Ali Are About to Break "
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/DZXbJ-TFOMe/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not appear to be directly related to the film's content or the reviews discussed in the article."
+          },
+          {
+            "url": "https://youtube.com/watch?v=PRUTWluKRW8",
+            "problem": "relevant",
+            "explanation": "The YouTube link to the trailer is relevant to the article's subject."
+          }
+        ],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the film's themes of Partition to the experiences of the Indian diaspora, making it relatable."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the irrelevant Instagram link with a more relevant one, such as a review or discussion about the film.",
+          "Consider adding more context about the significance of Partition for the diaspora to enhance the connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/DZXbJ-TFOMe/",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "8cdb54fd-e14a-432f-bde5-34f01a4594e4",
+      "headline": "The Tokenpocalypse Is Here. Indian Engineers Are on the Front Line.",
+      "slug": "tokenpocalypse-ai-coding-cost-crisis-indian-engineers-20260610",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -23,19 +76,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image is relevant to technology but does not specifically depict Indian engineers or the concept of the Tokenpocalypse."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses the implications of the ruling on Indian workers and diaspora groups, making it relevant to the NRI audience."
+          "note": "The article effectively highlights the implications of the Tokenpocalypse on Indian engineers, making it relevant to the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes from Indian diaspora leaders to enhance the perspective.",
-          "Add a section on potential future implications for H-1B visa policies to provide a broader context."
+          "Include specific examples or quotes from Indian engineers to enhance the diaspora connection.",
+          "Consider adding a section on potential solutions or adaptations Indian engineers might pursue in response to the Tokenpocalypse."
         ],
         "verdict": "pass"
       },
@@ -47,9 +100,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "7a8406e9-464a-40ea-82cb-f0adba4b7f28",
-      "headline": "Modi Has Now Served Longer Than Nehru. No Elected Indian PM Has Lasted This Long.",
-      "slug": "modi-longest-serving-elected-prime-minister-surpasses-nehru-4399-days-20260610",
+      "id": "23dbb477-4a43-437f-b989-84acbad12f9f",
+      "headline": "Arvind Krishna's IBM Just Bet on Google's AI. The Multi-Billion-Dollar Play Is Enterprise Plumbing.",
+      "slug": "ibm-arvind-krishna-google-cloud-agentic-ai-enterprise-20260610",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -65,13 +118,49 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects Modi's tenure to the Indian diaspora, discussing policy changes and their implications for NRIs."
+          "note": "The article effectively highlights the impact of Arvind Krishna's leadership on IBM and its significance for the Indian diaspora, particularly in the context of employment and corporate transformation."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more direct quotes from diaspora members to enhance the personal connection.",
-          "Include statistics or data on how diaspora engagement has quantitatively changed under Modi's leadership."
+          "Consider adding more specific examples of how the partnership will impact Indian IT professionals.",
+          "Include quotes or insights from Indian IT professionals to enhance the diaspora connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "9d01abfe-eb66-42e9-aa06-de81190adee2",
+      "headline": "ISRO Just Handed Its Biggest Rocket to the Private Sector. India's Launch Cadence Depends on It.",
+      "slug": "isro-lvm3-technology-transfer-private-sector-space-20260610",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the developments in India's space sector to investment opportunities and talent return for the Indian diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of how NRIs can engage with the Indian space sector, such as investment platforms or initiatives.",
+          "Include quotes or insights from diaspora members involved in the space industry to enhance relatability."
         ],
         "verdict": "pass"
       },
