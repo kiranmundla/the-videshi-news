@@ -1,17 +1,16 @@
 #!/usr/bin/env python3
-"""Post 4 Videshi articles to X as long-form posts with images."""
+"""Post 4 Videshi articles to X with long-form posts and images."""
 
 import json
 import os
 import sys
 import time
 import tempfile
-from datetime import datetime, timezone
-
 import requests
 import tweepy
+from datetime import datetime, timezone
 
-# --- Load env files ---
+# --- Load env ---
 def load_env(path):
     env = {}
     with open(os.path.expanduser(path)) as f:
@@ -19,274 +18,302 @@ def load_env(path):
             line = line.strip()
             if not line or line.startswith('#'):
                 continue
-            if '=' in line:
-                key, val = line.split('=', 1)
-                key = key.strip()
-                val = val.strip().strip('"').strip("'")
-                env[key] = val
+            if line.startswith('export '):
+                line = line[7:]
+            k, _, v = line.partition('=')
+            env[k.strip()] = v.strip()
     return env
 
 twitter_env = load_env("~/workspace/.env.twitter")
 supabase_env = load_env("~/workspace/.env.supabase")
 
-CONSUMER_KEY = twitter_env.get("X_CONSUMER_KEY") or twitter_env.get("TWITTER_CONSUMER_KEY") or twitter_env.get("API_KEY")
-CONSUMER_SECRET = twitter_env.get("X_CONSUMER_SECRET") or twitter_env.get("TWITTER_CONSUMER_SECRET") or twitter_env.get("API_SECRET")
-ACCESS_TOKEN = twitter_env.get("X_ACCESS_TOKEN") or twitter_env.get("TWITTER_ACCESS_TOKEN") or twitter_env.get("ACCESS_TOKEN")
-ACCESS_TOKEN_SECRET = twitter_env.get("X_ACCESS_TOKEN_SECRET") or twitter_env.get("TWITTER_ACCESS_TOKEN_SECRET") or twitter_env.get("ACCESS_TOKEN_SECRET")
-SUPABASE_SERVICE_ROLE_KEY = supabase_env.get("SUPABASE_SERVICE_ROLE_KEY")
-SUPABASE_URL = "https://lboecaekpynbpyijrbfz.supabase.co"
+CONSUMER_KEY = twitter_env["TWITTER_CONSUMER_KEY"]
+CONSUMER_SECRET = twitter_env["TWITTER_CONSUMER_SECRET"]
+ACCESS_TOKEN = twitter_env["TWITTER_ACCESS_TOKEN"]
+ACCESS_TOKEN_SECRET = twitter_env["TWITTER_ACCESS_TOKEN_SECRET"]
 
-# --- Setup tweepy ---
-auth = tweepy.OAuth1UserHandler(CONSUMER_KEY, CONSUMER_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
-api_v1 = tweepy.API(auth)
+SUPABASE_URL = "https://lboecaekpynbpyijrbfz.supabase.co"
+SUPABASE_KEY = supabase_env["SUPABASE_SERVICE_ROLE_KEY"]
+
+SB_HEADERS = {
+    "apikey": SUPABASE_KEY,
+    "Authorization": f"Bearer {SUPABASE_KEY}",
+    "Content-Type": "application/json",
+}
+
+# --- Tweepy setup ---
 client = tweepy.Client(
     consumer_key=CONSUMER_KEY,
     consumer_secret=CONSUMER_SECRET,
     access_token=ACCESS_TOKEN,
-    access_token_secret=ACCESS_TOKEN_SECRET
+    access_token_secret=ACCESS_TOKEN_SECRET,
 )
+auth = tweepy.OAuth1UserHandler(CONSUMER_KEY, CONSUMER_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
+api_v1 = tweepy.API(auth)
 
-sb_headers = {
-    "apikey": SUPABASE_SERVICE_ROLE_KEY,
-    "Authorization": f"Bearer {SUPABASE_SERVICE_ROLE_KEY}",
-    "Content-Type": "application/json"
-}
-
-# --- Tweet log ---
-log_path = os.path.expanduser("~/workspace/the-videshi-news/pipeline/tweet-log.json")
-tweet_log = {}
-if os.path.exists(log_path):
-    with open(log_path) as f:
-        tweet_log = json.load(f)
-
-# --- Articles and composed posts ---
-articles_to_post = [
+# --- Pre-composed posts ---
+POSTS = [
     {
-        "id": "0376ff1d-8c52-46dc-8cd9-0141ea10318a",
-        "slug": "india-maha-water-mission-200-crore-isro-mou-satellite-water-management-startups-20260601",
-        "headline": "India Just Launched a ₹200 Crore Fund for Water Tech Startups and Signed an MoU With ISRO to Monitor Water From Space.",
-        "category": "news",
-        "image_url": "https://images.pexels.com/photos/29277511/pexels-photo-29277511.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-        "post_text": """🇮🇳 NEWS | The Videshi
+        "article_id": "3ff9cbff-c95f-4bf7-9a1a-955fdb350a14",
+        "slug": "india-fertiliser-ministry-double-subsidy-iran-war-el-nino-food-crisis-20260610",
+        "headline": "India's Fertiliser Ministry Wants to Double Its Subsidy Budget. The Fiscal Year Is Three Months Old.",
+        "image_url": "https://images.pexels.com/photos/29039800/pexels-photo-29039800.jpeg?auto=compress&cs=tinysrgb&dpr=2",
+        "text": """🇮🇳 NEWS | The Videshi
 
 ━━━━━━━━━━━━━━━━━━━━━━━━
 
-INDIA BETS ₹200 CRORE ON WATER TECH — AND ROPES IN ISRO TO WATCH FROM ORBIT
+India Wants to Double Its Fertiliser Subsidy — And the Year Just Started
 
-India just made its biggest move yet on water innovation. The government launched the MAHA Water Mission — a ₹200 crore, five-year programme that will fund consortia of universities, national labs, startups, and MSMEs to develop and deploy water technology solutions. Each selected consortium can receive up to ₹20 crore.
+The fiscal year is barely three months old, and India's Department of Fertilisers has already asked the Finance Ministry to double its subsidy allocation. The request, first reported by Reuters, reveals how deeply the Iran war and the Strait of Hormuz blockade have disrupted India's agricultural supply chain. Urea, DAP, and potash prices are all surging, and New Delhi has already burned through ₹1.2 trillion ($12.6 billion) keeping fuel prices frozen.
 
-The programme was unveiled at a national workshop at Dr. Ambedkar International Centre in New Delhi. It's jointly run by the Anusandhan National Research Foundation and the Ministry of Jal Shakti, and targets five priority areas: water resource management, drinking water quality, ecological health, water use efficiency, and climate resilience.
+The timing couldn't be worse. An El Niño pattern has pushed the southwest monsoon to an 18% deficit since its late arrival on June 4. Sea surface temperatures crossed the drought threshold on June 7, and every forecasting model points to continued warming. Sugar acreage is stagnating, carry-forward inventory is thinning, and the government just cancelled a planned export window. This is two crises converging — fiscal strain and a potential food security emergency — at exactly the same time.
 
-The bigger headline? ISRO signed an MoU to bring satellite-based monitoring to India's water infrastructure — meaning groundwater tracking and flood forecasting will now have eyes in space. An open call for research proposals and a separate startup track through the BHARAT-WIN Portal are both live now.
+For Indian households, the impact is direct. The fertiliser subsidy keeps farm input costs down, which keeps food affordable at the retail level. If the government can't absorb the shock, food inflation — already running hot — will accelerate further.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━
 
 Key Takeaways:
 
-▸ ₹200 crore fund over 5 years, up to ₹20 crore per consortium
-▸ ISRO MoU brings satellite data to groundwater and flood monitoring
-▸ Open call for proposals live now — startups and MSMEs eligible
-▸ Five focus areas including climate resilience and circular economy
+▸ Fertiliser Ministry requests 2x subsidy allocation just 3 months into FY2026-27
+▸ ₹1.2 trillion already spent keeping fuel prices frozen since the Iran war began
+▸ Monsoon running at 18% deficit; El Niño threshold crossed on June 7
+▸ Sugar exports cancelled as domestic buffer stock thins
 
 ━━━━━━━━━━━━━━━━━━━━━━━━
 
-📰 Full story: thevideshi.com/articles/india-maha-water-mission-200-crore-isro-mou-satellite-water-management-startups-20260601
+📰 Full story: thevideshi.com/articles/india-fertiliser-ministry-double-subsidy-iran-war-el-nino-food-crisis-20260610
 
 The Videshi — Your daily source for Indian diaspora news
 🌐 thevideshi.com"""
     },
     {
-        "id": "fefa2f8f-b497-44ed-a6f0-564033cafa22",
-        "slug": "rajya-sabha-27-seats-nominations-begin-june-18-polling-jharkhand-nda-india-bloc-20260601",
-        "headline": "India Just Began Nominations for 27 Rajya Sabha Seats. The Votes Will Be Cast on June 18.",
-        "category": "news",
-        "image_url": "https://images.pexels.com/photos/2573473/pexels-photo-2573473.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-        "post_text": """🇮🇳 NEWS | The Videshi
+        "article_id": "de21dfb4-d4e8-4f31-afac-135e60aaf474",
+        "slug": "india-falls-seventh-global-stock-market-taiwan-south-korea-ai-foreign-outflows-20260610",
+        "headline": "India Just Fell to Seventh in the Global Stock Market Rankings. AI Took Its Place.",
+        "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/BSE_-_Bombay_Stock_Exchange_Building.jpg/1280px-BSE_-_Bombay_Stock_Exchange_Building.jpg",
+        "text": """🇮🇳 NEWS | The Videshi
 
 ━━━━━━━━━━━━━━━━━━━━━━━━
 
-27 RAJYA SABHA SEATS UP FOR GRABS — NOMINATIONS OPEN, VOTING ON JUNE 18
+India Slips to 7th in Global Stock Market Rankings — AI Did This
 
-The Election Commission formally started the clock on one of India's biggest upper house elections this year. Nominations opened today for 27 Rajya Sabha seats and multiple state Legislative Council seats, with polling day set for June 18.
+It happened quietly, in a matter of weeks. First Taiwan overtook India in total stock market capitalisation. Then South Korea. By early June, the world's fastest-growing major economy had slipped to seventh globally — behind the US, China, Japan, the UK, Taiwan, and South Korea. India's share in the MSCI Global Standard Index has contracted from a peak of 21% in September 2024 to just 12.3%.
 
-The elections cover 24 biennial vacancies across 10 states — Andhra Pradesh and Gujarat with 4 each, Karnataka with 4, Madhya Pradesh and Rajasthan with 3 each, Jharkhand with 2, and one each in Manipur, Meghalaya, Arunachal Pradesh, and Mizoram. Three by-elections in Maharashtra, Tamil Nadu, and Odisha round out the count. Candidates have until June 8 to file nominations, scrutiny is on June 9, and the withdrawal deadline is June 11.
+The engine driving capital away is artificial intelligence. Taiwan's TSMC alone accounts for 40%+ of Taiwan's total market cap, posting $18 billion in Q1 net income — up 58% year-on-year. South Korea's Samsung and SK Hynix tell the same story. India has no equivalent. Its IT giants — Infosys, TCS, Wipro — are downstream integrators of AI, not the hardware providers that capture the investment flow. Foreign investors have pulled $26.4 billion from Indian equities in 2026, on pace to shatter last year's record outflow.
 
-The real contest is in Jharkhand, where both the ruling JMM-led INDIA bloc and the BJP are eyeing both seats. The state's fractured arithmetic — with 47 ruling coalition MLAs, 31 BJP, and smaller parties holding the balance — makes this the one race where the outcome isn't already written.
+Not everyone is bearish. Some analysts argue India offers a "picks and shovels" play — power generation, cooling infrastructure, data centres — that underpins the broader AI ecosystem. But for now, the capital is chasing chips, not potential.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━
 
 Key Takeaways:
 
-▸ 27 Rajya Sabha seats across 10 states, polling June 18
-▸ Nomination deadline: June 8; withdrawal deadline: June 11
-▸ Jharkhand is the key battleground — both alliances want both seats
-▸ By-elections in Maharashtra, Tamil Nadu, and Odisha also scheduled
+▸ $26.4 billion in foreign outflows from Indian equities in 2026
+▸ MSCI India weight down from 21% peak to 12.3%
+▸ TSMC's Q1 net income: $18B (+58% YoY), dwarfing Indian IT
+▸ Goldman Sachs upgraded Taiwan and South Korea last week
 
 ━━━━━━━━━━━━━━━━━━━━━━━━
 
-📰 Full story: thevideshi.com/articles/rajya-sabha-27-seats-nominations-begin-june-18-polling-jharkhand-nda-india-bloc-20260601
+📰 Full story: thevideshi.com/articles/india-falls-seventh-global-stock-market-taiwan-south-korea-ai-foreign-outflows-20260610
 
 The Videshi — Your daily source for Indian diaspora news
 🌐 thevideshi.com"""
     },
     {
-        "id": "5c081a2d-c597-4317-a2ab-3b0e6f2bbb29",
-        "slug": "delhi-saket-building-collapse-six-dead-owner-absconding-fir-culpable-homicide-20260601",
-        "headline": "A Building Near Delhi's Saket Metro Collapsed on Saturday. Six People Are Dead and the Owner Is Missing.",
-        "category": "news",
-        "image_url": "https://images.pexels.com/photos/15861615/pexels-photo-15861615.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-        "post_text": """🇮🇳 NEWS | The Videshi
+        "article_id": "4e89b47f-ab73-4949-8e85-b0db05a8f7ee",
+        "slug": "us-cpi-inflation-three-year-high-may-2026-nri-impact-fed-rates-cost-of-living-20260610",
+        "headline": "US Inflation Is About to Hit a Three-Year High. Every Indian Immigrant Should Pay Attention.",
+        "image_url": "https://upload.wikimedia.org/wikipedia/commons/8/84/Washington_D.C._-_Federal_Reserve_0001-0003_HDR.jpg",
+        "text": """🇮🇳 NEWS | The Videshi
 
 ━━━━━━━━━━━━━━━━━━━━━━━━
 
-SIX DEAD IN DELHI BUILDING COLLAPSE NEAR SAKET METRO — OWNER ON THE RUN
+US Inflation About to Hit a 3-Year High — What It Means for Every NRI
 
-A three-storey commercial building near the Saket Metro Station in south Delhi collapsed on Saturday evening, killing six people and injuring eight others. The building on Western Marg in Saidulajab housed a coaching institute, cafes, offices, and a ground-floor canteen that served students preparing for medical entrance exams. Construction work was reportedly underway on the upper floors when the structure gave way around 6 PM.
+Wednesday's CPI report is expected to show US consumer prices rose 4.2% year-on-year in May — the sharpest annual increase since April 2023 and the third straight month of acceleration. Monthly prices likely jumped 0.5%, following April's 0.6% surge. For 4.4 million Indian-born US residents, this isn't an abstract number. It's the gas bill, the grocery run, and the rent cheque.
 
-NDRF, Delhi Fire Services, and DDMA teams worked through the night with heavy machinery, hydraulic cutters, and sniffer dogs, pulling nine survivors from the rubble. Among the six killed was Parvati, who ran the canteen — she had initially escaped but went back inside to help trapped students. The building owner, Kuldeep, is absconding. An FIR for culpable homicide not amounting to murder has been filed.
+The primary driver is energy. Gasoline surged 8.8% in May to $4.60 a gallon — up more than 50% since the Iran war triggered the Strait of Hormuz blockade in late February. Real wages have now declined for two consecutive months, meaning paychecks are shrinking in purchasing power even as nominal wages rise. This squeeze hits hardest in exactly the metros where Indian immigrants concentrate: the Bay Area, Seattle, New York, New Jersey, Dallas-Fort Worth, and the D.C. suburbs.
 
-The Delhi government has ordered a structural audit of all buildings in the area and launched a compensation package: ₹10 lakh per victim's family, ₹5 lakh for seriously injured, and ₹1 lakh for minor injuries.
+The Fed is boxed in. Markets are now pricing in the possibility of a rate hike — a dramatic reversal from the cuts investors expected six months ago. A hike would tighten mortgage rates further, hitting H-1B holders and green card applicants who are already navigating the most expensive housing market in a generation.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━
 
 Key Takeaways:
 
-▸ 6 dead, 8 injured in Saket-area building collapse on May 30
-▸ Building owner Kuldeep absconding; FIR filed under culpable homicide
-▸ Canteen worker Parvati died after going back in to help trapped students
-▸ Delhi govt orders structural audit, ₹10 lakh compensation per victim's family
+▸ May CPI forecast: 4.2% YoY — highest since April 2023
+▸ Gas prices up 50%+ since Iran war began; $4.60/gallon national average
+▸ Real wages falling for 2nd consecutive month
+▸ Markets now pricing in a potential Fed rate hike, not cuts
 
 ━━━━━━━━━━━━━━━━━━━━━━━━
 
-📰 Full story: thevideshi.com/articles/delhi-saket-building-collapse-six-dead-owner-absconding-fir-culpable-homicide-20260601
+📰 Full story: thevideshi.com/articles/us-cpi-inflation-three-year-high-may-2026-nri-impact-fed-rates-cost-of-living-20260610
 
 The Videshi — Your daily source for Indian diaspora news
 🌐 thevideshi.com"""
     },
     {
-        "id": "594a6490-b89d-4417-a70b-44145a27e183",
-        "slug": "ultra-hni-migration-nri-property-selling-kotak-bank-report-20260601",
-        "headline": "One in Five of India's Ultra-Rich Wants to Move Abroad. The Rest Are Trying to Figure Out How to Sell the House They Left Behind.",
-        "category": "nri-world",
-        "image_url": "https://images.pexels.com/photos/30608874/pexels-photo-30608874.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
-        "post_text": """🌏 NRI WORLD | The Videshi
+        "article_id": "b45cc0a6-b57a-409a-8c66-6be65343b98a",
+        "slug": "ecb-reschedules-england-india-t20i-timings-indian-viewership-financial-dependence-nri",
+        "headline": "England Moved the Start Times. India's TV Audience Was the Reason.",
+        "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Edgbaston_Cricket_Ground_2012.jpg/1280px-Edgbaston_Cricket_Ground_2012.jpg",
+        "text": """🏏 SPORTS | The Videshi
 
 ━━━━━━━━━━━━━━━━━━━━━━━━
 
-ONE IN FIVE OF INDIA'S ULTRA-RICH WANTS OUT — AND NRIS CAN'T SELL THE HOUSE THEY LEFT BEHIND
+England Shifted the Start Times. India's Viewers Were the Reason.
 
-There are two kinds of NRI property stories. The aspirational one: a tech exec in the Bay Area buying a ₹15 crore flat in Gurugram as an investment hedge. The exhausting one: a family in New Jersey spending three years trying to sell ancestral land in Jalandhar, fighting forged Power of Attorney documents and a legal system that moves at geological speed.
+Three of five England-India T20I matches will now start at 5:30 PM local instead of 6:30 PM. The change — negotiated between the ECB, Sky Sports, and Sony Sports Network — was made for one reason: to catch Indian viewers at 10 PM IST rather than 11 PM, before they switch off for the night. It's a small adjustment that says the quiet part out loud.
 
-Both are getting more common. A new Kotak Wealth report says one in five ultra-high-net-worth Indians — those with assets over ₹25 crore — is either migrating or planning to. Most intend to settle permanently abroad while keeping their Indian passports. Professionals show higher migration tendencies than entrepreneurs, and the 36-40 and 61+ age brackets are overrepresented.
+The ECB's own financial report spells it out: England cricket's revenues are "inherently cyclical, reflecting the scheduling of high-value broadcast series by opposition." The board expects a profit this year — the year India tours. It expects losses in 2027, when Australia visits for the Ashes. The home of cricket loses money hosting its oldest rivalry and makes money hosting India. That's the modern economics of the sport.
 
-India's Ultra-HNI population is expected to hit 4.3 lakh by 2028, with combined wealth of ₹359 trillion. Nearly a third already hold global assets — real estate in Dubai, London, Singapore. For NRIs already abroad, selling Indian property remains a maze of FEMA rules, TDS obligations, and repatriation limits that trip up even the well-advised.
+The tour is already a sellout. All three ODI venues — Chester-le-Street, Manchester, the Oval — are gone. Only a few hundred T20I seats remain. Rohit Sharma and Virat Kohli are expected for the ODIs, while 15-year-old IPL sensation Vaibhav Sooryavanshi could make his international debut. Even the Ireland leg — two T20Is in Belfast — is sold out.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━
 
 Key Takeaways:
 
-▸ 1 in 5 Indian Ultra-HNIs (₹25 cr+ assets) planning to emigrate — Kotak report
-▸ Ultra-HNI population projected to reach 4.3 lakh by 2028
-▸ NRIs face FEMA, TDS, and repatriation hurdles when selling Indian property
-▸ Professionals migrate more than entrepreneurs; 36-40 age bracket most mobile
+▸ 3 of 5 T20Is moved to 5:30 PM local (10 PM IST) for Indian prime time
+▸ ECB financial report projects profit for India tour, losses for 2027 Ashes
+▸ All 3 ODIs sold out; Kohli and Rohit Sharma expected to feature
+▸ 15-year-old Vaibhav Sooryavanshi could make his international debut
 
 ━━━━━━━━━━━━━━━━━━━━━━━━
 
-📰 Full story: thevideshi.com/articles/ultra-hni-migration-nri-property-selling-kotak-bank-report-20260601
+📰 Full story: thevideshi.com/articles/ecb-reschedules-england-india-t20i-timings-indian-viewership-financial-dependence-nri
 
 The Videshi — Your daily source for Indian diaspora news
 🌐 thevideshi.com"""
-    }
+    },
 ]
 
-# --- Post each article ---
+
+def download_image(url):
+    """Download image to temp file, return path or None."""
+    try:
+        r = requests.get(
+            url,
+            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
+            timeout=15,
+            stream=True,
+        )
+        r.raise_for_status()
+        ct = r.headers.get("Content-Type", "")
+        ext = ".jpg"
+        if "png" in ct:
+            ext = ".png"
+        elif "webp" in ct:
+            ext = ".webp"
+        elif "gif" in ct:
+            ext = ".gif"
+        tmp = tempfile.NamedTemporaryFile(suffix=ext, delete=False)
+        for chunk in r.iter_content(8192):
+            tmp.write(chunk)
+        tmp.close()
+        fsize = os.path.getsize(tmp.name)
+        if fsize < 1000:
+            print(f"  Image too small ({fsize} bytes), skipping image.")
+            os.unlink(tmp.name)
+            return None
+        print(f"  Downloaded image: {fsize:,} bytes")
+        return tmp.name
+    except Exception as e:
+        print(f"  Image download failed: {e}")
+        return None
+
+
+def upload_media(img_path):
+    """Upload image to X via v1.1 API."""
+    try:
+        media = api_v1.media_upload(filename=img_path)
+        print(f"  Media uploaded: media_id={media.media_id}")
+        return media
+    except Exception as e:
+        print(f"  Media upload failed: {e}")
+        return None
+
+
+# --- Tweet log ---
+LOG_PATH = os.path.expanduser("~/workspace/the-videshi-news/pipeline/tweet-log.json")
+tweet_log = {}
+if os.path.exists(LOG_PATH):
+    with open(LOG_PATH) as f:
+        tweet_log = json.load(f)
+
 posted = 0
 errors = []
-tweet_urls = []
+results = []
 
-for i, article in enumerate(articles_to_post):
-    print(f"\n{'='*50}")
-    print(f"Posting article {i+1}/4: {article['slug'][:60]}...")
-    
-    # Download image
-    media_id = None
-    tmp_path = None
-    try:
-        img_resp = requests.get(article["image_url"], timeout=15)
-        img_resp.raise_for_status()
-        # Determine extension
-        content_type = img_resp.headers.get("content-type", "image/jpeg")
-        ext = ".jpg" if "jpeg" in content_type or "jpg" in content_type else ".png"
-        tmp_fd, tmp_path = tempfile.mkstemp(suffix=ext)
-        with os.fdopen(tmp_fd, 'wb') as f:
-            f.write(img_resp.content)
-        print(f"  ✓ Image downloaded ({len(img_resp.content)} bytes)")
-        
-        media = api_v1.media_upload(filename=tmp_path)
-        media_id = media.media_id
-        print(f"  ✓ Image uploaded to X (media_id={media_id})")
-    except Exception as e:
-        print(f"  ⚠ Image failed: {e} — posting without image")
-        media_id = None
-    finally:
-        if tmp_path and os.path.exists(tmp_path):
-            os.unlink(tmp_path)
-    
+for i, post in enumerate(POSTS):
+    print(f"\n{'='*60}")
+    print(f"Article {i+1}/{len(POSTS)}: {post['headline'][:80]}")
+    print(f"{'='*60}")
+
+    # Download and upload image
+    media_ids = None
+    img_path = download_image(post["image_url"])
+    if img_path:
+        media = upload_media(img_path)
+        if media:
+            media_ids = [media.media_id]
+        try:
+            os.unlink(img_path)
+        except:
+            pass
+
     # Post tweet
     try:
-        kwargs = {"text": article["post_text"]}
-        if media_id:
-            kwargs["media_ids"] = [media_id]
-        
+        kwargs = {"text": post["text"]}
+        if media_ids:
+            kwargs["media_ids"] = media_ids
         response = client.create_tweet(**kwargs)
-        tweet_id = response.data['id']
+        tweet_id = response.data["id"]
         tweet_url = f"https://x.com/thevideshi/status/{tweet_id}"
-        print(f"  ✓ Posted! {tweet_url}")
-        tweet_urls.append(tweet_url)
-        
+        print(f"  ✅ Posted! {tweet_url}")
+        results.append({"slug": post["slug"], "tweet_url": tweet_url, "status": "ok"})
+
         # Update Supabase
         now_utc = datetime.now(timezone.utc).isoformat()
         patch_resp = requests.patch(
-            f"{SUPABASE_URL}/rest/v1/p2_articles?id=eq.{article['id']}",
-            headers=sb_headers,
+            f"{SUPABASE_URL}/rest/v1/p2_articles?id=eq.{post['article_id']}",
+            headers=SB_HEADERS,
             json={"tweeted_at": now_utc},
-            timeout=15
+            timeout=15,
         )
         if patch_resp.status_code < 300:
-            print(f"  ✓ Supabase updated (tweeted_at={now_utc})")
+            print(f"  Supabase updated: tweeted_at={now_utc}")
         else:
-            print(f"  ⚠ Supabase update failed: {patch_resp.status_code} {patch_resp.text}")
-        
+            print(f"  Supabase update failed: {patch_resp.status_code} {patch_resp.text}")
+
         # Log tweet
         tweet_log[str(tweet_id)] = {
-            "article_id": article["id"],
-            "slug": article["slug"],
-            "posted_at": datetime.utcnow().isoformat() + "Z"
+            "article_id": post["article_id"],
+            "slug": post["slug"],
+            "posted_at": datetime.utcnow().isoformat() + "Z",
         }
-        os.makedirs(os.path.dirname(log_path), exist_ok=True)
-        with open(log_path, 'w') as f:
+        os.makedirs(os.path.dirname(LOG_PATH), exist_ok=True)
+        with open(LOG_PATH, "w") as f:
             json.dump(tweet_log, f, indent=2)
-        
+
         posted += 1
-        
+
     except Exception as e:
-        err_msg = f"Article {article['slug'][:40]}: {e}"
-        errors.append(err_msg)
-        print(f"  ✗ FAILED: {e}")
-    
-    # Wait between posts
-    if i < len(articles_to_post) - 1:
-        print("  ⏳ Waiting 30 seconds...")
+        err_msg = str(e)
+        print(f"  ❌ Tweet failed: {err_msg}")
+        errors.append({"slug": post["slug"], "error": err_msg})
+        results.append({"slug": post["slug"], "status": "error", "error": err_msg})
+
+    # Wait between posts (skip after last)
+    if i < len(POSTS) - 1:
+        print("  Waiting 30 seconds...")
         time.sleep(30)
 
 # --- Summary ---
-print(f"\n{'='*50}")
-print(f"SUMMARY: {posted}/4 articles posted to X")
-if tweet_urls:
-    print("Tweet URLs:")
-    for url in tweet_urls:
-        print(f"  {url}")
-if errors:
-    print(f"Errors ({len(errors)}):")
-    for e in errors:
-        print(f"  ✗ {e}")
+print(f"\n{'='*60}")
+print(f"SUMMARY: {posted}/{len(POSTS)} posted, {len(errors)} errors")
+print(f"{'='*60}")
+for r in results:
+    if r["status"] == "ok":
+        print(f"  ✅ {r['slug'][:60]} → {r['tweet_url']}")
+    else:
+        print(f"  ❌ {r['slug'][:60]} → {r['error'][:80]}")
