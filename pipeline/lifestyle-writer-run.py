@@ -1,507 +1,247 @@
 #!/usr/bin/env python3
-"""
-Lifestyle & Markets writer — June 7 2026 run
-Produces 2 lifestyle-health + 1 markets-finance articles.
-"""
-import json, os, sys, uuid, re, time, subprocess, io, textwrap
+"""Videshi Lifestyle & Markets Writer — June 10, 2026 run"""
+
+import json, os, requests, uuid
 from datetime import datetime, timezone
-from urllib.parse import quote, quote_plus
 
-import requests
-from PIL import Image
-
-# ── env ──────────────────────────────────────────────────────────────
+# Load env
 def load_env(path):
-    if not os.path.exists(path):
-        return
-    with open(path) as f:
-        for line in f:
-            line = line.strip()
-            if not line or line.startswith('#'):
-                continue
-            if line.startswith('export '):
-                line = line[7:]
-            k, _, v = line.partition('=')
-            v = v.strip().strip('"').strip("'")
-            os.environ.setdefault(k.strip(), v)
+    if os.path.exists(path):
+        with open(path) as f:
+            for line in f:
+                line = line.strip()
+                if line and not line.startswith('#') and '=' in line:
+                    key, _, val = line.partition('=')
+                    val = val.strip().strip('"').strip("'")
+                    os.environ.setdefault(key.strip(), val)
 
 load_env(os.path.expanduser('~/.env.supabase'))
-load_env(os.path.expanduser('~/workspace/.env.supabase'))
-load_env(os.path.expanduser('~/workspace/.env.pexels'))
 
-SB_URL = os.environ['SUPABASE_URL']
-SB_KEY = os.environ['SUPABASE_SERVICE_ROLE_KEY']
-PEXELS_KEY = os.environ.get('PEXELS_API_KEY', '')
-
+SUPABASE_URL = os.environ['SUPABASE_URL']
+SUPABASE_KEY = os.environ['SUPABASE_SERVICE_ROLE_KEY']
 HEADERS = {
-    'apikey': SB_KEY,
-    'Authorization': f'Bearer {SB_KEY}',
+    'apikey': SUPABASE_KEY,
+    'Authorization': f'Bearer {SUPABASE_KEY}',
     'Content-Type': 'application/json',
-    'Prefer': 'return=representation',
+    'Prefer': 'return=representation'
 }
 
-UA = 'TheVideshi/1.0 (thevideshi.com)'
+now_iso = datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
 
-# ── image helpers ────────────────────────────────────────────────────
-def fetch_wikipedia_person_image(person_name):
-    encoded = quote(person_name.replace(' ', '_'))
-    try:
-        r = requests.get(
-            f'https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}',
-            headers={'User-Agent': UA}, timeout=10
-        )
-        if r.status_code == 200:
-            data = r.json()
-            img = data.get('originalimage', {}).get('source') or data.get('thumbnail', {}).get('source')
-            if img:
-                print(f'  ✓ Wikipedia image for "{person_name}": {img[:90]}...')
-                return img
-    except Exception as e:
-        print(f'  ⚠ Wikipedia error for "{person_name}": {e}')
-    return None
+articles = []
 
+# ============================================================
+# ARTICLE 1: Alcohol study (lifestyle-health)
+# ============================================================
+articles.append({
+    "id": str(uuid.uuid4()),
+    "headline": "The Government's Own Alcohol Study Was Buried. Now It's Out, and the Numbers Are Brutal.",
+    "subheadline": "A federally commissioned study finds no safe level of drinking. Two drinks a day gives American men a 1-in-25 chance of dying from alcohol. The Trump administration chose not to use it.",
+    "slug": "us-alcohol-study-sidelined-trump-one-drink-risk-south-asian-diaspora-20260610",
+    "category": "lifestyle-health",
+    "vertical": "lifestyle-health",
+    "status": "review",
+    "is_editorial": False,
+    "published_at": now_iso,
+    "image_url": "https://images.pexels.com/photos/6531496/pexels-photo-6531496.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+    "image_caption": "Illuminated glasses on a bar counter with dramatic lighting",
+    "image_attribution": "Pexels",
+    "sources": json.dumps([
+        {"name": "Reuters", "url": "https://www.reuters.com/world/us/sidelined-us-study-alcohols-health-effects-published-independent-journal-2026-06-09/"},
+        {"name": "CNN", "url": "https://www.cnn.com/2026/06/09/health/alcohol-health-risks-us-government-study"},
+        {"name": "USA Today", "url": "https://www.usatoday.com/story/news/health/2026/06/09/alcohol-health-risks-study/"},
+        {"name": "Journal of Studies on Alcohol and Drugs", "url": "https://jsad.com"}
+    ]),
+    "body": """A study that the United States government itself commissioned, funded, and then chose not to use has finally been published. The findings are not ambiguous. There is no safe level of alcohol consumption. One drink a day raises the risk of cancer and injury. Two drinks a day — what federal guidelines have long called "moderate" for men — carries a 1-in-25 lifetime risk of dying from an alcohol-related cause.
 
-def fetch_wikimedia_commons(query, limit=5):
-    params = {
-        'action': 'query', 'generator': 'search',
-        'gsrsearch': query, 'gsrnamespace': '6', 'gsrlimit': str(limit),
-        'prop': 'imageinfo', 'iiprop': 'url|size|mime',
-        'iiurlwidth': '1200', 'format': 'json',
-    }
-    try:
-        r = requests.get(
-            'https://commons.wikimedia.org/w/api.php',
-            params=params, headers={'User-Agent': UA}, timeout=15
-        )
-        if r.status_code == 200:
-            pages = r.json().get('query', {}).get('pages', {})
-            results = []
-            for p in pages.values():
-                ii = p.get('imageinfo', [{}])[0]
-                mime = ii.get('mime', '')
-                if not mime.startswith('image/') or mime == 'image/svg+xml':
-                    continue
-                if ii.get('width', 0) < 300:
-                    continue
-                results.append({
-                    'url': ii.get('thumburl') or ii.get('url', ''),
-                    'original_url': ii.get('url', ''),
-                    'title': p.get('title', ''),
-                    'width': ii.get('width', 0),
-                    'height': ii.get('height', 0),
-                })
-            if results:
-                print(f'  ✓ Commons: {len(results)} images for "{query}"')
-            return results
-    except Exception as e:
-        print(f'  ⚠ Commons error: {e}')
-    return []
+The study, published Tuesday in the Journal of Studies on Alcohol and Drugs, was originally commissioned by the Biden administration and partially funded by the Department of Health and Human Services. It was meant to inform the 2025–2030 Dietary Guidelines for Americans. Instead, the Trump administration opted to sideline it, relying on a separate review from the National Academies of Sciences, Engineering and Medicine that reached a different conclusion: that moderate drinking is associated with a lower risk of dying from any cause.
 
+Robert Vincent, the former Substance Abuse and Mental Health Services Administration official who led the multi-year effort, accused the administration of burying the research. In an editorial published alongside the study, he wrote: "The challenges confronting alcohol policy today are not rooted in scientific uncertainty. What remains contested is whether evidence will meaningfully inform policy when it conflicts with commercial interests."
 
-def fetch_pexels(query):
-    if not PEXELS_KEY:
-        return None
-    try:
-        result = subprocess.run(
-            ['curl', '-sS', '-H', f'Authorization: {PEXELS_KEY}',
-             f'https://api.pexels.com/v1/search?query={quote_plus(query)}&per_page=3'],
-            capture_output=True, text=True, timeout=15
-        )
-        data = json.loads(result.stdout)
-        photos = data.get('photos', [])
-        if photos:
-            url = photos[0]['src']['large2x']
-            print(f'  ✓ Pexels: {url[:80]}...')
-            return url
-    except Exception as e:
-        print(f'  ⚠ Pexels error: {e}')
-    return None
+The alcohol industry had mobilized against the study after its draft was released last year, launching campaigns to discredit the work. The House oversight committee, led by Republican James Comer of Kentucky — bourbon country — called the study "fraught with bias" and "irretrievably flawed." The Distilled Spirits Council of the United States said the researchers were "anti-alcohol activists."
 
+## What the Study Actually Found
 
-def compress_image(img_bytes, max_width=1200, quality=80):
-    img = Image.open(io.BytesIO(img_bytes))
-    if img.mode in ('RGBA', 'P'):
-        img = img.convert('RGB')
-    if img.width > max_width:
-        ratio = max_width / img.width
-        img = img.resize((max_width, int(img.height * ratio)), Image.LANCZOS)
-    buf = io.BytesIO()
-    img.save(buf, format='JPEG', quality=quality, optimize=True)
-    return buf.getvalue()
+The numbers are stark. For Americans consuming just one drink per day, the lifetime risk of dying from an alcohol-related cause — including injuries, road accidents, and disease — stands at least 1 in 1,000. At two drinks per day, that risk jumps to 1 in 100. For men specifically, two drinks per day carries a 1-in-25 lifetime risk.
 
+Even one drink a day was associated with increased risks of certain cancers and injuries, the researchers found. No level of alcohol showed a protective effect on mortality when the analysis controlled for confounding factors like education, income, and healthcare access.
 
-def download_and_upload(image_url, slug):
-    """Download, compress, and upload to Supabase article-images bucket."""
-    try:
-        r = requests.get(image_url, headers={'User-Agent': UA}, timeout=20)
-        if r.status_code != 200:
-            print(f'  ✗ Download failed ({r.status_code}) for {image_url[:80]}')
-            return None
-        ct = r.headers.get('Content-Type', '')
-        if 'image' not in ct:
-            print(f'  ✗ Not an image: {ct}')
-            return None
-        raw = r.content
-        if len(raw) < 5000:
-            print(f'  ✗ Image too small: {len(raw)} bytes')
-            return None
-        compressed = compress_image(raw)
-        print(f'  → Compressed: {len(raw)} → {len(compressed)} bytes')
+"I'm glad that they had a message that corresponds with our science, and that is that less is best," said Dr. Timothy Naimi, director of the University of Victoria's Canadian Institute for Substance Use Research. "But giving people quantity information is necessary to make a truly informative guideline."
 
-        filename = f'{slug}.jpg'
-        upload_url = f'{SB_URL}/storage/v1/object/article-images/{filename}'
-        up = requests.post(
-            upload_url,
-            headers={
-                'Authorization': f'Bearer {SB_KEY}',
-                'Content-Type': 'image/jpeg',
-                'x-upsert': 'true',
-            },
-            data=compressed, timeout=20
-        )
-        if up.status_code in (200, 201):
-            public_url = f'{SB_URL}/storage/v1/object/public/article-images/{filename}'
-            print(f'  ✓ Uploaded → {public_url[:80]}...')
-            return public_url
-        else:
-            print(f'  ✗ Upload failed ({up.status_code}): {up.text[:200]}')
-            return None
-    except Exception as e:
-        print(f'  ✗ download_and_upload error: {e}')
-        return None
+The researchers recommended that current adult drinkers consume one drink or fewer per day — a stricter standard than the guidelines ultimately adopted, which offered the vague advice to "consume less alcohol for better overall health" without specifying limits.
 
+## The Diaspora Angle That Nobody Is Talking About
 
-def source_image(person_name, topic_queries, slug):
-    """Multi-source image search: Wikipedia → Commons → Pexels. Returns (url, attribution)."""
-    candidates = []
+For the Indian diaspora in America, this study carries a particular weight that the mainstream coverage has missed entirely.
 
-    # 1. Wikipedia person image
-    if person_name:
-        wiki = fetch_wikipedia_person_image(person_name)
-        if wiki:
-            candidates.append(('wikipedia', wiki))
+South Asians in the United States drink less than the general population on average, but the pattern of consumption has shifted dramatically across generations. First-generation immigrants often abstain or drink sparingly. Their American-raised children increasingly adopt the social drinking norms of their peers — the after-work happy hour, the wine with dinner, the cocktails at weekend gatherings.
 
-    # 2. Wikimedia Commons
-    for q in topic_queries:
-        commons = fetch_wikimedia_commons(q)
-        for c in commons[:2]:
-            candidates.append(('wikimedia_commons', c['url']))
-        if commons:
-            break
+What makes this dangerous is biology. Multiple studies have shown that South Asians carry a higher prevalence of the ALDH2 gene variant that impairs alcohol metabolism. The same two drinks that a European-descent American processes with relative ease may produce higher peak blood acetaldehyde levels — a known carcinogen — in someone of South Asian descent.
 
-    # 3. Pexels (last resort, topic/scene only)
-    if not person_name:
-        for q in topic_queries:
-            px = fetch_pexels(q)
-            if px:
-                candidates.append(('pexels', px))
-                break
+Add to this the cardiovascular profile that already puts South Asians at elevated risk. Heart disease strikes South Asians a decade earlier than other populations, and alcohol's inflammatory effects on the cardiovascular system compound that baseline vulnerability. The "moderate drinking is good for the heart" myth, which this study explicitly debunks, may have done outsized harm to a community already predisposed to cardiac events.
 
-    # Pick best & upload
-    for source, url in candidates:
-        uploaded = download_and_upload(url, slug)
-        if uploaded:
-            attr = 'Wikimedia Commons' if source in ('wikipedia', 'wikimedia_commons') else 'Pexels'
-            return uploaded, attr
+Then there is the cultural silence. Mental health and substance use remain stigmatized in many South Asian families. The uncle who drinks heavily at every family function is a known figure but rarely a discussed one. The generation of NRI men in their 40s and 50s who unwind with whisky every evening are, according to this study, playing a game with worse odds than they know.
 
-    print(f'  ✗ No image found for {slug}')
-    return None, None
+## What This Means Going Forward
 
+The dietary guidelines that Americans actually received earlier this year tell them to "consume less alcohol for better overall health." The researchers behind the sidelined study say that is not enough.
 
-# ── article insert ───────────────────────────────────────────────────
-def insert_article(article):
-    """Insert article into p2_articles."""
-    r = requests.post(
-        f'{SB_URL}/rest/v1/p2_articles',
+About half of Americans aged 12 or older had a drink in the past month, making alcohol the most commonly used addictive substance in the country. One drink equals about one 12-ounce can of beer, a 5-ounce glass of wine, or a shot of liquor. Most people underestimate how quickly those add up.
+
+For the diaspora, the takeaway is not prohibition. It is information. The science now says, clearly and without the hedge that industry lobbyists prefer, that less is better and none is best. The government that paid for that science chose not to tell you. Now the researchers have told you themselves."""
+})
+
+# ============================================================
+# ARTICLE 2: Healthcare affordability (lifestyle-health)
+# ============================================================
+articles.append({
+    "id": str(uuid.uuid4()),
+    "headline": "One in Three Americans Now Skip the Doctor Because They Cannot Afford It. The System May Be Three Years From Collapse.",
+    "subheadline": "New data shows 36 per cent of Americans delayed care in the past six months. Healthcare leaders say the system hits an existential tipping point by 2029. For NRIs navigating insurance on a visa, the math is even worse.",
+    "slug": "americans-delay-medical-care-cost-healthcare-unsustainable-nri-insurance-20260610",
+    "category": "lifestyle-health",
+    "vertical": "lifestyle-health",
+    "status": "review",
+    "is_editorial": False,
+    "published_at": now_iso,
+    "image_url": "https://images.pexels.com/photos/26244207/pexels-photo-26244207.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+    "image_caption": "Patients waiting in a hospital corridor, a scene increasingly common across America",
+    "image_attribution": "Pexels",
+    "sources": json.dumps([
+        {"name": "HealthEquity", "url": "https://www.globenewswire.com/news-release/2026/06/08/healthcare-affordability-pulse"},
+        {"name": "Vitalic Health / HFMA", "url": "https://www.globenewswire.com/news-release/2026/06/08/vitalic-health-survey"},
+        {"name": "Coalition to Strengthen America's Healthcare", "url": "https://www.dailycaller.com/health-insurance-companies-driving-costs"},
+        {"name": "Gallup", "url": "https://www.gallup.com"}
+    ]),
+    "body": """More than one in three Americans delayed or avoided needed medical care in the past six months because they could not afford it. The most commonly skipped services were specialist visits, prescription medications, and diagnostic tests — precisely the care tied to early detection and managing chronic conditions. And 77 per cent of the nation's top healthcare executives believe the entire system will hit an existential tipping point within three years.
+
+These are not projections from activists. They come from two major surveys released within hours of each other last week, one from HealthEquity, the nation's largest independent health savings account custodian, and the other from Vitalic Health, a nonpartisan initiative powered by the Healthcare Financial Management Association.
+
+The HealthEquity data is granular and grim. Among those who delayed care, chronic condition patients were hit hardest: 44 per cent skipped treatment, compared to 25 per cent of those without chronic conditions. For households earning under $50,000, nearly half — 46 per cent — delayed or avoided care entirely. Despite a 16-point jump in benefits understanding since fall 2025, the share of consumers who feel financially prepared for healthcare expenses actually fell, from 50 per cent to 42 per cent. Knowing how the system works, it turns out, does not make it affordable.
+
+Meanwhile, the Vitalic Health survey of 30 leading healthcare executives found that 90 per cent said the current US healthcare system is not financially sustainable. Not "could become" unsustainable. Is not, right now. And 77 per cent believe the tipping point arrives within three years — by 2029.
+
+## The Insurance Company Problem
+
+A separate poll from the Coalition to Strengthen America's Healthcare, also released this week, adds a layer that the industry surveys carefully avoid. Forty-seven per cent of voters say corporate health insurance companies are primarily to blame for soaring costs. Seventy-nine per cent are worried about insurers denying or delaying doctor-ordered treatments. Eighty-four per cent believe corporate insurers hold too much power over medical decisions.
+
+These numbers are bipartisan. The anger at insurance companies has become one of the few things that unite American voters across political lines. Seventy-two per cent said they are more likely to support candidates committed to holding insurance companies accountable.
+
+The mechanism is simple and well-documented. Insurance companies profit from denying claims and delaying approvals. Prior authorization — the requirement that doctors get permission from an insurer before providing treatment — has become the single largest friction point in American healthcare. A treatment your doctor orders is not a treatment your insurer approves.
+
+## For NRIs, the System Is Even Harder to Navigate
+
+The national picture is dire. For Indian Americans navigating the US healthcare system, it is often worse, in ways that the surveys do not capture because they do not ask the right questions.
+
+Start with the H-1B population. An estimated 600,000-plus Indian nationals are on H-1B visas, tied to employer-sponsored insurance that they cannot easily switch without changing jobs. If that employer offers a high-deductible plan — increasingly common — the first $3,000 to $8,000 of care comes out of pocket. For a family of four, that deductible can exceed $16,000 before insurance pays a rupee. A single emergency room visit in the United States averages $2,200 even after insurance.
+
+Then there are the parents. Every year, hundreds of thousands of Indian parents visit their children in America on B-1/B-2 tourist visas. They are not eligible for Medicare, Medicaid, or employer insurance. Visitor insurance policies, when they exist, come with severe exclusions for pre-existing conditions — which describes most health concerns for people in their 60s and 70s. A hospitalisation during a visit can cost $50,000 to $200,000, paid entirely out of pocket. Every NRI family knows someone this has happened to.
+
+The sandwich generation of Indian Americans — supporting ageing parents abroad while raising children in the US — faces a healthcare cost burden that no survey captures. They are paying for care in two countries, navigating two entirely different systems, in neither of which they have real bargaining power.
+
+## Why Knowledge Is Not Enough
+
+The most telling finding in the HealthEquity survey may be the gap between understanding and preparedness. Americans are getting better at understanding their benefits — that 16-point improvement is real. But feeling financially prepared for healthcare expenses actually declined. The system is not confusing. It is unaffordable. There is a difference.
+
+For the diaspora, this distinction matters because the instinct is often to study harder, learn the system better, optimise the HSA and the FSA and the PPO versus HMO decision. Indian Americans are, on average, among the most educated and highest-earning demographics in the country. And they are still getting crushed by healthcare costs, because the problem is not literacy. It is price.
+
+Long-term care insurance premiums have risen 40 per cent since 2020. A semiprivate nursing home room now costs $115,000 a year. Only 3 per cent of US adults carry long-term care insurance. For a community that culturally expects to care for ageing parents — often in their own homes — the absence of a safety net is not abstract. It is the conversation that nobody is having at the kitchen table but everybody is thinking about.
+
+The healthcare leaders who said the system is three years from an existential tipping point are not pessimists. They are the people running it. When 90 per cent of them say the model is broken, the question is not whether it will change. It is whether it will change before it breaks."""
+})
+
+# ============================================================
+# ARTICLE 3: May CPI / Inflation preview (markets-finance)
+# ============================================================
+articles.append({
+    "id": str(uuid.uuid4()),
+    "headline": "US Inflation Is About to Cross 4 Per Cent for the First Time in Three Years. Here Is What Every NRI Needs to Know.",
+    "subheadline": "Wednesday's CPI report is forecast to show prices rising at 4.2 per cent year-over-year, the highest since May 2023. The Fed may raise rates. Oil is above $90. And the rupee is quietly losing ground.",
+    "slug": "us-may-cpi-inflation-4-percent-iran-war-fed-rates-nri-impact-20260610",
+    "category": "markets-finance",
+    "vertical": "markets-finance",
+    "status": "review",
+    "is_editorial": False,
+    "published_at": now_iso,
+    "image_url": "https://images.pexels.com/photos/4744710/pexels-photo-4744710.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+    "image_caption": "A fuel pump at a US gas station, where prices have surged on the Iran war",
+    "image_attribution": "Pexels",
+    "sources": json.dumps([
+        {"name": "MarketWatch", "url": "https://www.marketwatch.com/story/inflation-is-set-to-top-4-for-the-first-time-since-2023-and-the-fed-is-back-in-the-hot-seat-0ae4efc7"},
+        {"name": "Morningstar", "url": "https://www.morningstar.com/economy/may-cpi-forecasts-show-continued-lofty-inflation"},
+        {"name": "The Motley Fool", "url": "https://www.fool.com/investing/2026/06/09/the-federal-reserves-june-inflation-forecast-is-in/"},
+        {"name": "Barchart", "url": "https://www.barchart.com/story/news/35975411/stock-index-futures-climb-as-tech-stocks-rebound"}
+    ]),
+    "body": """On Wednesday morning at 8:30 a.m. Eastern, the Bureau of Labor Statistics will release the May Consumer Price Index. Every major forecaster agrees on the direction: up. The consensus estimate puts year-over-year CPI at 4.2 per cent, the highest reading since May 2023 and nearly double the 2.4 per cent rate from February, before the Iran war rewired global energy markets.
+
+For NRIs with money, mortgages, and family obligations split between two countries, this number is not an abstraction. It is the cost of groceries in New Jersey, the interest rate on a refinance in Fremont, the exchange rate on a remittance to Hyderabad, and the price of a flight home to Delhi — all moving against you at once.
+
+## What the Numbers Say
+
+The monthly CPI is forecast to rise 0.5 per cent in May, almost three times the typical monthly increase. Core CPI, which strips out volatile food and energy prices, is expected to come in at 0.3 per cent month-over-month and 2.9 per cent year-over-year — the highest since late 2023.
+
+The headline number is being driven overwhelmingly by energy. Oil prices remain above $90 a barrel, pushed there by the Iran conflict and Strait of Hormuz disruptions. Deutsche Bank estimates gas prices rose 6.8 per cent in May alone. Transportation services have begun absorbing higher fuel costs. Warehousing, retail, and wholesale trade are next.
+
+But the core reading is what keeps Federal Reserve officials up at night. Just five months ago, core inflation had slowed to a five-year low of 2.5 per cent and was trending toward the Fed's 2 per cent target. That progress has reversed. TD Securities forecasts the core segment will near its peak for the year at 3.0 per cent in June, with the Iran conflict providing upside risks.
+
+The Fed's own Cleveland Inflation Nowcasting tool offers one sliver of hope: it projects trailing 12-month inflation for June to decline by 13 basis points to 4.05 per cent, the first projected dip since the Iran war began. But even the Fed's optimistic model still has inflation above 4 per cent through the summer.
+
+## The Fed's Next Move
+
+Gone is any chance of rate cuts in 2026. Goldman Sachs pushed its forecast for the first cut to 2027 last week. The question has shifted from "when will rates come down" to "will rates go up."
+
+Fed Chair Kevin Warsh and the Federal Open Market Committee face a textbook dilemma. Oil-driven inflation is typically transitory — prices spike, then revert. The Fed usually waits it out. But if elevated energy prices start reshaping how consumers and businesses expect inflation to behave, the transitory becomes structural. Self-fulfilling prophecy.
+
+The 10-year Treasury yield has risen to 4.54 per cent, reflecting market bets that the Fed will tighten. Higher lending rates would hit the AI data centre build-out that has been propping up tech valuations, pressuring the Nasdaq. They would also raise mortgage rates further — the average 30-year fixed rate is already above 7 per cent — making housing even less accessible.
+
+Vanguard's economists say the key is whether energy-driven inflation stays contained to direct impacts or bleeds into the broader economy. "If oil prices remain above $100-plus per barrel for another three to six months, we'll start to see more of that pass-through," says Vanguard's Schickling.
+
+## What This Means for NRIs
+
+The inflation picture creates a multi-front squeeze for the Indian diaspora that is different from what the average American faces.
+
+**Remittances are getting more expensive and less valuable.** The rupee has weakened against the dollar as India's import bill — heavily weighted toward crude oil — has ballooned. But inflation in the US means the dollars being sent home buy less in America before they are converted. An NRI sending $1,000 home each month is earning the same nominal salary but spending more on rent, gas, groceries, and childcare. The remittance becomes what is left over, and what is left over is shrinking.
+
+**Mortgage timing is a trap.** Many Indian Americans have been waiting for rates to drop before buying a home or refinancing. That wait just got longer — possibly 18 months longer, if Goldman's timeline holds. Meanwhile, home prices in metros with large South Asian populations — the Bay Area, New Jersey, the DFW Metroplex, Seattle — have not meaningfully corrected. The math of waiting improves only if you believe rates will drop faster than prices will rise. Right now, neither is moving in your favour.
+
+**India's rate trajectory is diverging.** The Reserve Bank of India has been cutting rates to stimulate growth, while the Fed holds or raises. This interest rate differential has implications for FCNR deposits, NRE account returns, and the rupee's trajectory. NRIs who parked money in FCNR dollar deposits at 5 per cent are sitting pretty for now, but a sustained US rate hike would put pressure on India to defend the rupee, potentially reversing the RBI's easing cycle.
+
+**Flights home are not coming down.** Jet fuel prices track crude oil with a lag. Summer fares to India from the US are already 15 to 25 per cent higher than last year. Families planning July and August trips — peak season for diaspora travel — are paying a war premium on top of seasonal pricing.
+
+## The Wildcard
+
+The Strait of Hormuz is the single biggest variable in the inflation equation. About 20 per cent of the world's oil passes through the strait, which Iran has periodically threatened and partially disrupted since the conflict escalated. US Energy Secretary Chris Wright said this week that ship traffic through the strait is rising "very meaningfully," suggesting some normalisation. But Israel struck targets in southern Lebanon on Tuesday, and Tehran warned it would resume hostilities if the attacks continued.
+
+If the strait fully reopens and the ceasefire holds, oil prices could drop below $80 by late summer, and inflation would follow. If the conflict escalates, $100 oil becomes the floor, not the ceiling, and the Fed's hand is forced.
+
+Wednesday's CPI number will not resolve any of this. But it will tell you how much damage has already been done — and for NRIs watching the rupee, the mortgage rate, and the gas pump simultaneously, the number that matters is not the headline. It is how long it stays there."""
+})
+
+# ============================================================
+# INSERT ALL ARTICLES
+# ============================================================
+for i, article in enumerate(articles):
+    print(f"\n{'='*60}")
+    print(f"Inserting article {i+1}: {article['headline'][:70]}...")
+    
+    resp = requests.post(
+        f"{SUPABASE_URL}/rest/v1/p2_articles",
         headers=HEADERS,
         json=article,
-        timeout=20
+        timeout=30
     )
-    if r.status_code in (200, 201):
-        result = r.json()
-        art_id = result[0]['id'] if isinstance(result, list) else result.get('id')
-        print(f'  ✓ Published: {article["headline"][:60]}... (id={art_id})')
-        return art_id
+    
+    if resp.status_code in (200, 201):
+        result = resp.json()
+        if isinstance(result, list) and result:
+            print(f"  ✓ Inserted: {result[0].get('slug', 'unknown')}")
+            print(f"  ✓ ID: {result[0].get('id', 'unknown')}")
+            print(f"  ✓ Status: {result[0].get('status', 'unknown')}")
+            print(f"  ✓ Category: {result[0].get('category', 'unknown')}")
+        else:
+            print(f"  ✓ Response: {str(result)[:200]}")
     else:
-        print(f'  ✗ Insert failed ({r.status_code}): {r.text[:300]}')
-        return None
+        print(f"  ✗ Error {resp.status_code}: {resp.text[:300]}")
 
-
-# ── build articles ───────────────────────────────────────────────────
-def build_articles():
-    now = datetime.now(timezone.utc)
-    articles_data = []
-
-    # ================================================================
-    # ARTICLE 1: Wegovy / Semaglutide helps Sleep Apnea and Asthma
-    # Category: lifestyle-health
-    # ================================================================
-    slug1 = 'wegovy-semaglutide-sleep-apnea-asthma-ada-2026-south-asian-diaspora-20260607'
-    headline1 = "Wegovy Now Helps Sleep Apnoea and Asthma, Not Just Weight Loss. South Asians Should Be Paying Attention."
-    subheadline1 = "New data from four major trials presented at ADA 2026 show semaglutide improves obstructive sleep apnoea, reduces asthma flare-ups, lowers blood pressure, and protects the liver — benefits that go well beyond the number on the scale."
-    body1 = textwrap.dedent("""\
-When Novo Nordisk's Wegovy arrived as a weight-loss injection, the conversation was simple: it helps people shed kilos. That narrative is now officially outdated. At the American Diabetes Association's 86th Scientific Sessions in New Orleans this week, the Danish pharmaceutical giant presented post hoc analyses from four landmark trials — SELECT, STEP, ESSENCE, and OASIS — showing that semaglutide, the active ingredient in Wegovy, is doing far more than trimming waistlines.
-
-The new data reveals clinically meaningful improvements across obstructive sleep apnoea, asthma-related outcomes, uncontrolled hypertension, and liver health in people with obesity or overweight. For South Asians — a population that carries disproportionate metabolic risk at lower body weights — these findings matter more than the headlines suggest.
-
-## Sleep Apnoea: The Silent Epidemic in South Asian Homes
-
-Obstructive sleep apnoea affects roughly one billion people worldwide, and South Asians are among the most under-diagnosed. Craniofacial anatomy, visceral fat distribution, and high rates of insulin resistance make the community particularly vulnerable. Many desi families normalise heavy snoring as "just how uncle sleeps" while the condition quietly drives hypertension, heart attacks, and strokes.
-
-The SELECT trial data presented at ADA 2026 showed that semaglutide 2.4 mg weekly reduced the severity of obstructive sleep apnoea in adults with established cardiovascular disease and obesity. Participants experienced fewer apnoeic episodes and reported improved sleep quality — outcomes that translate directly into lower cardiovascular risk over time.
-
-For NRIs managing demanding tech careers, long commutes, and high-stress lifestyles, sleep quality is not a luxury. Untreated sleep apnoea impairs cognition, raises accident risk, and accelerates metabolic syndrome. A drug that treats both obesity and sleep apnoea simultaneously could change the calculus for thousands of Indian Americans who currently manage neither condition.
-
-## Asthma Flare-Ups Drop — Without Changing Inhalers
-
-A separate post hoc analysis from the SELECT and STEP programmes showed that semaglutide use was associated with a reduction in asthma-related adverse outcomes in people with overweight or obesity. This did not require patients to change their existing asthma medications.
-
-The mechanism is believed to be partly weight-related — excess body fat compresses the lungs and increases airway inflammation — and partly anti-inflammatory. GLP-1 receptor agonists like semaglutide appear to dampen systemic inflammation in ways that benefit the airways independently of weight loss.
-
-India has an estimated 34 million asthma patients, and diaspora communities carry elevated prevalence partly due to genetic predisposition and partly due to urban pollution exposure during childhood years spent in Indian metros. For NRIs with both excess weight and asthma, semaglutide may now offer a dual benefit that no single drug previously delivered.
-
-## Blood Pressure and Liver: The Quieter Wins
-
-The ADA presentations also included data showing improvements in systolic blood pressure among patients with uncontrolled hypertension and obesity. Given that hypertension is the leading cause of death in the Indian diaspora — affecting over 30 per cent of South Asian adults in the United States — any drug that reliably lowers both weight and blood pressure simultaneously commands attention.
-
-Additional data from the ESSENCE trial highlighted liver health improvements, specifically in patients with metabolic dysfunction-associated steatohepatitis, formerly known as non-alcoholic fatty liver disease. MASH disproportionately affects South Asians: community studies have found prevalence rates exceeding 30 per cent even among lean individuals, driven by insulin resistance and visceral fat patterns specific to the population.
-
-## What This Means for Indian Americans
-
-"These new analyses build on the growing body of clinical evidence for semaglutide, an important medicine that has already been extensively studied not only in obesity but also in cardiovascular disease and MASH," said Andrea Traina, senior medical director for obesity and liver health at Novo Nordisk.
-
-The practical implication is significant. South Asian patients who might have dismissed Wegovy as "just a weight-loss drug" now face a different value proposition: a single weekly injection that simultaneously addresses obesity, sleep apnoea, asthma severity, blood pressure, and fatty liver disease. These are not five separate conditions for the community — they are often five manifestations of the same underlying metabolic dysfunction.
-
-## The Access Problem Remains
-
-None of this matters if patients cannot afford or access the drug. Wegovy's list price in the United States remains above $1,300 per month, and insurance coverage is uneven. Medicare does not cover anti-obesity medications, and many employer plans require extensive prior authorisation. Indian Americans on H-1B visas face additional uncertainty: a job change can mean a change in insurance, which can mean a sudden loss of medication access.
-
-Novo Nordisk's Phase 3 pipeline includes an oral version of semaglutide and next-generation combinations with amylin analogs that could eventually bring costs down. But for now, the gap between what the science promises and what patients can actually get remains the defining challenge.
-
-The data presented this week in New Orleans is unambiguous. Semaglutide is no longer a weight-loss drug that happens to have side benefits. It is a cardiometabolic platform therapy — and for a community that faces the highest burden of exactly those conditions, the science has moved faster than the system designed to deliver it.
-
-*Sources: Novo Nordisk ADA 2026 press release; SELECT, STEP, ESSENCE, and OASIS post hoc analyses presented at ADA 86th Scientific Sessions, New Orleans, June 5-8 2026; Lancet Respiratory Medicine South Asian sleep apnoea prevalence data; American Heart Association hypertension statistics.*""")
-
-    # ================================================================
-    # ARTICLE 2: ESPRIT trial — blood pressure targets
-    # Category: lifestyle-health
-    # ================================================================
-    slug2 = 'esprit-trial-blood-pressure-120-target-south-asian-hypertension-20260607'
-    headline2 = "Targeting 120 Instead of 140 Cut Cardiovascular Deaths by 39 Per Cent. Most South Asians Are Still Aiming Too High."
-    subheadline2 = "The ESPRIT trial tracked 11,255 high-risk adults for three years and found that aggressive blood pressure lowering dramatically reduced heart attacks, strokes, and death — findings that carry outsized relevance for a community where one in three adults has hypertension."
-    body2 = textwrap.dedent("""\
-For decades, the standard treatment target for high blood pressure has been to keep systolic readings below 140 mm Hg. It is a number drilled into medical school curricula, printed on clinic wall charts, and embedded in the muscle memory of family physicians worldwide. A major clinical trial now says that target is not good enough — and for South Asians, who face the world's highest burden of hypertension-related cardiovascular disease, the implications are enormous.
-
-The ESPRIT trial, led by Dr Jing Li at China's National Center for Cardiovascular Diseases, randomised 11,255 adults with high blood pressure and elevated cardiovascular risk into two groups. One received intensive treatment to push systolic blood pressure below 120 mm Hg. The other received standard treatment targeting below 140 mm Hg. Both groups used antihypertensive medications, but the intensive group typically required more drugs at higher doses.
-
-## The Numbers That Matter
-
-After three years, the intensive group showed a 12 per cent reduction in major cardiovascular events including heart attacks and strokes. They were 39 per cent less likely to die from cardiovascular disease. And they were 21 per cent less likely to die from any cause during the study period.
-
-Those are not marginal gains. A 39 per cent reduction in cardiovascular death is the kind of number that rewrites treatment guidelines.
-
-The ESPRIT results align with and reinforce the earlier American SPRINT trial, which found similarly dramatic benefits from targeting 120 mm Hg in a North American population. Together, the two trials now provide robust evidence across both Western and Asian populations that the traditional 140 mm Hg target leaves preventable deaths on the table.
-
-## Why South Asians Cannot Ignore This
-
-Hypertension is not a niche concern for the Indian diaspora. It is the leading risk factor for death. Studies consistently show that over 30 per cent of South Asian adults in the United States, United Kingdom, and Canada have hypertension, and the condition develops earlier and progresses faster than in European-origin populations.
-
-The reasons are partly genetic — South Asians have a higher prevalence of salt-sensitive hypertension and endothelial dysfunction — and partly lifestyle-driven. High sodium intake from traditional cooking methods, limited physical activity, elevated stress from immigration and career pressures, and visceral fat accumulation all contribute.
-
-What makes the ESPRIT data particularly relevant is the population it studied. The average participant was 64 years old. Nearly 39 per cent had diabetes. Many had already experienced a cardiac event. This is a profile that maps closely onto the at-risk segment of the South Asian diaspora: older NRIs with metabolic syndrome who are managing multiple conditions simultaneously.
-
-## The Safety Question
-
-The objection to aggressive blood pressure lowering has always been safety. Doctors worry about dizziness, fainting, falls, and kidney injury — particularly in older patients.
-
-ESPRIT addressed this directly. Fainting occurred slightly more often in the intensive group, but the increase was small: roughly three additional episodes per 1,000 patients. The researchers concluded that the cardiovascular benefits — preventing heart attacks, strokes, and deaths — far outweighed this modest risk.
-
-A secondary analysis published in the Journal of the American College of Cardiology examined stroke outcomes specifically and found that ischaemic stroke risk declined in the intensive arm, with time-dependent benefits emerging after the first year of treatment. This matters for South Asians, who carry elevated stroke risk partly due to the interaction between hypertension and diabetes.
-
-## What NRIs Should Do Now
-
-If you are a South Asian adult over 40 with high blood pressure, the practical question is whether your treatment target should change. The answer, increasingly, is yes — but with caveats.
-
-First, intensive blood pressure lowering requires close monitoring. The ESPRIT participants were seen regularly and their medications adjusted systematically. This is not a set-and-forget approach.
-
-Second, home blood pressure monitoring becomes essential. Office readings can be unreliable, and the ESPRIT protocol relied on careful, repeated measurements. Investing in a validated home blood pressure cuff and tracking readings over weeks gives both patient and physician the data needed to titrate medications safely.
-
-Third, lifestyle interventions remain foundational. The DASH diet — emphasising fruits, vegetables, whole grains, and low sodium — has been shown to lower systolic blood pressure by 8 to 14 mm Hg. Regular aerobic exercise contributes another 5 to 8 mm Hg reduction. These effects are additive with medication and can sometimes mean the difference between two drugs and three.
-
-Fourth, ask your doctor specifically about the 120 mm Hg target. Many physicians still default to 140 mm Hg out of habit or concern about older guidelines. The ESPRIT and SPRINT data now provide strong evidence that the lower target saves lives, and a conversation about whether it is appropriate for your risk profile is warranted.
-
-## The Bigger Picture
-
-Hypertension kills more people in India and among the Indian diaspora than any other single condition. It is cheap to diagnose, inexpensive to treat, and responds well to lifestyle changes. Yet it remains poorly controlled across the community — partly because it causes no symptoms until it causes a catastrophe, and partly because treatment targets have been too generous for too long.
-
-The ESPRIT trial is one of the largest and most rigorous blood pressure studies ever conducted. Its message is straightforward: for high-risk patients, 140 is not low enough. 120 saves more lives. And for South Asians, whose baseline cardiovascular risk already sits at the top of the global distribution, that 20-point difference may be the single most important number in preventive medicine.
-
-*Sources: ESPRIT trial (Li J et al., American Heart Association Scientific Sessions); JACC secondary stroke analysis; SPRINT trial (NEJM); American Heart Association hypertension prevalence data; MASALA study (Northwestern University) South Asian cardiovascular risk data.*""")
-
-    # ================================================================
-    # ARTICLE 3: India stagflation risk — Nuvama warning
-    # Category: markets-finance
-    # ================================================================
-    slug3 = 'india-stagflation-risk-nuvama-rbi-rate-hike-iran-oil-monsoon-nri-20260607'
-    headline3 = "India Faces Its First Stagflation Scare in a Decade. Here Is What NRIs Need to Understand."
-    subheadline3 = "Nuvama Institutional Equities warns that the Iran oil shock combined with a potentially weak monsoon could push India into a rare growth-inflation trap — forcing the RBI to hike rates just as the economy slows."
-    body3 = textwrap.dedent("""\
-The word stagflation has not featured in serious Indian economic commentary since the early 2010s. That just changed. Nuvama Institutional Equities, one of India's most closely watched brokerages, published a GDP analysis report this week warning that the convergence of the Iran oil shock and a potentially subpar monsoon raises the risk of a stagflationary environment in FY27 — a scenario where growth slows and inflation simultaneously rises, leaving policymakers with no good options.
-
-For NRIs with money in India — through NRE deposits, mutual funds, real estate, or family businesses — this is the kind of macro risk that can erode returns across every asset class at once.
-
-## What Nuvama Is Actually Saying
-
-The brokerage's core argument is straightforward but alarming. India's economy closed FY26 with strong 7.7 per cent GDP growth, accelerating from 7.1 per cent in FY25. The March quarter came in at an impressive 7.8 per cent. By most measures, the economy was firing on all cylinders.
-
-But FY27 faces a fundamentally different operating environment. The Iran war has kept crude oil prices elevated near $95 per barrel since February, with the Strait of Hormuz — which carried nearly 20 per cent of global oil supply before the conflict — effectively shut. India imports over 85 per cent of its crude oil. Every $10 per barrel increase in oil prices widens the current account deficit by roughly 0.4 per cent of GDP and adds 30 to 40 basis points to inflation.
-
-Compounding the oil shock is the monsoon outlook. Early forecasts suggest the 2026 monsoon may underperform, which would push food prices higher just as input cost inflation from oil is feeding through the supply chain. Food and fuel together account for nearly half of India's consumer price basket.
-
-Nuvama has revised its FY27 real GDP growth forecast down to 6 to 6.5 per cent, while expecting nominal GDP growth to accelerate to 11 to 12 per cent — a classic stagflationary signature where prices are rising faster than real output.
-
-## The RBI's Impossible Position
-
-The Reserve Bank of India held its repo rate unchanged at 5.25 per cent on Friday, the third consecutive policy meeting without action. Governor Sanjay Malhotra called it a "data-dependent" pause, but the underlying numbers are tightening in ways that may force the central bank's hand.
-
-The RBI raised its FY27 inflation projection to 5.1 per cent from 4.6 per cent and trimmed its GDP growth forecast to 6.6 per cent from 6.9 per cent. More concerning is the quarterly trajectory: the central bank expects CPI inflation to reach 5.9 per cent in both Q3 and Q4 of FY27, pushing uncomfortably close to the upper tolerance band of 6 per cent.
-
-Meanwhile, the rupee has fallen over 6 per cent against the dollar in 2026, making it the worst-performing currency among major emerging markets. The RBI's foreign exchange reserves, while still substantial at roughly $590 billion, have been drawn down to defend the currency.
-
-Capital Economics, a London-based research firm, has gone further than most: it projects the RBI will be forced to hike rates by a cumulative 75 basis points to 6 per cent by the end of 2026. ICRA's chief economist Aditi Nayar has not ruled out a hike as early as Q3 FY27.
-
-If hikes materialise, they would reverse the easing cycle that began with a 25 basis point cut in December 2025 — a whiplash reversal that would catch many investors off guard.
-
-## What This Means for NRI Money
-
-The implications cascade across asset classes.
-
-**NRE and NRO fixed deposits**: If the RBI hikes rates, Indian bank deposit rates will rise. NRIs currently earning 7 to 7.5 per cent on NRE fixed deposits could see rates climb to 8 per cent or higher. For those with dollar income, this becomes increasingly attractive — but only if the rupee stabilises. A depreciating rupee can wipe out the interest rate advantage when funds are eventually repatriated.
-
-**Equity markets**: The Sensex and Nifty fell for a second consecutive week, weighed down by global headwinds and RBI caution. Rate hikes are unambiguously negative for equity valuations, particularly for the rate-sensitive sectors — real estate, banking, auto, and consumer discretionary — that make up a significant portion of Indian indices. Nuvama's stagflation scenario implies a period where corporate earnings growth slows while borrowing costs rise, a combination that compresses price-to-earnings multiples.
-
-**Real estate**: For NRIs who have been buying property in India or considering it, rising rates mean higher home loan costs. The affordable housing segment, which has driven much of India's real estate recovery since 2021, is most sensitive to rate changes. A 75 basis point hike would add roughly Rs 1,200 to the monthly EMI on a Rs 50 lakh home loan.
-
-**Remittances**: NRIs sending money to family in India face a secondary hit. The weaker rupee means each dollar buys more rupees — a positive in the short term for remittance recipients. But if inflation in India is running at 5 to 6 per cent, the purchasing power of those rupees erodes quickly. The net benefit of a weaker rupee is much smaller than it appears on the exchange rate screen.
-
-## The Rupee Defence Package
-
-To its credit, the RBI did not sit idle. Alongside the rate hold, it announced measures to attract dollar inflows: scrapping capital gains tax for foreign portfolio investors in government bonds, sweetening FCNR(B) deposit schemes for NRIs, and signalling willingness to intervene in currency markets to prevent disorderly moves.
-
-The bond tax exemption, in particular, is designed to draw foreign institutional money into India's sovereign debt market — a market where foreign participation has historically been low despite India's investment-grade rating. If successful, the measure could support the rupee and lower government borrowing costs simultaneously.
-
-The rupee strengthened 0.6 per cent to 95.24 against the dollar after the announcements, suggesting some immediate market confidence. But structural relief depends on whether oil prices retreat — which in turn depends on whether the US-Iran ceasefire talks produce a durable agreement.
-
-## What to Watch
-
-Three variables will determine whether India's stagflation scare becomes reality or fades into the background.
-
-First, the monsoon. June and July rainfall patterns will set the trajectory for food prices through the rest of FY27. A below-normal monsoon would confirm the worst-case scenario for inflation.
-
-Second, crude oil. If the Strait of Hormuz reopens on a sustained basis, Brent could drop to $75 to $80 per barrel, easing India's import bill and inflation outlook. If the conflict drags on or escalates, $100 or above becomes the base case.
-
-Third, the Fed. The US Federal Reserve's own rate path influences global capital flows. If the Fed hikes — rate hike odds after the latest jobs report sit at 70 per cent — capital will flow out of emerging markets toward dollar assets, adding more pressure on the rupee and forcing the RBI's hand.
-
-For NRI investors, the message from Nuvama's report is not to panic but to stress-test. The assumptions that underpinned portfolio allocation six months ago — stable oil, falling rates, strong rupee — have all shifted. Portfolios that were built for an easing cycle need to be reviewed for a tightening one.
-
-*Sources: Nuvama Institutional Equities GDP analysis report (June 2026); RBI MPC statement June 5 2026; Reuters; Capital Economics India outlook; ICRA monetary policy commentary; Livemint; The Hindu Business Line.*""")
-
-    # ──────────────────────────────────────────────────────────────────
-    # Assemble articles metadata
-    # ──────────────────────────────────────────────────────────────────
-    articles_data = [
-        {
-            'slug': slug1,
-            'headline': headline1,
-            'subheadline': subheadline1,
-            'body': body1,
-            'category': 'lifestyle-health',
-            'vertical': 'lifestyle-health',
-            'person_name': None,
-            'image_queries': ['semaglutide injection obesity', 'Wegovy weight loss medication', 'obesity treatment medicine'],
-            'image_caption': 'A semaglutide injection pen used for weight management and cardiometabolic health',
-            'sources': json.dumps([
-                'Novo Nordisk ADA 2026 press release',
-                'SELECT, STEP, ESSENCE, OASIS clinical trials post hoc analyses',
-                'ADA 86th Scientific Sessions June 2026',
-                'Lancet Respiratory Medicine'
-            ]),
-        },
-        {
-            'slug': slug2,
-            'headline': headline2,
-            'subheadline': subheadline2,
-            'body': body2,
-            'category': 'lifestyle-health',
-            'vertical': 'lifestyle-health',
-            'person_name': None,
-            'image_queries': ['blood pressure measurement hypertension', 'sphygmomanometer doctor checking blood pressure', 'cardiovascular health monitoring'],
-            'image_caption': 'A clinician measuring blood pressure — the ESPRIT trial suggests lower targets save more lives',
-            'sources': json.dumps([
-                'ESPRIT trial (Li J et al., AHA Scientific Sessions)',
-                'JACC secondary stroke analysis',
-                'SPRINT trial (New England Journal of Medicine)',
-                'MASALA study Northwestern University'
-            ]),
-        },
-        {
-            'slug': slug3,
-            'headline': headline3,
-            'subheadline': subheadline3,
-            'body': body3,
-            'category': 'markets-finance',
-            'vertical': 'markets-finance',
-            'person_name': 'Sanjay Malhotra',  # RBI Governor
-            'image_queries': ['Reserve Bank of India building', 'RBI monetary policy Mumbai', 'Indian economy inflation'],
-            'image_caption': 'RBI Governor Sanjay Malhotra held rates steady at 5.25 per cent but faces mounting pressure to hike',
-            'sources': json.dumps([
-                'Nuvama Institutional Equities GDP analysis report June 2026',
-                'RBI MPC statement June 5 2026',
-                'Reuters',
-                'Capital Economics India outlook',
-                'Livemint'
-            ]),
-        },
-    ]
-
-    published = 0
-    for art in articles_data:
-        print(f'\n{"="*60}')
-        print(f'Processing: {art["headline"][:60]}...')
-        print(f'Category: {art["category"]}')
-
-        # Source image
-        person = art.pop('person_name')
-        queries = art.pop('image_queries')
-        caption = art.pop('image_caption')
-
-        img_url, img_attr = source_image(person, queries, art['slug'])
-
-        payload = {
-            'headline': art['headline'],
-            'subheadline': art['subheadline'],
-            'body': art['body'],
-            'slug': art['slug'],
-            'category': art['category'],
-            'vertical': art['vertical'],
-            'status': 'published',
-            'published_at': now.isoformat(),
-            'sources': art['sources'],
-            'is_editorial': False,
-            'image_url': img_url,
-            'image_caption': caption if img_url else None,
-            'image_attribution': img_attr,
-        }
-
-        art_id = insert_article(payload)
-        if art_id:
-            published += 1
-
-    print(f'\n{"="*60}')
-    print(f'Done. Published {published}/{len(articles_data)} articles.')
-    return published
-
-
-if __name__ == '__main__':
-    n = build_articles()
-    sys.exit(0 if n > 0 else 1)
+print(f"\n{'='*60}")
+print("Done! All articles inserted with status='review'")
