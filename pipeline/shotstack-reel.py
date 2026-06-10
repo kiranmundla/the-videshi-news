@@ -490,6 +490,103 @@ def validate_timeline_json(edit_json):
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
+# QA FEEDBACK LOOP — log issues, learn from them, improve future prompts
+# ═══════════════════════════════════════════════════════════════════════════════
+
+QA_FEEDBACK_LOG = BUILD_DIR / "qa-feedback-log.jsonl"
+
+
+def log_qa_feedback(article, score, passed, issues, severity="LOW", notes=""):
+    """Append QA result to persistent feedback log. Every run — pass or fail — gets logged."""
+    entry = {
+        "timestamp": datetime.now().isoformat(),
+        "article_id": article.get("id", ""),
+        "slug": article.get("slug", "")[:80],
+        "category": article.get("category", ""),
+        "score": score,
+        "passed": passed,
+        "issues": issues,
+        "severity": severity,
+        "notes": notes,
+    }
+    try:
+        with open(QA_FEEDBACK_LOG, "a") as f:
+            f.write(json.dumps(entry) + "\n")
+    except Exception as e:
+        print(f"  ⚠️ Failed to log QA feedback: {e}")
+
+
+def load_qa_lessons(max_entries=50):
+    """Read recent QA feedback and extract recurring issues as lessons.
+    Returns a string of lessons to inject into script/timeline prompts.
+    """
+    if not QA_FEEDBACK_LOG.exists():
+        return ""
+
+    entries = []
+    try:
+        with open(QA_FEEDBACK_LOG) as f:
+            for line in f:
+                line = line.strip()
+                if line:
+                    entries.append(json.loads(line))
+    except Exception:
+        return ""
+
+    if not entries:
+        return ""
+
+    # Take last N entries
+    recent = entries[-max_entries:]
+
+    # Collect all issues from entries that scored < 8 (even passes with issues)
+    all_issues = []
+    for e in recent:
+        for issue in e.get("issues", []):
+            all_issues.append(issue.lower().strip())
+
+    if not all_issues:
+        return ""
+
+    # Count issue frequency
+    from collections import Counter
+    issue_counts = Counter(all_issues)
+    # Only surface issues that appeared 2+ times (real patterns, not one-offs)
+    recurring = [(issue, count) for issue, count in issue_counts.most_common(10) if count >= 2]
+
+    if not recurring:
+        # If no recurring patterns yet, surface top issues from failures only
+        fail_issues = []
+        for e in recent:
+            if not e.get("passed", True):
+                fail_issues.extend(e.get("issues", []))
+        if fail_issues:
+            recurring = [(i, 1) for i in Counter(fail_issues).most_common(5)]
+
+    if not recurring:
+        return ""
+
+    # Build lessons string
+    lessons = []
+    for issue, count in recurring:
+        lessons.append(f"- {issue} (seen {count}x)")
+
+    # Stats
+    total = len(recent)
+    passed = sum(1 for e in recent if e.get("passed", False))
+    avg_score = sum(e.get("score", 0) for e in recent) / total if total else 0
+    failed = total - passed
+
+    header = f"QA STATS (last {total} reels): {passed} passed, {failed} failed, avg score {avg_score:.1f}/10"
+    body = "\n".join(lessons)
+
+    return f"""{header}
+
+RECURRING QA ISSUES — avoid these in your script and storyboard:
+{body}"""
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
 # TTS — HeyGen Indian Anchorwoman Voice
 # ═══════════════════════════════════════════════════════════════════════════════
 
@@ -1724,6 +1821,7 @@ Return JSON only:
         # Non-negotiable failures override everything
         if non_neg:
             print(f"  🚫 NON-NEGOTIABLE FAILURES: {'; '.join(non_neg)}")
+            log_qa_feedback(article, score=0, passed=False, issues=non_neg, severity="CRITICAL", notes=f"Non-negotiable: {'; '.join(non_neg)}")
             return False, 0, f"Non-negotiable: {'; '.join(non_neg)}"
 
         # Derive pass/fail from score — never trust LLM's string verdict
@@ -1731,6 +1829,9 @@ Return JSON only:
 
         if issues:
             print(f"  📋 Issues ({severity}): {'; '.join(issues)}")
+
+        # Log every QA result — the feedback loop reads this
+        log_qa_feedback(article, score=score, passed=passed, issues=issues, severity=severity, notes=notes)
 
         return passed, score, notes
 
