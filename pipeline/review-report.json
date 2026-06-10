@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-10T14:15:28.059056+00:00",
+  "timestamp": "2026-06-10T14:45:12.056024+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 5,
+    "pass": 2,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,86 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "f30dc6eb-f099-4e0a-bd4d-4c81552a6a91",
-      "headline": "Trump Just Cut Tariffs on India to 18 Per Cent. Here Is What Every NRI Needs to Know Before the July 9 Deadline.",
-      "slug": "india-us-trade-deal-tariffs-18-percent-bilateral-agreement-nri-impact-july-2026-20260610",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 8,
-          "issue": "The image features Trump and Modi, which is relevant to the article's topic on tariffs and trade relations."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses tariffs and trade impacts that directly affect NRIs, particularly in terms of remittances and cultural practices like gold buying."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more specific examples of how the tariff changes will impact NRIs financially.",
-          "Add a section summarizing key takeaways for NRIs to make the information more digestible."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "eb4f5bfb-362d-4c6c-93db-f9d8799a94e7",
-      "headline": "Ultra-Processed Foods Raised Cancer Survivors' Death Risk by 60 Per Cent. The Tobacco Playbook That Built the Industry Is Now Public.",
-      "slug": "ultra-processed-food-cancer-death-risk-tobacco-marketing-south-asian-diet-20260610",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "1edf639b-c68f-4027-b121-32db85a93370",
-            "headline": "Eating Processed Food Every Day Raised Dementia Risk by 58 P"
-          }
-        ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image depicts food but does not specifically relate to ultra-processed foods or cancer."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the topic of ultra-processed foods to the Indian diaspora, particularly in the context of changing dietary habits."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more specific examples of ultra-processed foods popular in Indian American households.",
-          "Consider adding a quote from a health expert or a statistic that highlights the impact of UPF on health in the diaspora."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "1fec7ea9-fc26-4357-877b-f3f1dfc5867e",
-      "headline": "Half of America No Longer Trusts the CDC. For South Asians Who Grew Up Trusting Public Health, the Ground Just Shifted.",
-      "slug": "cdc-trust-collapse-harvard-poll-south-asian-diaspora-vaccines-health-guidance-20260610",
+      "id": "8e698fca-8bb1-401d-ae35-9b2f2944c623",
+      "headline": "Twenty-Four Indian Sailors Were on a Tanker Hit by a Suspected US Missile Off Oman. Two Are Missing.",
+      "slug": "indian-sailors-tanker-settebello-us-missile-strike-oman-strait-hormuz-20260610",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -106,13 +29,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the topic of public health trust to the experiences of South Asians in America, highlighting their unique perspective."
+          "note": "The article effectively highlights the impact of the incident on the Indian diaspora, particularly regarding the safety of Indian nationals and the economic implications."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more specific examples or anecdotes from South Asian families to further illustrate the impact of the CDC's loss of trust.",
-          "Include expert opinions or quotes from public health officials to provide additional context and authority to the claims made."
+          "Include quotes from Indian officials or experts to enhance credibility and provide more depth.",
+          "Add a brief background on the Settebello and its significance to Indian maritime interests."
         ],
         "verdict": "pass"
       },
@@ -124,9 +47,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "e0507f4d-0ef3-4002-a65a-33888c54a850",
-      "headline": "Malaysia Just Rolled Out Its Biggest Tourism Push in a Decade \u2014 and Indians Don't Even Need a Visa",
-      "slug": "malaysia-visit-2026-visa-free-indians-nri-travel-20260610",
+      "id": "d69074f7-c2bc-4c65-a465-f8dc588d25d7",
+      "headline": "Indian Banks Are Offering NRIs Up to 7% on Dollar Deposits. Here Is What Changed.",
+      "slug": "indian-banks-nri-deposit-rates-7-percent-rbi-hedging-subsidy-dollar-20260610",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -142,49 +65,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively highlights the benefits of Malaysia's tourism campaign for Indian travelers, particularly NRIs, making it relevant and engaging."
+          "note": "The article effectively addresses NRIs by discussing the benefits of new deposit rates and the RBI's initiatives aimed at attracting diaspora investments."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more specific examples of cultural experiences that might appeal to Indian tourists.",
-          "Add quotes or testimonials from travelers or tourism officials to enhance credibility."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "269d1870-c571-458e-8ee0-cf0acff19366",
-      "headline": "India Just Issued Its Most Sweeping Middle East Travel Advisory \u2014 and Nine Million Gulf NRIs Are in the Crosshairs",
-      "slug": "india-mea-middle-east-travel-advisory-gulf-nri-20260610",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively highlights the impact of the travel advisory on the Indian diaspora in the Gulf, making it highly relevant to NRI readers."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from Indian nationals in the Gulf to provide personal perspectives on the advisory.",
-          "Include a section on how the advisory may affect travel plans for NRIs returning to India."
+          "Consider adding quotes from NRI investors or financial experts to enhance credibility and relatability.",
+          "Include a brief comparison of the new rates with historical rates to provide context for NRIs."
         ],
         "verdict": "pass"
       },
