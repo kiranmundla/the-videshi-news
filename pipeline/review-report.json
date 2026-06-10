@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-10T12:48:15.770542+00:00",
+  "timestamp": "2026-06-10T13:15:21.694961+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
-    "flag": 2,
+    "pass": 2,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,71 +11,47 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "53b6e2de-bfdc-482a-8fcc-10e0b7e14b57",
-      "headline": "India Has Mapped 197 Districts That Could Starve if the Monsoon Fails. The Government Has a Plan.",
-      "slug": "india-197-districts-el-nino-vulnerable-godzilla-monsoon-contingency-plan-20260610",
+      "id": "6e2308fa-bfea-4905-b736-07b54c053c05",
+      "headline": "Manoj Bajpayee Just Became the Man Who Saved India from Bankruptcy. Governor Arrives Thursday.",
+      "slug": "governor-manoj-bajpayee-rbi-1991-crisis-india-gold-reserves-chinmay-mandlekar-nri-20260610",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 3,
-          "issue": "irrelevant"
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses the impact of agricultural crises on the Indian diaspora, particularly regarding remittances."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the hero image with one that is more relevant to agriculture or the monsoon season.",
-          "Expand on the diaspora angle by including specific examples of how NRIs are affected by agricultural issues in India."
+        "duplicate_images": [
+          {
+            "article_id": "c75424b6-08da-4bd8-a40a-a760bf1e0442",
+            "headline": "Manoj Bajpayee Is Playing the Man Who Saved India From Bankr"
+          }
         ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "4c37e843-29d8-41b9-a094-9e321ee61955",
-      "headline": "The EB-2 Green Card Queue for Indians Just Slammed Shut. It Won't Reopen Until October.",
-      "slug": "eb2-india-green-card-unavailable-october-2026-retrogression-h1b-professionals",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://youtube.com/watch?v=Mvm0bRY0Qyg",
+            "problem": "irrelevant",
+            "explanation": "The YouTube link does not provide relevant content related to the film or the economic crisis discussed in the article."
+          }
+        ],
         "image_match": {
-          "score": 6,
-          "issue": "The image of the USCIS headquarters is somewhat relevant but does not directly relate to the EB-2 Green Card topic."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively highlights the struggles of Indian professionals in the U.S. immigration system, making it highly relevant to the diaspora."
+          "note": "The article effectively connects the film's subject matter to the experiences and significance for the Indian diaspora, particularly those who emigrated during the economic reforms."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that directly represents the EB-2 Green Card process or Indian professionals.",
-          "Add a section discussing potential future changes or advocacy efforts that could impact the EB-2 category for Indian applicants."
+          "Replace the irrelevant YouTube link with a more relevant embed, such as a trailer or promotional video for the film.",
+          "Consider adding more quotes or insights from the cast or crew to enhance the depth of the article."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
+        "Removed irrelevant embed: https://youtube.com/watch?v=Mvm0bRY0Qyg",
         "promoted to published"
       ],
       "revised": false,
@@ -83,9 +59,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "3ddf1910-92f0-42d9-9012-681c08c8269f",
-      "headline": "India's Oberoi Rajgarh Palace Just Made the World's 16 Most Beautiful Hotels \u2014 and NRIs Should Take Note",
-      "slug": "oberoi-rajgarh-palace-worlds-most-beautiful-hotel-nri-20260610",
+      "id": "41da8d86-bfbb-40d5-99a1-c933812f211e",
+      "headline": "Welcome to the Jungle Drops Its Trailer Tomorrow. Fifteen Stars. One Franchise. Pure Chaos.",
+      "slug": "welcome-to-the-jungle-trailer-tomorrow-akshay-suniel-paresh-comedy-franchise-nri-20260610",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -93,25 +69,39 @@
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/DZZMeBcT6_c/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not appear to be directly related to the film or its promotional content."
+          },
+          {
+            "url": "https://youtube.com/watch?v=CEfuDgQeROQ",
+            "problem": "duplicate",
+            "explanation": "The YouTube link is mentioned in the body but is not necessary to include as it is not a unique source of information."
+          }
+        ],
         "image_match": {
-          "score": 3,
-          "issue": "The image does not match the article's topic about the Oberoi Rajgarh Palace."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects the luxury experience at the Oberoi Rajgarh Palace to the interests of NRIs, emphasizing cultural heritage and meaningful travel."
+          "note": "The article effectively connects the film's appeal to NRI audiences by discussing its cultural significance and nostalgic value."
         },
         "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the hero image with one that features the Oberoi Rajgarh Palace to better align with the article's content.",
-          "Consider adding more quotes or testimonials from NRIs to further enhance the diaspora connection."
+        "duplicate_embeds": [
+          "https://youtube.com/watch?v=CEfuDgQeROQ"
         ],
-        "verdict": "flag"
+        "suggestions": [
+          "Remove the irrelevant Instagram link to maintain focus on the film's content.",
+          "Consider providing more context or quotes from the trailer to enhance engagement."
+        ],
+        "verdict": "pass"
       },
       "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/DZZMeBcT6_c/",
         "promoted to published"
       ],
       "revised": false,
