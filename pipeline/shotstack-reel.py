@@ -366,7 +366,7 @@ def generate_tts(text):
 
     result = subprocess.run(
         ["ffmpeg", "-y", "-i", str(wav_path),
-         "-af", "loudnorm=I=-10:TP=-1.0:LRA=11",
+         "-af", "loudnorm=I=-12:TP=-1.0:LRA=11",
          "-codec:a", "libmp3lame", "-q:a", "2", str(mp3_path)],
         capture_output=True, text=True,
     )
@@ -379,7 +379,7 @@ def generate_tts(text):
         print(f"❌ WAV→MP3 conversion failed")
         return None, 0
 
-    print(f"  🎙️ TTS audio: {duration:.1f}s (Kavya voice, normalized to -10 LUFS)")
+    print(f"  🎙️ TTS audio: {duration:.1f}s (Kavya voice, normalized to -12 LUFS)")
     return str(mp3_path), duration
 
 
