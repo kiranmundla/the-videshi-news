@@ -1,15 +1,87 @@
 {
-  "timestamp": "2026-06-10T07:15:39.965708+00:00",
+  "timestamp": "2026-06-10T07:45:26.290240+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
-    "flag": 1,
+    "pass": 3,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
-  "revisions": 1,
+  "revisions": 0,
   "unpublished": 0,
   "articles": [
+    {
+      "id": "ec4ef1f5-de9b-4633-98f2-fd43369dc6c2",
+      "headline": "The World Cup Starts Tomorrow. The Opening Ceremony Starts Ninety Minutes Before That.",
+      "slug": "fifa-world-cup-2026-opening-ceremony-day-one-nri-guide-diaspora",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the World Cup to the Indian diaspora, highlighting players of Indian origin and the significance of the event for Indian Americans."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more quotes or anecdotes from Indian American fans to enhance the emotional connection.",
+          "Include a brief overview of how the Indian diaspora has historically engaged with football to provide context."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "1895fe05-c70f-4353-af92-c5110d187fab",
+      "headline": "Ashwin Watched the Bowling Changes. That Was When He Knew Gill Had Grown.",
+      "slug": "shubman-gill-captaincy-evolution-ashwin-praise-odi-afghanistan-2027-world-cup-nri",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article connects well with NRI fans by referencing the transition of captaincy from Dhoni to Kohli to Rohit, and now to Gill, which resonates with the diaspora's cricketing history."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more quotes or insights from Gill or other players to enhance the narrative.",
+          "Include a brief background on Shubman Gill's journey to captaincy for readers who may not be familiar."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
     {
       "id": "1ce8ed80-1cec-40ea-bf11-096865957f78",
       "headline": "Janhvi Kapoor Is About to Walk Into a Monster Movie. The Director Made Tumbbad.",
@@ -30,54 +102,6 @@
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/p/DZMi_VhCGaF/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post does not relate to Janhvi Kapoor's upcoming role in a creature horror film or the director Rahi Anil Barve."
-          }
-        ],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses the potential impact of the film on international audiences, particularly in the US, UK, and Canada, which connects well with the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the irrelevant Instagram embed with a more relevant one that showcases Janhvi Kapoor or the director Rahi Anil Barve.",
-          "Expand on the diaspora angle by including specific examples of how this film might resonate with NRI audiences."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DZMi_VhCGaF/",
-        "Revised by gpt-4o-mini (777\u2192830 words)"
-      ],
-      "revised": true,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "8c59b822-23f3-45f9-bd29-89bf1ca29e2a",
-      "headline": "Vicky Kaushal Has Blocked 18 Months of His Life for One Film. This Is What Obsession Looks Like.",
-      "slug": "vicky-kaushal-mahavatar-18-months-parashurama-amar-kaushik-shraddha-kapoor-nri-20260610",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "c3cbd60f-c76a-4251-a566-40451840044c",
-            "headline": "Vicky Kaushal Has Blocked 18 Months of His Life for One Role"
-          }
-        ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
         "embed_issues": [],
         "image_match": {
           "score": 9,
@@ -85,14 +109,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article discusses a significant film project that connects with Indian mythology, which may resonate with the diaspora audience interested in cultural narratives."
+          "quality": 8,
+          "note": "The article connects with the diaspora by discussing a significant Bollywood film and its potential impact on the genre, which is of interest to NRI audiences."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes or insights from Vicky Kaushal or Amar Kaushik to enhance the article's depth.",
-          "Add a section discussing the potential impact of this film on the global perception of Indian cinema, especially among NRI audiences."
+          "Include more direct quotes or insights from Janhvi Kapoor or Rahi Anil Barve to enhance the article's depth.",
+          "Add a brief section on the reception of horror films among the diaspora to strengthen the connection."
         ],
         "verdict": "pass"
       },
