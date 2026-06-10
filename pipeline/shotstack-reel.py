@@ -314,16 +314,27 @@ def generate_tts(text):
         print("❌ HeyGen API key not found")
         return None, 0
 
-    # Phonetic hint for TTS — help Seema pronounce "TheVideshi" correctly
+    # Phonetic hint for TTS — help Kavya pronounce "TheVideshi" correctly
     # "Videshi" = विदेशी (vi-they-shi) — soft dental द, pure ए vowel, crisp शी
     tts_text = text.replace("thevideshi", "the Vitheyshi").replace("TheVideshi", "The Vitheyshi").replace("Videshi", "Vitheyshi")
 
-    r = requests.post(
-        "https://api.heygen.com/v3/voices/speech",
-        headers={"X-Api-Key": HEYGEN_KEY, "Content-Type": "application/json"},
-        json={"text": tts_text, "voice_id": TTS_VOICE, "speed": 1.0},
-        timeout=30,
-    )
+    # Retry with increasing timeout — Kavya voice can take longer than Seema
+    for attempt in range(3):
+        try:
+            r = requests.post(
+                "https://api.heygen.com/v3/voices/speech",
+                headers={"X-Api-Key": HEYGEN_KEY, "Content-Type": "application/json"},
+                json={"text": tts_text, "voice_id": TTS_VOICE, "speed": 1.0},
+                timeout=60,
+            )
+            break
+        except requests.exceptions.ReadTimeout:
+            if attempt < 2:
+                print(f"  ⏳ TTS timeout (attempt {attempt+1}/3), retrying...")
+                time.sleep(3)
+            else:
+                print("❌ HeyGen TTS timed out after 3 attempts")
+                return None, 0
 
     if r.status_code != 200:
         print(f"❌ HeyGen TTS failed: {r.status_code} {r.text[:200]}")
