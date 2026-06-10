@@ -234,14 +234,41 @@ HOOK TEXT (shown on screen before voice starts):
 - hook_line1: 3-5 words, ALL CAPS. The "stop scrolling" line.
 - hook_line2: 3-5 words, ALL CAPS. Adds context or intrigue.
 
-IMAGE QUERIES: 4-5 search terms for Pexels stock photos for B-roll. Be specific and visual.
+STORYBOARD: Plan 5 visual scenes that match the narration beat-by-beat.
+Each scene is ONE B-roll image shown for ~5 seconds while the voice plays.
+- Scene 1 = the HOOK background (darkened). Choose something dramatic, cinematic.
+- Scenes 2-5 = the narration beats. Each image must visually match EXACTLY what's being said.
+
+For each scene, provide:
+- "narration": the exact words spoken during that scene (copy from script)
+- "visual": a SPECIFIC, concrete description of the ideal stock photo. Not "Indian economy" — say "close-up of Indian 500 rupee notes fanned out on a dark surface" or "aerial view of Mumbai Marine Drive at sunset". Be visual and precise.
+- "search_queries": TWO Pexels search queries, each 3-5 words. Make them different angles on the same visual. First query = most specific, second = broader fallback.
+
+CRITICAL RULES FOR SEARCH QUERIES:
+- NEVER use celebrity, politician, or public figure names — Pexels has NO images of specific people. Instead describe the VISUAL CONCEPT: "Bollywood actor action scene" not "Sunny Deol".
+- ALWAYS include "Indian" or "India" in queries when the story is about India, Bollywood, Indian culture, or the diaspora. "Indian cinema hall" not "cinema hall". "Indian currency notes" not "currency notes".
+- Every scene's image must be DIFFERENT and RELEVANT. A story about remittances needs rupee notes, bank transfers, families — NOT steel factories or oil tankers.
+- Think STOCK PHOTO: what would a photographer actually shoot? "crowded Indian railway platform" works. "Rahul Gandhi speaking at rally" does not exist on Pexels.
 
 Return JSON only:
 {{
   "script": "the spoken narration",
-  "image_queries": ["specific visual query 1", "query 2", "query 3", "query 4"],
   "hook_line1": "BOLD HOOK LINE",
-  "hook_line2": "CONTEXT LINE"
+  "hook_line2": "CONTEXT LINE",
+  "storyboard": [
+    {{
+      "scene": 1,
+      "narration": "first ~15 words...",
+      "visual": "specific visual description for this beat",
+      "search_queries": ["specific query 1", "broader fallback query"]
+    }},
+    {{
+      "scene": 2,
+      "narration": "next ~15 words...",
+      "visual": "specific visual description",
+      "search_queries": ["specific query 1", "broader fallback query"]
+    }}
+  ]
 }}"""
 
     r = requests.post(
@@ -514,8 +541,8 @@ def is_url_downloadable(url):
     return True
 
 
-def pexels_search(pexels_key, query, count=1):
-    """Search Pexels, return list of image URLs. Uses curl (403 with urllib)."""
+def pexels_search(pexels_key, query, count=3):
+    """Search Pexels, return list of dicts with url + photo_id. Uses curl (403 with urllib)."""
     try:
         result = subprocess.run(
             ["curl", "-s", "-H", f"Authorization: {pexels_key}",
@@ -525,19 +552,127 @@ def pexels_search(pexels_key, query, count=1):
         if result.returncode != 0:
             return []
         data = json.loads(result.stdout)
-        urls = []
+        results = []
         for photo in data.get("photos", []):
             url = photo.get("src", {}).get("large2x") or photo.get("src", {}).get("large")
             if url:
-                urls.append(url)
-        return urls
+                results.append({
+                    "url": url,
+                    "photo_id": str(photo.get("id", "")),
+                    "alt": photo.get("alt", ""),
+                    "photographer": photo.get("photographer", ""),
+                })
+        return results
     except Exception as e:
         print(f"  ⚠️ Pexels: {e}")
         return []
 
 
+# ── Used-image dedup log ──
+USED_IMAGES_LOG = BUILD_DIR / "used-images.json"
+
+def load_used_images():
+    """Load set of previously-used Pexels photo IDs."""
+    try:
+        if USED_IMAGES_LOG.exists():
+            data = json.loads(USED_IMAGES_LOG.read_text())
+            return set(data.get("photo_ids", []))
+    except Exception:
+        pass
+    return set()
+
+def save_used_image(photo_id):
+    """Append a Pexels photo ID to the dedup log."""
+    used = load_used_images()
+    used.add(str(photo_id))
+    # Keep last 200 to avoid blocking everything over time
+    id_list = sorted(used)[-200:]
+    USED_IMAGES_LOG.write_text(json.dumps({"photo_ids": id_list}, indent=2))
+
+
+def source_storyboard_images(article, storyboard, count=5):
+    """Source B-roll images scene-by-scene from the storyboard.
+    Returns list of image URLs matched to each scene in order."""
+    urls = []
+    used_ids = load_used_images()
+    used_in_this_reel = set()  # No duplicates within same reel
+
+    # Get article hero and related article images as a fallback pool
+    hero = article.get("image_url", "")
+    fallback_pool = []
+    if is_url_downloadable(hero):
+        fallback_pool.append(hero)
+
+    category = article.get("category", "")
+    article_id = article.get("id", "")
+    if category:
+        r = requests.get(
+            f"{SB_URL}/rest/v1/p2_articles",
+            params={
+                "status": "eq.published",
+                "category": f"eq.{category}",
+                "id": f"neq.{article_id}",
+                "image_url": "neq.null",
+                "order": "published_at.desc",
+                "limit": 15,
+                "select": "id,image_url",
+            },
+            headers=SB_HEADERS,
+            timeout=15,
+        )
+        if r.status_code == 200:
+            for a in r.json():
+                img = a.get("image_url", "")
+                if is_url_downloadable(img) and img not in fallback_pool:
+                    fallback_pool.append(img)
+
+    pexels_env = load_env("~/workspace/.env.pexels")
+    pexels_key = pexels_env.get("PEXELS_API_KEY", "")
+
+    scenes = storyboard if storyboard else []
+    for i, scene in enumerate(scenes[:count]):
+        found = False
+        queries = scene.get("search_queries", [])
+        visual_desc = scene.get("visual", "")
+
+        if pexels_key and queries:
+            # Search each query, collect candidates
+            candidates = []
+            for query in queries[:2]:
+                results = pexels_search(pexels_key, query, count=3)
+                candidates.extend(results)
+
+            # Pick first candidate not already used (globally or in this reel)
+            for cand in candidates:
+                pid = cand["photo_id"]
+                if pid not in used_ids and pid not in used_in_this_reel and cand["url"] not in urls:
+                    urls.append(cand["url"])
+                    used_in_this_reel.add(pid)
+                    save_used_image(pid)
+                    print(f"  🎬 Scene {i+1}: {visual_desc[:60]}  →  Pexels #{pid}")
+                    found = True
+                    break
+
+        # Fallback to related article images
+        if not found and fallback_pool:
+            fb = fallback_pool.pop(0)
+            urls.append(fb)
+            print(f"  🎬 Scene {i+1}: {visual_desc[:60]}  →  fallback (article image)")
+            found = True
+
+        if not found:
+            print(f"  ⚠️ Scene {i+1}: no image found for '{visual_desc[:50]}'")
+
+    # If storyboard gave fewer than needed, pad with remaining fallbacks
+    while len(urls) < count and fallback_pool:
+        urls.append(fallback_pool.pop(0))
+
+    print(f"  🖼️ Sourced {len(urls)} B-roll images via storyboard (dedup active)")
+    return urls
+
+
 def source_image_urls(article, image_queries, count=5):
-    """Collect B-roll image URLs. No local download — Shotstack fetches them."""
+    """Legacy fallback — used when script has image_queries instead of storyboard."""
     urls = []
 
     # 1. Article hero image
@@ -1358,9 +1493,14 @@ def run_anchor_reel(article, dry_run=False, use_production=False):
     if not voice_url:
         return False
 
-    # 4. Source B-roll images
+    # 4. Source B-roll images (storyboard-driven or legacy fallback)
     print("\n🖼️ Step 4: Sourcing B-roll images...")
-    image_urls = source_image_urls(article, script_data.get("image_queries", []))
+    storyboard = script_data.get("storyboard", [])
+    if storyboard:
+        image_urls = source_storyboard_images(article, storyboard)
+    else:
+        print("  ⚠️ No storyboard in script — falling back to legacy image_queries")
+        image_urls = source_image_urls(article, script_data.get("image_queries", []))
     if not image_urls:
         print("❌ No images found")
         return False
