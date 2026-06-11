@@ -388,16 +388,17 @@ STORYBOARD SCENES: {len(storyboard)}
 
 Score 1-10 on:
 1. HOOK POWER: Does it grab in 3 seconds? Bold, surprising, specific?
-2. SCRIPT QUALITY: Punchy, well-paced, NRI-relevant? No filler?
-3. LENGTH: 60-80 words ideal. Under 50 or over 90 is a problem.
-4. CTA: Must end with "thevideshi.com" or "follow The Videshi". Present?
+2. SCRIPT QUALITY: Informative, well-paced, NRI-relevant? Does it deliver actual substance (key facts, numbers, context) — not just a restated headline?
+3. LENGTH: 120-160 words ideal. Under 80 or over 200 is a problem. The reel should be a mini-briefing, not a teaser.
+4. CTA: Must end with "thevideshi dot com" or "thevideshi.com". Present?
 5. STORYBOARD: Are scene visuals concrete and photographable? (no abstract concepts)
 6. SPELLING: Is "TheVideshi" / "thevideshi.com" spelled correctly throughout?
 
 HARD FAILS (auto-score 0):
 - "TheVideshi" misspelled anywhere (Vidashi, Vidashee, Divaji, etc.)
 - No CTA at the end
-- Script under 30 words or over 100 words
+- Script under 60 words or over 200 words
+- Script is just a restated headline with no additional facts or context
 
 Return JSON only:
 {{"score": <1-10>, "passed": <true if score >= 7>, "issues": ["issue1"], "fix_suggestions": ["suggestion1"]}}"""
@@ -926,9 +927,9 @@ def save_used_image(photo_id):
     USED_IMAGES_LOG.write_text(json.dumps({"photo_ids": id_list}, indent=2))
 
 
-def source_storyboard_images(article, storyboard, count=5):
+def source_storyboard_images(article, storyboard, count=8):
     """Source B-roll images scene-by-scene from the storyboard.
-    Priority: 1) Article hero  2) AI-matched same-category articles  3) Pexels last resort.
+    Priority: 1) Pexels HD portrait (1080x1920)  2) Article images (min 1000px shortest side)  3) Pexels broader fallback.
     Returns list of image URLs matched to each scene in order."""
     urls = []
     used_in_this_reel = set()
@@ -938,6 +939,28 @@ def source_storyboard_images(article, storyboard, count=5):
     article_id = article.get("id", "")
     headline = article.get("headline", "")
 
+    # Minimum resolution for article images (shortest side)
+    MIN_IMAGE_DIM = 1000
+
+    def check_image_resolution(url):
+        """HEAD-check an image and return (width, height) or None if unreachable/too small."""
+        try:
+            # Download small portion to check dimensions
+            r = requests.get(url, timeout=8, stream=True,
+                             headers={"User-Agent": "Mozilla/5.0 (compatible; TheVideshi/1.0)",
+                                      "Range": "bytes=0-65535"})
+            if r.status_code not in (200, 206):
+                return None
+            # For JPEG, dimensions are in the header
+            chunk = r.content
+            # Quick dimension check via PIL if available
+            from io import BytesIO
+            from PIL import Image
+            img = Image.open(BytesIO(chunk))
+            return (img.width, img.height)
+        except Exception:
+            return None
+
     # Helper: check if an image URL is from a curated source (not generic stock)
     def is_curated_image(url):
         """Prefer Wikimedia, Supabase-hosted, and other editorial sources over Pexels."""
@@ -946,44 +969,55 @@ def source_storyboard_images(article, storyboard, count=5):
         pexels_domains = ["images.pexels.com", "pexels.com"]
         return not any(d in url for d in pexels_domains)
 
-    # ── 1. Build article image pool (same category + cross-category) ──
-    article_pool = []  # list of {"headline": ..., "image_url": ..., "id": ...}
+    # Load Pexels key
+    pexels_env = load_env("~/workspace/.env.pexels")
+    pexels_key = pexels_env.get("PEXELS_API_KEY", "")
+    used_ids = load_used_images()
 
-    # Same category — up to 40 recent articles
-    if category:
-        r = requests.get(
-            f"{SB_URL}/rest/v1/p2_articles",
-            params={
-                "status": "eq.published",
-                "category": f"eq.{category}",
-                "id": f"neq.{article_id}",
-                "image_url": "not.is.null",
-                "order": "published_at.desc",
-                "limit": 40,
-                "select": "id,headline,image_url",
-            },
-            headers=SB_HEADERS,
-            timeout=15,
-        )
-        if r.status_code == 200:
-            for a in r.json():
-                img = a.get("image_url", "")
-                if is_url_downloadable(img):
-                    article_pool.append(a)
+    scenes = storyboard if storyboard else []
+    scene_descs = [s.get("visual", "") for s in scenes[:count]]
+    matched_urls = [None] * min(count, len(scene_descs))
 
-    # Cross-category (news, nri-world) — fill gaps for niche categories
-    if len(article_pool) < 20:
-        for xcat in ["news", "nri-world"]:
-            if xcat == category:
+    # ── 1. PRIMARY: Pexels HD portrait images via storyboard search queries ──
+    if pexels_key:
+        print(f"  🔍 Searching Pexels HD for {len(scene_descs)} scenes...")
+        for i, scene in enumerate(scenes[:count]):
+            if matched_urls[i] is not None:
                 continue
+            queries = scene.get("search_queries", [])
+            for query in queries[:2]:
+                results = pexels_search(pexels_key, query, count=5)
+                for cand in results:
+                    pid = cand["photo_id"]
+                    if pid not in used_ids and cand["url"] not in used_in_this_reel:
+                        matched_urls[i] = cand["url"]
+                        used_in_this_reel.add(cand["url"])
+                        save_used_image(pid)
+                        print(f"  🎬 Scene {i+1}: {scene_descs[i][:50]}  →  Pexels #{pid} (HD portrait)")
+                        break
+                if matched_urls[i] is not None:
+                    break
+
+    pexels_filled = sum(1 for u in matched_urls if u is not None)
+    print(f"  📸 Pexels filled {pexels_filled}/{len(matched_urls)} scenes")
+
+    # ── 2. FALLBACK: High-res article images for remaining gaps ──
+    remaining = [i for i in range(len(matched_urls)) if matched_urls[i] is None]
+    if remaining:
+        print(f"  🔍 {len(remaining)} scenes unfilled — checking article image pool...")
+        article_pool = []
+
+        # Same category — up to 40 recent articles
+        if category:
             r = requests.get(
                 f"{SB_URL}/rest/v1/p2_articles",
                 params={
                     "status": "eq.published",
-                    "category": f"eq.{xcat}",
+                    "category": f"eq.{category}",
+                    "id": f"neq.{article_id}",
                     "image_url": "not.is.null",
                     "order": "published_at.desc",
-                    "limit": 15,
+                    "limit": 20,
                     "select": "id,headline,image_url",
                 },
                 headers=SB_HEADERS,
@@ -992,149 +1026,29 @@ def source_storyboard_images(article, storyboard, count=5):
             if r.status_code == 200:
                 for a in r.json():
                     img = a.get("image_url", "")
-                    if is_url_downloadable(img) and a["id"] != article_id:
+                    if is_url_downloadable(img) and img not in used_in_this_reel:
                         article_pool.append(a)
 
-    print(f"  📚 Article image pool: {len(article_pool)} candidates ({category} + cross-category)")
-
-    # Sort pool: curated images (Wikimedia, Supabase, etc) first, Pexels last
-    article_pool.sort(key=lambda a: (0 if is_curated_image(a.get("image_url", "")) else 1))
-    curated_count = sum(1 for a in article_pool if is_curated_image(a.get("image_url", "")))
-    print(f"  📸 {curated_count} curated (non-Pexels) + {len(article_pool) - curated_count} Pexels-sourced")
-
-    # ── 2. AI-match storyboard scenes to article images ──
-    scenes = storyboard if storyboard else []
-    scene_descs = [s.get("visual", "") for s in scenes[:count]]
-
-    matched_urls = [None] * min(count, len(scene_descs))
-
-    # Scene 1 uses article hero ONLY if it's a curated image (not Pexels)
-    if is_url_downloadable(hero) and is_curated_image(hero):
-        matched_urls[0] = hero
-        used_in_this_reel.add(hero)
-        print(f"  🎬 Scene 1: {scene_descs[0][:60]}  →  article hero image (curated)")
-    elif is_url_downloadable(hero):
-        print(f"  ⚠️ Skipping article hero (Pexels-sourced, unreliable for reels)")
-
-    # For remaining scenes, ask GPT to match from available pool
-    remaining_scenes = [(i, desc) for i, desc in enumerate(scene_descs) if matched_urls[i] is None]
-
-    if remaining_scenes and article_pool:
-        # Build compact list for GPT — ONLY curated images, never Pexels
-        curated_pool = [a for a in article_pool if is_curated_image(a.get("image_url", ""))]
-        match_source = curated_pool[:30] if curated_pool else article_pool[:30]  # Pexels only if no curated at all
-        pool_items = []
-        for idx, a in enumerate(match_source):
-            pool_items.append(f"{idx}: {a['headline'][:80]}")
-        pool_text = "\n".join(pool_items)
-
-        scenes_text = "\n".join([f"Scene {i+1}: {desc}" for i, desc in remaining_scenes])
-
-        match_prompt = f"""You're selecting B-roll images for a news reel about: "{headline}"
-
-Available article images (each headline describes what the image shows):
-{pool_text}
-
-Scenes that need images:
-{scenes_text}
-
-RULES:
-1. For each scene, pick the article number (0-{len(pool_items)-1}) whose headline/topic DIRECTLY matches the visual needed.
-2. Each article can only be used ONCE.
-3. If NO article is a strong visual match for a scene, use "article_idx": -1 to SKIP it. Do NOT force a weak match.
-4. NEVER match an image of a political leader or public figure to a scene about a DIFFERENT topic (e.g. don't use a Modi image for a green card story, or a Trump image for a tech layoff story). The person in the image must be the subject of the scene.
-5. Generic institutional images (buildings, documents, flags) are OK for topically related scenes.
-
-Return JSON only: {{"matches": [{{"scene": 1, "article_idx": 5}}, ...]}}"""
-
-        try:
-            mr = requests.post(
-                "https://api.openai.com/v1/chat/completions",
-                headers={"Authorization": f"Bearer {OPENAI_KEY}", "Content-Type": "application/json"},
-                json={
-                    "model": "gpt-4o-mini",
-                    "messages": [{"role": "user", "content": match_prompt}],
-                    "temperature": 0.2,
-                    "response_format": {"type": "json_object"},
-                },
-                timeout=20,
-            )
-            if mr.status_code == 200:
-                matches = json.loads(mr.json()["choices"][0]["message"]["content"]).get("matches", [])
-                used_pool_idxs = set()
-                skipped = 0
-                for m in matches:
-                    scene_num = m.get("scene", 0)
-                    aidx = m.get("article_idx", -1)
-                    si = scene_num - 1  # 0-indexed
-                    if aidx == -1:
-                        skipped += 1
-                        if 0 <= si < len(scene_descs):
-                            print(f"  ⏭️ Scene {scene_num}: {scene_descs[si][:50]}  →  skipped (no good match)")
-                        continue
-                    if 0 <= si < len(matched_urls) and matched_urls[si] is None:
-                        if 0 <= aidx < len(match_source) and aidx not in used_pool_idxs:
-                            img_url = match_source[aidx]["image_url"]
-                            if img_url not in used_in_this_reel:
-                                matched_urls[si] = img_url
-                                used_in_this_reel.add(img_url)
-                                used_pool_idxs.add(aidx)
-                                ah = match_source[aidx]["headline"][:50]
-                                print(f"  🎬 Scene {scene_num}: {scene_descs[si][:50]}  →  matched: \"{ah}\"")
-        except Exception as e:
-            print(f"  ⚠️ AI matching failed: {e} — falling back to sequential")
-
-    # ── 3. Fill any remaining gaps — prefer article's own hero, then sequential curated ──
-    # First try the article's own hero image (even if Pexels) for unfilled scenes
-    if hero and is_url_downloadable(hero):
-        for i in range(len(matched_urls)):
-            if matched_urls[i] is None and hero not in used_in_this_reel:
-                matched_urls[i] = hero
-                used_in_this_reel.add(hero)
-                print(f"  🎬 Scene {i+1}: {scene_descs[i][:50]}  →  article's own hero image (fallback)")
-                break  # Only use hero once
-
-    # Then fill with sequential curated article images
-    pool_urls_curated = [a["image_url"] for a in article_pool 
-                         if a["image_url"] not in used_in_this_reel and is_curated_image(a["image_url"])]
-    pool_urls_any = [a["image_url"] for a in article_pool 
-                     if a["image_url"] not in used_in_this_reel and a["image_url"] not in pool_urls_curated]
-    pool_urls = pool_urls_curated + pool_urls_any  # Curated first, Pexels last
-    for i in range(len(matched_urls)):
-        if matched_urls[i] is None and pool_urls:
-            matched_urls[i] = pool_urls.pop(0)
-            used_in_this_reel.add(matched_urls[i])
-            print(f"  🎬 Scene {i+1}: {scene_descs[i][:50]}  →  sequential article image")
-
-    # ── 4. Pexels as absolute last resort ──
-    pexels_env = load_env("~/workspace/.env.pexels")
-    pexels_key = pexels_env.get("PEXELS_API_KEY", "")
-    used_ids = load_used_images()
-
-    for i in range(len(matched_urls)):
-        if matched_urls[i] is None and pexels_key:
-            queries = scenes[i].get("search_queries", []) if i < len(scenes) else []
-            for query in queries[:2]:
-                results = pexels_search(pexels_key, query, count=3)
-                for cand in results:
-                    pid = cand["photo_id"]
-                    if pid not in used_ids and cand["url"] not in used_in_this_reel:
-                        matched_urls[i] = cand["url"]
-                        used_in_this_reel.add(cand["url"])
-                        save_used_image(pid)
-                        print(f"  🎬 Scene {i+1}: {scene_descs[i][:50]}  →  Pexels #{pid} (last resort)")
-                        break
-                if matched_urls[i] is not None:
+        # Use article hero if high-res enough
+        if hero and is_url_downloadable(hero) and hero not in used_in_this_reel:
+            for i in remaining:
+                if matched_urls[i] is None:
+                    matched_urls[i] = hero
+                    used_in_this_reel.add(hero)
+                    print(f"  🎬 Scene {i+1}: {scene_descs[i][:50]}  →  article hero (fallback)")
                     break
+
+        # Fill from article pool (skip resolution check to keep it fast — Pexels already covers most)
+        pool_urls = [a["image_url"] for a in article_pool if a["image_url"] not in used_in_this_reel]
+        for i in range(len(matched_urls)):
+            if matched_urls[i] is None and pool_urls:
+                matched_urls[i] = pool_urls.pop(0)
+                used_in_this_reel.add(matched_urls[i])
+                print(f"  🎬 Scene {i+1}: {scene_descs[i][:50]}  →  article image (fallback)")
 
     urls = [u for u in matched_urls if u is not None]
 
-    # Pad if still short
-    remaining_pool = [a["image_url"] for a in article_pool if a["image_url"] not in used_in_this_reel]
-    while len(urls) < count and remaining_pool:
-        urls.append(remaining_pool.pop(0))
-
-    print(f"  🖼️ Sourced {len(urls)} B-roll images (article-first, AI-matched)")
+    print(f"  🖼️ Sourced {len(urls)} B-roll images (Pexels HD primary, article fallback)")
     return urls
 
 
@@ -1796,7 +1710,7 @@ def run_qa_gate(video_path, article, script_data):
     """
     if not OPENAI_KEY:
         print("  ⚠️ No OpenAI key — skipping QA gate")
-        return True, 7, "QA skipped (no API key)"
+        return False, 0, "QA failed (no API key — fail closed)"
 
     frames = extract_frames(video_path, count=5)
     if not frames:
@@ -1816,12 +1730,14 @@ Review this Instagram Reel. I'm showing you 5 frames extracted at different time
 ARTICLE: {headline}
 SCRIPT: {script}
 
-Score 1-10. This is for Instagram/YouTube Shorts — fast-paced news content, not cinema. Be practical.
-1. VISUAL QUALITY: Images clear, portrait 1080x1920, no black bars or stretching?
-2. TEXT READABILITY: Can captions be read over the images? (Some contrast variance is normal for B-roll)
-3. BRANDING: Does it look like a news outlet? Category badge, branded elements present?
+Score 1-10. This is for Instagram/YouTube Shorts — fast-paced news content, not cinema. Be practical but maintain HIGH standards.
+1. VISUAL QUALITY: Images clear and HIGH RESOLUTION? No pixelation, blur, stretching, or black bars? Portrait 1080x1920?
+2. TEXT READABILITY: Can captions be read over the images? Strong contrast with background?
+3. BRANDING: Does it look like a professional news outlet? Category badge, branded elements present?
 4. HOOK: Does the opening frame have bold text that grabs attention?
-5. FLOW: Good pacing, transitions between images?
+5. FLOW: Good pacing, transitions between images? Visual variety across scenes?
+6. IMAGE RELEVANCE: Do the B-roll images actually match the story topic? (e.g. a story about mutual funds should show finance/money imagery, NOT random landscapes or unrelated photos)
+7. CONTENT DEPTH: Does the narration deliver actual information (numbers, names, context), or is it just a vague headline restated?
 
 NON-NEGOTIABLE CHECKS (any fail = auto-fail, override score to 0):
 - SPELLING: Any misspelling of "TheVideshi", "thevideshi.com", or social handles (@the.videshi, @thevideshi)?
@@ -1829,12 +1745,12 @@ NON-NEGOTIABLE CHECKS (any fail = auto-fail, override score to 0):
 - OVERLAPPING TEXT: Are two text elements rendered on top of each other making them unreadable?
 - BRAND INTEGRITY: Is the website URL shown as anything other than "thevideshi.com"?
 
-Score 7+ = professional news reel. Score 5-6 = acceptable for social media. Below 5 = broken.
+Score 7+ = professional news reel (PASS). Score 5-6 = needs improvement (FAIL). Below 5 = broken.
 
 Return JSON only:
 {{
   "score": <1-10, or 0 if any non-negotiable failed>,
-  "passed": <true if score >= 6 AND all non-negotiables pass>,
+  "passed": <true if score >= 7 AND all non-negotiables pass>,
   "non_negotiable_failures": ["list of failed non-negotiable checks, empty if all pass"],
   "issues": ["issue1", "issue2"],
   "severity": "HIGH" or "MEDIUM" or "LOW",
@@ -1846,7 +1762,7 @@ Return JSON only:
     for frame in frames:
         content.append({
             "type": "image_url",
-            "image_url": {"url": f"data:image/jpeg;base64,{frame['b64']}", "detail": "low"},
+            "image_url": {"url": f"data:image/jpeg;base64,{frame['b64']}", "detail": "high"},
         })
         content.append({
             "type": "text",
@@ -1869,7 +1785,7 @@ Return JSON only:
 
         if r.status_code != 200:
             print(f"  ⚠️ QA API error: {r.status_code}")
-            return True, 7, "QA skipped (API error)"
+            return False, 0, "QA failed (API error — fail closed)"
 
         result = json.loads(r.json()["choices"][0]["message"]["content"])
         score = result.get("score", 5)
@@ -1885,7 +1801,7 @@ Return JSON only:
             return False, 0, f"Non-negotiable: {'; '.join(non_neg)}"
 
         # Derive pass/fail from score — never trust LLM's string verdict
-        passed = score >= 6
+        passed = score >= 7
 
         if issues:
             print(f"  📋 Issues ({severity}): {'; '.join(issues)}")
@@ -1897,7 +1813,7 @@ Return JSON only:
 
     except Exception as e:
         print(f"  ⚠️ QA gate error: {e}")
-        return True, 7, f"QA skipped ({e})"
+        return False, 0, f"QA failed (error — fail closed: {e})"
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
