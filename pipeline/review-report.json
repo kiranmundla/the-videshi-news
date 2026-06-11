@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-11T00:15:38.252623+00:00",
+  "timestamp": "2026-06-11T00:45:10.747470+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 6,
-    "flag": 2,
+    "pass": 1,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,45 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "b7057229-a76d-4496-b207-3885ebbeb640",
-      "headline": "One Hundred and Thirty Thousand Tech Jobs Gone \u2014 and the H-1B Clock Is Ticking",
-      "slug": "tech-layoffs-2026-h1b-indian-workers-sixty-day-clock-20260611",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image depicts a tech environment but lacks a direct connection to the article's focus on job losses and H-1B visa issues."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively highlights the impact of job losses on Indian nationals holding H-1B visas, making it highly relevant to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that directly reflects the themes of job loss and immigration challenges.",
-          "Add a quote or perspective from an NRI or immigration expert to enhance the diaspora connection."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "b5034b6a-5750-43cc-8f12-b7e9b0d738c4",
-      "headline": "Referees Denied, Teams Relocated, Fans Turned Away \u2014 Welcome to the World Cup",
-      "slug": "world-cup-visa-chaos-immigration-exclusion-20260611",
+      "id": "378220a5-fc11-4e79-88c5-50a6f1b41b51",
+      "headline": "Federal Court Strikes Down Trump's $100K H-1B Fee as GOP Lawmaker Moves to Codify It",
+      "slug": "h1b-100k-fee-struck-down-protect-act-2026-06-10",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -65,243 +29,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article connects the World Cup's immigration issues to Indian Americans, making it relevant for the diaspora."
+          "note": "The article effectively connects the ruling and proposed legislation to the Indian diaspora, highlighting the impact on Indian professionals."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes from Indian Americans or organizations to strengthen the diaspora connection.",
-          "Add a brief section on how Indian fans are specifically affected by the visa issues."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "525bd689-8373-4fea-bee2-2c2ff5a84feb",
-      "headline": "AI Stocks Stumble as Inflation and Geopolitics Collide: What Indian Investors Need to Know",
-      "slug": "ai-stocks-selloff-inflation-nri-investors-20260610",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "fa3c1ca9-c60f-47a2-aa0c-853176d0e640",
-            "headline": "Micron's Gujarat Fab Just Got Its Biggest Validation. NVIDIA"
-          }
-        ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 4,
-          "issue": "irrelevant"
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the stock market situation to Indian American investors and Indian-origin executives."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that reflects the AI and semiconductor theme of the article.",
-          "Add more specific examples of how the geopolitical situation directly impacts Indian investors."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "400bfd7a-9406-49be-8bf7-1792d34c91eb",
-      "headline": "Oracle's AI-Fuelled Earnings Test: What a $19 Billion Quarter Means for 46,000 Indian Employees",
-      "slug": "oracle-q4-earnings-india-workforce-20260610",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects Oracle's layoffs and growth to the Indian workforce, particularly those in the US on H-1B visas."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more direct quotes from Indian employees or experts to enhance the diaspora perspective.",
-          "Add a section on how Oracle's performance impacts the broader Indian tech ecosystem."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "35ab42d1-aa82-494b-93a5-ae51caf2ab80",
-      "headline": "Google Gemini Goes Dark: Outage Exposes How Deeply Indian Tech Workers Depend on AI",
-      "slug": "google-gemini-outage-indian-tech-workers-20260610",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "c614e23a-33ed-4d07-935b-4f6e63311d01",
-            "headline": "Sundar Pichai Is Paying Elon Musk $920 Million a Month to Re"
-          },
-          {
-            "article_id": "8212dd4f-5523-4112-b656-b20811f3ee40",
-            "headline": "Sundar Pichai Just Raised $80 Billion. Warren Buffett Wrote "
-          }
-        ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the outage to the pressures faced by Indian tech workers in the US, making it relevant to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes or perspectives from more Indian tech workers to enhance relatability.",
-          "Include statistics or data on the impact of AI outages on productivity to strengthen the argument."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "15d873e5-8d31-44da-a0b5-f65f9b9cc034",
-      "headline": "A 28-Year-Old From Telangana Was Delivering Pizzas in Philadelphia. He Never Made It Back to His Car.",
-      "slug": "telangana-man-killed-pizza-delivery-philadelphia-anshul-20260611",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the specific incident or the subject of pizza delivery."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the tragic incident to broader issues faced by the Indian diaspora, particularly in relation to gig economy vulnerabilities."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that reflects the subject of pizza delivery or the specific incident.",
-          "Include quotes or reactions from the Indian community in Philadelphia to enhance the emotional impact and community perspective."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "e8559b27-db1b-422c-a630-9ce2fbc3a2e6",
-      "headline": "From the Lincoln Memorial to Times Square, India Is Turning America's Most Famous Landmarks Into Yoga Studios",
-      "slug": "international-yoga-day-2026-lincoln-memorial-times-square-20260611",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 3,
-          "issue": "The image does not match the article's focus on American landmarks and yoga events."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the yoga events to the Indian diaspora's cultural pride and visibility in America."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the hero image with one that depicts yoga events at American landmarks to better align with the article's theme.",
-          "Consider adding quotes or perspectives from participants in the yoga events to enhance the personal connection to the diaspora."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "9ba1437e-dc4a-48b0-a79c-30e211f06190",
-      "headline": "Ninety-Six Unicorns and Counting. Indian Immigrants Are Building More Billion-Dollar Startups Than Any Other Group in America.",
-      "slug": "indian-immigrants-96-unicorn-startups-nfap-report-20260611",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the topic of Indian entrepreneurs or startups."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the achievements of Indian immigrants in the startup ecosystem to the NRI community, highlighting their contributions and challenges."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that depicts Indian entrepreneurs or startup culture.",
-          "Add quotes or anecdotes from Indian entrepreneurs to enhance the personal connection to the diaspora."
+          "Consider adding more quotes from diaspora leaders to enhance the perspective.",
+          "Include a brief explanation of the H-1B visa process for readers unfamiliar with it."
         ],
         "verdict": "pass"
       },
