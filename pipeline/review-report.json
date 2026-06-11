@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-11T00:45:10.747470+00:00",
+  "timestamp": "2026-06-11T01:15:20.250393+00:00",
   "mode": "fix",
   "stats": {
     "pass": 1,
-    "flag": 0,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,12 +11,66 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "378220a5-fc11-4e79-88c5-50a6f1b41b51",
-      "headline": "Federal Court Strikes Down Trump's $100K H-1B Fee as GOP Lawmaker Moves to Codify It",
-      "slug": "h1b-100k-fee-struck-down-protect-act-2026-06-10",
+      "id": "0e2f0d6c-4ec1-4c35-aa12-63a1bab302b3",
+      "headline": "Dharma Just Locked Tiger Shroff, Janhvi Kapoor, and Lakshya Into a Revenge Love Story. Summer 2027 Has Its First Fight.",
+      "slug": "lag-ja-gale-tiger-shroff-janhvi-kapoor-lakshya-dharma-revenge-action-may-2027-nri-20260611",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/DZXSN7PDJVx/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not appear to be directly related to the film or its themes."
+          },
+          {
+            "url": "https://www.instagram.com/p/DZMi_VhCGaF/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not appear to be directly related to the film or its themes."
+          }
+        ],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the film's release strategy to NRI audiences, highlighting the significance of summer releases for diaspora families."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the irrelevant Instagram links with more relevant content that ties directly to the film or its themes.",
+          "Consider adding quotes or insights from the director or actors to enhance the depth of the article."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/DZXSN7PDJVx/",
+        "Removed irrelevant embed: https://www.instagram.com/p/DZMi_VhCGaF/",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "5b0186f9-6618-4440-bd04-4eea88423fe2",
+      "headline": "Sushmita Sen, Radhika Apte, and Ananya Panday Were Just Spotted Together. Nobody Will Say Why.",
+      "slug": "sushmita-sen-radhika-apte-ananya-panday-shoojit-sircar-secret-project-nri-20260611",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "9214c1b5-a45f-4638-b4fd-f14b57ac0458",
+            "headline": "Sushmita Sen, Radhika Apte and Ananya Panday Were Just Spott"
+          }
+        ],
         "broken_embeds": []
       },
       "llm_review": {
@@ -29,13 +83,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the ruling and proposed legislation to the Indian diaspora, highlighting the impact on Indian professionals."
+          "note": "The article effectively connects the excitement around the three actresses to the nostalgia and interests of NRI audiences."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more quotes from diaspora leaders to enhance the perspective.",
-          "Include a brief explanation of the H-1B visa process for readers unfamiliar with it."
+          "Consider adding more direct quotes or insights from the actresses or Shoojit Sircar to enhance credibility.",
+          "Include a brief background on the significance of the actresses' careers to further engage readers."
         ],
         "verdict": "pass"
       },
