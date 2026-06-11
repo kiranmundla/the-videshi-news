@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-11T02:15:16.586097+00:00",
+  "timestamp": "2026-06-11T02:45:32.642574+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 6,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,45 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "b8f7ddae-93f9-4444-bc50-09134d674e62",
-      "headline": "Marriott, IHG, and Hilton Are Racing to Build Hotels Across India \u2014 and NRIs Are the Prize",
-      "slug": "hotel-chains-india-boom-kimpton-adani-nri-weddings-20260611",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the hotel chains mentioned in the article."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the hotel developments to the needs and interests of NRIs, particularly in terms of travel and wedding accommodations."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more specific examples of how these hotel developments will directly benefit NRIs.",
-          "Consider adding quotes or insights from industry experts to enhance credibility."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "6a08a2f8-d726-44b8-9b95-55ba42121615",
-      "headline": "IndiGo Just Axed Eight International Routes in One Week \u2014 and NRI Summer Plans Are Collateral Damage",
-      "slug": "indigo-suspends-routes-manchester-asia-nri-summer-20260611",
+      "id": "d8aeaa6b-3867-4531-aab0-d2130477688a",
+      "headline": "India's 15-Month Inflation Streak Is Over. Economists Say Prices Just Hit the RBI's Red Line.",
+      "slug": "india-inflation-crosses-4-percent-fifteen-month-streak-ends-fuel-food-20260611",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -65,13 +29,193 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively discusses the impact of route cancellations on NRIs, making it relevant to the diaspora audience."
+          "note": "The article effectively connects the inflation issue to the NRI community, discussing the impact on remittances and investments."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes from NRI travelers or experts to enhance the personal connection.",
-          "Add a brief section on alternative travel options for NRIs affected by the route cancellations."
+          "Consider adding more data or examples of how inflation specifically affects different regions in India to enhance relatability.",
+          "Include quotes or insights from more economists or financial experts to provide a broader perspective on the inflation issue."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "3f712b7b-62d2-4ca3-a308-fc155459ebb0",
+      "headline": "India's Retail Investors Just Blinked. Equity Fund Inflows Crashed 40% in May.",
+      "slug": "india-equity-mutual-fund-inflows-crash-40-percent-may-bernstein-sip-warning-20260611",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 8,
+          "issue": "The image is relevant to the article's topic about equity mutual fund inflows."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article addresses NRIs and OCIs who invest in Indian mutual funds, providing relevant insights."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more specific examples or quotes from NRI investors to enhance the diaspora connection.",
+          "Add a brief section on potential strategies for NRIs in light of the current market conditions."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "14fe18b9-7620-4ecd-81b4-e2e9bc53f809",
+      "headline": "India Has Frozen Starlink's Final Clearance. The Iran War Made the Decision.",
+      "slug": "india-freezes-starlink-approval-iran-war-security-clearance-20260611",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the Starlink delay to the personal experiences of NRIs with family in India, highlighting the impact on communication and access to services."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more direct quotes from Indian officials or experts to enhance credibility.",
+          "Include a brief overview of Starlink's technology and its potential benefits for rural India to provide more context."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "59409046-b5c9-49d8-b2f7-0325702cf652",
+      "headline": "India\u2019s Mutual Fund Inflows Just Crashed 40 Per Cent. The Retail Investor Is Still Not Blinking.",
+      "slug": "india-mutual-fund-equity-inflows-40-percent-drop-may-sip-resilient-nri-20260611",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to mutual funds or the financial market, but it is a generic representation of finance."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article provides insights relevant to NRI investors, particularly regarding SIPs and market resilience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that directly represents mutual funds or financial markets.",
+          "Expand on the implications for NRI investors in more detail to enhance the diaspora angle."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "d68fef01-3c04-4d45-bb10-36753e6c4a27",
+      "headline": "America\u2019s Loneliness Epidemic Just Got Worse. For the Diaspora, It Never Really Got Better.",
+      "slug": "apa-loneliness-epidemic-2026-anxiety-south-asian-diaspora-mental-health-20260611",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image depicts a solitary figure, which aligns with the theme of loneliness discussed in the article, but it lacks a direct connection to the diaspora aspect."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively addresses the unique challenges of loneliness faced by the South Asian diaspora, making it highly relevant to NRI readers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including more specific examples or anecdotes from the diaspora to enhance relatability.",
+          "Add a section on potential community initiatives or resources available to combat loneliness among the diaspora."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "03b43444-49bc-4f81-862a-cea7e4e57535",
+      "headline": "A Personalised Cancer Vaccine Just Kept Melanoma Away for Five Years. The Technology Could Reach South Asians Next.",
+      "slug": "mrna-cancer-vaccine-melanoma-five-year-asco-moderna-merck-south-asian-diaspora-20260611",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to cancer or vaccines, but is visually appealing."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses melanoma rates among South Asians, making a relevant connection to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that directly relates to cancer research or treatment for better alignment with the article's topic.",
+          "Expand on the implications of the technology for South Asians to enhance the diaspora angle."
         ],
         "verdict": "pass"
       },
