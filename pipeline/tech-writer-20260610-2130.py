@@ -24,7 +24,7 @@ articles = [
     # ── Article 1: Google Gemini Outage ──────────────────────────────
     {
         "id": str(uuid.uuid4()),
-        "title": "Google Gemini Goes Dark: Outage Exposes How Deeply Indian Tech Workers Depend on AI",
+        "headline": "Google Gemini Goes Dark: Outage Exposes How Deeply Indian Tech Workers Depend on AI",
         "subheadline": "The chatbot's sudden downtime left thousands of Indian-origin developers, analysts, and students scrambling for workarounds across US time zones",
         "slug": "google-gemini-outage-indian-tech-workers-20260610",
         "category": "technology",
@@ -77,7 +77,7 @@ For the Indian diaspora's technology workforce, the lesson is both practical and
     # ── Article 2: Oracle Q4 Earnings ────────────────────────────────
     {
         "id": str(uuid.uuid4()),
-        "title": "Oracle's AI-Fuelled Earnings Test: What a $19 Billion Quarter Means for 46,000 Indian Employees",
+        "headline": "Oracle's AI-Fuelled Earnings Test: What a $19 Billion Quarter Means for 46,000 Indian Employees",
         "subheadline": "As Oracle reports Q4 results, its massive India workforce watches for signals on whether cloud-driven growth will offset the sting of recent layoffs",
         "slug": "oracle-q4-earnings-india-workforce-20260610",
         "category": "technology",
@@ -128,7 +128,7 @@ Tonight's numbers will offer a clue, even if the full answer takes years to arri
     # ── Article 3: AI Sell-Off ───────────────────────────────────────
     {
         "id": str(uuid.uuid4()),
-        "title": "AI Stocks Stumble as Inflation and Geopolitics Collide: What Indian Investors Need to Know",
+        "headline": "AI Stocks Stumble as Inflation and Geopolitics Collide: What Indian Investors Need to Know",
         "subheadline": "Super Micro's $7 billion fundraise, a CPI shock, and Middle East tensions conspire to rattle the chip trade that many NRI portfolios are overweight in",
         "slug": "ai-stocks-selloff-inflation-nri-investors-20260610",
         "category": "technology",
@@ -188,10 +188,10 @@ for a in articles:
     if resp.status_code in (200, 201):
         data = resp.json()
         row = data[0] if isinstance(data, list) else data
-        results.append({"title": a["title"], "slug": a["slug"], "id": row.get("id", a["id"]), "status": "inserted"})
+        results.append({"headline": a["headline"], "slug": a["slug"], "id": row.get("id", a["id"]), "status": "inserted"})
         print(f"✅ {a['slug']}")
     else:
-        results.append({"title": a["title"], "slug": a["slug"], "status": f"❌ {resp.status_code}: {resp.text[:200]}"})
+        results.append({"headline": a["headline"], "slug": a["slug"], "status": f"❌ {resp.status_code}: {resp.text[:200]}"})
         print(f"❌ {a['slug']}: {resp.status_code} — {resp.text[:200]}")
 
 print("\n" + "=" * 60)
