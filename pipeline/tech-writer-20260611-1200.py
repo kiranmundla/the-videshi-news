@@ -371,7 +371,7 @@ Huang may eventually find that a trip to Capitol Hill is less disruptive than th
         "image_caption": image_caption,
         "image_attribution": img_attr,
         "is_editorial": False,
-        "tags": json.dumps(["Jensen Huang", "NVIDIA", "Senate", "Elizabeth Warren", "AI chips", "China", "export controls", "semiconductors"]),
+        "tags": ["Jensen Huang", "NVIDIA", "Senate", "Elizabeth Warren", "AI chips", "China", "export controls", "semiconductors"],
         "score_total": 82
     }
     return insert_article(article)

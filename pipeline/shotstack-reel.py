@@ -497,8 +497,8 @@ def validate_timeline_json(edit_json):
 
     # Check total duration is reasonable (15s - 120s for a reel)
     total_duration = 0
-    if tracks:
-        for clip in tracks[0].get("clips", []):
+    for track in tracks:
+        for clip in track.get("clips", []):
             try:
                 clip_start = float(clip.get("start", 0))
                 clip_length = clip.get("length", 0)
@@ -691,6 +691,18 @@ def generate_tts(text):
     if result.returncode != 0:
         print(f"❌ WAV→MP3 conversion failed")
         return None, 0
+
+    # Get actual duration from ffprobe (HeyGen API sometimes returns centiseconds not seconds)
+    try:
+        probe = subprocess.run(
+            ["ffprobe", "-v", "quiet", "-show_entries", "format=duration",
+             "-of", "default=noprint_wrappers=1:nokey=1", str(mp3_path)],
+            capture_output=True, text=True, timeout=10,
+        )
+        if probe.returncode == 0 and probe.stdout.strip():
+            duration = float(probe.stdout.strip())
+    except Exception:
+        pass  # Fall back to HeyGen's duration if ffprobe fails
 
     print(f"  🎙️ TTS audio: {duration:.1f}s (Indian Anchorwoman voice, normalized to -11 LUFS)")
     return str(mp3_path), duration
