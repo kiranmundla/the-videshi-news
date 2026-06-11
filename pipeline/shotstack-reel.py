@@ -628,12 +628,9 @@ def generate_tts(text):
     # "Videshi" = विदेशी (vi-they-shi) — soft dental द, pure ए vowel, crisp शी
     tts_text = text.replace("thevideshi", "the Vitheyshi").replace("TheVideshi", "The Vitheyshi").replace("Videshi", "Vitheyshi")
 
-    # Convert to SSML — add pauses between sentences for natural pacing
-    # Split on sentence endings and add 400ms breaks
-    import re as _re
-    sentences = _re.split(r'(?<=[.!?])\s+', tts_text.strip())
-    ssml_body = (' <break time="400ms"/> ').join(sentences)
-    ssml_text = f'<speak>{ssml_body}</speak>'
+    # HeyGen SSML <break> tags cause massively inflated audio (bug confirmed 2026-06-11).
+    # Use plain text instead — HeyGen's natural prosody handles sentence pauses well.
+    plain_text = tts_text.strip()
 
     # Retry with increasing timeout
     for attempt in range(3):
@@ -641,7 +638,7 @@ def generate_tts(text):
             r = requests.post(
                 f"https://api.heygen.com/v2/voices/{TTS_VOICE}/preview",
                 headers={"X-Api-Key": HEYGEN_KEY, "Content-Type": "application/json"},
-                json={"text": ssml_text, "voice_id": TTS_VOICE, "text_type": "ssml"},
+                json={"text": plain_text, "voice_id": TTS_VOICE, "text_type": "text"},
                 timeout=60,
             )
             break
@@ -703,6 +700,11 @@ def generate_tts(text):
             duration = float(probe.stdout.strip())
     except Exception:
         pass  # Fall back to HeyGen's duration if ffprobe fails
+
+    # Sanity check: TTS for a 120-160 word script should be 30-90 seconds max
+    if duration > 120:
+        print(f"  ❌ TTS duration {duration:.1f}s is way too long — likely HeyGen API bug. Aborting.")
+        return None, 0
 
     print(f"  🎙️ TTS audio: {duration:.1f}s (Indian Anchorwoman voice, normalized to -11 LUFS)")
     return str(mp3_path), duration
