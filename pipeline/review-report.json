@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-11T14:45:24.758625+00:00",
+  "timestamp": "2026-06-11T15:15:27.212811+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 0,
-    "flag": 3,
+    "pass": 3,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,78 +11,33 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "b82a9faa-a098-485d-9176-b87a0d068982",
-      "headline": "Three Indian Sailors Are Dead. India Says the US Navy Has Struck Three Ships With Indian Crews This Week.",
-      "slug": "three-indian-sailors-dead-us-navy-strikes-three-tankers-settebello-jalveer-blockade-20260611",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "aa6abcf5-79f0-4cbf-91c2-485e4d80b215",
-            "headline": "Iran Just Hit US Bases in Jordan, Kuwait and Bahrain. India "
-          },
-          {
-            "article_id": "f1c91156-e273-47b9-b0fe-f7377830b2cc",
-            "headline": "The US and Iran Say a Deal Is Days Away. India Needs It More"
-          }
-        ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 4,
-          "issue": "The image does not directly relate to the specific incident involving the Indian sailors or the ships mentioned."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses the impact on Indian sailors and their families, which resonates with the Indian diaspora concerned about their compatriots abroad."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that depicts the specific incident or the ships involved.",
-          "Add quotes or perspectives from diaspora members to enhance the connection with the NRI audience."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "a9a58459-30fd-423b-bd07-6b80cfd44d7d",
-      "headline": "A Telangana MBA Student Took a Pizza Delivery Shift. He Was Lured to a Vacant Apartment and Shot Dead.",
-      "slug": "anshul-kuncha-telangana-student-shot-dead-philadelphia-pizza-delivery-trap-20260611",
+      "id": "8124b132-553b-4f9b-8e6c-af7a87f98c6a",
+      "headline": "Jensen Huang's Physical AI Offensive: Inside NVIDIA's Robotics Blitz Across Seoul",
+      "slug": "nvidia-physical-ai-robotics-seoul-hyundai-lg-boston-dynamics-20260611",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
-        "overall_score": 7,
+        "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 2,
-          "issue": "irrelevant"
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article discusses the impact of the incident on the Indian diaspora, particularly students in the US."
+          "quality": 7,
+          "note": "The article discusses NVIDIA's partnerships in South Korea and hints at implications for India, which is relevant for the Indian diaspora interested in technology and business developments."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the hero image with one that is more relevant to the article's content, such as an image related to the incident or the victim.",
-          "Include more context about the safety concerns for Indian students in the US to enhance the diaspora angle."
+          "Expand on the implications for India to strengthen the diaspora angle.",
+          "Include quotes or insights from Indian tech leaders to enhance relevance for the NRI audience."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
         "promoted to published"
@@ -92,40 +47,119 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "2e6dee2c-43d7-4274-acd2-d99cb2701607",
-      "headline": "The World Cup Has Started. Here Is What Every Indian Fan Needs to Know.",
-      "slug": "fifa-world-cup-2026-kicks-off-indian-fans-guide-watch-zee5-unite8-20260611",
+      "id": "e987b1f5-691c-48b6-9e6b-efb830182bc9",
+      "headline": "Intel's Foundry Resurrection: Google's 3-Million-Chip Order and the NVIDIA Evaluation That Changed Everything",
+      "slug": "intel-foundry-google-tpu-nvidia-feynman-evaluation-20260611",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "979c895a-b839-4d77-9088-0b611725c69a",
-            "headline": "Forty-Eight Teams. Three Countries. One Time Zone You Actual"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 4,
-          "issue": "irrelevant"
+          "score": 7,
+          "issue": "The image does not directly relate to the article's content about Intel and its partnerships."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the World Cup to Indian fans in North America, highlighting their engagement with the event."
+          "quality": 8,
+          "note": "The article effectively connects Intel's developments to the Indian diaspora by highlighting employment opportunities for Indian-origin engineers."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the hero image with one that is more relevant to the World Cup or Indian fans to enhance visual connection.",
-          "Consider adding a section on how Indian fans can engage with the tournament beyond just watching, such as local events or gatherings."
+          "Consider using a more relevant image that reflects Intel's technology or its partnerships.",
+          "Expand on the diaspora angle by including specific examples of Indian-origin engineers' contributions at Intel."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "7dbb8576-7b39-461c-813d-7844a08edc1e",
+      "headline": "Micron's Sanjay Mehrotra Locks In the Memory Contract That Will Power NVIDIA's Next AI Era",
+      "slug": "micron-sanjay-mehrotra-hbm4-nvidia-vera-rubin-20260611",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects Mehrotra's achievements and Micron's investment in India to the Indian diaspora, highlighting the significance of his work for NRIs."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more quotes or perspectives from industry experts to enhance credibility.",
+          "Include a brief overview of the implications of HBM4 technology for everyday consumers to broaden the article's appeal."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "95704c0a-d9c9-4562-9e94-fc89daf7bb44",
+      "headline": "Ali Fazal Hunts Two Killers Across 1970s Delhi. Sonali Bendre Plays the Mother Left Behind.",
+      "slug": "raakh-ali-fazal-sonali-bendre-prime-video-ranga-billa-1978-delhi-prosit-roy-nri-20260611",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "c39be125-6a95-46ac-9a57-b65693207920",
+            "headline": "Ali Fazal Puts On a Uniform and Walks Into 1978 Delhi. Raakh"
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DZZSQhkgiZQ/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel does not appear to be related to the article's subject matter, which focuses on the series 'Raakh' and its themes."
+          }
+        ],
+        "image_match": {
+          "score": 7,
+          "issue": "The image features Ali Fazal but does not directly relate to the 1970s Delhi setting or the specific themes of the series."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses an Indian series with an international cast, appealing to the diaspora's interest in Indian cinema and storytelling."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the irrelevant Instagram embed with a more relevant social media post related to the series or its themes.",
+          "Consider adding quotes or insights from the diaspora audience or critics to enhance the connection with NRI readers."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DZZSQhkgiZQ/",
         "promoted to published"
       ],
       "revised": false,
