@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-11T22:45:14.036521+00:00",
+  "timestamp": "2026-06-11T23:15:25.400148+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 0,
+    "pass": 0,
+    "flag": 2,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "ae410e2c-e9a0-493b-8860-ed819e26ad44",
-      "headline": "He Was Born in Delhi. He Delivered Parcels in Brisbane. Now He Could Play for Australia.",
-      "slug": "nikhil-chaudhary-india-born-australia-t20i-call-up-delhi-brisbane-bbl-hurricanes-nri",
+      "id": "51619e4f-7dbe-40fe-ba35-b656ed5a9d59",
+      "headline": "Rajkummar Rao Prosecutes the Man Who Attacked Mumbai. Prahaar Might Be the Most Important Courtroom Drama Bollywood Has Ever Attempted.",
+      "slug": "prahaar-rajkummar-rao-ujjwal-nikam-26-11-kasab-trial-maddock-august-7-nri-20260611",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -21,43 +21,13 @@
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to cricket or the specific subject of Nikhil Chaudhary."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects Chaudhary's journey to the experiences of the Indian diaspora, highlighting themes of migration and resilience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that depicts cricket or Nikhil Chaudhary specifically.",
-          "Add a quote from Chaudhary to provide a personal touch and enhance reader engagement."
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DYoyPeUJtJd/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel does not appear to be directly related to the film or the courtroom drama discussed in the article."
+          }
         ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "6aa96888-4a8d-470d-bfd3-b47ac7e7d5cc",
-      "headline": "Another Dravid in India Colours. Rahul's Younger Son Anvay Gets His First National Call-Up.",
-      "slug": "anvay-dravid-india-u19-call-up-rahul-dravid-son-sri-lanka-tour-nri",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
         "image_match": {
           "score": 9,
           "issue": null
@@ -65,17 +35,66 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the Dravid legacy to the diaspora, highlighting the nostalgia and interest NRIs have in Rahul Dravid's family."
+          "note": "The article effectively connects the 26/11 attacks and the subsequent trial to the emotional impact on the NRI audience, making it relevant."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from Anvay or Rahul Dravid to provide a personal touch.",
-          "Include more context about Anvay's cricketing journey to enhance reader engagement."
+          "Replace the irrelevant Instagram embed with a more relevant link or remove it altogether.",
+          "Consider adding more quotes or insights from Rajkummar Rao or Ujjwal Nikam to enhance the article's depth."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DYoyPeUJtJd/",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "5240cbd8-4137-49c2-b9d7-2b60adfb32e3",
+      "headline": "Shraddha Kapoor Disappears Into Maharashtra's Greatest Folk Legend. Eetha Is Her Biggest Swing Yet.",
+      "slug": "shraddha-kapoor-eetha-vithabai-lavani-biopic-maddock-august-28-nri-20260611",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "3b54ce08-2a87-44b7-a5a3-02240dcf8320",
+            "headline": "Shraddha Kapoor Is Playing Maharashtra's Most Legendary Danc"
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/DZW5swyiFzG/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not appear to be directly related to the film 'Eetha' or its themes, making it irrelevant to the article."
+          }
+        ],
+        "image_match": {
+          "score": 6,
+          "issue": "The image of Shraddha Kapoor promoting a different film does not match the article's focus on her role in 'Eetha'."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 6,
+          "note": "The article attempts to connect Vithabai's story to diaspora audiences, but the link could be more explicit and engaging."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the irrelevant Instagram embed with a more relevant one that showcases 'Eetha' or its themes.",
+          "Update the hero image to one that directly relates to 'Eetha' or features Shraddha Kapoor in the context of the film."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/DZW5swyiFzG/",
         "promoted to published"
       ],
       "revised": false,
