@@ -258,29 +258,24 @@ LESSONS FROM PAST QA REVIEWS (your previous reels had these issues — fix them 
 
     prompt = f"""You write viral Instagram Reel scripts for The Videshi — news for the Indian diaspora.
 
-This is a VOICE-OVER reel. No anchor on screen. Visuals are B-roll images/video that change every 4-6 seconds.
+This is a VOICE-OVER reel. No anchor on screen. Visuals are B-roll images that change every 5-7 seconds.
 {qa_lessons_block}
 ARTICLE:
 Headline: {headline}
 Subheadline: {subheadline}
 Category: {category}
-Body: {body[:3000]}
+Body: {body[:2500]}
 
 SCRIPT RULES:
 1. HOOK (first 3 seconds): Start with a jaw-dropping fact, a bold claim, or a "wait what?" moment. No pleasantries, no setup — hit them immediately.
-2. SUBSTANCE: This is NOT a headline — it's a mini-briefing. After the hook, deliver the ESSENCE of the story:
-   - What happened (the core facts, with specific numbers/names/dates)
-   - Why it matters (the real-world impact, especially for NRIs/diaspora)
-   - What's next (the forward-looking angle or unanswered question)
-   The viewer should walk away understanding the story, not just knowing a headline exists.
-3. TENSION: Build intrigue. Use contrast, stakes, or a narrative arc. "Here's why that matters for every NRI watching this."
-4. PAYOFF: Land with a punch — a surprising twist, a forward-looking take, or a line that makes them want to share it.
-5. TONE: Talk like a smart friend explaining something important over coffee. Confident, clear, slightly urgent. NOT a news robot, NOT breathless hype.
-6. PACING: Short sentences. Vary rhythm. Let key facts land.
-7. LENGTH: 120-160 words. That's 45-65 seconds spoken. Enough to actually inform, not just tease.
-8. SPECIFICS: Include at least 2-3 concrete numbers, names, or details from the article. Vague summaries = failed script.
-9. NO "Welcome to The Videshi", NO emoji, NO hashtags.
-10. ALWAYS end with a spoken call-to-action. The CTA MUST mention the website URL:
+2. TENSION: Build intrigue. Use contrast, stakes, or a narrative arc. "Here's why that matters for every NRI watching this."
+3. PAYOFF: Land with a punch — a surprising twist, a forward-looking take, or a line that makes them want to share it.
+4. TONE: Talk like a smart friend who just found out something wild. Confident, punchy, slightly urgent. NOT a news robot.
+5. PACING: Short sentences. Vary rhythm. One-word sentences are fine.
+6. LENGTH: 60-80 words. That's 25-35 seconds spoken. Every word earns its place.
+7. SPECIFICS: Include at least one concrete number, name, or detail.
+8. NO "Welcome to The Videshi", NO emoji, NO hashtags.
+9. ALWAYS end with a spoken call-to-action. The CTA MUST mention the website URL:
    - "Full story at thevideshi dot com"
    - "More at thevideshi dot com"
    - "Read the full breakdown at thevideshi dot com"
@@ -291,11 +286,10 @@ HOOK TEXT (shown on screen before voice starts):
 - hook_line1: 3-5 words, ALL CAPS. The "stop scrolling" line.
 - hook_line2: 3-5 words, ALL CAPS. Adds context or intrigue.
 
-STORYBOARD: Plan 6-8 visual scenes that match the narration beat-by-beat.
-Each scene is ONE B-roll image shown for ~4-6 seconds while the voice plays.
+STORYBOARD: Plan 5 visual scenes that match the narration beat-by-beat.
+Each scene is ONE B-roll image shown for ~5 seconds while the voice plays.
 - Scene 1 = the HOOK background (darkened). Choose something dramatic, cinematic.
-- Scenes 2-7 = the narration beats. Each image must visually match EXACTLY what's being said.
-- More scenes = more visual variety = better retention.
+- Scenes 2-5 = the narration beats. Each image must visually match EXACTLY what's being said.
 
 For each scene, provide:
 - "narration": the exact words spoken during that scene (copy from script)
@@ -870,13 +864,12 @@ def is_url_downloadable(url):
     return True
 
 
-def pexels_search(pexels_key, query, count=3, orientation="portrait"):
-    """Search Pexels, return list of dicts with url + photo_id. Uses curl (403 with urllib).
-    Returns portrait-optimized URLs at 1080x1920 when orientation=portrait."""
+def pexels_search(pexels_key, query, count=3):
+    """Search Pexels, return list of dicts with url + photo_id. Uses curl (403 with urllib)."""
     try:
         result = subprocess.run(
             ["curl", "-s", "-H", f"Authorization: {pexels_key}",
-             f"https://api.pexels.com/v1/search?query={requests.utils.quote(query)}&per_page={count}&orientation={orientation}"],
+             f"https://api.pexels.com/v1/search?query={requests.utils.quote(query)}&per_page={count}&orientation=portrait"],
             capture_output=True, text=True, timeout=15,
         )
         if result.returncode != 0:
@@ -884,19 +877,13 @@ def pexels_search(pexels_key, query, count=3, orientation="portrait"):
         data = json.loads(result.stdout)
         results = []
         for photo in data.get("photos", []):
-            # Use portrait-optimized URL at exact 1080x1920 for reels
-            if orientation == "portrait":
-                url = f"https://images.pexels.com/photos/{photo['id']}/pexels-photo-{photo['id']}.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1920&w=1080"
-            else:
-                url = photo.get("src", {}).get("large2x") or photo.get("src", {}).get("large")
+            url = photo.get("src", {}).get("large2x") or photo.get("src", {}).get("large")
             if url:
                 results.append({
                     "url": url,
                     "photo_id": str(photo.get("id", "")),
                     "alt": photo.get("alt", ""),
                     "photographer": photo.get("photographer", ""),
-                    "width": photo.get("width", 0),
-                    "height": photo.get("height", 0),
                 })
         return results
     except Exception as e:
