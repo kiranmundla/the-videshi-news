@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-11T04:15:19.678701+00:00",
+  "timestamp": "2026-06-11T04:45:32.815173+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 5,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,42 +11,35 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "69e9660d-1619-4957-8da1-89ef595ddd24",
-      "headline": "Walmart Stopped Sponsoring H-1B Workers Last October \u2014 Nobody Noticed Until the Shareholders Voted",
-      "slug": "walmart-h1b-pause-tcs-cognizant-corporate-retreat-20260611",
+      "id": "76df2f79-64ac-4d2a-8090-2441eef40ed3",
+      "headline": "Indians Have Founded 96 of America's Billion-Dollar Startups. No Other Immigrant Group Comes Close.",
+      "slug": "indians-founded-96-unicorn-startups-us-nfap-study-immigrant-entrepreneurs-20260611",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
-        "broken_embeds": [
-          {
-            "url": "https://x.com/business_today/status/1931654321098765432",
-            "problem": "broken",
-            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
-          }
-        ]
+        "broken_embeds": []
       },
       "llm_review": {
-        "overall_score": 7,
+        "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 8,
-          "issue": "The image of a USCIS Application Support Center is relevant to the topic of H-1B visas and immigration."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses the impact of changes in H-1B sponsorship on Indian workers, which is highly relevant to the Indian diaspora."
+          "note": "The article effectively highlights the contributions of Indian immigrants to the U.S. economy, making it relevant for the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes from affected individuals or experts to enhance the narrative.",
-          "Add a section discussing potential future implications for Indian workers and companies."
+          "Include specific examples of successful Indian-origin unicorns to enhance the narrative.",
+          "Add quotes or testimonials from Indian entrepreneurs to provide a personal touch."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "Removed 1 broken/hallucinated embed(s)",
         "promoted to published"
       ],
       "revised": false,
@@ -54,9 +47,122 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "72f139b8-2f09-4feb-a3ef-d5e493feb6ee",
-      "headline": "Puja Rooms, Spice Kitchens, and a Nine Per Cent Price Drop \u2014 The Suburb That Bet Everything on H-1B",
-      "slug": "collin-county-dallas-housing-crash-h1b-indian-buyers-20260611",
+      "id": "1bd519a9-8860-4bc3-b489-a675ced44f18",
+      "headline": "Seven Indian Workers Killed in Dubai After Minibus Rams Into Stalled Truck on Emirates Road.",
+      "slug": "seven-indian-workers-killed-dubai-minibus-crash-emirates-road-20260611",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the tragic incident involving Indian workers in Dubai, highlighting the response from the Indian Consulate and the broader implications for the Indian diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from family members or community leaders to provide a more personal perspective on the tragedy.",
+          "Include statistics or data on road safety for Indian workers in the Gulf to enhance the context of the recurring pattern mentioned."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "1f89816f-add4-4177-aa67-908011b7b474",
+      "headline": "Iran Has Declared the Strait of Hormuz Closed. India Just Lost Its Most Important Oil Route.",
+      "slug": "iran-declares-strait-of-hormuz-closed-india-oil-crisis-gulf-diaspora-20260611",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 8,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively highlights the impact of the Strait of Hormuz closure on the Indian diaspora in Gulf states, making it relevant for NRI readers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Add more context on how the closure specifically affects Indian businesses and individuals in the Gulf.",
+          "Include expert opinions or quotes to enhance credibility and depth."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "bfcf79e8-293e-455b-b68d-9a39df9e7c59",
+      "headline": "She Is Seventeen. She Beat the Fifth Seed. At the Australian Open, Indian Women Owned the Draw.",
+      "slug": "indian-women-badminton-australian-open-sindhu-tanvi-sharma-upset-sydney-nri",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "005452c0-578b-493b-b0f9-ceb3cf688989",
+            "headline": "Sindhu Is the Third Seed in Sydney. Sen and Srikanth Are Not"
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 6,
+          "issue": "The image of PV Sindhu does not directly match the article's focus on the recent performances of multiple Indian women in badminton."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the achievements of Indian women in badminton to the interests of NRI fans, highlighting a shift in the sport's landscape."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant hero image that represents the collective achievements of the Indian women's badminton team.",
+          "Add more context or quotes from the players to enhance the narrative and provide a personal touch."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "16800cf2-0f9e-4ce0-ac63-e82520cebacf",
+      "headline": "He Took Seven Wickets on Debut. Within Forty-Eight Hours, an English County Signed Him.",
+      "slug": "manav-suthar-warwickshire-county-championship-signing-scarborough-england-nri",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -67,18 +173,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image does not directly relate to the specific topic of H-1B visas or the Indian diaspora, but it does depict a suburban setting which is relevant."
+          "issue": "The image of Scarborough Cricket Ground is relevant but does not directly depict Manav Suthar or his debut performance."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively highlights the impact of immigration policies on the Indian diaspora, particularly H-1B visa holders, making it highly relevant to NRI readers."
+          "quality": 8,
+          "note": "The article effectively connects Suthar's debut and county signing to the interests of the Indian diaspora in England."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more personal stories or quotes from affected individuals to enhance emotional engagement.",
-          "Include a brief overview of the H-1B visa process for readers who may not be familiar with it."
+          "Include a quote or reaction from Suthar about his experience in county cricket to enhance personal connection.",
+          "Add more context about the significance of county cricket for Indian players to further engage diaspora readers."
         ],
         "verdict": "pass"
       },
