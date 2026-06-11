@@ -125,7 +125,7 @@ def post_instagram_reel(reel, video_url, caption):
     """Post reel to Instagram."""
     print(f"  [IG] Creating container...")
     r = requests.post(
-        f"https://graph.facebook.com/v21.0/{IG_USER_ID}/media",
+        f"https://graph.instagram.com/v22.0/{IG_USER_ID}/media",
         data={
             'media_type': 'REELS',
             'video_url': video_url,
@@ -143,7 +143,7 @@ def post_instagram_reel(reel, video_url, caption):
     for attempt in range(24):  # 2 min max
         time.sleep(5)
         sr = requests.get(
-            f"https://graph.facebook.com/v21.0/{container_id}",
+            f"https://graph.instagram.com/v22.0/{container_id}",
             params={'fields': 'status_code,status', 'access_token': IG_TOKEN}
         )
         status = sr.json().get('status_code', '')
@@ -157,7 +157,7 @@ def post_instagram_reel(reel, video_url, caption):
     
     print(f"  [IG] Publishing...")
     pr = requests.post(
-        f"https://graph.facebook.com/v21.0/{IG_USER_ID}/media_publish",
+        f"https://graph.instagram.com/v22.0/{IG_USER_ID}/media_publish",
         data={'creation_id': container_id, 'access_token': IG_TOKEN}
     )
     if pr.status_code != 200:
