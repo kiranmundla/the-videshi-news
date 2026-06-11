@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-11T19:15:17.683290+00:00",
+  "timestamp": "2026-06-11T19:45:16.463301+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
+    "pass": 2,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,32 +11,17 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "8fb8e255-ed82-486b-9410-511b294771db",
-      "headline": "Hrithik Roshan Just Signed With the Company Behind Spotlight and The Revenant. He's Not Playing Around.",
-      "slug": "hrithik-roshan-anonymous-content-hollywood-spotlight-revenant-krrish-4-nri-20260611",
+      "id": "facb457d-f42f-4740-b4c2-c3f22111a4c4",
+      "headline": "Hardik Is Out. Nitish Kumar Reddy Has Three Matches to Prove He Belongs.",
+      "slug": "nitish-kumar-reddy-odi-opportunity-hardik-pandya-injury-afghanistan-dharamsala-nri",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "0809b36f-af6c-4cf8-a786-c8c1f20da015",
-            "headline": "Hrithik Roshan Wanted \u20b9500 Crore for Krrish 4. His Father Ju"
-          },
-          {
-            "article_id": "b2f7e1c9-b400-47c5-977b-c9a87ebe11c7",
-            "headline": "Shah Rukh Khan Said No to Jailer 2. Hrithik Roshan Said Tell"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/p/DZKs2dVorgG/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post linked does not directly relate to Hrithik Roshan's signing with Anonymous Content or his career moves discussed in the article."
-          }
-        ],
+        "embed_issues": [],
         "image_match": {
           "score": 9,
           "issue": null
@@ -44,18 +29,58 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects Hrithik Roshan's career moves to the interests of NRI audiences, emphasizing his continued ties to Bollywood while expanding internationally."
+          "note": "The article connects well with NRI fans by discussing the implications of the series for India's World Cup preparations."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant Instagram link with a more relevant one that showcases Hrithik's recent work or thoughts on his signing.",
-          "Consider adding more context about how this signing might influence the representation of Indian actors in Hollywood for diaspora readers."
+          "Consider adding quotes from players or coaches to enhance the article's depth.",
+          "Include more statistics or historical context about Nitish Kumar Reddy to provide readers with a better understanding of his potential impact."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DZKs2dVorgG/",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "c4d537c4-6ecd-4d84-8720-d51a87a18824",
+      "headline": "Two Players of Indian Heritage Will Take the Pitch at This World Cup. Neither Plays for India.",
+      "slug": "sarpreet-singh-nishan-velupillay-indian-origin-players-fifa-world-cup-2026-nri",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "86fc2d89-4e34-45ff-ac27-f22a5561391f",
+            "headline": "India Has Never Played at a World Cup. This Month, Four Play"
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image of Sarpreet Singh is relevant to the article, but it does not directly match the headline which mentions both players."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the stories of Singh and Velupillay to the Indian diaspora, highlighting their heritage and the significance of their participation in the World Cup."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including an image of Nishan Velupillay to match the headline more closely.",
+          "Add more context about the significance of the World Cup for the Indian diaspora, perhaps including quotes from fans or community leaders."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
         "promoted to published"
       ],
       "revised": false,
