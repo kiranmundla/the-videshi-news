@@ -1,19 +1,19 @@
 {
-  "timestamp": "2026-06-11T16:45:44.781073+00:00",
+  "timestamp": "2026-06-11T17:15:16.139769+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
-    "flag": 1,
+    "pass": 2,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
-  "revisions": 1,
+  "revisions": 0,
   "unpublished": 0,
   "articles": [
     {
-      "id": "41596b62-11d5-4137-9885-74d8e3a7047a",
-      "headline": "An Indian-American Is Running the Biggest Security Operation in American History. The World Cup Just Kicked Off.",
-      "slug": "kash-patel-fbi-world-cup-2026-biggest-security-challenge-indian-american-20260611",
+      "id": "e3db68a6-9233-4dc2-90cd-888eabdaeca4",
+      "headline": "Huma Qureshi Doesn't Speak a Single Word in Her New Film. It Might Be the Most Dangerous Performance of the Year.",
+      "slug": "baby-do-die-do-huma-qureshi-deaf-mute-hitwoman-vs-alpha-july-3-clash-nri-20260611",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -28,14 +28,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article highlights the achievements of an Indian-American in a significant leadership role, appealing to the diaspora's interest in representation and success."
+          "quality": 7,
+          "note": "The article discusses a film featuring a female lead, which may resonate with the diaspora interested in Bollywood and women's representation in cinema."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes from Kash Patel to enhance the personal connection and authority of the piece.",
-          "Add a brief section on how the Indian-American community is responding to Patel's leadership role in this historic event."
+          "Include more context on how the film's themes relate to the Indian diaspora experience.",
+          "Add quotes or insights from Huma Qureshi or other cast members to enhance the personal connection."
         ],
         "verdict": "pass"
       },
@@ -56,94 +56,22 @@
         "broken_embeds": []
       },
       "llm_review": {
-        "overall_score": 6,
+        "overall_score": 7,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image is relevant to the article's topic but lacks specific visual context about India."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 6,
-          "note": "The article discusses India's oil imports and economic implications, which are relevant to the Indian diaspora, but the connection could be more explicit."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Enhance the diaspora angle by including quotes or perspectives from Indian expatriates or experts on how these geopolitical tensions affect NRIs.",
-          "Provide more context on how fluctuations in oil prices directly impact the Indian diaspora, such as remittances or investments."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Revised by gpt-4o-mini (853\u2192947 words)"
-      ],
-      "revised": true,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "91f9ff34-7328-4ea4-a44a-f63d7d7acbb3",
-      "headline": "The World Bank Just Called India the Fastest-Growing Major Economy. It Called the Rest of the Decade a Write-Off.",
-      "slug": "world-bank-india-fastest-growing-6-6-percent-global-growth-slashed-lost-decade-20260611",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
+          "score": 8,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects India's economic performance to NRIs, discussing implications for investments and currency exchange."
+          "note": "The article effectively connects rising oil prices and their impact on the Indian diaspora's financial support to families in India."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes or insights from Indian diaspora experts to enhance the connection with NRI readers.",
-          "Add a section on how NRIs can leverage the current economic situation for investment opportunities."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "f9699908-1697-4607-91a2-8d191378b4dc",
-      "headline": "Modi Set to Announce Historic Big Bash League Opener at Chennai's Chepauk During Sydney Visit",
-      "slug": "modi-announce-bbl-opener-chennai-chepauk-sydney-visit",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the announcement to the Indian diaspora in Australia, highlighting cultural and commercial implications."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from stakeholders or experts to enhance credibility.",
-          "Include more details on how this initiative could impact cricket diplomacy between India and Australia."
+          "Add more context on how the geopolitical situation specifically affects the Indian diaspora beyond financial implications.",
+          "Include quotes or perspectives from Indian officials or experts to provide a more balanced view."
         ],
         "verdict": "pass"
       },
