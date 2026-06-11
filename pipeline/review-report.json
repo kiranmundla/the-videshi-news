@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-11T20:45:11.022462+00:00",
+  "timestamp": "2026-06-11T21:15:26.879754+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 0,
+    "pass": 4,
     "flag": 1,
     "fail": 0,
     "error": 0
@@ -11,15 +11,181 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "239ae692-1b34-473d-88b9-ada4999f17eb",
-      "headline": "Meta and Reliance to Build India's First AI Data Centre in Jamnagar, Marking a New Chapter in the $13 Billion Race",
-      "slug": "meta-reliance-india-first-ai-data-centre-jamnagar",
+      "id": "6d3d3c97-e70f-47dd-893d-46b9e685b47f",
+      "headline": "India's UPI Now Works in Nepal: What the Cross-Border Payment Link Means for the Diaspora",
+      "slug": "india-nepal-upi-linkage-cross-border-payments-20260611",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the UPI-Nepal linkage to the practical needs of the Indian diaspora, highlighting its significance for NRIs."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a quote from a financial expert or a member of the diaspora to enhance credibility.",
+          "Include more specific examples of how NRIs can utilize this service in their daily lives."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "22e9d125-db31-4d19-993d-8f4b2876b1ea",
+      "headline": "Adobe Posts Record Revenue as Shantanu Narayen's 18-Year Reign Draws to a Close",
+      "slug": "adobe-shantanu-narayen-record-earnings-departure-20260611",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively highlights the significance of Indian-American leadership in technology, making it relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from industry experts or analysts to provide more depth.",
+          "Include a brief overview of Adobe's future plans post-Narayen to enhance the article's forward-looking perspective."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "132110d6-9f2e-4728-93cb-a42ce3c98bf8",
+      "headline": "Sriram Krishnan Steps Down as White House AI Adviser, Leaving an Imprint on America's AI Playbook",
+      "slug": "sriram-krishnan-exits-white-house-ai-role-20260611",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects Krishnan's role to the Indian diaspora, highlighting his significance and influence in US AI governance."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more direct quotes from Krishnan or colleagues to enhance the narrative.",
+          "Include a brief section on potential future implications of Krishnan's departure for AI policy."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "75ec3e23-e2c2-4789-b9b2-282bb5254840",
+      "headline": "K-Pop Just Went Punjabi. LE SSERAFIM and Guru Randhawa Made a Track That Shouldn't Work \u2014 and It Absolutely Slaps.",
+      "slug": "le-sserafim-guru-randhawa-boompala-remix-kpop-punjabi-crossover-2026",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [
           {
-            "article_id": "c0411dc2-8bd6-4e33-88f9-2984d3d9144f",
-            "headline": "Reliance and Meta Are Building India's First Hyperscale AI D"
+            "article_id": "6f62dbb9-5050-450f-adf7-787fd3ee0741",
+            "headline": "K-Pop Met Punjabi Pop and the Internet Lost Its Mind. BOOMPA"
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DZPz4ivy8LL/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel does not appear to be directly related to the article's subject of the collaboration between LE SSERAFIM and Guru Randhawa."
+          },
+          {
+            "url": "https://www.instagram.com/reel/DZPpbgnS-ZN/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel does not appear to be directly related to the article's subject of the collaboration between LE SSERAFIM and Guru Randhawa."
+          }
+        ],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the collaboration to the South Asian diaspora, highlighting cultural similarities and the significance of the collaboration for NRI audiences."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the irrelevant Instagram links with embeds that directly showcase the collaboration or related content.",
+          "Consider adding more context about the significance of this collaboration in the broader landscape of global music trends."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DZPz4ivy8LL/",
+        "Removed irrelevant embed: https://www.instagram.com/reel/DZPpbgnS-ZN/",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "f2e0bf7d-76aa-4950-af25-756e6722fc3a",
+      "headline": "Ranveer Singh Is Making India's First Zombie Epic. It Costs \u20b9300 Crore and Starts Shooting Next Month.",
+      "slug": "ranveer-singh-pralay-zombie-thriller-kalyani-priyadarshan-300-crore-august-2026",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "a861f811-6610-447f-bd1c-11aedb8773d7",
+            "headline": "Ranveer Singh Wrote a \u20b910 Crore Cheque to Leave Don 3. The I"
+          },
+          {
+            "article_id": "3eefe877-6bf9-4aaa-ad99-6dc7796c8414",
+            "headline": "Ranveer Singh Is Building a Zombie Apocalypse. The Budget Is"
           }
         ],
         "broken_embeds": []
@@ -28,21 +194,21 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 5,
-          "issue": "image does not match topic"
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article connects the data center's impact on services used by the diaspora, but could elaborate more on specific benefits."
+          "quality": 8,
+          "note": "The article effectively connects the film's themes to NRI audiences familiar with zombie genres."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that directly relates to AI data centers or the partnership between Meta and Reliance.",
-          "Expand on the diaspora angle by providing specific examples of how the data center will improve services for NRI users."
+          "Consider adding more details about the film's release strategy or marketing plans to engage readers further.",
+          "Include quotes from Ranveer Singh or Jai Mehta to provide more insight into their vision for the film."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
         "promoted to published"
