@@ -1,19 +1,103 @@
 {
-  "timestamp": "2026-06-11T10:45:12.170486+00:00",
+  "timestamp": "2026-06-11T11:16:17.181937+00:00",
   "mode": "fix",
   "stats": {
     "pass": 2,
-    "flag": 0,
+    "flag": 3,
     "fail": 0,
     "error": 0
   },
-  "revisions": 0,
+  "revisions": 2,
   "unpublished": 0,
   "articles": [
     {
-      "id": "e30e4448-b266-4eda-ad09-1c0d7754a03f",
-      "headline": "She Scored 68 Off 36 Balls. India Still Lost by Five Runs.",
-      "slug": "richa-ghosh-68-india-women-t20-world-cup-warm-up-england-cardiff-nri",
+      "id": "54aeafeb-7f65-4be2-9a36-31b6d23c7972",
+      "headline": "The Internet Thinks Alpha Is Just Ballerina With a Bindi. The YRF Spy Universe Has a Problem.",
+      "slug": "alpha-teaser-backlash-alia-bhatt-hollywood-copycat-sharvari-missing-yrf-spy-universe-war-2",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "0ef6b011-47e5-4524-a024-c18572a1ce31",
+            "headline": "Alpha Drops Its Teaser Today. The YRF Spy Universe Finally H"
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 6,
+        "embed_issues": [],
+        "image_match": {
+          "score": 8,
+          "issue": "The image of Alia Bhatt matches the article's focus on her role in Alpha."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses an Indian film and its implications for the Indian cinema landscape, which is relevant to the diaspora audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more context on how the film's reception might affect the Indian diaspora's view of Bollywood.",
+          "Add quotes or reactions from diaspora audiences to enhance the connection."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Revised by gpt-4o-mini (713\u2192839 words)"
+      ],
+      "revised": true,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "6e9f3bbc-cbbc-404a-8fed-bf8869d674b4",
+      "headline": "Welcome To The Jungle Just Dropped a Four-Minute Trailer. Bollywood Hasn't Packed This Many Stars Into One Frame Since the 90s.",
+      "slug": "welcome-to-the-jungle-trailer-akshay-suniel-paresh-30-stars-hera-pheri-reunion-june-2026",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DZb92GLNWkK/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel does not appear to be directly related to the film or its trailer, making it irrelevant to the article's subject."
+          }
+        ],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the film's release to diaspora audiences by mentioning the JioHotstar premiere, which is relevant for NRIs."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the irrelevant Instagram embed with a more relevant social media post related to the film or its trailer.",
+          "Consider adding quotes or insights from diaspora audiences or critics to enhance the connection with NRI readers."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DZb92GLNWkK/",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "d09fe300-ba52-4c06-b823-211219ac4f14",
+      "headline": "A Telangana Student Delivered Pizza to a Vacant Apartment in Philadelphia. He Was Dead Within Minutes.",
+      "slug": "anshul-kuncha-telangana-student-shot-philadelphia-pizza-delivery-trap-20260611",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -24,18 +108,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image of Richa Ghosh is relevant to the article but does not match the date of the match discussed."
+          "issue": "The image depicts Philadelphia but does not directly relate to the specific incident discussed."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article connects well with the Indian diaspora by discussing a prominent Indian cricketer and the upcoming World Cup match against Pakistan."
+          "quality": 9,
+          "note": "The article effectively highlights the concerns of the Indian diaspora regarding safety and violence against immigrants."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider updating the image to one that reflects the match date or context more closely.",
-          "Add a brief section on the significance of the match for the Indian team in the context of the World Cup."
+          "Consider including quotes or reactions from the Indian community in Philadelphia to enhance the diaspora perspective.",
+          "Add more context about the gig economy's impact on immigrant workers to strengthen the narrative."
         ],
         "verdict": "pass"
       },
@@ -47,9 +131,45 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "848f4f37-227d-4247-9633-b44b9d420a44",
-      "headline": "Stokes Dropped After Nightclub Incident. Root Steps In. An Era May Be Over.",
-      "slug": "ben-stokes-dropped-nightclub-root-interim-captain-england-india-implications-nri",
+      "id": "cfb39575-48a1-4e35-835e-770f7f0c8dba",
+      "headline": "India's Fertiliser Bill Has Doubled in Three Months. The Iran War Is Draining the Treasury.",
+      "slug": "india-fertiliser-subsidy-doubles-iran-war-oil-rupee-fiscal-20260611",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 6,
+        "embed_issues": [],
+        "image_match": {
+          "score": 5,
+          "issue": "The image does not directly relate to the topic of fertilisers or the economic implications of the Iran war."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 6,
+          "note": "The article discusses economic implications that may affect NRIs, particularly those with investments in India, but the connection could be made more explicit."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include specific examples of how the rising fertiliser costs may impact NRI investments or remittances.",
+          "Use a more relevant image that depicts fertilisers or agricultural impacts."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Revised by gemini-2.5-flash (855\u2192931 words)"
+      ],
+      "revised": true,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "a7f463c1-70b4-46f0-a5a4-7b0515d74296",
+      "headline": "TCS Just Partnered With Anthropic. Fifty Thousand Indian IT Workers Are Getting an AI Co-Pilot.",
+      "slug": "tcs-anthropic-partnership-claude-50000-workers-india-it-sector-20260611",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -59,19 +179,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image of TCS's building is relevant but does not directly illustrate the AI partnership or its implications."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the implications of Stokes' situation to Indian cricket fans, highlighting the significance of the upcoming series."
+          "quality": 9,
+          "note": "The article effectively connects the TCS-Anthropic partnership to the experiences and future of NRIs in the tech sector."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from Indian cricket analysts or fans to enhance the diaspora connection.",
-          "Include more context on how Stokes' absence could specifically impact Indian fans' viewing experience."
+          "Consider adding a relevant image that visually represents AI technology or the partnership to enhance reader engagement.",
+          "Include quotes from industry experts or affected workers to provide personal perspectives on the impact of AI in the IT sector."
         ],
         "verdict": "pass"
       },
