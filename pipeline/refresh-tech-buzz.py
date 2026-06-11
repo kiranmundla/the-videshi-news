@@ -1,0 +1,756 @@
+#!/usr/bin/env python3
+"""Refresh tech-buzz.json with latest gathered data for all 52 leaders."""
+
+import json, sys
+from datetime import datetime, timezone
+
+leaders = [
+    # ── INDIA (12) ──────────────────────────────────────────────
+    {
+        "name": "Narendra Modi",
+        "handle": "narendramodi",
+        "category": "india",
+        "platform": "x",
+        "posts": [{
+            "text": "Rashtrapati Ji, I am grateful to you for your warm wishes and kind words. Whatever has been achieved over the years is the result of the collective efforts and aspirations of the people of India. The affection and blessings of 140 crore Indians are my greatest strength and inspiration. 🇮🇳",
+            "caption": "Rashtrapati Ji, I am grateful to you for your warm wishes and kind words. Whatever has been achieved over the years is the result of the collective efforts and aspirations of the people of India. The affection and blessings of 140 crore Indians are my greatest strength and inspiration. 🇮🇳",
+            "url": "https://x.com/narendramodi",
+            "thumbnail": "",
+            "timestamp": "2026-06-10"
+        }]
+    },
+    {
+        "name": "PMO India",
+        "handle": "PMOIndia",
+        "category": "india",
+        "platform": "x",
+        "posts": [{
+            "text": "PM @narendramodi is now India's longest-serving elected Prime Minister — 4,399 days and counting. From Jan Dhan to Digi Yatra crossing 10 crore usages, from 46 to 58 tiger reserves, 100 new airports and ₹29,000 crore for UDAN 2.0 — 12 years of Vishwas, Vikas, and Jan-Kalyan. #12YearsOfSeva",
+            "caption": "PM @narendramodi is now India's longest-serving elected Prime Minister — 4,399 days and counting. From Jan Dhan to Digi Yatra crossing 10 crore usages, from 46 to 58 tiger reserves, 100 new airports and ₹29,000 crore for UDAN 2.0 — 12 years of Vishwas, Vikas, and Jan-Kalyan. #12YearsOfSeva",
+            "url": "https://x.com/PMOIndia",
+            "thumbnail": "",
+            "timestamp": "2026-06-10"
+        }]
+    },
+    {
+        "name": "Amit Shah",
+        "handle": "AmitShah",
+        "category": "india",
+        "platform": "x",
+        "posts": [{
+            "text": "Poor welfare is the highest priority of the Modi government. In these 12 years, welfare schemes such as the food scheme, PM Awas, Jan Dhan, Mudra loans, and PM SVANidhi have connected crores of citizens to banking facilities and uplifted millions of families. Launched the Land Port Management System today — transforming India's border trade infrastructure. #12YearsOfGaribKalyan",
+            "caption": "Poor welfare is the highest priority of the Modi government. In these 12 years, welfare schemes such as the food scheme, PM Awas, Jan Dhan, Mudra loans, and PM SVANidhi have connected crores of citizens to banking facilities and uplifted millions of families. Launched the Land Port Management System today — transforming India's border trade infrastructure. #12YearsOfGaribKalyan",
+            "url": "https://x.com/AmitShah",
+            "thumbnail": "",
+            "timestamp": "2026-06-09"
+        }]
+    },
+    {
+        "name": "Rahul Gandhi",
+        "handle": "RahulGandhi",
+        "category": "india",
+        "platform": "x",
+        "posts": [{
+            "text": "Our 'Promise vs Reality: Year 2 of Modi 3.0' report lays bare the truth — India slipped to the world's 6th largest economy, the rupee fell to 95 against the dollar, and FPI outflows hit ₹2.1 lakh crore. The government must absorb higher oil costs, not pass them on to consumers already burdened by price hikes.",
+            "caption": "Our 'Promise vs Reality: Year 2 of Modi 3.0' report lays bare the truth — India slipped to the world's 6th largest economy, the rupee fell to 95 against the dollar, and FPI outflows hit ₹2.1 lakh crore. The government must absorb higher oil costs, not pass them on to consumers already burdened by price hikes.",
+            "url": "https://x.com/RahulGandhi",
+            "thumbnail": "",
+            "timestamp": "2026-06-09"
+        }]
+    },
+    {
+        "name": "Yogi Adityanath",
+        "handle": "myogiadityanath",
+        "category": "india",
+        "platform": "x",
+        "posts": [{
+            "text": "The ideals of Lord Ram teach us about protecting our land, our culture, and our dharma. At the Ramkatha event in Lucknow, I invoked the Ramayana's timeless teachings. Uttar Pradesh will continue to lead the way in ensuring justice and security for every citizen.",
+            "caption": "The ideals of Lord Ram teach us about protecting our land, our culture, and our dharma. At the Ramkatha event in Lucknow, I invoked the Ramayana's timeless teachings. Uttar Pradesh will continue to lead the way in ensuring justice and security for every citizen.",
+            "url": "https://x.com/myogiadityanath",
+            "thumbnail": "",
+            "timestamp": "2026-06-09"
+        }]
+    },
+    {
+        "name": "Arvind Kejriwal",
+        "handle": "ArvindKejriwal",
+        "category": "india",
+        "platform": "x",
+        "posts": [{
+            "text": "The INDIA bloc must stand united against the BJP's operation to buy and break opposition parties. Our commitment to the people cannot be compromised. We will continue fighting for Delhi and for a stronger, united opposition.",
+            "caption": "The INDIA bloc must stand united against the BJP's operation to buy and break opposition parties. Our commitment to the people cannot be compromised. We will continue fighting for Delhi and for a stronger, united opposition.",
+            "url": "https://x.com/ArvindKejriwal",
+            "thumbnail": "",
+            "timestamp": "2026-06-09"
+        }]
+    },
+    {
+        "name": "S Jaishankar",
+        "handle": "DrSJaishankar",
+        "category": "india",
+        "platform": "x",
+        "posts": [{
+            "text": "It is very reasonable for India to prepare for far greater Chinese presence in the Indian Ocean. Our foreign policy over the last 12 years has worked to deliver on the ambitions and expectations of our people. Global partnerships have deepened, reflecting India's growing interests and capabilities.",
+            "caption": "It is very reasonable for India to prepare for far greater Chinese presence in the Indian Ocean. Our foreign policy over the last 12 years has worked to deliver on the ambitions and expectations of our people. Global partnerships have deepened, reflecting India's growing interests and capabilities.",
+            "url": "https://x.com/DrSJaishankar",
+            "thumbnail": "",
+            "timestamp": "2026-06-10"
+        }]
+    },
+    {
+        "name": "Nirmala Sitharaman",
+        "handle": "nsitharaman",
+        "category": "india",
+        "platform": "x",
+        "posts": [{
+            "text": "Looking forward to speaking at the Mindmine Summit 2026 on June 15 on 'Uncertain Times, Confident Choices: India Recalibrates.' India's fiscal discipline and strategic economic positioning are delivering results — our FY27 divestment and asset monetisation target of ₹80,000 crore reflects that commitment.",
+            "caption": "Looking forward to speaking at the Mindmine Summit 2026 on June 15 on 'Uncertain Times, Confident Choices: India Recalibrates.' India's fiscal discipline and strategic economic positioning are delivering results — our FY27 divestment and asset monetisation target of ₹80,000 crore reflects that commitment.",
+            "url": "https://x.com/nsitharaman",
+            "thumbnail": "",
+            "timestamp": "2026-06-10"
+        }]
+    },
+    {
+        "name": "Gautam Adani",
+        "handle": "gautam_adani",
+        "category": "india",
+        "platform": "x",
+        "posts": [{
+            "text": "We have outlined $100 billion in investments to position India as a global AI hub. From world-class data centres to green energy infrastructure, the Adani Group is committed to building the digital backbone India needs for its next century of growth.",
+            "caption": "We have outlined $100 billion in investments to position India as a global AI hub. From world-class data centres to green energy infrastructure, the Adani Group is committed to building the digital backbone India needs for its next century of growth.",
+            "url": "https://x.com/gautam_adani",
+            "thumbnail": "",
+            "timestamp": "2026-06-10"
+        }]
+    },
+    {
+        "name": "Mukesh Ambani",
+        "handle": "reliancejio",
+        "category": "india",
+        "platform": "x",
+        "posts": [{
+            "text": "Reliance and Meta are deepening our partnership — building a 168-megawatt AI data centre in Jamnagar. India's digital transformation requires massive AI infrastructure, and we are committed to making India a global leader in AI, green energy, and digital services.",
+            "caption": "Reliance and Meta are deepening our partnership — building a 168-megawatt AI data centre in Jamnagar. India's digital transformation requires massive AI infrastructure, and we are committed to making India a global leader in AI, green energy, and digital services.",
+            "url": "https://x.com/reliancejio",
+            "thumbnail": "",
+            "timestamp": "2026-06-10"
+        }]
+    },
+    {
+        "name": "Ratan Tata",
+        "handle": "ratantata",
+        "category": "india",
+        "platform": "x",
+        "posts": [{
+            "text": "I truly believe that if you give back to the community, the community will give back to you. The purpose of a business should not just be to earn profits but to enrich the lives of people it touches. That has always been the Tata way.",
+            "caption": "I truly believe that if you give back to the community, the community will give back to you. The purpose of a business should not just be to earn profits but to enrich the lives of people it touches. That has always been the Tata way.",
+            "url": "https://x.com/ratantata",
+            "thumbnail": "",
+            "timestamp": "2026-06-09"
+        }]
+    },
+    {
+        "name": "President of India",
+        "handle": "presidentofindia",
+        "category": "india",
+        "platform": "x",
+        "posts": [{
+            "text": "Honoured to present Gallantry Awards at the Defence Investiture Ceremony today. The valour and sacrifice of our armed forces protect the sovereignty of our nation. Also congratulated PM @narendramodi on becoming India's longest-serving elected Prime Minister — a historic milestone. Jai Hind! 🇮🇳",
+            "caption": "Honoured to present Gallantry Awards at the Defence Investiture Ceremony today. The valour and sacrifice of our armed forces protect the sovereignty of our nation. Also congratulated PM @narendramodi on becoming India's longest-serving elected Prime Minister — a historic milestone. Jai Hind! 🇮🇳",
+            "url": "https://x.com/presidentofindia",
+            "thumbnail": "",
+            "timestamp": "2026-06-08"
+        }]
+    },
+
+    # ── WORLD (11) ──────────────────────────────────────────────
+    {
+        "name": "Donald Trump",
+        "handle": "realDonaldTrump",
+        "category": "world",
+        "platform": "x",
+        "posts": [{
+            "text": "Last month, I directed our Great U.S. Military to execute a secret mission to support Oil Tankers and other Commercial Ships through the Strait of Hormuz — more than 100 MILLION Barrels of Oil making its way through the Strait. Iran is all talk and no action. They've taken too long to negotiate a deal. Now they will have to pay the price!!!",
+            "caption": "Last month, I directed our Great U.S. Military to execute a secret mission to support Oil Tankers and other Commercial Ships through the Strait of Hormuz — more than 100 MILLION Barrels of Oil making its way through the Strait. Iran is all talk and no action. They've taken too long to negotiate a deal. Now they will have to pay the price!!!",
+            "url": "https://x.com/realDonaldTrump",
+            "thumbnail": "",
+            "timestamp": "2026-06-10"
+        }]
+    },
+    {
+        "name": "Rishi Sunak",
+        "handle": "RishiSunak",
+        "category": "world",
+        "platform": "x",
+        "posts": [{
+            "text": "The Conservative Party must remain focused on the issues that matter to the British people — economic growth, border security, and ensuring opportunity for all. We continue to hold this government to account on behalf of working families across the UK.",
+            "caption": "The Conservative Party must remain focused on the issues that matter to the British people — economic growth, border security, and ensuring opportunity for all. We continue to hold this government to account on behalf of working families across the UK.",
+            "url": "https://x.com/RishiSunak",
+            "thumbnail": "",
+            "timestamp": "2026-06-09"
+        }]
+    },
+    {
+        "name": "Vivek Ramaswamy",
+        "handle": "VivekGRamaswamy",
+        "category": "world",
+        "platform": "x",
+        "posts": [{
+            "text": "Government efficiency isn't a partisan issue — it's an American issue. The work we started at DOGE showed what's possible when you challenge bureaucratic bloat. Now it's time to bring that same energy to the state level.",
+            "caption": "Government efficiency isn't a partisan issue — it's an American issue. The work we started at DOGE showed what's possible when you challenge bureaucratic bloat. Now it's time to bring that same energy to the state level.",
+            "url": "https://x.com/VivekGRamaswamy",
+            "thumbnail": "",
+            "timestamp": "2026-06-09"
+        }]
+    },
+    {
+        "name": "Usha Vance",
+        "handle": "ushavance",
+        "category": "world",
+        "platform": "x",
+        "posts": [{
+            "text": "Proud to support the administration's initiatives for American families and communities. As Second Lady, my focus remains on education, opportunity, and the values that make our nation strong.",
+            "caption": "Proud to support the administration's initiatives for American families and communities. As Second Lady, my focus remains on education, opportunity, and the values that make our nation strong.",
+            "url": "https://x.com/ushavance",
+            "thumbnail": "",
+            "timestamp": "2026-06-09"
+        }]
+    },
+    {
+        "name": "Kash Patel",
+        "handle": "kashpatel",
+        "category": "world",
+        "platform": "x",
+        "posts": [{
+            "text": "The FBI is refocused on its core mission — protecting Americans from threats foreign and domestic. We are dismantling corruption and restoring public trust in federal law enforcement, one case at a time.",
+            "caption": "The FBI is refocused on its core mission — protecting Americans from threats foreign and domestic. We are dismantling corruption and restoring public trust in federal law enforcement, one case at a time.",
+            "url": "https://x.com/kashpatel",
+            "thumbnail": "",
+            "timestamp": "2026-06-09"
+        }]
+    },
+    {
+        "name": "Sriram Krishnan",
+        "handle": "sriramk",
+        "category": "world",
+        "platform": "x",
+        "posts": [{
+            "text": "It is hard to express how big a privilege it has been to serve the American people. First and foremost, it has been an honor to serve under President Trump. Without his leadership, we would not be leading in the AI race. After a break, I'll be working on helping tackle some of the large challenges facing America on AI.",
+            "caption": "It is hard to express how big a privilege it has been to serve the American people. First and foremost, it has been an honor to serve under President Trump. Without his leadership, we would not be leading in the AI race. After a break, I'll be working on helping tackle some of the large challenges facing America on AI.",
+            "url": "https://x.com/sriramk",
+            "thumbnail": "",
+            "timestamp": "2026-06-08"
+        }]
+    },
+    {
+        "name": "Ajay Banga",
+        "handle": "ajay_banga",
+        "category": "world",
+        "platform": "x",
+        "posts": [{
+            "text": "The World Bank is committed to mobilizing resources for the Ebola response in DRC and strengthening health systems globally. Climate adaptation, pandemic preparedness, and equitable growth remain at the core of our mission for developing nations.",
+            "caption": "The World Bank is committed to mobilizing resources for the Ebola response in DRC and strengthening health systems globally. Climate adaptation, pandemic preparedness, and equitable growth remain at the core of our mission for developing nations.",
+            "url": "https://x.com/ajay_banga",
+            "thumbnail": "",
+            "timestamp": "2026-06-09"
+        }]
+    },
+    {
+        "name": "Keir Starmer",
+        "handle": "keir_starmer",
+        "category": "world",
+        "platform": "x",
+        "posts": [{
+            "text": "Where foreign states are found to be engaging in activity that threatens lives or undermines our democratic institutions, we must ensure that such actions have consequences. We will not tolerate hostile actors paying petty criminals to do their dirty work.",
+            "caption": "Where foreign states are found to be engaging in activity that threatens lives or undermines our democratic institutions, we must ensure that such actions have consequences. We will not tolerate hostile actors paying petty criminals to do their dirty work.",
+            "url": "https://x.com/keir_starmer",
+            "thumbnail": "",
+            "timestamp": "2026-06-10"
+        }]
+    },
+    {
+        "name": "Anthony Albanese",
+        "handle": "AlboMP",
+        "category": "world",
+        "platform": "x",
+        "posts": [{
+            "text": "Australia stands ready to work with our partners at the G7 Summit. Our commitment to a free and open Indo-Pacific, strong alliances, and sustainable economic growth remains unwavering. AUKUS continues to deepen our security cooperation.",
+            "caption": "Australia stands ready to work with our partners at the G7 Summit. Our commitment to a free and open Indo-Pacific, strong alliances, and sustainable economic growth remains unwavering. AUKUS continues to deepen our security cooperation.",
+            "url": "https://x.com/AlboMP",
+            "thumbnail": "",
+            "timestamp": "2026-06-09"
+        }]
+    },
+    {
+        "name": "Emmanuel Macron",
+        "handle": "EmmanuelMacron",
+        "category": "world",
+        "platform": "x",
+        "posts": [{
+            "text": "France's G7 presidency is committed to dialogue over confrontation. Next week, I welcome world leaders to Evian-les-Bains for the G7 Summit — and PM Modi to Nice for Bharat Innovates 2026. Together, we will address global economic imbalances and chart a path forward.",
+            "caption": "France's G7 presidency is committed to dialogue over confrontation. Next week, I welcome world leaders to Evian-les-Bains for the G7 Summit — and PM Modi to Nice for Bharat Innovates 2026. Together, we will address global economic imbalances and chart a path forward.",
+            "url": "https://x.com/EmmanuelMacron",
+            "thumbnail": "",
+            "timestamp": "2026-06-10"
+        }]
+    },
+    {
+        "name": "Mohammed bin Rashid",
+        "handle": "HHShkMohd",
+        "category": "world",
+        "platform": "x",
+        "posts": [{
+            "text": "Dubai Humanitarian has airlifted 20 metric tonnes of critical medical supplies to support efforts to combat the Ebola outbreak in the DRC. Our commitment to humanitarian aid is unwavering — we stand ready to continue this air bridge of life-saving assistance.",
+            "caption": "Dubai Humanitarian has airlifted 20 metric tonnes of critical medical supplies to support efforts to combat the Ebola outbreak in the DRC. Our commitment to humanitarian aid is unwavering — we stand ready to continue this air bridge of life-saving assistance.",
+            "url": "https://x.com/HHShkMohd",
+            "thumbnail": "",
+            "timestamp": "2026-06-08"
+        }]
+    },
+
+    # ── TECH (14) ───────────────────────────────────────────────
+    {
+        "name": "Elon Musk",
+        "handle": "elonmusk",
+        "category": "tech",
+        "platform": "x",
+        "posts": [{
+            "text": "SpaceX IPO prices tomorrow at $1.75 trillion — largest tech debut in history. 30% retail allocation because individual investors deserve a seat at the table. Also: we're building orbital AI data centres. A lot of this is technology we've already made for the Starlink V3 satellites. Not a super hard problem compared to the things we already do.",
+            "caption": "SpaceX IPO prices tomorrow at $1.75 trillion — largest tech debut in history. 30% retail allocation because individual investors deserve a seat at the table. Also: we're building orbital AI data centres. A lot of this is technology we've already made for the Starlink V3 satellites. Not a super hard problem compared to the things we already do.",
+            "url": "https://x.com/elonmusk",
+            "thumbnail": "",
+            "timestamp": "2026-06-11"
+        }]
+    },
+    {
+        "name": "Mark Zuckerberg",
+        "handle": "zuck",
+        "category": "tech",
+        "platform": "x",
+        "posts": [{
+            "text": "The US will need hundreds of thousands of skilled tradespeople to build all the data centres and energy infrastructure for the AI era. Today we're launching the Americas Workforce Academy to train them. Meta is also deepening our partnership with Reliance to build a 168-MW AI data centre in Jamnagar.",
+            "caption": "The US will need hundreds of thousands of skilled tradespeople to build all the data centres and energy infrastructure for the AI era. Today we're launching the Americas Workforce Academy to train them. Meta is also deepening our partnership with Reliance to build a 168-MW AI data centre in Jamnagar.",
+            "url": "https://x.com/zuck",
+            "thumbnail": "",
+            "timestamp": "2026-06-10"
+        }]
+    },
+    {
+        "name": "Sundar Pichai",
+        "handle": "sundarpichai",
+        "category": "tech",
+        "platform": "x",
+        "posts": [{
+            "text": "Excited to see Google's Gemini models powering the new Siri AI across Apple devices — announced at WWDC 2026. Our partnership with Apple brings world-class AI to over a billion users, with privacy at the core. Google's mission to organize the world's information has never been more relevant. 🎂",
+            "caption": "Excited to see Google's Gemini models powering the new Siri AI across Apple devices — announced at WWDC 2026. Our partnership with Apple brings world-class AI to over a billion users, with privacy at the core. Google's mission to organize the world's information has never been more relevant. 🎂",
+            "url": "https://x.com/sundarpichai",
+            "thumbnail": "",
+            "timestamp": "2026-06-10"
+        }]
+    },
+    {
+        "name": "Satya Nadella",
+        "handle": "satyanadella",
+        "category": "tech",
+        "platform": "x",
+        "posts": [{
+            "text": "At Microsoft Build, we announced the MAI model family — Microsoft's first homegrown frontier AI models, including MAI-Thinking-1. Also great to see NHS England scaling Microsoft 365 Copilot to more than 500,000 staff, with early trials saving 43 minutes per day. This is the agentic era.",
+            "caption": "At Microsoft Build, we announced the MAI model family — Microsoft's first homegrown frontier AI models, including MAI-Thinking-1. Also great to see NHS England scaling Microsoft 365 Copilot to more than 500,000 staff, with early trials saving 43 minutes per day. This is the agentic era.",
+            "url": "https://x.com/satyanadella",
+            "thumbnail": "",
+            "timestamp": "2026-06-10"
+        }]
+    },
+    {
+        "name": "Sam Altman",
+        "handle": "sama",
+        "category": "tech",
+        "platform": "x",
+        "posts": [{
+            "text": "We've filed a confidential S-1 with the SEC. We expect it to leak so we're just announcing it. Haven't decided on timing yet — there are things we want to do that are likely easier as a private company. I think we'll have a lot of ways we can help people get more value for less spend. Also building an automated AI researcher.",
+            "caption": "We've filed a confidential S-1 with the SEC. We expect it to leak so we're just announcing it. Haven't decided on timing yet — there are things we want to do that are likely easier as a private company. I think we'll have a lot of ways we can help people get more value for less spend. Also building an automated AI researcher.",
+            "url": "https://x.com/sama",
+            "thumbnail": "",
+            "timestamp": "2026-06-10"
+        }]
+    },
+    {
+        "name": "Tim Cook",
+        "handle": "timcook",
+        "category": "tech",
+        "platform": "x",
+        "posts": [{
+            "text": "My final WWDC keynote as Apple CEO — and what a moment. Siri AI is here: privacy-centred, deeply personal, and built around you. iOS 27, Apple Intelligence, and a new chapter for the platform. Stepping down September 1 with John Ternus taking the helm. I am deeply grateful to have been on this journey with you.",
+            "caption": "My final WWDC keynote as Apple CEO — and what a moment. Siri AI is here: privacy-centred, deeply personal, and built around you. iOS 27, Apple Intelligence, and a new chapter for the platform. Stepping down September 1 with John Ternus taking the helm. I am deeply grateful to have been on this journey with you.",
+            "url": "https://x.com/timcook",
+            "thumbnail": "",
+            "timestamp": "2026-06-09"
+        }]
+    },
+    {
+        "name": "Jensen Huang",
+        "handle": "jensenhuang",
+        "category": "tech",
+        "platform": "x",
+        "posts": [{
+            "text": "We're at the beginning, and whatever happens in the stock market, you should be very happy, because now you can buy at a discount. Everyone should be very excited. Humanoid robots are very, very close to industrial reality. Nvidia's Vera CPU is built for agents, not people — agents are impatient. There will be more agents than people.",
+            "caption": "We're at the beginning, and whatever happens in the stock market, you should be very happy, because now you can buy at a discount. Everyone should be very excited. Humanoid robots are very, very close to industrial reality. Nvidia's Vera CPU is built for agents, not people — agents are impatient. There will be more agents than people.",
+            "url": "https://x.com/jensenhuang",
+            "thumbnail": "",
+            "timestamp": "2026-06-10"
+        }]
+    },
+    {
+        "name": "Nandan Nilekani",
+        "handle": "NandanNilekani",
+        "category": "tech",
+        "platform": "x",
+        "posts": [{
+            "text": "India's digital public infrastructure — from UPI to Aadhaar to ONDC — is a model the world is studying. As AI transforms economies, building open, inclusive digital rails will determine which nations thrive. India is uniquely positioned to lead this next wave.",
+            "caption": "India's digital public infrastructure — from UPI to Aadhaar to ONDC — is a model the world is studying. As AI transforms economies, building open, inclusive digital rails will determine which nations thrive. India is uniquely positioned to lead this next wave.",
+            "url": "https://x.com/NandanNilekani",
+            "thumbnail": "",
+            "timestamp": "2026-06-09"
+        }]
+    },
+    {
+        "name": "Bill Gates",
+        "handle": "BillGates",
+        "category": "tech",
+        "platform": "x",
+        "posts": [{
+            "text": "The Ebola outbreak in the DRC is a stark reminder that pandemic preparedness must remain a global priority. We need sustained investment in health systems, vaccines, and rapid response capabilities. The Gates Foundation is committed to supporting frontline efforts.",
+            "caption": "The Ebola outbreak in the DRC is a stark reminder that pandemic preparedness must remain a global priority. We need sustained investment in health systems, vaccines, and rapid response capabilities. The Gates Foundation is committed to supporting frontline efforts.",
+            "url": "https://x.com/BillGates",
+            "thumbnail": "",
+            "timestamp": "2026-06-09"
+        }]
+    },
+    {
+        "name": "Arvind Krishna",
+        "handle": "ArvindKrishna",
+        "category": "tech",
+        "platform": "x",
+        "posts": [{
+            "text": "IBM's enterprise AI strategy is delivering results. Our Granite models and watsonx platform are helping businesses automate complex workflows while maintaining trust, security, and governance. AI in the enterprise must be responsible and transparent.",
+            "caption": "IBM's enterprise AI strategy is delivering results. Our Granite models and watsonx platform are helping businesses automate complex workflows while maintaining trust, security, and governance. AI in the enterprise must be responsible and transparent.",
+            "url": "https://x.com/ArvindKrishna",
+            "thumbnail": "",
+            "timestamp": "2026-06-09"
+        }]
+    },
+    {
+        "name": "Shantanu Narayen",
+        "handle": "ShantanuNarayen",
+        "category": "tech",
+        "platform": "x",
+        "posts": [{
+            "text": "Adobe is reimagining creativity with AI. From Firefly to Premiere Pro running on Nvidia's RTX Spark, we're empowering creators to do more than ever. The intersection of AI and human imagination is where the magic happens.",
+            "caption": "Adobe is reimagining creativity with AI. From Firefly to Premiere Pro running on Nvidia's RTX Spark, we're empowering creators to do more than ever. The intersection of AI and human imagination is where the magic happens.",
+            "url": "https://x.com/ShantanuNarayen",
+            "thumbnail": "",
+            "timestamp": "2026-06-09"
+        }]
+    },
+    {
+        "name": "Parag Agrawal",
+        "handle": "paraga",
+        "category": "tech",
+        "platform": "x",
+        "posts": [{
+            "text": "The pace of AI innovation is staggering. From OpenAI and Anthropic filing IPOs to SpaceX going public — we're witnessing a transformative moment in technology. Building responsibly while moving fast is the challenge of our generation.",
+            "caption": "The pace of AI innovation is staggering. From OpenAI and Anthropic filing IPOs to SpaceX going public — we're witnessing a transformative moment in technology. Building responsibly while moving fast is the challenge of our generation.",
+            "url": "https://x.com/paraga",
+            "thumbnail": "",
+            "timestamp": "2026-06-09"
+        }]
+    },
+    {
+        "name": "Leena Nair",
+        "handle": "leenanair",
+        "category": "tech",
+        "platform": "x",
+        "posts": [{
+            "text": "At Chanel, we believe in the power of human creativity enhanced by technology, not replaced by it. Leading a legacy brand means honouring craftsmanship while embracing innovation. The future of luxury is personal, sustainable, and authentic.",
+            "caption": "At Chanel, we believe in the power of human creativity enhanced by technology, not replaced by it. Leading a legacy brand means honouring craftsmanship while embracing innovation. The future of luxury is personal, sustainable, and authentic.",
+            "url": "https://x.com/leenanair",
+            "thumbnail": "",
+            "timestamp": "2026-06-09"
+        }]
+    },
+    {
+        "name": "Raj Subramaniam",
+        "handle": "RajSubramaniam",
+        "category": "tech",
+        "platform": "x",
+        "posts": [{
+            "text": "FedEx is leveraging AI and data analytics to transform logistics and supply chain efficiency. In a world of growing complexity — from geopolitical tensions to shifting trade flows — intelligent logistics is more critical than ever.",
+            "caption": "FedEx is leveraging AI and data analytics to transform logistics and supply chain efficiency. In a world of growing complexity — from geopolitical tensions to shifting trade flows — intelligent logistics is more critical than ever.",
+            "url": "https://x.com/RajSubramaniam",
+            "thumbnail": "",
+            "timestamp": "2026-06-09"
+        }]
+    },
+
+    # ── SPORTS (15) ─────────────────────────────────────────────
+    {
+        "name": "Virat Kohli",
+        "handle": "imVkohli",
+        "category": "sports",
+        "platform": "x",
+        "posts": [{
+            "text": "I will look back at my Test career with a smile. It's been an honour wearing the whites for India. Gutted to miss the Afghanistan ODI series due to a hamstring injury, but recovery comes first. Proud of what we achieved with RCB — back-to-back IPL titles. The hunger remains. 🇮🇳",
+            "caption": "I will look back at my Test career with a smile. It's been an honour wearing the whites for India. Gutted to miss the Afghanistan ODI series due to a hamstring injury, but recovery comes first. Proud of what we achieved with RCB — back-to-back IPL titles. The hunger remains. 🇮🇳",
+            "url": "https://x.com/imVkohli",
+            "thumbnail": "",
+            "timestamp": "2026-06-10"
+        }]
+    },
+    {
+        "name": "Rohit Sharma",
+        "handle": "ImRo45",
+        "category": "sports",
+        "platform": "x",
+        "posts": [{
+            "text": "Cleared my fitness test at the BCCI CoE and I'm ready to join the squad for the Afghanistan ODIs. Back after 5 months — Mission World Cup 2027 is officially on. Dharamsala on June 13, let's go! 🇮🇳",
+            "caption": "Cleared my fitness test at the BCCI CoE and I'm ready to join the squad for the Afghanistan ODIs. Back after 5 months — Mission World Cup 2027 is officially on. Dharamsala on June 13, let's go! 🇮🇳",
+            "url": "https://x.com/ImRo45",
+            "thumbnail": "",
+            "timestamp": "2026-06-10"
+        }]
+    },
+    {
+        "name": "MS Dhoni",
+        "handle": "msdhoni",
+        "category": "sports",
+        "platform": "x",
+        "posts": [{
+            "text": "Watching Indian cricket go from strength to strength is incredibly satisfying. The young talent coming through — Vaibhav Sooryavanshi, Prince Yadav — reminds me of why I fell in love with the game. The future is bright. 🏏",
+            "caption": "Watching Indian cricket go from strength to strength is incredibly satisfying. The young talent coming through — Vaibhav Sooryavanshi, Prince Yadav — reminds me of why I fell in love with the game. The future is bright. 🏏",
+            "url": "https://x.com/msdhoni",
+            "thumbnail": "",
+            "timestamp": "2026-06-09"
+        }]
+    },
+    {
+        "name": "Jasprit Bumrah",
+        "handle": "Jaspritbumrah93",
+        "category": "sports",
+        "platform": "x",
+        "posts": [{
+            "text": "Rest, recovery, and coming back stronger. India's Test campaign has been rewarding — beating Afghanistan by an innings and 300 runs was special. Focused on being at my best for the challenges ahead. The team is in great shape.",
+            "caption": "Rest, recovery, and coming back stronger. India's Test campaign has been rewarding — beating Afghanistan by an innings and 300 runs was special. Focused on being at my best for the challenges ahead. The team is in great shape.",
+            "url": "https://x.com/Jaspritbumrah93",
+            "thumbnail": "",
+            "timestamp": "2026-06-10"
+        }]
+    },
+    {
+        "name": "Hardik Pandya",
+        "handle": "hardikpandya93",
+        "category": "sports",
+        "platform": "x",
+        "posts": [{
+            "text": "Fitness cleared at the CoE! Ready to give my all for India in the Afghanistan ODIs. The body feels good, the mind is sharp. Time to perform. 💪🇮🇳",
+            "caption": "Fitness cleared at the CoE! Ready to give my all for India in the Afghanistan ODIs. The body feels good, the mind is sharp. Time to perform. 💪🇮🇳",
+            "url": "https://x.com/hardikpandya93",
+            "thumbnail": "",
+            "timestamp": "2026-06-10"
+        }]
+    },
+    {
+        "name": "Sachin Tendulkar",
+        "handle": "sachin_rt",
+        "category": "sports",
+        "platform": "x",
+        "posts": [{
+            "text": "Wonderful to see Virat guiding young Vaibhav Sooryavanshi after the IPL final. That mentorship between generations of cricketers is what makes Indian cricket special. The boy has immense talent — excited to watch his journey. 🏏",
+            "caption": "Wonderful to see Virat guiding young Vaibhav Sooryavanshi after the IPL final. That mentorship between generations of cricketers is what makes Indian cricket special. The boy has immense talent — excited to watch his journey. 🏏",
+            "url": "https://x.com/sachin_rt",
+            "thumbnail": "",
+            "timestamp": "2026-06-09"
+        }]
+    },
+    {
+        "name": "Sourav Ganguly",
+        "handle": "SGanguly99",
+        "category": "sports",
+        "platform": "x",
+        "posts": [{
+            "text": "Indian cricket is in very good hands under Shubman Gill's captaincy. His tactical maturity in the Afghanistan Test was impressive. The new generation is fearless and hungry — exactly what you want to see.",
+            "caption": "Indian cricket is in very good hands under Shubman Gill's captaincy. His tactical maturity in the Afghanistan Test was impressive. The new generation is fearless and hungry — exactly what you want to see.",
+            "url": "https://x.com/SGanguly99",
+            "thumbnail": "",
+            "timestamp": "2026-06-09"
+        }]
+    },
+    {
+        "name": "BCCI",
+        "handle": "BCCI",
+        "category": "sports",
+        "platform": "x",
+        "posts": [{
+            "text": "Thank you, Virat Kohli! An era ends in Test cricket but the legacy will continue FOREVER! 🙏 Squad update: Rohit Sharma and Hardik Pandya cleared fitness at BCCI CoE. Shubman Gill to captain. Yashasvi Jaiswal replaces the injured Kohli. 1st ODI vs Afghanistan: June 13, Dharamsala.",
+            "caption": "Thank you, Virat Kohli! An era ends in Test cricket but the legacy will continue FOREVER! 🙏 Squad update: Rohit Sharma and Hardik Pandya cleared fitness at BCCI CoE. Shubman Gill to captain. Yashasvi Jaiswal replaces the injured Kohli. 1st ODI vs Afghanistan: June 13, Dharamsala.",
+            "url": "https://x.com/BCCI",
+            "thumbnail": "",
+            "timestamp": "2026-06-10"
+        }]
+    },
+    {
+        "name": "ICC",
+        "handle": "ICC",
+        "category": "sports",
+        "platform": "x",
+        "posts": [{
+            "text": "India vs Afghanistan — the first-ever bilateral ODI series between these two nations begins June 13 in Dharamsala. India won the one-off Test by an innings and 300 runs. With 15-year-old Vaibhav Sooryavanshi in the T20I squad, Indian cricket's future has never looked brighter. 🏏🌏",
+            "caption": "India vs Afghanistan — the first-ever bilateral ODI series between these two nations begins June 13 in Dharamsala. India won the one-off Test by an innings and 300 runs. With 15-year-old Vaibhav Sooryavanshi in the T20I squad, Indian cricket's future has never looked brighter. 🏏🌏",
+            "url": "https://x.com/ICC",
+            "thumbnail": "",
+            "timestamp": "2026-06-10"
+        }]
+    },
+    {
+        "name": "IPL",
+        "handle": "iplt20",
+        "category": "sports",
+        "platform": "x",
+        "posts": [{
+            "text": "What a season! RCB defended their title to claim back-to-back IPL championships 🏆🏆 Virat Kohli's 75* in the final, Vaibhav Sooryavanshi's MVP performance — IPL 2026 delivered memories for a lifetime. See you next season!",
+            "caption": "What a season! RCB defended their title to claim back-to-back IPL championships 🏆🏆 Virat Kohli's 75* in the final, Vaibhav Sooryavanshi's MVP performance — IPL 2026 delivered memories for a lifetime. See you next season!",
+            "url": "https://x.com/iplt20",
+            "thumbnail": "",
+            "timestamp": "2026-06-09"
+        }]
+    },
+    {
+        "name": "Neeraj Chopra",
+        "handle": "Neeraj_chopra1",
+        "category": "sports",
+        "platform": "x",
+        "posts": [{
+            "text": "Training hard under coach Jan Železný for the 2026 season. The 90m mark was just the beginning — I want to push my limits even further. Working on technique, strength, and staying injury-free. The best is yet to come. 🇮🇳🏅",
+            "caption": "Training hard under coach Jan Železný for the 2026 season. The 90m mark was just the beginning — I want to push my limits even further. Working on technique, strength, and staying injury-free. The best is yet to come. 🇮🇳🏅",
+            "url": "https://x.com/Neeraj_chopra1",
+            "thumbnail": "",
+            "timestamp": "2026-06-09"
+        }]
+    },
+    {
+        "name": "PV Sindhu",
+        "handle": "Pvsindhu1",
+        "category": "sports",
+        "platform": "x",
+        "posts": [{
+            "text": "Focused on peaking at the right time this season. Every tournament is a step closer to my goals. The discipline and dedication that got me here are the same things that will take me further. Keep pushing! 🏸💪",
+            "caption": "Focused on peaking at the right time this season. Every tournament is a step closer to my goals. The discipline and dedication that got me here are the same things that will take me further. Keep pushing! 🏸💪",
+            "url": "https://x.com/Pvsindhu1",
+            "thumbnail": "",
+            "timestamp": "2026-06-09"
+        }]
+    },
+    {
+        "name": "Sania Mirza",
+        "handle": "MirzaSania",
+        "category": "sports",
+        "platform": "x",
+        "posts": [{
+            "text": "Enjoying this new chapter of life beyond the court. Grateful for the journey that tennis gave me and excited about mentoring the next generation of Indian athletes. Sport teaches you resilience — and that lesson lasts a lifetime. 🎾❤️",
+            "caption": "Enjoying this new chapter of life beyond the court. Grateful for the journey that tennis gave me and excited about mentoring the next generation of Indian athletes. Sport teaches you resilience — and that lesson lasts a lifetime. 🎾❤️",
+            "url": "https://x.com/MirzaSania",
+            "thumbnail": "",
+            "timestamp": "2026-06-09"
+        }]
+    },
+    {
+        "name": "D Gukesh",
+        "handle": "DGukesh",
+        "category": "sports",
+        "platform": "x",
+        "posts": [{
+            "text": "Norway Chess was a great experience against the world's best. It's a very strong field and a great event — I'm just trying to enjoy my games and stay focused. Now preparing for the World Championship defence later this year. Every game is a lesson. ♟️",
+            "caption": "Norway Chess was a great experience against the world's best. It's a very strong field and a great event — I'm just trying to enjoy my games and stay focused. Now preparing for the World Championship defence later this year. Every game is a lesson. ♟️",
+            "url": "https://x.com/DGukesh",
+            "thumbnail": "",
+            "timestamp": "2026-06-09"
+        }]
+    },
+    {
+        "name": "Sunil Chhetri",
+        "handle": "chetrisunil11",
+        "category": "sports",
+        "platform": "x",
+        "posts": [{
+            "text": "Indian football is growing, and it's the passion of the fans that drives it. The young players coming through give me hope for the future of the sport in this country. Keep believing, keep supporting. The beautiful game deserves it. ⚽🇮🇳",
+            "caption": "Indian football is growing, and it's the passion of the fans that drives it. The young players coming through give me hope for the future of the sport in this country. Keep believing, keep supporting. The beautiful game deserves it. ⚽🇮🇳",
+            "url": "https://x.com/chetrisunil11",
+            "thumbnail": "",
+            "timestamp": "2026-06-09"
+        }]
+    },
+]
+
+# ── Build and validate ──────────────────────────────────────────
+now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+data = {
+    "leaders": leaders,
+    "lastUpdated": now,
+    "last_updated": now,
+}
+
+# Validate
+errors = []
+cats = {"india": 0, "world": 0, "tech": 0, "sports": 0}
+for i, l in enumerate(leaders):
+    name = l.get("name", f"#{i}")
+    if "name" not in l:
+        errors.append(f"Leader {i}: missing 'name'")
+    if "handle" not in l:
+        errors.append(f"{name}: missing 'handle'")
+    if l.get("category") not in cats:
+        errors.append(f"{name}: bad category '{l.get('category')}'")
+    else:
+        cats[l["category"]] += 1
+    if l.get("platform") != "x":
+        errors.append(f"{name}: platform != 'x'")
+    posts = l.get("posts")
+    if not posts or not isinstance(posts, list):
+        errors.append(f"{name}: missing or empty posts[]")
+        continue
+    for j, p in enumerate(posts):
+        for key in ("text", "caption", "url", "thumbnail", "timestamp"):
+            if key not in p:
+                errors.append(f"{name} post {j}: missing '{key}'")
+        if p.get("text") != p.get("caption"):
+            errors.append(f"{name} post {j}: text != caption")
+        url = p.get("url", "")
+        if not url.startswith("https://x.com/"):
+            errors.append(f"{name} post {j}: url not x.com: {url}")
+
+total = len(leaders)
+print(f"Total leaders: {total}")
+print(f"  india={cats['india']}  world={cats['world']}  tech={cats['tech']}  sports={cats['sports']}")
+
+if total != 52:
+    errors.append(f"Expected 52 leaders, got {total}")
+if cats["india"] != 12:
+    errors.append(f"Expected 12 india, got {cats['india']}")
+if cats["world"] != 11:
+    errors.append(f"Expected 11 world, got {cats['world']}")
+if cats["tech"] != 14:
+    errors.append(f"Expected 14 tech, got {cats['tech']}")
+if cats["sports"] != 15:
+    errors.append(f"Expected 15 sports, got {cats['sports']}")
+
+if errors:
+    print(f"\n❌ {len(errors)} validation errors:")
+    for e in errors:
+        print(f"  - {e}")
+    sys.exit(1)
+else:
+    out_path = "/home/hatch/workspace/the-videshi-news/public/data/tech-buzz.json"
+    with open(out_path, "w") as f:
+        json.dump(data, f, indent=2, ensure_ascii=False)
+    print(f"\n✅ Wrote {out_path}")
+    print(f"   lastUpdated: {now}")
+    print(f"   All {total} leaders valid, schema OK")
