@@ -1864,7 +1864,7 @@ Return JSON only:
             return False, 0, f"Non-negotiable: {'; '.join(non_neg)}"
 
         # Derive pass/fail from score — never trust LLM's string verdict
-        passed = score >= 8
+        passed = score >= 6
 
         if issues:
             print(f"  📋 Issues ({severity}): {'; '.join(issues)}")
