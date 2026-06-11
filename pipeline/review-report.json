@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-11T11:45:15.975775+00:00",
+  "timestamp": "2026-06-11T12:15:32.522538+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 6,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,36 +11,31 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "54aeafeb-7f65-4be2-9a36-31b6d23c7972",
-      "headline": "The Internet Thinks Alpha Is Just Ballerina With a Bindi. The YRF Spy Universe Has a Problem.",
-      "slug": "alpha-teaser-backlash-alia-bhatt-hollywood-copycat-sharvari-missing-yrf-spy-universe-war-2",
+      "id": "6e863227-4c8f-4b06-83bf-06fb16d94d7b",
+      "headline": "Bihar Wants Its Global Diaspora to Help Build the State. It Just Launched a Portal to Make That Possible.",
+      "slug": "bihar-global-diaspora-portal-overseas-biharis-development-20260611",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "0ef6b011-47e5-4524-a024-c18572a1ce31",
-            "headline": "Alpha Drops Its Teaser Today. The YRF Spy Universe Finally H"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
-        "overall_score": 7,
+        "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 8,
-          "issue": "The image features Alia Bhatt, which is relevant to the article's focus on her role in Alpha."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses the diaspora's expectations for representation and innovation in Bollywood, making it relevant to NRI readers."
+          "note": "The article effectively connects with the NRI diaspora by discussing their potential contributions to Bihar's development."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more specific examples of how the diaspora engages with Bollywood films.",
-          "Consider adding quotes or reactions from diaspora audiences to enhance the connection."
+          "Include quotes or testimonials from members of the diaspora to enhance engagement.",
+          "Add specific examples of successful diaspora initiatives from other states to provide context."
         ],
         "verdict": "pass"
       },
@@ -52,9 +47,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "cfb39575-48a1-4e35-835e-770f7f0c8dba",
-      "headline": "India's Fertiliser Bill Has Doubled in Three Months. The Iran War Is Draining the Treasury.",
-      "slug": "india-fertiliser-subsidy-doubles-iran-war-oil-rupee-fiscal-20260611",
+      "id": "5bc5e8e9-1be5-4e21-a838-48de0842a7ea",
+      "headline": "The RBI Just Made It Easier for NRIs to Own Bigger Stakes in Indian Companies. Here Is What Changed.",
+      "slug": "rbi-nri-oci-equity-investment-limit-sebi-10-percent-20260611",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -64,19 +59,163 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the topic of fertilisers or the Iran war."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the economic implications of the Iran war and fertiliser subsidies to the Indian diaspora, particularly regarding remittances and investment value."
+          "note": "The article effectively addresses the concerns and interests of NRIs regarding investment opportunities in India."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that depicts fertilisers or agricultural themes.",
-          "Add more specific examples or quotes from diaspora members to enhance the connection to NRI readers."
+          "Include specific examples of companies that NRIs might consider investing in under the new regulations.",
+          "Add a section on potential risks or considerations for NRIs when investing in Indian equities."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "edc655b0-09b6-4952-abc7-8c6c002c9b46",
+      "headline": "Three Indian Seafarers Are Missing After a U.S. Military Strike on a Tanker Off Oman. India Has Summoned the American Envoy.",
+      "slug": "indian-seafarers-missing-us-strike-tanker-gulf-oman-20260611",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the impact of geopolitical events on Indian seafarers, which is relevant to the diaspora community."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from family members of the missing seafarers to provide a personal touch.",
+          "Include more context on the implications of the U.S. military actions for Indian seafarers and their families."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "aecd4bb3-dd2a-4df0-b276-022585168a64",
+      "headline": "Jensen Huang Won't Testify Before the Senate. Elizabeth Warren Isn't Letting It Go.",
+      "slug": "jensen-huang-declines-senate-hearing-ai-chip-exports-china-20260611",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the topic to the Indian diaspora by discussing NVIDIA's employment of Indian-origin engineers and the impact of regulatory actions on diaspora wealth."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more direct quotes from Jensen Huang or Elizabeth Warren to enhance the narrative.",
+          "Include a brief overview of NVIDIA's recent performance metrics to provide context for its significance in the tech industry."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "5adfb82f-f1d4-48ff-962f-588d615ee7f3",
+      "headline": "NVIDIA Wants to Replace Your Entire PC With a Chip the Size of a Playing Card",
+      "slug": "nvidia-rtx-spark-ai-pc-arm-blackwell-mediatek-20260611",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the technology to Indian software engineers and NRI investors, making it relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of how Indian software engineers might utilize the RTX Spark in their work.",
+          "Include a brief comparison with existing technologies to highlight the significance of this new product."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "875bffd7-6da5-4925-8881-4e71df33ab03",
+      "headline": "TCS Will Stop Hiring En Masse. Half a Million AI Agents Will Pick Up the Slack.",
+      "slug": "tcs-ends-mass-hiring-ai-agents-match-headcount-20260611",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the implications of TCS's hiring changes on H-1B visa sponsorship, which directly affects the Indian diaspora in the US."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more direct quotes from TCS executives to enhance credibility.",
+          "Add a section on potential future trends in the Indian IT industry regarding AI and employment."
         ],
         "verdict": "pass"
       },
