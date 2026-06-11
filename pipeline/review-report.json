@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-11T13:45:16.708223+00:00",
+  "timestamp": "2026-06-11T14:15:40.188358+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
-    "flag": 1,
+    "pass": 5,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,53 +11,12 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "d64512e7-66b9-4972-b0a7-559db44111ff",
-      "headline": "She Had Not Played in Four Years. At 44, Serena Williams Walked Back On Court and Won.",
-      "slug": "serena-williams-comeback-44-queens-club-doubles-win-mboko-nri",
+      "id": "8fea3aa8-7694-482a-b0ab-d9a4355754bb",
+      "headline": "India's Corporate Borrowers Are Racing to Lock In Lower Rates. The RBI's Dollar Blitz Just Opened a Window.",
+      "slug": "india-corporate-bond-rush-rbi-forex-swap-borrowing-costs-nri-fixed-income-20260611",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 2,
-          "issue": "irrelevant"
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects Williams' return to the experiences of Indian tennis fans and NRI families, making it relevant to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the hero image with one that features Serena Williams or relates directly to her recent match.",
-          "Consider adding more quotes or insights from Indian tennis players or commentators to strengthen the diaspora connection."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "cac9c298-6151-4620-bf89-7d459da72a3f",
-      "headline": "Bumrah Named in Full-Strength India Squad for 2026 Asian Games in Japan",
-      "slug": "bumrah-india-asian-games-2026-japan-squad-iyer-sooryavanshi-nri",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "25adc161-fd7b-4d86-916c-07bb616f5116",
-            "headline": "Bumrah Was Rested for Ireland and England. He Was Not Rested"
-          }
-        ],
         "broken_embeds": []
       },
       "llm_review": {
@@ -70,13 +29,157 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the Indian cricket team's participation in the Asian Games to the Indian diaspora in Japan, highlighting the significance of the event for NRIs."
+          "note": "The article discusses implications for NRI investors, particularly in fixed-income investments, which is relevant to the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from players or coaches to enhance the article's depth.",
-          "Include more context on the significance of the Asian Games for cricket, especially for the Indian team."
+          "Consider adding more specific examples of how NRIs can take advantage of the current market conditions.",
+          "Include a brief summary or conclusion that encapsulates the key takeaways for NRI investors."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "e9b79874-2b40-4fe6-a55c-3708715a2895",
+      "headline": "A New Obesity Drug Cuts Liver Fat by 63 Per Cent. For South Asians, That Changes the Conversation.",
+      "slug": "survodutide-obesity-liver-fat-masld-south-asian-boehringer-ada-2026-20260611",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the drug's implications for South Asians, highlighting the unique health risks faced by this demographic."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a quote or perspective from a South Asian health expert to strengthen the diaspora connection.",
+          "Include more information on how South Asians can access this drug or participate in clinical trials."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "130e93fc-dc64-427d-9e79-62fc3cf7189b",
+      "headline": "Medically Tailored Meals Cut Hospitalisations by 31 Per Cent. For the Diaspora, This Is More Than Vindication.",
+      "slug": "food-is-medicine-medically-tailored-meals-hospitalisation-tufts-south-asian-diaspora-20260611",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the topic of medically tailored meals to the South Asian diaspora, highlighting their specific health challenges and food traditions."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more specific examples of how South Asian dietary practices can be integrated into medically tailored meal programs.",
+          "Add quotes or testimonials from South Asian individuals who have benefited from such programs to enhance relatability."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "b94f3c1e-d498-4834-ab09-bfd5fde9bd4f",
+      "headline": "The World Cup Was Supposed to Fill American Hotels \u2014 NRIs Are Finding Better Deals Across the Border",
+      "slug": "world-cup-hotel-bust-nri-mexico-canada-cheaper-20260611",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses NRIs by highlighting travel options and advantages for Indian Americans attending the World Cup."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more specific examples of Indian Americans who have traveled to Mexico or Canada for the World Cup to enhance relatability.",
+          "Add a section on potential cultural experiences or events in Mexico and Canada that NRIs might enjoy during their stay."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "7005ad7d-0c08-454a-bc9d-61b5fb99c9c8",
+      "headline": "Europe Is the Smartest Summer Escape for NRIs \u2014 and the Fare Gap Proves It",
+      "slug": "europe-summer-escape-nri-cheap-fares-world-cup-20260611",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively highlights the affordability and cultural experiences in Europe that appeal to NRIs."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include specific examples of popular destinations in Europe for NRIs to enhance relatability.",
+          "Add a section on travel tips or recommendations for NRIs traveling to Europe."
         ],
         "verdict": "pass"
       },
