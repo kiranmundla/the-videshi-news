@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-11T06:45:16.278578+00:00",
+  "timestamp": "2026-06-11T07:15:11.583561+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
+    "pass": 1,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "a4682d61-2a38-43ad-8b41-3fd2e8981d31",
-      "headline": "Scientists Say a 'Godzilla' El Ni\u00f1o Is Building in the Pacific. India May Be Its Biggest Casualty.",
-      "slug": "godzilla-el-nino-record-2026-india-monsoon-drought-food-prices-power-crisis-20260611",
+      "id": "aed272bc-950c-4064-a140-9870f152f7a8",
+      "headline": "Samantha Ruth Prabhu's Comeback Has a Saree, a Shotgun, and a Score to Settle",
+      "slug": "samantha-maa-inti-bangaaram-comeback-shotgun-tralala-june-19-nri-20260611",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -21,110 +21,32 @@
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the topic of El Ni\u00f1o or its effects on India."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses the economic and agricultural impacts of El Ni\u00f1o on India, which is relevant to the Indian diaspora concerned about their homeland."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that depicts the effects of climate change or agriculture in India.",
-          "Include quotes or perspectives from Indian diaspora members to enhance the connection to NRI readers."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "955c2c24-b28d-4a37-a727-0decc12429e0",
-      "headline": "India Summoned the American Envoy. The US Just Struck a Ship With 24 Indians on Board.",
-      "slug": "india-summons-us-envoy-settebello-tanker-strike-seafarers-missing-diplomacy-20260611",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the specific incident of the tanker strike but is relevant to the broader theme of geopolitics."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively highlights the implications for the Indian diaspora, particularly the 8 million Indians in Gulf countries, making the connection relevant and significant."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that depicts maritime conflict or the specific incident to enhance visual connection.",
-          "Add quotes or perspectives from Indian seafarers or diaspora members to deepen the human angle of the story."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "344295ae-e075-4dd5-b682-0f011df848b2",
-      "headline": "TCS Chairman Says Half a Million AI Agents Will Join the Workforce Within Three Years. Mass Hiring Is Over.",
-      "slug": "tcs-chairman-ai-agents-match-headcount-hiring-slowdown-india-it-sector-20260611",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
+        "embed_issues": [
           {
-            "article_id": "091f1a72-16a4-4be6-9683-e9fe5021d601",
-            "headline": "TCS Will Have Half a Million AI Agents Within Three Years. H"
-          },
-          {
-            "article_id": "cd111ead-a101-43e0-9525-82e217e23598",
-            "headline": "Tata Electronics Wants a $30 Billion Chip Empire. The Dholer"
-          },
-          {
-            "article_id": "973e700c-6456-4e78-90d1-bb47dc39f111",
-            "headline": "TCS Chairman Says AI Agents Will Match Its 500,000 Headcount"
+            "url": "https://www.instagram.com/p/DYRyGhgGmJb/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not appear to be directly related to the film or its themes, making it less relevant to the article."
           }
         ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image of Natarajan Chandrasekaran is relevant to the article as it discusses his statements regarding TCS and AI, but it could be more directly related to the topic of AI in the workforce."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the implications of AI on the Indian IT workforce to the diaspora, particularly Indian IT professionals abroad."
+          "quality": 8,
+          "note": "The article effectively connects the film's release to the interests of the NRI audience, highlighting its appeal and relevance."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider including more specific examples of how AI is currently being integrated into TCS's operations.",
-          "Add quotes or perspectives from diaspora professionals to enhance the connection to the audience."
+          "Replace the irrelevant Instagram link with a more relevant embed that connects directly to the film or its themes.",
+          "Consider adding more quotes or insights from the cast or crew to enhance the depth of the article."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/DYRyGhgGmJb/",
         "promoted to published"
       ],
       "revised": false,
