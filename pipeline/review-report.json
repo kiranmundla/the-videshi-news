@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-11T18:45:24.039599+00:00",
+  "timestamp": "2026-06-11T19:15:17.683290+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 1,
+    "pass": 1,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,107 +11,51 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "858b4ab7-5b2b-495e-8cc4-e1dd47a894bd",
-      "headline": "India's Refiners Have Quietly Secured Oil Through August. Here Is How They Did It.",
-      "slug": "india-refiners-secure-crude-oil-august-iran-war-hpcl-adnoc-diversification-20260611",
+      "id": "8fb8e255-ed82-486b-9410-511b294771db",
+      "headline": "Hrithik Roshan Just Signed With the Company Behind Spotlight and The Revenant. He's Not Playing Around.",
+      "slug": "hrithik-roshan-anonymous-content-hollywood-spotlight-revenant-krrish-4-nri-20260611",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "0809b36f-af6c-4cf8-a786-c8c1f20da015",
+            "headline": "Hrithik Roshan Wanted \u20b9500 Crore for Krrish 4. His Father Ju"
+          },
+          {
+            "article_id": "b2f7e1c9-b400-47c5-977b-c9a87ebe11c7",
+            "headline": "Shah Rukh Khan Said No to Jailer 2. Hrithik Roshan Said Tell"
+          }
+        ],
         "broken_embeds": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/DZKs2dVorgG/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post linked does not directly relate to Hrithik Roshan's signing with Anonymous Content or his career moves discussed in the article."
+          }
+        ],
         "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the topic of oil refining or the oil supply chain."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the oil price dynamics to the financial interests of NRIs, making it relevant to the diaspora."
+          "note": "The article effectively connects Hrithik Roshan's career moves to the interests of NRI audiences, emphasizing his continued ties to Bollywood while expanding internationally."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that depicts oil refining or the oil supply chain.",
-          "Expand on the NRI angle to include more specific examples of how these oil price changes directly impact NRI investments."
+          "Replace the irrelevant Instagram link with a more relevant one that showcases Hrithik's recent work or thoughts on his signing.",
+          "Consider adding more context about how this signing might influence the representation of Indian actors in Hollywood for diaspora readers."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "c3e765f8-0184-4f97-9ee0-e40a132788eb",
-      "headline": "The Ebola Outbreak Just Got the Highest WHO Alarm. Here Is What Every NRI Travelling This Summer Needs to Know.",
-      "slug": "ebola-who-emergency-nri-travel-restrictions-world-cup-green-card-20260611",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 8,
-          "issue": "The image is relevant to the topic of health and disease but does not specifically depict Ebola or its impact."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the Ebola outbreak to the Indian diaspora, particularly those in Central and East Africa, and discusses the implications for NRIs traveling this summer."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include specific travel advisory updates from the Indian embassy for NRIs.",
-          "Add a section on preventive measures NRIs can take while traveling."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "7c2fda69-5977-430d-b856-860eacc1ca07",
-      "headline": "Trump Cancels Iran Strikes at the Last Minute. Oil Crashed. India Is Watching the Fine Print.",
-      "slug": "trump-cancels-iran-strikes-oil-crashes-india-watching-deal-fine-print-20260611",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 3,
-          "issue": "irrelevant"
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the geopolitical situation to the Indian diaspora's economic interests and safety."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the hero image with one that is more relevant to the article's content, such as an image related to oil prices or the Gulf region.",
-          "Include more direct quotes or insights from Indian officials or experts to strengthen the diaspora angle."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/DZKs2dVorgG/",
         "promoted to published"
       ],
       "revised": false,
