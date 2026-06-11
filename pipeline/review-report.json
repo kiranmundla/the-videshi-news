@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-11T01:15:20.250393+00:00",
+  "timestamp": "2026-06-11T01:45:15.953087+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
-    "flag": 1,
+    "pass": 2,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,66 +11,12 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "0e2f0d6c-4ec1-4c35-aa12-63a1bab302b3",
-      "headline": "Dharma Just Locked Tiger Shroff, Janhvi Kapoor, and Lakshya Into a Revenge Love Story. Summer 2027 Has Its First Fight.",
-      "slug": "lag-ja-gale-tiger-shroff-janhvi-kapoor-lakshya-dharma-revenge-action-may-2027-nri-20260611",
+      "id": "30044585-a05f-4016-90eb-c82f815583ee",
+      "headline": "The Women's T20 World Cup Starts Tomorrow. India's First Match Is Against Pakistan.",
+      "slug": "india-women-t20-world-cup-2026-england-squad-preview-harmanpreet-smriti-pakistan-nri",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/p/DZXSN7PDJVx/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post does not appear to be directly related to the film or its themes."
-          },
-          {
-            "url": "https://www.instagram.com/p/DZMi_VhCGaF/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post does not appear to be directly related to the film or its themes."
-          }
-        ],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the film's release strategy to NRI audiences, highlighting the significance of summer releases for diaspora families."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the irrelevant Instagram links with more relevant content that ties directly to the film or its themes.",
-          "Consider adding quotes or insights from the director or actors to enhance the depth of the article."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DZXSN7PDJVx/",
-        "Removed irrelevant embed: https://www.instagram.com/p/DZMi_VhCGaF/",
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "5b0186f9-6618-4440-bd04-4eea88423fe2",
-      "headline": "Sushmita Sen, Radhika Apte, and Ananya Panday Were Just Spotted Together. Nobody Will Say Why.",
-      "slug": "sushmita-sen-radhika-apte-ananya-panday-shoojit-sircar-secret-project-nri-20260611",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "9214c1b5-a45f-4638-b4fd-f14b57ac0458",
-            "headline": "Sushmita Sen, Radhika Apte and Ananya Panday Were Just Spott"
-          }
-        ],
         "broken_embeds": []
       },
       "llm_review": {
@@ -83,13 +29,49 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the excitement around the three actresses to the nostalgia and interests of NRI audiences."
+          "note": "The article effectively connects with the NRI audience by discussing the accessibility of the tournament and the significance of the India-Pakistan match in Birmingham, which has a large South Asian community."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more direct quotes or insights from the actresses or Shoojit Sircar to enhance credibility.",
-          "Include a brief background on the significance of the actresses' careers to further engage readers."
+          "Consider adding quotes from players or coaches to enhance the narrative.",
+          "Include more historical context about the India-Pakistan rivalry in women's cricket."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "75f30b0d-ded4-4472-b4db-01c2c2aafbe0",
+      "headline": "He Was Cleared on Tuesday. He Was Ruled Out on Wednesday. Hardik Pandya Will Not Play Against Afghanistan.",
+      "slug": "hardik-pandya-ruled-out-afghanistan-odi-leg-sprain-kohli-injury-india-2027-world-cup-nri",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses the implications of player injuries on India's cricket team, which is relevant to the Indian diaspora interested in cricket."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include quotes from players or coaches to enhance the narrative.",
+          "Add a brief section on how these injuries might affect India's strategy in the upcoming World Cup."
         ],
         "verdict": "pass"
       },
