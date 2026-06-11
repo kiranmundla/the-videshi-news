@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-11T15:15:27.212811+00:00",
+  "timestamp": "2026-06-11T16:45:44.781073+00:00",
   "mode": "fix",
   "stats": {
     "pass": 3,
@@ -7,85 +7,13 @@
     "fail": 0,
     "error": 0
   },
-  "revisions": 0,
+  "revisions": 1,
   "unpublished": 0,
   "articles": [
     {
-      "id": "8124b132-553b-4f9b-8e6c-af7a87f98c6a",
-      "headline": "Jensen Huang's Physical AI Offensive: Inside NVIDIA's Robotics Blitz Across Seoul",
-      "slug": "nvidia-physical-ai-robotics-seoul-hyundai-lg-boston-dynamics-20260611",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses NVIDIA's partnerships in South Korea and hints at implications for India, which is relevant for the Indian diaspora interested in technology and business developments."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Expand on the implications for India to strengthen the diaspora angle.",
-          "Include quotes or insights from Indian tech leaders to enhance relevance for the NRI audience."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "e987b1f5-691c-48b6-9e6b-efb830182bc9",
-      "headline": "Intel's Foundry Resurrection: Google's 3-Million-Chip Order and the NVIDIA Evaluation That Changed Everything",
-      "slug": "intel-foundry-google-tpu-nvidia-feynman-evaluation-20260611",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the article's content about Intel and its partnerships."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects Intel's developments to the Indian diaspora by highlighting employment opportunities for Indian-origin engineers."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that reflects Intel's technology or its partnerships.",
-          "Expand on the diaspora angle by including specific examples of Indian-origin engineers' contributions at Intel."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "7dbb8576-7b39-461c-813d-7844a08edc1e",
-      "headline": "Micron's Sanjay Mehrotra Locks In the Memory Contract That Will Power NVIDIA's Next AI Era",
-      "slug": "micron-sanjay-mehrotra-hbm4-nvidia-vera-rubin-20260611",
+      "id": "41596b62-11d5-4137-9885-74d8e3a7047a",
+      "headline": "An Indian-American Is Running the Biggest Security Operation in American History. The World Cup Just Kicked Off.",
+      "slug": "kash-patel-fbi-world-cup-2026-biggest-security-challenge-indian-american-20260611",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -101,13 +29,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects Mehrotra's achievements and Micron's investment in India to the Indian diaspora, highlighting the significance of his work for NRIs."
+          "note": "The article highlights the achievements of an Indian-American in a significant leadership role, appealing to the diaspora's interest in representation and success."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more quotes or perspectives from industry experts to enhance credibility.",
-          "Include a brief overview of the implications of HBM4 technology for everyday consumers to broaden the article's appeal."
+          "Include more direct quotes from Kash Patel to enhance the personal connection and authority of the piece.",
+          "Add a brief section on how the Indian-American community is responding to Patel's leadership role in this historic event."
         ],
         "verdict": "pass"
       },
@@ -119,47 +47,107 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "95704c0a-d9c9-4562-9e94-fc89daf7bb44",
-      "headline": "Ali Fazal Hunts Two Killers Across 1970s Delhi. Sonali Bendre Plays the Mother Left Behind.",
-      "slug": "raakh-ali-fazal-sonali-bendre-prime-video-ranga-billa-1978-delhi-prosit-roy-nri-20260611",
+      "id": "03dbb2ca-f394-4ae2-8b70-29dca9b3848d",
+      "headline": "Trump Wants to Seize Iran's Oil Hub. India Buys 85 Per Cent of Its Crude From Abroad.",
+      "slug": "trump-threatens-seize-kharg-island-iran-oil-hub-india-crude-imports-20260611",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "c39be125-6a95-46ac-9a57-b65693207920",
-            "headline": "Ali Fazal Puts On a Uniform and Walks Into 1978 Delhi. Raakh"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/reel/DZZSQhkgiZQ/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram reel does not appear to be related to the article's subject matter, which focuses on the series 'Raakh' and its themes."
-          }
-        ],
+        "overall_score": 6,
+        "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image features Ali Fazal but does not directly relate to the 1970s Delhi setting or the specific themes of the series."
+          "issue": "The image is relevant to the article's topic but lacks specific visual context about India."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article discusses an Indian series with an international cast, appealing to the diaspora's interest in Indian cinema and storytelling."
+          "quality": 6,
+          "note": "The article discusses India's oil imports and economic implications, which are relevant to the Indian diaspora, but the connection could be more explicit."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant Instagram embed with a more relevant social media post related to the series or its themes.",
-          "Consider adding quotes or insights from the diaspora audience or critics to enhance the connection with NRI readers."
+          "Enhance the diaspora angle by including quotes or perspectives from Indian expatriates or experts on how these geopolitical tensions affect NRIs.",
+          "Provide more context on how fluctuations in oil prices directly impact the Indian diaspora, such as remittances or investments."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/reel/DZZSQhkgiZQ/",
+        "Revised by gpt-4o-mini (853\u2192947 words)"
+      ],
+      "revised": true,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "91f9ff34-7328-4ea4-a44a-f63d7d7acbb3",
+      "headline": "The World Bank Just Called India the Fastest-Growing Major Economy. It Called the Rest of the Decade a Write-Off.",
+      "slug": "world-bank-india-fastest-growing-6-6-percent-global-growth-slashed-lost-decade-20260611",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects India's economic performance to NRIs, discussing implications for investments and currency exchange."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more direct quotes or insights from Indian diaspora experts to enhance the connection with NRI readers.",
+          "Add a section on how NRIs can leverage the current economic situation for investment opportunities."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "f9699908-1697-4607-91a2-8d191378b4dc",
+      "headline": "Modi Set to Announce Historic Big Bash League Opener at Chennai's Chepauk During Sydney Visit",
+      "slug": "modi-announce-bbl-opener-chennai-chepauk-sydney-visit",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the announcement to the Indian diaspora in Australia, highlighting cultural and commercial implications."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from stakeholders or experts to enhance credibility.",
+          "Include more details on how this initiative could impact cricket diplomacy between India and Australia."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
         "promoted to published"
       ],
       "revised": false,
