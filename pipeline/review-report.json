@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-11T19:45:16.463301+00:00",
+  "timestamp": "2026-06-11T20:15:17.585746+00:00",
   "mode": "fix",
   "stats": {
     "pass": 2,
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "facb457d-f42f-4740-b4c2-c3f22111a4c4",
-      "headline": "Hardik Is Out. Nitish Kumar Reddy Has Three Matches to Prove He Belongs.",
-      "slug": "nitish-kumar-reddy-odi-opportunity-hardik-pandya-injury-afghanistan-dharamsala-nri",
+      "id": "ee9b32f8-373d-4604-aa36-d2d15ea2cb11",
+      "headline": "The Great Prepayment: Why Indian Students in America Are Racing to Clear Their Education Loans",
+      "slug": "indian-students-education-loan-prepayment-us-20260611",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -29,13 +29,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article connects well with NRI fans by discussing the implications of the series for India's World Cup preparations."
+          "note": "The article effectively connects with the NRI audience by discussing the financial pressures faced by Indian students in the US and their implications for future plans."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from players or coaches to enhance the article's depth.",
-          "Include more statistics or historical context about Nitish Kumar Reddy to provide readers with a better understanding of his potential impact."
+          "Consider including more personal anecdotes from students to enhance relatability.",
+          "Add statistics or quotes from experts on the long-term impact of these repayment trends on the education loan market."
         ],
         "verdict": "pass"
       },
@@ -47,17 +47,12 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "c4d537c4-6ecd-4d84-8720-d51a87a18824",
-      "headline": "Two Players of Indian Heritage Will Take the Pitch at This World Cup. Neither Plays for India.",
-      "slug": "sarpreet-singh-nishan-velupillay-indian-origin-players-fifa-world-cup-2026-nri",
+      "id": "14574f6e-2c91-46e4-9275-da317685d296",
+      "headline": "The Bill That Would Kill the H-1B Lottery \u2014 and the Green Card Path With It",
+      "slug": "chip-roy-bill-end-h1b-lottery-green-card-20260611",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "86fc2d89-4e34-45ff-ac27-f22a5561391f",
-            "headline": "India Has Never Played at a World Cup. This Month, Four Play"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
@@ -65,18 +60,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image of Sarpreet Singh is relevant to the article, but it does not directly match the headline which mentions both players."
+          "issue": "The image does not directly relate to the topic of immigration or H-1B visas."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects the stories of Singh and Velupillay to the Indian diaspora, highlighting their heritage and the significance of their participation in the World Cup."
+          "note": "The article discusses the impact of the proposed legislation on Indian professionals, making it highly relevant to the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider including an image of Nishan Velupillay to match the headline more closely.",
-          "Add more context about the significance of the World Cup for the Indian diaspora, perhaps including quotes from fans or community leaders."
+          "Consider using an image that more directly represents immigration or the H-1B visa process.",
+          "Add quotes or perspectives from Indian professionals affected by the proposed changes to enhance relatability."
         ],
         "verdict": "pass"
       },
