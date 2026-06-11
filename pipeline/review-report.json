@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-11T06:15:54.363044+00:00",
+  "timestamp": "2026-06-11T06:45:16.278578+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 9,
-    "flag": 1,
+    "pass": 3,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "56102f1c-a1c3-4489-8ef5-6ef567a8e3ed",
-      "headline": "Sundar Pichai's Gemini Now Powers Every iPhone. The Indian Diaspora Built the Bridge.",
-      "slug": "sundar-pichai-google-gemini-powers-apple-siri-ai-20260611",
+      "id": "a4682d61-2a38-43ad-8b41-3fd2e8981d31",
+      "headline": "Scientists Say a 'Godzilla' El Ni\u00f1o Is Building in the Pacific. India May Be Its Biggest Casualty.",
+      "slug": "godzilla-el-nino-record-2026-india-monsoon-drought-food-prices-power-crisis-20260611",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -23,19 +23,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image does not directly relate to the topic of El Ni\u00f1o or its effects on India."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively highlights the contributions of Indian engineers and the impact on NRI investors, making it relevant to the diaspora."
+          "note": "The article discusses the economic and agricultural impacts of El Ni\u00f1o on India, which is relevant to the Indian diaspora concerned about their homeland."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more direct quotes from Sundar Pichai or other executives to enhance credibility.",
-          "Include a brief section on how this partnership might affect consumers directly, especially in India."
+          "Consider using a more relevant image that depicts the effects of climate change or agriculture in India.",
+          "Include quotes or perspectives from Indian diaspora members to enhance the connection to NRI readers."
         ],
         "verdict": "pass"
       },
@@ -47,9 +47,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "3c73c34a-c476-4b46-a8e9-e6ec887c1bf2",
-      "headline": "Brussels Just Forced WhatsApp Open for Rival AI Chatbots. The Indian Diaspora Should Pay Attention.",
-      "slug": "eu-meta-whatsapp-rival-ai-chatbots-antitrust-order-20260611",
+      "id": "955c2c24-b28d-4a37-a727-0decc12429e0",
+      "headline": "India Summoned the American Envoy. The US Just Struck a Ship With 24 Indians on Board.",
+      "slug": "india-summons-us-envoy-settebello-tanker-strike-seafarers-missing-diplomacy-20260611",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -59,19 +59,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image does not directly relate to the specific incident of the tanker strike but is relevant to the broader theme of geopolitics."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the regulatory changes in Europe to the interests of the Indian diaspora, particularly in relation to WhatsApp's role in their daily lives."
+          "note": "The article effectively highlights the implications for the Indian diaspora, particularly the 8 million Indians in Gulf countries, making the connection relevant and significant."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more specific examples of how Indian businesses are currently using WhatsApp Business to illustrate its importance.",
-          "Include quotes or insights from Indian diaspora members or experts to enhance the personal connection to the topic."
+          "Consider using a more relevant image that depicts maritime conflict or the specific incident to enhance visual connection.",
+          "Add quotes or perspectives from Indian seafarers or diaspora members to deepen the human angle of the story."
         ],
         "verdict": "pass"
       },
@@ -83,283 +83,44 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "cd9125be-de95-42cc-bfa4-9ce26d62b574",
-      "headline": "Meta's First India Data Centre Is a 168 MW AI Facility in Ambani's Backyard",
-      "slug": "meta-reliance-jamnagar-ai-data-center-india-168mw-20260611",
+      "id": "344295ae-e075-4dd5-b682-0f011df848b2",
+      "headline": "TCS Chairman Says Half a Million AI Agents Will Join the Workforce Within Three Years. Mass Hiring Is Over.",
+      "slug": "tcs-chairman-ai-agents-match-headcount-hiring-slowdown-india-it-sector-20260611",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article connects well with NRIs by discussing investment implications and job opportunities for Indian tech professionals abroad."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more direct quotes from Meta or Reliance executives to enhance credibility.",
-          "Add a section on potential challenges or criticisms regarding the data center's environmental impact."
+        "duplicate_images": [
+          {
+            "article_id": "091f1a72-16a4-4be6-9683-e9fe5021d601",
+            "headline": "TCS Will Have Half a Million AI Agents Within Three Years. H"
+          },
+          {
+            "article_id": "cd111ead-a101-43e0-9525-82e217e23598",
+            "headline": "Tata Electronics Wants a $30 Billion Chip Empire. The Dholer"
+          },
+          {
+            "article_id": "973e700c-6456-4e78-90d1-bb47dc39f111",
+            "headline": "TCS Chairman Says AI Agents Will Match Its 500,000 Headcount"
+          }
         ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "7caa339f-712a-401d-8ba2-eaac91d10759",
-      "headline": "Indian Banks Are Offering NRIs 7 Per Cent on Dollar Deposits. The Window Closes in September.",
-      "slug": "nri-fcnr-deposit-rates-7-percent-rbi-hedging-subsidy-september-window-20260611",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 5,
-          "issue": "irrelevant"
+          "score": 7,
+          "issue": "The image of Natarajan Chandrasekaran is relevant to the article as it discusses his statements regarding TCS and AI, but it could be more directly related to the topic of AI in the workforce."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article directly addresses NRIs and their financial interests, making it highly relevant."
+          "note": "The article effectively connects the implications of AI on the Indian IT workforce to the diaspora, particularly Indian IT professionals abroad."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that reflects the topic of NRI banking or dollar deposits.",
-          "Add a section discussing potential risks or considerations for NRIs when investing in FCNR(B) deposits."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "7966e144-b935-4b37-9516-3c95a18b6a2b",
-      "headline": "The Sun Cannot Save You. South Asians Stay Vitamin D Deficient All Year, a New Study Says.",
-      "slug": "vitamin-d-deficiency-year-round-south-asian-diaspora-newcastle-study-20260611",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively addresses the vitamin D deficiency issue specifically among South Asians in the diaspora, making it relevant to NRI readers."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more specific recommendations for South Asians living in different regions, as vitamin D availability can vary significantly.",
-          "Consider adding personal anecdotes or quotes from individuals in the diaspora to enhance relatability."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "2667bacf-6f4e-4aa0-a392-7ab649378eb5",
-      "headline": "One Shot to End Cholesterol for Life. A Gene-Editing Therapy Just Proved It Can Be Done.",
-      "slug": "verve-102-gene-editing-cholesterol-one-shot-lilly-south-asian-heart-disease-20260611",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively addresses the health concerns of South Asians, particularly the diaspora, making it relevant and engaging."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more statistics or studies specifically related to the South Asian diaspora's health to strengthen the connection.",
-          "Include quotes or testimonials from South Asian patients or healthcare professionals to provide a personal touch."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "87eba9a2-034d-4d59-847a-29e9bd51de4d",
-      "headline": "An Indian Poet Just Won America's Top South Asian Translation Prize. The Novel He Translated Changed Nepali Literature Forever.",
-      "slug": "rohan-chhetri-armory-square-prize-parijat-shirishko-phool-translation-20260611",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects Rohan Chhetri's work and background to the Indian diaspora experience, particularly through his translation efforts and literary contributions."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more direct quotes from Rohan Chhetri or the jury to enhance the narrative and provide personal insights.",
-          "Add a brief section on the impact of Parijat's work on contemporary Nepali literature to give readers context on its significance."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "a701ee6e-d35c-4b28-baf0-609fdb97c4f4",
-      "headline": "They Had Careers, a Flat in Clapham, and a Son Who Could Not Speak. On the Morning of 27 May, All Three Fell from the 36th Floor.",
-      "slug": "london-indian-family-pai-paralkar-elephant-castle-nri-mental-health-20260611",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the family's struggles to broader issues faced by the Indian diaspora, particularly regarding mental health and support systems."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes or perspectives from mental health professionals to provide expert insight on the issues discussed.",
-          "Include more statistics or data on the mental health challenges faced by the diaspora to strengthen the argument."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "92bccf45-339c-48fe-84be-d9eb3915fe96",
-      "headline": "Ayodhya Went From 6 Million Visitors to 164 Million in Four Years \u2014 and NRIs Are Finally Booking",
-      "slug": "ayodhya-tourism-boom-ram-mandir-nri-pilgrimage-20260611",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the developments in Ayodhya to the interests and travel patterns of the NRI community."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include specific examples or quotes from NRIs who have visited Ayodhya to enhance the personal connection.",
-          "Add more data or statistics on the increase in NRI visitors specifically to strengthen the diaspora angle."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "14ca66d3-12d8-4ce2-9b56-c270d9a9fea9",
-      "headline": "Air India and Thai Airways Are Merging Their Networks \u2014 and NRIs Get the Best of Both",
-      "slug": "air-india-thai-airways-codeshare-nri-thailand-20260611",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively highlights the benefits of the Air India and Thai Airways partnership for NRIs, particularly in terms of travel convenience and visa advantages."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more specific examples of how NRIs can benefit from the codeshare agreement, such as potential savings or specific routes.",
-          "Add a section on how this merger might impact travel prices or competition in the market."
+          "Consider including more specific examples of how AI is currently being integrated into TCS's operations.",
+          "Add quotes or perspectives from diaspora professionals to enhance the connection to the audience."
         ],
         "verdict": "pass"
       },
