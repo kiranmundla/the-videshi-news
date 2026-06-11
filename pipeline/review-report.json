@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-11T07:45:18.622647+00:00",
+  "timestamp": "2026-06-11T08:45:17.580930+00:00",
   "mode": "fix",
   "stats": {
     "pass": 3,
@@ -11,12 +11,93 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "979c895a-b839-4d77-9088-0b611725c69a",
-      "headline": "Forty-Eight Teams. Three Countries. One Time Zone You Actually Live In. The World Cup Starts Today.",
-      "slug": "fifa-world-cup-2026-kicks-off-nri-guide-where-to-watch-north-america-schedule",
+      "id": "cec4d2bf-2888-41c4-877a-a70b1750db35",
+      "headline": "India Deploys the Air Force to Guard Its Medical Entrance Exam. That Is How Bad the Leak Was.",
+      "slug": "india-air-force-neet-ug-2026-reexam-military-security-paper-leak-june-21-20260611",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the topic of medical entrance exams or military involvement."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively addresses the concerns of NRI families regarding the NEET exam and its implications."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that depicts either the NEET exam or the military's involvement in the operation.",
+          "Add a quote from an NRI parent or expert to enhance the diaspora perspective."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "faebd752-cf42-410d-9b6d-1e206306c89c",
+      "headline": "India Just Became Europe's Official AI Partner. The Pitch Starts in Nice.",
+      "slug": "india-official-ai-partner-vivatech-2026-bharat-innovates-iit-madras-deep-tech-20260611",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to AI or the specific events mentioned in the article."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects India's AI initiatives to the Indian-origin tech professionals abroad, highlighting opportunities for collaboration."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that directly represents AI technology or the events mentioned to enhance relevance.",
+          "Add more quotes or insights from diaspora professionals to strengthen the connection to the NRI community."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "61af84c6-b0de-4208-afeb-3e21eaf1508e",
+      "headline": "No Indian PM Has Visited Slovakia in 33 Years. Modi Is About to Change That.",
+      "slug": "modi-first-indian-pm-visit-slovakia-europe-tour-automotive-railway-20260611",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "dc08ed57-d2f0-4285-a351-7f4463d1064f",
+            "headline": "Modi Just Became India's Longest-Serving Elected PM. The Dia"
+          },
+          {
+            "article_id": "be4e0584-65b9-4788-9258-82e8d316a520",
+            "headline": "Modi Heads to France and Slovakia This Week. It Is India's F"
+          }
+        ],
         "broken_embeds": []
       },
       "llm_review": {
@@ -28,86 +109,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the World Cup to the Indian diaspora in North America, highlighting local relevance and accessibility."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes or insights from Indian diaspora fans to enhance the personal connection.",
-          "Include more details about how the Indian community can engage with the World Cup, such as local viewing parties or events."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "a2adae17-ecde-499b-8293-17e3859484ab",
-      "headline": "Kohli Is Out With a Hamstring Injury. For the First Time in a Decade, India's No. 3 Spot Is Genuinely Open.",
-      "slug": "virat-kohli-injured-yashasvi-jaiswal-india-odi-number-3-afghanistan-2026-nri",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 5,
-          "issue": "The image features Yashasvi Jaiswal, which is relevant to the article, but it does not directly relate to Kohli's injury or the No. 3 spot discussion."
-        },
-        "diaspora_angle": {
-          "present": true,
           "quality": 8,
-          "note": "The article effectively connects the topic to NRI cricket fans by discussing the implications of Kohli's injury on India's World Cup planning."
+          "note": "The article effectively connects Modi's visit to the interests of the Indian diaspora in Europe, particularly in terms of economic opportunities and partnerships."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that directly relates to Kohli's injury or the No. 3 batting position for better alignment with the article's focus.",
-          "Add more context about the significance of the No. 3 position in ODI cricket to enhance reader understanding."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "39dbbee8-a863-4aa8-ab84-3fe8a56a0a0d",
-      "headline": "He Took Six Wickets in Forty-Degree Heat. Two Days Later, Afghanistan Added Him to the ODI Squad.",
-      "slug": "mohammad-saleem-afghanistan-odi-call-up-india-series-dharamsala-2026-nri",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image of HPCA Stadium is relevant but does not directly depict Mohammad Saleem or the specific match context."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects Saleem's performance to the interests of the Indian diaspora, highlighting Afghanistan's cricket evolution."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include a quote from Mohammad Saleem for a personal touch.",
-          "Add more context about the significance of the ODI series for both teams."
+          "Consider adding quotes from experts or officials to enhance credibility.",
+          "Include more specific examples of how the diaspora can benefit from the visit."
         ],
         "verdict": "pass"
       },
