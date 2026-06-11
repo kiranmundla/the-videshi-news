@@ -1,19 +1,19 @@
 {
-  "timestamp": "2026-06-11T02:45:32.642574+00:00",
+  "timestamp": "2026-06-11T03:15:52.168892+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 6,
-    "flag": 0,
+    "pass": 4,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
-  "revisions": 0,
+  "revisions": 1,
   "unpublished": 0,
   "articles": [
     {
-      "id": "d8aeaa6b-3867-4531-aab0-d2130477688a",
-      "headline": "India's 15-Month Inflation Streak Is Over. Economists Say Prices Just Hit the RBI's Red Line.",
-      "slug": "india-inflation-crosses-4-percent-fifteen-month-streak-ends-fuel-food-20260611",
+      "id": "29d1411f-2bdf-4147-bd93-f669fb7a615c",
+      "headline": "Peddi Just Became Ram Charan's Biggest Solo Film. The Numbers Are Staggering and the Re-Edit Rumors Are Real.",
+      "slug": "peddi-ram-charan-box-office-270-crore-week-one-recut-20260611",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -29,13 +29,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the inflation issue to the NRI community, discussing the impact on remittances and investments."
+          "note": "The article connects well with the diaspora by highlighting the success of Telugu cinema and its relevance to NRIs."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more data or examples of how inflation specifically affects different regions in India to enhance relatability.",
-          "Include quotes or insights from more economists or financial experts to provide a broader perspective on the inflation issue."
+          "Include more direct quotes or reactions from NRIs regarding the film's success to enhance the diaspora connection.",
+          "Add a brief section on how the film is being received in international markets beyond North America."
         ],
         "verdict": "pass"
       },
@@ -47,31 +47,76 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "3f712b7b-62d2-4ca3-a308-fc155459ebb0",
-      "headline": "India's Retail Investors Just Blinked. Equity Fund Inflows Crashed 40% in May.",
-      "slug": "india-equity-mutual-fund-inflows-crash-40-percent-may-bernstein-sip-warning-20260611",
+      "id": "a6457b3b-0e99-4266-aed8-acd7201c7152",
+      "headline": "Lock Upp Is Back. Farah Khan and Riteish Deshmukh Are Running the Jail. Netflix Has the Keys.",
+      "slug": "lock-upp-sach-ya-saza-netflix-farah-khan-riteish-deshmukh-season-2-20260611",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
-        "overall_score": 7,
+        "overall_score": 6,
         "embed_issues": [],
         "image_match": {
-          "score": 8,
-          "issue": "The image is relevant to the article's topic about equity mutual fund inflows."
+          "score": 5,
+          "issue": "The image does not directly relate to the article's topic about the reality show Lock Upp."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article addresses NRIs and OCIs who invest in Indian mutual funds, providing relevant insights."
+          "quality": 5,
+          "note": "The article touches on a popular Indian reality show, which may interest the diaspora, but lacks a deeper connection or relevance to NRI experiences."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more specific examples or quotes from NRI investors to enhance the diaspora connection.",
-          "Add a brief section on potential strategies for NRIs in light of the current market conditions."
+          "Include more context on how the show impacts or relates to the Indian diaspora.",
+          "Use a more relevant image that connects to the theme of the reality show."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Revised by gpt-4o-mini (831\u2192900 words)"
+      ],
+      "revised": true,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "a861f4c4-86e2-491f-94c5-756f45d5410d",
+      "headline": "Jensen Huang's Seoul Blitz Just Locked Down AI's Most Critical Supply Chain",
+      "slug": "jensen-huang-seoul-nvidia-hbm4-sk-hynix-samsung-20260611",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "69dfdff2-0944-4d6a-a008-12225f958050",
+            "headline": "Jensen Huang Called Marvell the Next Trillion-Dollar Company"
+          },
+          {
+            "article_id": "edc1c472-2b8c-46d0-8e82-bf1071299392",
+            "headline": "Anthropic, OpenAI and Nvidia Are Hiring More Foreign Workers"
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the developments in AI and semiconductor industries to the Indian diaspora through the mention of Sanjay Mehrotra and the Gujarat facility."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more context about the significance of these partnerships for the global AI landscape.",
+          "Include quotes or insights from industry experts to enhance credibility and depth."
         ],
         "verdict": "pass"
       },
@@ -83,9 +128,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "14fe18b9-7620-4ecd-81b4-e2e9bc53f809",
-      "headline": "India Has Frozen Starlink's Final Clearance. The Iran War Made the Decision.",
-      "slug": "india-freezes-starlink-approval-iran-war-security-clearance-20260611",
+      "id": "c3611420-9cd7-4fcb-9245-b4d64ec9b724",
+      "headline": "India Arrives in Paris as VivaTech's AI Partner Country. The Pitch Is Bigger Than Startups.",
+      "slug": "india-vivatech-2026-ai-partner-country-paris-20260611",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -101,13 +146,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the Starlink delay to the personal experiences of NRIs with family in India, highlighting the impact on communication and access to services."
+          "note": "The article effectively connects India's technological advancements and initiatives to the interests of the NRI community, highlighting opportunities for investment and collaboration."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more direct quotes from Indian officials or experts to enhance credibility.",
-          "Include a brief overview of Starlink's technology and its potential benefits for rural India to provide more context."
+          "Consider adding quotes from industry experts or stakeholders to enhance credibility.",
+          "Include more specific examples of how NRIs can engage with or benefit from these developments."
         ],
         "verdict": "pass"
       },
@@ -119,12 +164,21 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "59409046-b5c9-49d8-b2f7-0325702cf652",
-      "headline": "India\u2019s Mutual Fund Inflows Just Crashed 40 Per Cent. The Retail Investor Is Still Not Blinking.",
-      "slug": "india-mutual-fund-equity-inflows-40-percent-drop-may-sip-resilient-nri-20260611",
+      "id": "cdacdcf9-7170-41b7-bfa8-7536860ec3e2",
+      "headline": "Tim Cook's Last WWDC Hands Apple's AI Future \u2014 and a Siri Reboot \u2014 to John Ternus",
+      "slug": "tim-cook-last-wwdc-siri-ai-john-ternus-apple-20260611",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "2f561a83-58f0-46ea-9db9-fda3fda339a4",
+            "headline": "Tim Cook Used His Last WWDC to Bet Everything on a New Siri."
+          },
+          {
+            "article_id": "3436ba9b-2762-409a-86d5-f5e271a72f11",
+            "headline": "Tim Cook Said Goodbye at WWDC. His India Legacy Is What Happ"
+          }
+        ],
         "broken_embeds": []
       },
       "llm_review": {
@@ -132,90 +186,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image does not directly relate to mutual funds or the financial market, but it is a generic representation of finance."
+          "issue": "The image of Tim Cook is relevant as it relates to the article's focus on his departure and the transition to John Ternus."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article provides insights relevant to NRI investors, particularly regarding SIPs and market resilience."
+          "note": "The article effectively connects the leadership change at Apple to the impact on Indian tech professionals, making it relevant for the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that directly represents mutual funds or financial markets.",
-          "Expand on the implications for NRI investors in more detail to enhance the diaspora angle."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "d68fef01-3c04-4d45-bb10-36753e6c4a27",
-      "headline": "America\u2019s Loneliness Epidemic Just Got Worse. For the Diaspora, It Never Really Got Better.",
-      "slug": "apa-loneliness-epidemic-2026-anxiety-south-asian-diaspora-mental-health-20260611",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image depicts a solitary figure, which aligns with the theme of loneliness discussed in the article, but it lacks a direct connection to the diaspora aspect."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively addresses the unique challenges of loneliness faced by the South Asian diaspora, making it highly relevant to NRI readers."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider including more specific examples or anecdotes from the diaspora to enhance relatability.",
-          "Add a section on potential community initiatives or resources available to combat loneliness among the diaspora."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "03b43444-49bc-4f81-862a-cea7e4e57535",
-      "headline": "A Personalised Cancer Vaccine Just Kept Melanoma Away for Five Years. The Technology Could Reach South Asians Next.",
-      "slug": "mrna-cancer-vaccine-melanoma-five-year-asco-moderna-merck-south-asian-diaspora-20260611",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to cancer or vaccines, but is visually appealing."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses melanoma rates among South Asians, making a relevant connection to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that directly relates to cancer research or treatment for better alignment with the article's topic.",
-          "Expand on the implications of the technology for South Asians to enhance the diaspora angle."
+          "Consider adding quotes from Indian tech professionals to enhance the diaspora angle.",
+          "Include more context on how the changes at Apple might affect the global tech landscape, particularly in relation to Indian startups."
         ],
         "verdict": "pass"
       },
