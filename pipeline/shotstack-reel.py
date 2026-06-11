@@ -71,21 +71,21 @@ MUSIC_VOLUME = {
     "food": 0.14, "travel": 0.14,
 }
 
-# Ken Burns effects to rotate through
-KEN_BURNS_EFFECTS = ["zoomIn", "zoomOut", "slideLeft", "slideRight", "slideUp"]
+# Ken Burns effects to rotate through — slow zooms only, no fast panning
+KEN_BURNS_EFFECTS = ["zoomIn", "zoomOut", "zoomIn", "zoomOut", "zoomIn"]
 
-# Category-aware transitions for B-roll scenes (instead of fade-only)
+# Category-aware transitions for B-roll scenes — smooth only, no jarring wipes
 CATEGORY_TRANSITIONS = {
-    "news": ["wipeLeft", "wipeRight", "carouselUp", "zoom"],
-    "nri-world": ["wipeLeft", "wipeRight", "carouselUp", "zoom"],
-    "immigration": ["fade", "wipeLeft", "carouselUp", "reveal"],
-    "entertainment": ["slideUp", "carouselLeft", "reveal", "fade"],
-    "sports": ["zoom", "carouselUp", "wipeLeft", "slideUp"],
-    "technology": ["fade", "reveal", "slideUp", "wipeRight"],
-    "markets-finance": ["fade", "reveal", "slideUp", "wipeRight"],
-    "travel": ["fade", "slideUp", "carouselUp", "reveal"],
-    "lifestyle-health": ["fade", "slideUp", "carouselLeft", "reveal"],
-    "food": ["fade", "slideUp", "carouselLeft", "reveal"],
+    "news": ["fade", "fade", "fade", "fade"],
+    "nri-world": ["fade", "fade", "fade", "fade"],
+    "immigration": ["fade", "fade", "fade", "fade"],
+    "entertainment": ["fade", "fade", "fade", "fade"],
+    "sports": ["fade", "fade", "fade", "fade"],
+    "technology": ["fade", "fade", "fade", "fade"],
+    "markets-finance": ["fade", "fade", "fade", "fade"],
+    "travel": ["fade", "fade", "fade", "fade"],
+    "lifestyle-health": ["fade", "fade", "fade", "fade"],
+    "food": ["fade", "fade", "fade", "fade"],
 }
 
 # Caption animation style per category (for rich-caption fallback)
@@ -275,10 +275,11 @@ SCRIPT RULES:
 6. LENGTH: 60-80 words. That's 25-35 seconds spoken. Every word earns its place.
 7. SPECIFICS: Include at least one concrete number, name, or detail.
 8. NO "Welcome to The Videshi", NO emoji, NO hashtags.
-9. ALWAYS end with a spoken call-to-action. Use one of these (vary it):
+9. ALWAYS end with a spoken call-to-action. The CTA MUST mention the website URL:
    - "Full story at thevideshi dot com"
-   - "Follow The Videshi for more"
    - "More at thevideshi dot com"
+   - "Read the full breakdown at thevideshi dot com"
+   Do NOT say "Follow The Videshi for more" — that's too vague. Always direct to the website.
    This is the LAST line of the script. It must be there every time.
 
 HOOK TEXT (shown on screen before voice starts):
@@ -620,13 +621,20 @@ def generate_tts(text):
     # "Videshi" = विदेशी (vi-they-shi) — soft dental द, pure ए vowel, crisp शी
     tts_text = text.replace("thevideshi", "the Vitheyshi").replace("TheVideshi", "The Vitheyshi").replace("Videshi", "Vitheyshi")
 
+    # Convert to SSML — add pauses between sentences for natural pacing
+    # Split on sentence endings and add 400ms breaks
+    import re as _re
+    sentences = _re.split(r'(?<=[.!?])\s+', tts_text.strip())
+    ssml_body = (' <break time="400ms"/> ').join(sentences)
+    ssml_text = f'<speak>{ssml_body}</speak>'
+
     # Retry with increasing timeout
     for attempt in range(3):
         try:
             r = requests.post(
                 f"https://api.heygen.com/v2/voices/{TTS_VOICE}/preview",
                 headers={"X-Api-Key": HEYGEN_KEY, "Content-Type": "application/json"},
-                json={"text": tts_text, "voice_id": TTS_VOICE, "text_type": "text"},
+                json={"text": ssml_text, "voice_id": TTS_VOICE, "text_type": "ssml"},
                 timeout=60,
             )
             break
@@ -1255,7 +1263,7 @@ def build_anchor_reel_timeline(
 
     hook_duration = 3.0  # Hook frame duration
     total_voice_duration = voice_duration
-    cta_start = hook_duration + total_voice_duration + 0.5  # 0.5s pause before CTA
+    cta_start = hook_duration + total_voice_duration + 1.0  # 1s pause before end card
     total_duration = cta_start + CTA_DURATION
 
     # ── Track 1 (TOP): Script-based captions (Whisper-timed) or rich-caption fallback ──
@@ -1701,7 +1709,7 @@ def download_reel(url, output_path):
 # KAVYA CTA END CARD
 # ═══════════════════════════════════════════════════════════════════════════════
 
-CTA_DURATION = 2.5  # Branded end card duration (reduced from 4.0 for better retention)
+CTA_DURATION = 4.0  # Branded end card — enough time to read site + social handles
 
 # Social handles
 SOCIAL_HANDLES = {
