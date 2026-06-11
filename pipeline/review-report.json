@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-11T01:45:15.953087+00:00",
+  "timestamp": "2026-06-11T02:15:16.586097+00:00",
   "mode": "fix",
   "stats": {
     "pass": 2,
@@ -11,9 +11,45 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "30044585-a05f-4016-90eb-c82f815583ee",
-      "headline": "The Women's T20 World Cup Starts Tomorrow. India's First Match Is Against Pakistan.",
-      "slug": "india-women-t20-world-cup-2026-england-squad-preview-harmanpreet-smriti-pakistan-nri",
+      "id": "b8f7ddae-93f9-4444-bc50-09134d674e62",
+      "headline": "Marriott, IHG, and Hilton Are Racing to Build Hotels Across India \u2014 and NRIs Are the Prize",
+      "slug": "hotel-chains-india-boom-kimpton-adani-nri-weddings-20260611",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the hotel chains mentioned in the article."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the hotel developments to the needs and interests of NRIs, particularly in terms of travel and wedding accommodations."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more specific examples of how these hotel developments will directly benefit NRIs.",
+          "Consider adding quotes or insights from industry experts to enhance credibility."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "6a08a2f8-d726-44b8-9b95-55ba42121615",
+      "headline": "IndiGo Just Axed Eight International Routes in One Week \u2014 and NRI Summer Plans Are Collateral Damage",
+      "slug": "indigo-suspends-routes-manchester-asia-nri-summer-20260611",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -29,49 +65,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects with the NRI audience by discussing the accessibility of the tournament and the significance of the India-Pakistan match in Birmingham, which has a large South Asian community."
+          "note": "The article effectively discusses the impact of route cancellations on NRIs, making it relevant to the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from players or coaches to enhance the narrative.",
-          "Include more historical context about the India-Pakistan rivalry in women's cricket."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "75f30b0d-ded4-4472-b4db-01c2c2aafbe0",
-      "headline": "He Was Cleared on Tuesday. He Was Ruled Out on Wednesday. Hardik Pandya Will Not Play Against Afghanistan.",
-      "slug": "hardik-pandya-ruled-out-afghanistan-odi-leg-sprain-kohli-injury-india-2027-world-cup-nri",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses the implications of player injuries on India's cricket team, which is relevant to the Indian diaspora interested in cricket."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include quotes from players or coaches to enhance the narrative.",
-          "Add a brief section on how these injuries might affect India's strategy in the upcoming World Cup."
+          "Include more direct quotes from NRI travelers or experts to enhance the personal connection.",
+          "Add a brief section on alternative travel options for NRIs affected by the route cancellations."
         ],
         "verdict": "pass"
       },
