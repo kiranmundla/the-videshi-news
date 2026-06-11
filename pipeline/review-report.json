@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-11T20:15:17.585746+00:00",
+  "timestamp": "2026-06-11T20:45:11.022462+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 0,
+    "pass": 0,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,69 +11,38 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "ee9b32f8-373d-4604-aa36-d2d15ea2cb11",
-      "headline": "The Great Prepayment: Why Indian Students in America Are Racing to Clear Their Education Loans",
-      "slug": "indian-students-education-loan-prepayment-us-20260611",
+      "id": "239ae692-1b34-473d-88b9-ada4999f17eb",
+      "headline": "Meta and Reliance to Build India's First AI Data Centre in Jamnagar, Marking a New Chapter in the $13 Billion Race",
+      "slug": "meta-reliance-india-first-ai-data-centre-jamnagar",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "c0411dc2-8bd6-4e33-88f9-2984d3d9144f",
+            "headline": "Reliance and Meta Are Building India's First Hyperscale AI D"
+          }
+        ],
         "broken_embeds": []
       },
       "llm_review": {
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 5,
+          "issue": "image does not match topic"
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects with the NRI audience by discussing the financial pressures faced by Indian students in the US and their implications for future plans."
+          "quality": 7,
+          "note": "The article connects the data center's impact on services used by the diaspora, but could elaborate more on specific benefits."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider including more personal anecdotes from students to enhance relatability.",
-          "Add statistics or quotes from experts on the long-term impact of these repayment trends on the education loan market."
+          "Consider using an image that directly relates to AI data centers or the partnership between Meta and Reliance.",
+          "Expand on the diaspora angle by providing specific examples of how the data center will improve services for NRI users."
         ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "14574f6e-2c91-46e4-9275-da317685d296",
-      "headline": "The Bill That Would Kill the H-1B Lottery \u2014 and the Green Card Path With It",
-      "slug": "chip-roy-bill-end-h1b-lottery-green-card-20260611",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the topic of immigration or H-1B visas."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article discusses the impact of the proposed legislation on Indian professionals, making it highly relevant to the diaspora audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that more directly represents immigration or the H-1B visa process.",
-          "Add quotes or perspectives from Indian professionals affected by the proposed changes to enhance relatability."
-        ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
         "promoted to published"
