@@ -20,14 +20,77 @@ HEADERS = {
 
 NOW = datetime.datetime.now(datetime.timezone.utc).isoformat()
 
-articles = [
-    # ── Article 1: Google Gemini Outage ──────────────────────────────
+# ── Topics ───────────────────────────────────────────────────────────
+topics = [
     {
         "id": str(uuid.uuid4()),
+        "canonical_title": "Google Gemini Outage June 2026",
+        "vertical": "technology",
+        "urgency": "breaking",
+        "score_diaspora": 80,
+        "score_significance": 75,
+        "score_recency": 90,
+        "score_source_avail": 85,
+        "score_total": 78,
+        "signal_count": 3,
+        "status": "accepted",
+        "keywords": ["Google Gemini", "AI outage", "Sundar Pichai", "chatbot downtime"],
+        "category": "technology",
+        "vertical": "technology",
+    },
+    {
+        "id": str(uuid.uuid4()),
+        "canonical_title": "Oracle Q4 FY2026 Earnings and India Workforce",
+        "vertical": "technology",
+        "urgency": "daily",
+        "score_diaspora": 78,
+        "score_significance": 72,
+        "score_recency": 85,
+        "score_source_avail": 80,
+        "score_total": 75,
+        "signal_count": 3,
+        "status": "accepted",
+        "keywords": ["Oracle", "Q4 earnings", "OCI", "India layoffs", "H-1B", "Safra Catz"],
+        "category": "technology",
+        "vertical": "technology",
+    },
+    {
+        "id": str(uuid.uuid4()),
+        "canonical_title": "AI Semiconductor Sell-Off June 2026",
+        "vertical": "technology",
+        "urgency": "daily",
+        "score_diaspora": 82,
+        "score_significance": 80,
+        "score_recency": 90,
+        "score_source_avail": 85,
+        "score_total": 82,
+        "signal_count": 4,
+        "status": "accepted",
+        "keywords": ["AI stocks", "SMCI", "Super Micro", "inflation CPI", "Sanjay Mehrotra", "Micron", "semiconductor sell-off"],
+        "category": "technology",
+        "vertical": "technology",
+    },
+]
+
+# Insert topics
+topic_url = f"{SUPABASE_URL}/rest/v1/p2_topics"
+for t in topics:
+    resp = requests.post(topic_url, headers=HEADERS, json=t)
+    if resp.status_code in (200, 201):
+        print(f"✅ topic: {t['canonical_title']}")
+    else:
+        print(f"❌ topic: {t['canonical_title']} — {resp.status_code}: {resp.text[:200]}")
+
+# ── Articles ─────────────────────────────────────────────────────────
+articles = [
+    {
+        "id": str(uuid.uuid4()),
+        "topic_id": topics[0]["id"],
         "headline": "Google Gemini Goes Dark: Outage Exposes How Deeply Indian Tech Workers Depend on AI",
         "subheadline": "The chatbot's sudden downtime left thousands of Indian-origin developers, analysts, and students scrambling for workarounds across US time zones",
         "slug": "google-gemini-outage-indian-tech-workers-20260610",
         "category": "technology",
+        "vertical": "technology",
         "status": "review",
         "is_editorial": False,
         "score_total": 78,
@@ -36,11 +99,11 @@ articles = [
         "image_caption": "Sundar Pichai's Google faced questions as Gemini went offline during peak work hours",
         "image_attribution": "Wikimedia Commons, CC BY 2.0",
         "diaspora_angle": "Indian-origin engineers disproportionately rely on Gemini for coding, documentation, and research — the outage spotlighted a single-vendor dependency risk familiar to H-1B workers whose livelihoods hinge on staying productive",
-        "sources": json.dumps([
+        "sources": [
             {"name": "Downdetector", "url": "https://downdetector.com/status/google-gemini/"},
             {"name": "TechCrunch", "url": "https://techcrunch.com/2026/06/10/google-gemini-outage/"},
             {"name": "Google Workspace Status Dashboard", "url": "https://www.google.com/appsstatus/dashboard/"}
-        ]),
+        ],
         "body": """When Google's Gemini chatbot began returning "Something Went Wrong" errors shortly after 3 AM Pacific time on June 10, the disruption rippled through an unlikely demographic first: Indian software engineers on early-morning stand-ups with Bangalore counterparts.
 
 Within two hours, the outage had spread across Gemini's web, mobile, and API surfaces. By the time most of the American East Coast was pouring its first coffee, the tool that had become embedded in millions of daily workflows was simply gone.
@@ -73,14 +136,14 @@ Google has historically been tight-lipped about outage post-mortems, but the com
 
 For the Indian diaspora's technology workforce, the lesson is both practical and philosophical. The tools that make them indispensable can themselves prove dispensable — and planning for that reality is now part of the job.""",
     },
-
-    # ── Article 2: Oracle Q4 Earnings ────────────────────────────────
     {
         "id": str(uuid.uuid4()),
+        "topic_id": topics[1]["id"],
         "headline": "Oracle's AI-Fuelled Earnings Test: What a $19 Billion Quarter Means for 46,000 Indian Employees",
         "subheadline": "As Oracle reports Q4 results, its massive India workforce watches for signals on whether cloud-driven growth will offset the sting of recent layoffs",
         "slug": "oracle-q4-earnings-india-workforce-20260610",
         "category": "technology",
+        "vertical": "technology",
         "status": "review",
         "is_editorial": False,
         "score_total": 75,
@@ -89,11 +152,11 @@ For the Indian diaspora's technology workforce, the lesson is both practical and
         "image_caption": "Oracle CEO Safra Catz presides over a company where India is the single largest workforce outside the US",
         "image_attribution": "Wikimedia Commons, CC BY-SA 4.0",
         "diaspora_angle": "Oracle employs roughly 46,000 people in India and is among the top H-1B sponsors in the US — its earnings trajectory directly shapes career prospects for tens of thousands of Indian-origin workers on both sides of the Pacific",
-        "sources": json.dumps([
+        "sources": [
             {"name": "Reuters", "url": "https://www.reuters.com/technology/oracle-q4-earnings-preview-2026-06/"},
             {"name": "Bloomberg", "url": "https://www.bloomberg.com/news/articles/2026-06-10/oracle-layoffs-cloud-pivot"},
             {"name": "Seeking Alpha", "url": "https://seekingalpha.com/article/oracle-fiscal-q4-2026-preview"}
-        ]),
+        ],
         "body": """Oracle reports its fiscal fourth-quarter results after the market close on June 10, and Wall Street is expecting fireworks. Analysts project revenue of approximately $19.1 billion and earnings per share of $1.96 — numbers that, if met, would cap the company's strongest fiscal year in over a decade. But for the roughly 46,000 Oracle employees in India and the thousands of Indian-origin workers at its American offices, the headline figures tell only part of the story.
 
 ## The Cloud Pivot Pays Off — For Now
@@ -124,14 +187,14 @@ Oracle's transformation under Safra Catz from a database licensor into a cloud-a
 
 Tonight's numbers will offer a clue, even if the full answer takes years to arrive.""",
     },
-
-    # ── Article 3: AI Sell-Off ───────────────────────────────────────
     {
         "id": str(uuid.uuid4()),
+        "topic_id": topics[2]["id"],
         "headline": "AI Stocks Stumble as Inflation and Geopolitics Collide: What Indian Investors Need to Know",
         "subheadline": "Super Micro's $7 billion fundraise, a CPI shock, and Middle East tensions conspire to rattle the chip trade that many NRI portfolios are overweight in",
         "slug": "ai-stocks-selloff-inflation-nri-investors-20260610",
         "category": "technology",
+        "vertical": "technology",
         "status": "review",
         "is_editorial": False,
         "score_total": 82,
@@ -140,11 +203,11 @@ Tonight's numbers will offer a clue, even if the full answer takes years to arri
         "image_caption": "Micron CEO Sanjay Mehrotra, one of the highest-profile Indian-origin semiconductor leaders, saw his company's stock slide in the broader AI sell-off",
         "image_attribution": "Wikimedia Commons, CC BY-SA 4.0",
         "diaspora_angle": "Indian American investors have disproportionately heavy exposure to AI and semiconductor stocks, and Indian-origin CEOs lead several of the companies caught in the downdraft — making this sell-off both a portfolio event and a community narrative",
-        "sources": json.dumps([
+        "sources": [
             {"name": "CNBC", "url": "https://www.cnbc.com/2026/06/10/super-micro-stock-drops-fundraise.html"},
             {"name": "Bloomberg", "url": "https://www.bloomberg.com/news/articles/2026-06-10/ai-chip-stocks-fall-inflation"},
             {"name": "Bureau of Labor Statistics", "url": "https://www.bls.gov/news.release/cpi.nr0.htm"}
-        ]),
+        ],
         "body": """The AI trade that has minted fortunes for early believers hit a wall on June 10, as a toxic combination of dilutive fundraising, stubborn inflation data, and escalating Middle East tensions sent semiconductor and AI infrastructure stocks sharply lower. The Philadelphia Semiconductor Index fell roughly three per cent, dragging household names — NVIDIA, Micron, ARM Holdings, and the beleaguered Super Micro Computer — into the red.
 
 For Indian American investors, many of whom rode the AI wave with concentrated positions in chip stocks, the session was a pointed reminder that momentum trades can reverse with brutal speed.
