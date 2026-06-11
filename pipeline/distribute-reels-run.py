@@ -1,0 +1,433 @@
+#!/usr/bin/env python3
+"""Distribute prebuilt reels to remaining platforms."""
+
+import os, sys, json, time, tempfile, requests
+from datetime import datetime, timezone
+
+# Load env files
+def load_env(path):
+    env = {}
+    with open(os.path.expanduser(path)) as f:
+        for line in f:
+            line = line.strip()
+            if '=' in line and not line.startswith('#'):
+                if line.startswith('export '):
+                    line = line[7:]
+                k, v = line.split('=', 1)
+                env[k.strip()] = v.strip()
+    return env
+
+sb = load_env('~/workspace/.env.supabase')
+ig_env = load_env('~/workspace/.env.instagram')
+yt_env = load_env('~/workspace/.env.youtube')
+th_env = load_env('~/workspace/.env.threads')
+tw_env = load_env('~/workspace/.env.twitter')
+
+SUPABASE_URL = sb['SUPABASE_URL']
+SUPABASE_KEY = sb['SUPABASE_SERVICE_ROLE_KEY']
+SB_HEADERS = {
+    'apikey': SUPABASE_KEY,
+    'Authorization': f'Bearer {SUPABASE_KEY}',
+    'Content-Type': 'application/json',
+    'Prefer': 'return=minimal'
+}
+
+THREADS_USER_ID = '26854521280856098'
+
+results = []
+
+def now_iso():
+    return datetime.now(timezone.utc).isoformat()
+
+def patch_reel(reel_id, data):
+    r = requests.patch(
+        f"{SUPABASE_URL}/rest/v1/prebuilt_reels?id=eq.{reel_id}",
+        headers=SB_HEADERS,
+        json=data
+    )
+    r.raise_for_status()
+    print(f"  DB updated: {list(data.keys())}")
+
+def download_video(url):
+    """Download video to temp file, return path."""
+    print(f"  Downloading video...")
+    r = requests.get(url, timeout=120)
+    r.raise_for_status()
+    tmp = tempfile.NamedTemporaryFile(suffix='.mp4', delete=False)
+    tmp.write(r.content)
+    tmp.close()
+    size_mb = len(r.content) / (1024*1024)
+    print(f"  Downloaded {size_mb:.1f} MB to {tmp.name}")
+    return tmp.name
+
+# ============================================================
+# X / Twitter posting using manual chunked upload (per AGENTS.md)
+# ============================================================
+def post_to_x(reel, video_path):
+    """Post video to X using manual chunked upload with requests."""
+    import tweepy
+
+    consumer_key = tw_env['TWITTER_CONSUMER_KEY']
+    consumer_secret = tw_env['TWITTER_CONSUMER_SECRET']
+    access_token = tw_env['TWITTER_ACCESS_TOKEN']
+    access_secret = tw_env['TWITTER_ACCESS_TOKEN_SECRET']
+
+    # OAuth1 session for upload
+    from requests_oauthlib import OAuth1
+    auth = OAuth1(consumer_key, consumer_secret, access_token, access_secret)
+
+    UPLOAD_URL = 'https://upload.twitter.com/1.1/media/upload.json'
+    CHUNK_SIZE = 1 * 1024 * 1024  # 1MB chunks per AGENTS.md
+
+    file_size = os.path.getsize(video_path)
+    print(f"  X: Starting chunked upload ({file_size/1024/1024:.1f} MB)...")
+
+    # INIT
+    init_data = {
+        'command': 'INIT',
+        'media_type': 'video/mp4',
+        'total_bytes': str(file_size),
+        'media_category': 'tweet_video'
+    }
+    r = requests.post(UPLOAD_URL, data=init_data, auth=auth, timeout=30)
+    r.raise_for_status()
+    media_id = r.json()['media_id_string']
+    print(f"  X: INIT ok, media_id={media_id}")
+
+    # APPEND
+    segment = 0
+    with open(video_path, 'rb') as f:
+        while True:
+            chunk = f.read(CHUNK_SIZE)
+            if not chunk:
+                break
+            for attempt in range(3):
+                try:
+                    r = requests.post(
+                        UPLOAD_URL,
+                        data={'command': 'APPEND', 'media_id': media_id, 'segment_index': str(segment)},
+                        files={'media': ('chunk.mp4', chunk, 'application/octet-stream')},
+                        auth=auth,
+                        timeout=60
+                    )
+                    r.raise_for_status()
+                    print(f"  X: APPEND segment {segment} ok")
+                    break
+                except Exception as e:
+                    print(f"  X: APPEND segment {segment} attempt {attempt+1} failed: {e}")
+                    if attempt == 2:
+                        raise
+                    time.sleep(2 ** attempt)
+            segment += 1
+
+    # FINALIZE
+    r = requests.post(UPLOAD_URL, data={'command': 'FINALIZE', 'media_id': media_id}, auth=auth, timeout=30)
+    r.raise_for_status()
+    resp = r.json()
+    print(f"  X: FINALIZE ok")
+
+    # Poll STATUS if processing
+    if 'processing_info' in resp:
+        while True:
+            wait = resp.get('processing_info', {}).get('check_after_secs', 5)
+            print(f"  X: Processing, waiting {wait}s...")
+            time.sleep(wait)
+            r = requests.get(UPLOAD_URL, params={'command': 'STATUS', 'media_id': media_id}, auth=auth, timeout=30)
+            r.raise_for_status()
+            resp = r.json()
+            state = resp.get('processing_info', {}).get('state', '')
+            if state == 'succeeded':
+                print(f"  X: Processing succeeded")
+                break
+            elif state == 'failed':
+                raise Exception(f"X media processing failed: {resp}")
+
+    # Post tweet using v2 API via tweepy
+    client = tweepy.Client(
+        consumer_key=consumer_key,
+        consumer_secret=consumer_secret,
+        access_token=access_token,
+        access_token_secret=access_secret
+    )
+
+    headline = reel['headline'][:200]
+    slug = reel['article_slug']
+    tweet_text = f"🇮🇳 {headline}\n\n📰 thevideshi.com/articles/{slug}\n\n#IndianDiaspora #NRI"
+    if len(tweet_text) > 280:
+        tweet_text = tweet_text[:277] + "..."
+
+    response = client.create_tweet(text=tweet_text, media_ids=[media_id])
+    tweet_id = str(response.data['id'])
+    print(f"  X: Tweet posted! ID={tweet_id}")
+
+    patch_reel(reel['id'], {
+        'x_posted_at': now_iso(),
+        'x_tweet_id': tweet_id
+    })
+    return tweet_id
+
+# ============================================================
+# Instagram Reel posting
+# ============================================================
+def post_to_instagram(reel, video_url):
+    """Post reel to Instagram via Graph API."""
+    ig_user_id = ig_env['INSTAGRAM_USER_ID']
+    ig_token = ig_env['INSTAGRAM_ACCESS_TOKEN']
+    base = f"https://graph.facebook.com/v21.0/{ig_user_id}"
+
+    caption = reel['caption'][:2200]
+
+    # Create container
+    print(f"  IG: Creating reel container...")
+    r = requests.post(f"{base}/media", data={
+        'media_type': 'REELS',
+        'video_url': video_url,
+        'caption': caption,
+        'access_token': ig_token
+    }, timeout=30)
+    r.raise_for_status()
+    container_id = r.json()['id']
+    print(f"  IG: Container created: {container_id}")
+
+    # Poll status
+    for i in range(24):  # max 2 min
+        time.sleep(5)
+        r = requests.get(f"https://graph.facebook.com/v21.0/{container_id}", params={
+            'fields': 'status_code',
+            'access_token': ig_token
+        }, timeout=15)
+        r.raise_for_status()
+        status = r.json().get('status_code', '')
+        print(f"  IG: Status poll {i+1}: {status}")
+        if status == 'FINISHED':
+            break
+        elif status == 'ERROR':
+            raise Exception(f"IG container error: {r.json()}")
+    else:
+        raise Exception("IG container timed out after 2 min")
+
+    # Publish
+    r = requests.post(f"{base}/media_publish", data={
+        'creation_id': container_id,
+        'access_token': ig_token
+    }, timeout=30)
+    r.raise_for_status()
+    media_id = r.json()['id']
+    print(f"  IG: Published! Media ID={media_id}")
+
+    patch_reel(reel['id'], {
+        'ig_posted_at': now_iso(),
+        'ig_media_id': media_id
+    })
+    return media_id
+
+# ============================================================
+# YouTube Short posting
+# ============================================================
+def post_to_youtube(reel, video_path):
+    """Upload video as YouTube Short via resumable upload."""
+    # Refresh OAuth token
+    r = requests.post('https://oauth2.googleapis.com/token', data={
+        'client_id': yt_env['YOUTUBE_CLIENT_ID'],
+        'client_secret': yt_env['YOUTUBE_CLIENT_SECRET'],
+        'refresh_token': yt_env['YOUTUBE_REFRESH_TOKEN'],
+        'grant_type': 'refresh_token'
+    }, timeout=15)
+    r.raise_for_status()
+    access_token = r.json()['access_token']
+    print(f"  YT: Token refreshed")
+
+    headline = reel['headline']
+    title = headline[:93] + ' #Shorts' if len(headline) <= 93 else headline[:89] + '... #Shorts'
+
+    slug = reel['article_slug']
+    caption = reel['caption']
+
+    # Category-specific hashtags
+    caption_lower = caption.lower()
+    extra_tags = []
+    if any(w in caption_lower for w in ['h1b', 'visa', 'green card', 'immigration', 'uscis']):
+        extra_tags = ['H1B', 'GreenCard', 'Immigration', 'USCIS']
+    elif any(w in caption_lower for w in ['cricket', 'ipl', 'bcci']):
+        extra_tags = ['Cricket', 'IPL', 'BCCI', 'Sports']
+    elif any(w in caption_lower for w in ['bollywood', 'movie', 'film', 'actor', 'actress']):
+        extra_tags = ['Bollywood', 'Movies', 'Entertainment']
+    elif any(w in caption_lower for w in ['market', 'stock', 'invest', 'fund', 'equity', 'rupee']):
+        extra_tags = ['IndiaMarkets', 'StockMarket', 'Investing', 'Finance']
+    elif any(w in caption_lower for w in ['modi', 'bjp', 'congress', 'parliament']):
+        extra_tags = ['IndiaPolitics', 'Modi', 'BJP']
+
+    tags = ['The Videshi', 'Indian Diaspora', 'NRI', 'India News', 'Shorts'] + extra_tags
+    tags = tags[:12]
+
+    description = f"{caption}\n\nRead the full story: https://thevideshi.com/articles/{slug}\n\n" + ' '.join(f'#{t.replace(" ","")}' for t in tags)
+
+    metadata = {
+        'snippet': {
+            'title': title,
+            'description': description[:5000],
+            'tags': tags,
+            'categoryId': '25'
+        },
+        'status': {
+            'privacyStatus': 'public',
+            'selfDeclaredMadeForKids': False
+        }
+    }
+
+    # Initiate resumable upload
+    file_size = os.path.getsize(video_path)
+    r = requests.post(
+        'https://www.googleapis.com/upload/youtube/v3/videos?uploadType=resumable&part=snippet,status',
+        headers={
+            'Authorization': f'Bearer {access_token}',
+            'Content-Type': 'application/json; charset=UTF-8',
+            'X-Upload-Content-Length': str(file_size),
+            'X-Upload-Content-Type': 'video/mp4'
+        },
+        json=metadata,
+        timeout=30
+    )
+    r.raise_for_status()
+    upload_url = r.headers['Location']
+    print(f"  YT: Resumable upload initiated")
+
+    # Upload video
+    with open(video_path, 'rb') as f:
+        r = requests.put(
+            upload_url,
+            headers={
+                'Content-Type': 'video/mp4',
+                'Content-Length': str(file_size)
+            },
+            data=f,
+            timeout=300
+        )
+        r.raise_for_status()
+
+    video_id = r.json()['id']
+    print(f"  YT: Uploaded! Video ID={video_id}")
+
+    patch_reel(reel['id'], {
+        'yt_posted_at': now_iso(),
+        'yt_video_id': video_id
+    })
+
+    # Log to youtube-log.json
+    log_path = os.path.expanduser('~/workspace/the-videshi-news/pipeline/youtube-log.json')
+    try:
+        with open(log_path) as f:
+            yt_log = json.load(f)
+    except:
+        yt_log = {}
+    yt_log[video_id] = {
+        'article_slug': slug,
+        'uploaded_at': now_iso()
+    }
+    with open(log_path, 'w') as f:
+        json.dump(yt_log, f, indent=2)
+    print(f"  YT: Logged to youtube-log.json")
+
+    return video_id
+
+
+# ============================================================
+# Main distribution logic
+# ============================================================
+
+# Reel 1: India Equity (4baf43f8) → needs X only
+reel1 = {
+    'id': '4baf43f8-9ffb-4f73-bcb9-1897ed9da505',
+    'article_id': '3f712b7b-62d2-4ca3-a308-fc155459ebb0',
+    'article_slug': 'india-equity-mutual-fund-inflows-crash-40-percent-may-bernstein-sip-warning-2026',
+    'headline': "India's Retail Investors Just Blinked. Equity Fund Inflows Crashed 40% in May.",
+    'video_url': 'https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/reels/ss-reel-india-equity-mutual-fund-inflows-crash-40-percent-may-bernst-20260611-0404.mp4',
+    'caption': "India's Retail Investors Just Blinked. Equity Fund Inflows Crashed 40% in May.\n\nThe sharpest monthly drop in a year has arrived, and Bernstein warns that SIP investors — the market's last line of defence — may not wait much longer for returns that have stopped coming.\n\nFull story: https://thevideshi.com/articles/india-equity-mutual-fund-inflows-crash-40-percent-may-bernstein-sip-warning-20260611\n\n#indiandiaspora #nri #thevideshi #india #indianews #breakingnews #desinews"
+}
+
+# Reel 2: Welcome To The Jungle (9ac8c1ac) → needs IG + YT
+reel2 = {
+    'id': '9ac8c1ac-0fa5-49c1-82d9-3606f5373a05',
+    'article_id': '6a036999-cf7e-48b2-961e-c089efe7f1ea',
+    'article_slug': 'welcome-to-the-jungle-akshay-kumar-ensemble-comedy-june-26-nri-20260603',
+    'headline': "Welcome To The Jungle Has Akshay Kumar, Fifteen Co-Stars, and the Promise That Nobody Has to Think for Two Hours.",
+    'video_url': 'https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/reels/welcome-to-the-jungle-fullframe-final.mp4',
+    'caption': "Welcome To The Jungle Has Akshay Kumar, Fifteen Co-Stars, and the Promise That Nobody Has to Think for Two Hours.\n\nThe Welcome franchise returns with its biggest cast yet. Here's what NRIs need to know about the June 26 release.\n\nRead the full story: https://thevideshi.com/articles/welcome-to-the-jungle-akshay-kumar-ensemble-comedy-june-26-nri-20260603\n\n#bollywood #entertainment #celebrity #india #akshaykumar #welcometothejungle #comedy #nri #indiandiaspora #thevideshi"
+}
+
+errors = []
+
+# === REEL 1: X only ===
+print(f"\n{'='*60}")
+print(f"REEL 1: {reel1['headline'][:60]}...")
+print(f"Platforms needed: X")
+print(f"{'='*60}")
+
+try:
+    video_path = download_video(reel1['video_url'])
+    try:
+        tweet_id = post_to_x(reel1, video_path)
+        results.append(f"✅ Reel 1 → X: tweet {tweet_id}")
+    except Exception as e:
+        err = f"❌ Reel 1 → X: {e}"
+        print(err)
+        errors.append(err)
+        results.append(err)
+    finally:
+        os.unlink(video_path)
+except Exception as e:
+    err = f"❌ Reel 1 download failed: {e}"
+    print(err)
+    errors.append(err)
+
+time.sleep(15)
+
+# === REEL 2: IG + YT ===
+print(f"\n{'='*60}")
+print(f"REEL 2: {reel2['headline'][:60]}...")
+print(f"Platforms needed: Instagram, YouTube")
+print(f"{'='*60}")
+
+try:
+    video_path = download_video(reel2['video_url'])
+    try:
+        # Instagram
+        try:
+            ig_id = post_to_instagram(reel2, reel2['video_url'])
+            results.append(f"✅ Reel 2 → IG: media {ig_id}")
+        except Exception as e:
+            err = f"❌ Reel 2 → IG: {e}"
+            print(err)
+            errors.append(err)
+            results.append(err)
+
+        time.sleep(15)
+
+        # YouTube
+        try:
+            yt_id = post_to_youtube(reel2, video_path)
+            results.append(f"✅ Reel 2 → YT: video {yt_id}")
+        except Exception as e:
+            err = f"❌ Reel 2 → YT: {e}"
+            print(err)
+            errors.append(err)
+            results.append(err)
+    finally:
+        os.unlink(video_path)
+except Exception as e:
+    err = f"❌ Reel 2 download failed: {e}"
+    print(err)
+    errors.append(err)
+
+# Summary
+print(f"\n{'='*60}")
+print(f"DISTRIBUTION SUMMARY")
+print(f"{'='*60}")
+for r in results:
+    print(r)
+
+if errors:
+    print(f"\n⚠️  {len(errors)} error(s) occurred")
+    sys.exit(1)
+else:
+    print(f"\n✅ All distributions complete")
