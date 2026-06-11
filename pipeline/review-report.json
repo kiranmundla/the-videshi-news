@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-11T07:15:11.583561+00:00",
+  "timestamp": "2026-06-11T07:45:18.622647+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
+    "pass": 3,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "aed272bc-950c-4064-a140-9870f152f7a8",
-      "headline": "Samantha Ruth Prabhu's Comeback Has a Saree, a Shotgun, and a Score to Settle",
-      "slug": "samantha-maa-inti-bangaaram-comeback-shotgun-tralala-june-19-nri-20260611",
+      "id": "979c895a-b839-4d77-9088-0b611725c69a",
+      "headline": "Forty-Eight Teams. Three Countries. One Time Zone You Actually Live In. The World Cup Starts Today.",
+      "slug": "fifa-world-cup-2026-kicks-off-nri-guide-where-to-watch-north-america-schedule",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -21,32 +21,97 @@
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/p/DYRyGhgGmJb/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post does not appear to be directly related to the film or its themes, making it less relevant to the article."
-          }
-        ],
+        "embed_issues": [],
         "image_match": {
           "score": 9,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the film's release to the interests of the NRI audience, highlighting its appeal and relevance."
+          "quality": 9,
+          "note": "The article effectively connects the World Cup to the Indian diaspora in North America, highlighting local relevance and accessibility."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant Instagram link with a more relevant embed that connects directly to the film or its themes.",
-          "Consider adding more quotes or insights from the cast or crew to enhance the depth of the article."
+          "Consider adding quotes or insights from Indian diaspora fans to enhance the personal connection.",
+          "Include more details about how the Indian community can engage with the World Cup, such as local viewing parties or events."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DYRyGhgGmJb/",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "a2adae17-ecde-499b-8293-17e3859484ab",
+      "headline": "Kohli Is Out With a Hamstring Injury. For the First Time in a Decade, India's No. 3 Spot Is Genuinely Open.",
+      "slug": "virat-kohli-injured-yashasvi-jaiswal-india-odi-number-3-afghanistan-2026-nri",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 5,
+          "issue": "The image features Yashasvi Jaiswal, which is relevant to the article, but it does not directly relate to Kohli's injury or the No. 3 spot discussion."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the topic to NRI cricket fans by discussing the implications of Kohli's injury on India's World Cup planning."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that directly relates to Kohli's injury or the No. 3 batting position for better alignment with the article's focus.",
+          "Add more context about the significance of the No. 3 position in ODI cricket to enhance reader understanding."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "39dbbee8-a863-4aa8-ab84-3fe8a56a0a0d",
+      "headline": "He Took Six Wickets in Forty-Degree Heat. Two Days Later, Afghanistan Added Him to the ODI Squad.",
+      "slug": "mohammad-saleem-afghanistan-odi-call-up-india-series-dharamsala-2026-nri",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image of HPCA Stadium is relevant but does not directly depict Mohammad Saleem or the specific match context."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects Saleem's performance to the interests of the Indian diaspora, highlighting Afghanistan's cricket evolution."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include a quote from Mohammad Saleem for a personal touch.",
+          "Add more context about the significance of the ODI series for both teams."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
         "promoted to published"
       ],
       "revised": false,
