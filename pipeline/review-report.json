@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-11T03:45:10.954057+00:00",
+  "timestamp": "2026-06-11T04:15:19.678701+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
+    "pass": 2,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,52 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "a6457b3b-0e99-4266-aed8-acd7201c7152",
-      "headline": "Lock Upp Is Back. Farah Khan and Riteish Deshmukh Are Running the Jail. Netflix Has the Keys.",
-      "slug": "lock-upp-sach-ya-saza-netflix-farah-khan-riteish-deshmukh-season-2-20260611",
+      "id": "69e9660d-1619-4957-8da1-89ef595ddd24",
+      "headline": "Walmart Stopped Sponsoring H-1B Workers Last October \u2014 Nobody Noticed Until the Shareholders Voted",
+      "slug": "walmart-h1b-pause-tcs-cognizant-corporate-retreat-20260611",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [
+          {
+            "url": "https://x.com/business_today/status/1931654321098765432",
+            "problem": "broken",
+            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
+          }
+        ]
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 8,
+          "issue": "The image of a USCIS Application Support Center is relevant to the topic of H-1B visas and immigration."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the impact of changes in H-1B sponsorship on Indian workers, which is highly relevant to the Indian diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more direct quotes from affected individuals or experts to enhance the narrative.",
+          "Add a section discussing potential future implications for Indian workers and companies."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "Removed 1 broken/hallucinated embed(s)",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "72f139b8-2f09-4feb-a3ef-d5e493feb6ee",
+      "headline": "Puja Rooms, Spice Kitchens, and a Nine Per Cent Price Drop \u2014 The Suburb That Bet Everything on H-1B",
+      "slug": "collin-county-dallas-housing-crash-h1b-indian-buyers-20260611",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -23,19 +66,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 5,
-          "issue": "image does not feature the main subjects of the article"
+          "score": 7,
+          "issue": "The image does not directly relate to the specific topic of H-1B visas or the Indian diaspora, but it does depict a suburban setting which is relevant."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article discusses a popular Indian reality show, which may resonate with the Indian diaspora interested in Bollywood and entertainment."
+          "quality": 9,
+          "note": "The article effectively highlights the impact of immigration policies on the Indian diaspora, particularly H-1B visa holders, making it highly relevant to NRI readers."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that features Farah Khan and Riteish Deshmukh to better match the article's content.",
-          "Include more context on how the show may appeal to the diaspora audience, perhaps by mentioning its international reach or viewership."
+          "Consider adding more personal stories or quotes from affected individuals to enhance emotional engagement.",
+          "Include a brief overview of the H-1B visa process for readers who may not be familiar with it."
         ],
         "verdict": "pass"
       },
