@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-11T21:15:26.879754+00:00",
+  "timestamp": "2026-06-11T22:15:27.466704+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 4,
+    "pass": 5,
     "flag": 1,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "6d3d3c97-e70f-47dd-893d-46b9e685b47f",
-      "headline": "India's UPI Now Works in Nepal: What the Cross-Border Payment Link Means for the Diaspora",
-      "slug": "india-nepal-upi-linkage-cross-border-payments-20260611",
+      "id": "021f3680-b117-43d3-9529-ae88fbf28a7d",
+      "headline": "Germany and France Have Both Dropped Transit Visa Requirements for Indians \u2014 and NRIs Routing Through Europe Just Lost a Major Headache",
+      "slug": "germany-france-transit-visa-dropped-indians-nri-20260611",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -29,13 +29,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the UPI-Nepal linkage to the practical needs of the Indian diaspora, highlighting its significance for NRIs."
+          "note": "The article effectively addresses the impact of visa changes on NRIs, making it relevant and informative for the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a quote from a financial expert or a member of the diaspora to enhance credibility.",
-          "Include more specific examples of how NRIs can utilize this service in their daily lives."
+          "Consider adding quotes from travelers or travel experts to enhance the article's relatability.",
+          "Include a brief comparison of transit visa requirements in other regions to provide context."
         ],
         "verdict": "pass"
       },
@@ -47,9 +47,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "22e9d125-db31-4d19-993d-8f4b2876b1ea",
-      "headline": "Adobe Posts Record Revenue as Shantanu Narayen's 18-Year Reign Draws to a Close",
-      "slug": "adobe-shantanu-narayen-record-earnings-departure-20260611",
+      "id": "2292ce4c-9ddc-4e62-aaa7-3073e363300b",
+      "headline": "Southwest and Singapore Airlines Just Linked Their Networks \u2014 and NRIs Get a Single Ticket From India to 120 US Cities",
+      "slug": "southwest-singapore-airlines-interline-nri-20260611",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -65,13 +65,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively highlights the significance of Indian-American leadership in technology, making it relevant to the diaspora."
+          "note": "The article effectively addresses the needs of NRIs traveling from India to the US, highlighting the benefits of the new interline partnership."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from industry experts or analysts to provide more depth.",
-          "Include a brief overview of Adobe's future plans post-Narayen to enhance the article's forward-looking perspective."
+          "Consider adding a brief section on how this partnership compares to other airlines' offerings for NRIs.",
+          "Include a quote from a travel expert or airline representative to enhance credibility."
         ],
         "verdict": "pass"
       },
@@ -83,9 +83,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "132110d6-9f2e-4728-93cb-a42ce3c98bf8",
-      "headline": "Sriram Krishnan Steps Down as White House AI Adviser, Leaving an Imprint on America's AI Playbook",
-      "slug": "sriram-krishnan-exits-white-house-ai-role-20260611",
+      "id": "058b9e9f-91c5-4db4-9e3f-ccacccc78a29",
+      "headline": "IndiGo Is Building a Business Class for Its Long-Haul Fleet \u2014 and NRIs Flying to Europe Should Watch Closely",
+      "slug": "indigo-a350-business-class-europe-nri-20260611",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -95,19 +95,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 5,
+          "issue": "irrelevant"
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects Krishnan's role to the Indian diaspora, highlighting his significance and influence in US AI governance."
+          "quality": 9,
+          "note": "The article directly addresses NRIs and discusses how IndiGo's new business class could impact their travel options and costs."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more direct quotes from Krishnan or colleagues to enhance the narrative.",
-          "Include a brief section on potential future implications of Krishnan's departure for AI policy."
+          "Consider using an image that features the A350 aircraft or a related business class setting to better match the article's focus.",
+          "Include more details on how the new business class will specifically cater to NRI needs or preferences."
         ],
         "verdict": "pass"
       },
@@ -119,53 +119,35 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "75ec3e23-e2c2-4789-b9b2-282bb5254840",
-      "headline": "K-Pop Just Went Punjabi. LE SSERAFIM and Guru Randhawa Made a Track That Shouldn't Work \u2014 and It Absolutely Slaps.",
-      "slug": "le-sserafim-guru-randhawa-boompala-remix-kpop-punjabi-crossover-2026",
+      "id": "c68ac76d-0b2f-4c82-a132-2fae042aaeec",
+      "headline": "India Just Abolished All Taxes on Foreign Bond Investment. One Billion Dollars Flowed In Within Three Days.",
+      "slug": "india-bond-tax-exemption-foreign-investors-bloomberg-index-nri-20260611",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "6f62dbb9-5050-450f-adf7-787fd3ee0741",
-            "headline": "K-Pop Met Punjabi Pop and the Internet Lost Its Mind. BOOMPA"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/reel/DZPz4ivy8LL/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram reel does not appear to be directly related to the article's subject of the collaboration between LE SSERAFIM and Guru Randhawa."
-          },
-          {
-            "url": "https://www.instagram.com/reel/DZPpbgnS-ZN/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram reel does not appear to be directly related to the article's subject of the collaboration between LE SSERAFIM and Guru Randhawa."
-          }
-        ],
+        "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 6,
+          "issue": "irrelevant"
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the collaboration to the South Asian diaspora, highlighting cultural similarities and the significance of the collaboration for NRI audiences."
+          "note": "The article discusses reforms that directly impact NRI investors, making it relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant Instagram links with embeds that directly showcase the collaboration or related content.",
-          "Consider adding more context about the significance of this collaboration in the broader landscape of global music trends."
+          "Consider using a more relevant image that reflects the topic of foreign bond investment or Indian financial markets.",
+          "Add more specific examples or quotes from NRI investors to enhance the diaspora connection."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/reel/DZPz4ivy8LL/",
-        "Removed irrelevant embed: https://www.instagram.com/reel/DZPpbgnS-ZN/",
         "promoted to published"
       ],
       "revised": false,
@@ -173,21 +155,12 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "f2e0bf7d-76aa-4950-af25-756e6722fc3a",
-      "headline": "Ranveer Singh Is Making India's First Zombie Epic. It Costs \u20b9300 Crore and Starts Shooting Next Month.",
-      "slug": "ranveer-singh-pralay-zombie-thriller-kalyani-priyadarshan-300-crore-august-2026",
+      "id": "ede521b6-f9f1-4c94-9751-691707eb3a5d",
+      "headline": "America Just Declared Children's Screen Time a Public Health Crisis. Some of the Damage May Be Permanent.",
+      "slug": "surgeon-general-screen-time-crisis-children-criticome-permanent-damage-diaspora-20260611",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "a861f811-6610-447f-bd1c-11aedb8773d7",
-            "headline": "Ranveer Singh Wrote a \u20b910 Crore Cheque to Leave Don 3. The I"
-          },
-          {
-            "article_id": "3eefe877-6bf9-4aaa-ad99-6dc7796c8414",
-            "headline": "Ranveer Singh Is Building a Zombie Apocalypse. The Budget Is"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
@@ -199,14 +172,50 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the film's themes to NRI audiences familiar with zombie genres."
+          "quality": 9,
+          "note": "The article effectively connects the advisory to the experiences of South Asian families, highlighting cultural nuances."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more details about the film's release strategy or marketing plans to engage readers further.",
-          "Include quotes from Ranveer Singh or Jai Mehta to provide more insight into their vision for the film."
+          "Include more statistics or studies specifically related to the South Asian diaspora to strengthen the diaspora angle.",
+          "Consider adding expert quotes or testimonials from diaspora parents regarding their experiences with screen time."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "2607b0f5-4e6f-4a9f-a4b6-52862ec43a7e",
+      "headline": "The Two Diabetes Drugs Most Indians Take May Double the Risk of a Heart Attack. A 132,000-Patient Study Just Proved It.",
+      "slug": "sulfonylureas-basal-insulin-double-heart-attack-risk-jama-south-asian-diabetes-20260611",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively addresses the impact of diabetes medication on the South Asian diaspora, highlighting the specific risks and considerations for NRIs."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more specific statistics or data related to the prevalence of diabetes in the Indian diaspora to strengthen the argument.",
+          "Add quotes or insights from healthcare professionals within the diaspora to provide a more personal touch."
         ],
         "verdict": "pass"
       },
