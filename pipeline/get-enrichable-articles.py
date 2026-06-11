@@ -38,7 +38,7 @@ def load_registry():
         data = json.load(f)
     lookup = {}
     for cat, entries in data.items():
-        if cat.startswith('_'):
+        if cat.startswith('_') or not isinstance(entries, dict):
             continue
         for person in entries.get('persons', []):
             if person.get('x'):
