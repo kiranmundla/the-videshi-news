@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-11T12:15:32.522538+00:00",
+  "timestamp": "2026-06-11T12:45:27.678383+00:00",
   "mode": "fix",
   "stats": {
     "pass": 6,
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "6e863227-4c8f-4b06-83bf-06fb16d94d7b",
-      "headline": "Bihar Wants Its Global Diaspora to Help Build the State. It Just Launched a Portal to Make That Possible.",
-      "slug": "bihar-global-diaspora-portal-overseas-biharis-development-20260611",
+      "id": "18b7151b-a1de-4520-b154-54d5fd5d11e7",
+      "headline": "Three Trillion-Dollar Companies Are About to Hit Wall Street. All Three Are AI.",
+      "slug": "spacex-openai-anthropic-trillion-dollar-ipo-pipeline-wall-street-20260611",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -29,13 +29,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects with the NRI diaspora by discussing their potential contributions to Bihar's development."
+          "note": "The article effectively connects the IPOs to the Indian diaspora, highlighting their significant role in the AI workforce."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes or testimonials from members of the diaspora to enhance engagement.",
-          "Add specific examples of successful diaspora initiatives from other states to provide context."
+          "Consider adding more specific examples of how Indian engineers have contributed to these companies.",
+          "Include a brief analysis of potential risks for Indian investors in these IPOs."
         ],
         "verdict": "pass"
       },
@@ -47,9 +47,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "5bc5e8e9-1be5-4e21-a838-48de0842a7ea",
-      "headline": "The RBI Just Made It Easier for NRIs to Own Bigger Stakes in Indian Companies. Here Is What Changed.",
-      "slug": "rbi-nri-oci-equity-investment-limit-sebi-10-percent-20260611",
+      "id": "103390e8-d481-465b-ad6a-3b5807d22b99",
+      "headline": "India's IT Stocks Have Fallen for Seven Straight Sessions. They Have Lost Over 10 Percent.",
+      "slug": "india-it-stocks-seven-session-freefall-ai-disruption-nifty-20260611",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -65,13 +65,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively addresses the concerns and interests of NRIs regarding investment opportunities in India."
+          "note": "The article directly addresses NRIs holding Indian IT stocks, making it relevant to the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include specific examples of companies that NRIs might consider investing in under the new regulations.",
-          "Add a section on potential risks or considerations for NRIs when investing in Indian equities."
+          "Consider adding more data or quotes from industry experts to strengthen the analysis.",
+          "Include a brief overview of potential recovery strategies for the IT sector to provide a more balanced perspective."
         ],
         "verdict": "pass"
       },
@@ -83,9 +83,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "edc655b0-09b6-4952-abc7-8c6c002c9b46",
-      "headline": "Three Indian Seafarers Are Missing After a U.S. Military Strike on a Tanker Off Oman. India Has Summoned the American Envoy.",
-      "slug": "indian-seafarers-missing-us-strike-tanker-gulf-oman-20260611",
+      "id": "fc9944ce-b1d1-49e4-acc1-61221dcbf7a5",
+      "headline": "Opendoor Just Shut Its India Operations. Its Stock Jumped 8 Percent.",
+      "slug": "opendoor-shuts-india-operations-ai-offshoring-silicon-valley-20260611",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -101,13 +101,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses the impact of geopolitical events on Indian seafarers, which is relevant to the diaspora community."
+          "note": "The article discusses the implications of Opendoor's exit for Indian tech workers and NRIs, making it relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from family members of the missing seafarers to provide a personal touch.",
-          "Include more context on the implications of the U.S. military actions for Indian seafarers and their families."
+          "Include more direct quotes from Indian tech workers or industry experts to enhance the diaspora perspective.",
+          "Add a section discussing potential opportunities for NRIs in the evolving tech landscape."
         ],
         "verdict": "pass"
       },
@@ -119,9 +119,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "aecd4bb3-dd2a-4df0-b276-022585168a64",
-      "headline": "Jensen Huang Won't Testify Before the Senate. Elizabeth Warren Isn't Letting It Go.",
-      "slug": "jensen-huang-declines-senate-hearing-ai-chip-exports-china-20260611",
+      "id": "8a8e99e5-8bdf-4905-ad2f-d3789259945a",
+      "headline": "12,653 and Counting: Inside the Unstoppable Rise of Indian Restaurants Across America",
+      "slug": "12-653-and-counting-inside-the-unstoppable-rise-of-indian-restaurants-across",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -137,13 +137,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the topic to the Indian diaspora by discussing NVIDIA's employment of Indian-origin engineers and the impact of regulatory actions on diaspora wealth."
+          "note": "The article effectively connects the rise of Indian restaurants to the cultural identity and experiences of Indian Americans."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more direct quotes from Jensen Huang or Elizabeth Warren to enhance the narrative.",
-          "Include a brief overview of NVIDIA's recent performance metrics to provide context for its significance in the tech industry."
+          "Consider adding quotes or anecdotes from Indian restaurant owners to enhance the personal connection to the diaspora experience.",
+          "Include more statistics or data points about the impact of Indian restaurants on local economies to strengthen the economic argument."
         ],
         "verdict": "pass"
       },
@@ -155,9 +155,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "5adfb82f-f1d4-48ff-962f-588d615ee7f3",
-      "headline": "NVIDIA Wants to Replace Your Entire PC With a Chip the Size of a Playing Card",
-      "slug": "nvidia-rtx-spark-ai-pc-arm-blackwell-mediatek-20260611",
+      "id": "78782c8a-9489-4824-9d0b-8506c257724c",
+      "headline": "From Harappa to Your Morning Latte: How Black Sesame Became 2026's Hottest Food Trend",
+      "slug": "from-harappa-to-your-morning-latte-how-black-sesame-became-2026-s-hottest-food",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -173,13 +173,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the technology to Indian software engineers and NRI investors, making it relevant to the diaspora."
+          "note": "The article effectively connects the trend of black sesame to the Indian diaspora, highlighting cultural significance and market dynamics."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more specific examples of how Indian software engineers might utilize the RTX Spark in their work.",
-          "Include a brief comparison with existing technologies to highlight the significance of this new product."
+          "Consider adding more specific examples of how black sesame is being used in Indian cuisine to enhance the cultural connection.",
+          "Include quotes or insights from chefs or food experts to add depth and authority to the discussion of the trend."
         ],
         "verdict": "pass"
       },
@@ -191,9 +191,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "875bffd7-6da5-4925-8881-4e71df33ab03",
-      "headline": "TCS Will Stop Hiring En Masse. Half a Million AI Agents Will Pick Up the Slack.",
-      "slug": "tcs-ends-mass-hiring-ai-agents-match-headcount-20260611",
+      "id": "0e8866d3-58f3-497a-916b-639e45f4b95f",
+      "headline": "Biryani by Any Other Name: Haridwar's Push to Rename India's Favourite Dish Stirs a Global Food Fight",
+      "slug": "biryani-by-any-other-name-haridwar-s-push-to-rename-india-s-favourite-dish",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -208,14 +208,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article discusses the implications of TCS's hiring changes on H-1B visa sponsorship, which directly affects the Indian diaspora in the US."
+          "quality": 9,
+          "note": "The article effectively connects the biryani controversy to the cultural significance of biryani for the Indian diaspora, highlighting its role in family gatherings and celebrations."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes from TCS executives to enhance credibility.",
-          "Add a section on potential future trends in the Indian IT industry regarding AI and employment."
+          "Consider adding quotes or perspectives from more diaspora members to enrich the diaspora angle.",
+          "Include a brief historical context of biryani's evolution in Indian cuisine to enhance the article's depth."
         ],
         "verdict": "pass"
       },
