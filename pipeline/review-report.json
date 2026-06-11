@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-11T10:15:27.286764+00:00",
+  "timestamp": "2026-06-11T10:45:12.170486+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 5,
+    "pass": 2,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,45 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "beb1ce22-16af-4350-a37b-04c96b9e8ab8",
-      "headline": "Foreign Investors Have Pulled $30 Billion From India This Year. It Is the Largest Exit in the Country's History.",
-      "slug": "india-fpi-foreign-investor-30-billion-outflow-record-iran-war-nri-portfolio-20260611",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 8,
-          "issue": "The image is relevant to the topic of foreign investment and economic trends in India."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses the impact of foreign investment trends on NRI investors, making it relevant to the diaspora audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more specific examples or quotes from NRI investors to enhance the diaspora connection.",
-          "Add a section on potential future implications for NRIs and how they might navigate the current market conditions."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "4f954e3d-25fa-4209-8937-71f4323260c6",
-      "headline": "Three Common Sleep Habits Are Quietly Damaging Your Brain. A 23,000-Person Study Just Named Them.",
-      "slug": "sleep-behaviors-brain-white-matter-dementia-alzheimers-south-asian-diaspora-20260611",
+      "id": "e30e4448-b266-4eda-ad09-1c0d7754a03f",
+      "headline": "She Scored 68 Off 36 Balls. India Still Lost by Five Runs.",
+      "slug": "richa-ghosh-68-india-women-t20-world-cup-warm-up-england-cardiff-nri",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -59,19 +23,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image of Richa Ghosh is relevant to the article but does not match the date of the match discussed."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the findings of the study to the South Asian diaspora, highlighting specific cultural practices that contribute to sleep issues."
+          "quality": 8,
+          "note": "The article connects well with the Indian diaspora by discussing a prominent Indian cricketer and the upcoming World Cup match against Pakistan."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more specific statistics or studies related to sleep habits in the South Asian diaspora to strengthen the argument.",
-          "Include expert quotes or insights from South Asian health professionals to enhance credibility and relatability."
+          "Consider updating the image to one that reflects the match date or context more closely.",
+          "Add a brief section on the significance of the match for the Indian team in the context of the World Cup."
         ],
         "verdict": "pass"
       },
@@ -83,9 +47,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "9f600744-bc3a-47de-bf21-c3a1686db66a",
-      "headline": "Saudi Arabia's Brand-New Airline Just Landed in London \u2014 and It Wants to Be the Gulf's Stable Option for NRIs",
-      "slug": "riyadh-air-maiden-flight-london-nri-gateway-20260611",
+      "id": "848f4f37-227d-4247-9633-b44b9d420a44",
+      "headline": "Stokes Dropped After Nightclub Incident. Root Steps In. An Era May Be Over.",
+      "slug": "ben-stokes-dropped-nightclub-root-interim-captain-england-india-implications-nri",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -101,85 +65,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the airline's launch to the needs of NRIs, particularly in terms of travel options and connectivity."
+          "note": "The article effectively connects the implications of Stokes' situation to Indian cricket fans, highlighting the significance of the upcoming series."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes from NRI travelers or experts to enhance the diaspora perspective.",
-          "Add a section on potential future routes or expansions that could further benefit NRIs."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "9a583173-dd2f-4d7f-89db-f0e7a1ce49df",
-      "headline": "Air Canada's Delhi\u2013Toronto Nonstop Is Now Its Longest Flight \u2014 and the Numbers Show Why NRIs Made It Happen",
-      "slug": "air-canada-delhi-toronto-17-hour-nonstop-nri-20260611",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the topic of air travel to the NRI community, highlighting demographic trends and travel patterns."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes or testimonials from NRIs who frequently travel this route to enhance personal connection.",
-          "Include more data or insights on how the route's expansion impacts travel costs for NRIs."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "039371e9-fb3a-4157-879e-b953914be8b6",
-      "headline": "China Southern Is Launching Daily Nonstops Between Guangzhou and Delhi \u2014 and NRIs Should Watch the Connecting Map",
-      "slug": "china-southern-guangzhou-delhi-nonstop-nri-20260611",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively addresses the needs and interests of NRIs, particularly those involved in business and education."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from industry experts or travelers to enhance credibility.",
-          "Include more specific examples of how the new route will benefit NRIs in various sectors."
+          "Consider adding quotes from Indian cricket analysts or fans to enhance the diaspora connection.",
+          "Include more context on how Stokes' absence could specifically impact Indian fans' viewing experience."
         ],
         "verdict": "pass"
       },
