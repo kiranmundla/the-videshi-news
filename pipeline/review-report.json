@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-11T22:15:27.466704+00:00",
+  "timestamp": "2026-06-11T22:45:14.036521+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 5,
-    "flag": 1,
+    "pass": 2,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,45 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "021f3680-b117-43d3-9529-ae88fbf28a7d",
-      "headline": "Germany and France Have Both Dropped Transit Visa Requirements for Indians \u2014 and NRIs Routing Through Europe Just Lost a Major Headache",
-      "slug": "germany-france-transit-visa-dropped-indians-nri-20260611",
+      "id": "ae410e2c-e9a0-493b-8860-ed819e26ad44",
+      "headline": "He Was Born in Delhi. He Delivered Parcels in Brisbane. Now He Could Play for Australia.",
+      "slug": "nikhil-chaudhary-india-born-australia-t20i-call-up-delhi-brisbane-bbl-hurricanes-nri",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to cricket or the specific subject of Nikhil Chaudhary."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects Chaudhary's journey to the experiences of the Indian diaspora, highlighting themes of migration and resilience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that depicts cricket or Nikhil Chaudhary specifically.",
+          "Add a quote from Chaudhary to provide a personal touch and enhance reader engagement."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "6aa96888-4a8d-470d-bfd3-b47ac7e7d5cc",
+      "headline": "Another Dravid in India Colours. Rahul's Younger Son Anvay Gets His First National Call-Up.",
+      "slug": "anvay-dravid-india-u19-call-up-rahul-dravid-son-sri-lanka-tour-nri",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -29,193 +65,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively addresses the impact of visa changes on NRIs, making it relevant and informative for the diaspora audience."
+          "note": "The article effectively connects the Dravid legacy to the diaspora, highlighting the nostalgia and interest NRIs have in Rahul Dravid's family."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from travelers or travel experts to enhance the article's relatability.",
-          "Include a brief comparison of transit visa requirements in other regions to provide context."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "2292ce4c-9ddc-4e62-aaa7-3073e363300b",
-      "headline": "Southwest and Singapore Airlines Just Linked Their Networks \u2014 and NRIs Get a Single Ticket From India to 120 US Cities",
-      "slug": "southwest-singapore-airlines-interline-nri-20260611",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively addresses the needs of NRIs traveling from India to the US, highlighting the benefits of the new interline partnership."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a brief section on how this partnership compares to other airlines' offerings for NRIs.",
-          "Include a quote from a travel expert or airline representative to enhance credibility."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "058b9e9f-91c5-4db4-9e3f-ccacccc78a29",
-      "headline": "IndiGo Is Building a Business Class for Its Long-Haul Fleet \u2014 and NRIs Flying to Europe Should Watch Closely",
-      "slug": "indigo-a350-business-class-europe-nri-20260611",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 5,
-          "issue": "irrelevant"
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article directly addresses NRIs and discusses how IndiGo's new business class could impact their travel options and costs."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that features the A350 aircraft or a related business class setting to better match the article's focus.",
-          "Include more details on how the new business class will specifically cater to NRI needs or preferences."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "c68ac76d-0b2f-4c82-a132-2fae042aaeec",
-      "headline": "India Just Abolished All Taxes on Foreign Bond Investment. One Billion Dollars Flowed In Within Three Days.",
-      "slug": "india-bond-tax-exemption-foreign-investors-bloomberg-index-nri-20260611",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 6,
-          "issue": "irrelevant"
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses reforms that directly impact NRI investors, making it relevant to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that reflects the topic of foreign bond investment or Indian financial markets.",
-          "Add more specific examples or quotes from NRI investors to enhance the diaspora connection."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "ede521b6-f9f1-4c94-9751-691707eb3a5d",
-      "headline": "America Just Declared Children's Screen Time a Public Health Crisis. Some of the Damage May Be Permanent.",
-      "slug": "surgeon-general-screen-time-crisis-children-criticome-permanent-damage-diaspora-20260611",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the advisory to the experiences of South Asian families, highlighting cultural nuances."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more statistics or studies specifically related to the South Asian diaspora to strengthen the diaspora angle.",
-          "Consider adding expert quotes or testimonials from diaspora parents regarding their experiences with screen time."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "2607b0f5-4e6f-4a9f-a4b6-52862ec43a7e",
-      "headline": "The Two Diabetes Drugs Most Indians Take May Double the Risk of a Heart Attack. A 132,000-Patient Study Just Proved It.",
-      "slug": "sulfonylureas-basal-insulin-double-heart-attack-risk-jama-south-asian-diabetes-20260611",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively addresses the impact of diabetes medication on the South Asian diaspora, highlighting the specific risks and considerations for NRIs."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more specific statistics or data related to the prevalence of diabetes in the Indian diaspora to strengthen the argument.",
-          "Add quotes or insights from healthcare professionals within the diaspora to provide a more personal touch."
+          "Consider adding quotes from Anvay or Rahul Dravid to provide a personal touch.",
+          "Include more context about Anvay's cricketing journey to enhance reader engagement."
         ],
         "verdict": "pass"
       },
