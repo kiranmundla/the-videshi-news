@@ -2549,10 +2549,8 @@ def run_anchor_reel(article, dry_run=False, use_production=False):
                       poster_url=uploaded_poster_url, thumbnail_url=uploaded_thumb_url,
                       qa_score_actual=qa_score)
 
-    # 12. Cross-post to all platforms
-    if video_url:
-        print("\n📢 Step 12: Cross-posting to all platforms...")
-        cross_post_reel(article, video_url, str(final_path), caption, uploaded_poster_url)
+    # 12. Done — distribution handled by videshi-distribute-reels cron
+    # (generates once, distributes to IG/YT/Threads/X/FB from prebuilt_reels)
 
     print(f"\n{'='*60}")
     print(f"✅ REEL COMPLETE: {final_path}")
@@ -2624,9 +2622,7 @@ def run_quick_pulse(article, dry_run=False, use_production=False):
     if video_url:
         caption = build_caption(article)
         register_reel(article, video_url, str(final_path), caption)
-        # Cross-post to all platforms
-        print("\n📢 Cross-posting to all platforms...")
-        cross_post_reel(article, video_url, str(final_path), caption)
+        # Distribution handled by videshi-distribute-reels cron
 
     print(f"\n✅ QUICK PULSE COMPLETE: {final_path}")
     return True
