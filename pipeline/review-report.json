@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-11T17:15:16.139769+00:00",
+  "timestamp": "2026-06-11T18:15:29.762694+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 0,
+    "pass": 5,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "e3db68a6-9233-4dc2-90cd-888eabdaeca4",
-      "headline": "Huma Qureshi Doesn't Speak a Single Word in Her New Film. It Might Be the Most Dangerous Performance of the Year.",
-      "slug": "baby-do-die-do-huma-qureshi-deaf-mute-hitwoman-vs-alpha-july-3-clash-nri-20260611",
+      "id": "1a345b3a-d8ea-4f98-a77a-4a664c8dabae",
+      "headline": "A Museum for Thirty Million People: GOPIO's Plan for the World's First Indian Diaspora Institution",
+      "slug": "gopio-indian-diaspora-museum-delhi-proposal-20260611",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -28,14 +28,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article discusses a film featuring a female lead, which may resonate with the diaspora interested in Bollywood and women's representation in cinema."
+          "quality": 9,
+          "note": "The article effectively connects the museum proposal to the Indian diaspora's identity and contributions, making it relevant for NRI readers."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more context on how the film's themes relate to the Indian diaspora experience.",
-          "Add quotes or insights from Huma Qureshi or other cast members to enhance the personal connection."
+          "Include quotes or testimonials from diaspora members to enhance personal connection.",
+          "Add more details about the timeline and next steps for the museum's development."
         ],
         "verdict": "pass"
       },
@@ -47,33 +47,177 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "03dbb2ca-f394-4ae2-8b70-29dca9b3848d",
-      "headline": "Trump Wants to Seize Iran's Oil Hub. India Buys 85 Per Cent of Its Crude From Abroad.",
-      "slug": "trump-threatens-seize-kharg-island-iran-oil-hub-india-crude-imports-20260611",
+      "id": "a13c0d6b-a850-40dd-8f79-f9d1ef7e3c61",
+      "headline": "Two Indian American Lawmakers Are at the Centre of America's State-Level Fight Over ICE",
+      "slug": "indian-american-lawmakers-state-legislature-ice-reform-20260611",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
-        "overall_score": 7,
+        "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 8,
+          "score": 9,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects rising oil prices and their impact on the Indian diaspora's financial support to families in India."
+          "note": "The article effectively highlights the role of Indian American lawmakers in immigration policy, connecting it to the diaspora's political engagement."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Add more context on how the geopolitical situation specifically affects the Indian diaspora beyond financial implications.",
-          "Include quotes or perspectives from Indian officials or experts to provide a more balanced view."
+          "Consider adding quotes from the lawmakers or community members to enhance the narrative.",
+          "Include more context on the impact of these legislative initiatives on the Indian American community."
         ],
         "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "96c99ca0-1cd4-41f1-8a46-b7852a8392d0",
+      "headline": "From Temple Weddings to Pickleball Courts: TANA Is Rewriting the Telugu Diaspora Playbook",
+      "slug": "tana-telugu-community-events-kalyanam-pickleball-20260611",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects TANA's activities to the needs and interests of the Telugu diaspora, highlighting cultural and recreational engagement."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from participants or attendees to enhance the personal connection to the events.",
+          "Include more statistics or data on the growth of the Telugu diaspora to provide context for TANA's expansion."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "c2f8c6a3-2759-4944-9f20-bcbc35dae5df",
+      "headline": "India's Airlines Just Cut One in Five Domestic Flights \u2014 and NRIs Flying Home This Summer Will Feel It",
+      "slug": "india-domestic-flights-cut-atf-fuel-nri-summer-20260611",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image of an airplane is relevant but lacks specific context to the article's focus on domestic flight cuts."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively addresses the impact of flight cuts on NRIs, making it highly relevant to the diaspora audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including more specific statistics or quotes from industry experts to enhance credibility.",
+          "Add a section on potential future trends in domestic air travel in India to provide readers with a broader perspective."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "b38af104-43e5-4491-88c0-7ed589503d22",
+      "headline": "Thailand Drops the Visa Barrier for Indian Travelers \u2014 and NRIs Get the Easiest Family Reunion Destination Yet",
+      "slug": "thailand-visa-free-indians-nri-family-travel-20260611",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the visa changes to the needs of NRIs for family reunions and travel."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include specific examples of family reunion experiences or testimonials from NRIs who have traveled to Thailand.",
+          "Add a section on cultural attractions or activities in Thailand that might appeal to Indian travelers."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "2e407097-7122-4c1c-a5cd-d6030016d9cd",
+      "headline": "Air India Just Opened Its First International Lounge \u2014 and It Picked the Heart of NRI Country",
+      "slug": "air-india-maharaja-lounge-sfo-nri-bay-area-20260611",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 3,
+          "issue": "irrelevant"
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the lounge opening to the needs and preferences of the Indian American diaspora, highlighting its significance for NRIs."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the hero image with one that features the Air India lounge or a related theme to enhance relevance.",
+          "Consider adding quotes from Air India representatives or passengers to provide personal insights and enhance engagement."
+        ],
+        "verdict": "flag"
       },
       "actions_taken": [
         "promoted to published"
