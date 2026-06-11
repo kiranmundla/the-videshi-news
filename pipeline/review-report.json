@@ -1,51 +1,15 @@
 {
-  "timestamp": "2026-06-11T03:15:52.168892+00:00",
+  "timestamp": "2026-06-11T03:45:10.954057+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 4,
-    "flag": 1,
+    "pass": 1,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
-  "revisions": 1,
+  "revisions": 0,
   "unpublished": 0,
   "articles": [
-    {
-      "id": "29d1411f-2bdf-4147-bd93-f669fb7a615c",
-      "headline": "Peddi Just Became Ram Charan's Biggest Solo Film. The Numbers Are Staggering and the Re-Edit Rumors Are Real.",
-      "slug": "peddi-ram-charan-box-office-270-crore-week-one-recut-20260611",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article connects well with the diaspora by highlighting the success of Telugu cinema and its relevance to NRIs."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more direct quotes or reactions from NRIs regarding the film's success to enhance the diaspora connection.",
-          "Add a brief section on how the film is being received in international markets beyond North America."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
     {
       "id": "a6457b3b-0e99-4266-aed8-acd7201c7152",
       "headline": "Lock Upp Is Back. Farah Khan and Riteish Deshmukh Are Running the Jail. Netflix Has the Keys.",
@@ -56,148 +20,22 @@
         "broken_embeds": []
       },
       "llm_review": {
-        "overall_score": 6,
+        "overall_score": 8,
         "embed_issues": [],
         "image_match": {
           "score": 5,
-          "issue": "The image does not directly relate to the article's topic about the reality show Lock Upp."
+          "issue": "image does not feature the main subjects of the article"
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 5,
-          "note": "The article touches on a popular Indian reality show, which may interest the diaspora, but lacks a deeper connection or relevance to NRI experiences."
+          "quality": 7,
+          "note": "The article discusses a popular Indian reality show, which may resonate with the Indian diaspora interested in Bollywood and entertainment."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more context on how the show impacts or relates to the Indian diaspora.",
-          "Use a more relevant image that connects to the theme of the reality show."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Revised by gpt-4o-mini (831\u2192900 words)"
-      ],
-      "revised": true,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "a861f4c4-86e2-491f-94c5-756f45d5410d",
-      "headline": "Jensen Huang's Seoul Blitz Just Locked Down AI's Most Critical Supply Chain",
-      "slug": "jensen-huang-seoul-nvidia-hbm4-sk-hynix-samsung-20260611",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "69dfdff2-0944-4d6a-a008-12225f958050",
-            "headline": "Jensen Huang Called Marvell the Next Trillion-Dollar Company"
-          },
-          {
-            "article_id": "edc1c472-2b8c-46d0-8e82-bf1071299392",
-            "headline": "Anthropic, OpenAI and Nvidia Are Hiring More Foreign Workers"
-          }
-        ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the developments in AI and semiconductor industries to the Indian diaspora through the mention of Sanjay Mehrotra and the Gujarat facility."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more context about the significance of these partnerships for the global AI landscape.",
-          "Include quotes or insights from industry experts to enhance credibility and depth."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "c3611420-9cd7-4fcb-9245-b4d64ec9b724",
-      "headline": "India Arrives in Paris as VivaTech's AI Partner Country. The Pitch Is Bigger Than Startups.",
-      "slug": "india-vivatech-2026-ai-partner-country-paris-20260611",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects India's technological advancements and initiatives to the interests of the NRI community, highlighting opportunities for investment and collaboration."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from industry experts or stakeholders to enhance credibility.",
-          "Include more specific examples of how NRIs can engage with or benefit from these developments."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "cdacdcf9-7170-41b7-bfa8-7536860ec3e2",
-      "headline": "Tim Cook's Last WWDC Hands Apple's AI Future \u2014 and a Siri Reboot \u2014 to John Ternus",
-      "slug": "tim-cook-last-wwdc-siri-ai-john-ternus-apple-20260611",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "2f561a83-58f0-46ea-9db9-fda3fda339a4",
-            "headline": "Tim Cook Used His Last WWDC to Bet Everything on a New Siri."
-          },
-          {
-            "article_id": "3436ba9b-2762-409a-86d5-f5e271a72f11",
-            "headline": "Tim Cook Said Goodbye at WWDC. His India Legacy Is What Happ"
-          }
-        ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image of Tim Cook is relevant as it relates to the article's focus on his departure and the transition to John Ternus."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the leadership change at Apple to the impact on Indian tech professionals, making it relevant for the diaspora audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from Indian tech professionals to enhance the diaspora angle.",
-          "Include more context on how the changes at Apple might affect the global tech landscape, particularly in relation to Indian startups."
+          "Consider using an image that features Farah Khan and Riteish Deshmukh to better match the article's content.",
+          "Include more context on how the show may appeal to the diaspora audience, perhaps by mentioning its international reach or viewership."
         ],
         "verdict": "pass"
       },
