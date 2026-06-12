@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-12T19:15:17.775210+00:00",
+  "timestamp": "2026-06-12T19:45:18.078883+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
-    "flag": 1,
+    "pass": 2,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,47 +11,35 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "fafef08b-2a26-4663-9ccf-5a47edc327fa",
-      "headline": "Bharathiraja Took Tamil Cinema Out of the Studio and Into the Soil. He Died at 84, and an Entire Industry Wept.",
-      "slug": "bharathiraja-tamil-director-dies-84-tribute-rajinikanth-kamal-sridevi-ilaiyaraaja-nri-20260612",
+      "id": "03fbdef9-48f7-4390-be88-c10588878c2b",
+      "headline": "He Has Captained Six ODIs. India Have Not Won a Single Series Under Him.",
+      "slug": "shubman-gill-captaincy-test-india-afghanistan-odi-2026-kohli-rohit-world-cup-2027-nri",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "5adc7383-62d9-43eb-88dc-1d390880691f",
-            "headline": "Tamil Cinema Lost Its Greatest Poet This Morning. Bharathira"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/p/DZZRvnbT36a/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post does not seem to directly relate to Bharathiraja or his impact on Tamil cinema, making it less relevant to the article's focus."
-          }
-        ],
+        "overall_score": 7,
+        "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 8,
+          "issue": "The image of Shubman Gill aligns with the article's focus on his captaincy and performance."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects Bharathiraja's significance to the diaspora, highlighting how his films reached Tamil communities abroad."
+          "quality": 7,
+          "note": "The article acknowledges the challenging viewing times for NRI fans, connecting the content to the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant Instagram embed with a more relevant tribute or commentary related to Bharathiraja.",
-          "Consider adding more quotes or anecdotes from diaspora members to strengthen the connection further."
+          "Include more direct quotes or reactions from NRI fans regarding the series to enhance the diaspora connection.",
+          "Add a brief historical context about India's performance in ODIs under different captains to provide depth."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DZZRvnbT36a/",
         "promoted to published"
       ],
       "revised": false,
@@ -59,21 +47,12 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "912035d9-4009-4f7f-ad6e-dab5134c5e1c",
-      "headline": "Ranveer Singh Ghosted an Entire Federation. The Don 3 War Just Got Personal.",
-      "slug": "ranveer-singh-don-3-fwice-aamir-khan-mediation-ammy-virk-dhurandhar-dispute-2026",
+      "id": "daa07e26-20c6-4a16-a14a-8ea80f5656b9",
+      "headline": "She Scored 105 Off 62 Balls. England Just Posted the Highest Total in Women's T20 World Cup History.",
+      "slug": "england-219-record-womens-t20-world-cup-2026-wyatt-hodge-century-india-pakistan-sunday-nri",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "f2e0bf7d-76aa-4950-af25-756e6722fc3a",
-            "headline": "Ranveer Singh Is Making India's First Zombie Epic. It Costs "
-          },
-          {
-            "article_id": "3eefe877-6bf9-4aaa-ad99-6dc7796c8414",
-            "headline": "Ranveer Singh Is Building a Zombie Apocalypse. The Budget Is"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
@@ -86,13 +65,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article connects well with the diaspora by discussing Bollywood's evolving power dynamics, which is relevant to NRIs interested in the industry."
+          "note": "The article effectively connects the tournament's significance to NRI fans, particularly highlighting the accessibility of matches and the India-Pakistan rivalry."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes or perspectives from more industry insiders to enhance depth.",
-          "Include a brief background on the Don franchise for readers unfamiliar with it."
+          "Consider adding quotes from players or coaches to enhance the narrative.",
+          "Include more statistics or historical context about the Women's T20 World Cup to enrich the article."
         ],
         "verdict": "pass"
       },
