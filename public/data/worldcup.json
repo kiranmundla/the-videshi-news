@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-06-12T16:57:52Z",
-  "stage": "Group Stage — Matchday 1",
+  "last_updated": "2026-06-12T20:59:05Z",
+  "stage": "Group Stage — 3 of 72 matches played",
   "hosts": "USA, Mexico & Canada",
   "dates": {
     "start": "2026-06-11",
@@ -72,6 +72,32 @@
     ],
     "B": [
       {
+        "name": "Canada",
+        "code": "CAN",
+        "flag": "🇨🇦",
+        "rank": 30,
+        "p": 1,
+        "w": 0,
+        "d": 1,
+        "l": 0,
+        "gf": 1,
+        "ga": 1,
+        "pts": 1
+      },
+      {
+        "name": "Bosnia & Herzegovina",
+        "code": "BIH",
+        "flag": "🇧🇦",
+        "rank": 64,
+        "p": 1,
+        "w": 0,
+        "d": 1,
+        "l": 0,
+        "gf": 1,
+        "ga": 1,
+        "pts": 1
+      },
+      {
         "name": "Switzerland",
         "code": "SUI",
         "flag": "🇨🇭",
@@ -85,36 +111,10 @@
         "pts": 0
       },
       {
-        "name": "Canada",
-        "code": "CAN",
-        "flag": "🇨🇦",
-        "rank": 30,
-        "p": 0,
-        "w": 0,
-        "d": 0,
-        "l": 0,
-        "gf": 0,
-        "ga": 0,
-        "pts": 0
-      },
-      {
         "name": "Qatar",
         "code": "QAT",
         "flag": "🇶🇦",
         "rank": 57,
-        "p": 0,
-        "w": 0,
-        "d": 0,
-        "l": 0,
-        "gf": 0,
-        "ga": 0,
-        "pts": 0
-      },
-      {
-        "name": "Bosnia & Herzegovina",
-        "code": "BIH",
-        "flag": "🇧🇦",
-        "rank": 64,
         "p": 0,
         "w": 0,
         "d": 0,
@@ -706,8 +706,8 @@
       "away": "Bosnia & Herzegovina",
       "venue": "BMO Field",
       "city": "Toronto",
-      "status": "scheduled",
-      "score": null,
+      "status": "FT",
+      "score": "1-1",
       "home_code": "CAN",
       "away_code": "BIH"
     },
@@ -1837,6 +1837,20 @@
       "url": "https://www.instagram.com/p/DZeaEbUEa8Q/",
       "account": "@fifaworldcup",
       "caption": "Oh Hyeon-gyu — the difference maker 🪄",
+      "date": "2026-06-12"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/reel/DZckf7NvlsL/",
+      "account": "@fifaworldcup",
+      "caption": "World Cup 2026 opening day — the tournament begins",
+      "date": "2026-06-11"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DZeR8TyHMMi/",
+      "account": "@fifaworldcup",
+      "caption": "World Cup 2026 Day 2 — Canada vs Bosnia & Herzegovina",
       "date": "2026-06-12"
     }
   ],
