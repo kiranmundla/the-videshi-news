@@ -1,108 +1,19 @@
 {
-  "timestamp": "2026-06-12T04:15:18.502661+00:00",
+  "timestamp": "2026-06-12T04:46:06.006830+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
-    "flag": 0,
+    "pass": 5,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
-  "revisions": 0,
+  "revisions": 1,
   "unpublished": 0,
   "articles": [
     {
-      "id": "108064c7-fadd-4fac-9637-704aee53ace5",
-      "headline": "Your Green Card Application Just Became 'Extraordinary' \u2014 What the USCIS Memo Means for 400,000 Indian Applicants",
-      "slug": "uscis-adjustment-status-extraordinary-memo-indian-green-card-20260612",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the topic of green card applications or immigration."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article discusses the implications of USCIS policy changes specifically for Indian applicants, making it highly relevant for the NRI community."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that more directly represents immigration or green card applications.",
-          "Add a section that includes personal stories or testimonials from Indian applicants to enhance relatability."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "5dea7f35-eeb8-4396-b401-237f6ba288d5",
-      "headline": "Half a Million AI Agents, Half a Million Humans \u2014 TCS Just Told You What Happens to the H-1B Pipeline",
-      "slug": "tcs-ai-agents-h1b-pipeline-indian-it-hiring-20260612",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "0879f0c5-1445-437b-ba44-07a1bcc6fa05",
-            "headline": "TCS Partners With Anthropic to Put Claude in the Hands of 50"
-          },
-          {
-            "article_id": "091f1a72-16a4-4be6-9683-e9fe5021d601",
-            "headline": "TCS Will Have Half a Million AI Agents Within Three Years. H"
-          },
-          {
-            "article_id": "cd111ead-a101-43e0-9525-82e217e23598",
-            "headline": "Tata Electronics Wants a $30 Billion Chip Empire. The Dholer"
-          },
-          {
-            "article_id": "973e700c-6456-4e78-90d1-bb47dc39f111",
-            "headline": "TCS Chairman Says AI Agents Will Match Its 500,000 Headcount"
-          }
-        ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image of N. Chandrasekaran is relevant to the article's topic on TCS and AI, but it could be more directly related to the H-1B visa discussion."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the implications of TCS's AI transition to the H-1B visa situation for Indian professionals in the US."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more direct quotes or anecdotes from affected H-1B workers to enhance the personal impact of the story.",
-          "Include more data or projections on how the shift to AI might specifically affect H-1B visa numbers in the coming years."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "9b040efd-b464-4156-946a-a3310d0ac1f8",
-      "headline": "Seven Hundred and Fifty Dollars to Skip the Line \u2014 America's New Fast Pass for Visa Interviews",
-      "slug": "750-dollar-fast-pass-visa-interview-state-department-20260612",
+      "id": "5f890892-ac78-4e68-b226-e0f4a557413a",
+      "headline": "He Loaded Up to Bowl. Then He Stopped. Arjun Tendulkar Refused to Mankad.",
+      "slug": "arjun-tendulkar-mankading-refusal-t20-mumbai-league-wankhede-spirit-cricket-nri",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -118,13 +29,214 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses the implications of the new visa process specifically for Indian families, making it relevant to the diaspora."
+          "note": "The article connects well with the Indian diaspora by discussing the legacy of Sachin Tendulkar and the cultural significance of cricket in India."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more quotes or perspectives from immigration experts or affected individuals to enhance the narrative.",
-          "Add a section on potential alternatives for those who cannot afford the expedited service."
+          "Consider adding quotes from Arjun Tendulkar or other players to enhance the narrative.",
+          "Include a brief background on the significance of the T20 Mumbai League for readers unfamiliar with it."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "f6bd0fe5-a31a-4d7e-8ccd-99844356787d",
+      "headline": "Nine Fours. Zero Sixes. The Most Important Innings of Vaibhav Sooryavanshi's Life.",
+      "slug": "vaibhav-sooryavanshi-india-a-afghanistan-a-44-off-22-no-sixes-dambulla-tri-series-nri",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "9b56ad68-3a93-40bf-b2f0-b271f46cbbc9",
+            "headline": "He Is Fifteen. He Won the Orange Cap. Now He Is in India's A"
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article connects well with the NRI community by highlighting upcoming matches in Ireland and the UK, which are of interest to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more quotes or reactions from the NRI community regarding Sooryavanshi's performance.",
+          "Include a brief background on Vaibhav Sooryavanshi for readers who may not be familiar with him."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "a82f91b1-d9d8-4178-9052-9e56438ddbb4",
+      "headline": "He Is Thirty-Nine. On Saturday, He Will Become the Oldest Indian to Play an ODI.",
+      "slug": "rohit-sharma-oldest-indian-odi-player-record-amarnath-afghanistan-dharamsala-2026-nri",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article connects well with NRI fans by mentioning the match timing and their geographical locations."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from Rohit Sharma or the coach to enhance the narrative.",
+          "Include more statistics or historical context about Rohit Sharma's career to enrich the article."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "805d3204-455a-481c-9141-92886f18688a",
+      "headline": "He Filed 11 Fake H-1B Petitions, Forged Executive Signatures, and Became an American Citizen. Now the DOJ Wants It Back.",
+      "slug": "doj-denaturalization-neeraj-sharma-h1b-fraud-citizenship-revoked-20260612",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": "The image of the U.S. Department of Justice headquarters is relevant to the article's topic on legal actions taken by the DOJ."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the implications of immigration fraud on the Indian tech community, which resonates with NRI readers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include quotes from immigration experts or community leaders to provide additional perspectives.",
+          "Add a section discussing the broader implications of denaturalization for the Indian diaspora."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "17ab8d07-725d-46f1-b46a-409de96fdd04",
+      "headline": "SpaceX Just Became a $1.77 Trillion Company. India Won't Let It Turn On Starlink.",
+      "slug": "spacex-ipo-1-77-trillion-india-starlink-frozen-clearance-20260612",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "9e8fd671-bc07-44d2-ab32-aeecfd2e6677",
+            "headline": "SpaceX Is About to Become the Biggest IPO in History. Indian"
+          },
+          {
+            "article_id": "c4f77b77-04b3-436e-9f98-b81bbc852aac",
+            "headline": "Musk's xAI Got Caught Training on Claude's Outputs. It Kept "
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 6,
+        "embed_issues": [],
+        "image_match": {
+          "score": 4,
+          "issue": "The image of Elon Musk does not directly relate to the article's focus on SpaceX's IPO and its implications for India."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses India's regulatory stance on Starlink, which is relevant to the Indian diaspora interested in tech developments affecting India."
+        },
+        "factual_flags": [
+          "The claim about SpaceX's xAI division losing $6.36 billion in 2025 is suspicious as it refers to a future year."
+        ],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more context on how the regulatory issues specifically affect Indian consumers or businesses.",
+          "Replace the hero image with one that better represents the IPO or the Starlink service in India."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Revised by gpt-4o-mini (785\u2192836 words)"
+      ],
+      "revised": true,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "7517e76d-1568-42f1-9b29-e5d7d371bf51",
+      "headline": "India Is Preparing to Let Its Fiscal Deficit Blow Past Target. The Iran War Left No Choice.",
+      "slug": "india-fiscal-deficit-widens-4-8-percent-iran-war-energy-subsidies-20260612",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "cfb39575-48a1-4e35-835e-770f7f0c8dba",
+            "headline": "India's Fertiliser Bill Has Doubled in Three Months. The Ira"
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image of Nirmala Sitharaman is relevant as she is the Finance Minister, but it does not directly depict the fiscal deficit topic."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the fiscal deficit situation to NRIs, particularly regarding their investments and the implications of government borrowing."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including more direct quotes from experts or officials to enhance credibility.",
+          "Add a brief summary or conclusion that encapsulates the potential long-term effects of the fiscal deficit on the economy and NRIs."
         ],
         "verdict": "pass"
       },
