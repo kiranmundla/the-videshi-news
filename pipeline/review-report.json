@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-12T06:45:21.293061+00:00",
+  "timestamp": "2026-06-12T07:15:17.403839+00:00",
   "mode": "fix",
   "stats": {
     "pass": 2,
-    "flag": 1,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,87 +11,15 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "08138c79-8537-4446-8fe3-72b946614490",
-      "headline": "The ECB Just Raised Rates for the First Time in Three Years. The Iran War Has Made Inflation Everyone's Problem.",
-      "slug": "ecb-rate-hike-first-three-years-iran-war-inflation-india-nri-europe-impact-20260612",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the ECB or interest rates, but is a generic economic image."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses implications for NRIs in Europe, particularly regarding mortgage costs and deposits."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that directly relates to the ECB or interest rates.",
-          "Expand on the implications for NRIs in Europe to provide more depth."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "fab7487e-6358-4ebe-a4fe-9829d96999b7",
-      "headline": "USCIS Just Made It Harder to Get a Green Card Without Leaving the US. Indians Have the Most to Lose.",
-      "slug": "uscis-adjustment-of-status-extraordinary-relief-green-card-india-h1b-impact-20260612",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the topic of immigration or green cards."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively highlights the impact of the USCIS memo on Indian nationals, making it highly relevant to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that directly represents immigration or green card processes to enhance relevance.",
-          "Add a section on potential community responses or actions that the Indian diaspora can take regarding the new policy."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "7c6f588a-17ea-4dab-896f-46cf5f8ab20c",
-      "headline": "Trump Says Iran Deal Is 'All Wrapped Up.' India Is Not Celebrating Yet.",
-      "slug": "trump-iran-deal-signing-weekend-strait-hormuz-reopen-india-oil-rupee-20260612",
+      "id": "19f1f826-fecc-415e-805c-09115fd2708b",
+      "headline": "Seven Bullets Hit Guru Randhawa's Delhi Gym. Five Days Earlier, He Made K-Pop History.",
+      "slug": "guru-randhawa-gym-shooting-bishnoi-gang-boompala-20260612",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [
           {
-            "article_id": "7c2fda69-5977-430d-b856-860eacc1ca07",
-            "headline": "Trump Cancels Iran Strikes at the Last Minute. Oil Crashed. "
+            "article_id": "75ec3e23-e2c2-4789-b9b2-282bb5254840",
+            "headline": "K-Pop Just Went Punjabi. LE SSERAFIM and Guru Randhawa Made "
           }
         ],
         "broken_embeds": []
@@ -100,21 +28,70 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 3,
-          "issue": "irrelevant"
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the geopolitical situation to the Indian diaspora, particularly those in the Gulf states."
+          "quality": 8,
+          "note": "The article effectively connects the shooting incident to the broader implications for the diaspora, particularly in relation to their cultural ties to Indian entertainers."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the hero image with one that is more relevant to the article's topic on geopolitics and the Iran deal.",
-          "Consider adding more direct quotes or perspectives from Indian officials or experts to enhance the article's depth."
+          "Consider adding more context about the impact of such incidents on the diaspora community's perception of safety and celebrity culture.",
+          "Include quotes or reactions from diaspora members or experts to enhance the article's connection to the audience."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "dc14c140-c3d0-4dd2-becc-c4a30b608f8f",
+      "headline": "Shahid Kapoor Has Stopped Trusting His Own Instincts. That Might Be the Smartest Thing He's Ever Done.",
+      "slug": "shahid-kapoor-thr-india-interview-cocktail-2-gut-instinct-career-crossroads-2026",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "03379991-0142-4262-91e4-50f4c8f4d2ea",
+            "headline": "Cocktail 2 Hasn't Even Released Yet. It's Already Everywhere"
+          },
+          {
+            "article_id": "5d74d32a-d8c7-44ca-b632-f370d67a23c9",
+            "headline": "Cocktail 2 Just Invented the Bollywood Music Festival. Three"
+          },
+          {
+            "article_id": "9b7fc8aa-9412-4556-8b16-5817bb71751a",
+            "headline": "Nine Films. Four Weeks. \u20b91,400 Crore on the Line. June Is Bo"
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses Shahid Kapoor's career and choices, which may resonate with the Indian diaspora interested in Bollywood and its evolution."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include a quote or perspective from Shahid Kapoor that directly addresses his appeal to NRI audiences.",
+          "Add a brief section on how Shahid's career choices reflect broader trends in Bollywood that may impact diaspora viewers."
+        ],
+        "verdict": "pass"
       },
       "actions_taken": [
         "promoted to published"
