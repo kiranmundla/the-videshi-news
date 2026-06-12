@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-12T03:15:29.123756+00:00",
+  "timestamp": "2026-06-12T04:15:18.502661+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 6,
+    "pass": 3,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,50 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "1a9b5169-69b3-4aff-aec8-850c5869165a",
-      "headline": "Dhamaal 4 Trailer Drops With a 60-Foot Waterfall Reveal \u2014 Ajay Devgn and Company Are Back for Maximum Chaos",
-      "slug": "dhamaal-4-trailer-launch-imagicaa-july-2026",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "563ed0e9-78d5-479c-943a-41db48bd87d8",
-            "headline": "Dhamaal 4 Just Dropped Four Posters. There Are Crocodiles, P"
-          }
-        ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image features Ajay Devgn but does not directly relate to the trailer launch event described in the article."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the film's appeal to diaspora audiences, emphasizing the communal experience of watching such films."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider including a relevant image from the trailer launch event to enhance visual connection.",
-          "Add quotes from the cast or director to provide more depth and engagement."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "a44f6207-6f96-455f-96f9-15f1605a25b9",
-      "headline": "Farhan Akhtar in Talks to Play RD Burman in Neeraj Pandey Biopic \u2014 And It Feels Like Destiny",
-      "slug": "farhan-akhtar-rd-burman-biopic-neeraj-pandey",
+      "id": "108064c7-fadd-4fac-9637-704aee53ace5",
+      "headline": "Your Green Card Application Just Became 'Extraordinary' \u2014 What the USCIS Memo Means for 400,000 Indian Applicants",
+      "slug": "uscis-adjustment-status-extraordinary-memo-indian-green-card-20260612",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -64,19 +23,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image does not directly relate to the topic of green card applications or immigration."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects RD Burman's music to the experiences of the diaspora, making it relatable and personal."
+          "note": "The article discusses the implications of USCIS policy changes specifically for Indian applicants, making it highly relevant for the NRI community."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from Farhan Akhtar or Neeraj Pandey to enhance credibility.",
-          "Include more details about the production timeline or potential challenges to provide depth."
+          "Consider using an image that more directly represents immigration or green card applications.",
+          "Add a section that includes personal stories or testimonials from Indian applicants to enhance relatability."
         ],
         "verdict": "pass"
       },
@@ -88,12 +47,16 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "0879f0c5-1445-437b-ba44-07a1bcc6fa05",
-      "headline": "TCS Partners With Anthropic to Put Claude in the Hands of 50,000 Employees \u2014 and the Real Story Is Bigger Than a Software Deal",
-      "slug": "tcs-anthropic-claude-partnership-ai-business-unit-20260612",
+      "id": "5dea7f35-eeb8-4396-b401-237f6ba288d5",
+      "headline": "Half a Million AI Agents, Half a Million Humans \u2014 TCS Just Told You What Happens to the H-1B Pipeline",
+      "slug": "tcs-ai-agents-h1b-pipeline-indian-it-hiring-20260612",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [
+          {
+            "article_id": "0879f0c5-1445-437b-ba44-07a1bcc6fa05",
+            "headline": "TCS Partners With Anthropic to Put Claude in the Hands of 50"
+          },
           {
             "article_id": "091f1a72-16a4-4be6-9683-e9fe5021d601",
             "headline": "TCS Will Have Half a Million AI Agents Within Three Years. H"
@@ -113,19 +76,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 5,
-          "issue": "The image does not directly relate to the article's focus on AI and technology partnerships."
+          "score": 7,
+          "issue": "The image of N. Chandrasekaran is relevant to the article's topic on TCS and AI, but it could be more directly related to the H-1B visa discussion."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article discusses TCS, a major Indian company, and its impact on the Indian tech workforce, which is relevant to the diaspora."
+          "quality": 8,
+          "note": "The article effectively connects the implications of TCS's AI transition to the H-1B visa situation for Indian professionals in the US."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that reflects the themes of AI and technology partnerships.",
-          "Expand on the implications of this partnership for Indian tech workers and the diaspora community."
+          "Consider adding more direct quotes or anecdotes from affected H-1B workers to enhance the personal impact of the story.",
+          "Include more data or projections on how the shift to AI might specifically affect H-1B visa numbers in the coming years."
         ],
         "verdict": "pass"
       },
@@ -137,9 +100,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "c2120f2e-5252-4826-b2b2-00abe768e8ab",
-      "headline": "The Great AI Price War Has Begun \u2014 and It Looks a Lot Like the Dot-Com Playbook",
-      "slug": "ai-price-war-google-openai-anthropic-token-costs-20260612",
+      "id": "9b040efd-b464-4156-946a-a3310d0ac1f8",
+      "headline": "Seven Hundred and Fifty Dollars to Skip the Line \u2014 America's New Fast Pass for Visa Interviews",
+      "slug": "750-dollar-fast-pass-visa-interview-state-department-20260612",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -149,100 +112,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to AI or technology, which may confuse readers."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the AI price war to the Indian-origin tech workforce in the U.S., highlighting potential impacts on employment."
+          "note": "The article discusses the implications of the new visa process specifically for Indian families, making it relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that directly represents AI technology or the tech industry.",
-          "Expand on the implications for the diaspora workforce to provide more depth."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "9f43184e-4c48-4570-af39-42442e34a690",
-      "headline": "Aravind Srinivas Is Taking Perplexity Public in 2028 \u2014 and He's Not Waiting for OpenAI or Anthropic to Go First",
-      "slug": "perplexity-aravind-srinivas-ipo-2028-indian-origin-ai-founders-20260612",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to Aravind Srinivas or Perplexity AI, but it is a generic tech-related image."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article highlights the achievements of Indian-origin founders in the AI industry, connecting well with the Indian diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that directly represents Aravind Srinivas or Perplexity AI.",
-          "Add a quote or perspective from an NRI expert in the AI field to strengthen the diaspora connection."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "c8e0c632-b6e3-4b65-a133-115307754d86",
-      "headline": "Noida International Airport Opens for Commercial Flights June 15, Giving Delhi-NCR a Second Gateway",
-      "slug": "noida-international-airport-jewar-commercial-flights-june-2026",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "9bcb4a9b-5b60-49a5-a3b8-3661680a58bd",
-            "headline": "India's Newest Airport Opens Sunday \u2014 and It Halves the Jour"
-          },
-          {
-            "article_id": "187261cd-373f-45b5-bbc9-207ea4fc8e25",
-            "headline": "India's Newest Airport Opens Next Week \u2014 and It Could Change"
-          }
-        ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 8,
-          "issue": "The image of Prime Minister Modi at the inauguration is relevant but does not directly depict the airport itself."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses a significant infrastructure development that could impact NRIs traveling to and from India, particularly those in the Delhi-NCR region."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more information on how the new airport will specifically benefit NRI travelers.",
-          "Add quotes from stakeholders or experts to enhance credibility and engagement."
+          "Include more quotes or perspectives from immigration experts or affected individuals to enhance the narrative.",
+          "Add a section on potential alternatives for those who cannot afford the expedited service."
         ],
         "verdict": "pass"
       },
