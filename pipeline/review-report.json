@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-12T18:45:21.165861+00:00",
+  "timestamp": "2026-06-12T19:15:17.775210+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
-    "flag": 0,
+    "pass": 1,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,35 +11,47 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "0cb344a8-3e2b-423b-bb52-52ad1b3cd7fc",
-      "headline": "Three Bay Area Hindu Temples Hit in Weeks. All Five Indian-American Lawmakers Just Demanded Answers.",
-      "slug": "bay-area-hindu-temple-attacks-indian-american-lawmakers-doj-briefing-hate-crimes",
+      "id": "fafef08b-2a26-4663-9ccf-5a47edc327fa",
+      "headline": "Bharathiraja Took Tamil Cinema Out of the Studio and Into the Soil. He Died at 84, and an Entire Industry Wept.",
+      "slug": "bharathiraja-tamil-director-dies-84-tribute-rajinikanth-kamal-sridevi-ilaiyaraaja-nri-20260612",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "5adc7383-62d9-43eb-88dc-1d390880691f",
+            "headline": "Tamil Cinema Lost Its Greatest Poet This Morning. Bharathira"
+          }
+        ],
         "broken_embeds": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/DZZRvnbT36a/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not seem to directly relate to Bharathiraja or his impact on Tamil cinema, making it less relevant to the article's focus."
+          }
+        ],
         "image_match": {
-          "score": 5,
-          "issue": "The image does not match the specific temples mentioned in the article."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the incidents to the Indian-American community and highlights their concerns."
+          "note": "The article effectively connects Bharathiraja's significance to the diaspora, highlighting how his films reached Tamil communities abroad."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider including images of the specific temples mentioned for better relevance.",
-          "Add quotes or reactions from community members to enhance the emotional impact."
+          "Replace the irrelevant Instagram embed with a more relevant tribute or commentary related to Bharathiraja.",
+          "Consider adding more quotes or anecdotes from diaspora members to strengthen the connection further."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/DZZRvnbT36a/",
         "promoted to published"
       ],
       "revised": false,
@@ -47,67 +59,40 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "58e5c0c9-2b83-4b8e-b677-c3b7520819b1",
-      "headline": "India Nearly Missed the World Cup on Television. Zee Stepped In Ten Days Before Kickoff.",
-      "slug": "zee-india-fifa-world-cup-2026-broadcast-rights-last-minute-deal-unite8-sports",
+      "id": "912035d9-4009-4f7f-ad6e-dab5134c5e1c",
+      "headline": "Ranveer Singh Ghosted an Entire Federation. The Don 3 War Just Got Personal.",
+      "slug": "ranveer-singh-don-3-fwice-aamir-khan-mediation-ammy-virk-dhurandhar-dispute-2026",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "f2e0bf7d-76aa-4950-af25-756e6722fc3a",
+            "headline": "Ranveer Singh Is Making India's First Zombie Epic. It Costs "
+          },
+          {
+            "article_id": "3eefe877-6bf9-4aaa-ad99-6dc7796c8414",
+            "headline": "Ranveer Singh Is Building a Zombie Apocalypse. The Budget Is"
+          }
+        ],
         "broken_embeds": []
       },
       "llm_review": {
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 5,
-          "issue": "irrelevant"
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the broadcast deal to the NRI audience, highlighting the significance of shared viewing experiences."
+          "note": "The article connects well with the diaspora by discussing Bollywood's evolving power dynamics, which is relevant to NRIs interested in the industry."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the hero image with one that is more relevant to the FIFA World Cup or the broadcasting aspect.",
-          "Consider adding more details about how NRIs can access the broadcasts in their respective countries."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "d99b0463-b1d0-40d1-9a0e-88d7b6dcf977",
-      "headline": "Four Players With Indian Roots Are at This World Cup. It Has Never Happened Before.",
-      "slug": "four-indian-origin-players-world-cup-2026-sarpreet-singh-tahsin-velupillay-moutoussamy",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image of Sarpreet Singh is relevant to the article, but it could be more representative of the overall theme of Indian roots in the World Cup."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively highlights the achievements of players with Indian roots, connecting well with the diaspora audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider including images or references to the other players mentioned to enhance visual engagement.",
-          "Add quotes or reactions from the diaspora community regarding these players to deepen the connection."
+          "Consider adding quotes or perspectives from more industry insiders to enhance depth.",
+          "Include a brief background on the Don franchise for readers unfamiliar with it."
         ],
         "verdict": "pass"
       },
