@@ -1,87 +1,15 @@
 {
-  "timestamp": "2026-06-12T22:45:56.178891+00:00",
+  "timestamp": "2026-06-12T23:15:10.950894+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 4,
+    "pass": 0,
     "flag": 1,
     "fail": 0,
     "error": 0
   },
-  "revisions": 1,
+  "revisions": 0,
   "unpublished": 0,
   "articles": [
-    {
-      "id": "17795833-4893-4ded-b115-ab446f340c6c",
-      "headline": "He Came Off the Bench With 14 Minutes Left. Cyle Larin Gave Canada Its First World Cup Point \u2014 Ever.",
-      "slug": "canada-first-world-cup-point-cyle-larin-bosnia-toronto-bmo-field-nri-diaspora-2026",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image of BMO Field is relevant but does not directly depict the event described in the article."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article connects the significance of the match to the South Asian diaspora in Canada, highlighting their cultural ties and emotional investment."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more direct quotes from players or coaches to enhance the narrative.",
-          "Add a brief historical context about the significance of football in Canada for the diaspora."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "24ee0752-86c8-4336-874f-2428c62a6fdc",
-      "headline": "He Scored 19,346 Runs for New Zealand. On Friday, Kane Williamson Said Goodbye.",
-      "slug": "kane-williamson-retires-international-cricket-new-zealand-fab-four-kohli-tribute-nri",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article connects well with Indian fans, especially through the IPL and the relationship with Virat Kohli."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more quotes or reactions from other players or cricket analysts to enhance the emotional impact.",
-          "Include a brief section on Williamson's legacy and potential future roles in cricket, such as coaching or commentary."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
     {
       "id": "7016b934-49eb-42fa-9232-6718f6f933b3",
       "headline": "France Just Invited India to Every Session of the G7. No Guest Country Has Ever Got That Before.",
@@ -92,96 +20,24 @@
         "broken_embeds": []
       },
       "llm_review": {
-        "overall_score": 6,
-        "embed_issues": [],
-        "image_match": {
-          "score": 8,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 5,
-          "note": "The article touches on India's strategic partnerships and implications for the diaspora, but lacks depth in connecting these points to the NRI community."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Expand on how the G7 invitation impacts the Indian diaspora, particularly in terms of economic opportunities and political representation.",
-          "Include quotes or perspectives from diaspora leaders or organizations to enhance the connection to the NRI community."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Revised by gpt-4o-mini (724\u2192784 words)"
-      ],
-      "revised": true,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "a62e6db6-cf96-4bc1-96a4-e7985ae87d63",
-      "headline": "Musk Is Now Worth a Trillion Dollars. SpaceX Hit $2 Trillion on Day One. India Still Will Not Let It Turn On Starlink.",
-      "slug": "spacex-2-trillion-musk-first-trillionaire-india-starlink-xai-20260612",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
         "overall_score": 7,
         "embed_issues": [],
         "image_match": {
           "score": 8,
-          "issue": "The image of Musk and SpaceX aligns with the article's focus on Musk's wealth and SpaceX's IPO, but it could be more directly related to the Indian market context."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses the implications of SpaceX's IPO for India, which is relevant to the Indian diaspora, particularly regarding technology and investment opportunities."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more direct quotes or reactions from Indian tech experts or regulators to enhance the local perspective.",
-          "Add a section discussing potential future impacts on Indian consumers and businesses if Starlink were to launch."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "7fafb0c1-6815-449d-bd77-e54b285d8a8d",
-      "headline": "Indian Banks Are Offering NRIs Up to 7% on Dollar Deposits. The RBI Is Picking Up the Tab.",
-      "slug": "india-banks-fcnr-nri-deposit-rates-7-percent-rbi-rupee-defense-20260612",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article directly addresses NRIs and their potential benefits from the RBI's new policies, making it relevant and engaging for the diaspora audience."
+          "quality": 6,
+          "note": "The article touches on India's strategic partnerships and implications for the diaspora, but could elaborate more on how these developments directly affect NRIs."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from NRI depositors or financial experts to enhance credibility and relatability.",
-          "Include a brief comparison of the current rates with historical rates to provide context for NRIs."
+          "Expand on the implications of the G7 invitation for the Indian diaspora, particularly in terms of economic opportunities and political influence.",
+          "Include more context on how the outcomes of the G7 summit may impact NRIs living in different countries."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
         "promoted to published"
