@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-12T11:15:20.142205+00:00",
+  "timestamp": "2026-06-12T12:15:29.613358+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
-    "flag": 1,
+    "pass": 5,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "8555c681-644d-4152-a832-dc05aa539cad",
-      "headline": "Suriya's \u20b9300 Crore Blockbuster Karuppu Hits Prime Video Today. Here's Why the Diaspora Has Been Waiting.",
-      "slug": "karuppu-suriya-prime-video-ott-release-300-crore-tamil-blockbuster-nri-20260612",
+      "id": "afffe416-25c7-4bf7-828f-58447ec8903c",
+      "headline": "Coming Home to Concrete: How the Gulf War Is Fuelling a Kerala Property Rush Among NRIs",
+      "slug": "gulf-war-nri-kerala-property-boom-real-estate-20260612",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -21,38 +21,25 @@
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/reel/DYZ2sVZpHBc/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram reel does not appear to be directly related to the film's themes or its release, making it less relevant to the article."
-          },
-          {
-            "url": "https://youtube.com/watch?v=JpVl_-1YgIo",
-            "problem": "irrelevant",
-            "explanation": "The YouTube link does not provide relevant content that enhances the understanding of the film or its significance to the diaspora."
-          }
-        ],
+        "embed_issues": [],
         "image_match": {
-          "score": 5,
-          "issue": "The image does not depict the film or its main characters, which may mislead readers about the article's focus."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the film's themes to the experiences and cultural identity of the diaspora, making it relevant and engaging for NRI readers."
+          "quality": 8,
+          "note": "The article effectively connects the property rush in Kerala to the experiences and financial decisions of NRIs, making it relevant to the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the hero image with one that features the film or its main characters to better match the article's content.",
-          "Consider including more direct quotes or insights from the diaspora community regarding their anticipation for the film."
+          "Consider adding quotes or anecdotes from NRIs who are experiencing this property rush to provide a personal touch.",
+          "Include more data or statistics on the impact of the property rush on Kerala's economy to enhance the article's depth."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/reel/DYZ2sVZpHBc/",
-        "Removed irrelevant embed: https://youtube.com/watch?v=JpVl_-1YgIo",
         "promoted to published"
       ],
       "revised": false,
@@ -60,9 +47,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "4f180b52-221f-49ef-b3ed-378b8d2fa556",
-      "headline": "Kangana Ranaut Plays the Nurse Who Stared Down Kasab. Bharat Bhhagya Viddhaata Opens Today.",
-      "slug": "bharat-bhhagya-viddhaata-kangana-ranaut-cama-hospital-2611-nurse-review-nri-20260612",
+      "id": "d344aa58-47dd-4386-9a6f-b5b846f5c51f",
+      "headline": "Seven 'Ratnas' and a 57-Year Legacy: Inside the AIA-NY Annual Benefit Gala 2026",
+      "slug": "aia-ny-gala-2026-ratna-honorees-indian-american-20260612",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -70,32 +57,143 @@
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/p/DZco2DpE0YX/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post does not appear to be directly related to the film or its themes, making it less relevant to the article."
-          }
-        ],
+        "embed_issues": [],
         "image_match": {
-          "score": 5,
-          "issue": "The image of Kangana Ranaut at a wedding reception does not match the serious tone and context of the film being discussed."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article connects the film's themes to the emotional impact of the 26/11 attacks on NRIs, making it relevant to the diaspora audience."
+          "quality": 8,
+          "note": "The article effectively highlights the achievements of Indian-Americans and their contributions to American society, making it relevant for the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the hero image with one that is more relevant to the film or its themes.",
-          "Consider adding more direct quotes or insights from Kangana Ranaut or the director to enhance the article's depth."
+          "Consider adding quotes from the honorees or attendees to enhance the personal connection and emotional impact of the article.",
+          "Include more context about the significance of the Ratna awards and how they reflect the evolving identity of the Indian-American community."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DZco2DpE0YX/",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "a7dcbd5e-b297-43b3-8ce2-7f7cad886eaf",
+      "headline": "GlobalFoundries Will Manufacture India's First Homegrown RF Chips \u2014 and It Matters More Than You Think",
+      "slug": "globalfoundries-fermionic-rf-chips-india-semiconductor-20260612",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "ab9504b6-0665-48e6-938f-3ad5b7646154",
+            "headline": "Broadcom Bets Everything on Custom Chips \u2014 and Wall Street I"
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 6,
+          "issue": "The image does not directly relate to RF chips or semiconductor manufacturing."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses the impact of Indian engineers in the semiconductor industry, which resonates with the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that depicts semiconductor manufacturing or RF chips.",
+          "Expand on the diaspora angle by including quotes or insights from Indian engineers working abroad."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "121cfe88-0c66-4596-95f1-835cbdd70bfd",
+      "headline": "Nikesh Arora's Palo Alto Networks Rides the AI Security Wave as Goldman Sachs Calls It a 'Watershed Moment'",
+      "slug": "nikesh-arora-palo-alto-networks-ai-cybersecurity-watershed-20260612",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "aac2023e-020c-4529-a30c-d5f513532289",
+            "headline": "Nikesh Arora's Palo Alto Networks Just Hit a $10 Billion Run"
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article highlights Nikesh Arora's Indian origin and career trajectory, connecting well with the Indian diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more quotes or insights from Nikesh Arora to enhance the personal connection.",
+          "Include a brief section on how the Indian diaspora is influencing the tech industry globally."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "153b6caf-8e06-4cfe-89ce-7623e14caccc",
+      "headline": "Chip Stocks Just Had Their Best Day in Over a Year \u2014 Here's What Drove the PHLX Index Up 8 Percent",
+      "slug": "semiconductor-stocks-phlx-rally-oracle-micron-ai-20260612",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 8,
+          "issue": "The image of a semiconductor chip aligns well with the article's focus on chip stocks."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article mentions Indian engineers at Intel and highlights the connection to the Indian technology community, making it relevant for diaspora readers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more direct quotes or insights from Indian diaspora experts in the tech industry to strengthen the connection.",
+          "Add a brief section on how these developments in the semiconductor industry might impact the Indian market or Indian tech companies."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
         "promoted to published"
       ],
       "revised": false,
