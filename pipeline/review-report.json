@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-11T23:15:25.400148+00:00",
+  "timestamp": "2026-06-12T00:15:29.144695+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 0,
-    "flag": 2,
+    "pass": 5,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "51619e4f-7dbe-40fe-ba35-b656ed5a9d59",
-      "headline": "Rajkummar Rao Prosecutes the Man Who Attacked Mumbai. Prahaar Might Be the Most Important Courtroom Drama Bollywood Has Ever Attempted.",
-      "slug": "prahaar-rajkummar-rao-ujjwal-nikam-26-11-kasab-trial-maddock-august-7-nri-20260611",
+      "id": "9f840f3f-6327-4949-b6f0-a9cd6f6a8941",
+      "headline": "The Wait Gets Longer: EB-2 India Retrogression Rattles Thousands of NRI Professionals",
+      "slug": "eb2-india-retrogression-june-2026-20260612",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -21,32 +21,25 @@
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/reel/DYoyPeUJtJd/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram reel does not appear to be directly related to the film or the courtroom drama discussed in the article."
-          }
-        ],
+        "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image does not directly relate to the topic of immigration or the EB-2 visa process."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the 26/11 attacks and the subsequent trial to the emotional impact on the NRI audience, making it relevant."
+          "quality": 9,
+          "note": "The article effectively addresses the concerns of NRI professionals regarding immigration issues, making it highly relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant Instagram embed with a more relevant link or remove it altogether.",
-          "Consider adding more quotes or insights from Rajkummar Rao or Ujjwal Nikam to enhance the article's depth."
+          "Consider using an image that more directly represents the theme of immigration or the EB-2 visa process.",
+          "Add quotes or testimonials from affected NRI professionals to enhance the personal connection to the diaspora experience."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/reel/DYoyPeUJtJd/",
         "promoted to published"
       ],
       "revised": false,
@@ -54,47 +47,143 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "5240cbd8-4137-49c2-b9d7-2b60adfb32e3",
-      "headline": "Shraddha Kapoor Disappears Into Maharashtra's Greatest Folk Legend. Eetha Is Her Biggest Swing Yet.",
-      "slug": "shraddha-kapoor-eetha-vithabai-lavani-biopic-maddock-august-28-nri-20260611",
+      "id": "f49fd8f2-95ee-409b-9fc4-d7c3b944ec76",
+      "headline": "'Let Me Cook and Feed People': An Indian Woman's Response to Belfast's Anti-Immigrant Violence",
+      "slug": "belfast-riots-indian-food-relief-20260612",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "3b54ce08-2a87-44b7-a5a3-02240dcf8320",
-            "headline": "Shraddha Kapoor Is Playing Maharashtra's Most Legendary Danc"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/p/DZW5swyiFzG/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post does not appear to be directly related to the film 'Eetha' or its themes, making it irrelevant to the article."
-          }
-        ],
+        "overall_score": 8,
+        "embed_issues": [],
         "image_match": {
-          "score": 6,
-          "issue": "The image of Shraddha Kapoor promoting a different film does not match the article's focus on her role in 'Eetha'."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 6,
-          "note": "The article attempts to connect Vithabai's story to diaspora audiences, but the link could be more explicit and engaging."
+          "quality": 8,
+          "note": "The article effectively connects the Indian diaspora's experiences with the broader context of anti-immigrant violence, highlighting community solidarity."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant Instagram embed with a more relevant one that showcases 'Eetha' or its themes.",
-          "Update the hero image to one that directly relates to 'Eetha' or features Shraddha Kapoor in the context of the film."
+          "Consider adding quotes from more members of the Indian community in Belfast to enhance the diaspora perspective.",
+          "Include more details about the response from local authorities or community organizations to provide a fuller picture of the situation."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DZW5swyiFzG/",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "ab9504b6-0665-48e6-938f-3ad5b7646154",
+      "headline": "Broadcom Bets Everything on Custom Chips \u2014 and Wall Street Isn't Sure What to Think",
+      "slug": "broadcom-custom-chips-pivot-ai-infrastructure-20260612",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image is relevant to technology but does not specifically depict custom chips or AI."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively highlights the role of Indian engineers in Broadcom's operations and the broader implications for India's semiconductor industry."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include a more specific image related to custom chips or AI to enhance visual relevance.",
+          "Expand on the implications for Indian engineers and the semiconductor industry to strengthen the diaspora connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "3e223267-1159-4d4e-89af-2d48d3951010",
+      "headline": "India's Electric Car Sales Nearly Double in May as Tata and Mahindra Leave Tesla in the Dust",
+      "slug": "india-ev-sales-double-may-2026-tata-mahindra-20260612",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the EV market trends to the interests of NRIs, particularly in terms of investment and personal relevance."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more data or quotes from industry experts to enhance credibility.",
+          "Include a brief comparison of India's EV market with other countries to provide a global context."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "f27fcacd-37bf-4298-930e-0c2439cad732",
+      "headline": "AgniKul Fires Four 3D-Printed Rocket Engines at Once, and India's Space Startup Race Enters a New Phase",
+      "slug": "agnikul-3d-printed-rocket-engines-cluster-test-20260612",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 5,
+          "issue": "The image does not directly relate to the topic of 3D-printed rocket engines or space technology."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article connects to the Indian diaspora by mentioning IIT alumni in the US aerospace industry, making it relevant to NRI readers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that depicts 3D-printed rocket engines or a related space technology theme.",
+          "Expand on the diaspora angle by including quotes or insights from Indian engineers in the aerospace industry."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
         "promoted to published"
       ],
       "revised": false,
