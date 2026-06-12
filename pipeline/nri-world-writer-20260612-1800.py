@@ -163,7 +163,7 @@ print("=== Sourcing images ===")
 
 # Article 1: BAPS temple — use BAPS Swaminarayan Hindu Temple (Wikimedia Commons)
 print("\n[Art 1] BAPS temple image...")
-baps_img_url = "https://upload.wikimedia.org/wikipedia/commons/0/05/BAPS_Shri_Swaminarayan_Hindu_Mandir_Night_View.jpg"
+baps_img_url = "https://images.pexels.com/photos/34033045/pexels-photo-34033045.jpeg?auto=compress&cs=tinysrgb&w=1200"
 art1_image = upload_to_supabase(baps_img_url, f"{art1_id}.jpg")
 
 # Article 2: Singapore — use Pexels Little India Singapore
@@ -199,8 +199,8 @@ articles = [
         "is_editorial": False,
         "published_at": now,
         "image_url": art1_image,
-        "image_caption": "A BAPS Swaminarayan temple showcasing the traditional hand-carved stone architecture being replicated in Paris",
-        "image_attribution": "Wikimedia Commons",
+        "image_caption": "Carved stone deities at a traditional Hindu temple — the same craft tradition behind the Paris mandir",
+        "image_attribution": "Pexels",
         "body": art1_body,
     },
     {
