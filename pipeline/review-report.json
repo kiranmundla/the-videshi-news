@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-12T10:45:29.794071+00:00",
+  "timestamp": "2026-06-12T11:15:20.142205+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
-    "flag": 2,
+    "pass": 1,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "19ed98e1-6a4d-41a3-a91b-baf1de0f6bf4",
-      "headline": "Sixteen Teams. Five Weeks. And India Open Against Pakistan on Sunday. The Women's T20 World Cup Starts Today.",
-      "slug": "women-t20-world-cup-2026-starts-today-india-pakistan-edgbaston-harmanpreet-kaur-nri",
+      "id": "8555c681-644d-4152-a832-dc05aa539cad",
+      "headline": "Suriya's \u20b9300 Crore Blockbuster Karuppu Hits Prime Video Today. Here's Why the Diaspora Has Been Waiting.",
+      "slug": "karuppu-suriya-prime-video-ott-release-300-crore-tamil-blockbuster-nri-20260612",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -21,142 +21,38 @@
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively highlights the significance of the match for Indian cricket fans in the diaspora, particularly the India-Pakistan rivalry."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more quotes or insights from players or coaches to enhance engagement.",
-          "Add a brief historical context of India-Pakistan matches in women's cricket to enrich the narrative."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "9a4f03f6-0a76-40cc-8f24-2c87e88c96cc",
-      "headline": "Three Red Cards, a Nine-Minute Opener, and a Son Heung-min Substitution. Day 1 of the World Cup Had Everything.",
-      "slug": "world-cup-2026-day-1-recap-mexico-south-africa-korea-czechia-red-cards-nri",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the World Cup events to NRI audiences by highlighting matches in North America and mentioning local desi communities."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more quotes or reactions from players or fans to enhance engagement.",
-          "Include a brief overview of the significance of the World Cup for the Indian diaspora to strengthen the connection."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "aecb9201-9ee9-4684-ad78-44c7ade64de6",
-      "headline": "EY, Deloitte and a Space Startup All Opened AI Centres in Bengaluru This Week. The Pattern Is Clear.",
-      "slug": "bengaluru-ai-centres-ey-deloitte-satsure-india-tech-hub-week-20260612",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image is relevant to the tech theme but does not specifically depict AI or the companies mentioned."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses the implications of Bengaluru's AI growth for Indian technologists abroad, making it relevant to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include specific examples of how the AI hiring boom in Bengaluru is impacting Indian professionals abroad.",
-          "Consider adding quotes or insights from diaspora experts to enhance the connection."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "b54c0e7b-e905-433e-bd5b-c18e8efb68f2",
-      "headline": "Trump Claims a Secret Oil Mission Moved 100 Million Barrels Through Hormuz. His Energy Secretary Says He Knows Nothing.",
-      "slug": "trump-secret-oil-mission-hormuz-100-million-barrels-energy-secretary-denial-india-20260612",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
+        "embed_issues": [
           {
-            "article_id": "7c2fda69-5977-430d-b856-860eacc1ca07",
-            "headline": "Trump Cancels Iran Strikes at the Last Minute. Oil Crashed. "
+            "url": "https://www.instagram.com/reel/DYZ2sVZpHBc/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel does not appear to be directly related to the film's themes or its release, making it less relevant to the article."
           },
           {
-            "article_id": "7c6f588a-17ea-4dab-896f-46cf5f8ab20c",
-            "headline": "Trump Says Iran Deal Is 'All Wrapped Up.' India Is Not Celeb"
+            "url": "https://youtube.com/watch?v=JpVl_-1YgIo",
+            "problem": "irrelevant",
+            "explanation": "The YouTube link does not provide relevant content that enhances the understanding of the film or its significance to the diaspora."
           }
         ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
         "image_match": {
           "score": 5,
-          "issue": "The image of Trump does not directly relate to the article's focus on oil and energy policy."
+          "issue": "The image does not depict the film or its main characters, which may mislead readers about the article's focus."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the geopolitical implications of oil movements to India's energy needs, which is relevant for the Indian diaspora."
+          "quality": 9,
+          "note": "The article effectively connects the film's themes to the experiences and cultural identity of the diaspora, making it relevant and engaging for NRI readers."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that reflects the article's focus on oil and energy policy.",
-          "Add more context or quotes from Indian officials or analysts to strengthen the diaspora connection."
+          "Replace the hero image with one that features the film or its main characters to better match the article's content.",
+          "Consider including more direct quotes or insights from the diaspora community regarding their anticipation for the film."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DYZ2sVZpHBc/",
+        "Removed irrelevant embed: https://youtube.com/watch?v=JpVl_-1YgIo",
         "promoted to published"
       ],
       "revised": false,
@@ -164,35 +60,42 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "2a476af2-7b2e-4b66-b1f1-40be6cef8279",
-      "headline": "India Puts All Maritime Agencies on 'Heightened Alert' After Three Tanker Strikes in Five Days",
-      "slug": "india-shipping-ministry-heightened-alert-seafarers-tanker-strikes-20260612",
+      "id": "4f180b52-221f-49ef-b3ed-378b8d2fa556",
+      "headline": "Kangana Ranaut Plays the Nurse Who Stared Down Kasab. Bharat Bhhagya Viddhaata Opens Today.",
+      "slug": "bharat-bhhagya-viddhaata-kangana-ranaut-cama-hospital-2611-nurse-review-nri-20260612",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
+        "overall_score": 8,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/DZco2DpE0YX/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not appear to be directly related to the film or its themes, making it less relevant to the article."
+          }
+        ],
         "image_match": {
-          "score": 6,
-          "issue": "The image does not directly relate to the maritime context of the article."
+          "score": 5,
+          "issue": "The image of Kangana Ranaut at a wedding reception does not match the serious tone and context of the film being discussed."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article discusses the impact on Indian seafarers, which is relevant to the diaspora community."
+          "quality": 7,
+          "note": "The article connects the film's themes to the emotional impact of the 26/11 attacks on NRIs, making it relevant to the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes from diaspora members or organizations to strengthen the connection.",
-          "Consider using a more relevant image that depicts maritime activities or Indian seafarers."
+          "Replace the hero image with one that is more relevant to the film or its themes.",
+          "Consider adding more direct quotes or insights from Kangana Ranaut or the director to enhance the article's depth."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/DZco2DpE0YX/",
         "promoted to published"
       ],
       "revised": false,
