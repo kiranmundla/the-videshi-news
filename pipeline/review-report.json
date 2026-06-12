@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-12T17:15:16.397649+00:00",
+  "timestamp": "2026-06-12T18:16:13.693768+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 11,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,15 +11,303 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "6594323f-126c-43ed-8378-8abeef3edaf8",
-      "headline": "Aamir Khan Is Getting Married Again. The Love Story Is Better Than Most Bollywood Scripts.",
-      "slug": "aamir-khan-gauri-spratt-july-5-wedding-love-story-lagaan-reunion-nri-20260612",
+      "id": "0b3851b1-4b58-46a7-98ff-1a6695961473",
+      "headline": "Singapore Just Blocked Fourteen Posts Targeting Its Indian Community. The Content Likely Came from China.",
+      "slug": "singapore-blocks-anti-indian-posts-xenophobia-china-platform-20260612",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the implications of Singapore's actions for the Indian diaspora in Southeast Asia, providing a relevant context."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from Indian community leaders in Singapore to provide a personal perspective.",
+          "Include more information on how the Indian community in Singapore has historically responded to similar incidents."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "f084240b-5cde-432d-bc52-cf0fb67a7e2c",
+      "headline": "Fifty-Six Years After a Prayer at Le Bourget, France Is Getting Its First Traditional Hindu Temple",
+      "slug": "baps-paris-temple-france-first-hindu-mandir-diaspora-europe-20260612",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the temple's opening to the Indian diaspora in France and Europe, highlighting its significance for the community."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include quotes from community leaders or temple officials to add depth and personal perspectives.",
+          "Provide more details on how the temple will serve the local community beyond the festival."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "ba8c58d3-f665-448a-992e-7cacdb1d5bb6",
+      "headline": "India's Gold Tariff Gamble: A 15% Import Duty, a $14 Billion Smuggling Surge, and the NRI Caught in Between",
+      "slug": "india-gold-tariff-15-percent-smuggling-surge-nri-impact-2026",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the gold tariff changes to the NRI experience, particularly in relation to weddings and personal purchases."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more statistics or quotes from NRIs to enhance the diaspora perspective.",
+          "Include a brief historical context of gold tariffs in India to provide readers with a deeper understanding."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "f8a89f72-81f9-44ba-a8db-fb330b91c28c",
+      "headline": "Low Vitamin C Levels Linked to Smaller, Less Connected Brains in New Study \u2014 And South Asian Diets May Offer an Edge",
+      "slug": "vitamin-c-brain-health-aging-grey-matter-south-asian-diet-advantage",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the study's findings to traditional South Asian diets, making it relevant for the diaspora audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of how South Asian diets can be incorporated into daily meals for diaspora readers.",
+          "Include quotes or insights from diaspora health experts to enhance credibility and relatability."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "28cb7618-bccc-44cb-a406-cdf26546f374",
+      "headline": "Harvard Study Links Ultraprocessed Foods to 58% Higher Dementia Risk \u2014 A Wake-Up Call for the Diaspora Diet",
+      "slug": "ultraprocessed-food-dementia-risk-harvard-study-diaspora-diet",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the findings of the study to the dietary habits of the Indian diaspora, making it relevant and engaging for the audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of ultraprocessed foods commonly consumed by the diaspora to enhance relatability.",
+          "Include a section on practical tips for healthier eating choices for the diaspora audience."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "c1ec0cbd-1c91-4af5-a405-e759974e1258",
+      "headline": "Vietjet Now Connects Five Indian Cities to Vietnam \u2014 and NRIs Should Pay Attention",
+      "slug": "vietjet-five-indian-cities-vietnam-nri-family-20260612",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image is relevant to travel but does not specifically depict Vietnam or the cities mentioned."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively highlights Vietnam as an appealing destination for NRIs visiting India, making a strong case for its relevance."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include a specific image of a landmark or scene from Vietnam to enhance visual relevance.",
+          "Add a section on cultural experiences in Vietnam that may appeal specifically to NRIs."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "362de9a6-17a2-4478-bc91-174a3e575b49",
+      "headline": "Your US Visa Unlocks 30+ Countries Visa-Free \u2014 and Most NRIs Don't Use It",
+      "slug": "us-visa-visa-free-countries-nri-travel-guide-20260612",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses NRIs by highlighting travel opportunities accessible through a US visa, appealing to their interests."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include specific examples of how NRIs can benefit from these travel opportunities, such as personal anecdotes or testimonials.",
+          "Add a section on travel tips or resources for NRIs planning to visit these countries."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "5dcfa04f-69de-4ffa-8bbd-96768fcca0d4",
+      "headline": "Saudi Arabia's Newest Budget Airline Just Picked Hyderabad as Its First Indian Destination",
+      "slug": "flyadeal-riyadh-hyderabad-daily-nonstop-nri-20260612",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image is relevant to travel but does not specifically depict the airline or route mentioned."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the new airline route to the needs and interests of the NRI community, particularly highlighting the benefits for Indian nationals in Saudi Arabia and the Indian American diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including a specific image related to Flyadeal or the Riyadh-Hyderabad route for better visual relevance.",
+          "Add quotes or insights from NRIs or travel experts to enhance the diaspora connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "fb729aa0-0c3f-4032-92b3-bd633012f8a2",
+      "headline": "Apple Rebuilds Siri on Google's AI \u2014 but India Will Not Get It Anytime Soon",
+      "slug": "apple-siri-ai-ios-27-india-geofenced-gemini-20260612",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [
           {
-            "article_id": "272d01ff-7129-4a51-90db-608ad0ef44fe",
-            "headline": "Lagaan Turns Twenty-Five, the Goodness Gracious Me Gang Reun"
+            "article_id": "cdacdcf9-7170-41b7-bfa8-7536860ec3e2",
+            "headline": "Tim Cook's Last WWDC Hands Apple's AI Future \u2014 and a Siri Re"
           }
         ],
         "broken_embeds": []
@@ -33,14 +321,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article connects Aamir Khan's personal life to his professional milestones, which resonates with NRI audiences familiar with his work."
+          "quality": 8,
+          "note": "The article discusses the implications of Siri's unavailability in India for the Indian diaspora, particularly NRI parents buying iPhones for relatives."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes from Aamir Khan or Gauri Spratt to enhance the personal touch.",
-          "Add a brief section on how Aamir's previous marriages have influenced his current relationship for deeper context."
+          "Include more specific examples of how the Indian diaspora might be affected by the lack of Siri AI.",
+          "Consider adding quotes or reactions from Indian users or experts to enhance the article's depth."
         ],
         "verdict": "pass"
       },
@@ -52,31 +340,81 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "d4054ae5-9fdd-4843-ae68-f7c718093239",
-      "headline": "Forty Hours on a Bus, Thirteen Visas Denied, Zero Tickets for Fans. Iran Made It to the World Cup Anyway.",
-      "slug": "iran-world-cup-2026-bus-ride-visa-denied-tickets-revoked-tijuana-nri",
+      "id": "4ca14a70-12f6-4ca0-ad63-96aa40d63c21",
+      "headline": "Meta Picks Ambani's Jamnagar for Its First India AI Data Centre \u2014 and the Scale Is Hard to Ignore",
+      "slug": "meta-reliance-jamnagar-data-centre-ai-india-20260612",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "c0411dc2-8bd6-4e33-88f9-2984d3d9144f",
+            "headline": "Reliance and Meta Are Building India's First Hyperscale AI D"
+          },
+          {
+            "article_id": "239ae692-1b34-473d-88b9-ada4999f17eb",
+            "headline": "Meta and Reliance to Build India's First AI Data Centre in J"
+          }
+        ],
         "broken_embeds": []
       },
       "llm_review": {
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image depicts a football match involving Iran, which is relevant to the article's topic about Iran's journey to the World Cup."
+          "score": 5,
+          "issue": "image does not match the article's topic"
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively highlights the emotional and political complexities faced by the Iranian diaspora in North America, making it relatable to NRI readers."
+          "quality": 8,
+          "note": "The article connects well with NRI investors and professionals, discussing implications for the Indian American investor class."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes or perspectives from Iranian diaspora members to further enrich the narrative.",
-          "Include more context about the implications of the visa denials on the Iranian team's performance and morale."
+          "Consider using an image that directly relates to the AI data centre or Meta's operations in India.",
+          "Add more context on how this development impacts the Indian tech landscape for a broader audience."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "3ca12ec7-d3cd-4bb0-9bb1-bb81d746b415",
+      "headline": "Sundar Pichai's Google Just Shipped a Real-Time Interpreter for 70 Languages \u2014 and Hindi Is on the List",
+      "slug": "google-gemini-live-translate-hindi-nri-families-20260612",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "35ab42d1-aa82-494b-93a5-ae51caf2ab80",
+            "headline": "Google Gemini Goes Dark: Outage Exposes How Deeply Indian Te"
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the technology to the experiences of the Indian diaspora, highlighting practical implications for communication."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of how the technology has been received by users in the diaspora.",
+          "Include quotes or testimonials from Indian Americans who have used the new feature to enhance relatability."
         ],
         "verdict": "pass"
       },
