@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-12T13:45:12.292120+00:00",
+  "timestamp": "2026-06-12T14:15:33.974591+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
+    "pass": 5,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "e3daeb98-5c1f-483c-acbd-35f9186888d5",
-      "headline": "Jaspal Rana, India's Greatest Commonwealth Games Athlete and Manu Bhaker's Coach, Dies at 49",
-      "slug": "jaspal-rana-indias-greatest-cwg-athlete-manu-bhaker-coach-dies-49",
+      "id": "78abd78e-4a8e-4b7c-9445-cfe180d18fae",
+      "headline": "Nifty Surges Nearly 2% on Iran Peace Hopes as RBI Opens a Dollar Goldmine for NRI Depositors",
+      "slug": "nifty-surges-two-percent-iran-peace-hopes-rbi-dollar-deposits-nri-window",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -29,13 +29,157 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article connects well with the diaspora by highlighting Rana's influence on Indian sports and the emotional impact of his passing on Indians abroad."
+          "note": "The article discusses NRI deposit opportunities, making it relevant for the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from more athletes or sports figures to enhance the emotional depth of the article.",
-          "Include a brief section on Rana's legacy and impact on future generations of shooters to provide a more comprehensive view."
+          "Consider adding quotes from NRIs or financial experts to enhance relatability.",
+          "Include a brief summary of how geopolitical events specifically impact NRIs."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "6856fa8c-019f-4723-9865-60d3b9e1f2b5",
+      "headline": "Ninety-Seven of 104 World Cup Matches Face Significant Heat Risk: What Fans Travelling From India Need to Know",
+      "slug": "world-cup-2026-heat-risk-fans-health-what-nris-need-to-know",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article specifically addresses NRI fans and provides practical advice for them, making the diaspora angle relevant and well-integrated."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more specific examples of how fans can prepare for the heat, such as recommended clothing or hydration strategies.",
+          "Consider adding quotes or insights from Indian fans or diaspora representatives to enhance relatability."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "eed508c6-fa24-494c-8f81-daeffb245ef9",
+      "headline": "Eating Five Fruits and Vegetables a Day May Not Be Enough to Protect Your Heart, Major Study Finds",
+      "slug": "eating-five-a-day-not-enough-flavanols-heart-health-study",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the study's findings to the dietary habits of the Indian diaspora, highlighting relevant foods."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of how the Indian diaspora can incorporate flavanol-rich foods into their diets.",
+          "Include a brief summary of the study's implications for heart health at the end of the article to reinforce the key message."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "8e787dfa-fc6f-420b-b3a8-8368fb52667c",
+      "headline": "El Ni\u00f1o Is Back and India's Monsoon Is Already Behind \u2014 What NRIs Planning Summer Trips Should Know",
+      "slug": "el-nino-monsoon-nri-india-summer-travel-disruptions-20260612",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses NRIs planning trips to India, providing relevant travel insights related to the monsoon and El Ni\u00f1o."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more specific travel tips or alternatives for NRIs in light of the El Ni\u00f1o impact.",
+          "Add a section on how NRIs can stay updated on weather conditions during their travels."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "057ce6d2-e0a7-42cf-8401-152fffc026ab",
+      "headline": "Soaring Airfares Are Crushing NRI Summer Travel Plans \u2014 and the Hormuz Crisis Is Only Part of the Problem",
+      "slug": "soaring-airfares-nri-summer-travel-hormuz-crisis-20260612",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses the impact of rising airfares on NRI travel, making it relevant to the diaspora audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more personal anecdotes or quotes from NRIs to enhance relatability.",
+          "Add a section on potential future trends in air travel for NRIs."
         ],
         "verdict": "pass"
       },
