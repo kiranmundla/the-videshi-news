@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-12T05:15:20.356447+00:00",
+  "timestamp": "2026-06-12T06:15:57.576209+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
+    "pass": 12,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,81 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "1e113659-6a50-486f-8d93-2f2c45cb960b",
-      "headline": "Bhooth Bangla Made \u20b9264 Crore in Theaters. Tonight, It Arrives on Your Netflix.",
-      "slug": "bhooth-bangla-netflix-ott-premiere-akshay-kumar-priyadarshan-264-crore-nri-20260612",
+      "id": "62eda31a-c346-4307-9b15-019dc1e747a0",
+      "headline": "Indian-Origin Teen Gurnoor Kaur Wins Canada's National Data Science Contest With AI Wheat-Disease Model",
+      "slug": "gurnoor-kaur-indian-teen-data-science-wheat-ai-canada-20260611",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image is relevant to the topic of data science and agriculture but does not specifically depict wheat or AI."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article connects the achievements of an Indian-origin student in Canada to broader agricultural issues in India, making it relevant for the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include a quote from Gurnoor Kaur to add a personal touch and insight into her motivations.",
+          "Add more context on the significance of the competition and its impact on students in the diaspora."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "a34472ff-697a-498d-960d-98e7369a6b20",
+      "headline": "UAE Arrests 19 Indian Nationals for Spreading Fake Missile Videos Amid Gulf Tensions",
+      "slug": "uae-arrests-19-indians-social-media-misinformation-gulf-tensions-20260611",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 5,
+          "issue": "The image does not directly relate to the topic of missile videos or arrests."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively discusses the implications for the Indian diaspora in the Gulf, particularly regarding legal and social consequences."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that depicts the context of the arrests or misinformation.",
+          "Add quotes or reactions from Indian nationals in the UAE to enhance the diaspora perspective."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "1eb713c4-35f5-4441-ac73-b7becc3ffe3a",
+      "headline": "American India Foundation Raises Record $3.8 Million at 25th Anniversary Gala in New York",
+      "slug": "aif-record-gala-cipriani-wall-street-bharat-masrani-salil-parekh-20260611",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -29,13 +101,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the film's themes to NRI experiences, particularly through the protagonist's journey and cultural references."
+          "note": "The article effectively connects the fundraising efforts of AIF to the Indian-American community and highlights the impact of diaspora philanthropy."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more specific examples of how the film resonates with NRI audiences beyond the protagonist's story.",
-          "Include a brief comparison to other recent films that have successfully appealed to the diaspora for context."
+          "Include quotes or testimonials from attendees to enhance the personal connection to the diaspora.",
+          "Add a section on how the funds raised will be specifically allocated to projects in India."
         ],
         "verdict": "pass"
       },
@@ -47,47 +119,35 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "b705dd54-cd64-47fa-917a-aaa8f9ed240d",
-      "headline": "A 95-Year-Old Man Remembers the Girl He Lost to Partition. Imtiaz Ali Built a Whole Film Around That Memory.",
-      "slug": "main-vaapas-aaunga-imtiaz-ali-partition-love-vedang-raina-sharvari-diljit-naseeruddin-nri-20260612",
+      "id": "b1a93dd1-d436-4717-934b-bd0377e344ca",
+      "headline": "India Braces for a Wider Fiscal Deficit as Iran War Costs Mount and the Fed Signals No Relief",
+      "slug": "india-fiscal-deficit-widens-iran-war-fed-rates-rupee-2026",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "489af8e4-dd41-4819-abf4-f2958575c2f1",
-            "headline": "Imtiaz Ali Made a Partition Love Story. The First Reviews Sa"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://youtube.com/watch?v=PRUTWluKRW8",
-            "problem": "irrelevant",
-            "explanation": "The YouTube link does not provide relevant content related to the film's themes or the article's focus."
-          }
-        ],
+        "overall_score": 7,
+        "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 8,
+          "issue": "The image does not directly relate to the fiscal deficit or economic themes but is visually appealing."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the film's themes of Partition and memory to the experiences of the NRI diaspora, making it relevant and poignant."
+          "quality": 8,
+          "note": "The article discusses implications for NRI investors and remittance senders, making it relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant YouTube link with a more relevant embed, such as a trailer or a clip that highlights the film's themes.",
-          "Consider adding more quotes or insights from the director or cast to enhance the depth of the review."
+          "Include specific examples of how the fiscal deficit impacts NRIs directly.",
+          "Consider adding a quote from an economist or financial expert to enhance credibility."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://youtube.com/watch?v=PRUTWluKRW8",
         "promoted to published"
       ],
       "revised": false,
@@ -95,40 +155,283 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "17ab8d07-725d-46f1-b46a-409de96fdd04",
-      "headline": "SpaceX Just Became a $1.77 Trillion Company. India Won't Let It Turn On Starlink.",
-      "slug": "spacex-ipo-1-77-trillion-india-starlink-frozen-clearance-20260612",
+      "id": "26bb4fa5-db16-4910-831b-161e22f509c7",
+      "headline": "The Turmeric Pill Myth: Why Science Says Curcumin Supplements Aren't Doing What You Think",
+      "slug": "turmeric-curcumin-supplements-debunked-south-asian-health-2026",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "9e8fd671-bc07-44d2-ab32-aeecfd2e6677",
-            "headline": "SpaceX Is About to Become the Biggest IPO in History. Indian"
-          },
-          {
-            "article_id": "c4f77b77-04b3-436e-9f98-b81bbc852aac",
-            "headline": "Musk's xAI Got Caught Training on Claude's Outputs. It Kept "
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image of Elon Musk is relevant but does not directly depict SpaceX or Starlink."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the implications of Starlink's operations in India to NRIs, highlighting potential impacts on communication and business."
+          "note": "The article connects well with the South Asian diaspora by discussing traditional uses of turmeric and the cultural significance of curcumin."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that directly represents SpaceX or Starlink for better visual relevance.",
-          "Expand on the implications for NRIs to strengthen the diaspora connection further."
+          "Consider adding more recent statistics or studies to strengthen the argument.",
+          "Include quotes from experts or practitioners in Ayurveda to provide a balanced perspective."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "9897f18a-f4b5-4782-9523-34cf11cd26c3",
+      "headline": "Breathing Dirty Air Could Be Silently Rewiring Your Brain for Alzheimer's, Major Study Finds",
+      "slug": "pm25-air-pollution-alzheimers-biomarkers-south-asian-risk-2026",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the health implications of air pollution in India to the experiences and concerns of the Indian diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more personal anecdotes or quotes from diaspora members to enhance relatability.",
+          "Include a section on how diaspora communities can advocate for better air quality policies in India."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "f0272bbf-a2eb-495d-a6a4-89ba889b53f4",
+      "headline": "Uzbekistan Just Became Five Flights a Week Closer to India \u2014 and NRIs Should Add the Silk Road to Their Next Trip Home",
+      "slug": "centrum-air-uzbekistan-silk-road-india-nri-20260612",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": "The image of the Silk Road aligns well with the article's focus on Uzbekistan and its historical significance."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the travel opportunities in Uzbekistan to the interests of NRIs, highlighting cultural ties and travel convenience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more specific travel tips or itineraries for NRIs considering a trip to Uzbekistan.",
+          "Add quotes or testimonials from travelers who have recently visited Uzbekistan to enhance relatability."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "ca7b9636-f92b-4b48-ab99-c1eb7737cc85",
+      "headline": "India's Hidden Destinations Are Having a Moment \u2014 and NRIs Should Stop Defaulting to Delhi and Mumbai",
+      "slug": "india-second-city-tourism-hampi-meghalaya-nri-20260612",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses NRIs and encourages them to explore lesser-known destinations in India, making a strong case for a different travel experience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include specific examples of how NRIs can plan their trips to these hidden destinations.",
+          "Add quotes or testimonials from NRIs who have traveled to these places to enhance relatability."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "e47934fe-01a0-4aa5-bb1d-c128cf778aaf",
+      "headline": "Marriott's 10,000th Hotel Just Opened in Rajasthan \u2014 and It Puts Ranthambore on the Global Luxury Map",
+      "slug": "jw-marriott-ranthambore-luxury-wildlife-nri-20260612",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the luxury hotel opening to the needs and preferences of NRIs, highlighting infrastructure improvements and familiarity with the Marriott brand."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from industry experts or travelers to enhance credibility.",
+          "Include more details about the environmental impact or conservation efforts related to the new hotel."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "0d94228c-d044-45ce-ab7f-e2ad1c160704",
+      "headline": "Opendoor Shuts Its India Office and Sparks a $315 Billion Question About AI and Outsourcing",
+      "slug": "opendoor-india-exit-ai-reshoring-outsourcing-20260612",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the implications of Opendoor's decision to the NRI community, discussing both the impact on jobs in India and the dual anxiety faced by Indian professionals in the US."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more direct quotes from industry experts to enhance credibility.",
+          "Include a brief overview of Opendoor's previous operations in India for context."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "e1aa28d6-7f7c-4276-b0e3-64267f348ba7",
+      "headline": "A New Bill Would Kill the H-1B Lottery, End OPT, and Sever the Path to a Green Card",
+      "slug": "h1b-lottery-replacement-bill-chip-roy-merit-wage-20260612",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the implications of the bill on Indian professionals and students, making it highly relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include quotes from experts or affected individuals to enhance the article's depth.",
+          "Add a section on potential responses from the Indian government or community organizations."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "fa955c05-63b1-498d-9cef-15b3e524c7db",
+      "headline": "NVIDIA and Abridge Are Building an AI That Listens to Your Doctor \u2014 and Indian-Origin Founders Are Leading the Charge",
+      "slug": "nvidia-abridge-healthcare-ai-nemotron-clinical-20260612",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article highlights the achievements of Indian-origin founders in the health-tech sector, making it relevant to the diaspora audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more direct quotes from Dr. Shiv Rao to enhance the personal connection to the Indian-origin perspective.",
+          "Add a brief section on the implications of this technology for Indian healthcare systems or how it could benefit the Indian diaspora."
         ],
         "verdict": "pass"
       },
