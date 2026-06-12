@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-12T13:15:25.387004+00:00",
+  "timestamp": "2026-06-12T13:45:12.292120+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 0,
-    "flag": 1,
+    "pass": 1,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,53 +11,35 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "5d8de7f0-5919-432f-bdf3-fb1164d64088",
-      "headline": "Manoj Bajpayee Just Made a Film About the Week India Almost Went Bankrupt. It Opens Today.",
-      "slug": "governor-manoj-bajpayee-1991-india-bankruptcy-rbi-gold-airlift-nri-20260612",
+      "id": "e3daeb98-5c1f-483c-acbd-35f9186888d5",
+      "headline": "Jaspal Rana, India's Greatest Commonwealth Games Athlete and Manu Bhaker's Coach, Dies at 49",
+      "slug": "jaspal-rana-indias-greatest-cwg-athlete-manu-bhaker-coach-dies-49",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "0e5d841d-46d4-422d-8d34-68ee230e999a",
-            "headline": "Manoj Bajpayee Had to Google 'Balance of Payments' to Play I"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/p/DZaBOTKoLxN/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post does not appear to be directly related to the film or its themes, making it irrelevant to the article."
-          },
-          {
-            "url": "https://youtube.com/watch?v=Mvm0bRY0Qyg",
-            "problem": "irrelevant",
-            "explanation": "The YouTube link should ideally provide a trailer or relevant content about the film, but it is unclear if it does."
-          }
-        ],
+        "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image of Manoj Bajpayee does match the article's topic, but it lacks a direct connection to the film's themes or the historical context discussed."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article connects the film's historical context to the NRI audience by emphasizing the significance of the 1991 crisis, which is relevant to the diaspora's understanding of India's economic history."
+          "note": "The article connects well with the diaspora by highlighting Rana's influence on Indian sports and the emotional impact of his passing on Indians abroad."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant Instagram link with a more relevant embed, such as a trailer or a clip from the film.",
-          "Provide a clearer connection between the film's themes and the diaspora experience in the article."
+          "Consider adding quotes from more athletes or sports figures to enhance the emotional depth of the article.",
+          "Include a brief section on Rana's legacy and impact on future generations of shooters to provide a more comprehensive view."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DZaBOTKoLxN/",
-        "Removed irrelevant embed: https://youtube.com/watch?v=Mvm0bRY0Qyg",
         "promoted to published"
       ],
       "revised": false,
