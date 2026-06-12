@@ -245,7 +245,7 @@ export default function WorldCupPage() {
                   </h2>
                   <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
                     {matches.map(m => (
-                      <MatchCard key={m.id} match={m} isPast={isPast} isToday={isToday} />
+                      <MatchCard key={m.id} match={m} isPast={isPast} isToday={isToday} onHighlights={() => { setTab("highlights"); window.scrollTo({ top: 0, behavior: "smooth" }); }} />
                     ))}
                   </div>
                 </div>
@@ -477,7 +477,7 @@ export default function WorldCupPage() {
 }
 
 /* ── Match Card ── */
-function MatchCard({ match, isPast, isToday }: { match: Match; isPast: boolean; isToday: boolean }) {
+function MatchCard({ match, isPast, isToday, onHighlights }: { match: Match; isPast: boolean; isToday: boolean; onHighlights?: () => void }) {
   const isFinished = match.status === "FT";
   const scores = match.score?.split("-").map(s => s.trim()) ?? [];
   const homeFlag = FLAGS[match.home_code] || "";
@@ -487,7 +487,9 @@ function MatchCard({ match, isPast, isToday }: { match: Match; isPast: boolean; 
   const pdtTime = etToPdt(match.time);
 
   return (
-    <div style={{
+    <div
+      onClick={isFinished && onHighlights ? onHighlights : undefined}
+      style={{
       background: "#fff",
       border: `1px solid ${isToday ? COLORS.gold + "66" : "#e5e5e5"}`,
       borderRadius: 12,
@@ -496,7 +498,12 @@ function MatchCard({ match, isPast, isToday }: { match: Match; isPast: boolean; 
       alignItems: "center",
       gap: 12,
       boxShadow: isToday ? `0 0 0 1px ${COLORS.gold}33` : "none",
-    }}>
+      cursor: isFinished ? "pointer" : "default",
+      transition: "box-shadow 0.2s",
+    }}
+      onMouseEnter={e => { if (isFinished) (e.currentTarget as HTMLElement).style.boxShadow = "0 4px 12px rgba(0,0,0,0.08)"; }}
+      onMouseLeave={e => { (e.currentTarget as HTMLElement).style.boxShadow = isToday ? `0 0 0 1px ${COLORS.gold}33` : "none"; }}
+    >
       {/* Group badge */}
       <div style={{
         width: 36, height: 36, borderRadius: 8,
@@ -551,8 +558,13 @@ function MatchCard({ match, isPast, isToday }: { match: Match; isPast: boolean; 
             )}
           </div>
         </div>
-        <div style={{ fontSize: 11, color: COLORS.muted, marginTop: 4 }}>
-          📍 {match.venue}, {match.city}
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", fontSize: 11, color: COLORS.muted, marginTop: 4 }}>
+          <span>📍 {match.venue}, {match.city}</span>
+          {isFinished && (
+            <span style={{ color: COLORS.darkGreen, fontWeight: 600, fontSize: 10 }}>
+              🎬 Watch Highlights →
+            </span>
+          )}
         </div>
       </div>
     </div>
