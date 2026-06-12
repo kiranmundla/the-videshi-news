@@ -201,7 +201,25 @@ export default function CarDetailPage() {
 
   const grad = brandGradient(car.brand);
   const pageUrl = `https://www.thevideshi.com/cars/${car.slug}`;
-  const edmundsSearch = car.affiliate_url || `https://www.edmunds.com/${car.brand.toLowerCase().replace(/\s+/g, "-")}/${car.model.toLowerCase().replace(/\s+/g, "-")}/`;
+
+  // Link to official manufacturer offers page instead of third-party
+  const BRAND_OFFERS: Record<string, string> = {
+    "Toyota": "https://www.toyota.com/deals",
+    "Honda": "https://automobiles.honda.com/tools/current-offers",
+    "Lexus": "https://www.lexus.com/offers",
+    "Hyundai": "https://www.hyundai.com/us/en/shopping-tools/current-offers",
+    "BMW": "https://www.bmwusa.com/current-offers",
+    "Mercedes-Benz": "https://www.mbusa.com/en/offers",
+    "Audi": "https://www.audiusa.com/us/web/en/shopping-tools/special-offers.html",
+    "Genesis": "https://www.genesis.com/us/en/shopping-tools/special-offers.html",
+    "Acura": "https://www.acura.com/tools/current-offers",
+    "Land Rover": "https://www.landroverusa.com/current-offers.html",
+    "Porsche": "https://www.porsche.com/usa/models/",
+    "Subaru": "https://www.subaru.com/shopping-tools/current-offers",
+    "Tesla": "https://www.tesla.com/inventory",
+    "Kia": "https://www.kia.com/us/en/special-offers",
+  };
+  const dealLink = car.affiliate_url || BRAND_OFFERS[car.brand] || `https://www.google.com/search?q=${encodeURIComponent(car.name + " lease deals")}`;
 
   // Build gallery images from `images` JSONB + fallback hero
   const galleryImages: { url: string; caption?: string }[] = [];
@@ -349,7 +367,7 @@ export default function CarDetailPage() {
                   <p className="text-xs text-foreground/40 mt-2">via {car.lease_source}{car.lease_expires ? ` · Expires ${car.lease_expires}` : ""}</p>
                 )}
                 <a
-                  href={edmundsSearch}
+                  href={dealLink}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="mt-3 w-full flex items-center justify-center gap-2 bg-primary text-primary-foreground font-semibold text-sm py-2.5 px-4 rounded-lg hover:bg-primary/90 transition-colors"
