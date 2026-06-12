@@ -9,6 +9,7 @@ import DiasporaPhotoStrip from "@/components/DiasporaPhotoStrip";
 import TechBuzz from "@/components/TechBuzz";
 import WorldCupTracker from "@/components/WorldCupTracker";
 import StreamingPicks from "@/components/StreamingPicks";
+import NowInTheaters from "@/components/NowInTheaters";
 import FeaturedHero from "@/components/FeaturedHero";
 import FeaturedCarousel from "@/components/FeaturedCarousel";
 import MarketTicker from "@/components/MarketTicker";
@@ -56,11 +57,7 @@ const CLUSTERS: { label: string; require: string[]; also: string[] }[] = [
     require: ["iran", "hormuz", "gulf"],
     also: ["war", "oil", "ceasefire", "tanker", "strait", "attack"],
   },
-  {
-    label: "IPL 2026 PLAYOFF RACE",
-    require: ["ipl", "ipl 2026"],
-    also: ["playoff", "final", "match", "qualifier", "cricket"],
-  },
+
   {
     label: "H-1B & VISAS",
     require: ["h-1b", "h1b"],
@@ -466,7 +463,7 @@ export default function Index() {
                 pool={s.pool}
                 afterHeader={
                   s.slug === "technology" ? <TechBuzz category="tech" /> :
-                  s.slug === "entertainment" ? <><StreamingPicks /></> :
+                  s.slug === "entertainment" ? <><NowInTheaters /><StreamingPicks /></> :
                   s.slug === "sports" ? <><WorldCupTracker /><TechBuzz category="sports" /></> :
                   undefined
                 }
