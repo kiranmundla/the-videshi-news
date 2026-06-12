@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-12T07:15:17.403839+00:00",
+  "timestamp": "2026-06-12T07:45:14.282315+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 0,
+    "pass": 1,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,15 +11,15 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "19f1f826-fecc-415e-805c-09115fd2708b",
-      "headline": "Seven Bullets Hit Guru Randhawa's Delhi Gym. Five Days Earlier, He Made K-Pop History.",
-      "slug": "guru-randhawa-gym-shooting-bishnoi-gang-boompala-20260612",
+      "id": "6cc470c9-12d6-4d22-a352-c20cc22c994c",
+      "headline": "She Danced in Bollywood Blockbusters. On Friday, She Performs at the World Cup.",
+      "slug": "nora-fatehi-canada-world-cup-2026-opening-ceremony-bmo-field-toronto-bollywood-diaspora-nri",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [
           {
-            "article_id": "75ec3e23-e2c2-4789-b9b2-282bb5254840",
-            "headline": "K-Pop Just Went Punjabi. LE SSERAFIM and Guru Randhawa Made "
+            "article_id": "8283b27c-a159-404f-b41b-5c354e2f3030",
+            "headline": "Nora Fatehi Just Landed a FIFA World Cup Song. She Performs "
           }
         ],
         "broken_embeds": []
@@ -33,14 +33,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the shooting incident to the broader implications for the diaspora, particularly in relation to their cultural ties to Indian entertainers."
+          "quality": 9,
+          "note": "The article effectively connects Nora Fatehi's performance to the Indian and South Asian diaspora, highlighting cultural significance."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more context about the impact of such incidents on the diaspora community's perception of safety and celebrity culture.",
-          "Include quotes or reactions from diaspora members or experts to enhance the article's connection to the audience."
+          "Include quotes or reactions from diaspora members regarding Fatehi's performance to enhance engagement.",
+          "Add a brief section on the significance of the World Cup for the Indian diaspora to further contextualize the event."
         ],
         "verdict": "pass"
       },
@@ -52,46 +52,33 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "dc14c140-c3d0-4dd2-becc-c4a30b608f8f",
-      "headline": "Shahid Kapoor Has Stopped Trusting His Own Instincts. That Might Be the Smartest Thing He's Ever Done.",
-      "slug": "shahid-kapoor-thr-india-interview-cocktail-2-gut-instinct-career-crossroads-2026",
+      "id": "b3104c4c-47c6-4bbf-9e47-d72d2d9193cd",
+      "headline": "They Scored 349. It Wasn't Enough. Rain and DLS Handed Afghanistan A a Stunning Win in Dambulla.",
+      "slug": "india-a-349-not-enough-afghanistan-a-dls-win-dambulla-tri-series-prabhsimran-gaikwad-varma-nri",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "03379991-0142-4262-91e4-50f4c8f4d2ea",
-            "headline": "Cocktail 2 Hasn't Even Released Yet. It's Already Everywhere"
-          },
-          {
-            "article_id": "5d74d32a-d8c7-44ca-b632-f370d67a23c9",
-            "headline": "Cocktail 2 Just Invented the Bollywood Music Festival. Three"
-          },
-          {
-            "article_id": "9b7fc8aa-9412-4556-8b16-5817bb71751a",
-            "headline": "Nine Films. Four Weeks. \u20b91,400 Crore on the Line. June Is Bo"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 3,
+          "issue": "irrelevant"
         },
         "diaspora_angle": {
           "present": true,
           "quality": 7,
-          "note": "The article discusses Shahid Kapoor's career and choices, which may resonate with the Indian diaspora interested in Bollywood and its evolution."
+          "note": "The article discusses a cricket match involving India A, which is relevant to the Indian diaspora interested in cricket."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include a quote or perspective from Shahid Kapoor that directly addresses his appeal to NRI audiences.",
-          "Add a brief section on how Shahid's career choices reflect broader trends in Bollywood that may impact diaspora viewers."
+          "Replace the hero image with one that is more relevant to the match or players discussed in the article.",
+          "Consider adding quotes from players or coaches to enhance the narrative and provide more depth."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
         "promoted to published"
