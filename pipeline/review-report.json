@@ -1,19 +1,19 @@
 {
-  "timestamp": "2026-06-12T12:15:29.613358+00:00",
+  "timestamp": "2026-06-12T12:45:56.746260+00:00",
   "mode": "fix",
   "stats": {
     "pass": 5,
-    "flag": 0,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
-  "revisions": 0,
+  "revisions": 1,
   "unpublished": 0,
   "articles": [
     {
-      "id": "afffe416-25c7-4bf7-828f-58447ec8903c",
-      "headline": "Coming Home to Concrete: How the Gulf War Is Fuelling a Kerala Property Rush Among NRIs",
-      "slug": "gulf-war-nri-kerala-property-boom-real-estate-20260612",
+      "id": "73614bf9-183e-42dd-8a5b-4aa6c0444431",
+      "headline": "From Your Nanis Stovetop to Starbucks Summer Menu: Chais Quiet Conquest of America",
+      "slug": "from-your-nanis-stovetop-to-starbucks-summer-menu-chais-quiet-conquest",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -29,13 +29,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the property rush in Kerala to the experiences and financial decisions of NRIs, making it relevant to the diaspora audience."
+          "note": "The article discusses the cultural significance of chai for Indian Americans, connecting it to their experiences and feelings."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes or anecdotes from NRIs who are experiencing this property rush to provide a personal touch.",
-          "Include more data or statistics on the impact of the property rush on Kerala's economy to enhance the article's depth."
+          "Consider adding more personal anecdotes or quotes from Indian Americans to enhance the diaspora connection.",
+          "Include a brief history of chai in America to provide context for its rise in popularity."
         ],
         "verdict": "pass"
       },
@@ -47,9 +47,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "d344aa58-47dd-4386-9a6f-b5b846f5c51f",
-      "headline": "Seven 'Ratnas' and a 57-Year Legacy: Inside the AIA-NY Annual Benefit Gala 2026",
-      "slug": "aia-ny-gala-2026-ratna-honorees-indian-american-20260612",
+      "id": "3335744c-b5e1-45a7-8d17-fe4f168064dc",
+      "headline": "Samosa Diplomacy: How Indian Food Festivals Became Americas Hottest Summer Ticket",
+      "slug": "samosa-diplomacy-how-indian-food-festivals-became-americas-hottest-summer-ticket",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -65,13 +65,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively highlights the achievements of Indian-Americans and their contributions to American society, making it relevant for the diaspora audience."
+          "note": "The article effectively connects the Indian diaspora's cultural engagement through food festivals, highlighting their significance beyond just cuisine."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from the honorees or attendees to enhance the personal connection and emotional impact of the article.",
-          "Include more context about the significance of the Ratna awards and how they reflect the evolving identity of the Indian-American community."
+          "Consider adding quotes from attendees or vendors to provide personal insights and enhance the narrative.",
+          "Include more statistics or data points to further emphasize the growth and impact of Indian food festivals in the U.S."
         ],
         "verdict": "pass"
       },
@@ -83,58 +83,12 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "a7dcbd5e-b297-43b3-8ce2-7f7cad886eaf",
-      "headline": "GlobalFoundries Will Manufacture India's First Homegrown RF Chips \u2014 and It Matters More Than You Think",
-      "slug": "globalfoundries-fermionic-rf-chips-india-semiconductor-20260612",
+      "id": "172f6514-830b-4aee-aff5-0c54b856ea29",
+      "headline": "From a $3,000 Tax Refund to 150 Farms: The Diaspora Spice Co. Cookbook Is a Love Letter to Indian Agriculture",
+      "slug": "from-a-3000-tax-refund-to-150-farms-diaspora-spice-co-cookbook-love-letter",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "ab9504b6-0665-48e6-938f-3ad5b7646154",
-            "headline": "Broadcom Bets Everything on Custom Chips \u2014 and Wall Street I"
-          }
-        ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 6,
-          "issue": "The image does not directly relate to RF chips or semiconductor manufacturing."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses the impact of Indian engineers in the semiconductor industry, which resonates with the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that depicts semiconductor manufacturing or RF chips.",
-          "Expand on the diaspora angle by including quotes or insights from Indian engineers working abroad."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "121cfe88-0c66-4596-95f1-835cbdd70bfd",
-      "headline": "Nikesh Arora's Palo Alto Networks Rides the AI Security Wave as Goldman Sachs Calls It a 'Watershed Moment'",
-      "slug": "nikesh-arora-palo-alto-networks-ai-cybersecurity-watershed-20260612",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "aac2023e-020c-4529-a30c-d5f513532289",
-            "headline": "Nikesh Arora's Palo Alto Networks Just Hit a $10 Billion Run"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
@@ -147,13 +101,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article highlights Nikesh Arora's Indian origin and career trajectory, connecting well with the Indian diaspora."
+          "note": "The article effectively connects the cookbook and its themes to the NRI experience, particularly in terms of food heritage and sustainable practices."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more quotes or insights from Nikesh Arora to enhance the personal connection.",
-          "Include a brief section on how the Indian diaspora is influencing the tech industry globally."
+          "Consider adding quotes from the author or farmers to enhance the personal connection.",
+          "Include more details about the virtual author talk, such as how to register."
         ],
         "verdict": "pass"
       },
@@ -165,31 +119,108 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "153b6caf-8e06-4cfe-89ce-7623e14caccc",
-      "headline": "Chip Stocks Just Had Their Best Day in Over a Year \u2014 Here's What Drove the PHLX Index Up 8 Percent",
-      "slug": "semiconductor-stocks-phlx-rally-oracle-micron-ai-20260612",
+      "id": "96e93257-464f-4288-b27c-d60d2e5e556f",
+      "headline": "India's Inflation Just Hit a New-Series High. The Iran War Is Now in Every Grocery Bill.",
+      "slug": "india-may-inflation-3-93-new-series-high-iran-war-food-fuel-20260612",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
-        "overall_score": 7,
+        "overall_score": 6,
         "embed_issues": [],
         "image_match": {
           "score": 8,
-          "issue": "The image of a semiconductor chip aligns well with the article's focus on chip stocks."
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 7,
-          "note": "The article mentions Indian engineers at Intel and highlights the connection to the Indian technology community, making it relevant for diaspora readers."
+          "note": "The article discusses inflation and economic impacts that are relevant to the Indian diaspora, particularly those with financial interests in India."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes or insights from Indian diaspora experts in the tech industry to strengthen the connection.",
-          "Add a brief section on how these developments in the semiconductor industry might impact the Indian market or Indian tech companies."
+          "Include more direct quotes from economists or experts to enhance credibility.",
+          "Add a section on how the inflation impacts NRIs specifically, such as remittances or investments."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Revised by gpt-4o-mini (856\u2192926 words)"
+      ],
+      "revised": true,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "8a12d0c9-8def-4a5b-ad2b-9c46c4a2dcf3",
+      "headline": "India Just Summoned America's Top Diplomat for the Second Time in Three Days. The Relationship Has Not Been This Strained in Years.",
+      "slug": "india-summons-us-diplomat-second-time-three-days-sailor-deaths-20260612",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "955c2c24-b28d-4a37-a727-0decc12429e0",
+            "headline": "India Summoned the American Envoy. The US Just Struck a Ship"
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the geopolitical tensions to the Indian diaspora, highlighting the implications for Indian Americans."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more context about the historical relationship between India and the US to enhance reader understanding.",
+          "Include quotes or reactions from diaspora leaders to further engage the NRI audience."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "90e424c2-76b2-4f7e-baed-486370723ade",
+      "headline": "A Federal Judge Just Killed Trump's $100,000 H-1B Fee. Indians, Who Get 75% of All Approvals, Have the Most to Gain.",
+      "slug": "federal-judge-blocks-trump-100000-h1b-visa-fee-indians-biggest-winners-20260612",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image of the courthouse is relevant but does not directly depict the H-1B visa issue."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively highlights the impact of the ruling on Indian professionals, who make up a significant portion of H-1B visa holders."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include quotes or reactions from Indian tech workers or organizations to enhance the diaspora perspective.",
+          "Add a brief explanation of the H-1B visa process for readers unfamiliar with immigration policies."
         ],
         "verdict": "pass"
       },
