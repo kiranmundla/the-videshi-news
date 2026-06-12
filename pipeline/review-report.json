@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-12T01:15:18.386408+00:00",
+  "timestamp": "2026-06-12T01:45:16.173836+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
-    "flag": 1,
+    "pass": 3,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,70 +11,12 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "1083fc0a-7e52-4c26-8e83-70a69ff4109a",
-      "headline": "Aamir Khan Is Producing a Sunny Deol Film. Twenty-Five Years After Gadar vs Lagaan, Bollywood's Greatest Rivalry Becomes Its Most Epic Collaboration.",
-      "slug": "batwara-1947-aamir-khan-sunny-deol-preity-zinta-rajkumar-santoshi-partition-drama-august-14-nri-20260612",
+      "id": "4ee1959c-4b53-4703-bbff-5f76d28b01c1",
+      "headline": "She Finished Seventh in the Trials. They Still Could Not Leave Her Out.",
+      "slug": "manu-bhaker-india-shooting-squad-asian-games-2026-aichi-nagoya-nri",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/reel/DZWoKAeJ15M/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram reel does not appear to be directly related to the main topic of Aamir Khan producing a Sunny Deol film."
-          },
-          {
-            "url": "https://youtube.com/watch?v=guKpVvRufIk",
-            "problem": "irrelevant",
-            "explanation": "The YouTube link does not provide relevant content related to the film or the collaboration discussed in the article."
-          }
-        ],
-        "image_match": {
-          "score": 7,
-          "issue": "The image of Sunny Deol does match the article's focus on him, but it lacks a direct connection to the film being discussed."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the historical context of the Partition to the Indian diaspora, making it relevant and engaging for NRI readers."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the irrelevant Instagram and YouTube links with embeds that directly relate to the film or the collaboration.",
-          "Consider adding more context about the significance of the film's subject matter for the diaspora audience."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/reel/DZWoKAeJ15M/",
-        "Removed irrelevant embed: https://youtube.com/watch?v=guKpVvRufIk",
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "d1592702-2e55-49ff-ae08-4f2ddcfc68f1",
-      "headline": "Lagaan Turns 25 and Returns to Theaters This Week. The Stories Behind Its Soundtrack Are Even Better Than You Remember.",
-      "slug": "lagaan-25th-anniversary-rerelease-spotify-behind-the-beats-aamir-khan-ar-rahman-bfi-london-nri-20260612",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "c529fdf7-b314-48f7-93fb-3451bf14d465",
-            "headline": "What to Watch This Week: Akshay's Ghost, Suriya's God, and I"
-          },
-          {
-            "article_id": "7ec89845-2324-4116-b13e-3ad9a93fc679",
-            "headline": "Lagaan Returns to Cinemas This Thursday. Twenty-Five Years L"
-          }
-        ],
         "broken_embeds": []
       },
       "llm_review": {
@@ -87,13 +29,85 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article connects to the diaspora by discussing the film's return to theaters in London, appealing to NRIs interested in Indian cinema."
+          "note": "The article connects well with the diaspora by discussing the significance of India's shooting program and its medal potential, which is relevant to NRI readers."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes or anecdotes from diaspora audiences or filmmakers to strengthen the connection.",
-          "Add a brief section on the impact of *Lagaan* on Indian cinema and its significance to the NRI community."
+          "Include quotes from athletes or coaches to add depth and personal perspectives.",
+          "Provide more context on the significance of the Asian Games for Indian athletes and the diaspora."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "db59ca4f-abbb-4dab-9503-c310c0adcd59",
+      "headline": "The World Cup Is in Your Backyard. On Friday Night, America Kicks Off at SoFi.",
+      "slug": "usa-vs-paraguay-world-cup-2026-sofi-stadium-nri-los-angeles-watching-guide",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the World Cup event to the Indian American community in Southern California, highlighting their unique opportunity to engage with the event."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from local Indian American fans or community leaders to enhance the personal connection.",
+          "Include more details about the Indian American community's involvement in football to strengthen the diaspora angle."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "8c0f24e1-93af-4073-bb4e-fb45a0a81d4b",
+      "headline": "He Left Madrid Thirteen Years Ago. On Thursday, They Called Him Back.",
+      "slug": "mourinho-returns-real-madrid-second-spell-three-year-deal-indian-fans-nri",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects Mourinho's return to Real Madrid with the interests of Indian football fans and NRIs, highlighting the emotional weight and significance of his appointment."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from Mourinho or Real Madrid officials to enhance the narrative.",
+          "Include more context about Mourinho's impact on Indian football fandom to strengthen the diaspora angle."
         ],
         "verdict": "pass"
       },
