@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-12T06:15:57.576209+00:00",
+  "timestamp": "2026-06-12T06:45:21.293061+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 12,
-    "flag": 0,
+    "pass": 2,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "62eda31a-c346-4307-9b15-019dc1e747a0",
-      "headline": "Indian-Origin Teen Gurnoor Kaur Wins Canada's National Data Science Contest With AI Wheat-Disease Model",
-      "slug": "gurnoor-kaur-indian-teen-data-science-wheat-ai-canada-20260611",
+      "id": "08138c79-8537-4446-8fe3-72b946614490",
+      "headline": "The ECB Just Raised Rates for the First Time in Three Years. The Iran War Has Made Inflation Everyone's Problem.",
+      "slug": "ecb-rate-hike-first-three-years-iran-war-inflation-india-nri-europe-impact-20260612",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -24,18 +24,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image is relevant to the topic of data science and agriculture but does not specifically depict wheat or AI."
+          "issue": "The image does not directly relate to the ECB or interest rates, but is a generic economic image."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article connects the achievements of an Indian-origin student in Canada to broader agricultural issues in India, making it relevant for the diaspora."
+          "note": "The article discusses implications for NRIs in Europe, particularly regarding mortgage costs and deposits."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include a quote from Gurnoor Kaur to add a personal touch and insight into her motivations.",
-          "Add more context on the significance of the competition and its impact on students in the diaspora."
+          "Consider using a more relevant image that directly relates to the ECB or interest rates.",
+          "Expand on the implications for NRIs in Europe to provide more depth."
         ],
         "verdict": "pass"
       },
@@ -47,9 +47,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "a34472ff-697a-498d-960d-98e7369a6b20",
-      "headline": "UAE Arrests 19 Indian Nationals for Spreading Fake Missile Videos Amid Gulf Tensions",
-      "slug": "uae-arrests-19-indians-social-media-misinformation-gulf-tensions-20260611",
+      "id": "fab7487e-6358-4ebe-a4fe-9829d96999b7",
+      "headline": "USCIS Just Made It Harder to Get a Green Card Without Leaving the US. Indians Have the Most to Lose.",
+      "slug": "uscis-adjustment-of-status-extraordinary-relief-green-card-india-h1b-impact-20260612",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -59,19 +59,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 5,
-          "issue": "The image does not directly relate to the topic of missile videos or arrests."
+          "score": 7,
+          "issue": "The image does not directly relate to the topic of immigration or green cards."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively discusses the implications for the Indian diaspora in the Gulf, particularly regarding legal and social consequences."
+          "quality": 9,
+          "note": "The article effectively highlights the impact of the USCIS memo on Indian nationals, making it highly relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that depicts the context of the arrests or misinformation.",
-          "Add quotes or reactions from Indian nationals in the UAE to enhance the diaspora perspective."
+          "Consider using an image that directly represents immigration or green card processes to enhance relevance.",
+          "Add a section on potential community responses or actions that the Indian diaspora can take regarding the new policy."
         ],
         "verdict": "pass"
       },
@@ -83,357 +83,38 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "1eb713c4-35f5-4441-ac73-b7becc3ffe3a",
-      "headline": "American India Foundation Raises Record $3.8 Million at 25th Anniversary Gala in New York",
-      "slug": "aif-record-gala-cipriani-wall-street-bharat-masrani-salil-parekh-20260611",
+      "id": "7c6f588a-17ea-4dab-896f-46cf5f8ab20c",
+      "headline": "Trump Says Iran Deal Is 'All Wrapped Up.' India Is Not Celebrating Yet.",
+      "slug": "trump-iran-deal-signing-weekend-strait-hormuz-reopen-india-oil-rupee-20260612",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "7c2fda69-5977-430d-b856-860eacc1ca07",
+            "headline": "Trump Cancels Iran Strikes at the Last Minute. Oil Crashed. "
+          }
+        ],
         "broken_embeds": []
       },
       "llm_review": {
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 3,
+          "issue": "irrelevant"
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the fundraising efforts of AIF to the Indian-American community and highlights the impact of diaspora philanthropy."
+          "quality": 9,
+          "note": "The article effectively connects the geopolitical situation to the Indian diaspora, particularly those in the Gulf states."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes or testimonials from attendees to enhance the personal connection to the diaspora.",
-          "Add a section on how the funds raised will be specifically allocated to projects in India."
+          "Replace the hero image with one that is more relevant to the article's topic on geopolitics and the Iran deal.",
+          "Consider adding more direct quotes or perspectives from Indian officials or experts to enhance the article's depth."
         ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "b1a93dd1-d436-4717-934b-bd0377e344ca",
-      "headline": "India Braces for a Wider Fiscal Deficit as Iran War Costs Mount and the Fed Signals No Relief",
-      "slug": "india-fiscal-deficit-widens-iran-war-fed-rates-rupee-2026",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 8,
-          "issue": "The image does not directly relate to the fiscal deficit or economic themes but is visually appealing."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses implications for NRI investors and remittance senders, making it relevant to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include specific examples of how the fiscal deficit impacts NRIs directly.",
-          "Consider adding a quote from an economist or financial expert to enhance credibility."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "26bb4fa5-db16-4910-831b-161e22f509c7",
-      "headline": "The Turmeric Pill Myth: Why Science Says Curcumin Supplements Aren't Doing What You Think",
-      "slug": "turmeric-curcumin-supplements-debunked-south-asian-health-2026",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article connects well with the South Asian diaspora by discussing traditional uses of turmeric and the cultural significance of curcumin."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more recent statistics or studies to strengthen the argument.",
-          "Include quotes from experts or practitioners in Ayurveda to provide a balanced perspective."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "9897f18a-f4b5-4782-9523-34cf11cd26c3",
-      "headline": "Breathing Dirty Air Could Be Silently Rewiring Your Brain for Alzheimer's, Major Study Finds",
-      "slug": "pm25-air-pollution-alzheimers-biomarkers-south-asian-risk-2026",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the health implications of air pollution in India to the experiences and concerns of the Indian diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more personal anecdotes or quotes from diaspora members to enhance relatability.",
-          "Include a section on how diaspora communities can advocate for better air quality policies in India."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "f0272bbf-a2eb-495d-a6a4-89ba889b53f4",
-      "headline": "Uzbekistan Just Became Five Flights a Week Closer to India \u2014 and NRIs Should Add the Silk Road to Their Next Trip Home",
-      "slug": "centrum-air-uzbekistan-silk-road-india-nri-20260612",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": "The image of the Silk Road aligns well with the article's focus on Uzbekistan and its historical significance."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the travel opportunities in Uzbekistan to the interests of NRIs, highlighting cultural ties and travel convenience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more specific travel tips or itineraries for NRIs considering a trip to Uzbekistan.",
-          "Add quotes or testimonials from travelers who have recently visited Uzbekistan to enhance relatability."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "ca7b9636-f92b-4b48-ab99-c1eb7737cc85",
-      "headline": "India's Hidden Destinations Are Having a Moment \u2014 and NRIs Should Stop Defaulting to Delhi and Mumbai",
-      "slug": "india-second-city-tourism-hampi-meghalaya-nri-20260612",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively addresses NRIs and encourages them to explore lesser-known destinations in India, making a strong case for a different travel experience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include specific examples of how NRIs can plan their trips to these hidden destinations.",
-          "Add quotes or testimonials from NRIs who have traveled to these places to enhance relatability."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "e47934fe-01a0-4aa5-bb1d-c128cf778aaf",
-      "headline": "Marriott's 10,000th Hotel Just Opened in Rajasthan \u2014 and It Puts Ranthambore on the Global Luxury Map",
-      "slug": "jw-marriott-ranthambore-luxury-wildlife-nri-20260612",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the luxury hotel opening to the needs and preferences of NRIs, highlighting infrastructure improvements and familiarity with the Marriott brand."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from industry experts or travelers to enhance credibility.",
-          "Include more details about the environmental impact or conservation efforts related to the new hotel."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "0d94228c-d044-45ce-ab7f-e2ad1c160704",
-      "headline": "Opendoor Shuts Its India Office and Sparks a $315 Billion Question About AI and Outsourcing",
-      "slug": "opendoor-india-exit-ai-reshoring-outsourcing-20260612",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the implications of Opendoor's decision to the NRI community, discussing both the impact on jobs in India and the dual anxiety faced by Indian professionals in the US."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more direct quotes from industry experts to enhance credibility.",
-          "Include a brief overview of Opendoor's previous operations in India for context."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "e1aa28d6-7f7c-4276-b0e3-64267f348ba7",
-      "headline": "A New Bill Would Kill the H-1B Lottery, End OPT, and Sever the Path to a Green Card",
-      "slug": "h1b-lottery-replacement-bill-chip-roy-merit-wage-20260612",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses the implications of the bill on Indian professionals and students, making it highly relevant to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include quotes from experts or affected individuals to enhance the article's depth.",
-          "Add a section on potential responses from the Indian government or community organizations."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "fa955c05-63b1-498d-9cef-15b3e524c7db",
-      "headline": "NVIDIA and Abridge Are Building an AI That Listens to Your Doctor \u2014 and Indian-Origin Founders Are Leading the Charge",
-      "slug": "nvidia-abridge-healthcare-ai-nemotron-clinical-20260612",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article highlights the achievements of Indian-origin founders in the health-tech sector, making it relevant to the diaspora audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more direct quotes from Dr. Shiv Rao to enhance the personal connection to the Indian-origin perspective.",
-          "Add a brief section on the implications of this technology for Indian healthcare systems or how it could benefit the Indian diaspora."
-        ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
         "promoted to published"
