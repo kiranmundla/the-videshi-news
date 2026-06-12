@@ -355,7 +355,10 @@ export default function WorldCupPage() {
               gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))",
               gap: 12,
             }}>
-              {data.nri_watch.key_venues_near_desi_hubs.map((v, i) => (
+              {data.nri_watch.key_venues_near_desi_hubs.map((v, i) => {
+                // Find matches at this venue
+                const venueMatches = data.matches.filter(m => m.venue === v.venue);
+                return (
                 <div key={i} style={{
                   background: "#fff", border: "1px solid #e5e5e5", borderRadius: 12,
                   padding: 16, transition: "box-shadow 0.2s",
@@ -377,8 +380,72 @@ export default function WorldCupPage() {
                   <p style={{ fontSize: 13, color: "#555", margin: "8px 0 0", lineHeight: 1.5 }}>
                     {v.note}
                   </p>
+
+                  {/* Match list for this venue */}
+                  {venueMatches.length > 0 && (
+                    <div style={{ marginTop: 12, borderTop: "1px solid #f0f0f0", paddingTop: 10 }}>
+                      <p style={{ fontSize: 10, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: COLORS.muted, margin: "0 0 8px" }}>
+                        Matches at this venue
+                      </p>
+                      <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+                        {venueMatches.map(m => {
+                          const homeFlag = FLAGS[m.home_code] || "";
+                          const awayFlag = FLAGS[m.away_code] || "";
+                          const isFinished = m.status === "FT";
+                          const matchDate = new Date(m.date + "T00:00:00");
+                          const dateStr = matchDate.toLocaleDateString("en-US", { month: "short", day: "numeric" });
+                          return (
+                            <div key={m.id} style={{
+                              display: "flex", alignItems: "center", gap: 8,
+                              fontSize: 12, color: "#444", lineHeight: 1.4,
+                              padding: "4px 0",
+                              borderBottom: "1px solid #f8f8f8",
+                            }}>
+                              <span style={{
+                                background: isFinished ? "#e8f5e9" : "#fff8e1",
+                                color: isFinished ? "#2e7d32" : "#f57f17",
+                                fontSize: 9, fontWeight: 700, padding: "1px 5px",
+                                borderRadius: 3, minWidth: 22, textAlign: "center",
+                              }}>
+                                {m.group}
+                              </span>
+                              <span style={{ color: COLORS.muted, fontSize: 11, minWidth: 48 }}>{dateStr}</span>
+                              <span style={{ flex: 1 }}>
+                                {homeFlag} {m.home} vs {awayFlag} {m.away}
+                              </span>
+                              {isFinished && m.score && (
+                                <span style={{ fontWeight: 700, color: COLORS.darkGreen }}>{m.score}</span>
+                              )}
+                              {!isFinished && (
+                                <span style={{ color: COLORS.muted, fontSize: 10 }}>{etToPdt(m.time)} PDT</span>
+                              )}
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Buy Tickets link */}
+                  <a
+                    href="https://www.fifa.com/fifaplus/en/tournaments/mens/worldcup/canadamexicousa2026/tickets"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      display: "flex", alignItems: "center", justifyContent: "center", gap: 6,
+                      marginTop: 12, padding: "8px 16px",
+                      background: COLORS.darkGreen, color: "#fff",
+                      borderRadius: 8, fontSize: 12, fontWeight: 700,
+                      textDecoration: "none", transition: "opacity 0.2s",
+                    }}
+                    onMouseEnter={e => (e.currentTarget.style.opacity = "0.85")}
+                    onMouseLeave={e => (e.currentTarget.style.opacity = "1")}
+                  >
+                    🎟️ Buy Tickets — FIFA.com
+                  </a>
                 </div>
-              ))}
+                );
+              })}
             </div>
 
             <div style={{
