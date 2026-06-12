@@ -1,55 +1,19 @@
 {
-  "timestamp": "2026-06-12T22:15:30.895405+00:00",
+  "timestamp": "2026-06-12T22:45:56.178891+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 6,
-    "flag": 0,
+    "pass": 4,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
-  "revisions": 0,
+  "revisions": 1,
   "unpublished": 0,
   "articles": [
     {
-      "id": "2897de15-0b01-4f9e-9cc7-6be1c3de7e6f",
-      "headline": "Why You Walk Slower as You Age \u2014 and What Science Says You Can Do About It",
-      "slug": "why-walking-slows-with-age-science-solutions-nri",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the research findings to the experiences of NRIs with aging family members in India."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more specific examples of exercises that can be done at home to improve neuromuscular coordination.",
-          "Include quotes or testimonials from NRIs about their experiences with aging family members to enhance relatability."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "29be151a-8606-4435-92e1-7688d615d20c",
-      "headline": "Your Gut Bacteria Could Fight Cancer: The Probiotic Trial That's Rewriting Oncology",
-      "slug": "gut-bacteria-cancer-probiotic-trial-south-asian-health",
+      "id": "17795833-4893-4ded-b115-ab446f340c6c",
+      "headline": "He Came Off the Bench With 14 Minutes Left. Cyle Larin Gave Canada Its First World Cup Point \u2014 Ever.",
+      "slug": "canada-first-world-cup-point-cyle-larin-bosnia-toronto-bmo-field-nri-diaspora-2026",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -60,63 +24,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image of E. coli bacteria is relevant to the topic of gut bacteria but does not specifically represent Clostridium butyricum."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the topic of gut bacteria and cancer treatment to the South Asian diaspora, highlighting specific health concerns and dietary practices."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that specifically represents Clostridium butyricum to better match the article's focus.",
-          "Include more statistics or studies that directly relate to the NRI diaspora's health outcomes to strengthen the diaspora angle."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "a5936786-b497-403d-b86a-ecc338d80ca0",
-      "headline": "US-Iran Peace Deal Hopes Send Nifty Soaring 2%: What the Oil Shock Reversal Means for Indian Markets and NRI Portfolios",
-      "slug": "us-iran-peace-deal-nifty-surge-oil-nri-markets-june-2026",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "47b421a2-b339-4461-a421-b73e09c97767",
-            "headline": "BlackRock Says the World Has Over-Punished India. Here Is Wh"
-          },
-          {
-            "article_id": "59409046-b5c9-49d8-b2f7-0325702cf652",
-            "headline": "India\u2019s Mutual Fund Inflows Just Crashed 40 Per Cent. The Re"
-          }
-        ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
+          "issue": "The image of BMO Field is relevant but does not directly depict the event described in the article."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses implications for NRI investors, making the diaspora angle relevant and well-integrated."
+          "note": "The article connects the significance of the match to the South Asian diaspora in Canada, highlighting their cultural ties and emotional investment."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more specific examples of how NRI portfolios could be impacted by the oil price changes.",
-          "Add a section on potential risks or geopolitical implications of the US-Iran deal for Indian markets."
+          "Include more direct quotes from players or coaches to enhance the narrative.",
+          "Add a brief historical context about the significance of football in Canada for the diaspora."
         ],
         "verdict": "pass"
       },
@@ -128,9 +47,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "429f1002-7bf2-451f-a8e0-7be3bb6e3e98",
-      "headline": "South Africa's New Digital ETA Now Covers Indians \u2014 and NRIs Just Got Faster Access to Safari Country",
-      "slug": "south-africa-digital-eta-indians-safari-nri-20260612",
+      "id": "24ee0752-86c8-4336-874f-2428c62a6fdc",
+      "headline": "He Scored 19,346 Runs for New Zealand. On Friday, Kane Williamson Said Goodbye.",
+      "slug": "kane-williamson-retires-international-cricket-new-zealand-fab-four-kohli-tribute-nri",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -146,13 +65,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the new ETA system to the interests of NRIs, highlighting the ease of travel for those holding Indian passports."
+          "note": "The article connects well with Indian fans, especially through the IPL and the relationship with Virat Kohli."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a section on how the ETA compares to visa processes in other popular destinations for NRIs.",
-          "Include testimonials or quotes from travelers who have used the new ETA system to enhance relatability."
+          "Consider adding more quotes or reactions from other players or cricket analysts to enhance the emotional impact.",
+          "Include a brief section on Williamson's legacy and potential future roles in cricket, such as coaching or commentary."
         ],
         "verdict": "pass"
       },
@@ -164,9 +83,81 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "48763fd5-1a11-4abc-8c56-d0952f53247c",
-      "headline": "Sri Lanka Just Made Its Tourist Visa Free for Indians \u2014 and NRIs Should Add a Side Trip",
-      "slug": "sri-lanka-free-visa-indians-nri-side-trip-20260612",
+      "id": "7016b934-49eb-42fa-9232-6718f6f933b3",
+      "headline": "France Just Invited India to Every Session of the G7. No Guest Country Has Ever Got That Before.",
+      "slug": "france-india-top-priority-g7-all-sessions-modi-macron-defense-20260612",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 6,
+        "embed_issues": [],
+        "image_match": {
+          "score": 8,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 5,
+          "note": "The article touches on India's strategic partnerships and implications for the diaspora, but lacks depth in connecting these points to the NRI community."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Expand on how the G7 invitation impacts the Indian diaspora, particularly in terms of economic opportunities and political representation.",
+          "Include quotes or perspectives from diaspora leaders or organizations to enhance the connection to the NRI community."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Revised by gpt-4o-mini (724\u2192784 words)"
+      ],
+      "revised": true,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "a62e6db6-cf96-4bc1-96a4-e7985ae87d63",
+      "headline": "Musk Is Now Worth a Trillion Dollars. SpaceX Hit $2 Trillion on Day One. India Still Will Not Let It Turn On Starlink.",
+      "slug": "spacex-2-trillion-musk-first-trillionaire-india-starlink-xai-20260612",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 8,
+          "issue": "The image of Musk and SpaceX aligns with the article's focus on Musk's wealth and SpaceX's IPO, but it could be more directly related to the Indian market context."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses the implications of SpaceX's IPO for India, which is relevant to the Indian diaspora, particularly regarding technology and investment opportunities."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more direct quotes or reactions from Indian tech experts or regulators to enhance the local perspective.",
+          "Add a section discussing potential future impacts on Indian consumers and businesses if Starlink were to launch."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "7fafb0c1-6815-449d-bd77-e54b285d8a8d",
+      "headline": "Indian Banks Are Offering NRIs Up to 7% on Dollar Deposits. The RBI Is Picking Up the Tab.",
+      "slug": "india-banks-fcnr-nri-deposit-rates-7-percent-rbi-rupee-defense-20260612",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -182,49 +173,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the visa changes to the travel habits and interests of NRIs, making it relevant for the diaspora audience."
+          "note": "The article directly addresses NRIs and their potential benefits from the RBI's new policies, making it relevant and engaging for the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Add more specific examples of cultural experiences in Sri Lanka that would appeal to NRIs.",
-          "Include tips on how NRIs can best plan their trips to Sri Lanka, such as best times to visit or travel packages."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "8128dbfd-3bcc-4221-8dc9-6fc0de0650dd",
-      "headline": "America's Best National Parks Just Dropped Their Reservation Rules \u2014 and NRI Families Should Book Now",
-      "slug": "us-national-parks-drop-reservations-summer-nri-families-20260612",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the changes in national park reservation rules to the travel habits of NRI families, making it relevant and engaging for the target audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Add more specific examples of how the changes in reservation rules will benefit NRI families, perhaps including anecdotes or quotes from families.",
-          "Consider including a section on how to prepare for a national park visit, such as packing tips or recommended itineraries."
+          "Consider adding quotes from NRI depositors or financial experts to enhance credibility and relatability.",
+          "Include a brief comparison of the current rates with historical rates to provide context for NRIs."
         ],
         "verdict": "pass"
       },
