@@ -1,19 +1,60 @@
 {
-  "timestamp": "2026-06-12T02:45:44.632140+00:00",
+  "timestamp": "2026-06-12T03:15:29.123756+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
-    "flag": 1,
+    "pass": 6,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
-  "revisions": 1,
+  "revisions": 0,
   "unpublished": 0,
   "articles": [
     {
-      "id": "0793cf8e-0b0a-40ca-adf8-b095a63b634a",
-      "headline": "Nipah Virus Returns to Kerala: Kozhikode Case Confirmed as State Activates Outbreak Protocols",
-      "slug": "nipah-virus-kerala-kozhikode-confirmed-case-june-2026",
+      "id": "1a9b5169-69b3-4aff-aec8-850c5869165a",
+      "headline": "Dhamaal 4 Trailer Drops With a 60-Foot Waterfall Reveal \u2014 Ajay Devgn and Company Are Back for Maximum Chaos",
+      "slug": "dhamaal-4-trailer-launch-imagicaa-july-2026",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "563ed0e9-78d5-479c-943a-41db48bd87d8",
+            "headline": "Dhamaal 4 Just Dropped Four Posters. There Are Crocodiles, P"
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image features Ajay Devgn but does not directly relate to the trailer launch event described in the article."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the film's appeal to diaspora audiences, emphasizing the communal experience of watching such films."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including a relevant image from the trailer launch event to enhance visual connection.",
+          "Add quotes from the cast or director to provide more depth and engagement."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "a44f6207-6f96-455f-96f9-15f1605a25b9",
+      "headline": "Farhan Akhtar in Talks to Play RD Burman in Neeraj Pandey Biopic \u2014 And It Feels Like Destiny",
+      "slug": "farhan-akhtar-rd-burman-biopic-neeraj-pandey",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -28,14 +69,135 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article discusses a health crisis in Kerala, which may resonate with the Indian diaspora concerned about health issues in their home state."
+          "quality": 9,
+          "note": "The article effectively connects RD Burman's music to the experiences of the diaspora, making it relatable and personal."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes from health officials or experts to enhance credibility.",
-          "Add a section on how the diaspora can assist or stay informed about the situation."
+          "Consider adding quotes from Farhan Akhtar or Neeraj Pandey to enhance credibility.",
+          "Include more details about the production timeline or potential challenges to provide depth."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "0879f0c5-1445-437b-ba44-07a1bcc6fa05",
+      "headline": "TCS Partners With Anthropic to Put Claude in the Hands of 50,000 Employees \u2014 and the Real Story Is Bigger Than a Software Deal",
+      "slug": "tcs-anthropic-claude-partnership-ai-business-unit-20260612",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "091f1a72-16a4-4be6-9683-e9fe5021d601",
+            "headline": "TCS Will Have Half a Million AI Agents Within Three Years. H"
+          },
+          {
+            "article_id": "cd111ead-a101-43e0-9525-82e217e23598",
+            "headline": "Tata Electronics Wants a $30 Billion Chip Empire. The Dholer"
+          },
+          {
+            "article_id": "973e700c-6456-4e78-90d1-bb47dc39f111",
+            "headline": "TCS Chairman Says AI Agents Will Match Its 500,000 Headcount"
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 5,
+          "issue": "The image does not directly relate to the article's focus on AI and technology partnerships."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses TCS, a major Indian company, and its impact on the Indian tech workforce, which is relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that reflects the themes of AI and technology partnerships.",
+          "Expand on the implications of this partnership for Indian tech workers and the diaspora community."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "c2120f2e-5252-4826-b2b2-00abe768e8ab",
+      "headline": "The Great AI Price War Has Begun \u2014 and It Looks a Lot Like the Dot-Com Playbook",
+      "slug": "ai-price-war-google-openai-anthropic-token-costs-20260612",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to AI or technology, which may confuse readers."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the AI price war to the Indian-origin tech workforce in the U.S., highlighting potential impacts on employment."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that directly represents AI technology or the tech industry.",
+          "Expand on the implications for the diaspora workforce to provide more depth."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "9f43184e-4c48-4570-af39-42442e34a690",
+      "headline": "Aravind Srinivas Is Taking Perplexity Public in 2028 \u2014 and He's Not Waiting for OpenAI or Anthropic to Go First",
+      "slug": "perplexity-aravind-srinivas-ipo-2028-indian-origin-ai-founders-20260612",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to Aravind Srinivas or Perplexity AI, but it is a generic tech-related image."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article highlights the achievements of Indian-origin founders in the AI industry, connecting well with the Indian diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that directly represents Aravind Srinivas or Perplexity AI.",
+          "Add a quote or perspective from an NRI expert in the AI field to strengthen the diaspora connection."
         ],
         "verdict": "pass"
       },
@@ -65,29 +227,29 @@
         "broken_embeds": []
       },
       "llm_review": {
-        "overall_score": 6,
+        "overall_score": 7,
         "embed_issues": [],
         "image_match": {
           "score": 8,
-          "issue": "The image of Prime Minister Modi at the inauguration is relevant to the article's topic about the airport opening."
+          "issue": "The image of Prime Minister Modi at the inauguration is relevant but does not directly depict the airport itself."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 7,
-          "note": "The article discusses the significance of the new airport for international travelers, which is relevant to the NRI community."
+          "note": "The article discusses a significant infrastructure development that could impact NRIs traveling to and from India, particularly those in the Delhi-NCR region."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Add more information on how the new airport will specifically benefit NRI travelers.",
-          "Include quotes from stakeholders or experts to enhance credibility and engagement."
+          "Include more information on how the new airport will specifically benefit NRI travelers.",
+          "Add quotes from stakeholders or experts to enhance credibility and engagement."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
-        "Revised by gpt-4o-mini (907\u2192987 words)"
+        "promoted to published"
       ],
-      "revised": true,
+      "revised": false,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
     }
