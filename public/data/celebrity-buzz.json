@@ -1,232 +1,258 @@
-[
-  {
-    "celebrity": "Katrina Kaif",
-    "name": "Katrina Kaif",
-    "caption": "Reportedly exploring OTT projects for her streaming debut after welcoming son Vihaan with Vicky Kaushal in Nov 2025 — would mark a major comeback",
-    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Katrina_Kaif_at_the_Bharat_audio_launch.jpg/330px-Katrina_Kaif_at_the_Bharat_audio_launch.jpg",
-    "url": "https://www.instagram.com/katrinakaif/",
-    "timestamp": "2026-06-12",
-    "last_updated": "2026-06-12T06:03:29.460311+00:00",
-    "category": "celebrity"
-  },
-  {
-    "celebrity": "Diljit Dosanjh",
-    "name": "Diljit Dosanjh",
-    "caption": "Imtiaz Ali's 'Mai Vaapas Aaunga' releasing Jun 12 with AR Rahman score; earlier made history selling out two consecutive nights at Madison Square Garden",
-    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Diljit_Dosanjh.jpg/330px-Diljit_Dosanjh.jpg",
-    "url": "https://www.instagram.com/diljitdosanjh/",
-    "timestamp": "2026-06-12",
-    "last_updated": "2026-06-12T06:03:29.460311+00:00",
-    "category": "celebrity"
-  },
-  {
-    "celebrity": "Alia Bhatt",
-    "name": "Alia Bhatt",
-    "caption": "Alpha teaser dropped Jun 10 — her fierce YRF Spy Universe debut opposite Bobby Deol; film releases Jul 3, 2026",
-    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Alia_Bhatt_attends_at_the_2026_Cannes_Film_Festival_%28cropped%29_%28cropped%29.jpg/330px-Alia_Bhatt_attends_at_the_2026_Cannes_Film_Festival_%28cropped%29_%28cropped%29.jpg",
-    "url": "https://www.instagram.com/aliaabhatt/",
-    "timestamp": "2026-06-12",
-    "last_updated": "2026-06-12T06:03:29.460311+00:00",
-    "category": "celebrity"
-  },
-  {
-    "celebrity": "Priyanka Chopra",
-    "name": "Priyanka Chopra",
-    "caption": "Featured on Fortune India's June 2026 cover; continues shooting SS Rajamouli's epic 'Ugrabhatti' while praising Triptii Dimri's 'Maa Behen'",
-    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/4/45/Priyanka_Chopra_at_Bulgary_launch%2C_2024_%28cropped%29.jpg",
-    "url": "https://www.instagram.com/priyankachopra/",
-    "timestamp": "2026-06-12",
-    "last_updated": "2026-06-12T06:03:29.460311+00:00",
-    "category": "celebrity"
-  },
-  {
-    "celebrity": "Shah Rukh Khan",
-    "name": "Shah Rukh Khan",
-    "caption": "'King' reunites SRK with Anil Kapoor (after 31 yrs), Rani Mukerji (20 yrs) & Jackie Shroff (12 yrs) — other films already ducking its release date",
-    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Shah_Rukh_Khan_graces_the_launch_of_the_new_Santro.jpg/330px-Shah_Rukh_Khan_graces_the_launch_of_the_new_Santro.jpg",
-    "url": "https://www.instagram.com/iamsrk/",
-    "timestamp": "2026-06-12",
-    "last_updated": "2026-06-12T06:03:29.460311+00:00",
-    "category": "celebrity"
-  },
-  {
-    "celebrity": "Kareena Kapoor Khan",
-    "name": "Kareena Kapoor Khan",
-    "caption": "Weighed in on the Peddi objectification row: 'Sensuality has nothing to do with revealing clothes'; next film is 'Daayra' with Prithviraj Sukumaran",
-    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/2/29/Kareena_Kapoor_Khan_in_2023_%281%29_%28cropped%29.jpg",
-    "url": "https://www.instagram.com/kareenakapoorkhan/",
-    "timestamp": "2026-06-12",
-    "last_updated": "2026-06-12T06:03:29.460311+00:00",
-    "category": "celebrity"
-  },
-  {
-    "celebrity": "Shraddha Kapoor",
-    "name": "Shraddha Kapoor",
-    "caption": "Viral video of her politely asking paparazzi to step back won hearts across social media; remains firmly in Bollywood's top 5 per Ormax data",
-    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Shraddha_Kapoor_promoting_Street_Dancer_3D.jpg/330px-Shraddha_Kapoor_promoting_Street_Dancer_3D.jpg",
-    "url": "https://www.instagram.com/shraddhakapoor/",
-    "timestamp": "2026-06-12",
-    "last_updated": "2026-06-12T06:03:29.460311+00:00",
-    "category": "celebrity"
-  },
-  {
-    "celebrity": "Deepika Padukone",
-    "name": "Deepika Padukone",
-    "caption": "Spotted with baby bump alongside Ranveer, expecting second child; upcoming films 'King' with SRK and 'Raaka' with Allu Arjun",
-    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Deepika_Padukone_2025_%281%29.png/330px-Deepika_Padukone_2025_%281%29.png",
-    "url": "https://www.instagram.com/deepikapadukone/",
-    "timestamp": "2026-06-12",
-    "last_updated": "2026-06-12T06:03:29.460311+00:00",
-    "category": "celebrity"
-  },
-  {
-    "celebrity": "Ranveer Singh",
-    "name": "Ranveer Singh",
-    "caption": "Dhurandhar franchise heading to Japan (Jul 10); 'Dhurandhar 2: The Revenge' is 3rd highest-grossing Indian film ever at ₹1,780 cr worldwide",
-    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/3/32/Ranveer_Singh_in_2023_%281%29_%28cropped%29.jpg",
-    "url": "https://www.instagram.com/ranveersingh/",
-    "timestamp": "2026-06-12",
-    "last_updated": "2026-06-12T06:03:29.460311+00:00",
-    "category": "celebrity"
-  },
-  {
-    "celebrity": "Aishwarya Rai Bachchan",
-    "name": "Aishwarya Rai Bachchan",
-    "caption": "Made her 24th Cannes appearance in bold couture with daughter Aaradhya on the red carpet; Kangana Ranaut defended her against age-shaming trolls",
-    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Aishwarya_Rai_Cannes_2017.jpg/330px-Aishwarya_Rai_Cannes_2017.jpg",
-    "url": "https://www.instagram.com/aishwaryaraibachchan_arb/",
-    "timestamp": "2026-06-12",
-    "last_updated": "2026-06-12T06:03:29.460311+00:00",
-    "category": "celebrity"
-  },
-  {
-    "celebrity": "Rashmika Mandanna",
-    "name": "Rashmika Mandanna",
-    "caption": "'Cocktail 2' with Shahid & Kriti releases Jun 19; reported to play MS Subbulakshmi in biopic; shone at 2026 Anime Awards in Tokyo",
-    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/4/4b/Rashmika-Mandanna_at_the_music_launch_of_Chhaava_%28cropped%29.jpg",
-    "url": "https://www.instagram.com/rashmika_mandanna/",
-    "timestamp": "2026-06-12",
-    "last_updated": "2026-06-12T06:03:29.460311+00:00",
-    "category": "celebrity"
-  },
-  {
-    "celebrity": "Samantha Ruth Prabhu",
-    "name": "Samantha Ruth Prabhu",
-    "caption": "'Maa Inti Bangaaram' — her production debut — releasing Jun 19; an action-comedy where she performs stunts in a saree",
-    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Samantha_at_Kushi_Musical_concert_%282%29_%28cropped%29.jpg/330px-Samantha_at_Kushi_Musical_concert_%282%29_%28cropped%29.jpg",
-    "url": "https://www.instagram.com/samantharuthprabhuoffl/",
-    "timestamp": "2026-06-12",
-    "last_updated": "2026-06-12T06:03:29.460311+00:00",
-    "category": "celebrity"
-  },
-  {
-    "celebrity": "Allu Arjun",
-    "name": "Allu Arjun",
-    "caption": "Praised Ram Charan's 'Peddi' performance; his next film with director Atlee (titled 'Raaka' with Deepika) commands a record pay cheque",
-    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Allu_Arjun_at_Pushpa_2_The_Rule_meet.jpg/330px-Allu_Arjun_at_Pushpa_2_The_Rule_meet.jpg",
-    "url": "https://www.instagram.com/alluarjunonline/",
-    "timestamp": "2026-06-12",
-    "last_updated": "2026-06-12T06:03:29.460311+00:00",
-    "category": "celebrity"
-  },
-  {
-    "celebrity": "Ram Charan",
-    "name": "Ram Charan",
-    "caption": "'Peddi' crossed ₹150 cr in just 4 days; Netflix secured digital rights for a record ₹105-130 cr; 'Dhruva 2' talks underway",
-    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Ram_Charan_at_Game_Changer_trailer_launch.jpg/330px-Ram_Charan_at_Game_Changer_trailer_launch.jpg",
-    "url": "https://www.instagram.com/alwaysramcharan/",
-    "timestamp": "2026-06-12",
-    "last_updated": "2026-06-12T06:03:29.460311+00:00",
-    "category": "celebrity"
-  },
-  {
-    "celebrity": "Jr NTR",
-    "name": "Jr NTR",
-    "caption": "'War 2' with Hrithik confirmed for IMAX release on Aug 14; 'Dragon' with Prashanth Neel pushed to late 2026; sporting a lean new look",
-    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/NTR_Jr._%282026%29.jpg/330px-NTR_Jr._%282026%29.jpg",
-    "url": "https://www.instagram.com/jrntr/",
-    "timestamp": "2026-06-12",
-    "last_updated": "2026-06-12T06:03:29.460311+00:00",
-    "category": "celebrity"
-  },
-  {
-    "celebrity": "Janhvi Kapoor",
-    "name": "Janhvi Kapoor",
-    "caption": "Stars in Ram Charan's blockbuster 'Peddi' (now in theaters); 'Lag Ja Gale' with Tiger Shroff announced for May 2027",
-    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/2025_Janhvi_Kapoor_%28cropped%29.jpg/330px-2025_Janhvi_Kapoor_%28cropped%29.jpg",
-    "url": "https://www.instagram.com/janhvikapoor/",
-    "timestamp": "2026-06-12",
-    "last_updated": "2026-06-12T06:03:29.460311+00:00",
-    "category": "celebrity"
-  },
-  {
-    "celebrity": "Ananya Panday",
-    "name": "Ananya Panday",
-    "caption": "Headlines Amazon Prime's 'Call Me Bae' new season; 'Chand Mera Dil' with Lakshya released May 22, 2026",
-    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Ananya_Panday_grace_the_premiere_of_Merry_Christmas_%28cropped%29.png/330px-Ananya_Panday_grace_the_premiere_of_Merry_Christmas_%28cropped%29.png",
-    "url": "https://www.instagram.com/ananyapanday/",
-    "timestamp": "2026-06-12",
-    "last_updated": "2026-06-12T06:03:29.460311+00:00",
-    "category": "celebrity"
-  },
-  {
-    "celebrity": "Kiara Advani",
-    "name": "Kiara Advani",
-    "caption": "Set to headline a Madhubala biopic produced by Bhansali; also in 'War 2' (Aug) and horror-comedy 'Shakti Shalini'",
-    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Kiara_Advani_snapped_at_the_screening_of_Shershaah_%28cropped%29.jpg/330px-Kiara_Advani_snapped_at_the_screening_of_Shershaah_%28cropped%29.jpg",
-    "url": "https://www.instagram.com/kiaraaliaadvani/",
-    "timestamp": "2026-06-12",
-    "last_updated": "2026-06-12T06:03:29.460311+00:00",
-    "category": "celebrity"
-  },
-  {
-    "celebrity": "Hrithik Roshan",
-    "name": "Hrithik Roshan",
-    "caption": "Signed with Hollywood agency Anonymous Content; reported cameo in Rajinikanth's 'Jailer 2'; 'Krrish 4' in pre-production as his directorial debut",
-    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/9/92/Hrithik_Roshan_in_2024_%28cropped%29.jpg",
-    "url": "https://www.instagram.com/hrithikroshan/",
-    "timestamp": "2026-06-12",
-    "last_updated": "2026-06-12T06:03:29.460311+00:00",
-    "category": "celebrity"
-  },
-  {
-    "celebrity": "Varun Dhawan",
-    "name": "Varun Dhawan",
-    "caption": "'Hai Jawani Toh Ishq Hona Hai' released Jun 5 — David Dhawan's final film; hints his next project will be 'very different'",
-    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Varun_Dhawan_at_Mehboob_Studios_in_2025_%28cropped%29.jpg/330px-Varun_Dhawan_at_Mehboob_Studios_in_2025_%28cropped%29.jpg",
-    "url": "https://www.instagram.com/varundhawan/",
-    "timestamp": "2026-06-12",
-    "last_updated": "2026-06-12T06:03:29.460311+00:00",
-    "category": "celebrity"
-  },
-  {
-    "celebrity": "Shreya Ghoshal",
-    "name": "Shreya Ghoshal",
-    "caption": "India's nightingale continues her concert tour across global cities, thrilling NRI audiences with iconic Bollywood playback hits",
-    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Shreya_Ghoshal_Behindwoods_Gold_Icons_Awards_2023_%28cropped%29.jpg/330px-Shreya_Ghoshal_Behindwoods_Gold_Icons_Awards_2023_%28cropped%29.jpg",
-    "url": "https://www.instagram.com/shreyaghoshal/",
-    "timestamp": "2026-06-12",
-    "last_updated": "2026-06-12T06:03:29.460311+00:00",
-    "category": "celebrity"
-  },
-  {
-    "celebrity": "AR Rahman",
-    "name": "AR Rahman",
-    "caption": "Composing for Imtiaz Ali's 'Mai Vaapas Aaunga' and Ram Charan's 'Peddi'; Peddi's 'Chikiri Chikiri' has surpassed 200M views",
-    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/AR_Rahman_At_The_%E2%80%98Marvel_Anthem%E2%80%99_Launch_%283x4_cropped%29.jpg/330px-AR_Rahman_At_The_%E2%80%98Marvel_Anthem%E2%80%99_Launch_%283x4_cropped%29.jpg",
-    "url": "https://www.instagram.com/arrahman/",
-    "timestamp": "2026-06-12",
-    "last_updated": "2026-06-12T06:03:29.460311+00:00",
-    "category": "celebrity"
-  },
-  {
-    "celebrity": "Vijay Thalapathy",
-    "name": "Vijay Thalapathy",
-    "caption": "Final film 'Jana Nayagan' buzz intensifying; first single 'Thalapathy Katcheri' features nostalgic tribute; piracy leak drew industry-wide condemnation",
-    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/C._Joseph_Vijay_%28cropped%29.jpg/330px-C._Joseph_Vijay_%28cropped%29.jpg",
-    "url": "https://www.instagram.com/actorvijay/",
-    "timestamp": "2026-06-12",
-    "last_updated": "2026-06-12T06:03:29.460311+00:00",
-    "category": "celebrity"
-  }
-]
+{
+  "last_updated": "2026-06-12T12:02:59.795912+00:00",
+  "posts": [
+    {
+      "celebrity": "Katrina Kaif",
+      "name": "Katrina Kaif",
+      "handle": "katrinakaif",
+      "platform": "instagram",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Katrina_Kaif_at_the_Bharat_audio_launch.jpg/330px-Katrina_Kaif_at_the_Bharat_audio_launch.jpg",
+      "caption": "Katrina Kaif is reportedly planning her OTT debut and comeback after welcoming son Vihaan with Vicky Kaushal, actively reviewing streaming scripts for a return by late 2027.",
+      "url": "https://www.instagram.com/katrinakaif/",
+      "media_type": "image",
+      "timestamp": "2026-06-12"
+    },
+    {
+      "celebrity": "Diljit Dosanjh",
+      "name": "Diljit Dosanjh",
+      "handle": "diljitdosanjh",
+      "platform": "instagram",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Diljit_Dosanjh.jpg/330px-Diljit_Dosanjh.jpg",
+      "caption": "Diljit's Main Vaapas Aaunga with Imtiaz Ali releases today (June 12) \u2014 the partition drama co-starring Naseeruddin Shah, Sharvari, and Vedang Raina also features an AR Rahman soundtrack.",
+      "url": "https://www.instagram.com/diljitdosanjh/",
+      "media_type": "image",
+      "timestamp": "2026-06-12"
+    },
+    {
+      "celebrity": "Alia Bhatt",
+      "name": "Alia Bhatt",
+      "handle": "aliaabhatt",
+      "platform": "instagram",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Alia_Bhatt_attends_at_the_2026_Cannes_Film_Festival_%28cropped%29_%28cropped%29.jpg/330px-Alia_Bhatt_attends_at_the_2026_Cannes_Film_Festival_%28cropped%29_%28cropped%29.jpg",
+      "caption": "Alpha teaser crosses 75 million views in 24 hours as Alia's YRF Spy Universe debut generates massive buzz. The film releases July 3 with Bobby Deol and Anil Kapoor.",
+      "url": "https://www.instagram.com/aliaabhatt/",
+      "media_type": "image",
+      "timestamp": "2026-06-12"
+    },
+    {
+      "celebrity": "Priyanka Chopra",
+      "name": "Priyanka Chopra",
+      "handle": "priyankachopra",
+      "platform": "instagram",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/4/45/Priyanka_Chopra_at_Bulgary_launch%2C_2024_%28cropped%29.jpg",
+      "caption": "Priyanka ranks #3 on Fortune India's inaugural Most Valuable Celebrities list \u2014 the only woman in the top three \u2014 while continuing to shoot SS Rajamouli's Varanasi with Mahesh Babu.",
+      "url": "https://www.instagram.com/priyankachopra/",
+      "media_type": "image",
+      "timestamp": "2026-06-12"
+    },
+    {
+      "celebrity": "Shah Rukh Khan",
+      "name": "Shah Rukh Khan",
+      "handle": "iamsrk",
+      "platform": "instagram",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Shah_Rukh_Khan_graces_the_launch_of_the_new_Santro.jpg/330px-Shah_Rukh_Khan_graces_the_launch_of_the_new_Santro.jpg",
+      "caption": "SRK's King confirmed for Christmas 2026 release with a \u20b9350 crore budget \u2014 the action thriller directed by Siddharth Anand co-stars daughter Suhana Khan and Abhishek Bachchan.",
+      "url": "https://www.instagram.com/iamsrk/",
+      "media_type": "image",
+      "timestamp": "2026-06-12"
+    },
+    {
+      "celebrity": "Kareena Kapoor Khan",
+      "name": "Kareena Kapoor Khan",
+      "handle": "kareenakapoorkhan",
+      "platform": "instagram",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/2/29/Kareena_Kapoor_Khan_in_2023_%281%29_%28cropped%29.jpg",
+      "caption": "Kareena is in advanced talks to reunite with Salman Khan for Raj & DK's superhero film, their first on-screen pairing since the blockbuster Bajrangi Bhaijaan over a decade ago.",
+      "url": "https://www.instagram.com/kareenakapoorkhan/",
+      "media_type": "image",
+      "timestamp": "2026-06-12"
+    },
+    {
+      "celebrity": "Shraddha Kapoor",
+      "name": "Shraddha Kapoor",
+      "handle": "shraddhakapoor",
+      "platform": "instagram",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Shraddha_Kapoor_promoting_Street_Dancer_3D.jpg/330px-Shraddha_Kapoor_promoting_Street_Dancer_3D.jpg",
+      "caption": "Shraddha Kapoor is in talks to play the female lead opposite Vicky Kaushal in Maddock's Mahavatar, a grand mythological drama about Lord Parashurama expected to go on floors soon.",
+      "url": "https://www.instagram.com/shraddhakapoor/",
+      "media_type": "image",
+      "timestamp": "2026-06-12"
+    },
+    {
+      "celebrity": "Deepika Padukone",
+      "name": "Deepika Padukone",
+      "handle": "deepikapadukone",
+      "platform": "instagram",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Deepika_Padukone_2025_%281%29.png/330px-Deepika_Padukone_2025_%281%29.png",
+      "caption": "Deepika announces her second pregnancy with Ranveer Singh while juggling two blockbusters \u2014 she's using a body double for action in Atlee's Raka and recently shot combat scenes for King.",
+      "url": "https://www.instagram.com/deepikapadukone/",
+      "media_type": "image",
+      "timestamp": "2026-06-12"
+    },
+    {
+      "celebrity": "Ranveer Singh",
+      "name": "Ranveer Singh",
+      "handle": "ranveersingh",
+      "platform": "instagram",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/3/32/Ranveer_Singh_in_2023_%281%29_%28cropped%29.jpg",
+      "caption": "Ranveer's Dhurandhar TV premiere shatters records as the highest-reach movie premiere in five years, while Dhurandhar 2 becomes the most-watched Indian film on OTT with 70M+ views.",
+      "url": "https://www.instagram.com/ranveersingh/",
+      "media_type": "image",
+      "timestamp": "2026-06-12"
+    },
+    {
+      "celebrity": "Aishwarya Rai Bachchan",
+      "name": "Aishwarya Rai Bachchan",
+      "handle": "aishwaryaraibachchan_arb",
+      "platform": "instagram",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Aishwarya_Rai_Cannes_2017.jpg/330px-Aishwarya_Rai_Cannes_2017.jpg",
+      "caption": "A 23-year-old dance clip of Aishwarya from the never-released film Radheshyam Sitaram has gone viral on social media, while fans await her next project with Mani Ratnam.",
+      "url": "https://www.instagram.com/aishwaryaraibachchan_arb/",
+      "media_type": "image",
+      "timestamp": "2026-06-12"
+    },
+    {
+      "celebrity": "Rashmika Mandanna",
+      "name": "Rashmika Mandanna",
+      "handle": "rashmika_mandanna",
+      "platform": "instagram",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/4/4b/Rashmika-Mandanna_at_the_music_launch_of_Chhaava_%28cropped%29.jpg",
+      "caption": "Cocktail 2 trailer with Shahid Kapoor and Kriti Sanon tops YouTube charts for a full week ahead of its June 19 release, while Rashmika also gears up for Rana Baali with Vijay Deverakonda.",
+      "url": "https://www.instagram.com/rashmika_mandanna/",
+      "media_type": "image",
+      "timestamp": "2026-06-12"
+    },
+    {
+      "celebrity": "Samantha Ruth Prabhu",
+      "name": "Samantha Ruth Prabhu",
+      "handle": "samantharuthprabhuoffl",
+      "platform": "instagram",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Samantha_at_Kushi_Musical_concert_%282%29_%28cropped%29.jpg/330px-Samantha_at_Kushi_Musical_concert_%282%29_%28cropped%29.jpg",
+      "caption": "Samantha's Maa Inti Bangaaram releases June 19 \u2014 a Baasha-style action-comedy where she plays a newlywed hiding an action-packed past. She also co-produced the film under her own banner.",
+      "url": "https://www.instagram.com/samantharuthprabhuoffl/",
+      "media_type": "image",
+      "timestamp": "2026-06-12"
+    },
+    {
+      "celebrity": "Allu Arjun",
+      "name": "Allu Arjun",
+      "handle": "alluarjunonline",
+      "platform": "instagram",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Allu_Arjun_at_Pushpa_2_The_Rule_meet.jpg/330px-Allu_Arjun_at_Pushpa_2_The_Rule_meet.jpg",
+      "caption": "Allu Arjun's next film Raaka with director Atlee officially announced \u2014 Deepika Padukone joins the cast as the VFX-heavy sci-fi spectacle aims for a massive pan-India release.",
+      "url": "https://www.instagram.com/alluarjunonline/",
+      "media_type": "image",
+      "timestamp": "2026-06-12"
+    },
+    {
+      "celebrity": "Ram Charan",
+      "name": "Ram Charan",
+      "handle": "alwaysramcharan",
+      "platform": "instagram",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Ram_Charan_at_Game_Changer_trailer_launch.jpg/330px-Ram_Charan_at_Game_Changer_trailer_launch.jpg",
+      "caption": "Ram Charan's Peddi crosses \u20b9150 crore net in just 4 days and \u20b9200 crore gross by Day 5 \u2014 the sports drama is now the 8th best-selling Telugu film on BookMyShow.",
+      "url": "https://www.instagram.com/alwaysramcharan/",
+      "media_type": "image",
+      "timestamp": "2026-06-12"
+    },
+    {
+      "celebrity": "Jr NTR",
+      "name": "Jr NTR",
+      "handle": "jrntr",
+      "platform": "instagram",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/NTR_Jr._%282026%29.jpg/330px-NTR_Jr._%282026%29.jpg",
+      "caption": "War 2 with Hrithik Roshan and Kiara Advani confirmed for IMAX release on August 14, while Jr NTR's Dragon with Prashanth Neel has been pushed to June 2027 for VFX work.",
+      "url": "https://www.instagram.com/jrntr/",
+      "media_type": "image",
+      "timestamp": "2026-06-12"
+    },
+    {
+      "celebrity": "Janhvi Kapoor",
+      "name": "Janhvi Kapoor",
+      "handle": "janhvikapoor",
+      "platform": "instagram",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/2025_Janhvi_Kapoor_%28cropped%29.jpg/330px-2025_Janhvi_Kapoor_%28cropped%29.jpg",
+      "caption": "Janhvi earned \u20b98 crore for Peddi \u2014 her career-highest paycheck \u2014 amid a heated debate over objectification in the film. She's next in Atlee's Raaka with Allu Arjun.",
+      "url": "https://www.instagram.com/janhvikapoor/",
+      "media_type": "image",
+      "timestamp": "2026-06-12"
+    },
+    {
+      "celebrity": "Ananya Panday",
+      "name": "Ananya Panday",
+      "handle": "ananyapanday",
+      "platform": "instagram",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Ananya_Panday_grace_the_premiere_of_Merry_Christmas_%28cropped%29.png/330px-Ananya_Panday_grace_the_premiere_of_Merry_Christmas_%28cropped%29.png",
+      "caption": "Ananya Panday stars alongside Lakshya in Dharma's musical romance Chand Mera Dil and returns as the lead in Call Me Bae Season 2 on Prime Video's stacked 2026 slate.",
+      "url": "https://www.instagram.com/ananyapanday/",
+      "media_type": "image",
+      "timestamp": "2026-06-12"
+    },
+    {
+      "celebrity": "Kiara Advani",
+      "name": "Kiara Advani",
+      "handle": "kiaraaliaadvani",
+      "platform": "instagram",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Kiara_Advani_snapped_at_the_screening_of_Shershaah_%28cropped%29.jpg/330px-Kiara_Advani_snapped_at_the_screening_of_Shershaah_%28cropped%29.jpg",
+      "caption": "Kiara Advani stars alongside Hrithik Roshan and Jr NTR in War 2, confirmed for IMAX release on August 14 \u2014 one of the most anticipated Bollywood films of the year.",
+      "url": "https://www.instagram.com/kiaraaliaadvani/",
+      "media_type": "image",
+      "timestamp": "2026-06-12"
+    },
+    {
+      "celebrity": "Hrithik Roshan",
+      "name": "Hrithik Roshan",
+      "handle": "hrithikroshan",
+      "platform": "instagram",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/9/92/Hrithik_Roshan_in_2024_%28cropped%29.jpg",
+      "caption": "Hrithik signs with Anonymous Content, the Hollywood powerhouse behind The Revenant and Spotlight, signaling a potential international career move alongside his Krrish 4 prep.",
+      "url": "https://www.instagram.com/hrithikroshan/",
+      "media_type": "image",
+      "timestamp": "2026-06-12"
+    },
+    {
+      "celebrity": "Varun Dhawan",
+      "name": "Varun Dhawan",
+      "handle": "varundhawan",
+      "platform": "instagram",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Varun_Dhawan_at_Mehboob_Studios_in_2025_%28cropped%29.jpg/330px-Varun_Dhawan_at_Mehboob_Studios_in_2025_%28cropped%29.jpg",
+      "caption": "Varun Dhawan's Hai Jawani Toh Ishq Hona Hai with David Dhawan navigates a crowded June release window, competing with Yash's Toxic and a slate of major summer blockbusters.",
+      "url": "https://www.instagram.com/varundhawan/",
+      "media_type": "image",
+      "timestamp": "2026-06-12"
+    },
+    {
+      "celebrity": "Shreya Ghoshal",
+      "name": "Shreya Ghoshal",
+      "handle": "shreyaghoshal",
+      "platform": "instagram",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Shreya_Ghoshal_Behindwoods_Gold_Icons_Awards_2023_%28cropped%29.jpg/330px-Shreya_Ghoshal_Behindwoods_Gold_Icons_Awards_2023_%28cropped%29.jpg",
+      "caption": "Shreya Ghoshal's All Hearts Tour continues across international venues in 2026, following her iconic IPL 2025 opening ceremony with an 80-piece choir at Eden Gardens, Kolkata.",
+      "url": "https://www.instagram.com/shreyaghoshal/",
+      "media_type": "image",
+      "timestamp": "2026-06-12"
+    },
+    {
+      "celebrity": "AR Rahman",
+      "name": "AR Rahman",
+      "handle": "arrahman",
+      "platform": "instagram",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/AR_Rahman_At_The_%E2%80%98Marvel_Anthem%E2%80%99_Launch_%283x4_cropped%29.jpg/330px-AR_Rahman_At_The_%E2%80%98Marvel_Anthem%E2%80%99_Launch_%283x4_cropped%29.jpg",
+      "caption": "AR Rahman scores two major releases this week \u2014 Main Vaapas Aaunga (June 12) with Diljit Dosanjh and Imtiaz Ali, plus the Chikiri Chikiri track from Ram Charan's box office hit Peddi.",
+      "url": "https://www.instagram.com/araboriginals/",
+      "media_type": "image",
+      "timestamp": "2026-06-12"
+    },
+    {
+      "celebrity": "Vijay Thalapathy",
+      "name": "Vijay Thalapathy",
+      "handle": "actorvijay",
+      "platform": "instagram",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/C._Joseph_Vijay_%28cropped%29.jpg/330px-C._Joseph_Vijay_%28cropped%29.jpg",
+      "caption": "Thalapathy Vijay is now Chief Minister of Tamil Nadu after his TVK party's stunning election victory \u2014 senior leaders from DMK and AIADMK continue defecting to his camp.",
+      "url": "https://www.instagram.com/actorvijay/",
+      "media_type": "image",
+      "timestamp": "2026-06-12"
+    }
+  ]
+}
