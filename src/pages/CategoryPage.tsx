@@ -6,6 +6,7 @@ import CategoryPills from "@/components/CategoryPills";
 import SiteFooter from "@/components/SiteFooter";
 import ArticleCard from "@/components/ArticleCard";
 import TechBuzz from "@/components/TechBuzz";
+import WorldCupTracker from "@/components/WorldCupTracker";
 // import CelebrityBuzz from "@/components/CelebrityBuzz"; // temporarily hidden
 import LoadMoreButton from "@/components/LoadMoreButton";
 import { Article, getArticlesByCategory } from "@/lib/articles";
@@ -102,6 +103,7 @@ export default function CategoryPage() {
         {def.slug === "news" && <TechBuzz category="india" />}
         {def.slug === "technology" && <TechBuzz category="tech" />}
         {/* {def.slug === "entertainment" && <CelebrityBuzz />} */}
+        {def.slug === "sports" && <WorldCupTracker />}
         {def.slug === "sports" && <TechBuzz category="sports" />}
 
         {def.slug === "food" && (

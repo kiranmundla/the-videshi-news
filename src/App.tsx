@@ -69,6 +69,9 @@ const ImmigrationGuidesPage = React.lazy(() => import("./pages/ImmigrationGuides
 const ImmigrationGuidePage = React.lazy(() => import("./pages/ImmigrationGuidePage.tsx"));
 const VisaTrackerPage = React.lazy(() => import("./pages/VisaTrackerPage.tsx"));
 
+// World Cup
+const WorldCupPage = React.lazy(() => import("./pages/WorldCupPage.tsx"));
+
 // Stories (Diaspora Voices)
 const StoriesPage = React.lazy(() => import("./pages/StoriesPage.tsx"));
 const SubmitStoryPage = React.lazy(() => import("./pages/SubmitStoryPage.tsx"));
@@ -157,6 +160,7 @@ const App = () => (
               <Route path="/stories" element={<StoriesPage />} />
               <Route path="/stories/submit" element={<SubmitStoryPage />} />
               <Route path="/stories/:slug" element={<StoryDetailPage />} />
+              <Route path="/world-cup" element={<WorldCupPage />} />
               <Route path="/admin" element={<AdminDashboard />} />
               <Route path="/admin/articles" element={<AdminArticles />} />
               <Route path="/admin/cars" element={<AdminCars />} />

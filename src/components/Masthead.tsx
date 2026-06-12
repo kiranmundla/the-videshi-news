@@ -12,6 +12,7 @@ const NAV_CATEGORIES = [
   { slug: "news", label: "News", path: "/news" },
   { slug: "nri-world", label: "World", path: "/nri-world" },
   { slug: "sports", label: "Sports", path: "/sports" },
+  { slug: "world-cup", label: "⚽ World Cup", path: "/world-cup" },
   { slug: "entertainment", label: "Entertainment", path: "/entertainment" },
   { slug: "technology", label: "Technology", path: "/technology" },
   { slug: "markets-finance", label: "Markets", path: "/markets-finance" },

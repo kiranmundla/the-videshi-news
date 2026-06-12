@@ -7,6 +7,7 @@ import ArticleCard from "@/components/ArticleCard";
 import DiasporaPhotoStrip from "@/components/DiasporaPhotoStrip";
 // import CelebrityBuzz from "@/components/CelebrityBuzz"; // temporarily hidden
 import TechBuzz from "@/components/TechBuzz";
+import WorldCupTracker from "@/components/WorldCupTracker";
 import StreamingPicks from "@/components/StreamingPicks";
 import FeaturedHero from "@/components/FeaturedHero";
 import FeaturedCarousel from "@/components/FeaturedCarousel";
@@ -466,7 +467,7 @@ export default function Index() {
                 afterHeader={
                   s.slug === "technology" ? <TechBuzz category="tech" /> :
                   s.slug === "entertainment" ? <><StreamingPicks /></> :
-                  s.slug === "sports" ? <TechBuzz category="sports" /> :
+                  s.slug === "sports" ? <><WorldCupTracker /><TechBuzz category="sports" /></> :
                   undefined
                 }
               />
