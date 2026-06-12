@@ -1,19 +1,19 @@
 {
-  "timestamp": "2026-06-12T04:46:06.006830+00:00",
+  "timestamp": "2026-06-12T05:15:20.356447+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 5,
-    "flag": 1,
+    "pass": 3,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
-  "revisions": 1,
+  "revisions": 0,
   "unpublished": 0,
   "articles": [
     {
-      "id": "5f890892-ac78-4e68-b226-e0f4a557413a",
-      "headline": "He Loaded Up to Bowl. Then He Stopped. Arjun Tendulkar Refused to Mankad.",
-      "slug": "arjun-tendulkar-mankading-refusal-t20-mumbai-league-wankhede-spirit-cricket-nri",
+      "id": "1e113659-6a50-486f-8d93-2f2c45cb960b",
+      "headline": "Bhooth Bangla Made \u20b9264 Crore in Theaters. Tonight, It Arrives on Your Netflix.",
+      "slug": "bhooth-bangla-netflix-ott-premiere-akshay-kumar-priyadarshan-264-crore-nri-20260612",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -29,13 +29,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article connects well with the Indian diaspora by discussing the legacy of Sachin Tendulkar and the cultural significance of cricket in India."
+          "note": "The article effectively connects the film's themes to NRI experiences, particularly through the protagonist's journey and cultural references."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from Arjun Tendulkar or other players to enhance the narrative.",
-          "Include a brief background on the significance of the T20 Mumbai League for readers unfamiliar with it."
+          "Consider adding more specific examples of how the film resonates with NRI audiences beyond the protagonist's story.",
+          "Include a brief comparison to other recent films that have successfully appealed to the diaspora for context."
         ],
         "verdict": "pass"
       },
@@ -47,112 +47,47 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "f6bd0fe5-a31a-4d7e-8ccd-99844356787d",
-      "headline": "Nine Fours. Zero Sixes. The Most Important Innings of Vaibhav Sooryavanshi's Life.",
-      "slug": "vaibhav-sooryavanshi-india-a-afghanistan-a-44-off-22-no-sixes-dambulla-tri-series-nri",
+      "id": "b705dd54-cd64-47fa-917a-aaa8f9ed240d",
+      "headline": "A 95-Year-Old Man Remembers the Girl He Lost to Partition. Imtiaz Ali Built a Whole Film Around That Memory.",
+      "slug": "main-vaapas-aaunga-imtiaz-ali-partition-love-vedang-raina-sharvari-diljit-naseeruddin-nri-20260612",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [
           {
-            "article_id": "9b56ad68-3a93-40bf-b2f0-b271f46cbbc9",
-            "headline": "He Is Fifteen. He Won the Orange Cap. Now He Is in India's A"
+            "article_id": "489af8e4-dd41-4819-abf4-f2958575c2f1",
+            "headline": "Imtiaz Ali Made a Partition Love Story. The First Reviews Sa"
           }
         ],
         "broken_embeds": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://youtube.com/watch?v=PRUTWluKRW8",
+            "problem": "irrelevant",
+            "explanation": "The YouTube link does not provide relevant content related to the film's themes or the article's focus."
+          }
+        ],
         "image_match": {
           "score": 9,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article connects well with the NRI community by highlighting upcoming matches in Ireland and the UK, which are of interest to the diaspora."
+          "quality": 9,
+          "note": "The article effectively connects the film's themes of Partition and memory to the experiences of the NRI diaspora, making it relevant and poignant."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more quotes or reactions from the NRI community regarding Sooryavanshi's performance.",
-          "Include a brief background on Vaibhav Sooryavanshi for readers who may not be familiar with him."
+          "Replace the irrelevant YouTube link with a more relevant embed, such as a trailer or a clip that highlights the film's themes.",
+          "Consider adding more quotes or insights from the director or cast to enhance the depth of the review."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "a82f91b1-d9d8-4178-9052-9e56438ddbb4",
-      "headline": "He Is Thirty-Nine. On Saturday, He Will Become the Oldest Indian to Play an ODI.",
-      "slug": "rohit-sharma-oldest-indian-odi-player-record-amarnath-afghanistan-dharamsala-2026-nri",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article connects well with NRI fans by mentioning the match timing and their geographical locations."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from Rohit Sharma or the coach to enhance the narrative.",
-          "Include more statistics or historical context about Rohit Sharma's career to enrich the article."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "805d3204-455a-481c-9141-92886f18688a",
-      "headline": "He Filed 11 Fake H-1B Petitions, Forged Executive Signatures, and Became an American Citizen. Now the DOJ Wants It Back.",
-      "slug": "doj-denaturalization-neeraj-sharma-h1b-fraud-citizenship-revoked-20260612",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": "The image of the U.S. Department of Justice headquarters is relevant to the article's topic on legal actions taken by the DOJ."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses the implications of immigration fraud on the Indian tech community, which resonates with NRI readers."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include quotes from immigration experts or community leaders to provide additional perspectives.",
-          "Add a section discussing the broader implications of denaturalization for the Indian diaspora."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
+        "Removed irrelevant embed: https://youtube.com/watch?v=PRUTWluKRW8",
         "promoted to published"
       ],
       "revised": false,
@@ -178,65 +113,22 @@
         "broken_embeds": []
       },
       "llm_review": {
-        "overall_score": 6,
-        "embed_issues": [],
-        "image_match": {
-          "score": 4,
-          "issue": "The image of Elon Musk does not directly relate to the article's focus on SpaceX's IPO and its implications for India."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses India's regulatory stance on Starlink, which is relevant to the Indian diaspora interested in tech developments affecting India."
-        },
-        "factual_flags": [
-          "The claim about SpaceX's xAI division losing $6.36 billion in 2025 is suspicious as it refers to a future year."
-        ],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more context on how the regulatory issues specifically affect Indian consumers or businesses.",
-          "Replace the hero image with one that better represents the IPO or the Starlink service in India."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Revised by gpt-4o-mini (785\u2192836 words)"
-      ],
-      "revised": true,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "7517e76d-1568-42f1-9b29-e5d7d371bf51",
-      "headline": "India Is Preparing to Let Its Fiscal Deficit Blow Past Target. The Iran War Left No Choice.",
-      "slug": "india-fiscal-deficit-widens-4-8-percent-iran-war-energy-subsidies-20260612",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "cfb39575-48a1-4e35-835e-770f7f0c8dba",
-            "headline": "India's Fertiliser Bill Has Doubled in Three Months. The Ira"
-          }
-        ],
-        "broken_embeds": []
-      },
-      "llm_review": {
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image of Nirmala Sitharaman is relevant as she is the Finance Minister, but it does not directly depict the fiscal deficit topic."
+          "issue": "The image of Elon Musk is relevant but does not directly depict SpaceX or Starlink."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the fiscal deficit situation to NRIs, particularly regarding their investments and the implications of government borrowing."
+          "note": "The article effectively connects the implications of Starlink's operations in India to NRIs, highlighting potential impacts on communication and business."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider including more direct quotes from experts or officials to enhance credibility.",
-          "Add a brief summary or conclusion that encapsulates the potential long-term effects of the fiscal deficit on the economy and NRIs."
+          "Consider using an image that directly represents SpaceX or Starlink for better visual relevance.",
+          "Expand on the implications for NRIs to strengthen the diaspora connection further."
         ],
         "verdict": "pass"
       },
