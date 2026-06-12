@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-12T20:45:19.212913+00:00",
+  "timestamp": "2026-06-12T21:15:31.694400+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
+    "pass": 4,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,58 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "2b78549e-9738-431a-805c-077bccdf707b",
-      "headline": "India Will Lift AFSPA From Nearly All of the Northeast by Next Year. Amit Shah Says the Region Has Earned It.",
-      "slug": "amit-shah-afspa-removal-northeast-india-2027-economic-corridor-20260611",
+      "id": "f5681447-2585-494b-aa91-8f9f2da03b51",
+      "headline": "Munna Bhaiya Died on Your Screen. Now He's Walking Into Cinemas on September 4.",
+      "slug": "mirzapur-movie-munna-bhaiya-returns-theatrical-september-4-pankaj-tripathi-ali-fazal-nri-20260612",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DY-GB6KvHFT/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel does not appear to be directly related to the film or its themes, making it less relevant to the article."
+          },
+          {
+            "url": "https://www.instagram.com/p/DUYbpeciDl1/",
+            "problem": "irrelevant",
+            "explanation": "This Instagram post does not seem to connect with the main topic of the article, which is about the film 'Mirzapur: The Movie'."
+          }
+        ],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the film's release to the diaspora audience by referencing their engagement with the original series and the potential for a theatrical release in international markets."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the irrelevant Instagram embeds with more relevant content, such as trailers or promotional material related to the film.",
+          "Consider adding quotes or insights from the director or producers to enhance the depth of the article."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DY-GB6KvHFT/",
+        "Removed irrelevant embed: https://www.instagram.com/p/DUYbpeciDl1/",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "d540f80f-39c2-4147-a07b-c186cf129161",
+      "headline": "Oracle Posts Record Quarter as Cloud Infrastructure Revenue Surges 93 Per Cent",
+      "slug": "oracle-q4-earnings-cloud-infrastructure-surge-20260612",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -23,91 +72,91 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image of Amit Shah is relevant to the article's topic but does not directly depict the Northeast region or the context of AFSPA."
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects Oracle's operations and hiring practices to the Indian diaspora, particularly in the context of H-1B visa sponsorship and employment opportunities for Indian engineers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of how Oracle's growth impacts Indian Americans in the tech sector.",
+          "Include quotes or insights from industry experts to enhance credibility and depth."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "9b9fcdb9-ca77-413c-9e7e-16a0f0be0372",
+      "headline": "Anthropic's Fable 5 Faces Backlash After Covert Restrictions on AI Research Queries",
+      "slug": "anthropic-fable-5-covert-policy-backlash-20260612",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the Fable 5 incident to the Indian diaspora's involvement in AI, highlighting the implications for Indian-origin engineers and researchers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more direct quotes from affected users or experts to enhance credibility.",
+          "Include a brief overview of Anthropic's previous models for context."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "e7788644-bdc5-4996-811a-da410200f185",
+      "headline": "SpaceX Blasts Off on Nasdaq in Largest IPO in History",
+      "slug": "spacex-ipo-nasdaq-debut-biggest-ever-20260612",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects the implications of AFSPA's rollback to the diaspora from the Northeast, discussing potential economic and social impacts."
+          "note": "The article effectively connects the IPO to Indian professionals in aerospace and highlights the significance for the NRI community."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider including more specific examples of how the diaspora can engage with the Northeast post-AFSPA.",
-          "Add quotes or perspectives from diaspora members to enhance the personal connection."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "b4cd2d13-d148-43c5-9073-88bb5dd58056",
-      "headline": "India's Commerce Minister Is in Switzerland Today to Push a Trade Deal That Could Reshape Pharma Access for Millions.",
-      "slug": "piyush-goyal-switzerland-efta-tepa-pharma-trade-deal-june-2026",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the trade deal's implications for the Indian diaspora, particularly regarding access to affordable healthcare."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from Piyush Goyal or Swiss officials to enhance the article's depth.",
-          "Include more context on how the trade deal specifically impacts the pharmaceutical landscape in India."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "b746dd49-18f4-41dd-8d92-23cf3558d454",
-      "headline": "Every Chief Minister Showed Up to NITI Aayog for the First Time. Modi Wants GDP Data Down to the District.",
-      "slug": "niti-aayog-all-28-chief-ministers-first-time-district-gdp-viksit-bharat-20260611",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses district-level GDP data, which is relevant for NRIs considering investments in India."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more direct quotes from the meeting to enhance engagement.",
-          "Add a section on how these developments might specifically impact NRIs in various sectors."
+          "Consider adding quotes from industry experts or Indian professionals to enhance the diaspora connection.",
+          "Include more details on how the IPO might impact Indian investors specifically."
         ],
         "verdict": "pass"
       },
