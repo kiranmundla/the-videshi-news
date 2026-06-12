@@ -313,9 +313,11 @@ export default function WorldCupPage() {
               </div>
             ) : (
               <div style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(auto-fill, minmax(340px, 1fr))",
+                display: "flex",
+                flexDirection: "column",
                 gap: 16,
+                maxWidth: 540,
+                margin: "0 auto",
               }}>
                 {data.highlights.map((h, i) => (
                   <HighlightCard key={i} highlight={h} />
@@ -674,49 +676,71 @@ function HighlightCard({ highlight }: { highlight: Highlight }) {
 /* ── Native Instagram / Threads embed ── */
 function SocialEmbed({ highlight }: { highlight: Highlight }) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [loaded, setLoaded] = useState(false);
+  const isInstagram = highlight.platform === "instagram";
+  const isThreads = highlight.platform === "threads";
 
   useEffect(() => {
-    // Load Instagram embed script if not already present
-    const scriptId = "instagram-embed-js";
-    if (!document.getElementById(scriptId)) {
-      const script = document.createElement("script");
-      script.id = scriptId;
-      script.src = "https://www.instagram.com/embed.js";
-      script.async = true;
-      script.onload = () => {
-        if ((window as any).instgrm?.Embeds) {
-          (window as any).instgrm.Embeds.process();
-        }
-        setLoaded(true);
-      };
-      document.body.appendChild(script);
-    } else {
-      // Script already loaded, just process this new embed
-      setTimeout(() => {
-        if ((window as any).instgrm?.Embeds) {
-          (window as any).instgrm.Embeds.process();
-        }
-        setLoaded(true);
-      }, 100);
+    if (isInstagram) {
+      // Load Instagram embed script
+      const scriptId = "instagram-embed-js";
+      if (!document.getElementById(scriptId)) {
+        const script = document.createElement("script");
+        script.id = scriptId;
+        script.src = "https://www.instagram.com/embed.js";
+        script.async = true;
+        script.onload = () => {
+          (window as any).instgrm?.Embeds?.process(containerRef.current);
+        };
+        document.body.appendChild(script);
+      } else {
+        setTimeout(() => {
+          (window as any).instgrm?.Embeds?.process(containerRef.current);
+        }, 300);
+      }
     }
-  }, []);
+  }, [isInstagram]);
 
-  // Re-process whenever component mounts (e.g. tab switch)
-  useEffect(() => {
-    if (loaded && (window as any).instgrm?.Embeds) {
-      const timer = setTimeout(() => {
-        (window as any).instgrm.Embeds.process(containerRef.current);
-      }, 200);
-      return () => clearTimeout(timer);
-    }
-  }, [loaded]);
-
-  // Clean permalink — ensure it ends with /
+  // Clean permalink
   const permalink = highlight.url.endsWith("/") ? highlight.url : highlight.url + "/";
 
+  // Threads posts: use a clean card link (Threads embed API is limited)
+  if (isThreads) {
+    return (
+      <a
+        href={permalink}
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{
+          display: "block",
+          background: "#fff",
+          border: "1px solid #e5e5e5",
+          borderRadius: 12,
+          padding: 16,
+          textDecoration: "none",
+          color: "inherit",
+          transition: "box-shadow 0.2s",
+        }}
+        onMouseEnter={e => { (e.currentTarget as HTMLElement).style.boxShadow = "0 4px 12px rgba(0,0,0,0.1)"; }}
+        onMouseLeave={e => { (e.currentTarget as HTMLElement).style.boxShadow = "none"; }}
+      >
+        <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
+          <span style={{ fontSize: 18 }}>🧵</span>
+          <span style={{ fontSize: 13, fontWeight: 600, color: COLORS.darkGreen }}>Threads</span>
+          <span style={{ fontSize: 12, color: COLORS.muted, marginLeft: "auto" }}>{highlight.account}</span>
+        </div>
+        <p style={{ fontSize: 14, color: "#2d3436", margin: "0 0 8px", lineHeight: 1.5, fontWeight: 500 }}>
+          {highlight.caption}
+        </p>
+        <div style={{ fontSize: 11, color: COLORS.muted }}>
+          {formatDate(highlight.date)} · View on Threads →
+        </div>
+      </a>
+    );
+  }
+
+  // Instagram: native embed via blockquote + embed.js
   return (
-    <div ref={containerRef} style={{ minHeight: 400 }}>
+    <div ref={containerRef}>
       <blockquote
         className="instagram-media"
         data-instgrm-permalink={permalink}
@@ -749,7 +773,7 @@ function SocialEmbed({ highlight }: { highlight: Highlight }) {
               gap: 8,
             }}
           >
-            <span style={{ fontSize: 18 }}>{highlight.platform === "instagram" ? "📸" : "🧵"}</span>
+            <span style={{ fontSize: 18 }}>📸</span>
             {highlight.caption}
           </a>
           <p style={{ color: COLORS.muted, fontSize: 12, marginTop: 8 }}>
