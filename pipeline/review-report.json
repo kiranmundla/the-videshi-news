@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-12T10:15:26.285794+00:00",
+  "timestamp": "2026-06-12T10:45:29.794071+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 5,
-    "flag": 0,
+    "pass": 3,
+    "flag": 2,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "f02da27f-e4b1-428f-8903-28ecbca9050a",
-      "headline": "Kashmir by Rail Is Finally Real \u2014 and NRIs Planning a Trip This Year Need to Know What's Changed",
-      "slug": "kashmir-vande-bharat-rail-tourism-srinagar-nri-20260612",
+      "id": "19ed98e1-6a4d-41a3-a91b-baf1de0f6bf4",
+      "headline": "Sixteen Teams. Five Weeks. And India Open Against Pakistan on Sunday. The Women's T20 World Cup Starts Today.",
+      "slug": "women-t20-world-cup-2026-starts-today-india-pakistan-edgbaston-harmanpreet-kaur-nri",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -29,13 +29,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively addresses NRIs' travel concerns and highlights the new rail service's benefits for them."
+          "note": "The article effectively highlights the significance of the match for Indian cricket fans in the diaspora, particularly the India-Pakistan rivalry."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more specific travel tips for NRIs, such as how to book tickets or best times to visit.",
-          "Add a section on cultural experiences or local attractions in Kashmir that NRIs should not miss."
+          "Include more quotes or insights from players or coaches to enhance engagement.",
+          "Add a brief historical context of India-Pakistan matches in women's cricket to enrich the narrative."
         ],
         "verdict": "pass"
       },
@@ -47,9 +47,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "b3d85527-ff5e-4d8e-919a-c1ce0c4013e0",
-      "headline": "Air India Puts Its A350 on the Delhi\u2013New York Route \u2014 and 60% of US Flights Now Have New Cabins",
-      "slug": "air-india-a350-delhi-new-york-newark-premium-nri-20260612",
+      "id": "9a4f03f6-0a76-40cc-8f24-2c87e88c96cc",
+      "headline": "Three Red Cards, a Nine-Minute Opener, and a Son Heung-min Substitution. Day 1 of the World Cup Had Everything.",
+      "slug": "world-cup-2026-day-1-recap-mexico-south-africa-korea-czechia-red-cards-nri",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -65,13 +65,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively addresses the needs and experiences of NRIs, particularly in relation to air travel and the improvements in Air India's service."
+          "note": "The article effectively connects the World Cup events to NRI audiences by highlighting matches in North America and mentioning local desi communities."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from industry experts or customer testimonials to enhance credibility.",
-          "Include more specific data or statistics about NRI travel preferences to strengthen the diaspora angle."
+          "Consider adding more quotes or reactions from players or fans to enhance engagement.",
+          "Include a brief overview of the significance of the World Cup for the Indian diaspora to strengthen the connection."
         ],
         "verdict": "pass"
       },
@@ -83,81 +83,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "6aa8cccc-834f-4edf-90ed-10dd86a4e39e",
-      "headline": "Air India's Easy Connect Launches From Varanasi \u2014 and NRIs From Tier-2 Cities Get a Direct Line to the World",
-      "slug": "air-india-easy-connect-varanasi-hub-spoke-nri-20260612",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively addresses the needs and concerns of NRIs, particularly those from tier-2 cities, making it highly relevant."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from passengers or aviation experts to enhance credibility.",
-          "Include a brief comparison of Air India's Easy Connect with similar services offered by other airlines."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "5629317d-1328-4f47-a2ea-64cc95a95e3a",
-      "headline": "Takeda's AI-Designed Psoriasis Pill Clears Skin 2.5 Times Better Than Rival \u2014 What It Means for South Asians",
-      "slug": "takeda-zasocitinib-psoriasis-pill-south-asian-diaspora",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the implications of the new treatment for South Asian patients, addressing specific health concerns relevant to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from South Asian patients or healthcare professionals to enhance the personal connection.",
-          "Include more statistics or studies specifically related to psoriasis in the South Asian population to strengthen the argument."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "390fc300-0a15-4b50-88fe-dfafd968db01",
-      "headline": "India Opens Insurance to 100% Foreign Ownership \u2014 What NRIs Need to Know",
-      "slug": "india-100-percent-fdi-insurance-nri-diaspora-impact",
+      "id": "aecb9201-9ee9-4684-ad78-44c7ade64de6",
+      "headline": "EY, Deloitte and a Space Startup All Opened AI Centres in Bengaluru This Week. The Pattern Is Clear.",
+      "slug": "bengaluru-ai-centres-ey-deloitte-satsure-india-tech-hub-week-20260612",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -168,20 +96,101 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image is relevant to the topic of insurance but does not specifically depict any insurance-related activity."
+          "issue": "The image is relevant to the tech theme but does not specifically depict AI or the companies mentioned."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the reform to the needs of the NRI community, discussing potential benefits and products tailored for them."
+          "quality": 8,
+          "note": "The article discusses the implications of Bengaluru's AI growth for Indian technologists abroad, making it relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider including specific examples of insurance products that NRIs might benefit from under the new regulations.",
-          "Add a brief section on potential challenges or risks NRIs might face with the new foreign ownership structure."
+          "Include specific examples of how the AI hiring boom in Bengaluru is impacting Indian professionals abroad.",
+          "Consider adding quotes or insights from diaspora experts to enhance the connection."
         ],
         "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "b54c0e7b-e905-433e-bd5b-c18e8efb68f2",
+      "headline": "Trump Claims a Secret Oil Mission Moved 100 Million Barrels Through Hormuz. His Energy Secretary Says He Knows Nothing.",
+      "slug": "trump-secret-oil-mission-hormuz-100-million-barrels-energy-secretary-denial-india-20260612",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "7c2fda69-5977-430d-b856-860eacc1ca07",
+            "headline": "Trump Cancels Iran Strikes at the Last Minute. Oil Crashed. "
+          },
+          {
+            "article_id": "7c6f588a-17ea-4dab-896f-46cf5f8ab20c",
+            "headline": "Trump Says Iran Deal Is 'All Wrapped Up.' India Is Not Celeb"
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 5,
+          "issue": "The image of Trump does not directly relate to the article's focus on oil and energy policy."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the geopolitical implications of oil movements to India's energy needs, which is relevant for the Indian diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that reflects the article's focus on oil and energy policy.",
+          "Add more context or quotes from Indian officials or analysts to strengthen the diaspora connection."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "2a476af2-7b2e-4b66-b1f1-40be6cef8279",
+      "headline": "India Puts All Maritime Agencies on 'Heightened Alert' After Three Tanker Strikes in Five Days",
+      "slug": "india-shipping-ministry-heightened-alert-seafarers-tanker-strikes-20260612",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 6,
+          "issue": "The image does not directly relate to the maritime context of the article."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the impact on Indian seafarers, which is relevant to the diaspora community."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more direct quotes from diaspora members or organizations to strengthen the connection.",
+          "Consider using a more relevant image that depicts maritime activities or Indian seafarers."
+        ],
+        "verdict": "flag"
       },
       "actions_taken": [
         "promoted to published"
