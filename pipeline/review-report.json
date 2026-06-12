@@ -1,230 +1,63 @@
 {
-  "timestamp": "2026-06-12T12:45:56.746260+00:00",
+  "timestamp": "2026-06-12T13:15:25.387004+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 5,
+    "pass": 0,
     "flag": 1,
     "fail": 0,
     "error": 0
   },
-  "revisions": 1,
+  "revisions": 0,
   "unpublished": 0,
   "articles": [
     {
-      "id": "73614bf9-183e-42dd-8a5b-4aa6c0444431",
-      "headline": "From Your Nanis Stovetop to Starbucks Summer Menu: Chais Quiet Conquest of America",
-      "slug": "from-your-nanis-stovetop-to-starbucks-summer-menu-chais-quiet-conquest",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses the cultural significance of chai for Indian Americans, connecting it to their experiences and feelings."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more personal anecdotes or quotes from Indian Americans to enhance the diaspora connection.",
-          "Include a brief history of chai in America to provide context for its rise in popularity."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "3335744c-b5e1-45a7-8d17-fe4f168064dc",
-      "headline": "Samosa Diplomacy: How Indian Food Festivals Became Americas Hottest Summer Ticket",
-      "slug": "samosa-diplomacy-how-indian-food-festivals-became-americas-hottest-summer-ticket",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the Indian diaspora's cultural engagement through food festivals, highlighting their significance beyond just cuisine."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from attendees or vendors to provide personal insights and enhance the narrative.",
-          "Include more statistics or data points to further emphasize the growth and impact of Indian food festivals in the U.S."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "172f6514-830b-4aee-aff5-0c54b856ea29",
-      "headline": "From a $3,000 Tax Refund to 150 Farms: The Diaspora Spice Co. Cookbook Is a Love Letter to Indian Agriculture",
-      "slug": "from-a-3000-tax-refund-to-150-farms-diaspora-spice-co-cookbook-love-letter",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the cookbook and its themes to the NRI experience, particularly in terms of food heritage and sustainable practices."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from the author or farmers to enhance the personal connection.",
-          "Include more details about the virtual author talk, such as how to register."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "96e93257-464f-4288-b27c-d60d2e5e556f",
-      "headline": "India's Inflation Just Hit a New-Series High. The Iran War Is Now in Every Grocery Bill.",
-      "slug": "india-may-inflation-3-93-new-series-high-iran-war-food-fuel-20260612",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 6,
-        "embed_issues": [],
-        "image_match": {
-          "score": 8,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses inflation and economic impacts that are relevant to the Indian diaspora, particularly those with financial interests in India."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more direct quotes from economists or experts to enhance credibility.",
-          "Add a section on how the inflation impacts NRIs specifically, such as remittances or investments."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Revised by gpt-4o-mini (856\u2192926 words)"
-      ],
-      "revised": true,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "8a12d0c9-8def-4a5b-ad2b-9c46c4a2dcf3",
-      "headline": "India Just Summoned America's Top Diplomat for the Second Time in Three Days. The Relationship Has Not Been This Strained in Years.",
-      "slug": "india-summons-us-diplomat-second-time-three-days-sailor-deaths-20260612",
+      "id": "5d8de7f0-5919-432f-bdf3-fb1164d64088",
+      "headline": "Manoj Bajpayee Just Made a Film About the Week India Almost Went Bankrupt. It Opens Today.",
+      "slug": "governor-manoj-bajpayee-1991-india-bankruptcy-rbi-gold-airlift-nri-20260612",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [
           {
-            "article_id": "955c2c24-b28d-4a37-a727-0decc12429e0",
-            "headline": "India Summoned the American Envoy. The US Just Struck a Ship"
+            "article_id": "0e5d841d-46d4-422d-8d34-68ee230e999a",
+            "headline": "Manoj Bajpayee Had to Google 'Balance of Payments' to Play I"
           }
         ],
         "broken_embeds": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/DZaBOTKoLxN/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not appear to be directly related to the film or its themes, making it irrelevant to the article."
+          },
+          {
+            "url": "https://youtube.com/watch?v=Mvm0bRY0Qyg",
+            "problem": "irrelevant",
+            "explanation": "The YouTube link should ideally provide a trailer or relevant content about the film, but it is unclear if it does."
+          }
+        ],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image of Manoj Bajpayee does match the article's topic, but it lacks a direct connection to the film's themes or the historical context discussed."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the geopolitical tensions to the Indian diaspora, highlighting the implications for Indian Americans."
+          "note": "The article connects the film's historical context to the NRI audience by emphasizing the significance of the 1991 crisis, which is relevant to the diaspora's understanding of India's economic history."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more context about the historical relationship between India and the US to enhance reader understanding.",
-          "Include quotes or reactions from diaspora leaders to further engage the NRI audience."
+          "Replace the irrelevant Instagram link with a more relevant embed, such as a trailer or a clip from the film.",
+          "Provide a clearer connection between the film's themes and the diaspora experience in the article."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "90e424c2-76b2-4f7e-baed-486370723ade",
-      "headline": "A Federal Judge Just Killed Trump's $100,000 H-1B Fee. Indians, Who Get 75% of All Approvals, Have the Most to Gain.",
-      "slug": "federal-judge-blocks-trump-100000-h1b-visa-fee-indians-biggest-winners-20260612",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image of the courthouse is relevant but does not directly depict the H-1B visa issue."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively highlights the impact of the ruling on Indian professionals, who make up a significant portion of H-1B visa holders."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include quotes or reactions from Indian tech workers or organizations to enhance the diaspora perspective.",
-          "Add a brief explanation of the H-1B visa process for readers unfamiliar with immigration policies."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/DZaBOTKoLxN/",
+        "Removed irrelevant embed: https://youtube.com/watch?v=Mvm0bRY0Qyg",
         "promoted to published"
       ],
       "revised": false,
