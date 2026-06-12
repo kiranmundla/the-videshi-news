@@ -1,55 +1,19 @@
 {
-  "timestamp": "2026-06-12T02:15:31.789151+00:00",
+  "timestamp": "2026-06-12T02:45:44.632140+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 5,
-    "flag": 0,
+    "pass": 1,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
-  "revisions": 0,
+  "revisions": 1,
   "unpublished": 0,
   "articles": [
     {
-      "id": "7895fb15-8281-487b-b8ac-43262c8c6fb8",
-      "headline": "Your Weight-Loss Drug Has a Dangerous Summer Secret",
-      "slug": "glp1-drugs-heat-illness-risk-ozempic-wegovy-summer-2026",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image depicts a healthy lifestyle but does not directly relate to the specific topic of weight-loss drugs and hydration."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the issue of GLP-1 medications to Indian Americans, highlighting their higher rates of Type 2 diabetes and the relevance of the topic to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that more directly represents the topic of weight-loss drugs or hydration.",
-          "Include more specific statistics or studies related to the impact of GLP-1 medications on hydration in the diaspora context."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "fb4f5b3e-e75b-4c33-a2a3-dcc97a56f38f",
-      "headline": "14 Indian Cities Now Rank Among the World's Most Heat-Vulnerable. The Plans to Save Them Are Falling Short",
-      "slug": "india-cities-heat-vulnerable-oxford-study-heat-action-plans-2026",
+      "id": "0793cf8e-0b0a-40ca-adf8-b095a63b634a",
+      "headline": "Nipah Virus Returns to Kerala: Kozhikode Case Confirmed as State Activates Outbreak Protocols",
+      "slug": "nipah-virus-kerala-kozhikode-confirmed-case-june-2026",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -64,14 +28,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the heat vulnerability of Indian cities to the concerns of the Indian diaspora, highlighting the impact on families and communities."
+          "quality": 7,
+          "note": "The article discusses a health crisis in Kerala, which may resonate with the Indian diaspora concerned about health issues in their home state."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more specific examples of how diaspora communities are responding to these issues or contributing to solutions.",
-          "Include a call to action for diaspora readers to engage with or support initiatives related to climate resilience in India."
+          "Include quotes from health officials or experts to enhance credibility.",
+          "Add a section on how the diaspora can assist or stay informed about the situation."
         ],
         "verdict": "pass"
       },
@@ -83,84 +47,16 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "e0fe4852-bbc5-493d-8ecf-30aba188db7b",
-      "headline": "India's $315-Billion IT Empire Faces Its AI Reckoning",
-      "slug": "india-it-sector-ai-disruption-tcs-infosys-outsourcing-crisis-2026",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image is relevant to the topic of technology but does not specifically depict AI or the IT industry."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the impact of the IT sector's changes on NRI investors and their families, making it highly relevant to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that more directly represents AI or the IT industry to enhance relevance.",
-          "Expand on the personal stories or experiences of NRIs affected by the downturn to deepen the diaspora connection."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "70ec30af-c670-4c2f-b34a-6b12dd41392d",
-      "headline": "Five Monsoon Destinations That NRIs Keep Promising to Visit \u2014 This Is the Year",
-      "slug": "india-monsoon-destinations-nri-summer-break-20260612",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the monsoon travel experience to NRIs, highlighting how it aligns with their schedules and preferences."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more personal anecdotes or quotes from NRIs who have experienced these destinations during the monsoon to enhance relatability.",
-          "Include practical travel tips specific to NRIs, such as visa considerations or cultural nuances to be aware of during the monsoon season."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "9bcb4a9b-5b60-49a5-a3b8-3661680a58bd",
-      "headline": "India's Newest Airport Opens Sunday \u2014 and It Halves the Journey to the Taj Mahal",
-      "slug": "noida-jewar-airport-opens-nri-taj-mahal-20260612",
+      "id": "c8e0c632-b6e3-4b65-a133-115307754d86",
+      "headline": "Noida International Airport Opens for Commercial Flights June 15, Giving Delhi-NCR a Second Gateway",
+      "slug": "noida-international-airport-jewar-commercial-flights-june-2026",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [
+          {
+            "article_id": "9bcb4a9b-5b60-49a5-a3b8-3661680a58bd",
+            "headline": "India's Newest Airport Opens Sunday \u2014 and It Halves the Jour"
+          },
           {
             "article_id": "187261cd-373f-45b5-bbc9-207ea4fc8e25",
             "headline": "India's Newest Airport Opens Next Week \u2014 and It Could Change"
@@ -169,29 +65,29 @@
         "broken_embeds": []
       },
       "llm_review": {
-        "overall_score": 8,
+        "overall_score": 6,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 8,
+          "issue": "The image of Prime Minister Modi at the inauguration is relevant to the article's topic about the airport opening."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the new airport's opening to the needs and experiences of NRIs, particularly in relation to travel to the Taj Mahal."
+          "quality": 7,
+          "note": "The article discusses the significance of the new airport for international travelers, which is relevant to the NRI community."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from travelers or officials to enhance the narrative.",
-          "Include more details on future international routes to engage readers further."
+          "Add more information on how the new airport will specifically benefit NRI travelers.",
+          "Include quotes from stakeholders or experts to enhance credibility and engagement."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
-        "promoted to published"
+        "Revised by gpt-4o-mini (907\u2192987 words)"
       ],
-      "revised": false,
+      "revised": true,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
     }
