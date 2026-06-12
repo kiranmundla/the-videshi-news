@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-12T00:15:29.144695+00:00",
+  "timestamp": "2026-06-12T00:45:28.632792+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 5,
+    "pass": 6,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,45 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "9f840f3f-6327-4949-b6f0-a9cd6f6a8941",
-      "headline": "The Wait Gets Longer: EB-2 India Retrogression Rattles Thousands of NRI Professionals",
-      "slug": "eb2-india-retrogression-june-2026-20260612",
+      "id": "e0d1b0d8-3c0f-49c7-906c-b293a50c76f5",
+      "headline": "Fewer Curry Houses, Better Curry: How Britain's Indian Restaurant Scene Is Trading Quantity for Quality",
+      "slug": "fewer-curry-houses-better-curry-britains-indian-restaurant-scene-trading",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the evolution of Indian cuisine in the UK, which is relevant to the Indian diaspora interested in culinary trends and cultural representation."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include quotes or perspectives from Indian diaspora members or chefs to strengthen the connection to the NRI audience.",
+          "Add a section discussing how these changes in the UK restaurant scene might influence Indian restaurants in other countries with significant Indian populations."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "5997fb66-9f6f-4289-aee2-c510726446bb",
+      "headline": "Your World Cup, Your Daal: A Desi Food Guide to FIFA 2026's Host Cities",
+      "slug": "your-world-cup-your-daal-desi-food-guide-fifa-2026-host-cities",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -24,18 +60,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image does not directly relate to the topic of immigration or the EB-2 visa process."
+          "issue": "The image of food is relevant but does not specifically represent the diverse Indian cuisine mentioned in the article."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively addresses the concerns of NRI professionals regarding immigration issues, making it highly relevant to the diaspora."
+          "note": "The article effectively connects with the Indian diaspora by highlighting food options in host cities and the cultural significance of food during the World Cup."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that more directly represents the theme of immigration or the EB-2 visa process.",
-          "Add quotes or testimonials from affected NRI professionals to enhance the personal connection to the diaspora experience."
+          "Consider using an image that showcases specific Indian dishes or restaurants mentioned in the article for better visual relevance.",
+          "Add a brief section on how to prepare popular Indian snacks for watch parties to enhance engagement with the diaspora audience."
         ],
         "verdict": "pass"
       },
@@ -47,9 +83,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "f49fd8f2-95ee-409b-9fc4-d7c3b944ec76",
-      "headline": "'Let Me Cook and Feed People': An Indian Woman's Response to Belfast's Anti-Immigrant Violence",
-      "slug": "belfast-riots-indian-food-relief-20260612",
+      "id": "4f1cda0a-3425-484f-a83f-8dd503420fe0",
+      "headline": "From Chicago to Hudson Yards: Michelin-Starred Indienne Brings a Triple Threat of Indian Dining to Manhattan",
+      "slug": "from-chicago-to-hudson-yards-michelin-starred-indienne-brings-triple-threat",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -65,13 +101,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the Indian diaspora's experiences with the broader context of anti-immigrant violence, highlighting community solidarity."
+          "note": "The article effectively connects the restaurant's opening to the Indian-American community, highlighting its significance in the evolution of Indian cuisine in the U.S."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from more members of the Indian community in Belfast to enhance the diaspora perspective.",
-          "Include more details about the response from local authorities or community organizations to provide a fuller picture of the situation."
+          "Include quotes from diners or food critics to enhance the narrative.",
+          "Add a section on the anticipated impact of these restaurants on the local dining scene."
         ],
         "verdict": "pass"
       },
@@ -83,45 +119,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "ab9504b6-0665-48e6-938f-3ad5b7646154",
-      "headline": "Broadcom Bets Everything on Custom Chips \u2014 and Wall Street Isn't Sure What to Think",
-      "slug": "broadcom-custom-chips-pivot-ai-infrastructure-20260612",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image is relevant to technology but does not specifically depict custom chips or AI."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively highlights the role of Indian engineers in Broadcom's operations and the broader implications for India's semiconductor industry."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include a more specific image related to custom chips or AI to enhance visual relevance.",
-          "Expand on the implications for Indian engineers and the semiconductor industry to strengthen the diaspora connection."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "3e223267-1159-4d4e-89af-2d48d3951010",
-      "headline": "India's Electric Car Sales Nearly Double in May as Tata and Mahindra Leave Tesla in the Dust",
-      "slug": "india-ev-sales-double-may-2026-tata-mahindra-20260612",
+      "id": "1f2ca09f-4a1b-461d-a45a-565d023948ee",
+      "headline": "India Scrapped Bond Taxes for Foreigners. A Billion Dollars Arrived in Three Days.",
+      "slug": "india-bond-tax-exemption-foreign-investors-billion-dollar-inflows-global-index-20260612",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -137,13 +137,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the EV market trends to the interests of NRIs, particularly in terms of investment and personal relevance."
+          "note": "The article discusses benefits for NRIs, making it relevant for the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more data or quotes from industry experts to enhance credibility.",
-          "Include a brief comparison of India's EV market with other countries to provide a global context."
+          "Include more direct quotes from NRIs or diaspora experts to enhance the connection.",
+          "Add a brief section on how these changes might impact NRIs living abroad in terms of investment opportunities."
         ],
         "verdict": "pass"
       },
@@ -155,9 +155,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "f27fcacd-37bf-4298-930e-0c2439cad732",
-      "headline": "AgniKul Fires Four 3D-Printed Rocket Engines at Once, and India's Space Startup Race Enters a New Phase",
-      "slug": "agnikul-3d-printed-rocket-engines-cluster-test-20260612",
+      "id": "423ae62d-a3c7-4f5f-82bb-8b0851070f62",
+      "headline": "India Tells the US It Does Not Have Overcapacity in Anything. Washington Disagrees.",
+      "slug": "india-rejects-us-section-301-overcapacity-textiles-steel-trade-surplus-20260612",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -167,19 +167,55 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 5,
-          "issue": "The image does not directly relate to the topic of 3D-printed rocket engines or space technology."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article connects to the Indian diaspora by mentioning IIT alumni in the US aerospace industry, making it relevant to NRI readers."
+          "quality": 8,
+          "note": "The article effectively connects the trade issues to the interests of the Indian diaspora, particularly those involved in textiles and business."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that depicts 3D-printed rocket engines or a related space technology theme.",
-          "Expand on the diaspora angle by including quotes or insights from Indian engineers in the aerospace industry."
+          "Consider adding more direct quotes from Indian officials to enhance credibility.",
+          "Include more context on the implications of the trade surplus for the diaspora."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "066272ab-f7a4-45b2-bea2-b7a6b16dc9bc",
+      "headline": "US Inflation Just Hit a Three-Year High. The Fed May Hike Rates. Here Is What That Means for India.",
+      "slug": "us-inflation-4-2-percent-three-year-high-fed-rate-hike-india-nri-impact-20260612",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the implications of US inflation and Fed rate hikes to NRIs, discussing mortgages, remittances, and Indian markets."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples or quotes from NRIs to enhance the personal connection.",
+          "Include a brief summary of potential long-term impacts on the Indian economy for a more comprehensive view."
         ],
         "verdict": "pass"
       },
