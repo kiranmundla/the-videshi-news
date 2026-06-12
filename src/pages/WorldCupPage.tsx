@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import Masthead from "@/components/Masthead";
@@ -563,11 +563,17 @@ function GroupTable({ group, teams }: { group: string; teams: Team[] }) {
   );
 }
 
-/* ── Highlight Card ── */
+/* ── Highlight Card — native embeds for Instagram/Threads, link cards for others ── */
 function HighlightCard({ highlight }: { highlight: Highlight }) {
-  const platformIcon = highlight.platform === "instagram" ? "📸" :
-    highlight.platform === "youtube" ? "▶️" :
-    highlight.platform === "threads" ? "🧵" : "🐦";
+  const isInstagram = highlight.platform === "instagram";
+  const isThreads = highlight.platform === "threads";
+
+  if (isInstagram || isThreads) {
+    return <SocialEmbed highlight={highlight} />;
+  }
+
+  // Fallback card for YouTube, Twitter, etc.
+  const platformIcon = highlight.platform === "youtube" ? "▶️" : "🐦";
   const platformLabel = highlight.platform.charAt(0).toUpperCase() + highlight.platform.slice(1);
 
   return (
@@ -595,5 +601,95 @@ function HighlightCard({ highlight }: { highlight: Highlight }) {
         {formatDate(highlight.date)} · Tap to watch →
       </div>
     </a>
+  );
+}
+
+/* ── Native Instagram / Threads embed ── */
+function SocialEmbed({ highlight }: { highlight: Highlight }) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    // Load Instagram embed script if not already present
+    const scriptId = "instagram-embed-js";
+    if (!document.getElementById(scriptId)) {
+      const script = document.createElement("script");
+      script.id = scriptId;
+      script.src = "https://www.instagram.com/embed.js";
+      script.async = true;
+      script.onload = () => {
+        if ((window as any).instgrm?.Embeds) {
+          (window as any).instgrm.Embeds.process();
+        }
+        setLoaded(true);
+      };
+      document.body.appendChild(script);
+    } else {
+      // Script already loaded, just process this new embed
+      setTimeout(() => {
+        if ((window as any).instgrm?.Embeds) {
+          (window as any).instgrm.Embeds.process();
+        }
+        setLoaded(true);
+      }, 100);
+    }
+  }, []);
+
+  // Re-process whenever component mounts (e.g. tab switch)
+  useEffect(() => {
+    if (loaded && (window as any).instgrm?.Embeds) {
+      const timer = setTimeout(() => {
+        (window as any).instgrm.Embeds.process(containerRef.current);
+      }, 200);
+      return () => clearTimeout(timer);
+    }
+  }, [loaded]);
+
+  // Clean permalink — ensure it ends with /
+  const permalink = highlight.url.endsWith("/") ? highlight.url : highlight.url + "/";
+
+  return (
+    <div ref={containerRef} style={{ minHeight: 400 }}>
+      <blockquote
+        className="instagram-media"
+        data-instgrm-permalink={permalink}
+        data-instgrm-version="14"
+        data-instgrm-captioned=""
+        style={{
+          background: "#FFF",
+          border: 0,
+          borderRadius: 12,
+          boxShadow: "0 0 1px 0 rgba(0,0,0,0.5), 0 1px 10px 0 rgba(0,0,0,0.15)",
+          margin: "0 auto",
+          maxWidth: 540,
+          minWidth: 280,
+          padding: 0,
+          width: "100%",
+        }}
+      >
+        <div style={{ padding: 16 }}>
+          <a
+            href={permalink}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              color: COLORS.darkGreen,
+              fontWeight: 600,
+              fontSize: 14,
+              textDecoration: "none",
+              display: "flex",
+              alignItems: "center",
+              gap: 8,
+            }}
+          >
+            <span style={{ fontSize: 18 }}>{highlight.platform === "instagram" ? "📸" : "🧵"}</span>
+            {highlight.caption}
+          </a>
+          <p style={{ color: COLORS.muted, fontSize: 12, marginTop: 8 }}>
+            {highlight.account} · {formatDate(highlight.date)}
+          </p>
+        </div>
+      </blockquote>
+    </div>
   );
 }

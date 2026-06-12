@@ -432,7 +432,8 @@ export default function Index() {
           </div>
         ) : null}
 
-        {/* IPL 2026 season ended — tracker removed */}
+        {/* FIFA World Cup 2026 — top of homepage */}
+        <WorldCupTracker />
 
         <HomeCategorySection
           slug={INDIA_NEWS.slug}
@@ -464,7 +465,7 @@ export default function Index() {
                 afterHeader={
                   s.slug === "technology" ? <TechBuzz category="tech" /> :
                   s.slug === "entertainment" ? <><NowInTheaters /><StreamingPicks /></> :
-                  s.slug === "sports" ? <><WorldCupTracker /><TechBuzz category="sports" /></> :
+                  s.slug === "sports" ? <TechBuzz category="sports" /> :
                   undefined
                 }
               />
