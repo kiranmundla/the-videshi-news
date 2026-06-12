@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-12T19:45:18.078883+00:00",
+  "timestamp": "2026-06-12T20:45:19.212913+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 3,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,31 +11,31 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "03fbdef9-48f7-4390-be88-c10588878c2b",
-      "headline": "He Has Captained Six ODIs. India Have Not Won a Single Series Under Him.",
-      "slug": "shubman-gill-captaincy-test-india-afghanistan-odi-2026-kohli-rohit-world-cup-2027-nri",
+      "id": "2b78549e-9738-431a-805c-077bccdf707b",
+      "headline": "India Will Lift AFSPA From Nearly All of the Northeast by Next Year. Amit Shah Says the Region Has Earned It.",
+      "slug": "amit-shah-afspa-removal-northeast-india-2027-economic-corridor-20260611",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
-        "overall_score": 7,
+        "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 8,
-          "issue": "The image of Shubman Gill aligns with the article's focus on his captaincy and performance."
+          "score": 7,
+          "issue": "The image of Amit Shah is relevant to the article's topic but does not directly depict the Northeast region or the context of AFSPA."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article acknowledges the challenging viewing times for NRI fans, connecting the content to the diaspora audience."
+          "quality": 9,
+          "note": "The article effectively connects the implications of AFSPA's rollback to the diaspora from the Northeast, discussing potential economic and social impacts."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes or reactions from NRI fans regarding the series to enhance the diaspora connection.",
-          "Add a brief historical context about India's performance in ODIs under different captains to provide depth."
+          "Consider including more specific examples of how the diaspora can engage with the Northeast post-AFSPA.",
+          "Add quotes or perspectives from diaspora members to enhance the personal connection."
         ],
         "verdict": "pass"
       },
@@ -47,9 +47,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "daa07e26-20c6-4a16-a14a-8ea80f5656b9",
-      "headline": "She Scored 105 Off 62 Balls. England Just Posted the Highest Total in Women's T20 World Cup History.",
-      "slug": "england-219-record-womens-t20-world-cup-2026-wyatt-hodge-century-india-pakistan-sunday-nri",
+      "id": "b4cd2d13-d148-43c5-9073-88bb5dd58056",
+      "headline": "India's Commerce Minister Is in Switzerland Today to Push a Trade Deal That Could Reshape Pharma Access for Millions.",
+      "slug": "piyush-goyal-switzerland-efta-tepa-pharma-trade-deal-june-2026",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -65,13 +65,49 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the tournament's significance to NRI fans, particularly highlighting the accessibility of matches and the India-Pakistan rivalry."
+          "note": "The article effectively connects the trade deal's implications for the Indian diaspora, particularly regarding access to affordable healthcare."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from players or coaches to enhance the narrative.",
-          "Include more statistics or historical context about the Women's T20 World Cup to enrich the article."
+          "Consider adding quotes from Piyush Goyal or Swiss officials to enhance the article's depth.",
+          "Include more context on how the trade deal specifically impacts the pharmaceutical landscape in India."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "b746dd49-18f4-41dd-8d92-23cf3558d454",
+      "headline": "Every Chief Minister Showed Up to NITI Aayog for the First Time. Modi Wants GDP Data Down to the District.",
+      "slug": "niti-aayog-all-28-chief-ministers-first-time-district-gdp-viksit-bharat-20260611",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses district-level GDP data, which is relevant for NRIs considering investments in India."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more direct quotes from the meeting to enhance engagement.",
+          "Add a section on how these developments might specifically impact NRIs in various sectors."
         ],
         "verdict": "pass"
       },
