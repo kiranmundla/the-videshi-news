@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-12T00:45:28.632792+00:00",
+  "timestamp": "2026-06-12T01:15:18.386408+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 6,
-    "flag": 0,
+    "pass": 1,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "e0d1b0d8-3c0f-49c7-906c-b293a50c76f5",
-      "headline": "Fewer Curry Houses, Better Curry: How Britain's Indian Restaurant Scene Is Trading Quantity for Quality",
-      "slug": "fewer-curry-houses-better-curry-britains-indian-restaurant-scene-trading",
+      "id": "1083fc0a-7e52-4c26-8e83-70a69ff4109a",
+      "headline": "Aamir Khan Is Producing a Sunny Deol Film. Twenty-Five Years After Gadar vs Lagaan, Bollywood's Greatest Rivalry Becomes Its Most Epic Collaboration.",
+      "slug": "batwara-1947-aamir-khan-sunny-deol-preity-zinta-rajkumar-santoshi-partition-drama-august-14-nri-20260612",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -21,61 +21,38 @@
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses the evolution of Indian cuisine in the UK, which is relevant to the Indian diaspora interested in culinary trends and cultural representation."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include quotes or perspectives from Indian diaspora members or chefs to strengthen the connection to the NRI audience.",
-          "Add a section discussing how these changes in the UK restaurant scene might influence Indian restaurants in other countries with significant Indian populations."
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DZWoKAeJ15M/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel does not appear to be directly related to the main topic of Aamir Khan producing a Sunny Deol film."
+          },
+          {
+            "url": "https://youtube.com/watch?v=guKpVvRufIk",
+            "problem": "irrelevant",
+            "explanation": "The YouTube link does not provide relevant content related to the film or the collaboration discussed in the article."
+          }
         ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "5997fb66-9f6f-4289-aee2-c510726446bb",
-      "headline": "Your World Cup, Your Daal: A Desi Food Guide to FIFA 2026's Host Cities",
-      "slug": "your-world-cup-your-daal-desi-food-guide-fifa-2026-host-cities",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image of food is relevant but does not specifically represent the diverse Indian cuisine mentioned in the article."
+          "issue": "The image of Sunny Deol does match the article's focus on him, but it lacks a direct connection to the film being discussed."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects with the Indian diaspora by highlighting food options in host cities and the cultural significance of food during the World Cup."
+          "note": "The article effectively connects the historical context of the Partition to the Indian diaspora, making it relevant and engaging for NRI readers."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that showcases specific Indian dishes or restaurants mentioned in the article for better visual relevance.",
-          "Add a brief section on how to prepare popular Indian snacks for watch parties to enhance engagement with the diaspora audience."
+          "Replace the irrelevant Instagram and YouTube links with embeds that directly relate to the film or the collaboration.",
+          "Consider adding more context about the significance of the film's subject matter for the diaspora audience."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DZWoKAeJ15M/",
+        "Removed irrelevant embed: https://youtube.com/watch?v=guKpVvRufIk",
         "promoted to published"
       ],
       "revised": false,
@@ -83,12 +60,21 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "4f1cda0a-3425-484f-a83f-8dd503420fe0",
-      "headline": "From Chicago to Hudson Yards: Michelin-Starred Indienne Brings a Triple Threat of Indian Dining to Manhattan",
-      "slug": "from-chicago-to-hudson-yards-michelin-starred-indienne-brings-triple-threat",
+      "id": "d1592702-2e55-49ff-ae08-4f2ddcfc68f1",
+      "headline": "Lagaan Turns 25 and Returns to Theaters This Week. The Stories Behind Its Soundtrack Are Even Better Than You Remember.",
+      "slug": "lagaan-25th-anniversary-rerelease-spotify-behind-the-beats-aamir-khan-ar-rahman-bfi-london-nri-20260612",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "c529fdf7-b314-48f7-93fb-3451bf14d465",
+            "headline": "What to Watch This Week: Akshay's Ghost, Suriya's God, and I"
+          },
+          {
+            "article_id": "7ec89845-2324-4116-b13e-3ad9a93fc679",
+            "headline": "Lagaan Returns to Cinemas This Thursday. Twenty-Five Years L"
+          }
+        ],
         "broken_embeds": []
       },
       "llm_review": {
@@ -101,121 +87,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the restaurant's opening to the Indian-American community, highlighting its significance in the evolution of Indian cuisine in the U.S."
+          "note": "The article connects to the diaspora by discussing the film's return to theaters in London, appealing to NRIs interested in Indian cinema."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes from diners or food critics to enhance the narrative.",
-          "Add a section on the anticipated impact of these restaurants on the local dining scene."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "1f2ca09f-4a1b-461d-a45a-565d023948ee",
-      "headline": "India Scrapped Bond Taxes for Foreigners. A Billion Dollars Arrived in Three Days.",
-      "slug": "india-bond-tax-exemption-foreign-investors-billion-dollar-inflows-global-index-20260612",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses benefits for NRIs, making it relevant for the diaspora audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more direct quotes from NRIs or diaspora experts to enhance the connection.",
-          "Add a brief section on how these changes might impact NRIs living abroad in terms of investment opportunities."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "423ae62d-a3c7-4f5f-82bb-8b0851070f62",
-      "headline": "India Tells the US It Does Not Have Overcapacity in Anything. Washington Disagrees.",
-      "slug": "india-rejects-us-section-301-overcapacity-textiles-steel-trade-surplus-20260612",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the trade issues to the interests of the Indian diaspora, particularly those involved in textiles and business."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more direct quotes from Indian officials to enhance credibility.",
-          "Include more context on the implications of the trade surplus for the diaspora."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "066272ab-f7a4-45b2-bea2-b7a6b16dc9bc",
-      "headline": "US Inflation Just Hit a Three-Year High. The Fed May Hike Rates. Here Is What That Means for India.",
-      "slug": "us-inflation-4-2-percent-three-year-high-fed-rate-hike-india-nri-impact-20260612",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the implications of US inflation and Fed rate hikes to NRIs, discussing mortgages, remittances, and Indian markets."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more specific examples or quotes from NRIs to enhance the personal connection.",
-          "Include a brief summary of potential long-term impacts on the Indian economy for a more comprehensive view."
+          "Include more direct quotes or anecdotes from diaspora audiences or filmmakers to strengthen the connection.",
+          "Add a brief section on the impact of *Lagaan* on Indian cinema and its significance to the NRI community."
         ],
         "verdict": "pass"
       },
