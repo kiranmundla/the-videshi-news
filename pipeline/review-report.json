@@ -1,46 +1,41 @@
 {
-  "timestamp": "2026-06-12T07:45:14.282315+00:00",
+  "timestamp": "2026-06-12T08:45:45.545400+00:00",
   "mode": "fix",
   "stats": {
     "pass": 1,
-    "flag": 1,
+    "flag": 2,
     "fail": 0,
     "error": 0
   },
-  "revisions": 0,
+  "revisions": 1,
   "unpublished": 0,
   "articles": [
     {
-      "id": "6cc470c9-12d6-4d22-a352-c20cc22c994c",
-      "headline": "She Danced in Bollywood Blockbusters. On Friday, She Performs at the World Cup.",
-      "slug": "nora-fatehi-canada-world-cup-2026-opening-ceremony-bmo-field-toronto-bollywood-diaspora-nri",
+      "id": "bff27433-a10d-4124-bed0-c2fa0b14aae7",
+      "headline": "India Just Waived Seven Years of Nuclear Import Duties. The Iran War Made It Urgent.",
+      "slug": "india-nuclear-customs-duty-waiver-energy-security-iran-war-20260612",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "8283b27c-a159-404f-b41b-5c354e2f3030",
-            "headline": "Nora Fatehi Just Landed a FIFA World Cup Song. She Performs "
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image does not directly relate to nuclear energy or the specific topic of the article."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects Nora Fatehi's performance to the Indian and South Asian diaspora, highlighting cultural significance."
+          "quality": 7,
+          "note": "The article discusses India's energy independence and nuclear policy, which may interest NRIs concerned about India's geopolitical and economic stability."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes or reactions from diaspora members regarding Fatehi's performance to enhance engagement.",
-          "Add a brief section on the significance of the World Cup for the Indian diaspora to further contextualize the event."
+          "Consider using a more relevant image that reflects nuclear energy or India's energy policy.",
+          "Add a section discussing how these changes might impact NRIs or the Indian diaspora's investments in India's energy sector."
         ],
         "verdict": "pass"
       },
@@ -52,31 +47,31 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "b3104c4c-47c6-4bbf-9e47-d72d2d9193cd",
-      "headline": "They Scored 349. It Wasn't Enough. Rain and DLS Handed Afghanistan A a Stunning Win in Dambulla.",
-      "slug": "india-a-349-not-enough-afghanistan-a-dls-win-dambulla-tri-series-prabhsimran-gaikwad-varma-nri",
+      "id": "c4447ab4-827c-463e-8a46-6e06b6a3583f",
+      "headline": "Sensex Surges 1.2%, Rupee Set to Rally as Oil Crashes to Two-Month Lows on Iran Deal Hopes",
+      "slug": "sensex-rally-rupee-oil-crash-iran-deal-friday-markets-20260612",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
-        "overall_score": 8,
+        "overall_score": 7,
         "embed_issues": [],
         "image_match": {
-          "score": 3,
-          "issue": "irrelevant"
+          "score": 6,
+          "issue": "The image does not directly relate to the article's focus on economic indicators and currency fluctuations."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 7,
-          "note": "The article discusses a cricket match involving India A, which is relevant to the Indian diaspora interested in cricket."
+          "note": "The article discusses the impact of oil prices and currency fluctuations, which are relevant to NRIs concerned about economic conditions in India."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the hero image with one that is more relevant to the match or players discussed in the article.",
-          "Consider adding quotes from players or coaches to enhance the narrative and provide more depth."
+          "Include more direct quotes from financial analysts or experts to enhance credibility.",
+          "Consider using a more relevant image that reflects the economic theme of the article."
         ],
         "verdict": "flag"
       },
@@ -84,6 +79,55 @@
         "promoted to published"
       ],
       "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "51219e21-788f-4bcc-8f9a-6868b22250a8",
+      "headline": "India's Dead Sailors Have Put Modi in a Corner. He Meets Trump at the G7 Next Week.",
+      "slug": "india-seafarer-deaths-modi-trump-g7-diplomatic-crisis-20260612",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "dc08ed57-d2f0-4285-a351-7f4463d1064f",
+            "headline": "Modi Just Became India's Longest-Serving Elected PM. The Dia"
+          },
+          {
+            "article_id": "61af84c6-b0de-4208-afeb-3e21eaf1508e",
+            "headline": "No Indian PM Has Visited Slovakia in 33 Years. Modi Is About"
+          },
+          {
+            "article_id": "be4e0584-65b9-4788-9258-82e8d316a520",
+            "headline": "Modi Heads to France and Slovakia This Week. It Is India's F"
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 6,
+        "embed_issues": [],
+        "image_match": {
+          "score": 3,
+          "issue": "The image of Modi does not directly relate to the article's focus on the maritime crisis and its geopolitical implications."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 5,
+          "note": "The article touches on the implications for Indian seafarers and their families, which may resonate with the diaspora, but the connection could be more explicit."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more direct quotes or perspectives from diaspora members affected by the maritime crisis.",
+          "Use a more relevant image that reflects the maritime context or the impact on Indian sailors."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Revised by gpt-4o-mini (721\u2192850 words)"
+      ],
+      "revised": true,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
     }
