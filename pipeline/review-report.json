@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-13T16:45:31.097845+00:00",
+  "timestamp": "2026-06-13T17:15:21.781069+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 4,
-    "flag": 1,
+    "pass": 2,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "39c31acc-1449-460a-bcab-6a2443fa9fff",
-      "headline": "He Was Bowling in the Nets in 2019. On Saturday, He Took Three Wickets on Debut.",
-      "slug": "gurnoor-brar-odi-debut-india-muktsar-punjab-nets-bowler-dharamsala-afghanistan-nri",
+      "id": "912840eb-ec5e-4daa-adbc-7b1fc5910118",
+      "headline": "Toy Story 5 Hits Indian Theaters Next Thursday. The Rest of the Summer Doesn't Stand a Chance.",
+      "slug": "toy-story-5-india-hindi-release-biggest-opening-2026-pixar-nri-20260613",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -21,165 +21,70 @@
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://youtube.com/watch?v=c51ND9Hdbw0",
+            "problem": "irrelevant",
+            "explanation": "The YouTube link is relevant as it pertains to the trailer of Toy Story 5, which is the main subject of the article."
+          }
+        ],
+        "image_match": {
+          "score": 10,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects with NRI families by discussing the film's release in India and its significance for Indian audiences, particularly in relation to cultural themes."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more quotes or insights from the cast or crew to enhance the article's depth.",
+          "Include a brief comparison of how previous Toy Story films performed in India to provide context."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://youtube.com/watch?v=c51ND9Hdbw0",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "160b02b9-e4be-49f9-b95e-04fd0bc63c94",
+      "headline": "Shaheer Sheikh Plays a Deported NRI Hunting for His Missing Brother. Ab Hoga Hisaab Is Free, Furious, and Uncomfortably Real.",
+      "slug": "ab-hoga-hisaab-shaheer-sheikh-deported-nri-canada-scam-mx-player-nri-20260613",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DZeWs6esXpo/",
+            "problem": "relevant",
+            "explanation": "The Instagram reel is relevant as it likely promotes the series and connects to the article's subject."
+          }
+        ],
         "image_match": {
           "score": 9,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article connects Brar's journey to the diaspora, particularly NRIs with roots in Punjab, highlighting a sense of pride and connection."
+          "quality": 9,
+          "note": "The article effectively connects with diaspora audiences by addressing the harsh realities of immigration and the NRI experience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from Brar or coaches to enhance the narrative.",
-          "Include more context about the significance of Brar's debut for Indian cricket."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "241145f1-39c3-4446-a87b-2e2e107a4948",
-      "headline": "He Went Unsold at INR 1.5 Crore. On Saturday, He Hit Eight Sixes Against India.",
-      "slug": "gurbaz-102-off-51-fastest-afghan-odi-century-india-dharamsala-ipl-unsold-nri",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article connects well with NRI cricket fans by discussing the implications of Gurbaz's performance and the IPL auction dynamics."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from Gurbaz or Indian players to enhance the narrative.",
-          "Include more context on the significance of Afghanistan's cricketing achievements for diaspora readers."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "c3daf22f-b5cf-46b8-9688-b40e6e1961fa",
-      "headline": "India Has Built Twenty Foundational AI Models. Five Are Already Live. The World Barely Noticed.",
-      "slug": "indiaai-mission-20-foundational-models-sarvam-bharatgen-sovereign-ai-20260613",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to AI or technology, which is the main focus of the article."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses India's advancements in AI, which is relevant to the Indian diaspora interested in technological progress and innovation in their home country."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that visually represents AI technology or Indian innovation to better match the article's content.",
-          "Include quotes or perspectives from diaspora members or Indian tech experts to enhance the connection with NRI readers."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "eb8afdb8-6b94-452a-9e4b-bf766b298bb2",
-      "headline": "Tata's iPhone Parts Factory Faces Shutdown Threat After Regulators Find Contaminated Farmland Water.",
-      "slug": "tata-iphone-factory-hosur-contamination-shutdown-threat-apple-india-20260613",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 5,
-          "issue": "The image does not directly relate to the article's focus on environmental issues and the iPhone manufacturing process."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 6,
-          "note": "The article discusses India's manufacturing ambitions, which may resonate with the Indian diaspora interested in economic developments."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include quotes or perspectives from diaspora members involved in the tech industry to enhance the connection.",
-          "Consider using a more relevant image that depicts the environmental impact or the Tata factory."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "5178b543-d0cb-4092-b0f5-ffeede6fb4b9",
-      "headline": "America's Top Trade Negotiator Will Fly to India the Week After G7. A Deal, Officials Say, Is Possible.",
-      "slug": "ustr-greer-india-visit-trade-deal-possible-g7-modi-trump-20260613",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image of Jamieson Greer is relevant as he is the subject of the article, but it does not directly illustrate the trade negotiations or the broader context of U.S.-India relations."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the trade negotiations to the Indian American diaspora, highlighting the potential impacts on their business ties and economic interests."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more direct quotes from officials to enhance credibility and engagement.",
-          "Add a brief background on the historical context of U.S.-India trade relations for better reader understanding."
+          "Consider adding quotes from the cast or crew to enhance engagement.",
+          "Include viewer testimonials or early reviews to provide additional context."
         ],
         "verdict": "pass"
       },
