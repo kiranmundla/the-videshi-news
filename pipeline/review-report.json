@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-13T06:16:11.576932+00:00",
+  "timestamp": "2026-06-13T06:45:20.079546+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 12,
-    "flag": 0,
+    "pass": 2,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,117 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "f4828746-5e4a-4694-999c-5ff891c9f07a",
-      "headline": "From Hyderabad's JNTU to Alabama's Rocket City: Srinath Ekkad Named Engineering Dean at UAH",
-      "slug": "srinath-ekkad-university-alabama-huntsville-engineering-dean-indian-or-20260613",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": "The image of the engineering building aligns well with the article's focus on UAH's College of Engineering."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects Ekkad's journey from India to the US, highlighting the broader trend of Indian-origin academics in American institutions, which resonates with the NRI audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a quote from Ekkad about his vision for the future of the engineering college to enhance personal connection.",
-          "Include more statistics or data about the impact of Indian-origin professionals in the US to strengthen the diaspora angle."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "fb4f5a5c-fd2d-47e3-bb48-39c48ac1ed95",
-      "headline": "Fifteen Languages, Three Days, One Theatre: NYIFF 2026 Is the Most Important Indian Film Festival You Have Never Heard Of",
-      "slug": "nyiff-2026-indian-film-festival-manhattan-nawazuddin-dil-chahta-hai-20260613",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the festival's significance to the diaspora experience, highlighting cultural representation and nostalgia."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from attendees or filmmakers to enhance the personal connection to the festival.",
-          "Include more details about how to access the festival online for those who cannot attend in person."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "b0f84ae4-b054-4fff-b3f5-5a7c7209ce61",
-      "headline": "Three Indian Missions, One Week, Same Warning: Stop Picking Up the Phone",
-      "slug": "consulate-scam-warnings-nri-north-america-toronto-new-york-bay-area-20260613",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively addresses the concerns of the NRI community regarding phone scams, making it relevant and engaging for diaspora readers."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes or testimonials from affected individuals to enhance the emotional impact.",
-          "Include specific steps for readers on how to report scams or protect themselves."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "bdbe36d1-ec3c-44d8-ac5f-35181b39183b",
-      "headline": "BlackRock and Lighthouse Canton Say India Has Been 'Over-Punished.' The Contrarian Case for NRI Investors Is Getting Louder.",
-      "slug": "blackrock-lighthouse-canton-india-over-punished-nri-investors-contrarian-case-20260613",
+      "id": "73a08293-f1cd-4f49-9bea-908939d21f3a",
+      "headline": "Three Ships. Three Dead Indians. And a Prime Minister Who Has Not Said a Word.",
+      "slug": "indian-seafarers-killed-us-strikes-gulf-families-grieve-modi-silence-g7-20260613",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -131,252 +23,55 @@
         "overall_score": 7,
         "embed_issues": [],
         "image_match": {
-          "score": 8,
-          "issue": "The image is relevant to the topic of investment and markets, but it lacks a direct connection to the specific content of the article."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses investment opportunities in India, which is relevant to NRI investors, but could further emphasize the diaspora's role in these investments."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include quotes or insights from NRI investors to strengthen the diaspora connection.",
-          "Add a brief section on how these investment trends specifically impact NRIs."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "110152cb-3106-4287-bfc9-b4b0d0d25b27",
-      "headline": "The Heart Scan That Saved Millions of Lives Just Got Its First AI Upgrade. For South Asians, It Could Not Have Come Sooner.",
-      "slug": "agatston-2-ai-coronary-calcium-score-upgrade-south-asian-heart-disease-risk-20260613",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively addresses the health concerns specific to South Asians, making it relevant for the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from South Asian health experts to enhance credibility.",
-          "Include patient testimonials or case studies to illustrate the impact of Agatston-2.0."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "25f75b2a-fda1-4ec5-8026-546d21398aca",
-      "headline": "A Single Brain Injection Restored Dopamine in 87% of Parkinson's Patients. The Gene Therapy Era May Have Arrived.",
-      "slug": "parkinsons-gene-therapy-bbm-p002-dopamine-phase-1-trial-south-asian-diaspora-20260613",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the topic of Parkinson's disease to the South Asian diaspora, discussing specific genetic vulnerabilities and the emotional impact on families separated by distance."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more statistics or studies related to Parkinson's disease in the diaspora to strengthen the connection.",
-          "Include quotes or insights from diaspora members or healthcare professionals to provide a personal touch."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "bb248e41-3fba-4cc8-8ac9-4ca78eb78c8a",
-      "headline": "Five-Star Hotel Bookings in India Surge 108% \u2014 and NRIs Are Part of the Reason",
-      "slug": "india-luxury-hotel-bookings-surge-nri-summer-20260613",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the surge in luxury hotel bookings to the changing preferences of NRIs, making it relevant for the diaspora audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more specific examples of NRI experiences or testimonials to enhance the personal connection.",
-          "Include a brief analysis of how this trend might impact the Indian economy or tourism sector in the long term."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "9b2bf986-9fbe-4559-98ca-e44510467238",
-      "headline": "IndiGo Launches Direct Bangkok\u2013Varanasi Flights \u2014 and the Internet Can't Stop Laughing",
-      "slug": "indigo-bangkok-varanasi-direct-flight-nri-20260613",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly represent the specific route or destinations mentioned in the article."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively highlights the benefits of the new route for the Indian American diaspora, making it relevant and engaging."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider including a relevant image that depicts either Varanasi or the flight route to enhance visual connection.",
-          "Add a quote or social media reaction to further illustrate the public's response to the new route."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "9b4965b6-88c7-41d6-89b9-9b663ba22dfb",
-      "headline": "India Dominates Skytrax's Best Regional Airports \u2014 and NRIs Flying Home Will Notice the Difference",
-      "slug": "india-skytrax-best-regional-airports-nri-20260613",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively highlights the improvements in regional airports that directly benefit NRIs, making the connection relevant and natural."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes or testimonials from NRIs who have experienced the improvements at these airports for a more personal touch.",
-          "Include a brief comparison of the regional airports with major international airports to emphasize the improvements."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "0cee3d28-c96e-4af5-a6ee-eb1116b8c5b1",
-      "headline": "TCS Will Have as Many AI Agents as Human Employees Within Three Years. That Is Not a Metaphor.",
-      "slug": "tcs-500k-ai-agents-chandrasekaran-agm-hiring-20260613",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "0879f0c5-1445-437b-ba44-07a1bcc6fa05",
-            "headline": "TCS Partners With Anthropic to Put Claude in the Hands of 50"
-          },
-          {
-            "article_id": "5dea7f35-eeb8-4396-b401-237f6ba288d5",
-            "headline": "Half a Million AI Agents, Half a Million Humans \u2014 TCS Just T"
-          },
-          {
-            "article_id": "fc3c98db-a684-450c-9fa9-57cf82abd5aa",
-            "headline": "TCS Just Partnered with the AI Company That Wiped $63 Billio"
-          },
-          {
-            "article_id": "cd111ead-a101-43e0-9525-82e217e23598",
-            "headline": "Tata Electronics Wants a $30 Billion Chip Empire. The Dholer"
-          }
-        ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
           "score": 5,
-          "issue": "The image does not directly relate to the article's focus on AI and TCS's workforce changes."
+          "issue": "The image does not directly relate to the article's topic of geopolitical tensions and the specific incident involving Indian sailors."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article discusses the implications for TCS employees in the US, which connects to the NRI audience."
+          "quality": 8,
+          "note": "The article discusses the impact of geopolitical events on Indian nationals, which resonates with the diaspora community concerned about the safety of Indian citizens abroad."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that reflects AI technology or TCS's workforce.",
-          "Expand on the implications for the Indian diaspora in the tech industry, particularly regarding employment opportunities."
+          "Include more context on the implications for Indian seafarers and their families to enhance the diaspora connection.",
+          "Consider using a more relevant image that reflects the geopolitical theme or the maritime context of the article."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "08b2083b-b2e3-4d40-bd88-77890a189d0f",
+      "headline": "A Republican Lawmaker Wants to Codify the $100,000 H-1B Fee That a Judge Just Killed. Congress May Succeed Where Trump Failed.",
+      "slug": "protect-act-100000-h1b-fee-mike-kennedy-congress-codify-trump-ruling-20260613",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 6,
+          "issue": "The image does not directly relate to the topic of immigration or H-1B visas."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the implications of H-1B visa legislation on Indian tech workers, which is highly relevant to the Indian diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that directly represents immigration or H-1B visas to enhance relevance.",
+          "Add more context on how the proposed legislation might affect Indian professionals specifically."
         ],
         "verdict": "pass"
       },
@@ -388,9 +83,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "8312592e-5f06-4282-87a5-2e936e3ec192",
-      "headline": "A Federal Judge Just Killed the $100,000 H-1B Fee. Here's What That Actually Changes.",
-      "slug": "h1b-100k-fee-struck-down-judge-indian-workers-20260613",
+      "id": "b1049db4-6434-470d-8f15-340628b6a063",
+      "headline": "India Will Miss Its Budget Target for the First Time Since the Pandemic. The Iran War Just Blew a Hole in the Deficit.",
+      "slug": "india-fiscal-deficit-4-8-percent-iran-war-oil-subsidy-budget-miss-pandemic-20260613",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -401,54 +96,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image does not directly relate to the topic of H-1B visas or immigration."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article discusses the impact of the H-1B fee ruling specifically on Indian professionals, making it highly relevant to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that directly relates to H-1B visas or Indian professionals in the tech industry.",
-          "Add a section discussing potential future implications for Indian professionals in the U.S. job market."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "c6066753-6519-4af0-bf8c-0270a78e5ab8",
-      "headline": "Adobe Is Losing Both Its CEO and Its CFO. The Freemium Bet Is All That's Left.",
-      "slug": "adobe-ceo-cfo-exits-freemium-ai-pivot-20260613",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": "The image of Shantanu Narayen matches the article's focus on Adobe's leadership changes."
+          "issue": "The image of V. Anantha Nageswaran is relevant as he is mentioned in the article, but it does not directly relate to the headline about the budget target and the Iran war."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively highlights Narayen's significance as an Indian-origin CEO, connecting well with the Indian diaspora."
+          "note": "The article discusses fiscal implications that directly affect NRIs, making the connection relevant and natural."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more direct quotes from Narayen or other executives to enhance the narrative.",
-          "Include a brief analysis of how Narayen's departure might impact Adobe's future strategy, particularly in relation to the Indian tech community."
+          "Consider using a more directly related image that reflects the economic impact of the Iran war on India's budget.",
+          "Add a brief section summarizing the potential long-term effects on NRIs to enhance the diaspora angle."
         ],
         "verdict": "pass"
       },
