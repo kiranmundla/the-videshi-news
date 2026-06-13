@@ -73,6 +73,8 @@ function pageShell(opts: {
   body: string;
   canonical?: string;
   noindex?: boolean;
+  publishedTime?: string;
+  section?: string;
 }): string {
   const ogType = opts.type || "website";
   const image = opts.image || `${SITE}/og-default.jpg`;
@@ -92,6 +94,8 @@ ${opts.noindex ? '<meta name="robots" content="noindex">' : ""}
 <meta property="og:url" content="${esc(opts.url)}">
 <meta property="og:image" content="${esc(image)}">
 <meta property="og:site_name" content="The Videshi">
+${opts.publishedTime ? `<meta property="article:published_time" content="${esc(opts.publishedTime)}">` : ""}
+${opts.section ? `<meta property="article:section" content="${esc(opts.section)}">` : ""}
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="${esc(opts.title)}">
 <meta name="twitter:description" content="${esc(opts.description)}">
@@ -215,16 +219,22 @@ async function renderCategory(category: string): Promise<string | null> {
 async function renderArticle(slug: string): Promise<string | null> {
   const rows = await sbFetch(
     "p2_articles",
-    "headline,subheadline,body,image_url,image_caption,slug,category,published_at,is_editorial",
+    "headline,subheadline,body,image_url,image_caption,slug,category,published_at,updated_at,is_editorial",
     `slug=eq.${encodeURIComponent(slug)}&status=eq.published`,
     1
   );
   if (!rows.length) return null;
 
   const a = rows[0];
+  // If body is empty/null, treat as not-found to avoid soft 404
+  if (!a.body || a.body.trim().length < 50) return null;
+
   const bodyHtml = toParagraphs(stripMarkdown(a.body || ""));
   const url = `${SITE}/articles/${a.slug}`;
   const pubDate = a.published_at || "";
+  const modDate = a.updated_at || pubDate;
+  const category = a.category || "News";
+  const categoryPath = category.toLowerCase().replace(/\s+&\s+/g, "-").replace(/\s+/g, "-");
 
   return pageShell({
     title: `${a.headline} — The Videshi`,
@@ -232,6 +242,8 @@ async function renderArticle(slug: string): Promise<string | null> {
     url,
     image: a.image_url,
     type: "article",
+    publishedTime: pubDate,
+    section: category,
     jsonLd: {
       "@context": "https://schema.org",
       "@type": "NewsArticle",
@@ -239,6 +251,10 @@ async function renderArticle(slug: string): Promise<string | null> {
       description: a.subheadline || "",
       image: a.image_url || `${SITE}/og-default.jpg`,
       datePublished: pubDate,
+      dateModified: modDate,
+      articleSection: category,
+      inLanguage: "en",
+      isAccessibleForFree: true,
       author: { "@type": "Organization", name: "The Videshi" },
       publisher: {
         "@type": "Organization",
@@ -254,7 +270,16 @@ async function renderArticle(slug: string): Promise<string | null> {
   ${a.image_url ? `<img src="${esc(a.image_url)}" alt="${esc(a.headline)}">` : ""}
   <p>By Editor's Desk · ${pubDate ? new Date(pubDate).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" }) : ""}</p>
   ${bodyHtml}
-</article>`,
+</article>
+<script type="application/ld+json">${JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: SITE },
+    { "@type": "ListItem", position: 2, name: category, item: `${SITE}/${categoryPath}` },
+    { "@type": "ListItem", position: 3, name: a.headline },
+  ],
+})}</script>`,
   });
 }
 

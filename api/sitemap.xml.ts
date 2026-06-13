@@ -81,8 +81,8 @@ export default async function handler(_req: VercelRequest, res: VercelResponse) 
 
     // Fetch all data in parallel
     const [articles, events, listings, classifieds, cars] = await Promise.all([
-      fetchAll("p2_articles", "slug,published_at,category", "status=eq.published&order=published_at.desc"),
-      fetchAll("events", "slug,date,updated_at", `date=gte.${today}&order=date.asc`),
+      fetchAll("p2_articles", "slug,headline,published_at,category", "status=eq.published&order=published_at.desc"),
+      fetchAll("events", "slug,date,updated_at", "order=date.desc"),
       fetchAll("directory_listings", "slug,updated_at", "order=updated_at.desc"),
       fetchAll("classifieds", "slug,updated_at", `status=eq.active&expires_at=gte.${now}&order=created_at.desc`),
       fetchAll("cars", "slug,updated_at", "order=sort_order.asc"),
@@ -128,22 +128,31 @@ export default async function handler(_req: VercelRequest, res: VercelResponse) 
     <loc>${escapeXml(SITE + "/articles/" + article.slug)}</loc>
     <lastmod>${pubDate.split("T")[0]}</lastmod>
     <changefreq>${isRecent ? "hourly" : "weekly"}</changefreq>
-    <priority>${isRecent ? "0.9" : "0.7"}</priority>
+    <priority>${isRecent ? "0.9" : "0.7"}</priority>${isRecent && article.headline ? `
+    <news:news>
+      <news:publication>
+        <news:name>The Videshi</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>${pubDate}</news:publication_date>
+      <news:title>${escapeXml(article.headline)}</news:title>
+    </news:news>` : ""}
   </url>
 `;
     }
 
-    // Event pages
+    // Event pages (include past events so Google doesn't 404 them)
     for (const event of events) {
       if (!event.slug) continue;
       const lastmod = event.updated_at
         ? new Date(event.updated_at).toISOString().split("T")[0]
         : today;
+      const isFuture = event.date >= today;
       xml += `  <url>
     <loc>${escapeXml(SITE + "/events/" + event.slug)}</loc>
     <lastmod>${lastmod}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <changefreq>${isFuture ? "weekly" : "monthly"}</changefreq>
+    <priority>${isFuture ? "0.7" : "0.4"}</priority>
   </url>
 `;
     }

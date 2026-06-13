@@ -337,24 +337,54 @@ _MIN_WORDS_FOR_INLINE = 200
 
 def extract_entities(headline, body):
     """Extract notable entities (people, places, orgs) from headline + first few paragraphs.
-    Returns a list of (entity, context_sentence) tuples, most important first."""
-    text = headline + "\n\n" + "\n\n".join(body.split("\n\n")[:4])
+    Returns a list of entity names, most important first."""
+    # Work line-by-line to avoid matching across paragraphs
+    paras = (headline + "\n\n" + "\n\n".join(body.split("\n\n")[:4])).split("\n")
+    text_lines = [l.strip() for l in paras if l.strip()]
 
     entities = []
     seen = set()
 
-    # Pattern 1: Capitalized multi-word names (most likely people/places/orgs)
-    for m in re.finditer(r'\b([A-Z][a-z]+(?:\s+(?:(?:de|von|van|al|el|bin|the|of)\s+)?[A-Z][a-z]+){1,3})\b', text):
-        name = m.group(1).strip()
-        if name.lower() in _SKIP_ENTITIES or len(name) < 4:
-            continue
-        key = name.lower()
-        if key not in seen:
-            seen.add(key)
-            entities.append(name)
+    # Common English words and verbs to strip from matches
+    _STRIP_TRAILING = {
+        "confirms", "unveils", "launches", "announces", "reveals", "says", "joins",
+        "signs", "wins", "loses", "beats", "enters", "leaves", "faces", "leads",
+        "hits", "crosses", "blocks", "delivers", "opens", "returns", "plays",
+        "backs", "calls", "cuts", "drops", "eyes", "fires", "gets", "gives",
+        "grabs", "hails", "inks", "kicks", "lifts", "makes", "moves", "names",
+        "picks", "pulls", "pushes", "puts", "raises", "runs", "sees", "sets",
+        "shows", "slams", "sparks", "takes", "talks", "targets", "tells",
+        "tests", "tops", "turns", "urges", "wants", "warns",
+        "film", "movie", "show", "series", "game", "match", "deal", "plan",
+        "new", "big", "top", "first", "next", "last", "old",
+        "annual", "press", "developer", "conference", "summit", "forum",
+        "report", "study", "survey", "review", "update", "statement",
+    }
 
-    # Pattern 2: Known place patterns
-    for m in re.finditer(r'\b(New Delhi|Washington D\.?C\.?|Silicon Valley|Wall Street|Bollywood|Hollywood|Mumbai|Chennai|Hyderabad|Bangalore|Bengaluru)\b', text, re.IGNORECASE):
+    for line in text_lines:
+        # Pattern: Capitalized multi-word names (2-4 words)
+        for m in re.finditer(r'\b([A-Z][a-z]+(?:\s+(?:(?:de|von|van|al|el|bin|the|of)\s+)?[A-Z][a-z]+){1,3})\b', line):
+            name = m.group(1).strip()
+            # Strip trailing common words/verbs
+            words = name.split()
+            while len(words) > 1 and words[-1].lower() in _STRIP_TRAILING:
+                words.pop()
+            # Strip leading filler words
+            _STRIP_LEADING = {"new", "big", "top", "first", "last", "old", "annual", "latest", "recent", "former", "current"}
+            while len(words) > 1 and words[0].lower() in _STRIP_LEADING:
+                words.pop(0)
+            name = " ".join(words)
+
+            if name.lower() in _SKIP_ENTITIES or len(name) < 4 or len(name.split()) < 2:
+                continue
+            key = name.lower()
+            if key not in seen:
+                seen.add(key)
+                entities.append(name)
+
+    # Pattern 2: Known place patterns (single-word places that are notable)
+    full_text = "\n".join(text_lines)
+    for m in re.finditer(r'\b(New Delhi|Washington D\.?C\.?|Silicon Valley|Wall Street|Bollywood|Hollywood|Mumbai|Chennai|Hyderabad|Bangalore|Bengaluru)\b', full_text, re.IGNORECASE):
         name = m.group(1).strip()
         key = name.lower()
         if key not in seen:
@@ -406,22 +436,14 @@ def insert_inline_images(body, images):
 
     # Calculate insertion points — evenly spaced, skip first paragraph
     n_images = len(images)
-    # Space them out: after paragraph 2, 4, 6, etc.
     step = max(2, (len(paragraphs) - 1) // (n_images + 1))
-    insert_points = []
-    pos = step
-    for img in images:
-        if pos >= len(paragraphs):
-            pos = len(paragraphs) - 1
-        insert_points.append(pos)
-        pos += step
 
     # Insert in reverse order so indices stay valid
-    for i, (entity, url, caption) in reversed(list(zip(range(len(images)), *zip(*[(e, u, c) for e, u, c in images])))):
-        if i < len(insert_points):
-            idx = insert_points[i]
-            img_md = f"\n\n![{caption}]({url})\n"
-            paragraphs.insert(idx, img_md)
+    for i in range(len(images) - 1, -1, -1):
+        entity, url, caption = images[i]
+        idx = min(step * (i + 1), len(paragraphs) - 1)
+        img_md = f"\n![{caption}]({url})\n"
+        paragraphs.insert(idx, img_md)
 
     return "\n\n".join(paragraphs)
 
@@ -527,7 +549,7 @@ def get_recent_articles(hours=24, category=None):
     if category:
         params["category"] = f"eq.{category}"
 
-    r = _session.get(f"{SUPABASE_URL}/rest/v1/p2_articles", params=params, headers=HEADERS, timeout=30)
+    r = _session.get(f"{SUPABASE_URL}/rest/v1/p2_articles", params=params, headers=HEADERS, timeout=60)
     return r.json() if r.status_code == 200 else []
 
 
