@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-13T11:15:11.974665+00:00",
+  "timestamp": "2026-06-13T12:15:49.898578+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
+    "pass": 8,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,17 +11,84 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "9a647fe2-d096-4cf7-95fa-5de42bd6f75c",
-      "headline": "Hrithik Roshan Just Signed With the Company Behind Spotlight and The Revenant. Hollywood Should Be Nervous.",
-      "slug": "hrithik-roshan-anonymous-content-hollywood-war-2-krrish-4-nri-20260613",
+      "id": "b993bee9-037b-44a8-addd-0059ab4ccd7b",
+      "headline": "USCIS Made the NIW a Coin Flip \u2014 What Indian Professionals Need to Know",
+      "slug": "niw-approval-rate-collapse-uscis-indian-professionals-20260613",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "8fb8e255-ed82-486b-9410-511b294771db",
-            "headline": "Hrithik Roshan Just Signed With the Company Behind Spotlight"
-          }
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the topic of immigration or the NIW process."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article directly addresses Indian professionals and their immigration challenges, making it highly relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that visually represents immigration or the NIW process to enhance relevance.",
+          "Add a section summarizing actionable steps for Indian professionals to navigate the new NIW landscape."
         ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "cdb9d3c8-dd0f-4cd4-ad1d-d6bfbe74d2a8",
+      "headline": "The Green Card Queue Is Shrinking \u2014 What 62,000 Indian Workers Need to Know",
+      "slug": "green-card-queue-shrinking-uscis-i485-inventory-india-eb1-eb2-20260613",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the topic of immigration or green cards."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article provides valuable information for Indian workers navigating the green card process, which is highly relevant to the NRI community."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that visually represents immigration or green card processes to enhance relevance.",
+          "Add a brief summary or conclusion that emphasizes the implications of the data for Indian workers."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "c8e091ee-2bb4-42ea-bdbd-9aa93d1d28f1",
+      "headline": "Fifty Years of Chariots on Fifth Avenue: New York's Ratha Yatra Marks a Half-Century of Krishna in America",
+      "slug": "nyc-ratha-yatra-50th-anniversary-iskcon-fifth-avenue-20260613",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
@@ -34,13 +101,202 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects Hrithik Roshan's career to the NRI audience, highlighting his global appeal and significance in the diaspora."
+          "note": "The article effectively connects the Ratha Yatra to the Indian diaspora experience in America, highlighting its evolution and significance for Indian Americans."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more quotes or insights from industry experts to enhance credibility.",
-          "Include a brief section on how this deal might impact the perception of Indian actors in Hollywood."
+          "Consider adding quotes from participants or organizers to enhance the personal connection to the event.",
+          "Include more details about the cultural performances and vendors to give readers a better sense of what to expect."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "89e4db47-559d-432e-b227-ddfe74ff3f10",
+      "headline": "Indian Banks Are Racing to Offer NRIs Up to 7.1% on Dollar Deposits. The RBI Engineered the Whole Thing.",
+      "slug": "rbi-fcnr-nri-deposit-rate-war-banks-dollar-returns-20260613",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article directly addresses NRIs by discussing the benefits of the RBI's new scheme for dollar deposits, making it relevant to the diaspora audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include a brief explanation of what FCNR deposits are for readers who may not be familiar with the term.",
+          "Add quotes or insights from financial experts or NRI clients to enhance the article's depth and credibility."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "9d6d136d-a4bb-4f42-a364-0f168ac5d427",
+      "headline": "Twenty-One Years, One Gopuram: Berlin's Sri Ganesha Temple Opens as One of Europe's Largest Hindu Shrines",
+      "slug": "sri-ganesha-temple-berlin-europe-largest-hindu-diaspora-20260613",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 10,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively highlights the significance of the temple for the Indian diaspora in Germany, showcasing their contributions and the cultural importance of the temple."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include quotes from community members or temple officials to add a personal touch.",
+          "Provide more context on the historical significance of Hindu temples in Europe."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "7d8369fc-82af-45a6-975b-a3406ab8d568",
+      "headline": "Microsoft Cuts Half Its Azure Team in China. The AI Engineers Were Spared.",
+      "slug": "microsoft-azure-china-layoffs-ai-teams-spared-20260613",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "5a7d3584-8354-4662-9e81-d8255f986e56",
+            "headline": "GitHub Copilot's $29 Bill Just Became $750 \u2014 and India's Dev"
+          },
+          {
+            "article_id": "d7612a5a-581b-4dc1-8a96-e1c4d69fbdac",
+            "headline": "Nadella's Agent 365 Goes Live \u2014 and 332,000 Consultants Just"
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image of Satya Nadella is relevant as he is the CEO of Microsoft, but it does not directly depict the Azure team or the layoffs discussed."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article connects well with NRI readers by discussing the implications of Microsoft's strategy on Indian engineers and the broader tech landscape."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including a more direct visual representation of the Azure team or cloud infrastructure to enhance the image relevance.",
+          "Add quotes or insights from Indian engineers or industry experts to strengthen the diaspora connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "8adb920a-2b00-45f0-8aa1-924023e9f8c0",
+      "headline": "UPI Now Works in Nine Countries. The Transaction Numbers Are Staggering.",
+      "slug": "upi-nepal-corridor-nine-countries-record-transactions-20260613",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the UPI expansion to the practical needs and strategic interests of the Indian diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more statistics or examples of how UPI has impacted the diaspora directly.",
+          "Include quotes from experts or users to enhance the narrative and provide personal perspectives."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "84984cd5-19f6-4b98-ac9c-7e07f78dafd1",
+      "headline": "Iowa Fires 200 State IT Workers and Hands the Whole Operation to Cognizant",
+      "slug": "iowa-cognizant-state-it-outsourcing-h1b-20260613",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article connects well with the Indian diaspora by discussing the implications of the outsourcing deal on H-1B visa holders and Indian IT professionals in the U.S."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more direct quotes from affected workers or union representatives to enhance the human element of the story.",
+          "Provide additional context on the implications of such outsourcing deals for the broader tech industry and job market."
         ],
         "verdict": "pass"
       },
