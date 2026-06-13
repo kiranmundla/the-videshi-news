@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-13T01:15:19.802157+00:00",
+  "timestamp": "2026-06-13T01:45:16.278387+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
-    "flag": 1,
+    "pass": 2,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,42 +11,40 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "65812c9d-e71d-4f6c-ba24-4dd4003717aa",
-      "headline": "Kriti Sanon Just Crashed Bollywood's Most Exclusive Club. The Data Proves She Belongs.",
-      "slug": "kriti-sanon-ormax-top-5-bollywood-actress-cocktail-2-alia-deepika-nri-20260612",
+      "id": "eb908135-75c7-4b12-b3a6-0a82fb3ef692",
+      "headline": "They Have Played Four ODIs in Eight Years. On Saturday, India and Afghanistan Finally Get a Bilateral Series.",
+      "slug": "india-afghanistan-first-bilateral-odi-series-dharamsala-rashid-khan-kohli-absent-2026-nri",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "c91c9dfb-309b-48b6-9a71-ba783c333d55",
+            "headline": "India Will Play Twenty ODIs Before the 2027 World Cup. The A"
+          }
+        ],
         "broken_embeds": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/reel/DZZxmk5g-w5/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram reel does not appear to be directly related to Kriti Sanon's rise in Bollywood or the upcoming film 'Cocktail 2'."
-          }
-        ],
+        "embed_issues": [],
         "image_match": {
           "score": 9,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article discusses Bollywood dynamics which may resonate with the Indian diaspora, but it could further emphasize the impact of Kriti Sanon's success on NRI audiences."
+          "quality": 8,
+          "note": "The article connects well with NRI readers by highlighting the significance of Afghan players in the IPL and their growing presence in Indian cricket."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant Instagram embed with a more relevant source or remove it altogether.",
-          "Include a quote or perspective from an NRI or diaspora member regarding Kriti Sanon's impact on Bollywood to strengthen the diaspora angle."
+          "Consider adding quotes from players or coaches to enhance the narrative.",
+          "Include more historical context about the relationship between Indian and Afghan cricket to deepen the reader's understanding."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/reel/DZZxmk5g-w5/",
         "promoted to published"
       ],
       "revised": false,
@@ -54,51 +52,35 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "cc005006-4469-4ade-9eac-896ef533044c",
-      "headline": "Nora Fatehi Just Took the Stage at the World Cup. Bollywood Has Never Had This Kind of Night.",
-      "slug": "nora-fatehi-fifa-world-cup-2026-opening-ceremony-toronto-siir-siir-bollywood-nri-20260612",
+      "id": "6d1caea5-c803-41a7-afb9-d1c026ddbca0",
+      "headline": "Qatar, Switzerland, and Seventy Thousand Empty Seats in Silicon Valley. The World Cup Comes to the Bay Area.",
+      "slug": "qatar-switzerland-levis-stadium-bay-area-world-cup-2026-nri-silicon-valley-guide",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "8283b27c-a159-404f-b41b-5c354e2f3030",
-            "headline": "Nora Fatehi Just Landed a FIFA World Cup Song. She Performs "
-          },
-          {
-            "article_id": "6cc470c9-12d6-4d22-a352-c20cc22c994c",
-            "headline": "She Danced in Bollywood Blockbusters. On Friday, She Perform"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/reel/DZXXboDKw62/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram reel does not appear to be directly related to the World Cup performance or Nora Fatehi's role in it."
-          }
-        ],
+        "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image of Nora Fatehi does not directly depict her performance at the World Cup, which could enhance the article's relevance."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects Nora Fatehi's journey and performance to the Indian diaspora, highlighting her unique background and appeal."
+          "quality": 8,
+          "note": "The article effectively connects the World Cup event to the Indian diaspora in the Bay Area, highlighting their unique experience and engagement with the event."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the Instagram embed with a more relevant link that showcases Nora Fatehi's performance at the World Cup.",
-          "Consider adding a quote from Nora Fatehi about her experience performing at the World Cup to enhance the personal connection."
+          "Include quotes or anecdotes from local Indian Americans to enhance the personal connection to the event.",
+          "Add more details about the cultural significance of the World Cup for the Indian community in the Bay Area."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/reel/DZXXboDKw62/",
         "promoted to published"
       ],
       "revised": false,
