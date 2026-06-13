@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-13T02:15:31.622105+00:00",
+  "timestamp": "2026-06-13T02:45:27.337431+00:00",
   "mode": "fix",
   "stats": {
     "pass": 5,
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "a2301462-b154-45f7-9dd2-6aef370323d2",
-      "headline": "Vedanta Splits Into Five: Four Demerged Companies Hit the Stock Market on Monday. Here Is What NRI Investors Need to Know.",
-      "slug": "vedanta-demerger-four-entities-listing-june-15-nri-investor-guide-20260612",
+      "id": "2828f809-d0f4-4f35-bedc-bb8683fee69e",
+      "headline": "South India Now Carries More Air Passengers Than the North and West Combined. The Gap Is Still Growing.",
+      "slug": "south-india-aviation-dominance-bengaluru-hyderabad-kerala-airport-passengers-20260613",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -24,90 +24,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image does not directly relate to the topic of Vedanta's corporate restructuring or the stock market."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article provides relevant information for NRI investors regarding the demerger and its implications for trading."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that directly represents the stock market or corporate restructuring to enhance relevance.",
-          "Add a brief section on how NRI investors can navigate the new trading landscape post-demerger."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "045dadfd-81d6-4986-9141-41b3cd513000",
-      "headline": "Americans Born After 1970 Are Dying Faster Than Their Parents Did. The Data Is Alarming.",
-      "slug": "americans-born-after-1970-dying-faster-tufts-mortality-south-asian-diaspora-20260612",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image depicts a general health-related theme but does not specifically relate to the mortality data discussed in the article."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the health outcomes discussed to the Indian diaspora, highlighting the implications for first-generation immigrants and their children."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more specific image that directly relates to the themes of mortality and health trends among younger generations.",
-          "Expand on the diaspora angle by including specific statistics or anecdotes related to the Indian community's health outcomes in the U.S."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "5c056535-f199-4c5b-98be-3148ab3b0f49",
-      "headline": "The Joint Pain Pill Millions Take May Be Accelerating Alzheimer's. A 60,000-Patient Study Just Flagged It.",
-      "slug": "glucosamine-alzheimers-risk-nature-metabolism-south-asian-diaspora-20260612",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image depicts a person holding a pill bottle, which is relevant to the topic of glucosamine supplements, but it lacks a direct connection to Alzheimer's or joint pain specifically."
+          "issue": "The image does not directly relate to the topic of air travel or airports."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects the findings to the Indian diaspora, highlighting the prevalence of glucosamine use and the specific health risks faced by South Asians."
+          "note": "The article effectively connects the aviation trends in South India to the experiences and needs of the NRI community, particularly those working in tech and the Gulf."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider including more specific statistics or quotes from South Asian health experts to strengthen the diaspora angle.",
-          "Add a section on alternative treatments for joint pain that may be safer based on the study's findings."
+          "Consider using an image that directly represents air travel or airports to enhance relevance.",
+          "Add more statistics or quotes from industry experts to strengthen the analysis of the aviation trends."
         ],
         "verdict": "pass"
       },
@@ -119,17 +47,12 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "b5630a25-8ace-4eaa-a7f7-47f254ae19d0",
-      "headline": "A 350-Year-Old Maharaja's Palace Is Now an Oberoi \u2014 and NRIs Finally Have a Reason to Visit Khajuraho",
-      "slug": "oberoi-rajgarh-palace-khajuraho-nri-heritage-20260613",
+      "id": "8362d380-ba7f-4d0f-896a-4aebff4ad9ab",
+      "headline": "Sixty-Four of Eighty TMC Lawmakers Have Abandoned Mamata Banerjee. The Party She Built Is Splitting in Two.",
+      "slug": "tmc-split-mamata-banerjee-ritabrata-rebel-64-mlas-abhishek-west-bengal-20260613",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "3ddf1910-92f0-42d9-9012-681c08c8269f",
-            "headline": "India's Oberoi Rajgarh Palace Just Made the World's 16 Most "
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
@@ -142,13 +65,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the luxury hotel experience to the interests of NRIs, highlighting the appeal of Khajuraho as a unique travel destination."
+          "note": "The article effectively connects the political situation in West Bengal to the interests of the Bengali diaspora, highlighting the cultural and political significance of TMC."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include a quote or testimonial from an NRI who has visited the Oberoi Rajgarh Palace to add a personal touch.",
-          "Provide more details on how to book a stay or any special packages for NRIs."
+          "Consider adding quotes from diaspora members to enhance the personal connection.",
+          "Include more context on the implications of the TMC split for future elections to deepen the analysis."
         ],
         "verdict": "pass"
       },
@@ -160,9 +83,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "e0ce2f61-8606-4f3c-a336-90e51652c83f",
-      "headline": "Jaipur Just Got India's First Japanese-Inspired Luxury Resort \u2014 and NRI Wedding Season Will Never Be the Same",
-      "slug": "ananta-jaipur-japanese-luxury-resort-nri-weddings-20260613",
+      "id": "e19c2df9-813a-4e6f-aca8-fac58d11995c",
+      "headline": "India Unveils Project Kusha, Its Homegrown Answer to Russia's S-400. Rajnath Singh Says It Already Proved Itself in Combat.",
+      "slug": "project-kusha-india-indigenous-s400-rajnath-singh-operation-sindoor-drdl-20260613",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -172,19 +95,117 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 5,
-          "issue": "The image does not match the article's topic about a Japanese-inspired luxury resort."
+          "score": 7,
+          "issue": "The image features Rajnath Singh, which is relevant to the article, but it does not directly depict Project Kusha."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects with NRI readers by discussing the resort's appeal for destination weddings and family travel."
+          "quality": 8,
+          "note": "The article effectively connects Project Kusha to the Indian diaspora by discussing its implications for India's defence ecosystem and opportunities for Indian-origin professionals abroad."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the hero image with one that showcases the Ananta Spa & Resort or reflects its Japanese-inspired design.",
-          "Include quotes from the resort management or wedding planners to add depth and credibility to the article."
+          "Consider including a more direct image related to Project Kusha to enhance visual relevance.",
+          "Add quotes or insights from diaspora professionals to strengthen the connection further."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "1dbaeca7-3b58-4306-a426-f14345a3aecb",
+      "headline": "Meta Will Build Its First AI Data Centre in India. Reliance Will Run It From Ambani's Jamnagar Complex.",
+      "slug": "meta-reliance-ai-data-centre-jamnagar-168-mw-india-first-built-to-suit-20260613",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "c0411dc2-8bd6-4e33-88f9-2984d3d9144f",
+            "headline": "Reliance and Meta Are Building India's First Hyperscale AI D"
+          },
+          {
+            "article_id": "239ae692-1b34-473d-88b9-ada4999f17eb",
+            "headline": "Meta and Reliance to Build India's First AI Data Centre in J"
+          },
+          {
+            "article_id": "4ca14a70-12f6-4ca0-ad63-96aa40d63c21",
+            "headline": "Meta Picks Ambani's Jamnagar for Its First India AI Data Cen"
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 3,
+          "issue": "The image of Mukesh Ambani does not directly relate to the AI data centre topic."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the development to Indian tech professionals and NRI investors, highlighting opportunities and growth."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that directly represents AI data centres or the collaboration between Meta and Reliance.",
+          "Add more specific examples of potential job roles or opportunities for diaspora professionals in the context of the new data centre."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "bf63e951-87ed-4f71-9de0-903b29f1d687",
+      "headline": "India Is Preparing to Miss Its Budget Deficit Target for the First Time Since the Pandemic. The Iran War Is the Reason.",
+      "slug": "india-fiscal-deficit-4-8-percent-gdp-iran-war-energy-subsidy-pandemic-miss-20260613",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "cfb39575-48a1-4e35-835e-770f7f0c8dba",
+            "headline": "India's Fertiliser Bill Has Doubled in Three Months. The Ira"
+          },
+          {
+            "article_id": "7517e76d-1568-42f1-9b29-e5d7d371bf51",
+            "headline": "India Is Preparing to Let Its Fiscal Deficit Blow Past Targe"
+          },
+          {
+            "article_id": "390fc300-0a15-4b50-88fe-dfafd968db01",
+            "headline": "India Opens Insurance to 100% Foreign Ownership \u2014 What NRIs "
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 6,
+          "issue": "The image of Nirmala Sitharaman does not directly relate to the article's focus on the budget deficit and the Iran war."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively discusses the implications of India's fiscal situation on NRIs, particularly regarding remittances and investment opportunities."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that more directly relates to the topic of India's budget deficit or the impact of the Iran war.",
+          "Expand on the potential long-term effects of the fiscal deficit on the Indian economy and diaspora investments."
         ],
         "verdict": "pass"
       },
