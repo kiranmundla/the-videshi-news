@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-13T08:15:16.594328+00:00",
+  "timestamp": "2026-06-13T08:45:47.905674+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
-    "flag": 1,
+    "pass": 8,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,45 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "7cc2c2b6-8948-4691-8a47-f28599bc06c9",
-      "headline": "Three Dead Sailors, One H-1B Wishlist \u2014 Modi Goes to the G7 With Blood on the Agenda",
-      "slug": "modi-g7-dead-sailors-h1b-diplomatic-bind-20260613",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 4,
-          "issue": "The image does not directly relate to the article's topic of maritime incidents and immigration discussions."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the deaths of Indian sailors to the immigration discussions relevant to the Indian diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that reflects the maritime theme or the immigration aspect discussed.",
-          "Add more context on how the deaths of the sailors specifically impact the Indian diaspora in the US."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "4eb0c5e1-eecd-4833-bddc-e3c5574558f6",
-      "headline": "American Law Schools Are Losing India \u2014 and the Visa Pipeline May Never Recover",
-      "slug": "american-law-schools-losing-india-visa-pipeline-20260613",
+      "id": "3a29c673-393f-4c5a-821d-12e44f3bb028",
+      "headline": "India Just Wiped Seven Years of Import Duties on Nuclear Fuel. The Signal Is Bigger Than the Tax Break.",
+      "slug": "india-retrospective-nuclear-customs-duty-exemption-2019-2026-npcil-clean-energy-20260613",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -59,19 +23,276 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the topic of law schools or immigration."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses the implications of declining Indian applications to US law schools, which is highly relevant to the Indian diaspora, particularly those in the legal profession."
+          "note": "The article effectively connects the nuclear customs waiver to NRIs interested in India's energy transition and investment opportunities."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that more directly represents law schools or Indian students in the US.",
-          "Include quotes or perspectives from Indian students or professionals in the legal field to enhance the diaspora connection."
+          "Consider adding more specific examples of how NRIs can engage with or benefit from India's nuclear energy sector.",
+          "Include quotes from industry experts or government officials to enhance credibility and depth."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "512f6997-8a50-4acc-86f7-a7e40d67e3f1",
+      "headline": "India Just Gave Its First Space Funding to Private Startups. A Rocket Engine, an AI Satellite Brain, and a Star Tracker Made the Cut.",
+      "slug": "in-space-first-private-space-startup-funding-astrobase-satsure-tm2space-20260613",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the developments in India's space sector to the diaspora, highlighting the involvement of overseas talent and the implications for NRI investors."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from the startup founders to provide personal insights and enhance engagement.",
+          "Include more details on how the diaspora can get involved or invest in these startups."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "2afd848a-3b86-4c2e-8df0-c5db06b882d6",
+      "headline": "India Tells Washington: We Do Not Have Overcapacity in Anything. The Section 301 Fight Is Just Beginning.",
+      "slug": "india-rejects-us-section-301-overcapacity-textiles-steel-trade-deal-g7-20260613",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 6,
+          "issue": "The image of a textile park is somewhat relevant but does not directly relate to the geopolitical context of the article."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the trade negotiations to the interests of NRIs in various sectors, making it relevant for the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that directly reflects the geopolitical nature of the article.",
+          "Add more context or quotes from diaspora members to enhance the connection to NRI readers."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "23f17fd6-3ceb-40b7-a4bc-670ca3747ec4",
+      "headline": "BlackRock Says India Has Been 'Over-Punished.' Record Outflows May Have Run Their Course.",
+      "slug": "blackrock-india-over-punished-market-cap-taiwan-south-korea-ai-outflows-20260613",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "35ebf372-4b6a-4bec-84ac-db9c3d62cdfa",
+            "headline": "A Peace Deal Could Be Signed This Weekend. India's Markets J"
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article directly addresses NRI investors and their portfolios, making the content relevant and engaging for the diaspora audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of how NRI investors can navigate the current market conditions.",
+          "Include a brief overview of the implications of the AI market on India's economy for better context."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "5664ed6f-d0ca-4a26-ad3a-67f6741dfb5e",
+      "headline": "TCS Will Give 50,000 Employees Access to Anthropic's AI. Its Chairman Wants Equal Numbers of Workers and AI Agents.",
+      "slug": "tcs-anthropic-claude-partnership-50000-employees-ai-agents-workforce-20260613",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the impact of AI on the Indian IT sector, which is highly relevant to NRIs working in this field."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more direct quotes from TCS executives to enhance credibility.",
+          "Add a section on potential implications for NRI workers in terms of job security and opportunities."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "409ac724-eb55-4a23-bfb2-0354698f1beb",
+      "headline": "India's National Stock Exchange Is About to File Its Own IPO. The Valuation Could Hit \u20b96 Trillion.",
+      "slug": "nse-ipo-drhp-filing-june-2026-valuation-6-trillion-colocation-20260613",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively highlights how the NSE IPO provides NRIs with a unique investment opportunity in India's capital markets infrastructure."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more specific examples of how NRIs can benefit from investing in the NSE.",
+          "Add a brief explanation of the significance of the colocation scandal for readers unfamiliar with the topic."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "753cbbf8-e08b-40f0-99fe-e9ffb78da3ac",
+      "headline": "Zepto Just Filed to Raise $837 Million. Its Founders Will Not Sell a Single Share.",
+      "slug": "zepto-ipo-837-million-quick-commerce-founders-hold-palicha-vohra-20260613",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses Zepto's IPO, which is relevant for NRI investors interested in India's consumer technology sector."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more direct quotes from the founders or industry experts to enhance credibility.",
+          "Add a brief comparison of Zepto's business model with other international quick commerce companies to provide context."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "7775e8de-f185-4063-9717-9a19c6c9f49a",
+      "headline": "India Will Be VivaTech's Official AI Partner Country. No Non-European Nation Has Held That Title Before.",
+      "slug": "india-vivatech-2026-official-ai-partner-country-paris-showcase",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses India's role in global AI governance and its implications for NRIs in technology, making it relevant for the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include quotes from key figures involved in the event to add depth.",
+          "Provide more context on how the AI Partner Country designation could impact NRIs specifically."
         ],
         "verdict": "pass"
       },
