@@ -508,6 +508,9 @@ export default function ArticlePage() {
         <meta name="twitter:image" content={article.hero_image_url} />
         <meta property="article:published_time" content={article.published_at || ""} />
         <meta property="article:section" content={article.category || "News"} />
+        {article.tags?.map((tag, i) => (
+          <meta key={i} property="article:tag" content={tag} />
+        ))}
         <link rel="canonical" href={`https://www.thevideshi.com/articles/${article.slug}`} />
         <script type="application/ld+json">
           {JSON.stringify({
