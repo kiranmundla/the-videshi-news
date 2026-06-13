@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-13T13:15:15.851719+00:00",
+  "timestamp": "2026-06-13T13:45:20.569537+00:00",
   "mode": "fix",
   "stats": {
     "pass": 2,
@@ -11,45 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "7f9035d5-25b3-4e13-bf89-b117818274ed",
-      "headline": "Nobody Gave Mimoh Chakraborty a Chance. He Just Beat Diljit, Kangana, and Manoj Bajpayee on Opening Day.",
-      "slug": "haunted-3d-echoes-mimoh-chakraborty-opening-day-box-office-clash-diljit-kangana-nri-20260613",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 6,
-          "issue": "The image does not match the article's focus on Mimoh Chakraborty and the film 'Haunted 3D'."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article connects well with NRI audiences by discussing the broader implications of the film's performance in the context of Bollywood's recent struggles."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant hero image that features Mimoh Chakraborty or the film 'Haunted 3D'.",
-          "Expand on the diaspora angle by including more insights on how NRI audiences are reacting to the film's success."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "9eafe03f-dd42-45c8-9195-3cc5ac1cecdf",
-      "headline": "English Vinglish Is Getting a Sequel. So Are Rangeela, Tere Naam, and Tanu Weds Manu. Bollywood Just Opened Its Vault.",
-      "slug": "eros-universe-english-vinglish-rangeela-tere-naam-tanu-weds-manu-sequels-mythology-nri-20260613",
+      "id": "88bca18c-85ec-4d77-84cb-cb8948f273f2",
+      "headline": "Russia Suspended From World Chess. India\u2019s Gukesh and Vaishali Are Waiting on the Other Side.",
+      "slug": "fide-suspends-russia-chess-india-gukesh-vaishali-world-championship-2026-nri",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -64,14 +28,50 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the films to the NRI experience, highlighting their significance in diaspora culture."
+          "quality": 8,
+          "note": "The article effectively connects India's rise in chess to the pride of the diaspora, highlighting cultural significance."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more quotes or insights from filmmakers or actors involved in the projects to enhance credibility.",
-          "Include a brief overview of the original films for readers who may not be familiar with them."
+          "Consider adding more quotes or perspectives from diaspora members to enhance the connection.",
+          "Include more context on how the diaspora is engaging with chess, such as community events or tournaments."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "bab6aff7-ad6a-48a5-84fa-e0d8972ccd54",
+      "headline": "Burned Cars, Anti-Immigrant Riots, and India's T20I Tour of Belfast Hanging by a Thread",
+      "slug": "belfast-riots-india-ireland-t20i-series-doubt-bcci-monitoring-nri-safety",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 6,
+          "issue": "image does not directly relate to the article's main topic of unrest and cricket matches"
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the unrest to the Indian community in Northern Ireland, highlighting their concerns."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that reflects the current situation in Belfast or the cricket matches.",
+          "Add more context about the historical relationship between the Indian community and the local population to enhance the diaspora angle."
         ],
         "verdict": "pass"
       },
