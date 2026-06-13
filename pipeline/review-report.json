@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-13T14:45:18.048568+00:00",
+  "timestamp": "2026-06-13T15:15:30.206569+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
+    "pass": 4,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,45 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "b83c13c6-c95d-43b8-9490-844b8190012c",
-      "headline": "Bengaluru's New Gig Workers Wear Cameras on Their Heads. They Are Training Robots to Replace Office Jobs.",
-      "slug": "india-it-physical-ai-pivot-bengaluru-robot-training-data-coding-decline-20260613",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 8,
-          "issue": "The image depicts a worker, which aligns with the article's focus on gig workers using cameras for data collection."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses the impact of AI on the Indian workforce, which is relevant to the NRI audience concerned about job markets in India."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include quotes or insights from NRI professionals in the tech industry to strengthen the diaspora connection.",
-          "Add more statistics or examples of how this trend is affecting the Indian economy and job market."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "874ba677-cf78-4edd-92e5-d085081c8a7a",
-      "headline": "India's Infrastructure Budget Has Nearly Doubled in Five Years. It Is Now the Largest Public Works Push in the Country's History.",
-      "slug": "india-infrastructure-spending-doubled-12-trillion-bullet-train-highways-semiconductors-20260613",
+      "id": "d031c047-987b-4456-9fa1-59aae7ca986a",
+      "headline": "DRAM Prices Have Doubled This Year. Sanjay Mehrotra's Micron Is Printing Money.",
+      "slug": "dram-prices-doubled-memory-shortage-sanjay-mehrotra-micron-20260613",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -59,19 +23,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 10,
+          "score": 9,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the infrastructure developments to the experiences and investment opportunities for NRIs."
+          "note": "The article effectively connects the semiconductor plant in Gujarat to the Indian diaspora, highlighting job creation and India's role in the global supply chain."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more specific examples of how NRIs can invest in the infrastructure projects mentioned.",
-          "Include quotes or insights from experts or stakeholders in the infrastructure sector to enhance credibility."
+          "Consider adding more specific examples of how the DRAM price increase directly affects Indian consumers or businesses.",
+          "Include quotes or insights from industry experts to enhance credibility and depth."
         ],
         "verdict": "pass"
       },
@@ -83,9 +47,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "77a141ac-47e3-45d4-9c4d-f25b6e571c06",
-      "headline": "Modi Lands in Nice and Heads to Bratislava. No Indian PM Has Ever Visited Slovakia.",
-      "slug": "modi-slovakia-first-indian-pm-visit-bratislava-france-g7-evian-20260613",
+      "id": "a62ebf4a-eb84-4e8a-b8fe-44d9431f9e24",
+      "headline": "The AI Price War Has Begun. Indian Developers May Finally Catch a Break.",
+      "slug": "openai-anthropic-price-war-token-costs-indian-startups-20260613",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -95,23 +59,107 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image of Bratislava Castle is relevant to the article's topic, but it could be more directly related to Modi's visit."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects Modi's visit to potential impacts on the Indian diaspora, particularly regarding business opportunities and immigration policies."
+          "note": "The article discusses how Indian developers may benefit from the AI price war, making it relevant to the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider including more direct quotes from Modi or Slovak officials to enhance the article's depth.",
-          "Add a brief background on Slovakia's significance to India to provide context for readers unfamiliar with the country."
+          "Include more specific examples of Indian startups that are currently leveraging AI technologies.",
+          "Add quotes or insights from Indian developers to enhance the diaspora connection."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "5082201a-e7ec-4201-aea8-efff300b8c94",
+      "headline": "KPMG Pulled Its Own AI Report After It Turned Out to Be Full of Fabrications",
+      "slug": "kpmg-ai-report-hallucinations-vibe-citing-consulting-20260613",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the implications of KPMG's AI report retraction to Indian tech workers, highlighting the operational consequences they face."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more direct quotes from Indian tech workers or industry experts to enhance the diaspora perspective.",
+          "Include a brief overview of how AI is being integrated into Indian IT services to provide more context."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "bcbbf3cb-0776-4842-8a42-ddfa668e2092",
+      "headline": "Hrithik Roshan Just Signed with the Company Behind Spotlight and The Revenant. He's Done Waiting for Bollywood to Let Him Grow Up.",
+      "slug": "hrithik-roshan-anonymous-content-hollywood-signing-krrish-4-nri-20260613",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "8fb8e255-ed82-486b-9410-511b294771db",
+            "headline": "Hrithik Roshan Just Signed With the Company Behind Spotlight"
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/DZKs2dVorgG/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not directly relate to the main topic of Hrithik Roshan's signing with Anonymous Content."
+          }
+        ],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article connects well with the NRI audience by referencing Hrithik's impact on their childhood and emotional connection to his films."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the irrelevant Instagram link with a more relevant embed that discusses Hrithik's career or the signing.",
+          "Expand on the emotional connection for NRIs to provide a deeper context on why this signing is significant."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/DZKs2dVorgG/",
         "promoted to published"
       ],
       "revised": false,
