@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-13T01:45:16.278387+00:00",
+  "timestamp": "2026-06-13T02:15:31.622105+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 5,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,15 +11,123 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "eb908135-75c7-4b12-b3a6-0a82fb3ef692",
-      "headline": "They Have Played Four ODIs in Eight Years. On Saturday, India and Afghanistan Finally Get a Bilateral Series.",
-      "slug": "india-afghanistan-first-bilateral-odi-series-dharamsala-rashid-khan-kohli-absent-2026-nri",
+      "id": "a2301462-b154-45f7-9dd2-6aef370323d2",
+      "headline": "Vedanta Splits Into Five: Four Demerged Companies Hit the Stock Market on Monday. Here Is What NRI Investors Need to Know.",
+      "slug": "vedanta-demerger-four-entities-listing-june-15-nri-investor-guide-20260612",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the topic of Vedanta's corporate restructuring or the stock market."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article provides relevant information for NRI investors regarding the demerger and its implications for trading."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that directly represents the stock market or corporate restructuring to enhance relevance.",
+          "Add a brief section on how NRI investors can navigate the new trading landscape post-demerger."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "045dadfd-81d6-4986-9141-41b3cd513000",
+      "headline": "Americans Born After 1970 Are Dying Faster Than Their Parents Did. The Data Is Alarming.",
+      "slug": "americans-born-after-1970-dying-faster-tufts-mortality-south-asian-diaspora-20260612",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image depicts a general health-related theme but does not specifically relate to the mortality data discussed in the article."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the health outcomes discussed to the Indian diaspora, highlighting the implications for first-generation immigrants and their children."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more specific image that directly relates to the themes of mortality and health trends among younger generations.",
+          "Expand on the diaspora angle by including specific statistics or anecdotes related to the Indian community's health outcomes in the U.S."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "5c056535-f199-4c5b-98be-3148ab3b0f49",
+      "headline": "The Joint Pain Pill Millions Take May Be Accelerating Alzheimer's. A 60,000-Patient Study Just Flagged It.",
+      "slug": "glucosamine-alzheimers-risk-nature-metabolism-south-asian-diaspora-20260612",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image depicts a person holding a pill bottle, which is relevant to the topic of glucosamine supplements, but it lacks a direct connection to Alzheimer's or joint pain specifically."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the findings to the Indian diaspora, highlighting the prevalence of glucosamine use and the specific health risks faced by South Asians."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including more specific statistics or quotes from South Asian health experts to strengthen the diaspora angle.",
+          "Add a section on alternative treatments for joint pain that may be safer based on the study's findings."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "b5630a25-8ace-4eaa-a7f7-47f254ae19d0",
+      "headline": "A 350-Year-Old Maharaja's Palace Is Now an Oberoi \u2014 and NRIs Finally Have a Reason to Visit Khajuraho",
+      "slug": "oberoi-rajgarh-palace-khajuraho-nri-heritage-20260613",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [
           {
-            "article_id": "c91c9dfb-309b-48b6-9a71-ba783c333d55",
-            "headline": "India Will Play Twenty ODIs Before the 2027 World Cup. The A"
+            "article_id": "3ddf1910-92f0-42d9-9012-681c08c8269f",
+            "headline": "India's Oberoi Rajgarh Palace Just Made the World's 16 Most "
           }
         ],
         "broken_embeds": []
@@ -34,13 +142,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article connects well with NRI readers by highlighting the significance of Afghan players in the IPL and their growing presence in Indian cricket."
+          "note": "The article effectively connects the luxury hotel experience to the interests of NRIs, highlighting the appeal of Khajuraho as a unique travel destination."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from players or coaches to enhance the narrative.",
-          "Include more historical context about the relationship between Indian and Afghan cricket to deepen the reader's understanding."
+          "Include a quote or testimonial from an NRI who has visited the Oberoi Rajgarh Palace to add a personal touch.",
+          "Provide more details on how to book a stay or any special packages for NRIs."
         ],
         "verdict": "pass"
       },
@@ -52,9 +160,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "6d1caea5-c803-41a7-afb9-d1c026ddbca0",
-      "headline": "Qatar, Switzerland, and Seventy Thousand Empty Seats in Silicon Valley. The World Cup Comes to the Bay Area.",
-      "slug": "qatar-switzerland-levis-stadium-bay-area-world-cup-2026-nri-silicon-valley-guide",
+      "id": "e0ce2f61-8606-4f3c-a336-90e51652c83f",
+      "headline": "Jaipur Just Got India's First Japanese-Inspired Luxury Resort \u2014 and NRI Wedding Season Will Never Be the Same",
+      "slug": "ananta-jaipur-japanese-luxury-resort-nri-weddings-20260613",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -64,19 +172,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 5,
+          "issue": "The image does not match the article's topic about a Japanese-inspired luxury resort."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the World Cup event to the Indian diaspora in the Bay Area, highlighting their unique experience and engagement with the event."
+          "quality": 9,
+          "note": "The article effectively connects with NRI readers by discussing the resort's appeal for destination weddings and family travel."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes or anecdotes from local Indian Americans to enhance the personal connection to the event.",
-          "Add more details about the cultural significance of the World Cup for the Indian community in the Bay Area."
+          "Replace the hero image with one that showcases the Ananta Spa & Resort or reflects its Japanese-inspired design.",
+          "Include quotes from the resort management or wedding planners to add depth and credibility to the article."
         ],
         "verdict": "pass"
       },
