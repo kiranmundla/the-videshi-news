@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-12T23:15:10.950894+00:00",
+  "timestamp": "2026-06-13T00:15:47.045440+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 0,
-    "flag": 1,
+    "pass": 7,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,33 +11,249 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "7016b934-49eb-42fa-9232-6718f6f933b3",
-      "headline": "France Just Invited India to Every Session of the G7. No Guest Country Has Ever Got That Before.",
-      "slug": "france-india-top-priority-g7-all-sessions-modi-macron-defense-20260612",
+      "id": "fde5d5b8-bed5-496a-889c-f97bf563e85b",
+      "headline": "Three Decades at MIT Press, and Now She Runs Columbia's. Meet Gita Manaktala.",
+      "slug": "gita-manaktala-columbia-university-press-indian-american-20260613",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
-        "overall_score": 7,
+        "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 8,
+          "score": 9,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 6,
-          "note": "The article touches on India's strategic partnerships and implications for the diaspora, but could elaborate more on how these developments directly affect NRIs."
+          "quality": 8,
+          "note": "The article effectively connects Gita Manaktala's appointment to the broader context of Indian diaspora representation in cultural and intellectual institutions."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Expand on the implications of the G7 invitation for the Indian diaspora, particularly in terms of economic opportunities and political influence.",
-          "Include more context on how the outcomes of the G7 summit may impact NRIs living in different countries."
+          "Consider adding quotes from Gita Manaktala or other relevant figures to enhance the personal connection to her story.",
+          "Include more context on the significance of university presses in the academic landscape to strengthen the article's argument."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "8cf4d794-0847-415a-8ded-a4a57b5df00c",
+      "headline": "India's Sports Ministry Has Sent a 'Sports Passport' Proposal to the PM's Office. For Diaspora Athletes, It Changes Everything.",
+      "slug": "india-sports-passport-proposal-pmo-pio-oci-diaspora-athletes-20260613",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image depicts a football match, which is relevant to the article's discussion of sports, but does not specifically relate to the 'Sports Passport' proposal."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the proposal to the global Indian diaspora, highlighting its implications for Indian-origin athletes abroad."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including specific examples of how the Sports Passport could impact individual athletes or teams.",
+          "Add quotes or reactions from diaspora athletes or sports officials to enhance the article's depth."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "cb9aa030-d014-4db9-a3a8-a160da7aef49",
+      "headline": "Three Courts, Three Answers, One Fee \u2014 The H-1B Circuit Split Heading to the Supreme Court",
+      "slug": "h1b-fee-circuit-split-supreme-court-three-courts-20260613",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the topic of H-1B visas or immigration law."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the implications of H-1B visa fees, which directly affects many Indian nationals, making it relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that more directly represents immigration or H-1B visas to enhance relevance.",
+          "Add a brief summary or conclusion that emphasizes the potential impact on the Indian diaspora."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "5364f3fa-9e13-4a2f-b24a-eab741986029",
+      "headline": "One Wrong Signature and USCIS Keeps Your Money \u2014 The July 10 Rule Nobody Is Talking About",
+      "slug": "uscis-signature-rule-july-10-deny-petition-filing-fee-20260613",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses a significant immigration rule change that directly impacts Indian nationals, particularly H-1B workers, making it relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include a brief summary of the implications of the rule for employers as well as employees to broaden the audience.",
+          "Add a section on how to ensure compliance with the new signature requirements to provide practical advice."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "51c7e1e6-f2d8-42ba-8f92-d365c073106f",
+      "headline": "Anthropic and OpenAI Are Racing to Wall Street. One of Them Is About to Turn a Profit.",
+      "slug": "anthropic-openai-ipo-race-indian-tech-stake-20260612",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image features Sam Altman, which is relevant to the article's focus on AI companies, but it does not directly depict the IPO race or the Indian tech diaspora."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively highlights the significant impact of the IPOs on the Indian tech diaspora, including investors and researchers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more visuals or infographics to illustrate the financial data and projections mentioned.",
+          "Include quotes or insights from Indian tech leaders to enhance the diaspora connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "b669697d-44d9-4111-9139-d9d8b5fc93ab",
+      "headline": "India's IT Sector Has Lost 27 Per Cent in Six Months. Claude Fable 5 Was the Last Straw.",
+      "slug": "india-it-stocks-crash-ai-disruption-claude-fable-20260612",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the implications of AI on the IT sector, which directly affects NRIs working in IT and their investments."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more specific examples of how AI is impacting job roles within the IT sector to enhance reader understanding.",
+          "Add quotes or insights from NRI professionals in the IT sector to strengthen the diaspora connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "3e39cc54-9c40-4c3b-8179-a7b79b51658f",
+      "headline": "Twenty-Seven Indians Made Forbes' List of America's Most Successful Immigrants. The Timing Is Pointed.",
+      "slug": "forbes-250-immigrants-midas-list-indian-americans-vc-20260612",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively highlights the achievements of Indian-origin individuals in America, connecting it to the broader Indian diaspora experience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes or reactions from the individuals mentioned to enhance personal connection.",
+          "Include more context on the implications of the proposed legislation for the Indian diaspora."
+        ],
+        "verdict": "pass"
       },
       "actions_taken": [
         "promoted to published"
