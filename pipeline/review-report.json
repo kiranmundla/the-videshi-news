@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-13T14:15:35.989536+00:00",
+  "timestamp": "2026-06-13T14:45:18.048568+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 6,
+    "pass": 3,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,31 +11,31 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "a158c134-982f-46b0-a6ad-0bd52ebc05f5",
-      "headline": "India Just Threw Open Its Bond Market to the World. For NRI Investors, the Timing Could Not Be Better.",
-      "slug": "india-bond-market-transformation-bloomberg-index-nri-tax-exemption-rbi-measures-20260613",
+      "id": "b83c13c6-c95d-43b8-9490-844b8190012c",
+      "headline": "Bengaluru's New Gig Workers Wear Cameras on Their Heads. They Are Training Robots to Replace Office Jobs.",
+      "slug": "india-it-physical-ai-pivot-bengaluru-robot-training-data-coding-decline-20260613",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
-        "overall_score": 8,
+        "overall_score": 7,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 8,
+          "issue": "The image depicts a worker, which aligns with the article's focus on gig workers using cameras for data collection."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article directly addresses NRI investors and discusses changes in the bond market that are particularly relevant to them."
+          "quality": 7,
+          "note": "The article discusses the impact of AI on the Indian workforce, which is relevant to the NRI audience concerned about job markets in India."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Expand on the specific benefits for NRI investors in the bond market.",
-          "Include a brief section on potential risks associated with these investments."
+          "Include quotes or insights from NRI professionals in the tech industry to strengthen the diaspora connection.",
+          "Add more statistics or examples of how this trend is affecting the Indian economy and job market."
         ],
         "verdict": "pass"
       },
@@ -47,9 +47,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "11d34e23-c06e-4c7b-bc09-b03272005d8f",
-      "headline": "Men and Women Need Different Diets to Live Longer. A 104,000-Person Study Just Proved It.",
-      "slug": "men-women-need-different-diets-live-longer-queen-mary-study-south-asian-longevity",
+      "id": "874ba677-cf78-4edd-92e5-d085081c8a7a",
+      "headline": "India's Infrastructure Budget Has Nearly Doubled in Five Years. It Is Now the Largest Public Works Push in the Country's History.",
+      "slug": "india-infrastructure-spending-doubled-12-trillion-bullet-train-highways-semiconductors-20260613",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -59,19 +59,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
+          "score": 10,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the study's findings to traditional South Asian dietary practices, making it relevant for diaspora readers."
+          "quality": 8,
+          "note": "The article effectively connects the infrastructure developments to the experiences and investment opportunities for NRIs."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more specific examples of traditional South Asian dishes that align with the study's findings.",
-          "Include a brief section on how diaspora families can adapt their diets based on the study's recommendations."
+          "Consider adding more specific examples of how NRIs can invest in the infrastructure projects mentioned.",
+          "Include quotes or insights from experts or stakeholders in the infrastructure sector to enhance credibility."
         ],
         "verdict": "pass"
       },
@@ -83,9 +83,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "d7d6d1db-d36a-4974-837f-f1b36bfb142e",
-      "headline": "Four Minutes of Exercise a Day Quadrupled Fitness in Adults Over 65. For the Diaspora, This Changes Everything About Aging Parents.",
-      "slug": "four-minute-daily-workout-quadruples-fitness-older-adults-penn-state-diaspora",
+      "id": "77a141ac-47e3-45d4-9c4d-f25b6e571c06",
+      "headline": "Modi Lands in Nice and Heads to Bratislava. No Indian PM Has Ever Visited Slovakia.",
+      "slug": "modi-slovakia-first-indian-pm-visit-bratislava-france-g7-evian-20260613",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -95,127 +95,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image of Bratislava Castle is relevant to the article's topic, but it could be more directly related to Modi's visit."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the study's findings to the concerns of NRI families regarding the health of aging parents."
+          "note": "The article effectively connects Modi's visit to potential impacts on the Indian diaspora, particularly regarding business opportunities and immigration policies."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a personal anecdote or testimonial from an NRI family to enhance relatability.",
-          "Include more specific statistics or data regarding the elderly population in India to strengthen the diaspora connection."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "5f130da3-6726-4c46-9214-11f4cf481889",
-      "headline": "The World Cup Is Here \u2014 and NRIs Have an Edge Most Global Fans Don't",
-      "slug": "world-cup-2026-nri-travel-advantage-visa-guide-20260613",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively highlights the advantages NRIs have in attending the World Cup, making it relevant for the diaspora audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes or anecdotes from NRIs who are attending the World Cup to enhance relatability.",
-          "Include more specific information about how NRIs can navigate visa processes for family members traveling from India."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "0a54634e-9344-474b-941e-fa6a517c381a",
-      "headline": "Japan Airlines Goes Daily on Tokyo\u2013Bengaluru \u2014 and Indian Tech Workers Get a Premium Alternative",
-      "slug": "japan-airlines-daily-tokyo-bengaluru-a350-nri-tech-20260613",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the new flight route to the needs and preferences of NRIs, particularly in relation to travel convenience and options."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from industry experts or travelers to enhance credibility and engagement.",
-          "Include more specific examples of how the new route benefits NRIs, such as potential travel itineraries or personal stories."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "2aad5072-102b-4b94-bec5-cadf3f096ac5",
-      "headline": "China Southern Launches Daily Guangzhou\u2013Delhi Nonstop \u2014 and NRIs Get a New Asia Gateway",
-      "slug": "china-southern-guangzhou-delhi-daily-nonstop-nri-20260613",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively highlights the benefits of the new route for NRIs and Indian students, making it relevant to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from airline representatives or industry experts to enhance credibility.",
-          "Include more statistics or data on the impact of this route on trade and travel for NRIs."
+          "Consider including more direct quotes from Modi or Slovak officials to enhance the article's depth.",
+          "Add a brief background on Slovakia's significance to India to provide context for readers unfamiliar with the country."
         ],
         "verdict": "pass"
       },
