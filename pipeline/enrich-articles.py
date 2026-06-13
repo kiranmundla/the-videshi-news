@@ -5,6 +5,8 @@ Article enrichment pipeline:
 2. Add YouTube trailer embeds for movie/series articles
 3. Add Instagram embeds for entertainment articles with matching celebrity handles
 4. Add X/Twitter embeds for articles with matching registry handles (calls tweet-enricher)
+5. Add inline Wikipedia images for key entities mentioned in articles
+6. Add pull quotes for visual richness
 
 Usage:
   python3 enrich-articles.py --hours 24 --dry-run    # preview changes
@@ -12,6 +14,7 @@ Usage:
   python3 enrich-articles.py --images-only --apply     # only fix images
   python3 enrich-articles.py --embeds-only --apply     # only add embeds
   python3 enrich-articles.py --trailers-only --apply   # only add YouTube trailers
+  python3 enrich-articles.py --inline-only --apply     # only add inline images + pull quotes
 """
 
 import os, sys, json, re, time, argparse, subprocess
@@ -318,6 +321,194 @@ def article_has_social_embed(body, platform):
 
 
 # ═══════════════════════════════════════════
+# INLINE IMAGE ENRICHMENT — Wikipedia entities
+# ═══════════════════════════════════════════
+
+# Named entities that should NOT get inline images (too generic or noise)
+_SKIP_ENTITIES = {
+    "india", "us", "usa", "america", "united states", "uk", "china", "world",
+    "government", "court", "congress", "parliament", "supreme court",
+    "the", "this", "what", "how", "why", "new", "breaking", "report",
+}
+
+# Minimum word count for an article to get inline images
+_MIN_WORDS_FOR_INLINE = 200
+
+
+def extract_entities(headline, body):
+    """Extract notable entities (people, places, orgs) from headline + first few paragraphs.
+    Returns a list of (entity, context_sentence) tuples, most important first."""
+    text = headline + "\n\n" + "\n\n".join(body.split("\n\n")[:4])
+
+    entities = []
+    seen = set()
+
+    # Pattern 1: Capitalized multi-word names (most likely people/places/orgs)
+    for m in re.finditer(r'\b([A-Z][a-z]+(?:\s+(?:(?:de|von|van|al|el|bin|the|of)\s+)?[A-Z][a-z]+){1,3})\b', text):
+        name = m.group(1).strip()
+        if name.lower() in _SKIP_ENTITIES or len(name) < 4:
+            continue
+        key = name.lower()
+        if key not in seen:
+            seen.add(key)
+            entities.append(name)
+
+    # Pattern 2: Known place patterns
+    for m in re.finditer(r'\b(New Delhi|Washington D\.?C\.?|Silicon Valley|Wall Street|Bollywood|Hollywood|Mumbai|Chennai|Hyderabad|Bangalore|Bengaluru)\b', text, re.IGNORECASE):
+        name = m.group(1).strip()
+        key = name.lower()
+        if key not in seen:
+            seen.add(key)
+            entities.append(name)
+
+    return entities[:6]  # limit to top 6 candidates
+
+
+def find_inline_images(headline, body, hero_url=""):
+    """Find up to 3 inline Wikipedia images for entities in the article.
+    Returns list of (entity, image_url, caption) tuples."""
+    entities = extract_entities(headline, body)
+    results = []
+    hero_norm = (hero_url or "").split("?")[0].lower()
+
+    for entity in entities:
+        if len(results) >= 3:
+            break
+
+        img_url = fetch_wikipedia_image(entity)
+        if not img_url:
+            continue
+
+        # Skip if same as hero image
+        if hero_norm and img_url.split("?")[0].lower() == hero_norm:
+            continue
+
+        # Skip SVGs and tiny images
+        if img_url.endswith(".svg") or img_url.endswith(".png"):
+            continue
+
+        caption = f"{entity} — Photo: Wikimedia Commons"
+        results.append((entity, img_url, caption))
+        print(f"    ✓ Inline image for '{entity}'")
+
+    return results
+
+
+def insert_inline_images(body, images):
+    """Insert inline images at natural break points in the article body.
+    Places images between paragraphs, spaced evenly through the article."""
+    if not images:
+        return body
+
+    paragraphs = body.split("\n\n")
+    if len(paragraphs) < 3:
+        return body
+
+    # Calculate insertion points — evenly spaced, skip first paragraph
+    n_images = len(images)
+    # Space them out: after paragraph 2, 4, 6, etc.
+    step = max(2, (len(paragraphs) - 1) // (n_images + 1))
+    insert_points = []
+    pos = step
+    for img in images:
+        if pos >= len(paragraphs):
+            pos = len(paragraphs) - 1
+        insert_points.append(pos)
+        pos += step
+
+    # Insert in reverse order so indices stay valid
+    for i, (entity, url, caption) in reversed(list(zip(range(len(images)), *zip(*[(e, u, c) for e, u, c in images])))):
+        if i < len(insert_points):
+            idx = insert_points[i]
+            img_md = f"\n\n![{caption}]({url})\n"
+            paragraphs.insert(idx, img_md)
+
+    return "\n\n".join(paragraphs)
+
+
+# ═══════════════════════════════════════════
+# PULL QUOTE ENRICHMENT
+# ═══════════════════════════════════════════
+
+def extract_pull_quote(body):
+    """Find the most impactful sentence for a pull quote.
+    Prefers sentences with quotes, strong language, or statistics."""
+    # Split into sentences (simple approach)
+    sentences = re.split(r'(?<=[.!?])\s+', body)
+    if len(sentences) < 5:
+        return None
+
+    scored = []
+    for i, sent in enumerate(sentences):
+        if len(sent) < 40 or len(sent) > 200:
+            continue
+        # Skip if it's the first sentence (already visible)
+        if i == 0:
+            continue
+        # Skip if it's already a quote block or image
+        if sent.startswith(">") or sent.startswith("!["):
+            continue
+
+        score = 0
+        # Prefer actual quoted speech
+        if '"' in sent or '\u201c' in sent:
+            score += 5
+        # Prefer sentences with numbers/stats
+        if re.search(r'\d+[%$]|\$\d|billion|million|crore|lakh', sent, re.IGNORECASE):
+            score += 3
+        # Prefer strong language
+        strong_words = ["historic", "unprecedented", "first-ever", "record", "landmark",
+                       "stunning", "massive", "crucial", "breakthrough", "revolutionary",
+                       "shocking", "dramatic", "critical"]
+        if any(w in sent.lower() for w in strong_words):
+            score += 2
+        # Prefer mid-article sentences (not too early, not too late)
+        relative_pos = i / max(len(sentences), 1)
+        if 0.2 < relative_pos < 0.6:
+            score += 1
+
+        if score > 0:
+            scored.append((score, i, sent))
+
+    if not scored:
+        return None
+
+    # Pick the highest-scoring sentence
+    scored.sort(key=lambda x: x[0], reverse=True)
+    return scored[0][2]
+
+
+def insert_pull_quote(body, quote):
+    """Insert a pull quote roughly 1/3 into the article."""
+    if not quote:
+        return body
+
+    paragraphs = body.split("\n\n")
+    if len(paragraphs) < 4:
+        return body
+
+    # Place at ~1/3 point
+    insert_at = max(2, len(paragraphs) // 3)
+
+    quote_block = f'\n\n> **"{quote.strip()}"**\n'
+    paragraphs.insert(insert_at, quote_block)
+
+    return "\n\n".join(paragraphs)
+
+
+def article_has_inline_images(body):
+    """Check if article body already has inline markdown images."""
+    # Count actual inline images (not social embeds or tracking pixels)
+    imgs = re.findall(r'!\[([^\]]*)\]\(([^)]+)\)', body or "")
+    return len(imgs) > 0
+
+
+def article_has_pull_quote(body):
+    """Check if article body already has a pull quote."""
+    return bool(re.search(r'>\s*\*\*["\u201c]', body or ""))
+
+
+# ═══════════════════════════════════════════
 # MAIN PIPELINE
 # ═══════════════════════════════════════════
 
@@ -371,6 +562,7 @@ def main():
     parser.add_argument("--images-only", action="store_true", help="Only enrich images")
     parser.add_argument("--embeds-only", action="store_true", help="Only add embeds")
     parser.add_argument("--trailers-only", action="store_true", help="Only add YouTube trailers")
+    parser.add_argument("--inline-only", action="store_true", help="Only add inline images + pull quotes")
     parser.add_argument("--max", type=int, default=10, help="Max articles to enrich per run")
     args = parser.parse_args()
 
@@ -378,10 +570,11 @@ def main():
     registry = load_registry()
 
     # Scope control
-    only_mode = args.images_only or args.embeds_only or args.trailers_only
+    only_mode = args.images_only or args.embeds_only or args.trailers_only or args.inline_only
     run_images = not only_mode or args.images_only
     run_trailers = not only_mode or args.trailers_only
     run_embeds = not only_mode or args.embeds_only
+    run_inline = not only_mode or args.inline_only
 
     # ── 1. IMAGE ENRICHMENT ──
     if run_images:
@@ -525,6 +718,63 @@ def main():
                     print(f"     — No relevant posts found")
 
         print(f"\n  Instagram enrichment: {ig_enriched} articles {'updated' if apply else 'would update'}")
+
+    # ── 4. INLINE IMAGE + PULL QUOTE ENRICHMENT ──
+    if run_inline:
+        print("\n══ Inline Image + Pull Quote Enrichment ══")
+        all_articles = get_recent_articles(hours=args.hours)
+        # Filter: articles with enough body text, no existing inline images
+        candidates = [
+            a for a in all_articles
+            if len((a.get("body") or "").split()) >= _MIN_WORDS_FOR_INLINE
+        ]
+        print(f"Found {len(candidates)} articles with sufficient body text (out of {len(all_articles)} total)")
+
+        inline_enriched = 0
+        for article in candidates[:args.max]:
+            body = article.get("body", "")
+            headline = article.get("headline", "")
+            hero_url = article.get("image_url", "")
+            has_images = article_has_inline_images(body)
+            has_quote = article_has_pull_quote(body)
+
+            if has_images and has_quote:
+                continue
+
+            print(f"\n  📰 {headline[:70]}")
+            new_body = body
+            changes = []
+
+            # Add inline images if needed
+            if not has_images:
+                images = find_inline_images(headline, body, hero_url)
+                if images:
+                    new_body = insert_inline_images(new_body, images)
+                    changes.append(f"{len(images)} inline image(s)")
+                else:
+                    print(f"     — No relevant inline images found")
+
+            # Add pull quote if needed
+            if not has_quote:
+                quote = extract_pull_quote(new_body)
+                if quote:
+                    new_body = insert_pull_quote(new_body, quote)
+                    changes.append("pull quote")
+                    print(f"     ✓ Pull quote: \"{quote[:60]}...\"")
+
+            if changes and new_body != body:
+                change_desc = " + ".join(changes)
+                if apply:
+                    if update_article(article["id"], {"body": new_body}):
+                        print(f"     ✅ Added {change_desc}")
+                        inline_enriched += 1
+                    else:
+                        print(f"     ❌ Update failed")
+                else:
+                    print(f"     [DRY RUN] Would add {change_desc}")
+                    inline_enriched += 1
+
+        print(f"\n  Inline enrichment: {inline_enriched} articles {'updated' if apply else 'would update'}")
 
     print("\n✅ Enrichment complete!")
 
