@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-13T21:15:33.396448+00:00",
+  "timestamp": "2026-06-13T22:15:34.811925+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 4,
-    "flag": 1,
+    "pass": 6,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,50 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "f298b898-69d2-4e29-bfc9-d7f5d1080bee",
-      "headline": "TVF's Other Village Show Is Back. And It Might Be the Sleeper Hit Diaspora Audiences Have Been Waiting For.",
-      "slug": "gram-chikitsalay-season-2-prime-video-tvf-nirahua-panchayat-cameo-nri-20260613",
+      "id": "8ea5b28b-cbe6-484b-83ba-fdd285558daf",
+      "headline": "India Just Opened Its Stock Market to Every Foreigner on Earth. Here Is What Changed Overnight.",
+      "slug": "india-fema-amendment-stock-market-all-foreign-individuals-nri-oci-proi-20260613",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "bdbe36d1-ec3c-44d8-ac5f-35181b39183b",
+            "headline": "BlackRock and Lighthouse Canton Say India Has Been 'Over-Pun"
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image is relevant to the topic of stock market investment but lacks specific connection to the Indian stock market."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses changes that directly affect NRIs and their ability to invest in Indian equities, making it relevant to the diaspora audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include specific examples of how NRIs can benefit from the new rules.",
+          "Add quotes or insights from more financial experts to enhance credibility."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "c7f50f8b-ba1d-4a8e-97a9-cebed8e4b932",
+      "headline": "Gaya Airport Is Finally Getting the Flights Bihar's Diaspora Has Waited For",
+      "slug": "gaya-airport-bodh-gaya-flights-bihar-nri-connectivity-20260613",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -21,70 +62,129 @@
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/reel/DZeqvG0qaiE/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram reel does not appear to be directly related to the content of the article, which focuses on the show 'Gram Chikitsalay'."
-          },
-          {
-            "url": "https://youtube.com/watch?v=6YkxIy5QkwA",
-            "problem": "irrelevant",
-            "explanation": "The YouTube link is not specified to be related to the article's subject matter, which may confuse readers."
-          }
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the topic of flight connectivity to the needs and experiences of the Bihari diaspora, highlighting the significance of Gaya as a cultural and pilgrimage site."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from diaspora members or aviation experts to enhance the article's depth.",
+          "Include more specific statistics or data on the Bihari diaspora's travel patterns to strengthen the argument for improved connectivity."
         ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "bab00513-76b2-4f21-a9f1-6faa63381247",
+      "headline": "India's Wellness Retreats Are Booming \u2014 and NRIs Are the Biggest Converts",
+      "slug": "india-wellness-tourism-ayurveda-retreats-nri-20260613",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the wellness tourism trend in India to the interests and travel habits of NRIs, making it relevant for the diaspora audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes or testimonials from NRIs who have experienced these wellness retreats to enhance relatability.",
+          "Include more specific statistics or data on the growth of wellness tourism among NRIs to strengthen the argument."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "3bce0450-8d11-4ee7-8cb4-f1bb60edb198",
+      "headline": "America Turns 250 \u2014 and Indian Americans Have Every Reason to Show Up",
+      "slug": "america-250th-birthday-july-4-nri-guide-20260613",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the celebration of America's 250th anniversary to the Indian American community, highlighting their contributions and the significance of the event for NRIs."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes or testimonials from Indian Americans about their feelings regarding the celebration to enhance the personal connection.",
+          "Include more specific examples of how Indian Americans can participate in the celebrations or events across the country."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "039fff39-42dd-4382-9405-c623903cfd95",
+      "headline": "High Blood Pressure May Actually Protect Frail Elders From Dementia. A 6,000-Person Study Just Upended the Textbook.",
+      "slug": "blood-pressure-frailty-dementia-paradox-neurology-study-diaspora-20260613",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image of Amol Parashar is relevant as he is the lead actor in the show discussed, but it does not directly depict a scene or theme from 'Gram Chikitsalay'."
+          "issue": "The image depicts elderly individuals but does not specifically relate to blood pressure or dementia."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects the show's themes to the experiences of NRIs, emphasizing the relatability of rural Indian narratives."
+          "note": "The article effectively connects the study's findings to the challenges faced by NRIs managing their parents' health in India."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant Instagram and YouTube links with embeds that directly relate to 'Gram Chikitsalay'.",
-          "Consider adding a brief summary of the first season for readers unfamiliar with the show."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/reel/DZeqvG0qaiE/",
-        "Removed irrelevant embed: https://youtube.com/watch?v=6YkxIy5QkwA",
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "28626f72-1b30-4301-9358-5f1da9017066",
-      "headline": "Salman Khan Just Went to War Over a Film He Didn't Make. The Bracelet Gave It Away.",
-      "slug": "salman-khan-kala-hiran-delhi-high-court-personality-rights-bracelet-blackbuck-nri-20260613",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article connects the legal case to broader themes of celebrity law and creative freedom, which are relevant to the diaspora audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more context about the implications of personality rights for NRIs who may not be familiar with Indian law.",
-          "Include quotes or reactions from diaspora communities regarding the case to enhance engagement."
+          "Include a more relevant image that directly relates to blood pressure or dementia.",
+          "Add a brief summary of the study's implications for healthcare providers in India."
         ],
         "verdict": "pass"
       },
@@ -96,81 +196,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "882f6c1c-6746-48f3-9d80-871f912c57ff",
-      "headline": "NVIDIA Is Training an AI to Listen to Your Doctor. An Indian-Origin Founder Built the Ears.",
-      "slug": "nvidia-abridge-shiv-rao-healthcare-ai-clinical-model-20260613",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses the impact of Abridge, founded by an Indian-origin doctor, on the healthcare system in the U.S., which is relevant to the Indian diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Expand on the implications of the technology for Indian-origin doctors in the U.S. to strengthen the diaspora angle.",
-          "Include more statistics or quotes from Dr. Rao to enhance the article's depth."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "485724b4-9698-45fa-ae4b-ef79b416932d",
-      "headline": "Broadcom, Apollo, and Blackstone Just Built a $35 Billion Machine to Feed AI's Appetite for Chips",
-      "slug": "broadcom-apollo-blackstone-35b-ai-xpv-anthropic-20260613",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively highlights the role of Indian-origin engineers at Broadcom, connecting the topic to the Indian diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more statistics or examples related to the impact of this deal on the Indian semiconductor industry.",
-          "Include quotes or insights from Indian engineers or industry experts to strengthen the diaspora connection."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "443a5cbc-ff01-43d9-a9b7-de4ee0918f30",
-      "headline": "State Attorneys General Hit OpenAI With a Sweeping Subpoena. The IPO Just Got Harder.",
-      "slug": "openai-state-ag-investigation-subpoena-ipo-20260613",
+      "id": "682e1fb5-8f6d-4035-91e6-554f150ae7af",
+      "headline": "Scientists Just Mapped the 'Zombie Cells' Driving Ageing. The Implications for Your Parents Are Enormous.",
+      "slug": "nih-senescent-cell-atlas-zombie-cells-aging-senotypes-diaspora-20260613",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -181,18 +209,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image does not directly relate to the article's content about OpenAI and legal issues."
+          "issue": "The image is relevant to the topic of health and science but does not specifically depict 'zombie cells' or ageing."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the investigation's implications to the Indian diaspora in tech, highlighting Indian-origin executives and startups."
+          "note": "The article effectively connects the research findings to the Indian diaspora's concerns about ageing parents and health management from abroad."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant hero image that reflects the legal and tech themes of the article.",
-          "Expand on the implications for Indian startups to provide more depth to the diaspora angle."
+          "Include specific examples of how the findings could directly impact the health management of elderly parents in the diaspora.",
+          "Consider adding a quote from a researcher or expert in the field to enhance credibility and engagement."
         ],
         "verdict": "pass"
       },
