@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-13T20:15:18.342905+00:00",
+  "timestamp": "2026-06-13T20:45:29.007691+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 5,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,31 +11,31 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "74277859-3bb0-4d82-9502-e7777e4cf73c",
-      "headline": "India's EB-5 Golden Ticket Just Expired for the Year \u2014 And the Clock Is Ticking on a Bigger Deadline",
-      "slug": "eb5-india-unreserved-cap-exhausted-fy26-october-pause-20260613",
+      "id": "8ef55bf5-bc7f-477f-baa5-cb4a55483ff1",
+      "headline": "Indian Applicants to US Law Schools Have Dropped 23 Per Cent. The Visa Climate Is Driving Them Away.",
+      "slug": "indian-llm-applicants-us-law-schools-drop-23-percent-visa-climate-uk-20260613",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
-        "overall_score": 8,
+        "overall_score": 7,
         "embed_issues": [],
         "image_match": {
-          "score": 6,
-          "issue": "The image does not directly relate to the EB-5 program or immigration."
+          "score": 8,
+          "issue": "The image of Harvard Law School is relevant to the topic of law schools but does not specifically relate to the decline in Indian applicants."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article discusses the EB-5 program's impact on Indian investors, which is relevant to the diaspora."
+          "quality": 7,
+          "note": "The article discusses the impact of visa policies on Indian students, which is relevant to the Indian diaspora considering education abroad."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that directly relates to immigration or the EB-5 program for better visual alignment.",
-          "Add a section that highlights personal stories or testimonials from Indian investors to enhance the diaspora connection."
+          "Include more direct quotes or anecdotes from Indian students or families to enhance the diaspora connection.",
+          "Add statistics or insights on how the decline in applications is affecting Indian students specifically, to provide a more localized perspective."
         ],
         "verdict": "pass"
       },
@@ -47,9 +47,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "b46dedde-41ad-4000-8e58-7126b5bc25b1",
-      "headline": "The Thirty-Three Per Cent Pay Rise Nobody Asked For \u2014 Washington's Quiet Plan to Price Out H-1B Workers",
-      "slug": "dol-prevailing-wage-hike-33-percent-h1b-indian-workers-20260613",
+      "id": "659fbe7c-2447-4127-9f36-6b5f87136063",
+      "headline": "America Has Run Out of EB-2 Green Cards for Indians. The Queue Will Not Move Until October.",
+      "slug": "eb2-india-green-card-cap-hit-fy2026-frozen-until-october-visa-backlog-20260613",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -59,19 +59,149 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 6,
-          "issue": "The image does not directly relate to the topic of H-1B workers or immigration."
+          "score": 7,
+          "issue": "The image does not directly relate to the topic of immigration or EB-2 green cards."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses the impact of U.S. labor regulations on Indian tech workers, which is highly relevant to the Indian diaspora."
+          "note": "The article discusses the impact of EB-2 visa allocation on Indian nationals, which is highly relevant to the Indian diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that directly represents H-1B workers or the tech industry to enhance relevance.",
-          "Include quotes or perspectives from Indian professionals affected by these changes to add a personal touch."
+          "Consider using an image that directly represents immigration or the EB-2 visa process to enhance relevance.",
+          "Include quotes or testimonials from affected individuals to add a personal touch and deepen the connection with the diaspora."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "262f4162-fe53-463d-b187-1f7fc166903d",
+      "headline": "Washington Just Ordered Anthropic to Shut Down Its Most Powerful AI Models. Foreign Nationals Need Not Apply.",
+      "slug": "anthropic-fable-5-mythos-disabled-us-export-control-foreign-nationals-citizenship-ai-20260613",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "65b4b8d3-9d1b-4268-b55f-5d1a9bfef544",
+            "headline": "The US Just Blocked Foreigners From Anthropic's Best AI. Ind"
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image of Dario Amodei is relevant to the topic of AI but does not directly relate to the specific directive mentioned in the article."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the implications of the AI directive on foreign nationals, particularly highlighting the impact on Indian workers in the U.S., which resonates with the Indian diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more direct quotes from Indian tech workers or experts to strengthen the diaspora connection.",
+          "Provide a brief overview of Anthropic's role in the AI landscape to give context to readers unfamiliar with the company."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "42608de1-4b0d-4f6a-87e2-8e4fdd76b171",
+      "headline": "White House Confirms Trump Will Meet Modi on Wednesday at the G7. Trade, Visas and the Iran War Are All on the Table.",
+      "slug": "trump-modi-bilateral-g7-wednesday-trade-h1b-iran-confirmed-20260613",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "66f67863-edc3-4c8d-b46f-d1633affc396",
+            "headline": "Nice, Bratislava, Evian, Paris: Modi's Six-Day European Tour"
+          },
+          {
+            "article_id": "61af84c6-b0de-4208-afeb-3e21eaf1508e",
+            "headline": "No Indian PM Has Visited Slovakia in 33 Years. Modi Is About"
+          },
+          {
+            "article_id": "51219e21-788f-4bcc-8f9a-6868b22250a8",
+            "headline": "India's Dead Sailors Have Put Modi in a Corner. He Meets Tru"
+          },
+          {
+            "article_id": "7cc2c2b6-8948-4691-8a47-f28599bc06c9",
+            "headline": "Three Dead Sailors, One H-1B Wishlist \u2014 Modi Goes to the G7 "
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the meeting's implications to the Indian diaspora, particularly regarding trade and immigration."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more direct quotes from officials or experts to enhance credibility.",
+          "Include a brief background on the significance of the G7 summit for context."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "8ec596de-b744-415a-9c4e-b9ee9532d032",
+      "headline": "Five Dead After IAF An-32 Crashes at Jorhat. The Fleet Has Killed Over 100 in Four Decades.",
+      "slug": "iaf-an32-crash-jorhat-five-dead-aging-fleet-replacement-delayed-20260613",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article connects the crash to the human cost of defense readiness, which resonates with the Indian diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more context on the implications of the crash for defense policy, especially for the diaspora audience.",
+          "Add quotes or reactions from diaspora communities or organizations to enhance the connection."
         ],
         "verdict": "pass"
       },
