@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-13T10:45:32.369139+00:00",
+  "timestamp": "2026-06-13T11:15:11.974665+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 5,
+    "pass": 1,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,123 +11,15 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "efec9bdc-1476-40f8-bb04-382db83bb82d",
-      "headline": "'These Attacks Must Cease and End.' India Lodges a Second Diplomatic Protest After Three Ships Are Hit in Five Days.",
-      "slug": "india-demands-us-attacks-cease-three-tankers-sailors-killed-maritime-alert-20260613",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses the impact of the attacks on Indian sailors, which resonates with the diaspora community concerned about the safety of their compatriots abroad."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more direct quotes from Indian officials to enhance the article's authority.",
-          "Add a brief background on the geopolitical context of the US-Iran relations for readers unfamiliar with the situation."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "e3763ba6-3ae4-44a9-8d88-e4dd24ba569b",
-      "headline": "RBI Just Turned Dollar Deposits Into a 21% Yield Machine for NRIs. The Window Closes September 30.",
-      "slug": "rbi-fcnr-leverage-21-percent-dollar-returns-nri-deposits-emkay-september-20260613",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively addresses NRIs and their potential benefits from the RBI's new policy."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a brief summary of the risks associated with leveraging deposits to provide a balanced view.",
-          "Include quotes or insights from financial experts to enhance credibility and depth."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "e64e3c9a-cd1a-46df-a4be-0fa90eb07a65",
-      "headline": "Nifty IT Has Lost 27% This Year. The Market Is Not Punishing a Cycle. It Is Repricing an Entire Industry.",
-      "slug": "nifty-it-down-27-percent-2026-ai-repricing-outsourcing-structural-shift-20260613",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 8,
-          "issue": "The image reflects the topic of the article, but it could be more directly related to the specific context of the Nifty IT index."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses the impact of the IT sector on global markets, which is relevant to the Indian diaspora, particularly those in tech."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more direct quotes from industry experts to enhance credibility.",
-          "Add a section discussing potential future trends for the IT sector to provide a more comprehensive view."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "38ff3810-6cf2-4c63-8703-d9db8122ad48",
-      "headline": "India Wants Its Diaspora Athletes Back. A 'Sports Passport' Could Make It Happen.",
-      "slug": "india-sports-passport-pio-oci-athletes-represent-india-2036-olympics-nri",
+      "id": "9a647fe2-d096-4cf7-95fa-5de42bd6f75c",
+      "headline": "Hrithik Roshan Just Signed With the Company Behind Spotlight and The Revenant. Hollywood Should Be Nervous.",
+      "slug": "hrithik-roshan-anonymous-content-hollywood-war-2-krrish-4-nri-20260613",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [
           {
-            "article_id": "d99b0463-b1d0-40d1-9a0e-88d7b6dcf977",
-            "headline": "Four Players With Indian Roots Are at This World Cup. It Has"
+            "article_id": "8fb8e255-ed82-486b-9410-511b294771db",
+            "headline": "Hrithik Roshan Just Signed With the Company Behind Spotlight"
           }
         ],
         "broken_embeds": []
@@ -136,55 +28,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image of Sarpreet Singh is relevant as it relates to sports, but it does not directly connect to the concept of a 'Sports Passport' or the broader diaspora context."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively discusses the implications of the proposed Sports Passport for the Indian diaspora, particularly in relation to athletes of Indian origin living abroad."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more specific examples of athletes who could benefit from the Sports Passport to strengthen the diaspora connection.",
-          "Consider adding quotes from diaspora athletes or officials to provide personal perspectives on the proposal."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "c455e8f4-09f7-4d17-81e1-bd9cf06f2678",
-      "headline": "She Has Won Six of Eight World Cup Games Against Pakistan. Tomorrow, Harmanpreet Kaur Wants One More.",
-      "slug": "harmanpreet-kaur-india-pakistan-womens-t20-world-cup-2026-edgbaston-preview-nri",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
           "score": 9,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article connects well with NRIs by discussing the match timing and how they can watch it, appealing to their interest in cricket."
+          "note": "The article effectively connects Hrithik Roshan's career to the NRI audience, highlighting his global appeal and significance in the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Add more context about the significance of the match for the Indian diaspora.",
-          "Include quotes or reactions from NRI fans to enhance the connection."
+          "Consider adding more quotes or insights from industry experts to enhance credibility.",
+          "Include a brief section on how this deal might impact the perception of Indian actors in Hollywood."
         ],
         "verdict": "pass"
       },
