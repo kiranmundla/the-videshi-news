@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-13T00:45:31.229801+00:00",
+  "timestamp": "2026-06-13T01:15:19.802157+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 6,
-    "flag": 0,
+    "pass": 1,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "7c4f3fac-5371-437e-b46f-5b42a46f7831",
-      "headline": "India's Corporate Bond Market Just Had Its Biggest Week in Months. Borrowing Costs Fell 45 Basis Points in Five Days.",
-      "slug": "india-corporate-bond-market-rush-3-billion-rbi-measures-borrowing-costs-20260613",
+      "id": "65812c9d-e71d-4f6c-ba24-4dd4003717aa",
+      "headline": "Kriti Sanon Just Crashed Bollywood's Most Exclusive Club. The Data Proves She Belongs.",
+      "slug": "kriti-sanon-ormax-top-5-bollywood-actress-cocktail-2-alia-deepika-nri-20260612",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -21,7 +21,13 @@
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DZZxmk5g-w5/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel does not appear to be directly related to Kriti Sanon's rise in Bollywood or the upcoming film 'Cocktail 2'."
+          }
+        ],
         "image_match": {
           "score": 9,
           "issue": null
@@ -29,17 +35,18 @@
         "diaspora_angle": {
           "present": true,
           "quality": 7,
-          "note": "The article discusses the implications of India's corporate bond market movements, which can be relevant to NRIs interested in investment opportunities."
+          "note": "The article discusses Bollywood dynamics which may resonate with the Indian diaspora, but it could further emphasize the impact of Kriti Sanon's success on NRI audiences."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include a brief explanation of how these bond market changes specifically affect NRIs or their investments.",
-          "Add quotes or insights from diaspora financial experts to enhance the diaspora angle."
+          "Replace the irrelevant Instagram embed with a more relevant source or remove it altogether.",
+          "Include a quote or perspective from an NRI or diaspora member regarding Kriti Sanon's impact on Bollywood to strengthen the diaspora angle."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DZZxmk5g-w5/",
         "promoted to published"
       ],
       "revised": false,
@@ -47,179 +54,51 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "ce382c49-af08-43ad-969f-ece8bb6b8c0a",
-      "headline": "136 Million Barrels of Oil Got Through the 'Closed' Strait of Hormuz. The Market Is Just Finding Out.",
-      "slug": "gulf-oil-hormuz-goat-paths-136-million-barrels-kpler-dark-tankers-india-20260613",
+      "id": "cc005006-4469-4ade-9eac-896ef533044c",
+      "headline": "Nora Fatehi Just Took the Stage at the World Cup. Bollywood Has Never Had This Kind of Night.",
+      "slug": "nora-fatehi-fifa-world-cup-2026-opening-ceremony-toronto-siir-siir-bollywood-nri-20260612",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "8283b27c-a159-404f-b41b-5c354e2f3030",
+            "headline": "Nora Fatehi Just Landed a FIFA World Cup Song. She Performs "
+          },
+          {
+            "article_id": "6cc470c9-12d6-4d22-a352-c20cc22c994c",
+            "headline": "She Danced in Bollywood Blockbusters. On Friday, She Perform"
+          }
+        ],
         "broken_embeds": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DZXXboDKw62/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel does not appear to be directly related to the World Cup performance or Nora Fatehi's role in it."
+          }
+        ],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image of Nora Fatehi does not directly depict her performance at the World Cup, which could enhance the article's relevance."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article discusses oil prices and their impact on India, which is relevant to the Indian diaspora concerned about economic implications."
+          "quality": 9,
+          "note": "The article effectively connects Nora Fatehi's journey and performance to the Indian diaspora, highlighting her unique background and appeal."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more direct quotes from experts or analysts to enhance credibility.",
-          "Include a brief overview of the geopolitical implications for the Indian diaspora."
+          "Replace the Instagram embed with a more relevant link that showcases Nora Fatehi's performance at the World Cup.",
+          "Consider adding a quote from Nora Fatehi about her experience performing at the World Cup to enhance the personal connection."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "b44fa05e-1d47-46a2-b3c8-df667f0e44a5",
-      "headline": "SBI and Bank of Baroda Are About to Borrow a Billion Dollars Abroad. The RBI Is Paying Part of Their Hedging Cost.",
-      "slug": "sbi-bank-of-baroda-first-dollar-bonds-rbi-subsidized-hedging-window-20260613",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the RBI's measures to the interests of NRIs, highlighting potential benefits for them."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more specific examples of how NRIs can take advantage of the subsidised hedging window.",
-          "Include a brief explanation of what FCNR deposits are for readers who may not be familiar."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "ebeae28f-ed9a-4f89-880a-9f37fcfc59c3",
-      "headline": "India Just Ripped Up Its Tax Code for Foreign Bond Investors. A Billion Dollars Flowed In Within Three Days.",
-      "slug": "india-scraps-bond-tax-foreign-investors-billion-dollar-inflows-bloomberg-index-20260613",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses reforms that directly impact foreign bond investors, including NRIs, making it relevant to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include quotes or insights from NRI investors to enhance the diaspora connection.",
-          "Add a brief explanation of how these tax changes might affect NRIs specifically."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "25219d7b-bd9e-4db4-91ea-10d215816e40",
-      "headline": "The World Bank Just Upgraded India While Downgrading Almost Everyone Else. The Gap Is Getting Wider.",
-      "slug": "world-bank-india-gdp-6-6-percent-upgrade-global-growth-weakest-since-covid-20260613",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses the implications of India's economic growth for the Indian diaspora, particularly in terms of investment and remittances."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more specific examples of how the Indian diaspora can benefit from the economic changes discussed.",
-          "Include quotes or insights from diaspora members or experts to enhance the connection with the audience."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "6d09f85e-2a2a-4064-9dd3-da0ddd148c0a",
-      "headline": "Modi and Macron Will Unveil 120 Indian Deep-Tech Startups in Nice Tomorrow. Nothing Like This Has Happened Before.",
-      "slug": "bharat-innovates-2026-modi-macron-nice-120-deep-tech-startups-india-france-20260613",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively highlights opportunities for NRIs in Europe to engage with Indian startups, making the diaspora angle relevant and natural."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include quotes or insights from diaspora entrepreneurs to enhance the connection with NRI readers.",
-          "Add a brief section on how the showcased startups are expected to impact the global tech landscape."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DZXXboDKw62/",
         "promoted to published"
       ],
       "revised": false,
