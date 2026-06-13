@@ -373,6 +373,17 @@ def extract_entities(headline, body):
             _STRIP_LEADING = {"new", "big", "top", "first", "last", "old", "annual", "latest", "recent", "former", "current"}
             while len(words) > 1 and words[0].lower() in _STRIP_LEADING:
                 words.pop(0)
+            # If a verb appears in the middle, split and take the longer part
+            _VERBS_MID = {"confirms", "unveils", "launches", "announces", "reveals", "says",
+                         "joins", "wins", "loses", "beats", "faces", "leads", "enters",
+                         "backs", "calls", "gets", "makes", "shows", "takes", "tells",
+                         "warns", "opens", "returns", "plays", "hits", "fires", "drops"}
+            for vi in range(1, len(words) - 1):
+                if words[vi].lower() in _VERBS_MID:
+                    left = words[:vi]
+                    right = words[vi+1:]
+                    words = left if len(left) >= len(right) else right
+                    break
             name = " ".join(words)
 
             if name.lower() in _SKIP_ENTITIES or len(name) < 4 or len(name.split()) < 2:
