@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-13T00:15:47.045440+00:00",
+  "timestamp": "2026-06-13T00:45:31.229801+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 7,
+    "pass": 6,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,45 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "fde5d5b8-bed5-496a-889c-f97bf563e85b",
-      "headline": "Three Decades at MIT Press, and Now She Runs Columbia's. Meet Gita Manaktala.",
-      "slug": "gita-manaktala-columbia-university-press-indian-american-20260613",
+      "id": "7c4f3fac-5371-437e-b46f-5b42a46f7831",
+      "headline": "India's Corporate Bond Market Just Had Its Biggest Week in Months. Borrowing Costs Fell 45 Basis Points in Five Days.",
+      "slug": "india-corporate-bond-market-rush-3-billion-rbi-measures-borrowing-costs-20260613",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses the implications of India's corporate bond market movements, which can be relevant to NRIs interested in investment opportunities."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include a brief explanation of how these bond market changes specifically affect NRIs or their investments.",
+          "Add quotes or insights from diaspora financial experts to enhance the diaspora angle."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "ce382c49-af08-43ad-969f-ece8bb6b8c0a",
+      "headline": "136 Million Barrels of Oil Got Through the 'Closed' Strait of Hormuz. The Market Is Just Finding Out.",
+      "slug": "gulf-oil-hormuz-goat-paths-136-million-barrels-kpler-dark-tankers-india-20260613",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -29,13 +65,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects Gita Manaktala's appointment to the broader context of Indian diaspora representation in cultural and intellectual institutions."
+          "note": "The article discusses oil prices and their impact on India, which is relevant to the Indian diaspora concerned about economic implications."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from Gita Manaktala or other relevant figures to enhance the personal connection to her story.",
-          "Include more context on the significance of university presses in the academic landscape to strengthen the article's argument."
+          "Consider adding more direct quotes from experts or analysts to enhance credibility.",
+          "Include a brief overview of the geopolitical implications for the Indian diaspora."
         ],
         "verdict": "pass"
       },
@@ -47,81 +83,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "8cf4d794-0847-415a-8ded-a4a57b5df00c",
-      "headline": "India's Sports Ministry Has Sent a 'Sports Passport' Proposal to the PM's Office. For Diaspora Athletes, It Changes Everything.",
-      "slug": "india-sports-passport-proposal-pmo-pio-oci-diaspora-athletes-20260613",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image depicts a football match, which is relevant to the article's discussion of sports, but does not specifically relate to the 'Sports Passport' proposal."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the proposal to the global Indian diaspora, highlighting its implications for Indian-origin athletes abroad."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider including specific examples of how the Sports Passport could impact individual athletes or teams.",
-          "Add quotes or reactions from diaspora athletes or sports officials to enhance the article's depth."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "cb9aa030-d014-4db9-a3a8-a160da7aef49",
-      "headline": "Three Courts, Three Answers, One Fee \u2014 The H-1B Circuit Split Heading to the Supreme Court",
-      "slug": "h1b-fee-circuit-split-supreme-court-three-courts-20260613",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the topic of H-1B visas or immigration law."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses the implications of H-1B visa fees, which directly affects many Indian nationals, making it relevant to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that more directly represents immigration or H-1B visas to enhance relevance.",
-          "Add a brief summary or conclusion that emphasizes the potential impact on the Indian diaspora."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "5364f3fa-9e13-4a2f-b24a-eab741986029",
-      "headline": "One Wrong Signature and USCIS Keeps Your Money \u2014 The July 10 Rule Nobody Is Talking About",
-      "slug": "uscis-signature-rule-july-10-deny-petition-filing-fee-20260613",
+      "id": "b44fa05e-1d47-46a2-b3c8-df667f0e44a5",
+      "headline": "SBI and Bank of Baroda Are About to Borrow a Billion Dollars Abroad. The RBI Is Paying Part of Their Hedging Cost.",
+      "slug": "sbi-bank-of-baroda-first-dollar-bonds-rbi-subsidized-hedging-window-20260613",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -137,13 +101,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses a significant immigration rule change that directly impacts Indian nationals, particularly H-1B workers, making it relevant to the diaspora."
+          "note": "The article effectively connects the RBI's measures to the interests of NRIs, highlighting potential benefits for them."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include a brief summary of the implications of the rule for employers as well as employees to broaden the audience.",
-          "Add a section on how to ensure compliance with the new signature requirements to provide practical advice."
+          "Consider adding more specific examples of how NRIs can take advantage of the subsidised hedging window.",
+          "Include a brief explanation of what FCNR deposits are for readers who may not be familiar."
         ],
         "verdict": "pass"
       },
@@ -155,45 +119,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "51c7e1e6-f2d8-42ba-8f92-d365c073106f",
-      "headline": "Anthropic and OpenAI Are Racing to Wall Street. One of Them Is About to Turn a Profit.",
-      "slug": "anthropic-openai-ipo-race-indian-tech-stake-20260612",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image features Sam Altman, which is relevant to the article's focus on AI companies, but it does not directly depict the IPO race or the Indian tech diaspora."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively highlights the significant impact of the IPOs on the Indian tech diaspora, including investors and researchers."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more visuals or infographics to illustrate the financial data and projections mentioned.",
-          "Include quotes or insights from Indian tech leaders to enhance the diaspora connection."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "b669697d-44d9-4111-9139-d9d8b5fc93ab",
-      "headline": "India's IT Sector Has Lost 27 Per Cent in Six Months. Claude Fable 5 Was the Last Straw.",
-      "slug": "india-it-stocks-crash-ai-disruption-claude-fable-20260612",
+      "id": "ebeae28f-ed9a-4f89-880a-9f37fcfc59c3",
+      "headline": "India Just Ripped Up Its Tax Code for Foreign Bond Investors. A Billion Dollars Flowed In Within Three Days.",
+      "slug": "india-scraps-bond-tax-foreign-investors-billion-dollar-inflows-bloomberg-index-20260613",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -209,13 +137,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses the implications of AI on the IT sector, which directly affects NRIs working in IT and their investments."
+          "note": "The article discusses reforms that directly impact foreign bond investors, including NRIs, making it relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more specific examples of how AI is impacting job roles within the IT sector to enhance reader understanding.",
-          "Add quotes or insights from NRI professionals in the IT sector to strengthen the diaspora connection."
+          "Include quotes or insights from NRI investors to enhance the diaspora connection.",
+          "Add a brief explanation of how these tax changes might affect NRIs specifically."
         ],
         "verdict": "pass"
       },
@@ -227,9 +155,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "3e39cc54-9c40-4c3b-8179-a7b79b51658f",
-      "headline": "Twenty-Seven Indians Made Forbes' List of America's Most Successful Immigrants. The Timing Is Pointed.",
-      "slug": "forbes-250-immigrants-midas-list-indian-americans-vc-20260612",
+      "id": "25219d7b-bd9e-4db4-91ea-10d215816e40",
+      "headline": "The World Bank Just Upgraded India While Downgrading Almost Everyone Else. The Gap Is Getting Wider.",
+      "slug": "world-bank-india-gdp-6-6-percent-upgrade-global-growth-weakest-since-covid-20260613",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -245,13 +173,49 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively highlights the achievements of Indian-origin individuals in America, connecting it to the broader Indian diaspora experience."
+          "note": "The article discusses the implications of India's economic growth for the Indian diaspora, particularly in terms of investment and remittances."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes or reactions from the individuals mentioned to enhance personal connection.",
-          "Include more context on the implications of the proposed legislation for the Indian diaspora."
+          "Consider adding more specific examples of how the Indian diaspora can benefit from the economic changes discussed.",
+          "Include quotes or insights from diaspora members or experts to enhance the connection with the audience."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "6d09f85e-2a2a-4064-9dd3-da0ddd148c0a",
+      "headline": "Modi and Macron Will Unveil 120 Indian Deep-Tech Startups in Nice Tomorrow. Nothing Like This Has Happened Before.",
+      "slug": "bharat-innovates-2026-modi-macron-nice-120-deep-tech-startups-india-france-20260613",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively highlights opportunities for NRIs in Europe to engage with Indian startups, making the diaspora angle relevant and natural."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include quotes or insights from diaspora entrepreneurs to enhance the connection with NRI readers.",
+          "Add a brief section on how the showcased startups are expected to impact the global tech landscape."
         ],
         "verdict": "pass"
       },
