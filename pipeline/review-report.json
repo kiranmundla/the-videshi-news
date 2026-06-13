@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-13T04:15:12.971276+00:00",
+  "timestamp": "2026-06-13T04:45:26.724178+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 0,
+    "pass": 3,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "49f79620-e3f5-4415-bad8-76be0c3417e7",
-      "headline": "A Rhode Island Judge Just Wrote the Playbook for Challenging USCIS \u2014 Indian Applicants Should Read It",
-      "slug": "rhode-island-court-uscis-hold-vacated-indian-applicants-20260613",
+      "id": "7537c983-77a9-4c12-bc50-521e73c6d3f0",
+      "headline": "India's EV Market Grew 81 Per Cent Last Year. Tesla Sold 35 Cars Last Month.",
+      "slug": "india-ev-market-81-percent-growth-tata-tesla-35-cars-manufacturing-policy-20260613",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -24,18 +24,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image is relevant to the topic of immigration but does not specifically depict any elements related to the court ruling or Indian applicants."
+          "issue": "The image of a car does relate to the EV market but lacks a direct connection to the specific context of India's EV growth."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the court ruling to Indian applicants, highlighting its implications for their immigration status."
+          "note": "The article effectively connects the growth of India's EV market to NRI investors and families, highlighting potential opportunities."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include a quote from an immigration attorney or expert to enhance credibility.",
-          "Add a brief section on how Indian applicants can take action based on the ruling."
+          "Consider adding more specific data or quotes from industry experts to enhance credibility.",
+          "Include a brief overview of how the EV market in India compares to other countries for a broader context."
         ],
         "verdict": "pass"
       },
@@ -47,9 +47,45 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "d6dfb902-a578-4133-bdfa-27b5ad60f975",
-      "headline": "Iowa Just Handed Cognizant Half a Billion Dollars \u2014 and Accidentally Made H-1B a Campaign Issue",
-      "slug": "iowa-cognizant-h1b-outsourcing-state-contract-campaign-20260613",
+      "id": "35ebf372-4b6a-4bec-84ac-db9c3d62cdfa",
+      "headline": "A Peace Deal Could Be Signed This Weekend. India's Markets Just Had Their Best Day in Two Months.",
+      "slug": "us-iran-peace-deal-weekend-india-markets-best-day-crude-falls-20260613",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 8,
+          "issue": "The image does not directly relate to the geopolitical content of the article."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses India's economic situation in relation to international geopolitics, which is relevant to the NRI audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that more closely represents the geopolitical theme of the article.",
+          "Add a brief section on how the peace deal could specifically impact NRIs or the Indian diaspora."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "a5832b16-d225-4b59-ad96-11860dfa63a8",
+      "headline": "Opendoor Just Shut Its Entire India Office and Replaced 250 Workers With AI. Silicon Valley Is Watching.",
+      "slug": "opendoor-shuts-india-250-workers-ai-offshoring-watershed-moment-20260613",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -60,22 +96,65 @@
         "embed_issues": [],
         "image_match": {
           "score": 6,
-          "issue": "The image does not directly relate to the article's focus on H-1B visas and IT outsourcing."
+          "issue": "The image does not directly relate to the article's focus on AI and job loss in the tech industry."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article discusses the implications of H-1B visa policies on Indian tech workers, which is relevant to the Indian diaspora."
+          "quality": 7,
+          "note": "The article discusses the impact of AI on jobs in India, which is relevant to the Indian diaspora concerned about employment trends."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include a more relevant image that reflects the themes of H-1B visas or Indian IT workers.",
-          "Expand on the implications for Indian workers in the U.S. to strengthen the diaspora connection."
+          "Consider using an image that visually represents AI or job loss in the tech industry to enhance relevance.",
+          "Include quotes or perspectives from Indian diaspora members or experts to strengthen the diaspora connection."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "cec94dc4-029d-438f-9d0d-b21429bbdf13",
+      "headline": "Three Goals Before Halftime. Balogun's Brace at SoFi Gave America a World Cup Night to Remember.",
+      "slug": "usa-4-1-paraguay-balogun-brace-sofi-world-cup-2026-nri-backyard",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/DZgrHKLC72J/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not appear to be directly related to the World Cup match or Folarin Balogun's performance."
+          }
+        ],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the World Cup event to the Indian American diaspora, highlighting their presence and engagement with the tournament."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the irrelevant Instagram embed with a more relevant social media post that highlights the match or Balogun's performance.",
+          "Consider adding more quotes or reactions from Indian American fans to enhance the diaspora connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/DZgrHKLC72J/",
         "promoted to published"
       ],
       "revised": false,
