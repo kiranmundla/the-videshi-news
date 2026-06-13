@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-13T02:45:27.337431+00:00",
+  "timestamp": "2026-06-13T03:15:37.578370+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 5,
-    "flag": 0,
+    "pass": 3,
+    "flag": 2,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,103 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "2828f809-d0f4-4f35-bedc-bb8683fee69e",
-      "headline": "South India Now Carries More Air Passengers Than the North and West Combined. The Gap Is Still Growing.",
-      "slug": "south-india-aviation-dominance-bengaluru-hyderabad-kerala-airport-passengers-20260613",
+      "id": "a5cbcb62-8c7a-4075-b218-1adc974a3093",
+      "headline": "What to Watch This Week: Seven Streams Worth Your Weekend",
+      "slug": "what-to-watch-this-week-june-13-2026",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 6,
+          "issue": "irrelevant"
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses streaming options available in the diaspora, particularly highlighting Hindi dubs for non-Tamil speakers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant hero image that reflects the content of the article, such as a promotional image from one of the featured shows.",
+          "Add more context or commentary on how these streaming options cater specifically to the NRI audience."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "c0878811-309e-4f10-9650-cd943bbb887c",
+      "headline": "Cocktail 2 Is the Most Wanted Film in India Right Now. Next Friday, We Find Out If It Deserves to Be.",
+      "slug": "cocktail-2-most-anticipated-bollywood-film-2026-shahid-kriti-rashmika-june-19",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "03379991-0142-4262-91e4-50f4c8f4d2ea",
+            "headline": "Cocktail 2 Hasn't Even Released Yet. It's Already Everywhere"
+          },
+          {
+            "article_id": "dc14c140-c3d0-4dd2-becc-c4a30b608f8f",
+            "headline": "Shahid Kapoor Has Stopped Trusting His Own Instincts. That M"
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/DZF7BkPjSm7/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not appear to be directly related to the film 'Cocktail 2' or its promotional content."
+          },
+          {
+            "url": "https://youtube.com/watch?v=XXxUqLHq1xg",
+            "problem": "irrelevant",
+            "explanation": "The YouTube link is not specified as being directly related to 'Cocktail 2', making it difficult to assess its relevance."
+          }
+        ],
+        "image_match": {
+          "score": 5,
+          "issue": "The image of Shahid Kapoor does not directly relate to 'Cocktail 2' as it appears to be from a different event."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses a popular film that may resonate with the Indian diaspora, particularly those interested in Bollywood."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the irrelevant Instagram and YouTube links with content that directly relates to 'Cocktail 2'.",
+          "Consider using a more relevant hero image that features the cast of 'Cocktail 2' or promotional material for the film."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/DZF7BkPjSm7/",
+        "Removed irrelevant embed: https://youtube.com/watch?v=XXxUqLHq1xg",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "b1b44537-49fc-48a7-8cb9-1b7dd5ef9662",
+      "headline": "Pine Labs Just Taught AI Agents to Spend Money Through UPI \u2014 and It Is Already Live",
+      "slug": "pine-labs-p3p-agentic-payment-upi-ai-commerce-20260613",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -24,18 +118,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image does not directly relate to the topic of air travel or airports."
+          "issue": "The image is relevant but does not specifically depict AI or UPI."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the aviation trends in South India to the experiences and needs of the NRI community, particularly those working in tech and the Gulf."
+          "quality": 8,
+          "note": "The article effectively connects the technology to the interests of NRIs, particularly in terms of investment and remittance."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that directly represents air travel or airports to enhance relevance.",
-          "Add more statistics or quotes from industry experts to strengthen the analysis of the aviation trends."
+          "Consider including a more relevant image that depicts AI or digital payments.",
+          "Expand on the potential implications of P3P for NRIs in more detail."
         ],
         "verdict": "pass"
       },
@@ -47,12 +141,53 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "8362d380-ba7f-4d0f-896a-4aebff4ad9ab",
-      "headline": "Sixty-Four of Eighty TMC Lawmakers Have Abandoned Mamata Banerjee. The Party She Built Is Splitting in Two.",
-      "slug": "tmc-split-mamata-banerjee-ritabrata-rebel-64-mlas-abhishek-west-bengal-20260613",
+      "id": "5a7d3584-8354-4662-9e81-d8255f986e56",
+      "headline": "GitHub Copilot's $29 Bill Just Became $750 \u2014 and India's Developer Army Is Doing the Maths",
+      "slug": "github-copilot-metered-billing-india-developers-20260613",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to GitHub or coding, but it is a generic tech-related image."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the impact of GitHub's pricing changes on Indian developers and the diaspora, making it relevant to NRI readers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that directly relates to coding or GitHub.",
+          "Add a quote or perspective from an Indian developer to enhance the diaspora connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "65b4b8d3-9d1b-4268-b55f-5d1a9bfef544",
+      "headline": "The US Just Blocked Foreigners From Anthropic's Best AI. Indian Engineers Are in the Crossfire.",
+      "slug": "us-blocks-anthropic-fable-mythos-export-ban-india-20260613",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "e04aebd7-2415-4953-b470-c5bcd88f4b5b",
+            "headline": "Claude Writes 80% of Anthropic's Code. The Company Wants a P"
+          }
+        ],
         "broken_embeds": []
       },
       "llm_review": {
@@ -65,147 +200,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the political situation in West Bengal to the interests of the Bengali diaspora, highlighting the cultural and political significance of TMC."
+          "note": "The article effectively connects the implications of U.S. export controls on AI technology to Indian engineers and companies, highlighting the impact on the Indian tech workforce and market."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from diaspora members to enhance the personal connection.",
-          "Include more context on the implications of the TMC split for future elections to deepen the analysis."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "e19c2df9-813a-4e6f-aca8-fac58d11995c",
-      "headline": "India Unveils Project Kusha, Its Homegrown Answer to Russia's S-400. Rajnath Singh Says It Already Proved Itself in Combat.",
-      "slug": "project-kusha-india-indigenous-s400-rajnath-singh-operation-sindoor-drdl-20260613",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image features Rajnath Singh, which is relevant to the article, but it does not directly depict Project Kusha."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects Project Kusha to the Indian diaspora by discussing its implications for India's defence ecosystem and opportunities for Indian-origin professionals abroad."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider including a more direct image related to Project Kusha to enhance visual relevance.",
-          "Add quotes or insights from diaspora professionals to strengthen the connection further."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "1dbaeca7-3b58-4306-a426-f14345a3aecb",
-      "headline": "Meta Will Build Its First AI Data Centre in India. Reliance Will Run It From Ambani's Jamnagar Complex.",
-      "slug": "meta-reliance-ai-data-centre-jamnagar-168-mw-india-first-built-to-suit-20260613",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "c0411dc2-8bd6-4e33-88f9-2984d3d9144f",
-            "headline": "Reliance and Meta Are Building India's First Hyperscale AI D"
-          },
-          {
-            "article_id": "239ae692-1b34-473d-88b9-ada4999f17eb",
-            "headline": "Meta and Reliance to Build India's First AI Data Centre in J"
-          },
-          {
-            "article_id": "4ca14a70-12f6-4ca0-ad63-96aa40d63c21",
-            "headline": "Meta Picks Ambani's Jamnagar for Its First India AI Data Cen"
-          }
-        ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 3,
-          "issue": "The image of Mukesh Ambani does not directly relate to the AI data centre topic."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the development to Indian tech professionals and NRI investors, highlighting opportunities and growth."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that directly represents AI data centres or the collaboration between Meta and Reliance.",
-          "Add more specific examples of potential job roles or opportunities for diaspora professionals in the context of the new data centre."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "bf63e951-87ed-4f71-9de0-903b29f1d687",
-      "headline": "India Is Preparing to Miss Its Budget Deficit Target for the First Time Since the Pandemic. The Iran War Is the Reason.",
-      "slug": "india-fiscal-deficit-4-8-percent-gdp-iran-war-energy-subsidy-pandemic-miss-20260613",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "cfb39575-48a1-4e35-835e-770f7f0c8dba",
-            "headline": "India's Fertiliser Bill Has Doubled in Three Months. The Ira"
-          },
-          {
-            "article_id": "7517e76d-1568-42f1-9b29-e5d7d371bf51",
-            "headline": "India Is Preparing to Let Its Fiscal Deficit Blow Past Targe"
-          },
-          {
-            "article_id": "390fc300-0a15-4b50-88fe-dfafd968db01",
-            "headline": "India Opens Insurance to 100% Foreign Ownership \u2014 What NRIs "
-          }
-        ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 6,
-          "issue": "The image of Nirmala Sitharaman does not directly relate to the article's focus on the budget deficit and the Iran war."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively discusses the implications of India's fiscal situation on NRIs, particularly regarding remittances and investment opportunities."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that more directly relates to the topic of India's budget deficit or the impact of the Iran war.",
-          "Expand on the potential long-term effects of the fiscal deficit on the Indian economy and diaspora investments."
+          "Include more direct quotes from Indian tech leaders or engineers to strengthen the diaspora connection.",
+          "Add a brief section on potential responses from Indian companies or the government regarding the export controls."
         ],
         "verdict": "pass"
       },
