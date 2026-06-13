@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-13T07:15:20.634589+00:00",
+  "timestamp": "2026-06-13T07:45:18.804422+00:00",
   "mode": "fix",
   "stats": {
     "pass": 1,
@@ -11,76 +11,17 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "859f3b35-7376-4c70-8a52-ad2bf510d83c",
-      "headline": "Welcome To The Jungle Just Dropped Its Trailer. Thirty Stars, One Jungle, Zero Subtlety. We're In.",
-      "slug": "welcome-to-the-jungle-trailer-akshay-kumar-suniel-shetty-ensemble-comedy-june-26-nri-20260613",
+      "id": "5c73c5a7-0933-4921-bb2a-dcf2131346e0",
+      "headline": "He Lost His Central Contract. He Went Home to Jharkhand. On Saturday, He Walks Back Into India's ODI Squad.",
+      "slug": "ishan-kishan-odi-comeback-central-contract-jharkhand-dharamsala-afghanistan-nri",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "6e9f3bbc-cbbc-404a-8fed-bf8869d674b4",
-            "headline": "Welcome To The Jungle Just Dropped a Four-Minute Trailer. Bo"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/reel/DZb92GLNWkK/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram reel does not appear to be directly related to the film or its trailer, making it irrelevant to the article's subject."
-          }
-        ],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the film to the NRI audience by discussing its appeal as comfort food and its release timing."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the irrelevant Instagram embed with a more relevant social media post related to the film or its trailer.",
-          "Consider adding a brief summary of the previous films in the franchise for readers unfamiliar with them."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/reel/DZb92GLNWkK/",
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "9cd48bcc-18d3-4e20-a3a2-0b6ed959ac50",
-      "headline": "Vicky Kaushal Has Blocked 18 Months of His Life for One Role. Bollywood Has Never Seen This Kind of Devotion.",
-      "slug": "vicky-kaushal-mahavatar-parashurama-18-months-amar-kaushik-maddock-nri-20260613",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "b08831d8-e725-4065-b705-b93d8ecf7b59",
-            "headline": "Vicky Kaushal Has Vanished Into the Wilderness. He'll Return"
-          }
-        ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/p/DZg12ubiFih/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post does not appear to be directly related to Vicky Kaushal's role in Mahavatar or the article's main theme."
-          }
-        ],
+        "embed_issues": [],
         "image_match": {
           "score": 9,
           "issue": null
@@ -88,18 +29,53 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article connects well with the diaspora by referencing cultural stories and the significance of Parashurama in Hindu mythology."
+          "note": "The article effectively connects Kishan's comeback story to broader themes of resilience and rebuilding, which resonate with the Indian diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant Instagram embed with a more relevant source or quote related to Vicky Kaushal's preparation for Mahavatar.",
-          "Consider adding more context about the significance of Mahavatar in relation to the Indian diaspora's cultural heritage."
+          "Consider adding quotes from Kishan or other players to enhance the narrative.",
+          "Include more context about the significance of the ODI series against Afghanistan for added depth."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "57f24bbf-b428-4da1-906d-b2bf1f2c4698",
+      "headline": "He Scored an Unbeaten 75 in the Final. Two Weeks Later, the Scan Showed a Tear Nobody Expected.",
+      "slug": "virat-kohli-rare-hamstring-tear-ipl-final-ruled-out-afghanistan-odi-england-return-nri",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 3,
+          "issue": "The image does not match the article's focus on Kohli's injury and performance."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects Kohli's performance and injury to the Indian diaspora in the UK, highlighting their interest in his potential return."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that depicts Kohli in action during the IPL or addressing his injury.",
+          "Add more context about the impact of Kohli's absence on the Indian team dynamics and the upcoming series."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DZg12ubiFih/",
         "promoted to published"
       ],
       "revised": false,
