@@ -20,6 +20,7 @@ export type Article = {
   gallery_images?: GalleryImage[] | null;
   author?: string;
   published_at: string;
+  updated_at?: string;
   created_at: string;
   status: "published" | "draft";
   sources?: { label: string; url?: string }[];
@@ -43,6 +44,7 @@ type P2Row = {
   status: string;
   is_featured: boolean | null;
   published_at: string | null;
+  updated_at?: string | null;
   created_at: string;
   sources?: unknown;
   diaspora_angle?: string | null;
@@ -54,7 +56,7 @@ type P2Row = {
 };
 
 const P2_COLS =
-  "id, slug, headline, subheadline, body, vertical, category, status, is_featured, published_at, created_at, sources, diaspora_angle, tags, image_url, image_attribution, image_caption, gallery_images";
+  "id, slug, headline, subheadline, body, vertical, category, status, is_featured, published_at, created_at, updated_at, sources, diaspora_angle, tags, image_url, image_attribution, image_caption, gallery_images";
 
 const P2_LIST_COLS =
   "id, slug, headline, subheadline, vertical, category, status, is_featured, published_at, created_at, tags, image_url, image_attribution, image_caption, gallery_images";
@@ -125,6 +127,7 @@ function mapRow(row: P2Row): Article {
     // expose raw attribution for callers that want it separately
     // (kept on image_credit too for backwards compat)
     published_at: row.published_at ?? row.created_at,
+    updated_at: row.updated_at ?? row.published_at ?? row.created_at,
     created_at: row.created_at,
     status: row.status === "published" ? "published" : "draft",
     sources: parseSources(row.sources),

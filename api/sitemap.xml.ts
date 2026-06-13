@@ -14,11 +14,11 @@ const SITE = "https://www.thevideshi.com";
 const STATIC_PAGES = [
   { loc: "/", priority: "1.0", changefreq: "hourly" },
   { loc: "/events", priority: "0.8", changefreq: "daily" },
-  { loc: "/events/submit", priority: "0.5", changefreq: "monthly" },
+
   { loc: "/directory", priority: "0.8", changefreq: "daily" },
-  { loc: "/directory/submit", priority: "0.5", changefreq: "monthly" },
+
   { loc: "/classifieds", priority: "0.8", changefreq: "daily" },
-  { loc: "/classifieds/submit", priority: "0.5", changefreq: "monthly" },
+
   { loc: "/cars", priority: "0.8", changefreq: "weekly" },
   { loc: "/cars/guide/first-car-in-america", priority: "0.6", changefreq: "monthly" },
   { loc: "/cars/guide/lease-vs-buy", priority: "0.6", changefreq: "monthly" },
@@ -29,6 +29,16 @@ const STATIC_PAGES = [
   { loc: "/privacy", priority: "0.3", changefreq: "yearly" },
   { loc: "/terms", priority: "0.3", changefreq: "yearly" },
   { loc: "/travel", priority: "0.7", changefreq: "weekly" },
+  { loc: "/immigration", priority: "0.8", changefreq: "daily" },
+  { loc: "/immigration/green-card", priority: "0.7", changefreq: "weekly" },
+  { loc: "/immigration/h1b", priority: "0.7", changefreq: "weekly" },
+  { loc: "/immigration/consulate-wait-times", priority: "0.7", changefreq: "weekly" },
+  { loc: "/immigration/processing-times", priority: "0.7", changefreq: "weekly" },
+  { loc: "/immigration/visas", priority: "0.7", changefreq: "weekly" },
+  { loc: "/immigration/guides", priority: "0.6", changefreq: "weekly" },
+  { loc: "/stories", priority: "0.6", changefreq: "weekly" },
+  { loc: "/world-cup", priority: "0.9", changefreq: "hourly" },
+  { loc: "/search", priority: "0.4", changefreq: "monthly" },
 ];
 
 const CATEGORIES = [
@@ -97,7 +107,7 @@ export default async function handler(_req: VercelRequest, res: VercelResponse) 
     // Category pages
     for (const cat of CATEGORIES) {
       xml += `  <url>
-    <loc>${escapeXml(SITE + "/category/" + cat)}</loc>
+    <loc>${escapeXml(SITE + "/" + cat)}</loc>
     <lastmod>${today}</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>

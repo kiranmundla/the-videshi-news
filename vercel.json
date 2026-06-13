@@ -129,6 +129,61 @@
       "destination": "/api/prerender-page?path=/cars/:path*"
     },
     {
+      "source": "/immigration/:path*",
+      "has": [
+        {
+          "type": "header",
+          "key": "user-agent",
+          "value": ".*(Googlebot|bingbot|Baiduspider|YandexBot|DuckDuckBot|Slurp|facebookexternalhit|Twitterbot|LinkedInBot|Applebot|Discordbot|TelegramBot|WhatsApp).*"
+        }
+      ],
+      "destination": "/api/prerender-page?path=/immigration/:path*"
+    },
+    {
+      "source": "/stories/:slug",
+      "has": [
+        {
+          "type": "header",
+          "key": "user-agent",
+          "value": ".*(Googlebot|bingbot|Baiduspider|YandexBot|DuckDuckBot|Slurp|facebookexternalhit|Twitterbot|LinkedInBot|Applebot|Discordbot|TelegramBot|WhatsApp).*"
+        }
+      ],
+      "destination": "/api/prerender-page?path=/stories/:slug"
+    },
+    {
+      "source": "/travel/:path*",
+      "has": [
+        {
+          "type": "header",
+          "key": "user-agent",
+          "value": ".*(Googlebot|bingbot|Baiduspider|YandexBot|DuckDuckBot|Slurp|facebookexternalhit|Twitterbot|LinkedInBot|Applebot|Discordbot|TelegramBot|WhatsApp).*"
+        }
+      ],
+      "destination": "/api/prerender-page?path=/travel/:path*"
+    },
+    {
+      "source": "/watch/:slug",
+      "has": [
+        {
+          "type": "header",
+          "key": "user-agent",
+          "value": ".*(Googlebot|bingbot|Baiduspider|YandexBot|DuckDuckBot|Slurp|facebookexternalhit|Twitterbot|LinkedInBot|Applebot|Discordbot|TelegramBot|WhatsApp).*"
+        }
+      ],
+      "destination": "/api/prerender-page?path=/watch/:slug"
+    },
+    {
+      "source": "/world-cup",
+      "has": [
+        {
+          "type": "header",
+          "key": "user-agent",
+          "value": ".*(Googlebot|bingbot|Baiduspider|YandexBot|DuckDuckBot|Slurp|facebookexternalhit|Twitterbot|LinkedInBot|Applebot|Discordbot|TelegramBot|WhatsApp).*"
+        }
+      ],
+      "destination": "/api/prerender-page?path=/world-cup"
+    },
+    {
       "source": "/:path",
       "has": [
         {

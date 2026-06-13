@@ -671,6 +671,64 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       html = await renderArticle(slug);
     } else if (["/about", "/contact", "/travel", "/immigration", "/stories"].includes(path)) {
       html = renderStaticPage(path);
+    } else if (path.startsWith("/immigration/")) {
+      // Immigration sub-pages: /immigration/green-card, /immigration/h1b, etc.
+      const subPage = path.replace("/immigration/", "");
+      const immigrationPages: Record<string, { title: string; description: string }> = {
+        "green-card": { title: "Green Card Tracker", description: "Track green card processing times, visa bulletin dates, and EB category wait times for Indian immigrants." },
+        "h1b": { title: "H-1B Visa Hub", description: "H-1B visa news, lottery results, transfer guides, and cap-exempt strategies for Indian tech workers." },
+        "consulate-wait-times": { title: "US Consulate Wait Times in India", description: "Current visa interview wait times at US consulates in India — Mumbai, Delhi, Chennai, Hyderabad, Kolkata." },
+        "processing-times": { title: "USCIS Processing Times", description: "Latest USCIS processing times for green cards, H-1B, EAD, and other immigration forms." },
+        "visas": { title: "Visa Tracker", description: "Track US visa bulletin dates, priority dates, and processing times for Indian immigrants." },
+        "guides": { title: "Immigration Guides", description: "Step-by-step immigration guides for Indian immigrants: H-1B, green card, OPT, and more." },
+      };
+      const pg = immigrationPages[subPage];
+      if (pg) {
+        html = pageShell({
+          title: `${pg.title} — The Videshi`,
+          description: pg.description,
+          url: `${SITE}${path}`,
+          body: `<main><h1>${esc(pg.title)}</h1><p>${esc(pg.description)}</p></main>`,
+        });
+      }
+    } else if (path.startsWith("/stories/") && !path.includes("submit")) {
+      // Individual community stories
+      const slug = path.replace("/stories/", "");
+      const rows = await sbFetch("community_stories", "title,slug,excerpt,body", `slug=eq.${encodeURIComponent(slug)}`, 1).catch(() => []);
+      if (rows.length) {
+        const s = rows[0];
+        html = pageShell({
+          title: `${s.title} — Community Stories | The Videshi`,
+          description: s.excerpt || "A community story from the Indian diaspora.",
+          url: `${SITE}${path}`,
+          type: "article",
+          body: `<article><h1>${esc(s.title)}</h1>${s.body ? toParagraphs(stripMarkdown(s.body)) : ""}</article>`,
+        });
+      }
+    } else if (path === "/world-cup") {
+      html = pageShell({
+        title: "FIFA World Cup 2026 — Live Scores, Schedule & NRI Guide | The Videshi",
+        description: "Complete FIFA World Cup 2026 coverage for Indians in America: live scores, group standings, match schedule, highlights, and an NRI guide to attending matches.",
+        url: `${SITE}/world-cup`,
+        body: `<main><h1>FIFA World Cup 2026</h1><p>Live scores, standings, highlights, and NRI guide to the 2026 World Cup across the US, Canada, and Mexico.</p></main>`,
+      });
+    } else if (path.startsWith("/watch/")) {
+      // Streaming picks detail pages
+      html = pageShell({
+        title: "What to Watch — The Videshi",
+        description: "Streaming picks, reviews, and recommendations for the Indian diaspora.",
+        url: `${SITE}${path}`,
+        body: `<main><h1>What to Watch</h1><p>Streaming picks and reviews curated for the Indian diaspora.</p></main>`,
+      });
+    } else if (path.startsWith("/travel/")) {
+      // Travel destination pages
+      const dest = path.replace("/travel/", "").split("/")[0];
+      html = pageShell({
+        title: `Travel: ${dest.replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase())} — The Videshi`,
+        description: `Travel guide and tips for ${dest.replace(/-/g, " ")} — visa info, destinations, and recommendations for Indian travelers.`,
+        url: `${SITE}${path}`,
+        body: `<main><h1>Travel Guide</h1><p>Destination guides and tips for the Indian diaspora.</p></main>`,
+      });
     } else if (CATEGORIES[path.replace("/", "")]) {
       // Category page: /news, /entertainment, etc.
       html = await renderCategory(path.replace("/", ""));

@@ -506,6 +506,8 @@ export default function ArticlePage() {
         <meta name="twitter:title" content={article.title} />
         <meta name="twitter:description" content={article.excerpt} />
         <meta name="twitter:image" content={article.hero_image_url} />
+        <meta property="article:published_time" content={article.published_at || ""} />
+        <meta property="article:section" content={article.category || "News"} />
         <link rel="canonical" href={`https://www.thevideshi.com/articles/${article.slug}`} />
         <script type="application/ld+json">
           {JSON.stringify({
@@ -514,12 +516,16 @@ export default function ArticlePage() {
             headline: article.title,
             ...(article.excerpt ? { description: article.excerpt } : {}),
             ...(article.published_at ? { datePublished: article.published_at } : {}),
+            ...(article.published_at ? { dateModified: article.updated_at || article.published_at } : {}),
             ...(article.hero_image_url ? { image: article.hero_image_url } : {}),
+            ...(article.category ? { articleSection: article.category } : {}),
             url: `https://www.thevideshi.com/articles/${article.slug}`,
             mainEntityOfPage: {
               "@type": "WebPage",
               "@id": `https://www.thevideshi.com/articles/${article.slug}`
             },
+            inLanguage: "en",
+            isAccessibleForFree: true,
             author: { "@type": "Organization", name: "The Videshi" },
             publisher: {
               "@type": "Organization",
@@ -530,6 +536,17 @@ export default function ArticlePage() {
                 url: "https://www.thevideshi.com/logo.jpg"
               }
             },
+          })}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Home", item: "https://www.thevideshi.com" },
+              ...(article.category ? [{ "@type": "ListItem", position: 2, name: article.category, item: `https://www.thevideshi.com/category/${article.category.toLowerCase().replace(/\s+&\s+/g, "-").replace(/\s+/g, "-")}` }] : []),
+              { "@type": "ListItem", position: article.category ? 3 : 2, name: article.title },
+            ],
           })}
         </script>
       </Helmet>
