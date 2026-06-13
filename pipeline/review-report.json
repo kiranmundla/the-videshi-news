@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-13T07:45:18.804422+00:00",
+  "timestamp": "2026-06-13T08:15:16.594328+00:00",
   "mode": "fix",
   "stats": {
     "pass": 1,
@@ -11,33 +11,33 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "5c73c5a7-0933-4921-bb2a-dcf2131346e0",
-      "headline": "He Lost His Central Contract. He Went Home to Jharkhand. On Saturday, He Walks Back Into India's ODI Squad.",
-      "slug": "ishan-kishan-odi-comeback-central-contract-jharkhand-dharamsala-afghanistan-nri",
+      "id": "7cc2c2b6-8948-4691-8a47-f28599bc06c9",
+      "headline": "Three Dead Sailors, One H-1B Wishlist \u2014 Modi Goes to the G7 With Blood on the Agenda",
+      "slug": "modi-g7-dead-sailors-h1b-diplomatic-bind-20260613",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
-        "overall_score": 8,
+        "overall_score": 7,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 4,
+          "issue": "The image does not directly relate to the article's topic of maritime incidents and immigration discussions."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects Kishan's comeback story to broader themes of resilience and rebuilding, which resonate with the Indian diaspora."
+          "note": "The article effectively connects the deaths of Indian sailors to the immigration discussions relevant to the Indian diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from Kishan or other players to enhance the narrative.",
-          "Include more context about the significance of the ODI series against Afghanistan for added depth."
+          "Consider using a more relevant image that reflects the maritime theme or the immigration aspect discussed.",
+          "Add more context on how the deaths of the sailors specifically impact the Indian diaspora in the US."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
         "promoted to published"
@@ -47,9 +47,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "57f24bbf-b428-4da1-906d-b2bf1f2c4698",
-      "headline": "He Scored an Unbeaten 75 in the Final. Two Weeks Later, the Scan Showed a Tear Nobody Expected.",
-      "slug": "virat-kohli-rare-hamstring-tear-ipl-final-ruled-out-afghanistan-odi-england-return-nri",
+      "id": "4eb0c5e1-eecd-4833-bddc-e3c5574558f6",
+      "headline": "American Law Schools Are Losing India \u2014 and the Visa Pipeline May Never Recover",
+      "slug": "american-law-schools-losing-india-visa-pipeline-20260613",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -59,21 +59,21 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 3,
-          "issue": "The image does not match the article's focus on Kohli's injury and performance."
+          "score": 7,
+          "issue": "The image does not directly relate to the topic of law schools or immigration."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects Kohli's performance and injury to the Indian diaspora in the UK, highlighting their interest in his potential return."
+          "note": "The article discusses the implications of declining Indian applications to US law schools, which is highly relevant to the Indian diaspora, particularly those in the legal profession."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that depicts Kohli in action during the IPL or addressing his injury.",
-          "Add more context about the impact of Kohli's absence on the Indian team dynamics and the upcoming series."
+          "Consider using an image that more directly represents law schools or Indian students in the US.",
+          "Include quotes or perspectives from Indian students or professionals in the legal field to enhance the diaspora connection."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
         "promoted to published"
