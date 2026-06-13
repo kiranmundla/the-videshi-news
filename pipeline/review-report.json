@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-13T16:15:14.675359+00:00",
+  "timestamp": "2026-06-13T16:45:31.097845+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 0,
+    "pass": 4,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "a1f72a11-37bb-42e6-8b5b-cfd6904e99c7",
-      "headline": "One Hundred and Twenty-Six Thousand Fewer Applications \u2014 The H-1B Landscape After the $100,000 Fee",
-      "slug": "h1b-registrations-crashed-27-percent-fewer-applicants-odds-improve-20260613",
+      "id": "39c31acc-1449-460a-bcab-6a2443fa9fff",
+      "headline": "He Was Bowling in the Nets in 2019. On Saturday, He Took Three Wickets on Debut.",
+      "slug": "gurnoor-brar-odi-debut-india-muktsar-punjab-nets-bowler-dharamsala-afghanistan-nri",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -23,19 +23,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the H-1B visa topic."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses the implications of H-1B visa changes, which directly affect Indian professionals seeking employment in the U.S."
+          "note": "The article connects Brar's journey to the diaspora, particularly NRIs with roots in Punjab, highlighting a sense of pride and connection."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that more directly represents the H-1B visa process or Indian professionals in the tech industry.",
-          "Add a brief section on how these changes specifically impact the Indian diaspora in terms of job opportunities and immigration trends."
+          "Consider adding quotes from Brar or coaches to enhance the narrative.",
+          "Include more context about the significance of Brar's debut for Indian cricket."
         ],
         "verdict": "pass"
       },
@@ -47,9 +47,45 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "4f7b589d-bb08-44f3-a5ab-ecd3790950ec",
-      "headline": "The Four-Year Countdown \u2014 America Is About to Rewrite the Rules for 360,000 Indian Students",
-      "slug": "dhs-duration-of-status-f1-four-year-limit-indian-students-20260613",
+      "id": "241145f1-39c3-4446-a87b-2e2e107a4948",
+      "headline": "He Went Unsold at INR 1.5 Crore. On Saturday, He Hit Eight Sixes Against India.",
+      "slug": "gurbaz-102-off-51-fastest-afghan-odi-century-india-dharamsala-ipl-unsold-nri",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article connects well with NRI cricket fans by discussing the implications of Gurbaz's performance and the IPL auction dynamics."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from Gurbaz or Indian players to enhance the narrative.",
+          "Include more context on the significance of Afghanistan's cricketing achievements for diaspora readers."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "c3daf22f-b5cf-46b8-9688-b40e6e1961fa",
+      "headline": "India Has Built Twenty Foundational AI Models. Five Are Already Live. The World Barely Noticed.",
+      "slug": "indiaai-mission-20-foundational-models-sarvam-bharatgen-sovereign-ai-20260613",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -60,18 +96,90 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image does not directly relate to the topic of immigration or Indian students."
+          "issue": "The image does not directly relate to AI or technology, which is the main focus of the article."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively highlights the impact of proposed immigration changes on Indian students, making it highly relevant for the diaspora."
+          "quality": 8,
+          "note": "The article discusses India's advancements in AI, which is relevant to the Indian diaspora interested in technological progress and innovation in their home country."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that directly represents Indian students or the theme of immigration.",
-          "Add quotes or testimonials from Indian students to enhance the personal connection to the diaspora."
+          "Consider using an image that visually represents AI technology or Indian innovation to better match the article's content.",
+          "Include quotes or perspectives from diaspora members or Indian tech experts to enhance the connection with NRI readers."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "eb8afdb8-6b94-452a-9e4b-bf766b298bb2",
+      "headline": "Tata's iPhone Parts Factory Faces Shutdown Threat After Regulators Find Contaminated Farmland Water.",
+      "slug": "tata-iphone-factory-hosur-contamination-shutdown-threat-apple-india-20260613",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 5,
+          "issue": "The image does not directly relate to the article's focus on environmental issues and the iPhone manufacturing process."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 6,
+          "note": "The article discusses India's manufacturing ambitions, which may resonate with the Indian diaspora interested in economic developments."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include quotes or perspectives from diaspora members involved in the tech industry to enhance the connection.",
+          "Consider using a more relevant image that depicts the environmental impact or the Tata factory."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "5178b543-d0cb-4092-b0f5-ffeede6fb4b9",
+      "headline": "America's Top Trade Negotiator Will Fly to India the Week After G7. A Deal, Officials Say, Is Possible.",
+      "slug": "ustr-greer-india-visit-trade-deal-possible-g7-modi-trump-20260613",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image of Jamieson Greer is relevant as he is the subject of the article, but it does not directly illustrate the trade negotiations or the broader context of U.S.-India relations."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the trade negotiations to the Indian American diaspora, highlighting the potential impacts on their business ties and economic interests."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more direct quotes from officials to enhance credibility and engagement.",
+          "Add a brief background on the historical context of U.S.-India trade relations for better reader understanding."
         ],
         "verdict": "pass"
       },
