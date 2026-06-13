@@ -1,19 +1,19 @@
 {
-  "timestamp": "2026-06-13T17:15:21.781069+00:00",
+  "timestamp": "2026-06-13T18:16:37.288907+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 0,
+    "pass": 10,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
-  "revisions": 0,
+  "revisions": 1,
   "unpublished": 0,
   "articles": [
     {
-      "id": "912840eb-ec5e-4daa-adbc-7b1fc5910118",
-      "headline": "Toy Story 5 Hits Indian Theaters Next Thursday. The Rest of the Summer Doesn't Stand a Chance.",
-      "slug": "toy-story-5-india-hindi-release-biggest-opening-2026-pixar-nri-20260613",
+      "id": "d0d84a08-5d0c-47c0-b71a-a0486f2264e5",
+      "headline": "Indian Banks Are Offering NRIs Up to 7% on Dollar Deposits. Here Is How to Get the Best Rate Before September.",
+      "slug": "fcnr-deposit-rate-war-nri-dollar-deposits-bank-comparison-guide-2026",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -21,32 +21,25 @@
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://youtube.com/watch?v=c51ND9Hdbw0",
-            "problem": "irrelevant",
-            "explanation": "The YouTube link is relevant as it pertains to the trailer of Toy Story 5, which is the main subject of the article."
-          }
-        ],
+        "embed_issues": [],
         "image_match": {
-          "score": 10,
+          "score": 9,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects with NRI families by discussing the film's release in India and its significance for Indian audiences, particularly in relation to cultural themes."
+          "note": "The article directly addresses NRIs and their financial opportunities, making it relevant and engaging for the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more quotes or insights from the cast or crew to enhance the article's depth.",
-          "Include a brief comparison of how previous Toy Story films performed in India to provide context."
+          "Consider adding a section on potential risks associated with these investments to provide a balanced view.",
+          "Include testimonials or quotes from NRIs who have benefited from these deposits to enhance relatability."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://youtube.com/watch?v=c51ND9Hdbw0",
         "promoted to published"
       ],
       "revised": false,
@@ -54,9 +47,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "160b02b9-e4be-49f9-b95e-04fd0bc63c94",
-      "headline": "Shaheer Sheikh Plays a Deported NRI Hunting for His Missing Brother. Ab Hoga Hisaab Is Free, Furious, and Uncomfortably Real.",
-      "slug": "ab-hoga-hisaab-shaheer-sheikh-deported-nri-canada-scam-mx-player-nri-20260613",
+      "id": "6a4f3336-037c-4345-90db-a1087ba506d5",
+      "headline": "South Asians Do Everything Right for Heart Health and Still Get Sick Earlier. A 2,700-Person Study Finally Explains Why.",
+      "slug": "south-asian-heart-risk-paradox-age-45-healthier-habits-northwestern-jaha-2026",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -64,27 +57,371 @@
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/reel/DZeWs6esXpo/",
-            "problem": "relevant",
-            "explanation": "The Instagram reel is relevant as it likely promotes the series and connects to the article's subject."
-          }
-        ],
+        "embed_issues": [],
         "image_match": {
           "score": 9,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects with diaspora audiences by addressing the harsh realities of immigration and the NRI experience."
+          "quality": 8,
+          "note": "The article discusses health issues specifically affecting South Asians in the US, making it relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from the cast or crew to enhance engagement.",
-          "Include viewer testimonials or early reviews to provide additional context."
+          "Include more personal stories or testimonials from South Asian individuals to enhance relatability.",
+          "Add a section on actionable steps for the diaspora community to take based on the study's findings."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "37d4a168-36fb-4e00-b470-53294ff9ef03",
+      "headline": "Three Common Sleep Habits Are Silently Ageing Your Brain. A 23,000-Person Study Just Identified Them.",
+      "slug": "three-sleep-habits-brain-aging-white-matter-dementia-uk-biobank-2026",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the findings to the South Asian diaspora, discussing cultural factors that impact sleep."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific statistics or quotes from the study to enhance credibility.",
+          "Include a brief summary of the implications of these findings for the general population, not just the diaspora."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "38b78b12-b103-4586-8d79-25f432b95b97",
+      "headline": "Tomorrow, Dartmouth Hands Vivek Murthy an Honorary Doctorate. He Will Probably Talk About Loneliness Again.",
+      "slug": "vivek-murthy-dartmouth-honorary-doctorate-indian-american-20260613",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects Vivek Murthy's achievements and background to the Indian diaspora narrative, highlighting cultural influences and contributions."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a quote from Vivek Murthy or a relevant expert to enhance the article's depth.",
+          "Include more context on the significance of the honorary degree in relation to the Indian American community."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "2c09fc54-9f93-4f16-b6df-8ca9a2d1f0f3",
+      "headline": "India's OCI Cards Have Gone Digital. Here Is What Five Million Holders Need to Know.",
+      "slug": "india-eoci-digital-citizenship-amendment-rules-2026-nri-20260613",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image is relevant but does not specifically depict OCI cards or digital processes."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses the implications of the OCI card changes for NRIs, particularly those in the US and UK."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include a visual representation of the new digital OCI card process to enhance understanding.",
+          "Add quotes or testimonials from OCI cardholders to provide a personal touch and real-world perspective."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "66f67863-edc3-4c8d-b46f-d1633affc396",
+      "headline": "Nice, Bratislava, Evian, Paris: Modi's Six-Day European Tour Begins and Ends With the Diaspora",
+      "slug": "modi-france-slovakia-europe-diaspora-g7-vivatech-20260613",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "dc08ed57-d2f0-4285-a351-7f4463d1064f",
+            "headline": "Modi Just Became India's Longest-Serving Elected PM. The Dia"
+          },
+          {
+            "article_id": "61af84c6-b0de-4208-afeb-3e21eaf1508e",
+            "headline": "No Indian PM Has Visited Slovakia in 33 Years. Modi Is About"
+          },
+          {
+            "article_id": "51219e21-788f-4bcc-8f9a-6868b22250a8",
+            "headline": "India's Dead Sailors Have Put Modi in a Corner. He Meets Tru"
+          },
+          {
+            "article_id": "7cc2c2b6-8948-4691-8a47-f28599bc06c9",
+            "headline": "Three Dead Sailors, One H-1B Wishlist \u2014 Modi Goes to the G7 "
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects Modi's visit to the Indian diaspora in France, highlighting their engagement and the significance of the events for them."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more direct quotes from diaspora members to enhance personal connection.",
+          "Include more details on how the outcomes of the meetings may specifically impact the diaspora."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "2979b5d2-9313-40d5-aebe-ec17e5004bf7",
+      "headline": "Opendoor Just Shut Its Entire India Operation. It Replaced 250 Workers With AI.",
+      "slug": "opendoor-india-shutdown-ai-outsourcing-watershed-20260613",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 6,
+        "embed_issues": [],
+        "image_match": {
+          "score": 4,
+          "issue": "The image does not directly relate to the article's content about Opendoor and AI in the tech industry."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses the impact of AI on jobs in India, which is relevant to NRIs in the tech sector."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more direct quotes or insights from affected employees to humanize the story.",
+          "Add a section on how NRIs can adapt to the changing job landscape in tech due to AI."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Revised by gpt-4o-mini (812\u2192869 words)"
+      ],
+      "revised": true,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "0a420e95-8302-4474-8d66-d29fed535239",
+      "headline": "NVIDIA's First PC Chip Has Arrived. It Runs a 120-Billion-Parameter AI Model Without the Cloud.",
+      "slug": "nvidia-rtx-spark-ai-pc-computex-jensen-huang-20260613",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "a861f4c4-86e2-491f-94c5-756f45d5410d",
+            "headline": "Jensen Huang's Seoul Blitz Just Locked Down AI's Most Critic"
+          },
+          {
+            "article_id": "373520ce-ce89-475e-b0e3-15e252f29dd7",
+            "headline": "NVIDIA's Vera CPU Lands in China, Opening a $20 Billion Fron"
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image of Jensen Huang does not directly relate to the specific topic of the RTX Spark chip."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the topic to Indian engineers and the broader Indian tech ecosystem."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that directly represents the RTX Spark chip or its applications.",
+          "Add more specific examples of how Indian engineers are involved in the development of the RTX Spark chip."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "5cb05509-2780-4ade-9567-d81c76d68a14",
+      "headline": "Zepto Wants $837 Million From Public Markets. It Has Ten Months of Cash Left.",
+      "slug": "zepto-ipo-837-million-quick-commerce-kirana-20260613",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the topic of Zepto or IPOs."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article connects well with NRIs by discussing the implications of Zepto's IPO on the Indian market and consumer behavior."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that directly relates to Zepto or the concept of IPOs for better visual relevance.",
+          "Expand on the implications for NRIs in terms of investment opportunities or risks associated with Zepto's IPO."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "5f45e3ef-0981-476d-ae72-90cd54b1d9ba",
+      "headline": "Thailand Drops Visa Requirements for Indian Travelers \u2014 and NRIs Should Book Before the Crowds Do",
+      "slug": "thailand-visa-free-indian-travelers-nri-20260613",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses NRIs by discussing the implications of the visa-free policy for Indian Americans and their travel plans."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include specific examples of popular tourist activities in Thailand that appeal to Indian travelers.",
+          "Add a section on how NRIs can take advantage of this visa-free policy for travel planning."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "baa1745c-a498-410b-bb17-768726bddd41",
+      "headline": "Dubai's Visa Overhaul Means 48-Hour Approvals and Expanded Golden Visas \u2014 Here's What NRIs Need to Know",
+      "slug": "dubai-visa-overhaul-48-hour-golden-visa-nri-20260613",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image is relevant but lacks a direct connection to the visa topic."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively addresses the needs and interests of NRIs, particularly Indian Americans, regarding the new visa policies."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including specific examples or testimonials from NRIs who have benefited from the new visa policies.",
+          "Add a section on how these changes compare to visa processes in other popular destinations for NRIs."
         ],
         "verdict": "pass"
       },
