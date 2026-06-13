@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-06-13T00:58:32Z",
-  "stage": "Group Stage — 3 of 72 matches played",
+  "last_updated": "2026-06-13T04:57:31Z",
+  "stage": "Group Stage — 4 of 72 matches played",
   "hosts": "USA, Mexico & Canada",
   "dates": {
     "start": "2026-06-11",
@@ -184,13 +184,13 @@
         "code": "USA",
         "flag": "🇺🇸",
         "rank": 17,
-        "p": 0,
-        "w": 0,
+        "p": 1,
+        "w": 1,
         "d": 0,
         "l": 0,
-        "gf": 0,
-        "ga": 0,
-        "pts": 0
+        "gf": 4,
+        "ga": 1,
+        "pts": 3
       },
       {
         "name": "Turkey",
@@ -223,12 +223,12 @@
         "code": "PAR",
         "flag": "🇵🇾",
         "rank": 40,
-        "p": 0,
+        "p": 1,
         "w": 0,
         "d": 0,
-        "l": 0,
-        "gf": 0,
-        "ga": 0,
+        "l": 1,
+        "gf": 1,
+        "ga": 4,
         "pts": 0
       }
     ],
@@ -721,8 +721,8 @@
       "away": "Paraguay",
       "venue": "SoFi Stadium",
       "city": "Los Angeles",
-      "status": "scheduled",
-      "score": null,
+      "status": "FT",
+      "score": "4-1",
       "home_code": "USA",
       "away_code": "PAR"
     },
@@ -1776,6 +1776,34 @@
     }
   },
   "highlights": [
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DZgxU4-ihxZ",
+      "account": "@fifaworldcup",
+      "caption": "Folarin Balogun — Superior Player of the Match 🏆🇺🇸",
+      "date": "2026-06-13"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DZdZzfLD47D",
+      "account": "@fifaworldcup",
+      "caption": "What a night for El Tri 🇲🇽",
+      "date": "2026-06-11"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DZgrWM0lkmI",
+      "account": "@fifaworldcup",
+      "caption": "USA crush Paraguay 4-1 — Balogun with a brace 🔥",
+      "date": "2026-06-13"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DZgrHKLC72J/",
+      "account": "@fifaworldcup",
+      "caption": "USA 4-1 Paraguay — What a start for the hosts! 🇺🇸🎉",
+      "date": "2026-06-13"
+    },
     {
       "platform": "instagram",
       "url": "https://www.instagram.com/reel/DZgaoZeCtit/",
