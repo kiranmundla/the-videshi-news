@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-13T19:45:26.692754+00:00",
+  "timestamp": "2026-06-13T20:15:18.342905+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 4,
+    "pass": 2,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "e90b6270-b553-4c7b-9c73-b6915a4eb8f1",
-      "headline": "He Has Won Four Champions Leagues. On Saturday Night, Ancelotti's Brazil Faces the Team That Stunned the World in 2022.",
-      "slug": "brazil-morocco-ancelotti-world-cup-2026-metlife-nj-nri-diaspora-preview",
+      "id": "74277859-3bb0-4d82-9502-e7777e4cf73c",
+      "headline": "India's EB-5 Golden Ticket Just Expired for the Year \u2014 And the Clock Is Ticking on a Bigger Deadline",
+      "slug": "eb5-india-unreserved-cap-exhausted-fy26-october-pause-20260613",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -23,19 +23,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image is relevant to football but does not specifically depict either Brazil or Morocco."
+          "score": 6,
+          "issue": "The image does not directly relate to the EB-5 program or immigration."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the match to the NRI community, highlighting their presence and engagement."
+          "quality": 8,
+          "note": "The article discusses the EB-5 program's impact on Indian investors, which is relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider including images or graphics related to Brazil and Morocco to enhance visual relevance.",
-          "Add more context about the significance of the match for both teams to deepen reader engagement."
+          "Consider using an image that directly relates to immigration or the EB-5 program for better visual alignment.",
+          "Add a section that highlights personal stories or testimonials from Indian investors to enhance the diaspora connection."
         ],
         "verdict": "pass"
       },
@@ -47,9 +47,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "270de1df-7466-4f7d-ab6b-ddfa4759a36d",
-      "headline": "She Hit Nine Fours in 24 Balls. On Saturday, Phoebe Litchfield Fired the First Warning Shot of India's Group.",
-      "slug": "litchfield-50-wareham-3-wickets-australia-crush-south-africa-womens-t20-world-cup-2026-india-group-nri",
+      "id": "b46dedde-41ad-4000-8e58-7126b5bc25b1",
+      "headline": "The Thirty-Three Per Cent Pay Rise Nobody Asked For \u2014 Washington's Quiet Plan to Price Out H-1B Workers",
+      "slug": "dol-prevailing-wage-hike-33-percent-h1b-indian-workers-20260613",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -59,91 +59,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 6,
+          "issue": "The image does not directly relate to the topic of H-1B workers or immigration."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the Women's T20 World Cup to the NRI community in the UK, highlighting accessibility and community engagement."
+          "note": "The article discusses the impact of U.S. labor regulations on Indian tech workers, which is highly relevant to the Indian diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from players or coaches to enhance the narrative.",
-          "Include more statistics or historical context about the teams involved for deeper analysis."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "d7141fa4-2655-41f2-b3fc-6d4c6b57b13b",
-      "headline": "Sindhu, Satwik-Chirag, and a Squad That Wants More Than Bronze. India Names Its Asian Games Badminton Team.",
-      "slug": "sindhu-lakshya-sen-satwik-chirag-india-asian-games-2026-badminton-squad-aichi-nagoya-nri",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the achievements of Indian badminton players to the NRI community, highlighting their global significance."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include quotes from players or coaches to add depth and personal insight.",
-          "Provide more context on the significance of the Asian Games for Indian badminton history."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "80e15a6e-8b15-46ef-bbd6-065e7337fcb0",
-      "headline": "He Had Captained Six ODIs Without a Series Win. On Friday, Shubman Gill Scored an Unbeaten 84 to Start Fixing That.",
-      "slug": "gill-84-not-out-player-of-match-india-beat-afghanistan-1st-odi-dharamsala-3000-runs-nri",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the significance of the series to the Afghan diaspora and NRIs, highlighting the importance of the match beyond just cricket."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from players or coaches to enhance the narrative.",
-          "Include more context about the significance of the ODI series for both teams."
+          "Consider using an image that directly represents H-1B workers or the tech industry to enhance relevance.",
+          "Include quotes or perspectives from Indian professionals affected by these changes to add a personal touch."
         ],
         "verdict": "pass"
       },
