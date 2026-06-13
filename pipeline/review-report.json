@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-13T09:15:32.785078+00:00",
+  "timestamp": "2026-06-13T10:15:36.589066+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
-    "flag": 1,
+    "pass": 6,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,101 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "ed0ef5c1-5abe-4e64-9c67-7fd82b28e704",
-      "headline": "Peddi Made \u20b9345 Crore in a Week. The Conversation It Started About Janhvi Kapoor Won't Cost a Thing.",
-      "slug": "peddi-ram-charan-345-crore-janhvi-kapoor-controversy-nri-20260613",
-      "pre_checks": {
-        "duplicate_embeds": [
-          "https://www.instagram.com/reel/DZEzK5yIKjL/"
-        ],
-        "duplicate_images": [
-          {
-            "article_id": "29d1411f-2bdf-4147-bd93-f669fb7a615c",
-            "headline": "Peddi Just Became Ram Charan's Biggest Solo Film. The Number"
-          }
-        ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/reel/DZEzK5yIKjL/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram reel does not appear to be directly related to the film 'Peddi' or the conversation surrounding Janhvi Kapoor's role."
-          }
-        ],
-        "image_match": {
-          "score": 5,
-          "issue": "The image of Ram Charan at a trailer launch does not directly match the article's focus on the film 'Peddi' and the controversy surrounding Janhvi Kapoor."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article connects well with the Indian diaspora by discussing the film's performance in overseas markets and its relevance to Telugu cinema."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the irrelevant Instagram embed with a more relevant social media post or image related to the film or the controversy.",
-          "Consider using a more relevant hero image that reflects the themes of the article, such as a still from the film or a promotional image featuring Janhvi Kapoor."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Removed duplicate embed(s)",
-        "Removed irrelevant embed: https://www.instagram.com/reel/DZEzK5yIKjL/",
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "d7612a5a-581b-4dc1-8a96-e1c4d69fbdac",
-      "headline": "Nadella's Agent 365 Goes Live \u2014 and 332,000 Consultants Just Got AI Copilots in a Single Day",
-      "slug": "microsoft-agent-365-kpmg-atos-nadella-agentic-ai-20260613",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "5a7d3584-8354-4662-9e81-d8255f986e56",
-            "headline": "GitHub Copilot's $29 Bill Just Became $750 \u2014 and India's Dev"
-          }
-        ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses the impact of AI on Indian tech workers, particularly those in the US, which is relevant to the Indian diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more specific examples of how Indian tech workers are affected by the AI shift.",
-          "Add quotes or insights from industry experts to enhance credibility."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "7259e06d-02cc-40fc-9a18-cc0a3f3efe31",
-      "headline": "India's Sarvam AI Gets a Seat at the G7 \u2014 Alongside Altman, Hassabis, and Amodei",
-      "slug": "sarvam-ai-g7-summit-pratyush-kumar-india-20260613",
+      "id": "223ba175-2e7d-48b4-a77a-08793e9b4347",
+      "headline": "El Nino Is Officially Here. India's Monsoon, Food Prices, and NRI Portfolios Are All in the Firing Line.",
+      "slug": "el-nino-india-monsoon-food-inflation-nri-portfolio-risk-2026",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -121,13 +29,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the achievements of Sarvam AI to the interests of NRIs in the AI sector, highlighting career and investment opportunities."
+          "note": "The article effectively addresses NRI investors and their concerns regarding the impact of El Nino on the Indian economy and their portfolios."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from Pratyush Kumar or industry experts to enhance credibility and engagement.",
-          "Include more context on the significance of the G7 summit for Indian tech companies to deepen the analysis."
+          "Consider adding more specific examples of how NRI investors can adjust their portfolios in response to the predicted economic changes.",
+          "Include quotes or insights from experts or economists to enhance credibility and depth."
         ],
         "verdict": "pass"
       },
@@ -139,21 +47,48 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "f0570ddd-64ea-439f-956e-63ef89420a5e",
-      "headline": "Pichai's Three-Foundry Gambit: Google Splits Its Next AI Chip Across TSMC, Samsung, and Intel",
-      "slug": "google-icefish-tpu-samsung-tsmc-intel-foundry-20260613",
+      "id": "1187a44c-3c6d-4b4f-927a-8e8a3b32b6c4",
+      "headline": "Ninety Minutes of Weights Per Week Cut Dementia Deaths by 27 Per Cent. South Asians Cannot Afford to Ignore This.",
+      "slug": "strength-training-dementia-deaths-27-percent-harvard-study-south-asian-health",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "35ab42d1-aa82-494b-93a5-ae51caf2ab80",
-            "headline": "Google Gemini Goes Dark: Outage Exposes How Deeply Indian Te"
-          },
-          {
-            "article_id": "3ca12ec7-d3cd-4bb0-9bb1-bb81d746b415",
-            "headline": "Sundar Pichai's Google Just Shipped a Real-Time Interpreter "
-          }
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the findings to the South Asian diaspora, emphasizing the urgency of the health message."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a personal story or testimonial from a South Asian individual who has benefited from resistance training to enhance relatability.",
+          "Include specific recommendations or resources for South Asians to start incorporating resistance training into their routines."
         ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "5aeccdee-9587-4eaa-bf35-1c21053d9a07",
+      "headline": "A Daily Pill Just Doubled Pancreatic Cancer Survival. The Audience at ASCO Gave It a Standing Ovation.",
+      "slug": "daraxonrasib-pancreatic-cancer-breakthrough-asco-2026-south-asian-diaspora",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
@@ -166,13 +101,121 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the topic of Google's chip strategy to the opportunities for Indian engineers and NRI investors, making it relevant for the diaspora audience."
+          "note": "The article effectively connects the breakthrough in pancreatic cancer treatment to the rising incidence of the disease among South Asians and diaspora communities, making it relevant to NRI readers."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more specific examples of how Indian engineers are currently involved in semiconductor projects to strengthen the diaspora angle.",
-          "Include quotes or insights from industry experts to enhance credibility and depth."
+          "Consider adding quotes from South Asian patients or healthcare professionals to enhance the diaspora connection.",
+          "Include more statistics or data on pancreatic cancer specifically within the Indian diaspora to strengthen the relevance."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "90673814-5b57-4f8b-9a4e-a42e09662a0d",
+      "headline": "Americans Are Trading Tuscany for Tacoma This Summer \u2014 and NRIs Should Join the Domestic Surge",
+      "slug": "us-domestic-city-break-boom-nri-summer-travel-20260613",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the travel trends to NRI families, discussing their specific challenges and opportunities."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more specific examples of Indian or South Asian events happening in the highlighted cities to enhance relevance for NRI readers.",
+          "Consider adding a section on how NRIs can leverage their connections in these cities for a more enriching travel experience."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "c3fe4868-4201-4751-b8fd-752fa767df38",
+      "headline": "The Vande Bharat Now Connects Vaishno Devi to the Golden Temple \u2014 and NRIs Can Do Both in a Single Day",
+      "slug": "vande-bharat-katra-amritsar-gurdaspur-golden-temple-nri-20260613",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively addresses the needs and interests of NRIs, particularly in relation to pilgrimage travel."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes or testimonials from NRIs who have experienced the new route to enhance relatability.",
+          "Include more details about the booking process for NRIs to make it easier for them to plan their trips."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "1771fcc6-0c88-4543-99d7-badf325ab85a",
+      "headline": "Air India and Thai Airways Ink a Codeshare Deal \u2014 and NRIs Flying Through Bangkok Just Got More Options",
+      "slug": "air-india-thai-airways-codeshare-mou-nri-bangkok-20260613",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image depicts an airport scene, which is relevant to the travel topic but does not specifically represent Air India or Thai Airways."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively highlights how the codeshare deal benefits NRIs, making it highly relevant to the diaspora audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including a quote from an NRI traveler or expert to add a personal touch.",
+          "Add a brief section on potential future developments or impacts of the codeshare agreement."
         ],
         "verdict": "pass"
       },
