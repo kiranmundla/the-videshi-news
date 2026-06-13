@@ -1,60 +1,19 @@
 {
-  "timestamp": "2026-06-13T22:15:34.811925+00:00",
+  "timestamp": "2026-06-13T22:46:13.310626+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 6,
-    "flag": 0,
+    "pass": 3,
+    "flag": 3,
     "fail": 0,
     "error": 0
   },
-  "revisions": 0,
+  "revisions": 2,
   "unpublished": 0,
   "articles": [
     {
-      "id": "8ea5b28b-cbe6-484b-83ba-fdd285558daf",
-      "headline": "India Just Opened Its Stock Market to Every Foreigner on Earth. Here Is What Changed Overnight.",
-      "slug": "india-fema-amendment-stock-market-all-foreign-individuals-nri-oci-proi-20260613",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "bdbe36d1-ec3c-44d8-ac5f-35181b39183b",
-            "headline": "BlackRock and Lighthouse Canton Say India Has Been 'Over-Pun"
-          }
-        ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image is relevant to the topic of stock market investment but lacks specific connection to the Indian stock market."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses changes that directly affect NRIs and their ability to invest in Indian equities, making it relevant to the diaspora audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include specific examples of how NRIs can benefit from the new rules.",
-          "Add quotes or insights from more financial experts to enhance credibility."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "c7f50f8b-ba1d-4a8e-97a9-cebed8e4b932",
-      "headline": "Gaya Airport Is Finally Getting the Flights Bihar's Diaspora Has Waited For",
-      "slug": "gaya-airport-bodh-gaya-flights-bihar-nri-connectivity-20260613",
+      "id": "03deb39f-8739-4e2b-9c7c-46d2c10b0845",
+      "headline": "She Scored 90 Off 62 Balls and Never Got Out. Campbelle Destroyed the Defending Champions.",
+      "slug": "campbelle-90-west-indies-beat-new-zealand-scotland-first-win-womens-t20-world-cup-2026-day-2-india-pakistan-nri",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -70,13 +29,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the topic of flight connectivity to the needs and experiences of the Bihari diaspora, highlighting the significance of Gaya as a cultural and pilgrimage site."
+          "note": "The article effectively connects with diaspora readers by highlighting the significance of the India-Pakistan match and its prime-time viewing for NRIs."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from diaspora members or aviation experts to enhance the article's depth.",
-          "Include more specific statistics or data on the Bihari diaspora's travel patterns to strengthen the argument for improved connectivity."
+          "Consider adding quotes from players or coaches to enhance the narrative.",
+          "Include more context about the significance of the Women's T20 World Cup for the West Indies and other participating teams."
         ],
         "verdict": "pass"
       },
@@ -88,9 +47,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "bab00513-76b2-4f21-a9f1-6faa63381247",
-      "headline": "India's Wellness Retreats Are Booming \u2014 and NRIs Are the Biggest Converts",
-      "slug": "india-wellness-tourism-ayurveda-retreats-nri-20260613",
+      "id": "c1558786-0bd9-48cf-a0aa-c9c59c1250b2",
+      "headline": "The 2027 ODI World Cup Returns to Africa. Here Is Everything NRIs Need to Know.",
+      "slug": "2027-odi-world-cup-south-africa-zimbabwe-namibia-dates-venues-nri-travel-guide",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -106,13 +65,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the wellness tourism trend in India to the interests and travel habits of NRIs, making it relevant for the diaspora audience."
+          "note": "The article effectively connects the World Cup to the Indian diaspora, highlighting cultural ties and travel opportunities."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes or testimonials from NRIs who have experienced these wellness retreats to enhance relatability.",
-          "Include more specific statistics or data on the growth of wellness tourism among NRIs to strengthen the argument."
+          "Include more specific travel tips or recommendations for NRIs planning to attend the World Cup.",
+          "Add quotes or insights from cricket experts or diaspora members to enhance the article's depth."
         ],
         "verdict": "pass"
       },
@@ -124,45 +83,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "3bce0450-8d11-4ee7-8cb4-f1bb60edb198",
-      "headline": "America Turns 250 \u2014 and Indian Americans Have Every Reason to Show Up",
-      "slug": "america-250th-birthday-july-4-nri-guide-20260613",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the celebration of America's 250th anniversary to the Indian American community, highlighting their contributions and the significance of the event for NRIs."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes or testimonials from Indian Americans about their feelings regarding the celebration to enhance the personal connection.",
-          "Include more specific examples of how Indian Americans can participate in the celebrations or events across the country."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "039fff39-42dd-4382-9405-c623903cfd95",
-      "headline": "High Blood Pressure May Actually Protect Frail Elders From Dementia. A 6,000-Person Study Just Upended the Textbook.",
-      "slug": "blood-pressure-frailty-dementia-paradox-neurology-study-diaspora-20260613",
+      "id": "2c07b19b-7913-44fd-9001-ffc36fe40f70",
+      "headline": "He Delivered Parcels for Australia Post. Now Delhi-Born Nikhil Chaudhary Could End a 62-Year Wait.",
+      "slug": "nikhil-chaudhary-delhi-born-australia-t20i-debut-62-year-wait-india-diaspora-nri",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -173,18 +96,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image depicts elderly individuals but does not specifically relate to blood pressure or dementia."
+          "issue": "The image does not directly relate to cricket or Nikhil Chaudhary's story."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects the study's findings to the challenges faced by NRIs managing their parents' health in India."
+          "note": "The article effectively connects Chaudhary's journey to the broader Indian diaspora experience in Australia."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include a more relevant image that directly relates to blood pressure or dementia.",
-          "Add a brief summary of the study's implications for healthcare providers in India."
+          "Consider using a more relevant image that depicts cricket or Nikhil Chaudhary.",
+          "Add a quote from Chaudhary or a cricket expert to enhance the personal connection."
         ],
         "verdict": "pass"
       },
@@ -196,9 +119,45 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "682e1fb5-8f6d-4035-91e6-554f150ae7af",
-      "headline": "Scientists Just Mapped the 'Zombie Cells' Driving Ageing. The Implications for Your Parents Are Enormous.",
-      "slug": "nih-senescent-cell-atlas-zombie-cells-aging-senotypes-diaspora-20260613",
+      "id": "a9929b28-323d-46dd-ac22-b4fee1d10a44",
+      "headline": "India's Inflation Just Hit Its Highest Level of 2026. Food and Fuel Are Doing the Damage.",
+      "slug": "india-cpi-inflation-may-2026-highest-food-fuel-rbi-forecast-20260613",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 6,
+        "embed_issues": [],
+        "image_match": {
+          "score": 5,
+          "issue": "The image does not directly relate to inflation, food, or fuel."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses inflation's impact on remittance-dependent households, which is relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more specific examples of how inflation affects the diaspora community.",
+          "Use a more relevant image that reflects the themes of inflation, food prices, or fuel."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Revised by gpt-4o-mini (711\u2192814 words)"
+      ],
+      "revised": true,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "a8e43005-3415-46c2-942f-873091088ae5",
+      "headline": "Modi and Macron Will Inaugurate India's Largest Deep-Tech Showcase in Nice Tomorrow. 120 Startups Made the Cut.",
+      "slug": "bharat-innovates-2026-nice-france-modi-macron-120-startups-deep-tech-20260613",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -206,28 +165,78 @@
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/DZiOs3kiNCc/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not appear to be related to the event or topic discussed in the article."
+          }
+        ],
         "image_match": {
-          "score": 7,
-          "issue": "The image is relevant to the topic of health and science but does not specifically depict 'zombie cells' or ageing."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the research findings to the Indian diaspora's concerns about ageing parents and health management from abroad."
+          "note": "The article effectively connects the event to Indian-origin engineers and investors in Europe and the US, highlighting the importance of the initiative for the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include specific examples of how the findings could directly impact the health management of elderly parents in the diaspora.",
-          "Consider adding a quote from a researcher or expert in the field to enhance credibility and engagement."
+          "Replace the irrelevant Instagram embed with a more relevant social media post or remove it altogether.",
+          "Consider adding quotes or insights from diaspora members to enhance the connection to the NRI audience."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/DZiOs3kiNCc/",
         "promoted to published"
       ],
       "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "af4d6207-871d-479f-8daa-4d83823ef5cf",
+      "headline": "Trump Says Iran Deal Will Be Signed Sunday. The Strait of Hormuz Will Reopen 'Immediately.'",
+      "slug": "trump-iran-peace-deal-sunday-hormuz-strait-reopen-crude-oil-india-impact-20260613",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 6,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DZd5EyLDUx4/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel does not appear to be related to the geopolitical topic of the Iran deal or the Strait of Hormuz."
+          }
+        ],
+        "image_match": {
+          "score": 8,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses the implications of the Iran deal on India's economy and oil imports, which is relevant to the Indian diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the irrelevant Instagram embed with a more relevant source or remove it entirely.",
+          "Expand on the implications for the Indian diaspora, possibly including quotes or perspectives from Indian expatriates."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DZd5EyLDUx4/",
+        "Revised by gemini-2.5-flash (796\u2192837 words)"
+      ],
+      "revised": true,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
     }
