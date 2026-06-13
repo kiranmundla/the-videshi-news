@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-13T06:45:20.079546+00:00",
+  "timestamp": "2026-06-13T07:15:20.634589+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 1,
     "flag": 1,
     "fail": 0,
     "error": 0
@@ -11,107 +11,95 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "73a08293-f1cd-4f49-9bea-908939d21f3a",
-      "headline": "Three Ships. Three Dead Indians. And a Prime Minister Who Has Not Said a Word.",
-      "slug": "indian-seafarers-killed-us-strikes-gulf-families-grieve-modi-silence-g7-20260613",
+      "id": "859f3b35-7376-4c70-8a52-ad2bf510d83c",
+      "headline": "Welcome To The Jungle Just Dropped Its Trailer. Thirty Stars, One Jungle, Zero Subtlety. We're In.",
+      "slug": "welcome-to-the-jungle-trailer-akshay-kumar-suniel-shetty-ensemble-comedy-june-26-nri-20260613",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "6e9f3bbc-cbbc-404a-8fed-bf8869d674b4",
+            "headline": "Welcome To The Jungle Just Dropped a Four-Minute Trailer. Bo"
+          }
+        ],
         "broken_embeds": []
       },
       "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
+        "overall_score": 8,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DZb92GLNWkK/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel does not appear to be directly related to the film or its trailer, making it irrelevant to the article's subject."
+          }
+        ],
         "image_match": {
-          "score": 5,
-          "issue": "The image does not directly relate to the article's topic of geopolitical tensions and the specific incident involving Indian sailors."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article discusses the impact of geopolitical events on Indian nationals, which resonates with the diaspora community concerned about the safety of Indian citizens abroad."
+          "quality": 9,
+          "note": "The article effectively connects the film to the NRI audience by discussing its appeal as comfort food and its release timing."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more context on the implications for Indian seafarers and their families to enhance the diaspora connection.",
-          "Consider using a more relevant image that reflects the geopolitical theme or the maritime context of the article."
+          "Replace the irrelevant Instagram embed with a more relevant social media post related to the film or its trailer.",
+          "Consider adding a brief summary of the previous films in the franchise for readers unfamiliar with them."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DZb92GLNWkK/",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "9cd48bcc-18d3-4e20-a3a2-0b6ed959ac50",
+      "headline": "Vicky Kaushal Has Blocked 18 Months of His Life for One Role. Bollywood Has Never Seen This Kind of Devotion.",
+      "slug": "vicky-kaushal-mahavatar-parashurama-18-months-amar-kaushik-maddock-nri-20260613",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "b08831d8-e725-4065-b705-b93d8ecf7b59",
+            "headline": "Vicky Kaushal Has Vanished Into the Wilderness. He'll Return"
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/DZg12ubiFih/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not appear to be directly related to Vicky Kaushal's role in Mahavatar or the article's main theme."
+          }
+        ],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article connects well with the diaspora by referencing cultural stories and the significance of Parashurama in Hindu mythology."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the irrelevant Instagram embed with a more relevant source or quote related to Vicky Kaushal's preparation for Mahavatar.",
+          "Consider adding more context about the significance of Mahavatar in relation to the Indian diaspora's cultural heritage."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "08b2083b-b2e3-4d40-bd88-77890a189d0f",
-      "headline": "A Republican Lawmaker Wants to Codify the $100,000 H-1B Fee That a Judge Just Killed. Congress May Succeed Where Trump Failed.",
-      "slug": "protect-act-100000-h1b-fee-mike-kennedy-congress-codify-trump-ruling-20260613",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 6,
-          "issue": "The image does not directly relate to the topic of immigration or H-1B visas."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses the implications of H-1B visa legislation on Indian tech workers, which is highly relevant to the Indian diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that directly represents immigration or H-1B visas to enhance relevance.",
-          "Add more context on how the proposed legislation might affect Indian professionals specifically."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "b1049db4-6434-470d-8f15-340628b6a063",
-      "headline": "India Will Miss Its Budget Target for the First Time Since the Pandemic. The Iran War Just Blew a Hole in the Deficit.",
-      "slug": "india-fiscal-deficit-4-8-percent-iran-war-oil-subsidy-budget-miss-pandemic-20260613",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image of V. Anantha Nageswaran is relevant as he is mentioned in the article, but it does not directly relate to the headline about the budget target and the Iran war."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses fiscal implications that directly affect NRIs, making the connection relevant and natural."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more directly related image that reflects the economic impact of the Iran war on India's budget.",
-          "Add a brief section summarizing the potential long-term effects on NRIs to enhance the diaspora angle."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/DZg12ubiFih/",
         "promoted to published"
       ],
       "revised": false,
