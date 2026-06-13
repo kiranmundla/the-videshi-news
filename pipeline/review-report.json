@@ -1,92 +1,15 @@
 {
-  "timestamp": "2026-06-13T23:15:38.876107+00:00",
+  "timestamp": "2026-06-13T23:45:11.848304+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 2,
+    "pass": 1,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
-  "revisions": 1,
+  "revisions": 0,
   "unpublished": 0,
   "articles": [
-    {
-      "id": "8398645d-4e2e-4fb7-9ff8-39ce72875c0b",
-      "headline": "Shabana Azmi Has Never Played a Villain in 50 Years. Awarapan 2 Just Changed That.",
-      "slug": "shabana-azmi-first-villain-awarapan-2-emraan-hashmi-nafisa-august-2026",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article connects well with diaspora audiences by referencing the cult status of the original film and its impact on late-night TV and nostalgic conversations."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more quotes or insights from Shabana Azmi about her role to enhance the personal connection.",
-          "Add a brief section on the significance of female villains in Bollywood to provide context for Azmi's casting."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "10c5929a-620f-46b2-9a29-601db17eaf2b",
-      "headline": "Dhamaal 4 Just Dropped Its Trailer Off a Literal Waterfall. The Franchise Has Never Known Chill.",
-      "slug": "dhamaal-4-trailer-imagicaa-waterfall-ajay-devgn-arshad-warsi-treasure-hunt-july-2026",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "1a9b5169-69b3-4aff-aec8-850c5869165a",
-            "headline": "Dhamaal 4 Trailer Drops With a 60-Foot Waterfall Reveal \u2014 Aj"
-          }
-        ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 5,
-          "issue": "The image does not match the article's topic as it features Ajay Devgn at a different event unrelated to Dhamaal 4."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the film's appeal to NRI families, highlighting its clean comedy and cultural relevance."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the hero image with one that directly relates to Dhamaal 4 or its trailer launch.",
-          "Consider adding more quotes or reactions from the cast or audience to enhance engagement."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
     {
       "id": "a9929b28-323d-46dd-ac22-b4fee1d10a44",
       "headline": "India's Inflation Just Hit Its Highest Level of 2026. Food and Fuel Are Doing the Damage.",
@@ -97,58 +20,22 @@
         "broken_embeds": []
       },
       "llm_review": {
-        "overall_score": 6,
+        "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 5,
+          "score": 7,
           "issue": "The image does not directly relate to inflation or economic themes."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article effectively connects rising food prices to the impact on remittance-dependent families."
+          "quality": 9,
+          "note": "The article effectively connects the inflation trends in India to the financial implications for the Indian diaspora, particularly regarding remittances."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include a more relevant image that visually represents inflation or economic themes.",
-          "Provide more context on how inflation trends in India compare to other countries, especially for diaspora readers."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Revised by gemini-2.5-flash (814\u2192933 words)"
-      ],
-      "revised": true,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "af4d6207-871d-479f-8daa-4d83823ef5cf",
-      "headline": "Trump Says Iran Deal Will Be Signed Sunday. The Strait of Hormuz Will Reopen 'Immediately.'",
-      "slug": "trump-iran-peace-deal-sunday-hormuz-strait-reopen-crude-oil-india-impact-20260613",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the geopolitical developments to the Indian diaspora, highlighting economic implications and concerns for expatriates."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more direct quotes from Indian officials or experts to strengthen the diaspora angle.",
-          "Include a brief historical context of the Iran-India relationship to enhance reader understanding."
+          "Consider using an image that visually represents inflation or economic themes to enhance relevance.",
+          "Add more data or examples on how inflation affects specific demographics within the diaspora for a deeper connection."
         ],
         "verdict": "pass"
       },
