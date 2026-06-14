@@ -547,7 +547,7 @@ export default function ArticlePage() {
             "@type": "BreadcrumbList",
             itemListElement: [
               { "@type": "ListItem", position: 1, name: "Home", item: "https://www.thevideshi.com" },
-              ...(article.category ? [{ "@type": "ListItem", position: 2, name: article.category, item: `https://www.thevideshi.com/category/${article.category.toLowerCase().replace(/\s+&\s+/g, "-").replace(/\s+/g, "-")}` }] : []),
+              ...(article.category ? [{ "@type": "ListItem", position: 2, name: article.category, item: `https://www.thevideshi.com/${article.category.toLowerCase().replace(/\s+&\s+/g, "-").replace(/\s+/g, "-")}` }] : []),
               { "@type": "ListItem", position: article.category ? 3 : 2, name: article.title },
             ],
           })}

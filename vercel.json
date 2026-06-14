@@ -46,6 +46,11 @@
       ],
       "destination": "https://www.thevideshi.com/:path*",
       "permanent": true
+    },
+    {
+      "source": "/category/:slug",
+      "destination": "/:slug",
+      "permanent": true
     }
   ],
   "rewrites": [
