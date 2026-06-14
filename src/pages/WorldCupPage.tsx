@@ -765,41 +765,76 @@ function SocialEmbed({ highlight }: { highlight: Highlight }) {
     }
   }, [isInstagram]);
 
-  // Clean permalink
-  const permalink = highlight.url.endsWith("/") ? highlight.url : highlight.url + "/";
+  useEffect(() => {
+    if (isThreads) {
+      // Load Threads embed script (separate SDK from Instagram)
+      const scriptId = "threads-embed-js";
+      if (!document.getElementById(scriptId)) {
+        const script = document.createElement("script");
+        script.id = scriptId;
+        script.src = "https://www.threads.net/embed.js";
+        script.async = true;
+        script.onload = () => {
+          (window as any).instgrm?.Embeds?.process(containerRef.current);
+        };
+        document.body.appendChild(script);
+      } else {
+        setTimeout(() => {
+          (window as any).instgrm?.Embeds?.process(containerRef.current);
+        }, 300);
+      }
+    }
+  }, [isThreads]);
 
-  // Threads posts: use a clean card link (Threads embed API is limited)
+  // Clean permalink — normalize threads.com → threads.net for embed compatibility
+  const rawPermalink = highlight.url.endsWith("/") ? highlight.url : highlight.url + "/";
+  const permalink = isThreads
+    ? rawPermalink.replace("://www.threads.com/", "://www.threads.net/")
+    : rawPermalink;
+
+  // Threads posts: native embed via blockquote + threads.net/embed.js
   if (isThreads) {
     return (
-      <a
-        href={permalink}
-        target="_blank"
-        rel="noopener noreferrer"
-        style={{
-          display: "block",
-          background: "#fff",
-          border: "1px solid #e5e5e5",
-          borderRadius: 12,
-          padding: 16,
-          textDecoration: "none",
-          color: "inherit",
-          transition: "box-shadow 0.2s",
-        }}
-        onMouseEnter={e => { (e.currentTarget as HTMLElement).style.boxShadow = "0 4px 12px rgba(0,0,0,0.1)"; }}
-        onMouseLeave={e => { (e.currentTarget as HTMLElement).style.boxShadow = "none"; }}
-      >
-        <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
-          <span style={{ fontSize: 18 }}>🧵</span>
-          <span style={{ fontSize: 13, fontWeight: 600, color: COLORS.darkGreen }}>Threads</span>
-          <span style={{ fontSize: 12, color: COLORS.muted, marginLeft: "auto" }}>{highlight.account}</span>
-        </div>
-        <p style={{ fontSize: 14, color: "#2d3436", margin: "0 0 8px", lineHeight: 1.5, fontWeight: 500 }}>
-          {highlight.caption}
-        </p>
-        <div style={{ fontSize: 11, color: COLORS.muted }}>
-          {formatDate(highlight.date)} · View on Threads →
-        </div>
-      </a>
+      <div ref={containerRef}>
+        <blockquote
+          className="text-post-media"
+          data-text-post-permalink={permalink}
+          style={{
+            background: "#FFF",
+            border: 0,
+            borderRadius: 12,
+            boxShadow: "0 0 1px 0 rgba(0,0,0,0.5), 0 1px 10px 0 rgba(0,0,0,0.15)",
+            margin: "0 auto",
+            maxWidth: 540,
+            minWidth: 280,
+            padding: 0,
+            width: "100%",
+          }}
+        >
+          <div style={{ padding: 16 }}>
+            <a
+              href={permalink}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                color: COLORS.darkGreen,
+                fontWeight: 600,
+                fontSize: 14,
+                textDecoration: "none",
+                display: "flex",
+                alignItems: "center",
+                gap: 8,
+              }}
+            >
+              <span style={{ fontSize: 18 }}>🧵</span>
+              {highlight.caption}
+            </a>
+            <p style={{ color: COLORS.muted, fontSize: 12, marginTop: 8 }}>
+              {highlight.account} · {formatDate(highlight.date)}
+            </p>
+          </div>
+        </blockquote>
+      </div>
     );
   }
 

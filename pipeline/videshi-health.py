@@ -667,6 +667,103 @@ def check_tweet_embeds(fix=False):
     }
 
 
+# ─── World Cup social embeds ──────────────────────────────────────────────────
+
+def check_worldcup_social_embeds(fix=False):
+    """
+    Validate World Cup highlight social embeds in worldcup.json:
+    - All highlights have platform, url, account, caption
+    - Threads URLs are threads.com or threads.net (both valid, we normalize in frontend)
+    - Instagram URLs are valid instagram.com/p|reel/... format
+    - Verify a sample of each platform is reachable (HEAD check)
+    - Report platform distribution
+    """
+    import re
+
+    wc_path = os.path.expanduser(
+        "~/workspace/the-videshi-news/public/data/worldcup.json"
+    )
+    if not os.path.exists(wc_path):
+        return {
+            "name": "worldcup_social_embeds",
+            "alert": False,
+            "status": "no worldcup.json found",
+            "count": 0,
+        }
+
+    with open(wc_path) as f:
+        wc = json.load(f)
+
+    highlights = wc.get("highlights", [])
+    if not highlights:
+        return {
+            "name": "worldcup_social_embeds",
+            "alert": False,
+            "status": "no highlights in worldcup.json",
+            "count": 0,
+        }
+
+    ig_re = re.compile(r'^https?://(?:www\.)?instagram\.com/(?:p|reel|tv)/[A-Za-z0-9_-]+/?$')
+    threads_re = re.compile(r'^https?://(?:www\.)?threads\.(?:com|net)/@[\w.]+/post/[A-Za-z0-9_-]+/?$')
+
+    issues = []
+    platform_counts = {"instagram": 0, "threads": 0, "other": 0}
+    missing_fields = 0
+    bad_urls = []
+    unreachable = []
+
+    for i, h in enumerate(highlights):
+        plat = h.get("platform", "")
+        url = h.get("url", "")
+        account = h.get("account", "")
+        caption = h.get("caption", "")
+
+        # Check required fields
+        if not all([plat, url, account, caption]):
+            missing_fields += 1
+            issues.append(f"highlight[{i}]: missing fields (platform={plat!r}, url={url!r})")
+            continue
+
+        # Count platforms
+        if plat == "instagram":
+            platform_counts["instagram"] += 1
+            if not ig_re.match(url):
+                bad_urls.append({"index": i, "platform": plat, "url": url, "reason": "invalid Instagram URL format"})
+        elif plat == "threads":
+            platform_counts["threads"] += 1
+            if not threads_re.match(url):
+                bad_urls.append({"index": i, "platform": plat, "url": url, "reason": "invalid Threads URL format"})
+        else:
+            platform_counts["other"] += 1
+            issues.append(f"highlight[{i}]: unknown platform {plat!r}")
+
+    # Sample reachability check (first 2 of each platform)
+    ig_urls = [h["url"] for h in highlights if h.get("platform") == "instagram"][:2]
+    threads_urls = [h["url"] for h in highlights if h.get("platform") == "threads"][:2]
+
+    for url in ig_urls + threads_urls:
+        try:
+            r = requests.head(url, timeout=10, allow_redirects=True)
+            if r.status_code >= 400:
+                unreachable.append({"url": url, "status": r.status_code})
+        except Exception as e:
+            unreachable.append({"url": url, "error": str(e)})
+
+    total_issues = missing_fields + len(bad_urls) + len(unreachable)
+
+    return {
+        "name": "worldcup_social_embeds",
+        "total_highlights": len(highlights),
+        "platform_counts": platform_counts,
+        "missing_fields": missing_fields,
+        "bad_urls": bad_urls[:5],  # cap output
+        "unreachable_samples": unreachable,
+        "count": total_issues,
+        "alert": total_issues > 0,
+        "action_needed": f"{total_issues} World Cup social embed issue(s)" if total_issues > 0 else None,
+    }
+
+
 # ─── Run all ───────────────────────────────────────────────────────────────────
 
 def run_all(fix=False):
@@ -684,6 +781,7 @@ def run_all(fix=False):
         check_stuck_review(fix=fix),
         check_null_published_at(fix=fix),
         check_aged_articles(fix=fix),
+        check_worldcup_social_embeds(fix=fix),
     ]
 
     report = {
