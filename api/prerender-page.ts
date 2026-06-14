@@ -85,6 +85,7 @@ function pageShell(opts: {
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="google-site-verification" content="E0VUC85-cnXig_VCzitH3FtWGNZXYYznm2BVGy8MEJk">
 <title>${esc(opts.title)}</title>
 <meta name="description" content="${esc(opts.description)}">
 ${opts.noindex ? '<meta name="robots" content="noindex">' : ""}
