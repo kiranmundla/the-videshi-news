@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-14T06:45:15.865574+00:00",
+  "timestamp": "2026-06-14T07:45:17.523756+00:00",
   "mode": "fix",
   "stats": {
     "pass": 2,
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "78e76123-17cd-4baf-ab5e-b54b6af7c32b",
-      "headline": "TCS Just Handed 50,000 Employees an AI Co-Worker. India's IT Industry Is Bracing for What Comes Next.",
-      "slug": "tcs-anthropic-claude-partnership-indian-it-ai-disruption-jobs-50000-20260614",
+      "id": "363448b3-9d7a-4d4a-b08d-35984fedf349",
+      "headline": "Australia Crushed South Africa by 65 Runs. India's Group A Just Got a Reality Check.",
+      "slug": "australia-crush-south-africa-65-runs-womens-t20-world-cup-2026-india-group-a-nri",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -24,18 +24,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image is relevant to the tech theme but does not specifically depict AI or TCS."
+          "issue": "The image does not directly relate to the specific match discussed but is relevant to cricket."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses the implications of AI on Indian tech workers, particularly those in the U.S., which is relevant to the NRI audience."
+          "note": "The article connects well with the Indian diaspora by discussing India's position in the tournament and the implications of Australia's performance."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more specific examples of how AI is impacting NRI tech workers.",
-          "Consider adding quotes or insights from NRI professionals in the tech industry."
+          "Include quotes from players or coaches to enhance the narrative.",
+          "Add a brief overview of India's upcoming match against Pakistan to provide context."
         ],
         "verdict": "pass"
       },
@@ -47,31 +47,36 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "427368dd-d77d-4f3e-be9c-6955f2945ac4",
-      "headline": "A Judge Killed Trump's $100,000 H-1B Fee. Four Days Later, He Put His Own Ruling on Hold.",
-      "slug": "h1b-100k-fee-struck-down-stayed-protect-act-congress-nri-impact-20260614",
+      "id": "0b0192ad-5200-4f29-83a1-ed880c3e4cdd",
+      "headline": "India Wants Its Diaspora Athletes Back. The Sports Passport Could Make It Happen.",
+      "slug": "india-sports-passport-oci-pio-diaspora-athletes-world-cup-2026-nri",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "c4d537c4-6ecd-4d84-8720-d51a87a18824",
+            "headline": "Two Players of Indian Heritage Will Take the Pitch at This W"
+          }
+        ],
         "broken_embeds": []
       },
       "llm_review": {
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 3,
-          "issue": "The image of the Capitol does not directly relate to the topic of H-1B visas or immigration."
+          "score": 7,
+          "issue": "The image depicts Sarpreet Singh, which is relevant to the article's focus on diaspora athletes, but it could be more directly related to the concept of the Sports Passport."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively highlights the impact of the H-1B fee on Indian professionals, making it relevant to the diaspora."
+          "note": "The article effectively connects the proposal to the Indian diaspora, highlighting the potential impact on athletes of Indian origin and the significance of their representation."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the hero image with one that directly relates to immigration or H-1B visas.",
-          "Include quotes or perspectives from Indian professionals affected by the H-1B fee for a more personal touch."
+          "Consider adding more quotes or perspectives from diaspora athletes to enhance the personal connection.",
+          "Include statistics or examples of how similar initiatives have succeeded in other countries to strengthen the argument."
         ],
         "verdict": "pass"
       },
