@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-14T19:45:19.956747+00:00",
+  "timestamp": "2026-06-14T20:15:17.673513+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 0,
+    "pass": 1,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,38 +11,33 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "fdbdd5e8-0cc1-4de3-98f0-fae387786561",
-      "headline": "Sindhu, Satwik-Chirag, and a New Generation. India Has Named Its Strongest Badminton Squad for the Asian Games.",
-      "slug": "india-badminton-squad-asian-games-2026-sindhu-satwik-chirag-lakshya-sen-aichi-nagoya-nri",
+      "id": "126c63a4-74e3-4cfb-b9a5-cf6503e8dc21",
+      "headline": "America's World Cup Is Scaring Away the World",
+      "slug": "world-cup-immigration-crackdown-visa-enforcement-indian-diaspora-20260614",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "383b49db-a044-44d7-b929-94e71c81f06b",
-            "headline": "She Led 11-9 at the Interval. Then Yamaguchi Scored Six Stra"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
-        "overall_score": 8,
+        "overall_score": 7,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 6,
+          "issue": "The image depicts customs operations, which is somewhat relevant but does not directly relate to the World Cup theme."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the significance of the Asian Games and badminton's growing popularity among the Indian diaspora, particularly in the US, UK, and Canada."
+          "note": "The article discusses how the immigration enforcement climate affects non-citizens, including Indian professionals, making it relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from players or coaches to enhance the narrative.",
-          "Include more statistics or historical context about India's performance in badminton at the Asian Games."
+          "Include more direct quotes or perspectives from Indian fans or workers to strengthen the diaspora connection.",
+          "Consider using a more relevant image that directly relates to the World Cup or its impact on immigration."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
         "promoted to published"
@@ -52,35 +47,42 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "42bef16b-39b1-4ebe-b5d7-502c7be01f96",
-      "headline": "She Took Five for Ten and Became the Leading Wicket-Taker in Women\u2019s T20I History. Deepti Sharma Just Demolished Pakistan at Edgbaston.",
-      "slug": "deepti-sharma-5-10-india-crush-pakistan-64-runs-womens-t20-world-cup-2026-edgbaston-nri",
+      "id": "5a582650-23db-40f8-90e0-582ffaf9b8d0",
+      "headline": "Opendoor Just Killed 250 Jobs in India and Replaced Them with AI \u2014 The GCC Model Should Be Paying Attention",
+      "slug": "opendoor-india-shutdown-ai-gcc-model-h1b-20260614",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
-        "broken_embeds": []
+        "broken_embeds": [
+          {
+            "url": "https://x.com/nejatian/status/1932519384000000000",
+            "problem": "broken",
+            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
+          }
+        ]
       },
       "llm_review": {
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image does not directly relate to the topic of job layoffs or AI in the workplace."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the performance to the excitement of the Indian diaspora, highlighting their engagement with the match."
+          "note": "The article discusses the implications of job losses in India on Indian professionals in the US, making it relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more quotes from players or coaches to enhance the narrative.",
-          "Include statistics or historical context about Deepti Sharma's career for deeper insight."
+          "Consider using a more relevant image that depicts job loss or AI in the workplace.",
+          "Add a quote or perspective from an NRI to strengthen the diaspora connection."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
+        "Removed 1 broken/hallucinated embed(s)",
         "promoted to published"
       ],
       "revised": false,
