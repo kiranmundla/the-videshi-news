@@ -23,6 +23,14 @@ if env_file.exists():
             k, v = line.split("=", 1)
             os.environ.setdefault(k.strip(), v.strip())
 
+# Load OpenAI key from workspace env
+env_openai = Path.home() / "workspace" / ".env.openai"
+if env_openai.exists():
+    for line in env_openai.read_text().strip().splitlines():
+        if "=" in line and not line.startswith("#"):
+            k, v = line.split("=", 1)
+            os.environ.setdefault(k.strip(), v.strip())
+
 SB_URL = os.environ.get("SUPABASE_URL", "https://lboecaekpynbpyijrbfz.supabase.co")
 SB_KEY = os.environ.get("SUPABASE_SERVICE_ROLE_KEY", "")
 OPENAI_KEY = os.environ.get("OPENAI_API_KEY", "")
