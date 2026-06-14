@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-06-13T12:57:16Z",
-  "stage": "Group Stage — 4 of 72 matches played",
+  "last_updated": "2026-06-14T00:58:13Z",
+  "stage": "Group Stage — 6 of 72 matches played",
   "hosts": "USA, Mexico & Canada",
   "dates": {
     "start": "2026-06-11",
@@ -102,26 +102,26 @@
         "code": "SUI",
         "flag": "🇨🇭",
         "rank": 19,
-        "p": 0,
+        "p": 1,
         "w": 0,
-        "d": 0,
+        "d": 1,
         "l": 0,
-        "gf": 0,
-        "ga": 0,
-        "pts": 0
+        "gf": 1,
+        "ga": 1,
+        "pts": 1
       },
       {
         "name": "Qatar",
         "code": "QAT",
         "flag": "🇶🇦",
         "rank": 57,
-        "p": 0,
+        "p": 1,
         "w": 0,
-        "d": 0,
+        "d": 1,
         "l": 0,
-        "gf": 0,
-        "ga": 0,
-        "pts": 0
+        "gf": 1,
+        "ga": 1,
+        "pts": 1
       }
     ],
     "C": [
@@ -130,26 +130,26 @@
         "code": "BRA",
         "flag": "🇧🇷",
         "rank": 6,
-        "p": 0,
+        "p": 1,
         "w": 0,
-        "d": 0,
+        "d": 1,
         "l": 0,
-        "gf": 0,
-        "ga": 0,
-        "pts": 0
+        "gf": 1,
+        "ga": 1,
+        "pts": 1
       },
       {
         "name": "Morocco",
         "code": "MAR",
         "flag": "🇲🇦",
         "rank": 7,
-        "p": 0,
+        "p": 1,
         "w": 0,
-        "d": 0,
+        "d": 1,
         "l": 0,
-        "gf": 0,
-        "ga": 0,
-        "pts": 0
+        "gf": 1,
+        "ga": 1,
+        "pts": 1
       },
       {
         "name": "Scotland",
@@ -736,8 +736,8 @@
       "away": "Switzerland",
       "venue": "Levi's Stadium",
       "city": "San Francisco Bay Area",
-      "status": "scheduled",
-      "score": null,
+      "status": "FT",
+      "score": "1-1",
       "home_code": "QAT",
       "away_code": "SUI"
     },
@@ -751,8 +751,8 @@
       "away": "Morocco",
       "venue": "MetLife Stadium",
       "city": "New York/New Jersey",
-      "status": "scheduled",
-      "score": null,
+      "status": "FT",
+      "score": "1-1",
       "home_code": "BRA",
       "away_code": "MAR"
     },
@@ -1776,6 +1776,13 @@
     }
   },
   "highlights": [
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DZhIucokd7N/",
+      "account": "@fifaworldcup",
+      "caption": "Qatar 1-1 Switzerland — Khoukhi's stoppage-time header stuns the Swiss 🇶🇦🤝🇨🇭",
+      "date": "2026-06-13"
+    },
     {
       "platform": "instagram",
       "url": "https://www.instagram.com/p/DZiFCtjnLZv/",
