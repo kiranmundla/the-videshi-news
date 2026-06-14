@@ -401,7 +401,7 @@ HARD FAILS (auto-score 0):
 - Script is just a restated headline with no additional facts or context
 
 Return JSON only:
-{{"score": <1-10>, "passed": <true if score >= 7>, "issues": ["issue1"], "fix_suggestions": ["suggestion1"]}}"""
+{{"score": <1-10>, "passed": <true if score >= 8>, "issues": ["issue1"], "fix_suggestions": ["suggestion1"]}}"""
 
     try:
         r = requests.post(
@@ -422,7 +422,7 @@ Return JSON only:
         result = json.loads(r.json()["choices"][0]["message"]["content"])
         score = result.get("score", 5)
         # Derive pass from score, don't trust LLM string
-        passed = score >= 7
+        passed = score >= 8
         issues = result.get("issues", [])
         fixes = result.get("fix_suggestions", [])
         notes = "; ".join(issues) if issues else "Clean"
@@ -1813,12 +1813,12 @@ NON-NEGOTIABLE CHECKS (any fail = auto-fail, override score to 0):
 - OVERLAPPING TEXT: Are two text elements rendered on top of each other making them unreadable?
 - BRAND INTEGRITY: Is the website URL shown as anything other than "thevideshi.com"?
 
-Score 7+ = professional news reel (PASS). Score 5-6 = needs improvement (FAIL). Below 5 = broken.
+Score 8+ = broadcast-quality news reel (PASS). Score 6-7 = needs improvement (FAIL). Below 5 = broken.
 
 Return JSON only:
 {{
   "score": <1-10, or 0 if any non-negotiable failed>,
-  "passed": <true if score >= 7 AND all non-negotiables pass>,
+  "passed": <true if score >= 8 AND all non-negotiables pass>,
   "non_negotiable_failures": ["list of failed non-negotiable checks, empty if all pass"],
   "issues": ["issue1", "issue2"],
   "severity": "HIGH" or "MEDIUM" or "LOW",
@@ -1869,7 +1869,7 @@ Return JSON only:
             return False, 0, f"Non-negotiable: {'; '.join(non_neg)}"
 
         # Derive pass/fail from score — never trust LLM's string verdict
-        passed = score >= 7
+        passed = score >= 8
 
         if issues:
             print(f"  📋 Issues ({severity}): {'; '.join(issues)}")
