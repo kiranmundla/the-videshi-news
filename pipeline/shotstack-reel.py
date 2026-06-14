@@ -965,7 +965,7 @@ def pexels_video_search(pexels_key, query, count=3, orientation="portrait", min_
             duration = video.get("duration", 0)
             if duration < min_duration:
                 continue  # Too short for a scene
-            # Pick best video file: prefer HD, portrait, MP4
+            # Pick best video file: prefer 1080x1920 portrait MP4
             best_file = None
             best_score = -1
             for vf in video.get("video_files", []):
@@ -973,14 +973,14 @@ def pexels_video_search(pexels_key, query, count=3, orientation="portrait", min_
                     continue
                 w = vf.get("width", 0)
                 h = vf.get("height", 0)
-                quality = vf.get("quality", "")
                 score = 0
-                if quality == "hd":
-                    score += 10
                 if h > w:  # Portrait
-                    score += 5
-                if 720 <= min(w, h) <= 1920:
-                    score += 3  # Good resolution range
+                    score += 10
+                # Prefer 1080x1920 (exact match for reel output)
+                if w == 1080 and h == 1920:
+                    score += 20
+                elif 720 <= w <= 1440:
+                    score += 5  # Good resolution range
                 if score > best_score:
                     best_score = score
                     best_file = vf
@@ -1205,12 +1205,15 @@ def source_storyboard_images(article, storyboard, count=8):
             if article_pool:
                 matched_urls[i] = article_pool.pop(0)
                 used_in_this_reel.add(matched_urls[i])
+                media_meta[matched_urls[i]] = {"type": "image", "duration": 0}
                 print(f"  🎬 Scene {i+1}: {scene_descs[i][:50]}  →  category fallback image")
 
     urls = [u for u in matched_urls if u is not None]
 
-    print(f"  🖼️ Sourced {len(urls)} B-roll images (Pexels primary, Wikipedia secondary, category fallback)")
-    return urls
+    n_videos = sum(1 for u in urls if media_meta.get(u, {}).get("type") == "video")
+    n_images = sum(1 for u in urls if media_meta.get(u, {}).get("type") != "video")
+    print(f"  🖼️ Sourced {len(urls)} B-roll media ({n_videos} videos, {n_images} images)")
+    return urls, media_meta
 
 
 def source_image_urls(article, image_queries, count=5):
@@ -1347,8 +1350,12 @@ def build_anchor_reel_timeline(
     voice_url, voice_duration, image_urls, music_url, music_volume,
     hook_line1, hook_line2, headline, category,
     word_timestamps=None, script_text=None,
+    media_meta=None,
 ):
-    """Build the complete Shotstack JSON timeline for an Anchor Reel."""
+    """Build the complete Shotstack JSON timeline for an Anchor Reel.
+    media_meta maps url -> {"type": "video"|"image", "duration": N} for stock video support."""
+    if media_meta is None:
+        media_meta = {}
 
     hook_duration = 3.0  # Hook frame duration
     total_voice_duration = voice_duration
@@ -1481,7 +1488,7 @@ def build_anchor_reel_timeline(
         ]
     }
 
-    # ── Track 5: B-roll images with Ken Burns + category-aware transitions ──
+    # ── Track 5: B-roll media with Ken Burns (images) or trimmed stock video ──
     n_images = len(image_urls)
     if n_images == 0:
         print("❌ No images for B-roll")
@@ -1490,26 +1497,53 @@ def build_anchor_reel_timeline(
     broll_clips = []
     transitions = CATEGORY_TRANSITIONS.get(category, CATEGORY_TRANSITIONS.get("news"))
 
-    # Hook background image (darkened, first image)
-    broll_clips.append({
-        "asset": {"type": "image", "src": image_urls[0]},
-        "start": 0,
-        "length": hook_duration,
-        "fit": "cover",
-        "effect": "zoomIn",
-        "filter": "darken",
-    })
+    # Hook background (darkened, first media — always treat as image for hook overlay)
+    hook_url = image_urls[0]
+    hook_meta = media_meta.get(hook_url, {})
+    if hook_meta.get("type") == "video":
+        broll_clips.append({
+            "asset": {"type": "video", "src": hook_url, "trim": 0, "volume": 0},
+            "start": 0,
+            "length": hook_duration,
+            "fit": "cover",
+            "filter": "darken",
+        })
+    else:
+        broll_clips.append({
+            "asset": {"type": "image", "src": hook_url},
+            "start": 0,
+            "length": hook_duration,
+            "fit": "cover",
+            "effect": "zoomIn",
+            "filter": "darken",
+        })
 
-    # B-roll during voiceover — distribute images evenly
+    # B-roll during voiceover — distribute media evenly
     per_image = total_voice_duration / n_images
     for i, url in enumerate(image_urls):
-        clip = {
-            "asset": {"type": "image", "src": url},
-            "start": round(hook_duration + (i * per_image), 2),
-            "length": round(per_image + 0.3, 2),  # Slight overlap for transition
-            "fit": "cover",
-            "effect": KEN_BURNS_EFFECTS[i % len(KEN_BURNS_EFFECTS)],
-        }
+        meta = media_meta.get(url, {})
+        scene_length = round(per_image + 0.3, 2)  # Slight overlap for transition
+
+        if meta.get("type") == "video":
+            # Stock video clip — trim from a random offset for variety, mute audio
+            src_duration = meta.get("duration", 10)
+            max_trim = max(0, src_duration - per_image - 1)
+            trim_start = round(random.uniform(0, max_trim), 2) if max_trim > 0 else 0
+            clip = {
+                "asset": {"type": "video", "src": url, "trim": trim_start, "volume": 0},
+                "start": round(hook_duration + (i * per_image), 2),
+                "length": scene_length,
+                "fit": "cover",
+            }
+        else:
+            # Static image — Ken Burns effect
+            clip = {
+                "asset": {"type": "image", "src": url},
+                "start": round(hook_duration + (i * per_image), 2),
+                "length": scene_length,
+                "fit": "cover",
+                "effect": KEN_BURNS_EFFECTS[i % len(KEN_BURNS_EFFECTS)],
+            }
         if i > 0:
             clip["transition"] = {"in": transitions[i % len(transitions)]}
         broll_clips.append(clip)
@@ -2512,11 +2546,12 @@ def run_anchor_reel(article, dry_run=False, use_production=False):
     if not voice_url:
         return False
 
-    # 4. Source B-roll images (storyboard-driven or legacy fallback)
-    print("\n🖼️ Step 4: Sourcing B-roll images...")
+    # 4. Source B-roll media (storyboard-driven or legacy fallback)
+    print("\n🖼️ Step 4: Sourcing B-roll media...")
     storyboard = script_data.get("storyboard", [])
+    media_meta = {}
     if storyboard:
-        image_urls = source_storyboard_images(article, storyboard)
+        image_urls, media_meta = source_storyboard_images(article, storyboard)
     else:
         print("  ⚠️ No storyboard in script — falling back to legacy image_queries")
         image_urls = source_image_urls(article, script_data.get("image_queries", []))
@@ -2524,19 +2559,19 @@ def run_anchor_reel(article, dry_run=False, use_production=False):
         print("❌ No images found")
         return False
 
-    # 4b. PRE-RENDER GATE: Verify all image URLs are reachable
-    print("\n🛡️ Step 4b: Image preflight check...")
+    # 4b. PRE-RENDER GATE: Verify all media URLs are reachable
+    print("\n🛡️ Step 4b: Media preflight check...")
     valid_urls, dead_urls = preflight_image_urls(image_urls)
     if dead_urls:
-        print(f"  ⚠️ {len(dead_urls)} dead image(s) found — replacing from pool...")
+        print(f"  ⚠️ {len(dead_urls)} dead media URL(s) found — replacing from pool...")
         # Re-source only dead slots from article pool (curated first)
         storyboard_slim = [storyboard[i] for i in range(len(storyboard)) if i < len(image_urls) and image_urls[i] not in [u for u, _ in dead_urls]]
         # Use valid URLs plus attempt to fill gaps
         image_urls = valid_urls
         if len(image_urls) < 3:
-            print(f"  ❌ Only {len(image_urls)} valid images — too few for a quality reel, skipping")
+            print(f"  ❌ Only {len(image_urls)} valid media — too few for a quality reel, skipping")
             return False
-        print(f"  ✅ {len(image_urls)} valid images after preflight")
+        print(f"  ✅ {len(image_urls)} valid media after preflight")
 
     # 5. Ensure music is uploaded
     print("\n🎵 Step 5: Setting up music...")
@@ -2558,6 +2593,7 @@ def run_anchor_reel(article, dry_run=False, use_production=False):
         category=category,
         word_timestamps=word_timestamps,
         script_text=script_data["script"],
+        media_meta=media_meta,
     )
 
     if not edit_json:
