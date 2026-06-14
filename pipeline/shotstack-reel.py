@@ -1778,7 +1778,7 @@ def render_reel(edit_json, use_production=False):
         r = requests.get(
             f"{api_url}/render/{render_id}",
             headers={"x-api-key": api_key},
-            timeout=15,
+            timeout=30,
         )
 
         if r.status_code != 200:
