@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-14T19:15:15.921314+00:00",
+  "timestamp": "2026-06-14T19:45:19.956747+00:00",
   "mode": "fix",
   "stats": {
     "pass": 2,
@@ -11,19 +11,15 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "967d11f3-92ff-4b8f-8157-fdc3e322e438",
-      "headline": "Ranveer Singh Walked Out of Don 3 Weeks Before Filming. \u20b945 Crore Later, Even Aamir Khan Couldn\u2019t Fix It.",
-      "slug": "ranveer-singh-don-3-exit-fwice-45-crore-aamir-khan-mediation-nri-20260614",
+      "id": "fdbdd5e8-0cc1-4de3-98f0-fae387786561",
+      "headline": "Sindhu, Satwik-Chirag, and a New Generation. India Has Named Its Strongest Badminton Squad for the Asian Games.",
+      "slug": "india-badminton-squad-asian-games-2026-sindhu-satwik-chirag-lakshya-sen-aichi-nagoya-nri",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [
           {
-            "article_id": "f2e0bf7d-76aa-4950-af25-756e6722fc3a",
-            "headline": "Ranveer Singh Is Making India's First Zombie Epic. It Costs "
-          },
-          {
-            "article_id": "912035d9-4009-4f7f-ad6e-dab5134c5e1c",
-            "headline": "Ranveer Singh Ghosted an Entire Federation. The Don 3 War Ju"
+            "article_id": "383b49db-a044-44d7-b929-94e71c81f06b",
+            "headline": "She Led 11-9 at the Interval. Then Yamaguchi Scored Six Stra"
           }
         ],
         "broken_embeds": []
@@ -38,13 +34,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article connects the *Don* franchise to the NRI experience, highlighting its cultural significance."
+          "note": "The article effectively connects the significance of the Asian Games and badminton's growing popularity among the Indian diaspora, particularly in the US, UK, and Canada."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more quotes or perspectives from industry insiders to enhance credibility.",
-          "Include a brief background on the *Don* franchise for readers unfamiliar with its significance."
+          "Consider adding quotes from players or coaches to enhance the narrative.",
+          "Include more statistics or historical context about India's performance in badminton at the Asian Games."
         ],
         "verdict": "pass"
       },
@@ -56,17 +52,12 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "0f85c9e7-975a-463b-89d4-c16a447483f3",
-      "headline": "Aamir Khan Is Getting Married on July 5. He Thought He Was Too Old for Love.",
-      "slug": "aamir-khan-gauri-spratt-wedding-july-5-third-marriage-love-story-nri-20260614",
+      "id": "42bef16b-39b1-4ebe-b5d7-502c7be01f96",
+      "headline": "She Took Five for Ten and Became the Leading Wicket-Taker in Women\u2019s T20I History. Deepti Sharma Just Demolished Pakistan at Edgbaston.",
+      "slug": "deepti-sharma-5-10-india-crush-pakistan-64-runs-womens-t20-world-cup-2026-edgbaston-nri",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "6594323f-126c-43ed-8378-8abeef3edaf8",
-            "headline": "Aamir Khan Is Getting Married Again. The Love Story Is Bette"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
@@ -79,13 +70,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article connects Aamir Khan's personal journey to the experiences of NRIs who have followed his career, emphasizing themes of love and resilience."
+          "note": "The article effectively connects the performance to the excitement of the Indian diaspora, highlighting their engagement with the match."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more context about Aamir Khan's impact on the Indian diaspora and how his films resonate with NRI audiences.",
-          "Include quotes or reactions from NRI fans regarding Aamir's marriage to enhance the diaspora connection."
+          "Consider adding more quotes from players or coaches to enhance the narrative.",
+          "Include statistics or historical context about Deepti Sharma's career for deeper insight."
         ],
         "verdict": "pass"
       },
