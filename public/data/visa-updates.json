@@ -1,5 +1,14 @@
 [
   {
+    "id": "eb5-india-unreserved-exhausted",
+    "date": "2026-06-12",
+    "label": "Jun 12, 2026",
+    "headline": "EB-5 investor visa cap exhausted for India \u2014 no new unreserved visas until October 2026",
+    "summary": "The US State Department confirmed that all EB-5 unreserved immigrant visas for Indian nationals have been fully allocated for FY2026 as of June 5. US embassies and consulates will not issue any more EB-5 unreserved visas to Indians until the new fiscal year begins October 1, 2026. The EB-5 program lets foreign investors apply for permanent residency by investing in US businesses that create 10+ jobs. Set-aside categories (Rural, High Unemployment Area, Infrastructure) remain current for Indian applicants. This comes weeks after the EB-2 professional category also hit its India cap in May.",
+    "severity": "high",
+    "source": "US State Department / June 2026 Visa Bulletin"
+  },
+  {
     "id": "modi-trump-g7-h1b-talks",
     "date": "2026-06-10",
     "label": "Jun 10, 2026",
