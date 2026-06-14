@@ -1,19 +1,19 @@
 {
-  "timestamp": "2026-06-14T12:15:44.379681+00:00",
+  "timestamp": "2026-06-14T12:45:42.412544+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 6,
+    "pass": 4,
     "flag": 2,
     "fail": 0,
     "error": 0
   },
-  "revisions": 0,
+  "revisions": 1,
   "unpublished": 0,
   "articles": [
     {
-      "id": "5b12f3eb-8e16-4c92-990c-17fa2aa04871",
-      "headline": "A Margin of Seventy People: India Just Overtook England as Australia's Largest Source of Overseas-Born Residents",
-      "slug": "indians-overtake-england-australia-largest-overseas-born-abs-data-20260614",
+      "id": "520ce9e8-732a-4b12-b22f-79bacf975cec",
+      "headline": "Patel Brothers, Big Lots, and the Quiet Conquest: Indian Grocery Stores Are Filling America's Empty Retail Spaces",
+      "slug": "patel-brothers-big-lots-and-the-quiet-conquest-indian-grocery-stores-are-filling",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -29,13 +29,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses the Indian diaspora's growth in Australia and its implications, making it relevant to NRI readers."
+          "note": "The article effectively connects with NRIs by discussing the significance of Indian grocery stores in their communities."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes or perspectives from more members of the Indian diaspora in Australia to enhance relatability.",
-          "Add a section on how this demographic shift might impact Australian policies or community relations."
+          "Include more statistics or data on the growth of Indian grocery stores to strengthen the argument.",
+          "Add quotes or anecdotes from customers to provide a personal touch and enhance relatability."
         ],
         "verdict": "pass"
       },
@@ -47,9 +47,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "65a0f17d-75bd-40e3-9797-03de1cb055d6",
-      "headline": "Modi and Macron Open Bharat Innovates in Nice. The Real Story Is the 120 Startups Behind Them.",
-      "slug": "bharat-innovates-nice-modi-macron-indian-deep-tech-startups-global-20260614",
+      "id": "2a387486-113d-4447-95a9-ac7a73713bcb",
+      "headline": "Dabba Dreams: A $2 Billion Tech Startup Thinks It Can Scale Indian Food to 100 Cities",
+      "slug": "dabba-dreams-a-2-billion-tech-startup-thinks-it-can-scale-indian-food-to-100-cit",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -65,13 +65,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively highlights the role of NRIs in the event and their connection to Indian innovation."
+          "note": "The article effectively discusses the implications of the new Indian food venture for the Indian diaspora, highlighting both excitement and concerns about authenticity."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes or insights from more diaspora members to enhance the connection.",
-          "Add a brief section on how the startups are expected to impact the Indian economy or global tech landscape."
+          "Consider adding quotes or testimonials from Indian Americans to enhance the diaspora perspective.",
+          "Include more details on how the company plans to maintain authenticity in its food offerings."
         ],
         "verdict": "pass"
       },
@@ -83,9 +83,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "a553de10-e13c-4321-a00e-b403d5ed4710",
-      "headline": "Every Employer in America Would Have to Run Your Name Through E-Verify Under a New Senate Bill",
-      "slug": "mandatory-e-verify-act-2026-indian-immigrants-error-rate-20260614",
+      "id": "364f2758-3945-4b5d-a432-98b72e22c9cc",
+      "headline": "From Eight Michelin Stars to Your Pantry: Gymkhana Brings Indian Sauces to Whole Foods",
+      "slug": "from-eight-michelin-stars-to-your-pantry-gymkhana-brings-indian-sauces-to-whole",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -95,19 +95,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 6,
-          "issue": "The image does not directly relate to the topic of E-Verify or immigration."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses how the E-Verify system impacts legal immigrants, particularly Indian workers, which is relevant to the diaspora."
+          "note": "The article effectively connects the product launch to the needs and preferences of the Indian diaspora in the U.S."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that directly relates to immigration or employment verification to enhance relevance.",
-          "Add a quote or perspective from an Indian diaspora member to strengthen the connection to the audience."
+          "Consider adding quotes or testimonials from diaspora members about their experiences with Indian sauces in the U.S.",
+          "Include more details about the specific flavors or ingredients in the Gymkhana sauces to enhance reader engagement."
         ],
         "verdict": "pass"
       },
@@ -119,31 +119,85 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "9a55005b-e49d-4432-a8cc-01dd30b80974",
-      "headline": "The PROTECT Act Would Make the $100,000 H-1B Salary Floor Permanent Law",
-      "slug": "protect-act-kennedy-100k-h1b-salary-floor-congress-20260614",
+      "id": "6e700fb3-f1d2-4b48-aee6-2446429310f3",
+      "headline": "The Iran Deal Draft Is Out. Here Is What Is in It \u2014 and What India Stands to Gain.",
+      "slug": "iran-deal-draft-terms-no-nukes-hormuz-reopen-frozen-assets-india-impact-20260614",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "b82a9faa-a098-485d-9176-b87a0d068982",
+            "headline": "Three Indian Sailors Are Dead. India Says the US Navy Has St"
+          },
+          {
+            "article_id": "64e5b401-6910-4dbb-a3ff-72436bf0dcc3",
+            "headline": "The Leaked Iran Deal Gives Tehran Almost Everything It Wante"
+          }
+        ],
         "broken_embeds": []
       },
       "llm_review": {
-        "overall_score": 8,
+        "overall_score": 6,
         "embed_issues": [],
         "image_match": {
-          "score": 5,
-          "issue": "The image of Rep. Mike Kennedy does not directly relate to the H-1B salary floor topic."
+          "score": 7,
+          "issue": "The image of the Strait of Hormuz is relevant to the article's topic."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 7,
-          "note": "The article discusses the implications of the PROTECT Act on Indian tech professionals, which is relevant to the diaspora."
+          "note": "The article discusses India's economic interests and diplomatic relations, which are relevant to the Indian diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes or perspectives from Indian tech professionals to enhance the diaspora connection.",
-          "Consider using a more relevant image that depicts H-1B workers or the tech industry."
+          "Provide more context on how the deal specifically impacts the Indian diaspora.",
+          "Include quotes or perspectives from Indian officials or experts to enhance the article's depth."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Revised by gemini-2.5-flash (768\u2192478 words)"
+      ],
+      "revised": true,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "6adfa7b9-50f6-4f2d-9a0d-a0f8162e0425",
+      "headline": "Modi and Macron Have Opened 'Bharat Innovates' in Nice. 120 Indian Startups Are Pitching to European Capital.",
+      "slug": "modi-macron-bharat-innovates-2026-nice-startups-investors-innovation-20260614",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "51219e21-788f-4bcc-8f9a-6868b22250a8",
+            "headline": "India's Dead Sailors Have Put Modi in a Corner. He Meets Tru"
+          },
+          {
+            "article_id": "7cc2c2b6-8948-4691-8a47-f28599bc06c9",
+            "headline": "Three Dead Sailors, One H-1B Wishlist \u2014 Modi Goes to the G7 "
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 3,
+          "issue": "irrelevant"
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses Indian startups and their connection to European capital, which is relevant to the NRI audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the hero image with one that is more relevant to the event or topic of Indian startups and innovation.",
+          "Consider adding quotes or perspectives from Indian diaspora entrepreneurs or investors to strengthen the diaspora angle."
         ],
         "verdict": "flag"
       },
@@ -155,9 +209,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "fc0077f2-9b67-44de-807f-82d07b9fd36d",
-      "headline": "Seventy Billion Dollars, Zero Guardrails \u2014 What the Secure America Act Means for Legal Indian Immigrants",
-      "slug": "secure-america-act-70-billion-ice-cbp-indian-immigrants-20260614",
+      "id": "4f29dbf6-f567-4e02-84bb-218242489a73",
+      "headline": "India Has Opened Its Stock Market to Every Foreigner. NRIs Are No Longer the Only Ones Who Can Buy In.",
+      "slug": "fema-amendment-india-stock-market-all-foreigners-nri-oci-rule-change-20260614",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -167,146 +221,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 6,
-          "issue": "The image does not directly relate to the topic of immigration or the Secure America Act."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively discusses the implications of the Secure America Act on Indian immigrants, making it relevant for the diaspora audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that reflects the themes of immigration or the Secure America Act.",
-          "Add quotes or perspectives from Indian immigrants or organizations to enhance the diaspora connection."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "fb39af25-7ac9-4990-960e-30cae44156a5",
-      "headline": "Adobe's Next CEO Could Be Indian-Origin Too. Two Candidates Are Already in the Ring.",
-      "slug": "adobe-ceo-succession-wadhwani-chakravarthy-indian-20260614",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "c6066753-6519-4af0-bf8c-0270a78e5ab8",
-            "headline": "Adobe Is Losing Both Its CEO and Its CFO. The Freemium Bet I"
-          }
-        ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
           "score": 9,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the potential CEO candidates' Indian origin to the interests of the NRI community, highlighting the significance of representation in leadership roles."
+          "note": "The article discusses changes that directly affect NRIs and their investment opportunities, making it relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from industry experts or analysts to enhance credibility.",
-          "Include more context on the impact of AI on Adobe's business strategy to deepen the analysis."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "3e10c033-ab18-42df-a972-ee240ba09b37",
-      "headline": "Meta's First AI Data Centre in India Will Run on Ambani's Renewable Grid. It's 168 Megawatts.",
-      "slug": "meta-reliance-jamnagar-ai-data-centre-168mw-20260614",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "239ae692-1b34-473d-88b9-ada4999f17eb",
-            "headline": "Meta and Reliance to Build India's First AI Data Centre in J"
-          },
-          {
-            "article_id": "4ca14a70-12f6-4ca0-ad63-96aa40d63c21",
-            "headline": "Meta Picks Ambani's Jamnagar for Its First India AI Data Cen"
-          }
-        ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 5,
-          "issue": "The image of Mukesh Ambani does not directly relate to the AI data centre topic."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the data centre's implications for Indian Americans in the tech industry."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that directly represents the AI data centre or renewable energy aspect.",
-          "Add more statistics or quotes from industry experts to enhance credibility."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "fecbbcf9-6084-4ff2-8e2a-cf74219b0474",
-      "headline": "Forbes Names 26 Indian-Origin Immigrants Among America's Most Successful. The List Reads Like a Tech Boardroom.",
-      "slug": "forbes-250-immigrants-26-indian-origin-leaders-20260614",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "3e39cc54-9c40-4c3b-8179-a7b79b51658f",
-            "headline": "Twenty-Seven Indians Made Forbes' List of America's Most Suc"
-          }
-        ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the achievements of Indian-origin immigrants to the NRI community, highlighting their contributions and relevance in the current socio-political climate."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes or insights from some of the featured individuals to enhance the personal connection to their achievements.",
-          "Include more context on how these individuals have influenced the Indian diaspora's perception in the U.S."
+          "Include quotes from financial experts or NRIs to provide personal insights on the impact of these changes.",
+          "Add a section discussing potential risks for NRIs now that the market is open to all foreign investors."
         ],
         "verdict": "pass"
       },
