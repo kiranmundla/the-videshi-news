@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-14T08:15:13.348920+00:00",
+  "timestamp": "2026-06-14T08:45:14.801468+00:00",
   "mode": "fix",
   "stats": {
     "pass": 2,
@@ -11,12 +11,21 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "070b1f41-f579-4e20-8d69-ca8dd2806afe",
-      "headline": "'Their Own Videos Give Them Away' \u2014 DHS Warns World Cup Visitors Their Social Media Is Evidence",
-      "slug": "dhs-world-cup-social-media-visa-enforcement-influencers-20260614",
+      "id": "e55b5db6-07d2-412e-9c10-707afb8cdd52",
+      "headline": "Jaishankar Says the U.S. Asked India to Buy Russian Oil. Then It Imposed Tariffs.",
+      "slug": "jaishankar-kultaranta-us-asked-india-buy-russian-oil-tariffs-hypocrisy-20260614",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "454b8fbd-4971-4bae-9c61-9e9b0d3e5884",
+            "headline": "Jaishankar May Visit Canada Next Week. It Would Be the First"
+          },
+          {
+            "article_id": "8a12d0c9-8def-4a5b-ad2b-9c46c4a2dcf3",
+            "headline": "India Just Summoned America's Top Diplomat for the Second Ti"
+          }
+        ],
         "broken_embeds": []
       },
       "llm_review": {
@@ -29,13 +38,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively addresses the implications of U.S. visa regulations for Indian visitors, making it relevant for the diaspora."
+          "note": "The article connects the geopolitical issues discussed by Jaishankar to the potential impacts on NRIs, particularly regarding trade and immigration."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more direct quotes from Indian visitors or influencers to enhance relatability.",
-          "Include a brief section on how Indian visitors can navigate these regulations effectively."
+          "Include more direct quotes from Jaishankar to enhance the article's authority.",
+          "Expand on how the trade tensions specifically affect NRIs beyond H-1B processing."
         ],
         "verdict": "pass"
       },
@@ -47,9 +56,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "bb950abd-617b-4bc9-b15b-6ad53f2d9b0d",
-      "headline": "Four Days of Relief \u2014 The $100,000 H-1B Fee Returns While the First Circuit Decides",
-      "slug": "h1b-100k-fee-judge-stays-ruling-first-circuit-appeal-20260614",
+      "id": "ad9f7e42-62f1-4d59-a205-c2a222724f2f",
+      "headline": "Three Indian Sailors Are Dead After U.S. Navy Strikes. Delhi Has Summoned the American Envoy Twice.",
+      "slug": "three-indian-sailors-dead-us-navy-strikes-settebello-hormuz-blockade-20260614",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -59,19 +68,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image depicts ships in a maritime context, which is relevant to the article's topic about Indian sailors and U.S. Navy strikes, but it does not specifically relate to the incident discussed."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses the impact of the H-1B fee on Indian professionals, making it relevant to the diaspora."
+          "note": "The article discusses the impact of the U.S. Navy strikes on Indian sailors, which is relevant to the Indian diaspora, particularly those with connections to the maritime industry."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes from affected individuals or immigration experts to enhance the narrative.",
-          "Add a section on potential future implications for the Indian diaspora if the fee remains in effect."
+          "Consider including quotes or reactions from Indian diaspora communities regarding the incident to enhance the diaspora angle.",
+          "Add more context about the implications of these strikes on Indian maritime policies and the safety of Indian sailors abroad."
         ],
         "verdict": "pass"
       },
