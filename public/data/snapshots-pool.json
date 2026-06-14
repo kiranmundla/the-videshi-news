@@ -120,13 +120,6 @@
     "added_date": "2026-05-01"
   },
   {
-    "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/snapshots/indian-community-celebration-30074203.jpg",
-    "label": "A vibrant festival scene in Delhi, showcasing traditional Indian culture and celebration. · 📷 Shantanu Kumar",
-    "source": "pexels",
-    "added_date": "2026-05-27",
-    "pexels_id": 30074203
-  },
-  {
     "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/snapshots/indian-community-celebration-10003451.jpg",
     "label": "Three Native American men in traditional attire play guitars outdoors, capturing a cultural musical moment. · 📷 Sami  Aksu",
     "source": "pexels",
@@ -258,5 +251,12 @@
     "source": "pexels",
     "added_date": "2026-06-07",
     "pexels_id": 33238364
+  },
+  {
+    "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/snapshots/indian-temple-festival-36587841.jpg",
+    "label": "Vibrant crowd gathers for theru festival at Hindu temple, Matale, Sri Lanka. · 📷 Thilina Alagiyawanna",
+    "source": "pexels",
+    "added_date": "2026-06-14",
+    "pexels_id": 36587841
   }
 ]
