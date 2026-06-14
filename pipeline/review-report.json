@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-14T07:45:17.523756+00:00",
+  "timestamp": "2026-06-14T08:15:13.348920+00:00",
   "mode": "fix",
   "stats": {
     "pass": 2,
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "363448b3-9d7a-4d4a-b08d-35984fedf349",
-      "headline": "Australia Crushed South Africa by 65 Runs. India's Group A Just Got a Reality Check.",
-      "slug": "australia-crush-south-africa-65-runs-womens-t20-world-cup-2026-india-group-a-nri",
+      "id": "070b1f41-f579-4e20-8d69-ca8dd2806afe",
+      "headline": "'Their Own Videos Give Them Away' \u2014 DHS Warns World Cup Visitors Their Social Media Is Evidence",
+      "slug": "dhs-world-cup-social-media-visa-enforcement-influencers-20260614",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -23,19 +23,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the specific match discussed but is relevant to cricket."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article connects well with the Indian diaspora by discussing India's position in the tournament and the implications of Australia's performance."
+          "note": "The article effectively addresses the implications of U.S. visa regulations for Indian visitors, making it relevant for the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes from players or coaches to enhance the narrative.",
-          "Add a brief overview of India's upcoming match against Pakistan to provide context."
+          "Consider adding more direct quotes from Indian visitors or influencers to enhance relatability.",
+          "Include a brief section on how Indian visitors can navigate these regulations effectively."
         ],
         "verdict": "pass"
       },
@@ -47,36 +47,31 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "0b0192ad-5200-4f29-83a1-ed880c3e4cdd",
-      "headline": "India Wants Its Diaspora Athletes Back. The Sports Passport Could Make It Happen.",
-      "slug": "india-sports-passport-oci-pio-diaspora-athletes-world-cup-2026-nri",
+      "id": "bb950abd-617b-4bc9-b15b-6ad53f2d9b0d",
+      "headline": "Four Days of Relief \u2014 The $100,000 H-1B Fee Returns While the First Circuit Decides",
+      "slug": "h1b-100k-fee-judge-stays-ruling-first-circuit-appeal-20260614",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "c4d537c4-6ecd-4d84-8720-d51a87a18824",
-            "headline": "Two Players of Indian Heritage Will Take the Pitch at This W"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image depicts Sarpreet Singh, which is relevant to the article's focus on diaspora athletes, but it could be more directly related to the concept of the Sports Passport."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the proposal to the Indian diaspora, highlighting the potential impact on athletes of Indian origin and the significance of their representation."
+          "quality": 8,
+          "note": "The article discusses the impact of the H-1B fee on Indian professionals, making it relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more quotes or perspectives from diaspora athletes to enhance the personal connection.",
-          "Include statistics or examples of how similar initiatives have succeeded in other countries to strengthen the argument."
+          "Include quotes from affected individuals or immigration experts to enhance the narrative.",
+          "Add a section on potential future implications for the Indian diaspora if the fee remains in effect."
         ],
         "verdict": "pass"
       },
