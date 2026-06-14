@@ -782,19 +782,32 @@ def build_script_captions(words, script_text, hook_duration):
     if current:
         phrases.append(current)
 
-    clips = []
+    # Build raw clip data first, then fix overlaps
+    raw_clips = []
     for phrase in phrases:
         text = " ".join(w.get("word", "") for w in phrase).strip().upper()
         start = hook_duration + phrase[0]["start"]
         end = hook_duration + phrase[-1]["end"]
         duration = max(end - start, 0.5)
+        raw_clips.append({"text": text, "start": round(start, 2), "duration": round(duration, 2)})
 
-        # High-contrast caption: dark background pill + white text + strong shadow
+    # Fix overlaps: trim each clip so it ends before the next one starts (0.02s gap min)
+    for i in range(len(raw_clips) - 1):
+        gap = raw_clips[i + 1]["start"] - raw_clips[i]["start"]
+        max_dur = max(gap - 0.02, 0.3)
+        if raw_clips[i]["duration"] > max_dur:
+            raw_clips[i]["duration"] = round(max_dur, 2)
+
+    clips = []
+    for rc in raw_clips:
+        text = rc["text"]
+
+        # High-contrast caption pill — positioned ABOVE the lower-third overlay
         html = (
-            f"<div style=\"display:flex;align-items:center;justify-content:center;"
-            f"width:100%;height:100%;padding:0 30px;\">"
-            f"<div style=\"background:rgba(0,0,0,0.75);border-radius:8px;padding:12px 24px;"
-            f"font-family:Inter;font-size:40px;font-weight:800;"
+            f"<div style=\"display:flex;align-items:flex-end;justify-content:center;"
+            f"width:100%;height:100%;padding:0 30px 0 30px;\">"
+            f"<div style=\"background:rgba(0,0,0,0.78);border-radius:10px;padding:14px 26px;"
+            f"font-family:Inter;font-size:38px;font-weight:800;"
             f"color:#FFFFFF;text-align:center;letter-spacing:1.5px;line-height:1.2;"
             f"text-shadow: 0 2px 4px rgba(0,0,0,0.9), 0 0 20px rgba(0,0,0,0.5);\">"
             f"{text}</div></div>"
@@ -807,10 +820,10 @@ def build_script_captions(words, script_text, hook_duration):
                 "width": 900,
                 "height": 200,
             },
-            "start": round(start, 2),
-            "length": round(duration + 0.15, 2),
-            "position": "bottom",
-            "offset": {"x": 0, "y": 0.18},
+            "start": rc["start"],
+            "length": rc["duration"],
+            "position": "center",
+            "offset": {"x": 0, "y": 0.12},
             "transition": {"in": "fade", "out": "fade"},
         })
 
