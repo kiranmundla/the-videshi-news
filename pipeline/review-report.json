@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-14T08:45:14.801468+00:00",
+  "timestamp": "2026-06-14T09:15:30.502014+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 5,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,19 +11,59 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "e55b5db6-07d2-412e-9c10-707afb8cdd52",
-      "headline": "Jaishankar Says the U.S. Asked India to Buy Russian Oil. Then It Imposed Tariffs.",
-      "slug": "jaishankar-kultaranta-us-asked-india-buy-russian-oil-tariffs-hypocrisy-20260614",
+      "id": "2ccb0ba4-9fd2-4963-896e-3e95f46a6e0b",
+      "headline": "\u20b91,600 Crore. Hans Zimmer and A.R. Rahman. Ranbir as Ram. India's Biggest Film Just Got Real.",
+      "slug": "ramayana-ranbir-kapoor-yash-sai-pallavi-diwali-2026-1600-crore-hans-zimmer-ar-rahman-nri-20260614",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image of Ranbir Kapoor at the airport does not directly relate to the film Ramayana or its themes."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively highlights the significance of the film for the NRI community, emphasizing its global release and cultural impact."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant hero image that reflects the film's themes or characters.",
+          "Expand on the diaspora angle by including quotes or perspectives from NRI audiences or filmmakers."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "540ece14-a186-4f24-b4aa-fed0fdbfd4e0",
+      "headline": "Shahid Kapoor Has Two Projects Left. After That, He Has No Idea What He's Doing. That's the Point.",
+      "slug": "shahid-kapoor-career-crossroads-cocktail-2-farzi-2-scripts-bollywood-nri-20260614",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [
           {
-            "article_id": "454b8fbd-4971-4bae-9c61-9e9b0d3e5884",
-            "headline": "Jaishankar May Visit Canada Next Week. It Would Be the First"
+            "article_id": "03379991-0142-4262-91e4-50f4c8f4d2ea",
+            "headline": "Cocktail 2 Hasn't Even Released Yet. It's Already Everywhere"
           },
           {
-            "article_id": "8a12d0c9-8def-4a5b-ad2b-9c46c4a2dcf3",
-            "headline": "India Just Summoned America's Top Diplomat for the Second Ti"
+            "article_id": "dc14c140-c3d0-4dd2-becc-c4a30b608f8f",
+            "headline": "Shahid Kapoor Has Stopped Trusting His Own Instincts. That M"
+          },
+          {
+            "article_id": "c0878811-309e-4f10-9650-cd943bbb887c",
+            "headline": "Cocktail 2 Is the Most Wanted Film in India Right Now. Next "
           }
         ],
         "broken_embeds": []
@@ -38,13 +78,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article connects the geopolitical issues discussed by Jaishankar to the potential impacts on NRIs, particularly regarding trade and immigration."
+          "note": "The article connects well with NRI audiences by discussing Shahid Kapoor's projects and their relevance to the diaspora's viewing habits."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes from Jaishankar to enhance the article's authority.",
-          "Expand on how the trade tensions specifically affect NRIs beyond H-1B processing."
+          "Consider adding more direct quotes from Shahid Kapoor to enhance engagement.",
+          "Include a brief overview of Shahid Kapoor's impact on the Indian film industry for context."
         ],
         "verdict": "pass"
       },
@@ -56,9 +96,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "ad9f7e42-62f1-4d59-a205-c2a222724f2f",
-      "headline": "Three Indian Sailors Are Dead After U.S. Navy Strikes. Delhi Has Summoned the American Envoy Twice.",
-      "slug": "three-indian-sailors-dead-us-navy-strikes-settebello-hormuz-blockade-20260614",
+      "id": "8f305f15-f40a-4aec-8e94-9bfdb8876ff3",
+      "headline": "Anthropic's Ban Lit a Fire Under India's Sovereign AI Movement. Here's Who's Fanning It.",
+      "slug": "india-sovereign-ai-debate-vembu-pai-anthropic-ban-20260614",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -69,18 +109,90 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image depicts ships in a maritime context, which is relevant to the article's topic about Indian sailors and U.S. Navy strikes, but it does not specifically relate to the incident discussed."
+          "issue": "The image is relevant to technology but lacks specific connection to AI."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses the impact of the U.S. Navy strikes on Indian sailors, which is relevant to the Indian diaspora, particularly those with connections to the maritime industry."
+          "note": "The article discusses implications for Indian engineers abroad, making it relevant for the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider including quotes or reactions from Indian diaspora communities regarding the incident to enhance the diaspora angle.",
-          "Add more context about the implications of these strikes on Indian maritime policies and the safety of Indian sailors abroad."
+          "Include more direct quotes or insights from diaspora experts to strengthen the connection.",
+          "Consider adding a section that discusses how the AI movement in India could impact NRIs in tech sectors abroad."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "b41c123c-4505-4990-af6c-e2c3a51fa907",
+      "headline": "India's IT Stocks Have Lost 27% This Year. BlackRock Says the Market Has It Wrong.",
+      "slug": "india-it-stocks-crash-blackrock-lighthouse-canton-ai-advantage-20260614",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image is relevant to the technology theme but does not specifically depict IT stocks or the Indian market."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article directly addresses NRI investors and their interests in Indian equities, making the diaspora angle strong."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more specific image related to Indian IT stocks or the technology sector to enhance relevance.",
+          "Add a brief summary or conclusion that reiterates the key points for NRI investors to strengthen the article's impact."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "4a24c17c-923d-4fda-8b8d-84ea03d82ce0",
+      "headline": "SpaceX's Record $75 Billion IPO Lands at $1.75 Trillion. India Just Froze Starlink.",
+      "slug": "spacex-ipo-starlink-india-freeze-indian-investors-20260614",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 6,
+          "issue": "The image does not directly relate to SpaceX or Starlink, which are the main topics of the article."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the implications of SpaceX's IPO and Starlink's situation in India to the interests of NRIs, particularly those in technology sectors."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that depicts SpaceX or satellite technology to enhance visual connection to the article's content.",
+          "Expand on the implications for NRIs in terms of investment opportunities or risks associated with the IPO and Starlink's status in India."
         ],
         "verdict": "pass"
       },
