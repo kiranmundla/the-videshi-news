@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-14T09:15:30.502014+00:00",
+  "timestamp": "2026-06-14T10:15:39.430477+00:00",
   "mode": "fix",
   "stats": {
     "pass": 5,
-    "flag": 0,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,61 +11,12 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "2ccb0ba4-9fd2-4963-896e-3e95f46a6e0b",
-      "headline": "\u20b91,600 Crore. Hans Zimmer and A.R. Rahman. Ranbir as Ram. India's Biggest Film Just Got Real.",
-      "slug": "ramayana-ranbir-kapoor-yash-sai-pallavi-diwali-2026-1600-crore-hans-zimmer-ar-rahman-nri-20260614",
+      "id": "91f4696e-8205-4cd6-9ffb-e0933f445421",
+      "headline": "The World's Biggest Destination Wedding Summit Is Coming to India for the First Time \u2014 Thanks to NRI Spending",
+      "slug": "dwp-congress-udaipur-destination-wedding-nri-20260614",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image of Ranbir Kapoor at the airport does not directly relate to the film Ramayana or its themes."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively highlights the significance of the film for the NRI community, emphasizing its global release and cultural impact."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant hero image that reflects the film's themes or characters.",
-          "Expand on the diaspora angle by including quotes or perspectives from NRI audiences or filmmakers."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "540ece14-a186-4f24-b4aa-fed0fdbfd4e0",
-      "headline": "Shahid Kapoor Has Two Projects Left. After That, He Has No Idea What He's Doing. That's the Point.",
-      "slug": "shahid-kapoor-career-crossroads-cocktail-2-farzi-2-scripts-bollywood-nri-20260614",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "03379991-0142-4262-91e4-50f4c8f4d2ea",
-            "headline": "Cocktail 2 Hasn't Even Released Yet. It's Already Everywhere"
-          },
-          {
-            "article_id": "dc14c140-c3d0-4dd2-becc-c4a30b608f8f",
-            "headline": "Shahid Kapoor Has Stopped Trusting His Own Instincts. That M"
-          },
-          {
-            "article_id": "c0878811-309e-4f10-9650-cd943bbb887c",
-            "headline": "Cocktail 2 Is the Most Wanted Film in India Right Now. Next "
-          }
-        ],
         "broken_embeds": []
       },
       "llm_review": {
@@ -78,13 +29,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article connects well with NRI audiences by discussing Shahid Kapoor's projects and their relevance to the diaspora's viewing habits."
+          "note": "The article effectively highlights the significance of NRI spending in the luxury wedding market, making it relevant to diaspora readers."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more direct quotes from Shahid Kapoor to enhance engagement.",
-          "Include a brief overview of Shahid Kapoor's impact on the Indian film industry for context."
+          "Include quotes or testimonials from NRIs who have planned weddings in India to add a personal touch.",
+          "Provide more statistics or data on the impact of NRI weddings on local economies to strengthen the argument."
         ],
         "verdict": "pass"
       },
@@ -96,9 +47,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "8f305f15-f40a-4aec-8e94-9bfdb8876ff3",
-      "headline": "Anthropic's Ban Lit a Fire Under India's Sovereign AI Movement. Here's Who's Fanning It.",
-      "slug": "india-sovereign-ai-debate-vembu-pai-anthropic-ban-20260614",
+      "id": "a097740e-23e3-4c15-be30-ed71b308c6b4",
+      "headline": "Sarnath Could Become India's 45th UNESCO World Heritage Site Next Month \u2014 Here's What That Means for NRIs",
+      "slug": "sarnath-unesco-world-heritage-nomination-varanasi-nri-20260614",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -108,19 +59,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image is relevant to technology but lacks specific connection to AI."
+          "score": 10,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article discusses implications for Indian engineers abroad, making it relevant for the diaspora."
+          "quality": 9,
+          "note": "The article effectively connects the UNESCO nomination of Sarnath to the emotional and cultural significance of Varanasi for NRIs."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes or insights from diaspora experts to strengthen the connection.",
-          "Consider adding a section that discusses how the AI movement in India could impact NRIs in tech sectors abroad."
+          "Consider adding quotes from experts or local authorities to enhance credibility.",
+          "Include more information on how NRIs can engage with Sarnath if it becomes a UNESCO site."
         ],
         "verdict": "pass"
       },
@@ -132,9 +83,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "b41c123c-4505-4990-af6c-e2c3a51fa907",
-      "headline": "India's IT Stocks Have Lost 27% This Year. BlackRock Says the Market Has It Wrong.",
-      "slug": "india-it-stocks-crash-blackrock-lighthouse-canton-ai-advantage-20260614",
+      "id": "c4f965a7-0386-4341-aee1-52f37fe5ec16",
+      "headline": "Marriott's 10,000th Hotel Is a Tiger Safari Lodge in Rajasthan \u2014 and NRIs Should Take Note",
+      "slug": "jw-marriott-ranthambore-10000th-hotel-nri-safari-20260614",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -144,19 +95,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image is relevant to the technology theme but does not specifically depict IT stocks or the Indian market."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article directly addresses NRI investors and their interests in Indian equities, making the diaspora angle strong."
+          "note": "The article effectively connects the luxury travel experience in India to the interests of NRIs, particularly in terms of wildlife tourism and hotel loyalty programs."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more specific image related to Indian IT stocks or the technology sector to enhance relevance.",
-          "Add a brief summary or conclusion that reiterates the key points for NRI investors to strengthen the article's impact."
+          "Include a quote or testimonial from an NRI traveler who has experienced the new hotel to enhance relatability.",
+          "Add more details about the specific amenities or experiences that cater to NRI travelers."
         ],
         "verdict": "pass"
       },
@@ -168,31 +119,112 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "4a24c17c-923d-4fda-8b8d-84ea03d82ce0",
-      "headline": "SpaceX's Record $75 Billion IPO Lands at $1.75 Trillion. India Just Froze Starlink.",
-      "slug": "spacex-ipo-starlink-india-freeze-indian-investors-20260614",
+      "id": "dd784a8f-d461-4226-a452-b9748eeb430c",
+      "headline": "Foreign Investors Have Fled 43 of India's 50 Biggest Stocks. Domestic Money Is Filling the Void.",
+      "slug": "fii-ownership-14-year-low-dii-record-high-india-nri-investor-implications-20260614",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "780b01d2-1644-4df8-a519-156904800172",
+            "headline": "India\u2019s IT Stocks Have Lost 27 Per Cent This Year. For NRI T"
+          },
+          {
+            "article_id": "bdbe36d1-ec3c-44d8-ac5f-35181b39183b",
+            "headline": "BlackRock and Lighthouse Canton Say India Has Been 'Over-Pun"
+          }
+        ],
         "broken_embeds": []
       },
       "llm_review": {
-        "overall_score": 8,
+        "overall_score": 7,
         "embed_issues": [],
         "image_match": {
           "score": 6,
-          "issue": "The image does not directly relate to SpaceX or Starlink, which are the main topics of the article."
+          "issue": "The image does not directly relate to the topic of foreign investment and stock market dynamics."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the implications of SpaceX's IPO and Starlink's situation in India to the interests of NRIs, particularly those in technology sectors."
+          "note": "The article discusses the impact of foreign investment trends on NRI investors, making it relevant to the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that depicts SpaceX or satellite technology to enhance visual connection to the article's content.",
-          "Expand on the implications for NRIs in terms of investment opportunities or risks associated with the IPO and Starlink's status in India."
+          "Consider using a more relevant image that reflects the themes of investment and stock markets.",
+          "Add a section that directly addresses how NRI investors can navigate the current market conditions."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "a9e5421a-3901-4c64-99f6-fb99b60aa661",
+      "headline": "High Social Media Use Raises Mental Health Risks in Teens. A Landmark Australian Study Just Quantified the Damage.",
+      "slug": "social-media-adolescent-mental-health-australia-study-diaspora-parenting-20260614",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the findings to the experiences of diaspora parents managing technology use in a cross-cultural context."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples or quotes from diaspora parents to enhance relatability.",
+          "Include a brief section on practical tips for parents on managing social media use among teens."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "c3ccf930-10cf-483d-98b2-35fa3f2f738d",
+      "headline": "Five Fruits a Day May Not Save Your Heart. A 30,000-Person Study Says It Is the Type That Matters.",
+      "slug": "flavanol-intake-heart-health-five-a-day-not-enough-south-asian-diet-advantage-20260614",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the findings to South Asian dietary habits and cardiovascular health, making it relevant for the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of how diaspora families can incorporate flavanol-rich foods into their diets.",
+          "Include a brief summary of the study's methodology to enhance credibility."
         ],
         "verdict": "pass"
       },
