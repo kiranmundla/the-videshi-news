@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-14T13:15:21.749656+00:00",
+  "timestamp": "2026-06-14T13:45:16.970623+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
-    "flag": 1,
+    "pass": 2,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "46acc6fc-209c-47b0-bc01-f289634188a3",
-      "headline": "Madhuri Dixit, Triptii Dimri, and a Dead Neighbour Just Conquered Netflix. Maa Behen Is the Streaming Event of 2026.",
-      "slug": "maa-behen-netflix-global-hit-madhuri-dixit-triptii-dimri-dark-comedy-nri",
+      "id": "0f0fffad-48ea-47ef-b63c-8fd40643690d",
+      "headline": "Belfast Is Burning. India's T20I Tour of Ireland May Not Survive It.",
+      "slug": "belfast-unrest-india-ireland-t20i-series-stormont-cricket-security-june-2026-nri",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -21,38 +21,25 @@
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/p/DZKnBFaDL8d/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post does not appear to be directly related to the film 'Maa Behen' or its themes."
-          },
-          {
-            "url": "https://www.instagram.com/reel/DZg1SPmsNwu/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram reel does not seem to connect to the article's subject matter regarding the film or its context."
-          }
-        ],
+        "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image features Madhuri Dixit but does not directly relate to the film 'Maa Behen' as it appears to be from a fashion event."
+          "score": 6,
+          "issue": "The image does not directly relate to cricket or the specific unrest in Belfast."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively highlights that 'Maa Behen' is available globally on Netflix, making it accessible to the NRI audience."
+          "quality": 9,
+          "note": "The article effectively highlights the concerns of the Indian diaspora in Northern Ireland amidst the unrest."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant Instagram embeds with content that directly relates to 'Maa Behen' or its cast.",
-          "Consider using an image that is directly associated with the film to enhance relevance."
+          "Consider using a more relevant image that depicts either cricket or the unrest in Belfast.",
+          "Include quotes from diaspora community leaders to enhance the personal connection and perspective."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DZKnBFaDL8d/",
-        "Removed irrelevant embed: https://www.instagram.com/reel/DZg1SPmsNwu/",
         "promoted to published"
       ],
       "revised": false,
@@ -60,15 +47,15 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "23755f4a-e04b-4a89-8773-909d0a928bb2",
-      "headline": "Priyanka Chopra Just Became India's Third Most Valuable Celebrity. She Hasn't Made a Hindi Film in Seven Years.",
-      "slug": "priyanka-chopra-fortune-india-most-valuable-celebrity-2026-varanasi-nri",
+      "id": "8c8d7718-bd8a-4fc1-bb88-df7eacce8e0b",
+      "headline": "He Scored 19,346 Runs and Led New Zealand to Their Finest Hour. Kane Williamson Has Retired.",
+      "slug": "kane-williamson-retirement-international-cricket-19346-runs-ipl-srh-tributes-nri",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [
           {
-            "article_id": "66cb8c7e-ffa2-4025-9d33-da0dab49fb88",
-            "headline": "Priyanka Chopra Hasn't Made a Hindi Film in Seven Years. She"
+            "article_id": "24ee0752-86c8-4336-874f-2428c62a6fdc",
+            "headline": "He Scored 19,346 Runs for New Zealand. On Friday, Kane Willi"
           }
         ],
         "broken_embeds": []
@@ -77,9 +64,9 @@
         "overall_score": 8,
         "embed_issues": [
           {
-            "url": "https://www.instagram.com/p/DZbozuNmxcC/",
+            "url": "https://www.instagram.com/p/williamson-retirement/",
             "problem": "irrelevant",
-            "explanation": "The Instagram post does not relate to the main topic of Priyanka Chopra's ranking or her current projects."
+            "explanation": "The Instagram post does not appear to be directly related to Williamson's retirement announcement or his cricketing achievements."
           }
         ],
         "image_match": {
@@ -89,18 +76,18 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects Priyanka Chopra's achievements to the Indian diaspora, highlighting her role as a cultural ambassador."
+          "note": "The article effectively connects Williamson's impact on Indian cricket and his significance to the Indian diaspora, particularly in the context of IPL and international matches."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant Instagram embed with a more relevant one that highlights Priyanka's recent work or achievements.",
-          "Consider adding more context about the significance of the Fortune India ranking for the Indian entertainment industry."
+          "Replace the irrelevant Instagram embed with a more relevant one that highlights Williamson's achievements or tributes from notable players.",
+          "Consider adding a quote or perspective from a prominent NRI cricket figure to strengthen the diaspora connection."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DZbozuNmxcC/",
+        "Removed irrelevant embed: https://www.instagram.com/p/williamson-retirement/",
         "promoted to published"
       ],
       "revised": false,
