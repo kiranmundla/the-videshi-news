@@ -1,19 +1,19 @@
 {
-  "timestamp": "2026-06-14T16:15:17.388209+00:00",
+  "timestamp": "2026-06-14T16:46:08.962997+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 0,
+    "pass": 5,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
-  "revisions": 0,
+  "revisions": 1,
   "unpublished": 0,
   "articles": [
     {
-      "id": "51ee7053-a95a-4b39-973d-4c104a2f0d2b",
-      "headline": "One Hundred and Twenty-One Million Dollars in Stolen Wages",
-      "slug": "wild-wild-east-h1b-wage-theft-indian-workers-body-shops-20260614",
+      "id": "e2ae2d1a-5f26-498a-affe-ff88dc199b5c",
+      "headline": "BlackRock Says India Has Been 'Over-Punished' by Global Markets. It Thinks the Worst of the Selling Is Over.",
+      "slug": "blackrock-india-over-punished-foreign-outflows-peak-ai-gap-advantage-20260614",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -23,19 +23,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the topic of wage theft or H-1B workers."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article addresses the concerns of Indian H-1B workers and provides practical advice, making it relevant for the diaspora."
+          "note": "The article discusses measures taken by the Indian government to attract diaspora capital, making it relevant for NRI readers."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that visually represents the theme of wage theft or the H-1B visa experience.",
-          "Add more direct quotes or anecdotes from affected workers to enhance the emotional impact and relatability for the diaspora audience."
+          "Consider adding more direct quotes from BlackRock or Lighthouse Canton to enhance credibility.",
+          "Include a brief overview of how the changes in NRI investment rules could specifically impact the Indian economy."
         ],
         "verdict": "pass"
       },
@@ -47,17 +47,170 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "417c889a-5827-4b58-8196-6e7ead142c42",
-      "headline": "Every Other EB-1A Petition Is Now a Rejection",
-      "slug": "eb1a-approval-rate-collapse-indian-professionals-filing-surge-20260614",
+      "id": "59b26a0d-f3cd-4cc4-a25c-80cb18848e4f",
+      "headline": "She Patrols Highways for the UP Police and Runs for India. Parul Chaudhary Just Smashed the 5000m National Record by Six Seconds.",
+      "slug": "parul-chaudhary-5000m-national-record-nice-france-cwg-2026-dsp-up-police-nri",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects Chaudhary's dual life as a police officer and athlete to the diaspora's experiences, highlighting the challenges and achievements of Indians abroad."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more quotes or personal anecdotes from Parul Chaudhary to enhance the narrative.",
+          "Add a brief section on the support systems available for athletes in India, especially for those balancing careers."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "383b49db-a044-44d7-b929-94e71c81f06b",
+      "headline": "She Led 11-9 at the Interval. Then Yamaguchi Scored Six Straight and Sindhu's Title Drought Hit 18 Months.",
+      "slug": "pv-sindhu-australian-open-semifinal-loss-yamaguchi-title-drought-2026-nri",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article connects well with NRI readers by referencing Sindhu's past rivalries and her significance in the badminton world."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more context about Sindhu's impact on the badminton scene for NRI readers.",
+          "Include quotes or reactions from Sindhu or her coach to enhance the narrative."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "6d9c1d3f-3f8a-498e-a90a-e0b3c308732f",
+      "headline": "He Has Not Thrown a Javelin in Competition Since September. India Has Named Neeraj Chopra for Glasgow Anyway.",
+      "slug": "neeraj-chopra-conditional-cwg-2026-glasgow-afi-back-injury-comeback-nri",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects Neeraj Chopra's potential participation in the Commonwealth Games to the Indian diaspora in the UK, highlighting the significance of his presence for the community."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from Neeraj Chopra or his coach to provide a personal touch and enhance engagement.",
+          "Include more context about the significance of the Commonwealth Games for Indian athletes and the diaspora."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "9d47e86e-8cbb-438a-8724-dc709f2e3596",
+      "headline": "India Is Now Under Fire From Both Sides in the Gulf. The U.S. Struck Its Sailors. Trump Says Iran Attacked Its Ships Too.",
+      "slug": "india-caught-crossfire-us-iran-sailors-drones-hormuz-jaishankar-rubio-20260614",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [
           {
-            "article_id": "0267f0bb-270d-460f-a834-d0eb3e2d3890",
-            "headline": "Every EB-2 Visa for India Is Gone \u2014 and the Wait Until Octob"
+            "article_id": "8a12d0c9-8def-4a5b-ad2b-9c46c4a2dcf3",
+            "headline": "India Just Summoned America's Top Diplomat for the Second Ti"
           }
         ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 6,
+        "embed_issues": [
+          {
+            "url": "https://x.com/DrSJaishankar/status/2065518118802461072",
+            "problem": "irrelevant",
+            "explanation": "The tweet from Jaishankar is relevant to the article's subject, but it does not provide additional context or engagement for diaspora readers."
+          }
+        ],
+        "image_match": {
+          "score": 3,
+          "issue": "The image of External Affairs Minister Jaishankar does not directly relate to the article's focus on the crisis involving Indian sailors and U.S.-Iran tensions."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses the impact on Indian seafarers, which is relevant to the diaspora, particularly those with family in maritime professions."
+        },
+        "factual_flags": [
+          "The article claims that three Indian sailors were killed, but does not clarify the total number of casualties or the status of the remaining crew members."
+        ],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more context on how the crisis affects Indian seafarers and their families, possibly with quotes or testimonials from diaspora members.",
+          "Replace the hero image with one that better represents the maritime context or the crisis situation to enhance relevance."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://x.com/DrSJaishankar/status/2065518118802461072",
+        "Revised by gpt-4o-mini (833\u2192921 words)"
+      ],
+      "revised": true,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "715abd09-2bc6-49cd-8eb8-573c2b0cc5d3",
+      "headline": "India Wants Diaspora Athletes to Play for the National Team. The 'Sports Passport' Is Now on Modi's Desk.",
+      "slug": "india-sports-passport-proposal-pio-oci-athletes-represent-national-team-20260614",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
@@ -65,18 +218,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image does not directly relate to the topic of immigration or EB-1A petitions."
+          "issue": "The image depicts supporters of the Indian national football team, which is relevant to the article's focus on sports and the potential inclusion of diaspora athletes."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively addresses the concerns of Indian professionals regarding immigration pathways, particularly the EB-1A visa."
+          "note": "The article effectively connects the proposal to the Indian diaspora, highlighting their potential contributions to Indian sports."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that reflects the theme of immigration or the EB-1A process.",
-          "Add a brief section summarizing the implications of the EB-1A changes specifically for Indian professionals to enhance clarity."
+          "Include quotes from diaspora athletes or sports experts to enhance the article's depth.",
+          "Provide more context on how similar policies have impacted other countries' sports performance."
         ],
         "verdict": "pass"
       },
