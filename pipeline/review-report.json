@@ -1,15 +1,180 @@
 {
-  "timestamp": "2026-06-14T20:45:49.564999+00:00",
+  "timestamp": "2026-06-14T21:16:33.435437+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 1,
+    "pass": 3,
+    "flag": 2,
     "fail": 0,
     "error": 0
   },
-  "revisions": 1,
+  "revisions": 2,
   "unpublished": 0,
   "articles": [
+    {
+      "id": "22e4cb15-ecce-4fce-8269-6694efab8d36",
+      "headline": "Peddi Is Being Re-Edited While It's Still in Theatres. The Surgery Goes Far Deeper Than Janhvi Kapoor.",
+      "slug": "peddi-re-edit-janhvi-kapoor-controversy-ram-charan-netflix-original-version-2026",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "ed0ef5c1-5abe-4e64-9c67-7fd82b28e704",
+            "headline": "Peddi Made \u20b9345 Crore in a Week. The Conversation It Started"
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 6,
+        "embed_issues": [
+          {
+            "url": "https://youtube.com/watch?v=noatJVfA22U",
+            "problem": "irrelevant",
+            "explanation": "The YouTube link does not appear to be directly related to the article's subject matter regarding the re-editing of 'Peddi'."
+          }
+        ],
+        "image_match": {
+          "score": 3,
+          "issue": "The image of Ram Charan at a trailer launch does not match the article's focus on the re-editing of 'Peddi' and the controversy surrounding Janhvi Kapoor."
+        },
+        "diaspora_angle": {
+          "present": false,
+          "quality": 2,
+          "note": "The article lacks a clear connection to NRI or diaspora readers, focusing instead on a local controversy in the Indian film industry."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include a relevant video embed that discusses the film's controversy or re-editing process.",
+          "Use an image that directly relates to the film 'Peddi' or its main themes to enhance relevance."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://youtube.com/watch?v=noatJVfA22U",
+        "Revised by gpt-4o-mini (1101\u21921152 words)"
+      ],
+      "revised": true,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "f5ee5038-1412-4c90-84fe-258a006db5d6",
+      "headline": "Sundar Pichai Is Selling $85 Billion of Alphabet to Win the AI Race. Investors Are Divided.",
+      "slug": "sundar-pichai-alphabet-85-billion-equity-ai-berkshire-20260614",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "3ca12ec7-d3cd-4bb0-9bb1-bb81d746b415",
+            "headline": "Sundar Pichai's Google Just Shipped a Real-Time Interpreter "
+          },
+          {
+            "article_id": "f0570ddd-64ea-439f-956e-63ef89420a5e",
+            "headline": "Pichai's Three-Foundry Gambit: Google Splits Its Next AI Chi"
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article mentions Indian engineers at Google, which connects to the diaspora, but could elaborate more on their impact."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Expand on the implications of the equity raise for Indian engineers and the broader Indian tech community.",
+          "Include quotes or perspectives from diaspora members to enhance the connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "7ef925c2-a5d5-4473-9ad4-2b026813efbb",
+      "headline": "Asha Sharma's 100-Day Verdict on Xbox: 'This Cannot Continue'",
+      "slug": "asha-sharma-xbox-ceo-reset-microsoft-spinoff-layoffs-20260614",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to Xbox or gaming, which may confuse readers."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects Sharma's role and the impact on Indian professionals and NRI investors."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that directly relates to Xbox or gaming.",
+          "Add more quotes or insights from Asha Sharma to enhance the personal connection to her leadership."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "3b77d467-7b42-4a54-b49f-8a466a138a2c",
+      "headline": "Sarvam AI Gets a Seat at the G7 Table. It's the Only Indian Company There.",
+      "slug": "sarvam-ai-g7-summit-evian-pratyush-kumar-india-sovereign-20260614",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the specific topic of Sarvam AI or the G7 summit."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the implications of Sarvam AI's presence at the G7 for NRIs, particularly in terms of career opportunities and investment potential."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that depicts AI or the G7 summit.",
+          "Expand on the implications for NRIs in terms of potential investment opportunities or career paths in the Indian AI sector."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
     {
       "id": "aead5e11-0c29-433c-93a7-8eda1eb08377",
       "headline": "America's Top Trade Negotiator Is Coming to India. A Deal Could Land by Mid-July.",
@@ -34,99 +199,22 @@
         "diaspora_angle": {
           "present": true,
           "quality": 7,
-          "note": "The article discusses trade negotiations that could impact the Indian diaspora, particularly in terms of economic opportunities and trade relations."
+          "note": "The article discusses the implications of trade relations on the Indian diaspora, making it relevant."
         },
-        "factual_flags": [],
+        "factual_flags": [
+          "The article mentions a timeline for a trade deal that could be concluded by mid-July, but the date is not current as it references events from 2026."
+        ],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes from Indian officials to enhance the perspective of the Indian side in the negotiations.",
-          "Provide a brief background on the significance of the trade relationship for the Indian diaspora to strengthen the diaspora angle."
+          "Update the timeline and context to reflect current events accurately.",
+          "Include more direct quotes or perspectives from diaspora members to enhance the connection."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
-        "Revised by gpt-4o-mini (646\u2192754 words)"
+        "Revised by gpt-4o-mini (754\u2192818 words)"
       ],
       "revised": true,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "38316d9f-11d1-4afc-908a-b1d7e00653c4",
-      "headline": "India's Tech Leaders Are Demanding a $6 Billion AI Fund. The Anthropic Shutdown Made It Personal.",
-      "slug": "india-sovereign-ai-fund-mohandas-pai-vembu-anthropic-suspension-50000-crore-20260614",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image is relevant to the tech theme but does not specifically depict AI or the context of the article."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses the implications of U.S. export restrictions on Indian professionals in the tech industry, particularly those in Silicon Valley."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider including a more specific image related to AI or the tech industry to enhance visual relevance.",
-          "Expand on the diaspora angle by including quotes or perspectives from Indian professionals in the U.S. regarding the impact of these restrictions."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "e88a8b94-7c3b-45b6-ac4e-92c5f2bb0541",
-      "headline": "Modi and Macron Have Drawn Up a Five-Year Plan to Double Trade. Here Is Everything They Agreed at Villa Kerylos.",
-      "slug": "modi-macron-villa-kerylos-bilateral-innovation-roadmap-2030-trade-double-ai-20260614",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/p/DZkPEt6zb9c/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post does not appear to be directly related to the diplomatic discussions or agreements between Modi and Macron."
-          }
-        ],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the outcomes of the meeting to the Indian diaspora, particularly regarding visas and education."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the irrelevant Instagram embed with a more relevant source or remove it altogether.",
-          "Consider adding quotes from Modi or Macron to enhance the article's engagement and authority."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DZkPEt6zb9c/",
-        "promoted to published"
-      ],
-      "revised": false,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
     }
