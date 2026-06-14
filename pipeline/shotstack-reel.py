@@ -340,7 +340,7 @@ Return JSON only:
             "temperature": 0.8,
             "response_format": {"type": "json_object"},
         },
-        timeout=30,
+        timeout=60,
     )
 
     if r.status_code != 200:
@@ -1754,7 +1754,7 @@ def render_reel(edit_json, use_production=False):
             "x-api-key": api_key,
         },
         json=edit_json,
-        timeout=30,
+        timeout=60,
     )
 
     if r.status_code != 201 and r.status_code != 200:
@@ -1977,7 +1977,7 @@ Return JSON only:
                 "response_format": {"type": "json_object"},
                 "max_tokens": 500,
             },
-            timeout=30,
+            timeout=60,
         )
 
         if r.status_code != 200:
@@ -2189,7 +2189,7 @@ def cross_post_reel(article, video_url, video_path, caption, poster_url=None):
                         "caption": ig_caption,
                         "access_token": ig_token,
                     },
-                    timeout=30,
+                    timeout=60,
                 )
                 if cr.status_code == 200 and cr.json().get("id"):
                     container_id = cr.json()["id"]
@@ -2208,7 +2208,7 @@ def cross_post_reel(article, video_url, video_path, caption, poster_url=None):
                         pr = requests.post(
                             f"https://graph.instagram.com/v25.0/{ig_user}/media_publish",
                             data={"creation_id": container_id, "access_token": ig_token},
-                            timeout=30,
+                            timeout=60,
                         )
                         if pr.status_code == 200:
                             ig_media_id = pr.json().get("id", "")
@@ -2249,7 +2249,7 @@ def cross_post_reel(article, video_url, video_path, caption, poster_url=None):
                         "text": threads_caption,
                         "access_token": threads_token,
                     },
-                    timeout=30,
+                    timeout=60,
                 )
                 if cr.status_code == 200 and cr.json().get("id"):
                     container_id = cr.json()["id"]
@@ -2268,7 +2268,7 @@ def cross_post_reel(article, video_url, video_path, caption, poster_url=None):
                         pr = requests.post(
                             f"https://graph.threads.net/v1.0/{threads_user}/threads_publish",
                             data={"creation_id": container_id, "access_token": threads_token},
-                            timeout=30,
+                            timeout=60,
                         )
                         if pr.status_code == 200:
                             post_id = pr.json().get("id", "")
@@ -2299,7 +2299,7 @@ def cross_post_reel(article, video_url, video_path, caption, poster_url=None):
             init_r = requests.post(
                 f"https://graph.facebook.com/v25.0/{fb_page}/video_reels",
                 data={"upload_phase": "start", "access_token": fb_token},
-                timeout=30,
+                timeout=60,
             )
             if init_r.status_code == 200:
                 video_id = init_r.json().get("video_id")
@@ -2325,7 +2325,7 @@ def cross_post_reel(article, video_url, video_path, caption, poster_url=None):
                             "description": fb_caption,
                             "access_token": fb_token,
                         },
-                        timeout=30,
+                        timeout=60,
                     )
                     if fin_r.status_code == 200 and fin_r.json().get("success"):
                         print(f"  ✅ Facebook: Reel posted (video_id: {video_id})")
@@ -2395,7 +2395,7 @@ def cross_post_reel(article, video_url, video_path, caption, poster_url=None):
                                 "embeddable": True,
                             },
                         },
-                        timeout=30,
+                        timeout=60,
                     )
                     if init_r.status_code == 200:
                         upload_url = init_r.headers.get("Location")
