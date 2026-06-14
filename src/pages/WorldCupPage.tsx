@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import Masthead from "@/components/Masthead";
 import SiteFooter from "@/components/SiteFooter";
 
@@ -80,8 +80,10 @@ const COLORS = {
 };
 
 export default function WorldCupPage() {
+  const [searchParams] = useSearchParams();
+  const initialTab = (searchParams.get("tab") as Tab) || "schedule";
   const [data, setData] = useState<WCData | null>(null);
-  const [tab, setTab] = useState<Tab>("schedule");
+  const [tab, setTab] = useState<Tab>(initialTab);
   const [selectedGroup, setSelectedGroup] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
 

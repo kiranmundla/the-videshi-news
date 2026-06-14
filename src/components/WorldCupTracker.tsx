@@ -122,12 +122,19 @@ export default function WorldCupTracker() {
         {(tab === "results" ? completed.slice(0, 4) : upcoming).map((m, i, arr) => {
           const scores = m.score?.split("-").map(s => s.trim()) ?? [];
           const pdtTime = etToPdt(m.time);
+          const linkTo = m.status === "FT" ? "/world-cup?tab=highlights" : "/world-cup?tab=schedule";
           return (
-            <div key={m.id} style={{
+            <Link key={m.id} to={linkTo} style={{ textDecoration: "none", color: "inherit" }}>
+            <div style={{
               padding: "10px 20px",
               borderBottom: i < arr.length - 1 ? "1px solid #f0f0f0" : "none",
               display: "flex", alignItems: "center", gap: 10,
-            }}>
+              cursor: "pointer",
+              transition: "background 0.15s",
+            }}
+            onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = "#f8f5f0"; }}
+            onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = "transparent"; }}
+            >
               {/* Group badge */}
               <div style={{
                 width: 28, height: 28, borderRadius: 6,
@@ -179,6 +186,7 @@ export default function WorldCupTracker() {
                 )}
               </div>
             </div>
+            </Link>
           );
         })}
       </div>
