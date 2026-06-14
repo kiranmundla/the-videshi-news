@@ -38,17 +38,29 @@ type Tab = "schedule" | "groups" | "highlights" | "nri";
 const FLAGS: Record<string, string> = {};
 
 /* ── Helpers ── */
-function etToPdt(time: string): string {
+
+/** Convert a match's ET date+time to a local Date object.
+ *  World Cup runs Jun–Jul so ET = EDT = UTC-4. */
+function matchToLocal(dateStr: string, time: string): Date {
   const [h, m] = time.split(":").map(Number);
-  const pdt = ((h - 3) + 24) % 24;
-  return `${pdt}:${m.toString().padStart(2, "0")}`;
+  return new Date(`${dateStr}T${String(h).padStart(2,"0")}:${String(m).padStart(2,"0")}:00-04:00`);
 }
 
-function formatMatchTime(time: string): string {
-  const [h, m] = time.split(":").map(Number);
-  const suffix = h >= 12 ? "PM" : "AM";
-  const h12 = h === 0 ? 12 : h > 12 ? h - 12 : h;
-  return `${h12}:${m.toString().padStart(2, "0")} ${suffix}`;
+/** User's short timezone abbreviation (e.g. "PDT", "CDT", "EST") */
+function localTzAbbr(): string {
+  try {
+    return new Intl.DateTimeFormat("en-US", { timeZoneName: "short" })
+      .formatToParts(new Date())
+      .find(p => p.type === "timeZoneName")?.value || "local";
+  } catch { return "local"; }
+}
+
+function formatMatchTime(d: Date): string {
+  return d.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" });
+}
+
+function formatMatchTimeFromET(dateStr: string, time: string): string {
+  return formatMatchTime(matchToLocal(dateStr, time));
 }
 
 function formatDate(dateStr: string): string {
@@ -56,11 +68,22 @@ function formatDate(dateStr: string): string {
   return d.toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" });
 }
 
+/** Local date string for a match (YYYY-MM-DD in user's timezone) */
+function matchLocalDateStr(m: Match): string {
+  const d = matchToLocal(m.date, m.time);
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
+}
+
 function groupMatchesByDate(matches: Match[]): Record<string, Match[]> {
   const grouped: Record<string, Match[]> = {};
   for (const m of matches) {
-    if (!grouped[m.date]) grouped[m.date] = [];
-    grouped[m.date].push(m);
+    const localDate = matchLocalDateStr(m);
+    if (!grouped[localDate]) grouped[localDate] = [];
+    grouped[localDate].push(m);
+  }
+  // Sort matches within each date by local time
+  for (const date of Object.keys(grouped)) {
+    grouped[date].sort((a, b) => matchToLocal(a.date, a.time).getTime() - matchToLocal(b.date, b.time).getTime());
   }
   return grouped;
 }
