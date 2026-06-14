@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-06-14T18:00:54Z",
-  "stage": "Group Stage — 8 of 72 matches played",
+  "last_updated": "2026-06-14T19:59:42Z",
+  "stage": "Group Stage — 9 of 72 matches played",
   "hosts": "USA, Mexico & Canada",
   "dates": {
     "start": "2026-06-11",
@@ -238,13 +238,13 @@
         "code": "GER",
         "flag": "🇩🇪",
         "rank": 10,
-        "p": 0,
-        "w": 0,
+        "p": 1,
+        "w": 1,
         "d": 0,
         "l": 0,
-        "gf": 0,
-        "ga": 0,
-        "pts": 0
+        "gf": 7,
+        "ga": 1,
+        "pts": 3
       },
       {
         "name": "Ecuador",
@@ -277,12 +277,12 @@
         "code": "CUW",
         "flag": "🇨🇼",
         "rank": 82,
-        "p": 0,
+        "p": 1,
         "w": 0,
         "d": 0,
-        "l": 0,
-        "gf": 0,
-        "ga": 0,
+        "l": 1,
+        "gf": 1,
+        "ga": 7,
         "pts": 0
       }
     ],
@@ -796,8 +796,8 @@
       "away": "Curaçao",
       "venue": "NRG Stadium",
       "city": "Houston",
-      "status": "scheduled",
-      "score": null,
+      "status": "FT",
+      "score": "7-1",
       "home_code": "GER",
       "away_code": "CUW"
     },
@@ -1776,6 +1776,27 @@
     }
   },
   "highlights": [
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DZk1Rk9Fm_k",
+      "account": "@fifaworldcup",
+      "caption": "First half goal-scorers for Germany. 🇩🇪",
+      "date": "2026-06-14"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DZlBOdNC2nR/",
+      "account": "@fifaworldcup",
+      "caption": "A strong start for 🇩🇪 — Germany 7-1 Curaçao #FIFAWorldCup",
+      "date": "2026-06-14"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DZlAAWEjzQJ",
+      "account": "@fifaworldcup",
+      "caption": "A strong start for 🇩🇪 #FIFAWorldCup",
+      "date": "2026-06-14"
+    },
     {
       "platform": "threads",
       "url": "https://www.threads.com/@fifaworldcup/post/DZkTT4SihP6",
