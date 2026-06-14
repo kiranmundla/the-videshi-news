@@ -628,33 +628,34 @@ def main():
     for m in matches:
         print(f"   {m['home']} {m['score']} {m['away']} (Group {m['group']}) @ {m['venue']}")
 
-    # Check for duplicate
+    # Check for duplicate recap
     slug = generate_slug(target_date)
-    if check_duplicate(slug):
-        print(f"⚠️  Article with slug '{slug}' already exists. Skipping.")
-        return
+    recap_exists = check_duplicate(slug)
+    if recap_exists:
+        print(f"⚠️  Recap article '{slug}' already exists. Skipping recap, checking individual match articles...")
 
-    # Generate article
-    print(f"\n✍️  Generating recap article...")
-    article = generate_article(matches, target_date, all_data)
+    if not recap_exists:
+        # Generate article
+        print(f"\n✍️  Generating recap article...")
+        article = generate_article(matches, target_date, all_data)
 
-    print(f"   Headline: {article['headline']}")
-    print(f"   Subheadline: {article['subheadline']}")
-    print(f"   Slug: {article['slug']}")
-    print(f"   Word count: ~{len(article['body'].split())}")
+        print(f"   Headline: {article['headline']}")
+        print(f"   Subheadline: {article['subheadline']}")
+        print(f"   Slug: {article['slug']}")
+        print(f"   Word count: ~{len(article['body'].split())}")
 
-    # Publish
-    print(f"\n📤 Publishing to Supabase...")
-    try:
-        result = publish_article(article)
-        print(f"✅ Published! Article ID: {article['id']}")
-        print(f"   URL: https://thevideshi.com/articles/{article['slug']}")
-    except Exception as e:
-        print(f"❌ Failed to publish: {e}")
-        # Save locally as backup
-        backup_path = Path(__file__).parent / f"recap-{target_date_str}.json"
-        backup_path.write_text(json.dumps(article, indent=2))
-        print(f"💾 Saved backup to {backup_path}")
+        # Publish
+        print(f"\n📤 Publishing to Supabase...")
+        try:
+            result = publish_article(article)
+            print(f"✅ Published! Article ID: {article['id']}")
+            print(f"   URL: https://thevideshi.com/articles/{article['slug']}")
+        except Exception as e:
+            print(f"❌ Failed to publish: {e}")
+            # Save locally as backup
+            backup_path = Path(__file__).parent / f"recap-{target_date_str}.json"
+            backup_path.write_text(json.dumps(article, indent=2))
+            print(f"💾 Saved backup to {backup_path}")
 
     # Generate and publish individual match articles
     print(f"\n📝 Generating individual match articles...")

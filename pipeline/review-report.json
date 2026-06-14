@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-14T04:45:49.843043+00:00",
+  "timestamp": "2026-06-14T05:15:18.601842+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 7,
-    "flag": 2,
+    "pass": 2,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "1b915e33-f4ad-4824-920a-1e04e52f2606",
-      "headline": "Scotland Had Not Won a World Cup Match in 36 Years. John McGinn Changed That in Foxborough.",
-      "slug": "scotland-beat-haiti-1-0-world-cup-2026-mcginn-foxborough-group-c",
+      "id": "361f7bc3-454a-45af-ba9b-556d6ef11cc8",
+      "headline": "Akshay Kumar and Priyadarshan Made \u20b9259 Crore. Now They're Coming for Your Netflix Queue.",
+      "slug": "bhooth-bangla-netflix-akshay-kumar-priyadarshan-259-crore-diaspora-nri-20260614",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -21,48 +21,13 @@
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the World Cup event to the Indian-American community in Boston, highlighting local interest and opportunities."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more quotes or reactions from fans to enhance the emotional connection.",
-          "Include a brief history of Scotland's World Cup performance to provide context for readers."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "a0bc5f9f-2fd1-445e-898b-a053a1edfc2d",
-      "headline": "She Won the World Cup Last Year. On Sunday, Harmanpreet Leads India Against Pakistan at Edgbaston.",
-      "slug": "harmanpreet-kaur-india-pakistan-womens-t20-world-cup-2026-edgbaston-nri",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
+        "embed_issues": [
           {
-            "article_id": "19ed98e1-6a4d-41a3-a91b-baf1de0f6bf4",
-            "headline": "Sixteen Teams. Five Weeks. And India Open Against Pakistan o"
+            "url": "https://www.instagram.com/reel/DZhM8cGKPiQ/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel does not appear to be directly related to the film 'Bhooth Bangla' or its themes, making it irrelevant to the article."
           }
         ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
         "image_match": {
           "score": 9,
           "issue": null
@@ -70,17 +35,18 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects with the NRI audience by highlighting the significance of the match for the South Asian community in the UK."
+          "note": "The article effectively connects the film to the diaspora audience by referencing cultural touchstones and accessibility across multiple languages."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more quotes or insights from players or analysts to enhance the depth of the article.",
-          "Include a brief history of India-Pakistan matches in T20 World Cups to provide context for readers."
+          "Replace the irrelevant Instagram embed with a more relevant social media post related to 'Bhooth Bangla'.",
+          "Consider adding more quotes or insights from the diaspora audience to strengthen the connection."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DZhM8cGKPiQ/",
         "promoted to published"
       ],
       "revised": false,
@@ -88,15 +54,15 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "3f94a768-2036-4d04-981a-4821ab9dabe8",
-      "headline": "He Won His First Gold at 17 and Coached Manu Bhaker to Olympic Bronze. Jaspal Rana Was 49.",
-      "slug": "jaspal-rana-dead-49-indian-shooting-legend-manu-bhaker-coach-commonwealth-games-nri-tribute",
+      "id": "8cd6266f-e3f5-40bf-9050-7be708d53894",
+      "headline": "Lagaan Turns 25. The Team Just Reunited, and They're Making Another Cricket Epic.",
+      "slug": "lagaan-25th-anniversary-rerelease-aamir-khan-ar-rahman-lala-amarnath-nri-20260614",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [
           {
-            "article_id": "e3daeb98-5c1f-483c-acbd-35f9186888d5",
-            "headline": "Jaspal Rana, India's Greatest Commonwealth Games Athlete and"
+            "article_id": "d1592702-2e55-49ff-ae08-4f2ddcfc68f1",
+            "headline": "Lagaan Turns 25 and Returns to Theaters This Week. The Stori"
           }
         ],
         "broken_embeds": []
@@ -105,258 +71,30 @@
         "overall_score": 8,
         "embed_issues": [
           {
-            "url": "https://www.instagram.com/p/DZflTbsHA9j/",
+            "url": "https://www.instagram.com/reel/DZfCkPHISco/",
             "problem": "irrelevant",
-            "explanation": "The Instagram post does not appear to be directly related to Jaspal Rana or his achievements, making it irrelevant to the article."
+            "explanation": "The Instagram reel does not appear to be directly related to the Lagaan reunion or the cricket biopic mentioned in the article."
           }
         ],
         "image_match": {
           "score": 9,
           "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects Jaspal Rana's achievements to the pride felt by the Indian diaspora, particularly those who grew up during his competitive years."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the irrelevant Instagram link with a more relevant embed, such as a tribute or highlight reel related to Jaspal Rana.",
-          "Consider adding quotes or reactions from other notable figures in sports to enhance the emotional impact of the article."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DZflTbsHA9j/",
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "382998cc-56ef-4c99-ad64-132d5298114a",
-      "headline": "She Won the 50-Over World Cup. Now Harmanpreet Wants the One Trophy That Has Always Escaped Her.",
-      "slug": "india-women-pakistan-t20-world-cup-2026-edgbaston-harmanpreet-kaur-preview-nri",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "19ed98e1-6a4d-41a3-a91b-baf1de0f6bf4",
-            "headline": "Sixteen Teams. Five Weeks. And India Open Against Pakistan o"
-          }
-        ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/p/DZhv0OQDW1r/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post does not appear to be directly related to the upcoming match or the context of Harmanpreet Kaur's aspirations."
-          }
-        ],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects with the NRI audience by discussing the significance of the match for Indian fans abroad and the vibrant South Asian community in Birmingham."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the irrelevant Instagram embed with a more relevant social media post or remove it altogether.",
-          "Consider adding quotes or insights from other players or analysts to enhance the depth of the article."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DZhv0OQDW1r/",
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "20a42b40-3d9a-41ef-84f9-3405c979dc09",
-      "headline": "She Dreamt of Cirque du Soleil. In Ahmedabad, a New York Mother and Her Daughter Won Gold and Bronze at the World Yogasana Championships.",
-      "slug": "world-yogasana-championships-2026-india-102-gold-medals-kemi-blake-new-york-mother-daughter-nri",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 5,
-          "issue": "The image does not directly relate to the article's focus on Kemi and Kimani Blake's achievements in yogasana."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the competitive yogasana movement to the Indian diaspora, highlighting its significance in urban life across major cities."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that showcases the mother-daughter duo or the event itself.",
-          "Add a quote or perspective from a diaspora member about the significance of this event to enhance the connection."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "8b23d99d-3a2c-4151-978b-b6ef5473210e",
-      "headline": "He Is 39 and Playing Where Mohinder Amarnath Left Off. In Dharamsala, Rohit Sharma Became the Oldest Indian to Play an ODI.",
-      "slug": "rohit-sharma-oldest-indian-odi-cricketer-16000-runs-opener-dharamsala-afghanistan-2026-nri",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image features Rohit Sharma with Prime Minister Modi, which is somewhat relevant but does not directly relate to the specific milestone of Rohit playing as the oldest Indian in an ODI."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects Rohit's achievements to the Indian diaspora, highlighting the generational impact on fans in the US, UK, and Canada."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that directly showcases Rohit Sharma in action during the ODI match.",
-          "Add a quote from Rohit Sharma or a cricket analyst to provide more depth and personal insight into his achievement."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "830b591b-04f5-46ee-9ab6-b18c519dc695",
-      "headline": "Belfast Is Burning. India's Cricket Tour of Ireland May Be the Next Casualty.",
-      "slug": "belfast-riots-india-ireland-t20i-series-bcci-venue-change-safety-20260614",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 5,
-          "issue": "The image does not directly relate to cricket or the specific events described in the article."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively highlights the concerns of the Indian community in Belfast amidst the unrest, making it relevant for diaspora readers."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that directly relates to cricket or the Indian community in Belfast to enhance relevance.",
-          "Include quotes or perspectives from more members of the Indian community to provide a broader view of their experiences."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "dc36460a-53e9-46db-b438-38b4866696ed",
-      "headline": "Want a U.S. Visa Interview in Ten Days? That Will Be $750, Please.",
-      "slug": "us-state-department-750-premium-visa-interview-fee-b1-b2-pilot-india-20260614",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the topic of U.S. visa interviews."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses visa processes that directly impact Indian travelers, making it relevant to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that depicts U.S. embassies or visa interviews to enhance relevance.",
-          "Include more direct quotes or testimonials from Indian travelers or immigration experts to strengthen the diaspora connection."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "393c6ecf-064a-4cbc-97b6-42b97d883d89",
-      "headline": "America Has Also Run Out of EB-5 Investor Green Cards for Indians. The Queue Will Not Move Until October.",
-      "slug": "eb5-visa-cap-india-fy2026-paused-until-october-investor-green-card-20260614",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the topic of immigration or EB-5 visas."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively addresses the concerns of NRI investors and their challenges with the EB-5 visa process."
+          "note": "The article effectively connects Lagaan's themes to the experiences of the Indian diaspora, making it relatable and relevant."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that directly relates to immigration or the EB-5 visa process to enhance relevance.",
-          "Include quotes or insights from immigration experts or affected individuals to add depth and personal perspective."
+          "Replace the irrelevant Instagram embed with a more relevant social media post related to Lagaan or the reunion.",
+          "Consider adding quotes or reactions from diaspora audiences to enhance the connection further."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DZfCkPHISco/",
         "promoted to published"
       ],
       "revised": false,
