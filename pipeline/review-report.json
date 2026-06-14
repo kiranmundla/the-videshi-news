@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-14T14:45:21.072480+00:00",
+  "timestamp": "2026-06-14T15:15:38.616313+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 4,
     "flag": 1,
     "fail": 0,
     "error": 0
@@ -11,83 +11,36 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "c9e876f0-1803-4ec2-aa4f-d1f6e51bf87b",
-      "headline": "America Now Wants Green Card Applicants to Leave the Country. Zoho's Founder Says They Should.",
-      "slug": "uscis-adjustment-of-status-green-card-consular-processing-vembu-come-home-20260614",
+      "id": "87e33ec3-921b-46bd-992e-d451c677ddba",
+      "headline": "Farhan Akhtar Is Becoming R.D. Burman. The Music Rights Are Already Locked.",
+      "slug": "farhan-akhtar-rd-burman-biopic-neeraj-pandey-pancham-da-music-rights-2026",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [
           {
-            "article_id": "393c6ecf-064a-4cbc-97b6-42b97d883d89",
-            "headline": "America Has Also Run Out of EB-5 Investor Green Cards for In"
-          },
-          {
-            "article_id": "fab7487e-6358-4ebe-a4fe-9829d96999b7",
-            "headline": "USCIS Just Made It Harder to Get a Green Card Without Leavin"
+            "article_id": "a44f6207-6f96-455f-96f9-15f1605a25b9",
+            "headline": "Farhan Akhtar in Talks to Play RD Burman in Neeraj Pandey Bi"
           }
         ],
         "broken_embeds": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/p/DYsF6Y3GG5t/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post does not appear to be directly related to the topic of green card applications or the comments made by Sridhar Vembu."
-          }
-        ],
+        "embed_issues": [],
         "image_match": {
           "score": 9,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects with the Indian diaspora by discussing immigration policies that directly affect Indian professionals in the US."
+          "quality": 9,
+          "note": "The article effectively connects R.D. Burman's music to the experiences of the Indian diaspora, highlighting its cultural significance."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant Instagram embed with a more relevant source or commentary related to the green card policy.",
-          "Consider adding quotes or reactions from more Indian professionals or organizations to enhance the diaspora perspective."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DYsF6Y3GG5t/",
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "57bcc290-c497-4edc-9118-aa9a80b37147",
-      "headline": "India's Top IT Firms Got 40 Per Cent Fewer H-1B Visas This Year. TCS Was Hit the Hardest.",
-      "slug": "h1b-visa-approvals-top-it-firms-fall-40-percent-tcs-infosys-trump-20260614",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 8,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses the impact of H-1B visa changes on Indian IT professionals, which is relevant to the NRI community."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more direct quotes from Indian IT professionals or diaspora members to enhance the personal connection.",
-          "Add a section discussing potential future implications for Indian IT firms and workers in the US."
+          "Consider adding more quotes or insights from Farhan Akhtar or Neeraj Pandey to enhance the article's depth.",
+          "Include a brief overview of R.D. Burman's impact on music for readers who may not be familiar with his work."
         ],
         "verdict": "pass"
       },
@@ -99,15 +52,145 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "cd93b835-bd95-449b-91d6-01bc5dcbadb7",
-      "headline": "Modi Lands in Slovakia. No Indian Prime Minister Has Set Foot There Since 1993.",
-      "slug": "modi-slovakia-first-indian-pm-visit-since-1993-trade-eu-fta-20260614",
+      "id": "2733b3c8-5101-46d8-aca5-5e997073a27d",
+      "headline": "Cocktail 2 Just Got an 'A' Certificate. It's Kriti Sanon's First Adult Film Ever.",
+      "slug": "cocktail-2-a-certificate-cbfc-kriti-sanon-first-adult-film-shahid-kapoor-advance-booking-20260614",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [
           {
-            "article_id": "1a4b6cc4-8a83-4413-8f7d-fc71dd6e7e31",
-            "headline": "Modi Leaves for Europe Tomorrow With the Longest Agenda an I"
+            "article_id": "dc14c140-c3d0-4dd2-becc-c4a30b608f8f",
+            "headline": "Shahid Kapoor Has Stopped Trusting His Own Instincts. That M"
+          },
+          {
+            "article_id": "c0878811-309e-4f10-9650-cd943bbb887c",
+            "headline": "Cocktail 2 Is the Most Wanted Film in India Right Now. Next "
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/DZF7BkPjSm7/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not appear to be directly related to the film 'Cocktail 2' or its promotion."
+          },
+          {
+            "url": "https://www.instagram.com/p/DZiC5vViKqn/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not appear to be directly related to the film 'Cocktail 2' or its promotion."
+          }
+        ],
+        "image_match": {
+          "score": 2,
+          "issue": "The hero image does not match the article's topic about 'Cocktail 2' and its cast."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses diaspora audiences by discussing international release dates and potential box office performance in key markets."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the hero image with one that features the cast of 'Cocktail 2' or is related to the film.",
+          "Ensure that all embedded social media links are relevant to the film's promotion or cast."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/DZF7BkPjSm7/",
+        "Removed irrelevant embed: https://www.instagram.com/p/DZiC5vViKqn/",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "a51cbb6c-4ba9-49c6-b39c-0817c66780b8",
+      "headline": "China's $295 Billion AI Grid Bans NVIDIA and AMD. Thousands of Indian Engineers Are Caught in Between.",
+      "slug": "china-295-billion-ai-grid-nvidia-amd-indian-engineers-20260614",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 6,
+          "issue": "The image does not directly relate to AI or the semiconductor industry."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively highlights the impact of geopolitical shifts on Indian engineers working in the tech industry."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that reflects AI technology or semiconductor manufacturing.",
+          "Add more direct quotes or insights from Indian engineers to enhance the personal connection to the diaspora."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "b54b0039-6cbe-4658-ba1d-168ed96af112",
+      "headline": "Freshworks Cuts 500 Jobs After AI Takes Over Half Its Codebase",
+      "slug": "freshworks-layoffs-500-ai-code-indian-saas-20260614",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image is relevant to the tech theme but does not specifically relate to Freshworks or AI."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the impact of AI on job cuts in the Indian IT sector, particularly for NRI engineers, making it highly relevant to the diaspora audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more specific image that relates directly to Freshworks or AI technology.",
+          "Add a quote or perspective from an NRI engineer to enhance the diaspora connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "d4695aa4-ede5-4f65-80cc-4613d999ba3a",
+      "headline": "NVIDIA Is Hiring 1,200 Foreign Workers While Google and Amazon Cut Theirs in Half",
+      "slug": "nvidia-h1b-hiring-surge-indian-engineers-big-tech-cuts-20260614",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "373520ce-ce89-475e-b0e3-15e252f29dd7",
+            "headline": "NVIDIA's Vera CPU Lands in China, Opening a $20 Billion Fron"
           }
         ],
         "broken_embeds": []
@@ -116,19 +199,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image of Modi is relevant as it features the Prime Minister, but it does not depict the visit to Slovakia specifically."
+          "score": 5,
+          "issue": "The image does not directly relate to the article's focus on NVIDIA's hiring practices and immigration issues."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article discusses the implications of Modi's visit for the Indian diaspora in Europe, particularly in relation to economic opportunities."
+          "quality": 9,
+          "note": "The article effectively highlights the implications of NVIDIA's hiring on Indian engineers, making it relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include a quote or perspective from a member of the Indian diaspora in Europe to enhance the connection.",
-          "Add more context about Slovakia's significance to the Indian community or previous interactions."
+          "Consider using an image that directly relates to NVIDIA or its hiring practices to enhance relevance.",
+          "Add more statistics or quotes from Indian engineers to strengthen the diaspora connection."
         ],
         "verdict": "pass"
       },
