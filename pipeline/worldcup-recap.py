@@ -11,7 +11,7 @@ Usage:
   python3 worldcup-recap.py 2026-06-12   # Recap a specific date
 """
 
-import json, os, re, sys, uuid, subprocess
+import json, os, re, sys, uuid, subprocess, urllib.parse, html, time
 from datetime import datetime, date, timezone, timedelta
 from pathlib import Path
 
@@ -25,6 +25,7 @@ if env_file.exists():
 
 SB_URL = os.environ.get("SUPABASE_URL", "https://lboecaekpynbpyijrbfz.supabase.co")
 SB_KEY = os.environ.get("SUPABASE_SERVICE_ROLE_KEY", "")
+OPENAI_KEY = os.environ.get("OPENAI_API_KEY", "")
 HEADERS = {
     "apikey": SB_KEY,
     "Authorization": f"Bearer {SB_KEY}",
@@ -467,8 +468,329 @@ def generate_match_slug(match):
     return f"world-cup-2026-{home}-vs-{away}-{match['date']}"
 
 
+# ── Rich match article helpers ──
+
+
+def web_search_match(home, away, match_date):
+    """Search the web for match details: scorers, stats, key moments."""
+    queries = [
+        f"{home} vs {away} FIFA World Cup 2026 match report {match_date}",
+        f"{home} {away} World Cup 2026 goals scorers highlights",
+    ]
+    results = []
+    for q in queries:
+        try:
+            encoded = urllib.parse.quote(q)
+            r = subprocess.run(
+                ["curl", "-sS", "-L", "--max-time", "12",
+                 "-H", "User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36",
+                 f"https://lite.duckduckgo.com/lite/?q={encoded}"],
+                capture_output=True, text=True, timeout=15
+            )
+            if r.returncode == 0 and r.stdout:
+                text = re.sub(r'<[^>]+>', ' ', r.stdout)
+                text = html.unescape(text)
+                text = re.sub(r'\s+', ' ', text).strip()
+                if len(text) > 200:
+                    results.append(text[:3000])
+        except Exception as e:
+            print(f"   ⚠ Web search failed for '{q[:50]}': {e}")
+    return "\n---\n".join(results) if results else ""
+
+
+def search_social_embeds(home, away):
+    """Search for Instagram/X highlight posts from FIFA and team accounts."""
+    embeds = []
+    queries = [
+        f"site:instagram.com fifaworldcup {home} {away} World Cup 2026",
+        f"site:x.com FIFA {home} vs {away} World Cup 2026 goal highlights",
+    ]
+    for q in queries:
+        try:
+            encoded = urllib.parse.quote(q)
+            r = subprocess.run(
+                ["curl", "-sS", "-L", "--max-time", "10",
+                 "-H", "User-Agent: Mozilla/5.0",
+                 f"https://lite.duckduckgo.com/lite/?q={encoded}"],
+                capture_output=True, text=True, timeout=12
+            )
+            if r.returncode == 0 and r.stdout:
+                ig_matches = re.findall(
+                    r'https?://(?:www\.)?instagram\.com/(?:p|reel)/([A-Za-z0-9_-]+)',
+                    r.stdout
+                )
+                for code in ig_matches[:2]:
+                    url = f"https://www.instagram.com/p/{code}/"
+                    if url not in embeds:
+                        embeds.append(url)
+                x_matches = re.findall(
+                    r'https?://(?:www\.)?(?:x\.com|twitter\.com)/(\w+/status/\d+)',
+                    r.stdout
+                )
+                for path in x_matches[:2]:
+                    url = f"x-official:https://x.com/{path}"
+                    if url not in embeds:
+                        embeds.append(url)
+        except Exception as e:
+            print(f"   ⚠ Social search failed: {e}")
+    return embeds[:3]
+
+
+def fetch_stadium_image(venue_name, city):
+    """Search Wikimedia Commons for a stadium photo."""
+    import requests as req
+    queries = [f"{venue_name} stadium", f"{venue_name} {city}"]
+    for search_q in queries:
+        try:
+            params = {
+                "action": "query",
+                "generator": "search",
+                "gsrsearch": search_q,
+                "gsrnamespace": "6",
+                "gsrlimit": "5",
+                "prop": "imageinfo",
+                "iiprop": "url|size|mime",
+                "iiurlwidth": "1280",
+                "format": "json",
+            }
+            r = req.get(
+                "https://commons.wikimedia.org/w/api.php",
+                params=params, headers={"User-Agent": "TheVideshi/1.0"}, timeout=15
+            )
+            if r.ok:
+                data = r.json()
+                pages = data.get("query", {}).get("pages", {})
+                for pid, page in sorted(pages.items()):
+                    ii = page.get("imageinfo", [{}])[0]
+                    mime = ii.get("mime", "")
+                    width = ii.get("width", 0)
+                    if mime in ("image/jpeg", "image/png") and width >= 800:
+                        return ii.get("thumburl") or ii.get("url")
+        except Exception as e:
+            print(f"   ⚠ Wikimedia Commons search failed for '{search_q}': {e}")
+    return ""
+
+
+def call_openai_match(system_prompt, user_prompt, max_tokens=2500):
+    """Call OpenAI GPT-4o for match article generation. Returns parsed JSON or None."""
+    if not OPENAI_KEY:
+        print("   ⚠ No OPENAI_API_KEY found, falling back to template")
+        return None
+    payload = {
+        "model": "gpt-4o",
+        "messages": [
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": user_prompt}
+        ],
+        "max_tokens": max_tokens,
+        "temperature": 0.7,
+        "response_format": {"type": "json_object"}
+    }
+    try:
+        r = subprocess.run(
+            ["curl", "-s", "--max-time", "60",
+             "https://api.openai.com/v1/chat/completions",
+             "-H", f"Authorization: Bearer {OPENAI_KEY}",
+             "-H", "Content-Type: application/json",
+             "-d", json.dumps(payload)],
+            capture_output=True, text=True, timeout=90
+        )
+        data = json.loads(r.stdout)
+        if "error" in data:
+            print(f"   ⚠ OpenAI error: {data['error'].get('message', '')[:100]}")
+            return None
+        content = data["choices"][0]["message"]["content"]
+        return json.loads(content)
+    except Exception as e:
+        print(f"   ⚠ OpenAI call failed: {e}")
+        return None
+
+
 def generate_match_article(match, all_data):
-    """Generate a standalone article for a single match."""
+    """Generate a rich, GPT-powered standalone article for a single match."""
+    hg, ag = parse_score(match)
+    result_text = get_match_result_text(match)
+    slug = generate_match_slug(match)
+    target_date = date.fromisoformat(match["date"])
+    day_number = compute_day_number(target_date)
+    date_str = target_date.strftime("%A, %B %d")
+    home, away = match["home"], match["away"]
+    venue, city = match["venue"], match.get("city", "")
+    group = match["group"]
+
+    print(f"   🔍 Searching web for {home} vs {away} match details...")
+    web_context = web_search_match(home, away, match["date"])
+
+    print(f"   📱 Searching for social media highlights...")
+    social_embeds = search_social_embeds(home, away)
+    if social_embeds:
+        print(f"   ✅ Found {len(social_embeds)} social embed(s)")
+    else:
+        print(f"   ℹ️  No social embeds found")
+
+    # Build embed instruction for GPT
+    embed_instruction = ""
+    if social_embeds:
+        embed_lines = "\n".join(social_embeds)
+        embed_instruction = (
+            f"\n\nIMPORTANT — Social media embeds to include inline in the article body. "
+            f"Place each URL on its own line (not inside a markdown link) after a relevant paragraph. "
+            f"Use 1-2 of these:\n{embed_lines}"
+        )
+
+    # Diaspora venue context
+    venue_context_map = {
+        "MetLife Stadium": "NJ/NY tri-state area — one of the largest South Asian populations in the US",
+        "Levi's Stadium": "Bay Area — home to a massive Indian-American tech community",
+        "SoFi Stadium": "Los Angeles — growing South Asian community in Southern California",
+        "AT&T Stadium": "Dallas-Fort Worth — one of the fastest-growing desi hubs in America",
+        "NRG Stadium": "Houston — heart of Texas's South Asian corridor",
+        "Gillette Stadium": "Greater Boston — strong desi community along the tech and university corridor",
+        "Hard Rock Stadium": "Miami — remarkably diverse South Florida fanbase",
+        "Lincoln Financial Field": "Philadelphia — the City of Brotherly Love",
+        "BC Place": "Vancouver — large South Asian community in British Columbia",
+        "BMO Field": "Toronto — Canada's largest Indian-Canadian diaspora",
+        "Estadio BBVA": "Monterrey, Mexico",
+        "Estadio Azteca": "Mexico City — one of football's most iconic grounds",
+    }
+    diaspora_context = venue_context_map.get(venue, f"{city}")
+
+    # Group standings context
+    group_teams = [m for m in all_data.get("matches", []) if m.get("group") == group]
+    group_context = "Group {} includes these matches: ".format(group)
+    group_context += "; ".join(
+        f"{m['home']} vs {m['away']} ({m.get('score', 'TBD')})"
+        for m in group_teams[:6]
+    )
+
+    # GPT system prompt
+    system_prompt = (
+        "You are a senior sports editor at The Videshi, an Economist-style digital "
+        "publication for the Indian diaspora in North America. You write World Cup "
+        "match reports that combine sharp tactical analysis with a diaspora lens.\n\n"
+        "Your writing style:\n"
+        "- Authoritative, witty, precise — like the Economist's sports writing\n"
+        "- Use active voice, strong verbs, vivid detail\n"
+        "- Weave in the NRI/diaspora angle naturally (Indian-American fans at the stadium, "
+        "desi community in the host city, how the result affects the tournament)\n"
+        "- NEVER use clichés like 'rollercoaster', 'nail-biter', 'edge-of-your-seat'\n"
+        "- Paragraphs should be meaty but readable\n"
+        "- Include specific match facts (scorers, minutes, key moments) from the web search context\n"
+        "- If you don't know specific scorer names, write around the gap — describe patterns "
+        "of play, tactical shifts, atmosphere\n\n"
+        "Return a JSON object with these fields:\n"
+        "{\n"
+        '  "headline": "Creative, attention-grabbing headline (not template-style)",\n'
+        '  "subheadline": "One-sentence subheadline with key match fact",\n'
+        '  "body": "Full article body in markdown, 600-800 words. Use ## for section headers. '
+        'Include social embeds on their own lines where contextually appropriate.",\n'
+        '  "diaspora_angle": "One-sentence summary of the diaspora angle",\n'
+        '  "sources": [{"name": "source name", "url": "url"}]\n'
+        "}"
+    )
+
+    user_prompt = (
+        f"Write a match report for this World Cup 2026 game:\n\n"
+        f"**Match:** {home} {match['score']} {away}\n"
+        f"**Competition:** FIFA World Cup 2026 — Group {group}, Day {day_number}\n"
+        f"**Venue:** {venue}, {city}\n"
+        f"**Date:** {date_str}\n"
+        f"**Result:** {result_text}\n\n"
+        f"**Group context:** {group_context}\n\n"
+        f"**Diaspora context:** This match was played at {venue} in {diaspora_context}. "
+        f"The 2026 World Cup is being hosted across the United States, Canada, and Mexico — "
+        f"many venues are in cities with large Indian-American communities.\n\n"
+        f"**Web search context (use for facts — scorers, stats, key moments):**\n"
+        f"{web_context[:3000] if web_context else 'No web search results available — write based on the score and tactical implications.'}\n"
+        f"{embed_instruction}\n\n"
+        f"**Article structure:**\n"
+        f"1. Opening lead (the result and its significance — hook the reader)\n"
+        f"2. How the game unfolded (use specific moments if available from web context)\n"
+        f"3. Key tactical or individual performances\n"
+        f"4. The NRI/diaspora angle (naturally woven in, not bolted on)\n"
+        f"5. What this means for Group {group} going forward\n"
+        f"6. Link to The Videshi's World Cup tracker: [World Cup tracker](/world-cup)\n\n"
+        f"Important: Do NOT fabricate specific scorer names or minute details. "
+        f"If the web context doesn't provide them, focus on tactical narrative and atmosphere. "
+        f"Place social embed URLs on their own line (not as markdown links).\n"
+        f"Write 600-800 words minimum."
+    )
+
+    print(f"   🤖 Generating article with GPT-4o...")
+    gpt_result = call_openai_match(system_prompt, user_prompt)
+
+    if gpt_result and gpt_result.get("body"):
+        headline = gpt_result.get("headline", f"{home} {match['score']} {away}: World Cup Group {group} Report")
+        subheadline = gpt_result.get("subheadline", f"Group {group} action from {city} — Day {day_number} of the 2026 FIFA World Cup")
+        body = gpt_result["body"]
+        diaspora_angle = gpt_result.get("diaspora_angle", f"World Cup Group {group} match at {venue} in {city}.")
+        gpt_sources = gpt_result.get("sources", [])
+        print(f"   ✅ GPT article generated: {headline[:70]}...")
+        print(f"   📝 Word count: ~{len(body.split())}")
+    else:
+        print(f"   ⚠️  GPT generation failed, falling back to template article")
+        return _generate_match_article_template(match, all_data)
+
+    # Ensure the closing links are present
+    if "/world-cup" not in body:
+        body += (
+            "\n\n---\n\n"
+            "*Follow our [World Cup tracker](/world-cup) for live scores, group standings, "
+            "and highlights. Read the full [day's recap](/articles/world-cup-recap-"
+            f"{match['date']}) for all of today's results.*\n"
+        )
+
+    # Image: try Wikimedia Commons stadium photo first, then team wiki image
+    print(f"   🖼️  Sourcing image...")
+    image_url = fetch_stadium_image(venue, city)
+    image_caption = f"{venue} in {city} — venue for {home} vs {away} at the 2026 FIFA World Cup (Wikimedia Commons)"
+    if not image_url:
+        featured_team = home if hg >= ag else away
+        image_url = get_wiki_image(featured_team) or WC_IMAGE
+        image_caption = f"{home} vs {away} — FIFA World Cup 2026, Group {group}"
+    if image_url:
+        print(f"   ✅ Image: {image_url[:80]}...")
+
+    # Tags
+    tag_list = [
+        "world-cup", "fifa", "sports", "world-cup-2026",
+        home.lower().replace(" ", "-"),
+        away.lower().replace(" ", "-"),
+        city.lower().replace(" ", "-").replace("/", "-"),
+        f"group-{group.lower()}",
+    ]
+
+    # Sources — merge GPT suggestions with default
+    sources = [
+        {"name": "FIFA.com", "url": "https://www.fifa.com/fifaplus/en/tournaments/mens/worldcup/canadamexicousa2026"},
+    ]
+    if gpt_sources:
+        for s in gpt_sources[:3]:
+            if isinstance(s, dict) and s.get("name") and s.get("url"):
+                if s["url"].startswith("http") and s not in sources:
+                    sources.append(s)
+
+    return {
+        "id": str(uuid.uuid4()),
+        "headline": headline,
+        "subheadline": subheadline,
+        "slug": slug,
+        "category": "sports",
+        "vertical": "sports",
+        "tags": list(set(tag_list)),
+        "status": "review",
+        "published_at": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
+        "image_url": image_url,
+        "image_caption": image_caption,
+        "image_attribution": "Wikimedia Commons",
+        "diaspora_angle": diaspora_angle,
+        "body": body,
+        "sources": json.dumps(sources),
+    }
+
+
+def _generate_match_article_template(match, all_data):
+    """Fallback: generate a template-based article when GPT is unavailable."""
     hg, ag = parse_score(match)
     result_text = get_match_result_text(match)
     slug = generate_match_slug(match)
