@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-14T15:15:38.616313+00:00",
+  "timestamp": "2026-06-14T16:15:17.388209+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 4,
-    "flag": 1,
+    "pass": 2,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,144 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "87e33ec3-921b-46bd-992e-d451c677ddba",
-      "headline": "Farhan Akhtar Is Becoming R.D. Burman. The Music Rights Are Already Locked.",
-      "slug": "farhan-akhtar-rd-burman-biopic-neeraj-pandey-pancham-da-music-rights-2026",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "a44f6207-6f96-455f-96f9-15f1605a25b9",
-            "headline": "Farhan Akhtar in Talks to Play RD Burman in Neeraj Pandey Bi"
-          }
-        ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects R.D. Burman's music to the experiences of the Indian diaspora, highlighting its cultural significance."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more quotes or insights from Farhan Akhtar or Neeraj Pandey to enhance the article's depth.",
-          "Include a brief overview of R.D. Burman's impact on music for readers who may not be familiar with his work."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "2733b3c8-5101-46d8-aca5-5e997073a27d",
-      "headline": "Cocktail 2 Just Got an 'A' Certificate. It's Kriti Sanon's First Adult Film Ever.",
-      "slug": "cocktail-2-a-certificate-cbfc-kriti-sanon-first-adult-film-shahid-kapoor-advance-booking-20260614",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "dc14c140-c3d0-4dd2-becc-c4a30b608f8f",
-            "headline": "Shahid Kapoor Has Stopped Trusting His Own Instincts. That M"
-          },
-          {
-            "article_id": "c0878811-309e-4f10-9650-cd943bbb887c",
-            "headline": "Cocktail 2 Is the Most Wanted Film in India Right Now. Next "
-          }
-        ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/p/DZF7BkPjSm7/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post does not appear to be directly related to the film 'Cocktail 2' or its promotion."
-          },
-          {
-            "url": "https://www.instagram.com/p/DZiC5vViKqn/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post does not appear to be directly related to the film 'Cocktail 2' or its promotion."
-          }
-        ],
-        "image_match": {
-          "score": 2,
-          "issue": "The hero image does not match the article's topic about 'Cocktail 2' and its cast."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively addresses diaspora audiences by discussing international release dates and potential box office performance in key markets."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the hero image with one that features the cast of 'Cocktail 2' or is related to the film.",
-          "Ensure that all embedded social media links are relevant to the film's promotion or cast."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DZF7BkPjSm7/",
-        "Removed irrelevant embed: https://www.instagram.com/p/DZiC5vViKqn/",
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "a51cbb6c-4ba9-49c6-b39c-0817c66780b8",
-      "headline": "China's $295 Billion AI Grid Bans NVIDIA and AMD. Thousands of Indian Engineers Are Caught in Between.",
-      "slug": "china-295-billion-ai-grid-nvidia-amd-indian-engineers-20260614",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 6,
-          "issue": "The image does not directly relate to AI or the semiconductor industry."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively highlights the impact of geopolitical shifts on Indian engineers working in the tech industry."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that reflects AI technology or semiconductor manufacturing.",
-          "Add more direct quotes or insights from Indian engineers to enhance the personal connection to the diaspora."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "b54b0039-6cbe-4658-ba1d-168ed96af112",
-      "headline": "Freshworks Cuts 500 Jobs After AI Takes Over Half Its Codebase",
-      "slug": "freshworks-layoffs-500-ai-code-indian-saas-20260614",
+      "id": "51ee7053-a95a-4b39-973d-4c104a2f0d2b",
+      "headline": "One Hundred and Twenty-One Million Dollars in Stolen Wages",
+      "slug": "wild-wild-east-h1b-wage-theft-indian-workers-body-shops-20260614",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -159,18 +24,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image is relevant to the tech theme but does not specifically relate to Freshworks or AI."
+          "issue": "The image does not directly relate to the topic of wage theft or H-1B workers."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the impact of AI on job cuts in the Indian IT sector, particularly for NRI engineers, making it highly relevant to the diaspora audience."
+          "quality": 8,
+          "note": "The article addresses the concerns of Indian H-1B workers and provides practical advice, making it relevant for the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more specific image that relates directly to Freshworks or AI technology.",
-          "Add a quote or perspective from an NRI engineer to enhance the diaspora connection."
+          "Consider using an image that visually represents the theme of wage theft or the H-1B visa experience.",
+          "Add more direct quotes or anecdotes from affected workers to enhance the emotional impact and relatability for the diaspora audience."
         ],
         "verdict": "pass"
       },
@@ -182,15 +47,15 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "d4695aa4-ede5-4f65-80cc-4613d999ba3a",
-      "headline": "NVIDIA Is Hiring 1,200 Foreign Workers While Google and Amazon Cut Theirs in Half",
-      "slug": "nvidia-h1b-hiring-surge-indian-engineers-big-tech-cuts-20260614",
+      "id": "417c889a-5827-4b58-8196-6e7ead142c42",
+      "headline": "Every Other EB-1A Petition Is Now a Rejection",
+      "slug": "eb1a-approval-rate-collapse-indian-professionals-filing-surge-20260614",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [
           {
-            "article_id": "373520ce-ce89-475e-b0e3-15e252f29dd7",
-            "headline": "NVIDIA's Vera CPU Lands in China, Opening a $20 Billion Fron"
+            "article_id": "0267f0bb-270d-460f-a834-d0eb3e2d3890",
+            "headline": "Every EB-2 Visa for India Is Gone \u2014 and the Wait Until Octob"
           }
         ],
         "broken_embeds": []
@@ -199,19 +64,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 5,
-          "issue": "The image does not directly relate to the article's focus on NVIDIA's hiring practices and immigration issues."
+          "score": 7,
+          "issue": "The image does not directly relate to the topic of immigration or EB-1A petitions."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively highlights the implications of NVIDIA's hiring on Indian engineers, making it relevant to the diaspora."
+          "note": "The article effectively addresses the concerns of Indian professionals regarding immigration pathways, particularly the EB-1A visa."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that directly relates to NVIDIA or its hiring practices to enhance relevance.",
-          "Add more statistics or quotes from Indian engineers to strengthen the diaspora connection."
+          "Consider using a more relevant image that reflects the theme of immigration or the EB-1A process.",
+          "Add a brief section summarizing the implications of the EB-1A changes specifically for Indian professionals to enhance clarity."
         ],
         "verdict": "pass"
       },
