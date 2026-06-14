@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-14T00:45:19.611632+00:00",
+  "timestamp": "2026-06-14T01:45:15.474993+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
+    "pass": 2,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,45 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "88c23aaa-5664-4796-9e2b-f7b532d6b5a3",
-      "headline": "A Student Posted His Answer Sheet Online. It Wasn't His Handwriting. India's Largest Exam Board Is Now in Crisis.",
-      "slug": "cbse-on-screen-marking-scandal-answer-sheet-swap-security-flaw-parliament-20260614",
+      "id": "366c24ea-6638-4ef1-81c7-4b2dc62ac316",
+      "headline": "He Clipped the Last Hurdle and Still Broke the National Record. Tejas Shirse Is Going to Glasgow.",
+      "slug": "tejas-shirse-110m-hurdles-national-record-commonwealth-games-glasgow-2026-nri",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article connects well with NRIs by highlighting the significance of the Commonwealth Games in Glasgow and the opportunity for them to watch Indian athletes compete."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from other athletes or coaches to provide more context and depth.",
+          "Include a brief background on Tejas Shirse's previous achievements to enhance reader engagement."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "f6299bb0-be9e-4bbb-b0fc-51697979bf89",
+      "headline": "His Father Sold Four Acres of Farmland in Madurai. On Friday, Selva Prabhu Won the NCAA Triple Jump Title.",
+      "slug": "selva-prabhu-madurai-ncaa-triple-jump-champion-kansas-state-hayward-field-nri-diaspora-2026",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -24,90 +60,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image depicts students studying, which is relevant but does not directly relate to the specific crisis discussed in the article."
+          "issue": "The image does not directly relate to Selva Prabhu or the NCAA title, but it is a general athletics image."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the crisis to NRI families who are concerned about the integrity of the CBSE system for their children's education."
+          "note": "The article effectively connects Prabhu's story to the experiences of NRI families and the broader Indian diaspora in the context of athletics."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more directly relevant image that illustrates the crisis or the examination process.",
-          "Expand on the diaspora angle by including quotes or perspectives from NRI families regarding their concerns."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "adf27901-64b0-49c8-a666-25ebb9a83ff0",
-      "headline": "Indian Markets Post Best Day in Two Months. Oil Crashed. The Rupee Rallied. Foreign Money May Follow.",
-      "slug": "sensex-1695-points-best-day-two-months-brent-crude-rupee-iran-peace-20260614",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses potential re-entry points for NRI investors, making it relevant to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more specific examples of how NRI investors can take advantage of the current market conditions.",
-          "Add a brief overview of the geopolitical context for readers who may not be familiar with the Iran situation."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "ba7911d3-1977-462c-be9e-522e44fabe1d",
-      "headline": "SpaceX's $75 Billion IPO Makes Musk the First Trillionaire. Indian Investors Are Scrambling to Get In.",
-      "slug": "spacex-ipo-75-billion-musk-trillionaire-indian-investors-lrs-20260614",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively discusses the implications of SpaceX's IPO for Indian investors and NRIs, making it relevant to the diaspora audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more direct quotes from Indian investors or financial experts to enhance credibility.",
-          "Add a section discussing potential risks for Indian investors in US IPOs to provide a balanced view."
+          "Consider including a more specific image related to Selva Prabhu or the NCAA championship to enhance relevance.",
+          "Add quotes or reactions from Prabhu or his family to provide a more personal touch to the story."
         ],
         "verdict": "pass"
       },
