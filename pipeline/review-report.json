@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-14T03:15:35.120532+00:00",
+  "timestamp": "2026-06-14T04:15:14.261236+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 5,
+    "pass": 2,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,168 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "3906bfb1-4f03-43c0-b1d6-0cb16b099f0f",
-      "headline": "Sunny Deol Returns to the Courtroom After Damini. Akshaye Khanna Is the Reason He Has To.",
-      "slug": "ikka-netflix-sunny-deol-akshaye-khanna-courtroom-damini-july-2026-nri",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "1083fc0a-7e52-4c26-8e83-70a69ff4109a",
-            "headline": "Aamir Khan Is Producing a Sunny Deol Film. Twenty-Five Years"
-          }
-        ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the film's release to the nostalgia of diaspora audiences who grew up watching Sunny Deol's films."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more quotes from the cast or crew to enhance the article's depth.",
-          "Include a brief comparison of the film's themes with other notable courtroom dramas in Bollywood."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "2f8b2c3c-4aa3-4b53-847a-a66a1878973a",
-      "headline": "Critics Say Main Vaapas Aaunga Is Imtiaz Ali's Best Work. The Box Office Didn't Get the Memo.",
-      "slug": "main-vaapas-aaunga-imtiaz-ali-partition-diljit-naseeruddin-shah-ar-rahman-box-office-nri-20260614",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "b705dd54-cd64-47fa-917a-aaa8f9ed240d",
-            "headline": "A 95-Year-Old Man Remembers the Girl He Lost to Partition. I"
-          }
-        ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the film's themes to the diaspora experience, particularly regarding the partition."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more quotes from critics to enhance credibility.",
-          "Include a brief summary of the film's plot for readers unfamiliar with it."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "4f1b7551-ad9f-4944-b91c-db62c7f4a4a5",
-      "headline": "GitHub Is Drowning in AI-Generated Code. India's 15 Million Developers Feel It First.",
-      "slug": "github-ai-outages-india-developers-copilot-20260614",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the specific topic of AI-generated code or GitHub."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively highlights the impact of GitHub's issues on Indian developers, making it relevant to the diaspora audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that directly represents AI coding or GitHub to enhance relevance.",
-          "Add quotes or insights from Indian developers to further personalize the impact on the diaspora community."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "0c748aa3-7303-494a-b376-42846e8608bb",
-      "headline": "Musk's $55 Billion Chip Factory Courts ASML. Indian Engineers Are the Talent It Needs.",
-      "slug": "musk-terafab-asml-semiconductor-indian-engineers-20260614",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "153b6caf-8e06-4cfe-89ce-7623e14caccc",
-            "headline": "Chip Stocks Just Had Their Best Day in Over a Year \u2014 Here's "
-          }
-        ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image of ASML headquarters is relevant but does not directly illustrate the topic of Musk's chip factory."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the Indian engineering talent pool to the potential needs of Musk's chip factory, making it relevant for NRI readers."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider including a more relevant image that directly relates to Musk or the semiconductor industry.",
-          "Add quotes or insights from Indian engineers or industry experts to enhance the diaspora connection."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "b4883fd6-50ba-42e3-ae7f-f016e230b43e",
-      "headline": "Apple Handed Its Broken AI to an Indian-Origin Engineer. He Rebuilt It With Google's Help.",
-      "slug": "apple-amar-subramanya-siri-ai-gemini-wwdc-20260614",
+      "id": "08bd596c-5403-4b4a-bdb2-95e600a22b98",
+      "headline": "Half of All Visa Revocations Are Indian Students \u2014 and USCIS Just Deployed an Algorithm to Find More",
+      "slug": "opt-sevis-termination-indian-students-uscis-fraud-algorithm-20260614",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -188,13 +29,49 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively highlights the significance of an Indian-origin engineer's role in a major tech development, connecting well with the NRI audience."
+          "note": "The article discusses the impact of visa revocations on Indian students, which is highly relevant to the NRI community."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more direct quotes from Amar Subramanya to enhance the personal connection and authority of the piece.",
-          "Include a brief section on how this development might impact Siri's competition with other AI assistants, particularly for NRI users."
+          "Consider adding quotes or testimonials from affected students to provide a personal perspective.",
+          "Include more data or statistics on the overall impact of the algorithm on other nationalities for a broader context."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "0c46531c-23a5-4b76-88b1-d09659b09a97",
+      "headline": "Washington Is About to Pull the Work Permit from a Hundred Thousand H-1B Spouses",
+      "slug": "h4-ead-rescission-dhs-proposed-rule-h1b-spouses-work-permit-20260614",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the impact of immigration policy on Indian families, particularly H-4 spouses, which is highly relevant to the Indian diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include quotes or testimonials from affected individuals to add a personal touch.",
+          "Provide more context on the implications of the proposed rule for the broader immigration landscape."
         ],
         "verdict": "pass"
       },
