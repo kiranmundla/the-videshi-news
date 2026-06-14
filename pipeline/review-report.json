@@ -1,22 +1,31 @@
 {
-  "timestamp": "2026-06-14T18:45:55.264220+00:00",
+  "timestamp": "2026-06-14T19:15:15.921314+00:00",
   "mode": "fix",
   "stats": {
     "pass": 2,
-    "flag": 1,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
-  "revisions": 1,
+  "revisions": 0,
   "unpublished": 0,
   "articles": [
     {
-      "id": "f9cb368a-1a94-435a-a148-172e9e1e8f3e",
-      "headline": "India Has Waived Customs Duty on Nuclear Equipment Going Back Seven Years. The Market Noticed.",
-      "slug": "india-nuclear-customs-duty-waiver-retrospective-seven-years-npcil-mtar-100gw-20260614",
+      "id": "967d11f3-92ff-4b8f-8157-fdc3e322e438",
+      "headline": "Ranveer Singh Walked Out of Don 3 Weeks Before Filming. \u20b945 Crore Later, Even Aamir Khan Couldn\u2019t Fix It.",
+      "slug": "ranveer-singh-don-3-exit-fwice-45-crore-aamir-khan-mediation-nri-20260614",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "f2e0bf7d-76aa-4950-af25-756e6722fc3a",
+            "headline": "Ranveer Singh Is Making India's First Zombie Epic. It Costs "
+          },
+          {
+            "article_id": "912035d9-4009-4f7f-ad6e-dab5134c5e1c",
+            "headline": "Ranveer Singh Ghosted an Entire Federation. The Don 3 War Ju"
+          }
+        ],
         "broken_embeds": []
       },
       "llm_review": {
@@ -29,13 +38,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the duty waiver and nuclear sector developments to investment opportunities for NRIs, making it relevant to the diaspora."
+          "note": "The article connects the *Don* franchise to the NRI experience, highlighting its cultural significance."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from industry experts or government officials to enhance credibility.",
-          "Include more data or projections on how the duty waiver will impact electricity prices or project timelines."
+          "Consider adding more quotes or perspectives from industry insiders to enhance credibility.",
+          "Include a brief background on the *Don* franchise for readers unfamiliar with its significance."
         ],
         "verdict": "pass"
       },
@@ -47,31 +56,36 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "4fee16a3-1482-41b2-b23f-9811cad2a145",
-      "headline": "A Judge Killed the $100,000 H-1B Fee. Four Days Later, He Froze His Own Ruling.",
-      "slug": "h1b-100k-fee-judge-blocks-then-stays-ruling-trump-appeals-first-circuit-20260614",
+      "id": "0f85c9e7-975a-463b-89d4-c16a447483f3",
+      "headline": "Aamir Khan Is Getting Married on July 5. He Thought He Was Too Old for Love.",
+      "slug": "aamir-khan-gauri-spratt-wedding-july-5-third-marriage-love-story-nri-20260614",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "6594323f-126c-43ed-8378-8abeef3edaf8",
+            "headline": "Aamir Khan Is Getting Married Again. The Love Story Is Bette"
+          }
+        ],
         "broken_embeds": []
       },
       "llm_review": {
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 5,
-          "issue": "The image of Judge Leo Sorokin is relevant but does not directly illustrate the broader impact of the ruling on Indian workers."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article discusses the impact of the H-1B fee on Indian tech workers, which is relevant to the Indian diaspora."
+          "quality": 8,
+          "note": "The article connects Aamir Khan's personal journey to the experiences of NRIs who have followed his career, emphasizing themes of love and resilience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes or perspectives from affected Indian workers or organizations to enhance the diaspora angle.",
-          "Consider adding a visual representation of the statistics mentioned to better illustrate the impact on H-1B applications."
+          "Consider adding more context about Aamir Khan's impact on the Indian diaspora and how his films resonate with NRI audiences.",
+          "Include quotes or reactions from NRI fans regarding Aamir's marriage to enhance the diaspora connection."
         ],
         "verdict": "pass"
       },
@@ -79,61 +93,6 @@
         "promoted to published"
       ],
       "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "9d47e86e-8cbb-438a-8724-dc709f2e3596",
-      "headline": "India Is Now Under Fire From Both Sides in the Gulf. The U.S. Struck Its Sailors. Trump Says Iran Attacked Its Ships Too.",
-      "slug": "india-caught-crossfire-us-iran-sailors-drones-hormuz-jaishankar-rubio-20260614",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "8a12d0c9-8def-4a5b-ad2b-9c46c4a2dcf3",
-            "headline": "India Just Summoned America's Top Diplomat for the Second Ti"
-          }
-        ],
-        "broken_embeds": [
-          {
-            "url": "https://x.com/DrSJaishankar/status/1715372890123456789",
-            "problem": "broken",
-            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
-          }
-        ]
-      },
-      "llm_review": {
-        "overall_score": 6,
-        "embed_issues": [
-          {
-            "url": "https://instagram.com/p/Cyq-sR-v4Xy",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post does not appear to be related to the geopolitical situation discussed in the article."
-          }
-        ],
-        "image_match": {
-          "score": 3,
-          "issue": "The image of External Affairs Minister S. Jaishankar does not directly relate to the article's focus on the Gulf crisis and the attacks on Indian sailors."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses the impact on Indian seafarers and their families, which is relevant to the Indian diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the irrelevant Instagram embed with a more relevant source or remove it altogether.",
-          "Consider using an image that directly relates to the Gulf crisis or the Indian sailors affected."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Removed 1 broken/hallucinated embed(s)",
-        "Removed irrelevant embed: https://instagram.com/p/Cyq-sR-v4Xy",
-        "Revised by gpt-4o-mini (618\u2192733 words)"
-      ],
-      "revised": true,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
     }
