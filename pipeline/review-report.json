@@ -1,19 +1,19 @@
 {
-  "timestamp": "2026-06-14T12:45:42.412544+00:00",
+  "timestamp": "2026-06-14T13:15:21.749656+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 4,
-    "flag": 2,
+    "pass": 1,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
-  "revisions": 1,
+  "revisions": 0,
   "unpublished": 0,
   "articles": [
     {
-      "id": "520ce9e8-732a-4b12-b22f-79bacf975cec",
-      "headline": "Patel Brothers, Big Lots, and the Quiet Conquest: Indian Grocery Stores Are Filling America's Empty Retail Spaces",
-      "slug": "patel-brothers-big-lots-and-the-quiet-conquest-indian-grocery-stores-are-filling",
+      "id": "46acc6fc-209c-47b0-bc01-f289634188a3",
+      "headline": "Madhuri Dixit, Triptii Dimri, and a Dead Neighbour Just Conquered Netflix. Maa Behen Is the Streaming Event of 2026.",
+      "slug": "maa-behen-netflix-global-hit-madhuri-dixit-triptii-dimri-dark-comedy-nri",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -21,187 +21,38 @@
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects with NRIs by discussing the significance of Indian grocery stores in their communities."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more statistics or data on the growth of Indian grocery stores to strengthen the argument.",
-          "Add quotes or anecdotes from customers to provide a personal touch and enhance relatability."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "2a387486-113d-4447-95a9-ac7a73713bcb",
-      "headline": "Dabba Dreams: A $2 Billion Tech Startup Thinks It Can Scale Indian Food to 100 Cities",
-      "slug": "dabba-dreams-a-2-billion-tech-startup-thinks-it-can-scale-indian-food-to-100-cit",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively discusses the implications of the new Indian food venture for the Indian diaspora, highlighting both excitement and concerns about authenticity."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes or testimonials from Indian Americans to enhance the diaspora perspective.",
-          "Include more details on how the company plans to maintain authenticity in its food offerings."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "364f2758-3945-4b5d-a432-98b72e22c9cc",
-      "headline": "From Eight Michelin Stars to Your Pantry: Gymkhana Brings Indian Sauces to Whole Foods",
-      "slug": "from-eight-michelin-stars-to-your-pantry-gymkhana-brings-indian-sauces-to-whole",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the product launch to the needs and preferences of the Indian diaspora in the U.S."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes or testimonials from diaspora members about their experiences with Indian sauces in the U.S.",
-          "Include more details about the specific flavors or ingredients in the Gymkhana sauces to enhance reader engagement."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "6e700fb3-f1d2-4b48-aee6-2446429310f3",
-      "headline": "The Iran Deal Draft Is Out. Here Is What Is in It \u2014 and What India Stands to Gain.",
-      "slug": "iran-deal-draft-terms-no-nukes-hormuz-reopen-frozen-assets-india-impact-20260614",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
+        "embed_issues": [
           {
-            "article_id": "b82a9faa-a098-485d-9176-b87a0d068982",
-            "headline": "Three Indian Sailors Are Dead. India Says the US Navy Has St"
+            "url": "https://www.instagram.com/p/DZKnBFaDL8d/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not appear to be directly related to the film 'Maa Behen' or its themes."
           },
           {
-            "article_id": "64e5b401-6910-4dbb-a3ff-72436bf0dcc3",
-            "headline": "The Leaked Iran Deal Gives Tehran Almost Everything It Wante"
+            "url": "https://www.instagram.com/reel/DZg1SPmsNwu/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel does not seem to connect to the article's subject matter regarding the film or its context."
           }
         ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 6,
-        "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image of the Strait of Hormuz is relevant to the article's topic."
+          "issue": "The image features Madhuri Dixit but does not directly relate to the film 'Maa Behen' as it appears to be from a fashion event."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article discusses India's economic interests and diplomatic relations, which are relevant to the Indian diaspora."
+          "quality": 8,
+          "note": "The article effectively highlights that 'Maa Behen' is available globally on Netflix, making it accessible to the NRI audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Provide more context on how the deal specifically impacts the Indian diaspora.",
-          "Include quotes or perspectives from Indian officials or experts to enhance the article's depth."
+          "Replace the irrelevant Instagram embeds with content that directly relates to 'Maa Behen' or its cast.",
+          "Consider using an image that is directly associated with the film to enhance relevance."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
-        "Revised by gemini-2.5-flash (768\u2192478 words)"
-      ],
-      "revised": true,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "6adfa7b9-50f6-4f2d-9a0d-a0f8162e0425",
-      "headline": "Modi and Macron Have Opened 'Bharat Innovates' in Nice. 120 Indian Startups Are Pitching to European Capital.",
-      "slug": "modi-macron-bharat-innovates-2026-nice-startups-investors-innovation-20260614",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "51219e21-788f-4bcc-8f9a-6868b22250a8",
-            "headline": "India's Dead Sailors Have Put Modi in a Corner. He Meets Tru"
-          },
-          {
-            "article_id": "7cc2c2b6-8948-4691-8a47-f28599bc06c9",
-            "headline": "Three Dead Sailors, One H-1B Wishlist \u2014 Modi Goes to the G7 "
-          }
-        ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 3,
-          "issue": "irrelevant"
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses Indian startups and their connection to European capital, which is relevant to the NRI audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the hero image with one that is more relevant to the event or topic of Indian startups and innovation.",
-          "Consider adding quotes or perspectives from Indian diaspora entrepreneurs or investors to strengthen the diaspora angle."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/DZKnBFaDL8d/",
+        "Removed irrelevant embed: https://www.instagram.com/reel/DZg1SPmsNwu/",
         "promoted to published"
       ],
       "revised": false,
@@ -209,17 +60,28 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "4f29dbf6-f567-4e02-84bb-218242489a73",
-      "headline": "India Has Opened Its Stock Market to Every Foreigner. NRIs Are No Longer the Only Ones Who Can Buy In.",
-      "slug": "fema-amendment-india-stock-market-all-foreigners-nri-oci-rule-change-20260614",
+      "id": "23755f4a-e04b-4a89-8773-909d0a928bb2",
+      "headline": "Priyanka Chopra Just Became India's Third Most Valuable Celebrity. She Hasn't Made a Hindi Film in Seven Years.",
+      "slug": "priyanka-chopra-fortune-india-most-valuable-celebrity-2026-varanasi-nri",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "66cb8c7e-ffa2-4025-9d33-da0dab49fb88",
+            "headline": "Priyanka Chopra Hasn't Made a Hindi Film in Seven Years. She"
+          }
+        ],
         "broken_embeds": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/DZbozuNmxcC/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not relate to the main topic of Priyanka Chopra's ranking or her current projects."
+          }
+        ],
         "image_match": {
           "score": 9,
           "issue": null
@@ -227,17 +89,18 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses changes that directly affect NRIs and their investment opportunities, making it relevant to the diaspora."
+          "note": "The article effectively connects Priyanka Chopra's achievements to the Indian diaspora, highlighting her role as a cultural ambassador."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes from financial experts or NRIs to provide personal insights on the impact of these changes.",
-          "Add a section discussing potential risks for NRIs now that the market is open to all foreign investors."
+          "Replace the irrelevant Instagram embed with a more relevant one that highlights Priyanka's recent work or achievements.",
+          "Consider adding more context about the significance of the Fortune India ranking for the Indian entertainment industry."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/DZbozuNmxcC/",
         "promoted to published"
       ],
       "revised": false,
