@@ -746,18 +746,34 @@ def get_word_timestamps(audio_path, script_text):
 
 def build_script_captions(words, script_text, hook_duration):
     """Build HTML caption clips from Whisper timestamps + original script text.
-    Groups words into ~4-5 word phrases for readability."""
+    Uses Whisper ONLY for timing, but takes the actual text from the original script
+    to avoid transcription spelling errors (e.g. 'the videshi' garbled by Whisper)."""
     if not words:
         return None
 
-    # Use Whisper timing but prefer script text for spelling accuracy
-    # Split script into words for spelling reference
+    # Split original script into words for spelling-accurate text
     script_words = script_text.split()
+
+    # Align Whisper word count with script words — use script text with Whisper timing
+    # If counts differ, we stretch/compress the mapping proportionally
+    aligned = []
+    n_whisper = len(words)
+    n_script = len(script_words)
+
+    for i, w in enumerate(words):
+        # Map this Whisper index to the corresponding script word index
+        script_idx = round(i * n_script / n_whisper) if n_whisper > 0 else i
+        script_idx = min(script_idx, n_script - 1) if n_script > 0 else 0
+        aligned.append({
+            "word": script_words[script_idx] if script_idx < n_script else w.get("word", ""),
+            "start": w.get("start", 0),
+            "end": w.get("end", 0),
+        })
 
     # Group into phrases of ~4-5 words, break at punctuation
     phrases = []
     current = []
-    for w in words:
+    for w in aligned:
         current.append(w)
         word_text = w.get("word", "")
         if len(current) >= 5 or word_text.rstrip().endswith((".", "!", "?", ",")):
@@ -992,8 +1008,78 @@ def source_storyboard_images(article, storyboard, count=8):
     scene_descs = [s.get("visual", "") for s in scenes[:count]]
     matched_urls = [None] * min(count, len(scene_descs))
 
-    # ── 1. PRIMARY: Pexels HD portrait images via storyboard search queries ──
-    if pexels_key:
+    # ── 1. PRIMARY: Article hero + same-category article images (CC/editorial) ──
+    remaining_initial = list(range(len(matched_urls)))
+    print(f"  🔍 Checking article image pool for {len(scene_descs)} scenes...")
+    article_pool = []
+
+    # Article hero image first
+    if hero and is_url_downloadable(hero) and hero not in used_in_this_reel:
+        matched_urls[0] = hero
+        used_in_this_reel.add(hero)
+        print(f"  🎬 Scene 1: {scene_descs[0][:50]}  →  article hero (primary)")
+
+    # Same category — up to 40 recent articles
+    if category:
+        r = requests.get(
+            f"{SB_URL}/rest/v1/p2_articles",
+            params={
+                "status": "eq.published",
+                "category": f"eq.{category}",
+                "id": f"neq.{article_id}",
+                "image_url": "not.is.null",
+                "order": "published_at.desc",
+                "limit": 20,
+                "select": "id,headline,image_url",
+            },
+            headers=SB_HEADERS,
+            timeout=15,
+        )
+        if r.status_code == 200:
+            for a in r.json():
+                img = a.get("image_url", "")
+                if is_url_downloadable(img) and img not in used_in_this_reel:
+                    article_pool.append(img)
+
+    # Fill from article pool
+    for i in range(len(matched_urls)):
+        if matched_urls[i] is None and article_pool:
+            matched_urls[i] = article_pool.pop(0)
+            used_in_this_reel.add(matched_urls[i])
+            print(f"  🎬 Scene {i+1}: {scene_descs[i][:50]}  →  article image (primary)")
+
+    # ── 2. Wikipedia/Wikimedia images for remaining gaps ──
+    remaining = [i for i in range(len(matched_urls)) if matched_urls[i] is None]
+    if remaining and scenes:
+        print(f"  🔍 {len(remaining)} scenes unfilled — searching Wikipedia...")
+        for i in remaining:
+            scene = scenes[i] if i < len(scenes) else {}
+            queries = scene.get("search_queries", [])
+            for query in queries[:2]:
+                try:
+                    wiki_q = query.replace(" ", "_")
+                    wr = requests.get(
+                        f"https://en.wikipedia.org/api/rest_v1/page/summary/{requests.utils.quote(wiki_q)}",
+                        headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
+                        timeout=8,
+                    )
+                    if wr.status_code == 200:
+                        wdata = wr.json()
+                        wimg = wdata.get("originalimage", {}).get("source") or wdata.get("thumbnail", {}).get("source")
+                        if wimg and wimg not in used_in_this_reel:
+                            matched_urls[i] = wimg
+                            used_in_this_reel.add(wimg)
+                            print(f"  🎬 Scene {i+1}: {scene_descs[i][:50]}  →  Wikipedia (CC)")
+                            break
+                except Exception:
+                    continue
+
+    article_filled = sum(1 for u in matched_urls if u is not None)
+    print(f"  📸 Article/Wikipedia filled {article_filled}/{len(matched_urls)} scenes")
+
+    # ── 3. FALLBACK: Pexels HD for any remaining gaps ──
+    remaining = [i for i in range(len(matched_urls)) if matched_urls[i] is None]
+    if remaining and pexels_key:
         print(f"  🔍 Searching Pexels HD for {len(scene_descs)} scenes...")
         for i, scene in enumerate(scenes[:count]):
             if matched_urls[i] is not None:
@@ -1013,56 +1099,11 @@ def source_storyboard_images(article, storyboard, count=8):
                     break
 
     pexels_filled = sum(1 for u in matched_urls if u is not None)
-    print(f"  📸 Pexels filled {pexels_filled}/{len(matched_urls)} scenes")
-
-    # ── 2. FALLBACK: High-res article images for remaining gaps ──
-    remaining = [i for i in range(len(matched_urls)) if matched_urls[i] is None]
-    if remaining:
-        print(f"  🔍 {len(remaining)} scenes unfilled — checking article image pool...")
-        article_pool = []
-
-        # Same category — up to 40 recent articles
-        if category:
-            r = requests.get(
-                f"{SB_URL}/rest/v1/p2_articles",
-                params={
-                    "status": "eq.published",
-                    "category": f"eq.{category}",
-                    "id": f"neq.{article_id}",
-                    "image_url": "not.is.null",
-                    "order": "published_at.desc",
-                    "limit": 20,
-                    "select": "id,headline,image_url",
-                },
-                headers=SB_HEADERS,
-                timeout=15,
-            )
-            if r.status_code == 200:
-                for a in r.json():
-                    img = a.get("image_url", "")
-                    if is_url_downloadable(img) and img not in used_in_this_reel:
-                        article_pool.append(a)
-
-        # Use article hero if high-res enough
-        if hero and is_url_downloadable(hero) and hero not in used_in_this_reel:
-            for i in remaining:
-                if matched_urls[i] is None:
-                    matched_urls[i] = hero
-                    used_in_this_reel.add(hero)
-                    print(f"  🎬 Scene {i+1}: {scene_descs[i][:50]}  →  article hero (fallback)")
-                    break
-
-        # Fill from article pool (skip resolution check to keep it fast — Pexels already covers most)
-        pool_urls = [a["image_url"] for a in article_pool if a["image_url"] not in used_in_this_reel]
-        for i in range(len(matched_urls)):
-            if matched_urls[i] is None and pool_urls:
-                matched_urls[i] = pool_urls.pop(0)
-                used_in_this_reel.add(matched_urls[i])
-                print(f"  🎬 Scene {i+1}: {scene_descs[i][:50]}  →  article image (fallback)")
+    print(f"  📸 Pexels filled remaining — total {pexels_filled}/{len(matched_urls)} scenes")
 
     urls = [u for u in matched_urls if u is not None]
 
-    print(f"  🖼️ Sourced {len(urls)} B-roll images (Pexels HD primary, article fallback)")
+    print(f"  🖼️ Sourced {len(urls)} B-roll images (article/Wikipedia primary, Pexels fallback)")
     return urls
 
 
