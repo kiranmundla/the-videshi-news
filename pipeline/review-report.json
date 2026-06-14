@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-14T21:45:15.950193+00:00",
+  "timestamp": "2026-06-14T22:15:38.379779+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
+    "pass": 5,
     "flag": 1,
     "fail": 0,
     "error": 0
@@ -11,36 +11,31 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "22e4cb15-ecce-4fce-8269-6694efab8d36",
-      "headline": "Peddi Is Being Re-Edited While It's Still in Theatres. The Surgery Goes Far Deeper Than Janhvi Kapoor.",
-      "slug": "peddi-re-edit-janhvi-kapoor-controversy-ram-charan-netflix-original-version-2026",
+      "id": "ea19d741-75d3-4687-9878-b66389368eae",
+      "headline": "India Doubled Its Gold Tariff. Smugglers Are Making \u20b925 Lakh Per Kilo Bar. NRIs Are Caught in the Middle.",
+      "slug": "india-gold-tariff-hike-15-percent-smuggling-revival-nri-wedding-investment-dilemma-2026",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "ed0ef5c1-5abe-4e64-9c67-7fd82b28e704",
-            "headline": "Peddi Made \u20b9345 Crore in a Week. The Conversation It Started"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
-        "overall_score": 7,
+        "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 3,
-          "issue": "The image does not match the article's topic about the film 'Peddi' and its re-editing."
+          "score": 2,
+          "issue": "irrelevant"
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses the film's release and its implications for NRI audiences, making it relevant for the diaspora."
+          "note": "The article discusses the impact of gold tariffs on NRIs, particularly in the context of weddings and investments, making it relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the hero image with one that is directly related to the film 'Peddi' or its cast.",
-          "Provide more context on how the re-editing process affects the film's reception among international audiences."
+          "Replace the hero image with one that is more relevant to gold or the economic topic discussed.",
+          "Consider adding quotes or anecdotes from NRIs to enhance the personal connection to the diaspora experience."
         ],
         "verdict": "flag"
       },
@@ -52,17 +47,12 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "aead5e11-0c29-433c-93a7-8eda1eb08377",
-      "headline": "America's Top Trade Negotiator Is Coming to India. A Deal Could Land by Mid-July.",
-      "slug": "ustr-greer-india-visit-trade-deal-mid-july-g7-tariffs-section-301-20260614",
+      "id": "f381f49d-4f8e-4e7a-99f1-3085353ed9be",
+      "headline": "Ozempic Users Are Exercising Less, Not More. For South Asians, That Is a Dangerous Trade-Off.",
+      "slug": "glp1-ozempic-wegovy-exercise-decline-endo-2026-south-asian-muscle-loss-risk",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "5178b543-d0cb-4092-b0f5-ffeede6fb4b9",
-            "headline": "America's Top Trade Negotiator Will Fly to India the Week Af"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
@@ -75,13 +65,157 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the trade negotiations to the Indian diaspora, highlighting the impact on remittances and family ties."
+          "note": "The article effectively addresses the implications of GLP-1 medications for South Asians, making it relevant for NRI families."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from Indian diaspora members to provide personal perspectives on the trade relationship.",
-          "Include more context on how the trade deal could specifically affect various sectors relevant to the diaspora."
+          "Include more specific examples or testimonials from South Asian users of GLP-1 medications to enhance relatability.",
+          "Consider adding a section on alternative strategies for maintaining physical activity while on these medications."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "60de89fe-f946-4df9-bcc0-f4439fe9bb7d",
+      "headline": "India's First Vande Bharat Sleeper Launches Between Mumbai and Bengaluru \u2014 and NRIs Should Care",
+      "slug": "vande-bharat-sleeper-mumbai-bengaluru-nri-rail-20260614",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the new train service to the needs and experiences of NRIs traveling between Mumbai and Bengaluru."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include a quote or testimonial from an NRI who has used the service to add a personal touch.",
+          "Provide more details on ticket pricing and booking options for NRIs to enhance practical information."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "4487fc2b-1ed1-4307-bb3c-40e5136d54c5",
+      "headline": "Abu Dhabi Is Quietly Becoming the Most Important Airport in Every NRI's Journey",
+      "slug": "abu-dhabi-mega-hub-nri-indigo-etihad-alliance-20260614",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses the needs and interests of the NRI community, particularly in relation to travel logistics."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more statistics or quotes from industry experts to enhance credibility.",
+          "Include a section on potential future developments at Abu Dhabi Airport to engage readers further."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "eb7f2136-43e7-4393-bc8e-64ba853a45bc",
+      "headline": "Vietnam Is Stealing Thailand's Crown \u2014 and NRIs Are Leading the Charge",
+      "slug": "vietnam-stealing-thailand-crown-nri-travelers-20260614",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image of Ha Long Bay is relevant to the article's topic about Vietnam but does not directly relate to the NRI perspective."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses NRIs by discussing travel preferences and financial considerations relevant to Indian families."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more specific examples of NRI experiences in Vietnam to enhance relatability.",
+          "Consider adding a section on cultural differences or tips for NRIs traveling to Vietnam."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "ea61e0a5-e20d-44ee-8b13-2abb1f036017",
+      "headline": "Yoga Mats at the Lincoln Memorial, a Guru at Times Square. The Diaspora's Yoga Day Has Grown Up.",
+      "slug": "international-day-of-yoga-2026-healthy-aging-nri-diaspora-lincoln-memorial-times-square",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the theme of healthy aging to the experiences of NRIs, making it relevant and relatable."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from participants or organizers to enhance the personal connection to the diaspora experience.",
+          "Include more statistics or studies related to the impact of yoga on health issues prevalent in the South Asian community."
         ],
         "verdict": "pass"
       },
