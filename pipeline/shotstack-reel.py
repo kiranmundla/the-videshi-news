@@ -71,21 +71,21 @@ MUSIC_VOLUME = {
     "food": 0.14, "travel": 0.14,
 }
 
-# Ken Burns effects to rotate through — slow zooms only, no fast panning
-KEN_BURNS_EFFECTS = ["zoomIn", "zoomOut", "zoomIn", "zoomOut", "zoomIn"]
+# Ken Burns effects to rotate through — varied zooms and pans for dynamism
+KEN_BURNS_EFFECTS = ["zoomIn", "zoomOut", "slideLeft", "zoomIn", "slideRight", "zoomOut"]
 
-# Category-aware transitions for B-roll scenes — smooth only, no jarring wipes
+# Category-aware transitions for B-roll scenes — varied for visual interest
 CATEGORY_TRANSITIONS = {
-    "news": ["fade", "fade", "fade", "fade"],
-    "nri-world": ["fade", "fade", "fade", "fade"],
-    "immigration": ["fade", "fade", "fade", "fade"],
-    "entertainment": ["fade", "fade", "fade", "fade"],
-    "sports": ["fade", "fade", "fade", "fade"],
-    "technology": ["fade", "fade", "fade", "fade"],
-    "markets-finance": ["fade", "fade", "fade", "fade"],
-    "travel": ["fade", "fade", "fade", "fade"],
-    "lifestyle-health": ["fade", "fade", "fade", "fade"],
-    "food": ["fade", "fade", "fade", "fade"],
+    "news": ["fade", "slideLeft", "fade", "slideRight"],
+    "nri-world": ["fade", "slideLeft", "fade", "slideRight"],
+    "immigration": ["fade", "slideLeft", "fade", "slideRight"],
+    "entertainment": ["fade", "slideUp", "slideLeft", "fade"],
+    "sports": ["slideLeft", "fade", "slideRight", "fade"],
+    "technology": ["fade", "slideUp", "fade", "slideLeft"],
+    "markets-finance": ["fade", "slideLeft", "fade", "slideRight"],
+    "travel": ["fade", "slideUp", "fade", "slideLeft"],
+    "lifestyle-health": ["fade", "slideUp", "fade", "slideLeft"],
+    "food": ["fade", "slideUp", "slideLeft", "fade"],
 }
 
 # Caption animation style per category (for rich-caption fallback)
@@ -789,14 +789,14 @@ def build_script_captions(words, script_text, hook_duration):
         end = hook_duration + phrase[-1]["end"]
         duration = max(end - start, 0.5)
 
-        # Style matching the rich-caption look: white text, black stroke, centered
+        # High-contrast caption: dark background pill + white text + strong shadow
         html = (
             f"<div style=\"display:flex;align-items:center;justify-content:center;"
-            f"width:100%;height:100%;padding:0 40px;\">"
-            f"<div style=\"font-family:Inter;font-size:38px;font-weight:700;"
-            f"color:{WHITE};text-align:center;letter-spacing:1px;"
-            f"text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, "
-            f"-2px 2px 0 #000, 2px 2px 0 #000, 0 3px 6px rgba(0,0,0,0.5);\">"
+            f"width:100%;height:100%;padding:0 30px;\">"
+            f"<div style=\"background:rgba(0,0,0,0.75);border-radius:8px;padding:12px 24px;"
+            f"font-family:Inter;font-size:40px;font-weight:800;"
+            f"color:#FFFFFF;text-align:center;letter-spacing:1.5px;line-height:1.2;"
+            f"text-shadow: 0 2px 4px rgba(0,0,0,0.9), 0 0 20px rgba(0,0,0,0.5);\">"
             f"{text}</div></div>"
         )
 
@@ -1029,8 +1029,8 @@ def source_storyboard_images(article, storyboard, count=8):
                 "id": f"neq.{article_id}",
                 "image_url": "not.is.null",
                 "order": "published_at.desc",
-                "limit": 20,
-                "select": "id,headline,image_url",
+                "limit": 40,
+                "select": "id,headline,image_url,gallery_images",
             },
             headers=SB_HEADERS,
             timeout=15,
@@ -1040,6 +1040,17 @@ def source_storyboard_images(article, storyboard, count=8):
                 img = a.get("image_url", "")
                 if is_url_downloadable(img) and img not in used_in_this_reel:
                     article_pool.append(img)
+                # Also pull gallery images for more variety
+                gallery = a.get("gallery_images") or []
+                if isinstance(gallery, str):
+                    try:
+                        gallery = json.loads(gallery)
+                    except Exception:
+                        gallery = []
+                for gi in gallery[:2]:
+                    gurl = gi if isinstance(gi, str) else gi.get("url", "")
+                    if gurl and is_url_downloadable(gurl) and gurl not in used_in_this_reel:
+                        article_pool.append(gurl)
 
     # Fill from article pool
     for i in range(len(matched_urls)):
@@ -1211,7 +1222,7 @@ def build_lower_third_html(headline, category):
   height: 100%;
   padding: 0 32px 16px 32px;
   box-sizing: border-box;
-  background: linear-gradient(transparent 0%, rgba(10,22,40,0.85) 60%, rgba(10,22,40,0.95) 100%);
+  background: linear-gradient(transparent 0%, transparent 30%, rgba(10,22,40,0.7) 55%, rgba(10,22,40,0.92) 80%, rgba(10,22,40,0.98) 100%);
 }
 .lt-badge {
   background: #C41E3A;
@@ -1219,17 +1230,18 @@ def build_lower_third_html(headline, category):
   font-family: 'Inter';
   font-size: 14px;
   font-weight: 700;
-  padding: 4px 14px;
+  padding: 5px 16px;
   letter-spacing: 2px;
   margin-bottom: 10px;
-  border-radius: 2px;
+  border-radius: 3px;
 }
 .lt-headline {
   font-family: 'Inter';
-  font-size: 24px;
-  font-weight: 700;
+  font-size: 26px;
+  font-weight: 800;
   color: #ffffff;
   line-height: 1.25;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.6);
 }
 """.strip()
 
@@ -1266,17 +1278,18 @@ def build_anchor_reel_timeline(
                         "src": "alias://voiceover",
                         "font": {
                             "family": "Inter",
-                            "size": 38,
+                            "size": 40,
                             "color": WHITE,
-                            "weight": 700,
+                            "weight": 800,
                             "opacity": 1,
                         },
                         "animation": {"style": caption_style},
                         "active": {
                             "font": {"color": GOLD, "opacity": 1},
-                            "stroke": {"width": 3, "color": "#000000", "opacity": 1},
+                            "stroke": {"width": 4, "color": "#000000", "opacity": 1},
                         },
-                        "stroke": {"width": 2, "color": "#000000", "opacity": 0.8},
+                        "stroke": {"width": 3, "color": "#000000", "opacity": 0.9},
+                        "background": {"color": "#000000", "opacity": 0.65, "borderRadius": 6, "padding": 8},
                         "align": {"vertical": "bottom"},
                         "style": {"textTransform": "uppercase"},
                         "padding": {"top": 0, "right": 8, "bottom": 0, "left": 8},
