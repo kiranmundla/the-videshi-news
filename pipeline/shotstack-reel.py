@@ -267,18 +267,19 @@ Category: {category}
 Body: {body[:3000]}
 
 SCRIPT RULES:
-1. HOOK (first 3 seconds): Start with a jaw-dropping fact, a bold claim, or a "wait what?" moment. No pleasantries, no setup — hit them immediately.
+1. HOOK (first 3 seconds): Start with a jaw-dropping fact, a bold claim, or a "wait what?" moment. No pleasantries, no setup — hit them immediately. The hook must STOP THE SCROLL.
 2. SUBSTANCE: This is NOT a headline — it's a mini-briefing. After the hook, deliver the ESSENCE of the story:
    - What happened (the core facts, with specific numbers/names/dates)
    - Why it matters (the real-world impact, especially for NRIs/diaspora)
    - What's next (the forward-looking angle or unanswered question)
    The viewer should walk away understanding the story, not just knowing a headline exists.
+   CRITICAL: Do NOT just restate the headline in different words. If your script could be replaced by reading the headline aloud, it has FAILED. Dig into the article body for the 2-3 most surprising or important details and BUILD the narration around those.
 3. TENSION: Build intrigue. Use contrast, stakes, or a narrative arc. "Here's why that matters for every NRI watching this."
 4. PAYOFF: Land with a punch — a surprising twist, a forward-looking take, or a line that makes them want to share it.
 5. TONE: Talk like a smart friend explaining something important over coffee. Confident, clear, slightly urgent. NOT a news robot, NOT breathless hype.
 6. PACING: Short sentences. Vary rhythm. Let key facts land.
 7. LENGTH: 120-160 words. That's 45-65 seconds spoken. Enough to actually inform, not just tease.
-8. SPECIFICS: Include at least 2-3 concrete numbers, names, or details from the article. Vague summaries = failed script.
+8. SPECIFICS: Include at least 3-4 concrete numbers, names, or details from the article. Vague summaries = failed script.
 9. NO "Welcome to The Videshi", NO emoji, NO hashtags.
 10. ALWAYS end with a spoken call-to-action. The CTA MUST mention the website URL:
    - "Full story at thevideshi dot com"
@@ -292,23 +293,25 @@ HOOK TEXT (shown on screen before voice starts):
 - hook_line2: 3-5 words, ALL CAPS. Adds context or intrigue.
 
 STORYBOARD: Plan 6-8 visual scenes that match the narration beat-by-beat.
-Each scene is ONE B-roll image shown for ~4-6 seconds while the voice plays.
-- Scene 1 = the HOOK background (darkened). Choose something dramatic, cinematic.
-- Scenes 2-7 = the narration beats. Each image must visually match EXACTLY what's being said.
+Each scene is ONE B-roll video clip or image shown for ~4-6 seconds while the voice plays.
+- Scene 1 = the HOOK background (darkened). Choose something dramatic, cinematic, wide-angle.
+- Scenes 2-7 = the narration beats. Each visual must match EXACTLY what's being said in that moment.
 - More scenes = more visual variety = better retention.
 
 For each scene, provide:
 - "narration": the exact words spoken during that scene (copy from script)
-- "visual": a SPECIFIC, concrete description of the ideal stock photo. Not "Indian economy" — say "close-up of Indian 500 rupee notes fanned out on a dark surface" or "aerial view of Mumbai Marine Drive at sunset". Be visual and precise.
-- "search_queries": TWO Pexels search queries, each 3-5 words. Make them different angles on the same visual. First query = most specific, second = broader fallback.
+- "visual": a SPECIFIC, concrete description of the ideal stock video clip or photo. Not "Indian economy" — say "close-up of Indian 500 rupee notes being counted by hand" or "aerial drone shot of Mumbai Marine Drive coastline at sunset". Be CINEMATIC and precise — think what a videographer would actually film.
+- "search_queries": TWO Pexels search queries, each 2-4 words. These search BOTH Pexels video AND photo libraries. First query = most specific visual, second = broader fallback.
+  GOOD queries: "Indian rupee notes", "cargo ship ocean", "Mumbai skyline aerial", "Indian family celebrating"
+  BAD queries: "economic crisis concept", "tension building scene", "elements clashing" (too abstract — returns nothing useful)
 
 CRITICAL RULES FOR SEARCH QUERIES:
-- NEVER use celebrity, politician, or public figure names — Pexels has NO images of specific people. Instead describe the VISUAL CONCEPT: "Bollywood actor action scene" not "Sunny Deol".
-- ALWAYS include "Indian" or "India" in queries when the story is about India, Bollywood, Indian culture, or the diaspora. "Indian cinema hall" not "cinema hall". "Indian currency notes" not "currency notes".
-- Every scene's image must be DIFFERENT and RELEVANT. A story about remittances needs rupee notes, bank transfers, families — NOT steel factories or oil tankers.
-- Think STOCK PHOTO: what would a photographer actually shoot? "crowded Indian railway platform" works. "Rahul Gandhi speaking at rally" does not exist on Pexels.
-- AVOID scenes that would return protest photos, political signs, or text-heavy images. No "crowd running", "protest", "demonstration", "rally". Instead use evocative abstract visuals: "smoke rising over village rooftops", "old suitcase on empty train platform".
-- AVOID abstract concepts like "elements clashing" or "tension building" — these return random art. Use concrete, photographable subjects.
+- NEVER use celebrity, politician, or public figure names — Pexels has NO footage of specific people. Instead describe the VISUAL CONCEPT: "Bollywood dance performance" not "Sunny Deol".
+- ALWAYS include "Indian" or "India" in queries when the story is about India, Bollywood, Indian culture, or the diaspora. "Indian parliament building" not "parliament building". "Indian currency notes" not "currency notes".
+- Every scene's visual must be DIFFERENT and RELEVANT to that specific narration beat. A story about remittances needs rupee notes, bank transfers, families — NOT steel factories or oil tankers.
+- Think like a VIDEO PRODUCER: what would a videographer actually shoot? "cargo ship sailing ocean waves" works. "geopolitical tension escalating" does not produce usable footage.
+- Keep queries SHORT and CONCRETE — 2-4 words max. "Indian soldiers marching" not "dramatic military parade of Indian army troops in formation".
+- AVOID scenes that would return protest photos, political signs, or text-heavy footage. No "crowd running", "protest", "demonstration". Instead use evocative visuals: "smoke rising over rooftops", "empty train platform".
 
 Return JSON only:
 {{
@@ -803,13 +806,15 @@ def build_script_captions(words, script_text, hook_duration):
         text = rc["text"]
 
         # High-contrast caption pill — positioned ABOVE the lower-third overlay
+        # Strong opaque background ensures readability over moving video B-roll
         html = (
             f"<div style=\"display:flex;align-items:flex-end;justify-content:center;"
             f"width:100%;height:100%;padding:0 30px 0 30px;\">"
-            f"<div style=\"background:rgba(0,0,0,0.78);border-radius:10px;padding:14px 26px;"
-            f"font-family:Inter;font-size:38px;font-weight:800;"
-            f"color:#FFFFFF;text-align:center;letter-spacing:1.5px;line-height:1.2;"
-            f"text-shadow: 0 2px 4px rgba(0,0,0,0.9), 0 0 20px rgba(0,0,0,0.5);\">"
+            f"<div style=\"background:rgba(0,0,0,0.92);border-radius:12px;padding:16px 30px;"
+            f"border:2px solid rgba(212,175,55,0.4);"
+            f"font-family:Inter;font-size:40px;font-weight:800;"
+            f"color:#FFFFFF;text-align:center;letter-spacing:1.5px;line-height:1.25;"
+            f"text-shadow: 0 2px 4px rgba(0,0,0,0.9);\">"
             f"{text}</div></div>"
         )
 
@@ -1288,10 +1293,10 @@ def build_hook_html(hook_line1, hook_line2, category):
     """Build HTML for the 3-second hook frame overlay."""
     badge = (category or "NEWS").upper().replace("-", " ")
     # Use inline styles for maximum compatibility with Shotstack's HTML renderer
-    html = f"""<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;width:100%;height:100%;padding:40px;box-sizing:border-box;background:rgba(0,0,0,0.65);">
+    html = f"""<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;width:100%;height:100%;padding:40px;box-sizing:border-box;background:linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.75) 50%, rgba(0,0,0,0.4) 100%);">
   <div style="background:#C41E3A;color:#fff;font-family:Inter;font-size:28px;font-weight:700;padding:10px 32px;letter-spacing:5px;margin-bottom:50px;">{badge}</div>
-  <div style="font-family:Inter;font-size:80px;font-weight:700;color:#fff;line-height:1.0;margin-bottom:24px;text-shadow:0 4px 40px rgba(0,0,0,0.9);">{hook_line1}</div>
-  <div style="font-family:Inter;font-size:54px;font-weight:700;color:#D4AF37;line-height:1.1;text-shadow:0 2px 20px rgba(0,0,0,0.7);">{hook_line2}</div>
+  <div style="font-family:Inter;font-size:84px;font-weight:900;color:#fff;line-height:1.0;margin-bottom:24px;text-shadow:0 4px 40px rgba(0,0,0,0.9),0 0 80px rgba(0,0,0,0.6);">{hook_line1}</div>
+  <div style="font-family:Inter;font-size:56px;font-weight:700;color:#D4AF37;line-height:1.1;text-shadow:0 2px 20px rgba(0,0,0,0.7);">{hook_line2}</div>
   <div style="font-family:Inter;font-size:16px;color:rgba(255,255,255,0.3);letter-spacing:6px;margin-top:60px;">THE VIDESHI</div>
 </div>"""
 
@@ -1320,7 +1325,7 @@ def build_lower_third_html(headline, category):
   height: 100%;
   padding: 0 32px 16px 32px;
   box-sizing: border-box;
-  background: linear-gradient(transparent 0%, transparent 30%, rgba(10,22,40,0.7) 55%, rgba(10,22,40,0.92) 80%, rgba(10,22,40,0.98) 100%);
+  background: linear-gradient(transparent 0%, transparent 20%, rgba(10,22,40,0.75) 50%, rgba(10,22,40,0.95) 80%, rgba(10,22,40,0.99) 100%);
 }
 .lt-badge {
   background: #C41E3A;
@@ -1391,7 +1396,7 @@ def build_anchor_reel_timeline(
                             "stroke": {"width": 4, "color": "#000000", "opacity": 1},
                         },
                         "stroke": {"width": 3, "color": "#000000", "opacity": 0.9},
-                        "background": {"color": "#000000", "opacity": 0.65, "borderRadius": 6, "padding": 8},
+                        "background": {"color": "#000000", "opacity": 0.9, "borderRadius": 8, "padding": 10},
                         "align": {"vertical": "bottom"},
                         "style": {"textTransform": "uppercase"},
                         "padding": {"top": 0, "right": 8, "bottom": 0, "left": 8},
