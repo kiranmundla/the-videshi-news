@@ -948,6 +948,57 @@ def pexels_search(pexels_key, query, count=3, orientation="portrait"):
         return []
 
 
+def pexels_video_search(pexels_key, query, count=3, orientation="portrait", min_duration=4):
+    """Search Pexels Videos API, return list of dicts with url, video_id, duration.
+    Prefers HD portrait MP4 files. Uses curl (403 with urllib)."""
+    try:
+        result = subprocess.run(
+            ["curl", "-s", "-H", f"Authorization: {pexels_key}",
+             f"https://api.pexels.com/videos/search?query={requests.utils.quote(query)}&per_page={count}&orientation={orientation}"],
+            capture_output=True, text=True, timeout=15,
+        )
+        if result.returncode != 0:
+            return []
+        data = json.loads(result.stdout)
+        results = []
+        for video in data.get("videos", []):
+            duration = video.get("duration", 0)
+            if duration < min_duration:
+                continue  # Too short for a scene
+            # Pick best video file: prefer HD, portrait, MP4
+            best_file = None
+            best_score = -1
+            for vf in video.get("video_files", []):
+                if vf.get("file_type") != "video/mp4":
+                    continue
+                w = vf.get("width", 0)
+                h = vf.get("height", 0)
+                quality = vf.get("quality", "")
+                score = 0
+                if quality == "hd":
+                    score += 10
+                if h > w:  # Portrait
+                    score += 5
+                if 720 <= min(w, h) <= 1920:
+                    score += 3  # Good resolution range
+                if score > best_score:
+                    best_score = score
+                    best_file = vf
+            if best_file and best_file.get("link"):
+                results.append({
+                    "url": best_file["link"],
+                    "video_id": str(video.get("id", "")),
+                    "duration": duration,
+                    "width": best_file.get("width", 0),
+                    "height": best_file.get("height", 0),
+                    "photographer": video.get("user", {}).get("name", ""),
+                })
+        return results
+    except Exception as e:
+        print(f"  ⚠️ Pexels Video: {e}")
+        return []
+
+
 # ── Used-image dedup log ──
 USED_IMAGES_LOG = BUILD_DIR / "used-images.json"
 
@@ -971,11 +1022,12 @@ def save_used_image(photo_id):
 
 
 def source_storyboard_images(article, storyboard, count=8):
-    """Source B-roll images scene-by-scene from the storyboard.
-    Priority: 1) Article hero for scene 1  2) Pexels HD by scene description  3) Wikipedia by scene queries  4) Same-category articles (fallback only).
-    Returns list of image URLs matched to each scene in order."""
+    """Source B-roll media scene-by-scene from the storyboard.
+    Priority: 1) Article hero for scene 1  2) Pexels stock VIDEO by scene description  3) Pexels HD image by scene description  4) Wikipedia by scene queries  5) Same-category articles (fallback only).
+    Returns (urls, media_meta) where urls is a list of URLs and media_meta maps url -> {"type": "video"|"image", "duration": N}."""
     urls = []
     used_in_this_reel = set()
+    media_meta = {}  # url -> {"type": "video"|"image", "duration": N}
 
     hero = article.get("image_url", "")
     category = article.get("category", "")
@@ -1025,9 +1077,37 @@ def source_storyboard_images(article, storyboard, count=8):
     if hero and is_url_downloadable(hero) and hero not in used_in_this_reel:
         matched_urls[0] = hero
         used_in_this_reel.add(hero)
+        media_meta[hero] = {"type": "image", "duration": 0}
         print(f"  🎬 Scene 1: {scene_descs[0][:50]}  →  article hero")
 
-    # ── 2. PRIMARY: Pexels HD search by scene visual description ──
+    # ── 2. PRIMARY: Pexels stock VIDEO by scene visual description ──
+    remaining = [i for i in range(len(matched_urls)) if matched_urls[i] is None]
+    if remaining and pexels_key:
+        print(f"  🎥 Searching Pexels VIDEO for {len(remaining)} unfilled scenes...")
+        for i in remaining:
+            scene = scenes[i] if i < len(scenes) else {}
+            queries = scene.get("search_queries", [])
+            visual = scene.get("visual", "")
+            if visual and visual not in queries:
+                queries = [visual] + queries
+            for query in queries[:3]:
+                results = pexels_video_search(pexels_key, query, count=5, min_duration=4)
+                for cand in results:
+                    vid = cand["video_id"]
+                    if vid not in used_ids and cand["url"] not in used_in_this_reel:
+                        matched_urls[i] = cand["url"]
+                        used_in_this_reel.add(cand["url"])
+                        media_meta[cand["url"]] = {"type": "video", "duration": cand["duration"]}
+                        save_used_image(f"vid_{vid}")  # Track video IDs in same dedup log
+                        print(f"  🎥 Scene {i+1}: {scene_descs[i][:50]}  →  Pexels VIDEO #{vid} ({cand['duration']}s)")
+                        break
+                if matched_urls[i] is not None:
+                    break
+
+    video_filled = sum(1 for u in matched_urls if u is not None)
+    print(f"  📹 After Pexels video search: {video_filled}/{len(matched_urls)} scenes filled")
+
+    # ── 3. Pexels HD IMAGE search by scene visual description (for remaining) ──
     remaining = [i for i in range(len(matched_urls)) if matched_urls[i] is None]
     if remaining and pexels_key:
         print(f"  🔍 Searching Pexels HD for {len(remaining)} unfilled scenes (by scene description)...")
@@ -1045,6 +1125,7 @@ def source_storyboard_images(article, storyboard, count=8):
                     if pid not in used_ids and cand["url"] not in used_in_this_reel:
                         matched_urls[i] = cand["url"]
                         used_in_this_reel.add(cand["url"])
+                        media_meta[cand["url"]] = {"type": "image", "duration": 0}
                         save_used_image(pid)
                         print(f"  🎬 Scene {i+1}: {scene_descs[i][:50]}  →  Pexels #{pid} (scene-matched)")
                         break
@@ -1054,7 +1135,7 @@ def source_storyboard_images(article, storyboard, count=8):
     pexels_filled = sum(1 for u in matched_urls if u is not None)
     print(f"  📸 After Pexels scene search: {pexels_filled}/{len(matched_urls)} scenes filled")
 
-    # ── 3. Wikipedia/Wikimedia images for remaining gaps ──
+    # ── 4. Wikipedia/Wikimedia images for remaining gaps ──
     remaining = [i for i in range(len(matched_urls)) if matched_urls[i] is None]
     if remaining and scenes:
         print(f"  🔍 {len(remaining)} scenes unfilled — searching Wikipedia...")
@@ -1075,6 +1156,7 @@ def source_storyboard_images(article, storyboard, count=8):
                         if wimg and wimg not in used_in_this_reel:
                             matched_urls[i] = wimg
                             used_in_this_reel.add(wimg)
+                            media_meta[wimg] = {"type": "image", "duration": 0}
                             print(f"  🎬 Scene {i+1}: {scene_descs[i][:50]}  →  Wikipedia (CC)")
                             break
                 except Exception:
@@ -1083,7 +1165,7 @@ def source_storyboard_images(article, storyboard, count=8):
     wiki_filled = sum(1 for u in matched_urls if u is not None)
     print(f"  📸 After Wikipedia: {wiki_filled}/{len(matched_urls)} scenes filled")
 
-    # ── 4. LAST RESORT: Same-category article images (only for remaining gaps) ──
+    # ── 5. LAST RESORT: Same-category article images (only for remaining gaps) ──
     remaining = [i for i in range(len(matched_urls)) if matched_urls[i] is None]
     if remaining and category:
         print(f"  🔍 {len(remaining)} scenes still unfilled — falling back to category article images...")

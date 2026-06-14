@@ -1,15 +1,391 @@
 {
-  "timestamp": "2026-06-14T17:45:50.088142+00:00",
+  "timestamp": "2026-06-14T18:16:08.434444+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 0,
-    "flag": 1,
+    "pass": 8,
+    "flag": 3,
     "fail": 0,
     "error": 0
   },
   "revisions": 1,
   "unpublished": 0,
   "articles": [
+    {
+      "id": "094bea02-961b-49e4-8b93-bae8a7bf3765",
+      "headline": "Silicon Valley's Indian Americans Take Their Case to the FBI as Hindu Temple Attacks Spread Across the Bay Area",
+      "slug": "silicon-valley-indian-americans-fbi-doj-hindu-temple-hate-crimes-20260614",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively highlights the concerns of the Indian American community in Silicon Valley regarding attacks on their places of worship, making it relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from community members to enhance the emotional impact.",
+          "Include more context on the historical relationship between the Indian American community and local law enforcement."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "11931a9a-6402-4432-870c-1926f17ff8b3",
+      "headline": "Three Dead, Three Ships Hit: Indian Sailors Are Caught in the Crossfire of America's Iran Blockade",
+      "slug": "indian-sailors-crossfire-us-navy-gulf-tanker-strikes-20260614",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [
+          {
+            "url": "https://x.com/sarbanandsonwal/status/1932779820238385479",
+            "problem": "broken",
+            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
+          }
+        ]
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the impact of geopolitical events on Indian sailors, which resonates with the NRI community."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include quotes or reactions from Indian diaspora communities regarding the situation to enhance the diaspora angle.",
+          "Provide more context on the implications of these events for Indian sailors and their families."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "Removed 1 broken/hallucinated embed(s)",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "9d6ceff5-4edb-4f0d-8792-dcb40bbeeefe",
+      "headline": "Oil Below $86, Rupee at 95, Markets Up 2%. The Iran Peace Deal Could Reshape Every NRI Financial Calculation.",
+      "slug": "iran-peace-deal-oil-crash-rupee-rally-nri-remittances-investments-india-20260614",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the financial implications of oil prices and the rupee's value to NRIs, making it relevant for the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of how NRIs can take advantage of the current financial situation.",
+          "Include a brief overview of the potential risks associated with the changing market conditions for NRIs."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "2618858f-cdc6-4e05-9926-989b8065deae",
+      "headline": "Europe's New Biometric Border System Is Causing Four-Hour Queues \u2014 and Indian Travelers Are in the Thick of It",
+      "slug": "europe-ees-biometric-border-queues-indian-travelers-20260614",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses the challenges faced by Indian travelers, making it relevant for the NRI audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more personal anecdotes or quotes from Indian travelers to enhance relatability.",
+          "Add a section on how Indian travelers can prepare for the new system to provide practical tips."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "5167494c-d915-488d-a3dd-14916ca6959f",
+      "headline": "Srinagar Airport Faces October Shutdown \u2014 and NRIs Planning Autumn Kashmir Trips Should Worry",
+      "slug": "srinagar-airport-october-shutdown-kashmir-autumn-nri-20260614",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article directly addresses NRIs planning trips to Kashmir, providing relevant information and advice."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more direct quotes from NRI travelers or tourism experts to enhance the diaspora perspective.",
+          "Add a section on potential impacts on local businesses and how NRIs can support them during the shutdown."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "38640ae6-f356-45ae-8493-e9c2f86b288d",
+      "headline": "A Heat Wave Is Sweeping the US as the World Cup Kicks Off. South Asians Are Uniquely at Risk.",
+      "slug": "us-heat-wave-world-cup-2026-south-asian-diaspora-health-risks-prevention-20260614",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image depicts a sunny outdoor scene, which aligns with the topic of heat but does not specifically relate to the World Cup or South Asians."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the heat wave to the Indian diaspora, particularly highlighting the risks for elderly visitors from India."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including specific statistics or anecdotes about South Asians affected by heat in the US to strengthen the narrative.",
+          "Add a section on community resources or support systems available for NRIs during heat waves."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "f90e0f97-b79d-41ee-9e3c-7d18ebc3ed2b",
+      "headline": "Intel's Stock Has Surged 450% This Year. Lip-Bu Tan's Foundry Gamble Is Starting to Pay Off.",
+      "slug": "intel-foundry-comeback-450-rally-bofa-upgrade-lip-bu-tan-20260614",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image features Lip-Bu Tan, which is relevant, but the context of the image could be clearer in relation to the article's focus on Intel's stock performance."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects Intel's growth and hiring in the semiconductor sector to the Indian diaspora, highlighting opportunities for Indian engineers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Clarify the context of the hero image to better align with the article's focus on Intel's stock performance.",
+          "Consider adding more specific examples of how the Indian diaspora is benefiting from Intel's growth."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "4fbd781d-567c-455e-b33c-d019cd16b481",
+      "headline": "Modi and Macron Just Put 120 Indian Deep-Tech Startups on a Stage in Nice. The Money Is Listening.",
+      "slug": "bharat-innovates-2026-nice-modi-macron-deep-tech-startups-20260614",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "cd93b835-bd95-449b-91d6-01bc5dcbadb7",
+            "headline": "Modi Lands in Slovakia. No Indian Prime Minister Has Set Foo"
+          },
+          {
+            "article_id": "1a4b6cc4-8a83-4413-8f7d-fc71dd6e7e31",
+            "headline": "Modi Leaves for Europe Tomorrow With the Longest Agenda an I"
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 3,
+          "issue": "irrelevant"
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the event to Indian-origin professionals abroad, discussing their potential interest in India's deep-tech ecosystem."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the hero image with one that is more relevant to the event or topic, such as an image from the Bharat Innovates 2026 event.",
+          "Consider adding quotes or insights from NRI professionals to strengthen the diaspora connection."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "72d6b536-20b4-4abb-ba82-96a1cbf9b5f6",
+      "headline": "A Federal Judge Just Killed the $100,000 H-1B Fee. The White House Is Already Fighting Back.",
+      "slug": "h1b-100k-fee-struck-down-appeal-indian-tech-workers-20260614",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 3,
+          "issue": "irrelevant"
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the implications of H-1B visa changes, which directly affect Indian tech workers in the U.S."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the hero image with one that is more relevant to the topic of immigration or H-1B visas.",
+          "Provide more context on how the ruling specifically impacts Indian nationals beyond just statistics."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "7c592e59-ceda-4c02-9df3-6ee4ddd50e3b",
+      "headline": "Your Gut Bacteria Decide How Many Calories You Actually Absorb. A New Model Just Proved It.",
+      "slug": "gut-microbiome-damm-model-calorie-absorption-fiber-diet-south-asian-diaspora-20260614",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the findings to the dietary changes experienced by the Indian diaspora, making it relevant for NRI readers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of dietary changes among the diaspora to enhance relatability.",
+          "Include a brief explanation of how readers can apply the findings to their own diets."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
     {
       "id": "9d47e86e-8cbb-438a-8724-dc709f2e3596",
       "headline": "India Is Now Under Fire From Both Sides in the Gulf. The U.S. Struck Its Sailors. Trump Says Iran Attacked Its Ships Too.",
@@ -34,18 +410,20 @@
         "diaspora_angle": {
           "present": true,
           "quality": 7,
-          "note": "The article discusses the impact on Indian seafarers and their families, which is relevant to the Indian diaspora."
+          "note": "The article discusses the impact of the Gulf crisis on Indian seafarers, which is relevant to the Indian diaspora, particularly those with family members in maritime professions."
         },
-        "factual_flags": [],
+        "factual_flags": [
+          "The article mentions Donald Trump as the current U.S. President, which is incorrect as of October 2023."
+        ],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes or reactions from Indian diaspora communities regarding the crisis.",
-          "Use a more relevant image that depicts the Gulf crisis or Indian sailors to enhance visual connection."
+          "Update the reference to Donald Trump as the current U.S. President to reflect the current political context.",
+          "Consider using a more relevant image that depicts the Gulf crisis or Indian sailors to better match the article's content."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
-        "Revised by gpt-4o-mini (949\u2192974 words)"
+        "Revised by gemini-2.5-flash (974\u2192620 words)"
       ],
       "revised": true,
       "unpublished": false,
