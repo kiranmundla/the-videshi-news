@@ -631,6 +631,28 @@ def generate_tts(text):
     # "Videshi" = विदेशी (vi-they-shi) — soft dental द, pure ए vowel, crisp शी
     tts_text = text.replace("thevideshi", "the Vitheyshi").replace("TheVideshi", "The Vitheyshi").replace("Videshi", "Vitheyshi")
 
+    # Acronym expansion — spell out common abbreviations so TTS doesn't read them as words
+    import re
+    acronym_map = {
+        "NRIs": "N.R.I.s", "NRI": "N.R.I.", "NRI's": "N.R.I.'s",
+        "OCI": "O.C.I.", "PIO": "P.I.O.", "PIOs": "P.I.O.s",
+        "H-1B": "H-1B", "H1B": "H-1-B", "H1Bs": "H-1-B.s",
+        "EB-5": "E.B.-5", "EB5": "E.B.-5", "EB-1": "E.B.-1", "EB-2": "E.B.-2",
+        "IPL": "I.P.L.", "BCCI": "B.C.C.I.", "ICC": "I.C.C.",
+        "RBI": "R.B.I.", "SEBI": "S.E.B.I.",
+        "USCIS": "U.S.C.I.S.", "DHS": "D.H.S.", "DOL": "D.O.L.",
+        "GDP": "G.D.P.", "FDI": "F.D.I.", "IMF": "I.M.F.",
+        "BJP": "B.J.P.", "AAP": "A.A.P.", "RSS": "R.S.S.",
+        "IIT": "I.I.T.", "IITs": "I.I.T.s", "ISRO": "I.S.R.O.",
+        "UAE": "U.A.E.", "UK": "U.K.", "US": "U.S.",
+        "AI": "A.I.", "CEO": "C.E.O.", "CTO": "C.T.O.",
+        "OPT": "O.P.T.", "STEM": "stem",  # STEM reads fine as a word
+        "FCNR": "F.C.N.R.", "MOU": "M.O.U.", "MOUs": "M.O.U.s",
+    }
+    for acronym, expansion in acronym_map.items():
+        # Use word boundary matching to avoid replacing inside larger words
+        tts_text = re.sub(r'\b' + re.escape(acronym) + r'\b', expansion, tts_text)
+
     # HeyGen SSML <break> tags cause massively inflated audio (bug confirmed 2026-06-11).
     # Use plain text instead — HeyGen's natural prosody handles sentence pauses well.
     plain_text = tts_text.strip()
