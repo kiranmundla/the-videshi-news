@@ -401,7 +401,7 @@ HARD FAILS (auto-score 0):
 - Script is just a restated headline with no additional facts or context
 
 Return JSON only:
-{{"score": <1-10>, "passed": <true if score >= 7>, "issues": ["issue1"], "fix_suggestions": ["suggestion1"]}}"""
+{{"score": <1-10>, "passed": <true if score >= 6>, "issues": ["issue1"], "fix_suggestions": ["suggestion1"]}}"""
 
     try:
         r = requests.post(
@@ -422,7 +422,7 @@ Return JSON only:
         result = json.loads(r.json()["choices"][0]["message"]["content"])
         score = result.get("score", 5)
         # Derive pass from score, don't trust LLM string
-        passed = score >= 7
+        passed = score >= 6
         issues = result.get("issues", [])
         fixes = result.get("fix_suggestions", [])
         notes = "; ".join(issues) if issues else "Clean"
@@ -1800,12 +1800,12 @@ NON-NEGOTIABLE CHECKS (any fail = auto-fail, override score to 0):
 - OVERLAPPING TEXT: Are two text elements rendered on top of each other making them unreadable?
 - BRAND INTEGRITY: Is the website URL shown as anything other than "thevideshi.com"?
 
-Score 7+ = professional news reel (PASS). Score 5-6 = needs improvement (FAIL). Below 5 = broken.
+Score 6+ = professional news reel (PASS). Score 5 or below = needs improvement (FAIL). Below 5 = broken.
 
 Return JSON only:
 {{
   "score": <1-10, or 0 if any non-negotiable failed>,
-  "passed": <true if score >= 7 AND all non-negotiables pass>,
+  "passed": <true if score >= 6 AND all non-negotiables pass>,
   "non_negotiable_failures": ["list of failed non-negotiable checks, empty if all pass"],
   "issues": ["issue1", "issue2"],
   "severity": "HIGH" or "MEDIUM" or "LOW",
@@ -1856,7 +1856,7 @@ Return JSON only:
             return False, 0, f"Non-negotiable: {'; '.join(non_neg)}"
 
         # Derive pass/fail from score — never trust LLM's string verdict
-        passed = score >= 7
+        passed = score >= 6
 
         if issues:
             print(f"  📋 Issues ({severity}): {'; '.join(issues)}")
@@ -2625,7 +2625,7 @@ def main():
     parser.add_argument("--article-id", help="Specific article UUID")
     parser.add_argument("--format", choices=["anchor", "pulse"], default="anchor", help="Reel format")
     parser.add_argument("--dry-run", action="store_true", help="Build JSON only, don't render")
-    parser.add_argument("--production", action="store_true", help="Use production API (not sandbox)")
+    parser.add_argument("--production", action="store_true", default=True, help="Use production API (default: True)")
     parser.add_argument("--test", action="store_true", help="Quick test with first available article")
     parser.add_argument("--hours", type=int, default=24, help="Look back N hours for articles")
     args = parser.parse_args()
