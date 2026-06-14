@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-14T02:45:22.995784+00:00",
+  "timestamp": "2026-06-14T03:15:35.120532+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 1,
+    "pass": 5,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,15 +11,15 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "3bb0922f-90fd-449b-92c4-f68ebd2f2a4c",
-      "headline": "An Indian Staffing CEO Forged H-1B Petitions for Years. Now the DOJ Is Revoking His Citizenship.",
-      "slug": "doj-denaturalization-neeraj-sharma-h1b-fraud-magnavision-citizenship-revoked-20260614",
+      "id": "3906bfb1-4f03-43c0-b1d6-0cb16b099f0f",
+      "headline": "Sunny Deol Returns to the Courtroom After Damini. Akshaye Khanna Is the Reason He Has To.",
+      "slug": "ikka-netflix-sunny-deol-akshaye-khanna-courtroom-damini-july-2026-nri",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [
           {
-            "article_id": "805d3204-455a-481c-9141-92886f18688a",
-            "headline": "He Filed 11 Fake H-1B Petitions, Forged Executive Signatures"
+            "article_id": "1083fc0a-7e52-4c26-8e83-70a69ff4109a",
+            "headline": "Aamir Khan Is Producing a Sunny Deol Film. Twenty-Five Years"
           }
         ],
         "broken_embeds": []
@@ -28,19 +28,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 5,
-          "issue": "The image of the U.S. Department of Justice headquarters is relevant but does not directly relate to the specific case of Neeraj Sharma or the H-1B visa topic."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article discusses the implications of denaturalization for Indian immigrants, which is relevant to the diaspora audience."
+          "quality": 8,
+          "note": "The article effectively connects the film's release to the nostalgia of diaspora audiences who grew up watching Sunny Deol's films."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include a more specific image related to H-1B visas or immigration to enhance relevance.",
-          "Expand on the implications for the Indian diaspora in the U.S. to strengthen the connection."
+          "Consider adding more quotes from the cast or crew to enhance the article's depth.",
+          "Include a brief comparison of the film's themes with other notable courtroom dramas in Bollywood."
         ],
         "verdict": "pass"
       },
@@ -52,9 +52,127 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "b1d70538-568f-4f1f-a8ae-4f541133fec9",
-      "headline": "India and the U.S. Just Signed a Ten-Year Defence Framework. It Covers Everything From Javelins to Jets.",
-      "slug": "india-us-ten-year-defence-framework-rajnath-hegseth-admm-plus-kuala-lumpur-20260614",
+      "id": "2f8b2c3c-4aa3-4b53-847a-a66a1878973a",
+      "headline": "Critics Say Main Vaapas Aaunga Is Imtiaz Ali's Best Work. The Box Office Didn't Get the Memo.",
+      "slug": "main-vaapas-aaunga-imtiaz-ali-partition-diljit-naseeruddin-shah-ar-rahman-box-office-nri-20260614",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "b705dd54-cd64-47fa-917a-aaa8f9ed240d",
+            "headline": "A 95-Year-Old Man Remembers the Girl He Lost to Partition. I"
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the film's themes to the diaspora experience, particularly regarding the partition."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more quotes from critics to enhance credibility.",
+          "Include a brief summary of the film's plot for readers unfamiliar with it."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "4f1b7551-ad9f-4944-b91c-db62c7f4a4a5",
+      "headline": "GitHub Is Drowning in AI-Generated Code. India's 15 Million Developers Feel It First.",
+      "slug": "github-ai-outages-india-developers-copilot-20260614",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the specific topic of AI-generated code or GitHub."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively highlights the impact of GitHub's issues on Indian developers, making it relevant to the diaspora audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that directly represents AI coding or GitHub to enhance relevance.",
+          "Add quotes or insights from Indian developers to further personalize the impact on the diaspora community."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "0c748aa3-7303-494a-b376-42846e8608bb",
+      "headline": "Musk's $55 Billion Chip Factory Courts ASML. Indian Engineers Are the Talent It Needs.",
+      "slug": "musk-terafab-asml-semiconductor-indian-engineers-20260614",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "153b6caf-8e06-4cfe-89ce-7623e14caccc",
+            "headline": "Chip Stocks Just Had Their Best Day in Over a Year \u2014 Here's "
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image of ASML headquarters is relevant but does not directly illustrate the topic of Musk's chip factory."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the Indian engineering talent pool to the potential needs of Musk's chip factory, making it relevant for NRI readers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including a more relevant image that directly relates to Musk or the semiconductor industry.",
+          "Add quotes or insights from Indian engineers or industry experts to enhance the diaspora connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "b4883fd6-50ba-42e3-ae7f-f016e230b43e",
+      "headline": "Apple Handed Its Broken AI to an Indian-Origin Engineer. He Rebuilt It With Google's Help.",
+      "slug": "apple-amar-subramanya-siri-ai-gemini-wwdc-20260614",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -69,52 +187,16 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article discusses a significant defense agreement between India and the U.S., which is relevant to the Indian diaspora interested in geopolitical developments."
+          "quality": 8,
+          "note": "The article effectively highlights the significance of an Indian-origin engineer's role in a major tech development, connecting well with the NRI audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes or perspectives from Indian diaspora experts on the implications of the defense framework.",
-          "Add a section discussing how this agreement might affect the Indian diaspora in the U.S. or their perceptions of U.S.-India relations."
+          "Consider adding more direct quotes from Amar Subramanya to enhance the personal connection and authority of the piece.",
+          "Include a brief section on how this development might impact Siri's competition with other AI assistants, particularly for NRI users."
         ],
         "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "cbcedd2e-204c-467d-a909-525a7fee8588",
-      "headline": "A Federal Judge Just Killed Trump's $100,000 H-1B Fee. The White House Says It Will Appeal.",
-      "slug": "federal-judge-strikes-down-100000-h1b-visa-fee-unauthorized-tax-appeal-20260614",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 3,
-          "issue": "irrelevant"
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively highlights the impact of the H-1B fee on Indian professionals, making it relevant to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the hero image with one that is more relevant to the topic of immigration or H-1B visas.",
-          "Consider adding quotes or reactions from Indian professionals affected by the ruling to enhance the diaspora connection."
-        ],
-        "verdict": "flag"
       },
       "actions_taken": [
         "promoted to published"
