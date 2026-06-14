@@ -1,13 +1,13 @@
 {
-  "timestamp": "2026-06-14T21:16:33.435437+00:00",
+  "timestamp": "2026-06-14T21:45:15.950193+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
-    "flag": 2,
+    "pass": 1,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
-  "revisions": 2,
+  "revisions": 0,
   "unpublished": 0,
   "articles": [
     {
@@ -25,148 +25,24 @@
         "broken_embeds": []
       },
       "llm_review": {
-        "overall_score": 6,
-        "embed_issues": [
-          {
-            "url": "https://youtube.com/watch?v=noatJVfA22U",
-            "problem": "irrelevant",
-            "explanation": "The YouTube link does not appear to be directly related to the article's subject matter regarding the re-editing of 'Peddi'."
-          }
-        ],
+        "overall_score": 7,
+        "embed_issues": [],
         "image_match": {
           "score": 3,
-          "issue": "The image of Ram Charan at a trailer launch does not match the article's focus on the re-editing of 'Peddi' and the controversy surrounding Janhvi Kapoor."
-        },
-        "diaspora_angle": {
-          "present": false,
-          "quality": 2,
-          "note": "The article lacks a clear connection to NRI or diaspora readers, focusing instead on a local controversy in the Indian film industry."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include a relevant video embed that discusses the film's controversy or re-editing process.",
-          "Use an image that directly relates to the film 'Peddi' or its main themes to enhance relevance."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Removed irrelevant embed: https://youtube.com/watch?v=noatJVfA22U",
-        "Revised by gpt-4o-mini (1101\u21921152 words)"
-      ],
-      "revised": true,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "f5ee5038-1412-4c90-84fe-258a006db5d6",
-      "headline": "Sundar Pichai Is Selling $85 Billion of Alphabet to Win the AI Race. Investors Are Divided.",
-      "slug": "sundar-pichai-alphabet-85-billion-equity-ai-berkshire-20260614",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "3ca12ec7-d3cd-4bb0-9bb1-bb81d746b415",
-            "headline": "Sundar Pichai's Google Just Shipped a Real-Time Interpreter "
-          },
-          {
-            "article_id": "f0570ddd-64ea-439f-956e-63ef89420a5e",
-            "headline": "Pichai's Three-Foundry Gambit: Google Splits Its Next AI Chi"
-          }
-        ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article mentions Indian engineers at Google, which connects to the diaspora, but could elaborate more on their impact."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Expand on the implications of the equity raise for Indian engineers and the broader Indian tech community.",
-          "Include quotes or perspectives from diaspora members to enhance the connection."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "7ef925c2-a5d5-4473-9ad4-2b026813efbb",
-      "headline": "Asha Sharma's 100-Day Verdict on Xbox: 'This Cannot Continue'",
-      "slug": "asha-sharma-xbox-ceo-reset-microsoft-spinoff-layoffs-20260614",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to Xbox or gaming, which may confuse readers."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects Sharma's role and the impact on Indian professionals and NRI investors."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that directly relates to Xbox or gaming.",
-          "Add more quotes or insights from Asha Sharma to enhance the personal connection to her leadership."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "3b77d467-7b42-4a54-b49f-8a466a138a2c",
-      "headline": "Sarvam AI Gets a Seat at the G7 Table. It's the Only Indian Company There.",
-      "slug": "sarvam-ai-g7-summit-evian-pratyush-kumar-india-sovereign-20260614",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the specific topic of Sarvam AI or the G7 summit."
+          "issue": "The image does not match the article's topic about the film 'Peddi' and its re-editing."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses the implications of Sarvam AI's presence at the G7 for NRIs, particularly in terms of career opportunities and investment potential."
+          "note": "The article discusses the film's release and its implications for NRI audiences, making it relevant for the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that depicts AI or the G7 summit.",
-          "Expand on the implications for NRIs in terms of potential investment opportunities or career paths in the Indian AI sector."
+          "Replace the hero image with one that is directly related to the film 'Peddi' or its cast.",
+          "Provide more context on how the re-editing process affects the film's reception among international audiences."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
         "promoted to published"
@@ -190,31 +66,29 @@
         "broken_embeds": []
       },
       "llm_review": {
-        "overall_score": 6,
+        "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 8,
-          "issue": "The image of Jamieson Greer is relevant to the article's topic on trade negotiations."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article discusses the implications of trade relations on the Indian diaspora, making it relevant."
+          "quality": 8,
+          "note": "The article effectively connects the trade negotiations to the Indian diaspora, highlighting the impact on remittances and family ties."
         },
-        "factual_flags": [
-          "The article mentions a timeline for a trade deal that could be concluded by mid-July, but the date is not current as it references events from 2026."
-        ],
+        "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Update the timeline and context to reflect current events accurately.",
-          "Include more direct quotes or perspectives from diaspora members to enhance the connection."
+          "Consider adding quotes from Indian diaspora members to provide personal perspectives on the trade relationship.",
+          "Include more context on how the trade deal could specifically affect various sectors relevant to the diaspora."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
-        "Revised by gpt-4o-mini (754\u2192818 words)"
+        "promoted to published"
       ],
-      "revised": true,
+      "revised": false,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
     }
