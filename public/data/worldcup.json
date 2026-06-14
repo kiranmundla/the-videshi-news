@@ -1,6 +1,6 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-06-14T11:59:08Z",
+  "last_updated": "2026-06-14T13:59:23Z",
   "stage": "Group Stage — 8 of 72 matches played",
   "hosts": "USA, Mexico & Canada",
   "dates": {
@@ -2139,6 +2139,20 @@
       "account": "@fifaworldcup",
       "caption": "World Cup 2026 Day 2 — Canada vs Bosnia & Herzegovina",
       "date": "2026-06-12"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DZgzKmtHEnd/",
+      "account": "@fifaworldcup",
+      "caption": "Matchday 2 ✔️ All #FIFAWorldCup highlights on fifa.com 📺",
+      "date": "2026-06-13"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DZgzQN5lsVY",
+      "account": "@fifaworldcup",
+      "caption": "Matchday 2 ✔️ Watch all the highlights on fifa.com 📺",
+      "date": "2026-06-13"
     }
   ],
   "tv": {
