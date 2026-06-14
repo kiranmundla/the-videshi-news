@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-14T01:45:15.474993+00:00",
+  "timestamp": "2026-06-14T02:15:31.572444+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 5,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "366c24ea-6638-4ef1-81c7-4b2dc62ac316",
-      "headline": "He Clipped the Last Hurdle and Still Broke the National Record. Tejas Shirse Is Going to Glasgow.",
-      "slug": "tejas-shirse-110m-hurdles-national-record-commonwealth-games-glasgow-2026-nri",
+      "id": "a55efb78-07f2-4b00-b64e-568419631a02",
+      "headline": "The Monsoon Just Hit India \u2014 and It's the Best-Kept Secret for NRIs Planning a Trip Home",
+      "slug": "india-monsoon-travel-guide-nri-summer-20260614",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -29,13 +29,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article connects well with NRIs by highlighting the significance of the Commonwealth Games in Glasgow and the opportunity for them to watch Indian athletes compete."
+          "note": "The article effectively highlights the benefits of traveling during the monsoon for NRIs, making it relevant and appealing to the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from other athletes or coaches to provide more context and depth.",
-          "Include a brief background on Tejas Shirse's previous achievements to enhance reader engagement."
+          "Consider adding personal anecdotes or testimonials from NRIs who have traveled during the monsoon to enhance relatability.",
+          "Include a section on cultural events or festivals that take place during the monsoon to further entice NRI travelers."
         ],
         "verdict": "pass"
       },
@@ -47,9 +47,45 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "f6299bb0-be9e-4bbb-b0fc-51697979bf89",
-      "headline": "His Father Sold Four Acres of Farmland in Madurai. On Friday, Selva Prabhu Won the NCAA Triple Jump Title.",
-      "slug": "selva-prabhu-madurai-ncaa-triple-jump-champion-kansas-state-hayward-field-nri-diaspora-2026",
+      "id": "c252efeb-22c4-401d-8d77-c564730911db",
+      "headline": "Air India Is Bleeding $2.8 Billion a Year \u2014 and NRIs Flying Home This Summer Will Feel It",
+      "slug": "air-india-losses-flight-cuts-north-america-nri-summer-20260614",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses the impact of Air India's financial issues on NRI travelers, providing relevant insights and practical advice."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more direct quotes from industry experts or analysts to enhance credibility.",
+          "Include a brief historical context of Air India's performance over the years to provide readers with a clearer picture."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "7439b3c6-b88c-4316-84b6-0ed89ed3c793",
+      "headline": "GIFT City Just Got Its First US Company Listing. Here Is What NRIs Need to Know.",
+      "slug": "gift-city-nri-investment-hub-tryfacta-ipo-us-stocks-ifsc-2026",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -60,18 +96,90 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image does not directly relate to Selva Prabhu or the NCAA title, but it is a general athletics image."
+          "issue": "The image of a building in GIFT City is relevant but does not directly depict the financial activities discussed."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects Prabhu's story to the experiences of NRI families and the broader Indian diaspora in the context of athletics."
+          "note": "The article effectively addresses NRIs' interests in GIFT City and its developments."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider including a more specific image related to Selva Prabhu or the NCAA championship to enhance relevance.",
-          "Add quotes or reactions from Prabhu or his family to provide a more personal touch to the story."
+          "Include more specific examples of how NRIs can benefit from the developments in GIFT City.",
+          "Consider adding quotes from financial experts or NRIs to enhance credibility and engagement."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "28726096-e03d-4066-8ace-c403fd06b4ff",
+      "headline": "The $275 Million Turmeric Myth: Why South Asian Kitchens Got It Right and the Supplement Industry Got It Wrong",
+      "slug": "turmeric-curcumin-supplement-myth-retracted-papers-liver-injury-south-asian-kitchen-2026",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article connects well with the diaspora by discussing traditional uses of turmeric in South Asian kitchens and contrasting it with Western supplement practices."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more direct quotes or anecdotes from South Asian individuals to enhance the personal connection.",
+          "Include a section on how diaspora communities can incorporate turmeric safely into their diets, reinforcing the positive aspects of traditional use."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "2a3cea31-b2b4-4792-b5d9-b748720b8261",
+      "headline": "Your Brain Starts Changing After Two Minutes of Meditation. Indian Scientists Just Proved It.",
+      "slug": "meditation-brain-two-minutes-nimhans-harvard-isha-yoga-eeg-study-2026",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article connects the scientific findings to traditional practices familiar to the Indian diaspora, enhancing its relevance."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes or insights from diaspora members about their experiences with meditation to strengthen the connection.",
+          "Include a brief section on how this research might influence meditation practices among the diaspora."
         ],
         "verdict": "pass"
       },
