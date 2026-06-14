@@ -972,7 +972,7 @@ def save_used_image(photo_id):
 
 def source_storyboard_images(article, storyboard, count=8):
     """Source B-roll images scene-by-scene from the storyboard.
-    Priority: 1) Pexels HD portrait (1080x1920)  2) Article images (min 1000px shortest side)  3) Pexels broader fallback.
+    Priority: 1) Article hero for scene 1  2) Pexels HD by scene description  3) Wikipedia by scene queries  4) Same-category articles (fallback only).
     Returns list of image URLs matched to each scene in order."""
     urls = []
     used_in_this_reel = set()
@@ -1021,19 +1021,73 @@ def source_storyboard_images(article, storyboard, count=8):
     scene_descs = [s.get("visual", "") for s in scenes[:count]]
     matched_urls = [None] * min(count, len(scene_descs))
 
-    # ── 1. PRIMARY: Article hero + same-category article images (CC/editorial) ──
-    remaining_initial = list(range(len(matched_urls)))
-    print(f"  🔍 Checking article image pool for {len(scene_descs)} scenes...")
-    article_pool = []
-
-    # Article hero image first
+    # ── 1. Article hero for scene 1 ──
     if hero and is_url_downloadable(hero) and hero not in used_in_this_reel:
         matched_urls[0] = hero
         used_in_this_reel.add(hero)
-        print(f"  🎬 Scene 1: {scene_descs[0][:50]}  →  article hero (primary)")
+        print(f"  🎬 Scene 1: {scene_descs[0][:50]}  →  article hero")
 
-    # Same category — up to 40 recent articles
-    if category:
+    # ── 2. PRIMARY: Pexels HD search by scene visual description ──
+    remaining = [i for i in range(len(matched_urls)) if matched_urls[i] is None]
+    if remaining and pexels_key:
+        print(f"  🔍 Searching Pexels HD for {len(remaining)} unfilled scenes (by scene description)...")
+        for i in remaining:
+            scene = scenes[i] if i < len(scenes) else {}
+            queries = scene.get("search_queries", [])
+            # Also try the visual description as a search query
+            visual = scene.get("visual", "")
+            if visual and visual not in queries:
+                queries = [visual] + queries
+            for query in queries[:3]:
+                results = pexels_search(pexels_key, query, count=5)
+                for cand in results:
+                    pid = cand["photo_id"]
+                    if pid not in used_ids and cand["url"] not in used_in_this_reel:
+                        matched_urls[i] = cand["url"]
+                        used_in_this_reel.add(cand["url"])
+                        save_used_image(pid)
+                        print(f"  🎬 Scene {i+1}: {scene_descs[i][:50]}  →  Pexels #{pid} (scene-matched)")
+                        break
+                if matched_urls[i] is not None:
+                    break
+
+    pexels_filled = sum(1 for u in matched_urls if u is not None)
+    print(f"  📸 After Pexels scene search: {pexels_filled}/{len(matched_urls)} scenes filled")
+
+    # ── 3. Wikipedia/Wikimedia images for remaining gaps ──
+    remaining = [i for i in range(len(matched_urls)) if matched_urls[i] is None]
+    if remaining and scenes:
+        print(f"  🔍 {len(remaining)} scenes unfilled — searching Wikipedia...")
+        for i in remaining:
+            scene = scenes[i] if i < len(scenes) else {}
+            queries = scene.get("search_queries", [])
+            for query in queries[:2]:
+                try:
+                    wiki_q = query.replace(" ", "_")
+                    wr = requests.get(
+                        f"https://en.wikipedia.org/api/rest_v1/page/summary/{requests.utils.quote(wiki_q)}",
+                        headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
+                        timeout=8,
+                    )
+                    if wr.status_code == 200:
+                        wdata = wr.json()
+                        wimg = wdata.get("originalimage", {}).get("source") or wdata.get("thumbnail", {}).get("source")
+                        if wimg and wimg not in used_in_this_reel:
+                            matched_urls[i] = wimg
+                            used_in_this_reel.add(wimg)
+                            print(f"  🎬 Scene {i+1}: {scene_descs[i][:50]}  →  Wikipedia (CC)")
+                            break
+                except Exception:
+                    continue
+
+    wiki_filled = sum(1 for u in matched_urls if u is not None)
+    print(f"  📸 After Wikipedia: {wiki_filled}/{len(matched_urls)} scenes filled")
+
+    # ── 4. LAST RESORT: Same-category article images (only for remaining gaps) ──
+    remaining = [i for i in range(len(matched_urls)) if matched_urls[i] is None]
+    if remaining and category:
+        print(f"  🔍 {len(remaining)} scenes still unfilled — falling back to category article images...")
+        article_pool = []
         r = requests.get(
             f"{SB_URL}/rest/v1/p2_articles",
             params={
@@ -1065,69 +1119,15 @@ def source_storyboard_images(article, storyboard, count=8):
                     if gurl and is_url_downloadable(gurl) and gurl not in used_in_this_reel:
                         article_pool.append(gurl)
 
-    # Fill from article pool
-    for i in range(len(matched_urls)):
-        if matched_urls[i] is None and article_pool:
-            matched_urls[i] = article_pool.pop(0)
-            used_in_this_reel.add(matched_urls[i])
-            print(f"  🎬 Scene {i+1}: {scene_descs[i][:50]}  →  article image (primary)")
-
-    # ── 2. Wikipedia/Wikimedia images for remaining gaps ──
-    remaining = [i for i in range(len(matched_urls)) if matched_urls[i] is None]
-    if remaining and scenes:
-        print(f"  🔍 {len(remaining)} scenes unfilled — searching Wikipedia...")
         for i in remaining:
-            scene = scenes[i] if i < len(scenes) else {}
-            queries = scene.get("search_queries", [])
-            for query in queries[:2]:
-                try:
-                    wiki_q = query.replace(" ", "_")
-                    wr = requests.get(
-                        f"https://en.wikipedia.org/api/rest_v1/page/summary/{requests.utils.quote(wiki_q)}",
-                        headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
-                        timeout=8,
-                    )
-                    if wr.status_code == 200:
-                        wdata = wr.json()
-                        wimg = wdata.get("originalimage", {}).get("source") or wdata.get("thumbnail", {}).get("source")
-                        if wimg and wimg not in used_in_this_reel:
-                            matched_urls[i] = wimg
-                            used_in_this_reel.add(wimg)
-                            print(f"  🎬 Scene {i+1}: {scene_descs[i][:50]}  →  Wikipedia (CC)")
-                            break
-                except Exception:
-                    continue
-
-    article_filled = sum(1 for u in matched_urls if u is not None)
-    print(f"  📸 Article/Wikipedia filled {article_filled}/{len(matched_urls)} scenes")
-
-    # ── 3. FALLBACK: Pexels HD for any remaining gaps ──
-    remaining = [i for i in range(len(matched_urls)) if matched_urls[i] is None]
-    if remaining and pexels_key:
-        print(f"  🔍 Searching Pexels HD for {len(scene_descs)} scenes...")
-        for i, scene in enumerate(scenes[:count]):
-            if matched_urls[i] is not None:
-                continue
-            queries = scene.get("search_queries", [])
-            for query in queries[:2]:
-                results = pexels_search(pexels_key, query, count=5)
-                for cand in results:
-                    pid = cand["photo_id"]
-                    if pid not in used_ids and cand["url"] not in used_in_this_reel:
-                        matched_urls[i] = cand["url"]
-                        used_in_this_reel.add(cand["url"])
-                        save_used_image(pid)
-                        print(f"  🎬 Scene {i+1}: {scene_descs[i][:50]}  →  Pexels #{pid} (HD portrait)")
-                        break
-                if matched_urls[i] is not None:
-                    break
-
-    pexels_filled = sum(1 for u in matched_urls if u is not None)
-    print(f"  📸 Pexels filled remaining — total {pexels_filled}/{len(matched_urls)} scenes")
+            if article_pool:
+                matched_urls[i] = article_pool.pop(0)
+                used_in_this_reel.add(matched_urls[i])
+                print(f"  🎬 Scene {i+1}: {scene_descs[i][:50]}  →  category fallback image")
 
     urls = [u for u in matched_urls if u is not None]
 
-    print(f"  🖼️ Sourced {len(urls)} B-roll images (article/Wikipedia primary, Pexels fallback)")
+    print(f"  🖼️ Sourced {len(urls)} B-roll images (Pexels primary, Wikipedia secondary, category fallback)")
     return urls
 
 
