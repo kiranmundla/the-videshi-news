@@ -1,58 +1,15 @@
 {
-  "timestamp": "2026-06-14T17:15:56.698349+00:00",
+  "timestamp": "2026-06-14T17:45:50.088142+00:00",
   "mode": "fix",
   "stats": {
     "pass": 0,
-    "flag": 2,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
   "revisions": 1,
   "unpublished": 0,
   "articles": [
-    {
-      "id": "6130af62-4cf5-4258-b7aa-0575e30d247b",
-      "headline": "Vir Das Is Making a Horror Film. The Cast Alone Should Make You Nervous.",
-      "slug": "vir-das-baara-number-horror-film-found-footage-ensemble-cast-2026",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/p/DZbud6sCC-I/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post does not appear to be directly related to the film or its cast, making it irrelevant to the article's subject."
-          }
-        ],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects Vir Das's work to the diaspora audience, highlighting his global appeal and the anticipation for his film among NRIs."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the irrelevant Instagram embed with a more relevant one that showcases the film or its cast.",
-          "Consider adding a quote or insight from a diaspora audience member or critic to further enhance the diaspora angle."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DZbud6sCC-I/",
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
     {
       "id": "9d47e86e-8cbb-438a-8724-dc709f2e3596",
       "headline": "India Is Now Under Fire From Both Sides in the Gulf. The U.S. Struck Its Sailors. Trump Says Iran Attacked Its Ships Too.",
@@ -72,23 +29,23 @@
         "embed_issues": [],
         "image_match": {
           "score": 3,
-          "issue": "The image of External Affairs Minister S. Jaishankar does not directly relate to the Gulf crisis or the attacks on Indian sailors."
+          "issue": "The image of External Affairs Minister S. Jaishankar does not directly relate to the article's focus on the Gulf crisis and the attacks on Indian sailors."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 7,
-          "note": "The article discusses the impact on Indian seafarers, which is relevant to the diaspora community, particularly those with family members in maritime professions."
+          "note": "The article discusses the impact on Indian seafarers and their families, which is relevant to the Indian diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more context on the implications for Indian seafarers and their families to strengthen the diaspora connection.",
-          "Replace the hero image with one that directly relates to the Gulf crisis or Indian sailors to enhance relevance."
+          "Include more direct quotes or reactions from Indian diaspora communities regarding the crisis.",
+          "Use a more relevant image that depicts the Gulf crisis or Indian sailors to enhance visual connection."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
-        "Revised by gpt-4o-mini (921\u2192949 words)"
+        "Revised by gpt-4o-mini (949\u2192974 words)"
       ],
       "revised": true,
       "unpublished": false,
