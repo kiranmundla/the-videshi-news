@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-13T23:45:11.848304+00:00",
+  "timestamp": "2026-06-14T00:15:46.532308+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
+    "pass": 8,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "a9929b28-323d-46dd-ac22-b4fee1d10a44",
-      "headline": "India's Inflation Just Hit Its Highest Level of 2026. Food and Fuel Are Doing the Damage.",
-      "slug": "india-cpi-inflation-may-2026-highest-food-fuel-rbi-forecast-20260613",
+      "id": "a3cc3708-2599-41c8-9e39-1e36843d3261",
+      "headline": "Karnataka's New Chief Minister Has a Plan for 1.8 Million Overseas Kannadigas: Give Them Their Own Department",
+      "slug": "karnataka-nri-department-shivakumar-kannadiga-diaspora-20260614",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -24,18 +24,270 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image does not directly relate to inflation or economic themes."
+          "issue": "The image of D.K. Shivakumar is relevant but does not directly depict the theme of overseas Kannadigas."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects the inflation trends in India to the financial implications for the Indian diaspora, particularly regarding remittances."
+          "note": "The article effectively addresses the needs and concerns of the NRI community, particularly the overseas Kannadigas."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that visually represents inflation or economic themes to enhance relevance.",
-          "Add more data or examples on how inflation affects specific demographics within the diaspora for a deeper connection."
+          "Include more direct quotes from NRIs to enhance the personal connection to the diaspora.",
+          "Consider adding a section on how the proposed department could impact specific sectors or communities within the NRI population."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "3e4b54f5-5ac0-4b9e-b74a-182c5c9050f9",
+      "headline": "A Few Dollars in His Pocket, Thirty-Five Years Later: Arvind Raman Now Runs America's Standards Agency",
+      "slug": "arvind-raman-nist-director-indian-american-purdue-20260614",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 5,
+          "issue": "The image does not directly relate to Arvind Raman or the topic of standards and technology."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively highlights Raman's journey from India to a significant leadership role in the U.S., resonating with the diaspora experience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that connects directly to Arvind Raman or the National Institute of Standards and Technology.",
+          "Expand on the diaspora angle by including quotes or perspectives from other Indian leaders in similar positions to enhance the narrative."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "15343b28-5053-40d1-9be2-5f26126090af",
+      "headline": "GIFT City Is No Longer a Policy Experiment. NRI Wealth Managers Are Starting to Notice.",
+      "slug": "gift-city-ifsc-nri-investment-wealth-management-20260614",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects GIFT City to NRI wealth management, highlighting its relevance to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from NRI wealth managers to enhance credibility and provide personal insights.",
+          "Include more data or statistics on the growth of GIFT City to strengthen the argument."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "0267f0bb-270d-460f-a834-d0eb3e2d3890",
+      "headline": "Every EB-2 Visa for India Is Gone \u2014 and the Wait Until October Just Got Longer",
+      "slug": "eb2-india-cap-exhausted-fy2026-no-visas-october-20260614",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 6,
+          "issue": "The image does not directly relate to the topic of EB-2 visas or immigration."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article addresses the concerns of Indian professionals in the U.S. immigration system, making it relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that reflects the theme of immigration or the EB-2 visa process.",
+          "Add a section with resources or advice for Indian professionals navigating the visa process."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "715fa131-593b-486c-9cd7-486cdfd88e13",
+      "headline": "Anthropic Hired Six Times More Foreign Workers This Quarter \u2014 Google Cut Back by Two-Thirds",
+      "slug": "anthropic-openai-nvidia-h1b-surge-google-meta-retreat-20260614",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 6,
+          "issue": "The image does not directly relate to the article's focus on immigration and H-1B visas."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the impact of H-1B visa changes on Indian workers, which is highly relevant to the Indian diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that more directly represents the themes of immigration or the tech industry.",
+          "Add quotes or perspectives from Indian workers affected by these changes to enhance the human angle."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "357fced4-b7d2-4b6e-be05-bce482f45f8d",
+      "headline": "TCS Is Arming 50,000 Workers With Claude. The Company Threatening Its Business Is Now Its Partner.",
+      "slug": "tcs-anthropic-claude-premier-partner-50000-employees-20260614",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 8,
+          "issue": "The image is relevant to the article's topic about TCS and AI technology."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses the implications of AI adoption for Indian professionals in the IT sector abroad, making it relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more direct quotes from TCS executives to enhance credibility.",
+          "Expand on the potential impact of AI on job roles for NRIs to deepen the diaspora connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "5bd1cd28-6952-47bd-9296-eee43932b36d",
+      "headline": "India Just Wrote Its First Cheques to Private Space Startups. The Sector Will Never Be the Same.",
+      "slug": "in-space-funds-first-private-spacetech-startups-india-20260614",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the implications for Indian Americans and NRI investors, making the connection relevant and natural."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more quotes or insights from industry experts to enhance credibility.",
+          "Add a section on potential challenges or risks facing the private space sector in India."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "00e1d7e7-508b-40e9-974c-6a02da6d18ab",
+      "headline": "NVIDIA's Vera CPU Finds a Backdoor Into China. Jensen Huang Is Betting $200 Billion on It.",
+      "slug": "nvidia-vera-cpu-china-agentic-ai-jensen-huang-20260614",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the launch of the Vera CPU to the Indian diaspora in the semiconductor industry and highlights potential impacts on Indian engineers and investors."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of how the Vera CPU could impact the job market for Indian engineers in the semiconductor industry.",
+          "Include quotes or insights from industry experts to enhance credibility and depth."
         ],
         "verdict": "pass"
       },
