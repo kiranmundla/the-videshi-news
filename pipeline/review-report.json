@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-14T05:15:18.601842+00:00",
+  "timestamp": "2026-06-14T05:45:17.599047+00:00",
   "mode": "fix",
   "stats": {
     "pass": 2,
-    "flag": 0,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,42 +11,35 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "361f7bc3-454a-45af-ba9b-556d6ef11cc8",
-      "headline": "Akshay Kumar and Priyadarshan Made \u20b9259 Crore. Now They're Coming for Your Netflix Queue.",
-      "slug": "bhooth-bangla-netflix-akshay-kumar-priyadarshan-259-crore-diaspora-nri-20260614",
+      "id": "6d5cb0b0-487d-44d0-83bc-9e4120e4eae8",
+      "headline": "Scotland Win Their First World Cup Match in 36 Years as McGinn Deflection Sinks Haiti",
+      "slug": "world-cup-2026-haiti-vs-scotland-2026-06-13",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/reel/DZhM8cGKPiQ/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram reel does not appear to be directly related to the film 'Bhooth Bangla' or its themes, making it irrelevant to the article."
-          }
-        ],
+        "overall_score": 7,
+        "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 5,
+          "issue": "The image does not directly relate to the article's content about Scotland's World Cup match."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the film to the diaspora audience by referencing cultural touchstones and accessibility across multiple languages."
+          "quality": 6,
+          "note": "The article briefly mentions the Greater Boston's desi community, but the connection feels somewhat forced and could be expanded."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant Instagram embed with a more relevant social media post related to 'Bhooth Bangla'.",
-          "Consider adding more quotes or insights from the diaspora audience to strengthen the connection."
+          "Enhance the diaspora angle by including quotes or reactions from local NRI fans or community members regarding the match.",
+          "Consider using a more relevant image that depicts Scotland's team or the match itself."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/reel/DZhM8cGKPiQ/",
         "promoted to published"
       ],
       "revised": false,
@@ -54,47 +47,71 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "8cd6266f-e3f5-40bf-9050-7be708d53894",
-      "headline": "Lagaan Turns 25. The Team Just Reunited, and They're Making Another Cricket Epic.",
-      "slug": "lagaan-25th-anniversary-rerelease-aamir-khan-ar-rahman-lala-amarnath-nri-20260614",
+      "id": "5b571be5-0ccd-47a0-8493-631d28bdb5b0",
+      "headline": "Vin\u00edcius Jr.'s Brilliance Rescues Brazil From Morocco in a Group C Classic",
+      "slug": "world-cup-2026-brazil-vs-morocco-2026-06-13",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "d1592702-2e55-49ff-ae08-4f2ddcfc68f1",
-            "headline": "Lagaan Turns 25 and Returns to Theaters This Week. The Stori"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/reel/DZfCkPHISco/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram reel does not appear to be directly related to the Lagaan reunion or the cricket biopic mentioned in the article."
-          }
-        ],
+        "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 5,
+          "issue": "The image of MetLife Stadium does not directly relate to the match or the players discussed."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects Lagaan's themes to the experiences of the Indian diaspora, making it relatable and relevant."
+          "note": "The article effectively connects the match to the Indian-American community, highlighting their presence and enthusiasm."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant Instagram embed with a more relevant social media post related to Lagaan or the reunion.",
-          "Consider adding quotes or reactions from diaspora audiences to enhance the connection further."
+          "Consider using an image that features the players or the match itself to enhance relevance.",
+          "Add more context about the significance of the match for the diaspora community."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/reel/DZfCkPHISco/",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "2468672e-021a-42ee-9b9f-1fdd16d4f824",
+      "headline": "Qatar's 94th-Minute Header Stuns Switzerland and Rewrites the Maroons' World Cup Story",
+      "slug": "world-cup-2026-qatar-vs-switzerland-2026-06-13",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 6,
+          "issue": "The image of Levi's Stadium does not directly relate to the match or the teams involved."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively highlights the significance of the match for the Indian-American community in the Bay Area."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that directly relates to the match or the teams involved for better visual relevance.",
+          "Add more context about the significance of the match for Qatar's football history to enhance the narrative."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
         "promoted to published"
       ],
       "revised": false,
