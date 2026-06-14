@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-14T06:16:00.512542+00:00",
+  "timestamp": "2026-06-14T06:45:15.865574+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 12,
+    "pass": 2,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,230 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "780b01d2-1644-4df8-a519-156904800172",
-      "headline": "India\u2019s IT Stocks Have Lost 27 Per Cent This Year. For NRI Tech Workers, the Pain Is Doubly Personal.",
-      "slug": "india-it-stocks-nifty-27-percent-crash-ai-disruption-nri-tech-workers-double-exposure-20260614",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "bdbe36d1-ec3c-44d8-ac5f-35181b39183b",
-            "headline": "BlackRock and Lighthouse Canton Say India Has Been 'Over-Pun"
-          }
-        ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 8,
-          "issue": "The image is relevant to the tech theme but does not specifically depict IT stocks or the financial market."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the impact of IT stock performance on NRI tech workers, making it relevant to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include specific examples of how NRI tech workers are personally affected by the downturn in IT stocks.",
-          "Add a concluding section that discusses potential future trends or recovery scenarios for the IT sector."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "a439666b-c2f2-4544-9a3e-16696cb822ff",
-      "headline": "Your Frozen Paratha May Be Wrecking Your Gut. A 124,000-Person Study Just Singled Out Ultraprocessed Grains.",
-      "slug": "ultraprocessed-grains-ibd-inflammatory-bowel-disease-pure-study-south-asian-diet-20260614",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the findings of the study to the eating habits of the Indian diaspora, highlighting the impact of ultraprocessed grains on their traditional diets."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more specific examples of minimally processed alternatives to ultraprocessed grains that diaspora readers can easily access.",
-          "Include quotes or insights from diaspora nutritionists or health experts to enhance credibility and relatability."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "af899f86-64fa-4f4f-b910-3b71a42af30b",
-      "headline": "America's Doctors Are About to Learn About Food for the First Time. Here Is Why NRI Patients Should Care.",
-      "slug": "us-medical-schools-nutrition-education-40-hours-licensing-exams-nri-patients-20260614",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the changes in medical education regarding nutrition to the specific dietary practices and health concerns of the Indian American diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more specific examples of how these changes in medical education could directly impact NRI patients' health outcomes.",
-          "Include quotes or testimonials from NRI patients or healthcare professionals to enhance the personal connection to the diaspora."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "6e87b975-c19c-4230-bf66-5a171f48e470",
-      "headline": "Dame Parveen Kumar Gets the GBE. She Is Now One of Britain's Most Decorated Indian-Born Citizens.",
-      "slug": "uk-birthday-honours-2026-british-indians-parveen-kumar-gbe-20260614",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article highlights the achievements of a prominent British Indian figure, connecting well with the NRI audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include a quote from Dame Parveen Kumar or a related figure to add a personal touch.",
-          "Expand on the significance of the GBE in the context of the Indian diaspora."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "dcdfd767-80cc-46cc-a6ba-658a913741e8",
-      "headline": "From the Lincoln Memorial to Times Square: How Yoga Day 2026 Became the Diaspora's Biggest Public Ritual",
-      "slug": "yoga-day-2026-lincoln-memorial-times-square-diaspora-20260614",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the significance of Yoga Day to the Indian diaspora, highlighting its cultural and personal relevance."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes or testimonials from participants to enhance the personal connection to the diaspora.",
-          "Include more statistics or data on the impact of Yoga Day on the diaspora community to strengthen the argument."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "52947c9f-b40e-461d-bb7c-7146b6298bb0",
-      "headline": "India Just Opened Its Stock Markets to Every Foreigner on the Planet. NRIs Are No Longer Special.",
-      "slug": "fema-amendment-nri-oci-foreign-individual-india-stock-market-20260614",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses the implications of the new investment rules on NRIs, highlighting their changing status in the investment landscape."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from financial experts or diaspora investors to provide more depth.",
-          "Include a section on potential impacts on the Indian stock market and economy."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "156e9532-dcab-4002-85fd-7abc30506b13",
-      "headline": "Gulf Airlines Are Offering Free Insurance and Repatriation \u2014 Here's What NRIs Need to Know",
-      "slug": "gulf-airlines-free-insurance-repatriation-nri-dubai-transit-20260614",
+      "id": "78e76123-17cd-4baf-ab5e-b54b6af7c32b",
+      "headline": "TCS Just Handed 50,000 Employees an AI Co-Worker. India's IT Industry Is Bracing for What Comes Next.",
+      "slug": "tcs-anthropic-claude-partnership-indian-it-ai-disruption-jobs-50000-20260614",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -245,198 +24,54 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image is relevant to travel but does not specifically depict Gulf airlines or insurance."
+          "issue": "The image is relevant to the tech theme but does not specifically depict AI or TCS."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the implications of AI on Indian tech workers, particularly those in the U.S., which is relevant to the NRI audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more specific examples of how AI is impacting NRI tech workers.",
+          "Consider adding quotes or insights from NRI professionals in the tech industry."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "427368dd-d77d-4f3e-be9c-6955f2945ac4",
+      "headline": "A Judge Killed Trump's $100,000 H-1B Fee. Four Days Later, He Put His Own Ruling on Hold.",
+      "slug": "h1b-100k-fee-struck-down-stayed-protect-act-congress-nri-impact-20260614",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 3,
+          "issue": "The image of the Capitol does not directly relate to the topic of H-1B visas or immigration."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article directly addresses NRIs and their specific concerns regarding travel through Gulf airlines."
+          "note": "The article effectively highlights the impact of the H-1B fee on Indian professionals, making it relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include specific examples of how NRIs can benefit from the free insurance and repatriation services.",
-          "Add a section on how to choose the best travel insurance that covers Gulf transit."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "655b09b8-7ff9-4bfa-8cbe-fb4711e93f1e",
-      "headline": "Air India's Maharaja Lounge at SFO Is Its First Overseas Lounge Since the Tata Takeover",
-      "slug": "air-india-maharaja-lounge-sfo-bay-area-nri-20260614",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not specifically depict the lounge or its features."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the lounge's opening to the NRI community in the Bay Area, highlighting its significance."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include a relevant image of the Maharaja Lounge to enhance visual appeal.",
-          "Add quotes from travelers or Air India representatives to provide personal insights."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "f6635bb7-5155-4cc8-9760-f0ba89acddef",
-      "headline": "India's Newest Mega Airport Opens Tomorrow \u2014 and NRIs Finally Get a Faster Route to the Taj Mahal",
-      "slug": "noida-international-airport-jewar-launch-nri-taj-mahal-20260614",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively highlights the benefits of the new airport for NRIs, particularly in relation to travel convenience to the Taj Mahal."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from travelers or airport officials to enhance the narrative.",
-          "Include more details on future international flight plans to engage readers further."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "da83c386-4ff4-44a4-9901-568362ca6ec9",
-      "headline": "India's Chip Factories Start Spending Real Money. \u20b931,299 Crore Hits the Shop Floor by FY27.",
-      "slug": "india-semiconductor-mission-31299-crore-fy27-tata-micron-20260614",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly depict semiconductor manufacturing or related technology."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the semiconductor developments in India to career opportunities for NRIs in the tech industry."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that directly relates to semiconductor manufacturing to enhance visual relevance.",
-          "Expand on the implications for NRIs in terms of specific job roles or investment opportunities."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "4936758c-cfe4-40f8-ba97-7e75be623ecf",
-      "headline": "Nikesh Arora's Palo Alto Networks Posts $3 Billion Quarter. Goldman Says the Real AI Security Boom Hasn't Started.",
-      "slug": "nikesh-arora-palo-alto-networks-q3-goldman-ai-security-20260614",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article connects well with the Indian diaspora, particularly those in tech and investment sectors, highlighting the achievements of an IIT alumnus."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more quotes or insights from Nikesh Arora to enhance the personal connection to the diaspora.",
-          "Include a brief section on how the growth of AI security impacts the global job market for Indian tech professionals."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "1fd62417-3d75-4a14-bb19-8d73fecbd180",
-      "headline": "Jayshree Ullal's Arista Launches 1.6-Terabit Switches. AI's Bandwidth Bottleneck Just Got an Upgrade.",
-      "slug": "jayshree-ullal-arista-7060xe7-ai-networking-data-center-20260614",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively highlights Jayshree Ullal's journey and connects it to the success of Indian professionals in the tech industry, making it relevant for NRI readers."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more direct quotes from Jayshree Ullal or industry experts to enhance credibility.",
-          "Include a brief comparison of Arista's products with competitors to provide context for the significance of the launch."
+          "Replace the hero image with one that directly relates to immigration or H-1B visas.",
+          "Include quotes or perspectives from Indian professionals affected by the H-1B fee for a more personal touch."
         ],
         "verdict": "pass"
       },
