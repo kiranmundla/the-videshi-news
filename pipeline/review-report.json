@@ -1,19 +1,19 @@
 {
-  "timestamp": "2026-06-14T10:45:46.063014+00:00",
+  "timestamp": "2026-06-14T11:15:18.854448+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 3,
+    "pass": 1,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
-  "revisions": 1,
+  "revisions": 0,
   "unpublished": 0,
   "articles": [
     {
-      "id": "cb9314d9-a476-4de4-b617-2c3877f05a52",
-      "headline": "He Was Last After Six Rounds. Then Praggnanandhaa Won Four Straight and Made History in Oslo.",
-      "slug": "praggnanandhaa-wins-norway-chess-2026-first-indian-beats-carlsen-twice-gukesh-last-nri",
+      "id": "48525303-7f6d-4d80-9816-fe7e0290820b",
+      "headline": "David Dhawan Directed His Last Scene. His Son Was Standing Right in Front of the Camera.",
+      "slug": "david-dhawan-final-film-hai-jawani-varun-dhawan-farewell-career-nri-20260614",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -23,9 +23,9 @@
         "overall_score": 8,
         "embed_issues": [
           {
-            "url": "https://www.instagram.com/reel/DZQLMpsOKXu/",
+            "url": "https://www.instagram.com/p/DZJvrVoiPW3/",
             "problem": "irrelevant",
-            "explanation": "The Instagram reel does not appear to be directly related to the article's subject matter, which focuses on Praggnanandhaa's achievements in chess."
+            "explanation": "The Instagram post by Karan Johar does not directly relate to the film's content or its themes, making it less relevant to the article."
           }
         ],
         "image_match": {
@@ -35,18 +35,18 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects Praggnanandhaa's achievements to the Indian diaspora, highlighting the significance of his win for Indian-American communities."
+          "note": "The article effectively connects the nostalgia of David Dhawan's films to the experiences of NRIs, particularly those who grew up watching his movies."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant Instagram embed with a more relevant source or highlight from the tournament.",
-          "Consider adding quotes or reactions from the diaspora community to enhance the connection."
+          "Consider replacing the irrelevant Instagram embed with a more relevant source or quote that ties directly to the film or David Dhawan's legacy.",
+          "Expand on the diaspora angle by including more specific examples of how Dhawan's films impacted NRI audiences."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/reel/DZQLMpsOKXu/",
+        "Removed irrelevant embed: https://www.instagram.com/p/DZJvrVoiPW3/",
         "promoted to published"
       ],
       "revised": false,
@@ -60,144 +60,36 @@
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 6,
-        "embed_issues": [
+        "broken_embeds": [
           {
-            "url": "https://www.instagram.com/p/DZiJLpHn_wE/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post does not appear to be directly related to the match or players discussed in the article."
+            "url": "https://x.com/ICC/status/1799999999999999999",
+            "problem": "broken",
+            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
           }
-        ],
-        "image_match": {
-          "score": 5,
-          "issue": "The image of Shubman Gill does not match the article's focus on Gurbaz's performance."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 6,
-          "note": "The article discusses Indian cricket, which is of interest to the Indian diaspora, but lacks a deeper connection to NRI perspectives."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the irrelevant Instagram embed with a more relevant one that highlights Gurbaz's performance.",
-          "Consider adding quotes or perspectives from Indian diaspora fans or analysts to enhance the diaspora angle."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DZiJLpHn_wE/",
-        "Revised by gemini-2.5-flash (591\u2192398 words)"
-      ],
-      "revised": true,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "2b0136ca-7028-48e5-ba1f-c373c08b5595",
-      "headline": "India Has Rejected Washington's 'Forced Labour' and 'Surplus Capacity' Charges. The 12.5 Per Cent Tariff Threat Is Now Part of the Deal.",
-      "slug": "india-rejects-us-forced-labour-surplus-capacity-tariff-trade-deal-greer-visit-20260614",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
+        ]
       },
       "llm_review": {
-        "overall_score": 8,
+        "overall_score": 7,
         "embed_issues": [],
         "image_match": {
-          "score": 3,
-          "issue": "irrelevant"
+          "score": 4,
+          "issue": "The image features Shubman Gill, but the article primarily discusses Gurbaz's performance."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the trade negotiations to the Indian diaspora, highlighting the potential impact on Indian Americans and businesses."
+          "note": "The article effectively connects the cricket match to the Indian diaspora, highlighting its significance in their lives."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the hero image with one that is more relevant to the topic of trade negotiations between India and the US.",
-          "Consider adding more direct quotes from Indian officials to enhance the article's depth and authority."
+          "Consider using an image that features Gurbaz to better match the article's focus.",
+          "Expand on the diaspora angle by including quotes or reactions from NRI fans regarding the match."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "fe8d936d-254f-4aad-9a89-18b6e22fa350",
-      "headline": "King Charles Marks the British Asian Trust's 20th Year With a \u00a31 Million Gala. The Timing Is Not Coincidental.",
-      "slug": "king-charles-british-asian-trust-20th-anniversary-gala-indian-diaspora-uk-20260614",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image of King Charles III is relevant to the article's subject but does not directly depict the gala event."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the British Asian Trust's work and the King's patronage to the British Asian diaspora, highlighting their contributions and the significance of the event."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include a direct image from the gala event to enhance visual relevance.",
-          "Expand on the diaspora's contributions to the charity's work for a deeper connection."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "96263f35-4f13-4328-b35b-6c1cad5c7014",
-      "headline": "Indian Banks Are Offering NRI Dollar Deposits at Rates Not Seen in a Decade. The RBI Is Picking Up the Tab.",
-      "slug": "indian-banks-nri-dollar-deposits-fcnr-rbi-rates-decade-high-20260614",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively addresses NRIs by discussing the benefits of new deposit rates and their implications for NRI investors."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include a brief explanation of what FCNR(B) deposits are for readers who may not be familiar with the term.",
-          "Add a section on potential risks or considerations for NRIs when investing in these deposits."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
+        "Removed 1 broken/hallucinated embed(s)",
         "promoted to published"
       ],
       "revised": false,
