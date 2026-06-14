@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-06-14T19:59:42Z",
-  "stage": "Group Stage — 9 of 72 matches played",
+  "last_updated": "2026-06-14T21:58:26Z",
+  "stage": "Group Stage — 10 of 72 matches played",
   "hosts": "USA, Mexico & Canada",
   "dates": {
     "start": "2026-06-11",
@@ -292,26 +292,26 @@
         "code": "NED",
         "flag": "🇳🇱",
         "rank": 8,
-        "p": 0,
+        "p": 1,
         "w": 0,
-        "d": 0,
+        "d": 1,
         "l": 0,
-        "gf": 0,
-        "ga": 0,
-        "pts": 0
+        "gf": 2,
+        "ga": 2,
+        "pts": 1
       },
       {
         "name": "Japan",
         "code": "JPN",
         "flag": "🇯🇵",
         "rank": 18,
-        "p": 0,
+        "p": 1,
         "w": 0,
-        "d": 0,
+        "d": 1,
         "l": 0,
-        "gf": 0,
-        "ga": 0,
-        "pts": 0
+        "gf": 2,
+        "ga": 2,
+        "pts": 1
       },
       {
         "name": "Sweden",
@@ -811,8 +811,8 @@
       "away": "Japan",
       "venue": "AT&T Stadium",
       "city": "Dallas",
-      "status": "scheduled",
-      "score": null,
+      "status": "FT",
+      "score": "2-2",
       "home_code": "NED",
       "away_code": "JPN"
     },
@@ -1776,6 +1776,20 @@
     }
   },
   "highlights": [
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DZjrwK6D8xY",
+      "account": "@fifaworldcup",
+      "caption": "Netherlands 🆚 Japan — Group F clash preview",
+      "date": "2026-06-14"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DZlMoyCEjwJ/",
+      "account": "@fifaworldcup",
+      "caption": "Netherlands 2-2 Japan — A thrilling draw in Arlington! 🇳🇱🤝🇯🇵 #FIFAWorldCup",
+      "date": "2026-06-14"
+    },
     {
       "platform": "threads",
       "url": "https://www.threads.com/@fifaworldcup/post/DZk1Rk9Fm_k",
