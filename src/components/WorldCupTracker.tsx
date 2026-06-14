@@ -10,21 +10,25 @@ type Tab = "upcoming" | "results";
 
 const FLAGS: Record<string, string> = {};
 
-function etToPdt(time: string): string {
+function matchToLocal(dateStr: string, time: string): Date {
   const [h, m] = time.split(":").map(Number);
-  const pdt = ((h - 3) + 24) % 24;
-  return `${pdt}:${m.toString().padStart(2, "0")}`;
+  return new Date(`${dateStr}T${String(h).padStart(2,"0")}:${String(m).padStart(2,"0")}:00-04:00`);
 }
 
-function formatMatchTime(time: string): string {
-  const [h, m] = time.split(":").map(Number);
-  const suffix = h >= 12 ? "PM" : "AM";
-  const h12 = h === 0 ? 12 : h > 12 ? h - 12 : h;
-  return `${h12}:${m.toString().padStart(2, "0")} ${suffix}`;
+function localTzAbbr(): string {
+  try {
+    return new Intl.DateTimeFormat("en-US", { timeZoneName: "short" })
+      .formatToParts(new Date())
+      .find(p => p.type === "timeZoneName")?.value || "local";
+  } catch { return "local"; }
 }
 
-function formatShortDate(dateStr: string): string {
-  const d = new Date(dateStr + "T12:00:00");
+function formatMatchTime(d: Date): string {
+  return d.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" });
+}
+
+function formatShortDate(dateStr: string, time: string): string {
+  const d = matchToLocal(dateStr, time);
   return d.toLocaleDateString("en-US", { month: "short", day: "numeric" });
 }
 
@@ -50,7 +54,10 @@ export default function WorldCupTracker() {
   if (!data) return null;
 
   const completed = data.matches.filter(m => m.status === "FT").reverse();
-  const upcoming = data.matches.filter(m => m.status === "scheduled").slice(0, 4);
+  const upcoming = data.matches
+    .filter(m => m.status === "scheduled")
+    .sort((a, b) => matchToLocal(a.date, a.time).getTime() - matchToLocal(b.date, b.time).getTime())
+    .slice(0, 4);
 
   return (
     <section style={{
@@ -121,7 +128,7 @@ export default function WorldCupTracker() {
 
         {(tab === "results" ? completed.slice(0, 4) : upcoming).map((m, i, arr) => {
           const scores = m.score?.split("-").map(s => s.trim()) ?? [];
-          const pdtTime = etToPdt(m.time);
+          const pdtTime = matchToLocal(m.date, m.time);
           // Link finished matches to their individual recap article
           const homeSlug = m.home.toLowerCase().replace(/ /g, "-").replace(/&/g, "and");
           const awaySlug = m.away.toLowerCase().replace(/ /g, "-").replace(/&/g, "and");
@@ -185,7 +192,7 @@ export default function WorldCupTracker() {
                       {formatMatchTime(pdtTime)}
                     </div>
                     <div style={{ fontSize: 9, color: "#999" }}>
-                      {formatShortDate(m.date)}
+                      {formatShortDate(m.date, m.time)}
                     </div>
                   </>
                 )}

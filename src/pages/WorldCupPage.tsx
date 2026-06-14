@@ -454,7 +454,7 @@ export default function WorldCupPage() {
                                 <span style={{ fontWeight: 700, color: COLORS.darkGreen }}>{m.score}</span>
                               )}
                               {!isFinished && (
-                                <span style={{ color: COLORS.muted, fontSize: 10 }}>{etToPdt(m.time)} PDT</span>
+                                <span style={{ color: COLORS.muted, fontSize: 10 }}>{formatMatchTimeFromET(m.date, m.time)} {localTzAbbr()}</span>
                               )}
                             </div>
                           );
@@ -536,8 +536,8 @@ function MatchCard({ match, isPast, isToday, onHighlights }: { match: Match; isP
   const homeFlag = FLAGS[match.home_code] || "";
   const awayFlag = FLAGS[match.away_code] || "";
 
-  // Convert ET to PDT for display
-  const pdtTime = etToPdt(match.time);
+  // Convert ET to local time for display
+  const localTime = matchToLocal(match.date, match.time);
 
   return (
     <div
@@ -604,9 +604,9 @@ function MatchCard({ match, isPast, isToday, onHighlights }: { match: Match; isP
             ) : (
               <>
                 <div style={{ fontSize: 15, fontWeight: 700, color: COLORS.darkGreen }}>
-                  {formatMatchTime(pdtTime)}
+                  {formatMatchTime(localTime)}
                 </div>
-                <div style={{ fontSize: 10, color: COLORS.muted }}>PDT</div>
+                <div style={{ fontSize: 10, color: COLORS.muted }}>{localTzAbbr()}</div>
               </>
             )}
           </div>
