@@ -122,7 +122,12 @@ export default function WorldCupTracker() {
         {(tab === "results" ? completed.slice(0, 4) : upcoming).map((m, i, arr) => {
           const scores = m.score?.split("-").map(s => s.trim()) ?? [];
           const pdtTime = etToPdt(m.time);
-          const linkTo = m.status === "FT" ? "/world-cup?tab=highlights" : "/world-cup?tab=schedule";
+          // Link finished matches to their individual recap article
+          const homeSlug = m.home.toLowerCase().replace(/ /g, "-").replace(/&/g, "and");
+          const awaySlug = m.away.toLowerCase().replace(/ /g, "-").replace(/&/g, "and");
+          const linkTo = m.status === "FT"
+            ? `/articles/world-cup-2026-${homeSlug}-vs-${awaySlug}-${m.date}`
+            : "/world-cup?tab=schedule";
           return (
             <Link key={m.id} to={linkTo} style={{ textDecoration: "none", color: "inherit" }}>
             <div style={{

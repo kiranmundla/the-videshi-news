@@ -460,6 +460,107 @@ def generate_article(matches, target_date, all_data):
     }
 
 
+def generate_match_slug(match):
+    """Generate a slug for an individual match article."""
+    home = match["home"].lower().replace(" ", "-").replace("&", "and")
+    away = match["away"].lower().replace(" ", "-").replace("&", "and")
+    return f"world-cup-2026-{home}-vs-{away}-{match['date']}"
+
+
+def generate_match_article(match, all_data):
+    """Generate a standalone article for a single match."""
+    hg, ag = parse_score(match)
+    result_text = get_match_result_text(match)
+    slug = generate_match_slug(match)
+    target_date = date.fromisoformat(match["date"])
+    day_number = compute_day_number(target_date)
+    date_str = target_date.strftime("%A, %B %d")
+
+    # Headline
+    if hg == ag:
+        headline = f"{match['home']} and {match['away']} Share the Points in {hg}-{ag} Draw"
+    elif hg > ag:
+        if hg - ag >= 3:
+            headline = f"{match['home']} Demolish {match['away']} {hg}-{ag} in World Cup Opener"
+        else:
+            headline = f"{match['home']} Beat {match['away']} {hg}-{ag} at {match['venue']}"
+    else:
+        if ag - hg >= 3:
+            headline = f"{match['away']} Demolish {match['home']} {ag}-{hg} in World Cup Clash"
+        else:
+            headline = f"{match['away']} Edge Past {match['home']} {ag}-{hg} at {match['venue']}"
+
+    subheadline = (
+        f"Group {match['group']} action from {match['city']} — "
+        f"Day {day_number} of the 2026 FIFA World Cup"
+    )
+
+    # Build body
+    body = build_match_section(match, 0)
+
+    # Add NRI angle
+    nri_cities = ["San Francisco Bay Area", "New York/New Jersey", "Los Angeles",
+                  "Houston", "Dallas", "Boston", "Miami", "Seattle", "Philadelphia"]
+    city = match.get("city", "")
+    if any(c in city for c in nri_cities):
+        body += (
+            f"\n\n## For NRIs Near {city}\n\n"
+            f"This match was played at {match['venue']} in {city}, one of America's "
+            f"largest Indian-American metro areas. Check our "
+            f"[NRI Venue Guide](/world-cup?tab=nri) for nearby desi restaurants, "
+            f"transit tips, and community watch parties.\n\n"
+        )
+    else:
+        body += (
+            f"\n\n## The NRI Angle\n\n"
+            f"The 2026 World Cup is being played across 16 US, Canadian, and Mexican "
+            f"cities — many home to large Indian-American communities. Whether you're "
+            f"watching from home or heading to a stadium, check our "
+            f"[NRI Guide](/world-cup?tab=nri) for venue tips and local desi community info.\n\n"
+        )
+
+    # Closing
+    body += (
+        "---\n\n"
+        "*Follow our [World Cup tracker](/world-cup) for live scores, group standings, "
+        "and highlights. Read the full [day's recap](/articles/world-cup-recap-"
+        f"{match['date']}) for all of today's results.*\n"
+    )
+
+    # Image
+    featured_team = match["home"] if hg >= ag else match["away"]
+    image_url = get_wiki_image(featured_team) or WC_IMAGE
+
+    # Tags
+    tag_list = [
+        "world-cup", "fifa", "sports", "world-cup-2026",
+        match["home"].lower().replace(" ", "-"),
+        match["away"].lower().replace(" ", "-"),
+        match["city"].lower().replace(" ", "-").replace("/", "-"),
+        f"group-{match['group'].lower()}",
+    ]
+
+    return {
+        "id": str(uuid.uuid4()),
+        "headline": headline,
+        "subheadline": subheadline,
+        "slug": slug,
+        "category": "sports",
+        "vertical": "sports",
+        "tags": list(set(tag_list)),
+        "status": "published",
+        "published_at": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
+        "image_url": image_url,
+        "image_caption": f"{match['home']} vs {match['away']} — FIFA World Cup 2026, Group {match['group']}",
+        "image_attribution": "Wikimedia Commons",
+        "diaspora_angle": f"World Cup Group {match['group']} match at {match['venue']} in {city}.",
+        "body": body,
+        "sources": json.dumps([
+            {"name": "FIFA.com", "url": "https://www.fifa.com/fifaplus/en/tournaments/mens/worldcup/canadamexicousa2026"},
+        ]),
+    }
+
+
 def check_duplicate(slug):
     """Check if an article with this slug already exists."""
     import requests as req
@@ -554,7 +655,20 @@ def main():
         backup_path = Path(__file__).parent / f"recap-{target_date_str}.json"
         backup_path.write_text(json.dumps(article, indent=2))
         print(f"💾 Saved backup to {backup_path}")
-        sys.exit(1)
+
+    # Generate and publish individual match articles
+    print(f"\n📝 Generating individual match articles...")
+    for m in matches:
+        match_slug = generate_match_slug(m)
+        if check_duplicate(match_slug):
+            print(f"   ⚠️  {match_slug} already exists, skipping")
+            continue
+        try:
+            match_article = generate_match_article(m, all_data)
+            publish_article(match_article)
+            print(f"   ✅ {m['home']} vs {m['away']}: https://thevideshi.com/articles/{match_slug}")
+        except Exception as e:
+            print(f"   ❌ {m['home']} vs {m['away']}: {e}")
 
 
 if __name__ == "__main__":
