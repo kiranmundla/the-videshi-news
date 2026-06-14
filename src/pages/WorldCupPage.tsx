@@ -362,6 +362,16 @@ export default function WorldCupPage() {
               {data.nri_watch.key_venues_near_desi_hubs.map((v, i) => {
                 // Find matches at this venue
                 const venueMatches = data.matches.filter(m => m.venue === v.venue);
+                // Map venues to their guide article slugs
+                const guideSlugMap: Record<string, string> = {
+                  "MetLife Stadium": "world-cup-2026-guide-new-york",
+                  "Levi's Stadium": "world-cup-2026-guide-san-francisco",
+                  "SoFi Stadium": "world-cup-2026-guide-los-angeles",
+                  "AT&T Stadium": "world-cup-2026-guide-dallas",
+                  "NRG Stadium": "world-cup-2026-guide-houston",
+                  "Hard Rock Stadium": "world-cup-2026-guide-miami",
+                };
+                const guideSlug = guideSlugMap[v.venue];
                 return (
                 <div key={i} style={{
                   background: "#fff", border: "1px solid #e5e5e5", borderRadius: 12,
@@ -428,6 +438,24 @@ export default function WorldCupPage() {
                         })}
                       </div>
                     </div>
+                  )}
+
+                  {/* Read Full Guide link */}
+                  {guideSlug && (
+                    <Link
+                      to={`/articles/${guideSlug}`}
+                      style={{
+                        display: "flex", alignItems: "center", justifyContent: "center", gap: 6,
+                        marginTop: 12, padding: "8px 16px",
+                        background: COLORS.lightGold, color: COLORS.darkGreen,
+                        borderRadius: 8, fontSize: 12, fontWeight: 700,
+                        textDecoration: "none", transition: "opacity 0.2s",
+                      }}
+                      onMouseEnter={e => (e.currentTarget.style.opacity = "0.85")}
+                      onMouseLeave={e => (e.currentTarget.style.opacity = "1")}
+                    >
+                      📖 Read Full NRI Venue Guide
+                    </Link>
                   )}
 
                   {/* Buy Tickets link */}
