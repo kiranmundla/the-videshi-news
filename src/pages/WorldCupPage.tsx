@@ -115,8 +115,8 @@ export default function WorldCupPage() {
   const byDate = groupMatchesByDate(data.matches);
   const dates = Object.keys(byDate).sort();
 
-  // Find today or next match day
-  const todayStr = now.toISOString().split("T")[0];
+  // Find today or next match day (use local timezone, not UTC)
+  const todayStr = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
   const todayIdx = dates.findIndex(d => d >= todayStr);
   const startIdx = todayIdx >= 0 ? todayIdx : 0;
 
