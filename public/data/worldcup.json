@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-06-14T00:58:13Z",
-  "stage": "Group Stage — 6 of 72 matches played",
+  "last_updated": "2026-06-14T03:58:49Z",
+  "stage": "Group Stage — 7 of 72 matches played",
   "hosts": "USA, Mexico & Canada",
   "dates": {
     "start": "2026-06-11",
@@ -126,6 +126,19 @@
     ],
     "C": [
       {
+        "name": "Scotland",
+        "code": "SCO",
+        "flag": "🏴󠁧󠁢󠁳󠁣󠁴󠁿",
+        "rank": 42,
+        "p": 1,
+        "w": 1,
+        "d": 0,
+        "l": 0,
+        "gf": 1,
+        "ga": 0,
+        "pts": 3
+      },
+      {
         "name": "Brazil",
         "code": "BRA",
         "flag": "🇧🇷",
@@ -152,29 +165,16 @@
         "pts": 1
       },
       {
-        "name": "Scotland",
-        "code": "SCO",
-        "flag": "🏴󠁧󠁢󠁳󠁣󠁴󠁿",
-        "rank": 42,
-        "p": 0,
-        "w": 0,
-        "d": 0,
-        "l": 0,
-        "gf": 0,
-        "ga": 0,
-        "pts": 0
-      },
-      {
         "name": "Haiti",
         "code": "HAI",
         "flag": "🇭🇹",
         "rank": 83,
-        "p": 0,
+        "p": 1,
         "w": 0,
         "d": 0,
-        "l": 0,
+        "l": 1,
         "gf": 0,
-        "ga": 0,
+        "ga": 1,
         "pts": 0
       }
     ],
@@ -766,8 +766,8 @@
       "away": "Scotland",
       "venue": "Gillette Stadium",
       "city": "Boston",
-      "status": "scheduled",
-      "score": null,
+      "status": "FT",
+      "score": "0-1",
       "home_code": "HAI",
       "away_code": "SCO"
     },
@@ -1776,6 +1776,13 @@
     }
   },
   "highlights": [
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DZjO4t9Fugw",
+      "account": "@fifaworldcup",
+      "caption": "Scotland 1-0 Haiti — McGinn's goal secures Scotland's World Cup return 🏴‍☠️⚽",
+      "date": "2026-06-13"
+    },
     {
       "platform": "instagram",
       "url": "https://www.instagram.com/p/DZhIucokd7N/",
