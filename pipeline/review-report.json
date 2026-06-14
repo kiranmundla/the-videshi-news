@@ -1,43 +1,84 @@
 {
-  "timestamp": "2026-06-14T20:15:17.673513+00:00",
+  "timestamp": "2026-06-14T20:45:49.564999+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
+    "pass": 2,
     "flag": 1,
     "fail": 0,
     "error": 0
   },
-  "revisions": 0,
+  "revisions": 1,
   "unpublished": 0,
   "articles": [
     {
-      "id": "126c63a4-74e3-4cfb-b9a5-cf6503e8dc21",
-      "headline": "America's World Cup Is Scaring Away the World",
-      "slug": "world-cup-immigration-crackdown-visa-enforcement-indian-diaspora-20260614",
+      "id": "aead5e11-0c29-433c-93a7-8eda1eb08377",
+      "headline": "America's Top Trade Negotiator Is Coming to India. A Deal Could Land by Mid-July.",
+      "slug": "ustr-greer-india-visit-trade-deal-mid-july-g7-tariffs-section-301-20260614",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "5178b543-d0cb-4092-b0f5-ffeede6fb4b9",
+            "headline": "America's Top Trade Negotiator Will Fly to India the Week Af"
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 6,
+        "embed_issues": [],
+        "image_match": {
+          "score": 8,
+          "issue": "The image of Jamieson Greer is relevant to the article's topic on trade negotiations."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses trade negotiations that could impact the Indian diaspora, particularly in terms of economic opportunities and trade relations."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more direct quotes from Indian officials to enhance the perspective of the Indian side in the negotiations.",
+          "Provide a brief background on the significance of the trade relationship for the Indian diaspora to strengthen the diaspora angle."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Revised by gpt-4o-mini (646\u2192754 words)"
+      ],
+      "revised": true,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "38316d9f-11d1-4afc-908a-b1d7e00653c4",
+      "headline": "India's Tech Leaders Are Demanding a $6 Billion AI Fund. The Anthropic Shutdown Made It Personal.",
+      "slug": "india-sovereign-ai-fund-mohandas-pai-vembu-anthropic-suspension-50000-crore-20260614",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
-        "overall_score": 7,
+        "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 6,
-          "issue": "The image depicts customs operations, which is somewhat relevant but does not directly relate to the World Cup theme."
+          "score": 7,
+          "issue": "The image is relevant to the tech theme but does not specifically depict AI or the context of the article."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses how the immigration enforcement climate affects non-citizens, including Indian professionals, making it relevant to the diaspora."
+          "note": "The article discusses the implications of U.S. export restrictions on Indian professionals in the tech industry, particularly those in Silicon Valley."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes or perspectives from Indian fans or workers to strengthen the diaspora connection.",
-          "Consider using a more relevant image that directly relates to the World Cup or its impact on immigration."
+          "Consider including a more specific image related to AI or the tech industry to enhance visual relevance.",
+          "Expand on the diaspora angle by including quotes or perspectives from Indian professionals in the U.S. regarding the impact of these restrictions."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
         "promoted to published"
@@ -47,42 +88,42 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "5a582650-23db-40f8-90e0-582ffaf9b8d0",
-      "headline": "Opendoor Just Killed 250 Jobs in India and Replaced Them with AI \u2014 The GCC Model Should Be Paying Attention",
-      "slug": "opendoor-india-shutdown-ai-gcc-model-h1b-20260614",
+      "id": "e88a8b94-7c3b-45b6-ac4e-92c5f2bb0541",
+      "headline": "Modi and Macron Have Drawn Up a Five-Year Plan to Double Trade. Here Is Everything They Agreed at Villa Kerylos.",
+      "slug": "modi-macron-villa-kerylos-bilateral-innovation-roadmap-2030-trade-double-ai-20260614",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
-        "broken_embeds": [
-          {
-            "url": "https://x.com/nejatian/status/1932519384000000000",
-            "problem": "broken",
-            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
-          }
-        ]
+        "broken_embeds": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/DZkPEt6zb9c/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not appear to be directly related to the diplomatic discussions or agreements between Modi and Macron."
+          }
+        ],
         "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the topic of job layoffs or AI in the workplace."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses the implications of job losses in India on Indian professionals in the US, making it relevant to the diaspora."
+          "note": "The article effectively connects the outcomes of the meeting to the Indian diaspora, particularly regarding visas and education."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that depicts job loss or AI in the workplace.",
-          "Add a quote or perspective from an NRI to strengthen the diaspora connection."
+          "Replace the irrelevant Instagram embed with a more relevant source or remove it altogether.",
+          "Consider adding quotes from Modi or Macron to enhance the article's engagement and authority."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "Removed 1 broken/hallucinated embed(s)",
+        "Removed irrelevant embed: https://www.instagram.com/p/DZkPEt6zb9c/",
         "promoted to published"
       ],
       "revised": false,
