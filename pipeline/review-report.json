@@ -1,19 +1,19 @@
 {
-  "timestamp": "2026-06-14T10:15:39.430477+00:00",
+  "timestamp": "2026-06-14T10:45:46.063014+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 5,
-    "flag": 1,
+    "pass": 2,
+    "flag": 3,
     "fail": 0,
     "error": 0
   },
-  "revisions": 0,
+  "revisions": 1,
   "unpublished": 0,
   "articles": [
     {
-      "id": "91f4696e-8205-4cd6-9ffb-e0933f445421",
-      "headline": "The World's Biggest Destination Wedding Summit Is Coming to India for the First Time \u2014 Thanks to NRI Spending",
-      "slug": "dwp-congress-udaipur-destination-wedding-nri-20260614",
+      "id": "cb9314d9-a476-4de4-b617-2c3877f05a52",
+      "headline": "He Was Last After Six Rounds. Then Praggnanandhaa Won Four Straight and Made History in Oslo.",
+      "slug": "praggnanandhaa-wins-norway-chess-2026-first-indian-beats-carlsen-twice-gukesh-last-nri",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -21,138 +21,107 @@
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively highlights the significance of NRI spending in the luxury wedding market, making it relevant to diaspora readers."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include quotes or testimonials from NRIs who have planned weddings in India to add a personal touch.",
-          "Provide more statistics or data on the impact of NRI weddings on local economies to strengthen the argument."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "a097740e-23e3-4c15-be30-ed71b308c6b4",
-      "headline": "Sarnath Could Become India's 45th UNESCO World Heritage Site Next Month \u2014 Here's What That Means for NRIs",
-      "slug": "sarnath-unesco-world-heritage-nomination-varanasi-nri-20260614",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 10,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the UNESCO nomination of Sarnath to the emotional and cultural significance of Varanasi for NRIs."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from experts or local authorities to enhance credibility.",
-          "Include more information on how NRIs can engage with Sarnath if it becomes a UNESCO site."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "c4f965a7-0386-4341-aee1-52f37fe5ec16",
-      "headline": "Marriott's 10,000th Hotel Is a Tiger Safari Lodge in Rajasthan \u2014 and NRIs Should Take Note",
-      "slug": "jw-marriott-ranthambore-10000th-hotel-nri-safari-20260614",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the luxury travel experience in India to the interests of NRIs, particularly in terms of wildlife tourism and hotel loyalty programs."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include a quote or testimonial from an NRI traveler who has experienced the new hotel to enhance relatability.",
-          "Add more details about the specific amenities or experiences that cater to NRI travelers."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "dd784a8f-d461-4226-a452-b9748eeb430c",
-      "headline": "Foreign Investors Have Fled 43 of India's 50 Biggest Stocks. Domestic Money Is Filling the Void.",
-      "slug": "fii-ownership-14-year-low-dii-record-high-india-nri-investor-implications-20260614",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
+        "embed_issues": [
           {
-            "article_id": "780b01d2-1644-4df8-a519-156904800172",
-            "headline": "India\u2019s IT Stocks Have Lost 27 Per Cent This Year. For NRI T"
-          },
-          {
-            "article_id": "bdbe36d1-ec3c-44d8-ac5f-35181b39183b",
-            "headline": "BlackRock and Lighthouse Canton Say India Has Been 'Over-Pun"
+            "url": "https://www.instagram.com/reel/DZQLMpsOKXu/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel does not appear to be directly related to the article's subject matter, which focuses on Praggnanandhaa's achievements in chess."
           }
         ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
         "image_match": {
-          "score": 6,
-          "issue": "The image does not directly relate to the topic of foreign investment and stock market dynamics."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses the impact of foreign investment trends on NRI investors, making it relevant to the diaspora audience."
+          "note": "The article effectively connects Praggnanandhaa's achievements to the Indian diaspora, highlighting the significance of his win for Indian-American communities."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that reflects the themes of investment and stock markets.",
-          "Add a section that directly addresses how NRI investors can navigate the current market conditions."
+          "Replace the irrelevant Instagram embed with a more relevant source or highlight from the tournament.",
+          "Consider adding quotes or reactions from the diaspora community to enhance the connection."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DZQLMpsOKXu/",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "b82d45fd-3e17-4f22-b218-6d55d97e8b50",
+      "headline": "Gurbaz Smashed His Fastest Century. It Took Shubman Gill 66 Balls to Make It Irrelevant.",
+      "slug": "india-beat-afghanistan-1st-odi-gill-84-gurbaz-102-dharamsala-2026-nri",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 6,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/DZiJLpHn_wE/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not appear to be directly related to the match or players discussed in the article."
+          }
+        ],
+        "image_match": {
+          "score": 5,
+          "issue": "The image of Shubman Gill does not match the article's focus on Gurbaz's performance."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 6,
+          "note": "The article discusses Indian cricket, which is of interest to the Indian diaspora, but lacks a deeper connection to NRI perspectives."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the irrelevant Instagram embed with a more relevant one that highlights Gurbaz's performance.",
+          "Consider adding quotes or perspectives from Indian diaspora fans or analysts to enhance the diaspora angle."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/DZiJLpHn_wE/",
+        "Revised by gemini-2.5-flash (591\u2192398 words)"
+      ],
+      "revised": true,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "2b0136ca-7028-48e5-ba1f-c373c08b5595",
+      "headline": "India Has Rejected Washington's 'Forced Labour' and 'Surplus Capacity' Charges. The 12.5 Per Cent Tariff Threat Is Now Part of the Deal.",
+      "slug": "india-rejects-us-forced-labour-surplus-capacity-tariff-trade-deal-greer-visit-20260614",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 3,
+          "issue": "irrelevant"
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the trade negotiations to the Indian diaspora, highlighting the potential impact on Indian Americans and businesses."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the hero image with one that is more relevant to the topic of trade negotiations between India and the US.",
+          "Consider adding more direct quotes from Indian officials to enhance the article's depth and authority."
         ],
         "verdict": "flag"
       },
@@ -164,9 +133,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "a9e5421a-3901-4c64-99f6-fb99b60aa661",
-      "headline": "High Social Media Use Raises Mental Health Risks in Teens. A Landmark Australian Study Just Quantified the Damage.",
-      "slug": "social-media-adolescent-mental-health-australia-study-diaspora-parenting-20260614",
+      "id": "fe8d936d-254f-4aad-9a89-18b6e22fa350",
+      "headline": "King Charles Marks the British Asian Trust's 20th Year With a \u00a31 Million Gala. The Timing Is Not Coincidental.",
+      "slug": "king-charles-british-asian-trust-20th-anniversary-gala-indian-diaspora-uk-20260614",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -176,19 +145,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image of King Charles III is relevant to the article's subject but does not directly depict the gala event."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the findings to the experiences of diaspora parents managing technology use in a cross-cultural context."
+          "quality": 9,
+          "note": "The article effectively connects the British Asian Trust's work and the King's patronage to the British Asian diaspora, highlighting their contributions and the significance of the event."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more specific examples or quotes from diaspora parents to enhance relatability.",
-          "Include a brief section on practical tips for parents on managing social media use among teens."
+          "Include a direct image from the gala event to enhance visual relevance.",
+          "Expand on the diaspora's contributions to the charity's work for a deeper connection."
         ],
         "verdict": "pass"
       },
@@ -200,9 +169,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "c3ccf930-10cf-483d-98b2-35fa3f2f738d",
-      "headline": "Five Fruits a Day May Not Save Your Heart. A 30,000-Person Study Says It Is the Type That Matters.",
-      "slug": "flavanol-intake-heart-health-five-a-day-not-enough-south-asian-diet-advantage-20260614",
+      "id": "96263f35-4f13-4328-b35b-6c1cad5c7014",
+      "headline": "Indian Banks Are Offering NRI Dollar Deposits at Rates Not Seen in a Decade. The RBI Is Picking Up the Tab.",
+      "slug": "indian-banks-nri-dollar-deposits-fcnr-rbi-rates-decade-high-20260614",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -218,13 +187,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the findings to South Asian dietary habits and cardiovascular health, making it relevant for the diaspora."
+          "note": "The article effectively addresses NRIs by discussing the benefits of new deposit rates and their implications for NRI investors."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more specific examples of how diaspora families can incorporate flavanol-rich foods into their diets.",
-          "Include a brief summary of the study's methodology to enhance credibility."
+          "Include a brief explanation of what FCNR(B) deposits are for readers who may not be familiar with the term.",
+          "Add a section on potential risks or considerations for NRIs when investing in these deposits."
         ],
         "verdict": "pass"
       },
