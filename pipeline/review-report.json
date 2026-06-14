@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-14T16:46:08.962997+00:00",
+  "timestamp": "2026-06-14T17:15:56.698349+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 5,
-    "flag": 1,
+    "pass": 0,
+    "flag": 2,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "e2ae2d1a-5f26-498a-affe-ff88dc199b5c",
-      "headline": "BlackRock Says India Has Been 'Over-Punished' by Global Markets. It Thinks the Worst of the Selling Is Over.",
-      "slug": "blackrock-india-over-punished-foreign-outflows-peak-ai-gap-advantage-20260614",
+      "id": "6130af62-4cf5-4258-b7aa-0575e30d247b",
+      "headline": "Vir Das Is Making a Horror Film. The Cast Alone Should Make You Nervous.",
+      "slug": "vir-das-baara-number-horror-film-found-footage-ensemble-cast-2026",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -21,7 +21,13 @@
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/DZbud6sCC-I/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not appear to be directly related to the film or its cast, making it irrelevant to the article's subject."
+          }
+        ],
         "image_match": {
           "score": 9,
           "issue": null
@@ -29,125 +35,18 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses measures taken by the Indian government to attract diaspora capital, making it relevant for NRI readers."
+          "note": "The article effectively connects Vir Das's work to the diaspora audience, highlighting his global appeal and the anticipation for his film among NRIs."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more direct quotes from BlackRock or Lighthouse Canton to enhance credibility.",
-          "Include a brief overview of how the changes in NRI investment rules could specifically impact the Indian economy."
+          "Replace the irrelevant Instagram embed with a more relevant one that showcases the film or its cast.",
+          "Consider adding a quote or insight from a diaspora audience member or critic to further enhance the diaspora angle."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "59b26a0d-f3cd-4cc4-a25c-80cb18848e4f",
-      "headline": "She Patrols Highways for the UP Police and Runs for India. Parul Chaudhary Just Smashed the 5000m National Record by Six Seconds.",
-      "slug": "parul-chaudhary-5000m-national-record-nice-france-cwg-2026-dsp-up-police-nri",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects Chaudhary's dual life as a police officer and athlete to the diaspora's experiences, highlighting the challenges and achievements of Indians abroad."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more quotes or personal anecdotes from Parul Chaudhary to enhance the narrative.",
-          "Add a brief section on the support systems available for athletes in India, especially for those balancing careers."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "383b49db-a044-44d7-b929-94e71c81f06b",
-      "headline": "She Led 11-9 at the Interval. Then Yamaguchi Scored Six Straight and Sindhu's Title Drought Hit 18 Months.",
-      "slug": "pv-sindhu-australian-open-semifinal-loss-yamaguchi-title-drought-2026-nri",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article connects well with NRI readers by referencing Sindhu's past rivalries and her significance in the badminton world."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more context about Sindhu's impact on the badminton scene for NRI readers.",
-          "Include quotes or reactions from Sindhu or her coach to enhance the narrative."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "6d9c1d3f-3f8a-498e-a90a-e0b3c308732f",
-      "headline": "He Has Not Thrown a Javelin in Competition Since September. India Has Named Neeraj Chopra for Glasgow Anyway.",
-      "slug": "neeraj-chopra-conditional-cwg-2026-glasgow-afi-back-injury-comeback-nri",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects Neeraj Chopra's potential participation in the Commonwealth Games to the Indian diaspora in the UK, highlighting the significance of his presence for the community."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from Neeraj Chopra or his coach to provide a personal touch and enhance engagement.",
-          "Include more context about the significance of the Commonwealth Games for Indian athletes and the diaspora."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/DZbud6sCC-I/",
         "promoted to published"
       ],
       "revised": false,
@@ -170,73 +69,28 @@
       },
       "llm_review": {
         "overall_score": 6,
-        "embed_issues": [
-          {
-            "url": "https://x.com/DrSJaishankar/status/2065518118802461072",
-            "problem": "irrelevant",
-            "explanation": "The tweet from Jaishankar is relevant to the article's subject, but it does not provide additional context or engagement for diaspora readers."
-          }
-        ],
+        "embed_issues": [],
         "image_match": {
           "score": 3,
-          "issue": "The image of External Affairs Minister Jaishankar does not directly relate to the article's focus on the crisis involving Indian sailors and U.S.-Iran tensions."
+          "issue": "The image of External Affairs Minister S. Jaishankar does not directly relate to the Gulf crisis or the attacks on Indian sailors."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 7,
-          "note": "The article discusses the impact on Indian seafarers, which is relevant to the diaspora, particularly those with family in maritime professions."
-        },
-        "factual_flags": [
-          "The article claims that three Indian sailors were killed, but does not clarify the total number of casualties or the status of the remaining crew members."
-        ],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more context on how the crisis affects Indian seafarers and their families, possibly with quotes or testimonials from diaspora members.",
-          "Replace the hero image with one that better represents the maritime context or the crisis situation to enhance relevance."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Removed irrelevant embed: https://x.com/DrSJaishankar/status/2065518118802461072",
-        "Revised by gpt-4o-mini (833\u2192921 words)"
-      ],
-      "revised": true,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "715abd09-2bc6-49cd-8eb8-573c2b0cc5d3",
-      "headline": "India Wants Diaspora Athletes to Play for the National Team. The 'Sports Passport' Is Now on Modi's Desk.",
-      "slug": "india-sports-passport-proposal-pio-oci-athletes-represent-national-team-20260614",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image depicts supporters of the Indian national football team, which is relevant to the article's focus on sports and the potential inclusion of diaspora athletes."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the proposal to the Indian diaspora, highlighting their potential contributions to Indian sports."
+          "note": "The article discusses the impact on Indian seafarers, which is relevant to the diaspora community, particularly those with family members in maritime professions."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes from diaspora athletes or sports experts to enhance the article's depth.",
-          "Provide more context on how similar policies have impacted other countries' sports performance."
+          "Include more context on the implications for Indian seafarers and their families to strengthen the diaspora connection.",
+          "Replace the hero image with one that directly relates to the Gulf crisis or Indian sailors to enhance relevance."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
-        "promoted to published"
+        "Revised by gpt-4o-mini (921\u2192949 words)"
       ],
-      "revised": false,
+      "revised": true,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
     }
