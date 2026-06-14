@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-14T14:15:38.642637+00:00",
+  "timestamp": "2026-06-14T14:45:21.072480+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 6,
-    "flag": 0,
+    "pass": 2,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,17 +11,32 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "b4ca00cc-0bb6-4734-99b0-543d7b05bd32",
-      "headline": "India's SIP Machine Has Grown Tenfold in a Decade. Equity Mutual Fund Flows Just Hit a One-Year Low. What NRIs Should Read Into Both.",
-      "slug": "india-sip-tenfold-decade-equity-mf-flows-one-year-low-nri-investor-guide-20260614",
+      "id": "c9e876f0-1803-4ec2-aa4f-d1f6e51bf87b",
+      "headline": "America Now Wants Green Card Applicants to Leave the Country. Zoho's Founder Says They Should.",
+      "slug": "uscis-adjustment-of-status-green-card-consular-processing-vembu-come-home-20260614",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "393c6ecf-064a-4cbc-97b6-42b97d883d89",
+            "headline": "America Has Also Run Out of EB-5 Investor Green Cards for In"
+          },
+          {
+            "article_id": "fab7487e-6358-4ebe-a4fe-9829d96999b7",
+            "headline": "USCIS Just Made It Harder to Get a Green Card Without Leavin"
+          }
+        ],
         "broken_embeds": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/DYsF6Y3GG5t/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not appear to be directly related to the topic of green card applications or the comments made by Sridhar Vembu."
+          }
+        ],
         "image_match": {
           "score": 9,
           "issue": null
@@ -29,13 +44,50 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively addresses NRIs by discussing the implications of domestic market trends on their investments."
+          "note": "The article effectively connects with the Indian diaspora by discussing immigration policies that directly affect Indian professionals in the US."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more specific examples of how NRIs can leverage the current market conditions.",
-          "Include a brief section on potential risks for NRIs investing in the current climate."
+          "Replace the irrelevant Instagram embed with a more relevant source or commentary related to the green card policy.",
+          "Consider adding quotes or reactions from more Indian professionals or organizations to enhance the diaspora perspective."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/DYsF6Y3GG5t/",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "57bcc290-c497-4edc-9118-aa9a80b37147",
+      "headline": "India's Top IT Firms Got 40 Per Cent Fewer H-1B Visas This Year. TCS Was Hit the Hardest.",
+      "slug": "h1b-visa-approvals-top-it-firms-fall-40-percent-tcs-infosys-trump-20260614",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 8,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses the impact of H-1B visa changes on Indian IT professionals, which is relevant to the NRI community."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more direct quotes from Indian IT professionals or diaspora members to enhance the personal connection.",
+          "Add a section discussing potential future implications for Indian IT firms and workers in the US."
         ],
         "verdict": "pass"
       },
@@ -47,156 +99,17 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "172567c3-de49-42b8-a66a-d7fe8bd62b19",
-      "headline": "Losing Belly Fat Saved Brains for a Decade. Losing Weight Did Not. Why South Asians Cannot Ignore This Study.",
-      "slug": "visceral-fat-brain-atrophy-cognitive-decline-weight-loss-irrelevant-south-asian-risk-20260614",
+      "id": "cd93b835-bd95-449b-91d6-01bc5dcbadb7",
+      "headline": "Modi Lands in Slovakia. No Indian Prime Minister Has Set Foot There Since 1993.",
+      "slug": "modi-slovakia-first-indian-pm-visit-since-1993-trade-eu-fta-20260614",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the study's findings to the health risks faced by South Asians, particularly NRIs, making it relevant to the diaspora audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from South Asian health experts to enhance credibility.",
-          "Include practical tips for NRIs on how to reduce visceral fat."
+        "duplicate_images": [
+          {
+            "article_id": "1a4b6cc4-8a83-4413-8f7d-fc71dd6e7e31",
+            "headline": "Modi Leaves for Europe Tomorrow With the Longest Agenda an I"
+          }
         ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "629b6749-2713-4ea3-8424-768fddb92653",
-      "headline": "A $2 Tuberculosis Vaccine Just Normalised Blood Sugar in Type 1 Diabetics. South Asians Should Pay Attention.",
-      "slug": "bcg-vaccine-reprograms-white-blood-cells-type-1-diabetes-south-asian-impact-20260614",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the findings to the South Asian diaspora, highlighting the implications for South Asian children with Type 1 diabetes."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from South Asian medical professionals or diabetes advocates to strengthen the diaspora connection.",
-          "Include more statistics or data on the prevalence of Type 1 diabetes specifically among South Asians to enhance the relevance."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "8c3f1110-615d-4f2b-81f6-2f11b15346e9",
-      "headline": "Kyrgyzstan on $50 a Day \u2014 the Central Asian Escape NRIs Don't Know About",
-      "slug": "kyrgyzstan-budget-travel-nri-central-asia-summer-20260614",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively highlights the unique travel opportunities for NRIs, making a strong case for Kyrgyzstan as an appealing destination."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more personal anecdotes or testimonials from NRIs who have traveled to Kyrgyzstan to enhance relatability.",
-          "Include a section on cultural experiences or festivals in Kyrgyzstan that might interest Indian travelers."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "517e1605-f699-44d2-b4cd-08f144b73314",
-      "headline": "India's Airports Are Scanning Your Face Now \u2014 What NRIs Flying Home Need to Know",
-      "slug": "digiyatra-biometric-airports-india-nri-guide-20260614",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively addresses the specific concerns and needs of NRIs regarding the DigiYatra system."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include a brief section on how NRIs can obtain Aadhaar if they don't have one.",
-          "Add a comparison of DigiYatra with similar systems in other countries to provide context."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "36efbbfa-6b5c-4d37-a531-bc274dff1fbd",
-      "headline": "Air India's Easy Connect Lets You Clear Immigration in Varanasi \u2014 and Skip the Delhi Chaos",
-      "slug": "air-india-easy-connect-varanasi-hub-spoke-nri-20260614",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
@@ -204,18 +117,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image is relevant to aviation but does not specifically depict Varanasi or the Easy Connect service."
+          "issue": "The image of Modi is relevant as it features the Prime Minister, but it does not depict the visit to Slovakia specifically."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the Easy Connect service to the needs and experiences of the Indian American diaspora, particularly those with roots in smaller cities."
+          "quality": 8,
+          "note": "The article discusses the implications of Modi's visit for the Indian diaspora in Europe, particularly in relation to economic opportunities."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider including a relevant image of Varanasi or the airport to enhance the visual connection to the topic.",
-          "Add quotes or testimonials from NRIs who would benefit from this service to provide a personal touch."
+          "Include a quote or perspective from a member of the Indian diaspora in Europe to enhance the connection.",
+          "Add more context about Slovakia's significance to the Indian community or previous interactions."
         ],
         "verdict": "pass"
       },
