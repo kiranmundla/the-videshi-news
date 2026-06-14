@@ -84,6 +84,7 @@ def submit_slug(slug):
 
 def fetch_recent_articles(hours=4):
     """Fetch recently published articles from Supabase."""
+    global SUPABASE_URL, SUPABASE_KEY
     if not SUPABASE_URL or not SUPABASE_KEY:
         # Try loading from env file
         env_path = os.path.expanduser("~/workspace/.env.supabase")
@@ -94,9 +95,15 @@ def fetch_recent_articles(hours=4):
                     if line and not line.startswith("#") and "=" in line:
                         k, v = line.split("=", 1)
                         os.environ[k.strip()] = v.strip()
-            return fetch_recent_articles(hours)
-        print("❌ Supabase credentials not found")
-        return []
+            # Refresh module-level vars from newly loaded env
+            SUPABASE_URL = os.environ.get("SUPABASE_URL") or os.environ.get("VITE_SUPABASE_URL")
+            SUPABASE_KEY = os.environ.get("SUPABASE_SERVICE_ROLE_KEY")
+            if not SUPABASE_URL or not SUPABASE_KEY:
+                print("❌ Supabase credentials not found in env file")
+                return []
+        else:
+            print("❌ Supabase credentials not found")
+            return []
 
     since = (datetime.now(timezone.utc) - timedelta(hours=hours)).isoformat()
     url = f"{SUPABASE_URL}/rest/v1/p2_articles"
