@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-06-14T03:58:49Z",
-  "stage": "Group Stage — 7 of 72 matches played",
+  "last_updated": "2026-06-14T05:59:44Z",
+  "stage": "Group Stage — 8 of 72 matches played",
   "hosts": "USA, Mexico & Canada",
   "dates": {
     "start": "2026-06-11",
@@ -193,29 +193,29 @@
         "pts": 3
       },
       {
-        "name": "Turkey",
-        "code": "TUR",
-        "flag": "🇹🇷",
-        "rank": 22,
-        "p": 0,
-        "w": 0,
-        "d": 0,
-        "l": 0,
-        "gf": 0,
-        "ga": 0,
-        "pts": 0
-      },
-      {
         "name": "Australia",
         "code": "AUS",
         "flag": "🇦🇺",
         "rank": 27,
-        "p": 0,
-        "w": 0,
+        "p": 1,
+        "w": 1,
         "d": 0,
         "l": 0,
-        "gf": 0,
+        "gf": 2,
         "ga": 0,
+        "pts": 3
+      },
+      {
+        "name": "Turkey",
+        "code": "TUR",
+        "flag": "🇹🇷",
+        "rank": 22,
+        "p": 1,
+        "w": 0,
+        "d": 0,
+        "l": 1,
+        "gf": 0,
+        "ga": 2,
         "pts": 0
       },
       {
@@ -781,8 +781,8 @@
       "away": "Turkey",
       "venue": "BC Place",
       "city": "Vancouver",
-      "status": "scheduled",
-      "score": null,
+      "status": "FT",
+      "score": "2-0",
       "home_code": "AUS",
       "away_code": "TUR"
     },
@@ -1776,6 +1776,34 @@
     }
   },
   "highlights": [
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DZjCupBHGe2/",
+      "account": "@fifaworldcup",
+      "caption": "Decisive moments from Day 3 🎯 #FIFAWorldCup",
+      "date": "2026-06-13"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DZjYqMRlizT",
+      "account": "@fifaworldcup",
+      "caption": "Australia 2-0 Turkey — The Socceroos strike in Vancouver 🇦🇺🎯",
+      "date": "2026-06-14"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DZjOW9SCqRk/",
+      "account": "@fifaworldcup",
+      "caption": "Victory for Scotland! 💪 — The Tartan Army celebrate in Boston 🏴󠁧󠁢󠁳󠁣󠁴󠁿",
+      "date": "2026-06-13"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DZi761OCpIR/",
+      "account": "@fifaworldcup",
+      "caption": "Brazil 1-1 Morocco — A thrilling draw at MetLife Stadium 🤩🇧🇷🤝🇲🇦",
+      "date": "2026-06-13"
+    },
     {
       "platform": "threads",
       "url": "https://www.threads.com/@fifaworldcup/post/DZjO4t9Fugw",
