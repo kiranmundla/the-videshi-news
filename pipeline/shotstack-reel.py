@@ -1615,9 +1615,9 @@ def build_anchor_reel_timeline(
                 "asset": {
                     "type": "html",
                     "html": "<div class='wm'>TheVideshi.com</div>",
-                    "css": ".wm { font-family: 'Inter'; color: #ffffff; font-size: 15px; font-weight: 700; letter-spacing: 1px; text-shadow: 0 2px 6px rgba(0,0,0,0.95); text-align: center; padding: 3px 10px; background: rgba(0,0,0,0.45); border-radius: 4px; }",
-                    "width": 200,
-                    "height": 30,
+                    "css": ".wm { font-family: 'Inter'; color: #ffffff; font-size: 17px; font-weight: 700; letter-spacing: 0.5px; white-space: nowrap; text-shadow: 0 2px 6px rgba(0,0,0,0.95); text-align: center; padding: 4px 14px; background: rgba(0,0,0,0.55); border-radius: 5px; box-sizing: border-box; display: inline-block; }",
+                    "width": 240,
+                    "height": 34,
                 },
                 "start": 0,
                 "length": "end",
@@ -1744,7 +1744,7 @@ def build_anchor_reel_timeline(
     broll_track = {"clips": broll_clips}
 
     # ── CTA: Branded end card (HTML overlay on dark background) — animated slide up ──
-    end_html, end_css = build_end_card_html()
+    end_html, end_css = build_end_card_html(logo_url=LOGO_URL)
     end_card_track = {
         "clips": [
             {
@@ -2039,19 +2039,24 @@ SOCIAL_HANDLES = {
 }
 
 
-def build_end_card_html():
+def build_end_card_html(logo_url=None):
     """Build branded end card with logo + social handles. All inline styles for Shotstack compatibility."""
-    html = """<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;width:100%;height:100%;background:linear-gradient(180deg,#0a1628 0%,#0f1f35 50%,#0a1628 100%);padding:60px 40px;box-sizing:border-box;">
-  <div style="font-family:Inter;font-size:64px;font-weight:700;color:#D4AF37;letter-spacing:8px;margin-bottom:12px;">THE VIDESHI</div>
-  <div style="font-family:Inter;font-size:18px;color:rgba(255,255,255,0.4);letter-spacing:3px;text-transform:uppercase;margin-bottom:40px;">News for the Indian Diaspora</div>
-  <div style="width:50px;height:2px;background:#D4AF37;margin-bottom:40px;opacity:0.5;"></div>
-  <div style="font-family:Inter;font-size:30px;font-weight:700;color:#fff;letter-spacing:1px;margin-bottom:48px;">thevideshi.com</div>
-  <div style="display:flex;flex-direction:column;gap:14px;align-items:center;">
-    <div style="display:flex;gap:14px;align-items:center;"><span style="font-family:Inter;font-size:14px;font-weight:700;color:#D4AF37;letter-spacing:2px;width:130px;text-align:right;">YOUTUBE</span><span style="font-family:Inter;font-size:18px;color:rgba(255,255,255,0.7);">@the.videshi</span></div>
-    <div style="display:flex;gap:14px;align-items:center;"><span style="font-family:Inter;font-size:14px;font-weight:700;color:#D4AF37;letter-spacing:2px;width:130px;text-align:right;">INSTAGRAM</span><span style="font-family:Inter;font-size:18px;color:rgba(255,255,255,0.7);">@the.videshi</span></div>
-    <div style="display:flex;gap:14px;align-items:center;"><span style="font-family:Inter;font-size:14px;font-weight:700;color:#D4AF37;letter-spacing:2px;width:130px;text-align:right;">THREADS</span><span style="font-family:Inter;font-size:18px;color:rgba(255,255,255,0.7);">@the.videshi</span></div>
-    <div style="display:flex;gap:14px;align-items:center;"><span style="font-family:Inter;font-size:14px;font-weight:700;color:#D4AF37;letter-spacing:2px;width:130px;text-align:right;">X</span><span style="font-family:Inter;font-size:18px;color:rgba(255,255,255,0.7);">@thevideshi</span></div>
-    <div style="display:flex;gap:14px;align-items:center;"><span style="font-family:Inter;font-size:14px;font-weight:700;color:#D4AF37;letter-spacing:2px;width:130px;text-align:right;">WHATSAPP</span><span style="font-family:Inter;font-size:18px;color:rgba(255,255,255,0.7);">The Videshi</span></div>
+    logo_block = (
+        f'<img src="{logo_url}" style="width:170px;height:170px;border-radius:18px;margin-bottom:28px;" />'
+        if logo_url else ""
+    )
+    html = f"""<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;width:100%;height:100%;background:linear-gradient(180deg,#0a1628 0%,#0f1f35 50%,#0a1628 100%);padding:60px 40px;box-sizing:border-box;">
+  {logo_block}
+  <div style="font-family:Inter;font-size:78px;font-weight:700;color:#D4AF37;letter-spacing:9px;margin-bottom:14px;">THE VIDESHI</div>
+  <div style="font-family:Inter;font-size:26px;color:rgba(255,255,255,0.55);letter-spacing:3px;text-transform:uppercase;margin-bottom:44px;">News for the Indian Diaspora</div>
+  <div style="width:64px;height:3px;background:#D4AF37;margin-bottom:44px;opacity:0.6;"></div>
+  <div style="font-family:Inter;font-size:44px;font-weight:700;color:#fff;letter-spacing:1px;margin-bottom:52px;">thevideshi.com</div>
+  <div style="display:flex;flex-direction:column;gap:20px;align-items:center;">
+    <div style="display:flex;gap:18px;align-items:center;"><span style="font-family:Inter;font-size:22px;font-weight:700;color:#D4AF37;letter-spacing:2px;width:175px;text-align:right;">YOUTUBE</span><span style="font-family:Inter;font-size:28px;color:rgba(255,255,255,0.85);">@the.videshi</span></div>
+    <div style="display:flex;gap:18px;align-items:center;"><span style="font-family:Inter;font-size:22px;font-weight:700;color:#D4AF37;letter-spacing:2px;width:175px;text-align:right;">INSTAGRAM</span><span style="font-family:Inter;font-size:28px;color:rgba(255,255,255,0.85);">@the.videshi</span></div>
+    <div style="display:flex;gap:18px;align-items:center;"><span style="font-family:Inter;font-size:22px;font-weight:700;color:#D4AF37;letter-spacing:2px;width:175px;text-align:right;">THREADS</span><span style="font-family:Inter;font-size:28px;color:rgba(255,255,255,0.85);">@the.videshi</span></div>
+    <div style="display:flex;gap:18px;align-items:center;"><span style="font-family:Inter;font-size:22px;font-weight:700;color:#D4AF37;letter-spacing:2px;width:175px;text-align:right;">X</span><span style="font-family:Inter;font-size:28px;color:rgba(255,255,255,0.85);">@thevideshi</span></div>
+    <div style="display:flex;gap:18px;align-items:center;"><span style="font-family:Inter;font-size:22px;font-weight:700;color:#D4AF37;letter-spacing:2px;width:175px;text-align:right;">WHATSAPP</span><span style="font-family:Inter;font-size:28px;color:rgba(255,255,255,0.85);">The Videshi</span></div>
   </div>
 </div>"""
 
