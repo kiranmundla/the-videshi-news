@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-15T12:45:34.133123+00:00",
+  "timestamp": "2026-06-15T13:15:23.124153+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 6,
-    "flag": 0,
+    "pass": 1,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "7ecede33-be78-4cdf-b992-d42166903856",
-      "headline": "Indian Students Crashed the US Visa Portal on Day One. The Embassy Says Thousands More Slots Are Coming.",
-      "slug": "us-embassy-india-assures-more-student-visa-appointments-opening-day-rush-20260615",
+      "id": "b398355e-5074-4b11-8b79-3acb3223f3dd",
+      "headline": "The Most Quietly Beloved Show on Indian OTT Is Back. Gram Chikitsalay Returns June 23.",
+      "slug": "gram-chikitsalay-season-2-trailer-prime-video-amol-parashar-tvf-nirahua-june-23-nri-20260615",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -21,25 +21,32 @@
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DZeqvG0qaiE/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel does not appear to be directly related to the content of the article, which focuses on the show 'Gram Chikitsalay'."
+          }
+        ],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 5,
+          "issue": "The image does not feature the main cast or scenes from 'Gram Chikitsalay', making it less relevant to the article."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the visa situation to the broader implications for the Indian diaspora, highlighting the importance of student visas for future immigration."
+          "quality": 7,
+          "note": "The article connects with the diaspora by discussing how the show represents rural India, which may resonate with NRIs wanting to share authentic cultural narratives with their children."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes or testimonials from affected students to provide a personal touch.",
-          "Include more statistics or data on the impact of visa delays on the Indian diaspora community."
+          "Replace the hero image with one that features the cast of 'Gram Chikitsalay' or a scene from the show.",
+          "Consider adding more direct quotes or insights from the cast or creators to enhance the article's depth."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DZeqvG0qaiE/",
         "promoted to published"
       ],
       "revised": false,
@@ -47,9 +54,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "05e73082-042d-439d-9ffc-b7762411708e",
-      "headline": "The World's Tech Giants Are Building in Bengaluru, Not Hiring in California. India's GCC Workforce Is Headed for 2.36 Million.",
-      "slug": "india-gcc-boom-bengaluru-n-able-2-36-million-workforce-2026-20260615",
+      "id": "e8c17f7d-6a62-42d8-8a2e-430b1bd01d85",
+      "headline": "Rajkumar Hirani Has Never Made a Flop. His First Streaming Show Just Dropped Its Trailer.",
+      "slug": "pritam-and-pedro-trailer-rajkumar-hirani-ott-debut-jiohotstar-arshad-warsi-vikrant-massey-july-3-nri-20260615",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -57,169 +64,32 @@
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the GCC boom to the diaspora's changing opportunities and perspectives on working in tech."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more statistics or quotes from industry experts to strengthen the argument.",
-          "Include a section on potential challenges or criticisms of the GCC model to provide a balanced view."
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DZmTzHYsDa3/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel does not appear to be directly related to the article's subject matter about Rajkumar Hirani's new streaming show."
+          }
         ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "818559e9-6433-4bd5-9331-fbcece162a47",
-      "headline": "India Tells Its Sailors to Stop Going Into the Gulf. Three Were Just Killed There.",
-      "slug": "india-dgs-restricts-seafarer-deployment-gulf-conflict-zones-settebello-20260615",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses the safety of Indian seafarers, which directly impacts the Indian diaspora involved in maritime industries."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include quotes from more seafarers or their families to provide personal perspectives.",
-          "Add context about the historical relationship between India and the Gulf region to enhance the diaspora connection."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "1ed9a76c-2cb5-4264-b430-ed0347657f82",
-      "headline": "The Pricier Thali: How US-India Tariffs Are Squeezing the Diaspora Grocery Cart",
-      "slug": "the-pricier-thali-how-us-india-tariffs-are-squeezing-the-diaspora-grocery-cart",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 3,
+          "issue": "The image does not feature Rajkumar Hirani or any of the main cast members, making it less relevant to the article's focus."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects the impact of tariffs on grocery prices to the Indian diaspora's identity and lifestyle."
+          "note": "The article effectively addresses the diaspora audience by providing information on where and when they can watch the show, making it relevant for NRIs."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes or anecdotes from more diaspora members to enhance relatability.",
-          "Include a brief explanation of what a thali is for readers unfamiliar with Indian cuisine."
+          "Replace the hero image with one featuring Rajkumar Hirani or the main cast to better match the article's content.",
+          "Consider adding more context about the significance of Hirani's streaming debut for the diaspora audience."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "0b754f77-bea4-4fd9-8bbc-b8b7016a4e56",
-      "headline": "Sanjeev Kapoor Comes to Silicon Valley: The Yellow Chilli Plans Its First US Restaurant",
-      "slug": "sanjeev-kapoor-comes-to-silicon-valley-the-yellow-chilli-plans-its-first-us-rest",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the restaurant's opening to the nostalgia and needs of the Indian diaspora in Silicon Valley."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from Sanjeev Kapoor or local community members to enhance the personal connection.",
-          "Include more details about the menu offerings to entice potential customers."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "3d0f023f-7df2-48dc-a1c6-8bd730d525e6",
-      "headline": "From Lemon Rice to Rajma Chawal: How Freeze-Dried Indian Meals Are Feeding the Diaspora",
-      "slug": "from-lemon-rice-to-rajma-chawal-how-freeze-dried-indian-meals-are-feeding-the-di",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the freeze-dried meal trend to the needs and preferences of the Indian diaspora, highlighting their dietary concerns and the convenience of these products."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes or testimonials from diaspora consumers to enhance relatability.",
-          "Include more specific examples of how these products have been received in different diaspora communities."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DZmTzHYsDa3/",
         "promoted to published"
       ],
       "revised": false,
