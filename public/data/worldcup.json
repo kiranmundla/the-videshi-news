@@ -1,16 +1,16 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-06-14T21:58:26Z",
-  "stage": "Group Stage \u2014 10 of 72 matches played",
+  "last_updated": "2026-06-15T01:59:31Z",
+  "stage": "Group Stage — 11 of 72 matches played",
   "hosts": "USA, Mexico & Canada",
   "dates": {
     "start": "2026-06-11",
     "end": "2026-07-19",
-    "group_stage": "June 11\u201327",
-    "round_of_32": "June 28 \u2013 July 3",
-    "round_of_16": "July 4\u20137",
-    "quarterfinals": "July 9\u201311",
-    "semifinals": "July 14\u201315",
+    "group_stage": "June 11–27",
+    "round_of_32": "June 28 – July 3",
+    "round_of_16": "July 4–7",
+    "quarterfinals": "July 9–11",
+    "semifinals": "July 14–15",
     "third_place": "July 18",
     "final": "July 19"
   },
@@ -20,7 +20,7 @@
       {
         "name": "Mexico",
         "code": "MEX",
-        "flag": "\ud83c\uddf2\ud83c\uddfd",
+        "flag": "🇲🇽",
         "rank": 14,
         "p": 1,
         "w": 1,
@@ -33,7 +33,7 @@
       {
         "name": "South Korea",
         "code": "KOR",
-        "flag": "\ud83c\uddf0\ud83c\uddf7",
+        "flag": "🇰🇷",
         "rank": 25,
         "p": 1,
         "w": 1,
@@ -46,7 +46,7 @@
       {
         "name": "Czechia",
         "code": "CZE",
-        "flag": "\ud83c\udde8\ud83c\uddff",
+        "flag": "🇨🇿",
         "rank": 39,
         "p": 1,
         "w": 0,
@@ -59,7 +59,7 @@
       {
         "name": "South Africa",
         "code": "RSA",
-        "flag": "\ud83c\uddff\ud83c\udde6",
+        "flag": "🇿🇦",
         "rank": 60,
         "p": 1,
         "w": 0,
@@ -74,7 +74,7 @@
       {
         "name": "Canada",
         "code": "CAN",
-        "flag": "\ud83c\udde8\ud83c\udde6",
+        "flag": "🇨🇦",
         "rank": 30,
         "p": 1,
         "w": 0,
@@ -87,7 +87,7 @@
       {
         "name": "Bosnia & Herzegovina",
         "code": "BIH",
-        "flag": "\ud83c\udde7\ud83c\udde6",
+        "flag": "🇧🇦",
         "rank": 64,
         "p": 1,
         "w": 0,
@@ -100,7 +100,7 @@
       {
         "name": "Switzerland",
         "code": "SUI",
-        "flag": "\ud83c\udde8\ud83c\udded",
+        "flag": "🇨🇭",
         "rank": 19,
         "p": 1,
         "w": 0,
@@ -113,7 +113,7 @@
       {
         "name": "Qatar",
         "code": "QAT",
-        "flag": "\ud83c\uddf6\ud83c\udde6",
+        "flag": "🇶🇦",
         "rank": 57,
         "p": 1,
         "w": 0,
@@ -128,7 +128,7 @@
       {
         "name": "Scotland",
         "code": "SCO",
-        "flag": "\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc73\udb40\udc63\udb40\udc74\udb40\udc7f",
+        "flag": "🏴󠁧󠁢󠁳󠁣󠁴󠁿",
         "rank": 42,
         "p": 1,
         "w": 1,
@@ -141,7 +141,7 @@
       {
         "name": "Brazil",
         "code": "BRA",
-        "flag": "\ud83c\udde7\ud83c\uddf7",
+        "flag": "🇧🇷",
         "rank": 6,
         "p": 1,
         "w": 0,
@@ -154,7 +154,7 @@
       {
         "name": "Morocco",
         "code": "MAR",
-        "flag": "\ud83c\uddf2\ud83c\udde6",
+        "flag": "🇲🇦",
         "rank": 7,
         "p": 1,
         "w": 0,
@@ -167,7 +167,7 @@
       {
         "name": "Haiti",
         "code": "HAI",
-        "flag": "\ud83c\udded\ud83c\uddf9",
+        "flag": "🇭🇹",
         "rank": 83,
         "p": 1,
         "w": 0,
@@ -182,7 +182,7 @@
       {
         "name": "USA",
         "code": "USA",
-        "flag": "\ud83c\uddfa\ud83c\uddf8",
+        "flag": "🇺🇸",
         "rank": 17,
         "p": 1,
         "w": 1,
@@ -195,7 +195,7 @@
       {
         "name": "Australia",
         "code": "AUS",
-        "flag": "\ud83c\udde6\ud83c\uddfa",
+        "flag": "🇦🇺",
         "rank": 27,
         "p": 1,
         "w": 1,
@@ -208,7 +208,7 @@
       {
         "name": "Turkey",
         "code": "TUR",
-        "flag": "\ud83c\uddf9\ud83c\uddf7",
+        "flag": "🇹🇷",
         "rank": 22,
         "p": 1,
         "w": 0,
@@ -221,7 +221,7 @@
       {
         "name": "Paraguay",
         "code": "PAR",
-        "flag": "\ud83c\uddf5\ud83c\uddfe",
+        "flag": "🇵🇾",
         "rank": 40,
         "p": 1,
         "w": 0,
@@ -236,7 +236,7 @@
       {
         "name": "Germany",
         "code": "GER",
-        "flag": "\ud83c\udde9\ud83c\uddea",
+        "flag": "🇩🇪",
         "rank": 10,
         "p": 1,
         "w": 1,
@@ -247,35 +247,35 @@
         "pts": 3
       },
       {
-        "name": "Ecuador",
-        "code": "ECU",
-        "flag": "\ud83c\uddea\ud83c\udde8",
-        "rank": 23,
-        "p": 0,
-        "w": 0,
-        "d": 0,
-        "l": 0,
-        "gf": 0,
-        "ga": 0,
-        "pts": 0
-      },
-      {
         "name": "Ivory Coast",
         "code": "CIV",
-        "flag": "\ud83c\udde8\ud83c\uddee",
+        "flag": "🇨🇮",
         "rank": 33,
-        "p": 0,
-        "w": 0,
+        "p": 1,
+        "w": 1,
         "d": 0,
         "l": 0,
-        "gf": 0,
+        "gf": 1,
         "ga": 0,
+        "pts": 3
+      },
+      {
+        "name": "Ecuador",
+        "code": "ECU",
+        "flag": "🇪🇨",
+        "rank": 23,
+        "p": 1,
+        "w": 0,
+        "d": 0,
+        "l": 1,
+        "gf": 0,
+        "ga": 1,
         "pts": 0
       },
       {
-        "name": "Cura\u00e7ao",
+        "name": "Curaçao",
         "code": "CUW",
-        "flag": "\ud83c\udde8\ud83c\uddfc",
+        "flag": "🇨🇼",
         "rank": 82,
         "p": 1,
         "w": 0,
@@ -290,7 +290,7 @@
       {
         "name": "Netherlands",
         "code": "NED",
-        "flag": "\ud83c\uddf3\ud83c\uddf1",
+        "flag": "🇳🇱",
         "rank": 8,
         "p": 1,
         "w": 0,
@@ -303,7 +303,7 @@
       {
         "name": "Japan",
         "code": "JPN",
-        "flag": "\ud83c\uddef\ud83c\uddf5",
+        "flag": "🇯🇵",
         "rank": 18,
         "p": 1,
         "w": 0,
@@ -316,7 +316,7 @@
       {
         "name": "Sweden",
         "code": "SWE",
-        "flag": "\ud83c\uddf8\ud83c\uddea",
+        "flag": "🇸🇪",
         "rank": 38,
         "p": 0,
         "w": 0,
@@ -329,7 +329,7 @@
       {
         "name": "Tunisia",
         "code": "TUN",
-        "flag": "\ud83c\uddf9\ud83c\uddf3",
+        "flag": "🇹🇳",
         "rank": 46,
         "p": 0,
         "w": 0,
@@ -344,7 +344,7 @@
       {
         "name": "Belgium",
         "code": "BEL",
-        "flag": "\ud83c\udde7\ud83c\uddea",
+        "flag": "🇧🇪",
         "rank": 9,
         "p": 0,
         "w": 0,
@@ -357,7 +357,7 @@
       {
         "name": "Iran",
         "code": "IRN",
-        "flag": "\ud83c\uddee\ud83c\uddf7",
+        "flag": "🇮🇷",
         "rank": 21,
         "p": 0,
         "w": 0,
@@ -370,7 +370,7 @@
       {
         "name": "Egypt",
         "code": "EGY",
-        "flag": "\ud83c\uddea\ud83c\uddec",
+        "flag": "🇪🇬",
         "rank": 29,
         "p": 0,
         "w": 0,
@@ -383,7 +383,7 @@
       {
         "name": "New Zealand",
         "code": "NZL",
-        "flag": "\ud83c\uddf3\ud83c\uddff",
+        "flag": "🇳🇿",
         "rank": 85,
         "p": 0,
         "w": 0,
@@ -398,7 +398,7 @@
       {
         "name": "Spain",
         "code": "ESP",
-        "flag": "\ud83c\uddea\ud83c\uddf8",
+        "flag": "🇪🇸",
         "rank": 2,
         "p": 0,
         "w": 0,
@@ -411,7 +411,7 @@
       {
         "name": "Uruguay",
         "code": "URU",
-        "flag": "\ud83c\uddfa\ud83c\uddfe",
+        "flag": "🇺🇾",
         "rank": 16,
         "p": 0,
         "w": 0,
@@ -424,7 +424,7 @@
       {
         "name": "Saudi Arabia",
         "code": "KSA",
-        "flag": "\ud83c\uddf8\ud83c\udde6",
+        "flag": "🇸🇦",
         "rank": 61,
         "p": 0,
         "w": 0,
@@ -437,7 +437,7 @@
       {
         "name": "Cape Verde",
         "code": "CPV",
-        "flag": "\ud83c\udde8\ud83c\uddfb",
+        "flag": "🇨🇻",
         "rank": 67,
         "p": 0,
         "w": 0,
@@ -452,7 +452,7 @@
       {
         "name": "France",
         "code": "FRA",
-        "flag": "\ud83c\uddeb\ud83c\uddf7",
+        "flag": "🇫🇷",
         "rank": 3,
         "p": 0,
         "w": 0,
@@ -465,7 +465,7 @@
       {
         "name": "Senegal",
         "code": "SEN",
-        "flag": "\ud83c\uddf8\ud83c\uddf3",
+        "flag": "🇸🇳",
         "rank": 15,
         "p": 0,
         "w": 0,
@@ -478,7 +478,7 @@
       {
         "name": "Norway",
         "code": "NOR",
-        "flag": "\ud83c\uddf3\ud83c\uddf4",
+        "flag": "🇳🇴",
         "rank": 31,
         "p": 0,
         "w": 0,
@@ -491,7 +491,7 @@
       {
         "name": "Iraq",
         "code": "IRQ",
-        "flag": "\ud83c\uddee\ud83c\uddf6",
+        "flag": "🇮🇶",
         "rank": 56,
         "p": 0,
         "w": 0,
@@ -506,7 +506,7 @@
       {
         "name": "Argentina",
         "code": "ARG",
-        "flag": "\ud83c\udde6\ud83c\uddf7",
+        "flag": "🇦🇷",
         "rank": 1,
         "p": 0,
         "w": 0,
@@ -519,7 +519,7 @@
       {
         "name": "Austria",
         "code": "AUT",
-        "flag": "\ud83c\udde6\ud83c\uddf9",
+        "flag": "🇦🇹",
         "rank": 24,
         "p": 0,
         "w": 0,
@@ -532,7 +532,7 @@
       {
         "name": "Algeria",
         "code": "ALG",
-        "flag": "\ud83c\udde9\ud83c\uddff",
+        "flag": "🇩🇿",
         "rank": 28,
         "p": 0,
         "w": 0,
@@ -545,7 +545,7 @@
       {
         "name": "Jordan",
         "code": "JOR",
-        "flag": "\ud83c\uddef\ud83c\uddf4",
+        "flag": "🇯🇴",
         "rank": 63,
         "p": 0,
         "w": 0,
@@ -560,7 +560,7 @@
       {
         "name": "Portugal",
         "code": "POR",
-        "flag": "\ud83c\uddf5\ud83c\uddf9",
+        "flag": "🇵🇹",
         "rank": 5,
         "p": 0,
         "w": 0,
@@ -573,7 +573,7 @@
       {
         "name": "Colombia",
         "code": "COL",
-        "flag": "\ud83c\udde8\ud83c\uddf4",
+        "flag": "🇨🇴",
         "rank": 13,
         "p": 0,
         "w": 0,
@@ -586,7 +586,7 @@
       {
         "name": "DR Congo",
         "code": "COD",
-        "flag": "\ud83c\udde8\ud83c\udde9",
+        "flag": "🇨🇩",
         "rank": 45,
         "p": 0,
         "w": 0,
@@ -599,7 +599,7 @@
       {
         "name": "Uzbekistan",
         "code": "UZB",
-        "flag": "\ud83c\uddfa\ud83c\uddff",
+        "flag": "🇺🇿",
         "rank": 50,
         "p": 0,
         "w": 0,
@@ -614,7 +614,7 @@
       {
         "name": "England",
         "code": "ENG",
-        "flag": "\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f",
+        "flag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
         "rank": 4,
         "p": 0,
         "w": 0,
@@ -627,7 +627,7 @@
       {
         "name": "Croatia",
         "code": "CRO",
-        "flag": "\ud83c\udded\ud83c\uddf7",
+        "flag": "🇭🇷",
         "rank": 11,
         "p": 0,
         "w": 0,
@@ -640,7 +640,7 @@
       {
         "name": "Panama",
         "code": "PAN",
-        "flag": "\ud83c\uddf5\ud83c\udde6",
+        "flag": "🇵🇦",
         "rank": 34,
         "p": 0,
         "w": 0,
@@ -653,7 +653,7 @@
       {
         "name": "Ghana",
         "code": "GHA",
-        "flag": "\ud83c\uddec\ud83c\udded",
+        "flag": "🇬🇭",
         "rank": 73,
         "p": 0,
         "w": 0,
@@ -800,7 +800,7 @@
       "time": "13:00",
       "tz": "ET",
       "home": "Germany",
-      "away": "Cura\u00e7ao",
+      "away": "Curaçao",
       "venue": "NRG Stadium",
       "city": "Houston",
       "status": "FT",
@@ -833,8 +833,8 @@
       "away": "Ecuador",
       "venue": "Lincoln Financial Field",
       "city": "Philadelphia",
-      "status": "scheduled",
-      "score": null,
+      "status": "FT",
+      "score": "1-0",
       "home_code": "CIV",
       "away_code": "ECU"
     },
@@ -1190,7 +1190,7 @@
       "time": "20:00",
       "tz": "ET",
       "home": "Ecuador",
-      "away": "Cura\u00e7ao",
+      "away": "Curaçao",
       "venue": "Arrowhead Stadium",
       "city": "Kansas City",
       "status": "scheduled",
@@ -1504,7 +1504,7 @@
       "date": "2026-06-25",
       "time": "16:00",
       "tz": "ET",
-      "home": "Cura\u00e7ao",
+      "home": "Curaçao",
       "away": "Ivory Coast",
       "venue": "Lincoln Financial Field",
       "city": "Philadelphia",
@@ -1756,19 +1756,19 @@
   ],
   "knockout": {
     "round_of_32": {
-      "dates": "June 28 \u2013 July 3",
+      "dates": "June 28 – July 3",
       "matches": 16
     },
     "round_of_16": {
-      "dates": "July 4\u20137",
+      "dates": "July 4–7",
       "matches": 8
     },
     "quarterfinals": {
-      "dates": "July 9\u201311",
+      "dates": "July 9–11",
       "matches": 4
     },
     "semifinals": {
-      "dates": "July 14\u201315",
+      "dates": "July 14–15",
       "matches": 2
     },
     "third_place": {
@@ -1785,380 +1785,394 @@
   "highlights": [
     {
       "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DZlqQnkifaq",
+      "account": "@fifaworldcup",
+      "caption": "Your votes are in – Yan Diomande is the Superior Player of the Match! 👏🇨🇮",
+      "date": "2026-06-14"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DZlnJ6rGvbT",
+      "account": "@fifaworldcup",
+      "caption": "Late winning drama 🍿 — Ivory Coast 1-0 Ecuador",
+      "date": "2026-06-14"
+    },
+    {
+      "platform": "threads",
       "url": "https://www.threads.com/@fifaworldcup/post/DZjrwK6D8xY",
       "account": "@fifaworldcup",
-      "caption": "Netherlands \ud83c\udd9a Japan \u2014 Group F clash preview",
+      "caption": "Netherlands 🆚 Japan — Group F clash preview",
       "date": "2026-06-14"
     },
     {
       "platform": "instagram",
       "url": "https://www.instagram.com/p/DZlMoyCEjwJ/",
       "account": "@fifaworldcup",
-      "caption": "Netherlands 2-2 Japan \u2014 A thrilling draw in Arlington! \ud83c\uddf3\ud83c\uddf1\ud83e\udd1d\ud83c\uddef\ud83c\uddf5 #FIFAWorldCup",
+      "caption": "Netherlands 2-2 Japan — A thrilling draw in Arlington! 🇳🇱🤝🇯🇵 #FIFAWorldCup",
       "date": "2026-06-14"
     },
     {
       "platform": "threads",
       "url": "https://www.threads.com/@fifaworldcup/post/DZk1Rk9Fm_k",
       "account": "@fifaworldcup",
-      "caption": "First half goal-scorers for Germany. \ud83c\udde9\ud83c\uddea",
+      "caption": "First half goal-scorers for Germany. 🇩🇪",
       "date": "2026-06-14"
     },
     {
       "platform": "instagram",
       "url": "https://www.instagram.com/p/DZlBOdNC2nR/",
       "account": "@fifaworldcup",
-      "caption": "A strong start for \ud83c\udde9\ud83c\uddea \u2014 Germany 7-1 Cura\u00e7ao #FIFAWorldCup",
+      "caption": "A strong start for 🇩🇪 — Germany 7-1 Curaçao #FIFAWorldCup",
       "date": "2026-06-14"
     },
     {
       "platform": "threads",
       "url": "https://www.threads.com/@fifaworldcup/post/DZlAAWEjzQJ",
       "account": "@fifaworldcup",
-      "caption": "A strong start for \ud83c\udde9\ud83c\uddea #FIFAWorldCup",
+      "caption": "A strong start for 🇩🇪 #FIFAWorldCup",
       "date": "2026-06-14"
     },
     {
       "platform": "threads",
       "url": "https://www.threads.com/@fifaworldcup/post/DZkTT4SihP6",
       "account": "@fifaworldcup",
-      "caption": "\ud83c\udde9\ud83c\uddea\ud83c\udd9a\ud83c\udde8\ud83c\uddfc \ud83c\uddf3\ud83c\uddf1\ud83c\udd9a\ud83c\uddef\ud83c\uddf5 \ud83c\udde8\ud83c\uddee\ud83c\udd9a\ud83c\uddea\ud83c\udde8 \ud83c\uddf8\ud83c\uddea\ud83c\udd9a\ud83c\uddf9\ud83c\uddf3 \u2014 Matchday 4 fixtures",
+      "caption": "🇩🇪🆚🇨🇼 🇳🇱🆚🇯🇵 🇨🇮🆚🇪🇨 🇸🇪🆚🇹🇳 — Matchday 4 fixtures",
       "date": "2026-06-14"
     },
     {
       "platform": "threads",
       "url": "https://www.threads.com/@fifaworldcup/post/DZkMZflCcrS",
       "account": "@fifaworldcup",
-      "caption": "Matchup is set \ud83d\udcdd \u2014 Matchday 4",
+      "caption": "Matchup is set 📝 — Matchday 4",
       "date": "2026-06-14"
     },
     {
       "platform": "instagram",
       "url": "https://www.instagram.com/p/DZkCHFRD1L6/",
       "account": "@fifaworldcup",
-      "caption": "2018 \ud83d\udcf8 \u2014 World Cup memories #FIFAWorldCup",
+      "caption": "2018 📸 — World Cup memories #FIFAWorldCup",
       "date": "2026-06-14"
     },
     {
       "platform": "instagram",
       "url": "https://www.instagram.com/p/DZjjQZaiJ9x/",
       "account": "@fifaworldcup",
-      "caption": "The Aussies are back! \ud83c\udde6\ud83c\uddfa #FIFAWorldCup",
+      "caption": "The Aussies are back! 🇦🇺 #FIFAWorldCup",
       "date": "2026-06-14"
     },
     {
       "platform": "instagram",
       "url": "https://www.instagram.com/p/DZkMaxejcdv/",
       "account": "@fifaworldcup",
-      "caption": "All the action for today \ud83d\udccb \u2014 Matchday 4 #FIFAWorldCup",
+      "caption": "All the action for today 📋 — Matchday 4 #FIFAWorldCup",
       "date": "2026-06-14"
     },
     {
       "platform": "instagram",
       "url": "https://www.instagram.com/reel/DZkaL_qvA42/",
       "account": "@fifaworldcup",
-      "caption": "Germany's moment in 2014 \ud83c\udde9\ud83c\uddea\ud83c\udfc6 #FIFAWorldCup",
+      "caption": "Germany's moment in 2014 🇩🇪🏆 #FIFAWorldCup",
       "date": "2026-06-14"
     },
     {
       "platform": "instagram",
       "url": "https://www.instagram.com/p/DZkzsFsHMv2/",
       "account": "@fifaworldcup",
-      "caption": "A moment to cherish. \ud83e\udd79 #FIFAWorldCup",
+      "caption": "A moment to cherish. 🥹 #FIFAWorldCup",
       "date": "2026-06-14"
     },
     {
       "platform": "threads",
       "url": "https://www.threads.com/@fifaworldcup/post/DZkFmh3jyAY",
       "account": "@fifaworldcup",
-      "caption": "When Zlatan made his FIFA World Cup debut \ud83c\uddf8\ud83c\uddea\ud83e\udd29",
+      "caption": "When Zlatan made his FIFA World Cup debut 🇸🇪🤩",
       "date": "2026-06-14"
     },
     {
       "platform": "threads",
       "url": "https://www.threads.com/@fifaworldcup/post/DZkCM-vD4x5",
       "account": "@fifaworldcup",
-      "caption": "2018 \ud83d\udcf8 \u2014 World Cup memories",
+      "caption": "2018 📸 — World Cup memories",
       "date": "2026-06-14"
     },
     {
       "platform": "threads",
       "url": "https://www.threads.com/@fifaworldcup/post/DZj-rFwCilm",
       "account": "@fifaworldcup",
-      "caption": "Coming up today \ud83d\udccb \u2014 Matchday 4",
+      "caption": "Coming up today 📋 — Matchday 4",
       "date": "2026-06-14"
     },
     {
       "platform": "threads",
       "url": "https://www.threads.com/@fifaworldcup/post/DZj371SEatM",
       "account": "@fifaworldcup",
-      "caption": "\ud83c\udde8\ud83c\uddee Introducing C\u00f4te d'Ivoire...",
+      "caption": "🇨🇮 Introducing Côte d'Ivoire...",
       "date": "2026-06-14"
     },
     {
       "platform": "threads",
       "url": "https://www.threads.com/@fifaworldcup/post/DZjt8OtDyd_",
       "account": "@fifaworldcup",
-      "caption": "Today's matches await! \u2014 Matchday 4 \ud83d\udccb",
+      "caption": "Today's matches await! — Matchday 4 📋",
       "date": "2026-06-14"
     },
     {
       "platform": "instagram",
       "url": "https://www.instagram.com/p/DZj_HRNjbcL/",
       "account": "@fifaworldcup",
-      "caption": "Coming up today \ud83d\udccb \u2014 Matchday 4 schedule #FIFAWorldCup",
+      "caption": "Coming up today 📋 — Matchday 4 schedule #FIFAWorldCup",
       "date": "2026-06-14"
     },
     {
       "platform": "instagram",
       "url": "https://www.instagram.com/p/DZj36OMkf7A/",
       "account": "@fifaworldcup",
-      "caption": "\ud83c\udde8\ud83c\uddee Introducing C\u00f4te d'Ivoire... #FIFAWorldCup",
+      "caption": "🇨🇮 Introducing Côte d'Ivoire... #FIFAWorldCup",
       "date": "2026-06-14"
     },
     {
       "platform": "instagram",
       "url": "https://www.instagram.com/reel/DZjx_tiiAfB/",
       "account": "@fifaworldcup",
-      "caption": "A historic first FIFA World Cup point for Qatar! \ud83c\uddf6\ud83c\udde6\ud83d\udc4f",
+      "caption": "A historic first FIFA World Cup point for Qatar! 🇶🇦👏",
       "date": "2026-06-14"
     },
     {
       "platform": "instagram",
       "url": "https://www.instagram.com/p/DZjwjYtxYk0/",
       "account": "@fifaworldcup",
-      "caption": "A Scotland World Cup win, 36 years in the making \ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc73\udb40\udc63\udb40\udc74\udb40\udc7f",
+      "caption": "A Scotland World Cup win, 36 years in the making 🏴󠁧󠁢󠁳󠁣󠁴󠁿",
       "date": "2026-06-14"
     },
     {
       "platform": "threads",
       "url": "https://www.threads.com/@fifaworldcup/post/DZjtnEWD-4D",
       "account": "@fifaworldcup",
-      "caption": "C\u00f4te d'Ivoire \ud83c\udd9a Ecuador \u2014 Matchday 4 preview",
+      "caption": "Côte d'Ivoire 🆚 Ecuador — Matchday 4 preview",
       "date": "2026-06-14"
     },
     {
       "platform": "threads",
       "url": "https://www.threads.com/@fifaworldcup/post/DZjvcCXj8Tl",
       "account": "@fifaworldcup",
-      "caption": "Sweden \ud83c\udd9a Tunisia \u2014 Matchday 4 preview",
+      "caption": "Sweden 🆚 Tunisia — Matchday 4 preview",
       "date": "2026-06-14"
     },
     {
       "platform": "threads",
       "url": "https://www.threads.com/@fifaworldcup/post/DZjp5rdD5-f",
       "account": "@fifaworldcup",
-      "caption": "Germany \ud83c\udd9a Cura\u00e7ao \u2014 Matchday 4 preview",
+      "caption": "Germany 🆚 Curaçao — Matchday 4 preview",
       "date": "2026-06-14"
     },
     {
       "platform": "threads",
       "url": "https://www.threads.com/@fifaworldcup/post/DZjlKdKlrdF",
       "account": "@fifaworldcup",
-      "caption": "USA and Australia on \ud83d\udd1d \u2014 Group D standings",
+      "caption": "USA and Australia on 🔝 — Group D standings",
       "date": "2026-06-14"
     },
     {
       "platform": "threads",
       "url": "https://www.threads.com/@fifaworldcup/post/DZjmvL-FkaE",
       "account": "@fifaworldcup",
-      "caption": "Your Superior Player of the Match is Nestory Irankunda \ud83c\udde6\ud83c\uddfa",
+      "caption": "Your Superior Player of the Match is Nestory Irankunda 🇦🇺",
       "date": "2026-06-14"
     },
     {
       "platform": "instagram",
       "url": "https://www.instagram.com/p/DZjtioGEY5E/",
       "account": "@fifaworldcup",
-      "caption": "Today's matches await! Matchday 4 schedule \ud83d\udccb #FIFAWorldCup",
+      "caption": "Today's matches await! Matchday 4 schedule 📋 #FIFAWorldCup",
       "date": "2026-06-14"
     },
     {
       "platform": "instagram",
       "url": "https://www.instagram.com/reel/DZjUS26oOL4/",
       "account": "@fifaworldcup",
-      "caption": "John McGinn \u2014 Superior Player of the Match \ud83d\udc51\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc73\udb40\udc63\udb40\udc74\udb40\udc7f #FIFAWorldCup",
+      "caption": "John McGinn — Superior Player of the Match 👑🏴󠁧󠁢󠁳󠁣󠁴󠁿 #FIFAWorldCup",
       "date": "2026-06-14"
     },
     {
       "platform": "instagram",
       "url": "https://www.instagram.com/p/DZjmvR3jMI0/",
       "account": "@fifaworldcup",
-      "caption": "Your Superior Player of the Match is Nestory Irankunda \ud83c\udde6\ud83c\uddfa\ud83d\udc51 #FIFAWorldCup",
+      "caption": "Your Superior Player of the Match is Nestory Irankunda 🇦🇺👑 #FIFAWorldCup",
       "date": "2026-06-14"
     },
     {
       "platform": "instagram",
       "url": "https://www.instagram.com/p/DZjmrIsnP8L/",
       "account": "@fifaworldcup",
-      "caption": "Group standings update! \ud83d\ude4c #FIFAWorldCup",
+      "caption": "Group standings update! 🙌 #FIFAWorldCup",
       "date": "2026-06-14"
     },
     {
       "platform": "instagram",
       "url": "https://www.instagram.com/p/DZjm891nJWm/",
       "account": "@fifaworldcup",
-      "caption": "Matchday 3 \u2714\ufe0f All #FIFAWorldCup highlights on fifa.com \ud83d\udcfa",
+      "caption": "Matchday 3 ✔️ All #FIFAWorldCup highlights on fifa.com 📺",
       "date": "2026-06-14"
     },
     {
       "platform": "instagram",
       "url": "https://www.instagram.com/p/DZjCupBHGe2/",
       "account": "@fifaworldcup",
-      "caption": "Decisive moments from Day 3 \ud83c\udfaf #FIFAWorldCup",
+      "caption": "Decisive moments from Day 3 🎯 #FIFAWorldCup",
       "date": "2026-06-13"
     },
     {
       "platform": "threads",
       "url": "https://www.threads.com/@fifaworldcup/post/DZjYqMRlizT",
       "account": "@fifaworldcup",
-      "caption": "Australia 2-0 Turkey \u2014 The Socceroos strike in Vancouver \ud83c\udde6\ud83c\uddfa\ud83c\udfaf",
+      "caption": "Australia 2-0 Turkey — The Socceroos strike in Vancouver 🇦🇺🎯",
       "date": "2026-06-14"
     },
     {
       "platform": "instagram",
       "url": "https://www.instagram.com/p/DZjOW9SCqRk/",
       "account": "@fifaworldcup",
-      "caption": "Victory for Scotland! \ud83d\udcaa \u2014 The Tartan Army celebrate in Boston \ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc73\udb40\udc63\udb40\udc74\udb40\udc7f",
+      "caption": "Victory for Scotland! 💪 — The Tartan Army celebrate in Boston 🏴󠁧󠁢󠁳󠁣󠁴󠁿",
       "date": "2026-06-13"
     },
     {
       "platform": "instagram",
       "url": "https://www.instagram.com/p/DZi761OCpIR/",
       "account": "@fifaworldcup",
-      "caption": "Brazil 1-1 Morocco \u2014 A thrilling draw at MetLife Stadium \ud83e\udd29\ud83c\udde7\ud83c\uddf7\ud83e\udd1d\ud83c\uddf2\ud83c\udde6",
+      "caption": "Brazil 1-1 Morocco — A thrilling draw at MetLife Stadium 🤩🇧🇷🤝🇲🇦",
       "date": "2026-06-13"
     },
     {
       "platform": "threads",
       "url": "https://www.threads.com/@fifaworldcup/post/DZjO4t9Fugw",
       "account": "@fifaworldcup",
-      "caption": "Scotland 1-0 Haiti \u2014 McGinn's goal secures Scotland's World Cup return \ud83c\udff4\u200d\u2620\ufe0f\u26bd",
+      "caption": "Scotland 1-0 Haiti — McGinn's goal secures Scotland's World Cup return 🏴‍☠️⚽",
       "date": "2026-06-13"
     },
     {
       "platform": "instagram",
       "url": "https://www.instagram.com/p/DZhIucokd7N/",
       "account": "@fifaworldcup",
-      "caption": "Qatar 1-1 Switzerland \u2014 Khoukhi's stoppage-time header stuns the Swiss \ud83c\uddf6\ud83c\udde6\ud83e\udd1d\ud83c\udde8\ud83c\udded",
+      "caption": "Qatar 1-1 Switzerland — Khoukhi's stoppage-time header stuns the Swiss 🇶🇦🤝🇨🇭",
       "date": "2026-06-13"
     },
     {
       "platform": "instagram",
       "url": "https://www.instagram.com/p/DZiFCtjnLZv/",
       "account": "@fifaworldcup",
-      "caption": "Two decades of Lionel Messi at the #FIFAWorldCup \ud83c\udde6\ud83c\uddf7\ud83d\udcab",
+      "caption": "Two decades of Lionel Messi at the #FIFAWorldCup 🇦🇷💫",
       "date": "2026-06-13"
     },
     {
       "platform": "instagram",
       "url": "https://www.instagram.com/p/DZhx-MMj3wY/",
       "account": "@fifaworldcup",
-      "caption": "2026 \u27a1\ufe0f 2022 \u27a1\ufe0f 2018 \u2014 World Cup through the years",
+      "caption": "2026 ➡️ 2022 ➡️ 2018 — World Cup through the years",
       "date": "2026-06-13"
     },
     {
       "platform": "instagram",
       "url": "https://www.instagram.com/p/DZhvSPDj2Vq/",
       "account": "@fifaworldcup",
-      "caption": "The Atlas Lions \ud83c\uddf2\ud83c\udde6\ud83e\udd81 \u2014 Morocco ready for Brazil",
+      "caption": "The Atlas Lions 🇲🇦🦁 — Morocco ready for Brazil",
       "date": "2026-06-13"
     },
     {
       "platform": "instagram",
       "url": "https://www.instagram.com/reel/DZh1KyePL0T/",
       "account": "@fifaworldcup",
-      "caption": "Brazilian brilliance \ud83c\udde7\ud83c\uddf7\ud83e\ude84 \u2014 Sele\u00e7\u00e3o magic moments",
+      "caption": "Brazilian brilliance 🇧🇷🪄 — Seleção magic moments",
       "date": "2026-06-13"
     },
     {
       "platform": "threads",
       "url": "https://www.threads.com/@fifaworldcup/post/DZiEm06kYxy",
       "account": "@fifaworldcup",
-      "caption": "Two decades of Lionel Messi at the FIFA World Cup \ud83c\udde6\ud83c\uddf7\ud83d\udcab",
+      "caption": "Two decades of Lionel Messi at the FIFA World Cup 🇦🇷💫",
       "date": "2026-06-13"
     },
     {
       "platform": "threads",
       "url": "https://www.threads.com/@fifaworldcup/post/DZhwVVSjxb2",
       "account": "@fifaworldcup",
-      "caption": "KDB over the years \u2728 \u2014 De Bruyne's World Cup journey",
+      "caption": "KDB over the years ✨ — De Bruyne's World Cup journey",
       "date": "2026-06-13"
     },
     {
       "platform": "instagram",
       "url": "https://www.instagram.com/p/DZhZwOyjZM1/",
       "account": "@fifaworldcup",
-      "caption": "Ready for more action \ud83d\udcaa \u2014 Matchday 3 schedule & where to watch",
+      "caption": "Ready for more action 💪 — Matchday 3 schedule & where to watch",
       "date": "2026-06-13"
     },
     {
       "platform": "instagram",
       "url": "https://www.instagram.com/p/DZhZ2rBjd0W/",
       "account": "@fifaworldcup",
-      "caption": "Ready for matchday three 3\ufe0f\u20e3 \u2014 Qatar vs Switzerland, Brazil vs Morocco, Haiti vs Scotland",
+      "caption": "Ready for matchday three 3️⃣ — Qatar vs Switzerland, Brazil vs Morocco, Haiti vs Scotland",
       "date": "2026-06-13"
     },
     {
       "platform": "instagram",
       "url": "https://www.instagram.com/reel/DZhS912BFP7/",
       "account": "@fifaworldcup",
-      "caption": "\ud83c\uddf5\ud83c\uddf9 He's here. CR7 \u2014 Ronaldo arrives at the World Cup",
+      "caption": "🇵🇹 He's here. CR7 — Ronaldo arrives at the World Cup",
       "date": "2026-06-13"
     },
     {
       "platform": "threads",
       "url": "https://www.threads.com/@fifaworldcup/post/DZgxU4-ihxZ",
       "account": "@fifaworldcup",
-      "caption": "Folarin Balogun \u2014 Superior Player of the Match \ud83c\udfc6\ud83c\uddfa\ud83c\uddf8",
+      "caption": "Folarin Balogun — Superior Player of the Match 🏆🇺🇸",
       "date": "2026-06-13"
     },
     {
       "platform": "threads",
       "url": "https://www.threads.com/@fifaworldcup/post/DZdZzfLD47D",
       "account": "@fifaworldcup",
-      "caption": "What a night for El Tri \ud83c\uddf2\ud83c\uddfd",
+      "caption": "What a night for El Tri 🇲🇽",
       "date": "2026-06-11"
     },
     {
       "platform": "threads",
       "url": "https://www.threads.com/@fifaworldcup/post/DZgrWM0lkmI",
       "account": "@fifaworldcup",
-      "caption": "USA crush Paraguay 4-1 \u2014 Balogun with a brace \ud83d\udd25",
+      "caption": "USA crush Paraguay 4-1 — Balogun with a brace 🔥",
       "date": "2026-06-13"
     },
     {
       "platform": "instagram",
       "url": "https://www.instagram.com/p/DZgrHKLC72J/",
       "account": "@fifaworldcup",
-      "caption": "USA 4-1 Paraguay \u2014 What a start for the hosts! \ud83c\uddfa\ud83c\uddf8\ud83c\udf89",
+      "caption": "USA 4-1 Paraguay — What a start for the hosts! 🇺🇸🎉",
       "date": "2026-06-13"
     },
     {
       "platform": "instagram",
       "url": "https://www.instagram.com/reel/DZgaoZeCtit/",
       "account": "@fifaworldcup",
-      "caption": "LA is rolling \u2014 USA vs Paraguay pre-match atmosphere \ud83c\uddfa\ud83c\uddf8\ud83c\udfac\ud83c\uddf5\ud83c\uddfe",
+      "caption": "LA is rolling — USA vs Paraguay pre-match atmosphere 🇺🇸🎬🇵🇾",
       "date": "2026-06-12"
     },
     {
       "platform": "instagram",
       "url": "https://www.instagram.com/p/DZgBetcC9QM/",
       "account": "@fifaworldcup",
-      "caption": "Canada 1-1 Bosnia & Herzegovina \u2014 It all ends level! \ud83e\udd1d",
+      "caption": "Canada 1-1 Bosnia & Herzegovina — It all ends level! 🤝",
       "date": "2026-06-12"
     },
     {
       "platform": "instagram",
       "url": "https://www.instagram.com/p/DZdYVUunDAR/",
       "account": "@fifaworldcup",
-      "caption": "Juli\u00e1n Qui\u00f1ones has written his name into history \u270d\ufe0f",
+      "caption": "Julián Quiñones has written his name into history ✍️",
       "date": "2026-06-11"
     },
     {
       "platform": "instagram",
       "url": "https://www.instagram.com/reel/DZd7dvwoNwC/",
       "account": "@fifaworldcup",
-      "caption": "Opening Day highlights \u2014 Mexico 2-0 South Africa",
+      "caption": "Opening Day highlights — Mexico 2-0 South Africa",
       "date": "2026-06-12"
     },
     {
@@ -2179,14 +2193,14 @@
       "platform": "instagram",
       "url": "https://www.instagram.com/reel/DZeeoHfCH7y/",
       "account": "@fifaworldcup",
-      "caption": "South Korea 2-1 Czechia \u2014 Match highlights",
+      "caption": "South Korea 2-1 Czechia — Match highlights",
       "date": "2026-06-12"
     },
     {
       "platform": "instagram",
       "url": "https://www.instagram.com/reel/DZd98cLiQF-/",
       "account": "@fifaworldcup",
-      "caption": "Juli\u00e1n Qui\u00f1ones \u2014 Superior Player of the Match",
+      "caption": "Julián Quiñones — Superior Player of the Match",
       "date": "2026-06-12"
     },
     {
@@ -2200,49 +2214,49 @@
       "platform": "instagram",
       "url": "https://www.instagram.com/p/DZch62vD4Sq/",
       "account": "@fifaworldcup",
-      "caption": "Mexican golazos \u2014 Qui\u00f1ones & Jim\u00e9nez light up the Azteca \ud83c\uddf2\ud83c\uddfd",
+      "caption": "Mexican golazos — Quiñones & Jiménez light up the Azteca 🇲🇽",
       "date": "2026-06-11"
     },
     {
       "platform": "instagram",
       "url": "https://www.instagram.com/p/DZeOf6dCXm1/",
       "account": "@fifaworldcup",
-      "caption": "A comeback for Korea Republic \ud83c\uddf0\ud83c\uddf7 \u2014 from behind to beat Czechia",
+      "caption": "A comeback for Korea Republic 🇰🇷 — from behind to beat Czechia",
       "date": "2026-06-12"
     },
     {
       "platform": "instagram",
       "url": "https://www.instagram.com/p/DZeaEbUEa8Q/",
       "account": "@fifaworldcup",
-      "caption": "Oh Hyeon-gyu \u2014 the difference maker \ud83e\ude84",
+      "caption": "Oh Hyeon-gyu — the difference maker 🪄",
       "date": "2026-06-12"
     },
     {
       "platform": "instagram",
       "url": "https://www.instagram.com/reel/DZckf7NvlsL/",
       "account": "@fifaworldcup",
-      "caption": "World Cup 2026 opening day \u2014 the tournament begins",
+      "caption": "World Cup 2026 opening day — the tournament begins",
       "date": "2026-06-11"
     },
     {
       "platform": "instagram",
       "url": "https://www.instagram.com/p/DZeR8TyHMMi/",
       "account": "@fifaworldcup",
-      "caption": "World Cup 2026 Day 2 \u2014 Canada vs Bosnia & Herzegovina",
+      "caption": "World Cup 2026 Day 2 — Canada vs Bosnia & Herzegovina",
       "date": "2026-06-12"
     },
     {
       "platform": "instagram",
       "url": "https://www.instagram.com/p/DZgzKmtHEnd/",
       "account": "@fifaworldcup",
-      "caption": "Matchday 2 \u2714\ufe0f All #FIFAWorldCup highlights on fifa.com \ud83d\udcfa",
+      "caption": "Matchday 2 ✔️ All #FIFAWorldCup highlights on fifa.com 📺",
       "date": "2026-06-13"
     },
     {
       "platform": "threads",
       "url": "https://www.threads.com/@fifaworldcup/post/DZgzQN5lsVY",
       "account": "@fifaworldcup",
-      "caption": "Matchday 2 \u2714\ufe0f Watch all the highlights on fifa.com \ud83d\udcfa",
+      "caption": "Matchday 2 ✔️ Watch all the highlights on fifa.com 📺",
       "date": "2026-06-13"
     }
   ],
@@ -2252,7 +2266,7 @@
   },
   "nri_watch": {
     "headline": "The World Cup in Your Backyard",
-    "description": "For the first time, the biggest sporting event on Earth is being held across the US, Canada, and Mexico. NRIs can attend matches live in 16 cities \u2014 from MetLife Stadium in New Jersey to SoFi Stadium in LA.",
+    "description": "For the first time, the biggest sporting event on Earth is being held across the US, Canada, and Mexico. NRIs can attend matches live in 16 cities — from MetLife Stadium in New Jersey to SoFi Stadium in LA.",
     "key_venues_near_desi_hubs": [
       {
         "venue": "MetLife Stadium",
