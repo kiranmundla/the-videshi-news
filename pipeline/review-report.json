@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-15T04:46:01.105850+00:00",
+  "timestamp": "2026-06-15T05:15:16.036033+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 11,
+    "pass": 2,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,117 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "09ce86c5-646f-4be0-bcc3-1b065ba6a9c9",
-      "headline": "No Bids. No Calendar. No Clarity. Indian Football's Premier League Is Fighting to Survive.",
-      "slug": "isl-crisis-aiff-supreme-court-bidding-failure-indian-football-existential-2026-nri",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses the implications of ISL's potential collapse on the Indian diaspora, highlighting its role as a connection to Indian football."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Expand on the diaspora angle by including specific examples of how ISL has impacted Indian football fans abroad.",
-          "Consider adding quotes or perspectives from diaspora fans to enhance engagement."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "e20c575c-3395-44e8-afc2-f2e68e15c054",
-      "headline": "She Was Dropped Twice. Smriti Mandhana Made Pakistan Pay With 68 Off 44 at Edgbaston.",
-      "slug": "smriti-mandhana-68-dropped-twice-india-crush-pakistan-womens-t20-world-cup-2026-edgbaston-nri",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects Smriti Mandhana's performance to the interests of NRI audiences, particularly those in the UK."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more statistics or historical context about Mandhana's performance in T20 World Cups to enhance the depth of the article.",
-          "Include quotes from Mandhana or the captain to provide a personal touch and insight into their mindset during the match."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "d8680b1c-81da-4bc6-9472-644af26286a1",
-      "headline": "Gujarat Has Launched Its Industrial Policy 2026. It Wants Semiconductor Factories, Ultra Mega Projects, and NRI Capital.",
-      "slug": "gujarat-industrial-policy-2026-launched-semiconductor-ultra-mega-nri-investment-20260615",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image features Chief Minister Bhupendra Patel, which is relevant to the article's content about the industrial policy launch."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the industrial policy to the NRI community, highlighting potential investment opportunities."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from industry experts or stakeholders to enhance credibility.",
-          "Include more specific examples of how the policy will impact NRIs directly."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "77d95125-652c-41b5-ad4f-e71fce856ef1",
-      "headline": "Indian Markets Surge as Iran Peace Deal Sends Oil Below $84 and Revives Inflow Hopes.",
-      "slug": "indian-markets-surge-iran-peace-deal-oil-below-84-rupee-nri-deposits-20260615",
+      "id": "90231b92-e9df-4311-b428-e6fc83aca9b0",
+      "headline": "Rashmika Mandanna Is About to Play M.S. Subbulakshmi. It Might Be the Bravest Casting in Years.",
+      "slug": "rashmika-mandanna-ms-subbulakshmi-biopic-gowtam-tinnanuri-anirudh-nri-20260615",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -137,13 +29,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses the implications of market changes for NRIs, particularly regarding the RBI's new deposit window and its impact on remittances and investments."
+          "note": "The article effectively connects M.S. Subbulakshmi's music to the Indian diaspora's cultural experiences."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more specific examples of how the market changes directly affect NRI investments or remittances.",
-          "Include a brief summary or conclusion that encapsulates the main points for readers who may skim the article."
+          "Consider adding more quotes or insights from industry experts regarding Rashmika's casting to enhance credibility.",
+          "Include a brief background on M.S. Subbulakshmi's impact on Indian music and culture for readers unfamiliar with her legacy."
         ],
         "verdict": "pass"
       },
@@ -155,265 +47,44 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "a916fdc0-f8dd-4aac-9ea3-c95a5e26951a",
-      "headline": "The G7 Has Opened in Evian. Iran, Trade, and India's Seat at the Table Are All in Play.",
-      "slug": "g7-summit-evian-opens-iran-deal-modi-trump-trade-india-invited-20260615",
+      "id": "7d77aad1-5abb-43bd-a651-2167149949dc",
+      "headline": "Ranveer Singh Is Building India's First \u20b9300 Crore Zombie Film. He's Producing It, Too.",
+      "slug": "ranveer-singh-pralay-300-crore-zombie-thriller-kalyani-priyadarshan-bollywood-debut-august-2026",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image is relevant to the G7 summit but depicts the previous summit in Hiroshima, not Evian."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects India's participation in the G7 to issues affecting the Indian diaspora, such as trade and visa policies."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Update the image to one that accurately represents the current G7 summit in Evian.",
-          "Provide more context on how the outcomes of the summit may specifically impact the Indian diaspora."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "b1da47ac-d1c3-439a-a77e-5edd84ec25d8",
-      "headline": "Stay Too Long, Never Come Back \u2014 The US Embassy's Warning to Indians Is Not a Bluff",
-      "slug": "us-embassy-warning-overstay-indians-newark-deportation-20260615",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the article's focus on immigration enforcement and the US Embassy's warning."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively addresses the concerns of the Indian diaspora regarding immigration enforcement in the US."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that depicts immigration or the US Embassy to enhance visual connection.",
-          "Add a quote or perspective from an immigration expert or community leader to provide additional depth."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "d459af54-b2a1-41ca-a440-d8ccbcab656a",
-      "headline": "Washington Can Now Take Back Your Citizenship \u2014 Just Ask Neeraj Sharma",
-      "slug": "doj-denaturalization-neeraj-sharma-h1b-fraud-citizenship-20260615",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [
+        "duplicate_images": [
           {
-            "url": "https://x.com/USCIS/status/1932480693278482618",
-            "problem": "broken",
-            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
-          }
-        ]
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 8,
-          "issue": "The image of a naturalization ceremony is relevant but does not directly depict the subject of denaturalization."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses the implications of denaturalization for Indian Americans, making it highly relevant to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from immigration attorneys or affected individuals to provide personal perspectives.",
-          "Include more statistics or data on the impact of denaturalization on the Indian community for added depth."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "Removed 1 broken/hallucinated embed(s)",
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "fbdd35a1-ac5f-48e5-9792-87bcdd8948ac",
-      "headline": "Zoho Built Its Own Server in Nagpur. It Took Five Years and a Mountain Pass's Name.",
-      "slug": "zoho-nathu-la-server-india-designed-sovereign-hardware-20260615",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 5,
-          "issue": "The image does not directly relate to the topic of server technology or Zoho."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses India's technological advancements and self-sufficiency, which may resonate with the Indian diaspora interested in India's growth."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that directly represents server technology or Zoho's operations.",
-          "Add a quote or perspective from an NRI or diaspora expert to strengthen the connection to the audience."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "e9efad91-3aa5-408b-8a15-2a98a0708a8a",
-      "headline": "Razorpay Just Filed for a $600 Million IPO. India's Payments War Is About to Go Public.",
-      "slug": "razorpay-ipo-confidential-filing-600-million-valuation-20260615",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not specifically relate to Razorpay or the fintech industry."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects Razorpay's services to the NRI community, highlighting its role in facilitating remittances and payments for diaspora users."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that reflects the fintech industry or Razorpay's services.",
-          "Expand on the implications of Razorpay's IPO for NRI investors to further engage the diaspora audience."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "0c6f4735-ad14-4b8a-bf1d-f146e8765fa8",
-      "headline": "A Federal Judge Just Killed Trump's $100K H-1B Fee. Congress Wants to Bring It Back.",
-      "slug": "h1b-100k-fee-struck-down-protect-act-appeal-indian-tech-20260615",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses the implications of H-1B visa changes specifically affecting Indian tech workers, making it relevant to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include quotes or perspectives from Indian tech workers or immigration attorneys to enhance relatability.",
-          "Add a brief explanation of the H-1B visa process for readers unfamiliar with it."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "ac1303f5-15c7-44e6-b25d-848b985b5420",
-      "headline": "Katrina Kaif Is Coming Back. And She Chose the Darkest Script in Town.",
-      "slug": "katrina-kaif-chandni-bar-2-comeback-tabu-ajay-bahl-vicky-kaushal",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [
+            "article_id": "967d11f3-92ff-4b8f-8157-fdc3e322e438",
+            "headline": "Ranveer Singh Walked Out of Don 3 Weeks Before Filming. \u20b945 "
+          },
           {
-            "url": "https://www.instagram.com/p/DZCUT-oDQql/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post does not seem to relate directly to Katrina Kaif's upcoming project or her career trajectory, making it irrelevant to the article's focus."
+            "article_id": "912035d9-4009-4f7f-ad6e-dab5134c5e1c",
+            "headline": "Ranveer Singh Ghosted an Entire Federation. The Don 3 War Ju"
           }
         ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
         "image_match": {
           "score": 9,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article discusses a prominent Bollywood actress, which may resonate with the Indian diaspora interested in Bollywood news, but lacks a direct connection to NRI experiences."
+          "quality": 8,
+          "note": "The article effectively connects the film's genre and production scale to the interests of NRI audiences, highlighting the blend of Hollywood and Bollywood."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant Instagram embed with a more relevant source or quote that directly relates to Katrina Kaif's upcoming film.",
-          "Enhance the diaspora angle by including insights on how Katrina's return might impact her international fanbase or the global perception of Bollywood."
+          "Consider adding quotes from Ranveer Singh or Jai Mehta to enhance the article's depth.",
+          "Include more details about the film's release strategy or marketing plans to engage readers further."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DZCUT-oDQql/",
         "promoted to published"
       ],
       "revised": false,
