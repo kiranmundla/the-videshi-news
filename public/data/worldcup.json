@@ -848,8 +848,8 @@
       "away": "Tunisia",
       "venue": "Estadio BBVA",
       "city": "Monterrey",
-      "status": "scheduled",
-      "score": null,
+      "status": "FT",
+      "score": "5-1",
       "home_code": "SWE",
       "away_code": "TUN"
     },
