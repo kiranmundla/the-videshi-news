@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
   "last_updated": "2026-06-15T01:59:31Z",
-  "stage": "Group Stage — 11 of 72 matches played",
+  "stage": "Group Stage — 12 of 72 matches played",
   "hosts": "USA, Mexico & Canada",
   "dates": {
     "start": "2026-06-11",
@@ -318,25 +318,25 @@
         "code": "SWE",
         "flag": "🇸🇪",
         "rank": 38,
-        "p": 0,
-        "w": 0,
+        "p": 1,
+        "w": 1,
         "d": 0,
         "l": 0,
-        "gf": 0,
-        "ga": 0,
-        "pts": 0
+        "gf": 5,
+        "ga": 1,
+        "pts": 3
       },
       {
         "name": "Tunisia",
         "code": "TUN",
         "flag": "🇹🇳",
         "rank": 46,
-        "p": 0,
+        "p": 1,
         "w": 0,
         "d": 0,
-        "l": 0,
-        "gf": 0,
-        "ga": 0,
+        "l": 1,
+        "gf": 1,
+        "ga": 5,
         "pts": 0
       }
     ],
