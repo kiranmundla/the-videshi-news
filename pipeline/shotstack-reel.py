@@ -1007,8 +1007,14 @@ def ensure_music_uploaded(music_file):
 # ═══════════════════════════════════════════════════════════════════════════════
 
 BLOCKED_DOMAINS = [
-    "upload.wikimedia.org", "wikipedia.org", "wikimedia.org",
-    "commons.wikimedia.org", "static.toiimg.com", "im.rediff.com",
+    # NOTE: wikimedia image hosts (upload.wikimedia.org / commons.wikimedia.org)
+    # are deliberately NOT blocked — Shotstack renders them reliably (the storyboard
+    # Wikipedia fallback + the 330→1280 thumbnail upscaler both depend on it), and
+    # blocking them caused the entity-image pre-pass and wikimedia article heroes to
+    # be silently discarded. Only the wikipedia.org *article-page* host is blocked,
+    # since those URLs are HTML pages, not images.
+    "en.wikipedia.org/wiki/", "wikipedia.org/wiki/",
+    "static.toiimg.com", "im.rediff.com",
 ]
 
 
