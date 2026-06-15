@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-15T18:45:20.325584+00:00",
+  "timestamp": "2026-06-15T19:15:20.574281+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 1,
     "flag": 1,
     "fail": 0,
     "error": 0
@@ -11,9 +11,63 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "9d536419-3141-4fc7-bdf5-0090e101f974",
-      "headline": "India's Supreme Court Just Seized Control of the Fight Over Who Can Define a Person's Gender",
-      "slug": "supreme-court-stays-high-court-cases-transgender-amendment-act-2026-20260615",
+      "id": "f10c9657-c82d-49cd-9979-0888d5adfaa3",
+      "headline": "Cocktail 2 Pours This Friday. It's Shahid, Kriti, Rashmika \u2014 and the First 'A'-Rated Film of Kriti Sanon's Career.",
+      "slug": "cocktail-2-release-june-19-shahid-kapoor-kriti-sanon-rashmika-mandanna-pritam-advance-booking-diaspora-nri-20260615",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "c0878811-309e-4f10-9650-cd943bbb887c",
+            "headline": "Cocktail 2 Is the Most Wanted Film in India Right Now. Next "
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DZDOomuoqNK/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel does not appear to be directly related to the film 'Cocktail 2' or its promotional content."
+          },
+          {
+            "url": "https://youtube.com/watch?v=XXxUqLHq1xg",
+            "problem": "irrelevant",
+            "explanation": "The YouTube link is not specified as being related to 'Cocktail 2', making it potentially irrelevant."
+          }
+        ],
+        "image_match": {
+          "score": 6,
+          "issue": "The image of Shahid Kapoor does not directly relate to 'Cocktail 2' as it appears to be from a different event."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article connects well with the NRI audience by referencing the original 'Cocktail' as a popular choice for house parties among NRIs."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Ensure that all embedded links are directly relevant to 'Cocktail 2' to enhance the article's credibility.",
+          "Consider updating the hero image to one that features the cast of 'Cocktail 2' to better match the article's focus."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DZDOomuoqNK/",
+        "Removed irrelevant embed: https://youtube.com/watch?v=XXxUqLHq1xg",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "f6c864de-fb76-4e85-85af-68ed68fd6d5c",
+      "headline": "The Director of the Year's Sleeper Horror Hit Just Said He'd Rather Never Make the Sequel Than Make It Badly",
+      "slug": "munjya-2-aditya-sarpotdar-refuses-mediocre-sequel-maddock-horror-universe-shakti-shalini-nri-20260615",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -29,90 +83,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the implications of the Supreme Court's decision to the experiences of diaspora transgender individuals, making it relevant to NRI readers."
+          "note": "The article connects well with the diaspora by discussing how the film's folklore resonates with NRI families and their cultural heritage."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from diaspora individuals or organizations to enhance the personal connection.",
-          "Include more context on the historical significance of the NALSA judgment for readers unfamiliar with it."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "cf4f3b3e-1ec2-4a76-a723-02c6633b73b3",
-      "headline": "Modi and Macron Just Put 120 Indian Startups in Front of the World's Investors. The Pitch: Innovate With India.",
-      "slug": "bharat-innovates-2026-nice-modi-macron-startups-global-investors-20260615",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "7cc2c2b6-8948-4691-8a47-f28599bc06c9",
-            "headline": "Three Dead Sailors, One H-1B Wishlist \u2014 Modi Goes to the G7 "
-          }
-        ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 3,
-          "issue": "irrelevant"
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the event to the Indian diaspora, highlighting their role in technology and innovation."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the hero image with one that directly relates to the Bharat Innovates event or showcases Indian startups.",
-          "Include quotes or testimonials from diaspora members who attended the event to enhance the connection."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "63d5b7f9-30ea-4b1a-9acf-7d5a2b833521",
-      "headline": "HCLTech Just Bet $150 Million on India Building Its Own AI. Sarvam Is Now Worth $1.5 Billion.",
-      "slug": "hcltech-buys-stake-sarvam-ai-1-5-billion-sovereign-ai-bet-20260615",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 6,
-          "issue": "The image of a data center is somewhat relevant but does not directly represent the AI focus of the article."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the Sarvam deal to the global Indian diaspora's contributions to AI and technology."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that directly represents AI technology or the Sarvam AI startup.",
-          "Expand on the implications of the deal for the diaspora community, perhaps by including quotes or perspectives from diaspora members."
+          "Consider adding more direct quotes from Aditya Sarpotdar to enhance the article's depth.",
+          "Include a brief overview of the film's reception among international audiences to strengthen the diaspora connection."
         ],
         "verdict": "pass"
       },
