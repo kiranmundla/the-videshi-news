@@ -998,8 +998,25 @@ def main():
             match_article = generate_match_article(m, all_data)
             publish_article(match_article)
             print(f"   ✅ {m['home']} vs {m['away']}: https://thevideshi.com/articles/{match_slug}")
+            # Update worldcup.json with the article slug so the frontend can link to it
+            _update_match_article_slug(m, match_slug, all_data)
         except Exception as e:
             print(f"   ❌ {m['home']} vs {m['away']}: {e}")
+
+
+def _update_match_article_slug(match, slug, all_data):
+    """Write article_slug back into worldcup.json for the given match."""
+    try:
+        wc = json.loads(WC_JSON.read_text())
+        for m in wc.get("matches", []):
+            if (m.get("home") == match["home"]
+                    and m.get("away") == match["away"]
+                    and m.get("date") == match["date"]):
+                m["article_slug"] = slug
+                break
+        WC_JSON.write_text(json.dumps(wc, indent=2))
+    except Exception as e:
+        print(f"   ⚠️  Could not update worldcup.json with article_slug: {e}")
 
 
 if __name__ == "__main__":

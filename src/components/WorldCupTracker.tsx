@@ -129,14 +129,18 @@ export default function WorldCupTracker() {
         {(tab === "results" ? completed.slice(0, 4) : upcoming).map((m, i, arr) => {
           const scores = m.score?.split("-").map(s => s.trim()) ?? [];
           const pdtTime = matchToLocal(m.date, m.time);
-          // Link finished matches to their individual recap article
-          const homeSlug = m.home.toLowerCase().replace(/ /g, "-").replace(/&/g, "and");
-          const awaySlug = m.away.toLowerCase().replace(/ /g, "-").replace(/&/g, "and");
-          const linkTo = m.status === "FT"
-            ? `/articles/world-cup-2026-${homeSlug}-vs-${awaySlug}-${m.date}`
+          // Link finished matches to their individual recap article (only if article exists)
+          const hasArticle = !!m.article_slug;
+          const linkTo = hasArticle
+            ? `/articles/${m.article_slug}`
+            : m.status === "FT"
+            ? undefined  // No link if finished but no article yet
             : "/world-cup?tab=schedule";
+          const Wrapper = linkTo
+            ? ({ children, ...props }: any) => <Link to={linkTo} style={{ textDecoration: "none", color: "inherit" }} {...props}>{children}</Link>
+            : ({ children, ...props }: any) => <div {...props}>{children}</div>;
           return (
-            <Link key={m.id} to={linkTo} style={{ textDecoration: "none", color: "inherit" }}>
+            <Wrapper key={m.id}>
             <div style={{
               padding: "10px 20px",
               borderBottom: i < arr.length - 1 ? "1px solid #f0f0f0" : "none",
@@ -198,7 +202,7 @@ export default function WorldCupTracker() {
                 )}
               </div>
             </div>
-            </Link>
+            </Wrapper>
           );
         })}
       </div>
