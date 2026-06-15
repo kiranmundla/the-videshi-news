@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-15T16:45:40.402022+00:00",
+  "timestamp": "2026-06-15T17:15:12.177437+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 4,
-    "flag": 0,
+    "pass": 0,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "8916a445-e7a8-4aea-be9d-f0571d1a8300",
-      "headline": "India's Money Is Now Tracked Monthly. The First Snapshot Shows Diaspora Remittances Surging as Foreign Investors Flee.",
-      "slug": "india-balance-of-payments-monthly-april-deficit-remittances-surge-16-billion-20260615",
+      "id": "93f782fe-5312-4c03-93b4-35303dfbd310",
+      "headline": "Shah Rukh Khan Just Locked Christmas. He's Bringing His Daughter \u2014 and Picking a Fight With Marvel.",
+      "slug": "king-shah-rukh-khan-christmas-2026-suhana-khan-debut-avengers-dune-jumanji-clash-nri-20260615",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -21,133 +21,32 @@
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DT5BfenCKKb/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel does not appear to be directly related to the article's subject matter regarding Shah Rukh Khan's upcoming film."
+          }
+        ],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 6,
+          "issue": "The image does not directly relate to the article's focus on Shah Rukh Khan's new film, 'King', as it features a different film."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively highlights the role of diaspora remittances in stabilizing India's economy, making it relevant and engaging for NRI readers."
+          "note": "The article effectively connects Shah Rukh Khan's film release to the NRI audience, emphasizing his cultural significance and the impact on diaspora viewers."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more specific examples or anecdotes from diaspora members to enhance relatability.",
-          "Include a brief explanation of how the new monthly reporting will impact future economic analysis for NRIs."
+          "Replace the irrelevant Instagram embed with a more relevant social media post related to 'King'.",
+          "Consider using an image that directly features Shah Rukh Khan or promotional material for 'King' to better match the article's content."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "d3c673da-bcfe-4985-a461-b9c8517ff52b",
-      "headline": "Foreign Investors Pulled a Record \u20b92.87 Lakh Crore From Indian Stocks. Wall Street Is Quietly Betting They Will Come Back.",
-      "slug": "fpi-record-outflow-india-equities-wall-street-rebound-bet-ai-trade-cools-20260615",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the topic of foreign investment in Indian stocks to diaspora investors, highlighting their interest in the Indian market."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more specific examples of how diaspora investors can navigate the current market conditions.",
-          "Include quotes or insights from diaspora investors to enhance the personal connection to the topic."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "f1902309-5ea9-4cde-8e9a-249a5b9cd468",
-      "headline": "America Has Run Out of EB-2 Green Cards for India. Approved Applicants Now Wait Until October.",
-      "slug": "eb2-india-green-card-category-hits-fy2026-cap-issuance-frozen-20260615",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively addresses the impact of EB-2 visa limits on the Indian diaspora, highlighting the challenges faced by Indian professionals."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include quotes or testimonials from affected individuals to add a personal touch.",
-          "Provide more context on potential legislative changes that could affect future visa allocations."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "c265e5cc-1157-4047-a9b8-981ebc6176d9",
-      "headline": "A 10-Run Penalty, a Last-Ball Run Out, a Super Over. In Dambulla, India A Imploded Against Sri Lanka A.",
-      "slug": "india-a-super-over-loss-sri-lanka-a-dambulla-tri-series-10-run-penalty-altercation-final-hopes-2026-nri",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the performance of young Indian cricketers to the interests of the diaspora, highlighting their potential impact on future tours."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from players or coaches to enhance the narrative.",
-          "Include more context about the significance of the tri-series for the players' careers."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DT5BfenCKKb/",
         "promoted to published"
       ],
       "revised": false,
