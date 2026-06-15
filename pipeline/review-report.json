@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-15T08:15:33.350738+00:00",
+  "timestamp": "2026-06-15T08:45:24.574700+00:00",
   "mode": "fix",
   "stats": {
     "pass": 3,
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "b289e525-1527-44d9-9e8e-758303fa75f6",
-      "headline": "June 30 Is the Deadline That Voids Your H-1B Lottery Win \u2014 and Most Winners Are Indian",
-      "slug": "h1b-fy2027-june-30-filing-deadline-wage-weighted-lottery-indians-20260615",
+      "id": "6384a2b7-9638-4866-98a2-7f252b357531",
+      "headline": "Pay $750 and Skip the U.S. Visa Line. For Indian Families, the New Fee Cuts Both Ways.",
+      "slug": "us-state-department-750-expedited-b1-b2-visa-interview-fee-pilot-july-2026-indian-families-20260615b",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -24,79 +24,7 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image does not directly relate to H-1B visas or immigration, but it is a generic image that could represent a professional context."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively addresses the concerns of Indian nationals regarding the H-1B lottery process, making it highly relevant to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that more directly represents the theme of immigration or the H-1B process.",
-          "Add a brief summary or conclusion that reinforces the importance of the June 30 deadline for Indian applicants."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "fa9f9e07-354a-45f4-8976-21006bf2e18d",
-      "headline": "The $250 Fee Almost No NRI Family Knows About \u2014 and It Hits Every Parent's Visit",
-      "slug": "250-dollar-visa-integrity-fee-nri-families-refund-explained-20260615",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the topic of visa fees or immigration."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the visa fee issue to the experiences of NRI families, particularly in the context of family visits."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that directly relates to immigration or visa processes to enhance relevance.",
-          "Add a section with tips or resources for NRIs to navigate the new fee structure."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "baee1a2e-6f68-499c-95fc-b79fe38e2f9d",
-      "headline": "Pay $750 to Skip the Visa Line \u2014 Washington Just Put a Price on the Family Visit",
-      "slug": "750-dollar-expedited-b1-b2-visa-interview-pilot-nri-families-20260615",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the topic of visas or immigration."
+          "issue": "The image does not directly relate to the topic of U.S. visa applications."
         },
         "diaspora_angle": {
           "present": true,
@@ -106,8 +34,80 @@
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that directly relates to visas or immigration to enhance relevance.",
-          "Add a quote or perspective from an NRI to further enrich the diaspora angle."
+          "Consider using an image that directly relates to U.S. visa applications or Indian families traveling to the U.S.",
+          "Expand on the implications of the fee for different socio-economic groups within the Indian diaspora."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "b8358c67-4848-486f-8010-9f3bd91ae4b9",
+      "headline": "Canada Has Rewritten Its Immigration Rulebook for 2026. Here Is What It Means for Indians.",
+      "slug": "canada-express-entry-2026-overhaul-category-based-draws-temporary-visa-cut-indian-professionals-20260615b",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 6,
+          "issue": "The image of Ottawa does not directly relate to the immigration topic."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively addresses the implications of Canada's immigration changes specifically for Indian applicants, making it relevant for the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that directly relates to immigration or Indian professionals in Canada to enhance relevance.",
+          "Add a section that provides specific examples or testimonials from Indian immigrants to illustrate the impact of the new rules."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "05cd9593-3f07-4976-a0cc-dec517525257",
+      "headline": "America Has Run Out of EB-2 Green Cards for Indians. The Next Ones Come in October.",
+      "slug": "eb2-india-green-card-cap-exhausted-fy2026-no-visas-until-october-per-country-cap-20260615b",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the topic of immigration or green cards."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article discusses the impact of EB-2 green card limitations specifically on Indian professionals, which is highly relevant to the NRI community."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that visually represents immigration or the green card process to enhance relevance.",
+          "Include a brief section on potential future changes in immigration policy that could affect the diaspora."
         ],
         "verdict": "pass"
       },
