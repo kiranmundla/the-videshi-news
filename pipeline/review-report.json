@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-15T22:15:38.154596+00:00",
+  "timestamp": "2026-06-15T22:45:29.941742+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 6,
+    "pass": 4,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "cef7fe30-9a43-4d4c-b6d0-6545daa84db8",
-      "headline": "El Ni\u00f1o Is Back, and India's Monsoon Has Started With a 26% Rain Deficit. Here Is What It Means for Markets and NRIs.",
-      "slug": "el-nino-monsoon-deficit-26-percent-india-economy-rural-demand-inflation-nri-investor-20260615",
+      "id": "a582cddd-965a-4e46-995b-c26c6be3bba8",
+      "headline": "Indians Are Now Australia's Largest Migrant Group. That Is Exactly Why They Are Under Attack.",
+      "slug": "australia-indian-diaspora-beyond-model-minority-social-cohesion-anti-immigration-20260615",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -29,13 +29,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article connects the monsoon's impact on the Indian economy to NRIs' interests, particularly in terms of market implications."
+          "note": "The article discusses the implications of Indian migration to Australia, directly addressing the Indian diaspora's experiences and challenges."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more specific examples of how NRIs can navigate the market changes due to the monsoon.",
-          "Add a section discussing potential long-term impacts of El Ni\u00f1o on agriculture and investment for NRIs."
+          "Include more direct quotes from Indian community members to enhance personal perspectives.",
+          "Provide statistics or examples of successful integration initiatives to balance the narrative."
         ],
         "verdict": "pass"
       },
@@ -47,31 +47,36 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "c723afd4-d8b2-431b-ae26-071ebf05e7fe",
-      "headline": "Air Pollution Is Ageing the Brain and Driving Dementia. A Half-Million-Person Study Just Mapped How.",
-      "slug": "air-pollution-dementia-brain-aging-atrophy-uk-biobank-488000-study-diaspora-india-pm25-20260615",
+      "id": "5cae1fcb-b69c-48cd-acdb-3e681ca2167c",
+      "headline": "British Commandos Seized a Russian Shadow-Fleet Tanker. The Captain They Charged Is Indian.",
+      "slug": "uk-charges-indian-captain-ajay-pant-russian-shadow-fleet-tanker-smyrtos-sanctions-20260615",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "544c05f2-d005-478d-9f3a-7fe2e42878fa",
+            "headline": "The War That Choked India's Oil Lifeline May Be Ending. New "
+          }
+        ],
         "broken_embeds": []
       },
       "llm_review": {
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 5,
+          "issue": "The image does not directly relate to the article's topic of a specific tanker seizure or the Indian captain."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the research findings to the concerns of the Indian diaspora regarding air pollution and its impact on aging parents in India."
+          "quality": 8,
+          "note": "The article effectively connects the case to the Indian diaspora by discussing the legal exposure of Indian seafarers and the implications for India's maritime workforce."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more specific statistics or examples related to air pollution levels in various Indian cities to strengthen the diaspora connection.",
-          "Include a section on potential solutions or actions that NRIs can take to mitigate the effects of air pollution on their families in India."
+          "Consider using a more relevant image that depicts the tanker or the context of the seizure.",
+          "Expand on the implications for Indian seafarers and how the diaspora can engage with or respond to these issues."
         ],
         "verdict": "pass"
       },
@@ -83,9 +88,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "337d493d-55a6-4149-81ed-32fe6c326afb",
-      "headline": "You Can Be Slim and Still Have a Dangerous Fatty Liver. For South Asians, the Standard Tests Often Miss It.",
-      "slug": "lean-masld-fatty-liver-south-asians-fibrosis-tests-unreliable-thin-outside-fat-inside-20260615",
+      "id": "1898ecb8-e85c-4ddd-be2a-893eef18bf44",
+      "headline": "India Just Renamed the One Tax Form Every Salaried Person Knows. Form 16 Is Now Form 130.",
+      "slug": "form-16-becomes-form-130-india-new-salary-tds-certificate-income-tax-act-2025-20260615",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -101,13 +106,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively addresses the health concerns specific to the South Asian diaspora, making it relevant and engaging for NRI readers."
+          "note": "The article effectively addresses the implications of the tax form changes for NRIs, making it relevant for the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes or insights from health professionals to enhance credibility.",
-          "Include personal stories or testimonials from South Asians affected by MASLD to create a more relatable narrative."
+          "Consider adding a brief summary of the implications for NRIs at the beginning of the article to capture their attention immediately.",
+          "Include a quote from a tax expert or advisor to enhance credibility and provide additional insights."
         ],
         "verdict": "pass"
       },
@@ -119,9 +124,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "a48123ad-6447-4bbb-af25-b33261074afe",
-      "headline": "World Cup 2026 Is Triggering an Airline Boom \u2014 and NRIs Have a Front-Row Seat",
-      "slug": "world-cup-2026-airline-boom-north-america-nri-20260615",
+      "id": "285d3629-a31a-4ddd-99c1-0064bf44a805",
+      "headline": "One More Win and Shubman Gill Lifts His First Trophy as India's ODI Captain. In Lucknow, the Real Question Is Who Bats at No. 3.",
+      "slug": "india-afghanistan-2nd-odi-lucknow-shubman-gill-first-series-win-jaiswal-kishan-no3-debate-2026-nri",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -137,85 +142,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the airline boom to the Indian diaspora, highlighting how NRIs can benefit from increased travel options."
+          "note": "The article effectively connects the significance of the series to NRI fans, highlighting their engagement and anticipation."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding specific examples of airlines or routes that are expanding to enhance the article's depth.",
-          "Include quotes or insights from industry experts or diaspora members to add credibility and personal perspectives."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "a08fec03-a0d7-4674-b415-4c7463be04fa",
-      "headline": "China Southern Launches Daily Delhi\u2013Guangzhou Nonstop \u2014 a New Door to East Asia for NRIs",
-      "slug": "china-southern-delhi-guangzhou-daily-nonstop-nri-20260615",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image depicts an aircraft but does not specifically relate to the Delhi-Guangzhou route."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the new route to the needs of NRIs, discussing its implications for travel and connectivity."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that specifically represents the Delhi-Guangzhou route or China Southern Airlines.",
-          "Add a brief section on how NRIs can book tickets or what to expect when traveling on this new route."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "aac67896-c7ad-4f2d-ae0f-dbfef0aee0ac",
-      "headline": "Your US Visa Now Unlocks Argentina \u2014 No Separate Visa Needed for Indians",
-      "slug": "argentina-visa-free-indians-us-visa-green-card-nri-20260615",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the visa policy change to the experiences and challenges faced by the Indian diaspora in the US."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a quote from an immigration expert or a traveler to enhance the article's credibility.",
-          "Include a brief section on how this policy change compares to visa policies of other countries for Indian travelers."
+          "Consider adding more direct quotes from players or analysts to enhance the narrative.",
+          "Include a brief overview of Shubman Gill's previous performances as captain to provide context."
         ],
         "verdict": "pass"
       },

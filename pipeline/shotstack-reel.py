@@ -1271,6 +1271,79 @@ def source_storyboard_images(article, storyboard, count=8):
         media_meta[hero] = {"type": "image", "duration": 0}
         print(f"  🎬 Scene 1: {scene_descs[0][:50]}  →  article hero")
 
+    # ── 1b. ENTITY PRE-PASS: real imagery of the story's named entities ──
+    # Generic Pexels stock is the #1 "image relevance" QA failure on niche topics
+    # (e.g. "sovereign AI"), because the article hero is often generic and there's
+    # no gallery. Before falling to stock, mine the headline + body for proper
+    # nouns (companies, people, places) and pull their actual Wikipedia images.
+    # These are genuinely on-topic and add visual variety, so we seed up to 2
+    # scenes (after the hero) before Pexels ever runs.
+    def extract_named_entities(text, limit=8):
+        """Cheap proper-noun miner: multi-word Capitalized phrases first, then
+        single capitalized tokens. No NLP dependency. Skips sentence-start noise
+        and a small stoplist."""
+        if not text:
+            return []
+        stop = {"The", "This", "That", "These", "Those", "India", "Indian",
+                "It", "But", "And", "For", "With", "From", "What", "When",
+                "How", "Why", "Now", "New", "After", "Before", "While",
+                "According", "Meanwhile", "However", "They", "Their", "His",
+                "Her", "Its", "Mr", "Ms", "Dr"}
+        # Multi-word proper phrases (e.g. "HCLTech", "Sarvam AI", "Nandan Nilekani")
+        phrases = re.findall(r"\b([A-Z][A-Za-z0-9&.]+(?:\s+[A-Z][A-Za-z0-9&.]+){0,2})\b", text)
+        seen, out = set(), []
+        for p in phrases:
+            p = p.strip()
+            first = p.split()[0]
+            if first in stop and " " not in p:
+                continue
+            key = p.lower()
+            if key in seen or len(p) < 3:
+                continue
+            seen.add(key)
+            out.append(p)
+            if len(out) >= limit:
+                break
+        return out
+
+    def wiki_image_for(term):
+        """Return a usable Wikipedia lead image URL for a term, or None."""
+        try:
+            wr = requests.get(
+                f"https://en.wikipedia.org/api/rest_v1/page/summary/{requests.utils.quote(term.replace(' ', '_'))}",
+                headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
+                timeout=8,
+            )
+            if wr.status_code != 200:
+                return None
+            wdata = wr.json()
+            # Skip disambiguation pages — their images are useless
+            if wdata.get("type") == "disambiguation":
+                return None
+            wimg = wdata.get("originalimage", {}).get("source") or wdata.get("thumbnail", {}).get("source")
+            return upscale_wikimedia_url(wimg) if wimg else None
+        except Exception:
+            return None
+
+    entity_text = f"{headline}. {article.get('subheadline','')}. {(article.get('body') or '')[:1500]}"
+    entities = extract_named_entities(entity_text, limit=8)
+    if entities:
+        print(f"  🧩 Entity pre-pass — candidates: {', '.join(entities[:8])}")
+    # Fill scenes 2..3 (indices 1,2) with entity imagery, leaving later scenes for
+    # Pexels motion/variety. Cap at 2 so the reel isn't all static portraits.
+    entity_slots = [i for i in (1, 2) if i < len(matched_urls) and matched_urls[i] is None]
+    ei = 0
+    for slot in entity_slots:
+        while ei < len(entities):
+            term = entities[ei]; ei += 1
+            wimg = wiki_image_for(term)
+            if wimg and wimg not in used_in_this_reel and is_url_downloadable(wimg):
+                matched_urls[slot] = wimg
+                used_in_this_reel.add(wimg)
+                media_meta[wimg] = {"type": "image", "duration": 0}
+                print(f"  🧩 Scene {slot+1}: {scene_descs[slot][:42]}  →  Wikipedia entity '{term}'")
+                break
+
     # ── 2. PRIMARY: Pexels stock VIDEO by scene visual description ──
     remaining = [i for i in range(len(matched_urls)) if matched_urls[i] is None]
     if remaining and pexels_key:
@@ -1683,28 +1756,34 @@ def build_anchor_reel_timeline(
         ]
     }
 
-    # ── Track 4: Lower third (brief headline establish-shot only) ──
-    # Show for ~4s right after the hook, then fade out so it does NOT collide
-    # with the voice-synced script captions that run the rest of the reel.
-    # (Running both full-length put two text systems in the same bottom band —
-    # the #1 "overlapping text / poor readability" QA failure.)
-    lt_html, lt_css = build_lower_third_html(headline, category)
-    lt_duration = min(4.0, total_voice_duration)
-    lower_third_track = {
+    # ── Track 4: Caption scrim (text-free dark band behind the captions) ──
+    # A bottom-anchored gradient that runs the FULL narration, sitting just below
+    # the caption track. It guarantees the white caption pill always has a dark
+    # backing even over bright B-roll (the recurring "text readability / low
+    # contrast" QA failure). It carries NO text of its own, so it cannot recreate
+    # the overlap bug the old chyron caused — captions still own all on-screen text.
+    caption_scrim_css = """
+.cap-scrim {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  background: linear-gradient(transparent 0%, rgba(8,18,34,0.0) 40%, rgba(8,18,34,0.65) 72%, rgba(8,18,34,0.9) 100%);
+}
+""".strip()
+    scrim_duration = max(total_voice_duration, 0.5)
+    caption_scrim_track = {
         "clips": [
             {
                 "asset": {
                     "type": "html",
-                    "html": lt_html,
-                    "css": lt_css,
+                    "html": "<div class='cap-scrim'></div>",
+                    "css": caption_scrim_css,
                     "width": 1080,
-                    "height": 500,
+                    "height": 700,
                 },
                 "start": hook_duration,
-                "length": lt_duration,
+                "length": scrim_duration,
                 "position": "bottom",
-                "transition": {"in": "fade", "out": "fade"},
-                "opacity": 0.95,
             }
         ]
     }
@@ -1834,6 +1913,7 @@ def build_anchor_reel_timeline(
     # the reel. Rendering the chyron *and* the captions both anchored to the bottom
     # band caused them to overlap during the 3–7s window (the #1 "overlapping text"
     # QA failure). Captions now own the lower third exclusively.
+    # caption_scrim_track sits directly beneath the captions to guarantee contrast.
     timeline = {
         "background": NAVY,
         "fonts": [{"src": FONT_URL}],
@@ -1841,6 +1921,7 @@ def build_anchor_reel_timeline(
             caption_track,    # Top layer
             logo_track,
             hook_track,
+            caption_scrim_track,  # Dark band behind captions (text-free)
             end_card_track,   # Branded end card
             broll_track,      # Visual base
             voice_track,      # Audio (bottom)
