@@ -1278,33 +1278,63 @@ def source_storyboard_images(article, storyboard, count=8):
     # nouns (companies, people, places) and pull their actual Wikipedia images.
     # These are genuinely on-topic and add visual variety, so we seed up to 2
     # scenes (after the hero) before Pexels ever runs.
-    def extract_named_entities(text, limit=8):
-        """Cheap proper-noun miner: multi-word Capitalized phrases first, then
-        single capitalized tokens. No NLP dependency. Skips sentence-start noise
-        and a small stoplist."""
-        if not text:
-            return []
+    def extract_named_entities(brand_text, prose_text, limit=8):
+        """Cheap proper-noun miner — no NLP dependency.
+        brand_text (headline + body): scanned only for brand tokens with internal
+        capitals ('HCLTech') or short all-caps acronyms ('AI', 'ISRO'), which
+        survive title-casing.
+        prose_text (body only): mined for proper-noun phrases. Within a sentence, a
+        Capitalized word that is NOT the first word is almost always a proper noun.
+        The title-cased headline is deliberately kept OUT of prose mining, since
+        every word there is capitalized and yields junk ('Just Bet', 'Worth')."""
         stop = {"The", "This", "That", "These", "Those", "India", "Indian",
                 "It", "But", "And", "For", "With", "From", "What", "When",
-                "How", "Why", "Now", "New", "After", "Before", "While",
+                "How", "Why", "Now", "New", "After", "Before", "While", "Its",
                 "According", "Meanwhile", "However", "They", "Their", "His",
-                "Her", "Its", "Mr", "Ms", "Dr"}
-        # Multi-word proper phrases (e.g. "HCLTech", "Sarvam AI", "Nandan Nilekani")
-        phrases = re.findall(r"\b([A-Z][A-Za-z0-9&.]+(?:\s+[A-Z][A-Za-z0-9&.]+){0,2})\b", text)
+                "Her", "Mr", "Ms", "Dr", "Mrs", "Also", "Some", "Many", "Both"}
         seen, out = set(), []
-        for p in phrases:
-            p = p.strip()
-            first = p.split()[0]
-            if first in stop and " " not in p:
-                continue
+
+        def _add(p):
+            p = p.strip(" .,&")
+            if len(p) < 3:
+                return
             key = p.lower()
-            if key in seen or len(p) < 3:
-                continue
+            if key in seen:
+                return
             seen.add(key)
             out.append(p)
-            if len(out) >= limit:
-                break
-        return out
+
+        # Pass A: brand tokens / acronyms from headline + body (survive title-case).
+        for tok in re.findall(r"\b[A-Za-z][A-Za-z0-9&]*\b", brand_text or ""):
+            if tok in stop:
+                continue
+            internal_caps = any(c.isupper() for c in tok[1:])  # HCLTech, iPhone, eBay
+            all_caps = tok.isupper() and 2 <= len(tok) <= 5    # AI, BCCI, ISRO
+            if internal_caps or all_caps:
+                _add(tok)
+                if len(out) >= limit:
+                    return out
+
+        # Pass B: proper-noun phrases from sentence-cased BODY prose only.
+        for sentence in re.split(r"[.!?\n]+", prose_text or ""):
+            words = sentence.split()
+            run = []
+            for idx, w in enumerate(words):
+                bare = w.strip(" .,;:!?()'\"")
+                is_cap = bool(bare) and bare[0].isupper() and bare[1:].lower() == bare[1:].lower()
+                if is_cap and bare[0].isalpha() and (idx > 0) and bare not in stop:
+                    run.append(bare)
+                else:
+                    if len(run) >= 1:
+                        _add(" ".join(run))
+                        if len(out) >= limit:
+                            return out
+                    run = []
+            if run:
+                _add(" ".join(run))
+                if len(out) >= limit:
+                    return out
+        return out[:limit][:limit]
 
     def wiki_image_for(term):
         """Return a usable Wikipedia lead image URL for a term, or None."""
@@ -1325,8 +1355,9 @@ def source_storyboard_images(article, storyboard, count=8):
         except Exception:
             return None
 
-    entity_text = f"{headline}. {article.get('subheadline','')}. {(article.get('body') or '')[:1500]}"
-    entities = extract_named_entities(entity_text, limit=8)
+    body_text = (article.get("body") or "")[:1500]
+    brand_text = f"{headline}. {article.get('subheadline','')}. {body_text}"
+    entities = extract_named_entities(brand_text, body_text, limit=8)
     if entities:
         print(f"  🧩 Entity pre-pass — candidates: {', '.join(entities[:8])}")
     # Fill scenes 2..3 (indices 1,2) with entity imagery, leaving later scenes for
