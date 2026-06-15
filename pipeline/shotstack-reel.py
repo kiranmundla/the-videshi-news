@@ -1605,7 +1605,7 @@ def build_anchor_reel_timeline(
                     "src": LOGO_URL,
                 },
                 "start": 0,
-                "length": "end",
+                "length": round(cta_start, 2),
                 "position": "center",
                 "offset": {"x": 0.38, "y": 0.44},
                 "scale": 0.08,
@@ -1620,7 +1620,7 @@ def build_anchor_reel_timeline(
                     "height": 34,
                 },
                 "start": 0,
-                "length": "end",
+                "length": round(cta_start, 2),
                 "position": "center",
                 "offset": {"x": 0.38, "y": 0.36},
             }
@@ -1766,7 +1766,21 @@ def build_anchor_reel_timeline(
                          "interpolation": "bezier", "easing": "easeOutCubic"},
                     ],
                 },
-            }
+            },
+            # Logo as a real image clip (HTML <img> does not render in Shotstack).
+            # Centered near the top of the end card, above the "THE VIDESHI" wordmark.
+            {
+                "asset": {
+                    "type": "image",
+                    "src": LOGO_URL,
+                },
+                "start": round(cta_start, 2),
+                "length": CTA_DURATION,
+                "position": "center",
+                "offset": {"x": 0, "y": 0.34},
+                "scale": 0.22,
+                "transition": {"in": "fade"},
+            },
         ]
     }
 
@@ -2040,14 +2054,11 @@ SOCIAL_HANDLES = {
 
 
 def build_end_card_html(logo_url=None):
-    """Build branded end card with logo + social handles. All inline styles for Shotstack compatibility."""
-    logo_block = (
-        f'<img src="{logo_url}" style="width:170px;height:170px;border-radius:18px;margin-bottom:28px;" />'
-        if logo_url else ""
-    )
+    """Build branded end card with social handles. All inline styles for Shotstack compatibility.
+    NOTE: the logo is added as a separate Shotstack image clip (HTML <img> does not
+    render in Shotstack's HTML asset), so logo_url is accepted but not embedded here."""
     html = f"""<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;width:100%;height:100%;background:linear-gradient(180deg,#0a1628 0%,#0f1f35 50%,#0a1628 100%);padding:60px 40px;box-sizing:border-box;">
-  {logo_block}
-  <div style="font-family:Inter;font-size:78px;font-weight:700;color:#D4AF37;letter-spacing:9px;margin-bottom:14px;">THE VIDESHI</div>
+  <div style="margin-top:140px;font-family:Inter;font-size:78px;font-weight:700;color:#D4AF37;letter-spacing:9px;margin-bottom:14px;">THE VIDESHI</div>
   <div style="font-family:Inter;font-size:26px;color:rgba(255,255,255,0.55);letter-spacing:3px;text-transform:uppercase;margin-bottom:44px;">News for the Indian Diaspora</div>
   <div style="width:64px;height:3px;background:#D4AF37;margin-bottom:44px;opacity:0.6;"></div>
   <div style="font-family:Inter;font-size:44px;font-weight:700;color:#fff;letter-spacing:1px;margin-bottom:52px;">thevideshi.com</div>
