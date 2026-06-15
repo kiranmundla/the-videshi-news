@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-06-15T00:55:20.461882+00:00",
+  "last_updated": "2026-06-15T02:00:34.714078+00:00",
   "indices": [
     {
       "symbol": "SENSEX",
@@ -45,9 +45,9 @@
       "symbol": "GOLD",
       "name": "Gold",
       "flag": "\u2728",
-      "value": 4318.7,
-      "change": 79.9,
-      "change_pct": 1.88
+      "value": 4336.4,
+      "change": 97.6,
+      "change_pct": 2.3
     },
     {
       "symbol": "SILVER",
