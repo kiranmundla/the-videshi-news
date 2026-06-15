@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-15T21:15:35.820048+00:00",
+  "timestamp": "2026-06-15T22:15:38.154596+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 5,
+    "pass": 6,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,52 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "b55638fc-9a59-4f61-8158-b731969beae2",
-      "headline": "Dhamaal 4 Just Sent the Gang to Sea \u2014 With Pirates, Ghosts and a Mountain of Gold. The Trailer Lands July 10.",
-      "slug": "dhamaal-4-trailer-ajay-devgn-arshad-warsi-riteish-deshmukh-pirates-ghosts-july-10-nri-20260615",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/reel/DZfHMfdoqfb/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram reel does not appear to be directly related to the Dhamaal 4 trailer or its content."
-          }
-        ],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the film's appeal to diaspora audiences, emphasizing its universal humor and family-friendly nature."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the irrelevant Instagram embed with a more relevant social media post related to the film or its trailer.",
-          "Consider adding quotes or reactions from diaspora audiences to strengthen the connection further."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/reel/DZfHMfdoqfb/",
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "dae945f4-4071-4448-ba27-8dd82e0b7fde",
-      "headline": "Welcome To The Jungle's Trailer Is 4 Minutes of Pure Chaos. Akshay Kumar Just Bet \u20b9250 Crore on Your Nostalgia.",
-      "slug": "welcome-to-the-jungle-trailer-akshay-kumar-suniel-shetty-paresh-rawal-june-26-nri-20260615",
+      "id": "cef7fe30-9a43-4d4c-b6d0-6545daa84db8",
+      "headline": "El Ni\u00f1o Is Back, and India's Monsoon Has Started With a 26% Rain Deficit. Here Is What It Means for Markets and NRIs.",
+      "slug": "el-nino-monsoon-deficit-26-percent-india-economy-rural-demand-inflation-nri-investor-20260615",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -72,13 +29,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the film's release to diaspora audiences, highlighting its appeal for family outings in various countries."
+          "note": "The article connects the monsoon's impact on the Indian economy to NRIs' interests, particularly in terms of market implications."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more context about the film's significance in the Bollywood landscape for diaspora readers.",
-          "Include quotes or reactions from the diaspora audience or critics to enhance engagement."
+          "Include more specific examples of how NRIs can navigate the market changes due to the monsoon.",
+          "Add a section discussing potential long-term impacts of El Ni\u00f1o on agriculture and investment for NRIs."
         ],
         "verdict": "pass"
       },
@@ -90,81 +47,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "15be1d71-f372-4b74-91b3-765f69bf8ff6",
-      "headline": "Meta's First AI Data Center in India Will Be Built \u2014 and Owned \u2014 by Reliance",
-      "slug": "meta-reliance-jamnagar-ai-data-center-india-20260615",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the specific topic of AI data centers."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the implications of the data center to the NRI community, discussing latency improvements and investment opportunities."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that depicts AI data centers or technology infrastructure.",
-          "Add a brief section on potential challenges or criticisms regarding the partnership between Meta and Reliance."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "1b142336-1bd5-4daa-9636-4e62ed345433",
-      "headline": "Cognizant Slows Its India Listing Even as It Sets Aside $270 Million to Cut Jobs",
-      "slug": "cognizant-india-listing-delay-project-leap-layoffs-ai-20260615",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to Cognizant or the specific topic of job cuts and restructuring."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects Cognizant's restructuring and job cuts to the Indian American diaspora, highlighting the impact on families and professionals."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that reflects the tech industry or job cuts.",
-          "Add more statistics or quotes from industry experts to strengthen the analysis of the job market impact."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "75babc02-9c9e-4543-ae5c-78db53ed3343",
-      "headline": "A Federal Court Is Deciding Whether Your AI Assistant Is Allowed to Shop for You",
-      "slug": "amazon-perplexity-ninth-circuit-ai-agent-cfaa-precedent-20260615",
+      "id": "c723afd4-d8b2-431b-ae26-071ebf05e7fe",
+      "headline": "Air Pollution Is Ageing the Brain and Driving Dementia. A Half-Million-Person Study Just Mapped How.",
+      "slug": "air-pollution-dementia-brain-aging-atrophy-uk-biobank-488000-study-diaspora-india-pm25-20260615",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -180,13 +65,157 @@
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects the legal case to the Indian diaspora through the background of the company's founder and the implications for Indian engineers."
+          "note": "The article effectively connects the research findings to the concerns of the Indian diaspora regarding air pollution and its impact on aging parents in India."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more context about the implications of the ruling for consumers and businesses in the tech industry.",
-          "Include quotes or insights from legal experts to enhance the depth of the analysis."
+          "Consider adding more specific statistics or examples related to air pollution levels in various Indian cities to strengthen the diaspora connection.",
+          "Include a section on potential solutions or actions that NRIs can take to mitigate the effects of air pollution on their families in India."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "337d493d-55a6-4149-81ed-32fe6c326afb",
+      "headline": "You Can Be Slim and Still Have a Dangerous Fatty Liver. For South Asians, the Standard Tests Often Miss It.",
+      "slug": "lean-masld-fatty-liver-south-asians-fibrosis-tests-unreliable-thin-outside-fat-inside-20260615",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses the health concerns specific to the South Asian diaspora, making it relevant and engaging for NRI readers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes or insights from health professionals to enhance credibility.",
+          "Include personal stories or testimonials from South Asians affected by MASLD to create a more relatable narrative."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "a48123ad-6447-4bbb-af25-b33261074afe",
+      "headline": "World Cup 2026 Is Triggering an Airline Boom \u2014 and NRIs Have a Front-Row Seat",
+      "slug": "world-cup-2026-airline-boom-north-america-nri-20260615",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the airline boom to the Indian diaspora, highlighting how NRIs can benefit from increased travel options."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding specific examples of airlines or routes that are expanding to enhance the article's depth.",
+          "Include quotes or insights from industry experts or diaspora members to add credibility and personal perspectives."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "a08fec03-a0d7-4674-b415-4c7463be04fa",
+      "headline": "China Southern Launches Daily Delhi\u2013Guangzhou Nonstop \u2014 a New Door to East Asia for NRIs",
+      "slug": "china-southern-delhi-guangzhou-daily-nonstop-nri-20260615",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image depicts an aircraft but does not specifically relate to the Delhi-Guangzhou route."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the new route to the needs of NRIs, discussing its implications for travel and connectivity."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that specifically represents the Delhi-Guangzhou route or China Southern Airlines.",
+          "Add a brief section on how NRIs can book tickets or what to expect when traveling on this new route."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "aac67896-c7ad-4f2d-ae0f-dbfef0aee0ac",
+      "headline": "Your US Visa Now Unlocks Argentina \u2014 No Separate Visa Needed for Indians",
+      "slug": "argentina-visa-free-indians-us-visa-green-card-nri-20260615",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the visa policy change to the experiences and challenges faced by the Indian diaspora in the US."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a quote from an immigration expert or a traveler to enhance the article's credibility.",
+          "Include a brief section on how this policy change compares to visa policies of other countries for Indian travelers."
         ],
         "verdict": "pass"
       },
