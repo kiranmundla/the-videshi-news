@@ -1121,9 +1121,10 @@ def source_storyboard_images(article, storyboard, count=8):
                 results = pexels_video_search(pexels_key, query, count=5, min_duration=4)
                 for cand in results:
                     vid = cand["video_id"]
-                    if vid not in used_ids and cand["url"] not in used_in_this_reel:
+                    if vid not in used_ids and vid not in used_video_ids_this_reel and cand["url"] not in used_in_this_reel:
                         matched_urls[i] = cand["url"]
                         used_in_this_reel.add(cand["url"])
+                        used_video_ids_this_reel.add(vid)
                         media_meta[cand["url"]] = {"type": "video", "duration": cand["duration"]}
                         save_used_image(f"vid_{vid}")  # Track video IDs in same dedup log
                         print(f"  🎥 Scene {i+1}: {scene_descs[i][:50]}  →  Pexels VIDEO #{vid} ({cand['duration']}s)")
