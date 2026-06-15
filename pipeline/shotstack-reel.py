@@ -1366,9 +1366,13 @@ def source_storyboard_images(article, storyboard, count=8):
     entities = extract_named_entities(brand_text, body_text, limit=8)
     if entities:
         print(f"  🧩 Entity pre-pass — candidates: {', '.join(entities[:8])}")
-    # Fill scenes 2..3 (indices 1,2) with entity imagery, leaving later scenes for
-    # Pexels motion/variety. Cap at 2 so the reel isn't all static portraits.
-    entity_slots = [i for i in (1, 2) if i < len(matched_urls) and matched_urls[i] is None]
+    # Kiran's directive (2026-06-15): he prefers the real Indian imagery (Wikipedia
+    # entity frames of Indian companies/people/places) over generic Pexels stock,
+    # which kept drifting foreign on the back half. So entity frames now carry up to
+    # 4 scenes instead of 2 — but INTERLEAVED with Pexels motion (odd indices 1,3,5,7)
+    # so we get Indian-anchored frame → motion → frame → motion, not a dead wall of
+    # static portraits. Ken Burns pan/zoom keeps the static frames alive.
+    entity_slots = [i for i in (1, 3, 5, 7) if i < len(matched_urls) and matched_urls[i] is None]
     ei = 0
     for slot in entity_slots:
         while ei < len(entities):
