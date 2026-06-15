@@ -805,23 +805,33 @@ def build_script_captions(words, script_text, hook_duration):
     n_whisper = len(words)
     n_script = len(script_words)
 
+    last_script_idx = -1
     for i, w in enumerate(words):
         # Map this Whisper index to the corresponding script word index
         script_idx = round(i * n_script / n_whisper) if n_whisper > 0 else i
         script_idx = min(script_idx, n_script - 1) if n_script > 0 else 0
+        # Dedup: when more Whisper words map onto the same script word (n_whisper >
+        # n_script), don't emit it twice ("SCANDAL SCANDAL"). Instead extend the
+        # previous entry's end time so the on-screen word holds for its full span.
+        if script_idx == last_script_idx and aligned:
+            aligned[-1]["end"] = w.get("end", aligned[-1]["end"])
+            continue
+        last_script_idx = script_idx
         aligned.append({
             "word": script_words[script_idx] if script_idx < n_script else w.get("word", ""),
             "start": w.get("start", 0),
             "end": w.get("end", 0),
         })
 
-    # Group into phrases of ~4-5 words, break at punctuation
+    # Group into phrases. Break only on sentence-ending punctuation or at 5 words —
+    # NOT on commas, which produced tiny single-word clips that never reached full
+    # opacity within their fade window (the recurring "low contrast" QA failure).
     phrases = []
     current = []
     for w in aligned:
         current.append(w)
         word_text = w.get("word", "")
-        if len(current) >= 5 or word_text.rstrip().endswith((".", "!", "?", ",")):
+        if len(current) >= 5 or word_text.rstrip().endswith((".", "!", "?")):
             phrases.append(current)
             current = []
     if current:
@@ -836,10 +846,32 @@ def build_script_captions(words, script_text, hook_duration):
         duration = max(end - start, 0.5)
         raw_clips.append({"text": text, "start": round(start, 2), "duration": round(duration, 2)})
 
+    # Merge any clip shorter than MIN_DUR into the following clip so no caption
+    # flashes by too fast to read. Keeps text legible and avoids sub-second pills.
+    MIN_DUR = 1.0
+    merged = []
+    i = 0
+    while i < len(raw_clips):
+        rc = raw_clips[i]
+        # Merge forward while too short and a next clip exists
+        while rc["duration"] < MIN_DUR and i + 1 < len(raw_clips):
+            nxt = raw_clips[i + 1]
+            combined_text = (rc["text"] + " " + nxt["text"]).strip()
+            new_end = nxt["start"] + nxt["duration"]
+            rc = {
+                "text": combined_text,
+                "start": rc["start"],
+                "duration": round(new_end - rc["start"], 2),
+            }
+            i += 1
+        merged.append(rc)
+        i += 1
+    raw_clips = merged
+
     # Fix overlaps: trim each clip so it ends before the next one starts (0.02s gap min)
     for i in range(len(raw_clips) - 1):
         gap = raw_clips[i + 1]["start"] - raw_clips[i]["start"]
-        max_dur = max(gap - 0.02, 0.3)
+        max_dur = max(gap - 0.02, 0.5)
         if raw_clips[i]["duration"] > max_dur:
             raw_clips[i]["duration"] = round(max_dur, 2)
 
@@ -870,7 +902,9 @@ def build_script_captions(words, script_text, hook_duration):
             "length": rc["duration"],
             "position": "center",
             "offset": {"x": 0, "y": 0.05},
-            "transition": {"in": "fade", "out": "fade"},
+            # NO fade transition: a fade on a short (<1s) clip keeps the pill
+            # semi-transparent for most of its life, which the QA gate reads as
+            # "low contrast / poor readability". Hard cut = always full opacity.
         })
 
     print(f"  📝 Built {len(clips)} caption clips from script text")
@@ -1057,6 +1091,7 @@ def pexels_video_search(pexels_key, query, count=3, orientation="portrait", min_
                     "width": best_file.get("width", 0),
                     "height": best_file.get("height", 0),
                     "photographer": video.get("user", {}).get("name", ""),
+                    "page_url": video.get("url", ""),
                 })
         return results
     except Exception as e:
@@ -1162,6 +1197,34 @@ def source_storyboard_images(article, storyboard, count=8):
             return f"Indian {q}"
         return q
 
+    # Reject Pexels results whose metadata (alt text / page-URL slug) names a
+    # country other than India when we anchored the query to India. The QA gate
+    # repeatedly flagged foreign footage (Italian "Ministry of Interior" uniform,
+    # a Bangladesh crowd) on India stories. Pexels embeds country/place names in
+    # the page-URL slug and alt text, so a cheap substring check catches the
+    # worst offenders without an extra API call.
+    _foreign_markers = (
+        "italy", "italian", "russia", "russian", "ukraine", "ukrainian",
+        "china", "chinese", "bangladesh", "pakistan", "pakistani", "germany",
+        "german", "france", "french", "spain", "spanish", "brazil", "brazilian",
+        "turkey", "turkish", "egypt", "egyptian", "iran", "iranian", "thailand",
+        "thai", "vietnam", "indonesia", "indonesian", "philippines", "nepal",
+        "afghan", "afghanistan", "ministry of interior",
+    )
+
+    def is_foreign_for_india(cand, anchored_to_india):
+        """True if a Pexels candidate's metadata names a non-India locale while we
+        wanted Indian footage. Conservative: only rejects on explicit markers."""
+        if not anchored_to_india:
+            return False
+        meta = (str(cand.get("alt", "")) + " " + str(cand.get("page_url", ""))).lower()
+        if not meta:
+            return False
+        # If it explicitly says India/Indian, always keep it.
+        if "india" in meta:
+            return False
+        return any(m in meta for m in _foreign_markers)
+
     # ── 1. Article hero for scene 1 ──
     hero = upscale_wikimedia_url(hero)
     if hero and is_url_downloadable(hero) and hero not in used_in_this_reel:
@@ -1181,11 +1244,15 @@ def source_storyboard_images(article, storyboard, count=8):
             if visual and visual not in queries:
                 queries = [visual] + queries
             for query in queries[:3]:
+                anchored = anchor_query_to_india(query) != query or any(t in query.lower() for t in _india_terms)
                 query = anchor_query_to_india(query)
                 results = pexels_video_search(pexels_key, query, count=5, min_duration=4)
                 for cand in results:
                     vid = cand["video_id"]
                     if vid not in used_ids and vid not in used_video_ids_this_reel and cand["url"] not in used_in_this_reel:
+                        if is_foreign_for_india(cand, anchored):
+                            print(f"  🚫 Scene {i+1}: skipped foreign-looking video #{vid} ({cand.get('alt','')[:40]})")
+                            continue
                         matched_urls[i] = cand["url"]
                         used_in_this_reel.add(cand["url"])
                         used_video_ids_this_reel.add(vid)
@@ -1211,11 +1278,15 @@ def source_storyboard_images(article, storyboard, count=8):
             if visual and visual not in queries:
                 queries = [visual] + queries
             for query in queries[:3]:
+                anchored = anchor_query_to_india(query) != query or any(t in query.lower() for t in _india_terms)
                 query = anchor_query_to_india(query)
                 results = pexels_search(pexels_key, query, count=5)
                 for cand in results:
                     pid = cand["photo_id"]
                     if pid not in used_ids and cand["url"] not in used_in_this_reel:
+                        if is_foreign_for_india(cand, anchored):
+                            print(f"  🚫 Scene {i+1}: skipped foreign-looking photo #{pid} ({cand.get('alt','')[:40]})")
+                            continue
                         matched_urls[i] = cand["url"]
                         used_in_this_reel.add(cand["url"])
                         media_meta[cand["url"]] = {"type": "image", "duration": 0}
@@ -1568,8 +1639,13 @@ def build_anchor_reel_timeline(
         ]
     }
 
-    # ── Track 4: Lower third (during B-roll) ──
+    # ── Track 4: Lower third (brief headline establish-shot only) ──
+    # Show for ~4s right after the hook, then fade out so it does NOT collide
+    # with the voice-synced script captions that run the rest of the reel.
+    # (Running both full-length put two text systems in the same bottom band —
+    # the #1 "overlapping text / poor readability" QA failure.)
     lt_html, lt_css = build_lower_third_html(headline, category)
+    lt_duration = min(4.0, total_voice_duration)
     lower_third_track = {
         "clips": [
             {
@@ -1581,9 +1657,9 @@ def build_anchor_reel_timeline(
                     "height": 500,
                 },
                 "start": hook_duration,
-                "length": total_voice_duration + 1.0,
+                "length": lt_duration,
                 "position": "bottom",
-                "transition": {"in": "fade"},
+                "transition": {"in": "fade", "out": "fade"},
                 "opacity": 0.95,
             }
         ]
