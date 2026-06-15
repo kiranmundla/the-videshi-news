@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-15T07:15:20.393861+00:00",
+  "timestamp": "2026-06-15T07:45:10.626356+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 1,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "fc1c074b-3750-4dcb-969e-39181efc8642",
-      "headline": "Toy Story 5 Lands in India This Friday. Its Villain Is the Screen in Your Child's Hand.",
-      "slug": "toy-story-5-india-release-june-19-2026-screen-time-villain-box-office-4-billion",
+      "id": "cac454ab-5f3a-4b8b-9945-bd975c0895d5",
+      "headline": "India Did Not Qualify. On Tuesday, a Punjabi Mother's Son Carries Its Flag at the World Cup Anyway.",
+      "slug": "sarpreet-singh-new-zealand-indian-origin-fifa-world-cup-2026-debut-iran-punjab-nri",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -29,54 +29,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the film's themes to the experiences of NRI families, making it relevant for the diaspora audience."
+          "note": "The article effectively connects Sarpreet Singh's achievements to the Indian diaspora's experience and aspirations."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from diaspora parents or experts to enhance the personal connection.",
-          "Include more details on how the film's themes resonate specifically with Indian cultural contexts."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "7445343f-b303-4768-846c-282da6296f23",
-      "headline": "Priyanka Chopra Is Worth \u20b92,507 Crore. She Built It Without Bollywood.",
-      "slug": "priyanka-chopra-fortune-india-2507-crore-most-valuable-celebrity-only-woman-standalone-cover",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "66cb8c7e-ffa2-4025-9d33-da0dab49fb88",
-            "headline": "Priyanka Chopra Hasn't Made a Hindi Film in Seven Years. She"
-          }
-        ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively highlights Priyanka Chopra's significance to the Indian diaspora, emphasizing her global brand and influence."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more statistics or quotes from industry experts to strengthen the analysis of Chopra's impact.",
-          "Include a brief section on how her return to Bollywood might influence her brand and the perception of Indian cinema in the diaspora."
+          "Consider adding more quotes from Sarpreet Singh to enhance the personal connection.",
+          "Include a brief mention of the significance of football in the Indian diaspora to further engage readers."
         ],
         "verdict": "pass"
       },

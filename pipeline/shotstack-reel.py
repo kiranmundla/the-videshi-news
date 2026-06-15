@@ -1102,6 +1102,16 @@ def pexels_video_search(pexels_key, query, count=3, orientation="portrait", min_
 # ── Used-image dedup log ──
 USED_IMAGES_LOG = BUILD_DIR / "used-images.json"
 
+# Hard blocklist of Pexels video/photo IDs that keep ranking high for generic
+# queries (e.g. "uniform") but are visibly foreign/off-topic in the rendered
+# frame — text in the IMAGE (not metadata) gives them away, so the metadata
+# filter can't catch them. Add an ID here whenever frame inspection finds a
+# repeat offender. 35074399 = "military uniform close-up" with an Italian
+# "Ministry of Interior / COURSE 3.0" patch (flagged on India stories).
+BLOCKED_PEXELS_IDS = {
+    "35074399",
+}
+
 def load_used_images():
     """Load set of previously-used Pexels photo IDs."""
     try:
@@ -1250,6 +1260,9 @@ def source_storyboard_images(article, storyboard, count=8):
                 for cand in results:
                     vid = cand["video_id"]
                     if vid not in used_ids and vid not in used_video_ids_this_reel and cand["url"] not in used_in_this_reel:
+                        if vid in BLOCKED_PEXELS_IDS:
+                            print(f"  🚫 Scene {i+1}: skipped blocklisted video #{vid}")
+                            continue
                         if is_foreign_for_india(cand, anchored):
                             print(f"  🚫 Scene {i+1}: skipped foreign-looking video #{vid} ({cand.get('alt','')[:40]})")
                             continue
@@ -1284,6 +1297,9 @@ def source_storyboard_images(article, storyboard, count=8):
                 for cand in results:
                     pid = cand["photo_id"]
                     if pid not in used_ids and cand["url"] not in used_in_this_reel:
+                        if pid in BLOCKED_PEXELS_IDS:
+                            print(f"  🚫 Scene {i+1}: skipped blocklisted photo #{pid}")
+                            continue
                         if is_foreign_for_india(cand, anchored):
                             print(f"  🚫 Scene {i+1}: skipped foreign-looking photo #{pid} ({cand.get('alt','')[:40]})")
                             continue
