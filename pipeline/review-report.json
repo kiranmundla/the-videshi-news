@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-15T22:45:29.941742+00:00",
+  "timestamp": "2026-06-15T23:15:13.546746+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 4,
-    "flag": 0,
+    "pass": 0,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "a582cddd-965a-4e46-995b-c26c6be3bba8",
-      "headline": "Indians Are Now Australia's Largest Migrant Group. That Is Exactly Why They Are Under Attack.",
-      "slug": "australia-indian-diaspora-beyond-model-minority-social-cohesion-anti-immigration-20260615",
+      "id": "e569d06c-1a8a-4c2d-91a2-313a850a1c50",
+      "headline": "No Gangsters, No Conspiracies. Just the Mishras. Gullak Just Became the First Hindi Show Ever to Hit Five Seasons.",
+      "slug": "gullak-season-5-sonyliv-first-hindi-show-five-seasons-mishra-family-diaspora-where-to-watch-nri-20260615",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -21,138 +21,32 @@
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses the implications of Indian migration to Australia, directly addressing the Indian diaspora's experiences and challenges."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more direct quotes from Indian community members to enhance personal perspectives.",
-          "Provide statistics or examples of successful integration initiatives to balance the narrative."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "5cae1fcb-b69c-48cd-acdb-3e681ca2167c",
-      "headline": "British Commandos Seized a Russian Shadow-Fleet Tanker. The Captain They Charged Is Indian.",
-      "slug": "uk-charges-indian-captain-ajay-pant-russian-shadow-fleet-tanker-smyrtos-sanctions-20260615",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
+        "embed_issues": [
           {
-            "article_id": "544c05f2-d005-478d-9f3a-7fe2e42878fa",
-            "headline": "The War That Choked India's Oil Lifeline May Be Ending. New "
+            "url": "https://www.instagram.com/reel/DZKLhVIROHO/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel does not appear to be directly related to the content of the article discussing the show 'Gullak'."
           }
         ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
         "image_match": {
-          "score": 5,
-          "issue": "The image does not directly relate to the article's topic of a specific tanker seizure or the Indian captain."
+          "score": 3,
+          "issue": "The hero image does not match the article's topic about the show 'Gullak'."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the case to the Indian diaspora by discussing the legal exposure of Indian seafarers and the implications for India's maritime workforce."
+          "quality": 9,
+          "note": "The article effectively connects the show's themes to the NRI experience, emphasizing the emotional resonance for diaspora audiences."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that depicts the tanker or the context of the seizure.",
-          "Expand on the implications for Indian seafarers and how the diaspora can engage with or respond to these issues."
+          "Replace the irrelevant Instagram embed with a more relevant one that showcases 'Gullak' or its cast.",
+          "Use a hero image that directly relates to 'Gullak' or its characters to enhance visual relevance."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "1898ecb8-e85c-4ddd-be2a-893eef18bf44",
-      "headline": "India Just Renamed the One Tax Form Every Salaried Person Knows. Form 16 Is Now Form 130.",
-      "slug": "form-16-becomes-form-130-india-new-salary-tds-certificate-income-tax-act-2025-20260615",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively addresses the implications of the tax form changes for NRIs, making it relevant for the diaspora audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a brief summary of the implications for NRIs at the beginning of the article to capture their attention immediately.",
-          "Include a quote from a tax expert or advisor to enhance credibility and provide additional insights."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "285d3629-a31a-4ddd-99c1-0064bf44a805",
-      "headline": "One More Win and Shubman Gill Lifts His First Trophy as India's ODI Captain. In Lucknow, the Real Question Is Who Bats at No. 3.",
-      "slug": "india-afghanistan-2nd-odi-lucknow-shubman-gill-first-series-win-jaiswal-kishan-no3-debate-2026-nri",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the significance of the series to NRI fans, highlighting their engagement and anticipation."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more direct quotes from players or analysts to enhance the narrative.",
-          "Include a brief overview of Shubman Gill's previous performances as captain to provide context."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DZKLhVIROHO/",
         "promoted to published"
       ],
       "revised": false,
