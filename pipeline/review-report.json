@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-15T18:16:15.096821+00:00",
+  "timestamp": "2026-06-15T18:45:20.325584+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 11,
-    "flag": 0,
+    "pass": 2,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "8c2ac736-ea02-488f-beb0-0096f3537bee",
-      "headline": "At a New Jersey Gala, India Launched a Trade Portal and Quietly Recruited the Diaspora Into a $500 Billion Bet",
-      "slug": "glo-india-icons-impact-gala-trade-portal-mission-500-diaspora-20260615",
+      "id": "9d536419-3141-4fc7-bdf5-0090e101f974",
+      "headline": "India's Supreme Court Just Seized Control of the Fight Over Who Can Define a Person's Gender",
+      "slug": "supreme-court-stays-high-court-cases-transgender-amendment-act-2026-20260615",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -23,21 +23,62 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the specific event or topic of the trade portal launch."
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the implications of the Supreme Court's decision to the experiences of diaspora transgender individuals, making it relevant to NRI readers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from diaspora individuals or organizations to enhance the personal connection.",
+          "Include more context on the historical significance of the NALSA judgment for readers unfamiliar with it."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "cf4f3b3e-1ec2-4a76-a723-02c6633b73b3",
+      "headline": "Modi and Macron Just Put 120 Indian Startups in Front of the World's Investors. The Pitch: Innovate With India.",
+      "slug": "bharat-innovates-2026-nice-modi-macron-startups-global-investors-20260615",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "7cc2c2b6-8948-4691-8a47-f28599bc06c9",
+            "headline": "Three Dead Sailors, One H-1B Wishlist \u2014 Modi Goes to the G7 "
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 3,
+          "issue": "irrelevant"
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects the diaspora's role in the U.S.-India trade relationship, highlighting their involvement in economic initiatives."
+          "note": "The article effectively connects the event to the Indian diaspora, highlighting their role in technology and innovation."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that directly represents the gala or the trade portal for better relevance.",
-          "Add quotes or testimonials from diaspora members who attended the event to enhance personal connection."
+          "Replace the hero image with one that directly relates to the Bharat Innovates event or showcases Indian startups.",
+          "Include quotes or testimonials from diaspora members who attended the event to enhance the connection."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
         "promoted to published"
@@ -47,9 +88,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "a53551f3-b8d2-4ef3-991c-3456b9781f3b",
-      "headline": "Fifty-Nine Years On, America's Oldest Indian Association Handed Out Jewels \u2014 Including One to a Harvard MBA Building an AI Startup",
-      "slug": "aia-ny-benefit-gala-2026-ratnas-oldest-indian-association-diaspora-20260615",
+      "id": "63d5b7f9-30ea-4b1a-9acf-7d5a2b833521",
+      "headline": "HCLTech Just Bet $150 Million on India Building Its Own AI. Sarvam Is Now Worth $1.5 Billion.",
+      "slug": "hcltech-buys-stake-sarvam-ai-1-5-billion-sovereign-ai-bet-20260615",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -59,343 +100,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the gala or the honorees, but it is visually appealing and fits the theme of celebration."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the achievements of the honorees to the Indian diaspora's journey and cultural preservation in America."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from the honorees or attendees to provide a more personal touch.",
-          "Include more details about the significance of the Deepavali Festival to enhance cultural context."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "1952c45e-6fb4-4ccb-8ded-5745120576fb",
-      "headline": "A Contrarian WSJ Columnist Just Joined America's Top Foreign-Policy Club. CFR Picked Him on Purpose.",
-      "slug": "sadanand-dhume-cfr-senior-fellow-south-asia-diaspora-policy-20260615",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 6,
+          "issue": "The image of a data center is somewhat relevant but does not directly represent the AI focus of the article."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects Dhume's career trajectory to the Indian diaspora's influence in U.S. foreign policy, highlighting the unique role of Indian-origin voices."
+          "note": "The article effectively connects the Sarvam deal to the global Indian diaspora's contributions to AI and technology."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more direct quotes from Sadanand Dhume to enhance the article's depth.",
-          "Include a brief overview of the Council on Foreign Relations for readers unfamiliar with the organization."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "5ef51c44-263d-4272-bfe9-1015ba63eb0e",
-      "headline": "India's Largest Stock Exchange Is About to Go Public. The NSE's Mega-IPO Could Be the Country's Biggest Ever.",
-      "slug": "nse-ipo-drhp-sebi-filing-largest-india-offering-for-sale-nri-investor-guide-20260615",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the NSE IPO to NRI investors, highlighting their existing stakes and the implications of the IPO for them."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more specific examples of how NRIs can participate in the IPO process.",
-          "Include a brief overview of the regulatory challenges faced by the NSE to provide more context."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "773adeda-7c32-421e-8af7-1ae62cad60f1",
-      "headline": "Vitamin D Cuts Diabetes Risk \u2014 but Only If Your Genes Cooperate. A New Study Explains Who Actually Benefits.",
-      "slug": "vitamin-d-receptor-gene-variant-diabetes-prevention-tufts-study-south-asian-deficiency-20260615",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the study's findings to the South Asian diaspora, highlighting their unique health challenges."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Complete the last sentence for clarity and coherence.",
-          "Consider adding a brief summary of the study's implications for non-South Asian populations."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "6c4b288b-89af-4f3a-bce3-da39c59805b8",
-      "headline": "Why South Asians Get Heart Disease Younger Has Never Been Answered. A New Genomic Biobank Is Built to Find Out.",
-      "slug": "ourhealth-study-south-asian-genomic-biobank-cardiometabolic-risk-polygenic-scores-20260615",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively addresses the health disparities faced by the South Asian diaspora, making it relevant to NRI readers."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes or testimonials from participants in the OurHealth Study to enhance personal connection.",
-          "Include more statistics or comparisons with other populations to strengthen the argument about the unique risks faced by South Asians."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "3cc8d136-7802-4945-b538-8c73b5095182",
-      "headline": "Flying Home for Diwali 2026? Book Now \u2014 Here's the NRI Guide to Beating the Festival Fare Spike",
-      "slug": "diwali-2026-flight-booking-window-nri-india-fare-guide-20260615",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively addresses the needs and concerns of NRIs traveling home for Diwali, providing practical advice."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a section on potential travel restrictions or requirements for NRIs traveling to India during the festival period.",
-          "Include tips on how to find the best deals on accommodations or local transportation in India during Diwali."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "5973b58d-6f95-41e8-a486-8a460840dd3f",
-      "headline": "Thailand Just Slashed Indians' Visa-Free Stay to 15 Days \u2014 Here's What NRIs Need to Know",
-      "slug": "thailand-ends-60-day-visa-free-indians-15-day-arrival-nri-20260615",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively discusses the implications of visa changes for NRI families and travelers, making it relevant to the diaspora audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes or insights from travel experts or diaspora members to enhance the article's depth.",
-          "Include a brief comparison of visa policies of other popular destinations for Indian travelers to provide context."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "86275b2c-c395-4493-8cf0-ca0a8ddd8a67",
-      "headline": "Salesforce Just Paid $3.6 Billion to Buy the Robot That Answers Your Support Tickets",
-      "slug": "salesforce-fin-intercom-3-6-billion-agentforce-ai-agents-20260615",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image of Salesforce Tower is relevant but does not directly depict the AI or customer support theme."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the implications of AI in customer support to the Indian diaspora, highlighting both threats and opportunities."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that directly relates to AI or customer support to enhance visual relevance.",
-          "Add a quote or perspective from an Indian IT professional to further strengthen the diaspora connection."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "e98e6c24-13f8-4a06-87cf-d27d224ecd9f",
-      "headline": "India's First Private Orbital Rocket Just Cleared Its Biggest Engine Test. Skyroot's Launch Window Is Open.",
-      "slug": "skyroot-vikram-1-kalam-1200-test-private-orbital-launch-20260615",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the Indian diaspora's pride in space achievements to the emergence of private space ventures, highlighting opportunities for investment and participation."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from industry experts or diaspora investors to enhance credibility and engagement.",
-          "Include more details on how NRIs can participate in the private space sector, such as investment opportunities or job openings."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "dfe049a4-814b-4b5d-bf4b-5736982a9b4e",
-      "headline": "Qualcomm Wants Out of Your Pocket and Into the Data Center. The Bet Is on AI Inference.",
-      "slug": "qualcomm-data-center-ai-pivot-35-billion-snapdragon-20260615",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to Qualcomm or data centers, but is a generic tech image."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects Qualcomm's strategic shift to the Indian diaspora, particularly Indian engineers in the U.S. and India."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that directly represents Qualcomm or data centers.",
-          "Add a quote from an Indian engineer or expert to strengthen the diaspora connection."
+          "Consider using a more relevant image that directly represents AI technology or the Sarvam AI startup.",
+          "Expand on the implications of the deal for the diaspora community, perhaps by including quotes or perspectives from diaspora members."
         ],
         "verdict": "pass"
       },
