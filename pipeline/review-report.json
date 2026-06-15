@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-15T08:45:24.574700+00:00",
+  "timestamp": "2026-06-15T09:15:36.786364+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
-    "flag": 0,
+    "pass": 4,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "6384a2b7-9638-4866-98a2-7f252b357531",
-      "headline": "Pay $750 and Skip the U.S. Visa Line. For Indian Families, the New Fee Cuts Both Ways.",
-      "slug": "us-state-department-750-expedited-b1-b2-visa-interview-fee-pilot-july-2026-indian-families-20260615b",
+      "id": "32d83f96-5487-4894-87a3-0c5f0e3865fe",
+      "headline": "$1.3 Trillion Vanished From AI Chip Stocks in a Week. Then They Had Their Best Day in a Year.",
+      "slug": "ai-chip-stocks-1-3-trillion-rout-rebound-broadcom-nvidia-20260615",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -23,19 +23,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the topic of U.S. visa applications."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively discusses the implications of the new visa fee on Indian families and the diaspora."
+          "quality": 8,
+          "note": "The article effectively connects the volatility in AI chip stocks to the financial impact on Indian-American households, making the diaspora angle relevant and insightful."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that directly relates to U.S. visa applications or Indian families traveling to the U.S.",
-          "Expand on the implications of the fee for different socio-economic groups within the Indian diaspora."
+          "Consider adding more specific examples of how the stock fluctuations have directly impacted Indian-American investors.",
+          "Include quotes or insights from financial experts or Indian-American investors to enhance credibility and engagement."
         ],
         "verdict": "pass"
       },
@@ -47,9 +47,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "b8358c67-4848-486f-8010-9f3bd91ae4b9",
-      "headline": "Canada Has Rewritten Its Immigration Rulebook for 2026. Here Is What It Means for Indians.",
-      "slug": "canada-express-entry-2026-overhaul-category-based-draws-temporary-visa-cut-indian-professionals-20260615b",
+      "id": "49f225c7-46d9-465e-ad69-ade9dcc01603",
+      "headline": "Bay Area Tech Layoffs Hit 9,284 \u2014 Already Worse Than All of Last Year. For H-1B Workers, the Clock Starts Ticking.",
+      "slug": "bay-area-tech-layoffs-9284-h1b-60-day-grace-warn-20260615",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -58,24 +58,103 @@
       "llm_review": {
         "overall_score": 8,
         "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses the impact of layoffs on H-1B workers, a significant concern for the Indian diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes or anecdotes from affected H-1B workers to personalize the impact of layoffs.",
+          "Include more data or statistics on the overall job market trends for tech workers to provide broader context."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "abaa7a9a-aa13-4582-9046-8e87c7e3abc2",
+      "headline": "India's Tech Back Office Is Now the Brain. Its Workforce Is About to Cross 2.36 Million.",
+      "slug": "india-gcc-boom-2-36-million-nable-bengaluru-capability-20260615",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the GCC boom to the experiences and opportunities for NRIs, particularly in the tech sector."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of how NRIs are benefiting from the GCC boom.",
+          "Include quotes or insights from NRIs who have made the transition back to India to enhance relatability."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "888b1051-2c7f-434a-9af9-ed2b11400c07",
+      "headline": "Bobby Deol Made the Best-Reviewed Hindi Film of the Year. Then the Theatres Tried to Bury It.",
+      "slug": "bandar-bobby-deol-anurag-kashyap-best-reviewed-film-2026-screen-sharing-war-multiplex-nri-20260615",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/DZTzmewKiMI/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not appear to be directly related to the film 'Bandar' or Bobby Deol's performance."
+          }
+        ],
         "image_match": {
           "score": 6,
-          "issue": "The image of Ottawa does not directly relate to the immigration topic."
+          "issue": "The image is a film poster, but it does not match the title or content of the article, which discusses Bobby Deol's performance in 'Bandar'."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively addresses the implications of Canada's immigration changes specifically for Indian applicants, making it relevant for the diaspora."
+          "quality": 7,
+          "note": "The article discusses an Indian film and its reception, which is relevant to the Indian diaspora interested in Bollywood and cinema."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that directly relates to immigration or Indian professionals in Canada to enhance relevance.",
-          "Add a section that provides specific examples or testimonials from Indian immigrants to illustrate the impact of the new rules."
+          "Replace the irrelevant Instagram embed with a more relevant one that highlights the film or Bobby Deol.",
+          "Consider using a more relevant image that directly relates to the film 'Bandar' or Bobby Deol's performance."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/DZTzmewKiMI/",
         "promoted to published"
       ],
       "revised": false,
@@ -83,9 +162,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "05cd9593-3f07-4976-a0cc-dec517525257",
-      "headline": "America Has Run Out of EB-2 Green Cards for Indians. The Next Ones Come in October.",
-      "slug": "eb2-india-green-card-cap-exhausted-fy2026-no-visas-until-october-per-country-cap-20260615b",
+      "id": "bf0d3305-0b7a-44c2-a890-d43dc31fa7d9",
+      "headline": "House of the Dragon Returns June 21. For Diaspora Fans, the Real Date Is June 22.",
+      "slug": "house-of-the-dragon-season-3-release-date-jiohotstar-india-where-to-watch-battle-of-the-gullet-nri-20260615",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -95,19 +174,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the topic of immigration or green cards."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article discusses the impact of EB-2 green card limitations specifically on Indian professionals, which is highly relevant to the NRI community."
+          "quality": 8,
+          "note": "The article effectively connects the show's release to the Indian audience by highlighting the difference in release dates and the implications for NRIs."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that visually represents immigration or the green card process to enhance relevance.",
-          "Include a brief section on potential future changes in immigration policy that could affect the diaspora."
+          "Consider adding more quotes or insights from the cast or creators to enhance the depth of the article.",
+          "Include a brief summary of the previous seasons for readers who may not be fully caught up."
         ],
         "verdict": "pass"
       },
