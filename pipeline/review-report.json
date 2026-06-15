@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-15T11:15:25.137318+00:00",
+  "timestamp": "2026-06-15T12:15:43.510679+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 8,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,36 +11,31 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "7462b112-5961-4288-8b85-45d7780f957c",
-      "headline": "Kriti Sanon Threw an Arm Around Rashmika Mandanna in a Pune Crush. The Internet Decided It Was the Nicest Thing It Saw All Week.",
-      "slug": "kriti-sanon-shields-rashmika-mandanna-pune-mob-cocktail-2-viral-sisterhood-20260615",
+      "id": "354bde7f-e320-4488-b7c0-0397cf651ad7",
+      "headline": "Ten Indian Nationals Staged Armed Robberies to Fake Their Way to Visas, Boston Grand Jury Says",
+      "slug": "staged-robbery-u-visa-fraud-ring-ten-indian-nationals-boston-indictmen-20260615",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "90231b92-e9df-4311-b428-e6fc83aca9b0",
-            "headline": "Rashmika Mandanna Is About to Play M.S. Subbulakshmi. It Mig"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 10,
-          "issue": null
+          "score": 6,
+          "issue": "The image does not directly relate to the topic of armed robberies or immigration fraud."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects with the diaspora audience by highlighting a relatable and heartwarming moment that transcends cultural barriers."
+          "quality": 8,
+          "note": "The article effectively connects the implications of the fraud case to the broader Indian diaspora, highlighting the reputational risks faced by legitimate immigrants."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from Kriti Sanon or Rashmika Mandanna to enhance the article's depth.",
-          "Include more context about the film 'Cocktail 2' for readers who may not be familiar with it."
+          "Consider using a more relevant image that depicts the themes of crime or immigration fraud.",
+          "Add more context or quotes from experts to enhance the depth of the analysis regarding the impact on the Indian diaspora."
         ],
         "verdict": "pass"
       },
@@ -52,9 +47,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "767ceb12-38fb-487c-ac50-0ea1de8bd11d",
-      "headline": "The Average Age of Bollywood's Top Five Male Stars Is Now 54. That Number Should Terrify Mumbai.",
-      "slug": "bollywood-ageing-star-crisis-ormax-average-age-54-male-stars-south-cinema-diaspora-20260615",
+      "id": "8b97409d-d1df-45cb-8fc7-8df7a2ac5491",
+      "headline": "EB-2 India Is Already Frozen. The July Visa Bulletin Will Decide Which Category Goes Dark Next",
+      "slug": "july-2026-visa-bulletin-eb1-eb5-india-retrogression-forecast-20260615",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -65,18 +60,234 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image features Shah Rukh Khan, which is relevant to the article discussing the average age of Bollywood's top male stars, but it could be more representative of the broader topic."
+          "issue": "The image does not directly relate to the topic of immigration or visas."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects the aging Bollywood stars to the diaspora audience's changing viewing habits and preferences."
+          "note": "The article effectively highlights the impact of visa backlogs on the Indian diaspora, making it highly relevant."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider including more images or references to other top male stars mentioned in the article to enhance visual representation.",
-          "Add a concluding paragraph summarizing the implications of the findings for the future of Bollywood and its audience."
+          "Consider using an image that visually represents immigration or the visa process to enhance relevance.",
+          "Add more personal stories or testimonials from individuals affected by the EB-2 backlog to deepen the emotional connection with readers."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "b8d77258-c7ee-414c-9f6d-7535913d3116",
+      "headline": "He Got Indian Americans Recognized for Federal Contracts in 1981. Congress Just Gave Him a Flag.",
+      "slug": "varinder-bhalla-congressional-award-indian-american-aia-federal-contra-20260615",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the specific subject of Varinder Bhalla or the congressional award."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively highlights the contributions of Varinder Bhalla to the Indian-American community and connects it to the broader diaspora narrative."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a more relevant image that depicts Varinder Bhalla or the congressional award ceremony.",
+          "Include quotes from Bhalla or other community members to add a personal touch and depth to the narrative."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "7899225e-6e73-4383-8331-d4c69bf0ad4e",
+      "headline": "Twenty Years On, a Connecticut Diaspora Group Hands Out Awards to a State Senator It Once Might Have Mentored",
+      "slug": "gopio-ct-20th-anniversary-awards-connecticut-indian-american-diaspora-20260615",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the specific event or the Indian diaspora theme."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively highlights the achievements of the Indian-American community in Connecticut and their growing political presence."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that directly represents the awards banquet or the honorees to enhance relevance.",
+          "Include quotes or anecdotes from attendees to add a personal touch and deepen the narrative."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "79142dee-5075-416d-b279-8e0e982c3ee1",
+      "headline": "An Indian Engineer Evacuated His Belfast Flat at 1 A.M. The Mob Did Not Stop to Check Nationalities.",
+      "slug": "belfast-riots-indian-migrants-skilled-workers-northern-ireland-diaspor-20260615",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the experiences of Indian professionals in Belfast to the broader context of racial tensions and violence, making it relevant for diaspora readers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes or perspectives from other members of the Indian diaspora in Belfast to enrich the narrative.",
+          "Include more context about the historical relationship between the Indian community and local populations in Northern Ireland."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "93c3fd70-1179-4b56-aff4-a77239efa5b8",
+      "headline": "India Is Funding Its Own Eyes in the Sky. A Bengaluru Startup Just Won a Grant to Build AI That Sees the Subcontinent.",
+      "slug": "india-satsure-sovereign-ai-earth-observation-grant-20260615",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the topic of AI and space technology to the interests and concerns of the Indian diaspora, highlighting investment opportunities and relevance to their families back home."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of how the AI technology will directly impact the diaspora's interests.",
+          "Include quotes or insights from diaspora members or experts to enhance the connection to the audience."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "3eb55e42-9d06-4df4-aef9-2372e1748d39",
+      "headline": "Uber and Lyft Are Suing New York Over a Law That Stops Them Firing Drivers Quickly. Indian Immigrant Drivers Are Watching Closely.",
+      "slug": "uber-lyft-sue-nyc-driver-deactivation-law-52-20260615",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image depicts a rideshare scenario, which is relevant to the article's topic."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively highlights the impact of the law on Indian and South Asian immigrant drivers, making it highly relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from affected drivers to provide personal perspectives.",
+          "Include statistics on the percentage of Indian and South Asian drivers in the gig economy for added context."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "76051afc-5bfa-4dda-b6dc-f59465625ed4",
+      "headline": "India Sent 44,000 Crypto Tax Notices and Found $104 Million Hidden. NRIs With Wallets Back Home Should Read the Fine Print.",
+      "slug": "india-crypto-tax-44000-notices-104-million-nri-20260615",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to crypto or tax notices, but is visually appealing and relevant to finance."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively addresses NRIs and their specific concerns regarding crypto taxation in India."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that directly represents cryptocurrency or tax notices for better relevance.",
+          "Add a brief summary or bullet points at the end to highlight key takeaways for NRIs."
         ],
         "verdict": "pass"
       },
