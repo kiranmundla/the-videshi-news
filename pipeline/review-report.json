@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-15T01:15:19.146412+00:00",
+  "timestamp": "2026-06-15T01:45:20.435672+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
-    "flag": 1,
+    "pass": 2,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,36 +11,31 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "9e86a531-5b1f-45ab-861e-075783f3b153",
-      "headline": "Vicky Kaushal Has Blocked 18 Months of His Life. He's Becoming Parashurama.",
-      "slug": "vicky-kaushal-mahavatar-parashurama-18-months-amar-kaushik-maddock-films-2026",
+      "id": "13400bf0-ead2-4f76-9465-7948956a7c23",
+      "headline": "He Began as a Net Bowler for Mumbai Indians. In Dharamsala, Gurnoor Brar Took Three Wickets on Debut.",
+      "slug": "gurnoor-brar-odi-debut-3-27-dharamsala-india-afghanistan-punjab-2026-nri",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "9cd48bcc-18d3-4e20-a3a2-0b6ed959ac50",
-            "headline": "Vicky Kaushal Has Blocked 18 Months of His Life for One Role"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image of HPCA Stadium is relevant as it is the venue for Brar's debut, but it could be more directly related to Brar himself."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article discusses Vicky Kaushal's commitment to a significant role, which may resonate with the diaspora's interest in Indian cinema and cultural narratives."
+          "quality": 8,
+          "note": "The article connects well with the diaspora by highlighting an Indian cricketer's journey and achievements, which resonates with cricket fans abroad."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes or reactions from the diaspora community regarding Vicky Kaushal's role to enhance the connection.",
-          "Add more context about the significance of Parashurama in Indian culture for readers unfamiliar with the mythology."
+          "Include a quote from Brar that reflects his feelings about representing India, which could enhance the emotional connection for readers.",
+          "Add a brief section on the significance of Brar's debut in the context of Indian cricket's future, which could provide more depth."
         ],
         "verdict": "pass"
       },
@@ -52,42 +47,40 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "e7e9a081-7838-4afb-84a7-58d9bb4c27ab",
-      "headline": "75 Million Views in 24 Hours. Alia Bhatt Just Became the Most Dangerous Woman in the YRF Spy Universe.",
-      "slug": "alpha-teaser-alia-bhatt-75-million-views-yrf-spy-universe-bobby-deol-july-2026",
+      "id": "ff61b78a-9243-449b-a078-3678bc6f3959",
+      "headline": "He Scored 776 Runs at a Strike Rate of 237. India Has Called Up a 15-Year-Old.",
+      "slug": "vaibhav-sooryavanshi-india-call-up-youngest-debut-sachin-tendulkar-ipl-2026-nri",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "f6bd0fe5-a31a-4d7e-8ccd-99844356787d",
+            "headline": "Nine Fours. Zero Sixes. The Most Important Innings of Vaibha"
+          }
+        ],
         "broken_embeds": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/reel/DZkP3gjSYLM/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram reel does not appear to be directly related to the teaser or the article's main subject."
-          }
-        ],
+        "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 3,
+          "issue": "irrelevant"
         },
         "diaspora_angle": {
           "present": true,
           "quality": 7,
-          "note": "The article mentions the film's global release and its significance, which connects with diaspora audiences."
+          "note": "The article discusses a young cricketer's achievements, which may resonate with the Indian diaspora's interest in cricket, but the connection to the diaspora is not deeply explored."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant Instagram embed with a more relevant social media post or remove it altogether.",
-          "Expand on the diaspora angle by including insights on how the film's themes resonate with NRI audiences."
+          "Include more direct references to how Sooryavanshi's achievements impact or inspire the Indian diaspora.",
+          "Replace the hero image with one that features Vaibhav Sooryavanshi in action or celebrating a cricket achievement to better match the article's focus."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/reel/DZkP3gjSYLM/",
         "promoted to published"
       ],
       "revised": false,
