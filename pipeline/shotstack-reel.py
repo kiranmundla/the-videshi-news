@@ -826,11 +826,28 @@ def build_script_captions(words, script_text, hook_duration):
     # Group into phrases. Break only on sentence-ending punctuation or at 5 words —
     # NOT on commas, which produced tiny single-word clips that never reached full
     # opacity within their fade window (the recurring "low contrast" QA failure).
+    # URL lock: once we hit the brand token ("thevideshi"/"videshi"), keep every
+    # word through "com" in the SAME clip so the CTA never splits as
+    # "...THEVIDESHI DOT" + "COM" on two slides.
+    def _norm_tok(w):
+        return w.get("word", "").strip().lower().strip(".,!?:;")
+
     phrases = []
     current = []
+    url_mode = False
     for w in aligned:
         current.append(w)
         word_text = w.get("word", "")
+        nt = _norm_tok(w)
+        if nt in ("thevideshi", "videshi"):
+            url_mode = True
+        if url_mode:
+            # Don't break mid-URL; close the phrase only after "com"
+            if nt == "com":
+                phrases.append(current)
+                current = []
+                url_mode = False
+            continue
         if len(current) >= 5 or word_text.rstrip().endswith((".", "!", "?")):
             phrases.append(current)
             current = []
@@ -867,6 +884,17 @@ def build_script_captions(words, script_text, hook_duration):
         merged.append(rc)
         i += 1
     raw_clips = merged
+
+    # Safety net: if the FINAL clip is still under MIN_DUR (nothing after it to
+    # merge forward into — e.g. an orphaned "COM"), merge it BACKWARD into the
+    # previous clip so the last word never flashes on its own slide.
+    if len(raw_clips) >= 2 and raw_clips[-1]["duration"] < MIN_DUR:
+        last = raw_clips.pop()
+        prev = raw_clips[-1]
+        prev["text"] = (prev["text"] + " " + last["text"]).strip()
+        prev["duration"] = round(
+            (last["start"] + last["duration"]) - prev["start"], 2
+        )
 
     # Fix overlaps: trim each clip so it ends before the next one starts (0.02s gap min)
     for i in range(len(raw_clips) - 1):
@@ -1801,6 +1829,11 @@ def build_anchor_reel_timeline(
     }
 
     # ── Assemble timeline ──
+    # NOTE: lower_third_track intentionally OMITTED. The hook frame already shows
+    # the headline for the first 3s, and the voice-synced captions run the rest of
+    # the reel. Rendering the chyron *and* the captions both anchored to the bottom
+    # band caused them to overlap during the 3–7s window (the #1 "overlapping text"
+    # QA failure). Captions now own the lower third exclusively.
     timeline = {
         "background": NAVY,
         "fonts": [{"src": FONT_URL}],
@@ -1808,7 +1841,6 @@ def build_anchor_reel_timeline(
             caption_track,    # Top layer
             logo_track,
             hook_track,
-            lower_third_track,
             end_card_track,   # Branded end card
             broll_track,      # Visual base
             voice_track,      # Audio (bottom)
