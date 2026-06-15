@@ -79,9 +79,24 @@ def main():
     
     # Sort by date descending
     existing.sort(key=lambda u: u.get("date", ""), reverse=True)
-    
-    # Keep latest 20
-    existing = existing[:20]
+
+    # Still-active policies are never trimmed out by age, even if they fall
+    # outside the latest-20 window (e.g. interview waiver elimination).
+    STICKY_IDS = {"interview-waiver-eliminated"}
+
+    # Keep latest 20, but always preserve sticky still-active policies.
+    kept = existing[:20]
+    kept_ids = {u["id"] for u in kept}
+    for u in existing:
+        if u["id"] in STICKY_IDS and u["id"] not in kept_ids:
+            # Drop the oldest non-sticky entry to make room.
+            for i in range(len(kept) - 1, -1, -1):
+                if kept[i]["id"] not in STICKY_IDS:
+                    kept.pop(i)
+                    break
+            kept.append(u)
+    kept.sort(key=lambda u: u.get("date", ""), reverse=True)
+    existing = kept[:20]
     
     save_updates(existing)
     git_push_if_changed()

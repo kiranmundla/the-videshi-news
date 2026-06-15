@@ -167,16 +167,6 @@
     "source": "DHS / NAFSA / OMB"
   },
   {
-    "id": "kolkata-priority-50",
-    "date": "2026-01-01",
-    "label": "2026",
-    "headline": "Kolkata launches priority B1/B2 slots for parents 50+",
-    "summary": "US Consulate Kolkata now offers priority visitor visa appointments for eligible Indian parents aged 50 and above visiting children in the US.",
-    "severity": "medium",
-    "source": "US Consulate Kolkata",
-    "url": "/articles/kolkata-us-consulate-b1b2-visa-pilot-parents-priority-20260529"
-  },
-  {
     "id": "social-media-screening",
     "date": "2025-12-15",
     "label": "Dec 2025",
@@ -185,5 +175,15 @@
     "severity": "medium",
     "source": "US Embassy India",
     "url": "/immigration/guides/social-media-screening"
+  },
+  {
+    "id": "interview-waiver-eliminated",
+    "date": "2025-09-02",
+    "label": "Sep 2025",
+    "headline": "Interview waiver eliminated for work & student visas",
+    "summary": "H-1B, H-4, L-1, F-1, J-1, O-1 applicants no longer qualify for interview waiver. All must attend in-person interviews.",
+    "severity": "high",
+    "source": "US State Department",
+    "url": "/immigration/guides/visa-interview-prep"
   }
 ]
