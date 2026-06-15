@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-15T10:45:27.201539+00:00",
+  "timestamp": "2026-06-15T11:15:25.137318+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 4,
+    "pass": 2,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,31 +11,36 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "054f400d-0217-44fa-ab6f-a42596ac59cc",
-      "headline": "A Single Mother Can Now Get Her Child an Indian Passport Without the Father's Signature. The Andhra Court Just Said So.",
-      "slug": "andhra-high-court-single-mother-child-passport-without-father-consent-20260615",
+      "id": "7462b112-5961-4288-8b85-45d7780f957c",
+      "headline": "Kriti Sanon Threw an Arm Around Rashmika Mandanna in a Pune Crush. The Internet Decided It Was the Nicest Thing It Saw All Week.",
+      "slug": "kriti-sanon-shields-rashmika-mandanna-pune-mob-cocktail-2-viral-sisterhood-20260615",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "90231b92-e9df-4311-b428-e6fc83aca9b0",
+            "headline": "Rashmika Mandanna Is About to Play M.S. Subbulakshmi. It Mig"
+          }
+        ],
         "broken_embeds": []
       },
       "llm_review": {
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
+          "score": 10,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects the ruling to the challenges faced by NRI families, making it relevant and informative for the diaspora."
+          "note": "The article effectively connects with the diaspora audience by highlighting a relatable and heartwarming moment that transcends cultural barriers."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from legal experts or affected individuals to provide personal perspectives.",
-          "Include a brief summary of the implications of this ruling for single parents in the diaspora."
+          "Consider adding quotes from Kriti Sanon or Rashmika Mandanna to enhance the article's depth.",
+          "Include more context about the film 'Cocktail 2' for readers who may not be familiar with it."
         ],
         "verdict": "pass"
       },
@@ -47,9 +52,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "57f1be6b-ec91-4a49-bdd9-15f151411d4e",
-      "headline": "23 Died in a Delhi B&B That Should Never Have Been Open. The Inspector Who Cleared It Has Been Sacked.",
-      "slug": "delhi-malviya-nagar-bnb-fire-23-dead-inspector-sacked-building-violations-20260615",
+      "id": "767ceb12-38fb-487c-ac50-0ea1de8bd11d",
+      "headline": "The Average Age of Bollywood's Top Five Male Stars Is Now 54. That Number Should Terrify Mumbai.",
+      "slug": "bollywood-ageing-star-crisis-ormax-average-age-54-male-stars-south-cinema-diaspora-20260615",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -60,90 +65,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image does not directly relate to the specific incident described in the article."
+          "issue": "The image features Shah Rukh Khan, which is relevant to the article discussing the average age of Bollywood's top male stars, but it could be more representative of the broader topic."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the incident to the diaspora's experiences with budget accommodations in India."
+          "quality": 9,
+          "note": "The article effectively connects the aging Bollywood stars to the diaspora audience's changing viewing habits and preferences."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider including a more relevant image that depicts the specific location or incident.",
-          "Add quotes or perspectives from diaspora members to enhance the connection."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "88062d48-2bab-4c86-ba54-16d709ed798e",
-      "headline": "Germany Just Scrapped the Airport Transit Visa for Indians. Frankfurt and Munich Are Now Open Gateways.",
-      "slug": "germany-scraps-airport-transit-visa-indian-travellers-frankfurt-munich-20260615",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the visa change to the Indian diaspora's travel needs and highlights its significance for NRIs."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include a quote from an NRI or travel expert to add a personal touch.",
-          "Provide a brief comparison of transit visa requirements in other countries for Indian travelers."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "7810bc7c-0789-4f07-9784-2deb9f425d7f",
-      "headline": "Manpreet Singh Equalled a 412-Cap Record. In Rotterdam, a Late Drag Still Broke Indian Hearts.",
-      "slug": "india-hockey-2-3-netherlands-fih-pro-league-rotterdam-manpreet-singh-412-caps-world-cup-2026-nri",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the significance of Indian hockey to the diaspora, highlighting emotional ties and cultural heritage."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from players or coaches to enhance the narrative.",
-          "Include more context about the significance of the Pro League for the Indian team."
+          "Consider including more images or references to other top male stars mentioned in the article to enhance visual representation.",
+          "Add a concluding paragraph summarizing the implications of the findings for the future of Bollywood and its audience."
         ],
         "verdict": "pass"
       },
