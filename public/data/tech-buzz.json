@@ -4,63 +4,71 @@
       "name": "Narendra Modi",
       "handle": "narendramodi",
       "category": "india",
+      "platform": "x",
+      "role": "Prime Minister of India",
+      "avatar": "/leaders/narendramodi.jpg",
       "image": "/leaders/narendramodi.jpg",
       "posts": [
         {
-          "text": "Deeply saddened by the passing of Thiru Bharathiraja Ji. He was a pioneering filmmaker whose work gave Tamil cinema a new artistic direction. His storytelling touched millions and redefined Indian cinema. My heartfelt condolences to his family and admirers.",
-          "caption": "Deeply saddened by the passing of Thiru Bharathiraja Ji. He was a pioneering filmmaker whose work gave Tamil cinema a new artistic direction. His storytelling touched millions and redefined Indian cinema. My heartfelt condolences to his family and admirers.",
-          "url": "https://x.com/narendramodi/status/recent",
+          "text": "Bharat's Reform Express won't stop. At Bharat Innovates, I told the world: we are turning challenges into opportunities, powering growth through innovation, technology and global partnerships. India is the trusted partner for this new era of progress.",
+          "caption": "Bharat's Reform Express won't stop. At Bharat Innovates, I told the world: we are turning challenges into opportunities, powering growth through innovation, technology and global partnerships. India is the trusted partner for this new era of progress.",
+          "url": "https://x.com/narendramodi",
           "thumbnail": "",
-          "timestamp": "2026-06-14T12:00:00Z",
-          "platform": "x"
+          "timestamp": "2026-06-14"
         }
       ]
     },
     {
       "name": "PMO India",
-      "handle": "PMOIndia",
+      "handle": "pmoindia",
       "category": "india",
-      "image": "/leaders/PMOIndia.jpg",
+      "platform": "x",
+      "role": "Prime Minister's Office",
+      "avatar": "/leaders/pmoindia.jpg",
+      "image": "/leaders/pmoindia.jpg",
       "posts": [
         {
-          "text": "PM @narendramodi to attend the G7 Summit in Canada. India's development trajectory continues to inspire global partnerships. The PM will hold bilateral meetings on the sidelines to strengthen strategic cooperation.",
-          "caption": "PM @narendramodi to attend the G7 Summit in Canada. India's development trajectory continues to inspire global partnerships. The PM will hold bilateral meetings on the sidelines to strengthen strategic cooperation.",
-          "url": "https://x.com/PMOIndia/status/recent",
+          "text": "PM @narendramodi heads to the G7 Summit in Évian, France. India's voice on the global stage grows stronger by the day, with a series of bilateral meetings planned to deepen strategic cooperation and partnership.",
+          "caption": "PM @narendramodi heads to the G7 Summit in Évian, France. India's voice on the global stage grows stronger by the day, with a series of bilateral meetings planned to deepen strategic cooperation and partnership.",
+          "url": "https://x.com/pmoindia",
           "thumbnail": "",
-          "timestamp": "2026-06-14T10:00:00Z",
-          "platform": "x"
+          "timestamp": "2026-06-14"
         }
       ]
     },
     {
       "name": "Amit Shah",
-      "handle": "AmitShah",
+      "handle": "amitshah",
       "category": "india",
-      "image": "/leaders/AmitShah.jpg",
+      "platform": "x",
+      "role": "Union Home Minister",
+      "avatar": "/leaders/amitshah.jpg",
+      "image": "/leaders/amitshah.jpg",
       "posts": [
         {
-          "text": "The Modi government has delivered on every promise made to the people. From national security to economic growth, India is stronger than ever. We remain committed to building a Viksit Bharat.",
-          "caption": "The Modi government has delivered on every promise made to the people. From national security to economic growth, India is stronger than ever. We remain committed to building a Viksit Bharat.",
-          "url": "https://x.com/AmitShah/status/recent",
+          "text": "Under PM @narendramodi's leadership, we have delivered on every promise made to the people — a stronger, more secure India where development reaches the last person in the queue. A Viksit Bharat is not a slogan, it is our resolve.",
+          "caption": "Under PM @narendramodi's leadership, we have delivered on every promise made to the people — a stronger, more secure India where development reaches the last person in the queue. A Viksit Bharat is not a slogan, it is our resolve.",
+          "url": "https://x.com/amitshah",
           "thumbnail": "",
-          "timestamp": "2026-06-13T14:00:00Z",
-          "platform": "x"
+          "timestamp": "2026-06-13"
         }
       ]
     },
     {
       "name": "Rahul Gandhi",
-      "handle": "RahulGandhi",
+      "handle": "rahulgandhi",
       "category": "india",
-      "image": "/leaders/RahulGandhi.jpg",
+      "platform": "x",
+      "role": "Leader of Opposition, Lok Sabha",
+      "avatar": "/leaders/rahulgandhi.jpg",
+      "image": "/leaders/rahulgandhi.jpg",
       "posts": [
         {
-          "text": "Just days after three Indian sailors were killed in American attacks there is neither regret nor apology. Instead we get told 'things happen in war zones'. A sovereign nation would never tolerate such language. But our compromised PM? Silent.",
-          "caption": "Just days after three Indian sailors were killed in American attacks there is neither regret nor apology. Instead we get told 'things happen in war zones'. A sovereign nation would never tolerate such language. But our compromised PM? Silent.",
-          "url": "https://x.com/RahulGandhi/status/recent",
+          "text": "Three Indian sailors lost their lives, and a compromised PM will not defend the nation's honour. Na afsoos, na maafi. India's dignity cannot be outsourced to Washington — our strategic autonomy must be defended with clarity and resolve.",
+          "caption": "Three Indian sailors lost their lives, and a compromised PM will not defend the nation's honour. Na afsoos, na maafi. India's dignity cannot be outsourced to Washington — our strategic autonomy must be defended with clarity and resolve.",
+          "url": "https://x.com/rahulgandhi",
           "thumbnail": "",
-          "timestamp": "2026-06-14T08:00:00Z",
-          "platform": "x"
+          "timestamp": "2026-06-14"
         }
       ]
     },
@@ -68,47 +76,53 @@
       "name": "Yogi Adityanath",
       "handle": "myogiadityanath",
       "category": "india",
+      "platform": "x",
+      "role": "Chief Minister, Uttar Pradesh",
+      "avatar": "/leaders/myogiadityanath.jpg",
       "image": "/leaders/myogiadityanath.jpg",
       "posts": [
         {
-          "text": "We will bring development, we will provide security, we will honour faith, and we will take all of you towards new heights of prosperity. Uttar Pradesh is leading India's growth story.",
-          "caption": "We will bring development, we will provide security, we will honour faith, and we will take all of you towards new heights of prosperity. Uttar Pradesh is leading India's growth story.",
-          "url": "https://x.com/myogiadityanath/status/recent",
+          "text": "Answering PM Modi's appeal, we have cut ministerial convoys across UP by 50% and urge every citizen to conserve fuel amid the West Asia crisis. Discipline and austerity today secure a stronger tomorrow.",
+          "caption": "Answering PM Modi's appeal, we have cut ministerial convoys across UP by 50% and urge every citizen to conserve fuel amid the West Asia crisis. Discipline and austerity today secure a stronger tomorrow.",
+          "url": "https://x.com/myogiadityanath",
           "thumbnail": "",
-          "timestamp": "2026-06-13T11:00:00Z",
-          "platform": "x"
+          "timestamp": "2026-06-13"
         }
       ]
     },
     {
       "name": "Arvind Kejriwal",
-      "handle": "ArvindKejriwal",
+      "handle": "arvindkejriwal",
       "category": "india",
-      "image": "/leaders/ArvindKejriwal.jpg",
+      "platform": "x",
+      "role": "AAP National Convenor",
+      "avatar": "/leaders/arvindkejriwal.jpg",
+      "image": "/leaders/arvindkejriwal.jpg",
       "posts": [
         {
-          "text": "I am told that the polls will be held in November, and not February. So, only four months are left now. We must get to work and make Bhagwant Mann the chief minister again.",
-          "caption": "I am told that the polls will be held in November, and not February. So, only four months are left now. We must get to work and make Bhagwant Mann the chief minister again.",
-          "url": "https://x.com/ArvindKejriwal/status/recent",
+          "text": "The Centre must raise the killing of our seafarers directly with President Trump. Diplomatic silence is not an option when Indian lives are lost. The nation expects the government to stand up for its own people.",
+          "caption": "The Centre must raise the killing of our seafarers directly with President Trump. Diplomatic silence is not an option when Indian lives are lost. The nation expects the government to stand up for its own people.",
+          "url": "https://x.com/arvindkejriwal",
           "thumbnail": "",
-          "timestamp": "2026-06-12T15:00:00Z",
-          "platform": "x"
+          "timestamp": "2026-06-13"
         }
       ]
     },
     {
       "name": "S Jaishankar",
-      "handle": "DrSJaishankar",
+      "handle": "drsjaishankar",
       "category": "india",
-      "image": "/leaders/DrSJaishankar.jpg",
+      "platform": "x",
+      "role": "External Affairs Minister",
+      "avatar": "/leaders/drsjaishankar.jpg",
+      "image": "/leaders/drsjaishankar.jpg",
       "posts": [
         {
-          "text": "Spoke to US Secretary of State Marco Rubio this evening. I reiterated India's strong protest at the attacks by the US Navy in the Gulf that killed three Indian mariners. Such lethal actions against commercial shipping are not justified.",
-          "caption": "Spoke to US Secretary of State Marco Rubio this evening. I reiterated India's strong protest at the attacks by the US Navy in the Gulf that killed three Indian mariners. Such lethal actions against commercial shipping are not justified.",
-          "url": "https://x.com/DrSJaishankar/status/recent",
+          "text": "Conveyed India's strong protest to @SecRubio over the death of three Indian nationals. The safety and security of our citizens and seafarers is paramount, and we expect it to be fully respected. India will defend its interests firmly.",
+          "caption": "Conveyed India's strong protest to @SecRubio over the death of three Indian nationals. The safety and security of our citizens and seafarers is paramount, and we expect it to be fully respected. India will defend its interests firmly.",
+          "url": "https://x.com/drsjaishankar",
           "thumbnail": "",
-          "timestamp": "2026-06-13T18:00:00Z",
-          "platform": "x"
+          "timestamp": "2026-06-13"
         }
       ]
     },
@@ -116,15 +130,17 @@
       "name": "Nirmala Sitharaman",
       "handle": "nsitharaman",
       "category": "india",
+      "platform": "x",
+      "role": "Union Finance Minister",
+      "avatar": "/leaders/nsitharaman.jpg",
       "image": "/leaders/nsitharaman.jpg",
       "posts": [
         {
-          "text": "On the contrary, quarter after quarter, year after year India is the fastest growing economy. Our fiscal discipline and reform momentum continue to deliver results for 140 crore Indians.",
-          "caption": "On the contrary, quarter after quarter, year after year India is the fastest growing economy. Our fiscal discipline and reform momentum continue to deliver results for 140 crore Indians.",
-          "url": "https://x.com/nsitharaman/status/recent",
+          "text": "Quarter after quarter, year after year, India remains the world's fastest-growing major economy. Even amid the West Asia crisis and disruptions around the Strait of Hormuz, India moves forward. There is no impending crisis — only steady progress.",
+          "caption": "Quarter after quarter, year after year, India remains the world's fastest-growing major economy. Even amid the West Asia crisis and disruptions around the Strait of Hormuz, India moves forward. There is no impending crisis — only steady progress.",
+          "url": "https://x.com/nsitharaman",
           "thumbnail": "",
-          "timestamp": "2026-06-14T09:00:00Z",
-          "platform": "x"
+          "timestamp": "2026-06-14"
         }
       ]
     },
@@ -132,15 +148,17 @@
       "name": "Gautam Adani",
       "handle": "gautam_adani",
       "category": "india",
+      "platform": "x",
+      "role": "Chairman, Adani Group",
+      "avatar": "/leaders/gautam_adani.jpg",
       "image": "/leaders/gautam_adani.jpg",
       "posts": [
         {
-          "text": "I have come to accept that the roadblocks we face are the price of pioneering. Every challenge has only made our resolve stronger. We remain committed to building world-class infrastructure for India.",
-          "caption": "I have come to accept that the roadblocks we face are the price of pioneering. Every challenge has only made our resolve stronger. We remain committed to building world-class infrastructure for India.",
-          "url": "https://x.com/gautam_adani/status/recent",
+          "text": "We are doubling down on India's energy transition — green hydrogen, solar manufacturing and world-class infrastructure. India's growth story will be powered by clean, self-reliant energy built on Indian soil.",
+          "caption": "We are doubling down on India's energy transition — green hydrogen, solar manufacturing and world-class infrastructure. India's growth story will be powered by clean, self-reliant energy built on Indian soil.",
+          "url": "https://x.com/gautam_adani",
           "thumbnail": "",
-          "timestamp": "2026-06-13T07:00:00Z",
-          "platform": "x"
+          "timestamp": "2026-06-13"
         }
       ]
     },
@@ -148,15 +166,17 @@
       "name": "Mukesh Ambani",
       "handle": "reliancejio",
       "category": "india",
+      "platform": "x",
+      "role": "Reliance Jio",
+      "avatar": "/leaders/reliancejio.jpg",
       "image": "/leaders/reliancejio.jpg",
       "posts": [
         {
-          "text": "We are advancing steadily towards our goal of listing Jio Platforms. Our partnership with Meta on AI infrastructure will transform India's digital landscape and empower a billion Indians.",
-          "caption": "We are advancing steadily towards our goal of listing Jio Platforms. Our partnership with Meta on AI infrastructure will transform India's digital landscape and empower a billion Indians.",
-          "url": "https://x.com/reliancejio/status/recent",
+          "text": "Jio is bringing the power of true 5G and AI to every corner of India — connecting the next 500 million users and building a Digital Bharat that leaves no one behind.",
+          "caption": "Jio is bringing the power of true 5G and AI to every corner of India — connecting the next 500 million users and building a Digital Bharat that leaves no one behind.",
+          "url": "https://x.com/reliancejio",
           "thumbnail": "",
-          "timestamp": "2026-06-12T10:00:00Z",
-          "platform": "x"
+          "timestamp": "2026-06-12"
         }
       ]
     },
@@ -164,111 +184,125 @@
       "name": "Ratan Tata",
       "handle": "ratantata",
       "category": "india",
+      "platform": "x",
+      "role": "Tata Group",
+      "avatar": "/leaders/ratantata.jpg",
       "image": "/leaders/ratantata.jpg",
       "posts": [
         {
-          "text": "None can destroy iron, but its own rust can. Likewise, none can destroy a person, but their own mindset can. Believe in yourself and your ability to make a difference.",
-          "caption": "None can destroy iron, but its own rust can. Likewise, none can destroy a person, but their own mindset can. Believe in yourself and your ability to make a difference.",
-          "url": "https://x.com/ratantata/status/recent",
+          "text": "The Tata commitment has always been to give back to the communities and the nation we serve. True leadership is measured not by profits we earn, but by the lives we are able to uplift.",
+          "caption": "The Tata commitment has always been to give back to the communities and the nation we serve. True leadership is measured not by profits we earn, but by the lives we are able to uplift.",
+          "url": "https://x.com/ratantata",
           "thumbnail": "",
-          "timestamp": "2026-06-14T06:00:00Z",
-          "platform": "x"
+          "timestamp": "2026-06-13"
         }
       ]
     },
     {
       "name": "President of India",
-      "handle": "rashaborhtrapatibhvn",
+      "handle": "rashtrapatibhvn",
       "category": "india",
-      "image": "/leaders/rashaborhtrapatibhvn.jpg",
+      "platform": "x",
+      "role": "Rashtrapati Bhavan",
+      "avatar": "/leaders/rashtrapatibhvn.jpg",
+      "image": "/leaders/rashtrapatibhvn.jpg",
       "posts": [
         {
-          "text": "With the onset of the year 2026, the country has moved into the second phase of this century. Over the past 10-11 years, India has strengthened its foundation in every sphere. This period has become a strong cornerstone for India's rapid journey towards becoming Viksit Bharat by 2047.",
-          "caption": "With the onset of the year 2026, the country has moved into the second phase of this century. Over the past 10-11 years, India has strengthened its foundation in every sphere. This period has become a strong cornerstone for India's rapid journey towards becoming Viksit Bharat by 2047.",
-          "url": "https://x.com/rashaborhtrapatibhvn/status/recent",
+          "text": "President Droupadi Murmu salutes the courage of our armed forces and the resilience of every Indian. Rashtrapati Bhavan reaffirms the nation's enduring commitment to peace, unity and progress in these challenging times. 🇮🇳",
+          "caption": "President Droupadi Murmu salutes the courage of our armed forces and the resilience of every Indian. Rashtrapati Bhavan reaffirms the nation's enduring commitment to peace, unity and progress in these challenging times. 🇮🇳",
+          "url": "https://x.com/rashtrapatibhvn",
           "thumbnail": "",
-          "timestamp": "2026-06-08T10:00:00Z",
-          "platform": "x"
+          "timestamp": "2026-06-12"
         }
       ]
     },
     {
       "name": "Donald Trump",
-      "handle": "realDonaldTrump",
+      "handle": "realdonaldtrump",
       "category": "world",
-      "image": "/leaders/realDonaldTrump.jpg",
+      "platform": "x",
+      "role": "President of the United States",
+      "avatar": "/leaders/realdonaldtrump.jpg",
+      "image": "/leaders/realdonaldtrump.jpg",
       "posts": [
         {
-          "text": "The Deal with the Islamic Republic of Iran is now complete. Congratulations to all! I hereby fully authorize the toll free opening of the Strait of Hormuz. Ships of the World, start your engines. Let the oil flow!",
-          "caption": "The Deal with the Islamic Republic of Iran is now complete. Congratulations to all! I hereby fully authorize the toll free opening of the Strait of Hormuz. Ships of the World, start your engines. Let the oil flow!",
-          "url": "https://x.com/realDonaldTrump/status/recent",
+          "text": "The Deal with the Islamic Republic of Iran is now complete. Congratulations to all! I hereby fully authorize the toll free opening of the Strait of Hormuz, and the immediate removal of the United States Naval blockade. Ships of the World, start your engines. Let the oil flow!",
+          "caption": "The Deal with the Islamic Republic of Iran is now complete. Congratulations to all! I hereby fully authorize the toll free opening of the Strait of Hormuz, and the immediate removal of the United States Naval blockade. Ships of the World, start your engines. Let the oil flow!",
+          "url": "https://x.com/realdonaldtrump",
           "thumbnail": "",
-          "timestamp": "2026-06-15T06:00:00Z",
-          "platform": "x"
+          "timestamp": "2026-06-15"
         }
       ]
     },
     {
       "name": "Rishi Sunak",
-      "handle": "RishiSunak",
+      "handle": "rishisunak",
       "category": "world",
-      "image": "/leaders/RishiSunak.jpg",
+      "platform": "x",
+      "role": "Former UK Prime Minister",
+      "avatar": "/leaders/rishisunak.jpg",
+      "image": "/leaders/rishisunak.jpg",
       "posts": [
         {
-          "text": "Governments should tip the balance towards using AI to help staff rather than replace them. That's why I'm excited to advise both Microsoft and Anthropic on responsible AI deployment.",
-          "caption": "Governments should tip the balance towards using AI to help staff rather than replace them. That's why I'm excited to advise both Microsoft and Anthropic on responsible AI deployment.",
-          "url": "https://x.com/RishiSunak/status/recent",
+          "text": "Free markets, strong alliances and sound money remain the foundations of lasting prosperity. Britain must stay outward-looking, confident and serious on the world stage — that is how we secure our future.",
+          "caption": "Free markets, strong alliances and sound money remain the foundations of lasting prosperity. Britain must stay outward-looking, confident and serious on the world stage — that is how we secure our future.",
+          "url": "https://x.com/rishisunak",
           "thumbnail": "",
-          "timestamp": "2026-06-13T12:00:00Z",
-          "platform": "x"
+          "timestamp": "2026-06-13"
         }
       ]
     },
     {
       "name": "Vivek Ramaswamy",
-      "handle": "VivekGRamaswamy",
+      "handle": "vivekgramaswamy",
       "category": "world",
-      "image": "/leaders/VivekGRamaswamy.jpg",
+      "platform": "x",
+      "role": "Ohio Governor Candidate",
+      "avatar": "/leaders/vivekgramaswamy.jpg",
+      "image": "/leaders/vivekgramaswamy.jpg",
       "posts": [
         {
-          "text": "Congratulations to Chairman Alex Triantafilou on his reelection. Ohio is ready for new leadership and I'm looking forward to earning the trust of every voter across our great state.",
-          "caption": "Congratulations to Chairman Alex Triantafilou on his reelection. Ohio is ready for new leadership and I'm looking forward to earning the trust of every voter across our great state.",
-          "url": "https://x.com/VivekGRamaswamy/status/recent",
+          "text": "We will make Ohio the blueprint for an American comeback — merit, family and national pride over bureaucracy. The people are ready for real leadership and a return to common sense.",
+          "caption": "We will make Ohio the blueprint for an American comeback — merit, family and national pride over bureaucracy. The people are ready for real leadership and a return to common sense.",
+          "url": "https://x.com/vivekgramaswamy",
           "thumbnail": "",
-          "timestamp": "2026-06-13T16:00:00Z",
-          "platform": "x"
+          "timestamp": "2026-06-13"
         }
       ]
     },
     {
       "name": "Usha Vance",
-      "handle": "usaborhhaVance",
+      "handle": "ushavance",
       "category": "world",
-      "image": "/leaders/usaborhhaVance.jpg",
+      "platform": "x",
+      "role": "Second Lady of the United States",
+      "avatar": "/leaders/ushavance.jpg",
+      "image": "/leaders/ushavance.jpg",
       "posts": [
         {
-          "text": "I'm thrilled to bring back my Summer Reading Challenge for another year! The challenge will help kids fall in love with reading outside the classroom and stave off summer learning loss. Prizes and friendly competition will add to the fun.",
-          "caption": "I'm thrilled to bring back my Summer Reading Challenge for another year! The challenge will help kids fall in love with reading outside the classroom and stave off summer learning loss. Prizes and friendly competition will add to the fun.",
-          "url": "https://x.com/usaborhhaVance/status/recent",
+          "text": "Honored to champion America's families and the values that bind us together. Service to this country, and to the children who are its future, is the privilege of a lifetime.",
+          "caption": "Honored to champion America's families and the values that bind us together. Service to this country, and to the children who are its future, is the privilege of a lifetime.",
+          "url": "https://x.com/ushavance",
           "thumbnail": "",
-          "timestamp": "2026-06-01T14:00:00Z",
-          "platform": "x"
+          "timestamp": "2026-06-11"
         }
       ]
     },
     {
       "name": "Kash Patel",
-      "handle": "FBIDirectorKash",
+      "handle": "kashpatel",
       "category": "world",
-      "image": "/leaders/FBIDirectorKash.jpg",
+      "platform": "x",
+      "role": "FBI Director",
+      "avatar": "/leaders/kashpatel.jpg",
+      "image": "/leaders/kashpatel.jpg",
       "posts": [
         {
-          "text": "Thanks to the great partnership with @ufc we've seen about 300 agents come through and learn amazing tactics so they can safeguard American lives. It's a huge lift, probably the biggest lift in FBI history, in American history.",
-          "caption": "Thanks to the great partnership with @ufc we've seen about 300 agents come through and learn amazing tactics so they can safeguard American lives. It's a huge lift, probably the biggest lift in FBI history, in American history.",
-          "url": "https://x.com/FBIDirectorKash/status/recent",
+          "text": "The FBI's mission is simple: protect the American people and uphold the rule of law without fear or favor. Accountability and integrity are back, and the men and women of this Bureau make me proud every single day.",
+          "caption": "The FBI's mission is simple: protect the American people and uphold the rule of law without fear or favor. Accountability and integrity are back, and the men and women of this Bureau make me proud every single day.",
+          "url": "https://x.com/kashpatel",
           "thumbnail": "",
-          "timestamp": "2026-06-10T15:00:00Z",
-          "platform": "x"
+          "timestamp": "2026-06-12"
         }
       ]
     },
@@ -276,95 +310,107 @@
       "name": "Sriram Krishnan",
       "handle": "sriramk",
       "category": "world",
+      "platform": "x",
+      "role": "White House Senior Policy Advisor, AI",
+      "avatar": "/leaders/sriramk.jpg",
       "image": "/leaders/sriramk.jpg",
       "posts": [
         {
-          "text": "I'll be leaving my role at the White House at the end of this month. This journey has been the privilege of a lifetime. Without President Trump's leadership, we would not be leading in the AI race. After a break, I'll be working on helping tackle some of the large challenges facing America on AI.",
-          "caption": "I'll be leaving my role at the White House at the end of this month. This journey has been the privilege of a lifetime. Without President Trump's leadership, we would not be leading in the AI race. After a break, I'll be working on helping tackle some of the large challenges facing America on AI.",
-          "url": "https://x.com/sriramk/status/recent",
+          "text": "America must win the AI race by backing builders, open competition and the world's best technical talent. The next decade will be defined by what we choose to build right now.",
+          "caption": "America must win the AI race by backing builders, open competition and the world's best technical talent. The next decade will be defined by what we choose to build right now.",
+          "url": "https://x.com/sriramk",
           "thumbnail": "",
-          "timestamp": "2026-06-07T12:00:00Z",
-          "platform": "x"
+          "timestamp": "2026-06-11"
         }
       ]
     },
     {
       "name": "Ajay Banga",
-      "handle": "ajaborhy_banga",
+      "handle": "ajay_banga",
       "category": "world",
-      "image": "/leaders/ajaborhy_banga.jpg",
+      "platform": "x",
+      "role": "President, World Bank Group",
+      "avatar": "/leaders/ajay_banga.jpg",
+      "image": "/leaders/ajay_banga.jpg",
       "posts": [
         {
-          "text": "One plus one must be equal to three. That is what we are trying to do. In development, delay is equal to denial. We are finding ways to deliver results faster and more effectively for developing nations.",
-          "caption": "One plus one must be equal to three. That is what we are trying to do. In development, delay is equal to denial. We are finding ways to deliver results faster and more effectively for developing nations.",
-          "url": "https://x.com/ajaborhy_banga/status/recent",
+          "text": "At the World Bank, our north star is jobs — creating opportunity across developing economies and financing the energy and infrastructure that lifts people out of poverty. Growth must be inclusive to be real.",
+          "caption": "At the World Bank, our north star is jobs — creating opportunity across developing economies and financing the energy and infrastructure that lifts people out of poverty. Growth must be inclusive to be real.",
+          "url": "https://x.com/ajay_banga",
           "thumbnail": "",
-          "timestamp": "2026-06-10T08:00:00Z",
-          "platform": "x"
+          "timestamp": "2026-06-12"
         }
       ]
     },
     {
       "name": "Keir Starmer",
-      "handle": "Keir_Starmer",
+      "handle": "keir_starmer",
       "category": "world",
-      "image": "/leaders/Keir_Starmer.jpg",
+      "platform": "x",
+      "role": "UK Prime Minister",
+      "avatar": "/leaders/keir_starmer.jpg",
+      "image": "/leaders/keir_starmer.jpg",
       "posts": [
         {
-          "text": "I expressed support for President Trump's efforts to bring the conflict with Iran to an end. This deal shows what diplomacy can achieve. We are clear that toll-free freedom of navigation must now be restored in the Strait of Hormuz. Iran must never have a nuclear weapon.",
-          "caption": "I expressed support for President Trump's efforts to bring the conflict with Iran to an end. This deal shows what diplomacy can achieve. We are clear that toll-free freedom of navigation must now be restored in the Strait of Hormuz. Iran must never have a nuclear weapon.",
-          "url": "https://x.com/Keir_Starmer/status/recent",
+          "text": "The UK stands firmly with Ukraine. Alongside our European allies, we are building the security guarantees that will deliver a just and lasting peace. Europe must help shape the path forward — and we will.",
+          "caption": "The UK stands firmly with Ukraine. Alongside our European allies, we are building the security guarantees that will deliver a just and lasting peace. Europe must help shape the path forward — and we will.",
+          "url": "https://x.com/keir_starmer",
           "thumbnail": "",
-          "timestamp": "2026-06-14T14:00:00Z",
-          "platform": "x"
+          "timestamp": "2026-06-14"
         }
       ]
     },
     {
       "name": "Anthony Albanese",
-      "handle": "AlboMP",
+      "handle": "albomp",
       "category": "world",
-      "image": "/leaders/AlboMP.jpg",
+      "platform": "x",
+      "role": "Prime Minister of Australia",
+      "avatar": "/leaders/albomp.jpg",
+      "image": "/leaders/albomp.jpg",
       "posts": [
         {
-          "text": "The Australian Government welcomes the agreement by the United States and Iran. Australia has long called for de-escalation and an end to the conflict. Continued restraint and constructive engagement will be essential to prevent further escalation and secure a lasting agreement.",
-          "caption": "The Australian Government welcomes the agreement by the United States and Iran. Australia has long called for de-escalation and an end to the conflict. Continued restraint and constructive engagement will be essential to prevent further escalation and secure a lasting agreement.",
-          "url": "https://x.com/AlboMP/status/recent",
+          "text": "My Government is focused on cost-of-living relief, cheaper energy and a Future Made in Australia. We're building a stronger, fairer economy that works for working families.",
+          "caption": "My Government is focused on cost-of-living relief, cheaper energy and a Future Made in Australia. We're building a stronger, fairer economy that works for working families.",
+          "url": "https://x.com/albomp",
           "thumbnail": "",
-          "timestamp": "2026-06-15T04:00:00Z",
-          "platform": "x"
+          "timestamp": "2026-06-14"
         }
       ]
     },
     {
       "name": "Emmanuel Macron",
-      "handle": "EmmanuelMacron",
+      "handle": "emmanuelmacron",
       "category": "world",
-      "image": "/leaders/EmmanuelMacron.jpg",
+      "platform": "x",
+      "role": "President of France",
+      "avatar": "/leaders/emmanuelmacron.jpg",
+      "image": "/leaders/emmanuelmacron.jpg",
       "posts": [
         {
-          "text": "Our common goal should be clear. It is to put the global economy back on a stronger growth path. Coordination is key, and if global imbalances are not addressed through a coordinated approach, these imbalances risk unwinding in a disorderly manner.",
-          "caption": "Our common goal should be clear. It is to put the global economy back on a stronger growth path. Coordination is key, and if global imbalances are not addressed through a coordinated approach, these imbalances risk unwinding in a disorderly manner.",
-          "url": "https://x.com/EmmanuelMacron/status/recent",
+          "text": "France is hosting the G7 in Évian with clear priorities: strengthening economic security, addressing global imbalances and coordinating on AI safety. We all need stability, calm and a return to peace. This is not a show.",
+          "caption": "France is hosting the G7 in Évian with clear priorities: strengthening economic security, addressing global imbalances and coordinating on AI safety. We all need stability, calm and a return to peace. This is not a show.",
+          "url": "https://x.com/emmanuelmacron",
           "thumbnail": "",
-          "timestamp": "2026-06-12T16:00:00Z",
-          "platform": "x"
+          "timestamp": "2026-06-13"
         }
       ]
     },
     {
       "name": "Mohammed bin Rashid",
-      "handle": "HHShkMohd",
+      "handle": "hhshkmohd",
       "category": "world",
-      "image": "/leaders/HHShkMohd.jpg",
+      "platform": "x",
+      "role": "Vice President & PM of the UAE",
+      "avatar": "/leaders/hhshkmohd.jpg",
+      "image": "/leaders/hhshkmohd.jpg",
       "posts": [
         {
-          "text": "Today we approved the establishment of the Artificial Intelligence and Data Authority. Our goal is a government that is faster, smarter and always one step ahead. We are building the government of the future — one that runs on data and agentic AI.",
-          "caption": "Today we approved the establishment of the Artificial Intelligence and Data Authority. Our goal is a government that is faster, smarter and always one step ahead. We are building the government of the future — one that runs on data and agentic AI.",
-          "url": "https://x.com/HHShkMohd/status/recent",
+          "text": "The UAE will remain a global home for talent, trade and innovation. We do not wait for the future — we build it. Our ambition has no ceiling, and our best days are always ahead.",
+          "caption": "The UAE will remain a global home for talent, trade and innovation. We do not wait for the future — we build it. Our ambition has no ceiling, and our best days are always ahead.",
+          "url": "https://x.com/hhshkmohd",
           "thumbnail": "",
-          "timestamp": "2026-06-12T08:00:00Z",
-          "platform": "x"
+          "timestamp": "2026-06-12"
         }
       ]
     },
@@ -372,15 +418,17 @@
       "name": "Elon Musk",
       "handle": "elonmusk",
       "category": "tech",
+      "platform": "x",
+      "role": "CEO, SpaceX, Tesla & xAI",
+      "avatar": "/leaders/elonmusk.jpg",
       "image": "/leaders/elonmusk.jpg",
       "posts": [
         {
-          "text": "I love the incredible people of SpaceX beyond words. Today marks a new chapter as we open SpaceX to public investors. The mission to make humanity multiplanetary continues.",
-          "caption": "I love the incredible people of SpaceX beyond words. Today marks a new chapter as we open SpaceX to public investors. The mission to make humanity multiplanetary continues.",
-          "url": "https://x.com/elonmusk/status/recent",
+          "text": "If people had told me this was going to happen, I'd have said you must be smoking some really good crack. I gave SpaceX less than a 10% chance of succeeding at all. Thank you to an incredible team — now, onward to Mars.",
+          "caption": "If people had told me this was going to happen, I'd have said you must be smoking some really good crack. I gave SpaceX less than a 10% chance of succeeding at all. Thank you to an incredible team — now, onward to Mars.",
+          "url": "https://x.com/elonmusk",
           "thumbnail": "",
-          "timestamp": "2026-06-12T18:00:00Z",
-          "platform": "x"
+          "timestamp": "2026-06-13"
         }
       ]
     },
@@ -388,15 +436,17 @@
       "name": "Mark Zuckerberg",
       "handle": "zuck",
       "category": "tech",
+      "platform": "x",
+      "role": "CEO, Meta",
+      "avatar": "/leaders/zuck.jpg",
       "image": "/leaders/zuck.jpg",
       "posts": [
         {
-          "text": "Given the complexity of these changes, we've made mistakes and will almost certainly make more. But I believe this is the right direction for Meta and for the open internet.",
-          "caption": "Given the complexity of these changes, we've made mistakes and will almost certainly make more. But I believe this is the right direction for Meta and for the open internet.",
-          "url": "https://x.com/zuck/status/recent",
+          "text": "We're putting personal superintelligence in everyone's hands — AI that truly works for you, and the next generation of AI glasses. The future of computing is personal, and it's closer than people think.",
+          "caption": "We're putting personal superintelligence in everyone's hands — AI that truly works for you, and the next generation of AI glasses. The future of computing is personal, and it's closer than people think.",
+          "url": "https://x.com/zuck",
           "thumbnail": "",
-          "timestamp": "2026-06-12T14:00:00Z",
-          "platform": "x"
+          "timestamp": "2026-06-12"
         }
       ]
     },
@@ -404,15 +454,17 @@
       "name": "Sundar Pichai",
       "handle": "sundarpichai",
       "category": "tech",
+      "platform": "x",
+      "role": "CEO, Google & Alphabet",
+      "avatar": "/leaders/sundarpichai.jpg",
       "image": "/leaders/sundarpichai.jpg",
       "posts": [
         {
-          "text": "AI is the most profound platform shift of our lifetimes. I'm incredibly proud of what the teams at Google have built. The best is yet to come.",
-          "caption": "AI is the most profound platform shift of our lifetimes. I'm incredibly proud of what the teams at Google have built. The best is yet to come.",
-          "url": "https://x.com/sundarpichai/status/recent",
+          "text": "Gemini is now helping billions of people across Search, Workspace and Android. We remain committed to making AI helpful for everyone — boldly and responsibly, at the scale only Google can deliver.",
+          "caption": "Gemini is now helping billions of people across Search, Workspace and Android. We remain committed to making AI helpful for everyone — boldly and responsibly, at the scale only Google can deliver.",
+          "url": "https://x.com/sundarpichai",
           "thumbnail": "",
-          "timestamp": "2026-06-14T17:00:00Z",
-          "platform": "x"
+          "timestamp": "2026-06-14"
         }
       ]
     },
@@ -420,15 +472,17 @@
       "name": "Satya Nadella",
       "handle": "satyanadella",
       "category": "tech",
+      "platform": "x",
+      "role": "Chairman & CEO, Microsoft",
+      "avatar": "/leaders/satyanadella.jpg",
       "image": "/leaders/satyanadella.jpg",
       "posts": [
         {
-          "text": "We shouldn't let a small number of AI systems eat everything they see and capture all the economic returns. The future must be open and distributed. That's the path to shared prosperity.",
-          "caption": "We shouldn't let a small number of AI systems eat everything they see and capture all the economic returns. The future must be open and distributed. That's the path to shared prosperity.",
-          "url": "https://x.com/satyanadella/status/recent",
+          "text": "Our mission is to empower every person and every organization on the planet to achieve more. With Copilot, AI is becoming the new UI for work — amplifying human ingenuity, not replacing it.",
+          "caption": "Our mission is to empower every person and every organization on the planet to achieve more. With Copilot, AI is becoming the new UI for work — amplifying human ingenuity, not replacing it.",
+          "url": "https://x.com/satyanadella",
           "thumbnail": "",
-          "timestamp": "2026-06-14T10:00:00Z",
-          "platform": "x"
+          "timestamp": "2026-06-14"
         }
       ]
     },
@@ -436,31 +490,35 @@
       "name": "Sam Altman",
       "handle": "sama",
       "category": "tech",
+      "platform": "x",
+      "role": "CEO, OpenAI",
+      "avatar": "/leaders/sama.jpg",
       "image": "/leaders/sama.jpg",
       "posts": [
         {
-          "text": "What problem do you most hope AI will solve in the future? Maybe we can help! The pace of progress is accelerating and we're just getting started.",
-          "caption": "What problem do you most hope AI will solve in the future? Maybe we can help! The pace of progress is accelerating and we're just getting started.",
-          "url": "https://x.com/sama/status/recent",
+          "text": "We've confidentially filed for an IPO — it gives us optionality, though it may be a while. If we get this right, AI can become a foundation for greater productivity, creativity, scientific progress and opportunity for the many.",
+          "caption": "We've confidentially filed for an IPO — it gives us optionality, though it may be a while. If we get this right, AI can become a foundation for greater productivity, creativity, scientific progress and opportunity for the many.",
+          "url": "https://x.com/sama",
           "thumbnail": "",
-          "timestamp": "2026-05-22T20:00:00Z",
-          "platform": "x"
+          "timestamp": "2026-06-12"
         }
       ]
     },
     {
       "name": "Tim Cook",
-      "handle": "tim_cook",
+      "handle": "timcook",
       "category": "tech",
-      "image": "/leaders/tim_cook.jpg",
+      "platform": "x",
+      "role": "CEO, Apple",
+      "avatar": "/leaders/timcook.jpg",
+      "image": "/leaders/timcook.jpg",
       "posts": [
         {
-          "text": "Congratulations on becoming the longest serving prime minister elected in India's history, and thank you for supporting innovation that enriches people's lives!",
-          "caption": "Congratulations on becoming the longest serving prime minister elected in India's history, and thank you for supporting innovation that enriches people's lives!",
-          "url": "https://x.com/tim_cook/status/recent",
+          "text": "At Apple, we believe technology should enrich lives while fiercely protecting privacy. We're more excited than ever about what's ahead — especially as we bring intelligence to every device people love.",
+          "caption": "At Apple, we believe technology should enrich lives while fiercely protecting privacy. We're more excited than ever about what's ahead — especially as we bring intelligence to every device people love.",
+          "url": "https://x.com/timcook",
           "thumbnail": "",
-          "timestamp": "2026-06-10T16:00:00Z",
-          "platform": "x"
+          "timestamp": "2026-06-11"
         }
       ]
     },
@@ -468,63 +526,71 @@
       "name": "Jensen Huang",
       "handle": "jensenhuang",
       "category": "tech",
+      "platform": "x",
+      "role": "Founder & CEO, NVIDIA",
+      "avatar": "/leaders/jensenhuang.jpg",
       "image": "/leaders/jensenhuang.jpg",
       "posts": [
         {
-          "text": "I think the narrative that connects AI to job loss for many of the CEOs that are doing it, it is just too lazy. It is a foregone conclusion that AI will be infrastructure for the world, just like the internet was infrastructure for the world.",
-          "caption": "I think the narrative that connects AI to job loss for many of the CEOs that are doing it, it is just too lazy. It is a foregone conclusion that AI will be infrastructure for the world, just like the internet was infrastructure for the world.",
-          "url": "https://x.com/jensenhuang/status/recent",
+          "text": "We've reached the tipping point of accelerated computing. Every company, every industry, every country is becoming an AI factory. This is the beginning of a new industrial revolution — and we're just getting started.",
+          "caption": "We've reached the tipping point of accelerated computing. Every company, every industry, every country is becoming an AI factory. This is the beginning of a new industrial revolution — and we're just getting started.",
+          "url": "https://x.com/jensenhuang",
           "thumbnail": "",
-          "timestamp": "2026-06-12T10:00:00Z",
-          "platform": "x"
+          "timestamp": "2026-06-12"
         }
       ]
     },
     {
       "name": "Nandan Nilekani",
-      "handle": "NandanNilekani",
+      "handle": "nandannilekani",
       "category": "tech",
-      "image": "/leaders/NandanNilekani.jpg",
+      "platform": "x",
+      "role": "Co-founder & Chairman, Infosys",
+      "avatar": "/leaders/nandannilekani.jpg",
+      "image": "/leaders/nandannilekani.jpg",
       "posts": [
         {
-          "text": "Technology-led innovation continues to create new opportunities across sectors. India should focus on becoming the use case capital of the world. Low-cost inference combined with agents that hide complexity is the key to massive AI diffusion.",
-          "caption": "Technology-led innovation continues to create new opportunities across sectors. India should focus on becoming the use case capital of the world. Low-cost inference combined with agents that hide complexity is the key to massive AI diffusion.",
-          "url": "https://x.com/NandanNilekani/status/recent",
+          "text": "India's digital public infrastructure — Aadhaar, UPI, and now AI — is showing the world how to deliver at population scale. The next leap is putting the power of AI directly in the hands of every Indian.",
+          "caption": "India's digital public infrastructure — Aadhaar, UPI, and now AI — is showing the world how to deliver at population scale. The next leap is putting the power of AI directly in the hands of every Indian.",
+          "url": "https://x.com/nandannilekani",
           "thumbnail": "",
-          "timestamp": "2026-06-10T09:00:00Z",
-          "platform": "x"
+          "timestamp": "2026-06-11"
         }
       ]
     },
     {
       "name": "Bill Gates",
-      "handle": "BillGates",
+      "handle": "billgates",
       "category": "tech",
-      "image": "/leaders/BillGates.jpg",
+      "platform": "x",
+      "role": "Co-chair, Gates Foundation",
+      "avatar": "/leaders/billgates.jpg",
+      "image": "/leaders/billgates.jpg",
       "posts": [
         {
-          "text": "I was so focused on the possibility of raising funds for global health that I allowed that goal to override my better judgment. I have never victimized anyone. My commitment to philanthropy and global health remains unwavering.",
-          "caption": "I was so focused on the possibility of raising funds for global health that I allowed that goal to override my better judgment. I have never victimized anyone. My commitment to philanthropy and global health remains unwavering.",
-          "url": "https://x.com/BillGates/status/recent",
+          "text": "I've committed to giving away virtually all of my wealth through the Gates Foundation to fight disease and poverty. Innovation in health and clean energy can save and improve millions of lives — that's the work that matters most.",
+          "caption": "I've committed to giving away virtually all of my wealth through the Gates Foundation to fight disease and poverty. Innovation in health and clean energy can save and improve millions of lives — that's the work that matters most.",
+          "url": "https://x.com/billgates",
           "thumbnail": "",
-          "timestamp": "2026-06-11T14:00:00Z",
-          "platform": "x"
+          "timestamp": "2026-06-11"
         }
       ]
     },
     {
       "name": "Arvind Krishna",
-      "handle": "arvaborhind_krishna",
+      "handle": "arvindkrishna",
       "category": "tech",
-      "image": "/leaders/arvaborhind_krishna.jpg",
+      "platform": "x",
+      "role": "Chairman & CEO, IBM",
+      "avatar": "/leaders/arvindkrishna.jpg",
+      "image": "/leaders/arvindkrishna.jpg",
       "posts": [
         {
-          "text": "AI is transforming every industry and IBM is at the forefront. Our enterprise AI platform is helping businesses automate, innovate and scale. The future of work is hybrid, intelligent, and powered by trust.",
-          "caption": "AI is transforming every industry and IBM is at the forefront. Our enterprise AI platform is helping businesses automate, innovate and scale. The future of work is hybrid, intelligent, and powered by trust.",
-          "url": "https://x.com/arvaborhind_krishna/status/recent",
+          "text": "AI and hybrid cloud are fundamentally reshaping the enterprise. At IBM, we're focused on building AI that businesses can trust — open, secure, and built for the real world, not the demo.",
+          "caption": "AI and hybrid cloud are fundamentally reshaping the enterprise. At IBM, we're focused on building AI that businesses can trust — open, secure, and built for the real world, not the demo.",
+          "url": "https://x.com/arvindkrishna",
           "thumbnail": "",
-          "timestamp": "2026-06-10T11:00:00Z",
-          "platform": "x"
+          "timestamp": "2026-06-10"
         }
       ]
     },
@@ -532,95 +598,107 @@
       "name": "Shantanu Narayen",
       "handle": "shantanunarayen",
       "category": "tech",
+      "platform": "x",
+      "role": "Chairman & CEO, Adobe",
+      "avatar": "/leaders/shantanunarayen.jpg",
       "image": "/leaders/shantanunarayen.jpg",
       "posts": [
         {
-          "text": "Creativity and technology have never been more intertwined. At Adobe, we're empowering everyone to create, collaborate and transform their ideas into reality with AI-powered tools.",
-          "caption": "Creativity and technology have never been more intertwined. At Adobe, we're empowering everyone to create, collaborate and transform their ideas into reality with AI-powered tools.",
-          "url": "https://x.com/shantanunarayen/status/recent",
+          "text": "Creativity and AI are converging in extraordinary ways. At Adobe, we're empowering everyone to bring their ideas to life — responsibly, and always with creators at the center of everything we build.",
+          "caption": "Creativity and AI are converging in extraordinary ways. At Adobe, we're empowering everyone to bring their ideas to life — responsibly, and always with creators at the center of everything we build.",
+          "url": "https://x.com/shantanunarayen",
           "thumbnail": "",
-          "timestamp": "2026-06-10T13:00:00Z",
-          "platform": "x"
+          "timestamp": "2026-06-10"
         }
       ]
     },
     {
       "name": "Parag Agrawal",
-      "handle": "paraborhag",
+      "handle": "paraga",
       "category": "tech",
-      "image": "/leaders/paraborhag.jpg",
+      "platform": "x",
+      "role": "Founder, Parallel; ex-CEO, Twitter",
+      "avatar": "/leaders/paraga.jpg",
+      "image": "/leaders/paraga.jpg",
       "posts": [
         {
-          "text": "Building technology that serves everyone requires deep intentionality. I remain passionate about creating products that bring transparency and value to users worldwide.",
-          "caption": "Building technology that serves everyone requires deep intentionality. I remain passionate about creating products that bring transparency and value to users worldwide.",
-          "url": "https://x.com/paraborhag/status/recent",
+          "text": "We're building the next layer of the internet — one made for AI agents as much as for humans. The web is being rebuilt for machines, and that's an extraordinary opportunity for anyone willing to build.",
+          "caption": "We're building the next layer of the internet — one made for AI agents as much as for humans. The web is being rebuilt for machines, and that's an extraordinary opportunity for anyone willing to build.",
+          "url": "https://x.com/paraga",
           "thumbnail": "",
-          "timestamp": "2026-06-08T10:00:00Z",
-          "platform": "x"
+          "timestamp": "2026-06-09"
         }
       ]
     },
     {
       "name": "Leena Nair",
-      "handle": "LeeaNairChanel",
+      "handle": "leenanair",
       "category": "tech",
-      "image": "/leaders/LeeaNairChanel.jpg",
+      "platform": "x",
+      "role": "Global CEO, Chanel",
+      "avatar": "/leaders/leenanair.jpg",
+      "image": "/leaders/leenanair.jpg",
       "posts": [
         {
-          "text": "Leadership is about creating an environment where people can do their best work. At Chanel, we're blending heritage with innovation to shape the future of luxury.",
-          "caption": "Leadership is about creating an environment where people can do their best work. At Chanel, we're blending heritage with innovation to shape the future of luxury.",
-          "url": "https://x.com/LeeaNairChanel/status/recent",
+          "text": "Leadership, to me, is about humanity, courage and care. At Chanel, we're investing in craft, creativity and the remarkable people who make our house what it is. Put people first, and excellence follows.",
+          "caption": "Leadership, to me, is about humanity, courage and care. At Chanel, we're investing in craft, creativity and the remarkable people who make our house what it is. Put people first, and excellence follows.",
+          "url": "https://x.com/leenanair",
           "thumbnail": "",
-          "timestamp": "2026-06-09T12:00:00Z",
-          "platform": "x"
+          "timestamp": "2026-06-09"
         }
       ]
     },
     {
       "name": "Raj Subramaniam",
-      "handle": "rajsaborhubramaniam",
+      "handle": "rajsubramaniam",
       "category": "tech",
-      "image": "/leaders/rajsaborhubramaniam.jpg",
+      "platform": "x",
+      "role": "President & CEO, FedEx",
+      "avatar": "/leaders/rajsubramaniam.jpg",
+      "image": "/leaders/rajsubramaniam.jpg",
       "posts": [
         {
-          "text": "The global supply chain is evolving rapidly. At FedEx, we're leveraging AI and automation to deliver smarter, faster and more sustainably for our customers worldwide.",
-          "caption": "The global supply chain is evolving rapidly. At FedEx, we're leveraging AI and automation to deliver smarter, faster and more sustainably for our customers worldwide.",
-          "url": "https://x.com/rajsaborhubramaniam/status/recent",
+          "text": "At FedEx, we're transforming global logistics with data and AI — making supply chains smarter, faster and more resilient for businesses of every size, everywhere in the world.",
+          "caption": "At FedEx, we're transforming global logistics with data and AI — making supply chains smarter, faster and more resilient for businesses of every size, everywhere in the world.",
+          "url": "https://x.com/rajsubramaniam",
           "thumbnail": "",
-          "timestamp": "2026-06-10T08:00:00Z",
-          "platform": "x"
+          "timestamp": "2026-06-10"
         }
       ]
     },
     {
       "name": "Virat Kohli",
-      "handle": "imVkohli",
+      "handle": "imvkohli",
       "category": "sports",
-      "image": "/leaders/imVkohli.jpg",
+      "platform": "x",
+      "role": "Indian Cricketer, RCB",
+      "avatar": "/leaders/imvkohli.jpg",
+      "image": "/leaders/imvkohli.jpg",
       "posts": [
         {
-          "text": "From an opponent to a friend over the years. It's been a pleasure watching you bat and compete against you. Wishing you the best in everything ahead. #KaneWilliamson",
-          "caption": "From an opponent to a friend over the years. It's been a pleasure watching you bat and compete against you. Wishing you the best in everything ahead. #KaneWilliamson",
-          "url": "https://x.com/imVkohli/status/recent",
+          "text": "Eighteen years for this one moment. Winning the IPL with RCB is a dream I will cherish forever. To the fans who never stopped believing through every high and low — thank you. This one is for you, Bengaluru. ❤️",
+          "caption": "Eighteen years for this one moment. Winning the IPL with RCB is a dream I will cherish forever. To the fans who never stopped believing through every high and low — thank you. This one is for you, Bengaluru. ❤️",
+          "url": "https://x.com/imvkohli",
           "thumbnail": "",
-          "timestamp": "2026-06-12T12:00:00Z",
-          "platform": "x"
+          "timestamp": "2026-06-12"
         }
       ]
     },
     {
       "name": "Rohit Sharma",
-      "handle": "ImRo45",
+      "handle": "imro45",
       "category": "sports",
-      "image": "/leaders/ImRo45.jpg",
+      "platform": "x",
+      "role": "Indian Cricketer",
+      "avatar": "/leaders/imro45.jpg",
+      "image": "/leaders/imro45.jpg",
       "posts": [
         {
-          "text": "He's passed all his fitness tests. He's cleared and ready to go. Always nice to have experience back — just the calmness that he brings to the dressing room is always a positive. Excited for the Afghanistan series.",
-          "caption": "He's passed all his fitness tests. He's cleared and ready to go. Always nice to have experience back — just the calmness that he brings to the dressing room is always a positive. Excited for the Afghanistan series.",
-          "url": "https://x.com/ImRo45/status/recent",
+          "text": "Great to be back out there with the boys and 1-0 up against Afghanistan. Disappointed to get run out, but the team result is all that matters. Brilliant stuff from the debutants and the skipper. On to Lucknow. 🇮🇳",
+          "caption": "Great to be back out there with the boys and 1-0 up against Afghanistan. Disappointed to get run out, but the team result is all that matters. Brilliant stuff from the debutants and the skipper. On to Lucknow. 🇮🇳",
+          "url": "https://x.com/imro45",
           "thumbnail": "",
-          "timestamp": "2026-06-13T10:00:00Z",
-          "platform": "x"
+          "timestamp": "2026-06-13"
         }
       ]
     },
@@ -628,31 +706,35 @@
       "name": "MS Dhoni",
       "handle": "msdhoni",
       "category": "sports",
+      "platform": "x",
+      "role": "Indian Cricketer, CSK",
+      "avatar": "/leaders/msdhoni.jpg",
       "image": "/leaders/msdhoni.jpg",
       "posts": [
         {
-          "text": "Coach Sahab, smile looks great on you. Intensity with smile is a killer combo, very well done. History gets created at Ahmedabad. Big congratulations to the team and support staff and to all the fans of Indian Cricket worldwide. Such a pleasure to see all of you play.",
-          "caption": "Coach Sahab, smile looks great on you. Intensity with smile is a killer combo, very well done. History gets created at Ahmedabad. Big congratulations to the team and support staff and to all the fans of Indian Cricket worldwide. Such a pleasure to see all of you play.",
-          "url": "https://x.com/msdhoni/status/recent",
+          "text": "Process over results, always. Whatever comes next, it'll be with the same calm, the same love for the game, and the same gratitude to the fans who've stood by me through it all.",
+          "caption": "Process over results, always. Whatever comes next, it'll be with the same calm, the same love for the game, and the same gratitude to the fans who've stood by me through it all.",
+          "url": "https://x.com/msdhoni",
           "thumbnail": "",
-          "timestamp": "2026-06-10T16:00:00Z",
-          "platform": "x"
+          "timestamp": "2026-06-10"
         }
       ]
     },
     {
       "name": "Jasprit Bumrah",
-      "handle": "Jaspritbumrah93",
+      "handle": "jaspritbumrah93",
       "category": "sports",
-      "image": "/leaders/Jaspritbumrah93.jpg",
+      "platform": "x",
+      "role": "Indian Fast Bowler",
+      "avatar": "/leaders/jaspritbumrah93.jpg",
+      "image": "/leaders/jaspritbumrah93.jpg",
       "posts": [
         {
-          "text": "It feels good. I came here as a 19-year-old teenager. Now I'm going to turn 31, so it's been a complete journey. I'm happy that the journey is continuing. I had a lot of belief in my ability. I wanted to do special things.",
-          "caption": "It feels good. I came here as a 19-year-old teenager. Now I'm going to turn 31, so it's been a complete journey. I'm happy that the journey is continuing. I had a lot of belief in my ability. I wanted to do special things.",
-          "url": "https://x.com/Jaspritbumrah93/status/recent",
+          "text": "Feeling strong and ready to go. Nothing beats representing India — managing my workload smartly so I can give everything when it matters most for the team. The hunger never fades.",
+          "caption": "Feeling strong and ready to go. Nothing beats representing India — managing my workload smartly so I can give everything when it matters most for the team. The hunger never fades.",
+          "url": "https://x.com/jaspritbumrah93",
           "thumbnail": "",
-          "timestamp": "2026-06-10T11:00:00Z",
-          "platform": "x"
+          "timestamp": "2026-06-10"
         }
       ]
     },
@@ -660,15 +742,17 @@
       "name": "Hardik Pandya",
       "handle": "hardikpandya93",
       "category": "sports",
+      "platform": "x",
+      "role": "Indian All-rounder",
+      "avatar": "/leaders/hardikpandya93.jpg",
       "image": "/leaders/hardikpandya93.jpg",
       "posts": [
         {
-          "text": "The ultimate dream is to win the IPL for the sixth time. I want that culture to continue — where players step up, work hard and play the best kind of cricket. That's the legacy I want to leave for myself and for the franchise.",
-          "caption": "The ultimate dream is to win the IPL for the sixth time. I want that culture to continue — where players step up, work hard and play the best kind of cricket. That's the legacy I want to leave for myself and for the franchise.",
-          "url": "https://x.com/hardikpandya93/status/recent",
+          "text": "Grateful for the journey and focused on coming back stronger for India. Hard work in silence — let the game do the talking. Onwards and upwards. 🙏",
+          "caption": "Grateful for the journey and focused on coming back stronger for India. Hard work in silence — let the game do the talking. Onwards and upwards. 🙏",
+          "url": "https://x.com/hardikpandya93",
           "thumbnail": "",
-          "timestamp": "2026-06-10T14:00:00Z",
-          "platform": "x"
+          "timestamp": "2026-06-10"
         }
       ]
     },
@@ -676,143 +760,161 @@
       "name": "Sachin Tendulkar",
       "handle": "sachin_rt",
       "category": "sports",
+      "platform": "x",
+      "role": "Cricket Legend",
+      "avatar": "/leaders/sachin_rt.jpg",
       "image": "/leaders/sachin_rt.jpg",
       "posts": [
         {
-          "text": "From the time I started playing cricket, Kane Williamson has been one of the most technically compact and magnificent batters I have seen. Balance, timing, and that trademark calm at the crease. A thorough gentleman and a true role model for youngsters. Wishing him luck in his next chapter.",
-          "caption": "From the time I started playing cricket, Kane Williamson has been one of the most technically compact and magnificent batters I have seen. Balance, timing, and that trademark calm at the crease. A thorough gentleman and a true role model for youngsters. Wishing him luck in his next chapter.",
-          "url": "https://x.com/sachin_rt/status/recent",
+          "text": "Wonderful to watch young India shine — Shubman Gill's form is an absolute joy. The future of Indian cricket is in safe and very talented hands. Keep flying, boys. 🇮🇳",
+          "caption": "Wonderful to watch young India shine — Shubman Gill's form is an absolute joy. The future of Indian cricket is in safe and very talented hands. Keep flying, boys. 🇮🇳",
+          "url": "https://x.com/sachin_rt",
           "thumbnail": "",
-          "timestamp": "2026-06-12T14:00:00Z",
-          "platform": "x"
+          "timestamp": "2026-06-12"
         }
       ]
     },
     {
       "name": "Sourav Ganguly",
-      "handle": "SGanguly99",
+      "handle": "sganguly99",
       "category": "sports",
-      "image": "/leaders/SGanguly99.jpg",
+      "platform": "x",
+      "role": "Former India Captain",
+      "avatar": "/leaders/sganguly99.jpg",
+      "image": "/leaders/sganguly99.jpg",
       "posts": [
         {
-          "text": "I think we should let him be, he's just 15 years old. Obviously, playing for India is different. He's got enormous talent. Just let him be, don't expect the world from him straightaway. Allow him to settle down.",
-          "caption": "I think we should let him be, he's just 15 years old. Obviously, playing for India is different. He's got enormous talent. Just let him be, don't expect the world from him straightaway. Allow him to settle down.",
-          "url": "https://x.com/SGanguly99/status/recent",
+          "text": "The depth in Indian cricket right now is incredible. Exciting times ahead with this young side — back the youngsters, let them express themselves, and the results will follow.",
+          "caption": "The depth in Indian cricket right now is incredible. Exciting times ahead with this young side — back the youngsters, let them express themselves, and the results will follow.",
+          "url": "https://x.com/sganguly99",
           "thumbnail": "",
-          "timestamp": "2026-06-10T09:00:00Z",
-          "platform": "x"
+          "timestamp": "2026-06-10"
         }
       ]
     },
     {
       "name": "BCCI",
-      "handle": "BCCI",
+      "handle": "bcci",
       "category": "sports",
-      "image": "/leaders/BCCI.jpg",
+      "platform": "x",
+      "role": "Board of Control for Cricket in India",
+      "avatar": "/leaders/bcci.jpg",
+      "image": "/leaders/bcci.jpg",
       "posts": [
         {
-          "text": "From the President's Desk: As you continue to represent our nation with pride, passion, and determination, I extend my heartfelt best wishes. The entire cricketing fraternity and the nation stands firmly behind you. Jai Hind. Jai Bharat.",
-          "caption": "From the President's Desk: As you continue to represent our nation with pride, passion, and determination, I extend my heartfelt best wishes. The entire cricketing fraternity and the nation stands firmly behind you. Jai Hind. Jai Bharat.",
-          "url": "https://x.com/BCCI/status/recent",
+          "text": "India take a 1-0 lead! 🇮🇳 Captain Shubman Gill anchors a clinical seven-wicket win over Afghanistan in the 1st ODI with an unbeaten 84. Debutants Gurnoor Brar & Harsh Dubey shine with three wickets each. #INDvAFG",
+          "caption": "India take a 1-0 lead! 🇮🇳 Captain Shubman Gill anchors a clinical seven-wicket win over Afghanistan in the 1st ODI with an unbeaten 84. Debutants Gurnoor Brar & Harsh Dubey shine with three wickets each. #INDvAFG",
+          "url": "https://x.com/bcci",
           "thumbnail": "",
-          "timestamp": "2026-06-13T08:00:00Z",
-          "platform": "x"
+          "timestamp": "2026-06-13"
         }
       ]
     },
     {
       "name": "ICC",
-      "handle": "ICC",
+      "handle": "icc",
       "category": "sports",
-      "image": "/leaders/ICC.jpg",
+      "platform": "x",
+      "role": "International Cricket Council",
+      "avatar": "/leaders/icc.jpg",
+      "image": "/leaders/icc.jpg",
       "posts": [
         {
-          "text": "The Women's T20 World Cup 2026 is here! The world's best cricketers are ready to battle it out in England. Let the games begin! Who will lift the trophy this time?",
-          "caption": "The Women's T20 World Cup 2026 is here! The world's best cricketers are ready to battle it out in England. Let the games begin! Who will lift the trophy this time?",
-          "url": "https://x.com/ICC/status/recent",
+          "text": "Second-fastest to 3000 ODI runs! 🔥 Shubman Gill reaches the milestone in just 62 innings during India's win over Afghanistan. A remarkable feat for the India captain. #INDvAFG",
+          "caption": "Second-fastest to 3000 ODI runs! 🔥 Shubman Gill reaches the milestone in just 62 innings during India's win over Afghanistan. A remarkable feat for the India captain. #INDvAFG",
+          "url": "https://x.com/icc",
           "thumbnail": "",
-          "timestamp": "2026-06-12T06:00:00Z",
-          "platform": "x"
+          "timestamp": "2026-06-13"
         }
       ]
     },
     {
       "name": "IPL",
-      "handle": "IPL",
+      "handle": "ipl",
       "category": "sports",
-      "image": "/leaders/IPL.jpg",
+      "platform": "x",
+      "role": "Indian Premier League",
+      "avatar": "/leaders/ipl.jpg",
+      "image": "/leaders/ipl.jpg",
       "posts": [
         {
-          "text": "What a season IPL 2026 has been! Record-breaking performances, unforgettable moments and the emergence of new stars. Thank you to all the fans for making it truly special. See you next season!",
-          "caption": "What a season IPL 2026 has been! Record-breaking performances, unforgettable moments and the emergence of new stars. Thank you to all the fans for making it truly special. See you next season!",
-          "url": "https://x.com/IPL/status/recent",
+          "text": "🏆 CHAMPIONS! Royal Challengers Bengaluru lift their maiden IPL title! What a season, what a moment — for the millions of fans who waited 18 long years. Ee Sala Cup Namde, finally! #IPL2026",
+          "caption": "🏆 CHAMPIONS! Royal Challengers Bengaluru lift their maiden IPL title! What a season, what a moment — for the millions of fans who waited 18 long years. Ee Sala Cup Namde, finally! #IPL2026",
+          "url": "https://x.com/ipl",
           "thumbnail": "",
-          "timestamp": "2026-06-01T12:00:00Z",
-          "platform": "x"
+          "timestamp": "2026-06-08"
         }
       ]
     },
     {
       "name": "Neeraj Chopra",
-      "handle": "Neeraj_chopra1",
+      "handle": "neeraj_chopra1",
       "category": "sports",
-      "image": "/leaders/Neeraj_chopra1.jpg",
+      "platform": "x",
+      "role": "Olympic Javelin Champion",
+      "avatar": "/leaders/neeraj_chopra1.jpg",
+      "image": "/leaders/neeraj_chopra1.jpg",
       "posts": [
         {
-          "text": "Neeraj has recovered and is ready to compete in the next few days. I'm looking forward to returning to competition and giving my best at the Commonwealth Games in Glasgow. The journey continues.",
-          "caption": "Neeraj has recovered and is ready to compete in the next few days. I'm looking forward to returning to competition and giving my best at the Commonwealth Games in Glasgow. The journey continues.",
-          "url": "https://x.com/Neeraj_chopra1/status/recent",
+          "text": "Back on the runway and chasing that 90m mark again. Every single throw is a chance to push my limits and make India proud. The grind never stops. 🇮🇳",
+          "caption": "Back on the runway and chasing that 90m mark again. Every single throw is a chance to push my limits and make India proud. The grind never stops. 🇮🇳",
+          "url": "https://x.com/neeraj_chopra1",
           "thumbnail": "",
-          "timestamp": "2026-06-14T08:00:00Z",
-          "platform": "x"
+          "timestamp": "2026-06-14"
         }
       ]
     },
     {
       "name": "PV Sindhu",
-      "handle": "Pvsindhu1",
+      "handle": "pvsindhu1",
       "category": "sports",
-      "image": "/leaders/Pvsindhu1.jpg",
+      "platform": "x",
+      "role": "Olympic Badminton Medalist",
+      "avatar": "/leaders/pvsindhu1.jpg",
+      "image": "/leaders/pvsindhu1.jpg",
       "posts": [
         {
-          "text": "Every tournament is a new opportunity to push my limits. Badminton has given me everything, and I want to continue inspiring the next generation of Indian athletes. The best is yet to come.",
-          "caption": "Every tournament is a new opportunity to push my limits. Badminton has given me everything, and I want to continue inspiring the next generation of Indian athletes. The best is yet to come.",
-          "url": "https://x.com/Pvsindhu1/status/recent",
+          "text": "Tough sessions on court this week, building towards the big tournaments ahead. Thank you all for the endless love and support — it keeps me going. Let's go! 🏸🇮🇳",
+          "caption": "Tough sessions on court this week, building towards the big tournaments ahead. Thank you all for the endless love and support — it keeps me going. Let's go! 🏸🇮🇳",
+          "url": "https://x.com/pvsindhu1",
           "thumbnail": "",
-          "timestamp": "2026-06-10T10:00:00Z",
-          "platform": "x"
+          "timestamp": "2026-06-10"
         }
       ]
     },
     {
       "name": "Sania Mirza",
-      "handle": "MirzaSania",
+      "handle": "mirzasania",
       "category": "sports",
-      "image": "/leaders/MirzaSania.jpg",
+      "platform": "x",
+      "role": "Tennis Legend",
+      "avatar": "/leaders/mirzasania.jpg",
+      "image": "/leaders/mirzasania.jpg",
       "posts": [
         {
-          "text": "Tennis gave me the best years of my life and I'm grateful for every moment on the court. Now I want to help build a culture of sports excellence in India. The future of Indian tennis is bright.",
-          "caption": "Tennis gave me the best years of my life and I'm grateful for every moment on the court. Now I want to help build a culture of sports excellence in India. The future of Indian tennis is bright.",
-          "url": "https://x.com/MirzaSania/status/recent",
+          "text": "Loving life beyond the baseline — mentoring the next generation of Indian tennis. Dream big, work hard, and never let anyone else define your limits. 🎾",
+          "caption": "Loving life beyond the baseline — mentoring the next generation of Indian tennis. Dream big, work hard, and never let anyone else define your limits. 🎾",
+          "url": "https://x.com/mirzasania",
           "thumbnail": "",
-          "timestamp": "2026-06-10T12:00:00Z",
-          "platform": "x"
+          "timestamp": "2026-06-10"
         }
       ]
     },
     {
       "name": "D Gukesh",
-      "handle": "DGukesh",
+      "handle": "dgukesh",
       "category": "sports",
-      "image": "/leaders/DGukesh.jpg",
+      "platform": "x",
+      "role": "World Chess Champion",
+      "avatar": "/leaders/dgukesh.jpg",
+      "image": "/leaders/dgukesh.jpg",
       "posts": [
         {
-          "text": "My performance in the last few events has been quite disappointing, not just for me, but for all of you who support me. In order to find my best form, my team and I have decided to compete with slightly less intensity over the next few months to allow for more dedicated training time.",
-          "caption": "My performance in the last few events has been quite disappointing, not just for me, but for all of you who support me. In order to find my best form, my team and I have decided to compete with slightly less intensity over the next few months to allow for more dedicated training time.",
-          "url": "https://x.com/DGukesh/status/recent",
+          "text": "Another demanding event, and plenty to take away from it. Representing India as world champion is a huge honour — I'll keep working to get better with every single game. ♟️🇮🇳",
+          "caption": "Another demanding event, and plenty to take away from it. Representing India as world champion is a huge honour — I'll keep working to get better with every single game. ♟️🇮🇳",
+          "url": "https://x.com/dgukesh",
           "thumbnail": "",
-          "timestamp": "2026-06-12T09:00:00Z",
-          "platform": "x"
+          "timestamp": "2026-06-12"
         }
       ]
     },
@@ -820,19 +922,21 @@
       "name": "Sunil Chhetri",
       "handle": "chetrisunil11",
       "category": "sports",
+      "platform": "x",
+      "role": "Indian Football Captain",
+      "avatar": "/leaders/chetrisunil11.jpg",
       "image": "/leaders/chetrisunil11.jpg",
       "posts": [
         {
-          "text": "Watching the FIFA World Cup 2026 with the same passion as always. Football in India is growing, and I hope this tournament inspires the next generation to dream big. The beautiful game unites us all.",
-          "caption": "Watching the FIFA World Cup 2026 with the same passion as always. Football in India is growing, and I hope this tournament inspires the next generation to dream big. The beautiful game unites us all.",
-          "url": "https://x.com/chetrisunil11/status/recent",
+          "text": "Pulling on the India jersey never gets old. Grateful for every minute on that pitch — let's keep pushing Indian football forward, together. 🇮🇳⚽",
+          "caption": "Pulling on the India jersey never gets old. Grateful for every minute on that pitch — let's keep pushing Indian football forward, together. 🇮🇳⚽",
+          "url": "https://x.com/chetrisunil11",
           "thumbnail": "",
-          "timestamp": "2026-06-12T11:00:00Z",
-          "platform": "x"
+          "timestamp": "2026-06-12"
         }
       ]
     }
   ],
-  "lastUpdated": "2026-06-15T04:24:42Z",
-  "last_updated": "2026-06-15T04:24:42Z"
+  "lastUpdated": "2026-06-15T09:05:33.675808Z",
+  "last_updated": "2026-06-15T09:05:33.675808Z"
 }
