@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-15T15:15:32.001678+00:00",
+  "timestamp": "2026-06-15T16:15:24.452941+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 4,
+    "pass": 2,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,52 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "dac6a83d-23b9-4736-8741-da6e425f8c3a",
-      "headline": "Dil Chahta Hai Turns 25 in August. The Film That Taught the Diaspora How to Be Young Has Aged Better Than Any of Us.",
-      "slug": "dil-chahta-hai-25-years-saif-ali-khan-farhan-akhtar-goa-shoot-diaspora-nri-20260615",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://youtube.com/watch?v=OBAcYSSUf6o",
-            "problem": "irrelevant",
-            "explanation": "The YouTube link does not provide relevant content directly related to the article's focus on the film's impact on the diaspora."
-          }
-        ],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the film's themes and characters to the experiences of the diaspora, highlighting its cultural significance."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the irrelevant YouTube link with a more relevant embed, such as a clip or interview that discusses the film's impact on the diaspora.",
-          "Consider adding quotes or insights from diaspora viewers to further enhance the connection to NRI experiences."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "Removed irrelevant embed: https://youtube.com/watch?v=OBAcYSSUf6o",
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "c5bb20d8-8439-48d2-98e6-62429c2b9c25",
-      "headline": "An Indian Startup Raised $30 Million to Answer the Calls You Don't Want. NRIs With Indian Numbers Know the Pain.",
-      "slug": "equal-ai-30-million-call-screening-india-code-mixing-20260615",
+      "id": "f6223475-3690-4c17-9f9c-65579ad40398",
+      "headline": "$750 Buys a Tourist a Fast Visa Slot. The H-1B Worker Stuck in India Gets Nothing",
+      "slug": "750-dollar-expedite-pilot-b1b2-only-h1b-workers-india-backlog-excluded-20260615",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -68,53 +25,17 @@
         "image_match": {
           "score": 9,
           "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the startup's service to the experiences of NRIs, highlighting the relevance of the call screening tool for those maintaining Indian phone numbers."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a quote from a user or expert to enhance credibility.",
-          "Include more statistics or data on the impact of spam calls on NRIs to strengthen the argument."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "efdeec3f-4cd7-413a-bbdb-daabefd87e83",
-      "headline": "Adani and an Apple Supplier Are Building India's AI Data-Center Factory. The Hyperscalers Are the Customers.",
-      "slug": "jabil-adani-ai-data-center-manufacturing-india-20260615",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to AI data centers or manufacturing."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the topic to NRI investors and engineers, discussing the implications for the diaspora."
+          "note": "The article effectively highlights the disparity in visa processing for tourists versus skilled workers, which resonates with the Indian diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that depicts AI data centers or manufacturing.",
-          "Expand on the potential impact of this partnership on the Indian tech ecosystem for a deeper analysis."
+          "Include quotes or testimonials from affected H-1B workers to add a personal touch.",
+          "Provide more context on the implications of the visa backlog for the Indian diaspora."
         ],
         "verdict": "pass"
       },
@@ -126,9 +47,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "94958b70-c96a-40c5-94c1-8299d155e350",
-      "headline": "HCLTech Just Bet $151 Million on Sarvam AI. India's IT Giants Are Done Renting Their Intelligence.",
-      "slug": "hcltech-sarvam-ai-151-million-stake-sovereign-ai-20260615",
+      "id": "9d6983f1-adae-43fe-a826-a16097b097ed",
+      "headline": "A $250,000 Engineer or a $45,000 One \u2014 Trump's H-1B Fee Is Sending the Work Back to India",
+      "slug": "h1b-100k-fee-offshoring-cost-shift-india-gcc-talent-pivot-20260615",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -138,19 +59,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image is relevant to the tech theme but lacks a direct connection to HCLTech or Sarvam AI."
+          "score": 9,
+          "issue": "The image of the Infosys campus is relevant to the article's focus on Indian engineers and the tech industry."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the developments in India's AI sector to the experiences and career implications for NRIs, making it highly relevant."
+          "quality": 8,
+          "note": "The article effectively discusses the implications of H-1B changes on the Indian diaspora, particularly in terms of career opportunities and community dynamics."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider including a more specific image related to HCLTech or Sarvam AI to enhance visual relevance.",
-          "Add more data or quotes from industry experts to strengthen the analysis of the impact on the diaspora."
+          "Consider adding more statistics or quotes from Indian engineers to enhance the personal impact of the changes discussed.",
+          "Include a brief overview of the historical context of H-1B visas to provide readers with a clearer understanding of the significance of the changes."
         ],
         "verdict": "pass"
       },
