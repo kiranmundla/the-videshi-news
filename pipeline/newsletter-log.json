@@ -446,5 +446,15 @@
     "hero_slug": "indian-llm-applicants-us-law-schools-drop-23-percent-visa-climate-uk-20260613",
     "story_count": 8,
     "event_count": 5
+  },
+  {
+    "type": "daily",
+    "sent_at": "2026-06-15T13:55:53.718814+00:00Z",
+    "subject": "The Videshi Daily \u2014 June 15, 2026",
+    "subscribers": 3,
+    "sent": 3,
+    "errors": 0,
+    "hero_slug": "delhi-malviya-nagar-bnb-fire-23-dead-inspector-sacked-building-violations-20260615",
+    "story_count": 5
   }
 ]
