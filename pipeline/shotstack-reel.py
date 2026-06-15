@@ -828,14 +828,13 @@ def build_script_captions(words, script_text, hook_duration):
         text = rc["text"]
 
         # High-contrast caption pill — positioned ABOVE the lower-third overlay
-        # Strong opaque background ensures readability over moving video B-roll
+        # Fully opaque black background — Shotstack HTML renderer weakens rgba
         html = (
             f"<div style=\"display:flex;align-items:flex-end;justify-content:center;"
-            f"width:100%;height:100%;padding:0 30px 0 30px;\">"
-            f"<div style=\"background:rgba(0,0,0,0.92);border-radius:12px;padding:16px 30px;"
-            f"border:2px solid rgba(212,175,55,0.4);"
-            f"font-family:Inter;font-size:40px;font-weight:800;"
-            f"color:#FFFFFF;text-align:center;letter-spacing:1.5px;line-height:1.25;"
+            f"width:100%;height:100%;padding:0 24px 0 24px;\">"
+            f"<div style=\"background:#000000;border-radius:12px;padding:14px 28px;"
+            f"font-family:Inter;font-size:42px;font-weight:900;"
+            f"color:#FFFFFF;text-align:center;letter-spacing:1px;line-height:1.25;"
             f"text-shadow: 0 2px 4px rgba(0,0,0,0.9);\">"
             f"{text}</div></div>"
         )
@@ -850,7 +849,7 @@ def build_script_captions(words, script_text, hook_duration):
             "start": rc["start"],
             "length": rc["duration"],
             "position": "center",
-            "offset": {"x": 0, "y": 0.12},
+            "offset": {"x": 0, "y": 0.05},
             "transition": {"in": "fade", "out": "fade"},
         })
 
@@ -1099,6 +1098,7 @@ def source_storyboard_images(article, storyboard, count=8):
     scenes = storyboard if storyboard else []
     scene_descs = [s.get("visual", "") for s in scenes[:count]]
     matched_urls = [None] * min(count, len(scene_descs))
+    used_video_ids_this_reel = set()  # Prevent same video clip across multiple scenes
 
     # ── 1. Article hero for scene 1 ──
     if hero and is_url_downloadable(hero) and hero not in used_in_this_reel:
@@ -1362,7 +1362,7 @@ def build_lower_third_html(headline, category):
 }
 .lt-headline {
   font-family: 'Inter';
-  font-size: 26px;
+  font-size: 28px;
   font-weight: 800;
   color: #ffffff;
   line-height: 1.25;
@@ -1418,7 +1418,7 @@ def build_anchor_reel_timeline(
                             "stroke": {"width": 4, "color": "#000000", "opacity": 1},
                         },
                         "stroke": {"width": 3, "color": "#000000", "opacity": 0.9},
-                        "background": {"color": "#000000", "opacity": 0.9, "borderRadius": 8, "padding": 10},
+                        "background": {"color": "#000000", "opacity": 1.0, "borderRadius": 10, "padding": 10},
                         "align": {"vertical": "bottom"},
                         "style": {"textTransform": "uppercase"},
                         "padding": {"top": 0, "right": 8, "bottom": 0, "left": 8},
@@ -1427,8 +1427,8 @@ def build_anchor_reel_timeline(
                     "length": "end",
                     "width": 900,
                     "height": 200,
-                    "position": "bottom",
-                    "offset": {"x": 0, "y": 0.18},
+                    "position": "center",
+                    "offset": {"x": 0, "y": 0.05},
                 }
             ]
         }

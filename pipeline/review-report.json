@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-15T06:16:00.539755+00:00",
+  "timestamp": "2026-06-15T06:45:24.098674+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 9,
+    "pass": 1,
     "flag": 1,
     "fail": 0,
     "error": 0
@@ -11,12 +11,21 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "02fb5571-ff11-42bc-8acb-eabd1aee918b",
-      "headline": "India Scrapped Bond Taxes for Foreign Investors. One Billion Dollars Arrived in Three Days.",
-      "slug": "india-bond-tax-scrapped-foreign-investors-billion-three-days-20260615",
+      "id": "b61c099b-58d0-405f-a2a0-f2075fc8a1db",
+      "headline": "Kevin Warsh Chairs His First Fed Meeting This Week. Here Is Why NRIs Should Pay Attention.",
+      "slug": "kevin-warsh-first-fed-meeting-nri-investors-rupee-interest-rates-impact-20260615",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "ac5e8d0c-0426-47a2-908a-da5f446ff32a",
+            "headline": "Kevin Warsh Chairs His First Fed Meeting Next Week. India Ha"
+          },
+          {
+            "article_id": "c74fcae0-a812-4afb-b4a4-3331420a16d3",
+            "headline": "Kevin Warsh Takes the Chair at a Fed Nobody Agrees On. For N"
+          }
+        ],
         "broken_embeds": []
       },
       "llm_review": {
@@ -29,13 +38,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses the implications of bond market changes for NRIs, making it relevant and informative for the diaspora."
+          "note": "The article effectively connects the Federal Reserve's decisions to the financial interests of NRIs, making it relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more direct quotes from NRIs or financial experts to enhance the personal connection to the diaspora.",
-          "Include a brief explanation of how these changes might impact the broader Indian economy, which could provide additional context for readers."
+          "Consider adding more specific examples of how NRIs can prepare for potential changes in interest rates.",
+          "Include a brief overview of Kevin Warsh's background to provide context for his leadership style and potential impact."
         ],
         "verdict": "pass"
       },
@@ -47,153 +56,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "4f5eb7ff-2b7f-443b-a8ec-268a0c3d8a7f",
-      "headline": "India's Tax Dragnet Tightens Around NRIs. The July 1 Overhaul Will Make Hiding Assets Nearly Impossible.",
-      "slug": "india-tax-dragnet-nri-cross-border-information-sharing-july-2026-20260615",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively addresses NRIs and their compliance obligations, making it relevant for the diaspora audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a section on potential implications for NRIs who fail to comply with the new regulations.",
-          "Include quotes or insights from tax experts to enhance credibility and provide additional perspectives."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "18f34560-4acf-4840-a68a-36de88eba92b",
-      "headline": "India Is Launching 16 Electric Vehicles in Nine Months. For Every New Petrol Car, Two EVs Are Pulling Up.",
-      "slug": "india-16-ev-launches-nine-months-tata-sierra-mercedes-20260615",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article connects well with NRI readers by discussing investment opportunities and the impact of India's EV market on the global stage."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more statistics or data points to strengthen the argument about the growth of EVs in India.",
-          "Include quotes from industry experts or stakeholders to provide additional perspectives on the EV market."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "60d4e979-75ef-4a07-82cf-813e287f3f65",
-      "headline": "Sriram Krishnan Wrote America's AI Playbook. Now He's Leaving the White House to Build His Own.",
-      "slug": "sriram-krishnan-white-house-ai-adviser-exit-startup-20260615",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to Sriram Krishnan or AI specifically, but is a general tech-related image."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively highlights Krishnan's Indian-American journey and its significance, making it relatable to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that directly represents Sriram Krishnan or AI technology.",
-          "Expand on the implications of Krishnan's departure for the Indian tech community and diaspora."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "1084f720-e337-43ca-92f6-2668570df1d8",
-      "headline": "South Asian Women Hit Menopause Four Years Before the American Average. The Wellness Industry Has Barely Noticed.",
-      "slug": "south-asian-women-menopause-earlier-masala-study-apple-fitness-plus-diaspora-wellness-gap-20260615",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively addresses the specific experiences of South Asian women regarding menopause, making it relevant to the diaspora audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more personal anecdotes or quotes from South Asian women to enhance relatability.",
-          "Add a section discussing potential solutions or resources available for South Asian women facing menopause."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "709da974-3d36-4c23-889e-cb7a6fe9c023",
-      "headline": "Working From Home Made You an Hour Lonelier Every Day. A Half-Million-Person Study Just Proved It.",
-      "slug": "remote-work-loneliness-mental-health-science-study-south-asian-tech-diaspora-20260615",
+      "id": "f89f4ba8-3cb7-43a3-b0f1-e8c1d22bef6b",
+      "headline": "El Nino Is Here. India's Monsoon Season Faces Its Biggest Threat in a Decade.",
+      "slug": "el-nino-confirmed-india-monsoon-threat-agriculture-food-prices-nri-impact-20260615",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -203,179 +68,30 @@
         "overall_score": 8,
         "embed_issues": [
           {
-            "url": "https://www.instagram.com/p/DZXXaBVxOkC/",
+            "url": "https://www.instagram.com/p/DZe_TZojXf9/",
             "problem": "irrelevant",
-            "explanation": "The Instagram post does not appear to relate to the topic of loneliness or remote work, making it irrelevant to the article."
+            "explanation": "The Instagram post does not appear to relate to the topic of El Nino or its impact on India's monsoon season."
           }
         ],
         "image_match": {
           "score": 7,
-          "issue": "The image depicts a person working alone, which aligns with the theme of loneliness in remote work, but it could be more explicitly connected to the mental health aspect."
+          "issue": "The image depicts a landscape but does not specifically illustrate the monsoon or El Nino effects."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the findings of the study to the Indian diaspora, highlighting the unique challenges they face regarding isolation and mental health."
+          "quality": 7,
+          "note": "The article discusses the implications of El Nino on India's agriculture, which is relevant to the Indian diaspora concerned about food security and economic impacts."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant Instagram embed with a more relevant source or remove it altogether.",
-          "Consider adding a quote or statistic specifically from the Indian diaspora to strengthen the connection to the audience."
+          "Replace the irrelevant Instagram embed with a more relevant source or data visualization related to El Nino's impact on agriculture.",
+          "Consider adding a section that discusses how the Indian diaspora can support or respond to the challenges posed by El Nino."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DZXXaBVxOkC/",
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "c74fcae0-a812-4afb-b4a4-3331420a16d3",
-      "headline": "Kevin Warsh Takes the Chair at a Fed Nobody Agrees On. For NRI Investors, This Week Changes Everything.",
-      "slug": "kevin-warsh-first-fed-meeting-fomc-dot-plot-nri-investor-rupee-iran-peace-20260615",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "ac5e8d0c-0426-47a2-908a-da5f446ff32a",
-            "headline": "Kevin Warsh Chairs His First Fed Meeting Next Week. India Ha"
-          }
-        ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the Federal Reserve's decisions to the financial interests of NRIs, making it relevant for the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more direct quotes from experts or analysts to enhance credibility.",
-          "Include a brief summary of Kevin Warsh's background to provide context for his appointment."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "0af04531-defa-44b2-999d-00861757a722",
-      "headline": "South Africa Just Made It Much Easier for Indians to Visit \u2014 Here's What Changed",
-      "slug": "south-africa-eta-india-visa-safari-travel-nri-20260615",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the travel changes to NRIs, particularly highlighting the benefits for those in the US."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a section on cultural experiences or activities in South Africa that may appeal to Indian travelers.",
-          "Include a brief comparison of travel requirements for other popular destinations among NRIs to enhance context."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "82cdbe24-1953-4553-b0d9-adf2556c00ab",
-      "headline": "Tirupati Finally Gets the Luxury Pilgrimage Hotel It Deserves",
-      "slug": "tirupati-regenta-devarayah-luxury-pilgrimage-hotel-nri-20260615",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the hotel opening to the needs and traditions of the NRI community, particularly the Telugu diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from hotel management or guests to enhance the article's depth.",
-          "Include more details about the sustainability initiatives beyond solar power to attract environmentally conscious travelers."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "c78e9c9f-89ee-4440-ba70-667b7af5c2b9",
-      "headline": "America's Airports Are Melting Down \u2014 and NRIs Flying Home Are Caught in the Middle",
-      "slug": "us-summer-flight-chaos-nri-india-travel-guide-20260615",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image depicts an airport scene, which is relevant to the article's topic about airport disruptions."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively addresses the challenges NRIs face when traveling home, making it highly relevant to the diaspora audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes or anecdotes from NRIs affected by the disruptions to enhance the personal connection.",
-          "Include a brief section on how these disruptions might affect travel plans for NRIs in the upcoming months."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/DZe_TZojXf9/",
         "promoted to published"
       ],
       "revised": false,
