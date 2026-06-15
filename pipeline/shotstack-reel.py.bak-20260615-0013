@@ -570,30 +570,10 @@ def load_qa_lessons(max_entries=50):
     recent = entries[-max_entries:]
 
     # Collect all issues from entries that scored < 8 (even passes with issues)
-    # Only surface SCRIPT-level issues here — this feeds the script-writer prompt,
-    # which has no control over render-side problems (contrast, hook frame,
-    # pixelation, overlapping text). Feeding those back just spins uselessly.
-    _render_only = ("contrast", "readab", "pixel", "blur", "stretch", "overlap",
-                    "resolution", "branding", "watermark", "transition", "pacing",
-                    "flow", "hook", "opening frame", "black bar")
-
-    def _is_script_issue(issue_text):
-        t = issue_text.lower()
-        # Keep issues about the narration/content; drop pure-render complaints.
-        script_signals = ("depth", "restate", "headline", "narration", "vague",
-                           "specific", "context", "information", "cta", "spelling",
-                           "relevan")  # relevance is partly script (storyboard) driven
-        if any(s in t for s in script_signals):
-            return True
-        if any(r in t for r in _render_only):
-            return False
-        return True  # default: keep
-
     all_issues = []
     for e in recent:
         for issue in e.get("issues", []):
-            if _is_script_issue(issue):
-                all_issues.append(issue.lower().strip())
+            all_issues.append(issue.lower().strip())
 
     if not all_issues:
         return ""
@@ -950,25 +930,6 @@ BLOCKED_DOMAINS = [
 ]
 
 
-def upscale_wikimedia_url(url, target_px=1280):
-    """Rewrite a Wikimedia thumbnail URL to a larger width to avoid pixelation.
-    Wikimedia thumb URLs embed the width like '/330px-Foo.jpg'. A 330px thumb
-    stretched to 1080 looks blurry — bump it to target_px. Non-thumb or
-    non-Wikimedia URLs are returned unchanged.
-    """
-    if not url or "upload.wikimedia.org" not in url or "/thumb/" not in url:
-        return url
-    import re
-    # Match the trailing '/<NNN>px-<filename>' segment and raise the width.
-    m = re.search(r"/(\d+)px-([^/]+)$", url)
-    if not m:
-        return url
-    cur = int(m.group(1))
-    if cur >= target_px:
-        return url
-    return url[: m.start()] + f"/{target_px}px-{m.group(2)}"
-
-
 def is_url_downloadable(url):
     """Check if a URL is reachable by Shotstack (no Wikipedia, etc.)."""
     if not url or len(url) < 10:
@@ -1139,31 +1100,7 @@ def source_storyboard_images(article, storyboard, count=8):
     matched_urls = [None] * min(count, len(scene_descs))
     used_video_ids_this_reel = set()  # Prevent same video clip across multiple scenes
 
-    # Anchor B-roll searches to India so generic queries ("military uniform",
-    # "students exam") don't return foreign footage (e.g. an Italian army
-    # uniform on an Indian Air Force story). Applied to every scene query below.
-    _india_terms = ("india", "indian", "delhi", "mumbai", "bollywood", "rupee",
-                    "modi", "nri", "hindu", "desi", "bengaluru", "chennai", "kolkata")
-
-    def anchor_query_to_india(q):
-        if not q:
-            return q
-        ql = q.lower()
-        if any(t in ql for t in _india_terms):
-            return q
-        # People/place/object queries benefit from an India qualifier; abstract
-        # ones ("ocean waves", "smoke rising") are left alone.
-        generic_visual = ("uniform", "soldier", "police", "officer", "student",
-                          "exam", "classroom", "school", "college", "office",
-                          "city", "street", "building", "crowd", "people",
-                          "family", "doctor", "hospital", "court", "flag",
-                          "currency", "money", "notes", "parliament", "protest")
-        if any(t in ql for t in generic_visual):
-            return f"Indian {q}"
-        return q
-
     # ── 1. Article hero for scene 1 ──
-    hero = upscale_wikimedia_url(hero)
     if hero and is_url_downloadable(hero) and hero not in used_in_this_reel:
         matched_urls[0] = hero
         used_in_this_reel.add(hero)
@@ -1181,7 +1118,6 @@ def source_storyboard_images(article, storyboard, count=8):
             if visual and visual not in queries:
                 queries = [visual] + queries
             for query in queries[:3]:
-                query = anchor_query_to_india(query)
                 results = pexels_video_search(pexels_key, query, count=5, min_duration=4)
                 for cand in results:
                     vid = cand["video_id"]
@@ -1211,7 +1147,6 @@ def source_storyboard_images(article, storyboard, count=8):
             if visual and visual not in queries:
                 queries = [visual] + queries
             for query in queries[:3]:
-                query = anchor_query_to_india(query)
                 results = pexels_search(pexels_key, query, count=5)
                 for cand in results:
                     pid = cand["photo_id"]
@@ -1246,7 +1181,6 @@ def source_storyboard_images(article, storyboard, count=8):
                     if wr.status_code == 200:
                         wdata = wr.json()
                         wimg = wdata.get("originalimage", {}).get("source") or wdata.get("thumbnail", {}).get("source")
-                        wimg = upscale_wikimedia_url(wimg)
                         if wimg and wimg not in used_in_this_reel:
                             matched_urls[i] = wimg
                             used_in_this_reel.add(wimg)
@@ -1396,21 +1330,14 @@ def build_hook_html(hook_line1, hook_line2, category):
 def build_lower_third_html(headline, category):
     """Build HTML for the lower-third headline overlay during B-roll."""
     badge = (category or "NEWS").upper().replace("-", " ")
-    # Truncate headline at a WORD boundary (old code cut mid-word: "...How the NE…")
-    MAX_LEN = 70
-    if len(headline) > MAX_LEN:
-        cut = headline[:MAX_LEN].rsplit(" ", 1)[0]
-        display_hl = cut + "…"
-    else:
-        display_hl = headline
+    # Truncate headline for display
+    display_hl = headline[:80] + ("..." if len(headline) > 80 else "")
 
     html = f"""<div class='lower-third'>
   <div class='lt-badge'>{badge}</div>
   <div class='lt-headline'>{display_hl}</div>
 </div>"""
 
-    # Stronger, earlier scrim + larger headline + solid band behind the text so
-    # captions stay readable over BRIGHT B-roll (top QA failure: low contrast).
     css = """
 .lower-third {
   display: flex;
@@ -1419,9 +1346,9 @@ def build_lower_third_html(headline, category):
   justify-content: flex-end;
   width: 100%;
   height: 100%;
-  padding: 0 32px 22px 32px;
+  padding: 0 32px 16px 32px;
   box-sizing: border-box;
-  background: linear-gradient(transparent 0%, rgba(10,22,40,0.55) 35%, rgba(10,22,40,0.92) 65%, rgba(10,22,40,0.99) 100%);
+  background: linear-gradient(transparent 0%, transparent 20%, rgba(10,22,40,0.75) 50%, rgba(10,22,40,0.95) 80%, rgba(10,22,40,0.99) 100%);
 }
 .lt-badge {
   background: #C41E3A;
@@ -1431,16 +1358,16 @@ def build_lower_third_html(headline, category):
   font-weight: 700;
   padding: 5px 16px;
   letter-spacing: 2px;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   border-radius: 3px;
 }
 .lt-headline {
   font-family: 'Inter';
-  font-size: 34px;
+  font-size: 28px;
   font-weight: 800;
   color: #ffffff;
-  line-height: 1.22;
-  text-shadow: 0 2px 10px rgba(0,0,0,0.95), 0 0 4px rgba(0,0,0,0.8);
+  line-height: 1.25;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.6);
 }
 """.strip()
 
@@ -1528,14 +1455,14 @@ def build_anchor_reel_timeline(
                 "asset": {
                     "type": "html",
                     "html": "<div class='wm'>TheVideshi.com</div>",
-                    "css": ".wm { font-family: 'Inter'; color: #ffffff; font-size: 15px; font-weight: 700; letter-spacing: 1px; text-shadow: 0 2px 6px rgba(0,0,0,0.95); text-align: center; padding: 3px 10px; background: rgba(0,0,0,0.45); border-radius: 4px; }",
-                    "width": 200,
-                    "height": 30,
+                    "css": ".wm { font-family: 'Inter'; color: rgba(255,255,255,0.9); font-size: 16px; font-weight: 700; letter-spacing: 1.5px; text-shadow: 2px 2px 6px rgba(0,0,0,0.9); text-align: center; padding: 4px 10px; }",
+                    "width": 220,
+                    "height": 34,
                 },
                 "start": 0,
                 "length": "end",
                 "position": "center",
-                "offset": {"x": 0.38, "y": 0.36},
+                "offset": {"x": 0.38, "y": 0.40},
             }
         ]
     }
@@ -1982,23 +1909,9 @@ def extract_frames(video_path, count=5):
     )
     duration = float(json.loads(probe.stdout).get("format", {}).get("duration", 30))
 
-    # Sample frame 1 inside the hook window (~1.5s) so QA actually sees the
-    # hook overlay, then spread the rest across the body. The old even-spacing
-    # (duration/(count+1)) never sampled the first ~3s, so the reviewer judged
-    # "weak hook" on a mid-reel B-roll frame with no hook text on it.
-    hook_window = 3.0
-    body_start = min(hook_window + 1.0, duration * 0.15)
-    sample_times = [1.5 if duration > 4 else duration / 2]
-    body_count = max(count - 1, 1)
-    for i in range(body_count):
-        # Even spread across the body region (after hook, before end card)
-        body_end = max(duration - 1.5, body_start + 0.5)
-        t = body_start + (body_end - body_start) * (i + 1) / (body_count + 1)
-        sample_times.append(round(t, 2))
-
     frames = []
     for i in range(count):
-        t = sample_times[i] if i < len(sample_times) else (duration / (count + 1)) * (i + 1)
+        t = (duration / (count + 1)) * (i + 1)
         frame_path = BUILD_DIR / f"ss-qa-frame-{i}.jpg"
         subprocess.run(
             ["ffmpeg", "-y", "-ss", str(t), "-i", video_path,
