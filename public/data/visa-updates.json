@@ -45,6 +45,16 @@
     "source": "U.S. District Court / Reuters / USA TODAY"
   },
   {
+    "id": "doj-denaturalization-h1b-india",
+    "date": "2026-06-08",
+    "label": "Jun 8, 2026",
+    "headline": "DOJ launches largest denaturalization push in modern history \u2014 Indian H-1B fraud case among 17 stripped of citizenship",
+    "summary": "The Department of Justice filed denaturalization actions in federal courts against 17 naturalized citizens, in what the Washington Examiner called the largest coordinated denaturalization campaign in modern US history. Among them is Neeraj Sharma, 50, an India-born owner of New Jersey IT staffing firm Magnavision LLC, who filed 11 fraudulent H-1B petitions with forged corporate letterhead and then concealed the fraud on his 2017 naturalization application. Acting AG Todd Blanche said the DOJ now maintains a 'zero-tolerance policy' for abuse of the naturalization process. Denaturalization, averaging just 11 cases/year from 1990-2017, is being sharply expanded \u2014 a direct warning to naturalized Indian citizens who obtained status through visa or immigration misrepresentation.",
+    "severity": "high",
+    "source": "US Department of Justice / USA TODAY / Washington Examiner",
+    "url": "/immigration"
+  },
+  {
     "id": "h1b-fake-degree-fraud-ring",
     "date": "2026-06-06",
     "label": "Jun 6, 2026",
@@ -175,15 +185,5 @@
     "severity": "medium",
     "source": "US Embassy India",
     "url": "/immigration/guides/social-media-screening"
-  },
-  {
-    "id": "interview-waiver-eliminated",
-    "date": "2025-09-02",
-    "label": "Sep 2025",
-    "headline": "Interview waiver eliminated for work & student visas",
-    "summary": "H-1B, H-4, L-1, F-1, J-1, O-1 applicants no longer qualify for interview waiver. All must attend in-person interviews.",
-    "severity": "high",
-    "source": "US State Department",
-    "url": "/immigration/guides/visa-interview-prep"
   }
 ]
