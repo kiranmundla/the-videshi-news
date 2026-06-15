@@ -1,19 +1,280 @@
 {
-  "timestamp": "2026-06-14T23:15:19.374048+00:00",
+  "timestamp": "2026-06-15T00:16:14.217762+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
+    "pass": 7,
     "flag": 1,
     "fail": 0,
     "error": 0
   },
-  "revisions": 0,
+  "revisions": 1,
   "unpublished": 0,
   "articles": [
     {
-      "id": "04031cea-6324-4221-82f8-e456c001d36b",
-      "headline": "A $750,000 Horror Film Just Took Over Mumbai's Regal Cinema. Anurag Kashyap Wants to Know Why.",
-      "slug": "obsession-bollywood-box-office-anurag-kashyap-regal-cinema-screens-nri-20260614",
+      "id": "37055e26-4537-4915-b9f8-f3cfa41a0d10",
+      "headline": "Forty Thousand Restaurants and No Chain: India's Celebrity Chefs Are Finally Coming for the American Market",
+      "slug": "indian-celebrity-chef-restaurants-us-market-yellow-chilli-farzi-20260615",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not specifically depict Indian cuisine or chefs, which could enhance relevance."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the growth of Indian restaurants in the US to the Indian diaspora, highlighting their preferences and demographics."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including images of the featured restaurants or dishes to enhance visual appeal.",
+          "Add quotes or insights from the chefs or restaurant owners to provide a more personal touch."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "eb8b5c99-616a-451b-bb7d-79be36a25bb9",
+      "headline": "India's Diaspora Dollars Hit $135 Billion \u2014 and They Are the Only Foreign Capital That Never Flinches",
+      "slug": "india-remittance-record-135-billion-nri-diaspora-dollars-20260615",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to remittances or the diaspora theme."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively discusses the impact of remittances on NRIs and their financial decisions."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that reflects the theme of remittances or the Indian diaspora.",
+          "Add a section with personal stories or testimonials from NRIs about how remittances have impacted their families."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "f308b435-0964-40c3-82a7-dd8d5ce755d5",
+      "headline": "Thirty-Two Words in Ninety Seconds: Shrey Parikh Wins the 2026 Scripps National Spelling Bee",
+      "slug": "shrey-parikh-scripps-spelling-bee-champion-indian-american-20260615",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the success of Indian-American contestants in the Spelling Bee to broader themes of diaspora identity and immigrant aspiration."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from Shrey Parikh or his family to provide a personal touch.",
+          "Include more statistics or historical context about the Scripps National Spelling Bee to enhance the narrative."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "0d2215b1-3103-4e99-85a4-6f6a789b47f8",
+      "headline": "Ninety-Six Unicorns and Counting \u2014 India Now Leads the World in American Startup Founders",
+      "slug": "india-96-unicorn-founders-nfap-study-immigration-20260615",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the topic of unicorn startups or Indian entrepreneurs."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the impact of Indian entrepreneurs in the U.S. startup ecosystem, which is relevant to the Indian diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that depicts Indian entrepreneurs or startup culture.",
+          "Add a section discussing how these trends affect the Indian diaspora directly, perhaps through personal stories or quotes from Indian entrepreneurs."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "77be69d0-97a3-46b1-b825-8062fedc61bd",
+      "headline": "Green Card, No Credit \u2014 America Just Cut Off Its Own Immigrant Entrepreneurs",
+      "slug": "sba-green-card-loan-ban-immigrant-entrepreneurs-indian-20260615",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 6,
+        "embed_issues": [],
+        "image_match": {
+          "score": 2,
+          "issue": "irrelevant"
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the impact of SBA loan restrictions on immigrant entrepreneurs, particularly Indian Americans, making it relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the hero image with one that is more relevant to the topic of immigrant entrepreneurs or the SBA.",
+          "Provide more statistics or quotes from Indian American entrepreneurs to strengthen the diaspora connection."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Revised by gpt-4o-mini (961\u21921034 words)"
+      ],
+      "revised": true,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "d250d2c4-b1e2-4ea8-9b26-7c8bc21464e3",
+      "headline": "Satya Nadella Wants to Kill the App. Project Solara Is How.",
+      "slug": "satya-nadella-project-solara-microsoft-build-2026-agents-20260615",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "5a7d3584-8354-4662-9e81-d8255f986e56",
+            "headline": "GitHub Copilot's $29 Bill Just Became $750 \u2014 and India's Dev"
+          },
+          {
+            "article_id": "d7612a5a-581b-4dc1-8a96-e1c4d69fbdac",
+            "headline": "Nadella's Agent 365 Goes Live \u2014 and 332,000 Consultants Just"
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the topic to the Indian diaspora by discussing the employment of Indian engineers and the implications for Indian IT services."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of how Indian IT companies are adapting to the changes brought by Project Solara.",
+          "Include quotes or insights from Indian engineers or industry experts to strengthen the diaspora connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "70dfd6b7-8acd-484e-b413-e0239f96fc02",
+      "headline": "American Cybersecurity Giants Are Racing to Arm India's 75 Million Small Businesses",
+      "slug": "us-cybersecurity-firms-india-msme-palo-alto-microsoft-20260615",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image depicts a technology-related theme but does not specifically relate to cybersecurity or small businesses."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the cybersecurity landscape in India to the interests and investments of the NRI community."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that directly represents cybersecurity or small businesses.",
+          "Add more statistics or examples of how cybersecurity breaches have impacted small businesses in India to strengthen the argument."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "e073bbf8-6aed-40ed-8229-6dc6ed3161dc",
+      "headline": "'AI Deflation' Is Squeezing India's IT Giants. Their Own Employees See It First.",
+      "slug": "ai-deflation-indian-it-services-tcs-hcltech-infosys-wipro-20260615",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -29,66 +290,17 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses the impact of a Hollywood film on the Indian cinema landscape, which is relevant to NRIs who follow Bollywood and Hollywood trends."
+          "note": "The article effectively connects the impact of AI deflation on major Indian IT companies to the diaspora community, highlighting personal stakes for NRIs."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes or reactions from Anurag Kashyap to enhance the narrative.",
-          "Provide a brief background on the significance of Regal Cinema to further engage readers."
+          "Consider adding quotes or perspectives from diaspora professionals in the IT sector to enhance relatability.",
+          "Include more data or examples of how AI deflation is affecting job opportunities for NRIs specifically."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "ff5b38d9-a458-4130-837d-88af1343d35c",
-      "headline": "Georgekutty Is Coming to Your Living Room. Drishyam 3 Hits Prime Video This Wednesday.",
-      "slug": "drishyam-3-ott-prime-video-june-18-mohanlal-georgekutty-streaming-nri-20260614",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/p/DZhCjhUG4-9/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post does not appear to be directly related to the article's subject about Drishyam 3."
-          },
-          {
-            "url": "https://youtube.com/watch?v=07h9Y1XKBWI",
-            "problem": "irrelevant",
-            "explanation": "The YouTube link should be relevant to Drishyam 3, but it is unclear if it is directly related to the film or its promotion."
-          }
-        ],
-        "image_match": {
-          "score": 10,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the film's release to NRI viewers, emphasizing the global streaming availability and cultural significance."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the irrelevant Instagram and YouTube links with embeds that are directly related to Drishyam 3.",
-          "Clarify the YouTube link's content to ensure it is relevant to the film's promotion."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DZhCjhUG4-9/",
-        "Removed irrelevant embed: https://youtube.com/watch?v=07h9Y1XKBWI",
         "promoted to published"
       ],
       "revised": false,
