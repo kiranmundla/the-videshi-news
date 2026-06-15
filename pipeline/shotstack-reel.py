@@ -2240,9 +2240,40 @@ Return JSON only:
 # UPLOAD & REGISTER
 # ═══════════════════════════════════════════════════════════════════════════════
 
+def compress_reel_if_needed(local_path, max_mb=45):
+    """Shotstack renders at ~15 Mbps (~90 MB for 48s), which exceeds Supabase
+    storage's object-size cap and causes a 413 on upload. Re-encode to a sane
+    bitrate (CRF 23, faststart) when the file is too large. Returns the path to
+    use for upload (compressed copy if produced, else the original)."""
+    try:
+        size_mb = os.path.getsize(local_path) / (1024 * 1024)
+    except OSError:
+        return local_path
+    if size_mb <= max_mb:
+        return local_path
+
+    out_path = os.path.splitext(local_path)[0] + "-c.mp4"
+    print(f"  🗜️ Reel is {size_mb:.1f} MB (> {max_mb} MB) — compressing for upload...")
+    result = subprocess.run(
+        ["ffmpeg", "-y", "-i", local_path,
+         "-c:v", "libx264", "-preset", "medium", "-crf", "23",
+         "-pix_fmt", "yuv420p", "-movflags", "+faststart",
+         "-c:a", "aac", "-b:a", "128k", out_path],
+        capture_output=True, text=True, timeout=300,
+    )
+    if result.returncode == 0 and os.path.exists(out_path):
+        new_mb = os.path.getsize(out_path) / (1024 * 1024)
+        print(f"  🗜️ Compressed: {size_mb:.1f} MB → {new_mb:.1f} MB")
+        return out_path
+    print(f"  ⚠️ Compression failed, uploading original: {result.stderr[-200:]}")
+    return local_path
+
+
 def upload_final_reel(local_path, storage_name):
-    """Upload final reel to Supabase storage."""
-    return upload_asset(local_path, f"reels/{storage_name}", "video/mp4")
+    """Upload final reel to Supabase storage. Compresses oversized renders first."""
+    upload_path = compress_reel_if_needed(local_path)
+    storage_basename = os.path.basename(upload_path)
+    return upload_asset(upload_path, f"reels/{storage_basename}", "video/mp4"), upload_path
 
 
 def build_caption(article):
@@ -2889,7 +2920,7 @@ def run_anchor_reel(article, dry_run=False, use_production=False):
 
     # 10. Upload final reel + poster/thumbnail
     print("\n☁️ Step 10: Uploading final reel...")
-    video_url = upload_final_reel(str(final_path), final_name)
+    video_url, uploaded_video_path = upload_final_reel(str(final_path), final_name)
 
     uploaded_poster_url = None
     uploaded_thumb_url = None
@@ -2904,7 +2935,7 @@ def run_anchor_reel(article, dry_run=False, use_production=False):
     if video_url:
         print("\n📋 Step 11: Registering reel...")
         caption = build_caption(article)
-        register_reel(article, video_url, str(final_path), caption,
+        register_reel(article, video_url, str(uploaded_video_path), caption,
                       poster_url=uploaded_poster_url, thumbnail_url=uploaded_thumb_url,
                       qa_score_actual=qa_score)
 
@@ -2977,10 +3008,10 @@ def run_quick_pulse(article, dry_run=False, use_production=False):
         return False
 
     # Upload & register
-    video_url = upload_final_reel(str(final_path), final_name)
+    video_url, uploaded_video_path = upload_final_reel(str(final_path), final_name)
     if video_url:
         caption = build_caption(article)
-        register_reel(article, video_url, str(final_path), caption)
+        register_reel(article, video_url, str(uploaded_video_path), caption)
         # Distribution handled by videshi-distribute-reels cron
 
     print(f"\n✅ QUICK PULSE COMPLETE: {final_path}")
