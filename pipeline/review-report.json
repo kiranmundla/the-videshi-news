@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-15T12:15:43.510679+00:00",
+  "timestamp": "2026-06-15T12:45:34.133123+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 8,
+    "pass": 6,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,153 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "354bde7f-e320-4488-b7c0-0397cf651ad7",
-      "headline": "Ten Indian Nationals Staged Armed Robberies to Fake Their Way to Visas, Boston Grand Jury Says",
-      "slug": "staged-robbery-u-visa-fraud-ring-ten-indian-nationals-boston-indictmen-20260615",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 6,
-          "issue": "The image does not directly relate to the topic of armed robberies or immigration fraud."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the implications of the fraud case to the broader Indian diaspora, highlighting the reputational risks faced by legitimate immigrants."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that depicts the themes of crime or immigration fraud.",
-          "Add more context or quotes from experts to enhance the depth of the analysis regarding the impact on the Indian diaspora."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "8b97409d-d1df-45cb-8fc7-8df7a2ac5491",
-      "headline": "EB-2 India Is Already Frozen. The July Visa Bulletin Will Decide Which Category Goes Dark Next",
-      "slug": "july-2026-visa-bulletin-eb1-eb5-india-retrogression-forecast-20260615",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the topic of immigration or visas."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively highlights the impact of visa backlogs on the Indian diaspora, making it highly relevant."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that visually represents immigration or the visa process to enhance relevance.",
-          "Add more personal stories or testimonials from individuals affected by the EB-2 backlog to deepen the emotional connection with readers."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "b8d77258-c7ee-414c-9f6d-7535913d3116",
-      "headline": "He Got Indian Americans Recognized for Federal Contracts in 1981. Congress Just Gave Him a Flag.",
-      "slug": "varinder-bhalla-congressional-award-indian-american-aia-federal-contra-20260615",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the specific subject of Varinder Bhalla or the congressional award."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively highlights the contributions of Varinder Bhalla to the Indian-American community and connects it to the broader diaspora narrative."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a more relevant image that depicts Varinder Bhalla or the congressional award ceremony.",
-          "Include quotes from Bhalla or other community members to add a personal touch and depth to the narrative."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "7899225e-6e73-4383-8331-d4c69bf0ad4e",
-      "headline": "Twenty Years On, a Connecticut Diaspora Group Hands Out Awards to a State Senator It Once Might Have Mentored",
-      "slug": "gopio-ct-20th-anniversary-awards-connecticut-indian-american-diaspora-20260615",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the specific event or the Indian diaspora theme."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively highlights the achievements of the Indian-American community in Connecticut and their growing political presence."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that directly represents the awards banquet or the honorees to enhance relevance.",
-          "Include quotes or anecdotes from attendees to add a personal touch and deepen the narrative."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "79142dee-5075-416d-b279-8e0e982c3ee1",
-      "headline": "An Indian Engineer Evacuated His Belfast Flat at 1 A.M. The Mob Did Not Stop to Check Nationalities.",
-      "slug": "belfast-riots-indian-migrants-skilled-workers-northern-ireland-diaspor-20260615",
+      "id": "7ecede33-be78-4cdf-b992-d42166903856",
+      "headline": "Indian Students Crashed the US Visa Portal on Day One. The Embassy Says Thousands More Slots Are Coming.",
+      "slug": "us-embassy-india-assures-more-student-visa-appointments-opening-day-rush-20260615",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -173,13 +29,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the experiences of Indian professionals in Belfast to the broader context of racial tensions and violence, making it relevant for diaspora readers."
+          "note": "The article effectively connects the visa situation to the broader implications for the Indian diaspora, highlighting the importance of student visas for future immigration."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes or perspectives from other members of the Indian diaspora in Belfast to enrich the narrative.",
-          "Include more context about the historical relationship between the Indian community and local populations in Northern Ireland."
+          "Consider adding quotes or testimonials from affected students to provide a personal touch.",
+          "Include more statistics or data on the impact of visa delays on the Indian diaspora community."
         ],
         "verdict": "pass"
       },
@@ -191,9 +47,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "93c3fd70-1179-4b56-aff4-a77239efa5b8",
-      "headline": "India Is Funding Its Own Eyes in the Sky. A Bengaluru Startup Just Won a Grant to Build AI That Sees the Subcontinent.",
-      "slug": "india-satsure-sovereign-ai-earth-observation-grant-20260615",
+      "id": "05e73082-042d-439d-9ffc-b7762411708e",
+      "headline": "The World's Tech Giants Are Building in Bengaluru, Not Hiring in California. India's GCC Workforce Is Headed for 2.36 Million.",
+      "slug": "india-gcc-boom-bengaluru-n-able-2-36-million-workforce-2026-20260615",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -209,13 +65,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the topic of AI and space technology to the interests and concerns of the Indian diaspora, highlighting investment opportunities and relevance to their families back home."
+          "note": "The article effectively connects the GCC boom to the diaspora's changing opportunities and perspectives on working in tech."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more specific examples of how the AI technology will directly impact the diaspora's interests.",
-          "Include quotes or insights from diaspora members or experts to enhance the connection to the audience."
+          "Consider adding more statistics or quotes from industry experts to strengthen the argument.",
+          "Include a section on potential challenges or criticisms of the GCC model to provide a balanced view."
         ],
         "verdict": "pass"
       },
@@ -227,9 +83,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "3eb55e42-9d06-4df4-aef9-2372e1748d39",
-      "headline": "Uber and Lyft Are Suing New York Over a Law That Stops Them Firing Drivers Quickly. Indian Immigrant Drivers Are Watching Closely.",
-      "slug": "uber-lyft-sue-nyc-driver-deactivation-law-52-20260615",
+      "id": "818559e9-6433-4bd5-9331-fbcece162a47",
+      "headline": "India Tells Its Sailors to Stop Going Into the Gulf. Three Were Just Killed There.",
+      "slug": "india-dgs-restricts-seafarer-deployment-gulf-conflict-zones-settebello-20260615",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -239,19 +95,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image depicts a rideshare scenario, which is relevant to the article's topic."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively highlights the impact of the law on Indian and South Asian immigrant drivers, making it highly relevant to the diaspora."
+          "quality": 8,
+          "note": "The article discusses the safety of Indian seafarers, which directly impacts the Indian diaspora involved in maritime industries."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from affected drivers to provide personal perspectives.",
-          "Include statistics on the percentage of Indian and South Asian drivers in the gig economy for added context."
+          "Include quotes from more seafarers or their families to provide personal perspectives.",
+          "Add context about the historical relationship between India and the Gulf region to enhance the diaspora connection."
         ],
         "verdict": "pass"
       },
@@ -263,9 +119,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "76051afc-5bfa-4dda-b6dc-f59465625ed4",
-      "headline": "India Sent 44,000 Crypto Tax Notices and Found $104 Million Hidden. NRIs With Wallets Back Home Should Read the Fine Print.",
-      "slug": "india-crypto-tax-44000-notices-104-million-nri-20260615",
+      "id": "1ed9a76c-2cb5-4264-b430-ed0347657f82",
+      "headline": "The Pricier Thali: How US-India Tariffs Are Squeezing the Diaspora Grocery Cart",
+      "slug": "the-pricier-thali-how-us-india-tariffs-are-squeezing-the-diaspora-grocery-cart",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -275,19 +131,91 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to crypto or tax notices, but is visually appealing and relevant to finance."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively addresses NRIs and their specific concerns regarding crypto taxation in India."
+          "note": "The article effectively connects the impact of tariffs on grocery prices to the Indian diaspora's identity and lifestyle."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that directly represents cryptocurrency or tax notices for better relevance.",
-          "Add a brief summary or bullet points at the end to highlight key takeaways for NRIs."
+          "Consider adding quotes or anecdotes from more diaspora members to enhance relatability.",
+          "Include a brief explanation of what a thali is for readers unfamiliar with Indian cuisine."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "0b754f77-bea4-4fd9-8bbc-b8b7016a4e56",
+      "headline": "Sanjeev Kapoor Comes to Silicon Valley: The Yellow Chilli Plans Its First US Restaurant",
+      "slug": "sanjeev-kapoor-comes-to-silicon-valley-the-yellow-chilli-plans-its-first-us-rest",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the restaurant's opening to the nostalgia and needs of the Indian diaspora in Silicon Valley."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from Sanjeev Kapoor or local community members to enhance the personal connection.",
+          "Include more details about the menu offerings to entice potential customers."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "3d0f023f-7df2-48dc-a1c6-8bd730d525e6",
+      "headline": "From Lemon Rice to Rajma Chawal: How Freeze-Dried Indian Meals Are Feeding the Diaspora",
+      "slug": "from-lemon-rice-to-rajma-chawal-how-freeze-dried-indian-meals-are-feeding-the-di",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the freeze-dried meal trend to the needs and preferences of the Indian diaspora, highlighting their dietary concerns and the convenience of these products."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes or testimonials from diaspora consumers to enhance relatability.",
+          "Include more specific examples of how these products have been received in different diaspora communities."
         ],
         "verdict": "pass"
       },
