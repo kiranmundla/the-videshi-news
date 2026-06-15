@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-15T20:45:23.623918+00:00",
+  "timestamp": "2026-06-15T21:15:35.820048+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
+    "pass": 5,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,52 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "39f05021-db29-4918-bee7-4f8ac83fd7cd",
-      "headline": "India's Markets Just Got the One Thing Money Can't Buy: an End to War. The Diaspora Is Being Asked to Help.",
-      "slug": "indian-markets-rally-gulf-peace-rbi-nri-deposit-rate-hike-rupee-stabilise-20260615",
+      "id": "b55638fc-9a59-4f61-8158-b731969beae2",
+      "headline": "Dhamaal 4 Just Sent the Gang to Sea \u2014 With Pirates, Ghosts and a Mountain of Gold. The Trailer Lands July 10.",
+      "slug": "dhamaal-4-trailer-ajay-devgn-arshad-warsi-riteish-deshmukh-pirates-ghosts-july-10-nri-20260615",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DZfHMfdoqfb/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel does not appear to be directly related to the Dhamaal 4 trailer or its content."
+          }
+        ],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the film's appeal to diaspora audiences, emphasizing its universal humor and family-friendly nature."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the irrelevant Instagram embed with a more relevant social media post related to the film or its trailer.",
+          "Consider adding quotes or reactions from diaspora audiences to strengthen the connection further."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DZfHMfdoqfb/",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "dae945f4-4071-4448-ba27-8dd82e0b7fde",
+      "headline": "Welcome To The Jungle's Trailer Is 4 Minutes of Pure Chaos. Akshay Kumar Just Bet \u20b9250 Crore on Your Nostalgia.",
+      "slug": "welcome-to-the-jungle-trailer-akshay-kumar-suniel-shetty-paresh-rawal-june-26-nri-20260615",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -29,13 +72,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the financial situation in India to the diaspora, highlighting opportunities for NRIs to invest."
+          "note": "The article effectively connects the film's release to diaspora audiences, highlighting its appeal for family outings in various countries."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more specific examples of how diaspora investments can impact the Indian economy.",
-          "Add quotes or testimonials from diaspora investors to enhance relatability."
+          "Consider adding more context about the film's significance in the Bollywood landscape for diaspora readers.",
+          "Include quotes or reactions from the diaspora audience or critics to enhance engagement."
         ],
         "verdict": "pass"
       },
@@ -47,9 +90,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "cc220998-0336-469e-bae4-8f81399a1401",
-      "headline": "9.27 Lakh Indians Brought Home From a War Zone. Inside India's Largest Peacetime Evacuation.",
-      "slug": "mea-repatriation-927000-indians-home-west-asia-multi-nation-transit-routes-20260615",
+      "id": "15be1d71-f372-4b74-91b3-765f69bf8ff6",
+      "headline": "Meta's First AI Data Center in India Will Be Built \u2014 and Owned \u2014 by Reliance",
+      "slug": "meta-reliance-jamnagar-ai-data-center-india-20260615",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -60,18 +103,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image depicts the Ministry of External Affairs, which is relevant to the article's topic on evacuation efforts."
+          "issue": "The image does not directly relate to the specific topic of AI data centers."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects the evacuation efforts to the Indian diaspora, highlighting their vulnerabilities and the government's commitment to their safety."
+          "note": "The article effectively connects the implications of the data center to the NRI community, discussing latency improvements and investment opportunities."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from evacuees or officials to provide a personal touch.",
-          "Include statistics or anecdotes about the impact of the evacuation on families in India."
+          "Consider using a more relevant image that depicts AI data centers or technology infrastructure.",
+          "Add a brief section on potential challenges or criticisms regarding the partnership between Meta and Reliance."
         ],
         "verdict": "pass"
       },
@@ -83,9 +126,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "544c05f2-d005-478d-9f3a-7fe2e42878fa",
-      "headline": "The War That Choked India's Oil Lifeline May Be Ending. New Delhi Welcomes the US-Iran Gulf Deal.",
-      "slug": "india-welcomes-us-iran-gulf-peace-deal-strait-hormuz-reopen-oil-falls-20260615",
+      "id": "1b142336-1bd5-4daa-9636-4e62ed345433",
+      "headline": "Cognizant Slows Its India Listing Even as It Sets Aside $270 Million to Cut Jobs",
+      "slug": "cognizant-india-listing-delay-project-leap-layoffs-ai-20260615",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -96,18 +139,54 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image does not directly relate to the article's specific focus on geopolitics and oil supply."
+          "issue": "The image does not directly relate to Cognizant or the specific topic of job cuts and restructuring."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the geopolitical situation to the economic and human aspects affecting the Indian diaspora."
+          "quality": 9,
+          "note": "The article effectively connects Cognizant's restructuring and job cuts to the Indian American diaspora, highlighting the impact on families and professionals."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that depicts the Strait of Hormuz or oil supply issues.",
-          "Add more specific examples of how the diaspora is reacting to the news or how it impacts their lives."
+          "Consider using a more relevant image that reflects the tech industry or job cuts.",
+          "Add more statistics or quotes from industry experts to strengthen the analysis of the job market impact."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "75babc02-9c9e-4543-ae5c-78db53ed3343",
+      "headline": "A Federal Court Is Deciding Whether Your AI Assistant Is Allowed to Shop for You",
+      "slug": "amazon-perplexity-ninth-circuit-ai-agent-cfaa-precedent-20260615",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the legal case to the Indian diaspora through the background of the company's founder and the implications for Indian engineers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more context about the implications of the ruling for consumers and businesses in the tech industry.",
+          "Include quotes or insights from legal experts to enhance the depth of the analysis."
         ],
         "verdict": "pass"
       },
