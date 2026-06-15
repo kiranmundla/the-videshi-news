@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-06-15T05:58:26Z",
-  "stage": "Group Stage — 12 of 72 matches played",
+  "last_updated": "2026-06-15T18:04:50Z",
+  "stage": "Group Stage — 13 of 72 matches played",
   "hosts": "USA, Mexico & Canada",
   "dates": {
     "start": "2026-06-11",
@@ -400,13 +400,26 @@
         "code": "ESP",
         "flag": "🇪🇸",
         "rank": 2,
-        "p": 0,
+        "p": 1,
         "w": 0,
-        "d": 0,
+        "d": 1,
         "l": 0,
         "gf": 0,
         "ga": 0,
-        "pts": 0
+        "pts": 1
+      },
+      {
+        "name": "Cape Verde",
+        "code": "CPV",
+        "flag": "🇨🇻",
+        "rank": 67,
+        "p": 1,
+        "w": 0,
+        "d": 1,
+        "l": 0,
+        "gf": 0,
+        "ga": 0,
+        "pts": 1
       },
       {
         "name": "Uruguay",
@@ -426,19 +439,6 @@
         "code": "KSA",
         "flag": "🇸🇦",
         "rank": 61,
-        "p": 0,
-        "w": 0,
-        "d": 0,
-        "l": 0,
-        "gf": 0,
-        "ga": 0,
-        "pts": 0
-      },
-      {
-        "name": "Cape Verde",
-        "code": "CPV",
-        "flag": "🇨🇻",
-        "rank": 67,
         "p": 0,
         "w": 0,
         "d": 0,
@@ -863,8 +863,8 @@
       "away": "Cape Verde",
       "venue": "Mercedes-Benz Stadium",
       "city": "Atlanta",
-      "status": "scheduled",
-      "score": null,
+      "status": "FT",
+      "score": "0-0",
       "home_code": "ESP",
       "away_code": "CPV"
     },
@@ -1783,6 +1783,27 @@
     }
   },
   "highlights": [
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DZmjzMJjaEM/",
+      "account": "@fifaworldcup",
+      "caption": "Today's action 🤩 — Matchday 5 schedule #FIFAWorldCup",
+      "date": "2026-06-15"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/reel/DZmNnd6xX3F/",
+      "account": "@fifaworldcup",
+      "caption": "From a banking job to the World Cup with Cabo Verde — an emotional tribute to Pico Lopes 🙌🇨🇻 #FIFAWorldCup",
+      "date": "2026-06-15"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DZmSAYBEVxc/",
+      "account": "@fifaworldcup",
+      "caption": "Lock in your viewing schedule — Matchday 5 kick-off times #FIFAWorldCup",
+      "date": "2026-06-15"
+    },
     {
       "platform": "threads",
       "url": "https://www.threads.com/@fifaworldcup/post/DZl6bNAlr2u",
