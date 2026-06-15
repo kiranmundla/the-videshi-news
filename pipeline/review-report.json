@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-15T19:45:11.800378+00:00",
+  "timestamp": "2026-06-15T20:15:14.946607+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
+    "pass": 2,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,45 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "1d5a9ad4-4255-4cd4-b149-46a9587bd95d",
-      "headline": "They Crushed Pakistan by 64 Runs. Now India's Women Take Their Show to Yorkshire's Desi Heartland.",
-      "slug": "india-women-netherlands-t20-world-cup-2026-headingley-leeds-preview-harmanpreet-deepti-mandhana-nri",
+      "id": "18e05260-7e0a-4c7b-8756-04c45472edc3",
+      "headline": "Your Social Media Is Now Part of Your H-1B File \u2014 and Going Private Can Backfire",
+      "slug": "h1b-h4-social-media-screening-ds160-public-profiles-indians-20260615",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the topic of H-1B visas or social media scrutiny."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively highlights how the new social media scrutiny impacts the Indian diaspora, particularly H-1B and H-4 visa holders."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that reflects the theme of immigration or social media scrutiny.",
+          "Add a quote or anecdote from an immigration lawyer or affected individual to enhance the personal connection to the diaspora experience."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "9d5bb2cf-3c15-4a6a-b38e-2459c9eb952d",
+      "headline": "Sign It Wrong After July 10 and USCIS Keeps Your Fee \u2014 and Your Case",
+      "slug": "uscis-signature-rule-july-10-deny-not-reject-h1b-i140-indians-20260615",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -28,14 +64,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the match to the South Asian diaspora in Yorkshire, highlighting the significance of the event for the community."
+          "quality": 8,
+          "note": "The article effectively highlights how the new rule disproportionately affects Indian nationals, making it relevant for the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from players or coaches to enhance the narrative.",
-          "Include more historical context about the Indian women's cricket team's journey to engage readers further."
+          "Consider adding a quote from an immigration attorney to provide expert insight.",
+          "Include a brief summary of the potential long-term impacts of this rule on the Indian community."
         ],
         "verdict": "pass"
       },
