@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-15T20:15:14.946607+00:00",
+  "timestamp": "2026-06-15T20:45:23.623918+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 3,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,45 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "18e05260-7e0a-4c7b-8756-04c45472edc3",
-      "headline": "Your Social Media Is Now Part of Your H-1B File \u2014 and Going Private Can Backfire",
-      "slug": "h1b-h4-social-media-screening-ds160-public-profiles-indians-20260615",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the topic of H-1B visas or social media scrutiny."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively highlights how the new social media scrutiny impacts the Indian diaspora, particularly H-1B and H-4 visa holders."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that reflects the theme of immigration or social media scrutiny.",
-          "Add a quote or anecdote from an immigration lawyer or affected individual to enhance the personal connection to the diaspora experience."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "9d5bb2cf-3c15-4a6a-b38e-2459c9eb952d",
-      "headline": "Sign It Wrong After July 10 and USCIS Keeps Your Fee \u2014 and Your Case",
-      "slug": "uscis-signature-rule-july-10-deny-not-reject-h1b-i140-indians-20260615",
+      "id": "39f05021-db29-4918-bee7-4f8ac83fd7cd",
+      "headline": "India's Markets Just Got the One Thing Money Can't Buy: an End to War. The Diaspora Is Being Asked to Help.",
+      "slug": "indian-markets-rally-gulf-peace-rbi-nri-deposit-rate-hike-rupee-stabilise-20260615",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -65,13 +29,85 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively highlights how the new rule disproportionately affects Indian nationals, making it relevant for the diaspora audience."
+          "note": "The article effectively connects the financial situation in India to the diaspora, highlighting opportunities for NRIs to invest."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a quote from an immigration attorney to provide expert insight.",
-          "Include a brief summary of the potential long-term impacts of this rule on the Indian community."
+          "Include more specific examples of how diaspora investments can impact the Indian economy.",
+          "Add quotes or testimonials from diaspora investors to enhance relatability."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "cc220998-0336-469e-bae4-8f81399a1401",
+      "headline": "9.27 Lakh Indians Brought Home From a War Zone. Inside India's Largest Peacetime Evacuation.",
+      "slug": "mea-repatriation-927000-indians-home-west-asia-multi-nation-transit-routes-20260615",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image depicts the Ministry of External Affairs, which is relevant to the article's topic on evacuation efforts."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the evacuation efforts to the Indian diaspora, highlighting their vulnerabilities and the government's commitment to their safety."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from evacuees or officials to provide a personal touch.",
+          "Include statistics or anecdotes about the impact of the evacuation on families in India."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "544c05f2-d005-478d-9f3a-7fe2e42878fa",
+      "headline": "The War That Choked India's Oil Lifeline May Be Ending. New Delhi Welcomes the US-Iran Gulf Deal.",
+      "slug": "india-welcomes-us-iran-gulf-peace-deal-strait-hormuz-reopen-oil-falls-20260615",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the article's specific focus on geopolitics and oil supply."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the geopolitical situation to the economic and human aspects affecting the Indian diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that depicts the Strait of Hormuz or oil supply issues.",
+          "Add more specific examples of how the diaspora is reacting to the news or how it impacts their lives."
         ],
         "verdict": "pass"
       },
