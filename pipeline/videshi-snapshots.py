@@ -38,44 +38,28 @@ def save_pool(pool):
 
 
 def update_component(entries):
-    with open(COMPONENT_PATH, "r") as f:
-        content = f.read()
-
-    lines = []
-    for e in entries:
-        src = e["src"].replace('"', '\\"')
-        label = e["label"].replace('"', '\\"')
-        lines.append(f'  {{ src: "{src}", label: "{label}" }}')
-
-    new_array = "const PHOTOS: { src: string; label: string }[] = [\n"
-    new_array += ",\n".join(lines)
-    new_array += ",\n];"
-
-    pattern = r"const PHOTOS: \{ src: string; label: string \}\[\] = \[[\s\S]*?\];"
-    if not re.search(pattern, content):
-        print("ERROR: Could not find PHOTOS array in component")
-        return False
-
-    new_content = re.sub(pattern, new_array, content)
-    with open(COMPONENT_PATH, "w") as f:
-        f.write(new_content)
+    """DEPRECATED. The DiasporaPhotoStrip component no longer hardcodes a
+    `const PHOTOS` array — it fetches /data/snapshots-pool.json at runtime and
+    does a date-stable client-side shuffle to pick the display set. So there is
+    nothing to patch in the .tsx anymore. Kept as a no-op shim for any caller."""
     return True
 
 
 def cmd_rotate():
+    """Rotation is now handled client-side by the component (date-stable shuffle
+    over snapshots-pool.json). This command just validates the pool is healthy
+    so the cron has a meaningful success/failure signal."""
     pool = load_pool()
+    if not pool:
+        print(f"ERROR: snapshots pool is empty or missing at {POOL_PATH}")
+        sys.exit(1)
     if len(pool) < DISPLAY_COUNT:
-        print(f"Pool has {len(pool)} photos, need at least {DISPLAY_COUNT}. Showing all.")
-        selection = pool[:]
+        print(f"WARNING: pool has {len(pool)} photos, fewer than display count {DISPLAY_COUNT} "
+              f"— strip will show all of them.")
     else:
-        selection = random.sample(pool, DISPLAY_COUNT)
-
-    random.shuffle(selection)
-
-    if update_component(selection):
-        print(f"Rotated {len(selection)} photos from pool of {len(pool)}")
-    else:
-        print("Failed to update component")
+        print(f"OK: snapshots pool healthy ({len(pool)} photos). "
+              f"Component rotates {DISPLAY_COUNT}/day client-side (date-stable shuffle); "
+              f"no component patching needed.")
 
 
 def cmd_add(url, label):
