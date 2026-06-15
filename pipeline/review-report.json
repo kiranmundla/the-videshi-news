@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-15T13:45:11.417781+00:00",
+  "timestamp": "2026-06-15T14:15:37.203509+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
+    "pass": 6,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "0c2337e1-853f-495a-8b9a-7cd4503c5c9c",
-      "headline": "He Was the Most Feared Hitter in the IPL. In Dambulla, the 15-Year-Old Is Learning How Hard Cricket Can Be.",
-      "slug": "vaibhav-sooryavanshi-india-a-tri-series-lean-form-ipl-orange-cap-senior-india-debut-ireland-england-nri",
+      "id": "78c8a855-f691-4869-8f21-74c84882d393",
+      "headline": "Global Entry Is Open to Indian Citizens \u2014 Why Every Frequent-Flyer NRI Should Apply Now",
+      "slug": "global-entry-indian-citizens-trusted-traveler-nri-guide-20260615",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -29,13 +29,198 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects Sooryavanshi's story to the diaspora experience, highlighting parental sacrifices and community pride."
+          "note": "The article effectively addresses the needs of NRIs and frequent travelers, making a strong case for why they should consider applying for Global Entry."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more quotes from Sooryavanshi or his coaches to provide personal insights.",
-          "Include statistics or comparisons with other young cricketers to enhance the narrative."
+          "Consider adding a section with testimonials or experiences from NRIs who have used Global Entry to enhance relatability.",
+          "Include a brief comparison of Global Entry with other similar programs available to Indian citizens for a more comprehensive view."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "2317f529-0057-472e-9463-d96cb2b83ffa",
+      "headline": "India's Wholesale Inflation Just Hit a Six-Month High of 9.68%. Why the RBI Is Not Panicking \u2014 and What It Means for NRIs.",
+      "slug": "india-wpi-wholesale-inflation-968-may-2026-rbi-rupee-nri-remittance-impact-20260615",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "89e4db47-559d-432e-b227-ddfe74ff3f10",
+            "headline": "Indian Banks Are Racing to Offer NRIs Up to 7.1% on Dollar D"
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 8,
+          "issue": "The image is relevant to the topic of inflation and the economy, but it could be more directly related to wholesale prices or the RBI."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the economic situation to NRIs, discussing the implications for the rupee and remittances."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more specific examples of how NRIs can navigate the changing economic landscape.",
+          "Add a brief summary or conclusion that encapsulates the main points for diaspora readers."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "500db3d7-4f43-4491-84c7-ede0393bae98",
+      "headline": "Air India Just Launched Mumbai-Tokyo Nonstops \u2014 and Japan Is Having an NRI Moment",
+      "slug": "air-india-mumbai-tokyo-haneda-nonstop-japan-nri-travel-20260615",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the new route to the needs of the Indian diaspora, particularly those in Japan and Indian Americans considering travel."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from travelers or airline representatives to enhance the narrative.",
+          "Include more statistics or anecdotes about the Indian community in Japan to strengthen the diaspora connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "e531f9cc-9e85-4007-96c0-dad2d7046110",
+      "headline": "A Decade of Brain Scans Shows the MIND Diet Slows Ageing in the Brain. The Indian Plate Is Halfway There.",
+      "slug": "mind-diet-brain-structure-decade-framingham-study-south-asian-diet-overlap-20260615",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the MIND diet to traditional Indian cooking, making it relevant for the diaspora audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from experts or studies to enhance credibility.",
+          "Include more specific examples of how the MIND diet can be adapted in Indian cooking."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "f4af433a-5111-4156-9b72-57498c9fea52",
+      "headline": "India-US Airfares Are Up 30% This Summer \u2014 Here's How NRIs Can Beat the Squeeze",
+      "slug": "india-us-airfares-up-30-percent-summer-nri-booking-guide-20260615",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article directly addresses NRIs and provides actionable advice relevant to their travel needs."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of airlines or routes that NRIs can take advantage of.",
+          "Include a brief summary of the potential long-term impacts on airfares for NRIs beyond this summer."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "6349ccb7-1c97-46b8-ab02-7e0fe4b2af14",
+      "headline": "The Nightly Drink Was Never Harmless. A Review of 7,200 Studies Just Put a Number on the Risk.",
+      "slug": "no-safe-level-alcohol-study-7200-reviews-one-in-25-risk-south-asian-diaspora-20260615",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the findings to the Indian diaspora, highlighting cultural shifts in alcohol consumption."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes or perspectives from diaspora health experts to strengthen the connection to the community.",
+          "Include statistics or studies specifically related to alcohol consumption trends among the Indian diaspora for more depth."
         ],
         "verdict": "pass"
       },
