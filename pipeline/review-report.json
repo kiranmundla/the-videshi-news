@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-15T07:45:10.626356+00:00",
+  "timestamp": "2026-06-15T08:15:33.350738+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
+    "pass": 3,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "cac454ab-5f3a-4b8b-9945-bd975c0895d5",
-      "headline": "India Did Not Qualify. On Tuesday, a Punjabi Mother's Son Carries Its Flag at the World Cup Anyway.",
-      "slug": "sarpreet-singh-new-zealand-indian-origin-fifa-world-cup-2026-debut-iran-punjab-nri",
+      "id": "b289e525-1527-44d9-9e8e-758303fa75f6",
+      "headline": "June 30 Is the Deadline That Voids Your H-1B Lottery Win \u2014 and Most Winners Are Indian",
+      "slug": "h1b-fy2027-june-30-filing-deadline-wage-weighted-lottery-indians-20260615",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -23,19 +23,91 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image does not directly relate to H-1B visas or immigration, but it is a generic image that could represent a professional context."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects Sarpreet Singh's achievements to the Indian diaspora's experience and aspirations."
+          "quality": 9,
+          "note": "The article effectively addresses the concerns of Indian nationals regarding the H-1B lottery process, making it highly relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more quotes from Sarpreet Singh to enhance the personal connection.",
-          "Include a brief mention of the significance of football in the Indian diaspora to further engage readers."
+          "Consider using an image that more directly represents the theme of immigration or the H-1B process.",
+          "Add a brief summary or conclusion that reinforces the importance of the June 30 deadline for Indian applicants."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "fa9f9e07-354a-45f4-8976-21006bf2e18d",
+      "headline": "The $250 Fee Almost No NRI Family Knows About \u2014 and It Hits Every Parent's Visit",
+      "slug": "250-dollar-visa-integrity-fee-nri-families-refund-explained-20260615",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the topic of visa fees or immigration."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the visa fee issue to the experiences of NRI families, particularly in the context of family visits."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that directly relates to immigration or visa processes to enhance relevance.",
+          "Add a section with tips or resources for NRIs to navigate the new fee structure."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "baee1a2e-6f68-499c-95fc-b79fe38e2f9d",
+      "headline": "Pay $750 to Skip the Visa Line \u2014 Washington Just Put a Price on the Family Visit",
+      "slug": "750-dollar-expedited-b1-b2-visa-interview-pilot-nri-families-20260615",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the topic of visas or immigration."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively discusses the implications of the new visa fee on Indian families and the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that directly relates to visas or immigration to enhance relevance.",
+          "Add a quote or perspective from an NRI to further enrich the diaspora angle."
         ],
         "verdict": "pass"
       },
