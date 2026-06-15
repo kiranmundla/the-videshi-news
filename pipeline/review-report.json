@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-15T10:15:35.530175+00:00",
+  "timestamp": "2026-06-15T10:45:27.201539+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 6,
+    "pass": 4,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,194 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "9e4758fb-5624-4fd3-bd03-5382324a7019",
-      "headline": "Mexico Is Open to NRIs Without a Visa \u2014 and It's Becoming the Diaspora's Favorite Escape",
-      "slug": "mexico-visa-free-us-visa-holders-nri-cancun-world-cup-20260615",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the ease of travel to Mexico for NRIs, highlighting its appeal as a getaway option."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more personal anecdotes or testimonials from NRIs who have traveled to Mexico to enhance relatability.",
-          "Include a section on cultural experiences or activities in Mexico that might appeal specifically to Indian travelers."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "6a37b77c-d876-4a20-b8c0-15de3edd8b8a",
-      "headline": "America's National Parks Just Rewrote the Rules for Summer 2026 \u2014 Here's What NRI Families Need to Know",
-      "slug": "us-national-parks-2026-rules-nonresident-surcharge-nri-20260615",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the changes in national park rules to the experiences of Indian American families, highlighting the impact on their travel plans."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more specific examples of how families can navigate the new pricing structure.",
-          "Include quotes or anecdotes from Indian American families to enhance relatability."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "e33d11d3-c366-49f9-8def-59ad908f4c8b",
-      "headline": "Europe Is the One Place Getting Cheaper to Fly This Summer \u2014 and NRIs Should Take Note",
-      "slug": "europe-cheaper-airfares-summer-nri-split-ticket-india-20260615",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the cheaper flights to the travel habits of Indian Americans, providing practical tips for the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more specific examples of airlines or routes that are particularly advantageous for NRIs.",
-          "Include a brief section on potential cultural or logistical considerations for NRIs traveling through Europe."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "2969dbde-d384-4b39-96f0-e8fdfd692a93",
-      "headline": "Foreigners Dumped \u20b962,800 Crore of Indian Stocks This Month. Then the RBI Quietly Reopened the Debt Door.",
-      "slug": "fpi-equity-exodus-rbi-bond-tax-scrapped-nri-deposit-hedging-debt-inflows-20260615",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "89e4db47-559d-432e-b227-ddfe74ff3f10",
-            "headline": "Indian Banks Are Racing to Offer NRIs Up to 7.1% on Dollar D"
-          }
-        ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the topic of stock market and RBI policies."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively discusses measures taken by the RBI that directly impact NRIs, making it relevant to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that reflects the financial theme of the article.",
-          "Add more data or quotes from experts to strengthen the analysis of the RBI's measures."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "82cc33bf-16a7-4ebc-bdac-f263fa6fc758",
-      "headline": "Men and Women Need Different Diets to Live Longer, a 104,000-Person Study Finds. The Indian Plate Already Has an Edge.",
-      "slug": "sex-specific-longevity-diet-men-women-queen-mary-study-indian-plate-advantage-20260615",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the study's findings to traditional Indian diets, making it relevant for the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more specific examples of how diaspora communities can adapt traditional diets to modern lifestyles.",
-          "Include quotes or insights from nutrition experts to enhance credibility."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "1f3fa23f-def7-46bc-987c-c9da57ed39fc",
-      "headline": "Just 90 Minutes of Lifting a Week Cuts Death Risk. For South Asians, There Is No Cheaper Insurance Policy.",
-      "slug": "resistance-training-90-minutes-sweet-spot-mortality-south-asian-muscle-loss-20260615",
+      "id": "054f400d-0217-44fa-ab6f-a42596ac59cc",
+      "headline": "A Single Mother Can Now Get Her Child an Indian Passport Without the Father's Signature. The Andhra Court Just Said So.",
+      "slug": "andhra-high-court-single-mother-child-passport-without-father-consent-20260615",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -214,13 +29,121 @@
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects the findings to the South Asian diaspora, highlighting specific health risks and cultural contexts."
+          "note": "The article effectively connects the ruling to the challenges faced by NRI families, making it relevant and informative for the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a quote from a health expert to enhance credibility.",
-          "Include more practical tips for incorporating resistance training into daily routines for the diaspora audience."
+          "Consider adding quotes from legal experts or affected individuals to provide personal perspectives.",
+          "Include a brief summary of the implications of this ruling for single parents in the diaspora."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "57f1be6b-ec91-4a49-bdd9-15f151411d4e",
+      "headline": "23 Died in a Delhi B&B That Should Never Have Been Open. The Inspector Who Cleared It Has Been Sacked.",
+      "slug": "delhi-malviya-nagar-bnb-fire-23-dead-inspector-sacked-building-violations-20260615",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the specific incident described in the article."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the incident to the diaspora's experiences with budget accommodations in India."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including a more relevant image that depicts the specific location or incident.",
+          "Add quotes or perspectives from diaspora members to enhance the connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "88062d48-2bab-4c86-ba54-16d709ed798e",
+      "headline": "Germany Just Scrapped the Airport Transit Visa for Indians. Frankfurt and Munich Are Now Open Gateways.",
+      "slug": "germany-scraps-airport-transit-visa-indian-travellers-frankfurt-munich-20260615",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the visa change to the Indian diaspora's travel needs and highlights its significance for NRIs."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include a quote from an NRI or travel expert to add a personal touch.",
+          "Provide a brief comparison of transit visa requirements in other countries for Indian travelers."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "7810bc7c-0789-4f07-9784-2deb9f425d7f",
+      "headline": "Manpreet Singh Equalled a 412-Cap Record. In Rotterdam, a Late Drag Still Broke Indian Hearts.",
+      "slug": "india-hockey-2-3-netherlands-fih-pro-league-rotterdam-manpreet-singh-412-caps-world-cup-2026-nri",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the significance of Indian hockey to the diaspora, highlighting emotional ties and cultural heritage."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from players or coaches to enhance the narrative.",
+          "Include more context about the significance of the Pro League for the Indian team."
         ],
         "verdict": "pass"
       },
