@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-15T00:45:23.574464+00:00",
+  "timestamp": "2026-06-15T01:15:19.146412+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 1,
     "flag": 1,
     "fail": 0,
     "error": 0
@@ -11,51 +11,15 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "3d889556-225e-4a42-8306-f4ae2eaf553c",
-      "headline": "Rahul Gandhi Is Taking the Exam Scandal Fight to Kota. Here Is What Congress Is Demanding.",
-      "slug": "congress-rahul-gandhi-kota-neet-cbse-exam-scandal-campaign-june17-20260615",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image of Rahul Gandhi is relevant to the article's topic, but it could be more directly related to the exam scandal."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the exam scandals to NRI families, highlighting their stakes in the education system."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more specific examples of how the exam scandals have impacted NRI students.",
-          "Include quotes or reactions from NRI families to enhance the diaspora perspective."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "30adce80-392a-42b3-a4dd-e8468ec5669b",
-      "headline": "A Republican Lawmaker Wants to Make the $100,000 H-1B Fee Permanent Law. Here Is What the PROTECT Act Would Do.",
-      "slug": "protect-act-h1b-100k-fee-congress-kennedy-codify-law-20260615",
+      "id": "9e86a531-5b1f-45ab-861e-075783f3b153",
+      "headline": "Vicky Kaushal Has Blocked 18 Months of His Life. He's Becoming Parashurama.",
+      "slug": "vicky-kaushal-mahavatar-parashurama-18-months-amar-kaushik-maddock-films-2026",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [
           {
-            "article_id": "9a55005b-e49d-4432-a8cc-01dd30b80974",
-            "headline": "The PROTECT Act Would Make the $100,000 H-1B Salary Floor Pe"
+            "article_id": "9cd48bcc-18d3-4e20-a3a2-0b6ed959ac50",
+            "headline": "Vicky Kaushal Has Blocked 18 Months of His Life for One Role"
           }
         ],
         "broken_embeds": []
@@ -64,19 +28,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 5,
-          "issue": "The image of Rep. Mike Kennedy is relevant to the article, but it does not directly illustrate the topic of H-1B visas."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article discusses the implications of the H-1B fee on Indian workers, making it relevant to the Indian diaspora."
+          "quality": 7,
+          "note": "The article discusses Vicky Kaushal's commitment to a significant role, which may resonate with the diaspora's interest in Indian cinema and cultural narratives."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that directly relates to H-1B visas or Indian workers to enhance visual relevance.",
-          "Add a brief section summarizing the potential impact of the PROTECT Act on the Indian diaspora to strengthen the connection."
+          "Include quotes or reactions from the diaspora community regarding Vicky Kaushal's role to enhance the connection.",
+          "Add more context about the significance of Parashurama in Indian culture for readers unfamiliar with the mythology."
         ],
         "verdict": "pass"
       },
@@ -88,9 +52,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "77be69d0-97a3-46b1-b825-8062fedc61bd",
-      "headline": "Green Card, No Credit \u2014 America Just Cut Off Its Own Immigrant Entrepreneurs",
-      "slug": "sba-green-card-loan-ban-immigrant-entrepreneurs-indian-20260615",
+      "id": "e7e9a081-7838-4afb-84a7-58d9bb4c27ab",
+      "headline": "75 Million Views in 24 Hours. Alia Bhatt Just Became the Most Dangerous Woman in the YRF Spy Universe.",
+      "slug": "alpha-teaser-alia-bhatt-75-million-views-yrf-spy-universe-bobby-deol-july-2026",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -98,25 +62,32 @@
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DZkP3gjSYLM/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel does not appear to be directly related to the teaser or the article's main subject."
+          }
+        ],
         "image_match": {
-          "score": 2,
-          "issue": "irrelevant"
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article discusses the impact of SBA loan restrictions on immigrant entrepreneurs, particularly Indian Americans, making it highly relevant to the diaspora."
+          "quality": 7,
+          "note": "The article mentions the film's global release and its significance, which connects with diaspora audiences."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the hero image with one that is more relevant to the topic of immigrant entrepreneurs or the SBA.",
-          "Include more statistics or quotes from Indian American entrepreneurs to strengthen the diaspora connection."
+          "Replace the irrelevant Instagram embed with a more relevant social media post or remove it altogether.",
+          "Expand on the diaspora angle by including insights on how the film's themes resonate with NRI audiences."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DZkP3gjSYLM/",
         "promoted to published"
       ],
       "revised": false,
