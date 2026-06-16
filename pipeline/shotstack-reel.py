@@ -1726,13 +1726,33 @@ def source_storyboard_images(article, storyboard, count=8):
         return not any(m in meta for m in _india_positive_markers)
 
     # ── 1. Article hero for scene 1 ──
+    # Skip heroes from unvetted sources for the HOOK frame. The writer mostly
+    # uses curated heroes (Wikimedia/Pexels/Supabase mirror), but occasionally
+    # saves a Flickr image that turns out to be a meme/joke graphic (e.g. a
+    # "Use the force, Harry — Gandalf" meme landed as the hook on the DoJ
+    # denaturalization reel, which the QA gate correctly flagged as a "humorous,
+    # unrelated image" on a serious news story). The hook is the single most
+    # important frame, so when the hero is from a non-curated host we drop it and
+    # let scene 1 fall through to entity/Pexels imagery (topic-relevant by
+    # construction) or the key-point-card floor.
     hero = upscale_wikimedia_url(hero)
+    _hero_host = ""
+    try:
+        from urllib.parse import urlparse as _urlparse
+        _hero_host = (_urlparse(hero).netloc or "").lower()
+    except Exception:
+        _hero_host = ""
+    _UNVETTED_HERO_HOSTS = ("flickr.com", "staticflickr.com", "live.staticflickr.com")
+    if hero and any(_hero_host == h or _hero_host.endswith("." + h) for h in _UNVETTED_HERO_HOSTS):
+        print(f"  🚫 Skipping unvetted hero host '{_hero_host}' for hook (meme-risk) — scene 1 will source topical B-roll instead")
+        hero = ""
     if hero and is_url_downloadable(hero) and hero not in used_in_this_reel:
         hero = mirror_to_supabase(hero, article_id, 0)
         matched_urls[0] = hero
         used_in_this_reel.add(hero)
         media_meta[hero] = {"type": "image", "duration": 0}
         print(f"  🎬 Scene 1: {scene_descs[0][:50]}  →  article hero")
+
 
     # ── 1b. ENTITY PRE-PASS: real imagery of the story's named entities ──
     # Generic Pexels stock is the #1 "image relevance" QA failure on niche topics
