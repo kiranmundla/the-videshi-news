@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-06-15T21:57:38Z",
-  "stage": "Group Stage — 14 of 72 matches played",
+  "last_updated": "2026-06-16T01:59:13Z",
+  "stage": "Group Stage — 15 of 72 matches played",
   "hosts": "USA, Mexico & Canada",
   "dates": {
     "start": "2026-06-11",
@@ -396,6 +396,32 @@
     ],
     "H": [
       {
+        "name": "Uruguay",
+        "code": "URU",
+        "flag": "🇺🇾",
+        "rank": 16,
+        "p": 1,
+        "w": 0,
+        "d": 1,
+        "l": 0,
+        "gf": 1,
+        "ga": 1,
+        "pts": 1
+      },
+      {
+        "name": "Saudi Arabia",
+        "code": "KSA",
+        "flag": "🇸🇦",
+        "rank": 61,
+        "p": 1,
+        "w": 0,
+        "d": 1,
+        "l": 0,
+        "gf": 1,
+        "ga": 1,
+        "pts": 1
+      },
+      {
         "name": "Spain",
         "code": "ESP",
         "flag": "🇪🇸",
@@ -420,32 +446,6 @@
         "gf": 0,
         "ga": 0,
         "pts": 1
-      },
-      {
-        "name": "Uruguay",
-        "code": "URU",
-        "flag": "🇺🇾",
-        "rank": 16,
-        "p": 0,
-        "w": 0,
-        "d": 0,
-        "l": 0,
-        "gf": 0,
-        "ga": 0,
-        "pts": 0
-      },
-      {
-        "name": "Saudi Arabia",
-        "code": "KSA",
-        "flag": "🇸🇦",
-        "rank": 61,
-        "p": 0,
-        "w": 0,
-        "d": 0,
-        "l": 0,
-        "gf": 0,
-        "ga": 0,
-        "pts": 0
       }
     ],
     "I": [
@@ -1783,6 +1783,27 @@
     }
   },
   "highlights": [
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/reel/DZoGYU7IiEO/",
+      "account": "@fifaworldcup",
+      "caption": "Federico Valverde — Superior Player of the Match 👏🇺🇾 — Saudi Arabia 1-1 Uruguay #FIFAWorldCup",
+      "date": "2026-06-15"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DZoECuRCMT8/",
+      "account": "@fifaworldcup",
+      "caption": "A hard-fought draw 😤 — Saudi Arabia 1-1 Uruguay in Miami #FIFAWorldCup",
+      "date": "2026-06-15"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DZoDRdZiSk1/",
+      "account": "@fifaworldcup",
+      "caption": "Equaliser 👊 — Uruguay pull level against Saudi Arabia #FIFAWorldCup",
+      "date": "2026-06-15"
+    },
     {
       "platform": "instagram",
       "url": "https://www.instagram.com/p/DZnvam2Czab/",
