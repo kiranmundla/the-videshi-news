@@ -1500,11 +1500,19 @@ def render_keypoint_card(scene, category, article, idx, out_dir="/tmp/videshi_ca
     try:
         os.makedirs(out_dir, exist_ok=True)
         W, H = 1080, 1920
-        img = _card_vgradient(W, H, _CARD_NAVY_TOP, _CARD_NAVY_BOT)
+        # Vary the background subtly per scene index so multiple cards in one reel
+        # don't read as identical "repeated text slide" (a QA "lacking visual
+        # variety" trigger). Two on-brand navy variants + mirrored glow placement.
+        if idx % 2 == 0:
+            img = _card_vgradient(W, H, _CARD_NAVY_TOP, _CARD_NAVY_BOT)
+            glow_cx, glow2_cx = int(W * 0.82), int(W * 0.12)
+        else:
+            img = _card_vgradient(W, H, (10, 20, 38), (24, 40, 64))
+            glow_cx, glow2_cx = int(W * 0.18), int(W * 0.88)
 
-        layer, mask = _card_glow(W, H, int(W * 0.82), int(H * 0.20), 720, (60, 48, 18), 70)
+        layer, mask = _card_glow(W, H, glow_cx, int(H * 0.20), 720, (60, 48, 18), 70)
         img.paste(layer, (0, 0), mask)
-        layer2, mask2 = _card_glow(W, H, int(W * 0.12), int(H * 0.92), 760, (10, 22, 44), 90)
+        layer2, mask2 = _card_glow(W, H, glow2_cx, int(H * 0.92), 760, (10, 22, 44), 90)
         img.paste(layer2, (0, 0), mask2)
 
         tex = Image.new("RGBA", (W, H), (0, 0, 0, 0))
@@ -2071,27 +2079,37 @@ def source_storyboard_images(article, storyboard, count=8):
     wiki_filled = sum(1 for u in matched_urls if u is not None)
     print(f"  📸 After Wikipedia: {wiki_filled}/{len(matched_urls)} scenes filled")
 
-    # ── 4b. CAP generic (non-India-anchored) Pexels fills ──
-    # Generic foreign stock is the #1 "image relevance" QA failure on hard-to-
-    # illustrate stories (legal / policy / immigration), where Pexels only has
-    # generic matches that the QA model flags as "images do not match the story".
-    # The key-point card FLOOR below never reached these scenes because Pexels
-    # already filled them. So: allow at most ONE generic-Pexels scene (prefer a
-    # VIDEO, for motion/variety) and replace every other generic-Pexels scene
-    # with a key-point card — topic-relevant by construction. India-anchored
-    # Pexels fills are genuinely relevant and are always left alone.
-    GENERIC_PEXELS_CAP = 1
+    # ── 4b. CAP generic (non-India-anchored) Pexels fills — BUT respect a total
+    #        per-reel KEY-POINT-CARD budget. ─────────────────────────────────
+    # Two competing QA failure modes:
+    #   • generic foreign stock  → "images don't match the story" (relevance)
+    #   • too many full-screen text cards → "lacking visual variety" + the QA
+    #     model hallucinates imagery into them ("shows a person working").
+    # Now that the sourcing fixes surface more real, relevant photos/videos,
+    # cards are a LAST resort, not a floor that fires alongside good imagery.
+    # So: convert generic Pexels to cards ONLY while we stay under the card cap.
+    # Scenes that are still empty after this become mandatory FLOOR cards below
+    # (a card beats a blank scene), and they get first claim on the budget.
+    CARD_CAP = 2            # max key-point cards per reel
+    GENERIC_PEXELS_CAP = 1  # at least one generic Pexels kept for motion/variety
+    floor_bound = sum(1 for u in matched_urls if u is None)  # empty scenes → FLOOR cards
+    card_budget = max(0, CARD_CAP - floor_bound)             # discretionary cards we can still afford
     generic_idxs = [i for i in range(len(matched_urls))
                     if matched_urls[i] is not None
                     and media_meta.get(matched_urls[i], {}).get("generic_pexels")]
-    if len(generic_idxs) > GENERIC_PEXELS_CAP:
-        # Keepers: prefer videos (motion adds variety), then lowest scene index.
-        keepers = sorted(
+    max_convertible = max(0, len(generic_idxs) - GENERIC_PEXELS_CAP)
+    n_convert = min(max_convertible, card_budget)
+    if n_convert > 0:
+        # Convert the WEAKEST generic fills first: prefer keeping videos (motion)
+        # and low scene indices, so the ones we convert are images / later scenes.
+        ranked = sorted(
             generic_idxs,
             key=lambda i: (0 if media_meta.get(matched_urls[i], {}).get("type") == "video" else 1, i),
-        )[:GENERIC_PEXELS_CAP]
+        )
+        keepers = ranked[:len(generic_idxs) - n_convert]
         to_convert = [i for i in generic_idxs if i not in keepers]
-        print(f"  ✂️ {len(generic_idxs)} generic Pexels fills > cap {GENERIC_PEXELS_CAP}; converting {len(to_convert)} to key-point cards...")
+        print(f"  ✂️ {len(generic_idxs)} generic Pexels fills; card budget {card_budget} "
+              f"({floor_bound} scene(s) already empty→FLOOR); converting {len(to_convert)} to key-point cards...")
         for i in to_convert:
             scene = scenes[i] if i < len(scenes) else {}
             local = render_keypoint_card(scene, category, article, i)
@@ -2110,6 +2128,10 @@ def source_storyboard_images(article, storyboard, count=8):
                 used_in_this_reel.add(card_url)
                 media_meta[card_url] = {"type": "image", "duration": 0, "is_card": True}
                 print(f"  🎨 Scene {i+1}: {scene_descs[i][:46]}  →  key-point card (replaced generic Pexels)")
+    elif len(generic_idxs) > GENERIC_PEXELS_CAP:
+        print(f"  ⚠️ {len(generic_idxs)} generic Pexels fills kept (card budget exhausted by "
+              f"{floor_bound} empty scene(s)); not adding cards beyond cap {CARD_CAP}.")
+
 
     # ── 5. FLOOR: Styled KEY-POINT CARD (never generic foreign stock) ──
     # Any scene still empty here means no genuinely relevant photo/video exists.
