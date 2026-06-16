@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-16T05:15:14.763252+00:00",
+  "timestamp": "2026-06-16T06:16:21.557499+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
+    "pass": 12,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "3b7eca89-c65a-45aa-a3b3-c49d3aa2ca16",
-      "headline": "After 31 Years, Foo Fighters Are Finally Coming to India. Tickets Drop Today at Noon.",
-      "slug": "foo-fighters-first-india-tour-2027-bengaluru-mumbai-bookmyshow-tickets-dave-grohl-nri-20260616",
+      "id": "cd582b4f-e6c4-49e3-b8bd-bf1e5a8bfcaa",
+      "headline": "Nine Million Indians Are Usually Measured in Remittances. This Year, the Gulf Found Out What Else They Hold Together.",
+      "slug": "nine-million-indians-gulf-diaspora-stabiliser-remittances-uae-20260616",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -24,18 +24,419 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image is relevant to the topic of a concert but does not specifically depict Foo Fighters or the Indian context."
+          "issue": "The image of the BAPS Shri Swaminarayan Hindu Mandir does not directly relate to the article's focus on the Indian diaspora in the Gulf."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects the concert announcement to the NRI community, highlighting the significance of the event for those planning visits to India."
+          "note": "The article effectively highlights the role of the Indian diaspora in the Gulf, showcasing their contributions beyond remittances."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that features Foo Fighters or the Indian concert context.",
-          "Clarify the ticket purchasing process for NRIs, possibly including links or tips for accessing the sale."
+          "Consider using a more relevant image that reflects the Indian diaspora's contributions in the Gulf.",
+          "Add a quote or testimonial from a member of the diaspora to enhance the personal connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "11fb742c-4718-4607-b359-8ae433c1e233",
+      "headline": "There Are Only 4,000 Indians in Brazil. They Just Threw a Street Carnival, a Diwali Mela, and a Welcome That Moved a Prime Minister.",
+      "slug": "indian-community-brazil-bloco-bollywood-diwali-sambra-diaspora-20260616",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the specific events mentioned in the article, such as the Diwali mela or the street carnival."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively highlights the unique experiences and cultural contributions of the Indian diaspora in Brazil, making it relevant to NRI readers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that directly represents the Diwali mela or the street carnival to enhance visual relevance.",
+          "Include quotes or perspectives from more members of the Indian community in Brazil to provide a broader view of their experiences."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "58a5555b-cb18-4b97-90f5-2a76723fc283",
+      "headline": "Twenty Years Ago, Toronto Had No Stage for South Asian Artists. So One Man Built DESIFEST.",
+      "slug": "desifest-toronto-20-years-south-asian-music-festival-diaspora-20260616",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the festival's significance to the South Asian diaspora in Canada, highlighting cultural identity and community building."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include quotes or testimonials from attendees or artists to enhance the personal connection to the festival.",
+          "Add a brief section on the future plans for DESIFEST to engage readers about its ongoing evolution."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "37902f23-bbf4-465f-92b8-0540d15d771f",
+      "headline": "Indian Banks Just Doubled Dollar Deposit Rates for NRIs to 7%. The RBI Engineered It \u2014 and It Will Not Last.",
+      "slug": "fcnr-b-deposit-rates-7-percent-nri-rbi-hedging-cost-september-window-dollar-deposits-20260616",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses NRIs and their financial interests, particularly regarding dollar deposits."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more specific examples or testimonials from NRIs who have benefited from the new rates.",
+          "Add a brief section on potential risks or considerations for NRIs when investing in these deposits."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "3fe5380e-ecb1-458f-9d90-5da138555365",
+      "headline": "Cutting Sugar to Zero Backfired. A New Study Found Sugar-Free Diets Disrupted the Gut and Triggered Fatty Liver.",
+      "slug": "sugar-free-zero-sucrose-diet-gut-microbiome-fatty-liver-insulin-resistance-endo-2026-diaspora-20260616",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the study's findings to the dietary habits and health predispositions of the South Asian diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of how the diaspora can implement balanced sugar consumption in their diets.",
+          "Include quotes or insights from diaspora health experts to enhance credibility and relatability."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "07792219-9d61-4e13-8cb0-11c0b16e05f6",
+      "headline": "It Is Not Just How Long You Sleep \u2014 It Is When. A 7,270-Person Study Ties Late Nights to Diabetes.",
+      "slug": "sleep-timing-social-jet-lag-diabetes-risk-diet-quality-buffer-nhanes-diaspora-20260616",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the findings of the study to the lifestyle and dietary habits of the Indian diaspora, making it relevant and engaging for the target audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a brief summary of the study's implications for readers who may not be familiar with diabetes risk factors.",
+          "Include quotes or insights from health experts to enhance credibility and provide additional perspectives."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "47199f59-2f75-4e6a-b54f-beb1d4e7eacd",
+      "headline": "Air India Is Cutting Summer Flights \u2014 and the Routes NRIs Use Most Are on the List",
+      "slug": "air-india-summer-flight-cuts-suspended-routes-nri-20260616",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively highlights how the flight cuts impact NRIs, particularly in key travel corridors."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more direct quotes from Air India or industry experts to enhance credibility.",
+          "Add a section on potential alternatives for NRIs affected by the flight cuts."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "ce126a4d-41a6-4321-af79-d781fb394efb",
+      "headline": "Sri Lanka's Tourist Visa Is Now Free for Indians \u2014 and It's the Perfect NRI Side Trip",
+      "slug": "sri-lanka-free-eta-visa-indians-nri-side-trip-20260616",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the visa changes to the travel habits and interests of NRIs, making it relevant and appealing."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of popular tourist activities or destinations in Sri Lanka that cater to Indian NRIs.",
+          "Include a brief section on travel tips or cultural considerations for NRIs visiting Sri Lanka."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "32ece728-4bd3-4bb4-8ed3-7a8dd2edc080",
+      "headline": "Renewing Your Indian Passport in the UAE? The Office Changes Hands July 1",
+      "slug": "indian-passport-uae-al-hind-replaces-bls-july-1-nri-20260616",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the topic of renewing passports or consular services."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively addresses the needs and concerns of the Indian diaspora in the UAE regarding passport and consular services."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that directly represents passport services or the Indian embassy to enhance relevance.",
+          "Add a brief section on how the changes might affect processing times or applicant experiences to provide more depth."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "4f81c219-a70c-40b2-9a80-1e3e168c14ed",
+      "headline": "Jayshree Ullal's Arista Built the Plumbing for the AI Boom. Now It's Going 1.6 Terabit.",
+      "slug": "arista-jayshree-ullal-1-6-terabit-ai-fabric-launch-20260616",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "1fd62417-3d75-4a14-bb19-8d73fecbd180",
+            "headline": "Jayshree Ullal's Arista Launches 1.6-Terabit Switches. AI's "
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively highlights Jayshree Ullal's contributions and the significance of her work to the Indian diaspora, making it relevant and engaging for NRI readers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from Jayshree Ullal or industry experts to enhance credibility and provide personal insights.",
+          "Include more context on how Arista's technology specifically impacts the AI landscape to deepen the reader's understanding."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "116998df-d2d1-4414-8ab4-02ec04e854ff",
+      "headline": "UPI Just Reached the Eiffel Tower. For NRIs, the Rupee Is Quietly Going Global.",
+      "slug": "upi-international-expansion-france-qatar-nri-dpi-20260616",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the topic of UPI or the Eiffel Tower."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects UPI's global expansion to the NRI experience, highlighting convenience and remittance benefits."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that directly represents UPI or the Eiffel Tower to enhance relevance.",
+          "Add a brief section on how NRIs can specifically benefit from UPI in their daily lives abroad."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "d2030d9e-56e6-41c1-b356-78c59cd12174",
+      "headline": "Adobe Is Tearing Down Its Paywall. Shantanu Narayen's Last Big Bet Is Free.",
+      "slug": "adobe-freemium-pivot-narayen-firefly-cfo-exit-20260616",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the corporate changes at Adobe to the Indian diaspora, particularly highlighting the impact on Indian-origin engineers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more quotes or insights from Shantanu Narayen to enhance the depth of the article.",
+          "Include a brief overview of how Adobe's freemium model compares to competitors like Canva and Figma for context."
         ],
         "verdict": "pass"
       },
