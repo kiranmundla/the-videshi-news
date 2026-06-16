@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-06-16T03:58:12Z",
-  "stage": "Group Stage — 16 of 72 matches played",
+  "last_updated": "2026-06-16T21:58:42Z",
+  "stage": "Group Stage — 17 of 72 matches played",
   "hosts": "USA, Mexico & Canada",
   "dates": {
     "start": "2026-06-11",
@@ -454,26 +454,13 @@
         "code": "FRA",
         "flag": "🇫🇷",
         "rank": 3,
-        "p": 0,
-        "w": 0,
+        "p": 1,
+        "w": 1,
         "d": 0,
         "l": 0,
-        "gf": 0,
-        "ga": 0,
-        "pts": 0
-      },
-      {
-        "name": "Senegal",
-        "code": "SEN",
-        "flag": "🇸🇳",
-        "rank": 15,
-        "p": 0,
-        "w": 0,
-        "d": 0,
-        "l": 0,
-        "gf": 0,
-        "ga": 0,
-        "pts": 0
+        "gf": 3,
+        "ga": 1,
+        "pts": 3
       },
       {
         "name": "Norway",
@@ -499,6 +486,19 @@
         "l": 0,
         "gf": 0,
         "ga": 0,
+        "pts": 0
+      },
+      {
+        "name": "Senegal",
+        "code": "SEN",
+        "flag": "🇸🇳",
+        "rank": 15,
+        "p": 1,
+        "w": 0,
+        "d": 0,
+        "l": 1,
+        "gf": 1,
+        "ga": 3,
         "pts": 0
       }
     ],
@@ -923,8 +923,8 @@
       "away": "Senegal",
       "venue": "MetLife Stadium",
       "city": "New York/New Jersey",
-      "status": "scheduled",
-      "score": null,
+      "status": "FT",
+      "score": "3-1",
       "home_code": "FRA",
       "away_code": "SEN"
     },
@@ -1783,6 +1783,34 @@
     }
   },
   "highlights": [
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DZqVO-Jio_V/",
+      "account": "@fifaworldcup",
+      "caption": "France start off strong! 💪 — France 3-1 Senegal #FIFAWorldCup",
+      "date": "2026-06-16"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DZqYxJomdPU/",
+      "account": "@fifaworldcup",
+      "caption": "Michael Olise — Superior Player of the Match ✨🇫🇷 — France 3-1 Senegal #FIFAWorldCup",
+      "date": "2026-06-16"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DZqVRXzjwzF",
+      "account": "@fifaworldcup",
+      "caption": "France start off strong! 💪 — France 3-1 Senegal",
+      "date": "2026-06-16"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DZqYw53Fh54",
+      "account": "@fifaworldcup",
+      "caption": "You voted Michael Olise Superior Player of the Match! ✨🇫🇷",
+      "date": "2026-06-16"
+    },
     {
       "platform": "instagram",
       "url": "https://www.instagram.com/reel/DZobYodoqF_/",
