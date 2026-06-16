@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-16T04:45:35.091165+00:00",
+  "timestamp": "2026-06-16T05:15:14.763252+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
-    "flag": 1,
+    "pass": 1,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,45 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "903fb095-40e2-4533-9563-11ceab8b135f",
-      "headline": "They Couldn't Crack India's System. So They Came to a World Cup on Indian Soil \u2014 Wearing USA's Colours.",
-      "slug": "usa-cricket-indian-origin-players-t20-world-cup-2026-monank-patel-sanjay-krishnamurthi-diaspora",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively highlights the stories of Indian-origin players in the USA cricket team, connecting well with the diaspora experience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from the players or coaches to enhance the narrative.",
-          "Include more statistics or historical context about cricket's growth in the USA to provide depth."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "1ed048e7-13e5-4456-9829-08b098132841",
-      "headline": "No More Flying Home to Renew a Visa: The US Will Pilot Domestic H-1B Renewals in December, Mostly for Indians",
-      "slug": "us-domestic-h1b-visa-renewal-pilot-december-2026-indian-tech-professionals-20260616",
+      "id": "3b7eca89-c65a-45aa-a3b3-c49d3aa2ca16",
+      "headline": "After 31 Years, Foo Fighters Are Finally Coming to India. Tickets Drop Today at Noon.",
+      "slug": "foo-fighters-first-india-tour-2027-bengaluru-mumbai-bookmyshow-tickets-dave-grohl-nri-20260616",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -60,92 +24,20 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image does not directly relate to the topic of visa renewals or the H-1B visa process."
+          "issue": "The image is relevant to the topic of a concert but does not specifically depict Foo Fighters or the Indian context."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects the visa renewal changes to the Indian diaspora, highlighting the impact on Indian nationals in the U.S."
+          "note": "The article effectively connects the concert announcement to the NRI community, highlighting the significance of the event for those planning visits to India."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that depicts the visa process or Indian professionals in the U.S.",
-          "Add a quote or perspective from an Indian professional currently on an H-1B visa to personalize the impact of the changes."
+          "Consider using a more relevant image that features Foo Fighters or the Indian concert context.",
+          "Clarify the ticket purchasing process for NRIs, possibly including links or tips for accessing the sale."
         ],
         "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "635e1b01-e4c3-4a8a-8925-49fc69228dc2",
-      "headline": "India and the US Are Days From a Trade Deal. Their Top Negotiator Lands in Delhi on June 23.",
-      "slug": "india-us-trade-deal-first-tranche-ustr-greer-visit-june-2026-may-exports-jump-20260616",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to trade negotiations or the specific context of the article."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article connects the trade deal to the economic interests of the Indian diaspora, emphasizing its importance for exporters and small businesses."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that visually represents trade or economic negotiations to enhance relevance.",
-          "Expand on the implications of the trade deal for the diaspora, perhaps including specific examples or quotes from diaspora members."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "5f772a9c-0af6-4baa-b620-fbc520091b01",
-      "headline": "A Federal Judge Just Struck Down Trump's $100,000 H-1B Fee. Indian Tech Workers Are the Biggest Winners.",
-      "slug": "federal-judge-strikes-down-trump-100000-dollar-h1b-fee-indian-tech-workers-20260616",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 2,
-          "issue": "irrelevant"
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the ruling to the Indian diaspora, highlighting the significance of the H-1B visa for Indian nationals."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the hero image with one that is more relevant to the topic of immigration or H-1B visas.",
-          "Clarify the timeline of events mentioned in the article to avoid confusion regarding the dates."
-        ],
-        "verdict": "flag"
       },
       "actions_taken": [
         "promoted to published"
