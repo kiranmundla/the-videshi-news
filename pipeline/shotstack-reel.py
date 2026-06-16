@@ -1153,6 +1153,63 @@ def pexels_video_search(pexels_key, query, count=3, orientation="portrait", min_
         return []
 
 
+def commons_image_search(query, limit=6):
+    """Search Wikimedia Commons for real editorial photos matching a query.
+
+    Commons has genuine India-specific imagery (named people, places, events,
+    institutions) that Pexels simply lacks — Pexels returns generic or foreign
+    stock for niche desi subjects, the #1 QA "relevance" failure. We use Commons
+    to fill the middle scenes with real imagery BEFORE falling to Pexels.
+
+    Returns a list of {url, title} dicts (1280px thumbnails), filtered to remove
+    flags/logos/maps/icons and non-photo files.
+    """
+    _bad = ("flag_of", "flag-", "coat_of_arms", "coat-of-arms", "emblem", "ensign",
+            "_map", "-map", "location_", "orthographic", "seal_of", "logo", "icon",
+            ".svg", "diagram", "chart", "graph", "symbol", "blank", "placeholder")
+    try:
+        r = requests.get(
+            "https://commons.wikimedia.org/w/api.php",
+            params={
+                "action": "query", "format": "json",
+                "generator": "search",
+                "gsrsearch": f"{query}",
+                "gsrnamespace": "6",          # File: namespace
+                "gsrlimit": str(limit),
+                "prop": "imageinfo",
+                "iiprop": "url|mime|size",
+                "iiurlwidth": "1280",         # request a 1280px-wide thumb
+            },
+            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
+            timeout=10,
+        )
+        if r.status_code != 200:
+            return []
+        pages = (r.json().get("query", {}) or {}).get("pages", {}) or {}
+        out = []
+        for p in pages.values():
+            title = (p.get("title", "") or "").lower()
+            ii = (p.get("imageinfo") or [{}])[0]
+            mime = ii.get("mime", "")
+            if not mime.startswith("image/") or "svg" in mime:
+                continue
+            # thumburl is the sized render; fall back to full url
+            url = ii.get("thumburl") or ii.get("url")
+            if not url:
+                continue
+            low = (title + " " + url.lower())
+            if any(b in low for b in _bad):
+                continue
+            # Skip tiny source files (icons/thumbnails of logos)
+            if ii.get("width", 0) and ii.get("width", 0) < 600 and not ii.get("thumburl"):
+                continue
+            out.append({"url": url, "title": p.get("title", "")})
+        return out
+    except Exception as e:
+        print(f"  ⚠️ Commons: {e}")
+        return []
+
+
 # ── Used-image dedup log ──
 USED_IMAGES_LOG = BUILD_DIR / "used-images.json"
 
@@ -1183,6 +1240,201 @@ def save_used_image(photo_id):
     # Keep last 200 to avoid blocking everything over time
     id_list = sorted(used)[-200:]
     USED_IMAGES_LOG.write_text(json.dumps({"photo_ids": id_list}, indent=2))
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# KEY-POINT CARD — styled text/graphic fallback (replaces generic foreign stock)
+# ═══════════════════════════════════════════════════════════════════════════════
+# When no genuinely relevant image/video can be sourced for a scene (Commons miss,
+# Pexels returns generic/foreign stock), we render a designed motion-graphic card
+# carrying that scene's key point — on-brand navy + gold, with numbers and proper
+# nouns highlighted. This is QA-acceptable because the visual *is* the story, and
+# it never shows a country-mismatched or topic-irrelevant photo.
+
+_CARD_GOLD = (212, 175, 55)
+_CARD_GOLD_SOFT = (224, 196, 110)
+_CARD_NAVY_TOP = (8, 16, 30)
+_CARD_NAVY_BOT = (19, 33, 54)
+_CARD_WHITE = (245, 247, 250)
+_CARD_MUTED = (150, 165, 185)
+_INTER_DIR = "/usr/share/fonts/truetype/inter"
+
+_CARD_STOP = {"The","A","An","This","That","These","Those","And","But","For","With","From",
+              "Here","Why","What","When","How","It","Its","He","She","They","We","You","I",
+              "In","On","Of","To","At","By","As","Is","Are","Was","Were","Has","Have","Had",
+              "Will","Just","Now","Than","Then","Even","Their","His","Her","Our"}
+
+_CARD_LABELS = {
+    "news": "BREAKING", "nri-world": "NRI WORLD", "immigration": "IMMIGRATION",
+    "sports": "SPORTS", "technology": "TECHNOLOGY", "markets-finance": "MARKETS & FINANCE",
+    "entertainment": "ENTERTAINMENT", "lifestyle-health": "LIFESTYLE & HEALTH",
+    "food": "FOOD", "travel": "TRAVEL",
+}
+
+
+def _card_font(size, weight="bold"):
+    paths = {
+        "extrabold": f"{_INTER_DIR}/InterDisplay-ExtraBold.ttf",
+        "bold": f"{_INTER_DIR}/InterDisplay-Bold.ttf",
+        "semibold": f"{_INTER_DIR}/Inter-SemiBold.ttf",
+    }
+    try:
+        from PIL import ImageFont
+        return ImageFont.truetype(paths.get(weight, paths["bold"]), size)
+    except Exception:
+        from PIL import ImageFont
+        return ImageFont.load_default()
+
+
+def _card_pick_text(scene, article):
+    narr = (scene.get("narration") or "").strip()
+    sents = [s.strip() for s in re.split(r'(?<=[.!?])\s+', narr) if s.strip()]
+    pick = None
+    for s in sents:           # prefer a sentence with a concrete number
+        if re.search(r'\d', s):
+            pick = s
+            break
+    if not pick and sents:    # else the meatiest sentence
+        pick = max(sents, key=len)
+    text = pick or scene.get("visual") or article.get("headline", "")
+    text = re.sub(r'\s+', ' ', text).strip().rstrip('.')
+    words = text.split()
+    if len(words) > 14:
+        words = words[:14]
+        while words and words[-1].strip('.,;:!?').capitalize() in _CARD_STOP:
+            words.pop()
+        text = " ".join(words).rstrip(',;:') + "…"
+    return text or "The Videshi"
+
+
+def _card_is_highlight(word):
+    core = word.strip('.,;:!?"\'()')
+    if re.search(r'\d', core):
+        return True
+    if core in ("₹", "$", "%", "₹.", "$."):
+        return True
+    if core.isupper() and len(core) >= 2:
+        return True
+    if len(core) >= 2 and core[0].isupper() and core not in _CARD_STOP:
+        return True
+    return False
+
+
+def _card_vgradient(W, H, top, bot):
+    from PIL import Image
+    base = Image.new("RGB", (W, H), top)
+    px = base.load()
+    for y in range(H):
+        t = (y / max(H - 1, 1)) ** 0.85
+        r = int(top[0] + (bot[0] - top[0]) * t)
+        g = int(top[1] + (bot[1] - top[1]) * t)
+        b = int(top[2] + (bot[2] - top[2]) * t)
+        for x in range(W):
+            px[x, y] = (r, g, b)
+    return base
+
+
+def _card_glow(W, H, cx, cy, radius, color, max_alpha):
+    from PIL import Image, ImageDraw, ImageFilter
+    glow = Image.new("L", (W, H), 0)
+    gd = ImageDraw.Draw(glow)
+    steps = 50
+    for i in range(steps, 0, -1):
+        rr = radius * i / steps
+        a = int(max_alpha * (1 - i / steps))
+        gd.ellipse([cx - rr, cy - rr, cx + rr, cy + rr], fill=a)
+    glow = glow.filter(ImageFilter.GaussianBlur(40))
+    layer = Image.new("RGB", (W, H), color)
+    return layer, glow
+
+
+def render_keypoint_card(scene, category, article, idx, out_dir="/tmp/videshi_cards"):
+    """Render a branded 1080x1920 key-point graphic. Returns local PNG path or None."""
+    try:
+        from PIL import Image, ImageDraw
+    except Exception as e:
+        print(f"  ⚠️ PIL unavailable for key-point card: {e}")
+        return None
+    try:
+        os.makedirs(out_dir, exist_ok=True)
+        W, H = 1080, 1920
+        img = _card_vgradient(W, H, _CARD_NAVY_TOP, _CARD_NAVY_BOT)
+
+        layer, mask = _card_glow(W, H, int(W * 0.82), int(H * 0.20), 720, (60, 48, 18), 70)
+        img.paste(layer, (0, 0), mask)
+        layer2, mask2 = _card_glow(W, H, int(W * 0.12), int(H * 0.92), 760, (10, 22, 44), 90)
+        img.paste(layer2, (0, 0), mask2)
+
+        tex = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+        td = ImageDraw.Draw(tex)
+        for k in range(-H, W, 54):
+            td.line([(k, 0), (k + H, H)], fill=(212, 175, 55, 10), width=1)
+        img = Image.alpha_composite(img.convert("RGBA"), tex).convert("RGB")
+
+        draw = ImageDraw.Draw(img)
+        MX = 96
+
+        # eyebrow
+        label = _CARD_LABELS.get(category, (category or "THE VIDESHI").upper().replace("-", " "))
+        eb_font = _card_font(34, "extrabold")
+        y = 150
+        draw.rectangle([MX, y + 6, MX + 26, y + 32], fill=_CARD_GOLD)
+        draw.text((MX + 44, y), " ".join(label), font=eb_font, fill=_CARD_GOLD_SOFT)
+        y += 64
+        draw.line([(MX, y), (W - MX, y)], fill=_CARD_GOLD, width=3)
+
+        # key point
+        text = _card_pick_text(scene, article)
+        body_font = _card_font(82, "extrabold")
+        space_w = draw.textlength(" ", font=body_font)
+        max_w = W - 2 * MX - 28
+        words = text.split()
+        lines, cur, cur_w = [], [], 0
+        for wd in words:
+            ww = draw.textlength(wd, font=body_font)
+            add = ww + (space_w if cur else 0)
+            if cur and cur_w + add > max_w:
+                lines.append(cur); cur = [wd]; cur_w = ww
+            else:
+                cur.append(wd); cur_w += add
+        if cur:
+            lines.append(cur)
+
+        line_h = 104
+        block_h = line_h * len(lines)
+        # Anchor the key-point into the UPPER-MIDDLE region (below the eyebrow rule,
+        # above ~y1150) so the live caption pill — which sits at lower-center during
+        # mid-reel scenes — never collides with the card's own text.
+        region_top, region_bot = 360, 1160
+        start_y = region_top + max(0, (region_bot - region_top - block_h) // 2)
+        draw.rectangle([MX, start_y + 8, MX + 10, start_y + block_h - 12], fill=_CARD_GOLD)
+        text_x0 = MX + 40
+
+        yy = start_y
+        for line in lines:
+            xx = text_x0
+            for wd in line:
+                color = _CARD_GOLD_SOFT if _card_is_highlight(wd) else _CARD_WHITE
+                draw.text((xx + 2, yy + 3), wd, font=body_font, fill=(0, 0, 0))
+                draw.text((xx, yy), wd, font=body_font, fill=color)
+                xx += draw.textlength(wd, font=body_font) + space_w
+            yy += line_h
+
+        # wordmark
+        wm_font = _card_font(38, "bold")
+        dot_font = _card_font(38, "semibold")
+        by = H - 150
+        draw.line([(MX, by - 26), (MX + 70, by - 26)], fill=_CARD_GOLD, width=3)
+        draw.text((MX, by), "THE VIDESHI", font=wm_font, fill=_CARD_WHITE)
+        tvw = draw.textlength("THE VIDESHI  ", font=wm_font)
+        draw.text((MX + tvw, by + 2), "thevideshi.com", font=dot_font, fill=_CARD_MUTED)
+
+        path = os.path.join(out_dir, f"card_{article.get('id','x')}_{idx}.png")
+        img.save(path, "PNG")
+        return path
+    except Exception as e:
+        print(f"  ⚠️ Key-point card render failed: {e}")
+        return None
 
 
 def source_storyboard_images(article, storyboard, count=8):
@@ -1436,6 +1688,45 @@ def source_storyboard_images(article, storyboard, count=8):
                 print(f"  🧩 Scene {slot+1}: {scene_descs[slot][:42]}  →  Wikipedia entity '{term}'")
                 break
 
+    # ── 1c. WIKIMEDIA COMMONS by scene description (real India imagery) ──
+    # Before falling to Pexels (which has no real footage of India-specific
+    # subjects and drifts to generic/foreign stock), try Commons for the
+    # still-empty mid scenes using each scene's own search queries, India-anchored.
+    # Commons returns genuine editorial photos of named people/places/events.
+    # Cap it so at least one mid gap is left for Pexels VIDEO — a reel that's 100%
+    # stills reads as a static slideshow (QA flags "repetitive visuals"). Ken Burns
+    # pan/zoom keeps these stills alive between the motion clips.
+    remaining = [i for i in range(len(matched_urls)) if matched_urls[i] is None
+                 and i != last_idx]  # leave CTA scene for clean footage
+    commons_budget = max(0, len(remaining) - 1)  # keep ≥1 gap for Pexels motion
+    if remaining and commons_budget:
+        print(f"  🏛️ Commons pass for {len(remaining)} mid scenes (budget {commons_budget})...")
+        commons_filled = 0
+        for i in remaining:
+            if commons_filled >= commons_budget:
+                break
+            scene = scenes[i] if i < len(scenes) else {}
+            queries = list(scene.get("search_queries", []))
+            visual = scene.get("visual", "")
+            if visual and visual not in queries:
+                queries = [visual] + queries
+            for q in queries[:2]:
+                cq = anchor_query_to_india(q)
+                for cand in commons_image_search(cq, limit=6):
+                    cu = cand["url"]
+                    if cu in used_in_this_reel:
+                        continue
+                    if not is_url_downloadable(cu):
+                        continue
+                    matched_urls[i] = cu
+                    used_in_this_reel.add(cu)
+                    media_meta[cu] = {"type": "image", "duration": 0}
+                    commons_filled += 1
+                    print(f"  🏛️ Scene {i+1}: {scene_descs[i][:46]}  →  Commons '{cand['title'][5:45]}'")
+                    break
+                if matched_urls[i] is not None:
+                    break
+
     # ── 2. PRIMARY: Pexels stock VIDEO by scene visual description ──
     remaining = [i for i in range(len(matched_urls)) if matched_urls[i] is None]
     if remaining and pexels_key:
@@ -1539,48 +1830,34 @@ def source_storyboard_images(article, storyboard, count=8):
     wiki_filled = sum(1 for u in matched_urls if u is not None)
     print(f"  📸 After Wikipedia: {wiki_filled}/{len(matched_urls)} scenes filled")
 
-    # ── 5. LAST RESORT: Same-category article images (only for remaining gaps) ──
+    # ── 5. FLOOR: Styled KEY-POINT CARD (never generic foreign stock) ──
+    # Any scene still empty here means no genuinely relevant photo/video exists.
+    # Rather than dumping an unrelated same-category article image (the old behavior,
+    # which produced topic-mismatched B-roll and the #1 "image relevance" QA failure),
+    # render a designed motion-graphic carrying that scene's own key point — on-brand
+    # navy + gold, numbers/proper-nouns highlighted. The visual *is* the story, so it
+    # is always topic-relevant and never country-mismatched. Cards are uploaded to
+    # Supabase storage and flow through the normal image path (preflight + Ken Burns).
     remaining = [i for i in range(len(matched_urls)) if matched_urls[i] is None]
-    if remaining and category:
-        print(f"  🔍 {len(remaining)} scenes still unfilled — falling back to category article images...")
-        article_pool = []
-        r = requests.get(
-            f"{SB_URL}/rest/v1/p2_articles",
-            params={
-                "status": "eq.published",
-                "category": f"eq.{category}",
-                "id": f"neq.{article_id}",
-                "image_url": "not.is.null",
-                "order": "published_at.desc",
-                "limit": 40,
-                "select": "id,headline,image_url,gallery_images",
-            },
-            headers=SB_HEADERS,
-            timeout=15,
-        )
-        if r.status_code == 200:
-            for a in r.json():
-                img = a.get("image_url", "")
-                if is_url_downloadable(img) and img not in used_in_this_reel:
-                    article_pool.append(img)
-                # Also pull gallery images for more variety
-                gallery = a.get("gallery_images") or []
-                if isinstance(gallery, str):
-                    try:
-                        gallery = json.loads(gallery)
-                    except Exception:
-                        gallery = []
-                for gi in gallery[:2]:
-                    gurl = gi if isinstance(gi, str) else gi.get("url", "")
-                    if gurl and is_url_downloadable(gurl) and gurl not in used_in_this_reel:
-                        article_pool.append(gurl)
-
+    if remaining:
+        print(f"  🎨 {len(remaining)} scenes unfilled — rendering styled key-point cards...")
         for i in remaining:
-            if article_pool:
-                matched_urls[i] = article_pool.pop(0)
-                used_in_this_reel.add(matched_urls[i])
-                media_meta[matched_urls[i]] = {"type": "image", "duration": 0}
-                print(f"  🎬 Scene {i+1}: {scene_descs[i][:50]}  →  category fallback image")
+            scene = scenes[i] if i < len(scenes) else {}
+            local = render_keypoint_card(scene, category, article, i)
+            if not local:
+                continue
+            storage_path = f"reel-cards/{article_id}/scene-{i}.png"
+            card_url = upload_asset(local, storage_path, "image/png")
+            try:
+                os.remove(local)
+            except Exception:
+                pass
+            if card_url:
+                matched_urls[i] = card_url
+                used_in_this_reel.add(card_url)
+                # mark as a card so the timeline can give it a calmer Ken Burns move
+                media_meta[card_url] = {"type": "image", "duration": 0, "is_card": True}
+                print(f"  🎨 Scene {i+1}: {scene_descs[i][:46]}  →  key-point card")
 
     urls = [u for u in matched_urls if u is not None]
 
@@ -1928,13 +2205,16 @@ def build_anchor_reel_timeline(
                 "fit": "cover",
             }
         else:
-            # Static image — Ken Burns effect
+            # Static image — Ken Burns effect. Key-point CARDS use a gentle zoomIn
+            # only (slide/pan would push the centered text off-frame), so the words
+            # stay fully readable for the whole scene.
+            is_card = meta.get("is_card")
             clip = {
                 "asset": {"type": "image", "src": url},
                 "start": round(hook_duration + (i * per_image), 2),
                 "length": scene_length,
                 "fit": "cover",
-                "effect": KEN_BURNS_EFFECTS[i % len(KEN_BURNS_EFFECTS)],
+                "effect": "zoomIn" if is_card else KEN_BURNS_EFFECTS[i % len(KEN_BURNS_EFFECTS)],
             }
         if i > 0:
             clip["transition"] = {"in": transitions[i % len(transitions)]}
