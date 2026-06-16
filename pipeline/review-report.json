@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-16T02:15:41.357993+00:00",
+  "timestamp": "2026-06-16T02:45:23.206415+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 6,
+    "pass": 3,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,31 +11,31 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "34eec5f3-8c6e-4150-89dc-2dd220d073bc",
-      "headline": "Qatar Airways' Biggest-Ever Network Kicks In This Week \u2014 With Four New US Gateways That Matter to NRIs",
-      "slug": "qatar-airways-150-destinations-us-gateways-doha-india-nri-20260616",
+      "id": "7f0c7007-7860-4d5f-a236-1474fc8719f3",
+      "headline": "India Is Ready to Break Its Own Budget Promise. The Reason Is Sitting in the Strait of Hormuz.",
+      "slug": "india-fiscal-deficit-widen-4-8-percent-gdp-iran-war-energy-subsidy-costs-20260616",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
-        "overall_score": 8,
+        "overall_score": 7,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 8,
+          "issue": "The image of Nirmala Sitharaman is relevant as she is the Finance Minister discussed in the article."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the expansion of Qatar Airways to the needs and preferences of the NRI community, highlighting specific routes and their relevance."
+          "quality": 7,
+          "note": "The article connects the economic situation in India to the financial interests of NRIs, but could elaborate more on specific impacts."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes or insights from industry experts or travelers to enhance credibility.",
-          "Include a brief comparison of Qatar Airways' services with its competitors to provide more context."
+          "Expand on how the budget changes specifically affect NRIs and their investments.",
+          "Include more data or quotes from diaspora experts to strengthen the connection."
         ],
         "verdict": "pass"
       },
@@ -47,31 +47,31 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "217507a7-132b-4a7e-b90e-e3517be81ede",
-      "headline": "Air India and Thai Airways Are Joining Codes \u2014 and It Opens a Smoother Southeast Asian Door for NRIs",
-      "slug": "air-india-thai-airways-codeshare-mou-star-alliance-nri-20260616",
+      "id": "2d536326-9e5c-4950-8627-49195ca86c37",
+      "headline": "One in Three Indian-Americans Has Thought About Leaving the US. The Arrow Is Now Pointing Both Ways.",
+      "slug": "reverse-brain-drain-indian-americans-weighing-exit-carnegie-survey-returning-nris-20260616",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
-        "overall_score": 8,
+        "overall_score": 7,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 8,
+          "issue": "The image of a cityscape aligns with the article's theme of migration and urban life, but it could be more directly related to Indian-Americans."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the codeshare agreement to the needs of the Indian diaspora, emphasizing improved connectivity and travel convenience."
+          "note": "The article effectively discusses the sentiments of Indian-Americans regarding migration, making it relevant to the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more specific examples of how the codeshare will benefit NRIs traveling to various destinations.",
-          "Include quotes or insights from travelers or industry experts to enhance the narrative."
+          "Include more specific examples or anecdotes from Indian-Americans who are considering leaving the US to enhance relatability.",
+          "Add a section discussing potential implications for the Indian economy if this trend continues."
         ],
         "verdict": "pass"
       },
@@ -83,9 +83,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "295f23ae-70fd-4792-8a36-482f1ee030f7",
-      "headline": "Germany Just Scrapped the Transit Visa for Indians \u2014 and It Quietly Reshapes the Cheapest Way Home",
-      "slug": "germany-transit-visa-waiver-indians-frankfurt-munich-nri-20260616",
+      "id": "4c91be61-f370-40ac-987a-435b83e16c9f",
+      "headline": "Indians Are Now the Most Deported Nationality From Canada. The Numbers Are Not Close.",
+      "slug": "india-now-top-deported-nationality-canada-cbsa-q1-2026-removals-20260616",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -95,127 +95,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the visa change to the travel needs of the Indian diaspora, particularly those in North America."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more specific examples of how this change will impact travel costs for NRIs.",
-          "Add quotes from travel experts or diaspora members to enhance the article's relatability."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "4b892e40-764a-412f-80b1-f30abec7496e",
-      "headline": "Gold Just Fell to a Six-Month Low \u2014 and JP Morgan Says It Is Heading to $6,000. For NRIs, the Dip Is the Story.",
-      "slug": "gold-six-month-low-jp-morgan-6000-forecast-india-tariff-rupee-nri-buying-window-20260616",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image does not directly relate to the topic of deportations or the Indian diaspora in Canada."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects the topic of gold prices to the interests and cultural practices of the NRI community."
+          "note": "The article effectively addresses the implications of deportation statistics for the Indian diaspora in Canada."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more data or quotes from NRI perspectives on gold buying to enhance relatability.",
-          "Include a brief explanation of how gold is traditionally viewed in Indian culture to provide context for readers unfamiliar with its significance."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "c0a49780-3f96-4938-b18c-aaaa5c061552",
-      "headline": "The Carb War Has a Verdict, and It Is Not Keto. For the Rice-and-Roti Diaspora, the News Is Better Than Expected.",
-      "slug": "moderate-carb-vs-keto-whole-grains-heart-health-south-asian-rice-roti-diaspora-diet-20260616",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively addresses the dietary concerns of the South Asian diaspora, making it relevant and relatable."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more specific examples of traditional dishes that align with the moderate-carb approach to enhance relatability.",
-          "Include quotes or insights from nutrition experts to bolster credibility."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "8476a882-c37e-45a0-bff3-5a8864b81c8e",
-      "headline": "South Asians Are Already in Trouble by 45 \u2014 Even the Ones Eating Right. A 2,700-Person Study Found the Window.",
-      "slug": "south-asian-cardiometabolic-risk-age-45-masala-mesa-prediabetes-paradox-diaspora-screening-20260616",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively addresses health issues specific to the South Asian diaspora, making it relevant and engaging for NRI readers."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes or testimonials from South Asian individuals or health professionals to enhance relatability.",
-          "Include more actionable advice for diaspora families on how to implement the study's findings in their daily lives."
+          "Consider using a more relevant image that reflects the theme of deportation or the Indian community in Canada.",
+          "Add quotes or testimonials from affected individuals or community leaders to enhance the human angle of the story."
         ],
         "verdict": "pass"
       },
