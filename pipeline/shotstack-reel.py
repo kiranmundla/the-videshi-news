@@ -1057,6 +1057,70 @@ def upscale_wikimedia_url(url, target_px=1280):
     return url[: m.start()] + f"/{target_px}px-{m.group(2)}"
 
 
+def mirror_to_supabase(url, article_id, scene_idx):
+    """Mirror a Wikimedia/Commons image through Supabase storage so Shotstack can fetch it.
+
+    Shotstack's render servers cannot reliably download from upload.wikimedia.org /
+    commons.wikimedia.org (intermittent block / 4xx), even though OUR environment can
+    (HTTP 206). That caused hard render failures on real India-relevant entity frames
+    (e.g. an SBI/Goa thumb). The key-point cards already dodge this by uploading to
+    Supabase and handing Shotstack the Supabase URL; this applies the SAME treatment to
+    every Wikimedia/Commons B-roll image we select.
+
+    Downloads via curl (per AGENTS.md, Python requests can 429 on wikimedia hosts while
+    plain curl with our UA returns 200), uploads to article-images/reel-broll/{id}/
+    scene-{idx}.jpg, and returns the Supabase public URL. On ANY failure returns the
+    original url unchanged so the pipeline never breaks. Non-wikimedia URLs (Pexels,
+    Supabase, etc.) are returned unchanged — they already render fine for Shotstack.
+    """
+    if not url or "wikimedia.org" not in url:
+        return url
+    try:
+        src = upscale_wikimedia_url(url)
+        local = f"/tmp/videshi_broll_{article_id}_{scene_idx}.jpg"
+        ua = "TheVideshi/1.0 (thevideshi.com)"
+        result = subprocess.run(
+            ["curl", "-sS", "-L", "--fail", "-A", ua, "-o", local, "--max-time", "30", src],
+            capture_output=True, text=True, timeout=40,
+        )
+
+        def _is_real_image(path):
+            """Reject HTML error pages / truncated junk — only mirror genuine images."""
+            try:
+                if not os.path.exists(path) or os.path.getsize(path) < 2048:
+                    return False
+                with open(path, "rb") as fh:
+                    head = fh.read(16)
+                # JPEG, PNG, GIF, WEBP(RIFF), BMP magic bytes
+                return (head[:3] == b"\xff\xd8\xff" or head[:8] == b"\x89PNG\r\n\x1a\n"
+                        or head[:6] in (b"GIF87a", b"GIF89a") or head[:4] == b"RIFF"
+                        or head[:2] == b"BM")
+            except Exception:
+                return False
+
+        if result.returncode != 0 or not _is_real_image(local):
+            print(f"  ⚠️ mirror: download failed/non-image for {src[:70]} — keeping original URL")
+            try:
+                if os.path.exists(local):
+                    os.remove(local)
+            except Exception:
+                pass
+            return url
+        storage_path = f"reel-broll/{article_id}/scene-{scene_idx}.jpg"
+        mirrored = upload_asset(local, storage_path, "image/jpeg")
+        try:
+            os.remove(local)
+        except Exception:
+            pass
+        if mirrored:
+            print(f"  🪞 Mirrored Wikimedia → Supabase: scene-{scene_idx}.jpg")
+            return mirrored
+        return url
+    except Exception as e:
+        print(f"  ⚠️ mirror: {e} — keeping original URL")
+        return url
+
+
 def is_url_downloadable(url):
     """Check if a URL is reachable by Shotstack (no Wikipedia, etc.)."""
     if not url or len(url) < 10:
@@ -1166,7 +1230,13 @@ def commons_image_search(query, limit=6):
     """
     _bad = ("flag_of", "flag-", "coat_of_arms", "coat-of-arms", "emblem", "ensign",
             "_map", "-map", "location_", "orthographic", "seal_of", "logo", "icon",
-            ".svg", "diagram", "chart", "graph", "symbol", "blank", "placeholder")
+            ".svg", "diagram", "chart", "graph", "symbol", "blank", "placeholder",
+            # satellite / aerial / map imagery whose filename lacks the word "map"
+            "satellite", "aerial", "topograph", "landsat", "sentinel", "nasa", "isro_",
+            # coins / banknotes / stamps / document scans (the score-6 finance offenders)
+            "_coin", "coin_", "banknote", "currency_note", "stamp_", "postage",
+            "document", "manuscript", "scan_", "_scan", "letter_", "gazette",
+            "circular", "notification_", "graph_", "plot_", "infographic")
     try:
         r = requests.get(
             "https://commons.wikimedia.org/w/api.php",
@@ -1544,6 +1614,7 @@ def source_storyboard_images(article, storyboard, count=8):
     # ── 1. Article hero for scene 1 ──
     hero = upscale_wikimedia_url(hero)
     if hero and is_url_downloadable(hero) and hero not in used_in_this_reel:
+        hero = mirror_to_supabase(hero, article_id, 0)
         matched_urls[0] = hero
         used_in_this_reel.add(hero)
         media_meta[hero] = {"type": "image", "duration": 0}
@@ -1682,6 +1753,7 @@ def source_storyboard_images(article, storyboard, count=8):
             term = entities[ei]; ei += 1
             wimg = wiki_image_for(term)
             if wimg and wimg not in used_in_this_reel and is_url_downloadable(wimg):
+                wimg = mirror_to_supabase(wimg, article_id, slot)
                 matched_urls[slot] = wimg
                 used_in_this_reel.add(wimg)
                 media_meta[wimg] = {"type": "image", "duration": 0}
@@ -1698,7 +1770,7 @@ def source_storyboard_images(article, storyboard, count=8):
     # pan/zoom keeps these stills alive between the motion clips.
     remaining = [i for i in range(len(matched_urls)) if matched_urls[i] is None
                  and i != last_idx]  # leave CTA scene for clean footage
-    commons_budget = max(0, len(remaining) - 1)  # keep ≥1 gap for Pexels motion
+    commons_budget = max(0, (len(remaining) - 1) // 2)  # fill ≤ half of mid gaps from Commons; leave the rest for Pexels motion + the key-point card floor (a marginal Commons photo loses to a card whose visual IS the story)
     if remaining and commons_budget:
         print(f"  🏛️ Commons pass for {len(remaining)} mid scenes (budget {commons_budget})...")
         commons_filled = 0
@@ -1718,9 +1790,11 @@ def source_storyboard_images(article, storyboard, count=8):
                         continue
                     if not is_url_downloadable(cu):
                         continue
-                    matched_urls[i] = cu
+                    mu = mirror_to_supabase(cu, article_id, i)
+                    matched_urls[i] = mu
                     used_in_this_reel.add(cu)
-                    media_meta[cu] = {"type": "image", "duration": 0}
+                    used_in_this_reel.add(mu)
+                    media_meta[mu] = {"type": "image", "duration": 0}
                     commons_filled += 1
                     print(f"  🏛️ Scene {i+1}: {scene_descs[i][:46]}  →  Commons '{cand['title'][5:45]}'")
                     break
@@ -1819,9 +1893,11 @@ def source_storyboard_images(article, storyboard, count=8):
                         wimg = wdata.get("thumbnail", {}).get("source") or wdata.get("originalimage", {}).get("source")
                         wimg = upscale_wikimedia_url(wimg)
                         if wimg and wimg not in used_in_this_reel:
-                            matched_urls[i] = wimg
+                            mw = mirror_to_supabase(wimg, article_id, i)
+                            matched_urls[i] = mw
                             used_in_this_reel.add(wimg)
-                            media_meta[wimg] = {"type": "image", "duration": 0}
+                            used_in_this_reel.add(mw)
+                            media_meta[mw] = {"type": "image", "duration": 0}
                             print(f"  🎬 Scene {i+1}: {scene_descs[i][:50]}  →  Wikipedia (CC)")
                             break
                 except Exception:
