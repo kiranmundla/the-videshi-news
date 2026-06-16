@@ -1317,7 +1317,16 @@ def source_storyboard_images(article, storyboard, count=8):
                 "It", "But", "And", "For", "With", "From", "What", "When",
                 "How", "Why", "Now", "New", "After", "Before", "While", "Its",
                 "According", "Meanwhile", "However", "They", "Their", "His",
-                "Her", "Mr", "Ms", "Dr", "Mrs", "Also", "Some", "Many", "Both"}
+                "Her", "Mr", "Ms", "Dr", "Mrs", "Also", "Some", "Many", "Both",
+                # Weekdays/months — "Monday" resolves to moon-phase alchemy art, etc.
+                "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
+                "Saturday", "Sunday", "January", "February", "March", "April",
+                "May", "June", "July", "August", "September", "October",
+                "November", "December",
+                # Funding/business boilerplate that isn't a real visual entity.
+                "Series", "Series A", "Series B", "Series C", "Series D",
+                "India's", "Indians", "CEO", "CTO", "CFO", "COO", "Inc", "Ltd",
+                "Pvt", "Co", "Corp", "Group", "Limited", "Private"}
         seen, out = set(), []
 
         def _add(p):
@@ -1394,10 +1403,14 @@ def source_storyboard_images(article, storyboard, count=8):
     # Kiran's directive (2026-06-15): he prefers the real Indian imagery (Wikipedia
     # entity frames of Indian companies/people/places) over generic Pexels stock,
     # which kept drifting foreign on the back half. So entity frames now carry up to
-    # 4 scenes instead of 2 — but INTERLEAVED with Pexels motion (odd indices 1,3,5,7)
+    # 4 scenes instead of 2 — but INTERLEAVED with Pexels motion (odd indices)
     # so we get Indian-anchored frame → motion → frame → motion, not a dead wall of
-    # static portraits. Ken Burns pan/zoom keeps the static frames alive.
-    entity_slots = [i for i in (1, 3, 5, 7) if i < len(matched_urls) and matched_urls[i] is None]
+    # static portraits. Ken Burns pan/zoom keeps the static frames alive. The FINAL
+    # scene (the spoken CTA) is excluded — it gets clean footage, never a random
+    # entity portrait behind "Full story at thevideshi.com".
+    last_idx = len(matched_urls) - 1
+    entity_slots = [i for i in (1, 3, 5, 7)
+                    if i < len(matched_urls) and i != last_idx and matched_urls[i] is None]
     ei = 0
     for slot in entity_slots:
         while ei < len(entities):
