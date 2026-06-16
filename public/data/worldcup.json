@@ -893,8 +893,8 @@
       "away": "Uruguay",
       "venue": "Hard Rock Stadium",
       "city": "Miami",
-      "status": "scheduled",
-      "score": null,
+      "status": "FT",
+      "score": "1-1",
       "home_code": "KSA",
       "away_code": "URU"
     },
