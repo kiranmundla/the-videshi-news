@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-16T01:45:14.223438+00:00",
+  "timestamp": "2026-06-16T02:15:41.357993+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
+    "pass": 6,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "9208f439-b0e6-4fa9-960f-6b560b67fcbb",
-      "headline": "India Won't Let Them Play Without Surrendering Their Passports. A New Proposal on Modi's Desk Could Change That.",
-      "slug": "india-sports-passport-proposal-pmo-pio-oci-athletes-football-fifa-world-cup-2026-diaspora-nri",
+      "id": "34eec5f3-8c6e-4150-89dc-2dd220d073bc",
+      "headline": "Qatar Airways' Biggest-Ever Network Kicks In This Week \u2014 With Four New US Gateways That Matter to NRIs",
+      "slug": "qatar-airways-150-destinations-us-gateways-doha-india-nri-20260616",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -29,13 +29,193 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the topic of sports citizenship to the Indian diaspora, highlighting athletes of Indian origin competing for other nations."
+          "note": "The article effectively connects the expansion of Qatar Airways to the needs and preferences of the NRI community, highlighting specific routes and their relevance."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes or perspectives from diaspora athletes to enhance relatability.",
-          "Provide a brief overview of the current status of Indian football to give context to the proposal."
+          "Consider adding quotes or insights from industry experts or travelers to enhance credibility.",
+          "Include a brief comparison of Qatar Airways' services with its competitors to provide more context."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "217507a7-132b-4a7e-b90e-e3517be81ede",
+      "headline": "Air India and Thai Airways Are Joining Codes \u2014 and It Opens a Smoother Southeast Asian Door for NRIs",
+      "slug": "air-india-thai-airways-codeshare-mou-star-alliance-nri-20260616",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the codeshare agreement to the needs of the Indian diaspora, emphasizing improved connectivity and travel convenience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of how the codeshare will benefit NRIs traveling to various destinations.",
+          "Include quotes or insights from travelers or industry experts to enhance the narrative."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "295f23ae-70fd-4792-8a36-482f1ee030f7",
+      "headline": "Germany Just Scrapped the Transit Visa for Indians \u2014 and It Quietly Reshapes the Cheapest Way Home",
+      "slug": "germany-transit-visa-waiver-indians-frankfurt-munich-nri-20260616",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the visa change to the travel needs of the Indian diaspora, particularly those in North America."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more specific examples of how this change will impact travel costs for NRIs.",
+          "Add quotes from travel experts or diaspora members to enhance the article's relatability."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "4b892e40-764a-412f-80b1-f30abec7496e",
+      "headline": "Gold Just Fell to a Six-Month Low \u2014 and JP Morgan Says It Is Heading to $6,000. For NRIs, the Dip Is the Story.",
+      "slug": "gold-six-month-low-jp-morgan-6000-forecast-india-tariff-rupee-nri-buying-window-20260616",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the topic of gold prices to the interests and cultural practices of the NRI community."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more data or quotes from NRI perspectives on gold buying to enhance relatability.",
+          "Include a brief explanation of how gold is traditionally viewed in Indian culture to provide context for readers unfamiliar with its significance."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "c0a49780-3f96-4938-b18c-aaaa5c061552",
+      "headline": "The Carb War Has a Verdict, and It Is Not Keto. For the Rice-and-Roti Diaspora, the News Is Better Than Expected.",
+      "slug": "moderate-carb-vs-keto-whole-grains-heart-health-south-asian-rice-roti-diaspora-diet-20260616",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively addresses the dietary concerns of the South Asian diaspora, making it relevant and relatable."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of traditional dishes that align with the moderate-carb approach to enhance relatability.",
+          "Include quotes or insights from nutrition experts to bolster credibility."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "8476a882-c37e-45a0-bff3-5a8864b81c8e",
+      "headline": "South Asians Are Already in Trouble by 45 \u2014 Even the Ones Eating Right. A 2,700-Person Study Found the Window.",
+      "slug": "south-asian-cardiometabolic-risk-age-45-masala-mesa-prediabetes-paradox-diaspora-screening-20260616",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses health issues specific to the South Asian diaspora, making it relevant and engaging for NRI readers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes or testimonials from South Asian individuals or health professionals to enhance relatability.",
+          "Include more actionable advice for diaspora families on how to implement the study's findings in their daily lives."
         ],
         "verdict": "pass"
       },
