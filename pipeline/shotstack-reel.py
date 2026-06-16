@@ -2542,17 +2542,30 @@ def build_anchor_reel_timeline(
                 "fit": "cover",
             }
         else:
-            # Static image — Ken Burns effect. Key-point CARDS use a gentle zoomIn
-            # only (slide/pan would push the centered text off-frame), so the words
-            # stay fully readable for the whole scene.
+            # Static image — Ken Burns effect for PHOTOS. Key-point CARDS are
+            # full-bleed 1080x1920 text graphics: any zoom/pan (even "zoomIn")
+            # scales past 100% and pushes the edge words off-frame — that's what
+            # clipped "New" on the Neeraj-Sharma card and fed the QA "text
+            # readability" deduction. So cards render STATIC with fit=contain
+            # (whole card always in frame, every word readable); only real photos
+            # get the Ken Burns motion.
             is_card = meta.get("is_card")
-            clip = {
-                "asset": {"type": "image", "src": url},
-                "start": round(hook_duration + (i * per_image), 2),
-                "length": scene_length,
-                "fit": "cover",
-                "effect": "zoomIn" if is_card else KEN_BURNS_EFFECTS[i % len(KEN_BURNS_EFFECTS)],
-            }
+            if is_card:
+                clip = {
+                    "asset": {"type": "image", "src": url},
+                    "start": round(hook_duration + (i * per_image), 2),
+                    "length": scene_length,
+                    "fit": "contain",
+                    # no effect → no zoom crop; text stays fully on-frame
+                }
+            else:
+                clip = {
+                    "asset": {"type": "image", "src": url},
+                    "start": round(hook_duration + (i * per_image), 2),
+                    "length": scene_length,
+                    "fit": "cover",
+                    "effect": KEN_BURNS_EFFECTS[i % len(KEN_BURNS_EFFECTS)],
+                }
         if i > 0:
             clip["transition"] = {"in": transitions[i % len(transitions)]}
         broll_clips.append(clip)
