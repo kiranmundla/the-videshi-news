@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-16T10:45:14.779150+00:00",
+  "timestamp": "2026-06-16T11:15:17.124640+00:00",
   "mode": "fix",
   "stats": {
     "pass": 2,
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "97580a64-e062-4edc-bcec-d960c4a1ca7c",
-      "headline": "Two North American Teams, One Ontario Ground, and a Squad List That Reads Like a Punjab Phone Book.",
-      "slug": "canada-tri-nation-series-2026-cwc-league-2-usa-netherlands-south-asian-diaspora-cricket-king-city-nri",
+      "id": "4938a4b5-78db-4a11-986e-526d2e7ac40c",
+      "headline": "Mirzapur Is Leaving Your Living Room for the Big Screen. Kaleen, Guddu and Munna Bhaiya Are Coming to Theatres.",
+      "slug": "mirzapur-the-film-theatrical-pankaj-tripathi-ali-fazal-divyenndu-munna-bhaiya-excel-amazon-where-to-watch-nri-20260616",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -29,13 +29,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the cricket match to the Indian and South Asian diaspora, highlighting the significance of the players' backgrounds and the cultural pride in the Canadian team."
+          "note": "The article effectively connects the film's release to the diaspora audience, highlighting their potential viewing experience both in theaters and on Prime Video."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from players or coaches to enhance the narrative and provide personal insights.",
-          "Include more statistics or historical context about the teams' performances in previous tournaments to enrich the article."
+          "Consider adding quotes from diaspora viewers or critics to enhance the connection with the audience.",
+          "Include more details about the film's plot or themes to provide a deeper context for readers unfamiliar with the series."
         ],
         "verdict": "pass"
       },
@@ -47,31 +47,36 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "976eb824-cd89-4969-a0f8-6739d6d1c6fc",
-      "headline": "Indian Banks Just Doubled Dollar Deposit Rates for NRIs to 7%. The RBI Is Footing the Risk.",
-      "slug": "rbi-fcnr-deposit-rates-jump-nri-dollar-deposits-7-percent-rupee-20260616",
+      "id": "2dacb0c6-a26a-4877-8a63-ebd3058be769",
+      "headline": "Sunny Deol and Akshaye Khanna Haven't Shared a Screen Since Border. Netflix Just Reunited Them \u2014 After 30 Years.",
+      "slug": "netflix-india-2026-hindi-slate-ikka-sunny-deol-akshaye-khanna-border-reunion-kapil-sharma-where-to-watch-nri-20260616",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "3906bfb1-4f03-43c0-b1d6-0cb16b099f0f",
+            "headline": "Sunny Deol Returns to the Courtroom After Damini. Akshaye Kh"
+          }
+        ],
         "broken_embeds": []
       },
       "llm_review": {
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image of Sunny Deol does not directly relate to the article's focus on the reunion with Akshaye Khanna."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the interest rate changes to the financial interests of NRIs, highlighting the importance of diaspora money in India's economy."
+          "note": "The article effectively connects the Netflix content to the diaspora audience, highlighting the convenience of global access."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a quote from an NRI or financial expert to provide a personal perspective on the impact of these changes.",
-          "Include a brief comparison of the new rates with those offered by banks in other countries to give NRIs a clearer context."
+          "Consider including a more relevant image that features both Sunny Deol and Akshaye Khanna together.",
+          "Add a quote or reaction from either actor regarding their reunion to enhance the personal connection."
         ],
         "verdict": "pass"
       },
