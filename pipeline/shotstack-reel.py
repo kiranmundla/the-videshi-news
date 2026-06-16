@@ -1566,6 +1566,7 @@ def source_storyboard_images(article, storyboard, count=8):
     scene_descs = [s.get("visual", "") for s in scenes[:count]]
     matched_urls = [None] * min(count, len(scene_descs))
     used_video_ids_this_reel = set()  # Prevent same video clip across multiple scenes
+    used_photo_ids_this_reel = set()  # Prevent same Pexels photo across multiple scenes (URL check misses re-sized variants)
 
     # Anchor B-roll searches to India so generic queries ("military uniform",
     # "students exam") don't return foreign footage (e.g. an Italian army
@@ -1834,7 +1835,7 @@ def source_storyboard_images(article, storyboard, count=8):
                         matched_urls[i] = cand["url"]
                         used_in_this_reel.add(cand["url"])
                         used_video_ids_this_reel.add(vid)
-                        media_meta[cand["url"]] = {"type": "video", "duration": cand["duration"]}
+                        media_meta[cand["url"]] = {"type": "video", "duration": cand["duration"], "generic_pexels": (not anchored)}
                         save_used_image(f"vid_{vid}")  # Track video IDs in same dedup log
                         print(f"  🎥 Scene {i+1}: {scene_descs[i][:50]}  →  Pexels VIDEO #{vid} ({cand['duration']}s)")
                         break
@@ -1861,7 +1862,7 @@ def source_storyboard_images(article, storyboard, count=8):
                 results = pexels_search(pexels_key, query, count=5)
                 for cand in results:
                     pid = cand["photo_id"]
-                    if pid not in used_ids and cand["url"] not in used_in_this_reel:
+                    if pid not in used_ids and pid not in used_photo_ids_this_reel and cand["url"] not in used_in_this_reel:
                         if pid in BLOCKED_PEXELS_IDS:
                             print(f"  🚫 Scene {i+1}: skipped blocklisted photo #{pid}")
                             continue
@@ -1870,7 +1871,8 @@ def source_storyboard_images(article, storyboard, count=8):
                             continue
                         matched_urls[i] = cand["url"]
                         used_in_this_reel.add(cand["url"])
-                        media_meta[cand["url"]] = {"type": "image", "duration": 0}
+                        used_photo_ids_this_reel.add(pid)
+                        media_meta[cand["url"]] = {"type": "image", "duration": 0, "generic_pexels": (not anchored)}
                         save_used_image(pid)
                         print(f"  🎬 Scene {i+1}: {scene_descs[i][:50]}  →  Pexels #{pid} (scene-matched)")
                         break
@@ -1912,6 +1914,46 @@ def source_storyboard_images(article, storyboard, count=8):
 
     wiki_filled = sum(1 for u in matched_urls if u is not None)
     print(f"  📸 After Wikipedia: {wiki_filled}/{len(matched_urls)} scenes filled")
+
+    # ── 4b. CAP generic (non-India-anchored) Pexels fills ──
+    # Generic foreign stock is the #1 "image relevance" QA failure on hard-to-
+    # illustrate stories (legal / policy / immigration), where Pexels only has
+    # generic matches that the QA model flags as "images do not match the story".
+    # The key-point card FLOOR below never reached these scenes because Pexels
+    # already filled them. So: allow at most ONE generic-Pexels scene (prefer a
+    # VIDEO, for motion/variety) and replace every other generic-Pexels scene
+    # with a key-point card — topic-relevant by construction. India-anchored
+    # Pexels fills are genuinely relevant and are always left alone.
+    GENERIC_PEXELS_CAP = 1
+    generic_idxs = [i for i in range(len(matched_urls))
+                    if matched_urls[i] is not None
+                    and media_meta.get(matched_urls[i], {}).get("generic_pexels")]
+    if len(generic_idxs) > GENERIC_PEXELS_CAP:
+        # Keepers: prefer videos (motion adds variety), then lowest scene index.
+        keepers = sorted(
+            generic_idxs,
+            key=lambda i: (0 if media_meta.get(matched_urls[i], {}).get("type") == "video" else 1, i),
+        )[:GENERIC_PEXELS_CAP]
+        to_convert = [i for i in generic_idxs if i not in keepers]
+        print(f"  ✂️ {len(generic_idxs)} generic Pexels fills > cap {GENERIC_PEXELS_CAP}; converting {len(to_convert)} to key-point cards...")
+        for i in to_convert:
+            scene = scenes[i] if i < len(scenes) else {}
+            local = render_keypoint_card(scene, category, article, i)
+            if not local:
+                continue  # leave the generic Pexels fill if card render fails
+            storage_path = f"reel-cards/{article_id}/scene-{i}.png"
+            card_url = upload_asset(local, storage_path, "image/png")
+            try:
+                os.remove(local)
+            except Exception:
+                pass
+            if card_url:
+                old_url = matched_urls[i]
+                matched_urls[i] = card_url
+                used_in_this_reel.discard(old_url)
+                used_in_this_reel.add(card_url)
+                media_meta[card_url] = {"type": "image", "duration": 0, "is_card": True}
+                print(f"  🎨 Scene {i+1}: {scene_descs[i][:46]}  →  key-point card (replaced generic Pexels)")
 
     # ── 5. FLOOR: Styled KEY-POINT CARD (never generic foreign stock) ──
     # Any scene still empty here means no genuinely relevant photo/video exists.
