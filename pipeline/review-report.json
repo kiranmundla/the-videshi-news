@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-16T09:15:32.470706+00:00",
+  "timestamp": "2026-06-16T10:15:31.537978+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 5,
+    "pass": 6,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,45 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "2e8ad5e0-0fc1-4a03-bb56-d6caa2743453",
-      "headline": "Salman Khan Dragged a Movie to Court Over a Blue Bracelet. On June 19, the Delhi High Court Decides Who Owns a Superstar's Face.",
-      "slug": "salman-khan-kala-hiran-delhi-high-court-personality-rights-blackbuck-june-19-nri-20260616",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses legal issues surrounding a prominent Bollywood figure, which is relevant to the diaspora interested in Indian entertainment and legal developments."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more context on the implications of the court ruling for the film industry and public figures in India.",
-          "Add quotes or perspectives from diaspora members or experts to enhance the connection with NRI readers."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "38b93f5e-3493-43a4-872a-9c14b1c05330",
-      "headline": "Akshay Kumar's \u20b9264 Crore Haunted House Just Landed on Netflix. After 14 Years, Priyadarshan Still Knows How to Scare You Laughing.",
-      "slug": "bhooth-bangla-netflix-ott-akshay-kumar-priyadarshan-where-to-watch-diaspora-nri-20260616",
+      "id": "a63c1f0a-b5df-4054-9fea-e6822d2965f2",
+      "headline": "AirAsia's New Kuala Lumpur Bridge Makes Angkor Wat a One-Ticket Trip for Indian Travelers",
+      "slug": "airasia-kuala-lumpur-cambodia-fly-thru-indian-travelers-20260616",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -65,13 +29,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the film's availability on Netflix to the diaspora audience, emphasizing accessibility and nostalgia."
+          "note": "The article effectively connects the travel initiative to the Indian diaspora's travel habits and needs."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more quotes from critics or audience reactions to enhance credibility.",
-          "Include a brief overview of Priyadarshan's previous works to provide context for readers unfamiliar with his filmography."
+          "Consider adding more specific examples of Indian cities that will benefit from the new route.",
+          "Include quotes or testimonials from travelers or tourism officials to enhance credibility."
         ],
         "verdict": "pass"
       },
@@ -83,9 +47,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "894d69f0-8e8a-4745-89b8-43b20a7b0367",
-      "headline": "TCS Bet Against AI Was Killing It. Now It's Partnering With the Company That Started the Panic.",
-      "slug": "tcs-anthropic-claude-partnership-ai-deflation-h1b-20260616",
+      "id": "8e7c35cb-0548-4941-9f44-0d0abc59b237",
+      "headline": "India Just Rewrote Its Visa Rulebook \u2014 and the Changes Quietly Favor OCI Families and NRI Spouses",
+      "slug": "india-visa-overhaul-oci-nri-spouses-categories-streamlined-20260616",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -95,19 +59,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 6,
-          "issue": "The image of Natarajan Chandrasekaran is relevant to TCS but does not directly relate to the AI partnership theme."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the implications of TCS's partnership with Anthropic to the Indian-American professional community, discussing visa impacts and job market changes."
+          "quality": 8,
+          "note": "The article effectively addresses changes in visa rules that directly impact OCI families and NRI spouses, making it relevant for the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that directly represents AI or the partnership with Anthropic to enhance relevance.",
-          "Add a quote or perspective from a diaspora professional to strengthen the connection further."
+          "Consider adding quotes or testimonials from affected individuals to enhance relatability.",
+          "Include a brief summary of the previous visa rules for context."
         ],
         "verdict": "pass"
       },
@@ -119,9 +83,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "0ebc6572-8cf9-4be1-b625-a68ca500b9f8",
-      "headline": "Micron Reports June 24. The Quarter Is Priced In \u2014 the One After Isn't.",
-      "slug": "micron-earnings-june-24-hbm-mehrotra-gujarat-fab-20260616",
+      "id": "e43f6d06-b1f7-4039-b3af-869a8e29732e",
+      "headline": "Gulf Airspace Turmoil Is Snarling NRI Flights Home \u2014 and the Layover You Booked May Not Be Safe",
+      "slug": "gulf-airspace-disruption-nri-dubai-abu-dhabi-transit-20260616",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -131,19 +95,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image of Sanjay Mehrotra is relevant as he is mentioned in the article, but it could be more directly related to Micron's products or operations."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects the topic to Indian-American investors and professionals, particularly through the mention of Sanjay Mehrotra and Micron's operations in India."
+          "note": "The article effectively addresses the concerns of the Indian diaspora regarding travel disruptions and provides practical advice tailored to their needs."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more direct quotes or insights from Sanjay Mehrotra to enhance the personal connection to the diaspora.",
-          "Include more data or examples of how the semiconductor industry impacts the Indian economy to strengthen the diaspora angle."
+          "Consider adding more statistics or quotes from experts to enhance credibility.",
+          "Include a section on how these disruptions might affect future travel trends for NRIs."
         ],
         "verdict": "pass"
       },
@@ -155,40 +119,103 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "7151bf1f-c91c-4c56-a4af-48c7d3e0b87c",
-      "headline": "Apple Just Handed Siri's Brain to Sundar Pichai's Google",
-      "slug": "apple-siri-google-gemini-sundar-pichai-ios-27-20260616",
+      "id": "d3001767-ba27-45ae-92ec-b2f61a3cc454",
+      "headline": "India Built a Tax-Light Financial City to Lure NRI Money Home. In 2026, GIFT City Is Finally Pulling.",
+      "slug": "gift-city-ifsc-nri-investment-magnet-2026-tax-incentives-dubai-singapore-comparison-diaspora-20260616",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "f5ee5038-1412-4c90-84fe-258a006db5d6",
-            "headline": "Sundar Pichai Is Selling $85 Billion of Alphabet to Win the "
-          },
-          {
-            "article_id": "f0570ddd-64ea-439f-956e-63ef89420a5e",
-            "headline": "Pichai's Three-Foundry Gambit: Google Splits Its Next AI Chi"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image of Sundar Pichai is relevant as the article discusses his role at Google, but it could be more directly related to the Siri and AI topic."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the impact of the deal on Indian engineers and the diaspora community, highlighting their contributions and the job market implications."
+          "quality": 8,
+          "note": "The article effectively discusses GIFT City's appeal to NRIs and its potential to attract diaspora investments."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider including more direct quotes or insights from industry experts to enhance credibility.",
-          "Add a brief section on potential implications for consumers beyond the diaspora to broaden the article's appeal."
+          "Include specific examples of NRI investments or success stories related to GIFT City to enhance relatability.",
+          "Add quotes from financial experts or NRIs who have invested in GIFT City to provide personal insights."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "a4e09cab-012a-4db0-b8d7-397b81e94e27",
+      "headline": "Four Minutes a Day Rebuilt Strength in 74-Year-Olds. The Routine Needs No Gym and No Hour You Do Not Have.",
+      "slug": "four-minute-strength-training-fast-2-older-adults-penn-state-plos-one-diaspora-elders-20260616",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the fitness routine to the needs of the Indian diaspora, particularly older adults."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a quote or testimonial from a participant in the study to enhance relatability.",
+          "Include a brief section on how to get started with the exercises mentioned for readers who may be unfamiliar."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "6e8cbbf6-2b07-4335-a934-48526bddef65",
+      "headline": "A Common Diabetes Pill Erased Heart Failure in People Born With a Risky Gene. The Trial Result Is Stunning.",
+      "slug": "dapagliflozin-sglt2-genetic-cardiomyopathy-heart-failure-declare-timi-nature-medicine-diaspora-20260616",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the research findings to the health concerns prevalent in the Indian diaspora, particularly regarding diabetes and heart disease."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific statistics or data points related to the prevalence of diabetes and heart disease in the Indian diaspora to strengthen the connection.",
+          "Include quotes or insights from diaspora health experts to enhance credibility and relatability."
         ],
         "verdict": "pass"
       },
