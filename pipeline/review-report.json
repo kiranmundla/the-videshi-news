@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-16T18:45:26.450626+00:00",
+  "timestamp": "2026-06-16T19:15:21.783305+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 1,
     "flag": 1,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "3b0d22dd-3cb9-4221-bc9e-9a064a3b5317",
-      "headline": "Another Global Tech Firm Just Chose Bengaluru Over the Bay Area. India's Capability Centers Are Booming.",
-      "slug": "india-gcc-boom-nable-bengaluru-center-236-million-workforce-2026-20260616",
+      "id": "4e7c07fb-06f4-4034-8081-7621df5b27a7",
+      "headline": "The Minnal Murali Boys Are Back. Athiradi Brings Tovino Thomas and Basil Joseph to Your Screen This Friday.",
+      "slug": "athiradi-sonyliv-ott-tovino-thomas-basil-joseph-minnal-murali-malayalam-five-languages-where-to-watch-diaspora-nri-20260616",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -28,14 +28,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article discusses the implications of the GCC boom for Indian engineers, which is relevant to the diaspora, but could further elaborate on how this affects NRIs specifically."
+          "quality": 8,
+          "note": "The article effectively connects the film's release to the diaspora audience, emphasizing the importance of accessibility and the cultural significance of Malayalam cinema."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Expand on the implications of the GCC boom for the Indian diaspora, particularly in terms of career opportunities and economic impact.",
-          "Include quotes or insights from diaspora members or experts to strengthen the connection to the NRI community."
+          "Include more details about the film's reception in the diaspora to enhance the connection.",
+          "Add quotes from the cast or director to provide more depth and personal insight into the film."
         ],
         "verdict": "pass"
       },
@@ -47,9 +47,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "be325326-32ed-491b-a299-cc384d82ec10",
-      "headline": "A Two-Hour Hold at Delhi Airport Just Sparked an India-Bangladesh Diplomatic Row",
-      "slug": "bangladesh-india-diplomatic-row-pm-adviser-zahed-rahman-delhi-airport-iora-20260616",
+      "id": "45f58394-6fdf-4024-9b7a-b022bfbf92f5",
+      "headline": "A Deported NRI, a Missing Brother, and a Fake Canada Immigration Racket. Ab Hoga Hisaab Knows Exactly What Scares the Diaspora.",
+      "slug": "ab-hoga-hisaab-mx-player-sanjay-kapoor-shaheer-sheikh-mouni-roy-canada-immigration-trafficking-diaspora-nri-20260616",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -59,55 +59,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the specific incident at the airport but is relevant to the broader theme of geopolitics."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the incident to the concerns of the Indian and Bangladeshi diaspora, highlighting the implications for those traveling between the two countries."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider including a quote from a diaspora member to enhance the personal connection to the story.",
-          "Add more context about the historical relationship between India and Bangladesh to deepen the analysis."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "e4c1c648-d47f-4688-be4b-daf414a50c8c",
-      "headline": "The US Is Stripping Citizenship at a Record Pace. An Indian H-1B Case Just Joined the List.",
-      "slug": "doj-denaturalization-wave-indian-origin-citizens-h1b-fraud-neeraj-sharma-20260616",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
           "score": 5,
-          "issue": "The image does not directly relate to the topic of citizenship or immigration."
+          "issue": "irrelevant"
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article discusses the implications of denaturalization for the Indian-American community, making it relevant to the diaspora."
+          "quality": 9,
+          "note": "The article effectively connects the narrative of the show to the experiences and fears of the NRI diaspora, particularly regarding immigration and family."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that more directly represents the themes of citizenship or immigration.",
-          "Expand on the implications for the Indian diaspora in the conclusion to strengthen the connection."
+          "Consider using a more relevant image that reflects the themes of immigration and the diaspora experience.",
+          "Add more direct quotes or insights from the creators or cast to enhance the depth of the article."
         ],
         "verdict": "flag"
       },
