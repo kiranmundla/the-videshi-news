@@ -437,11 +437,31 @@ Return JSON only:
 def preflight_image_urls(image_urls):
     """HEAD-check all image URLs before render. Returns (valid_urls, dead_urls).
     A dead image URL = wasted Shotstack credit (black frame or render failure).
+
+    NOTE (2026-06-15): upload.wikimedia.org ALWAYS returns HTTP 400 to HEAD
+    requests from this environment — even for valid, working images. A plain HEAD
+    gate therefore silently nukes every Wikipedia entity frame (the Indian
+    company/people/place imagery Kiran specifically prefers). For wikimedia hosts
+    we verify with a lightweight ranged GET instead, and treat any 2xx/3xx as live.
     """
     valid = []
     dead = []
     for url in image_urls:
+        is_wikimedia = "upload.wikimedia.org" in url or "wikimedia.org" in url
         try:
+            if is_wikimedia:
+                # GET (range-limited) — HEAD is a guaranteed false 400 on Wikimedia.
+                r = requests.get(url, timeout=12, allow_redirects=True, stream=True,
+                                 headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)",
+                                          "Range": "bytes=0-2047"})
+                ok = r.status_code < 400
+                r.close()
+                if ok:
+                    valid.append(url)
+                else:
+                    dead.append((url, f"HTTP {r.status_code}"))
+                    print(f"  ❌ Dead image: {url[:80]} → {r.status_code}")
+                continue
             r = requests.head(url, timeout=8, allow_redirects=True,
                               headers={"User-Agent": "Mozilla/5.0 (compatible; TheVideshi/1.0)"})
             if r.status_code < 400:
