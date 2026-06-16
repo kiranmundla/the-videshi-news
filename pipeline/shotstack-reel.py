@@ -1376,7 +1376,12 @@ def source_storyboard_images(article, storyboard, count=8):
             # Skip disambiguation pages — their images are useless
             if wdata.get("type") == "disambiguation":
                 return None
-            wimg = wdata.get("originalimage", {}).get("source") or wdata.get("thumbnail", {}).get("source")
+            # Prefer the thumbnail (a /thumb/ URL we can size to a render-friendly
+            # 1280px) over originalimage — raw originals are often multi-MB PNGs that
+            # Shotstack rejects as "not downloadable" (HCLTech campus PNG = 5.6MB).
+            thumb = wdata.get("thumbnail", {}).get("source")
+            orig = wdata.get("originalimage", {}).get("source")
+            wimg = thumb or orig
             return upscale_wikimedia_url(wimg) if wimg else None
         except Exception:
             return None
@@ -1494,7 +1499,7 @@ def source_storyboard_images(article, storyboard, count=8):
                     )
                     if wr.status_code == 200:
                         wdata = wr.json()
-                        wimg = wdata.get("originalimage", {}).get("source") or wdata.get("thumbnail", {}).get("source")
+                        wimg = wdata.get("thumbnail", {}).get("source") or wdata.get("originalimage", {}).get("source")
                         wimg = upscale_wikimedia_url(wimg)
                         if wimg and wimg not in used_in_this_reel:
                             matched_urls[i] = wimg
