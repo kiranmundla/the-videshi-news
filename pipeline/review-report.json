@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-16T12:15:49.648123+00:00",
+  "timestamp": "2026-06-16T12:45:27.192740+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 9,
+    "pass": 4,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,273 +11,12 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "5b67d5c9-cdae-4237-9658-94272adef59e",
-      "headline": "He Built Windows NT and Brought Pro Cricket to Seattle. The US House Just Read His Name Into the Record.",
-      "slug": "soma-somasegar-us-congress-tribute-microsoft-seattle-cricket-20260616",
+      "id": "e1c8bb6e-f15d-40b4-bfcb-35e97c335de4",
+      "headline": "The $2,000 Mango Pass: How a War and a Tariff Turned India's Favourite Fruit Into America's Costliest Craving",
+      "slug": "2000-dollar-mango-pass-india-export-us-2026",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the article's subject matter about Sivaramakrishnan Somasegar and his contributions."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects Somasegar's achievements to the Indian diaspora, particularly through his contributions to cricket and the tech industry."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that reflects Somasegar's contributions to technology and cricket.",
-          "Add a quote or anecdote from someone in the diaspora community to further enhance the connection."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "badd57ce-8bee-43b9-ae09-fcbbfed2920a",
-      "headline": "The RBI Just Made Parking Dollars in India Pay Again. For NRIs, the Math Hasn't Looked This Good Since 2013.",
-      "slug": "rbi-fcnr-deposit-rates-nri-dollars-india-swap-window-20260616",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the topic of banking or finance."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively discusses the implications of RBI's actions for NRIs, making it relevant to the diaspora audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that visually represents banking or finance to better match the article's topic.",
-          "Add a brief summary or conclusion that reinforces the key takeaways for NRIs."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "3867a6d9-2ef4-43e9-80a4-2a9aeb8e26a6",
-      "headline": "Forbes Counted America's 250 Most Successful Immigrants. Twenty-Six of Them Are Indian.",
-      "slug": "forbes-2026-250-greatest-immigrants-26-indian-origin-leaders-20260616",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": "The image of Satya Nadella is relevant as he is one of the highlighted successful immigrants in the article."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the achievements of Indian immigrants to the diaspora community, highlighting their impact and the pride felt within the community."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes or reactions from members of the Indian diaspora regarding the Forbes list to enhance engagement.",
-          "Include more context on the challenges faced by Indian immigrants in the current political climate to provide a balanced view."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "d41a60e2-41da-4185-ac3c-c79940177a3e",
-      "headline": "USCIS Quietly Closed the Visa Off-Ramp Laid-Off H-1B Workers Relied On",
-      "slug": "uscis-b2-job-search-trap-laid-off-h1b-workers-india-20260616",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 5,
-          "issue": "The image does not directly relate to the topic of immigration or H-1B workers."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively highlights the impact of immigration policy changes on Indian H-1B workers, making it highly relevant to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that reflects the theme of immigration or H-1B workers.",
-          "Add a brief summary or conclusion to reinforce the implications of the policy change for H-1B workers."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "9ea70e04-741a-40ed-9c0f-1b7354b84fed",
-      "headline": "USCIS Just Made the Last Step of the Green Card the Riskiest One",
-      "slug": "uscis-adjustment-of-status-discretionary-memo-india-green-card-20260616",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the topic of green cards or immigration, but it is a general representation of people which could be relevant."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively highlights how the new USCIS policy specifically impacts Indian immigrants, making it highly relevant to the NRI audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that more directly represents the theme of immigration or green cards.",
-          "Add a quote from an immigration lawyer or expert to enhance credibility and provide additional insights."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "79b60848-d99f-4ed3-845c-a0f6064fa7f2",
-      "headline": "The Rule That Would Quietly End the Second Income in Tens of Thousands of Indian Households",
-      "slug": "h4-ead-rescission-omb-review-indian-spouses-work-permit-20260616",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the topic of immigration or the H-4 visa specifically."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively addresses the concerns of Indian families in the U.S. regarding immigration policies, making it highly relevant to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that directly represents the theme of immigration or the H-4 visa to enhance relevance.",
-          "Include quotes or testimonials from affected families to add a personal touch and deepen the emotional impact."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "679ee705-836d-4408-905d-6e708769bc01",
-      "headline": "India's Biggest Nvidia GPU Operator Is Going Public. For NRI Investors, It's the First Pure AI-Infrastructure Bet at Home.",
-      "slug": "yotta-data-services-ipo-nvidia-gpu-india-ai-infrastructure-nri-20260616",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to Nvidia GPUs or AI infrastructure, but it is a generic tech-related image."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the topic to NRI investors, discussing their emotional and financial ties to investing in India's tech infrastructure."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that directly represents Nvidia GPUs or AI infrastructure.",
-          "Add a brief section on how NRIs can navigate the investment process for the IPO to enhance practical value."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "d0d54af4-4ac9-4201-9e25-444153fbc42a",
-      "headline": "Forbes Counted America's Most Successful Immigrants. 26 of the Top 250 Are Indian.",
-      "slug": "forbes-2026-top-immigrants-26-indian-origin-leaders-diaspora-20260616",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "7151bf1f-c91c-4c56-a4af-48c7d3e0b87c",
-            "headline": "Apple Just Handed Siri's Brain to Sundar Pichai's Google"
-          },
-          {
-            "article_id": "f5ee5038-1412-4c90-84fe-258a006db5d6",
-            "headline": "Sundar Pichai Is Selling $85 Billion of Alphabet to Win the "
-          }
-        ],
         "broken_embeds": []
       },
       "llm_review": {
@@ -290,13 +29,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the achievements of Indian immigrants to the broader diaspora experience, discussing both successes and challenges."
+          "note": "The article effectively connects the emotional significance of mangoes to the Indian diaspora, highlighting nostalgia and cultural ties."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more statistics or data to support claims about the impact of the diaspora on the tech industry.",
-          "Include quotes or perspectives from some of the featured individuals to enhance the narrative."
+          "Consider adding quotes or anecdotes from diaspora members to enhance the personal connection.",
+          "Include more data or statistics on the impact of tariffs on mango prices to strengthen the economic argument."
         ],
         "verdict": "pass"
       },
@@ -308,9 +47,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "716fa63f-cfbc-4500-8857-bf4b0c4827ba",
-      "headline": "Qualcomm Wants to Buy Its Way Out of the Phone. The $10 Billion Target Is Jim Keller's Chip Startup.",
-      "slug": "qualcomm-tenstorrent-jim-keller-10-billion-risc-v-ai-data-center-20260616",
+      "id": "e6ddb7bd-c4a2-4f53-ba08-e3e0a22d81c7",
+      "headline": "Dosa Goes Drive-Thru: How South Indian Fast-Casual Is Winning American Capital",
+      "slug": "south-indian-fast-casual-dosa-american-investment-2026",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -320,19 +59,91 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image of Jim Keller is relevant to the article but does not directly depict Qualcomm or the broader semiconductor industry context."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the Qualcomm acquisition to the Indian engineering community, highlighting the implications for Indian-origin engineers."
+          "note": "The article effectively highlights the significance of dosa chains for the NRI community, emphasizing cultural identity and addressing homesickness."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider including more visuals or infographics related to Qualcomm's market position or the semiconductor industry to enhance reader engagement.",
-          "Add a brief section on the potential impact of this acquisition on the global semiconductor market."
+          "Consider adding quotes from industry experts or chefs to enhance credibility.",
+          "Include more statistics or data on the growth of South Indian cuisine in the U.S. to support claims."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "7a8b17e3-d2e4-4580-b45e-99d287534a7a",
+      "headline": "Shut Out at the Oscars of Food: Indian-American Finalists Go Home Empty-Handed at 2026 James Beard Awards",
+      "slug": "indian-american-finalists-2026-james-beard-awards-shut-out",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the James Beard Awards to the Indian diaspora's culinary journey and aspirations."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include quotes from the finalists to add a personal touch and emotional depth.",
+          "Provide more context on the significance of the James Beard Awards for the Indian-American community."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "bb2c3c6c-7cf7-4d6b-9ce8-f27f61de8c67",
+      "headline": "Rubio Calls Anti-India Racism the Work of 'Stupid People.' For the Diaspora, the Visa Answer Mattered More.",
+      "slug": "rubio-jaishankar-delhi-press-conference-visa-anti-india-racism-stupid-people-quad-20260616",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses the concerns of the Indian diaspora regarding racism and visa issues, making it relevant to NRI readers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more direct quotes from diaspora members to enhance the personal connection.",
+          "Include statistics or data on visa processing times to provide a clearer picture of the challenges faced by the diaspora."
         ],
         "verdict": "pass"
       },
