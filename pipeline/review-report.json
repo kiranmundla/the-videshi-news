@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-16T19:45:13.055880+00:00",
+  "timestamp": "2026-06-16T20:15:23.010432+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
+    "pass": 3,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "faaf9e26-30c8-4b4a-b38f-00e5daf86631",
-      "headline": "She Outranked Kohli and Rohit on a List Headlined by LeBron. Smriti Mandhana Is the Only Indian on TIME's 100 Most Influential in Sports.",
-      "slug": "smriti-mandhana-time-100-most-influential-people-sports-2026-only-indian-titans-nri",
+      "id": "f18b46de-52d6-4d79-b6cc-a6100b3e2853",
+      "headline": "ICE Found Locked, Empty Buildings Where OPT Workers Were Supposed to Be. Now the Program Itself Is the Target",
+      "slug": "opt-fraud-crackdown-ice-phantom-worksites-indian-students-stem-20260616",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -23,19 +23,96 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image does not directly relate to the topic of OPT workers or immigration, but it is a generic representation of a workplace."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects Smriti Mandhana's achievements to the diaspora's cultural pride and representation."
+          "quality": 9,
+          "note": "The article effectively highlights the implications of OPT for Indian graduates, making it highly relevant for the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more quotes or reactions from diaspora communities to enhance the connection.",
-          "Include a brief mention of how Mandhana's achievements might inspire young girls in the diaspora."
+          "Consider using a more relevant image that directly relates to the topic of OPT or immigration.",
+          "Add quotes or perspectives from Indian graduates currently on OPT to enhance the personal connection to the diaspora."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "4b26472e-3efe-43cf-bf92-c7f4e8ce91ca",
+      "headline": "The Quiet Rule Change That Could Put a Four-Year Clock on Every Indian Student in America",
+      "slug": "dhs-duration-of-status-f1-fixed-four-year-opt-cpt-indians-20260616",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the article's focus on immigration and student visa issues."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively addresses the implications of immigration policy changes specifically for Indian students in the U.S., making it highly relevant for the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that directly relates to Indian students or the U.S. education system to enhance relevance.",
+          "Include quotes or perspectives from Indian students or organizations to further enrich the diaspora connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "53d20002-d588-4e5f-bc7b-5638980508c9",
+      "headline": "A Court Killed the $100,000 H-1B Fee. Congress Is Trying to Resurrect It as Law",
+      "slug": "protect-act-kennedy-codify-100k-h1b-fee-congress-india-20260616",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "b8d77258-c7ee-414c-9f6d-7535913d3116",
+            "headline": "He Got Indian Americans Recognized for Federal Contracts in "
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the H-1B visa topic but is a generic stock photo."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the implications of the H-1B fee on Indian tech workers, which is highly relevant to the Indian diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that directly relates to the H-1B visa or Indian tech workers.",
+          "Add quotes or perspectives from Indian tech workers or immigration advocates to enhance the diaspora connection."
         ],
         "verdict": "pass"
       },
