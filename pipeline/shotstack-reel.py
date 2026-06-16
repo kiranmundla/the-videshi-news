@@ -1391,7 +1391,20 @@ def source_storyboard_images(article, storyboard, count=8):
             thumb = wdata.get("thumbnail", {}).get("source")
             orig = wdata.get("originalimage", {}).get("source")
             wimg = thumb or orig
-            return upscale_wikimedia_url(wimg) if wimg else None
+            if not wimg:
+                return None
+            # Reject flags / coats of arms / emblems / maps. A country page's lead
+            # image is usually its flag (e.g. "Mexico" → Mexican flag), which is weak,
+            # generic B-roll AND actively wrong when the country is only a passing
+            # comparison in the story (QA killed a Canada-deportation reel for showing
+            # the Mexican flag, 2026-06-15). These filenames are never good reel B-roll.
+            _bad_img = ("flag_of", "flag-", "coat_of_arms", "coat-of-arms", "emblem",
+                        "ensign", "_map", "-map", "location_", "orthographic",
+                        "seal_of", "logo")
+            low = wimg.lower()
+            if any(b in low for b in _bad_img):
+                return None
+            return upscale_wikimedia_url(wimg)
         except Exception:
             return None
 
