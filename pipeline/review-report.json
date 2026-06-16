@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-16T13:45:12.006401+00:00",
+  "timestamp": "2026-06-16T14:15:39.261656+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
+    "pass": 6,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,45 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "5b4b337d-fdb6-400d-ab77-da9c62936b23",
-      "headline": "He Beat the World No. 9 on Clay in Paris. Now the Indian-American Faces the One Surface He Has Never Played as a Pro.",
-      "slug": "nishesh-basavareddy-wimbledon-2026-qualifying-seed-26-indian-american-telugu-nellore-grass-fritz-nri",
+      "id": "97cd395e-937a-41a2-b6c1-77afd196a622",
+      "headline": "NRIs Are Quietly Paying Tax They May Not Owe on Indian Mutual Funds. A Treaty Clause Can Erase It.",
+      "slug": "nri-mutual-fund-capital-gains-dtaa-tds-refund-uae-singapore-itat-rulings-diaspora-20260616",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses the financial implications for NRIs, particularly those in the UAE and Singapore, making it relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a brief summary of the steps NRIs need to take to claim the tax refund for clarity.",
+          "Include a few examples of how much NRIs could potentially save by claiming the treaty benefits."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "8ff97a35-868e-46cc-ad51-caa300e3d7ad",
+      "headline": "The Magic Number Is Not 10,000. New Research Says 7,000 Steps Already Cuts Cancer and Heart Risk Sharply.",
+      "slug": "daily-steps-7000-9000-cancer-cardiovascular-risk-nci-circulation-meta-analysis-diaspora-20260616",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -29,13 +65,162 @@
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects Basavareddy's achievements and background to the Indian diaspora experience, highlighting his Telugu heritage and family values."
+          "note": "The article effectively connects the research findings to the lifestyle and health challenges faced by the Indian diaspora, making it relevant and relatable."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from Basavareddy or his coaches to provide more personal insight into his preparation for Wimbledon.",
-          "Include more context about the significance of Wimbledon for Indian players to enhance the narrative."
+          "Consider adding more specific examples or anecdotes from the Indian diaspora to enhance relatability.",
+          "Include a brief summary of the studies mentioned for readers who may want to delve deeper into the research."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "911b30e9-77e1-49ef-a982-bd569d47e31f",
+      "headline": "Your Heart May Whisper About Cancer Years Before It Appears. A New MRI Study Just Caught the Signal.",
+      "slug": "cardiac-mri-remodeling-predicts-cancer-risk-mesa-ucla-jaha-south-asian-heart-diaspora-20260616",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the study's findings to the health concerns prevalent in the Indian diaspora, making it relevant and informative."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific statistics or data points related to the Indian diaspora's health to strengthen the diaspora angle.",
+          "Include quotes or insights from experts in the field to enhance credibility and depth."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "a622f8e6-c8d3-4799-b9e5-6b2346e3f8df",
+      "headline": "Akasa Air Bets on Hanoi as the Gulf Stays Frozen \u2014 and Vietnam Is Quietly Becoming an NRI Favorite",
+      "slug": "akasa-air-mumbai-hanoi-vietnam-southeast-asia-nri-20260616",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the topic of Akasa Air's new route to the interests of the NRI community, highlighting travel convenience and preferences."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a quote from an industry expert or a travel analyst to enhance credibility.",
+          "Include more statistics or data on the growth of Indian travelers to Vietnam to strengthen the argument."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "b8d1b955-f5a7-463c-8599-a5d9a549abc7",
+      "headline": "The Mega-Airport Near Agra Is Almost Ready \u2014 and It Could Reshape How NRIs Fly Into North India",
+      "slug": "noida-international-airport-jewar-nri-north-india-gateway-20260616",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the new airport's benefits to the NRI community, highlighting proximity to family and tourist attractions."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of airlines that may operate from Jewar to enhance the article's depth.",
+          "Include a brief section on potential challenges NRIs might face when using the new airport, such as initial flight availability."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "ba33ee58-d99e-4a4c-8581-c4e195821de7",
+      "headline": "Air India's 'Easy Connect' Lets You Clear Immigration in Varanasi and Fly Through Delhi to the World",
+      "slug": "air-india-easy-connect-hub-spoke-varanasi-tier2-nri-20260616",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "47199f59-2f75-4e6a-b54f-beb1d4e7eacd",
+            "headline": "Air India Is Cutting Summer Flights \u2014 and the Routes NRIs Us"
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 6,
+          "issue": "The image of an Air India Airbus A350 does not directly relate to the specific topic of the 'Easy Connect' service or the Varanasi airport."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively highlights how the new service benefits NRIs, particularly those from smaller cities, making it relevant and engaging for the diaspora audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that directly represents the 'Easy Connect' service or Varanasi airport to enhance relevance.",
+          "Add a brief section on potential future expansions of the service to other cities to provide more context."
         ],
         "verdict": "pass"
       },
