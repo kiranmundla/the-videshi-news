@@ -46,62 +46,80 @@
   },
   {
     "date": "2026-06-04",
-    "daily_pct_used": 0,
-    "monthly_pct_used": 0
+    "daily_pct_used": null,
+    "monthly_pct_used": null,
+    "note": "invalid: subscription-quota command did not exist; placeholder 0/0"
   },
   {
     "date": "2026-06-05",
-    "daily_pct_used": 0,
-    "monthly_pct_used": 0
+    "daily_pct_used": null,
+    "monthly_pct_used": null,
+    "note": "invalid: subscription-quota command did not exist; placeholder 0/0"
   },
   {
     "date": "2026-06-06",
-    "daily_pct_used": 0,
-    "monthly_pct_used": 0
+    "daily_pct_used": null,
+    "monthly_pct_used": null,
+    "note": "invalid: subscription-quota command did not exist; placeholder 0/0"
   },
   {
     "date": "2026-06-07",
-    "daily_pct_used": 0,
-    "monthly_pct_used": 0
+    "daily_pct_used": null,
+    "monthly_pct_used": null,
+    "note": "invalid: subscription-quota command did not exist; placeholder 0/0"
   },
   {
     "date": "2026-06-08",
-    "daily_pct_used": 0,
-    "monthly_pct_used": 0
+    "daily_pct_used": null,
+    "monthly_pct_used": null,
+    "note": "invalid: subscription-quota command did not exist; placeholder 0/0"
   },
   {
     "date": "2026-06-09",
-    "daily_pct_used": 0,
-    "monthly_pct_used": 0
+    "daily_pct_used": null,
+    "monthly_pct_used": null,
+    "note": "invalid: subscription-quota command did not exist; placeholder 0/0"
   },
   {
     "date": "2026-06-10",
-    "daily_pct_used": 0,
-    "monthly_pct_used": 0
+    "daily_pct_used": null,
+    "monthly_pct_used": null,
+    "note": "invalid: subscription-quota command did not exist; placeholder 0/0"
   },
   {
     "date": "2026-06-11",
-    "daily_pct_used": 0,
-    "monthly_pct_used": 0
+    "daily_pct_used": null,
+    "monthly_pct_used": null,
+    "note": "invalid: subscription-quota command did not exist; placeholder 0/0"
   },
   {
     "date": "2026-06-12",
-    "daily_pct_used": 0,
-    "monthly_pct_used": 0
+    "daily_pct_used": null,
+    "monthly_pct_used": null,
+    "note": "invalid: subscription-quota command did not exist; placeholder 0/0"
   },
   {
     "date": "2026-06-13",
-    "daily_pct_used": 0,
-    "monthly_pct_used": 0
+    "daily_pct_used": null,
+    "monthly_pct_used": null,
+    "note": "invalid: subscription-quota command did not exist; placeholder 0/0"
   },
   {
     "date": "2026-06-14",
-    "daily_pct_used": 0,
-    "monthly_pct_used": 0
+    "daily_pct_used": null,
+    "monthly_pct_used": null,
+    "note": "invalid: subscription-quota command did not exist; placeholder 0/0"
   },
   {
     "date": "2026-06-15",
-    "daily_pct_used": 0,
-    "monthly_pct_used": 0
+    "daily_pct_used": null,
+    "monthly_pct_used": null,
+    "note": "invalid: subscription-quota command did not exist; placeholder 0/0"
+  },
+  {
+    "date": "2026-06-16",
+    "monthly_pct_used": 0,
+    "daily_pct_used": null,
+    "source": "injected_context"
   }
 ]
