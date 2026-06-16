@@ -1057,8 +1057,66 @@ def upscale_wikimedia_url(url, target_px=1280):
     return url[: m.start()] + f"/{target_px}px-{m.group(2)}"
 
 
-def mirror_to_supabase(url, article_id, scene_idx):
+# Filename signals for non-photographic Wikimedia assets (diagrams, flowcharts,
+# charts, SVG schematics, process figures). These are the #1 driver of the QA
+# "overlapping text / low contrast / image doesn't match topic" cluster: e.g.
+# the "H-1B" page lead image is literally "Figure 2- Process of Obtaining an
+# H-1B Visa" (a flowchart) and "LLC" resolves to "Society.svg" (a schematic).
+_DIAGRAM_FILENAME_SIGNALS = (
+    ".svg", "figure_", "figure-", "fig_", "fig-", "process_of", "process-of",
+    "diagram", "flowchart", "flow_chart", "infographic", "schematic",
+    "timeline", "venn", "org_chart", "orgchart", "histogram", "bar_chart",
+    "pie_chart", "line_chart", "flow-chart",
+)
+
+
+def _image_looks_like_diagram(path):
+    """Heuristic: True if a downloaded image is a diagram/flowchart/text-slab/
+    grayscale archival scan rather than a photograph. Calibrated 2026-06-16 on
+    the real failing assets (H-1B flowchart, Society.svg, a grayscale archival
+    photo) vs. real entity photos (Modi, Infosys campus, Taj Mahal):
+      - flowchart:  white_frac 0.80, edge_frac 0.109  (text on white)
+      - svg schema: caught by filename
+      - archival:   distinct_colors 8                 (mono/sepia)
+      - real photos: white_frac <= 0.37, edge_frac <= 0.044, colors >= 70
+    Conservative thresholds sit well clear of every real-photo sample, so the
+    false-positive risk on genuine India entity imagery is minimal. On any
+    error returns False (never block a render on a heuristic failure)."""
+    try:
+        from PIL import Image
+        import numpy as np
+        im = Image.open(path).convert("RGB")
+        im.thumbnail((512, 512))
+        g = im.convert("L")
+        arr = np.asarray(g, dtype=np.float32)
+        gx = np.abs(np.diff(arr, axis=1))
+        gy = np.abs(np.diff(arr, axis=0))
+        edge_frac = (float(np.mean(gx > 40)) + float(np.mean(gy > 40))) / 2.0
+        white_frac = float(np.mean(arr > 235))
+        q = (np.asarray(im) // 32).reshape(-1, 3)
+        distinct_colors = len({tuple(c) for c in q})
+        # (1) Document/diagram: lots of white background + dense fine edges (text).
+        if white_frac > 0.6 and edge_frac > 0.06:
+            return True
+        # (2) Line-art / schematic on non-white bg: very dense edges, few colors.
+        if edge_frac > 0.09 and distinct_colors <= 40:
+            return True
+        # (3) Monochrome/grayscale schematic or archival scan (real photos >= ~70).
+        if distinct_colors <= 12:
+            return True
+        return False
+    except Exception:
+        return False
+
+
+def mirror_to_supabase(url, article_id, scene_idx, reject_diagrams=False):
     """Mirror a Wikimedia/Commons image through Supabase storage so Shotstack can fetch it.
+
+    When reject_diagrams=True, the downloaded asset is inspected and, if it looks
+    like a diagram/flowchart/text-slab/grayscale schematic, the function returns
+    None so the caller skips the scene (the key-point-card floor then fills it
+    with on-topic motion graphics). reject_diagrams defaults False so the article
+    hero and any other caller keep the original behavior.
 
     Shotstack's render servers cannot reliably download from upload.wikimedia.org /
     commons.wikimedia.org (intermittent block / 4xx), even though OUR environment can
@@ -1106,6 +1164,13 @@ def mirror_to_supabase(url, article_id, scene_idx):
             except Exception:
                 pass
             return url
+        if reject_diagrams and _image_looks_like_diagram(local):
+            print(f"  🚫 mirror: '{src.split('/')[-1][:60]}' looks like a diagram/chart/text-slab — rejecting (key-point card will fill this scene)")
+            try:
+                os.remove(local)
+            except Exception:
+                pass
+            return None
         storage_path = f"reel-broll/{article_id}/scene-{scene_idx}.jpg"
         mirrored = upload_asset(local, storage_path, "image/jpeg")
         try:
@@ -1619,6 +1684,39 @@ def source_storyboard_images(article, storyboard, count=8):
             return False
         return any(m in meta for m in _foreign_markers)
 
+    # Positive India/South-Asian signals in Pexels metadata. Used to enforce
+    # demographic relevance: when a scene is about PEOPLE on an India/NRI story,
+    # generic stock of (e.g.) a white family carries no foreign marker, so
+    # is_foreign_for_india() lets it through — and QA correctly flags "images do
+    # not match the story topic" / wrong demographic. For people-scenes we
+    # instead REQUIRE a positive India signal, else fall through to a key-point
+    # card (topic-relevant by construction).
+    _india_positive_markers = (
+        "india", "indian", "south asian", "desi", "saree", "sari", "bindi",
+        "kurta", "sherwani", "lehenga", "salwar", "diwali", "holi", "rangoli",
+        "hindu", "sikh", "punjabi", "tamil", "telugu", "bengali", "gujarati",
+        "marathi", "kerala", "delhi", "mumbai", "bengaluru", "bangalore",
+        "chennai", "kolkata", "hyderabad", "rupee", "bollywood",
+    )
+    _people_query_terms = (
+        "family", "families", "people", "person", "man", "woman", "men",
+        "women", "child", "children", "kid", "student", "students", "worker",
+        "workers", "employee", "couple", "parents", "father", "mother",
+        "immigrant", "citizen", "professional", "crowd", "portrait", "doctor",
+        "nurse", "engineer", "teacher",
+    )
+
+    def needs_india_person(query):
+        """True if this scene query is about PEOPLE on our India/NRI story, so a
+        candidate must carry a positive India/South-Asian signal to be relevant."""
+        ql = (query or "").lower()
+        return any(t in ql for t in _people_query_terms)
+
+    def lacks_india_signal(cand):
+        """True if a people-scene candidate shows no India/South-Asian signal."""
+        meta = (str(cand.get("alt", "")) + " " + str(cand.get("page_url", ""))).lower()
+        return not any(m in meta for m in _india_positive_markers)
+
     # ── 1. Article hero for scene 1 ──
     hero = upscale_wikimedia_url(hero)
     if hero and is_url_downloadable(hero) and hero not in used_in_this_reel:
@@ -1704,6 +1802,29 @@ def source_storyboard_images(article, storyboard, count=8):
 
     def wiki_image_for(term):
         """Return a usable Wikipedia lead image URL for a term, or None."""
+        # Abstract / legal / policy concepts must NOT resolve to a literal
+        # Wikipedia lead image — those return junk that the QA gate flags as
+        # off-topic: "H-1B" → a process flowchart, "LLC" → Society.svg, and
+        # "Denaturalization" → a grayscale archival photo of Jews expelled in
+        # Nazi-era Nuremberg (wildly off-topic AND inflammatory on an Indian
+        # immigration story). Such concepts belong on a key-point card (the
+        # floor handles them). Only depictable proper nouns (named people,
+        # recognizable orgs/places) get an entity image.
+        _tl = term.lower().strip()
+        _abstract_terms = (
+            "llc", "inc", "h-1b", "h1b", "h-1b visa", "h1b visa", "visa",
+            "green card", "denaturalization", "naturalization", "citizenship",
+            "deportation", "removal", "fraud", "felony", "misdemeanor",
+            "statute", "section", "act", "bill", "law", "lawsuit", "litigation",
+            "indictment", "subpoena", "affidavit", "petition", "tariff",
+            "sanction", "policy", "regulation", "amendment", "provision",
+            "immigration", "asylum", "parole", "quota", "waiver",
+        )
+        if _tl in _abstract_terms or any(
+            _tl == a or _tl.startswith(a + " ") or _tl.endswith(" " + a)
+            for a in _abstract_terms
+        ):
+            return None
         try:
             wr = requests.get(
                 f"https://en.wikipedia.org/api/rest_v1/page/summary/{requests.utils.quote(term.replace(' ', '_'))}",
@@ -1735,6 +1856,14 @@ def source_storyboard_images(article, storyboard, count=8):
             low = wimg.lower()
             if any(b in low for b in _bad_img):
                 return None
+            # Reject diagram/flowchart/figure/SVG filenames upfront (before any
+            # download). The "H-1B" lead image is "Figure 2- Process of Obtaining
+            # an H-1B Visa" (a flowchart) and "LLC" → "Society.svg" (a schematic);
+            # both wrecked QA with text-on-image + topic mismatch. The pixel-level
+            # check in mirror_to_supabase(reject_diagrams=True) is the safety net
+            # for diagrams whose filenames don't advertise themselves.
+            if any(sig in low for sig in _DIAGRAM_FILENAME_SIGNALS):
+                return None
             return upscale_wikimedia_url(wimg)
         except Exception:
             return None
@@ -1761,10 +1890,13 @@ def source_storyboard_images(article, storyboard, count=8):
             term = entities[ei]; ei += 1
             wimg = wiki_image_for(term)
             if wimg and wimg not in used_in_this_reel and is_url_downloadable(wimg):
-                wimg = mirror_to_supabase(wimg, article_id, slot)
-                matched_urls[slot] = wimg
-                used_in_this_reel.add(wimg)
-                media_meta[wimg] = {"type": "image", "duration": 0}
+                mwimg = mirror_to_supabase(wimg, article_id, slot, reject_diagrams=True)
+                if not mwimg:
+                    # Diagram/chart/text-slab rejected at pixel level — try next entity.
+                    continue
+                matched_urls[slot] = mwimg
+                used_in_this_reel.add(mwimg)
+                media_meta[mwimg] = {"type": "image", "duration": 0}
                 print(f"  🧩 Scene {slot+1}: {scene_descs[slot][:42]}  →  Wikipedia entity '{term}'")
                 break
 
@@ -1798,7 +1930,12 @@ def source_storyboard_images(article, storyboard, count=8):
                         continue
                     if not is_url_downloadable(cu):
                         continue
-                    mu = mirror_to_supabase(cu, article_id, i)
+                    # Skip Commons results whose filename advertises a diagram/chart.
+                    if any(sig in (cand.get("title", "") + cu).lower() for sig in _DIAGRAM_FILENAME_SIGNALS):
+                        continue
+                    mu = mirror_to_supabase(cu, article_id, i, reject_diagrams=True)
+                    if not mu:
+                        continue  # diagram/text-slab rejected; try next candidate
                     matched_urls[i] = mu
                     used_in_this_reel.add(cu)
                     used_in_this_reel.add(mu)
@@ -1821,6 +1958,7 @@ def source_storyboard_images(article, storyboard, count=8):
                 queries = [visual] + queries
             for query in queries[:3]:
                 anchored = anchor_query_to_india(query) != query or any(t in query.lower() for t in _india_terms)
+                want_india_person = needs_india_person(query)
                 query = anchor_query_to_india(query)
                 results = pexels_video_search(pexels_key, query, count=5, min_duration=4)
                 for cand in results:
@@ -1831,6 +1969,9 @@ def source_storyboard_images(article, storyboard, count=8):
                             continue
                         if is_foreign_for_india(cand, anchored):
                             print(f"  🚫 Scene {i+1}: skipped foreign-looking video #{vid} ({cand.get('alt','')[:40]})")
+                            continue
+                        if want_india_person and lacks_india_signal(cand):
+                            print(f"  🚫 Scene {i+1}: skipped wrong-demographic video #{vid} (people scene, no India signal: {cand.get('alt','')[:40]})")
                             continue
                         matched_urls[i] = cand["url"]
                         used_in_this_reel.add(cand["url"])
@@ -1858,6 +1999,7 @@ def source_storyboard_images(article, storyboard, count=8):
                 queries = [visual] + queries
             for query in queries[:3]:
                 anchored = anchor_query_to_india(query) != query or any(t in query.lower() for t in _india_terms)
+                want_india_person = needs_india_person(query)
                 query = anchor_query_to_india(query)
                 results = pexels_search(pexels_key, query, count=5)
                 for cand in results:
@@ -1868,6 +2010,9 @@ def source_storyboard_images(article, storyboard, count=8):
                             continue
                         if is_foreign_for_india(cand, anchored):
                             print(f"  🚫 Scene {i+1}: skipped foreign-looking photo #{pid} ({cand.get('alt','')[:40]})")
+                            continue
+                        if want_india_person and lacks_india_signal(cand):
+                            print(f"  🚫 Scene {i+1}: skipped wrong-demographic photo #{pid} (people scene, no India signal: {cand.get('alt','')[:40]})")
                             continue
                         matched_urls[i] = cand["url"]
                         used_in_this_reel.add(cand["url"])
@@ -1899,10 +2044,21 @@ def source_storyboard_images(article, storyboard, count=8):
                     )
                     if wr.status_code == 200:
                         wdata = wr.json()
+                        if wdata.get("type") == "disambiguation":
+                            continue
                         wimg = wdata.get("thumbnail", {}).get("source") or wdata.get("originalimage", {}).get("source")
                         wimg = upscale_wikimedia_url(wimg)
                         if wimg and wimg not in used_in_this_reel:
-                            mw = mirror_to_supabase(wimg, article_id, i)
+                            # Skip flags/maps/logos and diagram/figure/SVG filenames.
+                            _low = wimg.lower()
+                            _bad = ("flag_of", "flag-", "coat_of_arms", "coat-of-arms",
+                                    "emblem", "ensign", "_map", "-map", "location_",
+                                    "orthographic", "seal_of", "logo")
+                            if any(b in _low for b in _bad) or any(sig in _low for sig in _DIAGRAM_FILENAME_SIGNALS):
+                                continue
+                            mw = mirror_to_supabase(wimg, article_id, i, reject_diagrams=True)
+                            if not mw:
+                                continue  # diagram/text-slab rejected at pixel level
                             matched_urls[i] = mw
                             used_in_this_reel.add(wimg)
                             used_in_this_reel.add(mw)
