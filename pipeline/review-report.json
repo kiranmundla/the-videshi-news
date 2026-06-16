@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-16T13:15:23.241888+00:00",
+  "timestamp": "2026-06-16T13:45:12.006401+00:00",
   "mode": "fix",
   "stats": {
     "pass": 1,
-    "flag": 1,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,57 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "e2a1242d-bae5-4ce2-b3aa-c7fcb369d1c8",
-      "headline": "The '90s Queen Just Did the Bravest Thing of Her Career. Karisma Kapoor Is Unrecognisable in Brown.",
-      "slug": "brown-karisma-kapoor-zee5-neo-noir-comeback-rita-dcp-where-to-watch-diaspora-nri-20260616",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/p/DZKicisjT98/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post does not seem to directly relate to the article's main focus on Karisma Kapoor's role in 'Brown'."
-          },
-          {
-            "url": "https://youtube.com/watch?v=prdjv5IWPWY",
-            "problem": "relevant",
-            "explanation": "The YouTube link is relevant as it likely pertains to the series 'Brown' being discussed."
-          }
-        ],
-        "image_match": {
-          "score": 7,
-          "issue": "The image of Karisma Kapoor does not match the description of her character in 'Brown', which portrays her in a more rugged and exhausted state."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the series to the diaspora audience by highlighting its availability on ZEE5 Global and its promotional focus on Indian viewers abroad."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the irrelevant Instagram link with a more relevant embed related to the series or Karisma Kapoor's performance.",
-          "Consider adding more details about the character's development or the themes of the series to enhance the depth of the article."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DZKicisjT98/",
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "079b4097-c368-45fd-8ffc-e5b5a7c03eb3",
-      "headline": "Seven Years, a 7-Acre City, and Nawazuddin as the Villain. Tumbbad 2 Is Coming \u2014 and Sohum Shah Wants You to Wait for It.",
-      "slug": "tumbbad-2-sohum-shah-nawazuddin-siddiqui-december-2027-folk-horror-sequel-diaspora-nri-20260616",
+      "id": "5b4b337d-fdb6-400d-ab77-da9c62936b23",
+      "headline": "He Beat the World No. 9 on Clay in Paris. Now the Indian-American Faces the One Surface He Has Never Played as a Pro.",
+      "slug": "nishesh-basavareddy-wimbledon-2026-qualifying-seed-26-indian-american-telugu-nellore-grass-fritz-nri",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -76,14 +28,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article connects well with diaspora readers by discussing the global release and the anticipation among NRI fans."
+          "quality": 9,
+          "note": "The article effectively connects Basavareddy's achievements and background to the Indian diaspora experience, highlighting his Telugu heritage and family values."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more direct quotes from Sohum Shah or Nawazuddin Siddiqui to enhance the personal connection.",
-          "Include more context about the original Tumbbad's impact on audiences to strengthen the narrative."
+          "Consider adding quotes from Basavareddy or his coaches to provide more personal insight into his preparation for Wimbledon.",
+          "Include more context about the significance of Wimbledon for Indian players to enhance the narrative."
         ],
         "verdict": "pass"
       },
