@@ -1236,7 +1236,14 @@ def commons_image_search(query, limit=6):
             # coins / banknotes / stamps / document scans (the score-6 finance offenders)
             "_coin", "coin_", "banknote", "currency_note", "stamp_", "postage",
             "document", "manuscript", "scan_", "_scan", "letter_", "gazette",
-            "circular", "notification_", "graph_", "plot_", "infographic")
+            "circular", "notification_", "graph_", "plot_", "infographic",
+            # book / journal / document-scan pages (Commons surfaces these for
+            # finance/abstract queries — e.g. "Himalayan journals", "Educational
+            # Screen Volume 1.djvu" — and they read as junk B-roll)
+            ".djvu", ".pdf", ".tif", "_page", "page_", "title_page", "frontispiece",
+            "journal", "_volume", "volume_", "almanac", "yearbook", "proceedings",
+            "gazetteer", "manuscript", "_book", "book_", "_report", "report_",
+            "notes_of", "_plate", "plate_", "engraving", "lithograph", "woodcut")
     try:
         r = requests.get(
             "https://commons.wikimedia.org/w/api.php",
