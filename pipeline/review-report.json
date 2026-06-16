@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-16T00:15:46.031412+00:00",
+  "timestamp": "2026-06-16T00:45:11.664258+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 9,
+    "pass": 1,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,337 +11,31 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "b37cf9f8-3da8-48a9-b04e-8ab348cfee60",
-      "headline": "British Indians Are Now the UK's Wealthiest Ethnic Group. The Data Is Reshaping British Politics.",
-      "slug": "british-indians-wealthiest-ethnic-group-mints-uk-politics-diaspora-20260616",
+      "id": "67b58099-3f28-4e0f-ab2d-5a1c4c5dc3b7",
+      "headline": "Opendoor Just Closed Its Entire India Operation. The Reason Wasn't Cost \u2014 It Was AI.",
+      "slug": "opendoor-shuts-india-operations-ai-native-offshoring-gcc-bengaluru-chennai-20260615",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
-        "overall_score": 8,
+        "overall_score": 7,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the topic of wealth or British Indians specifically, but it is a neutral and professional image."
+          "score": 8,
+          "issue": "The image depicts an office environment which is relevant to the article's topic about Opendoor's operations in India."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the economic success of British Indians to their political influence, which is relevant to the diaspora."
+          "quality": 7,
+          "note": "The article discusses the implications of Opendoor's exit for the Indian diaspora, particularly those working in tech and their families in India."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider including specific examples of British Indian individuals or families who exemplify this wealth and success to personalize the narrative.",
-          "Add a section discussing the implications of this wealth on British Indian identity and community dynamics."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "25cca7d6-6492-4554-ba88-a6b1fe15f5de",
-      "headline": "The 'Patel Motel' Built an American Empire. Now San Francisco Is Putting It in a Museum.",
-      "slug": "patel-motel-tenderloin-museum-indian-american-hotelier-exhibition-20260616",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively highlights the contributions of Indian Americans to the hotel industry, connecting it to the broader narrative of the diaspora's impact on American culture."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from community members or experts to enhance the narrative.",
-          "Include more details about the museum's plans or the significance of the exhibit to engage readers further."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "2893239b-6a60-4e4a-91a1-e18d4e1462d3",
-      "headline": "A Fragile Peace in the Gulf Is the Best News Four Million Indians Have Had All Summer",
-      "slug": "gulf-peace-framework-four-million-indians-remittances-diaspora-20260616",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the geopolitical situation to the Indian diaspora's economic and emotional stakes."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from diaspora members to enhance personal connection.",
-          "Include more recent statistics or updates on the situation to provide a current perspective."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "13c2183a-d8b3-49c4-8fb6-9d0a93019ddc",
-      "headline": "India Formally Confronts Washington Over H-1B Stamping Delays \u2014 and a December Fix Is Aimed at Indians",
-      "slug": "india-mea-h1b-stamping-delays-domestic-renewal-pilot-december-20260616",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "cdb9d3c8-dd0f-4cd4-ad1d-d6bfbe74d2a8",
-            "headline": "The Green Card Queue Is Shrinking \u2014 What 62,000 Indian Worke"
-          }
-        ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to H-1B visas or immigration, but it is a neutral image that does not detract from the article."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the H-1B visa situation to the Indian diaspora, highlighting the impact on their lives and travel."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that more directly represents the theme of immigration or H-1B visas.",
-          "Add a quote or perspective from an affected individual to enhance the personal connection to the diaspora experience."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "deb3b1f2-b8cb-41d3-95ad-6ff388ae80cc",
-      "headline": "Indian IT Giants' H-1B Visas Fell 40% in a Year \u2014 and the Old Road to America Is Being Paved Over",
-      "slug": "indian-it-firms-h1b-visas-fell-40-percent-offshore-tcs-infosys-20260616",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the topic of H-1B visas or the IT industry."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively discusses the implications of H-1B visa changes on the Indian diaspora, particularly for professionals seeking opportunities in the US."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that reflects the theme of immigration or the IT industry.",
-          "Add more statistics or quotes from industry experts to strengthen the analysis of the impact on the diaspora."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "9d4c4bcc-3dad-43db-9196-f70be1acb8bc",
-      "headline": "The H-1B Bill That Would Make the Green Card Dream Mathematically Impossible for Indians",
-      "slug": "chip-roy-white-collar-jobs-act-dual-intent-opt-green-card-indians-20260616",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 5,
-          "issue": "The image of Chip Roy is relevant as he is the sponsor of the bill discussed, but it does not visually represent the broader impact on Indian professionals."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively highlights how the proposed bill specifically impacts Indian professionals, making it highly relevant to the diaspora audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider including quotes or reactions from Indian professionals or organizations to enhance the emotional impact.",
-          "Add a section discussing potential responses or actions from the Indian government or diaspora organizations regarding the bill."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "1e2c5400-11be-461e-9185-4c1ffb5b1c79",
-      "headline": "Zepto Wants $10 Billion and Has 10 Months of Cash. India's First Pure Quick-Commerce IPO Is a Dare.",
-      "slug": "zepto-ipo-drhp-quick-commerce-india-valuation-20260616",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the topic of quick-commerce or Zepto specifically."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article discusses considerations for NRI investors, making it relevant to the diaspora audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that directly relates to quick-commerce or Zepto to enhance visual relevance.",
-          "Expand on the implications of the IPO for NRI investors to provide deeper insights."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "06f3a3e2-d634-42f0-a895-716377dbb601",
-      "headline": "India Wanted Apple's Factories. Now One of Them Is Accused of Poisoning the Wells Next Door.",
-      "slug": "tata-apple-iphone-plant-hosur-groundwater-pollution-20260616",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the article's focus on pollution and environmental issues."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the environmental concerns surrounding Tata's factory to the pride and expectations of the NRI community regarding India's manufacturing growth."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider including a more relevant image that depicts the environmental impact or the factory itself.",
-          "Add more quotes or perspectives from local farmers to enhance the narrative around the community's concerns."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "468c874d-721a-4806-a9d9-83fad2d365d8",
-      "headline": "Satya Nadella Has a Warning for the AI Gold Rush: Don't Hand Your Company's Brain to a Stranger",
-      "slug": "satya-nadella-frontier-ecosystem-human-token-capital-20260616",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "d250d2c4-b1e2-4ea8-9b26-7c8bc21464e3",
-            "headline": "Satya Nadella Wants to Kill the App. Project Solara Is How."
-          },
-          {
-            "article_id": "5a7d3584-8354-4662-9e81-d8255f986e56",
-            "headline": "GitHub Copilot's $29 Bill Just Became $750 \u2014 and India's Dev"
-          },
-          {
-            "article_id": "d7612a5a-581b-4dc1-8a96-e1c4d69fbdac",
-            "headline": "Nadella's Agent 365 Goes Live \u2014 and 332,000 Consultants Just"
-          }
-        ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects Nadella's insights to the Indian-origin technologists and IT services firms, making it relevant for the NRI audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more direct quotes from Nadella to enhance credibility.",
-          "Include a brief overview of Nadella's background for readers unfamiliar with him."
+          "Include more direct quotes from affected employees or industry experts to enhance the narrative.",
+          "Provide additional context on how AI is impacting job markets in India beyond this specific case."
         ],
         "verdict": "pass"
       },
