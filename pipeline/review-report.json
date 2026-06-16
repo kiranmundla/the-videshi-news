@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-16T19:15:21.783305+00:00",
+  "timestamp": "2026-06-16T19:45:13.055880+00:00",
   "mode": "fix",
   "stats": {
     "pass": 1,
-    "flag": 1,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "4e7c07fb-06f4-4034-8081-7621df5b27a7",
-      "headline": "The Minnal Murali Boys Are Back. Athiradi Brings Tovino Thomas and Basil Joseph to Your Screen This Friday.",
-      "slug": "athiradi-sonyliv-ott-tovino-thomas-basil-joseph-minnal-murali-malayalam-five-languages-where-to-watch-diaspora-nri-20260616",
+      "id": "faaf9e26-30c8-4b4a-b38f-00e5daf86631",
+      "headline": "She Outranked Kohli and Rohit on a List Headlined by LeBron. Smriti Mandhana Is the Only Indian on TIME's 100 Most Influential in Sports.",
+      "slug": "smriti-mandhana-time-100-most-influential-people-sports-2026-only-indian-titans-nri",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -29,51 +29,15 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the film's release to the diaspora audience, emphasizing the importance of accessibility and the cultural significance of Malayalam cinema."
+          "note": "The article effectively connects Smriti Mandhana's achievements to the diaspora's cultural pride and representation."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more details about the film's reception in the diaspora to enhance the connection.",
-          "Add quotes from the cast or director to provide more depth and personal insight into the film."
+          "Consider adding more quotes or reactions from diaspora communities to enhance the connection.",
+          "Include a brief mention of how Mandhana's achievements might inspire young girls in the diaspora."
         ],
         "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "45f58394-6fdf-4024-9b7a-b022bfbf92f5",
-      "headline": "A Deported NRI, a Missing Brother, and a Fake Canada Immigration Racket. Ab Hoga Hisaab Knows Exactly What Scares the Diaspora.",
-      "slug": "ab-hoga-hisaab-mx-player-sanjay-kapoor-shaheer-sheikh-mouni-roy-canada-immigration-trafficking-diaspora-nri-20260616",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 5,
-          "issue": "irrelevant"
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the narrative of the show to the experiences and fears of the NRI diaspora, particularly regarding immigration and family."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that reflects the themes of immigration and the diaspora experience.",
-          "Add more direct quotes or insights from the creators or cast to enhance the depth of the article."
-        ],
-        "verdict": "flag"
       },
       "actions_taken": [
         "promoted to published"
