@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-06-16T01:59:13Z",
-  "stage": "Group Stage — 15 of 72 matches played",
+  "last_updated": "2026-06-16T03:58:12Z",
+  "stage": "Group Stage — 16 of 72 matches played",
   "hosts": "USA, Mexico & Canada",
   "dates": {
     "start": "2026-06-11",
@@ -342,6 +342,32 @@
     ],
     "G": [
       {
+        "name": "Iran",
+        "code": "IRN",
+        "flag": "🇮🇷",
+        "rank": 21,
+        "p": 1,
+        "w": 0,
+        "d": 1,
+        "l": 0,
+        "gf": 2,
+        "ga": 2,
+        "pts": 1
+      },
+      {
+        "name": "New Zealand",
+        "code": "NZL",
+        "flag": "🇳🇿",
+        "rank": 85,
+        "p": 1,
+        "w": 0,
+        "d": 1,
+        "l": 0,
+        "gf": 2,
+        "ga": 2,
+        "pts": 1
+      },
+      {
         "name": "Belgium",
         "code": "BEL",
         "flag": "🇧🇪",
@@ -366,32 +392,6 @@
         "gf": 1,
         "ga": 1,
         "pts": 1
-      },
-      {
-        "name": "Iran",
-        "code": "IRN",
-        "flag": "🇮🇷",
-        "rank": 21,
-        "p": 0,
-        "w": 0,
-        "d": 0,
-        "l": 0,
-        "gf": 0,
-        "ga": 0,
-        "pts": 0
-      },
-      {
-        "name": "New Zealand",
-        "code": "NZL",
-        "flag": "🇳🇿",
-        "rank": 85,
-        "p": 0,
-        "w": 0,
-        "d": 0,
-        "l": 0,
-        "gf": 0,
-        "ga": 0,
-        "pts": 0
       }
     ],
     "H": [
@@ -908,8 +908,8 @@
       "away": "New Zealand",
       "venue": "SoFi Stadium",
       "city": "Los Angeles",
-      "status": "scheduled",
-      "score": null,
+      "status": "FT",
+      "score": "2-2",
       "home_code": "IRN",
       "away_code": "NZL"
     },
@@ -1783,6 +1783,20 @@
     }
   },
   "highlights": [
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/reel/DZobYodoqF_/",
+      "account": "@fifaworldcup",
+      "caption": "Ramin Rezaeian — Superior Player of the Match ⚽🇮🇷 — Iran 2-2 New Zealand #FIFAWorldCup",
+      "date": "2026-06-15"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DZoZX1tFp-A",
+      "account": "@fifaworldcup",
+      "caption": "It ends in a draw 🟰 — Iran 2-2 New Zealand in Los Angeles",
+      "date": "2026-06-15"
+    },
     {
       "platform": "instagram",
       "url": "https://www.instagram.com/reel/DZoGYU7IiEO/",
