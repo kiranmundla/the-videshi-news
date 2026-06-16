@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-16T22:45:18.025263+00:00",
+  "timestamp": "2026-06-16T23:15:12.074332+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 1,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "64d9222e-a5d4-4a77-a97d-5e940976d00c",
-      "headline": "India Is Heading Into a Weak Monsoon With Its Biggest Grain Cushion Ever. That's Good News on the Diaspora Grocery Shelf.",
-      "slug": "india-record-rice-stocks-wheat-five-year-peak-el-nino-grain-buffer-20260616",
+      "id": "747176fc-dc1f-4857-a0a4-2b292c5a22a8",
+      "headline": "Alpha Is Bollywood's First Female-Led Spy Film. The Trolls Are Terrified \u2014 and That's the Point.",
+      "slug": "alpha-teaser-alia-bhatt-sharvari-bobby-deol-yrf-spy-universe-female-led-troll-controversy-july-3-nri-20260616",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -29,49 +29,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects India's grain stock situation to the diaspora's grocery experiences, making it relevant."
+          "note": "The article effectively connects the film's release to NRI audiences, highlighting its theatrical release in key diaspora markets."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from diaspora members or grocery store owners to enhance the personal connection.",
-          "Include more data or examples of how the grain situation has historically affected prices in diaspora markets."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "a837f45d-dc1f-42cd-83e4-2493a060d6ac",
-      "headline": "A Month After the First Indian-Heritage Major Champion, the U.S. Open Has Its Deepest-Ever Diaspora Field",
-      "slug": "aaron-rai-akshay-bhatia-us-open-2026-shinnecock-indian-origin-golfers-major-diaspora-nri",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively highlights the achievements of Indian-origin golfers and connects their success to the Indian diaspora, making it relevant for NRI readers."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes or reactions from diaspora communities to enhance the connection.",
-          "Include statistics or historical context about Indian golfers in major championships to provide depth."
+          "Consider adding more context about the significance of female-led films in Bollywood for a deeper analysis.",
+          "Include quotes or reactions from diaspora audiences to enhance the connection with NRI readers."
         ],
         "verdict": "pass"
       },
