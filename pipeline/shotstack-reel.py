@@ -2152,6 +2152,40 @@ def build_anchor_reel_timeline(
 
     if script_caps:
         caption_track = script_caps
+        # ── Suppress live caption pills during KEY-POINT CARD scenes ──
+        # Key-point cards (added by the B-roll relevance fix) are full-frame text
+        # graphics that already carry the scene's on-screen text. The voice-synced
+        # caption pill rendered on top of them produced TWO different text blocks in
+        # the same frame — the #1 "overlapping text in multiple frames" QA failure.
+        # A card scene is already fully captioned by the card itself, so we drop any
+        # caption clip whose midpoint falls inside a card scene's window. Photo/video
+        # scenes are untouched and keep their captions (they need them for context).
+        n_scenes = len(image_urls)
+        if n_scenes > 0:
+            per_scene = total_voice_duration / n_scenes
+            card_windows = []
+            for i, url in enumerate(image_urls):
+                if media_meta.get(url, {}).get("is_card"):
+                    w_start = hook_duration + i * per_scene
+                    w_end = hook_duration + (i + 1) * per_scene
+                    card_windows.append((w_start, w_end))
+            if card_windows:
+                kept = []
+                dropped = 0
+                for clip in caption_track.get("clips", []):
+                    c_start = clip.get("start", 0)
+                    c_len = clip.get("length", 0)
+                    c_len = c_len if isinstance(c_len, (int, float)) else 0
+                    c_mid = c_start + c_len / 2.0
+                    in_card = any(ws <= c_mid < we for ws, we in card_windows)
+                    if in_card:
+                        dropped += 1
+                    else:
+                        kept.append(clip)
+                if dropped:
+                    caption_track = {"clips": kept}
+                    print(f"  🚫 Suppressed {dropped} caption pill(s) overlapping "
+                          f"{len(card_windows)} key-point card scene(s) (anti text-overlap)")
     else:
         # Fallback: Shotstack auto-caption from audio (may mis-transcribe proper nouns)
         caption_style = CATEGORY_CAPTION_STYLE.get(category, "highlight")
