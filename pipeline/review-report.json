@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-16T18:16:11.985924+00:00",
+  "timestamp": "2026-06-16T18:45:26.450626+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 12,
-    "flag": 0,
+    "pass": 2,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,45 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "5c3f6312-c1d5-4bc1-aa1c-7c9085076360",
-      "headline": "Fifty American-Born Children Stood Up in Orlando and Spoke Gujarati. It Was a Bet Against the Third-Generation Problem.",
-      "slug": "foga-usa-national-gujarati-competition-diaspora-language-preservation-20260616",
+      "id": "3b0d22dd-3cb9-4221-bc9e-9a064a3b5317",
+      "headline": "Another Global Tech Firm Just Chose Bengaluru Over the Bay Area. India's Capability Centers Are Booming.",
+      "slug": "india-gcc-boom-nable-bengaluru-center-236-million-workforce-2026-20260616",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses the implications of the GCC boom for Indian engineers, which is relevant to the diaspora, but could further elaborate on how this affects NRIs specifically."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Expand on the implications of the GCC boom for the Indian diaspora, particularly in terms of career opportunities and economic impact.",
+          "Include quotes or insights from diaspora members or experts to strengthen the connection to the NRI community."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "be325326-32ed-491b-a299-cc384d82ec10",
+      "headline": "A Two-Hour Hold at Delhi Airport Just Sparked an India-Bangladesh Diplomatic Row",
+      "slug": "bangladesh-india-diplomatic-row-pm-adviser-zahed-rahman-delhi-airport-iora-20260616",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -24,54 +60,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image does not directly depict the event or children speaking Gujarati, but it is a culturally relevant image."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively addresses the challenges faced by the Gujarati diaspora in preserving their language and culture."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include quotes or testimonials from more participants to enhance the personal connection.",
-          "Add a brief section on the impact of language loss on cultural identity for a deeper analysis."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "7e4c0879-5475-4a71-a099-6edbd2a28cb2",
-      "headline": "Indian Americans Have Given American Universities $3 Billion Since 2008. A New Report Maps Exactly Where It Went.",
-      "slug": "indiaspora-report-indian-american-university-philanthropy-3-billion-20260616",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the topic of donations to universities or the Indian American community."
+          "issue": "The image does not directly relate to the specific incident at the airport but is relevant to the broader theme of geopolitics."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively highlights the contributions of Indian Americans to American universities, connecting well with the diaspora audience."
+          "note": "The article effectively connects the incident to the concerns of the Indian and Bangladeshi diaspora, highlighting the implications for those traveling between the two countries."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that directly represents the theme of education or philanthropy to enhance relevance.",
-          "Add quotes or testimonials from Indian American donors to provide a personal touch and deeper insight into their motivations."
+          "Consider including a quote from a diaspora member to enhance the personal connection to the story.",
+          "Add more context about the historical relationship between India and Bangladesh to deepen the analysis."
         ],
         "verdict": "pass"
       },
@@ -83,357 +83,33 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "4661167b-f62e-43b8-947e-f896bc06606f",
-      "headline": "Twenty-One Years, Hand-Carved Tamil Granite, and a Crane Pouring Ganges Water: Berlin Just Got One of Europe's Largest Hindu Temples",
-      "slug": "berlin-sri-ganesha-hindu-temple-opens-europe-largest-diaspora-20260616",
+      "id": "e4c1c648-d47f-4688-be4b-daf414a50c8c",
+      "headline": "The US Is Stripping Citizenship at a Record Pace. An Indian H-1B Case Just Joined the List.",
+      "slug": "doj-denaturalization-wave-indian-origin-citizens-h1b-fraud-neeraj-sharma-20260616",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the temple's construction to the experiences of the Indian diaspora in Germany, highlighting the evolution of the community."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from community members or leaders to enhance the personal connection to the diaspora experience.",
-          "Include more details about the temple's significance to the local community and its role in fostering cultural exchange."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "35e259d6-3925-4f60-af02-618009a7d8d9",
-      "headline": "Two Indian Airports Just Made a Global 'Most Beautiful' List \u2014 and One Is the New Mumbai Gateway NRIs Will Soon Use",
-      "slug": "navi-mumbai-guwahati-airports-prix-versailles-design-nri-20260616",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the new airport developments to the needs and experiences of the Indian diaspora, particularly in terms of travel convenience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from aviation experts or diaspora community members to enhance credibility and engagement.",
-          "Include more details on the expected timeline for international flights at Navi Mumbai Airport to provide clearer information for readers."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "fdf86c96-2daf-4197-a53f-dc3bead4dc12",
-      "headline": "Europe's New Biometric Border Is Fully Live \u2014 Here's What NRIs Flying Through Schengen Need to Know",
-      "slug": "eu-ees-biometric-border-schengen-nri-guide-20260616",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article directly addresses NRIs traveling through Europe, providing relevant information about the new biometric border system."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include a brief summary of the potential impact of the EES on travel times for NRIs.",
-          "Add a section on tips for NRIs to navigate the new system effectively."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "fa514981-8057-4140-b733-2adb8a6f87ad",
-      "headline": "Air India's First Lounge Outside India Lands at SFO \u2014 and It's Built for the Bay Area Diaspora",
-      "slug": "air-india-maharaja-lounge-sfo-bay-area-nri-20260616",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively highlights the significance of the lounge for the Bay Area Indian diaspora, discussing both practical benefits and broader implications."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from Air India officials or diaspora community members to enhance the article's depth.",
-          "Include more details about the lounge's amenities to attract potential travelers."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "95dea281-61da-473f-89fe-00f9c6c3131e",
-      "headline": "Tata's Bigbasket Just Hired an Amazon Veteran to Win the 10-Minute Grocery War",
-      "slug": "bigbasket-amit-nanda-amazon-ceo-tata-quick-commerce-india-20260616",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the article's focus on grocery delivery or the specific companies mentioned."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the quick commerce trend in India to the diaspora's experiences and needs, making it relevant for NRI readers."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that directly represents grocery delivery or the companies involved to enhance relevance.",
-          "Add more statistics or examples of how quick commerce impacts diaspora families to strengthen the connection."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "7d14da62-6c95-44f9-a7ea-7d6985967ccb",
-      "headline": "Razorpay Quietly Filed for a $600 Million IPO. India's Payments War Is Headed to the Stock Market.",
-      "slug": "razorpay-600-million-confidential-ipo-india-payments-nri-investors-20260616",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects Razorpay's IPO to the interests of the Indian diaspora, highlighting investment opportunities and the relevance of the company's services."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more specific examples of how diaspora investors can engage with Razorpay or similar companies.",
-          "Include quotes or insights from industry experts to enhance credibility and depth."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "0efcda4a-3dba-4c8d-9766-da05a17bc814",
-      "headline": "SpaceX Just Paid $60 Billion for Cursor. The Coding Tool Half of Bengaluru Already Lives In.",
-      "slug": "spacex-anysphere-cursor-60-billion-ai-coding-indian-developers-20260616",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
+        "overall_score": 7,
         "embed_issues": [],
         "image_match": {
           "score": 5,
-          "issue": "The image does not directly relate to the topic of AI coding tools or SpaceX."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the acquisition to the Indian diaspora, highlighting the impact on Indian engineers and the broader implications for the tech industry."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that reflects AI coding tools or SpaceX.",
-          "Add more statistics or quotes from industry experts to strengthen the analysis of the impact on Indian engineers."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "3a7a442c-f369-4251-b61c-9fb3d45bbace",
-      "headline": "India's Bonds Are on the Cusp of Joining a Global Index That Moves Billions. The Review Lands This Month.",
-      "slug": "india-government-bonds-bloomberg-global-aggregate-index-inclusion-review-fpi-inflows-nri-20260616",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
+          "issue": "The image does not directly relate to the topic of citizenship or immigration."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively discusses the implications of bond market changes for NRIs, making it relevant for the diaspora audience."
+          "note": "The article discusses the implications of denaturalization for the Indian-American community, making it relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more specific examples of how NRIs can benefit from the bond market changes.",
-          "Include quotes from experts or analysts to enhance credibility and depth."
+          "Consider using an image that more directly represents the themes of citizenship or immigration.",
+          "Expand on the implications for the Indian diaspora in the conclusion to strengthen the connection."
         ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "315c0cb8-8e85-4713-854f-614e8df5d8b8",
-      "headline": "Diet and Exercise Beat a Popular Diabetes Pill at Preventing Chronic Disease, a Landmark NIH Study Found.",
-      "slug": "prediabetes-lifestyle-intervention-beats-metformin-multimorbidity-nih-niddk-dpp-south-asian-20260616",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image of walking a dog is somewhat relevant to the topic of exercise but does not directly represent the study's focus on diabetes prevention."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively highlights the specific health challenges faced by the South Asian diaspora regarding diabetes and lifestyle changes."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more directly relevant image that represents diabetes prevention or healthy lifestyle choices.",
-          "Add a brief section on practical tips for the South Asian community to implement lifestyle changes based on the study's findings."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "7a6ef773-0350-4fac-a378-bc1d11b5ac7a",
-      "headline": "Higher Vitamin C in Your Blood May Mean a Better-Preserved Brain. A 2,044-Person Study Found the Link.",
-      "slug": "vitamin-c-blood-levels-brain-structure-gray-matter-hirosaki-plos-one-south-asian-diaspora-20260616",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the study's findings to the South Asian diaspora's dietary habits and health risks."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a quote from a diaspora health expert to strengthen the connection to the community.",
-          "Include specific dietary recommendations or recipes that incorporate vitamin C-rich foods relevant to the South Asian diet."
-        ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
         "promoted to published"
