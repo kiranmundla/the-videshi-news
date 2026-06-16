@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-16T16:15:25.114448+00:00",
+  "timestamp": "2026-06-16T16:45:17.717647+00:00",
   "mode": "fix",
   "stats": {
     "pass": 2,
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "3aa6699d-5a17-4d73-824e-d57ffc0af5af",
-      "headline": "The Green Card Bill That Could Finally Reach Indian Doctors Stuck Behind a Decade-Long Wall",
-      "slug": "green-card-recapture-bill-per-country-cap-indian-doctors-nurses-20260616",
+      "id": "cdf30116-3331-476d-96eb-7d17943989a5",
+      "headline": "An Auckland Sikh in the No. 10 Shirt Played the Full 90. No Footballer of Indian Origin Had Ever Started a World Cup Match Before.",
+      "slug": "sarpreet-singh-first-indian-origin-starter-world-cup-2026-new-zealand-iran-2-2-los-angeles-punjab-nri",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -23,19 +23,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the topic of immigration or Indian doctors."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively highlights the challenges faced by Indian doctors in the U.S. immigration system, making it highly relevant for the Indian diaspora."
+          "quality": 8,
+          "note": "The article effectively highlights Sarpreet Singh's Indian heritage and connects it to the broader diaspora narrative."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that directly represents Indian doctors or the immigration process to enhance relevance.",
-          "Include quotes or testimonials from Indian doctors to provide a personal touch and strengthen the diaspora connection."
+          "Consider adding more quotes from Sarpreet Singh or his family to enhance the personal connection.",
+          "Include a brief overview of the significance of this World Cup for Indian-origin players to provide context."
         ],
         "verdict": "pass"
       },
@@ -47,9 +47,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "9051383e-bf54-444b-add4-1aa7bd2ab138",
-      "headline": "A Boston Judge Just Voided the $100,000 H-1B Fee. Three Other Courts Could Bring It Back",
-      "slug": "sorokin-ruling-voids-100k-h1b-fee-appeal-circuit-split-india-20260616",
+      "id": "0002885f-ea63-4558-8fc6-f3232ad403ea",
+      "headline": "One in Five of India's Ultra-Rich Is Moving Abroad. Almost None Are Giving Up Their Indian Passport.",
+      "slug": "one-in-five-ultra-rich-indians-migrating-abroad-keeping-citizenship-kotak-top-of-pyramid-report-20260616",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -59,19 +59,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the topic of H-1B visas or immigration."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses the implications of the ruling specifically for Indian professionals, who make up a significant portion of H-1B applicants."
+          "note": "The article effectively connects the migration trend of ultra-rich Indians to the existing diaspora, discussing its implications for the community."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that directly relates to immigration or H-1B visas to enhance relevance.",
-          "Add a brief summary or bullet points at the end to highlight key takeaways for Indian H-1B applicants."
+          "Include specific examples or anecdotes of individuals or families who have made this move to enhance relatability.",
+          "Add more data or statistics on how this trend affects the Indian economy or the diaspora community."
         ],
         "verdict": "pass"
       },
