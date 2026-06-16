@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-16T14:45:17.309943+00:00",
+  "timestamp": "2026-06-16T15:15:40.392459+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
+    "pass": 5,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "fb7dbd98-b2cd-4f25-b572-ebf90f3e02e2",
-      "headline": "Modi Becomes the First Indian PM to Visit Slovakia. The People Who Waited Up for Him Were the Diaspora.",
-      "slug": "modi-first-indian-pm-slovakia-visit-fico-comprehensive-partnership-diaspora-bratislava-20260616",
+      "id": "430265eb-30eb-499c-b8c6-2079b4cac9d0",
+      "headline": "Fourteen Years Later, Saif Ali Khan Finally Says It: Agent Vinod \"Might Have Been Vain.\"",
+      "slug": "saif-ali-khan-agent-vinod-vanity-ahead-of-its-time-sriram-raghavan-reflection-spy-universe-nri-20260616",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -29,13 +29,180 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively highlights the emotional connection of the Indian diaspora in Slovakia to Modi's visit, making it relevant to NRI readers."
+          "note": "The article connects the film's legacy to the diaspora's appreciation for global Indian cinema."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes from diaspora members to enhance personal connection.",
-          "Provide additional context on the significance of the agreements signed during the visit."
+          "Include more quotes or insights from Saif Ali Khan to enhance the depth of the article.",
+          "Provide a brief overview of the film's reception at the time of release for context."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "410d81f9-edab-4e91-a9e6-0876d09dff7e",
+      "headline": "Kriti Sanon Calls Ally \"Unhinged and Beautifully Chaotic.\" Cocktail 2 Just Gave Us a Version of Her We've Never Seen.",
+      "slug": "kriti-sanon-ally-unhinged-beautifully-chaotic-cocktail-2-fashion-reinvention-a-rated-where-to-watch-nri-20260616",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "2733b3c8-5101-46d8-aca5-5e997073a27d",
+            "headline": "Cocktail 2 Just Got an 'A' Certificate. It's Kriti Sanon's F"
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [
+          {
+            "url": "https://youtube.com/watch?v=XXxUqLHq1xg",
+            "problem": "irrelevant",
+            "explanation": "The YouTube link does not appear to be directly related to the article's subject matter regarding Kriti Sanon's role in Cocktail 2."
+          },
+          {
+            "url": "https://www.instagram.com/p/DZpIHnKGcQ0/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not provide relevant content that enhances the article's focus on Kriti Sanon's character."
+          }
+        ],
+        "image_match": {
+          "score": 7,
+          "issue": "The image of Kriti Sanon is relevant to the article, but it does not specifically depict her character Ally from Cocktail 2."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the film's themes to the NRI audience, referencing the original Cocktail's impact on the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the irrelevant YouTube and Instagram links with content that directly relates to Kriti Sanon's role or the film's promotion.",
+          "Consider adding quotes or insights from Kriti Sanon or the director about the film's appeal to the diaspora audience."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://youtube.com/watch?v=XXxUqLHq1xg",
+        "Removed irrelevant embed: https://www.instagram.com/p/DZpIHnKGcQ0/",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "aecea308-1d51-400b-85de-27e8cab7623b",
+      "headline": "An Indian Startup Says It Can Make AI Video in Four Steps Instead of Fifty. It's Giving the Model Away.",
+      "slug": "avataar-ai-varya-india-video-ai-model-open-weight-20260616",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "679ee705-836d-4408-905d-6e708769bc01",
+            "headline": "India's Biggest Nvidia GPU Operator Is Going Public. For NRI"
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the specific topic of AI video generation."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the startup's offering to the needs of Indian-American creators and small-business owners."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that visually represents AI video generation or the startup's product.",
+          "Provide more independent verification of the claims made about the efficiency and quality of the Varya model."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "0285941c-05f2-4dfe-b7ae-272ec79a3ae5",
+      "headline": "India's Chip Startups Found Money This Year. Now They Want Something Harder: Customers and the Right to Stay Indian.",
+      "slug": "india-semiconductor-startups-funding-ip-protection-foreign-ownership-20260616",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the semiconductor industry, which could confuse readers."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the Indian diaspora to the semiconductor industry, highlighting investment opportunities and the return of Indian-American engineers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that reflects the semiconductor industry or Indian startups.",
+          "Add quotes or insights from diaspora investors to enhance the connection further."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "0feb4603-fa4f-44bb-9b03-b3e7b0dc9ecc",
+      "headline": "Wipro Just Opened a Claude Lab in Bengaluru. The Company AI Was Supposed to Gut Is Now Its Best Customer.",
+      "slug": "wipro-anthropic-claude-coe-bengaluru-ai-deflation-it-jobs-20260616",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the specific topic of Wipro's AI initiatives."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the implications of Wipro's AI initiatives to the experiences of NRI engineers, highlighting both opportunities and risks."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that reflects Wipro's AI initiatives or the tech industry.",
+          "Add a quote from a Wipro executive or an industry expert to enhance credibility and provide additional insights."
         ],
         "verdict": "pass"
       },
