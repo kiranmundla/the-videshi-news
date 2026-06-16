@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-16T20:15:23.010432+00:00",
+  "timestamp": "2026-06-16T22:15:54.021238+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
+    "pass": 9,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "f18b46de-52d6-4d79-b6cc-a6100b3e2853",
-      "headline": "ICE Found Locked, Empty Buildings Where OPT Workers Were Supposed to Be. Now the Program Itself Is the Target",
-      "slug": "opt-fraud-crackdown-ice-phantom-worksites-indian-students-stem-20260616",
+      "id": "e6d3b21d-5509-4511-abe4-157f7a39dc5a",
+      "headline": "Gulf Airlines Are Adding Insurance and 'Fly You Home' Guarantees \u2014 What NRIs Routing Through Dubai Should Know",
+      "slug": "gulf-airlines-insurance-repatriation-nri-dubai-transit-20260616",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -23,19 +23,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the topic of OPT workers or immigration, but it is a generic representation of a workplace."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively highlights the implications of OPT for Indian graduates, making it highly relevant for the diaspora audience."
+          "note": "The article effectively addresses the concerns and needs of NRIs traveling through Gulf airlines, making it highly relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that directly relates to the topic of OPT or immigration.",
-          "Add quotes or perspectives from Indian graduates currently on OPT to enhance the personal connection to the diaspora."
+          "Consider adding specific examples of how NRIs can benefit from the new insurance and repatriation guarantees.",
+          "Include quotes or testimonials from NRIs who have used these services to enhance relatability."
         ],
         "verdict": "pass"
       },
@@ -47,9 +47,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "4b26472e-3efe-43cf-bf92-c7f4e8ce91ca",
-      "headline": "The Quiet Rule Change That Could Put a Four-Year Clock on Every Indian Student in America",
-      "slug": "dhs-duration-of-status-f1-fixed-four-year-opt-cpt-indians-20260616",
+      "id": "05292c17-51fc-40f6-8aff-b71008359545",
+      "headline": "Malaysia Is Overtaking Thailand as Indian Travelers' Favorite \u2014 Here's What Changed",
+      "slug": "malaysia-overtakes-thailand-indian-travelers-visa-free-20260616",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -59,60 +59,271 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the article's focus on immigration and student visa issues."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively addresses the implications of immigration policy changes specifically for Indian students in the U.S., making it highly relevant for the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that directly relates to Indian students or the U.S. education system to enhance relevance.",
-          "Include quotes or perspectives from Indian students or organizations to further enrich the diaspora connection."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "53d20002-d588-4e5f-bc7b-5638980508c9",
-      "headline": "A Court Killed the $100,000 H-1B Fee. Congress Is Trying to Resurrect It as Law",
-      "slug": "protect-act-kennedy-codify-100k-h1b-fee-congress-india-20260616",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "b8d77258-c7ee-414c-9f6d-7535913d3116",
-            "headline": "He Got Indian Americans Recognized for Federal Contracts in "
-          }
-        ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the H-1B visa topic but is a generic stock photo."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses the implications of the H-1B fee on Indian tech workers, which is highly relevant to the Indian diaspora."
+          "note": "The article effectively connects the travel trends to NRI families, discussing their preferences and travel dynamics."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that directly relates to the H-1B visa or Indian tech workers.",
-          "Add quotes or perspectives from Indian tech workers or immigration advocates to enhance the diaspora connection."
+          "Include specific examples or quotes from Indian travelers or travel agencies to enhance relatability.",
+          "Add a section on potential challenges or considerations for NRIs traveling to Malaysia."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "ace8ef4e-df28-4f32-bac9-2f6f67d190ec",
+      "headline": "SWISS Is Flying Bengaluru to Zurich Nonstop From October \u2014 and It's Built for the Tech Diaspora",
+      "slug": "swiss-bengaluru-zurich-nonstop-lufthansa-tech-diaspora-20260616",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image is relevant to aviation but does not specifically depict SWISS or the Bengaluru-Zurich route."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the new flight route to the needs and interests of the Indian diaspora, particularly in terms of travel convenience and connectivity."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including a quote from a SWISS representative or an industry expert to add credibility.",
+          "Add a section on potential travel tips or experiences for passengers using the new route."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "c20b73b2-55cb-4d86-b973-dc193c2d7be3",
+      "headline": "The Rupee Just Hit a Five-Week High and May Climb to 92. For NRIs Sending Money Home, the Window Is Closing.",
+      "slug": "rupee-rally-five-week-high-92-forecast-iran-peace-oil-nri-remittance-timing-20260616",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses the impact of the rupee's fluctuation on NRIs, making it relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples or anecdotes from NRIs to enhance relatability.",
+          "Include a brief explanation of how NRIs can take advantage of the current situation."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "00d9317c-9bb5-47a6-b00c-942bb8b672c2",
+      "headline": "The Diaspora Worries About Cholesterol and Sugar. A Wave of New Studies Says the Quieter Danger Is Too Little Protein.",
+      "slug": "protein-intake-healthy-aging-vegetarian-diaspora-elsa-share-studies-muscle-frailty-20260616",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the topic of protein intake to the dietary habits of the Indian diaspora, highlighting cultural dietary patterns and health implications."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of high-protein vegetarian dishes popular in the Indian diaspora to enhance relatability.",
+          "Include quotes or insights from nutritionists or health experts to add authority to the claims made."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "431e7414-e060-489b-b7ec-63f1cfa43e2a",
+      "headline": "The Loneliest People Online Have the Most Followers They Have Never Met. A New US Study Names the Trap.",
+      "slug": "social-media-never-met-contacts-loneliness-primack-study-diaspora-digital-connection-20260616",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the study's findings to the Indian diaspora's reliance on digital connections."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more statistics or quotes from the study to enhance credibility.",
+          "Include a brief section on potential solutions or coping strategies for loneliness in the digital age."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "7ba8a25f-7b4f-4a4d-990e-658699e236b4",
+      "headline": "Monsoon Is the NRI's Secret Travel Season \u2014 Here's Where to Go When India Floods",
+      "slug": "monsoon-travel-india-2026-nri-guide-rain-shadow-deals-20260616",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the travel experiences during the monsoon season to the NRI audience, highlighting unique opportunities for them."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more personal anecdotes or testimonials from NRIs who have traveled during the monsoon to enhance relatability.",
+          "Include a section on travel tips specific to NRIs, such as cultural considerations or local customs during the monsoon season."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "1853569f-c44e-4aef-a7d9-d4eaf3c9ce16",
+      "headline": "Air New Zealand Is Studying Direct India Flights \u2014 and Its India-Born CEO Is Driving It",
+      "slug": "air-new-zealand-direct-india-flights-fta-nri-20260616",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the article's topic of Air New Zealand and India flights."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively highlights the significance of direct flights for the Indian diaspora in New Zealand, making it relevant and engaging for NRI readers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant hero image that depicts Air New Zealand or the connection between India and New Zealand.",
+          "Add quotes or insights from diaspora members to enhance the personal connection and impact of the story."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "4e9bed5e-8e07-4651-9222-b817b2d95ac0",
+      "headline": "IndiGo Is Taking Bali Nonstop \u2014 and the New Jet Doing It Has a Premium Cabin",
+      "slug": "indigo-a321xlr-bali-nonstop-denpasar-premium-nri-20260616",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the new flight service to the needs and preferences of the NRI community, particularly in terms of travel convenience and options."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a quote from an IndiGo representative or an industry expert to enhance credibility.",
+          "Include more details about the pricing of the new premium cabin to provide readers with a clearer understanding of the cost implications."
         ],
         "verdict": "pass"
       },
