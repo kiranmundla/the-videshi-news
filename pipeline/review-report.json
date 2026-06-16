@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-16T02:45:23.206415+00:00",
+  "timestamp": "2026-06-16T03:15:35.857561+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
-    "flag": 0,
+    "pass": 4,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,67 +11,84 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "7f0c7007-7860-4d5f-a236-1474fc8719f3",
-      "headline": "India Is Ready to Break Its Own Budget Promise. The Reason Is Sitting in the Strait of Hormuz.",
-      "slug": "india-fiscal-deficit-widen-4-8-percent-gdp-iran-war-energy-subsidy-costs-20260616",
+      "id": "8333c6c2-5d15-4337-b486-c88cf789803e",
+      "headline": "Karan Johar Watched It at 1:35 AM and Couldn't Sleep. Raakh Is the Most Devastating Thing on Prime Video Right Now.",
+      "slug": "raakh-prime-video-ali-fazal-sonali-bendre-ranga-billa-karan-johar-review-where-to-watch-nri-20260615",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 8,
-          "issue": "The image of Nirmala Sitharaman is relevant as she is the Finance Minister discussed in the article."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article connects the economic situation in India to the financial interests of NRIs, but could elaborate more on specific impacts."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Expand on how the budget changes specifically affect NRIs and their investments.",
-          "Include more data or quotes from diaspora experts to strengthen the connection."
+        "duplicate_images": [
+          {
+            "article_id": "a5cbcb62-8c7a-4075-b218-1adc974a3093",
+            "headline": "What to Watch This Week: Seven Streams Worth Your Weekend"
+          }
         ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "2d536326-9e5c-4950-8627-49195ca86c37",
-      "headline": "One in Three Indian-Americans Has Thought About Leaving the US. The Arrow Is Now Pointing Both Ways.",
-      "slug": "reverse-brain-drain-indian-americans-weighing-exit-carnegie-survey-returning-nris-20260616",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
+        "overall_score": 8,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/DZlD1KOxmvy/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not appear to be directly related to the content of the article, which focuses on the series 'Raakh'."
+          },
+          {
+            "url": "https://youtube.com/watch?v=RdB_TgwLPqs",
+            "problem": "relevant",
+            "explanation": "The YouTube link is relevant as it likely pertains to the series being discussed."
+          }
+        ],
         "image_match": {
-          "score": 8,
-          "issue": "The image of a cityscape aligns with the article's theme of migration and urban life, but it could be more directly related to Indian-Americans."
+          "score": 3,
+          "issue": "The image does not match the article's topic, which is about the series 'Raakh' and its cast."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively discusses the sentiments of Indian-Americans regarding migration, making it relevant to the diaspora audience."
+          "note": "The article effectively connects the series to the diaspora by referencing the historical context of the Ranga-Billa case, which resonates with older generations."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more specific examples or anecdotes from Indian-Americans who are considering leaving the US to enhance relatability.",
-          "Add a section discussing potential implications for the Indian economy if this trend continues."
+          "Replace the irrelevant Instagram link with a more relevant one that discusses 'Raakh' or its themes.",
+          "Consider using an image that directly relates to the series 'Raakh' or its cast to enhance visual relevance."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/DZlD1KOxmvy/",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "058d9c3a-4486-4945-82ee-9c4f2148c64e",
+      "headline": "Akshay Kumar and Priyadarshan Waited 16 Years to Make You Scream-Laugh Again. Bhooth Bangla Just Hit Netflix.",
+      "slug": "bhooth-bangla-netflix-ott-akshay-kumar-priyadarshan-reunion-163-crore-where-to-watch-nri-20260615",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the film's themes and nostalgia to the diaspora experience, making it relatable for NRI readers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more quotes from diaspora viewers or critics to enhance the connection with the audience.",
+          "Include a brief section on how the film has been received in different countries with significant Indian populations."
         ],
         "verdict": "pass"
       },
@@ -83,9 +100,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "4c91be61-f370-40ac-987a-435b83e16c9f",
-      "headline": "Indians Are Now the Most Deported Nationality From Canada. The Numbers Are Not Close.",
-      "slug": "india-now-top-deported-nationality-canada-cbsa-q1-2026-removals-20260616",
+      "id": "2ae8b940-0232-480b-ac9d-916dc33ab33e",
+      "headline": "India Wants to Make Its Own Memory Chips. The Minister in Charge Thinks the AI Data-Center Boom Will Force It.",
+      "slug": "india-memory-chips-ism-2-vaishnaw-ai-data-center-demand-20260616",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -96,18 +113,107 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image does not directly relate to the topic of deportations or the Indian diaspora in Canada."
+          "issue": "The image does not directly relate to memory chips or AI data centers."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively addresses the implications of deportation statistics for the Indian diaspora in Canada."
+          "quality": 8,
+          "note": "The article effectively connects the semiconductor industry developments in India to the interests of the Indian diaspora, particularly in terms of job opportunities and investment."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that reflects the theme of deportation or the Indian community in Canada.",
-          "Add quotes or testimonials from affected individuals or community leaders to enhance the human angle of the story."
+          "Consider using a more relevant image that depicts memory chips or AI data centers to enhance visual alignment with the article's topic.",
+          "Expand on the potential impact of India's semiconductor ambitions on the global market to provide a broader context for readers."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "7f15fe8f-6cc5-4f3d-8820-2422f5d4e2f0",
+      "headline": "Your Company's AI Agents Just Became Employees. NewCore Raised $66 Million to Give Them ID Badges.",
+      "slug": "newcore-66-million-ai-agent-identity-agentic-security-20260616",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image depicts security and protection, which is relevant to the topic of AI agents and enterprise security, but it could be more directly related to AI or technology."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the topic to the Indian diaspora by highlighting the role of Indian engineers in identity and access management."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including more specific examples of Indian engineers or companies in the diaspora that are leading in this field.",
+          "Add a quote or insight from an Indian engineer to strengthen the diaspora connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "9c81362d-1e3c-47c6-960b-316eb1db5ab1",
+      "headline": "Shareholders Sue Satya Nadella's Microsoft, Saying It Hid How Much AI Was Eating Azure",
+      "slug": "microsoft-shareholder-lawsuit-nadella-azure-copilot-securities-20260616",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "468c874d-721a-4806-a9d9-83fad2d365d8",
+            "headline": "Satya Nadella Has a Warning for the AI Gold Rush: Don't Hand"
+          },
+          {
+            "article_id": "d250d2c4-b1e2-4ea8-9b26-7c8bc21464e3",
+            "headline": "Satya Nadella Wants to Kill the App. Project Solara Is How."
+          },
+          {
+            "article_id": "5a7d3584-8354-4662-9e81-d8255f986e56",
+            "headline": "GitHub Copilot's $29 Bill Just Became $750 \u2014 and India's Dev"
+          },
+          {
+            "article_id": "d7612a5a-581b-4dc1-8a96-e1c4d69fbdac",
+            "headline": "Nadella's Agent 365 Goes Live \u2014 and 332,000 Consultants Just"
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the lawsuit's implications to the Indian diaspora, particularly those working at Microsoft."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more context about the implications of the lawsuit for the tech industry as a whole.",
+          "Include quotes from industry experts or analysts to enhance credibility and depth."
         ],
         "verdict": "pass"
       },
