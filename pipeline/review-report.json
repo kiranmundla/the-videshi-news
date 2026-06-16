@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-16T01:15:16.778430+00:00",
+  "timestamp": "2026-06-16T01:45:14.223438+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 1,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,17 +11,12 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "9b49e3f9-8fb6-4596-8f2e-7d20009d2bdc",
-      "headline": "She Was Rejected From Luv Ranjan's Set at 17 \u2014 for Being Too Young. Now Sharvari Is in Talks to Headline His Next, Opposite Kartik Aaryan.",
-      "slug": "sharvari-luv-ranjan-next-film-kartik-aaryan-full-circle-clap-assistant-alpha-nri-20260615",
+      "id": "9208f439-b0e6-4fa9-960f-6b560b67fcbb",
+      "headline": "India Won't Let Them Play Without Surrendering Their Passports. A New Proposal on Modi's Desk Could Change That.",
+      "slug": "india-sports-passport-proposal-pmo-pio-oci-athletes-football-fifa-world-cup-2026-diaspora-nri",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "d41e8f5f-158a-4465-a7f8-480c929567eb",
-            "headline": "Sharvari Wagh Turns 30 Today \u2014 And She's Quietly Become the "
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
@@ -34,54 +29,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the film's appeal to the diaspora audience, highlighting the potential for a successful release in various international markets."
+          "note": "The article effectively connects the topic of sports citizenship to the Indian diaspora, highlighting athletes of Indian origin competing for other nations."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more direct quotes from Sharvari or Luv Ranjan to enhance the personal touch of the article.",
-          "Include a brief background on the significance of the YRF Spy Universe for readers who may not be familiar."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "ef3bd3f9-5654-4a46-be07-1dcfe2d2cb2b",
-      "headline": "Priyanka Chopra Just Joined Rolex. She's the First Indian Woman Ever to Wear the Crown \u2014 While Still Wearing Bulgari.",
-      "slug": "priyanka-chopra-rolex-testimonee-first-indian-woman-bulgari-crossover-nri-20260615",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "7445343f-b303-4768-846c-282da6296f23",
-            "headline": "Priyanka Chopra Is Worth \u20b92,507 Crore. She Built It Without "
-          }
-        ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects Priyanka Chopra Jonas's achievements to the Indian diaspora, highlighting her role as a symbol of success for Indians abroad."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from Priyanka Chopra Jonas or Rolex representatives to enhance the article's depth.",
-          "Include more context about the significance of Rolex's Testimonee program for readers unfamiliar with luxury branding."
+          "Include more direct quotes or perspectives from diaspora athletes to enhance relatability.",
+          "Provide a brief overview of the current status of Indian football to give context to the proposal."
         ],
         "verdict": "pass"
       },
