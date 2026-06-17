@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-17T13:15:22.913608+00:00",
+  "timestamp": "2026-06-17T13:45:11.739148+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 0,
-    "flag": 1,
+    "pass": 1,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,47 +11,35 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "e26cc115-9c66-4c1b-aff9-435c6bd1589b",
-      "headline": "Rajkumar Hirani Finally Comes to Streaming. And He Brought His Son, His Circuit, and a Hacker War in Goa.",
-      "slug": "pritam-and-pedro-trailer-rajkumar-hirani-ott-debut-vir-hirani-arshad-warsi-vikrant-massey-jiohotstar-july-3-where-to-watch-diaspora-nri-20260617",
+      "id": "cf60256c-6b8e-4ae5-9777-abc55b8fb366",
+      "headline": "Two Centuries, a 224-Run Stand, and India's 500th ODI Win: Gill and Kishan Sink Afghanistan in Lucknow",
+      "slug": "gill-kishan-centuries-india-beat-afghanistan-2nd-odi-lucknow-500th-win-series-clinched-2026-nri",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "e8c17f7d-6a62-42d8-8a2e-430b1bd01d85",
-            "headline": "Rajkumar Hirani Has Never Made a Flop. His First Streaming S"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/reel/DZmTzHYsDa3/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram reel does not appear to be directly related to the article's subject matter about Rajkumar Hirani's new streaming series."
-          }
-        ],
+        "embed_issues": [],
         "image_match": {
-          "score": 3,
-          "issue": "The hero image of Arshad Warsi does not match the article's focus on Rajkumar Hirani and his new series."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article mentions the streaming platform's availability for international viewers, which connects with the diaspora audience."
+          "quality": 8,
+          "note": "The article connects well with the Indian diaspora by highlighting the significance of India's cricketing achievements and their relevance to fans worldwide."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the hero image with one that features Rajkumar Hirani or the series itself to better match the article's focus.",
-          "Ensure that all embedded content is relevant to the article's subject to enhance reader engagement."
+          "Consider adding quotes from players or coaches to enhance the narrative.",
+          "Include more statistics or historical context about India's ODI wins for deeper engagement."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/reel/DZmTzHYsDa3/",
         "promoted to published"
       ],
       "revised": false,
