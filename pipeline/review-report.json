@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-17T22:45:15.820411+00:00",
+  "timestamp": "2026-06-17T23:15:18.025396+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 0,
+    "pass": 1,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,17 +11,28 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "88b0cb97-5621-4d1e-97dc-2517645e1497",
-      "headline": "Four Days After a Super Over Meltdown, India A Answered With 319 and a 101-Run Rout to Reach the Final",
-      "slug": "india-a-beat-afghanistan-a-101-runs-dambulla-tri-series-final-tilak-varma-priyansh-arya-kushagra-nishant-sindhu-2026-nri",
+      "id": "8bbbe976-8e02-47ca-8969-5faf9ca01af1",
+      "headline": "Cocktail 2 Pours This Friday. Can Shahid, Kriti and Rashmika Bottle the Magic Deepika Made in 2012?",
+      "slug": "cocktail-2-theatrical-release-june-19-shahid-kapoor-kriti-sanon-rashmika-mandanna-homi-adajania-sicily-where-to-watch-diaspora-nri-20260617",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
+        "overall_score": 7,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DZDOomuoqNK/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel does not appear to be directly related to the film 'Cocktail 2' or its promotional content."
+          },
+          {
+            "url": "https://youtube.com/watch?v=XXxUqLHq1xg",
+            "problem": "duplicate",
+            "explanation": "The YouTube link to the trailer is mentioned but not embedded properly in the article."
+          }
+        ],
         "image_match": {
           "score": 9,
           "issue": null
@@ -29,17 +40,20 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the performance of the India A team to the interests of the diaspora, highlighting the future of Indian cricket."
+          "note": "The article discusses the film's reception among international audiences, highlighting its popularity in Gulf countries and the US, which connects well with the diaspora."
         },
         "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from players or coaches to enhance the narrative.",
-          "Include more context about the significance of the tri-nation series for the India A team."
+        "duplicate_embeds": [
+          "https://youtube.com/watch?v=XXxUqLHq1xg"
         ],
-        "verdict": "pass"
+        "suggestions": [
+          "Replace the irrelevant Instagram link with a more relevant embed related to 'Cocktail 2'.",
+          "Ensure that the YouTube trailer link is properly embedded to enhance user experience."
+        ],
+        "verdict": "flag"
       },
       "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DZDOomuoqNK/",
         "promoted to published"
       ],
       "revised": false,
@@ -47,9 +61,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "3678104f-b1d5-49ce-b3db-43bd776583a9",
-      "headline": "Indian Tech Workers Built the Dallas Suburbs. Now the H-1B Crackdown Is Emptying Them.",
-      "slug": "h1b-visa-crackdown-dallas-suburbs-housing-bust-frisco-celina-prosper-indian-buyers-20260617",
+      "id": "edfae8ee-b503-45a1-8a72-b1725f9dd963",
+      "headline": "Rakul Preet Singh Won't Be Put in a Box. Her Next Move Is the Most Unboxable Role in Indian Cinema.",
+      "slug": "rakul-preet-singh-i-dont-want-to-be-put-in-a-box-surpanakha-ramayana-reinvention-where-to-watch-diaspora-nri-20260617",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -65,13 +79,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively highlights the impact of immigration policies on the Indian diaspora in the Dallas suburbs, making it relevant to NRI readers."
+          "note": "The article effectively connects Rakul's multilingual career to the viewing habits of the diaspora, making it relevant."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more personal stories or quotes from affected Indian tech workers to enhance emotional engagement.",
-          "Add a section discussing potential future trends or solutions for the housing market in these suburbs."
+          "Consider adding more quotes from Rakul Preet Singh to enhance the personal touch.",
+          "Include a brief overview of the significance of the character Surpanakha in the Ramayana for readers unfamiliar with the story."
         ],
         "verdict": "pass"
       },
