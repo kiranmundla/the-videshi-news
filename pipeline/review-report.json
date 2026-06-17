@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-17T09:15:50.413513+00:00",
+  "timestamp": "2026-06-17T10:15:38.847100+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 4,
-    "flag": 1,
+    "pass": 6,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,100 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "44f50b2a-c84c-49d7-969e-800cb5aab0e7",
-      "headline": "Christopher Nolan Is Finally Coming to India. The Odyssey Premiere Brings Him, Matt Damon and Tom Holland to Mumbai.",
-      "slug": "christopher-nolan-the-odyssey-first-india-premiere-mumbai-matt-damon-tom-holland-imax-july-17-where-to-watch-diaspora-nri-20260617",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://youtube.com/watch?v=Mzw2ttJD2qQ",
-            "problem": "irrelevant",
-            "explanation": "The YouTube link does not appear to be directly related to the article's subject matter about Christopher Nolan's premiere in India."
-          }
-        ],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the film's release to NRI audiences, highlighting simultaneous global release logistics."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the irrelevant YouTube link with a more relevant embed, such as a trailer or promotional content for 'The Odyssey'.",
-          "Consider adding quotes from Christopher Nolan or the actors to enhance the article's depth and engagement."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "Removed irrelevant embed: https://youtube.com/watch?v=Mzw2ttJD2qQ",
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "98948ae2-adc2-43c1-8745-c53b735e3172",
-      "headline": "The Alpha Trailer Is Here, and Bobby Deol Names a Baby Sita. YRF Just Reinvented Its Own Spy Universe \u2014 With Two Women.",
-      "slug": "alpha-official-trailer-alia-bhatt-sharvari-bobby-deol-hrithik-roshan-cameo-yrf-spy-universe-july-3-where-to-watch-diaspora-nri-20260617",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "e7e9a081-7838-4afb-84a7-58d9bb4c27ab",
-            "headline": "75 Million Views in 24 Hours. Alia Bhatt Just Became the Mos"
-          }
-        ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/p/DZrMgo5k_LM/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post does not seem to directly relate to the article's focus on the *Alpha* trailer and its implications."
-          }
-        ],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the film's release to the diaspora audience, highlighting its international release strategy."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the irrelevant Instagram embed with a more relevant social media post or remove it altogether.",
-          "Consider adding more context on how the film's themes resonate with the diaspora experience."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DZrMgo5k_LM/",
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "4574a4d6-cd56-4169-adf7-037a12eaccc9",
-      "headline": "America Is About to Get Its First Real AI Law. It's Not Coming From Washington \u2014 and That's the Problem.",
-      "slug": "colorado-california-state-ai-laws-patchwork-indian-engineers-complianc-20260617",
+      "id": "354b1713-20ff-486f-8b07-1ce739b993e2",
+      "headline": "The Gulf Is Reopening Its Skies \u2014 and the Flight Home to India May Finally Get Cheaper",
+      "slug": "gulf-airspace-reopening-us-iran-deal-cheaper-india-fares-nri-20260617",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -114,19 +23,55 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image is relevant to the tech theme but does not specifically depict AI or legal aspects."
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses the impact of geopolitical changes on travel for the Indian diaspora, making it relevant and engaging."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from travel industry experts to enhance credibility.",
+          "Include specific examples of how ticket prices have changed recently to provide more context."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "5043a2a1-b4d8-4914-9fee-fd137c2a2f4f",
+      "headline": "India's First Vande Bharat Sleeper Is Finally Rolling Out \u2014 Overnight Trains Are About to Feel Like Flying",
+      "slug": "vande-bharat-sleeper-prototype-launch-overnight-train-nri-20260617",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively highlights the role of Indian-origin engineers in the context of new AI laws, making it highly relevant to the diaspora."
+          "note": "The article effectively connects the new sleeper service to the needs and experiences of the diaspora, highlighting the benefits for NRIs traveling within India."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that more directly represents AI or legal themes to enhance relevance.",
-          "Add a brief section summarizing the implications of these laws specifically for the Indian diaspora in the tech industry."
+          "Consider adding quotes from railway officials or experts to enhance credibility.",
+          "Include more specific examples of how the sleeper service will improve travel experiences for NRIs."
         ],
         "verdict": "pass"
       },
@@ -138,9 +83,117 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "7f2992b5-d3f6-49b1-8100-8927e8c711cb",
-      "headline": "Tesla Just Handed Indian Families a Six-Seat EV. The Price Tag Tells You Who It's Really For.",
-      "slug": "tesla-model-y-l-india-deliveries-six-seater-ev-nri-20260617",
+      "id": "ec38d6e3-9fbf-441c-bd4b-b486e6f2e4b0",
+      "headline": "India Is Quietly Making Its Tourist Visa a Year-Long, Multi-Entry Pass \u2014 A Win for OCI Families' Friends and Guests",
+      "slug": "india-etourist-visa-one-year-multiple-entry-relaxation-nri-20260617",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image is relevant to tourism but lacks a direct connection to the visa topic."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the visa changes to the needs of the diaspora, particularly in terms of family and professional travel."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including a more specific image that directly relates to the visa process or Indian tourism.",
+          "Add a brief section on how these changes might impact tourism statistics or economic benefits for India."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "93a3310b-c6ff-4867-8ad5-a74e75fe02b3",
+      "headline": "After a Record $30 Billion Exodus, Foreign Money Is Edging Back Into India. The Tide May Be Turning.",
+      "slug": "india-foreign-outflows-reversal-fpi-net-buyers-oil-rupee-ai-gap-nri-investor-20260617",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses foreign investment trends in India, which is relevant to NRIs interested in economic opportunities."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more specific examples of how NRIs can benefit from the changing investment landscape in India.",
+          "Add quotes or insights from NRI investors to enhance the diaspora connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "ae219377-81d6-4a0e-9252-26bf4b00b647",
+      "headline": "Three Servings of Whole Grains a Day Kept the Waistline in Check for 18 Years. The Refined Stuff Did the Opposite.",
+      "slug": "whole-grains-three-servings-waistline-blood-sugar-framingham-18-year-study-diaspora-20260617",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the findings to the Indian diaspora's dietary habits, providing practical suggestions for healthier choices."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a brief summary of the study's methodology for clarity.",
+          "Include a quote from a nutrition expert to enhance credibility."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "c140287d-4dfd-4559-a336-4ef73dcb9b54",
+      "headline": "Five-a-Day May Not Be Enough for Your Heart. The Foods That Matter Most Are Hiding in Plain Sight.",
+      "slug": "flavanols-five-a-day-heart-health-berries-green-tea-apples-reading-harvard-diaspora-20260617",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -156,54 +209,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the Tesla Model Y L to the interests of NRIs, discussing both returnees and investors."
+          "note": "The article effectively connects the findings to the South Asian community's health concerns, making it relevant for diaspora readers."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more statistics or data on the Indian EV market to strengthen the analysis.",
-          "Consider adding quotes or insights from industry experts to enhance credibility."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "ea3921c1-8bb3-4fa4-9f64-ec01f3c1d14d",
-      "headline": "Washington Told Anthropic to Cut Off Foreigners. Now India Is Asking Who Really Owns the AI It Runs On.",
-      "slug": "anthropic-foreign-national-suspension-india-sovereign-ai-debate-20260617",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "fbd5d7ec-1849-4799-99eb-3fa9a5162efd",
-            "headline": "Washington Has Cut Off India From Anthropic's Best AI. Benga"
-          }
-        ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image features Dario Amodei, a key figure in AI, which is relevant to the article's topic on AI ownership and policy, but it does not directly connect to the specific events discussed."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively addresses the implications of U.S. AI policy on Indian engineers and startups, making it relevant for the NRI audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more direct quotes from Indian diaspora figures to enhance the connection to the NRI audience.",
-          "Include a brief overview of the implications of AI policy changes for the Indian tech ecosystem to provide more context."
+          "Consider adding more specific examples of how to incorporate these flavanol-rich foods into traditional Indian dishes.",
+          "Include a brief section on the importance of consulting healthcare professionals before making significant dietary changes."
         ],
         "verdict": "pass"
       },
