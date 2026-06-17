@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-17T14:45:17.252102+00:00",
+  "timestamp": "2026-06-17T15:15:34.548592+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
+    "pass": 5,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "ba28e6e7-56aa-436a-83fc-2da53fe85707",
-      "headline": "A Man Tore the Indian Flag Outside a Texas City Hall. Six Indian-American Lawmakers Just Answered.",
-      "slug": "frisco-texas-indian-flag-torn-protest-indian-american-lawmakers-condemn-xenophobia-20260617",
+      "id": "e0c6fbfd-52a1-4089-8394-9e48ad7baf84",
+      "headline": "Wah, Kya Jodi Hai! The Fresh Bollywood Pairings That Will Define the Rest of 2026.",
+      "slug": "fresh-bollywood-pairings-second-half-2026-ranbir-sai-pallavi-alia-sharvari-kriti-rashmika-cocktail-2-alpha-ramayana-diaspora-nri-20260617",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -29,13 +29,157 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the incident to the Indian-American community's concerns about safety and acceptance in the U.S."
+          "note": "The article connects well with NRI audiences by discussing how fresh pairings impact film reception in diaspora markets."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from local Indian-American community members to provide a more personal perspective.",
-          "Include statistics or data on the Indian-American population in Frisco to strengthen the context."
+          "Consider adding more context on how these pairings have historically influenced box office success in diaspora markets.",
+          "Include quotes or insights from industry experts to enhance credibility and depth."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "8ec9d03b-b705-4466-af59-a8a243c30401",
+      "headline": "A $750K Horror Film Just Beat The Mummy in India. Obsession Is the Sleeper Nobody Saw Coming \u2014 and It Won't Stop Winning.",
+      "slug": "obsession-2026-box-office-phenomenon-curry-barker-michael-johnston-india-third-highest-hollywood-where-to-watch-diaspora-nri-20260617",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article connects well with the Indian diaspora by referencing familiar themes of obsession in Bollywood, making it relatable."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more direct quotes from critics or audience reactions to enhance engagement.",
+          "Include a brief comparison of the film's themes with specific Bollywood films to strengthen the diaspora connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "ac2e78ba-bd37-474c-b369-2571b88aef52",
+      "headline": "HCLTech Just Bought a Piece of the AI That Was Supposed to Kill It. The Target: India's Own Models.",
+      "slug": "hcltech-sarvam-ai-stake-sovereign-ai-india-it-services-20260617",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image is relevant to the tech theme but lacks a direct connection to HCLTech or AI."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the Sarvam deal to opportunities for Indian professionals abroad, making it relevant for the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of roles that may open up for diaspora professionals.",
+          "Include a quote from an industry expert or a diaspora professional to enhance credibility and engagement."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "e15c0843-87d4-44a1-9d05-94f8c9a8098a",
+      "headline": "A Canadian Pension Fund Just Bet $740 Million on Indian Server Farms. For NRI Investors, That's the Tell.",
+      "slug": "cpp-investments-ctrls-datacenters-india-ai-infrastructure-nri-20260617",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the investment in Indian data centers to opportunities for NRI investors, making the diaspora angle relevant and insightful."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of how NRI investors can engage with the Indian data center market.",
+          "Include quotes or insights from industry experts to enhance credibility and depth."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "d51f0541-fd12-451f-9a51-092c1f4dfe34",
+      "headline": "Sundar Pichai Just Booked Google's First $100 Billion Quarter. The Real Test Ships Next.",
+      "slug": "sundar-pichai-google-alphabet-100-billion-quarter-gemini-3-ai-20260617",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the significance of Google's milestone to Indian professionals and the diaspora, discussing implications for their careers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of how Indian engineers are contributing to Google's AI advancements.",
+          "Include quotes or insights from Indian professionals in the tech industry to enhance the diaspora perspective."
         ],
         "verdict": "pass"
       },
