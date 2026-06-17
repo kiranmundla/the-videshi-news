@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-17T02:45:19.858236+00:00",
+  "timestamp": "2026-06-17T03:15:46.579340+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
+    "pass": 5,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "b648ca1a-a388-4b9f-87b3-2dccc1014cad",
-      "headline": "From the Lincoln Memorial to Times Square, the Diaspora Rolls Out Its Mats for Yoga Day 2026",
-      "slug": "international-day-of-yoga-2026-us-diaspora-lincoln-memorial-times-square-healthy-ageing-20260617",
+      "id": "02d8dad4-dd75-4291-ae70-7af271bb687a",
+      "headline": "Thukra Ke Mera Pyaar Is Back \u2014 and This Time the Wronged Lovers Run the Country.",
+      "slug": "thukra-ke-mera-pyaar-season-2-jiohotstar-june-19-sanchita-basu-dhaval-thakur-where-to-watch-diaspora-nri-20260616",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -21,7 +21,13 @@
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://youtube.com/watch?v=3nElVHkpuKo",
+            "problem": "irrelevant",
+            "explanation": "The YouTube link does not appear to be directly related to the article's subject matter, which focuses on the show 'Thukra Ke Mera Pyaar'."
+          }
+        ],
         "image_match": {
           "score": 9,
           "issue": null
@@ -29,17 +35,18 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the yoga celebrations to the Indian diaspora's cultural identity and the theme of healthy ageing, making it relevant for NRI readers."
+          "note": "The article effectively connects with diaspora readers by discussing accessibility on JioHotstar and the cultural relevance of the show."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from participants or organizers to enhance the personal connection to the diaspora.",
-          "Include more statistics or anecdotes about the impact of Yoga Day on the diaspora community to strengthen the narrative."
+          "Replace the irrelevant YouTube link with a relevant embed that showcases the teaser or promotional content for Season 2.",
+          "Consider adding more quotes or insights from the cast or creators to enhance the depth of the article."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
+        "Removed irrelevant embed: https://youtube.com/watch?v=3nElVHkpuKo",
         "promoted to published"
       ],
       "revised": false,
@@ -47,15 +54,15 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "59d5f88a-52f0-43ce-a8de-111a8bfb9d4e",
-      "headline": "Indian Student Numbers in the US Just Fell 6.9% \u2014 the Sharpest Drop in a Decade",
-      "slug": "indian-student-enrolment-us-falls-6-9-percent-visa-denials-decade-high-2026-20260617",
+      "id": "9c9bef47-f60d-4357-a5f2-ecc4bba9b260",
+      "headline": "Ram Charan Just Showed the World His Twins. Three Tiny Hands, Two Words, and the Internet Lost It.",
+      "slug": "ram-charan-upasana-twins-shivram-anveera-first-glimpse-14th-anniversary-peddi-nri-20260616",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [
           {
-            "article_id": "7e4c0879-5475-4a71-a099-6edbd2a28cb2",
-            "headline": "Indian Americans Have Given American Universities $3 Billion"
+            "article_id": "22e4cb15-ecce-4fce-8269-6694efab8d36",
+            "headline": "Peddi Is Being Re-Edited While It's Still in Theatres. The S"
           }
         ],
         "broken_embeds": []
@@ -64,19 +71,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image features Ram Charan at a trailer launch, which is somewhat relevant but does not directly match the article's focus on his family and the recent reveal of his twins."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article discusses the impact of declining Indian student numbers on the Indian-American community, making it relevant to the diaspora."
+          "quality": 9,
+          "note": "The article effectively connects with the diaspora by discussing Ram Charan's appeal and significance to NRIs, particularly in relation to cultural values and family."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more statistics or quotes from experts to strengthen the argument.",
-          "Include personal stories or testimonials from affected students to enhance relatability."
+          "Consider using a more relevant image that directly relates to the family reveal or the twins.",
+          "Add a brief section on the significance of the names chosen for the twins to enhance cultural context."
         ],
         "verdict": "pass"
       },
@@ -88,31 +95,103 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "0d0f4ac9-6a01-4acd-aade-c6d360c02e10",
-      "headline": "India's Wholesale Inflation Just Hit a Six-Month High of 9.68%. The Middle East War Is Still on the Bill.",
-      "slug": "india-may-wholesale-inflation-9-68-percent-middle-east-fuel-shock-new-base-series-20260617",
+      "id": "f8c53a42-85a2-405c-b24a-c330d6d7f1f0",
+      "headline": "A Judge Killed Trump's $100,000 H-1B Fee. A Day Later, It Was Back. Tech's Indian Workforce Is on a Legal Seesaw.",
+      "slug": "h1b-100000-fee-struck-down-reinstated-appeal-tech-workers-20260617",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
-        "overall_score": 7,
+        "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 8,
-          "issue": "The image of the General Post Office and Reserve Bank of India is relevant to the economic topic but does not directly illustrate the inflation issue discussed."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article connects inflation to the impact on remittances, which is relevant for the diaspora, but the discussion could be expanded."
+          "quality": 8,
+          "note": "The article discusses the implications of H-1B visa changes on the Indian workforce in tech, which is highly relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Expand on the diaspora angle by including specific examples of how inflation affects remittances or the cost of living for NRIs.",
-          "Consider adding a more direct connection between the inflation data and its implications for the Indian economy as a whole, particularly in relation to global economic trends."
+          "Include more direct quotes from affected individuals or experts to enhance the narrative.",
+          "Add a section on potential future implications for the Indian tech workforce in the US."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "4a773a12-183c-4dc4-bc00-b6dbd77fcdb6",
+      "headline": "India Took 120 of Its Hardest Science Startups to France. They Came Back With $100 Million in Deals.",
+      "slug": "bharat-innovates-2026-iit-madras-agnikul-deep-tech-mous-20260617",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the significance of the event to the Indian diaspora, highlighting investment opportunities and career prospects in deep tech."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes or insights from diaspora professionals to enhance the connection.",
+          "Include more specific examples of how diaspora investment has impacted Indian startups."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "4bda92d9-bdb0-4989-90bf-87646d0299ec",
+      "headline": "Apple Wants a Quarter of Every iPhone Made in India. The Wells Next to the Factory Are the Catch.",
+      "slug": "apple-india-iphone-25-percent-foxconn-tata-manufacturing-20260617",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the manufacturing developments in India to the diaspora's skills and investment interests."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more statistics or data points to strengthen the argument about the impact on the diaspora.",
+          "Include quotes from industry experts or stakeholders to provide additional perspectives on the situation."
         ],
         "verdict": "pass"
       },
