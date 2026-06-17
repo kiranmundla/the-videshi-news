@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-17T20:45:12.841349+00:00",
+  "timestamp": "2026-06-17T21:15:30.925258+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
-    "flag": 0,
+    "pass": 3,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,81 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "31ecef4b-debf-4a10-b30f-85aac2956b89",
-      "headline": "Forbes Named America's Most Successful Immigrants. India Topped Every Other Country.",
-      "slug": "forbes-250-most-successful-immigrants-india-most-represented-khosla-pichai-nadella-20260617",
+      "id": "d6b17b6d-a9eb-45ab-9087-9ca6b57a92b7",
+      "headline": "India's Startup Money Is Flowing Again \u2014 and This Week the Smart Capital Bet on Boring",
+      "slug": "india-startup-funding-rebound-equal-ai-consumer-ai-nri-investors-disci-20260617",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image is relevant to the tech theme but does not specifically depict startups or funding."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively highlights the role of diaspora investors in the Indian startup ecosystem."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of diaspora investors or funds to strengthen the diaspora angle.",
+          "Include a visual representation of the funding trends to enhance reader engagement."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "40d899db-1591-49d4-aa5e-efdebd7274b0",
+      "headline": "Tata Just Put an Amazon Veteran in Charge of BigBasket. The 10-Minute Grocery War Is About to Get Uglier.",
+      "slug": "bigbasket-amit-nanda-amazon-tata-quick-commerce-war-nri-investors-20260617",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the topic of grocery delivery or BigBasket specifically."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the topic to the Indian American audience, highlighting their reliance on grocery delivery services for family in India."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that depicts grocery delivery or BigBasket specifically.",
+          "Add more statistics or data points about the impact of quick commerce on the Indian market to strengthen the argument."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "21231a77-39de-4234-8b99-d541481b0394",
+      "headline": "The World's Cybersecurity Firms Are Quietly Moving to Bengaluru. India's Tech Job Map Is Being Redrawn.",
+      "slug": "india-gcc-boom-cybersecurity-n-able-bengaluru-talent-h1b-pivot-20260617",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -29,17 +101,60 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article highlights the achievements of Indian immigrants in the U.S., which resonates well with the diaspora audience."
+          "note": "The article effectively connects the trends in cybersecurity job relocation to the Indian diaspora, highlighting both challenges and opportunities."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes or insights from the honorees to enhance the narrative.",
-          "Add a section on how these achievements impact the Indian diaspora community in the U.S."
+          "Include more statistics or quotes from industry experts to strengthen the argument.",
+          "Consider adding a section on how this trend might impact the Indian economy or tech landscape."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "9dff173d-6d75-4b6b-bbf4-e79b3e326a35",
+      "headline": "India Gets Spider-Man First. Brand New Day Swings Into Theatres July 30 \u2014 A Day Before America.",
+      "slug": "spider-man-brand-new-day-india-early-release-july-30-advance-booking-six-languages-tom-holland-where-to-watch-diaspora-nri-20260617",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/DZrMGl3tmvc/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not appear to be directly related to the article's subject about the Spider-Man film release."
+          }
+        ],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article mentions NRIs and encourages them to plan their weekend, which connects well with the diaspora audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the irrelevant Instagram embed with a more relevant social media post related to the film.",
+          "Expand on the diaspora angle by including specific details about how NRIs can access the film or any special screenings."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/DZrMGl3tmvc/",
         "promoted to published"
       ],
       "revised": false,
