@@ -938,8 +938,8 @@
       "away": "Norway",
       "venue": "Gillette Stadium",
       "city": "Boston",
-      "status": "scheduled",
-      "score": null,
+      "status": "FT",
+      "score": "1-4",
       "home_code": "IRQ",
       "away_code": "NOR"
     },
