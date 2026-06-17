@@ -118,8 +118,9 @@
   },
   {
     "date": "2026-06-16",
-    "monthly_pct_used": 0,
+    "monthly_pct_used": null,
     "daily_pct_used": null,
-    "source": "injected_context"
+    "source": "injected_context",
+    "note": "quota block not found in context"
   }
 ]
