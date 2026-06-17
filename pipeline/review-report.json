@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-17T21:15:30.925258+00:00",
+  "timestamp": "2026-06-17T22:15:39.078808+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
-    "flag": 1,
+    "pass": 6,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,81 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "d6b17b6d-a9eb-45ab-9087-9ca6b57a92b7",
-      "headline": "India's Startup Money Is Flowing Again \u2014 and This Week the Smart Capital Bet on Boring",
-      "slug": "india-startup-funding-rebound-equal-ai-consumer-ai-nri-investors-disci-20260617",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image is relevant to the tech theme but does not specifically depict startups or funding."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively highlights the role of diaspora investors in the Indian startup ecosystem."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more specific examples of diaspora investors or funds to strengthen the diaspora angle.",
-          "Include a visual representation of the funding trends to enhance reader engagement."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "40d899db-1591-49d4-aa5e-efdebd7274b0",
-      "headline": "Tata Just Put an Amazon Veteran in Charge of BigBasket. The 10-Minute Grocery War Is About to Get Uglier.",
-      "slug": "bigbasket-amit-nanda-amazon-tata-quick-commerce-war-nri-investors-20260617",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the topic of grocery delivery or BigBasket specifically."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the topic to the Indian American audience, highlighting their reliance on grocery delivery services for family in India."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that depicts grocery delivery or BigBasket specifically.",
-          "Add more statistics or data points about the impact of quick commerce on the Indian market to strengthen the argument."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "21231a77-39de-4234-8b99-d541481b0394",
-      "headline": "The World's Cybersecurity Firms Are Quietly Moving to Bengaluru. India's Tech Job Map Is Being Redrawn.",
-      "slug": "india-gcc-boom-cybersecurity-n-able-bengaluru-talent-h1b-pivot-20260617",
+      "id": "a4557ccd-ac92-49ef-8dc9-398cc9d1aa52",
+      "headline": "The Fed Just Stopped Promising Rate Cuts \u2014 and Started Hinting at a Hike. Warsh's First Meeting Spooked Wall Street.",
+      "slug": "fed-holds-rates-warsh-first-meeting-dot-plot-hike-june-2026-nri-investor-rupee-dollar-20260617",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -101,13 +29,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the trends in cybersecurity job relocation to the Indian diaspora, highlighting both challenges and opportunities."
+          "note": "The article effectively connects the Fed's decisions to the financial implications for NRIs, discussing remittances and savings."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more statistics or quotes from industry experts to strengthen the argument.",
-          "Consider adding a section on how this trend might impact the Indian economy or tech landscape."
+          "Consider adding more specific examples of how the Fed's decisions impact NRIs in different sectors.",
+          "Include quotes or insights from NRI financial experts to enhance the diaspora perspective."
         ],
         "verdict": "pass"
       },
@@ -119,42 +47,179 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "9dff173d-6d75-4b6b-bbf4-e79b3e326a35",
-      "headline": "India Gets Spider-Man First. Brand New Day Swings Into Theatres July 30 \u2014 A Day Before America.",
-      "slug": "spider-man-brand-new-day-india-early-release-july-30-advance-booking-six-languages-tom-holland-where-to-watch-diaspora-nri-20260617",
+      "id": "641a995b-d70c-414d-9c39-66656c402045",
+      "headline": "The People You Live With Are Quietly Rewiring Your Gut. A New Study Maps How Microbes Spread Under One Roof.",
+      "slug": "cohabitation-shared-microbiome-family-household-trento-study-diaspora-multigenerational-20260617",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/p/DZrMGl3tmvc/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post does not appear to be directly related to the article's subject about the Spider-Man film release."
-          }
-        ],
+        "overall_score": 8,
+        "embed_issues": [],
         "image_match": {
           "score": 9,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article mentions NRIs and encourages them to plan their weekend, which connects well with the diaspora audience."
+          "quality": 8,
+          "note": "The article effectively connects the study's findings to the multigenerational living situations common in the Indian diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant Instagram embed with a more relevant social media post related to the film.",
-          "Expand on the diaspora angle by including specific details about how NRIs can access the film or any special screenings."
+          "Consider adding more specific examples or anecdotes from Indian diaspora families to enhance relatability.",
+          "Include a brief summary of the study's methodology to strengthen the article's credibility."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DZrMGl3tmvc/",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "1e179e50-0559-47f5-9069-1d59560d04d4",
+      "headline": "A Single Gut Microbe Helped People Keep the Weight Off. A New Trial Puts a Number on It.",
+      "slug": "akkermansia-muciniphila-mucT-weight-loss-maintenance-nature-medicine-maastricht-diaspora-20260617",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the findings to the health challenges faced by the Indian and South Asian communities, making it relevant for diaspora readers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific statistics or studies related to the South Asian population's health issues to strengthen the diaspora angle.",
+          "Include quotes or insights from experts in the field to enhance credibility and engagement."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "ee45becb-11ab-4cd4-a401-276e42828c1b",
+      "headline": "Scandinavia Has a Nonstop to India Again \u2014 and It Doubles as a New Backdoor Route Home for US NRIs",
+      "slug": "sas-copenhagen-mumbai-nonstop-us-nri-backdoor-route-20260617",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the new flight route to the needs of the NRI community, particularly those in the US."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more specific examples or testimonials from NRIs who might benefit from this route.",
+          "Add a section on potential challenges or considerations for NRIs using this route."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "20a08ae7-9b91-4a86-aef8-93b0f0230a84",
+      "headline": "British Airways Is Quietly Reopening US Cities to India \u2014 and It's a Win for NRIs Far From the Big Hubs",
+      "slug": "british-airways-us-cities-india-one-stop-nri-secondary-hubs-20260617",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses the needs of NRIs living in secondary US cities, highlighting the benefits of British Airways' new routes."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from travel agents or diaspora community members to enhance the article's relatability.",
+          "Include a brief comparison of British Airways' service with other airlines to provide a more comprehensive view."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "1de09ef2-0ed5-47f4-93d1-40a7ec384283",
+      "headline": "Air India and Saudia Just Linked Their Networks \u2014 Why Gulf-Based NRIs Get the Biggest Win",
+      "slug": "air-india-saudia-codeshare-gulf-nri-single-ticket-20260617",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively highlights the benefits of the codeshare agreement for Gulf-based NRIs, particularly in terms of convenience and cost savings."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from industry experts or affected passengers to enhance the article's depth.",
+          "Include a brief comparison with other airlines' codeshare agreements to provide context."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
         "promoted to published"
       ],
       "revised": false,
