@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-17T20:15:22.226198+00:00",
+  "timestamp": "2026-06-17T20:45:12.841349+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
+    "pass": 1,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,45 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "a152cdfa-a9cd-4a01-b828-2a737025002f",
-      "headline": "The Citizenship Was Supposed to Be the Finish Line. A Wave of Denaturalization Cases Says Otherwise",
-      "slug": "denaturalization-campaign-widening-naturalized-indian-americans-doj-20260617",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the topic of denaturalization or immigration, but it is a generic representation of people."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses denaturalization cases specifically affecting Indian Americans, making it relevant to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that directly relates to immigration or denaturalization.",
-          "Add more statistics or quotes from experts to strengthen the argument and provide additional context."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "954fc179-cecd-4d3b-b7d3-315c14d319bb",
-      "headline": "A $15,000 Price Tag Just Got Attached to Your Parents' Visit",
-      "slug": "visa-bond-pilot-15000-b2-visitor-visa-india-family-visits-20260617",
+      "id": "31ecef4b-debf-4a10-b30f-85aac2956b89",
+      "headline": "Forbes Named America's Most Successful Immigrants. India Topped Every Other Country.",
+      "slug": "forbes-250-most-successful-immigrants-india-most-represented-khosla-pichai-nadella-20260617",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -64,50 +28,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively discusses the implications of the visa bond program on Indian families, highlighting its impact on diaspora life."
+          "quality": 8,
+          "note": "The article highlights the achievements of Indian immigrants in the U.S., which resonates well with the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include specific examples or anecdotes from families affected by the new visa bond policy to enhance relatability.",
-          "Add a section on potential alternatives or solutions for families facing the financial burden of the bond."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "65530d45-6536-4bb1-8dfa-c4b47073a5ca",
-      "headline": "The H-1B's Next Squeeze Isn't a Fee \u2014 It's a Rewrite of the Word 'Prevailing'",
-      "slug": "dol-prevailing-wage-overhaul-h1b-perm-india-software-engineers-20260617",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the topic of H-1B visas or immigration."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively addresses the impact of the proposed wage rule on Indian professionals, making it highly relevant for the diaspora audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that directly relates to immigration or H-1B visas to enhance relevance.",
-          "Add a brief summary or conclusion to reinforce the implications of the proposed changes for Indian professionals."
+          "Include more direct quotes or insights from the honorees to enhance the narrative.",
+          "Add a section on how these achievements impact the Indian diaspora community in the U.S."
         ],
         "verdict": "pass"
       },
