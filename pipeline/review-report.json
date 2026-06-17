@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-17T17:15:15.484719+00:00",
+  "timestamp": "2026-06-17T18:16:11.286226+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 0,
-    "flag": 1,
+    "pass": 12,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,47 +11,431 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "491f5b76-f647-4f19-908a-6fea7289f5bb",
-      "headline": "Akshay Kumar Just Dropped a Song Called 'Deewane Hain' and the Entire Welcome Franchise Came to the Party.",
-      "slug": "welcome-to-the-jungle-deewane-hain-song-teaser-akshay-kumar-ahmed-khan-reunion-june-26-jiostar-where-to-watch-diaspora-nri-20260617",
+      "id": "ccd21d4f-e08b-43e8-9a7d-4a7b3fe63586",
+      "headline": "Twenty-Four Thousand Signed Up for a 15,000-Seat Arena. The Real Story Is the 590 Organizations That Got Them There.",
+      "slug": "indian-american-mega-event-590-organizations-community-network-diaspor-20260617",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "dae945f4-4071-4448-ba27-8dd82e0b7fde",
-            "headline": "Welcome To The Jungle's Trailer Is 4 Minutes of Pure Chaos. "
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/reel/DZrP5ELpltr/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram reel does not appear to be directly related to the song or the film discussed in the article."
-          }
-        ],
+        "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image is relevant to the topic of the film but does not specifically represent the song 'Deewane Hain'."
+          "issue": "The image does not directly relate to the specific event or the Indian diaspora theme."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects the film's release to the diaspora audience, highlighting its availability on JioStar and its appeal for multi-generational families."
+          "note": "The article effectively highlights the organizational strength of the Indian-American community and its implications for the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant Instagram link with a more relevant embed related to the song or film.",
-          "Consider adding more details about the song's themes or musical style to enhance the article's depth."
+          "Consider using an image that directly represents the event or the Indian-American community to enhance relevance.",
+          "Add quotes or testimonials from participants or organizers to provide a personal touch and strengthen the narrative."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/reel/DZrP5ELpltr/",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "ec0d8d82-c218-4a08-88ce-1b7981d0c2c5",
+      "headline": "Indian Films Are Now Beating Australian Films at Australia's Own Box Office. A National Festival Is Trying to Turn That Into Permanence.",
+      "slug": "niffa-australia-2026-indian-cinema-diaspora-box-office-regional-expans-20260617",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image features Anupam Kher, which is relevant to the article discussing the Indian Film Festival and his involvement, but it could be more directly related to the festival itself."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the Indian film festival to the Indian diaspora in Australia, highlighting cultural significance and community engagement."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including more direct quotes from festival organizers or attendees to enhance the personal connection to the diaspora experience.",
+          "Add a section discussing the impact of Indian films on Australian cinema or vice versa to provide a broader context."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "576a6bb6-3aec-45d2-9fb1-c9ec4cbce756",
+      "headline": "On June 21, the Indian Diaspora Will Roll Out Mats From Times Square to the Lincoln Memorial. It Is the Most Organized Soft Power India Owns.",
+      "slug": "international-yoga-day-2026-diaspora-times-square-lincoln-memorial-sof-20260617",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively highlights the role of the Indian diaspora in organizing Yoga Day events, making it relevant to NRI readers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from participants or organizers to enhance the narrative.",
+          "Include more statistics or data on the impact of Yoga Day events in the diaspora."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "e7ff5766-1b45-4368-99fb-04701bbed441",
+      "headline": "Indian Travelers Are Discovering the 'Coolcation' \u2014 and Finland's Arrivals From India Just Jumped 52%",
+      "slug": "finland-coolcation-indian-arrivals-surge-nri-nordic-escape-20260617",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the trend of 'coolcation' to the diaspora's travel preferences and economic considerations."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of Indian travelers' experiences in Finland to enhance relatability.",
+          "Include quotes or testimonials from travelers or travel experts to add depth and credibility."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "04db0ad2-e0ef-43f8-a010-0c5e9723053e",
+      "headline": "Landing in India? The Paper Arrival Form Is Gone \u2014 Here's the App You Now Need Before You Fly",
+      "slug": "india-e-arrival-card-mandatory-su-swagatam-app-oci-guide-20260617",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses the needs of NRIs traveling to India, providing relevant information about the new e-Arrival Card process."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a brief section on how this change may impact the travel experience for NRIs specifically.",
+          "Include a link to the official app download page for easier access."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "fadeaf48-53c2-44ac-a3f8-84937dad3a93",
+      "headline": "No More Flying Home Just to Renew a Visa \u2014 the US Pilot That Could Spare Indian Workers the Trip",
+      "slug": "us-domestic-visa-renewal-pilot-indians-h1b-no-trip-home-20260617",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the topic of visa renewal or immigration."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses a significant change in visa policy that directly impacts Indian workers in the US, making it relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that visually represents the concept of visa renewal or immigration to enhance relevance.",
+          "Add a brief section on how this change might affect future immigration policies or trends for Indian workers."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "9350b99d-148c-4ed8-99b3-af04a87a5e03",
+      "headline": "India's Markets Just Logged Their Longest Winning Streak in Two Months. The Engine Is Cheaper Oil \u2014 and a Fragile Iran Deal.",
+      "slug": "india-markets-four-session-winning-streak-nifty-24000-oil-three-month-low-us-iran-deal-nri-investor-20260617",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses the impact of oil prices and the rupee on NRIs, which is relevant but could be expanded."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Expand on the diaspora angle by providing more specific examples of how NRIs can navigate the changing economic landscape.",
+          "Include a brief summary or conclusion that ties the economic implications back to the broader context of the Indian diaspora."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "e9c982ce-c445-4d2e-a5ec-c849ba316f15",
+      "headline": "You Do Not Need to Sit Less. You Need to Stand Up More Often. A New Trial Found Rising From Your Chair Lowers Blood Pressure.",
+      "slug": "sit-to-stand-frequency-blood-pressure-postmenopausal-women-ucsd-rise-trial-diaspora-20260617",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the findings to the health concerns of the Indian diaspora, particularly among women."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more statistics or data specific to the Indian diaspora to strengthen the connection.",
+          "Include quotes or insights from diaspora health experts to enhance credibility."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "55ee912e-1a1b-4463-9ff4-5b585f30b658",
+      "headline": "The Longevity Sweet Spot Is Not the Gym Rat's. Just 90 Minutes of Weights a Week Cut Death Risk in a 30-Year Study.",
+      "slug": "resistance-training-90-119-minutes-week-longevity-bjsm-harvard-30-year-study-diaspora-20260617",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the findings to the health concerns prevalent in the Indian diaspora, making it relevant."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a quote from a health expert to enhance credibility.",
+          "Include practical tips for incorporating strength training into daily routines for diaspora readers."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "c3e64575-8fa3-4b4b-86c0-70a06b437257",
+      "headline": "India Just Gave Companies 12 Hours to Patch a Hacked System. AI Is the Reason the Clock Got So Short.",
+      "slug": "cert-in-12-hour-patching-ai-cyberattacks-indian-it-firms-diaspora-20260617",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the cybersecurity measures in India to the concerns of NRIs regarding data security, making it relevant to the diaspora audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of how the 12-hour patching deadline has impacted Indian IT firms working with Western clients.",
+          "Include quotes or insights from industry experts to enhance credibility and depth."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "dcafd802-497f-4d76-8bdf-7e6932afe03d",
+      "headline": "Salesforce Just Paid $3.6 Billion for an AI Agent. It's Buying Insurance Against Its Own Obsolescence.",
+      "slug": "salesforce-fin-intercom-3-6-billion-agentforce-ai-agents-indian-engine-20260617",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the Salesforce acquisition to the impact on Indian-origin professionals, highlighting job security and shifts in roles."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of how Indian professionals are adapting to these changes in the Salesforce ecosystem.",
+          "Include quotes or insights from Indian professionals in the Salesforce ecosystem to enhance the diaspora connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "d0533a8f-e6d3-4ff4-b313-21b50495d138",
+      "headline": "Razorpay Files Quietly for a $600 Million IPO. The Valuation Cut Tells the Real Story.",
+      "slug": "razorpay-600-million-confidential-ipo-valuation-reset-nri-investors-20260617",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to Razorpay or fintech specifically, but is a generic business-related image."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects Razorpay's IPO to the interests of the NRI community, discussing implications for their investments and the broader market."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that directly represents Razorpay or the fintech industry.",
+          "Add a brief section summarizing the potential impact of Razorpay's IPO on the Indian fintech landscape for clarity."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
         "promoted to published"
       ],
       "revised": false,
