@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-17T13:45:11.739148+00:00",
+  "timestamp": "2026-06-17T14:15:43.929379+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
+    "pass": 6,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,158 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "cf60256c-6b8e-4ae5-9777-abc55b8fb366",
-      "headline": "Two Centuries, a 224-Run Stand, and India's 500th ODI Win: Gill and Kishan Sink Afghanistan in Lucknow",
-      "slug": "gill-kishan-centuries-india-beat-afghanistan-2nd-odi-lucknow-500th-win-series-clinched-2026-nri",
+      "id": "5d9ef4ba-af5e-49a2-a7a2-7c535c1f2aff",
+      "headline": "Delhi's Second Big Airport Is Finally Flying \u2014 Why NRIs With Roots in North India Should Care",
+      "slug": "noida-international-airport-jewar-first-flight-nri-north-india-20260617",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "b8d1b955-f5a7-463c-8599-a5d9a549abc7",
+            "headline": "The Mega-Airport Near Agra Is Almost Ready \u2014 and It Could Re"
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the new airport's significance to NRIs with roots in North India, discussing practical benefits and future implications."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from industry experts or local officials to enhance credibility.",
+          "Include more specific examples of how the airport will impact travel times for NRIs."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "3fadaa17-4128-4680-aaef-3116f8912667",
+      "headline": "International Airfares Just Dropped Below $1,000 \u2014 Here's the India-Route Window NRIs Should Grab",
+      "slug": "international-airfares-drop-below-1000-india-route-deals-nri-20260617",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively addresses the needs and concerns of NRIs regarding airfare and travel to India."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of how NRIs can save on travel costs or tips for booking.",
+          "Include a brief section on potential travel restrictions or considerations for NRIs traveling to India."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "f0d512ff-c9fd-4690-a65c-0a17ed3fdd5e",
+      "headline": "America's National Parks Just Got Pricier for Visiting Family \u2014 and the Reservation Rules Quietly Vanished",
+      "slug": "national-parks-2026-nonresident-surcharge-reservation-changes-nri-20260617",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the changes in national park pricing and reservation rules to the experiences of Indian American families, making it relevant for the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of how these changes might impact travel plans for Indian families visiting the U.S.",
+          "Include quotes or insights from Indian American families or travel experts to enhance the article's relatability."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "8efef0b6-5d75-4dbc-8b20-c39b662ca58e",
+      "headline": "AI Fear Gutted India's IT Stocks by 27%. Now Some of the World's Biggest Investors Are Calling It a Bargain.",
+      "slug": "india-it-stocks-27-percent-fall-ai-disruption-tcs-infosys-contrarian-blackrock-nri-investor-20260617",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses the impact of IT stock fluctuations on NRIs, making it relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Expand on how the IT stock situation specifically affects NRI investors.",
+          "Include quotes or insights from NRI investors to enhance the diaspora perspective."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "17125a8a-00cb-4109-aa1d-ac23e644b910",
+      "headline": "A Two-Year Brain Experiment Just Proved You Can Slow Mental Decline. The Recipe Is Boring \u2014 and It Works.",
+      "slug": "us-pointer-trial-structured-lifestyle-cognition-mind-diet-exercise-brain-aging-diaspora-20260617",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -29,13 +178,49 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article connects well with the Indian diaspora by highlighting the significance of India's cricketing achievements and their relevance to fans worldwide."
+          "note": "The article effectively connects the findings of the study to the Indian diaspora's cultural practices and challenges regarding dementia."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from players or coaches to enhance the narrative.",
-          "Include more statistics or historical context about India's ODI wins for deeper engagement."
+          "Consider adding more specific examples of how diaspora families can implement the structured lifestyle changes suggested by the study.",
+          "Include quotes or insights from experts in the field of dementia care to enhance credibility and depth."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "31f04858-1a62-4d58-b58d-269c8063808c",
+      "headline": "The Skinny Jab Has a Hidden Catch. People on Ozempic Are Quietly Moving Less, Not More.",
+      "slug": "glp1-ozempic-wegovy-physical-activity-decline-fitbit-endo-2026-muscle-loss-diaspora-20260617",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the findings of the study to the Indian-American diaspora, highlighting the relevance of GLP-1 medications in their health discussions."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific statistics or data points related to the Indian-American community's health issues to strengthen the diaspora angle.",
+          "Include quotes or insights from diaspora health experts to enhance credibility and relatability."
         ],
         "verdict": "pass"
       },
