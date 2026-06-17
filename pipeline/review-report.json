@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-17T10:45:13.867760+00:00",
+  "timestamp": "2026-06-17T11:15:18.626910+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 0,
+    "pass": 1,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,12 +11,17 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "b1b7e669-f86a-41bc-b7e5-988d19127a13",
-      "headline": "274 Days Without a Throw. On Friday, Neeraj Chopra Finally Returns \u2014 in the City Where He First Broke 90 Metres.",
-      "slug": "neeraj-chopra-doha-diamond-league-2026-comeback-274-days-back-injury-first-throw-arshad-nadeem-cwg-nri",
+      "id": "18fd2ff5-0575-4275-8a5d-a062d5caf050",
+      "headline": "Alia Bhatt Has Reportedly Slipped Into the Kalki Universe \u2014 Not as Deepika's Replacement, but as a Goddess.",
+      "slug": "alia-bhatt-kalki-2-vaishno-devi-prabhas-nag-ashwin-deepika-padukone-exit-sai-pallavi-where-to-watch-diaspora-nri-20260617",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "747176fc-dc1f-4857-a0a4-2b292c5a22a8",
+            "headline": "Alpha Is Bollywood's First Female-Led Spy Film. The Trolls A"
+          }
+        ],
         "broken_embeds": []
       },
       "llm_review": {
@@ -28,14 +33,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article discusses Neeraj Chopra's return to competition, which is of significant interest to the Indian diaspora, particularly those who follow athletics and Indian sports achievements."
+          "quality": 7,
+          "note": "The article connects to the diaspora by mentioning the film's streaming success on platforms popular among NRIs."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes from Neeraj Chopra or his coach to add a personal touch.",
-          "Provide more context on the significance of the Doha Diamond League for NRI readers."
+          "Include more direct quotes or reactions from diaspora audiences regarding the film.",
+          "Add a brief section on how the film's themes resonate with the Indian diaspora."
         ],
         "verdict": "pass"
       },
@@ -47,9 +52,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "e6417a06-f189-4f46-934a-6e7d9dbc5603",
-      "headline": "Three Indian Seafarers Are Dead Off Oman. India's Invisible Diaspora Just Became a Diplomatic Crisis.",
-      "slug": "us-blockade-strikes-kill-three-indian-seafarers-oman-settebello-diaspora-safety-20260617",
+      "id": "84435d08-eb24-4cda-b0d9-929449003e89",
+      "headline": "Karan Johar Just Bowed to Malayalam Cinema. Dharma's First Mollywood Film Is a Shape-Shifter Horror With Prithviraj and Manju Warrier.",
+      "slug": "odiyan-the-age-of-illusion-dharma-productions-malayalam-debut-prithviraj-manju-warrier-rahul-sadasivan-karan-johar-20260617",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -57,25 +62,32 @@
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/DZosu_rCMDn/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not appear to be directly related to the announcement of the film or Karan Johar's involvement in Malayalam cinema."
+          }
+        ],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image of Prithviraj does not directly relate to the film being discussed, which is about a shape-shifting demon and may not represent the horror theme."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively highlights the plight of Indian seafarers and their remittances, connecting well with the diaspora audience."
+          "quality": 9,
+          "note": "The article effectively connects the film's significance to the diaspora audience, highlighting their growing interest in Malayalam cinema."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes from seafarer organizations or experts to provide additional perspectives.",
-          "Add more context about the historical relationship between India and the US regarding maritime safety."
+          "Replace the irrelevant Instagram embed with a more relevant source or image related to the film announcement.",
+          "Consider using an image that better represents the horror theme of the film to align with the article's content."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/DZosu_rCMDn/",
         "promoted to published"
       ],
       "revised": false,
