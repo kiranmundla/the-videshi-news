@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-17T01:45:08.682198+00:00",
+  "timestamp": "2026-06-17T02:45:19.858236+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
+    "pass": 3,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "8df21864-bb00-4555-97fd-0fa2a686a7d5",
-      "headline": "A 21-Year-Old From Madurai Just Won an NCAA Title in Eugene. It Was India's First in Four Years.",
-      "slug": "selva-prabhu-ncaa-outdoor-triple-jump-champion-2026-kansas-state-madurai-hayward-field-india-college-pipeline-nri",
+      "id": "b648ca1a-a388-4b9f-87b3-2dccc1014cad",
+      "headline": "From the Lincoln Memorial to Times Square, the Diaspora Rolls Out Its Mats for Yoga Day 2026",
+      "slug": "international-day-of-yoga-2026-us-diaspora-lincoln-memorial-times-square-healthy-ageing-20260617",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -29,13 +29,90 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects Prabhu's achievement to the experiences of Indian-origin families in the U.S., highlighting the significance of the NCAA system for both Indian and diaspora athletes."
+          "note": "The article effectively connects the yoga celebrations to the Indian diaspora's cultural identity and the theme of healthy ageing, making it relevant for NRI readers."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from Prabhu or his family to provide a personal touch.",
-          "Include more context about the impact of NCAA titles on athletes' careers in India."
+          "Consider adding quotes from participants or organizers to enhance the personal connection to the diaspora.",
+          "Include more statistics or anecdotes about the impact of Yoga Day on the diaspora community to strengthen the narrative."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "59d5f88a-52f0-43ce-a8de-111a8bfb9d4e",
+      "headline": "Indian Student Numbers in the US Just Fell 6.9% \u2014 the Sharpest Drop in a Decade",
+      "slug": "indian-student-enrolment-us-falls-6-9-percent-visa-denials-decade-high-2026-20260617",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "7e4c0879-5475-4a71-a099-6edbd2a28cb2",
+            "headline": "Indian Americans Have Given American Universities $3 Billion"
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the impact of declining Indian student numbers on the Indian-American community, making it relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more statistics or quotes from experts to strengthen the argument.",
+          "Include personal stories or testimonials from affected students to enhance relatability."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "0d0f4ac9-6a01-4acd-aade-c6d360c02e10",
+      "headline": "India's Wholesale Inflation Just Hit a Six-Month High of 9.68%. The Middle East War Is Still on the Bill.",
+      "slug": "india-may-wholesale-inflation-9-68-percent-middle-east-fuel-shock-new-base-series-20260617",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 8,
+          "issue": "The image of the General Post Office and Reserve Bank of India is relevant to the economic topic but does not directly illustrate the inflation issue discussed."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article connects inflation to the impact on remittances, which is relevant for the diaspora, but the discussion could be expanded."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Expand on the diaspora angle by including specific examples of how inflation affects remittances or the cost of living for NRIs.",
+          "Consider adding a more direct connection between the inflation data and its implications for the Indian economy as a whole, particularly in relation to global economic trends."
         ],
         "verdict": "pass"
       },
