@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-06-17T03:57:49Z",
-  "stage": "Group Stage — 19 of 72 matches played",
+  "last_updated": "2026-06-17T07:59:03Z",
+  "stage": "Group Stage — 20 of 72 matches played",
   "hosts": "USA, Mexico & Canada",
   "dates": {
     "start": "2026-06-11",
@@ -521,25 +521,25 @@
         "code": "AUT",
         "flag": "🇦🇹",
         "rank": 24,
-        "p": 0,
-        "w": 0,
+        "p": 1,
+        "w": 1,
         "d": 0,
         "l": 0,
-        "gf": 0,
-        "ga": 0,
-        "pts": 0
+        "gf": 3,
+        "ga": 1,
+        "pts": 3
       },
       {
         "name": "Jordan",
         "code": "JOR",
         "flag": "🇯🇴",
         "rank": 63,
-        "p": 0,
+        "p": 1,
         "w": 0,
         "d": 0,
-        "l": 0,
-        "gf": 0,
-        "ga": 0,
+        "l": 1,
+        "gf": 1,
+        "ga": 3,
         "pts": 0
       },
       {
@@ -968,8 +968,8 @@
       "away": "Jordan",
       "venue": "Levi's Stadium",
       "city": "San Francisco Bay Area",
-      "status": "scheduled",
-      "score": null,
+      "status": "FT",
+      "score": "3-1",
       "home_code": "AUT",
       "away_code": "JOR"
     },
@@ -1783,6 +1783,34 @@
     }
   },
   "highlights": [
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DZrTRkiC1Kf/",
+      "account": "@fifaworldcup",
+      "caption": "+3 for Austria 🇦🇹 — Austria 3-1 Jordan #FIFAWorldCup",
+      "date": "2026-06-16"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DZrV2wMCpaR/",
+      "account": "@fifaworldcup",
+      "caption": "Ali Olwan — Superior Player of the Match 🇯🇴 — Austria 3-1 Jordan #FIFAWorldCup",
+      "date": "2026-06-16"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DZrPFganHRl/",
+      "account": "@fifaworldcup",
+      "caption": "🇯🇴 Jordan score their first-ever goal in their first-ever #FIFAWorldCup game! — Austria 3-1 Jordan",
+      "date": "2026-06-16"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DZrXaJ7GyEw",
+      "account": "@fifaworldcup",
+      "caption": "Group J Standings — Argentina, Austria, Jordan, Algeria",
+      "date": "2026-06-16"
+    },
     {
       "platform": "instagram",
       "url": "https://www.instagram.com/p/DZq8wfUHKvI/",
