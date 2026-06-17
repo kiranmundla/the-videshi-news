@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-17T16:45:18.864607+00:00",
+  "timestamp": "2026-06-17T17:15:15.484719+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 0,
+    "pass": 0,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,71 +11,47 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "3efb1df5-49ef-4cf8-9fcd-5eb1de0abfcd",
-      "headline": "India's Women Just Posted Their Highest-Ever World Cup Total. Mandhana and Shafali Took 11 Overs to Bury the Netherlands.",
-      "slug": "india-women-209-5-highest-t20-world-cup-total-mandhana-74-shafali-55-netherlands-headingley-2026-nri",
+      "id": "491f5b76-f647-4f19-908a-6fea7289f5bb",
+      "headline": "Akshay Kumar Just Dropped a Song Called 'Deewane Hain' and the Entire Welcome Franchise Came to the Party.",
+      "slug": "welcome-to-the-jungle-deewane-hain-song-teaser-akshay-kumar-ahmed-khan-reunion-june-26-jiostar-where-to-watch-diaspora-nri-20260617",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "dae945f4-4071-4448-ba27-8dd82e0b7fde",
+            "headline": "Welcome To The Jungle's Trailer Is 4 Minutes of Pure Chaos. "
+          }
+        ],
         "broken_embeds": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DZrP5ELpltr/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel does not appear to be directly related to the song or the film discussed in the article."
+          }
+        ],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image is relevant to the topic of the film but does not specifically represent the song 'Deewane Hain'."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the performance of the Indian women's cricket team to the sentiments of the NRI community, particularly in the UK."
+          "quality": 9,
+          "note": "The article effectively connects the film's release to the diaspora audience, highlighting its availability on JioStar and its appeal for multi-generational families."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more quotes from players or coaches to enhance the narrative.",
-          "Include statistics or historical context about the Indian women's cricket team to engage readers further."
+          "Replace the irrelevant Instagram link with a more relevant embed related to the song or film.",
+          "Consider adding more details about the song's themes or musical style to enhance the article's depth."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "893a7bc7-28c7-4523-b5a8-ce37a505dad2",
-      "headline": "Trump Says He'll 'Be There' to Defend India as He and Modi Reset Ties at the G7",
-      "slug": "modi-trump-g7-bilateral-france-trade-deal-defend-india-20260617",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the geopolitical developments to the interests of the Indian diaspora, particularly in terms of trade and safety."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more direct quotes from Modi or Trump to enhance the narrative.",
-          "Include a brief background on the Quad alliance for readers unfamiliar with it."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DZrP5ELpltr/",
         "promoted to published"
       ],
       "revised": false,
