@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-17T19:15:17.264320+00:00",
+  "timestamp": "2026-06-17T19:45:09.334145+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 1,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,45 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "e91b89b1-6f1d-4c07-9dd9-55c34477d72b",
-      "headline": "Bollywood Is Throwing India's Biggest Beauty Party on June 20 \u2014 and for the First Time, You're Invited From Your Couch in New Jersey.",
-      "slug": "amazon-beautyverse-2026-mumbai-june-20-ananya-panday-shilpa-shetty-karisma-kapoor-jacqueline-fernandez-sonakshi-sinha-online-storefront-prime-day-diaspora-nri-20260617",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image features Ananya Panday, which is relevant to the article's focus on the Beautyverse event and its celebrity attendees."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the Beautyverse event to the NRI audience by discussing the challenges they face in accessing Indian beauty products and how this event addresses those issues."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more details about how the Beautyverse storefront will operate for international customers.",
-          "Include quotes or insights from diaspora members to enhance the connection with the audience."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "25fd1005-5f05-49fa-bccb-d5baa5ebfc90",
-      "headline": "Sonu Nigam Showed Fans the Patch on His Shoulder and Said the Words No Singer Wants To: 'My Nerves Are Pinched.'",
-      "slug": "sonu-nigam-health-update-pinched-nerve-mri-ct-scan-physiotherapy-mumbai-concert-revolution-tour-diaspora-nri-20260617",
+      "id": "a2d559e4-90ac-45f9-8d6c-1248b37fbdbd",
+      "headline": "Same Week the Men Finished Last, India's Women Are Unbeaten in Auckland \u2014 and One Step From a Pro League Promotion",
+      "slug": "india-women-hockey-fih-nations-cup-2026-auckland-semifinal-pro-league-promotion-salima-tete-deepika-nri",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -64,14 +28,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects Sonu Nigam's struggles with the emotional ties of the diaspora, emphasizing how his concerts serve as a cultural touchstone."
+          "quality": 8,
+          "note": "The article effectively connects the women's hockey team's achievements to the emotional ties of the Indian diaspora, emphasizing the significance of hockey in Indian culture."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a quote from a fan or a cultural expert to enhance the emotional connection.",
-          "Include more context about Sonu Nigam's impact on the diaspora beyond just concert locations."
+          "Consider adding quotes from players or coaches to enhance the narrative.",
+          "Include more context about the significance of the Pro League for the women's team."
         ],
         "verdict": "pass"
       },
