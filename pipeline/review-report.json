@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-17T03:15:46.579340+00:00",
+  "timestamp": "2026-06-17T06:15:51.871368+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 5,
+    "pass": 9,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "02d8dad4-dd75-4291-ae70-7af271bb687a",
-      "headline": "Thukra Ke Mera Pyaar Is Back \u2014 and This Time the Wronged Lovers Run the Country.",
-      "slug": "thukra-ke-mera-pyaar-season-2-jiohotstar-june-19-sanchita-basu-dhaval-thakur-where-to-watch-diaspora-nri-20260616",
+      "id": "81f77671-02ee-454d-b9c9-e8962ce22e10",
+      "headline": "India's Hotel Boom Is Reshaping Where NRIs Stay \u2014 Marriott's 10,000th Property Lands in Tiger Country",
+      "slug": "india-hotel-boom-2026-nri-marriott-ranthambore-udaipur-20260617",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -21,13 +21,7 @@
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://youtube.com/watch?v=3nElVHkpuKo",
-            "problem": "irrelevant",
-            "explanation": "The YouTube link does not appear to be directly related to the article's subject matter, which focuses on the show 'Thukra Ke Mera Pyaar'."
-          }
-        ],
+        "embed_issues": [],
         "image_match": {
           "score": 9,
           "issue": null
@@ -35,18 +29,17 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects with diaspora readers by discussing accessibility on JioHotstar and the cultural relevance of the show."
+          "note": "The article effectively connects the hotel boom to the needs and preferences of NRIs, highlighting practical benefits for their travel."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant YouTube link with a relevant embed that showcases the teaser or promotional content for Season 2.",
-          "Consider adding more quotes or insights from the cast or creators to enhance the depth of the article."
+          "Consider adding more statistics or data points to strengthen the argument about the hotel boom.",
+          "Include quotes from industry experts or travelers to provide a more personal touch and enhance credibility."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://youtube.com/watch?v=3nElVHkpuKo",
         "promoted to published"
       ],
       "revised": false,
@@ -54,15 +47,272 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "9c9bef47-f60d-4357-a5f2-ecc4bba9b260",
-      "headline": "Ram Charan Just Showed the World His Twins. Three Tiny Hands, Two Words, and the Internet Lost It.",
-      "slug": "ram-charan-upasana-twins-shivram-anveera-first-glimpse-14th-anniversary-peddi-nri-20260616",
+      "id": "9149bbdb-c033-4f6c-b5a4-b287a8b15400",
+      "headline": "Your US Visa Is the Key to Mexico \u2014 How Indian Travelers Can Skip the Visa and Catch the World Cup",
+      "slug": "mexico-visa-free-indians-us-visa-world-cup-2026-nri-20260617",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the article's focus on visas and travel logistics."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses the Indian diaspora's travel concerns and highlights the benefits of holding a US visa."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that depicts travel or visa-related themes.",
+          "Add a section with tips specifically for Indian travelers regarding cultural aspects or popular destinations in Mexico."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "fb066f00-a2d6-44b5-882f-bb3d9c7c009f",
+      "headline": "America's National Parks Just Got Easier to Visit This Summer \u2014 A Road-Trip Guide for NRI Families",
+      "slug": "us-national-parks-summer-2026-nri-family-road-trip-guide-20260617",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the topic of national parks to NRI families, highlighting their travel preferences and practical considerations."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include specific examples of popular national parks that NRI families might visit.",
+          "Add a section on cultural considerations or tips for NRI families traveling in the U.S."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "8fb6d253-0ec4-429c-af78-8191c8ace9b4",
+      "headline": "India's Biggest IPO Ever Is About to Land. Reliance Jio May File Draft Papers Within Days.",
+      "slug": "reliance-jio-ipo-draft-filing-4-billion-ambani-agm-largest-india-listing-nri-investor-20260617",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the IPO to the daily lives of NRIs, making it relevant and relatable."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more direct quotes from industry experts to enhance credibility.",
+          "Include a brief section on how NRIs can participate in the IPO process."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "ca08119d-0f78-4afa-90d2-9d7767cf9ba2",
+      "headline": "Treat Your Hearing Before 70 and Cut Dementia Risk by 60%. The Evidence Is Now Hard to Ignore.",
+      "slug": "hearing-loss-treatment-before-70-dementia-risk-johns-hopkins-achieve-diaspora-elders-20260617",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the research findings to the experiences of the Indian diaspora, particularly in managing the health of ageing parents."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more statistics or quotes from experts to strengthen the argument.",
+          "Include a section on how to access hearing tests or resources for NRIs to help their parents."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "86e8f736-e000-4250-aecb-5e15183345b2",
+      "headline": "The Spice in Every Indian Kitchen Just Got a Diabetes Study. Curcumin Cut Inflammation in 28 Trials.",
+      "slug": "turmeric-curcumin-inflammation-prediabetes-type-2-diabetes-slu-meta-analysis-south-asian-20260617",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article connects well with the diaspora by discussing the relevance of curcumin in managing diabetes, a concern for many South Asians."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of how curcumin can be incorporated into the diet for diabetes management.",
+          "Include quotes or insights from diaspora health experts to strengthen the connection with the NRI audience."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "9d730ad7-1227-4aed-8a25-0061d0527668",
+      "headline": "India's Biggest EV Wave Yet Starts This Week. Ola's Collapse Shows Why Speed Was Never the Point.",
+      "slug": "india-ev-launch-wave-2026-ola-electric-collapse-ather-nri-investors-20260617",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses NRI investors and provides insights relevant to their interests in India's EV market."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of how NRI investors can engage with the Indian EV market.",
+          "Include quotes or insights from industry experts to enhance credibility and depth."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "8aa4fd27-b618-460f-a6d7-ca8a0461c849",
+      "headline": "Nikesh Arora Spent $30 Billion Rebuilding Palo Alto Networks for the Age of AI Agents",
+      "slug": "nikesh-arora-palo-alto-networks-cyberark-agentic-ai-security-20260617",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [
           {
-            "article_id": "22e4cb15-ecce-4fce-8269-6694efab8d36",
-            "headline": "Peddi Is Being Re-Edited While It's Still in Theatres. The S"
+            "article_id": "4936758c-cfe4-40f8-ba97-7e75be623ecf",
+            "headline": "Nikesh Arora's Palo Alto Networks Posts $3 Billion Quarter. "
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the topic of cybersecurity and AI to the Indian diaspora, particularly Indian engineers, highlighting opportunities and trends relevant to them."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more direct quotes from Nikesh Arora to enhance the article's depth.",
+          "Include a brief overview of Palo Alto Networks' previous acquisitions to provide context for the current strategy."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "1ee2e570-318b-4747-bd16-f061c649e7a8",
+      "headline": "TCS Cut 12,000 Jobs From the Middle. The Layer That Built India's IT Industry Is the One AI Is Erasing.",
+      "slug": "tcs-12000-layoffs-middle-management-ai-agents-india-it-20260617",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "894d69f0-8e8a-4745-89b8-43b20a7b0367",
+            "headline": "TCS Bet Against AI Was Killing It. Now It's Partnering With "
           }
         ],
         "broken_embeds": []
@@ -72,126 +322,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image features Ram Charan at a trailer launch, which is somewhat relevant but does not directly match the article's focus on his family and the recent reveal of his twins."
+          "issue": "The image features N. Chandrasekaran, which is relevant to the article's content about TCS, but it may not directly represent the broader theme of job cuts and AI impact."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects with the diaspora by discussing Ram Charan's appeal and significance to NRIs, particularly in relation to cultural values and family."
+          "note": "The article effectively connects the job cuts at TCS to the implications for the Indian diaspora, particularly regarding employment opportunities and immigration pathways."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that directly relates to the family reveal or the twins.",
-          "Add a brief section on the significance of the names chosen for the twins to enhance cultural context."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "f8c53a42-85a2-405c-b24a-c330d6d7f1f0",
-      "headline": "A Judge Killed Trump's $100,000 H-1B Fee. A Day Later, It Was Back. Tech's Indian Workforce Is on a Legal Seesaw.",
-      "slug": "h1b-100000-fee-struck-down-reinstated-appeal-tech-workers-20260617",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses the implications of H-1B visa changes on the Indian workforce in tech, which is highly relevant to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more direct quotes from affected individuals or experts to enhance the narrative.",
-          "Add a section on potential future implications for the Indian tech workforce in the US."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "4a773a12-183c-4dc4-bc00-b6dbd77fcdb6",
-      "headline": "India Took 120 of Its Hardest Science Startups to France. They Came Back With $100 Million in Deals.",
-      "slug": "bharat-innovates-2026-iit-madras-agnikul-deep-tech-mous-20260617",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the significance of the event to the Indian diaspora, highlighting investment opportunities and career prospects in deep tech."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes or insights from diaspora professionals to enhance the connection.",
-          "Include more specific examples of how diaspora investment has impacted Indian startups."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "4bda92d9-bdb0-4989-90bf-87646d0299ec",
-      "headline": "Apple Wants a Quarter of Every iPhone Made in India. The Wells Next to the Factory Are the Catch.",
-      "slug": "apple-india-iphone-25-percent-foxconn-tata-manufacturing-20260617",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the manufacturing developments in India to the diaspora's skills and investment interests."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more statistics or data points to strengthen the argument about the impact on the diaspora.",
-          "Include quotes from industry experts or stakeholders to provide additional perspectives on the situation."
+          "Consider including more data or quotes from industry experts to strengthen the analysis of AI's impact on job roles.",
+          "Add a section that discusses potential solutions or adaptations for the workforce affected by these changes."
         ],
         "verdict": "pass"
       },
