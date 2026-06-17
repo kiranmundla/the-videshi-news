@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-17T12:15:49.271885+00:00",
+  "timestamp": "2026-06-17T12:45:24.237772+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 8,
+    "pass": 4,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "97ce9762-4a6e-4580-b4be-49e74530777e",
-      "headline": "Kolkata Was the Fast Lane for a US Visa Stamp. The Wait Just Went From 13 Days to 126",
-      "slug": "us-consulate-india-h1b-l1-appointment-backlog-kolkata-tcn-workaround-20260617",
+      "id": "3d759515-7bd9-427f-aea8-972759f46002",
+      "headline": "From Curry House to Global Brand: Indian Restaurants Are Becoming a Worldwide Business",
+      "slug": "from-curry-house-to-global-brand-indian-restaurants-are-becoming-a-worldwide-bus",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -23,19 +23,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 6,
-          "issue": "The image does not directly relate to the topic of US visa stamping or immigration."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively discusses the impact of visa delays on Indian professionals and their families, making it highly relevant to the diaspora."
+          "note": "The article effectively connects the evolution of Indian cuisine to the experiences and contributions of the diaspora, making it relevant and engaging for NRI readers."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that depicts the visa process or Indian professionals.",
-          "Add a quote or anecdote from an affected individual to enhance the personal connection to the diaspora experience."
+          "Consider adding quotes from chefs or restaurant owners to provide personal insights and enhance the narrative.",
+          "Include statistics or examples of specific Indian restaurants that have successfully transitioned to premium brands to strengthen the argument."
         ],
         "verdict": "pass"
       },
@@ -47,89 +47,12 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "3bb1d76d-26d4-4771-95d5-371748eb60f5",
-      "headline": "An H-1B Lie From 2017 Just Cost a New Jersey Man His US Citizenship",
-      "slug": "doj-denaturalization-h1b-fraud-neeraj-sharma-magnavision-india-20260617",
+      "id": "bedb935a-1727-4982-a5b8-a7431991c31d",
+      "headline": "Ghee Goes Mainstream: Grandma's Cooking Fat Becomes America's Wellness Darling",
+      "slug": "ghee-goes-mainstream-grandmas-cooking-fat-becomes-americas-wellness-darling",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the topic of immigration or H-1B visas."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the implications of the H-1B fraud case to the Indian American community, highlighting the risks they face."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that more directly represents immigration or H-1B visas to enhance relevance.",
-          "Add a quote or perspective from an immigration expert or community leader to strengthen the diaspora connection."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "67ee9bbc-a341-4f16-a8e7-40dc3a0f3b96",
-      "headline": "Big Tech Just Took Over the H-1B \u2014 and Pushed India's IT Giants Off the Top",
-      "slug": "big-tech-tops-h1b-approvals-amazon-meta-indian-it-firms-decline-20260617",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 6,
-          "issue": "The image does not directly relate to the article's focus on H-1B visas and the tech industry."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses the implications of H-1B visa changes on the Indian diaspora, particularly Indian Americans and students."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that reflects the themes of immigration and technology.",
-          "Add more statistics or quotes from industry experts to strengthen the analysis of the H-1B visa situation."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "f794c76f-86ad-4047-a10a-ae53132174c1",
-      "headline": "Indian Students Are Fleeing Canada \u2014 Departures Fell 41 Percent in a Year. The Diaspora's Map Is Being Redrawn.",
-      "slug": "indian-students-canada-collapse-41-percent-diaspora-map-germany-shift-20260617",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "4b26472e-3efe-43cf-bf92-c7f4e8ce91ca",
-            "headline": "The Quiet Rule Change That Could Put a Four-Year Clock on Ev"
-          }
-        ],
         "broken_embeds": []
       },
       "llm_review": {
@@ -142,13 +65,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively discusses the shifting patterns of Indian student migration and its implications for the diaspora."
+          "note": "The article effectively connects the mainstreaming of ghee to the experiences and perspectives of the Indian diaspora, highlighting both cultural significance and market dynamics."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more specific examples or anecdotes from Indian students who have made these transitions to enhance relatability.",
-          "Add a section discussing the potential long-term impacts on the Indian diaspora in Canada and other traditional destinations."
+          "Consider adding quotes or anecdotes from diaspora members to enhance the personal connection.",
+          "Include more specific examples of brands or products that are popular among NRIs to strengthen the diaspora angle."
         ],
         "verdict": "pass"
       },
@@ -160,9 +83,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "120826ab-c701-4f4b-8bf0-b3d0e50c4758",
-      "headline": "Modi Just Became the First Indian PM to Visit Slovakia. For a Few Thousand Indians There, It Was a Moment of Arrival.",
-      "slug": "modi-slovakia-first-visit-indian-diaspora-central-europe-automobile-20260617",
+      "id": "809ab356-20be-4915-ac71-c70ad300b39f",
+      "headline": "Fricy and the Diaspora: How Sweet-Hot Mango-Chili Conquered the American Snack Aisle",
+      "slug": "fricy-and-the-diaspora-how-sweet-hot-mango-chili-conquered-the-american-snack-ai",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -172,55 +95,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the article's topic of Modi's visit to Slovakia or the Indian community there."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively highlights the significance of Modi's visit for the Indian community in Slovakia, showcasing their growth and recognition."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that directly relates to Modi's visit or the Indian community in Slovakia.",
-          "Add quotes or anecdotes from more community members to enrich the narrative."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "3b22296f-ae62-4c7d-b21f-c8116f4c436c",
-      "headline": "Germany Just Named India Its Top Migration Priority. 180,000 Indians Are Already at Work There.",
-      "slug": "germany-india-top-migration-priority-180000-workers-diaspora-20260617",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the topic of Indian migration to Germany."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses the experiences and challenges of the Indian diaspora in Germany, making it relevant to NRI readers."
+          "note": "The article effectively connects the trend to the Indian diaspora, highlighting their cultural experiences and the evolution of traditional flavors in the American market."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that depicts Indian professionals or students in Germany.",
-          "Add quotes or testimonials from Indian migrants in Germany to enhance the personal connection to the diaspora experience."
+          "Consider adding more specific examples of diaspora-founded brands that are capitalizing on this trend to enhance the connection to the NRI audience.",
+          "Include quotes or anecdotes from diaspora members to provide a more personal touch and deepen the narrative."
         ],
         "verdict": "pass"
       },
@@ -232,9 +119,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "742faf2d-0b9a-4f2a-8fab-ddeb861c3d1a",
-      "headline": "Wall Street Just Downgraded the Companies That Employ the Indian Diaspora. The Reason Should Worry Every IT Worker.",
-      "slug": "morgan-stanley-downgrades-accenture-it-services-diaspora-jobs-20260617",
+      "id": "1a7c6b65-2f64-4743-9f9a-8de29487eef9",
+      "headline": "India Just Doubled How Much NRIs Can Own in Its Stock Market \u2014 and Opened the Door to Everyone Else",
+      "slug": "india-doubles-nri-oci-equity-investment-limits-fema-portfolio-scheme-20260617",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -244,60 +131,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image is relevant to the tech industry but does not specifically depict the Indian diaspora or IT workers."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the Wall Street downgrade to the Indian diaspora, particularly IT workers, and discusses implications for their careers."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider including specific examples or quotes from Indian IT workers to enhance the diaspora connection.",
-          "Add a more detailed analysis of how the downgrade could impact the job market for Indian professionals in the tech sector."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "8973afcc-94f6-4729-a6b9-a8e76f58920d",
-      "headline": "Adani Just Recruited an Apple Supplier to Build India's AI Hardware. The Bet Is That Compute Follows Cheap Power.",
-      "slug": "adani-jabil-ai-data-center-hardware-manufacturing-india-alliance-20260617",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "efdeec3f-4cd7-413a-bbdb-daabefd87e83",
-            "headline": "Adani and an Apple Supplier Are Building India's AI Data-Cen"
-          }
-        ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image of Gautam Adani is relevant but does not directly depict AI hardware or the partnership with Jabil."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively addresses the interests of both engineers and investors in the diaspora, making the connection relevant and insightful."
+          "note": "The article discusses changes in investment regulations that directly affect NRIs and the diaspora, making it relevant and engaging for this audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider including a more relevant image that directly relates to AI hardware or the partnership.",
-          "Add quotes or insights from diaspora professionals or investors to enhance the connection."
+          "Include more direct quotes from experts or stakeholders to enhance credibility.",
+          "Add a section on how these changes might impact specific sectors or industries in India."
         ],
         "verdict": "pass"
       },
