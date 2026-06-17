@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-17T07:15:20.195064+00:00",
+  "timestamp": "2026-06-17T07:45:11.325636+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 1,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "41c69d45-dd58-4c53-9faa-accc2eea1a50",
-      "headline": "Toy Story 5 Lands in Indian Theatres This Friday. Taylor Swift Sings, Keanu Reeves Voices, and the Toys Are Fighting a Tablet.",
-      "slug": "toy-story-5-india-release-june-19-3d-taylor-swift-keanu-reeves-cocktail-2-clash-where-to-watch-diaspora-nri-20260617",
+      "id": "56196289-2604-4d02-9a30-734bd6ebf21d",
+      "headline": "Nine Games, Zero Wins: India's Hockey Team Is Having Its Worst Pro League Ever \u2014 at the Worst Possible Time",
+      "slug": "india-men-hockey-worst-fih-pro-league-campaign-2025-26-zero-wins-eighth-place-fulton-harmanpreet-world-cup-asian-games-nri",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -29,54 +29,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the film's release to the NRI audience, highlighting their nostalgia and the simultaneous global release."
+          "note": "The article effectively connects the emotional significance of hockey to the Indian diaspora, highlighting their engagement with the sport."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes from critics to enhance the review aspect.",
-          "Add a brief mention of how the film's themes resonate with the Indian audience specifically."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "ebcdafee-d8c3-4815-becd-da1ad9ffea01",
-      "headline": "Katrina Kaif Built a Beauty Empire While You Weren't Looking. Kay Beauty's New Lipstick Is Its Boldest Move Yet.",
-      "slug": "katrina-kaif-kay-beauty-cashmere-lip-blur-saba-azad-nykaa-global-where-to-buy-diaspora-nri-20260617",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "ac1303f5-15c7-44e6-b25d-848b985b5420",
-            "headline": "Katrina Kaif Is Coming Back. And She Chose the Darkest Scrip"
-          }
-        ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the brand's inclusivity to the needs of NRI shoppers, making it relevant for the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more quotes or insights from Katrina Kaif to enhance the personal connection.",
-          "Include a brief comparison with other beauty brands targeting similar demographics to provide context."
+          "Consider adding quotes from players or coaches to enhance the narrative.",
+          "Include statistics or historical context about India's hockey performance in previous Pro Leagues for deeper analysis."
         ],
         "verdict": "pass"
       },
