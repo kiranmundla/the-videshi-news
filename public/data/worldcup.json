@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-06-17T19:57:48Z",
-  "stage": "Group Stage — 21 of 72 matches played",
+  "last_updated": "2026-06-17T23:58:01Z",
+  "stage": "Group Stage — 22 of 72 matches played",
   "hosts": "USA, Mexico & Canada",
   "dates": {
     "start": "2026-06-11",
@@ -616,26 +616,13 @@
         "code": "ENG",
         "flag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
         "rank": 4,
-        "p": 0,
-        "w": 0,
+        "p": 1,
+        "w": 1,
         "d": 0,
         "l": 0,
-        "gf": 0,
-        "ga": 0,
-        "pts": 0
-      },
-      {
-        "name": "Croatia",
-        "code": "CRO",
-        "flag": "🇭🇷",
-        "rank": 11,
-        "p": 0,
-        "w": 0,
-        "d": 0,
-        "l": 0,
-        "gf": 0,
-        "ga": 0,
-        "pts": 0
+        "gf": 4,
+        "ga": 2,
+        "pts": 3
       },
       {
         "name": "Panama",
@@ -661,6 +648,19 @@
         "l": 0,
         "gf": 0,
         "ga": 0,
+        "pts": 0
+      },
+      {
+        "name": "Croatia",
+        "code": "CRO",
+        "flag": "🇭🇷",
+        "rank": 11,
+        "p": 1,
+        "w": 0,
+        "d": 0,
+        "l": 1,
+        "gf": 2,
+        "ga": 4,
         "pts": 0
       }
     ]
@@ -998,8 +998,8 @@
       "away": "Croatia",
       "venue": "AT&T Stadium",
       "city": "Dallas",
-      "status": "scheduled",
-      "score": null,
+      "status": "FT",
+      "score": "4-2",
       "home_code": "ENG",
       "away_code": "CRO"
     },
