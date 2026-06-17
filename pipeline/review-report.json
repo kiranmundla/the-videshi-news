@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-17T10:15:38.847100+00:00",
+  "timestamp": "2026-06-17T10:45:13.867760+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 6,
+    "pass": 2,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "354b1713-20ff-486f-8b07-1ce739b993e2",
-      "headline": "The Gulf Is Reopening Its Skies \u2014 and the Flight Home to India May Finally Get Cheaper",
-      "slug": "gulf-airspace-reopening-us-iran-deal-cheaper-india-fares-nri-20260617",
+      "id": "b1b7e669-f86a-41bc-b7e5-988d19127a13",
+      "headline": "274 Days Without a Throw. On Friday, Neeraj Chopra Finally Returns \u2014 in the City Where He First Broke 90 Metres.",
+      "slug": "neeraj-chopra-doha-diamond-league-2026-comeback-274-days-back-injury-first-throw-arshad-nadeem-cwg-nri",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -29,13 +29,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively addresses the impact of geopolitical changes on travel for the Indian diaspora, making it relevant and engaging."
+          "note": "The article discusses Neeraj Chopra's return to competition, which is of significant interest to the Indian diaspora, particularly those who follow athletics and Indian sports achievements."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from travel industry experts to enhance credibility.",
-          "Include specific examples of how ticket prices have changed recently to provide more context."
+          "Include quotes from Neeraj Chopra or his coach to add a personal touch.",
+          "Provide more context on the significance of the Doha Diamond League for NRI readers."
         ],
         "verdict": "pass"
       },
@@ -47,153 +47,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "5043a2a1-b4d8-4914-9fee-fd137c2a2f4f",
-      "headline": "India's First Vande Bharat Sleeper Is Finally Rolling Out \u2014 Overnight Trains Are About to Feel Like Flying",
-      "slug": "vande-bharat-sleeper-prototype-launch-overnight-train-nri-20260617",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the new sleeper service to the needs and experiences of the diaspora, highlighting the benefits for NRIs traveling within India."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from railway officials or experts to enhance credibility.",
-          "Include more specific examples of how the sleeper service will improve travel experiences for NRIs."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "ec38d6e3-9fbf-441c-bd4b-b486e6f2e4b0",
-      "headline": "India Is Quietly Making Its Tourist Visa a Year-Long, Multi-Entry Pass \u2014 A Win for OCI Families' Friends and Guests",
-      "slug": "india-etourist-visa-one-year-multiple-entry-relaxation-nri-20260617",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image is relevant to tourism but lacks a direct connection to the visa topic."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the visa changes to the needs of the diaspora, particularly in terms of family and professional travel."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider including a more specific image that directly relates to the visa process or Indian tourism.",
-          "Add a brief section on how these changes might impact tourism statistics or economic benefits for India."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "93a3310b-c6ff-4867-8ad5-a74e75fe02b3",
-      "headline": "After a Record $30 Billion Exodus, Foreign Money Is Edging Back Into India. The Tide May Be Turning.",
-      "slug": "india-foreign-outflows-reversal-fpi-net-buyers-oil-rupee-ai-gap-nri-investor-20260617",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses foreign investment trends in India, which is relevant to NRIs interested in economic opportunities."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more specific examples of how NRIs can benefit from the changing investment landscape in India.",
-          "Add quotes or insights from NRI investors to enhance the diaspora connection."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "ae219377-81d6-4a0e-9252-26bf4b00b647",
-      "headline": "Three Servings of Whole Grains a Day Kept the Waistline in Check for 18 Years. The Refined Stuff Did the Opposite.",
-      "slug": "whole-grains-three-servings-waistline-blood-sugar-framingham-18-year-study-diaspora-20260617",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the findings to the Indian diaspora's dietary habits, providing practical suggestions for healthier choices."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a brief summary of the study's methodology for clarity.",
-          "Include a quote from a nutrition expert to enhance credibility."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "c140287d-4dfd-4559-a336-4ef73dcb9b54",
-      "headline": "Five-a-Day May Not Be Enough for Your Heart. The Foods That Matter Most Are Hiding in Plain Sight.",
-      "slug": "flavanols-five-a-day-heart-health-berries-green-tea-apples-reading-harvard-diaspora-20260617",
+      "id": "e6417a06-f189-4f46-934a-6e7d9dbc5603",
+      "headline": "Three Indian Seafarers Are Dead Off Oman. India's Invisible Diaspora Just Became a Diplomatic Crisis.",
+      "slug": "us-blockade-strikes-kill-three-indian-seafarers-oman-settebello-diaspora-safety-20260617",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -209,13 +65,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the findings to the South Asian community's health concerns, making it relevant for diaspora readers."
+          "note": "The article effectively highlights the plight of Indian seafarers and their remittances, connecting well with the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more specific examples of how to incorporate these flavanol-rich foods into traditional Indian dishes.",
-          "Include a brief section on the importance of consulting healthcare professionals before making significant dietary changes."
+          "Include quotes from seafarer organizations or experts to provide additional perspectives.",
+          "Add more context about the historical relationship between India and the US regarding maritime safety."
         ],
         "verdict": "pass"
       },
