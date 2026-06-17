@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-16T23:15:12.074332+00:00",
+  "timestamp": "2026-06-17T01:45:08.682198+00:00",
   "mode": "fix",
   "stats": {
     "pass": 1,
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "747176fc-dc1f-4857-a0a4-2b292c5a22a8",
-      "headline": "Alpha Is Bollywood's First Female-Led Spy Film. The Trolls Are Terrified \u2014 and That's the Point.",
-      "slug": "alpha-teaser-alia-bhatt-sharvari-bobby-deol-yrf-spy-universe-female-led-troll-controversy-july-3-nri-20260616",
+      "id": "8df21864-bb00-4555-97fd-0fa2a686a7d5",
+      "headline": "A 21-Year-Old From Madurai Just Won an NCAA Title in Eugene. It Was India's First in Four Years.",
+      "slug": "selva-prabhu-ncaa-outdoor-triple-jump-champion-2026-kansas-state-madurai-hayward-field-india-college-pipeline-nri",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -29,13 +29,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the film's release to NRI audiences, highlighting its theatrical release in key diaspora markets."
+          "note": "The article effectively connects Prabhu's achievement to the experiences of Indian-origin families in the U.S., highlighting the significance of the NCAA system for both Indian and diaspora athletes."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more context about the significance of female-led films in Bollywood for a deeper analysis.",
-          "Include quotes or reactions from diaspora audiences to enhance the connection with NRI readers."
+          "Consider adding quotes from Prabhu or his family to provide a personal touch.",
+          "Include more context about the impact of NCAA titles on athletes' careers in India."
         ],
         "verdict": "pass"
       },
