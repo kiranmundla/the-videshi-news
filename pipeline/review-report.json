@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-18T22:45:13.676775+00:00",
+  "timestamp": "2026-06-18T23:15:12.687052+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 0,
+    "pass": 0,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "8008f382-3f57-47f3-9213-f3cef7cc7bac",
-      "headline": "She Is 18, She Beat the World No. 10 in Washington, and She Is India's Best Shot at an Olympic Squash Medal",
-      "slug": "anahat-singh-squash-top-20-indian-open-squash-on-fire-open-la-2028-olympics-india-diaspora-2026",
+      "id": "6e7f6125-5253-495f-addb-7fd011263b5b",
+      "headline": "5,000 Dancers, a Serpent Goddess, and a July 3 Worldwide Drop. Nagabandham's Trailer Lands Friday.",
+      "slug": "nagabandham-trailer-june-19-virat-karrna-nabha-natesh-abhishek-nama-pan-india-july-3-where-to-watch-diaspora-nri-20260618",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -21,61 +21,32 @@
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DZmiuQyPu86/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel does not appear to be directly related to the film 'Nagabandham' or its promotional content."
+          }
+        ],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 5,
+          "issue": "The image of Nabha Natesh does not directly relate to the film's theme or the serpent goddess mentioned in the article."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article connects well with the diaspora by highlighting squash as a sport popular among South Asian families, making it relatable for NRI readers."
+          "quality": 9,
+          "note": "The article effectively connects the film's release strategy to the diaspora audience, emphasizing the simultaneous global rollout and its significance."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes from Anahat Singh or her coaches to add a personal touch.",
-          "Provide more context on the significance of squash in the Indian diaspora to strengthen the connection."
+          "Replace the irrelevant Instagram embed with a more relevant link related to the film's promotion.",
+          "Consider using an image that better represents the film's themes or the serpent goddess mentioned in the article."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "7b4e07eb-af07-4c9b-ab1a-0ed476ac339e",
-      "headline": "India Isn't at the World Cup. But Four Players of Indian Origin Are \u2014 on Home-Diaspora Soil.",
-      "slug": "four-indian-origin-players-fifa-world-cup-2026-tahsin-jamshid-nishan-velupillay-diaspora-20260618",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the achievements of players of Indian origin to the diaspora experience, particularly in the context of the World Cup being hosted in North America."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include quotes or reactions from diaspora fans to enhance the emotional connection.",
-          "Add a brief section on the historical context of Indian football to provide depth."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DZmiuQyPu86/",
         "promoted to published"
       ],
       "revised": false,
