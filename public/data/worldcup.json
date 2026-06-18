@@ -1073,8 +1073,8 @@
       "away": "Qatar",
       "venue": "BC Place",
       "city": "Vancouver",
-      "status": "scheduled",
-      "score": null,
+      "status": "FT",
+      "score": "6-0",
       "home_code": "CAN",
       "away_code": "QAT"
     },
