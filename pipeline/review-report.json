@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-18T11:15:12.634836+00:00",
+  "timestamp": "2026-06-18T12:15:47.726460+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 9,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,50 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "6a0623b0-e2b4-45de-9610-a6b75659f822",
-      "headline": "Salman Khan and Farhan Akhtar Are Quietly Plotting a Two-Part Period Epic. The Subject Is One of India's Most Iconic Figures.",
-      "slug": "salman-khan-farhan-akhtar-two-part-historical-epic-excel-entertainment-period-action-drama-2027-where-to-watch-diaspora-nri-20260618",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "2e8ad5e0-0fc1-4a03-bb56-d6caa2743453",
-            "headline": "Salman Khan Dragged a Movie to Court Over a Blue Bracelet. O"
-          }
-        ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article connects well with the diaspora by highlighting the cultural significance of a Salman Khan film and its potential impact on NRI audiences."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more details about the iconic figure being portrayed to enhance reader engagement.",
-          "Add quotes or insights from Farhan Akhtar to provide a more balanced perspective."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "24ce64a4-d454-4565-a3f4-d4ba4a0495ec",
-      "headline": "Aamir Khan Is Getting Married on July 5. The Man Who Once Called Wedding-at-60 'Inappropriate' Found His Contentment After All.",
-      "slug": "aamir-khan-gauri-spratt-wedding-july-5-2026-third-marriage-kiran-rao-registered-ceremony-where-to-watch-diaspora-nri-20260618",
+      "id": "0f3e35a3-dd72-4e58-b524-3680ddabcf67",
+      "headline": "A TV Host Mocked Indians for Loving Mangoes. The Diaspora's Reply Was a Lesson in What 'Home' Tastes Like.",
+      "slug": "indian-mango-row-diaspora-backlash-belonging-whatsapp-identity-20260618",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -69,14 +28,316 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article connects well with the diaspora by referencing Aamir Khan's influence and significance in their lives."
+          "quality": 9,
+          "note": "The article effectively connects the mango to the cultural identity and experiences of the Indian diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more direct quotes from Aamir Khan or Gauri Spratt to enhance the personal touch.",
-          "Include a brief section on how Aamir's previous marriages have influenced his current relationship for deeper context."
+          "Consider adding quotes from diaspora members to enhance the personal connection.",
+          "Include more statistics or studies on the popularity of mangoes among non-Indians to strengthen the argument."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "f98674fa-3ac7-40af-bbac-ac2fb498a557",
+      "headline": "Nine Million Indians Abroad Sent Home $138 Billion. A Proposed 5% U.S. Tax Could Take a Bite Out of It.",
+      "slug": "india-remittances-138-billion-us-5-percent-tax-diaspora-dollars-20260618",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the topic of remittances or the diaspora."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively discusses the impact of U.S. tax proposals on Indian NRIs and their remittances, making it highly relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that depicts the concept of remittances or the Indian diaspora.",
+          "Add quotes or testimonials from NRIs to enhance the personal connection to the topic."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "943fb00c-c375-481e-9f48-83ff1e89df1f",
+      "headline": "An Indian-Born Banker Will Run America's Fifth-Largest Bank. The Diaspora Has Run Out of First Times to Celebrate.",
+      "slug": "gunjan-kedia-us-bancorp-first-indian-american-bank-ceo-diaspora-20260618",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image of the U.S. Bancorp Center is relevant but does not directly depict Gunjan Kedia or her role."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects Kedia's achievement to the broader narrative of Indian Americans in corporate leadership, making it relatable for the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including a quote from Gunjan Kedia to provide a personal touch and insight into her perspective.",
+          "Add more context about the significance of Kedia's appointment in relation to the current state of the banking industry."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "14590a9e-a5d8-4cbe-b928-a5245b1ae4fc",
+      "headline": "The H-1B's Quietest Weapon Against New Indian Grads Isn't the Fee \u2014 It's the Level 1 Wage",
+      "slug": "h1b-level-1-wage-rfe-specialty-occupation-new-grads-india-20260618",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "3b0d22dd-3cb9-4221-bc9e-9a064a3b5317",
+            "headline": "Another Global Tech Firm Just Chose Bengaluru Over the Bay A"
+          },
+          {
+            "article_id": "0e4d5c6a-763d-4a0c-a424-fcefc809806d",
+            "headline": "A New Book Puts a $121 Million Price Tag on H-1B Exploitatio"
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the topic of H-1B visas or immigration."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively addresses the challenges faced by Indian graduates in the U.S. immigration system, making it highly relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that directly relates to the H-1B visa process or Indian graduates in the tech industry.",
+          "Add a brief summary or conclusion that reinforces the impact of these immigration challenges on Indian graduates."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "88f43f34-c95d-4095-9d35-d67e29496292",
+      "headline": "A Torn Flag in Frisco, and Six Lawmakers Who Decided It Wasn't Local Anymore",
+      "slug": "frisco-indian-flag-tearing-congress-condemn-xenophobia-diaspora-20260618",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image of a torn flag is relevant but does not directly depict the incident described."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the incident to the broader concerns of the Indian diaspora regarding safety and belonging in the U.S."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including a direct quote from a member of the diaspora community to enhance personal connection.",
+          "Add more context about the demographics of Frisco to strengthen the narrative around the incident."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "b187c0a3-36e2-4f26-871b-dcbf2b99c255",
+      "headline": "The Green Card Escape Hatch Indians Built Is Quietly Sealing Shut",
+      "slug": "eb1a-niw-einstein-visa-denial-collapse-india-self-petition-20260618",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the topic of immigration or green cards."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively addresses the challenges faced by Indian nationals in the U.S. immigration system, making it highly relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that directly represents immigration or the green card process to enhance relevance.",
+          "Add a brief section on potential future changes in immigration policy that could affect Indian nationals."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "7a9951ec-b520-4393-a4aa-637391fa84f2",
+      "headline": "SolarSquare Raised $53 Million to Put Power Plants on India's Rooftops. NRIs Already Own a Lot of Those Roofs.",
+      "slug": "solarsquare-53-million-rooftop-solar-india-nri-property-clean-energy-20260618",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the topic of rooftop solar energy to the NRI audience by discussing property ownership and investment opportunities."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a quote from a diaspora investor or a homeowner who has adopted solar energy to provide a personal touch.",
+          "Include more statistics or data on the growth of the rooftop solar market in India to strengthen the argument."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "9d8ebfce-4183-4493-94b6-f9c20a705b15",
+      "headline": "India Just Funded an AI That Watches the Country From Orbit. For the Diaspora, It's a New Kind of Homecoming.",
+      "slug": "satsure-earth-observation-sovereign-ai-india-space-tech-nri-20260618",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image is relevant to the topic of space and technology but does not specifically depict AI or Earth observation."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects India's advancements in space technology and AI to the interests of the diaspora, highlighting opportunities for investment and professional engagement."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including specific examples of how diaspora professionals can engage with or invest in these developments.",
+          "Add a quote from a diaspora expert or professional to strengthen the connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "96aa6b12-da2a-4d44-b8b0-8bd2eb414638",
+      "headline": "Tim Cook Says Your Next iPhone Costs More. Blame the AI Memory Crunch \u2014 and Thank an Indian CEO for It.",
+      "slug": "apple-price-hike-memory-chip-crunch-micron-sanjay-mehrotra-nri-20260618",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "0ebc6572-8cf9-4be1-b625-a68ca500b9f8",
+            "headline": "Micron Reports June 24. The Quarter Is Priced In \u2014 the One A"
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 6,
+          "issue": "The image of Sanjay Mehrotra is relevant but does not directly illustrate the topic of iPhone price increases."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the Indian American community to both the consumer and producer sides of the memory market."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that directly relates to the iPhone or the AI memory crunch for better visual alignment.",
+          "Add a quote or statistic from an Indian American consumer perspective to enhance the diaspora connection."
         ],
         "verdict": "pass"
       },
