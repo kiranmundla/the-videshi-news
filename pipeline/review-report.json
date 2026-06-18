@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-18T14:45:11.790088+00:00",
+  "timestamp": "2026-06-18T15:15:32.704757+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
-    "flag": 0,
+    "pass": 4,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "45e1548f-d2d6-4a17-832f-b9c45a3dd551",
-      "headline": "Indian Firms Just Put Hundreds of Millions Into Britain at the G7. The Jobs Land Where the Diaspora Lives.",
-      "slug": "indian-firms-uk-clean-energy-investment-g7-jobs-atri-hexaware-20260618",
+      "id": "2586f32a-43ea-478f-83df-973c29244c5d",
+      "headline": "Telugu's Funniest Married Men Are Back. Save the Tigers 3 Adds a God to the Mess.",
+      "slug": "save-the-tigers-season-3-jiohotstar-june-19-vennela-kishore-lord-indra-priyadarshi-telugu-comedy-where-to-watch-diaspora-nri-20260618",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -23,19 +23,179 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 5,
-          "issue": "The image does not directly relate to the article's focus on Indian investments and jobs in the UK."
+          "score": 7,
+          "issue": "The image features Priyadarshi, a key actor in the series, which aligns with the article's focus on the show."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the investments to the Indian diaspora in the UK, highlighting the impact on communities."
+          "quality": 9,
+          "note": "The article effectively connects the show's release to the diaspora audience, emphasizing accessibility and cultural relevance."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that reflects Indian investments or the diaspora's impact in the UK.",
-          "Add quotes or testimonials from members of the Indian diaspora to enhance the personal connection to the topic."
+          "Consider adding more quotes or insights from the cast or creators to enhance the article's depth.",
+          "Include viewer testimonials or reactions from previous seasons to engage the audience further."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "62e2e142-a04a-4cda-b0bc-261faa3ed613",
+      "headline": "Akshay and Suniel Are Back in the Same Frame. The Welcome to the Jungle Trailer Is Pure, Glorious Mayhem.",
+      "slug": "welcome-to-the-jungle-trailer-akshay-kumar-suniel-shetty-hera-pheri-reunion-twin-role-june-26-where-to-watch-diaspora-nri-20260618",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "dae945f4-4071-4448-ba27-8dd82e0b7fde",
+            "headline": "Welcome To The Jungle's Trailer Is 4 Minutes of Pure Chaos. "
+          },
+          {
+            "article_id": "491f5b76-f647-4f19-908a-6fea7289f5bb",
+            "headline": "Akshay Kumar Just Dropped a Song Called 'Deewane Hain' and t"
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DZb92GLNWkK/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel does not appear to be directly related to the trailer or the film discussed in the article."
+          }
+        ],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the film's release to diaspora audiences by mentioning its distribution in major markets like the US, UK, and Canada."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the irrelevant Instagram embed with a more relevant social media post related to the film or trailer.",
+          "Consider adding a quote or perspective from a diaspora viewer or critic to enhance the connection with NRI audiences."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DZb92GLNWkK/",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "c6f9575a-707d-46a9-95a1-81f1a53d8b4d",
+      "headline": "You Can Now Pay With UPI at a Department Store in Nice. India's Payment Rail Is Quietly Going Global.",
+      "slug": "upi-france-nice-cambodia-global-expansion-npci-diaspora-remittances-20260618",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": "The image of a shopping scene aligns well with the article's focus on UPI payments in a department store."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects UPI's global expansion to the Indian diaspora's experiences and benefits, particularly regarding remittances and payment convenience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more statistics or examples of how UPI has impacted the diaspora in specific countries.",
+          "Include quotes or testimonials from users in the diaspora to enhance the personal connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "21df934f-a3b3-4b77-870f-72a5d5e4e641",
+      "headline": "Sriram Krishnan Is Leaving the White House AI Job. The Diaspora Got a Seat at the Table \u2014 and a Lesson in Its Limits.",
+      "slug": "sriram-krishnan-white-house-ai-advisor-exit-diaspora-h1b-anthropic-20260618",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 6,
+          "issue": "The image does not directly relate to Sriram Krishnan or the specific topic of AI policy."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively discusses the implications of Krishnan's role and departure for the Indian diaspora, highlighting both representation and challenges."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including a more relevant image that directly relates to Sriram Krishnan or AI policy.",
+          "Add quotes or reactions from diaspora community leaders to enhance the personal connection to the topic."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "1b0805f3-6f70-48ee-adcd-808da36d2dfd",
+      "headline": "Qualcomm Is Betting $10 Billion That the Phone Era Is Over. The Data Center Is the New Battleground.",
+      "slug": "qualcomm-tenstorrent-data-center-pivot-jim-keller-indian-chip-engineer-20260618",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects Qualcomm's strategy to the Indian diaspora, particularly engineers in the US and the impact on India's engineering centers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from industry experts or Qualcomm representatives to enhance credibility.",
+          "Include more data or statistics on the impact of Qualcomm's pivot on the job market for Indian engineers."
         ],
         "verdict": "pass"
       },
