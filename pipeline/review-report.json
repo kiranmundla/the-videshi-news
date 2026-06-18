@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-18T21:15:39.187243+00:00",
+  "timestamp": "2026-06-18T22:15:29.744796+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 4,
+    "pass": 6,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,89 +11,12 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "5e0505b7-2fb2-448d-be62-f9b0a8f6e574",
-      "headline": "Washington Just Barred 'Foreign Nationals' From Anthropic's Best AI \u2014 Including the Indian Engineers Who Built It.",
-      "slug": "us-curbs-anthropic-frontier-ai-foreign-nationals-indian-diaspora-sover-20260618",
+      "id": "fa22ce04-a41b-413d-96b4-3d38685e5f36",
+      "headline": "India Just Launched Its Longest Vande Bharat Yet \u2014 Nagpur to Pune in About 12 Hours",
+      "slug": "nagpur-pune-vande-bharat-longest-route-india-nri-rail-20260618",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 5,
-          "issue": "The image does not directly relate to the article's focus on AI and foreign nationals."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the implications of US policy on Indian engineers and the broader diaspora, making it highly relevant."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that reflects the themes of AI and technology.",
-          "Add more statistics or quotes from affected individuals to enhance the emotional impact."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "b33e51af-ff47-4100-908e-a937a156ed25",
-      "headline": "Opendoor Is Shutting Its Entire India Operation. The Reason Isn't Cost \u2014 It's That AI Made the Work Disappear.",
-      "slug": "opendoor-india-exit-ai-offshoring-gcc-diaspora-tech-jobs-20260618",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the specific topic of Opendoor or AI's impact on jobs."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively discusses the implications of AI on the Indian American community and the job market."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that reflects the themes of AI and job displacement.",
-          "Add quotes or insights from diaspora professionals to enhance the personal connection."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "aea2806f-7e95-4066-bc67-38d3bc376805",
-      "headline": "Nikesh Arora Just Closed His Third Big Deal in a Year. He's Betting $30 Billion That AI Will Break Security as We Know It.",
-      "slug": "nikesh-arora-palo-alto-chronosphere-cyberark-agentic-ai-bet-20260618",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "8aa4fd27-b618-460f-a6d7-ca8a0461c849",
-            "headline": "Nikesh Arora Spent $30 Billion Rebuilding Palo Alto Networks"
-          }
-        ],
         "broken_embeds": []
       },
       "llm_review": {
@@ -106,13 +29,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the significance of Arora's actions to the Indian diaspora, highlighting the impact on Indian engineers and investors."
+          "note": "The article effectively connects the new train service to the needs of NRIs, highlighting practical travel options and tips."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more direct quotes from Nikesh Arora to enhance the article's depth.",
-          "Include more statistics or data on the impact of these acquisitions on the job market for Indian engineers."
+          "Consider adding more statistics or data on the expected impact of the new route on travel times and passenger numbers.",
+          "Include quotes from passengers or officials to add a personal touch and enhance engagement."
         ],
         "verdict": "pass"
       },
@@ -124,28 +47,17 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "c38cdb5f-6637-43bf-98a1-c6e8e109d782",
-      "headline": "Georgekutty Comes Home. Drishyam 3 Lands on Prime Video Today \u2014 and the Diaspora Doesn't Have to Hunt for a Theatre Anymore.",
-      "slug": "drishyam-3-prime-video-streaming-june-18-mohanlal-jeethu-joseph-georgekutty-multi-language-where-to-watch-diaspora-nri-20260618",
+      "id": "0e57b124-b20d-42b7-a862-16f7e7fd37f0",
+      "headline": "IndiGo Is in Full Retreat Abroad \u2014 Seven International Routes Cut Just as Summer Travel Peaks",
+      "slug": "indigo-international-route-cuts-asia-manchester-nri-summer-20260618",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "be4ef60a-8d04-44c6-a13e-fd843e694a34",
-            "headline": "Drishyam 3 Hits Prime Video on June 18. Georgekutty's Most D"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/reel/DZuKpI_OUwF/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram reel does not appear to be directly related to the article's subject matter about the film 'Drishyam 3' and its streaming release."
-          }
-        ],
+        "embed_issues": [],
         "image_match": {
           "score": 9,
           "issue": null
@@ -153,18 +65,161 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the film's release to the diaspora audience, particularly highlighting the convenience for Mallayalis abroad."
+          "note": "The article effectively addresses the impact of IndiGo's route cuts on NRI travelers, providing practical advice for rebooking."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant Instagram embed with a more relevant social media post related to 'Drishyam 3'.",
-          "Consider adding more quotes or reactions from diaspora viewers to enhance the connection with the audience."
+          "Consider adding more data or quotes from industry experts to enhance credibility.",
+          "Include a brief overview of how these changes might affect future travel trends for NRIs."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/reel/DZuKpI_OUwF/",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "840c45d3-11b3-46bd-a078-a4f78f2f4cb5",
+      "headline": "Air India's US Flights Have Quietly Collapsed \u2014 and Swiss, KLM and Cathay Are Taking the Diaspora's Seats",
+      "slug": "air-india-us-flights-collapse-swiss-klm-cathay-reroute-nri-20260618",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses the impact of Air India's flight reductions on the Indian diaspora, providing practical travel advice."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more direct quotes from industry experts or airline representatives to enhance credibility.",
+          "Include a brief section on how these changes might affect ticket prices in the long term for diaspora travelers."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "da980764-e2d7-4d4b-80f0-68fc5a4f3e11",
+      "headline": "India Just Cleared the Way for Banks to Pay NRIs More on Their Deposits \u2014 But Only Until September.",
+      "slug": "rbi-removes-interest-rate-caps-fcnr-nre-nri-deposits-september-rupee-defence-nri-investor-20260618",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses NRIs and their potential benefits from the RBI's decision, making it relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of how NRIs can take advantage of the new rates.",
+          "Include a brief comparison of the new rates with previous rates to highlight the potential benefits."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "6be60283-2f9f-4b00-8e94-1e8f67fe9800",
+      "headline": "The Vitamin in Your Morning Orange May Help Keep Your Brain Younger, a Study of 2,000 Adults Finds",
+      "slug": "vitamin-c-blood-levels-brain-gray-matter-default-mode-network-plos-one-hirosaki-diaspora-20260618",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the findings to the Indian diaspora by discussing the traditional Indian diet and its implications for vitamin C intake."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of how the diaspora can incorporate vitamin C-rich foods into their diets.",
+          "Include a brief summary of the study's methodology to enhance credibility."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "1de9e06f-955a-4723-b7de-76c7fd0b841b",
+      "headline": "A Cheap Diabetes Drug Was Hailed as a Longevity Pill. A 21-Year Study Says Diet and Exercise Beat It.",
+      "slug": "dpp-dppos-lifestyle-beats-metformin-multimorbidity-21-year-jama-prediabetes-diaspora-20260618",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the study's findings to the Indian diaspora's health challenges, particularly regarding diabetes."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of how the findings can be applied in daily life for the diaspora audience.",
+          "Include quotes from health professionals or community leaders to enhance credibility and relatability."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
         "promoted to published"
       ],
       "revised": false,
