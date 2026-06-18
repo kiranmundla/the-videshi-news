@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-18T20:15:20.597609+00:00",
+  "timestamp": "2026-06-18T20:45:12.884116+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
+    "pass": 1,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "1f914bdb-12b1-4b08-b255-3f1431802214",
-      "headline": "Indian EB-5 Investors Have a September 30 Deadline \u2014 and the Standard Lane Just Went Dark",
-      "slug": "eb5-india-grandfathering-deadline-september-2026-rural-set-aside-20260618",
+      "id": "b065f8f9-d6fc-4a9c-b97a-0eb3bb96eced",
+      "headline": "The Biggest Change to US Student Visas in 30 Years Is One Signature Away \u2014 and It Hits Indians Hardest",
+      "slug": "dhs-duration-of-status-final-rule-omb-f1-students-four-year-limit-opt-india-20260618",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -23,91 +23,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the EB-5 program or immigration, but it is visually appealing."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the EB-5 program to Indian families and their cross-border financial decisions, highlighting the diaspora's unique challenges."
+          "quality": 8,
+          "note": "The article discusses changes to US student visas that directly impact Indian students, making it highly relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that more directly represents the theme of immigration or investment.",
-          "Add a brief summary or conclusion to reinforce the urgency of the September 30 deadline."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "0a17f262-1ab9-4210-a562-57d88729a9f2",
-      "headline": "The $100,000 H-1B Fee Is a Tech Story to Most. To Rural Hospitals, It's a Doctor Shortage",
-      "slug": "h1b-100k-fee-indian-doctors-rural-hospitals-physician-shortage-20260618",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image depicts a hospital setting, which is relevant to the article's focus on healthcare and doctor shortages, but it lacks a direct connection to the H-1B visa topic."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the H-1B fee issue to the Indian American community, highlighting personal stories and the impact on future generations of Indian doctors."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a quote from a healthcare professional or an affected family to enhance the personal connection.",
-          "Include more statistics or data on the impact of the H-1B fee on rural healthcare to strengthen the argument."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "b25eb2ee-d88f-4cb8-9cd2-eda723939653",
-      "headline": "The Work Permit That Let Indian Wives Build Careers Is Now in Its Final Draft to Be Killed",
-      "slug": "h4-ead-rescission-rule-final-draft-indian-spouses-women-20260618",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the specific topic of Indian women and work permits."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively addresses the impact of immigration policy on Indian families, particularly women, which resonates with the NRI audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that more directly represents Indian women in professional settings or the context of work permits.",
-          "Add quotes or testimonials from affected individuals to enhance the emotional connection and personal impact of the policy changes."
+          "Include quotes or perspectives from Indian students or immigration experts to enhance relatability.",
+          "Add a section on potential responses or actions that Indian students can take in light of these changes."
         ],
         "verdict": "pass"
       },
