@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-18T04:46:08.602742+00:00",
+  "timestamp": "2026-06-18T05:15:15.795902+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 0,
+    "pass": 1,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "81d20317-dddb-48b0-8620-c98139ddebed",
-      "headline": "Two Indian Teenagers Are One Win From a Wimbledon Junior Main Draw. A Decade Ago, This Was Unthinkable.",
-      "slug": "maaya-rajeshwaran-hitesh-chauhan-wimbledon-junior-qualifying-2026-roehampton-final-round-indian-tennis-diaspora-nri",
+      "id": "7796a7e9-d033-4330-8793-fa4d040b913e",
+      "headline": "Mithun's Daughter Said Yes. Dishani Chakraborty Is Engaged \u2014 and the Proposal Pictures Are Pure Cinema.",
+      "slug": "dishani-chakraborty-engaged-myles-mantzaris-mithun-chakraborty-daughter-december-6-wedding-proposal-nri-20260617",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -23,19 +23,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image of Mithun Chakraborty is relevant but does not directly depict the engagement or Dishani Chakraborty."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the achievements of Indian junior tennis players to the Indian-American community, highlighting the relevance of the US college system and the diaspora's interest in tennis."
+          "quality": 9,
+          "note": "The article effectively connects the engagement to the nostalgia and cultural significance of Mithun Chakraborty for the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from the players or coaches to enhance the narrative.",
-          "Include more context about the historical performance of Indian players at Wimbledon to strengthen the comparison."
+          "Consider including images of Dishani and Myles' engagement to enhance visual relevance.",
+          "Add a quote from Dishani or Myles about their relationship to provide a personal touch."
         ],
         "verdict": "pass"
       },
@@ -47,9 +47,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "b61ca9fb-e1b3-4d3e-81b0-6dea3ac20dca",
-      "headline": "The US and Iran Just Signed a Deal to Reopen the Strait of Hormuz. India Has Quietly Been Waiting for This.",
-      "slug": "us-iran-deal-reopens-strait-of-hormuz-india-oil-diaspora-relief-20260618",
+      "id": "ba197b1e-9598-446c-a1e9-3a6004f49295",
+      "headline": "Three Decades After Ghatak, Sunny Deol and Rajkumar Santoshi Reunite \u2014 and Aamir Khan Lent His Voice to the Teaser.",
+      "slug": "batwara-1947-teaser-sunny-deol-rajkumar-santoshi-aamir-khan-preity-zinta-ar-rahman-august-14-partition-where-to-watch-diaspora-nri-20260617",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -57,25 +57,32 @@
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DZWoKAeJ15M/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel does not appear to be directly related to the film or its themes."
+          }
+        ],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 3,
+          "issue": "The image does not match the article's topic about 'Batwara 1947'."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the geopolitical developments to the Indian diaspora, particularly in relation to oil imports and the safety of Indian seafarers."
+          "quality": 9,
+          "note": "The article effectively connects the film's release timing with the significance of Independence Day for the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more direct quotes from Indian officials or experts to enhance credibility.",
-          "Include a brief historical context of the Strait of Hormuz's significance to India for deeper understanding."
+          "Replace the irrelevant Instagram embed with a more relevant social media post related to the film.",
+          "Use a hero image that directly relates to 'Batwara 1947' instead of the unrelated film poster."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DZWoKAeJ15M/",
         "promoted to published"
       ],
       "revised": false,
