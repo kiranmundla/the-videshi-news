@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-06-18T19:57:41Z",
-  "stage": "Group Stage — 25 of 72 matches played",
+  "last_updated": "2026-06-18T21:58:32Z",
+  "stage": "Group Stage — 26 of 72 matches played",
   "hosts": "USA, Mexico & Canada",
   "dates": {
     "start": "2026-06-11",
@@ -72,36 +72,23 @@
     ],
     "B": [
       {
-        "name": "Canada",
-        "code": "CAN",
-        "flag": "🇨🇦",
-        "rank": 30,
-        "p": 1,
-        "w": 0,
-        "d": 1,
-        "l": 0,
-        "gf": 1,
-        "ga": 1,
-        "pts": 1
-      },
-      {
-        "name": "Bosnia & Herzegovina",
-        "code": "BIH",
-        "flag": "🇧🇦",
-        "rank": 64,
-        "p": 1,
-        "w": 0,
-        "d": 1,
-        "l": 0,
-        "gf": 1,
-        "ga": 1,
-        "pts": 1
-      },
-      {
         "name": "Switzerland",
         "code": "SUI",
         "flag": "🇨🇭",
         "rank": 19,
+        "p": 2,
+        "w": 1,
+        "d": 1,
+        "l": 0,
+        "gf": 5,
+        "ga": 2,
+        "pts": 4
+      },
+      {
+        "name": "Canada",
+        "code": "CAN",
+        "flag": "🇨🇦",
+        "rank": 30,
         "p": 1,
         "w": 0,
         "d": 1,
@@ -121,6 +108,19 @@
         "l": 0,
         "gf": 1,
         "ga": 1,
+        "pts": 1
+      },
+      {
+        "name": "Bosnia & Herzegovina",
+        "code": "BIH",
+        "flag": "🇧🇦",
+        "rank": 64,
+        "p": 2,
+        "w": 0,
+        "d": 1,
+        "l": 1,
+        "gf": 2,
+        "ga": 5,
         "pts": 1
       }
     ],
@@ -1058,8 +1058,8 @@
       "away": "Bosnia & Herzegovina",
       "venue": "SoFi Stadium",
       "city": "Los Angeles",
-      "status": "scheduled",
-      "score": null,
+      "status": "FT",
+      "score": "4-1",
       "home_code": "SUI",
       "away_code": "BIH"
     },
@@ -1783,6 +1783,20 @@
     }
   },
   "highlights": [
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DZvdu9ox4X8/",
+      "account": "@fifaworldcup",
+      "caption": "A commanding second-half display 🇨🇭 — Switzerland 4-1 Bosnia & Herzegovina #FIFAWorldCup",
+      "date": "2026-06-18"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DZvd86SCqvt",
+      "account": "@fifaworldcup",
+      "caption": "A commanding second-half display 🇨🇭 — Switzerland 4-1 Bosnia & Herzegovina",
+      "date": "2026-06-18"
+    },
     {
       "platform": "instagram",
       "url": "https://www.instagram.com/p/DZvJXAlNaZW/",
