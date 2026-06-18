@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-18T01:15:23.510130+00:00",
+  "timestamp": "2026-06-18T01:45:08.455797+00:00",
   "mode": "fix",
   "stats": {
     "pass": 1,
-    "flag": 1,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "bd12a9ba-a29f-4bb0-a8ce-88cc8560a29e",
-      "headline": "The Grammys Just Made Room for Asian Pop. They Forgot to Save a Seat for India.",
-      "slug": "grammys-2027-best-asian-pop-music-performance-category-india-omission-kpop-jpop-diaspora-nri-20260617",
+      "id": "5c34b99d-56c0-4d6f-9493-6c8ca6e692ef",
+      "headline": "From a Bakersfield Muni to Shinnecock: The Gujarati-American Who Skipped Med School and Became the First IGPL Golfer at a Major",
+      "slug": "manav-shah-first-igpl-golfer-us-open-2026-shinnecock-gujarat-california-bakersfield-diaspora-nri",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -23,66 +23,23 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 5,
-          "issue": "The image of Diljit Dosanjh does not directly relate to the article's focus on the Grammys and Asian pop music, as it centers on a specific event rather than the artist."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the Grammy's decisions to the NRI diaspora's cultural consumption and the significance of recognition in the music industry."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider including more diverse examples of Indian artists to strengthen the argument about the omission of Indian pop in the Grammy categories.",
-          "Add a concluding paragraph that summarizes the implications of this omission for the Indian music industry and diaspora."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "5acc9b2c-6eea-4ff0-9929-2da70acc9eac",
-      "headline": "Samantha Brought a Shotgun to the Wedding. Maa Inti Bangaaram Lands Friday \u2014 and She Produced It Herself.",
-      "slug": "maa-inti-bangaaram-samantha-ruth-prabhu-producer-debut-june-19-nandini-reddy-raj-nidimoru-where-to-watch-diaspora-nri-20260617",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/reel/DZhGwzKh1HO/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram reel does not appear to be directly related to the film or its themes, making it less relevant to the article."
-          }
-        ],
-        "image_match": {
-          "score": 7,
-          "issue": "The image of Samantha at a concert does not directly relate to the film 'Maa Inti Bangaaram' or its themes."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the film's release to NRI audiences, discussing its availability in overseas markets."
+          "note": "The article effectively connects Shah's journey to the immigrant experience and the expectations of Indian families, making it relatable for diaspora readers."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant Instagram embed with a more relevant social media post related to the film.",
-          "Consider using a hero image that directly represents the film or its themes for better alignment."
+          "Consider adding quotes from Shah or other players to enhance the personal connection.",
+          "Include more context about the Indian Golf Premier League for readers unfamiliar with it."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/reel/DZhGwzKh1HO/",
         "promoted to published"
       ],
       "revised": false,
