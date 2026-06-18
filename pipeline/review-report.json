@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-18T09:15:29.201838+00:00",
+  "timestamp": "2026-06-18T10:15:29.834449+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 4,
+    "pass": 6,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "9c0fde68-2f71-4070-8841-0863bbf671ba",
-      "headline": "Intel Is Shedding 25,000 Chip Engineers. For the Indian Diaspora, the Question Is Whether They Go Home.",
-      "slug": "intel-layoffs-chip-engineers-india-semiconductor-mission-diaspora-tale-20260618",
+      "id": "3f98ef5f-9452-43df-ade3-e1e3731a30ce",
+      "headline": "Diwali 2026 Falls on November 8 \u2014 Here's the Booking Window NRIs Should Lock Before Fares Spike",
+      "slug": "diwali-2026-us-india-flight-booking-window-fares-nri-20260618",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -29,13 +29,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the layoffs at Intel to the Indian diaspora's role in the semiconductor industry and the implications for engineers considering returning to India."
+          "note": "The article effectively addresses the travel concerns of Indian Americans during Diwali, making it relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes or anecdotes from affected engineers to provide a personal touch.",
-          "Include more data or statistics on the impact of these layoffs on the Indian diaspora specifically."
+          "Consider adding specific examples of airlines or routes that have historically offered better fares during the Diwali season.",
+          "Include a brief section on cultural significance of Diwali for NRIs to enhance the emotional connection."
         ],
         "verdict": "pass"
       },
@@ -47,9 +47,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "676363ef-d44a-4d0c-9712-47b03abfc47b",
-      "headline": "India's Tech Hiring Just Hit a 28-Month Low. The Conveyor Belt That Built the Diaspora Is Jamming.",
-      "slug": "india-tech-hiring-28-month-low-freshers-it-services-h1b-pipeline-20260618",
+      "id": "fafe4361-fee3-4422-a087-5cd77df59e68",
+      "headline": "Your US Visa Is Now a Free Pass to Argentina \u2014 Patagonia and Buenos Aires Without the Consulate Run",
+      "slug": "argentina-visa-free-indians-us-visa-green-card-patagonia-nri-20260618",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -64,14 +64,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the tech hiring trends in India to the experiences and expectations of the Indian diaspora, particularly in the context of family and generational shifts."
+          "quality": 8,
+          "note": "The article effectively addresses the Indian American community's travel interests and provides relevant information about visa changes."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more data or quotes from industry experts to strengthen the analysis.",
-          "Include a section on potential solutions or adaptations for new graduates entering the tech field."
+          "Include more personal anecdotes or testimonials from Indian travelers who have visited Argentina to enhance relatability.",
+          "Add a section on cultural tips or must-try experiences in Argentina for Indian travelers."
         ],
         "verdict": "pass"
       },
@@ -83,9 +83,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "9aa878c1-c348-43c4-9d29-36cce0f74eec",
-      "headline": "Google Paid $2.7 Billion to Bring Noam Shazeer Home. He Just Left for OpenAI.",
-      "slug": "noam-shazeer-google-openai-ai-talent-war-indian-researchers-visas-20260618",
+      "id": "ed5e85e0-a03c-4a26-90a9-dac5de869ab0",
+      "headline": "Germany Just Dropped the Transit Visa for Indians \u2014 and Frankfurt Is Now a Cleaner Route Home",
+      "slug": "germany-airport-transit-visa-removed-indians-frankfurt-munich-nri-20260618",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -95,19 +95,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 5,
-          "issue": "The image of Googleplex does not directly relate to Noam Shazeer or the specific topic of his departure to OpenAI."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the story to the Indian diaspora, discussing the implications for Indian engineers in the tech industry."
+          "quality": 8,
+          "note": "The article effectively connects the visa change to the Indian American diaspora, highlighting its benefits for travelers."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that directly relates to Noam Shazeer or the AI industry.",
-          "Add a quote or perspective from an Indian engineer to enhance the diaspora connection."
+          "Include more specific examples of how this change will impact travel plans for NRIs.",
+          "Add a section on potential challenges or considerations for travelers despite the visa removal."
         ],
         "verdict": "pass"
       },
@@ -119,47 +119,107 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "22d66315-9864-48f4-92ad-c9e128adb6a1",
-      "headline": "Cocktail 2 Just Got an 'A.' The Diaspora's Tickets Are Already Live in New York, London and Toronto.",
-      "slug": "cocktail-2-a-certificate-overseas-advance-booking-shahid-kapoor-kriti-sanon-rashmika-mandanna-june-19-trailer-chart-where-to-watch-diaspora-nri-20260618",
+      "id": "08a932bf-9e01-4dc6-8822-14cf66bcae6f",
+      "headline": "India's Largest Stock Exchange Is Finally Going Public. After a Decade of Delays, the NSE Just Filed Its IPO Papers.",
+      "slug": "nse-ipo-draft-papers-filed-offer-for-sale-3-billion-india-exchange-nri-investor-20260618",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "8bbbe976-8e02-47ca-8969-5faf9ca01af1",
-            "headline": "Cocktail 2 Pours This Friday. Can Shahid, Kriti and Rashmika"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/reel/DZroA79gAmH/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram reel does not appear to be directly related to the film 'Cocktail 2' or its promotion."
-          }
-        ],
+        "embed_issues": [],
         "image_match": {
-          "score": 10,
+          "score": 9,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the film's release to the diaspora audience, highlighting simultaneous international releases and advance bookings."
+          "quality": 8,
+          "note": "The article effectively connects the NSE IPO to NRI investors by discussing its relevance to diaspora portfolios."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant Instagram embed with a more relevant link, such as a trailer or promotional content for 'Cocktail 2'.",
-          "Consider adding quotes or reactions from diaspora audiences to enhance the connection."
+          "Consider adding more specific examples of how NRIs can participate in the IPO.",
+          "Include a brief explanation of the significance of the NSE in the context of global markets."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/reel/DZroA79gAmH/",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "1696ed61-d9a5-4b44-88ef-de9f8aefb53d",
+      "headline": "It Is Not Just How High Your Blood Pressure Is. How Much It Swings May Quietly Age Your Brain.",
+      "slug": "blood-pressure-variability-24-hour-brain-health-cognition-monash-neurology-diaspora-20260618",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the research findings to the health concerns prevalent in the Indian diaspora, making it relevant and engaging."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific statistics or studies related to hypertension in the Indian diaspora to strengthen the diaspora angle.",
+          "Include a brief summary of practical steps for readers to monitor blood pressure variability effectively."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "1b17c7b5-2bb2-4f41-9766-68eb9a1ae950",
+      "headline": "Scientists Found the Muscle Switch That Exercise Flips On. It May Explain Why Movement Keeps You Strong With Age.",
+      "slug": "nox4-muscle-protein-exercise-aging-strength-science-advances-diaspora-20260618",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the scientific findings to the health concerns of the Indian diaspora, particularly regarding muscle loss and metabolic issues."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a quote from a South Asian health expert to strengthen the diaspora connection.",
+          "Include practical tips for NRIs on how to incorporate exercise into their daily routines."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
         "promoted to published"
       ],
       "revised": false,
