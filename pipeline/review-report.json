@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-18T00:15:59.299555+00:00",
+  "timestamp": "2026-06-18T00:45:45.959503+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 9,
+    "pass": 4,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,17 +11,48 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "5150d8a4-8b3b-4932-b2db-f5fa8dc69b84",
-      "headline": "The H-1B Lottery Stopped Being Random. For New Indian Grads, That Was the Whole Point",
-      "slug": "wage-weighted-h1b-lottery-opt-indian-graduates-fy2027-20260618",
+      "id": "af6ad5b2-4549-4e3d-9a4b-71d52a424c98",
+      "headline": "The Last of the Old Guard: San Francisco's New Delhi Restaurant Wins a Place in History",
+      "slug": "the-last-of-the-old-guard-san-franciscos-new-delhi-restaurant-wins-a-place-in-hi",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "7e4c0879-5475-4a71-a099-6edbd2a28cb2",
-            "headline": "Indian Americans Have Given American Universities $3 Billion"
-          }
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image of an Indian thali is relevant but does not specifically represent New Delhi Restaurant."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively highlights the significance of New Delhi Restaurant to the Indian diaspora in the Bay Area."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including a direct quote from the restaurant owner or a notable patron to add a personal touch.",
+          "Add more details about the restaurant's menu or unique dishes to enhance the food aspect of the article."
         ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "e41b9b18-65ac-45bd-93ed-7742647ce059",
+      "headline": "One Table for the Whole Diaspora: Dr\u0101vida Opens in New York's East Village",
+      "slug": "one-table-for-the-whole-diaspora-drvida-opens-in-new-yorks-east-village",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
@@ -33,14 +64,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article discusses the impact of the H-1B lottery changes on Indian graduates, directly connecting to the Indian diaspora's experiences and concerns."
+          "quality": 9,
+          "note": "The article effectively highlights the significance of the restaurant for various South Asian diaspora communities, emphasizing the cultural and culinary connections."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes or anecdotes from affected individuals to enhance relatability.",
-          "Add a section on potential policy changes or advocacy efforts that could address these issues."
+          "Consider adding quotes from patrons or community members to enhance the personal connection to the diaspora.",
+          "Include more details about the restaurant's opening events or community engagement initiatives to further connect with the audience."
         ],
         "verdict": "pass"
       },
@@ -52,9 +83,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "a3c4db9f-defb-481d-acf3-e44062b53765",
-      "headline": "The H-1B Stopped Being Worth the Trouble. Now 40% More Indian Techies Are Going Home",
-      "slug": "h1b-reverse-migration-india-gcc-tech-talent-2026-20260618",
+      "id": "0c1530ed-1896-4879-9e34-35c1ef94ef88",
+      "headline": "Kebabs From Every Corner: A Michelin-Starred Chef Bets Phoenix Is Ready for Regional India",
+      "slug": "kebabs-from-every-corner-a-michelin-starred-chef-bets-phoenix-is-ready-for-regio",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -64,55 +95,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image is relevant but does not directly depict the theme of reverse migration or the H-1B visa."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively discusses the implications of reverse migration on the Indian diaspora, making it relevant to NRI readers."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider including more specific examples or anecdotes from Indian techies who have returned to India to enhance relatability.",
-          "Add a section discussing potential long-term impacts on the Indian tech industry and the diaspora."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "4b36f0e4-8565-4f20-9ef2-b1094cf8d5cd",
-      "headline": "EB-2 India Just Went Dark. The Door It Slammed May Have Opened a Narrow One Marked EB-3",
-      "slug": "eb2-india-unavailable-eb3-downgrade-july-2026-visa-bulletin-20260618",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to immigration or the specific topic of EB-2 and EB-3 visas."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article addresses the concerns of Indian nationals in the U.S. regarding visa categories, making it highly relevant to the diaspora."
+          "note": "The article effectively connects the restaurant's offerings to the identities and experiences of the Indian diaspora, highlighting regional diversity."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that directly relates to immigration or the visa process to enhance relevance.",
-          "Add a brief summary or conclusion to reinforce the key takeaways for readers."
+          "Consider adding quotes from diners or food critics to enhance the article's depth.",
+          "Include more details about the chef's background and culinary philosophy to provide context."
         ],
         "verdict": "pass"
       },
@@ -124,54 +119,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "f24a14a9-a0b3-458c-8524-34af00971578",
-      "headline": "'Grateful for Your Concern About the Diaspora': Modi and Carney Just Turned a Two-Year Freeze Into a Trade Ambition",
-      "slug": "modi-carney-g7-india-canada-reset-diaspora-trade-cepa-20260618",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "cf4f3b3e-1ec2-4a76-a723-02c6633b73b3",
-            "headline": "Modi and Macron Just Put 120 Indian Startups in Front of the"
-          },
-          {
-            "article_id": "120826ab-c701-4f4b-8bf0-b3d0e50c4758",
-            "headline": "Modi Just Became the First Indian PM to Visit Slovakia. For "
-          }
-        ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image of Modi is relevant but does not directly illustrate the trade discussions or the diaspora context."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the trade discussions to the Indian diaspora in Canada, highlighting their concerns and the impact of diplomatic relations."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider including a relevant image that visually represents the trade discussions or the diaspora's impact.",
-          "Add quotes or perspectives from members of the diaspora to enhance the personal connection to the topic."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "0832740f-4a8f-43e9-8d79-60af2a45fdae",
-      "headline": "India Just Passed England as Australia's Largest Migrant Group. The Margin Was a Few Dozen People; the Trend Is Generational.",
-      "slug": "india-overtakes-england-australia-largest-migrant-group-diaspora-20260618",
+      "id": "48a74510-e8c0-4016-b927-472443de06c3",
+      "headline": "EB-2 India Just Went 'Unavailable.' The Green Card Door Closes for Months.",
+      "slug": "july-2026-visa-bulletin-eb2-india-unavailable-green-card-backlog-h1b-20260618",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -181,163 +131,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the topic of migration or the Indian diaspora in Australia."
+          "score": 9,
+          "issue": "The image is relevant to the topic of the article, depicting the U.S. State Department Visa Bulletin."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses the implications of the migration trend for the Indian community in Australia, making it relevant for diaspora readers."
+          "note": "The article effectively discusses the impact of the EB-2 visa unavailability on the Indian diaspora, particularly H-1B visa holders."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that directly represents the Indian diaspora or migration to Australia for better relevance.",
-          "Include quotes or anecdotes from members of the Indian community in Australia to enhance the personal connection to the diaspora."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "1cfedf55-cd7e-4fc7-8867-da4c8f481299",
-      "headline": "A Man Tore an Indian Flag Outside a Texas City Hall. Six Members of Congress Decided It Was a Safety Story.",
-      "slug": "frisco-indian-flag-torn-congress-condemn-diaspora-safety-20260618",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 6,
-          "issue": "The image does not directly relate to the incident of the flag being torn or the context of the article."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively discusses the implications of the incident on the Indian American community and their sense of belonging."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider including a more relevant image that depicts the incident or its context.",
-          "Add quotes or perspectives from community members to enhance the narrative."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "1fbff344-fd28-4235-add6-3dee841af9c5",
-      "headline": "India's Space Programme Is No Longer Just ISRO. For the Diaspora, That Changes the Bet.",
-      "slug": "india-private-space-tech-startups-earth-observation-nri-capital-20260617",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image is relevant to the topic of space but does not specifically depict any elements of India's space program."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the developments in India's space program to opportunities for the Indian diaspora, highlighting both emotional and financial ties."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider including specific examples of diaspora investments in Indian space startups to strengthen the financial angle.",
-          "Add a concluding section that summarizes the potential impact of these developments on the global space industry."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "06d90add-d2bd-4085-aba5-4ff825e08f3f",
-      "headline": "India Is Done Pretending It Will Ban Crypto. It Has a Bigger Plan: Owning the Money Itself.",
-      "slug": "india-crypto-regulation-digital-rupee-coinbase-nri-remittances-20260617",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image is relevant to the topic of digital currency but does not specifically depict cryptocurrency or financial transactions."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the topic of India's digital currency plans to the diaspora's financial interests, particularly in remittances."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider including specific examples of how the digital rupee could impact remittance fees or speed for NRIs.",
-          "Add a brief section on potential risks or challenges for the diaspora regarding the new regulations."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "75013e87-0fbb-425f-80ca-e152e0a7dc84",
-      "headline": "Zepto Wants to Be India's First Pure Quick-Commerce IPO. The Valuation Tells the Real Story.",
-      "slug": "zepto-quick-commerce-ipo-drhp-valuation-nri-investors-20260617",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the topic of quick-commerce or IPOs."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the topic to NRI investors and their unique perspective on the Indian market."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that directly relates to quick-commerce or the IPO process to enhance relevance.",
-          "Expand on the implications of Zepto's IPO for diaspora investors to provide deeper insights."
+          "Consider adding quotes from immigration experts or affected individuals to provide personal perspectives.",
+          "Include potential future implications or changes in immigration policy that could affect the diaspora."
         ],
         "verdict": "pass"
       },
