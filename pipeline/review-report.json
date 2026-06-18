@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-18T02:45:10.576810+00:00",
+  "timestamp": "2026-06-18T03:15:27.324093+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
+    "pass": 4,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,93 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "6019ce59-5ad9-48a5-bfdc-00da89f8677a",
-      "headline": "Struck Down, Then Revived in Three Days: The $100,000 H-1B Fee Is Back \u2014 and Today Is the Deadline",
-      "slug": "trump-100000-h1b-fee-reinstated-administrative-stay-first-circuit-appeal-june-18-20260618",
+      "id": "89b621ae-25a0-4497-b792-cb483512c387",
+      "headline": "Dhamaal 4 Trailer Is Pure Chaos. Ajay Devgn's Gang Is Back, and This Time They Crashed a Theme Park to Tell You About It.",
+      "slug": "dhamaal-4-trailer-ajay-devgn-arshad-warsi-riteish-deshmukh-july-10-release-alpha-date-clash-where-to-watch-diaspora-nri-20260617",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "b55638fc-9a59-4f61-8158-b731969beae2",
+            "headline": "Dhamaal 4 Just Sent the Gang to Sea \u2014 With Pirates, Ghosts a"
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DZfHMfdoqfb/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel does not appear to be directly related to the trailer or the film's promotional content."
+          }
+        ],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the film's appeal to NRI audiences, discussing its comfort food status and box office potential in overseas markets."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the irrelevant Instagram embed with a more relevant social media post or promotional content related to the film.",
+          "Consider adding quotes from the cast or crew to enhance the article's depth and engagement."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DZfHMfdoqfb/",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "09b1269e-e860-4fb6-9772-dd2bfdf0c1b5",
+      "headline": "India's Biggest Brokerages Just Got Cleared to Sell You Apple and Nvidia. The Gateway Is a City in Gujarat.",
+      "slug": "india-brokerages-gift-city-us-stocks-zerodha-groww-nri-investors-20260618",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the topic of brokerages or stock trading."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively discusses how the new brokerage capabilities will impact NRIs and their financial interactions between India and the US."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that depicts stock trading or financial technology.",
+          "Add a brief section on how these changes might specifically benefit NRIs in terms of investment strategies."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "813a5e9c-11aa-4465-a187-52321857f7b3",
+      "headline": "Adobe Beat Earnings and Hit a 7-Year Low. The CFO Left for a Chip Company. That Tells You Everything.",
+      "slug": "adobe-earnings-shantanu-narayen-cfo-exit-firefly-ai-software-moat-20260618",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -29,13 +113,58 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively highlights the impact of the H-1B fee on the Indian diaspora, making it relevant and engaging for NRI readers."
+          "note": "The article effectively connects Narayen's departure to the Indian diaspora, highlighting his significance and the implications for Indian professionals."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more context about the implications of the fee on the job market for H-1B visa holders.",
-          "Include quotes from immigration experts or affected individuals to enhance the narrative."
+          "Consider adding more context about the impact of Narayen's leadership on Adobe's culture and innovation.",
+          "Include quotes or insights from industry experts to enhance credibility and depth."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "ea9e320d-41b8-44e5-8469-f39bafe1e072",
+      "headline": "Satya Nadella Has a New Word for the AI Age: 'Token Capital.' It's a Warning Dressed as a Buzzword.",
+      "slug": "satya-nadella-token-capital-ai-learning-loops-india-it-engineers-20260618",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "468c874d-721a-4806-a9d9-83fad2d365d8",
+            "headline": "Satya Nadella Has a Warning for the AI Gold Rush: Don't Hand"
+          },
+          {
+            "article_id": "9c81362d-1e3c-47c6-960b-316eb1db5ab1",
+            "headline": "Shareholders Sue Satya Nadella's Microsoft, Saying It Hid Ho"
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects Nadella's insights to the Indian diaspora, particularly Indian engineers in tech roles."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more direct quotes from Satya Nadella to enhance credibility.",
+          "Include a brief explanation of 'token capital' for readers unfamiliar with the term."
         ],
         "verdict": "pass"
       },
