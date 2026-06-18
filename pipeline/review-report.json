@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-18T19:15:13.300513+00:00",
+  "timestamp": "2026-06-18T19:45:13.457813+00:00",
   "mode": "fix",
   "stats": {
     "pass": 1,
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "70d76c81-80b1-49bb-9e6c-768274c01a3b",
-      "headline": "Imtiaz Ali Made a Film About a Border That Broke Hearts. Main Vaapas Aaunga Is the Partition Romance the Diaspora Has Been Aching For.",
-      "slug": "main-vaapas-aaunga-imtiaz-ali-diljit-dosanjh-ar-rahman-partition-romance-tere-paas-main-box-office-where-to-watch-diaspora-nri-20260618",
+      "id": "f369ab87-b70f-4f9e-809e-d3958e843ec5",
+      "headline": "She Is 21, She Is From Hyderabad, and She Just Broke a World Record on the Germans' Home Range",
+      "slug": "esha-singh-25m-pistol-world-record-munich-issf-world-cup-gold-2026-hyderabad-shooter-nri",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -21,32 +21,25 @@
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://youtube.com/watch?v=PRUTWluKRW8",
-            "problem": "irrelevant",
-            "explanation": "The YouTube link is not directly related to the article's subject matter, which focuses on the film's themes and music rather than a specific video."
-          }
-        ],
+        "embed_issues": [],
         "image_match": {
           "score": 9,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the film's themes of love and longing to the diaspora experience, making it relatable for NRI readers."
+          "quality": 8,
+          "note": "The article connects well with the Indian diaspora by highlighting Esha Singh's achievements and the pride it brings to the Indian community abroad."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant YouTube link with a more relevant embed, such as a trailer or a clip that highlights the film's themes.",
-          "Consider adding more quotes or insights from the cast or crew to enhance the depth of the article."
+          "Consider adding quotes from Esha Singh's coach or family to provide a more personal touch.",
+          "Include a brief section on the significance of shooting sports in India to enhance context for diaspora readers."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://youtube.com/watch?v=PRUTWluKRW8",
         "promoted to published"
       ],
       "revised": false,
