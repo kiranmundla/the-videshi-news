@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-18T07:15:17.418010+00:00",
+  "timestamp": "2026-06-18T07:45:18.992167+00:00",
   "mode": "fix",
   "stats": {
     "pass": 1,
@@ -11,21 +11,12 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "43d8baf6-28a1-4acd-a049-1763cfeca61b",
-      "headline": "Rolex Just Anointed Priyanka Chopra. She Joins DiCaprio, Zendaya and Scorsese \u2014 as the Only Indian in the Room.",
-      "slug": "priyanka-chopra-rolex-testimonee-bvlgari-bentley-fortune-india-varanasi-rajamouli-mahesh-babu-diaspora-nri-20260618",
+      "id": "923da569-7904-4586-a15a-d874bb00b74f",
+      "headline": "He Beat Carlsen Twice and the World Champion Once. In Oslo, a 20-Year-Old From Chennai Showed Why India Now Runs Chess.",
+      "slug": "india-chess-golden-generation-praggnanandhaa-norway-chess-2026-gukesh-arjun-erigaisi-carlsen-diaspora-nri",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "ef3bd3f9-5654-4a46-be07-1dcfe2d2cb2b",
-            "headline": "Priyanka Chopra Just Joined Rolex. She's the First Indian Wo"
-          },
-          {
-            "article_id": "7445343f-b303-4768-846c-282da6296f23",
-            "headline": "Priyanka Chopra Is Worth \u20b92,507 Crore. She Built It Without "
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
@@ -38,13 +29,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects Chopra Jonas's achievements to the Indian diaspora, highlighting her role as a symbol of success for NRIs."
+          "note": "The article effectively connects the rise of Indian chess players to the diaspora's engagement with the game, highlighting its relevance to Indian-American and Indian-British families."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes or reactions from Chopra Jonas regarding her new role with Rolex to enhance the personal connection.",
-          "Add a brief section on how Chopra Jonas's achievements have influenced the perception of Indian talent in the global entertainment industry."
+          "Consider adding more specific examples of chess clubs or tournaments in the diaspora to strengthen the connection.",
+          "Include quotes or anecdotes from diaspora members involved in chess to personalize the narrative."
         ],
         "verdict": "pass"
       },
