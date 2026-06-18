@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-18T10:15:29.834449+00:00",
+  "timestamp": "2026-06-18T10:45:12.586876+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 6,
+    "pass": 2,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "3f98ef5f-9452-43df-ade3-e1e3731a30ce",
-      "headline": "Diwali 2026 Falls on November 8 \u2014 Here's the Booking Window NRIs Should Lock Before Fares Spike",
-      "slug": "diwali-2026-us-india-flight-booking-window-fares-nri-20260618",
+      "id": "2e3492ca-3fd3-47b4-a76e-64742308e734",
+      "headline": "America's Cricket League Begins Its Fourth Season Tonight. It Was Built in the Suburbs the Diaspora Calls Home.",
+      "slug": "major-league-cricket-2026-season-opens-grand-prairie-diaspora-monank-patel-netravalkar-american-cricket",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -28,14 +28,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively addresses the travel concerns of Indian Americans during Diwali, making it relevant to the diaspora."
+          "quality": 9,
+          "note": "The article effectively connects the cricket league to the Indian diaspora, highlighting cultural preservation and community engagement."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding specific examples of airlines or routes that have historically offered better fares during the Diwali season.",
-          "Include a brief section on cultural significance of Diwali for NRIs to enhance the emotional connection."
+          "Include quotes from players or fans to enhance the personal connection to the diaspora.",
+          "Add statistics or data on the growth of cricket among the diaspora to strengthen the narrative."
         ],
         "verdict": "pass"
       },
@@ -47,9 +47,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "fafe4361-fee3-4422-a087-5cd77df59e68",
-      "headline": "Your US Visa Is Now a Free Pass to Argentina \u2014 Patagonia and Buenos Aires Without the Consulate Run",
-      "slug": "argentina-visa-free-indians-us-visa-green-card-patagonia-nri-20260618",
+      "id": "bc970246-aa3d-42ce-ae90-b4a38bd29634",
+      "headline": "Modi Lands in Paris and Thanks the Diaspora First. That Choice Was the Whole Point.",
+      "slug": "modi-paris-vivatech-2026-france-indian-diaspora-bridge-20260618",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -65,157 +65,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively addresses the Indian American community's travel interests and provides relevant information about visa changes."
+          "note": "The article effectively highlights the importance of the Indian diaspora in France and Modi's acknowledgment of their role."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more personal anecdotes or testimonials from Indian travelers who have visited Argentina to enhance relatability.",
-          "Add a section on cultural tips or must-try experiences in Argentina for Indian travelers."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "ed5e85e0-a03c-4a26-90a9-dac5de869ab0",
-      "headline": "Germany Just Dropped the Transit Visa for Indians \u2014 and Frankfurt Is Now a Cleaner Route Home",
-      "slug": "germany-airport-transit-visa-removed-indians-frankfurt-munich-nri-20260618",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the visa change to the Indian American diaspora, highlighting its benefits for travelers."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more specific examples of how this change will impact travel plans for NRIs.",
-          "Add a section on potential challenges or considerations for travelers despite the visa removal."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "08a932bf-9e01-4dc6-8822-14cf66bcae6f",
-      "headline": "India's Largest Stock Exchange Is Finally Going Public. After a Decade of Delays, the NSE Just Filed Its IPO Papers.",
-      "slug": "nse-ipo-draft-papers-filed-offer-for-sale-3-billion-india-exchange-nri-investor-20260618",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the NSE IPO to NRI investors by discussing its relevance to diaspora portfolios."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more specific examples of how NRIs can participate in the IPO.",
-          "Include a brief explanation of the significance of the NSE in the context of global markets."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "1696ed61-d9a5-4b44-88ef-de9f8aefb53d",
-      "headline": "It Is Not Just How High Your Blood Pressure Is. How Much It Swings May Quietly Age Your Brain.",
-      "slug": "blood-pressure-variability-24-hour-brain-health-cognition-monash-neurology-diaspora-20260618",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the research findings to the health concerns prevalent in the Indian diaspora, making it relevant and engaging."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more specific statistics or studies related to hypertension in the Indian diaspora to strengthen the diaspora angle.",
-          "Include a brief summary of practical steps for readers to monitor blood pressure variability effectively."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "1b17c7b5-2bb2-4f41-9766-68eb9a1ae950",
-      "headline": "Scientists Found the Muscle Switch That Exercise Flips On. It May Explain Why Movement Keeps You Strong With Age.",
-      "slug": "nox4-muscle-protein-exercise-aging-strength-science-advances-diaspora-20260618",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the scientific findings to the health concerns of the Indian diaspora, particularly regarding muscle loss and metabolic issues."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a quote from a South Asian health expert to strengthen the diaspora connection.",
-          "Include practical tips for NRIs on how to incorporate exercise into their daily routines."
+          "Include more direct quotes from Modi or diaspora members to enhance engagement.",
+          "Add a brief section on the historical context of the Indian diaspora in France for deeper insight."
         ],
         "verdict": "pass"
       },
