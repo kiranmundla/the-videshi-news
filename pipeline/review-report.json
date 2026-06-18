@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-18T08:15:20.982640+00:00",
+  "timestamp": "2026-06-18T08:45:09.579128+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 1,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "474cefe0-8da5-4e36-9e44-b83b78e84c02",
-      "headline": "The Two-Minute Gate: F-1 Visa Interviews Get Tougher Just as India Files for Fall",
-      "slug": "f1-student-visa-interviews-tougher-2026-india-funding-social-media-scr-20260618",
+      "id": "f1abfc4b-c18e-4f79-b0f3-263927561417",
+      "headline": "After 18 Years, the India-EU Trade Deal Finally Has a Signing Date: End of 2026",
+      "slug": "eu-india-free-trade-agreement-sign-end-2026-g7-evian-mobility-diaspora-20260618",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -23,60 +23,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the topic of F-1 visa interviews or Indian students."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively addresses the challenges faced by Indian students applying for F-1 visas, making it highly relevant to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that directly relates to F-1 visa interviews or Indian students studying abroad.",
-          "Add a quote or anecdote from an Indian student who has recently gone through the F-1 visa process to enhance relatability."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "515e968b-f0e4-4121-9b39-9c0fd014da50",
-      "headline": "Even the Million-Dollar Green Card Line Is Full: EB-5 India Runs Dry Until October",
-      "slug": "eb5-india-unreserved-visas-exhausted-fiscal-2026-october-reset-20260618",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "fdf86c96-2daf-4197-a53f-dc3bead4dc12",
-            "headline": "Europe's New Biometric Border Is Fully Live \u2014 Here's What NR"
-          }
-        ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the topic of immigration or the EB-5 program."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively addresses the concerns of Indian families considering the EB-5 program, making it relevant to the diaspora."
+          "note": "The article effectively highlights the implications of the trade deal for the Indian diaspora, particularly regarding mobility and career opportunities."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that visually represents immigration or the EB-5 program specifically.",
-          "Add a quote or testimonial from an NRI who has gone through the EB-5 process to enhance the personal connection."
+          "Consider adding more specific examples of how the trade deal will impact the diaspora in various sectors.",
+          "Include quotes or perspectives from diaspora members to enhance relatability and engagement."
         ],
         "verdict": "pass"
       },
