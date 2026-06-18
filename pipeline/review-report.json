@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-18T13:45:10.798648+00:00",
+  "timestamp": "2026-06-18T14:15:40.938417+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
+    "pass": 6,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "9b7ba3d3-f976-4644-b990-2102c056382f",
-      "headline": "A Son of Kerala Is About to Make World Cup History \u2014 in Qatar's Colours",
-      "slug": "tahsin-jamshid-kerala-qatar-first-indian-origin-world-cup",
+      "id": "86aef191-6354-411d-b67c-a31f2af52ec5",
+      "headline": "Gold's Record Run Has Stalled. After a Blistering Two-Year Rally, the Fed Just Took the Wind Out of It.",
+      "slug": "gold-record-rally-stalls-fed-rate-hike-iran-deal-india-import-duty-nri-investor-20260618",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -29,13 +29,193 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the story of Tahsin Mohammed Jamshid to the Malayali diaspora, highlighting the significance of his achievements for the community."
+          "note": "The article effectively connects the topic of gold prices to the cultural significance of gold among NRIs, making it relevant for the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes from Tahsin or his family to add a personal touch.",
-          "Provide more context on the impact of this achievement on the Indian football scene."
+          "Consider adding more specific examples of how the gold price fluctuations are impacting NRI investments or remittances.",
+          "Include quotes or insights from NRI investors to enhance the diaspora perspective."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "1149b8bb-bb6f-46ec-a1d6-7b6101c3c17d",
+      "headline": "Cutting Out Sugar Entirely Sounds Healthy. A New Study Suggests It Can Backfire on Your Gut.",
+      "slug": "sugar-free-diet-gut-health-metabolism-backfire-dasman-endo-2026-mice-study-diaspora-20260618",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the study's findings to the dietary habits and health concerns of the Indian diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of how the findings can be applied in the diaspora context.",
+          "Include a brief mention of alternative sweeteners or balanced dietary options for readers."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "38f37957-1c9c-4b7c-a81c-3fedbbb1b817",
+      "headline": "Bad Sleep in Your Forties and Fifties May Quietly Shape How You Feel a Decade Later \u2014 Especially for Women",
+      "slug": "midlife-sleep-problems-psychological-wellbeing-women-sleep-2026-midus-study-diaspora-20260618",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the findings to the experiences of Indian diaspora women, highlighting cultural pressures that affect their sleep."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples or anecdotes from the diaspora to enhance relatability.",
+          "Include expert opinions or quotes from professionals in sleep research or psychology to strengthen the article's credibility."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "f28d6619-46ac-40f5-9508-751855972457",
+      "headline": "Indians Can Now Get Global Entry \u2014 but a Government Shutdown Showed Why You Still Need a Backup Plan",
+      "slug": "global-entry-indian-citizens-trusted-traveler-tsa-precheck-nri-20260618",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses the needs and concerns of the Indian diaspora, particularly those traveling frequently between India and the US."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more statistics or data on the number of Indian citizens using Global Entry to enhance credibility.",
+          "Include personal anecdotes or testimonials from NRIs who have used Global Entry to make the article more relatable."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "da9e0495-fa7e-411e-90f3-52e334c53700",
+      "headline": "India's Newest Airports Just Won a Global Design Prize \u2014 and They're Built for the NRIs Coming Home",
+      "slug": "navi-mumbai-guwahati-airports-prix-versailles-design-nri-20260618",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the improvements in airport design to the experiences of NRIs, highlighting the significance of these changes for travelers returning home."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from travelers or experts to enhance the narrative.",
+          "Include more statistics or data on the expected impact of these airport improvements on NRI travel."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "bbb5b4af-a1fa-4179-b317-453e70835dcc",
+      "headline": "Europe Quietly Killed the Passport Stamp \u2014 and the New Biometric Gates Are Slowing Down the Trip Home",
+      "slug": "eu-entry-exit-system-biometric-border-indian-passport-nri-20260618",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses the impact of the new biometric system on NRIs traveling to India, making it relevant to the diaspora audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a quote or anecdote from an NRI traveler to personalize the experience.",
+          "Include more specific statistics or data on how the changes have affected travel times for NRIs."
         ],
         "verdict": "pass"
       },
