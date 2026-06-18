@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-18T05:15:15.795902+00:00",
+  "timestamp": "2026-06-18T06:15:54.319086+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
+    "pass": 11,
     "flag": 1,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "7796a7e9-d033-4330-8793-fa4d040b913e",
-      "headline": "Mithun's Daughter Said Yes. Dishani Chakraborty Is Engaged \u2014 and the Proposal Pictures Are Pure Cinema.",
-      "slug": "dishani-chakraborty-engaged-myles-mantzaris-mithun-chakraborty-daughter-december-6-wedding-proposal-nri-20260617",
+      "id": "51f2f3e3-9f93-49d9-b77e-6db6edc3aa25",
+      "headline": "Britain's Wealthiest Minority Just Told Its Politicians: We Are Done Being Taken for Granted",
+      "slug": "british-indian-census-2025-swing-vote-parliament-diaspora-politics-20260618",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -24,18 +24,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image of Mithun Chakraborty is relevant but does not directly depict the engagement or Dishani Chakraborty."
+          "issue": "The image does not directly relate to the article's focus on the British Indian community and their political sentiments."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the engagement to the nostalgia and cultural significance of Mithun Chakraborty for the diaspora."
+          "quality": 8,
+          "note": "The article effectively discusses the political dynamics of the British Indian community, which resonates with the NRI audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider including images of Dishani and Myles' engagement to enhance visual relevance.",
-          "Add a quote from Dishani or Myles about their relationship to provide a personal touch."
+          "Consider using a more relevant image that reflects the British Indian community or political engagement.",
+          "Add a concluding section that directly addresses the implications for the NRI community."
         ],
         "verdict": "pass"
       },
@@ -47,9 +47,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "ba197b1e-9598-446c-a1e9-3a6004f49295",
-      "headline": "Three Decades After Ghatak, Sunny Deol and Rajkumar Santoshi Reunite \u2014 and Aamir Khan Lent His Voice to the Teaser.",
-      "slug": "batwara-1947-teaser-sunny-deol-rajkumar-santoshi-aamir-khan-preity-zinta-ar-rahman-august-14-partition-where-to-watch-diaspora-nri-20260617",
+      "id": "7957f0c4-bf5a-4429-959a-fe5bf22ca7a7",
+      "headline": "Google Just Picked Its First Class of Junior Faculty Stars. One of Them Is Teaching Computers to Design Computer Chips.",
+      "slug": "vidya-chhabria-google-ml-systems-award-asu-chip-design-diaspora-20260618",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -57,32 +57,398 @@
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/reel/DZWoKAeJ15M/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram reel does not appear to be directly related to the film or its themes."
-          }
-        ],
+        "embed_issues": [],
         "image_match": {
-          "score": 3,
-          "issue": "The image does not match the article's topic about 'Batwara 1947'."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the film's release timing with the significance of Independence Day for the diaspora."
+          "quality": 8,
+          "note": "The article effectively highlights the contributions of Indian-origin engineers in the semiconductor industry, connecting well with the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant Instagram embed with a more relevant social media post related to the film.",
-          "Use a hero image that directly relates to 'Batwara 1947' instead of the unrelated film poster."
+          "Consider adding quotes or insights from other Indian engineers in the field to further enrich the diaspora angle.",
+          "Include a brief section on how Chhabria's work could impact the tech landscape in India or among the Indian diaspora."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "d4192c94-5b73-4894-95b7-e0925bb0ae5c",
+      "headline": "Four of the University of Florida's Top Professors This Year Took the Same Road From India. That's Not a Coincidence.",
+      "slug": "four-indian-origin-scholars-2026-ufrf-professors-university-florida-di-20260618",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the specific topic of Indian professors at the University of Florida."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively highlights the achievements of Indian-origin professors in the U.S., connecting well with the Indian diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that depicts the professors or the University of Florida to enhance visual connection.",
+          "Add quotes or anecdotes from the professors to provide a more personal touch and engage readers further."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "5160ec36-a8e0-4539-9ecd-ddab44fcd83e",
+      "headline": "Accenture Reports Earnings Under an AI Cloud. The Company That Employs the Most Indians Is a Referendum on the Whole Sector.",
+      "slug": "accenture-earnings-ai-disruption-indian-it-jobs-tcs-cognizant-20260618",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects Accenture's performance to the Indian diaspora, highlighting the impact on Indian professionals and families."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more direct quotes from Accenture's leadership to enhance credibility.",
+          "Include more statistics or data points about the Indian workforce in the tech sector to strengthen the diaspora connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "62f221bb-e11a-4fe2-8f09-97f0f36510f4",
+      "headline": "Microsoft Just Shipped an AI That Finishes Your Work, Not Drafts It. Satya Nadella Warns It Could Hollow Out Industries.",
+      "slug": "microsoft-copilot-cowork-global-nadella-ai-warning-indian-tech-20260618",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "468c874d-721a-4806-a9d9-83fad2d365d8",
+            "headline": "Satya Nadella Has a Warning for the AI Gold Rush: Don't Hand"
+          },
+          {
+            "article_id": "9c81362d-1e3c-47c6-960b-316eb1db5ab1",
+            "headline": "Shareholders Sue Satya Nadella's Microsoft, Saying It Hid Ho"
+          },
+          {
+            "article_id": "ea9e320d-41b8-44e5-8469-f39bafe1e072",
+            "headline": "Satya Nadella Has a New Word for the AI Age: 'Token Capital."
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively discusses the implications of Microsoft's AI for the Indian tech workforce, making it relevant for diaspora readers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of how Indian engineers can adapt to the changes brought by AI.",
+          "Include quotes or insights from Indian tech professionals to enhance the diaspora connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "0ed50ce1-dda6-4a84-82ca-dde598b6b15b",
+      "headline": "eBay Is Cutting 639 American Jobs While Filing for 429 H-1B Workers. Indians Will Wear the Backlash.",
+      "slug": "ebay-layoffs-h1b-filings-indian-tech-workers-visa-backlash-20260618",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the implications of eBay's layoffs and H-1B visa applications to the Indian diaspora, particularly Indian professionals."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more statistics or data points to strengthen the argument about the impact on the Indian diaspora.",
+          "Include quotes or perspectives from affected individuals or experts to provide a more personal touch to the narrative."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "59cc0008-ec37-49ed-9109-2fdb0d65a1be",
+      "headline": "An India-US Trade Deal Is Suddenly Close. The US Trade Chief Visits This Month to Seal the First Tranche.",
+      "slug": "india-us-interim-trade-deal-greer-visit-june-tranche-mid-july-nri-investor-markets-20260618",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the trade deal to the interests of the diaspora, particularly in relation to investments and remittances."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of how the trade deal will impact NRI investments.",
+          "Include quotes from diaspora members or experts to enhance the personal connection to the topic."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "12a48e69-90d5-42dc-a4ee-4ac04a9056aa",
+      "headline": "The Most Addictive Foods Aren't Only the Sugary Ones. A New Study Points the Finger at Refined Starch.",
+      "slug": "ultra-processed-food-addiction-refined-starch-not-just-sugar-gearhardt-michigan-diaspora-snacking-20260618",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the research findings to the South Asian diaspora's snacking habits, making it relevant and relatable."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of how refined starches are incorporated into traditional South Asian dishes.",
+          "Include quotes or insights from experts in the South Asian community to enhance the diaspora connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "dd33105e-4946-43ed-9975-ff35acad58a6",
+      "headline": "It May Not Be Just What's in Ultra-Processed Foods That Hurts You \u2014 It's How They're Made",
+      "slug": "ultra-processed-foods-processing-independent-harm-tufts-ajph-nhanes-mortality-diaspora-20260618",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 8,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article connects the health implications of ultra-processed foods to the Indian and South Asian diaspora, but the explanation is incomplete."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Expand on the diaspora angle to include specific examples or statistics relevant to Indian and South Asian communities.",
+          "Provide a clearer conclusion that ties the findings back to the diaspora's dietary habits."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/reel/DZWoKAeJ15M/",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "eb4fa7e6-8a16-481c-b9fa-8f76e6321379",
+      "headline": "If You Renew an Indian Passport or OCI in the UAE, Your Service Center Is About to Change",
+      "slug": "india-uae-passport-oci-service-provider-al-hind-nri-20260618",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not specifically relate to the topic of passport or consular services."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively addresses the concerns and needs of the NRI community in the UAE regarding the change in service providers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that depicts passport services or the Indian community in the UAE.",
+          "Add a brief section on how this change might affect the processing times or customer service experiences based on past transitions."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "4b2116d5-eb71-41df-9d49-377a3e787e7a",
+      "headline": "Thailand Just Made Itself More Expensive for Indian Travelers \u2014 and the Wedding Season Is About to Feel It",
+      "slug": "thailand-india-visa-change-wedding-season-nri-cost-20260618",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image depicts a beach in Thailand, which is relevant to the article's topic about travel to Thailand, but it does not specifically relate to Indian travelers or weddings."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the visa changes to the Indian diaspora's travel habits, particularly regarding destination weddings, making it highly relevant."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including specific examples of Indian weddings that have been affected by the visa changes to enhance relatability.",
+          "Add quotes or testimonials from Indian travelers or wedding planners to provide personal insights into the impact of the new visa policy."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "714e7f04-6279-4fa2-96d3-93d0fd4a2349",
+      "headline": "Air India Is Putting Its Newest A350 on the New York Run \u2014 and the Old US Cabins Are Finally Going Away",
+      "slug": "air-india-a350-delhi-new-york-newark-us-cabins-nri-20260618",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively addresses the needs and concerns of the Indian diaspora, particularly NRIs traveling between India and the US."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from Air India officials or industry experts to enhance credibility.",
+          "Include more specific data or statistics about passenger satisfaction or preferences regarding cabin upgrades."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
         "promoted to published"
       ],
       "revised": false,
