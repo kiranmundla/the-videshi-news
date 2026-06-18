@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-18T17:15:18.427350+00:00",
+  "timestamp": "2026-06-18T18:16:00.992074+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
-    "flag": 1,
+    "pass": 12,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,58 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "add24f12-d34d-42a2-97d8-071ca469fb7e",
-      "headline": "Kajal Aggarwal's Next Film Calls India's Food a 'Slow Poison.' A Legal Notice Landed Before the First Poster Did.",
-      "slug": "the-india-story-poster-kajal-aggarwal-shreyas-talpade-food-adulteration-legal-notice-zee-studios-july-24-where-to-watch-diaspora-nri-20260618",
+      "id": "e1181531-c981-4aa0-a6e5-1af83082eb5f",
+      "headline": "In Paris, Modi Closes a European Tour Among the Diaspora",
+      "slug": "modi-paris-diaspora-vivatech-20260618",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "cf4f3b3e-1ec2-4a76-a723-02c6633b73b3",
+            "headline": "Modi and Macron Just Put 120 Indian Startups in Front of the"
+          },
+          {
+            "article_id": "120826ab-c701-4f4b-8bf0-b3d0e50c4758",
+            "headline": "Modi Just Became the First Indian PM to Visit Slovakia. For "
+          },
+          {
+            "article_id": "f24a14a9-a0b3-458c-8524-34af00971578",
+            "headline": "'Grateful for Your Concern About the Diaspora': Modi and Car"
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 6,
+          "issue": "The image of Modi does not directly relate to the Paris event or the diaspora theme."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively highlights the significance of Modi's engagement with the Indian diaspora in France."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that directly relates to the event in Paris or the Indian diaspora.",
+          "Add quotes or testimonials from attendees to enhance the personal connection to the diaspora experience."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "41a2df6d-4718-4d8d-a90b-f52c39f276c3",
+      "headline": "A New Jersey Temple Raises Funds, and Makes a Case for Belonging",
+      "slug": "siddhivinayak-temple-toms-river-community-hall-20260618",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -29,13 +78,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the film's themes of food safety and agricultural practices to the concerns of the NRI community."
+          "note": "The article effectively connects the temple's initiatives to the broader Indian diaspora experience, highlighting community building and cultural retention."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more quotes or reactions from Kajal Aggarwal or the filmmakers to enhance engagement.",
-          "Include more context about the legal notice's implications for the film's release and potential changes."
+          "Consider adding quotes from attendees or participants to enhance the personal connection to the event.",
+          "Include statistics or data on the impact of such community halls on diaspora engagement to strengthen the argument."
         ],
         "verdict": "pass"
       },
@@ -47,9 +96,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "8b9b429c-2cfd-4e42-b6dd-58864fb5e3b7",
-      "headline": "Sonali Bendre Walked Back Onto Screen After Cancer and Delivered the Performance of Her Life. Raakh Is the Reason to Subscribe This Month.",
-      "slug": "raakh-prime-video-sonali-bendre-comeback-ali-fazal-ranga-billa-karan-johar-review-where-to-watch-diaspora-nri-20260618",
+      "id": "6528c831-1f32-40a4-a472-22188e37bef1",
+      "headline": "Why NRI Money Is Pouring Back Into Indian Property",
+      "slug": "nri-real-estate-investment-surge-india-20260618",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -57,13 +106,7 @@
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/p/DZlD1KOxmvy/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post does not appear to be directly related to the article's subject matter regarding Sonali Bendre's performance in 'Raakh'."
-          }
-        ],
+        "embed_issues": [],
         "image_match": {
           "score": 9,
           "issue": null
@@ -71,18 +114,354 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the show's availability on Prime Video to diaspora audiences, emphasizing accessibility and relevance."
+          "note": "The article effectively connects the topic of Indian real estate investment to the NRI community, discussing both emotional and financial motivations."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant Instagram embed with a more relevant social media post or quote related to 'Raakh' or Sonali Bendre.",
-          "Consider adding a brief section on the impact of the show on the diaspora community or reactions from NRI viewers."
+          "Consider adding more specific examples of properties or developments that are attracting NRI investment.",
+          "Include quotes or insights from industry experts or diaspora investors to enhance credibility and engagement."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DZlD1KOxmvy/",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "57eac7d1-50c0-4694-a5bf-2a80f39ce43f",
+      "headline": "India Just Made It Easier for NRIs to Buy Indian Stocks \u2014 RBI Opens a New Repatriable Rupee Account",
+      "slug": "rbi-fema-amendment-repatriable-rupee-account-nri-stock-investors-individual-foreign-investor-20260618",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses the needs and concerns of NRIs regarding investment in Indian stocks."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from financial experts or NRIs to provide personal insights and enhance relatability.",
+          "Include a brief FAQ section addressing common concerns NRIs might have about the new regulations."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "3581afb8-c040-48ba-b5f9-063ae82c274f",
+      "headline": "Not All Vegetarian Diets Are Equal: A 400,000-Person Study Shows Why the Quality of Plant Foods Decides Your Health",
+      "slug": "healthy-plant-based-diet-cuts-cancer-cardiometabolic-multimorbidity-epic-uk-biobank-diaspora-20260618",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the findings to the Indian diaspora's cultural practices and dietary habits."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of healthy vegetarian meals that align with the study's findings.",
+          "Include a brief summary of the study's methodology to enhance credibility."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "aeb549d5-a413-4a3a-87a1-bcc5f2e8a843",
+      "headline": "Eat More Plant Polyphenols and You May Hurt Less \u2014 New Research Links Diet to Migraine Relief",
+      "slug": "dietary-polyphenols-reduced-pain-migraine-disability-plos-one-2026-diaspora-turmeric-20260618",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the research findings to the dietary habits of the Indian diaspora, highlighting relevant foods and cultural practices."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a brief summary of the study's methodology for clarity.",
+          "Include a quote from a researcher or expert to enhance credibility."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "d1cf657e-4240-4f39-b085-344b21fbfc39",
+      "headline": "As India's Cities Bake, the Diaspora's Summer Trip Is Moving to the Mountains",
+      "slug": "india-summer-high-altitude-escape-leh-spiti-manali-monsoon-nri-20260618",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses the needs and preferences of the NRI community, particularly in relation to summer travel."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more personal anecdotes or testimonials from NRIs who have traveled to these destinations to enhance relatability.",
+          "Include tips on how to prepare for altitude sickness, as this is a crucial aspect for travelers heading to high-altitude areas."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "95c6919d-97cd-47b6-b601-17abcffe51d8",
+      "headline": "Oman Is Quietly Becoming the Gulf's Smartest Stop for Indian Travelers \u2014 and Your US Visa Is the Key",
+      "slug": "oman-top-destination-indian-tourists-visa-on-arrival-us-visa-nri-20260618",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the travel opportunities in Oman to the needs and preferences of Indian American families."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of activities or attractions in Oman that cater to Indian travelers.",
+          "Include quotes or testimonials from Indian travelers who have visited Oman to enhance relatability."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "935ca092-77fe-4bcf-a5fe-a239607c5ae7",
+      "headline": "Air India Is Wiring Up the Smaller Cities \u2014 and Varanasi Is the First Door to 17 Global Hubs",
+      "slug": "air-india-easy-connect-varanasi-hub-spoke-secondary-cities-nri-20260618",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the new service to the needs of the NRI community, particularly those from smaller cities."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from travelers or experts to enhance the narrative.",
+          "Include more details on future cities planned for the Easy Connect service to engage readers further."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "2fda4be1-57d6-4d3c-a9c5-7722580f15e6",
+      "headline": "India's Biggest Exchange Finally Filed to Go Public. At $57 Billion, NRIs Are About to Get a Piece of the Casino's House.",
+      "slug": "nse-ipo-india-national-stock-exchange-nri-investors-gift-city-20260618",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the NSE or stock exchanges, but it is a generic financial image."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the IPO to NRIs, discussing their role and potential benefits."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that directly represents the NSE or stock trading.",
+          "Add a brief explanation of how NRIs can participate in the IPO to enhance clarity."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "3a5ea0c6-ebd5-4389-b17a-572cee00ed27",
+      "headline": "India's First Real Chip Fab Just Signed the Hardest Vendor in Tech. Now the Hard Part Begins.",
+      "slug": "tata-electronics-asml-dholera-fab-semiconductor-mission-nri-india-20260618",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image is relevant to the tech theme but does not specifically depict semiconductor fabrication."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the semiconductor industry developments in India to the Indian diaspora, highlighting the potential for returning talent and investment."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including more visuals or diagrams related to semiconductor fabrication to enhance reader understanding.",
+          "Add quotes or insights from industry experts to provide additional depth to the analysis."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "ad664520-9018-475a-ae04-7de2675076d1",
+      "headline": "Wipro Built a Whole Center to Run Claude. The Company That Sold Cheap Code Is Now Selling AI to Replace It.",
+      "slug": "wipro-anthropic-claude-center-bengaluru-ai-pivot-it-jobs-diaspora-20260618",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "14590a9e-a5d8-4cbe-b928-a5245b1ae4fc",
+            "headline": "The H-1B's Quietest Weapon Against New Indian Grads Isn't th"
+          },
+          {
+            "article_id": "3b0d22dd-3cb9-4221-bc9e-9a064a3b5317",
+            "headline": "Another Global Tech Firm Just Chose Bengaluru Over the Bay A"
+          },
+          {
+            "article_id": "0e4d5c6a-763d-4a0c-a424-fcefc809806d",
+            "headline": "A New Book Puts a $121 Million Price Tag on H-1B Exploitatio"
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the developments in Wipro's strategy to the experiences of the Indian American community, highlighting the shift in job roles and the importance of certification."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of how the AI shift is impacting job roles for Indian engineers in the US.",
+          "Include quotes from industry experts or analysts to provide additional perspectives on Wipro's strategy."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
         "promoted to published"
       ],
       "revised": false,
