@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-18T16:45:14.611987+00:00",
+  "timestamp": "2026-06-18T17:15:18.427350+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 0,
+    "pass": 1,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "ccd05b79-7d6a-45d5-aa04-f6796bba45b7",
-      "headline": "She Coached at MIT, Then the Grizzlies. Now Sonia Raman Is the First Indian-Origin Head Coach in the WNBA \u2014 and the Hardest Part Has Only Just Begun.",
-      "slug": "sonia-raman-first-indian-origin-wnba-head-coach-seattle-storm-debut-season-mit-grizzlies-2026-nri",
+      "id": "add24f12-d34d-42a2-97d8-071ca469fb7e",
+      "headline": "Kajal Aggarwal's Next Film Calls India's Food a 'Slow Poison.' A Legal Notice Landed Before the First Poster Did.",
+      "slug": "the-india-story-poster-kajal-aggarwal-shreyas-talpade-food-adulteration-legal-notice-zee-studios-july-24-where-to-watch-diaspora-nri-20260618",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -29,13 +29,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively highlights Sonia Raman's significance as a trailblazer for the Indian diaspora in sports, making it relatable to NRI readers."
+          "note": "The article effectively connects the film's themes of food safety and agricultural practices to the concerns of the NRI community."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more quotes from Sonia Raman or her players to enhance the personal connection.",
-          "Add a section discussing the impact of her coaching on the Indian diaspora community."
+          "Consider adding more quotes or reactions from Kajal Aggarwal or the filmmakers to enhance engagement.",
+          "Include more context about the legal notice's implications for the film's release and potential changes."
         ],
         "verdict": "pass"
       },
@@ -47,9 +47,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "81b4e41b-eb30-4c24-a500-c94058a63a71",
-      "headline": "The Iran War Just Ended. India Had the Most to Lose \u2014 and Now the Most to Gain.",
-      "slug": "iran-war-ends-oil-crashes-rupee-rallies-india-nri-investors-20260618",
+      "id": "8b9b429c-2cfd-4e42-b6dd-58864fb5e3b7",
+      "headline": "Sonali Bendre Walked Back Onto Screen After Cancer and Delivered the Performance of Her Life. Raakh Is the Reason to Subscribe This Month.",
+      "slug": "raakh-prime-video-sonali-bendre-comeback-ali-fazal-ranga-billa-karan-johar-review-where-to-watch-diaspora-nri-20260618",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -57,7 +57,13 @@
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/DZlD1KOxmvy/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not appear to be directly related to the article's subject matter regarding Sonali Bendre's performance in 'Raakh'."
+          }
+        ],
         "image_match": {
           "score": 9,
           "issue": null
@@ -65,17 +71,18 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the economic implications of the Iran war's end to NRIs, discussing investment opportunities and currency impacts."
+          "note": "The article effectively connects the show's availability on Prime Video to diaspora audiences, emphasizing accessibility and relevance."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more direct quotes from economists or diaspora investors to enhance credibility.",
-          "Include a brief overview of potential risks or challenges that may arise despite the positive outlook."
+          "Replace the irrelevant Instagram embed with a more relevant social media post or quote related to 'Raakh' or Sonali Bendre.",
+          "Consider adding a brief section on the impact of the show on the diaspora community or reactions from NRI viewers."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/DZlD1KOxmvy/",
         "promoted to published"
       ],
       "revised": false,
