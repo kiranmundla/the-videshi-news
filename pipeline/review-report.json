@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-18T00:45:45.959503+00:00",
+  "timestamp": "2026-06-18T01:15:23.510130+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 4,
-    "flag": 0,
+    "pass": 1,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "af6ad5b2-4549-4e3d-9a4b-71d52a424c98",
-      "headline": "The Last of the Old Guard: San Francisco's New Delhi Restaurant Wins a Place in History",
-      "slug": "the-last-of-the-old-guard-san-franciscos-new-delhi-restaurant-wins-a-place-in-hi",
+      "id": "bd12a9ba-a29f-4bb0-a8ce-88cc8560a29e",
+      "headline": "The Grammys Just Made Room for Asian Pop. They Forgot to Save a Seat for India.",
+      "slug": "grammys-2027-best-asian-pop-music-performance-category-india-omission-kpop-jpop-diaspora-nri-20260617",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -22,132 +22,67 @@
       "llm_review": {
         "overall_score": 8,
         "embed_issues": [],
+        "image_match": {
+          "score": 5,
+          "issue": "The image of Diljit Dosanjh does not directly relate to the article's focus on the Grammys and Asian pop music, as it centers on a specific event rather than the artist."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the Grammy's decisions to the NRI diaspora's cultural consumption and the significance of recognition in the music industry."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including more diverse examples of Indian artists to strengthen the argument about the omission of Indian pop in the Grammy categories.",
+          "Add a concluding paragraph that summarizes the implications of this omission for the Indian music industry and diaspora."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "5acc9b2c-6eea-4ff0-9929-2da70acc9eac",
+      "headline": "Samantha Brought a Shotgun to the Wedding. Maa Inti Bangaaram Lands Friday \u2014 and She Produced It Herself.",
+      "slug": "maa-inti-bangaaram-samantha-ruth-prabhu-producer-debut-june-19-nandini-reddy-raj-nidimoru-where-to-watch-diaspora-nri-20260617",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DZhGwzKh1HO/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel does not appear to be directly related to the film or its themes, making it less relevant to the article."
+          }
+        ],
         "image_match": {
           "score": 7,
-          "issue": "The image of an Indian thali is relevant but does not specifically represent New Delhi Restaurant."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively highlights the significance of New Delhi Restaurant to the Indian diaspora in the Bay Area."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider including a direct quote from the restaurant owner or a notable patron to add a personal touch.",
-          "Add more details about the restaurant's menu or unique dishes to enhance the food aspect of the article."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "e41b9b18-65ac-45bd-93ed-7742647ce059",
-      "headline": "One Table for the Whole Diaspora: Dr\u0101vida Opens in New York's East Village",
-      "slug": "one-table-for-the-whole-diaspora-drvida-opens-in-new-yorks-east-village",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively highlights the significance of the restaurant for various South Asian diaspora communities, emphasizing the cultural and culinary connections."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from patrons or community members to enhance the personal connection to the diaspora.",
-          "Include more details about the restaurant's opening events or community engagement initiatives to further connect with the audience."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "0c1530ed-1896-4879-9e34-35c1ef94ef88",
-      "headline": "Kebabs From Every Corner: A Michelin-Starred Chef Bets Phoenix Is Ready for Regional India",
-      "slug": "kebabs-from-every-corner-a-michelin-starred-chef-bets-phoenix-is-ready-for-regio",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the restaurant's offerings to the identities and experiences of the Indian diaspora, highlighting regional diversity."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from diners or food critics to enhance the article's depth.",
-          "Include more details about the chef's background and culinary philosophy to provide context."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "48a74510-e8c0-4016-b927-472443de06c3",
-      "headline": "EB-2 India Just Went 'Unavailable.' The Green Card Door Closes for Months.",
-      "slug": "july-2026-visa-bulletin-eb2-india-unavailable-green-card-backlog-h1b-20260618",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": "The image is relevant to the topic of the article, depicting the U.S. State Department Visa Bulletin."
+          "issue": "The image of Samantha at a concert does not directly relate to the film 'Maa Inti Bangaaram' or its themes."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively discusses the impact of the EB-2 visa unavailability on the Indian diaspora, particularly H-1B visa holders."
+          "note": "The article effectively connects the film's release to NRI audiences, discussing its availability in overseas markets."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from immigration experts or affected individuals to provide personal perspectives.",
-          "Include potential future implications or changes in immigration policy that could affect the diaspora."
+          "Replace the irrelevant Instagram embed with a more relevant social media post related to the film.",
+          "Consider using a hero image that directly represents the film or its themes for better alignment."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DZhGwzKh1HO/",
         "promoted to published"
       ],
       "revised": false,
