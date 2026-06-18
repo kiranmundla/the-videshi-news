@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-18T01:45:08.455797+00:00",
+  "timestamp": "2026-06-18T02:15:30.063764+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
+    "pass": 6,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,45 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "5c34b99d-56c0-4d6f-9493-6c8ca6e692ef",
-      "headline": "From a Bakersfield Muni to Shinnecock: The Gujarati-American Who Skipped Med School and Became the First IGPL Golfer at a Major",
-      "slug": "manav-shah-first-igpl-golfer-us-open-2026-shinnecock-gujarat-california-bakersfield-diaspora-nri",
+      "id": "7361cf0e-65d0-47f6-ac4e-ba30b62a5d2a",
+      "headline": "India's Defence Production Hits a Record \u20b91.78 Lakh Crore \u2014 and the Stocks Riding the Boom Just Surged",
+      "slug": "india-defence-production-record-1-78-lakh-crore-exports-stocks-surge-make-in-india-nri-investor-20260618",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses India's defense production and its implications for investors, which can resonate with the NRI community interested in economic opportunities in India."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include quotes from industry experts or government officials to enhance credibility.",
+          "Add a section on how these developments might impact NRI investors specifically."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "f5c3fe63-880c-4eee-871f-9eb834464cff",
+      "headline": "Bad Sleep May Do More Than Tire You Out \u2014 A Study of 1.8 Million People Links Insomnia to an Irregular Heartbeat",
+      "slug": "insomnia-atrial-fibrillation-afib-risk-japan-jaha-1-8-million-study-heart-diaspora-20260618",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -29,13 +65,157 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects Shah's journey to the immigrant experience and the expectations of Indian families, making it relatable for diaspora readers."
+          "note": "The article effectively connects the study's findings to the health vulnerabilities of the South Asian diaspora, making it relevant and engaging for the target audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from Shah or other players to enhance the personal connection.",
-          "Include more context about the Indian Golf Premier League for readers unfamiliar with it."
+          "Consider adding more specific statistics or studies related to insomnia and heart health within the South Asian diaspora to strengthen the diaspora angle.",
+          "Include quotes from experts or testimonials from individuals in the diaspora to add a personal touch and enhance relatability."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "c39ffec3-ad08-4c0a-8bd7-aa22bde4049b",
+      "headline": "A Cheap Amino-Acid Supplement Plus Exercise Cut Older Adults' Fatigue Almost in Half, a Pilot Trial Finds",
+      "slug": "bcaa-branched-chain-amino-acids-exercise-older-adults-fatigue-mood-ut-health-trial-diaspora-20260618",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article connects well with the diaspora by addressing the care of aging parents, a relevant concern for Indian and South Asian families."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of how BCAAs can be incorporated into the diets of South Asian elders.",
+          "Include quotes or insights from experts in geriatric health to enhance credibility."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "6c4708db-a81a-4e19-920d-2e82dd48d3a7",
+      "headline": "Etihad Is Opening Up Central Asia \u2014 and These Visa-Light Stopovers Are a Quiet Win for Indian Travelers",
+      "slug": "etihad-central-asia-expansion-visa-light-stopovers-nri-20260618",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses the needs and interests of Indian travelers, particularly NRIs, by discussing visa-light travel options."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include specific examples of how these new routes have been received by travelers or any testimonials.",
+          "Add a section on potential cultural experiences or attractions in the mentioned Central Asian destinations to enhance appeal."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "4a824afb-9ea7-473f-90ae-2f86fa8586bb",
+      "headline": "Direct India-China Flights Are Quietly Coming Back \u2014 and a New Daily Guangzhou Service Widens the Door",
+      "slug": "india-china-direct-flights-revival-guangzhou-nri-asia-20260618",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the reopening of flights to the needs of the Indian diaspora, particularly in business and education."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more recent statistics or quotes from industry experts to enhance credibility.",
+          "Include a brief section on potential future developments in air travel between India and China."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "1d0859d2-d0ff-463e-bdbe-a69b1d6deb5a",
+      "headline": "Air India and Thai Airways Are Joining Codes \u2014 Why the Bangkok Layover Just Got Smarter for NRIs",
+      "slug": "air-india-thai-airways-codeshare-bangkok-nri-single-ticket-20260618",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively highlights the benefits of the codeshare agreement for NRIs, making it relevant and engaging for the diaspora audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from NRI travelers or travel experts to enhance the personal connection to the diaspora audience.",
+          "Include a brief section on how this codeshare might impact ticket prices or travel times for NRIs."
         ],
         "verdict": "pass"
       },
