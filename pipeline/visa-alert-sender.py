@@ -61,19 +61,21 @@ def send_email(to, subject, html_body):
         "subject": subject,
         "html": html_body,
     }).encode()
-    req = urllib.request.Request(
-        "https://api.resend.com/emails",
-        data=payload,
-        headers={
-            "Authorization": f"Bearer {resend_key}",
-            "Content-Type": "application/json",
-        },
-    )
+    # Use curl so the authenticated egress proxy is honored (urllib gets 403).
     try:
-        with urllib.request.urlopen(req) as resp:
-            result = json.loads(resp.read())
-            print(f"  SENT to {to}: {result.get('id', 'ok')}")
+        proc = subprocess.run(
+            ["curl", "-s", "-X", "POST", "https://api.resend.com/emails",
+             "-H", f"Authorization: Bearer {resend_key}",
+             "-H", "Content-Type: application/json",
+             "-d", payload.decode()],
+            capture_output=True, text=True, timeout=30,
+        )
+        result = json.loads(proc.stdout or "{}")
+        if result.get("id"):
+            print(f"  SENT to {to}: {result['id']}")
             return True
+        print(f"  FAIL to {to}: {proc.stdout.strip() or proc.stderr.strip()}")
+        return False
     except Exception as e:
         print(f"  FAIL to {to}: {e}")
         return False
