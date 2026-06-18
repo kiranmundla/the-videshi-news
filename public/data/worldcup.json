@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-06-18T01:57:24Z",
-  "stage": "Group Stage — 23 of 72 matches played",
+  "last_updated": "2026-06-18T04:00:28Z",
+  "stage": "Group Stage — 24 of 72 matches played",
   "hosts": "USA, Mexico & Canada",
   "dates": {
     "start": "2026-06-11",
@@ -558,6 +558,19 @@
     ],
     "K": [
       {
+        "name": "Colombia",
+        "code": "COL",
+        "flag": "🇨🇴",
+        "rank": 13,
+        "p": 1,
+        "w": 1,
+        "d": 0,
+        "l": 0,
+        "gf": 2,
+        "ga": 1,
+        "pts": 3
+      },
+      {
         "name": "Portugal",
         "code": "POR",
         "flag": "🇵🇹",
@@ -584,29 +597,16 @@
         "pts": 1
       },
       {
-        "name": "Colombia",
-        "code": "COL",
-        "flag": "🇨🇴",
-        "rank": 13,
-        "p": 0,
-        "w": 0,
-        "d": 0,
-        "l": 0,
-        "gf": 0,
-        "ga": 0,
-        "pts": 0
-      },
-      {
         "name": "Uzbekistan",
         "code": "UZB",
         "flag": "🇺🇿",
         "rank": 50,
-        "p": 0,
+        "p": 1,
         "w": 0,
         "d": 0,
-        "l": 0,
-        "gf": 0,
-        "ga": 0,
+        "l": 1,
+        "gf": 1,
+        "ga": 2,
         "pts": 0
       }
     ],
@@ -1028,8 +1028,8 @@
       "away": "Colombia",
       "venue": "Estadio Azteca",
       "city": "Mexico City",
-      "status": "scheduled",
-      "score": null,
+      "status": "FT",
+      "score": "1-2",
       "home_code": "UZB",
       "away_code": "COL"
     },
@@ -1783,6 +1783,20 @@
     }
   },
   "highlights": [
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DZtk4Tum9Sg",
+      "account": "@fifaworldcup",
+      "caption": "Luis Díaz. — Colombia edge Uzbekistan 2-1 in Mexico City #FIFAWorldCup",
+      "date": "2026-06-17"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DZtkHQtG_r9",
+      "account": "@fifaworldcup",
+      "caption": "WHAT A MOMENT — Uzbekistan score their first-ever World Cup goal vs Colombia #FIFAWorldCup",
+      "date": "2026-06-17"
+    },
     {
       "platform": "instagram",
       "url": "https://www.instagram.com/p/DZtVRqmC4VG/",
