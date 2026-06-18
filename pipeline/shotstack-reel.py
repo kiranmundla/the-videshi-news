@@ -2875,20 +2875,30 @@ def render_reel(edit_json, use_production=False):
     return None
 
 
-def download_reel(url, output_path):
-    """Download rendered reel from Shotstack."""
-    r = requests.get(url, timeout=120, stream=True)
-    if r.status_code != 200:
-        print(f"❌ Download failed: {r.status_code}")
-        return False
+def download_reel(url, output_path, retries=3):
+    """Download rendered reel from Shotstack, with retry on transient network errors."""
+    last_err = None
+    for attempt in range(1, retries + 1):
+        try:
+            r = requests.get(url, timeout=180, stream=True)
+            if r.status_code != 200:
+                print(f"❌ Download failed: {r.status_code}")
+                return False
 
-    with open(output_path, "wb") as f:
-        for chunk in r.iter_content(chunk_size=8192):
-            f.write(chunk)
+            with open(output_path, "wb") as f:
+                for chunk in r.iter_content(chunk_size=8192):
+                    f.write(chunk)
 
-    size_mb = os.path.getsize(output_path) / (1024 * 1024)
-    print(f"  📥 Downloaded: {output_path} ({size_mb:.1f} MB)")
-    return True
+            size_mb = os.path.getsize(output_path) / (1024 * 1024)
+            print(f"  📥 Downloaded: {output_path} ({size_mb:.1f} MB)")
+            return True
+        except Exception as e:
+            last_err = e
+            print(f"  ⚠️ Download attempt {attempt}/{retries} failed: {e}")
+            if attempt < retries:
+                time.sleep(3 * attempt)
+    print(f"❌ Download failed after {retries} attempts: {last_err}")
+    return False
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
