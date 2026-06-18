@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-18T10:45:12.586876+00:00",
+  "timestamp": "2026-06-18T11:15:12.634836+00:00",
   "mode": "fix",
   "stats": {
     "pass": 2,
@@ -11,12 +11,17 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "2e3492ca-3fd3-47b4-a76e-64742308e734",
-      "headline": "America's Cricket League Begins Its Fourth Season Tonight. It Was Built in the Suburbs the Diaspora Calls Home.",
-      "slug": "major-league-cricket-2026-season-opens-grand-prairie-diaspora-monank-patel-netravalkar-american-cricket",
+      "id": "6a0623b0-e2b4-45de-9610-a6b75659f822",
+      "headline": "Salman Khan and Farhan Akhtar Are Quietly Plotting a Two-Part Period Epic. The Subject Is One of India's Most Iconic Figures.",
+      "slug": "salman-khan-farhan-akhtar-two-part-historical-epic-excel-entertainment-period-action-drama-2027-where-to-watch-diaspora-nri-20260618",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "2e8ad5e0-0fc1-4a03-bb56-d6caa2743453",
+            "headline": "Salman Khan Dragged a Movie to Court Over a Blue Bracelet. O"
+          }
+        ],
         "broken_embeds": []
       },
       "llm_review": {
@@ -28,14 +33,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the cricket league to the Indian diaspora, highlighting cultural preservation and community engagement."
+          "quality": 8,
+          "note": "The article connects well with the diaspora by highlighting the cultural significance of a Salman Khan film and its potential impact on NRI audiences."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes from players or fans to enhance the personal connection to the diaspora.",
-          "Add statistics or data on the growth of cricket among the diaspora to strengthen the narrative."
+          "Include more details about the iconic figure being portrayed to enhance reader engagement.",
+          "Add quotes or insights from Farhan Akhtar to provide a more balanced perspective."
         ],
         "verdict": "pass"
       },
@@ -47,9 +52,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "bc970246-aa3d-42ce-ae90-b4a38bd29634",
-      "headline": "Modi Lands in Paris and Thanks the Diaspora First. That Choice Was the Whole Point.",
-      "slug": "modi-paris-vivatech-2026-france-indian-diaspora-bridge-20260618",
+      "id": "24ce64a4-d454-4565-a3f4-d4ba4a0495ec",
+      "headline": "Aamir Khan Is Getting Married on July 5. The Man Who Once Called Wedding-at-60 'Inappropriate' Found His Contentment After All.",
+      "slug": "aamir-khan-gauri-spratt-wedding-july-5-2026-third-marriage-kiran-rao-registered-ceremony-where-to-watch-diaspora-nri-20260618",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -65,13 +70,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively highlights the importance of the Indian diaspora in France and Modi's acknowledgment of their role."
+          "note": "The article connects well with the diaspora by referencing Aamir Khan's influence and significance in their lives."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes from Modi or diaspora members to enhance engagement.",
-          "Add a brief section on the historical context of the Indian diaspora in France for deeper insight."
+          "Consider adding more direct quotes from Aamir Khan or Gauri Spratt to enhance the personal touch.",
+          "Include a brief section on how Aamir's previous marriages have influenced his current relationship for deeper context."
         ],
         "verdict": "pass"
       },
