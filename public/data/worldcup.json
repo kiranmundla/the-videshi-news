@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-06-17T23:58:01Z",
-  "stage": "Group Stage — 22 of 72 matches played",
+  "last_updated": "2026-06-18T01:57:24Z",
+  "stage": "Group Stage — 23 of 72 matches played",
   "hosts": "USA, Mexico & Canada",
   "dates": {
     "start": "2026-06-11",
@@ -625,29 +625,29 @@
         "pts": 3
       },
       {
-        "name": "Panama",
-        "code": "PAN",
-        "flag": "🇵🇦",
-        "rank": 34,
-        "p": 0,
-        "w": 0,
-        "d": 0,
-        "l": 0,
-        "gf": 0,
-        "ga": 0,
-        "pts": 0
-      },
-      {
         "name": "Ghana",
         "code": "GHA",
         "flag": "🇬🇭",
         "rank": 73,
-        "p": 0,
-        "w": 0,
+        "p": 1,
+        "w": 1,
         "d": 0,
         "l": 0,
-        "gf": 0,
+        "gf": 1,
         "ga": 0,
+        "pts": 3
+      },
+      {
+        "name": "Panama",
+        "code": "PAN",
+        "flag": "🇵🇦",
+        "rank": 34,
+        "p": 1,
+        "w": 0,
+        "d": 0,
+        "l": 1,
+        "gf": 0,
+        "ga": 1,
         "pts": 0
       },
       {
@@ -1013,8 +1013,8 @@
       "away": "Panama",
       "venue": "BMO Field",
       "city": "Toronto",
-      "status": "scheduled",
-      "score": null,
+      "status": "FT",
+      "score": "1-0",
       "home_code": "GHA",
       "away_code": "PAN"
     },
