@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-18T06:50:38.828825+00:00",
+  "timestamp": "2026-06-18T07:15:17.418010+00:00",
   "mode": "fix",
   "stats": {
     "pass": 1,
@@ -11,12 +11,21 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "76a05d50-fea2-4f78-ae38-418080015b5b",
-      "headline": "The UK-India Trade Deal Switches On July 15. The Real Win for NRIs Is Hidden in the Fine Print.",
-      "slug": "uk-india-trade-deal-dcc-national-insurance-july-15-diaspora-30-lakh-20260618",
+      "id": "43d8baf6-28a1-4acd-a049-1763cfeca61b",
+      "headline": "Rolex Just Anointed Priyanka Chopra. She Joins DiCaprio, Zendaya and Scorsese \u2014 as the Only Indian in the Room.",
+      "slug": "priyanka-chopra-rolex-testimonee-bvlgari-bentley-fortune-india-varanasi-rajamouli-mahesh-babu-diaspora-nri-20260618",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "ef3bd3f9-5654-4a46-be07-1dcfe2d2cb2b",
+            "headline": "Priyanka Chopra Just Joined Rolex. She's the First Indian Wo"
+          },
+          {
+            "article_id": "7445343f-b303-4768-846c-282da6296f23",
+            "headline": "Priyanka Chopra Is Worth \u20b92,507 Crore. She Built It Without "
+          }
+        ],
         "broken_embeds": []
       },
       "llm_review": {
@@ -29,13 +38,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively highlights the financial benefits of the trade deal for NRIs, making it relevant and engaging for the diaspora audience."
+          "note": "The article effectively connects Chopra Jonas's achievements to the Indian diaspora, highlighting her role as a symbol of success for NRIs."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes or reactions from NRI professionals to enhance the personal connection to the diaspora.",
-          "Include a brief explanation of how the trade deal might impact future UK-India relations beyond the immediate financial benefits."
+          "Include more direct quotes or reactions from Chopra Jonas regarding her new role with Rolex to enhance the personal connection.",
+          "Add a brief section on how Chopra Jonas's achievements have influenced the perception of Indian talent in the global entertainment industry."
         ],
         "verdict": "pass"
       },
