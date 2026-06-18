@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-18T13:15:18.173660+00:00",
+  "timestamp": "2026-06-18T13:45:10.798648+00:00",
   "mode": "fix",
   "stats": {
     "pass": 1,
@@ -11,53 +11,35 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "17f781dc-a672-45d0-9374-f005b0fc932b",
-      "headline": "Peddi Is Ram Charan's Biggest Solo Hit Ever. So Why Did the Makers Quietly Re-Cut It Mid-Run?",
-      "slug": "peddi-ram-charan-highest-solo-grosser-janhvi-kapoor-objectification-controversy-recut-rerelease-june-17-where-to-watch-diaspora-nri-20260618",
+      "id": "9b7ba3d3-f976-4644-b990-2102c056382f",
+      "headline": "A Son of Kerala Is About to Make World Cup History \u2014 in Qatar's Colours",
+      "slug": "tahsin-jamshid-kerala-qatar-first-indian-origin-world-cup",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "7d46280c-4716-4376-8674-7e59c8c38eee",
-            "headline": "They Wrote Off Ram Charan Eleven Days Ago. Now Peddi Is the "
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/p/DZg-88vTffF/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post does not appear to be directly related to the film 'Peddi' or its themes, making it irrelevant to the article."
-          },
-          {
-            "url": "https://youtube.com/watch?v=noatJVfA22U",
-            "problem": "irrelevant",
-            "explanation": "The YouTube link does not provide relevant content related to the film 'Peddi' or the controversy discussed in the article."
-          }
-        ],
+        "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image of Ram Charan is relevant to the article's topic, but it does not specifically depict a scene or element from 'Peddi'."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the film's success and its re-cut version to the diaspora audience, highlighting its international box office performance and relevance."
+          "quality": 8,
+          "note": "The article effectively connects the story of Tahsin Mohammed Jamshid to the Malayali diaspora, highlighting the significance of his achievements for the community."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant Instagram and YouTube links with embeds that directly relate to the film 'Peddi' or its themes.",
-          "Consider adding more context about the film's reception in the diaspora to enhance the connection for NRI readers."
+          "Include quotes from Tahsin or his family to add a personal touch.",
+          "Provide more context on the impact of this achievement on the Indian football scene."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DZg-88vTffF/",
-        "Removed irrelevant embed: https://youtube.com/watch?v=noatJVfA22U",
         "promoted to published"
       ],
       "revised": false,
