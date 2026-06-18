@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-06-18T21:58:32Z",
-  "stage": "Group Stage — 26 of 72 matches played",
+  "last_updated": "2026-06-18T23:58:59Z",
+  "stage": "Group Stage — 27 of 72 matches played",
   "hosts": "USA, Mexico & Canada",
   "dates": {
     "start": "2026-06-11",
@@ -72,6 +72,19 @@
     ],
     "B": [
       {
+        "name": "Canada",
+        "code": "CAN",
+        "flag": "🇨🇦",
+        "rank": 30,
+        "p": 2,
+        "w": 1,
+        "d": 1,
+        "l": 0,
+        "gf": 7,
+        "ga": 1,
+        "pts": 4
+      },
+      {
         "name": "Switzerland",
         "code": "SUI",
         "flag": "🇨🇭",
@@ -85,32 +98,6 @@
         "pts": 4
       },
       {
-        "name": "Canada",
-        "code": "CAN",
-        "flag": "🇨🇦",
-        "rank": 30,
-        "p": 1,
-        "w": 0,
-        "d": 1,
-        "l": 0,
-        "gf": 1,
-        "ga": 1,
-        "pts": 1
-      },
-      {
-        "name": "Qatar",
-        "code": "QAT",
-        "flag": "🇶🇦",
-        "rank": 57,
-        "p": 1,
-        "w": 0,
-        "d": 1,
-        "l": 0,
-        "gf": 1,
-        "ga": 1,
-        "pts": 1
-      },
-      {
         "name": "Bosnia & Herzegovina",
         "code": "BIH",
         "flag": "🇧🇦",
@@ -121,6 +108,19 @@
         "l": 1,
         "gf": 2,
         "ga": 5,
+        "pts": 1
+      },
+      {
+        "name": "Qatar",
+        "code": "QAT",
+        "flag": "🇶🇦",
+        "rank": 57,
+        "p": 2,
+        "w": 0,
+        "d": 1,
+        "l": 1,
+        "gf": 1,
+        "ga": 7,
         "pts": 1
       }
     ],
