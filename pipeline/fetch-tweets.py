@@ -42,22 +42,31 @@ def load_env(path):
 load_env(os.path.expanduser("~/workspace/.env.twitter"))
 load_env(os.path.expanduser("~/workspace/.env.supabase"))
 
-_bearer_cache = None
+# NOTE (2026-06-18): The app-only OAuth2 bearer flow (POST /oauth2/token) hangs
+# indefinitely through the egress proxy — every X read job stalled there, which
+# looked like "depleted credits" but was purely an auth-path bug. The account and
+# quota are fine. We now sign requests with OAuth 1.0a user context (same 4 keys
+# already in .env.twitter), which works through the proxy and needs no new creds.
 
-def get_bearer_token():
-    global _bearer_cache
-    if _bearer_cache:
-        return _bearer_cache
-    key = os.environ.get("TWITTER_CONSUMER_KEY", "")
-    secret = os.environ.get("TWITTER_CONSUMER_SECRET", "")
-    if not key or not secret:
-        raise RuntimeError("Missing TWITTER_CONSUMER_KEY / TWITTER_CONSUMER_SECRET")
-    resp = _session.post("https://api.twitter.com/oauth2/token",
-                         auth=(key, secret),
-                         data={"grant_type": "client_credentials"})
-    resp.raise_for_status()
-    _bearer_cache = resp.json()["access_token"]
-    return _bearer_cache
+_oauth_session_cache = None
+
+def get_oauth_session():
+    """Return an OAuth1 user-context session for X API v2 reads."""
+    global _oauth_session_cache
+    if _oauth_session_cache is not None:
+        return _oauth_session_cache
+    from requests_oauthlib import OAuth1Session
+    ck = os.environ.get("TWITTER_CONSUMER_KEY", "")
+    cs = os.environ.get("TWITTER_CONSUMER_SECRET", "")
+    at = os.environ.get("TWITTER_ACCESS_TOKEN", "")
+    ats = os.environ.get("TWITTER_ACCESS_TOKEN_SECRET", "")
+    if not all([ck, cs, at, ats]):
+        raise RuntimeError("Missing OAuth1 keys in .env.twitter "
+                           "(need TWITTER_CONSUMER_KEY/SECRET + ACCESS_TOKEN/SECRET)")
+    s = OAuth1Session(ck, cs, at, ats)
+    s.mount("https://", HTTPAdapter(max_retries=_retry))
+    _oauth_session_cache = s
+    return s
 
 
 # ─── User ID lookup (cached) ──────────────────────────────────────────────────
@@ -80,11 +89,10 @@ def get_user_id(handle):
     if handle_lower in cache:
         return cache[handle_lower]
 
-    bearer = get_bearer_token()
-    resp = _session.get(
+    sess = get_oauth_session()
+    resp = sess.get(
         f"https://api.twitter.com/2/users/by/username/{handle}",
-        headers={"Authorization": f"Bearer {bearer}"},
-        timeout=10,
+        timeout=15,
     )
     if resp.status_code == 200:
         uid = resp.json().get("data", {}).get("id")
@@ -106,7 +114,7 @@ def fetch_recent_tweets(handle, hours=48, max_results=10):
     if not uid:
         return []
 
-    bearer = get_bearer_token()
+    sess = get_oauth_session()
     start_time = (datetime.now(timezone.utc) - timedelta(hours=hours)).strftime("%Y-%m-%dT%H:%M:%SZ")
 
     params = {
@@ -118,11 +126,10 @@ def fetch_recent_tweets(handle, hours=48, max_results=10):
         "exclude": "retweets,replies",
     }
 
-    resp = _session.get(
+    resp = sess.get(
         f"https://api.twitter.com/2/users/{uid}/tweets",
-        headers={"Authorization": f"Bearer {bearer}"},
         params=params,
-        timeout=15,
+        timeout=20,
     )
 
     if resp.status_code != 200:

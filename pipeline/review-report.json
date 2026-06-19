@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-19T04:15:13.867749+00:00",
+  "timestamp": "2026-06-19T04:45:21.647058+00:00",
   "mode": "fix",
   "stats": {
     "pass": 2,
@@ -11,9 +11,45 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "f4d9e42f-96d5-4412-b962-ebc050954513",
-      "headline": "India Just Quietly Tightened Its Rules for Foreigners \u2014 and It Reaches NRI Families Too",
-      "slug": "india-2026-immigration-rules-fro-registration-grace-period-nri-oci-chi-20260619",
+      "id": "4d5a56ce-d4c9-4384-892b-608b020e0a26",
+      "headline": "America's Cricket Season Opened With Its Highest-Ever Chase. A 41-Year-Old From Pretoria Made 113 to Win It.",
+      "slug": "major-league-cricket-2026-opener-texas-super-kings-faf-du-plessis-113-record-chase-seattle-orcas-tim-seifert-grand-prairie-diaspora-nri",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively highlights the significance of the event to the South Asian diaspora in the U.S., making it relatable to NRI readers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from players or fans to enhance the narrative.",
+          "Include more statistics or historical context about Major League Cricket to engage readers further."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "5c4a81ba-1130-4b4f-9076-3dafcec35472",
+      "headline": "India's US College Pipeline Is Cratering. Consultants Report a 70-80% Drop for This Fall.",
+      "slug": "indian-students-us-fall-2026-intake-collapse-70-80-percent-drop-visa-slot-freeze-20260619",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -29,49 +65,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively addresses how the new immigration rules impact NRI families, making it relevant to the diaspora audience."
+          "note": "The article discusses the impact of visa issues on Indian students in the US, which is relevant to the diaspora community."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from immigration experts or affected families to provide personal perspectives.",
-          "Include a summary of potential consequences for non-compliance to emphasize the importance of the new rules."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "116ce9a2-857d-4a34-950b-8708a02497f4",
-      "headline": "A Judge Killed the $100,000 H-1B Fee. Why Indians Shouldn't Celebrate Just Yet",
-      "slug": "h1b-100k-fee-struck-down-boston-circuit-split-supreme-court-refunds-20260619",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the topic of immigration or H-1B visas."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses the implications of the ruling on Indian professionals, which is relevant to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that more directly represents immigration or H-1B visas to enhance relevance.",
-          "Add a brief section summarizing the potential long-term implications for Indian professionals in the U.S."
+          "Include quotes or testimonials from students who have been affected by the visa issues to add a personal touch.",
+          "Provide more context on how these changes might affect future trends in Indian students studying abroad."
         ],
         "verdict": "pass"
       },
