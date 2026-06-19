@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-19T16:15:20.090611+00:00",
+  "timestamp": "2026-06-19T16:45:24.312194+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 3,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "69322a92-6092-4321-9acf-94cdf4e179e6",
-      "headline": "The Visa-Stamping Shortcut Just Closed: Kolkata's Wait Jumps to 126 Days as Indian Backlogs Deepen",
-      "slug": "us-consulate-india-visa-backlog-kolkata-126-days-h1b-stamping-20260619",
+      "id": "9a6db5e6-76ef-4ff6-9df9-c7aaa63bba13",
+      "headline": "A Court Just Lifted a $100,000 Wall in Front of Immigrant Doctors. Indian-American Physicians Are Calling It a Win for Patients.",
+      "slug": "aapi-physicians-court-blocks-100k-h1b-fee-imgs-underserved-care-20260619",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -29,13 +29,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively addresses the impact of visa delays on the Indian professional diaspora, making it relevant to NRI readers."
+          "note": "The article effectively connects the ruling to the Indian-American community and highlights their role in the healthcare sector."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include specific examples or testimonials from affected individuals to enhance relatability.",
-          "Add a section on potential solutions or advice for NRIs facing these delays."
+          "Include quotes or perspectives from more Indian-American physicians to enhance the personal connection.",
+          "Add a brief section on potential implications of the ruling for future immigration policies affecting healthcare."
         ],
         "verdict": "pass"
       },
@@ -47,9 +47,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "dc7abb20-c4f0-4c5d-af9d-30440fcbe0c9",
-      "headline": "India Deported a Third as Many Citizens From the US This Year. New Delhi Calls It Progress",
-      "slug": "india-us-deportations-1076-mea-2026-enforcement-diaspora-20260619",
+      "id": "6687b42b-6483-4b5e-b1bd-1d0a6906e5c2",
+      "headline": "The RBI Just Told Banks to Pay NRIs Whatever It Takes. Deposit Rates Have Already Jumped to 7%.",
+      "slug": "rbi-removes-nri-deposit-rate-caps-fcnr-nre-diaspora-dollars-20260619",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -59,19 +59,55 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 5,
-          "issue": "irrelevant"
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the deportation issue to the Indian diaspora, highlighting the implications for NRIs."
+          "note": "The article discusses the RBI's policy changes that directly impact NRIs, making it relevant to the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that reflects the theme of deportation or immigration.",
-          "Add more statistics or personal stories from affected individuals to enhance the emotional impact."
+          "Add more direct quotes or testimonials from NRIs to enhance the personal connection.",
+          "Include a brief comparison of deposit rates in other countries to provide context."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "769db31f-8637-4c24-b2d1-23253846fc36",
+      "headline": "He Was Born in Paris, His Mother Is Congolese, and His Tamil Roots Run Through a Caribbean Island. Meet the Fourth Indian at This World Cup.",
+      "slug": "samuel-moutoussamy-dr-congo-tamil-guadeloupe-fourth-indian-origin-player-world-cup-2026-portugal-houston-nri",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects Moutoussamy's diverse heritage to the Indian diaspora, highlighting a lesser-known aspect of Indian history in the Caribbean."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from Moutoussamy or coaches to provide a personal touch.",
+          "Include more context about the significance of the Indian diaspora in sports to enhance the narrative."
         ],
         "verdict": "pass"
       },
