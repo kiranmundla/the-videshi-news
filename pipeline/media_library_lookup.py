@@ -38,6 +38,34 @@ import time, json
 import media_library_store as store
 
 
+# Words that must never, on their own, qualify an asset as a relevance match.
+# These brushed loose substring matches before (e.g. "a" inside "india",
+# "indian" inside the tag "india") and let high-quality off-topic assets
+# hijack scenes. Tokens shorter than _MIN_TOKEN_LEN are also dropped.
+_STOPWORDS = {
+    "a", "an", "the", "of", "at", "in", "on", "to", "for", "and", "or", "with",
+    "from", "by", "as", "is", "are", "was", "were", "be", "this", "that",
+    "these", "those", "it", "its", "his", "her", "their", "they", "up", "out",
+    "close", "shot", "view", "wide", "angle", "closeup", "scene", "background",
+    "people", "person", "group", "crowd", "celebrating", "speaking", "holding",
+    "standing", "sitting", "walking", "smiling", "during", "over", "near",
+    # generic geo/identity words that are too broad to carry relevance alone
+    "india", "indian", "indians", "american", "americans", "us", "usa",
+    "city", "street", "building", "skyline", "flag", "public", "event",
+}
+_MIN_TOKEN_LEN = 4
+
+
+def _tokens(text):
+    """Lowercased, meaningful word tokens: drops stopwords and short fragments."""
+    import re
+    out = []
+    for w in re.split(r"[^a-z0-9]+", (text or "").lower()):
+        if len(w) >= _MIN_TOKEN_LEN and w not in _STOPWORDS:
+            out.append(w)
+    return out
+
+
 def _matches(asset, subject, tags, subject_type, media_type, min_quality, exclude_concept):
     if media_type and asset.get("media_type") != media_type:
         return False
@@ -48,19 +76,38 @@ def _matches(asset, subject, tags, subject_type, media_type, min_quality, exclud
     if (asset.get("quality_score") or 0) < min_quality:
         return False
 
-    asset_subject = (asset.get("subject") or "").lower()
-    asset_tags = [str(t).lower() for t in (asset.get("tags") or [])]
+    asset_subject = (asset.get("subject") or "").lower().strip()
+    # Build a set of meaningful tokens describing this asset: its subject words
+    # plus its explicit tags (tags kept whole AND tokenized).
+    asset_tag_set = set()
+    for t in (asset.get("tags") or []):
+        t = str(t).lower().strip()
+        if t:
+            asset_tag_set.add(t)
+            asset_tag_set.update(_tokens(t))
+    asset_subject_tokens = set(_tokens(asset_subject))
 
     matched = False
     if subject:
         s = subject.lower().strip()
-        if s == asset_subject or s in asset_subject or asset_subject in s:
+        # Whole-subject equality / containment is a strong, safe signal
+        # (proper entity names like "narendra modi" vs "modi").
+        if s and (s == asset_subject
+                  or (len(s) >= _MIN_TOKEN_LEN and (s in asset_subject or asset_subject in s))):
             matched = True
-        elif any(s in t or t in s for t in asset_tags):
-            matched = True
-    if tags:
-        want = [str(t).lower() for t in tags]
-        if any(w in asset_tags or any(w in at or at in w for at in asset_tags) for w in want):
+        else:
+            # Otherwise require a shared meaningful TOKEN — no substrings.
+            s_tokens = set(_tokens(s))
+            if s_tokens & (asset_subject_tokens | asset_tag_set):
+                matched = True
+    if tags and not matched:
+        # Caller passed candidate tag tokens (e.g. scene query words). Require a
+        # whole-token overlap with the asset's tags/subject tokens — never a
+        # substring brush. Stopwords/short fragments are stripped first.
+        want = set()
+        for t in tags:
+            want.update(_tokens(str(t)))
+        if want & (asset_tag_set | asset_subject_tokens):
             matched = True
     if not subject and not tags:
         matched = True  # type/quality-only query (e.g. any high-quality concept b-roll)
