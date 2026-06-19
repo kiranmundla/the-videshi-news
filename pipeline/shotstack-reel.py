@@ -2773,16 +2773,26 @@ def source_storyboard_images(article, storyboard, count=8):
             if visual and visual not in queries:
                 queries = [visual] + queries
             asset = None
-            # 1) try the article's named entities as a real subject match
-            for term in (entities or [])[:6]:
-                try:
-                    asset = ml.find_media(subject=term, exclude_concept=False,
-                                          min_quality=50, bump_usage=False)
-                except Exception:
+            # 1) try the article's named entities as a real subject match.
+            #    SKIP for the HOOK frame (scene 0): a loose article-entity match
+            #    (e.g. "United States" → a generic country/place map) repeatedly
+            #    landed an off-topic image as Frame 1, the single most important
+            #    frame, which the QA gate flags as "Frame 1 doesn't relate to the
+            #    topic". The hook must be matched to its OWN scene visual (e.g.
+            #    oil tankers in the Strait of Hormuz), so let scene 0 fall through
+            #    to its scene-query judge (step 2) and then to topical Pexels
+            #    footage / the key-point-card floor — all scene-relevant by
+            #    construction. Mid scenes still benefit from entity matches.
+            if i != 0:
+                for term in (entities or [])[:6]:
+                    try:
+                        asset = ml.find_media(subject=term, exclude_concept=False,
+                                              min_quality=50, bump_usage=False)
+                    except Exception:
+                        asset = None
+                    if asset and asset.get("url") not in used_in_this_reel:
+                        break
                     asset = None
-                if asset and asset.get("url") not in used_in_this_reel:
-                    break
-                asset = None
             # 2) fall back to the scene's own queries — but route through the
             #    LLM relevance judge over a GATED shortlist (thing/place B-roll).
             #    Persons are already handled exactly in step 1; this step only
@@ -3150,6 +3160,74 @@ def source_storyboard_images(article, storyboard, count=8):
                 # mark as a card so the timeline can give it a calmer Ken Burns move
                 media_meta[card_url] = {"type": "image", "duration": 0, "is_card": True}
                 print(f"  🎨 Scene {i+1}: {scene_descs[i][:46]}  →  key-point card")
+
+    # ── 6. MINIMUM-CARDS FLOOR (Kiran's directive: prefer styled cards over
+    #        generic foreign stock) ──────────────────────────────────────────
+    # The relevance filters above are conservative: a clip whose *query* was
+    # India-anchored passes even when the *returned image* is only loosely on
+    # topic (e.g. a US ghost-town barn for an oil story, a Tehran skyline for an
+    # Indian-ship line). Those slipped-through clips are exactly what the QA gate
+    # dings as "image relevance: frame X doesn't relate to the topic." A branded
+    # navy/gold key-point card is ALWAYS on topic (its text IS the story) and
+    # always crisp, so guaranteeing a couple of them per reel both lifts relevance
+    # and matches the reference storyboard's mix of footage + info cards.
+    #
+    # Rule: ensure at least MIN_CARDS cards. Never touch scene 0 (the hook hero)
+    # or genuinely strong real media (curated / Commons / anchored-India / social
+    # card). Convert the WEAKEST remaining stock scenes first: generic stock
+    # before anchored stock, stills before videos (videos add motion variety),
+    # and later scenes before earlier ones.
+    MIN_CARDS = int(os.environ.get("VIDESHI_MIN_CARDS", "2"))
+    n_scenes_total = len(matched_urls)
+    # Don't let cards dominate: cap so at least ~half the reel is still footage.
+    max_cards_allowed = max(MIN_CARDS, n_scenes_total // 2)
+    current_cards = [i for i in range(n_scenes_total)
+                     if matched_urls[i] is not None
+                     and media_meta.get(matched_urls[i], {}).get("is_card")]
+    need = min(MIN_CARDS, max_cards_allowed) - len(current_cards)
+    if need > 0:
+        def _weakness(i):
+            u = matched_urls[i]
+            meta = media_meta.get(u, {})
+            is_generic = meta.get("generic_pexels")
+            is_video = meta.get("type") == "video"
+            # higher tuple sorts later → converted first
+            return (0 if is_generic else 1,       # generics first
+                    0 if not is_video else 1,      # stills before videos
+                    -i)                            # later scenes before earlier
+        # Candidates: any filled, non-card, non-hero scene.
+        cand = [i for i in range(1, n_scenes_total)
+                if matched_urls[i] is not None
+                and not media_meta.get(matched_urls[i], {}).get("is_card")]
+        cand.sort(key=_weakness, reverse=True)
+        to_cardify = cand[:need]
+        if to_cardify:
+            print(f"  🎨 MIN-CARDS floor: have {len(current_cards)} card(s), "
+                  f"want {MIN_CARDS} — converting {len(to_cardify)} weakest stock "
+                  f"scene(s) to branded key-point cards (scenes {[i+1 for i in to_cardify]})")
+        for i in to_cardify:
+            scene = scenes[i] if i < len(scenes) else {}
+            local = render_keypoint_card(scene, category, article, i)
+            if not local:
+                continue
+            try:
+                with open(local, "rb") as _fh:
+                    _ch = hashlib.md5(_fh.read()).hexdigest()[:10]
+            except Exception:
+                _ch = str(int(time.time()))
+            storage_path = f"reel-cards/{article_id}/scene-{i}-{_ch}.png"
+            card_url = upload_asset(local, storage_path, "image/png")
+            try:
+                os.remove(local)
+            except Exception:
+                pass
+            if card_url:
+                old_url = matched_urls[i]
+                matched_urls[i] = card_url
+                used_in_this_reel.discard(old_url)
+                used_in_this_reel.add(card_url)
+                media_meta[card_url] = {"type": "image", "duration": 0, "is_card": True}
+                print(f"  🎨 Scene {i+1}: {scene_descs[i][:46]}  →  key-point card (MIN-CARDS floor)")
 
     urls = [u for u in matched_urls if u is not None]
 

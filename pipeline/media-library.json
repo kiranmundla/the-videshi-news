@@ -1,6 +1,6 @@
 {
  "_description": "Media library mirror — high-quality, attribution-clean images+videos for article/reel fallback. Source of truth is the Supabase media_library table; this mirror lets the pipeline read without a DB round-trip.",
- "_updated": "2026-06-19T20:15:04Z",
+ "_updated": "2026-06-19T20:41:06Z",
  "assets": [
   {
    "id": "person--narendra-modi--bfe42b",
@@ -615,8 +615,8 @@
    "duration": null,
    "quality_score": 92.0,
    "added_date": "2026-06-19T10:30:08Z",
-   "last_used": "2026-06-19T20:15:04Z",
-   "times_used": 1
+   "last_used": "2026-06-19T20:41:06Z",
+   "times_used": 4
   }
  ]
 }
