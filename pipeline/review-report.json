@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-19T07:45:10.079775+00:00",
+  "timestamp": "2026-06-19T08:15:24.486557+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
+    "pass": 2,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "40400938-8345-4894-a3cb-02b3cf69123b",
-      "headline": "Nine Games, Zero Wins \u2014 Then They Beat the World Champions. India's Hockey Team Just Ended Its Misery in Rotterdam.",
-      "slug": "india-men-hockey-beat-world-champions-germany-3-1-fih-pro-league-2025-26-rotterdam-end-nine-match-winless-run-manpreet-singh-most-capped-nri",
+      "id": "6cfa7dec-c0d6-4a10-bb11-37099112f160",
+      "headline": "Skipping the USCIS Line Just Got Pricier \u2014 and Indians File More of These Petitions Than Anyone",
+      "slug": "uscis-premium-processing-fee-increase-h1b-opt-green-card-indians-20260619",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -29,13 +29,49 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article connects well with the diaspora by referencing India's historical achievements in hockey and the emotional significance of the sport."
+          "note": "The article directly addresses the concerns of Indian professionals navigating the USCIS process, making it relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from players or coaches to enhance the narrative.",
-          "Include more context about the significance of the win for the team's future prospects."
+          "Include a quote from an immigration expert or affected individual to add a personal touch.",
+          "Provide a brief overview of the implications of these fee increases on the broader immigration landscape."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "1498f12d-0136-4cca-8d8e-a1077990240a",
+      "headline": "India's IT Giants Just Lost 40% of Their H-1Bs in a Year \u2014 and TCS Took the Worst of It",
+      "slug": "indian-it-firms-h1b-approvals-40-percent-drop-tcs-infosys-fy2026-20260619",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the article's focus on H-1B visas and the IT industry."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the implications of H-1B visa changes to the Indian diaspora, particularly in terms of career paths and opportunities."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that reflects the theme of immigration and the IT industry.",
+          "Add more statistics or quotes from industry experts to strengthen the analysis of the impact on the diaspora."
         ],
         "verdict": "pass"
       },
