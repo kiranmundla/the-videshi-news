@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-19T09:15:29.106303+00:00",
+  "timestamp": "2026-06-19T10:15:30.443912+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 4,
-    "flag": 1,
+    "pass": 6,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "229781b6-731d-44ae-808f-942bad87f390",
-      "headline": "Preity Zinta Just Got Permission to Take Google and Meta to Court Over AI Deepfakes. The Dimpled Smile Is Done Being Polite.",
-      "slug": "preity-zinta-bombay-high-court-sue-google-meta-ai-deepfake-personality-rights-copyright-clause-xii-where-to-watch-diaspora-nri-20260619",
+      "id": "a992d41d-2356-4326-a7af-02bfbe3bb330",
+      "headline": "The Great American Road Trip, Desi Edition: A Summer National Parks Plan for NRI Families",
+      "slug": "us-national-parks-summer-road-trip-nri-families-guide-20260619",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -29,13 +29,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the legal battle to the diaspora's consumption of AI-manipulated content, making it relevant for NRI readers."
+          "note": "The article effectively addresses the needs and preferences of NRI families considering a summer road trip in the US."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from Preity Zinta or her legal team to provide more depth and personal insight into her motivations.",
-          "Include a brief explanation of what personality rights entail for readers who may not be familiar with the legal terminology."
+          "Include specific examples of Indian grocery stores or restaurants near the national parks mentioned to enhance relevance for NRI families.",
+          "Add a section on cultural activities or events that might be happening in or near the parks during the summer to further engage diaspora readers."
         ],
         "verdict": "pass"
       },
@@ -47,52 +47,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "f9485a57-e2b8-4cab-a94d-c743bf9358e5",
-      "headline": "Rajkummar Rao Gained 10 Kilos to Become the Man Who Sent Kasab to the Gallows. The Prahaar Teaser Is a Gut-Punch.",
-      "slug": "prahaar-teaser-rajkummar-rao-ujjwal-nikam-26-11-prosecutor-maddock-dinesh-vijan-avinash-arun-august-7-where-to-watch-diaspora-nri-20260619",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/p/DZrVek3tpNH/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post does not appear to be directly related to the film or its themes, making it irrelevant to the article."
-          }
-        ],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the film's themes to the shared trauma of the diaspora, making it relevant for NRI readers."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the irrelevant Instagram embed with a more relevant social media post related to the film or its themes.",
-          "Consider adding a quote from Rajkummar Rao or Ujjwal Nikam to enhance the personal connection to the story."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DZrVek3tpNH/",
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "ca146adc-5997-46cc-ae4d-0ebf84d15dfd",
-      "headline": "Jensen Huang Says the AI Era's Top Customer Isn't Human. India's Coders Should Listen Closely.",
-      "slug": "nvidia-jensen-huang-computex-agentic-ai-vera-cpu-indian-engineers-it-j-20260619",
+      "id": "6bcf464e-2f29-49e2-ab27-11326adc42e4",
+      "headline": "The India Fare Math for This Summer: Why September Beats July by Hundreds of Dollars",
+      "slug": "us-india-summer-airfare-guide-september-savings-nri-20260619",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -108,13 +65,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the implications of AI advancements to Indian engineers and NRIs, discussing both opportunities and challenges."
+          "note": "The article effectively addresses the travel concerns of NRIs, particularly regarding fare differences based on travel dates."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes or insights from Indian engineers to provide a more personal perspective.",
-          "Include more data or statistics on the impact of AI on the Indian tech job market to strengthen the argument."
+          "Include specific examples of festivals or events in India during September and October to enhance the diaspora connection.",
+          "Consider adding tips for booking flights or using fare comparison tools to provide additional value to readers."
         ],
         "verdict": "pass"
       },
@@ -126,9 +83,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "f5429f90-ba85-47a2-b69a-e49efe19e9f4",
-      "headline": "India's Deep-Tech Pitch Just Raised $254 Million \u2014 in France. For the Diaspora, It's an Invitation.",
-      "slug": "bharat-innovates-2026-deep-tech-funding-nice-nri-investors-space-semic-20260619",
+      "id": "5f37c15c-d5ff-409a-9615-c1626f17869a",
+      "headline": "Air India Express Is Rebuilding the Gulf Run From the South \u2014 and Bengaluru Is the Engine",
+      "slug": "air-india-express-gulf-restoration-bengaluru-south-india-20260619",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -143,14 +100,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the deep-tech developments in India to the interests and opportunities for the diaspora, making it relevant and engaging."
+          "quality": 8,
+          "note": "The article effectively connects the airline's operations to the NRI community, particularly those with family in the Gulf."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from diaspora investors or entrepreneurs to enhance the personal connection.",
-          "Include specific examples of how diaspora investors can engage with the new funding opportunities."
+          "Consider adding more statistics or data to support claims about the importance of the Gulf routes for NRIs.",
+          "Include quotes from industry experts or affected families to add a personal touch and depth to the narrative."
         ],
         "verdict": "pass"
       },
@@ -162,9 +119,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "901b9a70-0e82-4f56-84c0-5f9773fb887d",
-      "headline": "Ola Electric Was Supposed to Win India's EV Race. It Just Lost Half Its Market in a Year.",
-      "slug": "ola-electric-india-ev-two-wheeler-shakeout-tvs-ather-nri-investors-20260619",
+      "id": "5eecc287-442b-41ca-bc45-1e8137855160",
+      "headline": "Cheaper Oil Should Be Lifting the Rupee. India's Own Central Bank Is Quietly Holding It Back.",
+      "slug": "rbi-record-fx-forward-book-110-billion-caps-rupee-oil-relief-reserves-nri-investor-20260619-1000",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -174,19 +131,91 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image of a scooter aligns with the topic of electric scooters, but it does not specifically represent Ola Electric."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the topic to NRI investors and their interests in the Indian EV market."
+          "quality": 8,
+          "note": "The article effectively connects the economic situation to NRIs by discussing implications for remittances and investments."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider including more specific data or quotes from industry experts to enhance credibility.",
-          "Add a concluding section that summarizes the implications for NRIs and potential future trends in the EV market."
+          "Consider adding more specific examples of how the rupee's stability impacts NRI investments or remittances.",
+          "Include a brief explanation of the forward book for readers who may not be familiar with financial terminology."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "2a4c15f4-c6f8-459f-921e-2215de5e1c23",
+      "headline": "Eating Your Five-a-Day May Not Be Enough. A 30,000-Person Study Says It Is the Right Plants That Protect the Heart.",
+      "slug": "flavanols-fruit-vegetable-quality-heart-health-food-function-30000-reading-harvard-diaspora-20260619-1000",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the study's findings to the dietary habits of Indian and South Asian families, making it relevant for the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of flavanol-rich foods that are commonly consumed in the diaspora to enhance relatability.",
+          "Include a brief section on how to incorporate these flavanol-rich foods into daily meals for practical application."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "7f814d8e-580f-49f9-9550-02d23eb68e5b",
+      "headline": "Weight-Loss Drugs Were Supposed to Get People Moving. A New Study Found They Quietly Sit Down More.",
+      "slug": "glp-1-ozempic-wegovy-users-exercise-physical-activity-declines-endo-2026-muscle-loss-diaspora-20260619-1000",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the topic of weight-loss drugs to the Indian-American and South Asian diaspora, highlighting specific health concerns relevant to this community."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more statistics or data specific to the Indian diaspora's health trends related to obesity and muscle loss.",
+          "Include quotes or insights from diaspora health experts to enhance credibility and relatability."
         ],
         "verdict": "pass"
       },
