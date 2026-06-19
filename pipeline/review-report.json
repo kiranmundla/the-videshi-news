@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-19T20:15:15.990492+00:00",
+  "timestamp": "2026-06-19T20:45:18.589020+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 3,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,31 +11,36 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "6a25f26c-f3ca-4c74-b1fc-116f57a51dac",
-      "headline": "ICE Says OPT Is a 'Magnet for Fraud.' Indian Graduates Are the Ones Exposed",
-      "slug": "ice-opt-fraud-crackdown-10000-students-suspect-employers-india-20260619",
+      "id": "2a368839-dc35-4282-a7ff-1e8c98611118",
+      "headline": "India's Banks Want to Lend Dollars Out of GIFT City. The Target: $55 Billion in Diaspora Money.",
+      "slug": "gift-city-banks-dollar-lending-fcnr-swap-scheme-diaspora-dollars-rbi-rupee-20260619",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "09b1269e-e860-4fb6-9772-dd2bfdf0c1b5",
+            "headline": "India's Biggest Brokerages Just Got Cleared to Sell You Appl"
+          }
+        ],
         "broken_embeds": []
       },
       "llm_review": {
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the topic of immigration or OPT specifically."
+          "score": 6,
+          "issue": "The image of a building in GIFT City is relevant, but it does not directly illustrate the financial aspect or the concept of lending dollars."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively addresses the concerns of Indian graduates in the U.S. regarding OPT and its implications."
+          "note": "The article effectively connects the financial strategies of Indian banks with the interests of the diaspora, highlighting the potential benefits for NRIs."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that more directly represents the theme of immigration or the OPT program.",
-          "Include quotes or testimonials from Indian graduates to enhance the personal connection to the diaspora experience."
+          "Consider using an image that visually represents the concept of diaspora investment or financial transactions to enhance relevance.",
+          "Add a brief section summarizing the implications for NRIs, making it clearer how these developments directly affect them."
         ],
         "verdict": "pass"
       },
@@ -47,9 +52,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "eb711807-ff74-4165-8fd7-3db5c2bec852",
-      "headline": "A Texas Bill Wants to End the One H-1B Feature Indians Quietly Depend On",
-      "slug": "chip-roy-white-collar-worker-jobs-act-dual-intent-opt-h1b-india-20260619",
+      "id": "fe2b2043-7cf0-445e-91d8-2ce125b62168",
+      "headline": "Reliance Just Filed for the Jio IPO. It Could Be the Biggest Stock Debut in India's History.",
+      "slug": "reliance-jio-platforms-ipo-drhp-filed-sebi-largest-india-listing-ambani-agm-20260619",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -59,19 +64,55 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 3,
-          "issue": "irrelevant"
+          "score": 7,
+          "issue": "The image of Mukesh Ambani is relevant to the article's topic about the Jio IPO, but it could be more directly related to the IPO announcement itself."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article discusses the implications of the Texas bill on Indian H-1B visa holders, making it highly relevant to the Indian diaspora."
+          "quality": 8,
+          "note": "The article effectively connects the Jio IPO to the interests of the global Indian diaspora, highlighting their desire for investment opportunities in India's digital growth."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the hero image with one that directly relates to the H-1B visa or immigration to better match the article's topic.",
-          "Consider adding quotes or perspectives from Indian professionals affected by the bill to enhance the personal connection for diaspora readers."
+          "Consider adding more direct quotes from Mukesh Ambani regarding the IPO to enhance the article's depth.",
+          "Include a brief overview of how the Jio IPO could impact the Indian economy and diaspora investments."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "271cf8d4-2e69-4de0-8064-8dabee568cd3",
+      "headline": "Indian IT Stocks Just Crashed to a Three-Year Low. One Warning From Accenture Did It.",
+      "slug": "indian-it-stocks-crash-accenture-weak-outlook-nifty-it-three-year-low-tcs-infosys-20260619",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the impact of the IT sector's downturn to the Indian diaspora, highlighting its significance for families and employment opportunities abroad."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of how the downturn in the IT sector could directly affect the diaspora, such as potential job losses or changes in visa policies.",
+          "Include quotes or insights from diaspora members or experts to enhance the personal connection and relevance to the audience."
         ],
         "verdict": "pass"
       },

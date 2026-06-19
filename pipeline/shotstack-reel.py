@@ -2329,6 +2329,26 @@ def match_social_card_post(article, hours=None, max_handles=None):
         return None
 
 
+# Bare foreign country / capital / region names that, when used as a curated
+# media-library SUBJECT match, return generic establishing shots (a desert barn
+# tagged "United States", a random skyline tagged "Tehran") that read as
+# off-topic B-roll against a specific story beat — the #1 QA "image relevance"
+# failure. India places are intentionally NOT here (the brand is India-anchored,
+# so Indian-place footage is on-brand). Scenes that would have matched one of
+# these fall through to scene-query / Pexels / key-point-card sourcing instead.
+_FOREIGN_GEO_SUBJECTS = {
+    "united states", "usa", "u.s.", "u.s.a.", "america", "washington",
+    "washington dc", "washington d.c.", "iran", "tehran", "iraq", "iraqi",
+    "china", "beijing", "russia", "moscow", "pakistan", "islamabad",
+    "afghanistan", "kabul", "united kingdom", "uk", "britain", "london",
+    "england", "canada", "ottawa", "saudi arabia", "riyadh", "qatar", "doha",
+    "uae", "dubai", "abu dhabi", "israel", "jerusalem", "tel aviv",
+    "european union", "europe", "gulf", "persian gulf", "iraqi gulf",
+    "strait of hormuz", "hormuz", "oman", "muscat", "yemen", "bangladesh",
+    "dhaka", "sri lanka", "colombo", "nepal", "kathmandu",
+}
+
+
 def source_storyboard_images(article, storyboard, count=8):
     """Source B-roll media scene-by-scene from the storyboard.
     Priority (Kiran 2026-06-18 reorder): 1) Article hero for scene 1  2) Social cards (X→Threads→IG, multi-photo, mid scenes only)  3) Media library (curated pool)  4) Wikipedia entity images  5) Wikimedia Commons  6) Pexels stock VIDEO  7) Pexels HD image  8) Same-category articles (fallback only).  Scene 1 (hero) and the final CTA scene are never social.
@@ -2785,6 +2805,17 @@ def source_storyboard_images(article, storyboard, count=8):
             #    construction. Mid scenes still benefit from entity matches.
             if i != 0:
                 for term in (entities or [])[:6]:
+                    # Skip bare foreign country/capital names as library subjects.
+                    # The library keys generic establishing shots under place tags
+                    # ("United States" → a desert barn, "Iran"/"Tehran" → a random
+                    # skyline); matched to a specific story beat they read as
+                    # off-topic B-roll (the #1 QA "image relevance" failure: a
+                    # ghost-town barn on an oil-trade reel). India places are fine
+                    # (the brand is India-anchored), so only foreign geos are
+                    # filtered. Such scenes fall through to scene-query / Pexels /
+                    # card sourcing, all topic-relevant by construction.
+                    if term.strip().lower() in _FOREIGN_GEO_SUBJECTS:
+                        continue
                     try:
                         asset = ml.find_media(subject=term, exclude_concept=False,
                                               min_quality=50, bump_usage=False)
@@ -2876,7 +2907,7 @@ def source_storyboard_images(article, storyboard, count=8):
     # stills reads as a static slideshow (QA flags "repetitive visuals"). Ken Burns
     # pan/zoom keeps these stills alive between the motion clips.
     remaining = [i for i in range(len(matched_urls)) if matched_urls[i] is None
-                 and i != last_idx]  # leave CTA scene for clean footage
+                 and i != last_idx and i != 0]  # leave CTA + HOOK for clean footage
     commons_budget = max(0, (len(remaining) - 1) // 2)  # fill ≤ half of mid gaps from Commons; leave the rest for Pexels motion + the key-point card floor (a marginal Commons photo loses to a card whose visual IS the story)
     if remaining and commons_budget:
         print(f"  🏛️ Commons pass for {len(remaining)} mid scenes (budget {commons_budget})...")
