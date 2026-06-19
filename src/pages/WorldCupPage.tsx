@@ -772,7 +772,7 @@ function SocialEmbed({ highlight }: { highlight: Highlight }) {
       if (!document.getElementById(scriptId)) {
         const script = document.createElement("script");
         script.id = scriptId;
-        script.src = "https://www.threads.net/embed.js";
+        script.src = "https://www.threads.com/embed.js";
         script.async = true;
         script.onload = () => {
           (window as any).instgrm?.Embeds?.process(containerRef.current);
@@ -786,13 +786,15 @@ function SocialEmbed({ highlight }: { highlight: Highlight }) {
     }
   }, [isThreads]);
 
-  // Clean permalink — normalize threads.com → threads.net for embed compatibility
+  // Clean permalink — keep canonical threads.com (threads.net 301-redirects to .com,
+  // which breaks the embed: the iframe's real origin no longer matches the host
+  // embed.js listens on, so it renders "Thread not available").
   const rawPermalink = highlight.url.endsWith("/") ? highlight.url : highlight.url + "/";
   const permalink = isThreads
-    ? rawPermalink.replace("://www.threads.com/", "://www.threads.net/")
+    ? rawPermalink.replace("://www.threads.net/", "://www.threads.com/")
     : rawPermalink;
 
-  // Threads posts: native embed via blockquote + threads.net/embed.js
+  // Threads posts: native embed via blockquote + threads.com/embed.js
   if (isThreads) {
     return (
       <div ref={containerRef}>
