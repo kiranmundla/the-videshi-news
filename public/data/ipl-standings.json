@@ -1,6 +1,6 @@
 {
   "season": "IPL 2026",
-  "last_updated": "2026-06-19T15:55:31Z",
+  "last_updated": "2026-06-19T16:55:35Z",
   "stage": "SEASON COMPLETE — RCB are IPL 2026 Champions! Royal Challengers Bengaluru retained their title, beating Gujarat Titans by 5 wickets in the Final at Narendra Modi Stadium, Ahmedabad (May 31). Virat Kohli scored his fastest IPL fifty (25 balls). League stage: 70 matches. Top 4: RCB (1st), GT (2nd), SRH (3rd), RR (4th).",
   "recent_results": [
     {
@@ -48,14 +48,14 @@
       "match": "Qualifier 1"
     },
     {
-      "team1": "DC",
-      "team2": "KKR",
-      "score1": "",
-      "score2": "",
+      "team1": "KKR",
+      "team2": "DC",
+      "score1": "163/10",
+      "score2": "203/5",
       "winner": "DC",
-      "margin": "",
-      "date": "May 25",
-      "venue": "",
+      "margin": "40 runs",
+      "date": "May 24",
+      "venue": "Kolkata",
       "match": 70
     }
   ],
