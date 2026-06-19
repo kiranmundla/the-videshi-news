@@ -1,6 +1,6 @@
 {
  "_description": "Media library mirror — high-quality, attribution-clean images+videos for article/reel fallback. Source of truth is the Supabase media_library table; this mirror lets the pipeline read without a DB round-trip.",
- "_updated": "2026-06-19T10:33:06Z",
+ "_updated": "2026-06-19T11:57:10Z",
  "assets": [
   {
    "id": "person--narendra-modi--bfe42b",
@@ -135,28 +135,6 @@
    "times_used": 0
   },
   {
-   "id": "person--narendra-modi--6432d2",
-   "media_type": "image",
-   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/person/narendra-modi-6432d2.jpg",
-   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/person/narendra-modi-6432d2.jpg",
-   "subject": "Narendra Modi",
-   "subject_type": "person",
-   "caption": "Narendra Modi Stadium",
-   "attribution": "Wikimedia Commons / Ishi6181, CC0",
-   "license": "CC0",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Narendra_Modi_Stadium_Ahmedabad.jpg",
-   "tags": [
-    "narendra modi"
-   ],
-   "width": 4032,
-   "height": 3024,
-   "duration": null,
-   "quality_score": 92.0,
-   "added_date": "2026-06-19T05:23:16Z",
-   "last_used": "2026-06-19T06:16:33Z",
-   "times_used": 1
-  },
-  {
    "id": "concept--indian-rupee--ad2e36",
    "media_type": "image",
    "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/concept/indian-rupee-ad2e36.jpg",
@@ -263,28 +241,6 @@
    "duration": null,
    "quality_score": 92.0,
    "added_date": "2026-06-19T10:30:08Z",
-   "last_used": null,
-   "times_used": 0
-  },
-  {
-   "id": "place--delhi--400e94",
-   "media_type": "image",
-   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/place/delhi-400e94.jpg",
-   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/place/delhi-400e94.jpg",
-   "subject": "Delhi",
-   "subject_type": "place",
-   "caption": "Muhammad Wali Masjid in Delhi",
-   "attribution": "Wikimedia Commons / Jakub Hałun, CC BY-SA 4.0",
-   "license": "CC BY-SA 4.0",
-   "source_url": "https://commons.wikimedia.org/wiki/File:20191203_Muhammad_Wali_Masjid,_Delhi_0915_6500_DxO.jpg",
-   "tags": [
-    "delhi"
-   ],
-   "width": 3597,
-   "height": 4235,
-   "duration": null,
-   "quality_score": 92.0,
-   "added_date": "2026-06-19T10:30:25Z",
    "last_used": null,
    "times_used": 0
   },
@@ -617,6 +573,50 @@
    "added_date": "2026-06-19T10:33:06Z",
    "last_used": null,
    "times_used": 0
+  },
+  {
+   "id": "person--narendra-modi--6432d2",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/person/narendra-modi-6432d2.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/person/narendra-modi-6432d2.jpg",
+   "subject": "Narendra Modi",
+   "subject_type": "person",
+   "caption": "Narendra Modi Stadium",
+   "attribution": "Wikimedia Commons / Ishi6181, CC0",
+   "license": "CC0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Narendra_Modi_Stadium_Ahmedabad.jpg",
+   "tags": [
+    "narendra modi"
+   ],
+   "width": 4032,
+   "height": 3024,
+   "duration": null,
+   "quality_score": 92.0,
+   "added_date": "2026-06-19T05:23:16Z",
+   "last_used": "2026-06-19T11:57:09Z",
+   "times_used": 2
+  },
+  {
+   "id": "place--delhi--400e94",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/place/delhi-400e94.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/place/delhi-400e94.jpg",
+   "subject": "Delhi",
+   "subject_type": "place",
+   "caption": "Muhammad Wali Masjid in Delhi",
+   "attribution": "Wikimedia Commons / Jakub Hałun, CC BY-SA 4.0",
+   "license": "CC BY-SA 4.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:20191203_Muhammad_Wali_Masjid,_Delhi_0915_6500_DxO.jpg",
+   "tags": [
+    "delhi"
+   ],
+   "width": 3597,
+   "height": 4235,
+   "duration": null,
+   "quality_score": 92.0,
+   "added_date": "2026-06-19T10:30:25Z",
+   "last_used": "2026-06-19T11:57:10Z",
+   "times_used": 1
   }
  ]
 }
