@@ -1,6 +1,6 @@
 {
  "_description": "Media library mirror — high-quality, attribution-clean images+videos for article/reel fallback. Source of truth is the Supabase media_library table; this mirror lets the pipeline read without a DB round-trip.",
- "_updated": "2026-06-19T05:27:51Z",
+ "_updated": "2026-06-19T05:36:57Z",
  "assets": [
   {
    "id": "person--narendra-modi--6432d2",
@@ -153,6 +153,28 @@
    "duration": 9.54,
    "quality_score": 73.5,
    "added_date": "2026-06-19T05:27:51Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "person--virat-kohli--13b638",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/person/virat-kohli-13b638.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/person/virat-kohli-13b638.jpg",
+   "subject": "Virat Kohli",
+   "subject_type": "person",
+   "caption": "Indian international cricketer Virat Kohli",
+   "attribution": "Wikimedia Commons / Anand Anil, CC BY-SA 4.0",
+   "license": "CC BY-SA 4.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Virat_Kohli_portrait.jpg",
+   "tags": [
+    "virat kohli"
+   ],
+   "width": 1899,
+   "height": 2012,
+   "duration": null,
+   "quality_score": 61.2,
+   "added_date": "2026-06-19T05:36:57Z",
    "last_used": null,
    "times_used": 0
   }

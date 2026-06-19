@@ -1706,6 +1706,32 @@ def _load_social_registry():
     return out
 
 
+_media_lib_lookup_mod = None
+
+
+def _load_media_library_lookup():
+    """Import pipeline/media_library_lookup.py once, cached. Returns the module
+    (with find_media) or None if the media library isn't available."""
+    global _media_lib_lookup_mod
+    if _media_lib_lookup_mod is not None:
+        return _media_lib_lookup_mod if _media_lib_lookup_mod is not False else None
+    try:
+        import importlib.util
+        pdir = os.path.dirname(os.path.abspath(__file__))
+        if pdir not in sys.path:
+            sys.path.insert(0, pdir)  # media_library_lookup imports media_library_store
+        path = os.path.join(pdir, "media_library_lookup.py")
+        spec = importlib.util.spec_from_file_location("videshi_media_library_lookup", path)
+        mod = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(mod)
+        _media_lib_lookup_mod = mod
+        return mod
+    except Exception as e:
+        print(f"  ℹ️ media library unavailable (skipping that fallback): {e}")
+        _media_lib_lookup_mod = False
+        return None
+
+
 def _x_profile(handle):
     """Fetch {name, avatar} for an X handle (free users lookup), cached to disk."""
     cache = {}
@@ -2436,6 +2462,68 @@ def source_storyboard_images(article, storyboard, count=8):
                     break
                 if matched_urls[i] is not None:
                     break
+
+    # ── 1d. MEDIA LIBRARY (curated, attribution-clean backup pool) ──
+    # Second-priority fallback per the media_library contract: after the curated /
+    # dynamic sources above (article hero, social card, Wikipedia entities, Commons)
+    # and BEFORE generic Pexels stock. The library holds quality-gated, attributed
+    # assets keyed by subject (people/places/things) plus opt-in concept b-roll.
+    # For reels we allow concept assets (exclude_concept=False) so abstract scenes
+    # can be filled, but the quality sort still prefers real, high-score imagery.
+    # Subjects to try: the article's named entities (best match), then each scene's
+    # own search queries as tags. Purely additive + safe: any failure falls through.
+    remaining = [i for i in range(len(matched_urls)) if matched_urls[i] is None
+                 and i != last_idx]  # leave CTA scene for clean footage
+    ml = _load_media_library_lookup() if remaining else None
+    if ml and remaining:
+        print(f"  📚 Media-library pass for {len(remaining)} mid scenes...")
+        for i in remaining:
+            scene = scenes[i] if i < len(scenes) else {}
+            queries = list(scene.get("search_queries", []))
+            visual = scene.get("visual", "")
+            if visual and visual not in queries:
+                queries = [visual] + queries
+            asset = None
+            # 1) try the article's named entities as a real subject match
+            for term in (entities or [])[:6]:
+                try:
+                    asset = ml.find_media(subject=term, exclude_concept=False,
+                                          min_quality=50, bump_usage=False)
+                except Exception:
+                    asset = None
+                if asset and asset.get("url") not in used_in_this_reel:
+                    break
+                asset = None
+            # 2) fall back to the scene's own queries as tag matches
+            if not asset:
+                for q in queries[:3]:
+                    try:
+                        asset = ml.find_media(tags=q.split(), exclude_concept=False,
+                                              min_quality=45, bump_usage=False)
+                    except Exception:
+                        asset = None
+                    if asset and asset.get("url") not in used_in_this_reel:
+                        break
+                    asset = None
+            if not asset:
+                continue
+            mu = asset["url"]
+            if mu in used_in_this_reel or not is_url_downloadable(mu):
+                continue
+            # mark the usage now that we're committing to it
+            try:
+                ml.find_media(subject=asset.get("subject"), media_type=asset.get("media_type"),
+                              exclude_concept=False, bump_usage=True)
+            except Exception:
+                pass
+            matched_urls[i] = mu
+            used_in_this_reel.add(mu)
+            mtype = "video" if asset.get("media_type") == "video" else "image"
+            media_meta[mu] = {"type": mtype, "duration": asset.get("duration") or 0,
+                              "curated": True, "generic_pexels": False,
+                              "source_url": asset.get("source_url", "")}
+            print(f"  📚 Scene {i+1}: {scene_descs[i][:42]}  →  media library "
+                  f"('{asset.get('subject','')}', q{asset.get('quality_score')})")
 
     # ── 2. PRIMARY: Pexels stock VIDEO by scene visual description ──
     remaining = [i for i in range(len(matched_urls)) if matched_urls[i] is None]

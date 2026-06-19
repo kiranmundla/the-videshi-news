@@ -113,7 +113,33 @@ def fetch_wikimedia_commons_images(search_query, limit=5):
 
 **Date-relevant searches**: For recent events, add the year or specific event name to improve relevance.
 
-### Source 3: Pexels — Topic/scene fallback
+### Source 3: Media Library — curated backup pool (before Pexels)
+The Videshi maintains a quality-gated, attribution-clean media library (`pipeline/media-library.json`, optionally mirrored to the `media_library` Supabase table). Every asset is ≥1600px, carries a ready-to-use caption + attribution + license, and is already Supabase-hosted (links never rot). Check it AFTER Wikipedia/Commons and BEFORE Pexels: a curated, attributed library photo of the actual subject beats generic stock.
+
+**For article heroes, exclude generic "concept" stock** (`exclude_concept=True`, the default) — concept assets are reserved for abstract reel b-roll, never an article photo.
+
+```python
+import sys, os
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__))))  # so the import resolves
+from media_library_lookup import find_media
+
+# Try the article's main subject (person/place/thing), then topic terms as tags.
+ml_asset = (find_media(subject=person_name, min_quality=55)        # named person/place/thing
+            or find_media(tags=article_topic.split(), min_quality=50))
+if ml_asset:
+    candidates.append({
+        "url": ml_asset["url"],              # already Supabase-hosted
+        "source": "media_library",
+        "relevance": "medium",
+        "caption": ml_asset.get("caption", ""),        # use directly as image_caption
+        "attribution": ml_asset.get("attribution", ""),# use directly as image_attribution
+        "prehosted": True,                   # skip re-upload; it's already on Supabase
+    })
+```
+
+When you pick a `media_library` candidate, use its `caption`/`attribution` as-is and skip the download+re-upload step (the URL is already a permanent Supabase storage URL).
+
+### Source 4: Pexels — Topic/scene fallback
 - Use SPECIFIC search terms that match the article
 - ✅ "Cannes film festival red carpet" — specific and relevant
 - ✅ "US visa stamp passport" — specific to the story
@@ -404,5 +430,6 @@ def search_google_images(query, cc_only=True, num=5):
 2. Wikipedia season page (for series)
 3. Wikipedia person page (for person articles)
 4. Wikimedia Commons search
-5. Openverse API
-6. Pexels (last resort)
+5. Media Library (curated backup pool; heroes exclude concept stock)
+6. Openverse API
+7. Pexels (last resort)
