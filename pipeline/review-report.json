@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-19T04:45:21.647058+00:00",
+  "timestamp": "2026-06-19T05:15:13.568988+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 1,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,48 +11,17 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "4d5a56ce-d4c9-4384-892b-608b020e0a26",
-      "headline": "America's Cricket Season Opened With Its Highest-Ever Chase. A 41-Year-Old From Pretoria Made 113 to Win It.",
-      "slug": "major-league-cricket-2026-opener-texas-super-kings-faf-du-plessis-113-record-chase-seattle-orcas-tim-seifert-grand-prairie-diaspora-nri",
+      "id": "8098893b-7842-4915-8058-bd4bf64602ee",
+      "headline": "Alpha Has Arrived. After Six Films of Tiger, Pathaan and War, the YRF Spy Universe Finally Belongs to the Women.",
+      "slug": "alpha-trailer-alia-bhatt-sharvari-yrf-spy-universe-female-led-hrithik-roshan-cameo-july-3-where-to-watch-diaspora-nri-20260619",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively highlights the significance of the event to the South Asian diaspora in the U.S., making it relatable to NRI readers."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from players or fans to enhance the narrative.",
-          "Include more statistics or historical context about Major League Cricket to engage readers further."
+        "duplicate_images": [
+          {
+            "article_id": "98948ae2-adc2-43c1-8745-c53b735e3172",
+            "headline": "The Alpha Trailer Is Here, and Bobby Deol Names a Baby Sita."
+          }
         ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "5c4a81ba-1130-4b4f-9076-3dafcec35472",
-      "headline": "India's US College Pipeline Is Cratering. Consultants Report a 70-80% Drop for This Fall.",
-      "slug": "indian-students-us-fall-2026-intake-collapse-70-80-percent-drop-visa-slot-freeze-20260619",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
@@ -65,13 +34,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses the impact of visa issues on Indian students in the US, which is relevant to the diaspora community."
+          "note": "The article discusses a significant shift in Bollywood's portrayal of women in action films, which resonates with diaspora audiences interested in progressive narratives."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes or testimonials from students who have been affected by the visa issues to add a personal touch.",
-          "Provide more context on how these changes might affect future trends in Indian students studying abroad."
+          "Include more context about the significance of the YRF Spy Universe for NRI audiences.",
+          "Add quotes or reactions from diaspora figures or critics to enhance the connection."
         ],
         "verdict": "pass"
       },

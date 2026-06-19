@@ -1646,6 +1646,310 @@ def render_keypoint_card(scene, category, article, idx, out_dir="/tmp/videshi_ca
         return None
 
 
+# ═══════════════════════════════════════════════════════════════════════════════
+# SOCIAL CARD SCENE — a real X post (photo + attribution) in the brand frame
+# ═══════════════════════════════════════════════════════════════════════════════
+# Additive, high-priority media source for AT MOST ONE scene per reel. When an
+# article's subject matches a curated handle in social-embed-registry.json and
+# that account has a recent photo post relevant to the story, we render the post
+# as a branded "ON THE FEED" card instead of generic stock. The registry is the
+# allowlist (verified/official accounts only). Scope: X only (Threads/IG later).
+# Any failure (no credits/402, no match, fetch/render error) logs and falls
+# through to the existing sourcing chain — it never breaks reel generation.
+
+SOCIAL_CARD_ENABLED = os.environ.get("VIDESHI_SOCIAL_CARD", "1") != "0"
+SOCIAL_CARD_LOOKBACK_HOURS = int(os.environ.get("VIDESHI_SOCIAL_CARD_HOURS", "168"))  # 7 days
+SOCIAL_CARD_MAX_HANDLES = int(os.environ.get("VIDESHI_SOCIAL_CARD_MAX_HANDLES", "3"))  # X-read spend cap per article
+
+_fetch_tweets_mod = None
+_social_registry_cache = None
+_x_profile_cache_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".x-profiles.json")
+
+
+def _load_fetch_tweets_module():
+    """Import pipeline/fetch-tweets.py (hyphenated filename) once, cached."""
+    global _fetch_tweets_mod
+    if _fetch_tweets_mod is not None:
+        return _fetch_tweets_mod
+    import importlib.util
+    path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "fetch-tweets.py")
+    spec = importlib.util.spec_from_file_location("videshi_fetch_tweets", path)
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    _fetch_tweets_mod = mod
+    return mod
+
+
+def _load_social_registry():
+    """Load social-embed-registry.json once; return flat list of dicts with an
+    x handle: {name, handle, category, kind}."""
+    global _social_registry_cache
+    if _social_registry_cache is not None:
+        return _social_registry_cache
+    out = []
+    try:
+        path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "social-embed-registry.json")
+        with open(path) as f:
+            d = json.load(f)
+        for cat, v in d.items():
+            if cat.startswith("_"):
+                continue
+            if isinstance(v, dict):
+                for kind in ("persons", "organizations"):
+                    for e in (v.get(kind) or []):
+                        if isinstance(e, dict) and e.get("x"):
+                            out.append({"name": e.get("name", ""), "handle": e["x"].lstrip("@"),
+                                        "category": cat, "kind": kind})
+    except Exception as e:
+        print(f"  ⚠️ social registry load failed: {e}")
+    _social_registry_cache = out
+    return out
+
+
+def _x_profile(handle):
+    """Fetch {name, avatar} for an X handle (free users lookup), cached to disk."""
+    cache = {}
+    try:
+        if os.path.exists(_x_profile_cache_path):
+            cache = json.load(open(_x_profile_cache_path))
+    except Exception:
+        cache = {}
+    hl = handle.lower()
+    if hl in cache:
+        return cache[hl]
+    try:
+        mod = _load_fetch_tweets_module()
+        sess = mod.get_oauth_session()
+        r = sess.get(f"https://api.twitter.com/2/users/by/username/{handle}",
+                     params={"user.fields": "profile_image_url,name"}, timeout=15)
+        if r.status_code == 200:
+            data = r.json().get("data", {})
+            prof = {"name": data.get("name", ""),
+                    "avatar": (data.get("profile_image_url", "") or "").replace("_normal", "_400x400")}
+            cache[hl] = prof
+            try:
+                json.dump(cache, open(_x_profile_cache_path, "w"), indent=2)
+            except Exception:
+                pass
+            return prof
+    except Exception as e:
+        print(f"  ⚠️ X profile lookup failed for @{handle}: {e}")
+    return {"name": "", "avatar": ""}
+
+
+def _sc_clean_text(t):
+    """Strip t.co/other URLs and emoji/non-renderable glyphs from post text."""
+    t = re.sub(r'https?://t\.co/\S+', '', t)
+    t = re.sub(r'https?://\S+', '', t)
+    t = ''.join(ch for ch in t if ord(ch) < 0x2190 or (0x2C00 <= ord(ch) < 0x2E00))
+    return ' '.join(t.split())
+
+
+def _sc_download_image(url):
+    """Download an image to a PIL RGB image via curl (proxy-safe)."""
+    from io import BytesIO
+    from PIL import Image
+    out = subprocess.run(["curl", "-sL", "-A", "Mozilla/5.0", "--max-time", "30", url],
+                         capture_output=True).stdout
+    return Image.open(BytesIO(out)).convert("RGB")
+
+
+def _sc_draw_x_badge(draw, img, x, y, s):
+    """Paste the real X logo (white) centered in a rounded black square of side s."""
+    from PIL import Image
+    draw.rounded_rectangle([x, y, x + s, y + s], radius=int(s * 0.22), fill=(0, 0, 0))
+    try:
+        logo = Image.open(os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                          "assets", "x-logo-white.png")).convert("RGBA")
+        gw = int(s * 0.50); gh = int(gw * logo.height / logo.width)
+        logo = logo.resize((gw, gh), Image.LANCZOS)
+        img.paste(logo, (x + (s - gw) // 2, y + (s - gh) // 2), logo)
+    except Exception as e:
+        print(f"  ⚠️ x-logo paste failed: {e}")
+
+
+def render_social_card(post, category, out_dir="/tmp/videshi_social"):
+    """Render a branded 1080x1920 'social post card' from a real X post.
+    post = {name, handle, avatar, photo, text}. Returns local PNG path or None.
+    Matches house style by reusing the key-point card brand helpers."""
+    try:
+        from PIL import Image, ImageDraw, ImageOps
+    except Exception as e:
+        print(f"  ⚠️ PIL unavailable for social card: {e}")
+        return None
+    try:
+        os.makedirs(out_dir, exist_ok=True)
+        W, H = 1080, 1920
+        img = _card_vgradient(W, H, _CARD_NAVY_TOP, _CARD_NAVY_BOT).convert("RGBA")
+        # subtle diagonal gold texture (same as key-point card)
+        tex = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+        td = ImageDraw.Draw(tex)
+        for k in range(-H, W, 54):
+            td.line([(k, 0), (k + H, H)], fill=(212, 175, 55, 9), width=1)
+        img = Image.alpha_composite(img, tex)
+        d = ImageDraw.Draw(img)
+        MX = 96
+
+        # eyebrow — "ON THE FEED"
+        y = 150
+        d.rectangle([MX, y + 6, MX + 26, y + 32], fill=_CARD_GOLD)
+        d.text((MX + 44, y), " ".join("ON THE FEED"), font=_card_font(34, "extrabold"), fill=_CARD_GOLD_SOFT)
+        y += 64
+        d.line([(MX, y), (W - MX, y)], fill=_CARD_GOLD, width=3)
+        y += 70
+
+        # the post photo, rounded + gold-framed
+        photo = _sc_download_image(post["photo"])
+        pw = W - 2 * MX
+        ph = int(pw * 0.62)
+        photo = ImageOps.fit(photo, (pw, ph), Image.LANCZOS)
+        rc = Image.new("L", (pw, ph), 0)
+        ImageDraw.Draw(rc).rounded_rectangle([0, 0, pw, ph], radius=28, fill=255)
+        d.rounded_rectangle([MX - 4, y - 4, MX + pw + 4, y + ph + 4], radius=32, outline=_CARD_GOLD, width=3)
+        img.paste(photo, (MX, y), rc)
+        y += ph + 46
+
+        # author row: avatar + name + handle, X badge top-right
+        if post.get("avatar"):
+            try:
+                av = _sc_download_image(post["avatar"])
+                av = ImageOps.fit(av, (104, 104), Image.LANCZOS)
+                amask = Image.new("L", (104, 104), 0)
+                ImageDraw.Draw(amask).ellipse([0, 0, 104, 104], fill=255)
+                img.paste(av, (MX, y), amask)
+                d.ellipse([MX, y, MX + 104, y + 104], outline=_CARD_GOLD, width=3)
+                nx = MX + 128
+            except Exception:
+                nx = MX
+        else:
+            nx = MX
+        d.text((nx, y + 8), post.get("name", "") or f"@{post['handle']}",
+               font=_card_font(46, "extrabold"), fill=_CARD_WHITE)
+        d.text((nx, y + 62), f"@{post['handle']}", font=_card_font(34, "semibold"), fill=_CARD_MUTED)
+        bs = 84
+        _sc_draw_x_badge(d, img, W - MX - bs, y + 10, bs)
+        y += 140
+
+        # post text (cleaned)
+        txt = _sc_clean_text(post.get("text", ""))
+        if len(txt) > 150:
+            txt = txt[:150].rsplit(' ', 1)[0] + "…"
+        import textwrap as _tw
+        tf = _card_font(40, "semibold")
+        for line in _tw.wrap(txt, width=42)[:4]:
+            d.text((MX, y), line, font=tf, fill=(228, 233, 240))
+            y += 54
+
+        # attribution footer
+        fy = H - 150
+        d.line([(MX, fy), (W - MX, fy)], fill=(60, 72, 92), width=2)
+        d.text((MX, fy + 24), f"via @{post['handle']} on X", font=_card_font(34, "semibold"), fill=_CARD_GOLD_SOFT)
+        d.text((W - MX - 260, fy + 24), "thevideshi.com", font=_card_font(34, "extrabold"), fill=_CARD_WHITE)
+
+        path = os.path.join(out_dir, f"social_{post['handle']}.png")
+        img.convert("RGB").save(path, "PNG")
+        return path
+    except Exception as e:
+        print(f"  ⚠️ Social card render failed: {e}")
+        return None
+
+
+def _social_card_keywords(article):
+    """Derive relevance keywords from the article (reuses the topic-keyword
+    relevance approach used by fetch-tweets' best_photo_tweet)."""
+    stop = {"the", "a", "an", "and", "but", "for", "with", "from", "this", "that",
+            "after", "before", "what", "when", "how", "why", "now", "new", "his",
+            "her", "its", "their", "they", "will", "has", "have", "had", "are",
+            "was", "were", "into", "over", "amid", "says", "said", "india", "indian"}
+    text = f"{article.get('headline','')} {article.get('subheadline','')}"
+    words = re.findall(r"[A-Za-z][A-Za-z'&-]{3,}", text)
+    kws = []
+    seen = set()
+    for w in words:
+        wl = w.lower()
+        if wl in stop or wl in seen:
+            continue
+        seen.add(wl)
+        kws.append(wl)
+    return kws[:12]
+
+
+def match_social_card_post(article, hours=None, max_handles=None):
+    """Find the best real X post to render as a social card for this article.
+    Scans headline+body for registered names (registry = allowlist), prefers the
+    article's category bucket, queries up to max_handles handles (X-read spend
+    cap), and picks the most topically relevant RECENT post WITH a photo.
+    Returns a post dict {name, handle, avatar, photo, text, url} or None.
+    Never raises — returns None on any failure (incl. 402/no-credits)."""
+    if not SOCIAL_CARD_ENABLED:
+        return None
+    hours = hours or SOCIAL_CARD_LOOKBACK_HOURS
+    max_handles = max_handles or SOCIAL_CARD_MAX_HANDLES
+    try:
+        registry = _load_social_registry()
+        if not registry:
+            return None
+        category = article.get("category", "")
+        haystack = f"{article.get('headline','')} {article.get('subheadline','')} {(article.get('body') or '')[:2000]}"
+        haystack_l = haystack.lower()
+
+        # Find registry entries whose name appears in the article (word-boundary).
+        matched = []
+        for e in registry:
+            name = (e.get("name") or "").strip()
+            if len(name) < 3:
+                continue
+            if re.search(r"\b" + re.escape(name.lower()) + r"\b", haystack_l):
+                matched.append(e)
+        if not matched:
+            return None
+
+        # Rank: same-category first, persons before orgs, then name length (more
+        # specific names are stronger signals). Cap to the spend budget.
+        matched.sort(key=lambda e: (0 if e.get("category") == category else 1,
+                                    0 if e.get("kind") == "persons" else 1,
+                                    -len(e.get("name", ""))))
+        candidates = matched[:max_handles]
+        print(f"  📡 Social-card candidates ({len(candidates)}/{len(matched)} matched): "
+              + ", ".join(f"@{c['handle']}" for c in candidates))
+
+        mod = _load_fetch_tweets_module()
+        keywords = _social_card_keywords(article)
+
+        best = None  # (relevance, likes, tweet, handle)
+        for c in candidates:
+            handle = c["handle"]
+            try:
+                tweet = mod.best_photo_tweet(handle, hours=hours, topic_keywords=keywords)
+            except Exception as e:
+                print(f"  ⚠️ tweet fetch failed for @{handle}: {e}")
+                continue
+            if not tweet or tweet.get("photo_count", 0) < 1 or not tweet.get("photos"):
+                continue
+            text_l = (tweet.get("text", "") or "").lower()
+            relevance = sum(1 for kw in keywords if kw in text_l)
+            likes = tweet.get("likes", 0)
+            key = (relevance, likes)
+            if best is None or key > (best[0], best[1]):
+                best = (relevance, likes, tweet, handle, c.get("name", ""))
+
+        if not best:
+            return None
+        _, _, tweet, handle, reg_name = best
+        prof = _x_profile(handle)
+        return {
+            "name": reg_name or prof.get("name", "") or f"@{handle}",
+            "handle": handle,
+            "avatar": prof.get("avatar", ""),
+            "photo": tweet["photos"][0],
+            "text": tweet.get("text", ""),
+            "url": tweet.get("url", ""),
+        }
+    except Exception as e:
+        print(f"  ⚠️ Social-card match failed (falling through): {e}")
+        return None
+
+
 def source_storyboard_images(article, storyboard, count=8):
     """Source B-roll media scene-by-scene from the storyboard.
     Priority: 1) Article hero for scene 1  2) Pexels stock VIDEO by scene description  3) Pexels HD image by scene description  4) Wikipedia by scene queries  5) Same-category articles (fallback only).
@@ -1811,6 +2115,43 @@ def source_storyboard_images(article, storyboard, count=8):
         used_in_this_reel.add(hero)
         media_meta[hero] = {"type": "image", "duration": 0}
         print(f"  🎬 Scene 1: {scene_descs[0][:50]}  →  article hero")
+
+
+    # ── 1a-bis. SOCIAL CARD: a real X post (photo + attribution) in brand frame ──
+    # Highest-priority editorial source for AT MOST ONE scene per reel. If the
+    # article's subject matches a curated handle (registry = verified/official
+    # allowlist) and that account has a recent relevant photo post, render it as
+    # an "ON THE FEED" card. This carries real, attributed, on-topic media, so it
+    # beats generic stock outright. Purely additive + safe: any failure (no
+    # match, 402/no-credits, fetch/render error) logs and falls through.
+    _sc_last_idx = len(matched_urls) - 1
+    _sc_slots = [i for i in range(1, len(matched_urls))
+                 if i != _sc_last_idx and matched_urls[i] is None]  # mid scene only; never hook/CTA
+    if SOCIAL_CARD_ENABLED and _sc_slots:
+        try:
+            post = match_social_card_post(article)
+            if post and post.get("photo"):
+                local = render_social_card(post, category)
+                if local:
+                    slot = _sc_slots[0]
+                    storage_path = f"reel-social/{article_id}/scene-{slot}.png"
+                    card_url = upload_asset(local, storage_path, "image/png")
+                    try:
+                        os.remove(local)
+                    except Exception:
+                        pass
+                    if card_url:
+                        matched_urls[slot] = card_url
+                        used_in_this_reel.add(card_url)
+                        # Real attributed media — mark curated/non-generic so the
+                        # generic-Pexels conversion + QA never penalize it.
+                        media_meta[card_url] = {"type": "image", "duration": 0,
+                                                "is_social_card": True, "curated": True,
+                                                "generic_pexels": False,
+                                                "source_url": post.get("url", "")}
+                        print(f"  📡 Scene {slot+1}: {scene_descs[slot][:42]}  →  social card (X @{post['handle']})")
+        except Exception as e:
+            print(f"  ⚠️ Social-card pass failed (continuing normally): {e}")
 
 
     # ── 1b. ENTITY PRE-PASS: real imagery of the story's named entities ──
