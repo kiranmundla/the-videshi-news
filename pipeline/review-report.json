@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-19T14:15:32.382179+00:00",
+  "timestamp": "2026-06-19T14:45:16.000563+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 6,
+    "pass": 2,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,45 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "c8f80a59-6e7f-4049-b9bc-7e62b94d3d79",
-      "headline": "India's Five-Day Market Rally Just Snapped \u2014 and It Was the IT Giants That Broke It.",
-      "slug": "sensex-nifty-snap-five-day-rally-it-stocks-three-year-low-accenture-warning-infosys-wipro-nri-investor-20260619-1400",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the IT sector's performance to the interests and investments of the Indian diaspora, making it relevant and engaging for NRI readers."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a quote from a diaspora investor or expert to enhance the personal connection.",
-          "Include more data or statistics on how the IT sector impacts the diaspora's financial health."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "d069d5ea-7c89-4b35-93c1-1b912ed6d3b3",
-      "headline": "The Pill May Be Quietly Driving Food Cravings, a Study of Young Women Finds",
-      "slug": "combined-oral-contraceptive-pill-binge-eating-young-women-jama-michigan-422-study-diaspora-20260619-1400",
+      "id": "9042cf2e-fbb5-4acc-8e1b-a069c62bd0ae",
+      "headline": "The Diaspora Wants to Build India's Story a Permanent Home in Washington. It Will Cost $14 Million.",
+      "slug": "india-heritage-center-museum-washington-dc-diaspora-campaign-20260619",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -65,13 +29,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the study's findings to the experiences of young Indian women in diaspora, addressing cultural stigmas around eating disorders and contraceptive use."
+          "note": "The article effectively connects the initiative to the diaspora's desire to preserve cultural identity and educate future generations."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more statistics or data from the study to strengthen the argument.",
-          "Include quotes from the study authors or experts to enhance credibility."
+          "Include quotes or testimonials from diaspora members to enhance the personal connection.",
+          "Provide more details on how the museum will engage with the local community in Washington, DC."
         ],
         "verdict": "pass"
       },
@@ -83,9 +47,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "fa91d56f-47e0-425d-9ef2-f4624c4228c5",
-      "headline": "Harvard Just Found the Strength-Training Sweet Spot for a Longer Life. It Is Less Than You Think.",
-      "slug": "strength-training-longevity-sweet-spot-90-120-minutes-harvard-bmj-150000-adults-diaspora-20260619-1400",
+      "id": "7017498c-45c7-46cf-aeae-c09743f124e2",
+      "headline": "India's Oil Lifeline Through Hormuz Is Reopening. The Peace Holding It Open Just Wobbled.",
+      "slug": "india-strait-of-hormuz-reopens-oil-lifeline-fragile-us-iran-peace-20260619",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -100,127 +64,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the findings to the health habits prevalent in Indian-origin households, emphasizing the importance of strength training."
+          "quality": 7,
+          "note": "The article connects the reopening of the Strait of Hormuz to the diaspora's economic interests, but could elaborate more on personal impacts."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more specific examples of strength training exercises that can be done at home, particularly for the diaspora audience.",
-          "Include quotes or insights from fitness experts or health professionals to enhance credibility."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "b9124c05-fa1b-4332-8049-08c9bfdb1516",
-      "headline": "Sri Lanka Keeps the Door Free for Indians \u2014 and It's the Easiest Add-On to a Trip Home",
-      "slug": "sri-lanka-free-eta-visa-indians-renewed-double-entry-nri-add-on-20260619",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the visa policy to the travel needs of the Indian diaspora, highlighting logistical benefits."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes or testimonials from travelers who have benefited from the visa policy to enhance relatability.",
-          "Include a section on potential cultural experiences or events in Sri Lanka that might attract NRI travelers."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "5e15c738-a248-47c2-84a9-68c6193ae340",
-      "headline": "Japan Airlines Is Putting Bengaluru on Its Map \u2014 and Fixing the West Coast's Worst Trip Home",
-      "slug": "japan-airlines-bengaluru-san-diego-a350-west-coast-nri-route-20260619",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the new flight routes to the needs of the Indian diaspora, particularly those in the tech industry on the West Coast."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from industry experts or travelers to enhance credibility and engagement.",
-          "Include more specific details about the pricing and booking process for the new routes to provide practical information for readers."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "51152650-d62a-459c-8074-6c57aa0bb531",
-      "headline": "India Rewrote the OCI Rulebook \u2014 and Most of the Diaspora Hasn't Read the Fine Print",
-      "slug": "oci-2026-overhaul-e-oci-digital-fee-passport-deadline-minor-nri-20260619",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "f4d9e42f-96d5-4412-b962-ebc050954513",
-            "headline": "India Just Quietly Tightened Its Rules for Foreigners \u2014 and "
-          }
-        ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively addresses the concerns of the Indian American community regarding the OCI changes."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include a summary or key takeaways section for quick reference.",
-          "Add quotes or testimonials from affected individuals to enhance relatability."
+          "Expand on the personal implications for the diaspora regarding oil prices and trade.",
+          "Include quotes or perspectives from diaspora members to enhance relatability."
         ],
         "verdict": "pass"
       },
