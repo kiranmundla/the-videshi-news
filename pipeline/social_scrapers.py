@@ -133,9 +133,28 @@ def instagram_best_photo_post(handle, hours=168, topic_keywords=None):
             ts = n.get("taken_at_timestamp") or 0
             if ts and ts < cutoff:
                 continue  # too old
-            display = n.get("display_url") or ""
-            if not display:
-                continue
+            # Collect ALL still photos from this post. Carousels (GraphSidecar)
+            # carry children in edge_sidecar_to_children; single posts use
+            # display_url. INSTAGRAM = PHOTOS ONLY — skip every video child and
+            # skip a top-level single video post entirely (stills only for now).
+            photos = []
+            has_video = bool(n.get("is_video"))
+            children = ((n.get("edge_sidecar_to_children") or {}).get("edges")) or []
+            if children:
+                for ce in children:
+                    cn = ce.get("node") or {}
+                    if cn.get("is_video"):
+                        has_video = True
+                        continue  # never render native video
+                    durl = cn.get("display_url") or ""
+                    if durl:
+                        photos.append(durl)
+            elif not n.get("is_video"):
+                durl = n.get("display_url") or ""
+                if durl:
+                    photos.append(durl)
+            if not photos:
+                continue  # video-only post or no usable still — skip
             # Caption
             cap = ""
             ce = ((n.get("edge_media_to_caption") or {}).get("edges")) or []
@@ -145,8 +164,9 @@ def instagram_best_photo_post(handle, hours=168, topic_keywords=None):
             posts.append({
                 "platform": "instagram",
                 "text": cap,
-                "photos": [display],
-                "photo_count": 1,
+                "photos": photos,
+                "photo_count": len(photos),
+                "has_video": has_video,
                 "likes": (n.get("edge_liked_by") or {}).get("count", 0) or 0,
                 "created_at": (time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime(ts))
                               if ts else ""),
@@ -239,35 +259,50 @@ def threads_best_photo_post(handle, hours=168, topic_keywords=None):
         cutoff = time.time() - hours * 3600
 
         def walk(node):
-            """Collect Threads post nodes with a photo from an arbitrary tree."""
+            """Collect Threads post nodes with photo(s) from an arbitrary tree.
+            Captures ALL still images on a post (carousels included) and skips
+            video. Threads embeds media in 'image_versions2' (single) and/or
+            'carousel_media' (multi)."""
             if isinstance(node, dict):
-                # A Threads post item typically has 'caption'/'text_post_app_info'
-                # and 'image_versions2' with candidates.
+                photos = []
+                # Single image
                 iv = node.get("image_versions2")
-                if iv and isinstance(iv, dict):
+                if iv and isinstance(iv, dict) and not node.get("video_versions"):
                     cands = iv.get("candidates") or []
-                    if cands:
-                        photo = cands[0].get("url", "")
-                        cap = ""
-                        capobj = node.get("caption")
-                        if isinstance(capobj, dict):
-                            cap = capobj.get("text", "") or ""
-                        ts = node.get("taken_at") or 0
-                        code = node.get("code") or ""
-                        if photo and (not ts or ts >= cutoff):
-                            posts.append({
-                                "platform": "threads",
-                                "text": cap,
-                                "photos": [photo],
-                                "photo_count": 1,
-                                "likes": node.get("like_count", 0) or 0,
-                                "created_at": (time.strftime("%Y-%m-%dT%H:%M:%SZ",
-                                              time.gmtime(ts)) if ts else ""),
-                                "url": f"https://www.threads.com/@{handle}/post/{code}"
-                                       if code else f"https://www.threads.com/@{handle}",
-                                "name": handle,
-                                "avatar": "",
-                            })
+                    if cands and cands[0].get("url"):
+                        photos.append(cands[0]["url"])
+                # Carousel: multiple children, skip any with video_versions
+                for cm in (node.get("carousel_media") or []):
+                    if not isinstance(cm, dict) or cm.get("video_versions"):
+                        continue  # never render native video
+                    civ = cm.get("image_versions2") or {}
+                    ccands = civ.get("candidates") or []
+                    if ccands and ccands[0].get("url"):
+                        photos.append(ccands[0]["url"])
+                if photos:
+                    cap = ""
+                    capobj = node.get("caption")
+                    if isinstance(capobj, dict):
+                        cap = capobj.get("text", "") or ""
+                    ts = node.get("taken_at") or 0
+                    code = node.get("code") or ""
+                    if not ts or ts >= cutoff:
+                        posts.append({
+                            "platform": "threads",
+                            "text": cap,
+                            "photos": photos,
+                            "photo_count": len(photos),
+                            "has_video": bool(node.get("video_versions") or
+                                              any((cm or {}).get("video_versions")
+                                                  for cm in (node.get("carousel_media") or []))),
+                            "likes": node.get("like_count", 0) or 0,
+                            "created_at": (time.strftime("%Y-%m-%dT%H:%M:%SZ",
+                                          time.gmtime(ts)) if ts else ""),
+                            "url": f"https://www.threads.com/@{handle}/post/{code}"
+                                   if code else f"https://www.threads.com/@{handle}",
+                            "name": handle,
+                            "avatar": "",
+                        })
                 for v in node.values():
                     walk(v)
             elif isinstance(node, list):

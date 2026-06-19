@@ -1659,11 +1659,39 @@ def render_keypoint_card(scene, category, article, idx, out_dir="/tmp/videshi_ca
 
 SOCIAL_CARD_ENABLED = os.environ.get("VIDESHI_SOCIAL_CARD", "1") != "0"
 SOCIAL_CARD_LOOKBACK_HOURS = int(os.environ.get("VIDESHI_SOCIAL_CARD_HOURS", "168"))  # 7 days
-SOCIAL_CARD_MAX_HANDLES = int(os.environ.get("VIDESHI_SOCIAL_CARD_MAX_HANDLES", "3"))  # X-read spend cap per article
+SOCIAL_CARD_MAX_HANDLES = int(os.environ.get("VIDESHI_SOCIAL_CARD_MAX_HANDLES", "3"))  # read/scrape spend cap per article
+# Per-platform fallback toggles. X is the reliable primary; Threads + Instagram
+# are best-effort scrapers tried only when X yields nothing for a matched entry.
+# Default enabled but fully fail-safe (a broken scraper returns None and the
+# reel builds identically). Set the env var to "0" to disable a platform.
+SOCIAL_CARD_THREADS_ENABLED = os.environ.get("VIDESHI_SOCIAL_CARD_THREADS", "1") != "0"
+SOCIAL_CARD_INSTAGRAM_ENABLED = os.environ.get("VIDESHI_SOCIAL_CARD_INSTAGRAM", "1") != "0"
 
 _fetch_tweets_mod = None
+_social_scrapers_mod = None
 _social_registry_cache = None
 _x_profile_cache_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".x-profiles.json")
+
+
+def _load_social_scrapers_module():
+    """Import pipeline/social_scrapers.py once, cached. Returns the module
+    (with instagram_best_photo_post / threads_best_photo_post) or None."""
+    global _social_scrapers_mod
+    if _social_scrapers_mod is not None:
+        return _social_scrapers_mod if _social_scrapers_mod is not False else None
+    try:
+        import importlib.util
+        path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "social_scrapers.py")
+        spec = importlib.util.spec_from_file_location("videshi_social_scrapers", path)
+        mod = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(mod)
+        _social_scrapers_mod = mod
+        return mod
+    except Exception as e:
+        print(f"  ℹ️ social scrapers unavailable (Threads/IG fallback off): {e}")
+        _social_scrapers_mod = False
+        return None
+
 
 
 def _load_fetch_tweets_module():
@@ -1681,8 +1709,11 @@ def _load_fetch_tweets_module():
 
 
 def _load_social_registry():
-    """Load social-embed-registry.json once; return flat list of dicts with an
-    x handle: {name, handle, category, kind}."""
+    """Load social-embed-registry.json once; return flat list of dicts with the
+    entry's available platform handles: {name, handle, category, kind, x,
+    threads, instagram}. `handle` mirrors the X handle for backward-compat with
+    the original X-only matcher; entries are included if they have ANY platform
+    handle (x, threads, or instagram)."""
     global _social_registry_cache
     if _social_registry_cache is not None:
         return _social_registry_cache
@@ -1697,9 +1728,17 @@ def _load_social_registry():
             if isinstance(v, dict):
                 for kind in ("persons", "organizations"):
                     for e in (v.get(kind) or []):
-                        if isinstance(e, dict) and e.get("x"):
-                            out.append({"name": e.get("name", ""), "handle": e["x"].lstrip("@"),
-                                        "category": cat, "kind": kind})
+                        if not isinstance(e, dict):
+                            continue
+                        x = (e.get("x") or "").lstrip("@") or None
+                        threads = (e.get("threads") or "").lstrip("@") or None
+                        instagram = (e.get("instagram") or "").lstrip("@") or None
+                        if not (x or threads or instagram):
+                            continue
+                        out.append({"name": e.get("name", ""),
+                                    "handle": x or threads or instagram,
+                                    "category": cat, "kind": kind,
+                                    "x": x, "threads": threads, "instagram": instagram})
     except Exception as e:
         print(f"  ⚠️ social registry load failed: {e}")
     _social_registry_cache = out
@@ -1781,17 +1820,57 @@ def _sc_download_image(url):
 
 
 def _sc_draw_x_badge(draw, img, x, y, s):
-    """Paste the real X logo (white) centered in a rounded black square of side s."""
+    """Paste the real X logo (white) centered in a rounded black square of side s.
+    Kept for backward-compat; new code should call _sc_draw_platform_badge."""
+    _sc_draw_platform_badge(draw, img, x, y, s, "x")
+
+
+# Per-platform badge config: logo asset filename, badge background, and glyph
+# scale. Background colors match each brand's house badge (X=black, Threads=black,
+# Instagram=its signature gradient approximated as a solid magenta/purple so a
+# white glyph reads cleanly). All glyphs are white monochrome for a consistent
+# editorial look that matches the existing X badge.
+_SC_BADGE = {
+    "x":         {"logo": "x-logo-white.png",         "bg": (0, 0, 0),     "scale": 0.50},
+    "twitter":   {"logo": "x-logo-white.png",         "bg": (0, 0, 0),     "scale": 0.50},
+    "threads":   {"logo": "threads-logo-white.png",   "bg": (0, 0, 0),     "scale": 0.62},
+    "instagram": {"logo": "instagram-logo-white.png", "bg": (60, 28, 96),  "scale": 0.60},
+}
+
+
+def _sc_draw_platform_badge(draw, img, x, y, s, platform):
+    """Paste a white platform logo centered in a rounded brand-colored square of
+    side s. Falls back to a tasteful text wordmark if the glyph asset is missing,
+    so a broken/missing image never ships. Never raises."""
     from PIL import Image
-    draw.rounded_rectangle([x, y, x + s, y + s], radius=int(s * 0.22), fill=(0, 0, 0))
+    cfg = _SC_BADGE.get((platform or "x").lower(), _SC_BADGE["x"])
+    draw.rounded_rectangle([x, y, x + s, y + s], radius=int(s * 0.22), fill=cfg["bg"])
     try:
         logo = Image.open(os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                          "assets", "x-logo-white.png")).convert("RGBA")
-        gw = int(s * 0.50); gh = int(gw * logo.height / logo.width)
+                          "assets", cfg["logo"])).convert("RGBA")
+        gw = int(s * cfg["scale"]); gh = int(gw * logo.height / logo.width)
         logo = logo.resize((gw, gh), Image.LANCZOS)
         img.paste(logo, (x + (s - gw) // 2, y + (s - gh) // 2), logo)
     except Exception as e:
-        print(f"  ⚠️ x-logo paste failed: {e}")
+        print(f"  ⚠️ {platform} badge glyph paste failed, using wordmark: {e}")
+        # Tasteful fallback: a short white wordmark glyph instead of a broken image.
+        mark = {"threads": "@", "instagram": "IG", "x": "X", "twitter": "X"}.get(
+            (platform or "x").lower(), "•")
+        try:
+            f = _card_font(int(s * 0.55), "extrabold")
+            tb = draw.textbbox((0, 0), mark, font=f)
+            tw, th = tb[2] - tb[0], tb[3] - tb[1]
+            draw.text((x + (s - tw) // 2 - tb[0], y + (s - th) // 2 - tb[1]),
+                      mark, font=f, fill=(255, 255, 255))
+        except Exception:
+            pass
+
+
+def _sc_platform_label(platform):
+    """Human-readable platform name for the attribution footer."""
+    return {"x": "X", "twitter": "X", "threads": "Threads",
+            "instagram": "Instagram"}.get((platform or "x").lower(), "X")
+
 
 
 def _sc_face_aware_fit(photo, pw, ph):
@@ -1850,9 +1929,18 @@ def _sc_face_aware_fit(photo, pw, ph):
     return fitted, ok
 
 
-def render_social_card(post, category, out_dir="/tmp/videshi_social"):
-    """Render a branded 1080x1920 'social post card' from a real X post.
-    post = {name, handle, avatar, photo, text}. Returns local PNG path or None.
+def render_social_card(post, category, out_dir="/tmp/videshi_social",
+                       photo_url=None, card_idx=0):
+    """Render a branded 1080x1920 'social post card' from a real social post.
+    post = {name, handle, avatar, photo, text, platform}. platform is one of
+    "x"|"threads"|"instagram" and controls the badge glyph + footer wording
+    (defaults to "x" for backward-compat). Returns local PNG path or None.
+
+    photo_url: render THIS specific image from the post (defaults to post['photo'])
+    so a multi-photo post can produce multiple cards. card_idx makes the output
+    filename unique per photo. Each photo is independently face-crop-guarded:
+    if a face would be guillotined this returns None for that photo and the
+    caller simply skips it and keeps the rest.
     Matches house style by reusing the key-point card brand helpers."""
     try:
         from PIL import Image, ImageDraw, ImageOps
@@ -1881,7 +1969,7 @@ def render_social_card(post, category, out_dir="/tmp/videshi_social"):
         y += 70
 
         # the post photo, rounded + gold-framed
-        photo = _sc_download_image(post["photo"])
+        photo = _sc_download_image(photo_url or post["photo"])
         pw = W - 2 * MX
         ph = int(pw * 0.78)  # taller frame: fills the card better, less portrait crop
         # Face-aware crop + verification: center the crop on detected faces and
@@ -1916,7 +2004,7 @@ def render_social_card(post, category, out_dir="/tmp/videshi_social"):
                font=_card_font(46, "extrabold"), fill=_CARD_WHITE)
         d.text((nx, y + 62), f"@{post['handle']}", font=_card_font(34, "semibold"), fill=_CARD_MUTED)
         bs = 84
-        _sc_draw_x_badge(d, img, W - MX - bs, y + 10, bs)
+        _sc_draw_platform_badge(d, img, W - MX - bs, y + 10, bs, post.get("platform", "x"))
         y += 140
 
         # post text (cleaned)
@@ -1932,10 +2020,11 @@ def render_social_card(post, category, out_dir="/tmp/videshi_social"):
         # attribution footer
         fy = H - 150
         d.line([(MX, fy), (W - MX, fy)], fill=(60, 72, 92), width=2)
-        d.text((MX, fy + 24), f"via @{post['handle']} on X", font=_card_font(34, "semibold"), fill=_CARD_GOLD_SOFT)
+        d.text((MX, fy + 24), f"via @{post['handle']} on {_sc_platform_label(post.get('platform','x'))}",
+               font=_card_font(34, "semibold"), fill=_CARD_GOLD_SOFT)
         d.text((W - MX - 260, fy + 24), "thevideshi.com", font=_card_font(34, "extrabold"), fill=_CARD_WHITE)
 
-        path = os.path.join(out_dir, f"social_{post['handle']}.png")
+        path = os.path.join(out_dir, f"social_{post.get('platform','x')}_{post['handle']}_{card_idx}.png")
         img.convert("RGB").save(path, "PNG")
         return path
     except Exception as e:
@@ -1964,12 +2053,18 @@ def _social_card_keywords(article):
 
 
 def match_social_card_post(article, hours=None, max_handles=None):
-    """Find the best real X post to render as a social card for this article.
+    """Find the best real social post to render as a social card for this article.
     Scans headline+body for registered names (registry = allowlist), prefers the
-    article's category bucket, queries up to max_handles handles (X-read spend
-    cap), and picks the most topically relevant RECENT post WITH a photo.
-    Returns a post dict {name, handle, avatar, photo, text, url} or None.
-    Never raises — returns None on any failure (incl. 402/no-credits)."""
+    article's category bucket, and for each matched entry tries platforms in
+    confidence order — X (reliable API) → Threads → Instagram (best-effort
+    scrapers) — using that entry's available handles. The first usable X post
+    wins outright; a lower-confidence scraped post is only used when no matched
+    entry yields an X post. Honors max_handles as a TOTAL fetch/attempt cap
+    across all platforms. Picks the most topically relevant RECENT post WITH a
+    photo.
+    Returns a post dict {name, handle, avatar, photo, text, url, platform} or
+    None. Never raises — returns None on any failure (incl. 402/no-credits or a
+    blocked/empty scraper)."""
     if not SOCIAL_CARD_ENABLED:
         return None
     hours = hours or SOCIAL_CARD_LOOKBACK_HOURS
@@ -2003,37 +2098,128 @@ def match_social_card_post(article, hours=None, max_handles=None):
               + ", ".join(f"@{c['handle']}" for c in candidates))
 
         mod = _load_fetch_tweets_module()
+        scrapers = _load_social_scrapers_module()
         keywords = _social_card_keywords(article)
 
-        best = None  # (relevance, likes, tweet, handle)
-        for c in candidates:
-            handle = c["handle"]
-            try:
-                tweet = mod.best_photo_tweet(handle, hours=hours, topic_keywords=keywords)
-            except Exception as e:
-                print(f"  ⚠️ tweet fetch failed for @{handle}: {e}")
-                continue
-            if not tweet or tweet.get("photo_count", 0) < 1 or not tweet.get("photos"):
-                continue
-            text_l = (tweet.get("text", "") or "").lower()
-            relevance = sum(1 for kw in keywords if kw in text_l)
-            likes = tweet.get("likes", 0)
-            key = (relevance, likes)
-            if best is None or key > (best[0], best[1]):
-                best = (relevance, likes, tweet, handle, c.get("name", ""))
+        def _norm(post, platform, reg_name, handle, x_profile=None):
+            """Build the render-ready post dict from a platform fetch result.
+            Carries the FULL usable photo list (stills only — never video) so the
+            caller can render multiple "ON THE FEED" cards from one post."""
+            name = reg_name
+            avatar = ""
+            if platform in ("x", "twitter"):
+                prof = x_profile if x_profile is not None else _x_profile(handle)
+                name = reg_name or prof.get("name", "") or f"@{handle}"
+                avatar = prof.get("avatar", "")
+            else:
+                # Scrapers carry their own author identity; fall back to registry name.
+                name = reg_name or post.get("name", "") or f"@{handle}"
+                avatar = post.get("avatar", "") or ""
+            photos = [p for p in (post.get("photos") or []) if p]  # stills only
+            return {
+                "name": name,
+                "handle": handle,
+                "avatar": avatar,
+                "photo": photos[0] if photos else "",   # back-compat: first photo
+                "photos": photos,                        # full usable still set
+                "photo_count": len(photos),
+                "text": post.get("text", ""),
+                "url": post.get("url", ""),
+                "platform": platform,
+            }
 
-        if not best:
+        # Confidence-ordered platform fetchers. Each returns a normalized post
+        # dict (photos/text/likes/url[/name/avatar]) or None, and must never raise.
+        def fetch_x(handle):
+            try:
+                t = mod.best_photo_tweet(handle, hours=hours, topic_keywords=keywords)
+            except Exception as e:
+                print(f"  ⚠️ X fetch failed for @{handle}: {e}")
+                return None
+            if t and t.get("photo_count", 0) >= 1 and t.get("photos"):
+                return t
             return None
-        _, _, tweet, handle, reg_name = best
-        prof = _x_profile(handle)
-        return {
-            "name": reg_name or prof.get("name", "") or f"@{handle}",
-            "handle": handle,
-            "avatar": prof.get("avatar", ""),
-            "photo": tweet["photos"][0],
-            "text": tweet.get("text", ""),
-            "url": tweet.get("url", ""),
-        }
+
+        def fetch_threads(handle):
+            if not (SOCIAL_CARD_THREADS_ENABLED and scrapers):
+                return None
+            try:
+                p = scrapers.threads_best_photo_post(handle, hours=hours, topic_keywords=keywords)
+            except Exception as e:
+                print(f"  ⚠️ Threads fetch failed for @{handle}: {e}")
+                return None
+            if p and p.get("photos"):
+                return p
+            return None
+
+        def fetch_instagram(handle):
+            if not (SOCIAL_CARD_INSTAGRAM_ENABLED and scrapers):
+                return None
+            try:
+                p = scrapers.instagram_best_photo_post(handle, hours=hours, topic_keywords=keywords)
+            except Exception as e:
+                print(f"  ⚠️ Instagram fetch failed for @{handle}: {e}")
+                return None
+            if p and p.get("photos"):
+                return p
+            return None
+
+        def _rel_likes(post):
+            text_l = (post.get("text", "") or "").lower()
+            return (sum(1 for kw in keywords if kw in text_l), post.get("likes", 0) or 0)
+
+        # PASS 1 — X only (highest confidence). A good X post always wins, so we
+        # never let a scraped Threads/IG post displace it. Each X read counts
+        # against the spend budget.
+        attempts = 0
+        best_x = None  # (relevance, likes, post_dict)
+        for c in candidates:
+            if attempts >= max_handles:
+                break
+            if not c.get("x"):
+                continue
+            attempts += 1
+            t = fetch_x(c["x"])
+            if not t:
+                continue
+            rel, likes = _rel_likes(t)
+            cand = _norm(t, "x", c.get("name", ""), c["x"])
+            if best_x is None or (rel, likes) > (best_x[0], best_x[1]):
+                best_x = (rel, likes, cand)
+
+        if best_x is not None:
+            print(f"  📡 Social-card: X post selected (@{best_x[2]['handle']})")
+            return best_x[2]
+
+        # PASS 2 — best-effort scrapers, only because X yielded nothing. Try
+        # Threads then Instagram for each matched entry, still capped by the
+        # remaining attempt budget. Lower confidence, so any usable hit is fine.
+        best_scraped = None  # (relevance, likes, post_dict)
+        for c in candidates:
+            if attempts >= max_handles * 2:  # allow scraper attempts beyond X cap, bounded
+                break
+            for platform, handle_key, fetch in (
+                ("threads", "threads", fetch_threads),
+                ("instagram", "instagram", fetch_instagram),
+            ):
+                h = c.get(handle_key)
+                if not h:
+                    continue
+                attempts += 1
+                p = fetch(h)
+                if not p:
+                    continue
+                rel, likes = _rel_likes(p)
+                cand = _norm(p, platform, c.get("name", ""), h)
+                if best_scraped is None or (rel, likes) > (best_scraped[0], best_scraped[1]):
+                    best_scraped = (rel, likes, cand)
+
+        if best_scraped is not None:
+            print(f"  📡 Social-card: {best_scraped[2]['platform']} post selected "
+                  f"(@{best_scraped[2]['handle']}) — X had no usable post")
+            return best_scraped[2]
+
+        return None
     except Exception as e:
         print(f"  ⚠️ Social-card match failed (falling through): {e}")
         return None
@@ -2206,23 +2392,38 @@ def source_storyboard_images(article, storyboard, count=8):
         print(f"  🎬 Scene 1: {scene_descs[0][:50]}  →  article hero")
 
 
-    # ── 1a-bis. SOCIAL CARD: a real X post (photo + attribution) in brand frame ──
-    # Highest-priority editorial source for AT MOST ONE scene per reel. If the
-    # article's subject matches a curated handle (registry = verified/official
-    # allowlist) and that account has a recent relevant photo post, render it as
-    # an "ON THE FEED" card. This carries real, attributed, on-topic media, so it
-    # beats generic stock outright. Purely additive + safe: any failure (no
-    # match, 402/no-credits, fetch/render error) logs and falls through.
+    # ── 1a-bis. SOCIAL CARDS: real social post photos (attribution) in brand frame ──
+    # PRIORITY 2 in the B-roll chain (after the article hero, before the media
+    # library / Wikipedia / Commons / Pexels). If the article's subject matches a
+    # curated handle (registry = verified/official allowlist), pull the single
+    # best recent on-topic post (X → Threads → Instagram confidence order) and
+    # render EVERY usable photo on that post as its own "ON THE FEED" card,
+    # filling as many MID scenes as we have quality photos for. These carry real,
+    # attributed, on-topic media, so they beat generic stock outright.
+    #   * Scene 1 (hero) and the final CTA/closing scene are NEVER social.
+    #   * Each photo is independently face-crop-guarded (a beheaded crop is
+    #     dropped; the rest are kept).
+    #   * INSTAGRAM = stills only (no native video; enforced in the scraper).
+    # Purely additive + safe: any failure logs and falls through.
     _sc_last_idx = len(matched_urls) - 1
     _sc_slots = [i for i in range(1, len(matched_urls))
-                 if i != _sc_last_idx and matched_urls[i] is None]  # mid scene only; never hook/CTA
+                 if i != _sc_last_idx and matched_urls[i] is None]  # mid scenes only; never hook/CTA
     if SOCIAL_CARD_ENABLED and _sc_slots:
         try:
             post = match_social_card_post(article)
-            if post and post.get("photo"):
-                local = render_social_card(post, category)
-                if local:
-                    slot = _sc_slots[0]
+            photos = (post or {}).get("photos") or ([post["photo"]] if post and post.get("photo") else [])
+            if post and photos:
+                _plat = _sc_platform_label(post.get("platform", "x"))
+                filled = 0
+                for photo_url in photos:
+                    if filled >= len(_sc_slots):
+                        break  # no more mid slots available
+                    local = render_social_card(post, category,
+                                               photo_url=photo_url, card_idx=filled)
+                    if not local:
+                        # face-crop guard rejected THIS photo — skip it, keep going
+                        continue
+                    slot = _sc_slots[filled]
                     storage_path = f"reel-social/{article_id}/scene-{slot}.png"
                     card_url = upload_asset(local, storage_path, "image/png")
                     try:
@@ -2238,9 +2439,13 @@ def source_storyboard_images(article, storyboard, count=8):
                                                 "is_social_card": True, "curated": True,
                                                 "generic_pexels": False,
                                                 "source_url": post.get("url", "")}
-                        print(f"  📡 Scene {slot+1}: {scene_descs[slot][:42]}  →  social card (X @{post['handle']})")
+                        print(f"  📡 Scene {slot+1}: {scene_descs[slot][:42]}  →  social card ({_plat} @{post['handle']}, photo {filled+1}/{len(photos)})")
+                        filled += 1
+                if filled:
+                    print(f"  📡 Social cards: filled {filled} mid scene(s) from {_plat} @{post['handle']} ({len(photos)} photo(s) available)")
         except Exception as e:
             print(f"  ⚠️ Social-card pass failed (continuing normally): {e}")
+
 
 
     # ── 1b. ENTITY PRE-PASS: real imagery of the story's named entities ──
@@ -2390,88 +2595,19 @@ def source_storyboard_images(article, storyboard, count=8):
     entities = extract_named_entities(brand_text, body_text, limit=8)
     if entities:
         print(f"  🧩 Entity pre-pass — candidates: {', '.join(entities[:8])}")
-    # Kiran's directive (2026-06-15): he prefers the real Indian imagery (Wikipedia
-    # entity frames of Indian companies/people/places) over generic Pexels stock,
-    # which kept drifting foreign on the back half. So entity frames now carry up to
-    # 4 scenes instead of 2 — but INTERLEAVED with Pexels motion (odd indices)
-    # so we get Indian-anchored frame → motion → frame → motion, not a dead wall of
-    # static portraits. Ken Burns pan/zoom keeps the static frames alive. The FINAL
-    # scene (the spoken CTA) is excluded — it gets clean footage, never a random
-    # entity portrait behind "Full story at thevideshi.com".
     last_idx = len(matched_urls) - 1
-    entity_slots = [i for i in (1, 3, 5, 7)
-                    if i < len(matched_urls) and i != last_idx and matched_urls[i] is None]
-    ei = 0
-    for slot in entity_slots:
-        while ei < len(entities):
-            term = entities[ei]; ei += 1
-            wimg = wiki_image_for(term)
-            if wimg and wimg not in used_in_this_reel and is_url_downloadable(wimg):
-                mwimg = mirror_to_supabase(wimg, article_id, slot, reject_diagrams=True)
-                if not mwimg:
-                    # Diagram/chart/text-slab rejected at pixel level — try next entity.
-                    continue
-                matched_urls[slot] = mwimg
-                used_in_this_reel.add(mwimg)
-                media_meta[mwimg] = {"type": "image", "duration": 0}
-                print(f"  🧩 Scene {slot+1}: {scene_descs[slot][:42]}  →  Wikipedia entity '{term}'")
-                break
 
-    # ── 1c. WIKIMEDIA COMMONS by scene description (real India imagery) ──
-    # Before falling to Pexels (which has no real footage of India-specific
-    # subjects and drifts to generic/foreign stock), try Commons for the
-    # still-empty mid scenes using each scene's own search queries, India-anchored.
-    # Commons returns genuine editorial photos of named people/places/events.
-    # Cap it so at least one mid gap is left for Pexels VIDEO — a reel that's 100%
-    # stills reads as a static slideshow (QA flags "repetitive visuals"). Ken Burns
-    # pan/zoom keeps these stills alive between the motion clips.
-    remaining = [i for i in range(len(matched_urls)) if matched_urls[i] is None
-                 and i != last_idx]  # leave CTA scene for clean footage
-    commons_budget = max(0, (len(remaining) - 1) // 2)  # fill ≤ half of mid gaps from Commons; leave the rest for Pexels motion + the key-point card floor (a marginal Commons photo loses to a card whose visual IS the story)
-    if remaining and commons_budget:
-        print(f"  🏛️ Commons pass for {len(remaining)} mid scenes (budget {commons_budget})...")
-        commons_filled = 0
-        for i in remaining:
-            if commons_filled >= commons_budget:
-                break
-            scene = scenes[i] if i < len(scenes) else {}
-            queries = list(scene.get("search_queries", []))
-            visual = scene.get("visual", "")
-            if visual and visual not in queries:
-                queries = [visual] + queries
-            for q in queries[:2]:
-                cq = anchor_query_to_india(q)
-                for cand in commons_image_search(cq, limit=6):
-                    cu = cand["url"]
-                    if cu in used_in_this_reel:
-                        continue
-                    if not is_url_downloadable(cu):
-                        continue
-                    # Skip Commons results whose filename advertises a diagram/chart.
-                    if any(sig in (cand.get("title", "") + cu).lower() for sig in _DIAGRAM_FILENAME_SIGNALS):
-                        continue
-                    mu = mirror_to_supabase(cu, article_id, i, reject_diagrams=True)
-                    if not mu:
-                        continue  # diagram/text-slab rejected; try next candidate
-                    matched_urls[i] = mu
-                    used_in_this_reel.add(cu)
-                    used_in_this_reel.add(mu)
-                    media_meta[mu] = {"type": "image", "duration": 0}
-                    commons_filled += 1
-                    print(f"  🏛️ Scene {i+1}: {scene_descs[i][:46]}  →  Commons '{cand['title'][5:45]}'")
-                    break
-                if matched_urls[i] is not None:
-                    break
-
-    # ── 1d. MEDIA LIBRARY (curated, attribution-clean backup pool) ──
-    # Second-priority fallback per the media_library contract: after the curated /
-    # dynamic sources above (article hero, social card, Wikipedia entities, Commons)
-    # and BEFORE generic Pexels stock. The library holds quality-gated, attributed
-    # assets keyed by subject (people/places/things) plus opt-in concept b-roll.
-    # For reels we allow concept assets (exclude_concept=False) so abstract scenes
-    # can be filled, but the quality sort still prefers real, high-score imagery.
-    # Subjects to try: the article's named entities (best match), then each scene's
-    # own search queries as tags. Purely additive + safe: any failure falls through.
+    # ── 1b. MEDIA LIBRARY (curated, attribution-clean backup pool) ──
+    # PRIORITY 3 (Kiran's 2026-06-18 reorder): the curated library now runs
+    # BEFORE Wikipedia/Commons because Wikipedia lead-image quality is weak. It
+    # comes after the article hero (1) and social cards (2) and before Wikipedia
+    # entities (1c) / Commons (1d) / Pexels (2). The library holds quality-gated,
+    # attributed assets keyed by subject (people/places/things) plus opt-in
+    # concept b-roll. For reels we allow concept assets (exclude_concept=False)
+    # so abstract scenes can be filled, but the quality sort still prefers real,
+    # high-score imagery. Subjects to try: the article's named entities (best
+    # match), then each scene's own search queries as tags. The FINAL CTA scene
+    # is left for clean footage. Purely additive + safe: any failure falls through.
     remaining = [i for i in range(len(matched_urls)) if matched_urls[i] is None
                  and i != last_idx]  # leave CTA scene for clean footage
     ml = _load_media_library_lookup() if remaining else None
@@ -2524,6 +2660,79 @@ def source_storyboard_images(article, storyboard, count=8):
                               "source_url": asset.get("source_url", "")}
             print(f"  📚 Scene {i+1}: {scene_descs[i][:42]}  →  media library "
                   f"('{asset.get('subject','')}', q{asset.get('quality_score')})")
+
+    # ── 1c. ENTITY PRE-PASS FILL: Wikipedia lead images of named entities ──
+    # Kiran's directive (2026-06-15): he prefers the real Indian imagery (Wikipedia
+    # entity frames of Indian companies/people/places) over generic Pexels stock,
+    # which kept drifting foreign on the back half. So entity frames now carry up to
+    # 4 scenes instead of 2 — but INTERLEAVED with Pexels motion (odd indices)
+    # so we get Indian-anchored frame → motion → frame → motion, not a dead wall of
+    # static portraits. Ken Burns pan/zoom keeps the static frames alive. The FINAL
+    # scene (the spoken CTA) is excluded — it gets clean footage, never a random
+    # entity portrait behind "Full story at thevideshi.com".
+    entity_slots = [i for i in (1, 3, 5, 7)
+                    if i < len(matched_urls) and i != last_idx and matched_urls[i] is None]
+    ei = 0
+    for slot in entity_slots:
+        while ei < len(entities):
+            term = entities[ei]; ei += 1
+            wimg = wiki_image_for(term)
+            if wimg and wimg not in used_in_this_reel and is_url_downloadable(wimg):
+                mwimg = mirror_to_supabase(wimg, article_id, slot, reject_diagrams=True)
+                if not mwimg:
+                    # Diagram/chart/text-slab rejected at pixel level — try next entity.
+                    continue
+                matched_urls[slot] = mwimg
+                used_in_this_reel.add(mwimg)
+                media_meta[mwimg] = {"type": "image", "duration": 0}
+                print(f"  🧩 Scene {slot+1}: {scene_descs[slot][:42]}  →  Wikipedia entity '{term}'")
+                break
+
+    # ── 1d. WIKIMEDIA COMMONS by scene description (real India imagery) ──
+    # Before falling to Pexels (which has no real footage of India-specific
+    # subjects and drifts to generic/foreign stock), try Commons for the
+    # still-empty mid scenes using each scene's own search queries, India-anchored.
+    # Commons returns genuine editorial photos of named people/places/events.
+    # Cap it so at least one mid gap is left for Pexels VIDEO — a reel that's 100%
+    # stills reads as a static slideshow (QA flags "repetitive visuals"). Ken Burns
+    # pan/zoom keeps these stills alive between the motion clips.
+    remaining = [i for i in range(len(matched_urls)) if matched_urls[i] is None
+                 and i != last_idx]  # leave CTA scene for clean footage
+    commons_budget = max(0, (len(remaining) - 1) // 2)  # fill ≤ half of mid gaps from Commons; leave the rest for Pexels motion + the key-point card floor (a marginal Commons photo loses to a card whose visual IS the story)
+    if remaining and commons_budget:
+        print(f"  🏛️ Commons pass for {len(remaining)} mid scenes (budget {commons_budget})...")
+        commons_filled = 0
+        for i in remaining:
+            if commons_filled >= commons_budget:
+                break
+            scene = scenes[i] if i < len(scenes) else {}
+            queries = list(scene.get("search_queries", []))
+            visual = scene.get("visual", "")
+            if visual and visual not in queries:
+                queries = [visual] + queries
+            for q in queries[:2]:
+                cq = anchor_query_to_india(q)
+                for cand in commons_image_search(cq, limit=6):
+                    cu = cand["url"]
+                    if cu in used_in_this_reel:
+                        continue
+                    if not is_url_downloadable(cu):
+                        continue
+                    # Skip Commons results whose filename advertises a diagram/chart.
+                    if any(sig in (cand.get("title", "") + cu).lower() for sig in _DIAGRAM_FILENAME_SIGNALS):
+                        continue
+                    mu = mirror_to_supabase(cu, article_id, i, reject_diagrams=True)
+                    if not mu:
+                        continue  # diagram/text-slab rejected; try next candidate
+                    matched_urls[i] = mu
+                    used_in_this_reel.add(cu)
+                    used_in_this_reel.add(mu)
+                    media_meta[mu] = {"type": "image", "duration": 0}
+                    commons_filled += 1
+                    print(f"  🏛️ Scene {i+1}: {scene_descs[i][:46]}  →  Commons '{cand['title'][5:45]}'")
+                    break
+                if matched_urls[i] is not None:
+                    break
 
     # ── 2. PRIMARY: Pexels stock VIDEO by scene visual description ──
     remaining = [i for i in range(len(matched_urls)) if matched_urls[i] is None]
