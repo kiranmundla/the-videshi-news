@@ -26,6 +26,53 @@ SITE_URL = "https://www.thevideshi.com"
 INDEXING_API = "https://indexing.googleapis.com/v3/urlNotifications:publish"
 BATCH_API = "https://indexing.googleapis.com/batch"
 
+# Persistent ledger of URLs already submitted to the Indexing API.
+# The Indexing API counts EVERY publish request against the 200/day quota,
+# even re-submissions of the same URL. The --recent window (4h) overlaps the
+# cron cadence (3h), so without de-dup each article is submitted 2-3x, burning
+# the daily quota on duplicates. We skip any URL submitted within the last
+# LEDGER_TTL_DAYS so each article is submitted once and the budget goes to
+# genuinely new URLs.
+LEDGER_PATH = os.path.expanduser("~/workspace/the-videshi-news/pipeline/indexing-submitted.json")
+LEDGER_TTL_DAYS = 14
+
+
+def load_ledger():
+    """Load the submitted-URL ledger: {url: iso_timestamp}."""
+    try:
+        with open(LEDGER_PATH) as f:
+            return json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        return {}
+
+
+def save_ledger(ledger):
+    """Persist the ledger, pruning entries older than LEDGER_TTL_DAYS."""
+    cutoff = datetime.now(timezone.utc) - timedelta(days=LEDGER_TTL_DAYS)
+    pruned = {}
+    for url, ts in ledger.items():
+        try:
+            if datetime.fromisoformat(ts) >= cutoff:
+                pruned[url] = ts
+        except (ValueError, TypeError):
+            pruned[url] = ts  # keep unparseable entries rather than lose them
+    tmp = LEDGER_PATH + ".tmp"
+    with open(tmp, "w") as f:
+        json.dump(pruned, f, indent=2, sort_keys=True)
+    os.replace(tmp, LEDGER_PATH)
+
+
+def recently_submitted(url, ledger):
+    """True if url was submitted within the last LEDGER_TTL_DAYS."""
+    ts = ledger.get(url)
+    if not ts:
+        return False
+    try:
+        cutoff = datetime.now(timezone.utc) - timedelta(days=LEDGER_TTL_DAYS)
+        return datetime.fromisoformat(ts) >= cutoff
+    except (ValueError, TypeError):
+        return False
+
 # Supabase config
 SUPABASE_URL = os.environ.get("SUPABASE_URL") or os.environ.get("VITE_SUPABASE_URL")
 SUPABASE_KEY = os.environ.get("SUPABASE_SERVICE_ROLE_KEY")
@@ -138,14 +185,29 @@ def main():
         if not articles:
             print(f"No articles published in the last {hours}h")
             return
-        print(f"Submitting {len(articles)} articles from the last {hours}h:\n")
-        ok = 0
+        ledger = load_ledger()
+        # De-dup: only submit URLs not already submitted within the TTL window.
+        pending = []
+        skipped = 0
         for a in articles:
-            if a.get("slug"):
-                success = submit_slug(a["slug"])
-                if success:
-                    ok += 1
-        print(f"\n✅ {ok}/{len(articles)} submitted successfully")
+            slug = a.get("slug")
+            if not slug:
+                continue
+            url = f"{SITE_URL}/articles/{slug}"
+            if recently_submitted(url, ledger):
+                skipped += 1
+            else:
+                pending.append((slug, url))
+        print(f"{len(articles)} recent articles; {skipped} already submitted (skipped), "
+              f"{len(pending)} new to submit:\n")
+        ok = 0
+        for slug, url in pending:
+            success = submit_url(url)
+            if success:
+                ok += 1
+                ledger[url] = datetime.now(timezone.utc).isoformat()
+        save_ledger(ledger)
+        print(f"\n✅ {ok}/{len(pending)} submitted successfully")
 
     elif args[0] == "--batch":
         slugs = args[1:]
