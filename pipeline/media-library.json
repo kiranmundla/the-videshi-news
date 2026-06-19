@@ -1,29 +1,7 @@
 {
  "_description": "Media library mirror — high-quality, attribution-clean images+videos for article/reel fallback. Source of truth is the Supabase media_library table; this mirror lets the pipeline read without a DB round-trip.",
- "_updated": "2026-06-19T05:36:57Z",
+ "_updated": "2026-06-19T06:16:34Z",
  "assets": [
-  {
-   "id": "person--narendra-modi--6432d2",
-   "media_type": "image",
-   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/person/narendra-modi-6432d2.jpg",
-   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/person/narendra-modi-6432d2.jpg",
-   "subject": "Narendra Modi",
-   "subject_type": "person",
-   "caption": "Narendra Modi Stadium",
-   "attribution": "Wikimedia Commons / Ishi6181, CC0",
-   "license": "CC0",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Narendra_Modi_Stadium_Ahmedabad.jpg",
-   "tags": [
-    "narendra modi"
-   ],
-   "width": 4032,
-   "height": 3024,
-   "duration": null,
-   "quality_score": 92.0,
-   "added_date": "2026-06-19T05:23:16Z",
-   "last_used": null,
-   "times_used": 0
-  },
   {
    "id": "person--narendra-modi--bfe42b",
    "media_type": "image",
@@ -113,28 +91,6 @@
    "times_used": 0
   },
   {
-   "id": "concept--indian-rupee--ad2e36",
-   "media_type": "image",
-   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/concept/indian-rupee-ad2e36.jpg",
-   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/concept/indian-rupee-ad2e36.jpg",
-   "subject": "Indian rupee",
-   "subject_type": "concept",
-   "caption": "2018 (₹1) Indian 1 Rupee Note in Jamshedpur, Jharkhand. The Indian 1-rupee note (₹1) (₹1 = 100 paise) is the smallest Indian banknote in circulation and the only one being issued by the Government of India, as all other banknotes in circulation are issued by the Reserve Bank of I",
-   "attribution": "Wikimedia Commons / Ank Kumar, CC BY-SA 4.0",
-   "license": "CC BY-SA 4.0",
-   "source_url": "https://commons.wikimedia.org/wiki/File:2018_(₹1)_Indian_1_Rupee_Note,_Jamshedpur,_Jharkhand_(_Ank_Kumar,_Infosys_Limited_)_01.jpg",
-   "tags": [
-    "indian rupee"
-   ],
-   "width": 2347,
-   "height": 1501,
-   "duration": null,
-   "quality_score": 66.4,
-   "added_date": "2026-06-19T05:24:00Z",
-   "last_used": null,
-   "times_used": 0
-  },
-  {
    "id": "place--mumbai--624129",
    "media_type": "video",
    "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/place/mumbai-624129.webm",
@@ -177,6 +133,50 @@
    "added_date": "2026-06-19T05:36:57Z",
    "last_used": null,
    "times_used": 0
+  },
+  {
+   "id": "person--narendra-modi--6432d2",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/person/narendra-modi-6432d2.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/person/narendra-modi-6432d2.jpg",
+   "subject": "Narendra Modi",
+   "subject_type": "person",
+   "caption": "Narendra Modi Stadium",
+   "attribution": "Wikimedia Commons / Ishi6181, CC0",
+   "license": "CC0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Narendra_Modi_Stadium_Ahmedabad.jpg",
+   "tags": [
+    "narendra modi"
+   ],
+   "width": 4032,
+   "height": 3024,
+   "duration": null,
+   "quality_score": 92.0,
+   "added_date": "2026-06-19T05:23:16Z",
+   "last_used": "2026-06-19T06:16:33Z",
+   "times_used": 1
+  },
+  {
+   "id": "concept--indian-rupee--ad2e36",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/concept/indian-rupee-ad2e36.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/concept/indian-rupee-ad2e36.jpg",
+   "subject": "Indian rupee",
+   "subject_type": "concept",
+   "caption": "2018 (₹1) Indian 1 Rupee Note in Jamshedpur, Jharkhand. The Indian 1-rupee note (₹1) (₹1 = 100 paise) is the smallest Indian banknote in circulation and the only one being issued by the Government of India, as all other banknotes in circulation are issued by the Reserve Bank of I",
+   "attribution": "Wikimedia Commons / Ank Kumar, CC BY-SA 4.0",
+   "license": "CC BY-SA 4.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:2018_(₹1)_Indian_1_Rupee_Note,_Jamshedpur,_Jharkhand_(_Ank_Kumar,_Infosys_Limited_)_01.jpg",
+   "tags": [
+    "indian rupee"
+   ],
+   "width": 2347,
+   "height": 1501,
+   "duration": null,
+   "quality_score": 66.4,
+   "added_date": "2026-06-19T05:24:00Z",
+   "last_used": "2026-06-19T06:16:34Z",
+   "times_used": 1
   }
  ]
 }

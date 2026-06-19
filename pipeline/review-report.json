@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-19T05:15:13.568988+00:00",
+  "timestamp": "2026-06-19T06:15:55.808023+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
+    "pass": 12,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,15 +11,127 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "8098893b-7842-4915-8058-bd4bf64602ee",
-      "headline": "Alpha Has Arrived. After Six Films of Tiger, Pathaan and War, the YRF Spy Universe Finally Belongs to the Women.",
-      "slug": "alpha-trailer-alia-bhatt-sharvari-yrf-spy-universe-female-led-hrithik-roshan-cameo-july-3-where-to-watch-diaspora-nri-20260619",
+      "id": "e69633ad-9a9d-41e0-8a92-494935fd2ac5",
+      "headline": "Twenty Years On, a King Still Toasts the Diaspora That Helped Him Build a Charity",
+      "slug": "king-charles-british-asian-trust-20-years-diaspora-philanthropy-20260619",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively highlights the contributions of the Indian diaspora to British society and philanthropy, making it relevant to NRI readers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include quotes or testimonials from diaspora members to enhance personal connection.",
+          "Add more context about the British Asian Trust's specific projects to engage readers further."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "7c98171a-d3ba-47b3-964b-d58a37147c25",
+      "headline": "Ten Galleries, Eleven Thousand Years: The Diaspora's Plan to Build India a Museum in Washington",
+      "slug": "india-heritage-center-museum-washington-dc-diaspora-20260619",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the specific topic of the museum or Indian heritage."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the museum project to the Indian diaspora's desire to preserve and share their cultural heritage."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including more specific examples of how the museum will engage with the diaspora community.",
+          "Add quotes or testimonials from diaspora members to enhance the personal connection to the project."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "e5fc7b74-664d-470c-8dbf-e805b486e97a",
+      "headline": "She Was in Third Place on Election Night. A Week of Counting Made Her a Contender to Run Los Angeles.",
+      "slug": "nithya-raman-la-mayoral-runoff-karen-bass-diaspora-20260619",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects Raman's candidacy to the Indian diaspora, highlighting the significance of her potential victory for the community."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more quotes from Raman or her supporters to enhance the narrative.",
+          "Include a brief background on the political landscape in Los Angeles to provide context for readers unfamiliar with the area."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "e1f52d92-325d-4344-957f-09c5e1cd1f0c",
+      "headline": "Micron Reports Earnings Tuesday With Its Stock Up 245%. An Indian-American CEO Is Riding the AI Memory Boom.",
+      "slug": "micron-earnings-sanjay-mehrotra-hbm-ai-memory-nri-investors-20260619",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [
           {
-            "article_id": "98948ae2-adc2-43c1-8745-c53b735e3172",
-            "headline": "The Alpha Trailer Is Here, and Bobby Deol Names a Baby Sita."
+            "article_id": "96aa6b12-da2a-4d44-b8b0-8bd2eb414638",
+            "headline": "Tim Cook Says Your Next iPhone Costs More. Blame the AI Memo"
+          },
+          {
+            "article_id": "0ebc6572-8cf9-4be1-b625-a68ca500b9f8",
+            "headline": "Micron Reports June 24. The Quarter Is Priced In \u2014 the One A"
           }
         ],
         "broken_embeds": []
@@ -33,14 +145,302 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article discusses a significant shift in Bollywood's portrayal of women in action films, which resonates with diaspora audiences interested in progressive narratives."
+          "quality": 9,
+          "note": "The article effectively connects the success of an Indian-American CEO and Micron's investments in India to the interests of the NRI community."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more context about the significance of the YRF Spy Universe for NRI audiences.",
-          "Add quotes or reactions from diaspora figures or critics to enhance the connection."
+          "Consider adding more direct quotes from Sanjay Mehrotra or analysts to enhance credibility.",
+          "Include a brief overview of Micron's competitors in the AI memory space for context."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "8de72ac4-0887-43f6-8ee8-340b29a1a9a5",
+      "headline": "India's Chip Dream Has a Quieter Second Act: Packaging the World's Silicon",
+      "slug": "india-osat-chip-packaging-kaynes-japan-assam-corridor-nri-20260619",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the topic of semiconductor packaging."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the semiconductor industry's developments in India to the diaspora's expertise and potential job opportunities."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that directly represents semiconductor packaging or the semiconductor industry to enhance relevance.",
+          "Add more statistics or quotes from industry experts to strengthen the article's credibility."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "980355a1-017a-4244-92ff-8d13074e69a6",
+      "headline": "Trump Says Apple Will Build Chips With Intel. The Fine Print Is Thinner Than the Headline.",
+      "slug": "apple-intel-foundry-deal-trump-tsmc-indian-chip-engineers-20260619",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the article's focus on chip manufacturing and technology."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the semiconductor industry developments to the Indian diaspora, highlighting the role of Indian-origin engineers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that reflects the topic of chip manufacturing or technology.",
+          "Add more context or quotes from industry experts to strengthen the analysis of the potential impact on the semiconductor market."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "0e27c534-33a9-400e-bd4b-0764f98a64c4",
+      "headline": "India's Banks Are Rushing to Borrow Dollars Abroad \u2014 and the RBI Just Made It Cheaper to Do So",
+      "slug": "india-banks-dollar-bonds-rbi-subsidised-hedging-window-hdfc-sbi-bank-of-baroda-rupee-nri-investor-20260619",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the topic of dollar borrowing by Indian banks to the interests of NRIs, particularly in relation to the rupee's value and remittances."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of how the dollar borrowing impacts NRIs directly, such as potential changes in remittance rates or investment opportunities.",
+          "Include quotes from financial experts or NRIs to provide personal insights and enhance the article's relatability."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "43a28ed8-07a9-4059-af4d-958a21630671",
+      "headline": "A Study of 5,700 Teenagers Found What Wrecks Their Sleep \u2014 and Girls Are Paying the Steeper Price",
+      "slug": "teen-sleep-quality-mental-health-bmi-screen-time-plos-one-5713-adolescents-girls-diaspora-parents-20260619",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the study's findings to the experiences of diaspora families, particularly regarding the challenges of balancing academic pressures and screen time."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding specific examples or anecdotes from diaspora families to enhance relatability.",
+          "Include a brief section on cultural differences in parenting styles regarding screen time and sleep."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "d57240c5-84cc-458c-9390-e69f8692c2cd",
+      "headline": "The Cheapest Protein in the Indian Kitchen May Be the Most Protective. New Research Keeps Pointing to the Humble Dal.",
+      "slug": "legumes-lentils-dal-blood-pressure-mortality-cardiometabolic-cheapest-plant-protein-diaspora-20260619",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the importance of legumes to the health of the South Asian diaspora, highlighting the cultural shift away from traditional diets."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a few more statistics or studies to strengthen the argument about the health benefits of legumes.",
+          "Include a section with easy recipes or tips for incorporating more legumes into daily meals for diaspora readers."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "5b542c76-0233-4eff-bb23-e0b99b94ee44",
+      "headline": "India Just Tightened Its Stay Rules \u2014 Why NRI Families With US-Citizen Spouses and Kids Should Read the Fine Print",
+      "slug": "india-immigration-amendment-rules-2026-180-day-fro-mixed-family-nri-20260619",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses the concerns of NRIs with US-citizen spouses and children, making it relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a summary section at the end to recap the key points for readers.",
+          "Include a quote or insight from an immigration expert to enhance credibility."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "fc881b4c-a99e-40b8-aed5-8ef743d99b87",
+      "headline": "Vietnam Courts Indian Travelers Just as Thailand Slams the Door \u2014 and the Diaspora's Wedding Trips Are Up for Grabs",
+      "slug": "vietnam-visa-free-indians-thailand-reversal-nri-southeast-asia-20260619",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the visa policies of Vietnam and Thailand to the travel plans of the Indian diaspora, particularly in relation to weddings and family gatherings."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more statistics or quotes from travel experts to enhance credibility.",
+          "Include a brief comparison of cultural attractions in Vietnam versus Thailand to provide more context for travelers."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "c24f0295-5173-4130-8cf6-6319e4491cad",
+      "headline": "Mumbai's Second Airport Goes International on July 15 \u2014 Starting With the Gulf Routes NRIs Use Most",
+      "slug": "navi-mumbai-airport-international-flights-july-15-gulf-nri-20260619",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively highlights the benefits of the new airport for the NRI community, discussing geographical advantages and increased capacity."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from officials or community members to enhance credibility and engagement.",
+          "Include more specific examples of how the new airport will impact travel times for NRIs."
         ],
         "verdict": "pass"
       },
