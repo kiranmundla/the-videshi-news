@@ -2343,8 +2343,7 @@ _FOREIGN_GEO_SUBJECTS = {
     "afghanistan", "kabul", "united kingdom", "uk", "britain", "london",
     "england", "canada", "ottawa", "saudi arabia", "riyadh", "qatar", "doha",
     "uae", "dubai", "abu dhabi", "israel", "jerusalem", "tel aviv",
-    "european union", "europe", "gulf", "persian gulf", "iraqi gulf",
-    "strait of hormuz", "hormuz", "oman", "muscat", "yemen", "bangladesh",
+    "european union", "europe", "yemen", "bangladesh",
     "dhaka", "sri lanka", "colombo", "nepal", "kathmandu",
 }
 
