@@ -1768,6 +1768,62 @@ def _sc_draw_x_badge(draw, img, x, y, s):
         print(f"  ⚠️ x-logo paste failed: {e}")
 
 
+def _sc_face_aware_fit(photo, pw, ph):
+    """Fit `photo` into a (pw, ph) frame using cover-crop, but center the crop on
+    detected faces so heads are never guillotined. Returns (fitted_image, ok)
+    where ok=False means faces could not be preserved (caller should skip the card).
+    Falls back to a safe top-biased center when no face detector / no faces."""
+    from PIL import Image, ImageOps
+    src_ar = photo.width / max(1, photo.height)
+    frame_ar = pw / max(1, ph)
+    # default centering: top-bias on tall sources (heads live up high), else center
+    cx, cy = 0.5, (0.32 if src_ar < frame_ar else 0.5)
+    faces = []
+    try:
+        import cv2, numpy as np
+        cvimg = cv2.cvtColor(np.array(photo.convert("RGB")), cv2.COLOR_RGB2BGR)
+        gray = cv2.cvtColor(cvimg, cv2.COLOR_BGR2GRAY)
+        cascade = cv2.CascadeClassifier(
+            os.path.join(cv2.data.haarcascades, "haarcascade_frontalface_default.xml"))
+        dets = cascade.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=5,
+                                        minSize=(int(photo.width*0.05), int(photo.height*0.05)))
+        faces = [tuple(map(int, f)) for f in dets]
+    except Exception as e:
+        print(f"  ℹ️ face detect unavailable, using heuristic crop: {e}")
+
+    if faces:
+        # bounding box over all faces, padded for foreheads/chins
+        x0 = min(f[0] for f in faces); y0 = min(f[1] for f in faces)
+        x1 = max(f[0]+f[2] for f in faces); y1 = max(f[1]+f[3] for f in faces)
+        padx = int((x1-x0)*0.25); pady_top = int((y1-y0)*0.55); pady_bot = int((y1-y0)*0.30)
+        x0=max(0,x0-padx); x1=min(photo.width,x1+padx)
+        y0=max(0,y0-pady_top); y1=min(photo.height,y1+pady_bot)
+        fcx=(x0+x1)/2.0; fcy=(y0+y1)/2.0
+        cx=min(1.0,max(0.0,fcx/photo.width)); cy=min(1.0,max(0.0,fcy/photo.height))
+
+    fitted = ImageOps.fit(photo, (pw, ph), Image.LANCZOS, centering=(cx, cy))
+
+    # VERIFY: re-detect on the fitted result; if a face is cut by an edge, it failed.
+    ok = True
+    if faces:
+        try:
+            import cv2, numpy as np
+            fg = cv2.cvtColor(np.array(fitted.convert("RGB")), cv2.COLOR_RGB2GRAY)
+            cascade = cv2.CascadeClassifier(
+                os.path.join(cv2.data.haarcascades, "haarcascade_frontalface_default.xml"))
+            fd = cascade.detectMultiScale(fg, scaleFactor=1.1, minNeighbors=5,
+                                          minSize=(int(pw*0.05), int(ph*0.04)))
+            margin = 4
+            cut = any(x<=margin or y<=margin or (x+w)>=(pw-margin) or (y+h)>=(ph-margin)
+                      for (x,y,w,h) in fd)
+            # faces present before but none cleanly inside after → bad crop
+            if len(fd) == 0 or cut:
+                ok = False
+        except Exception:
+            pass
+    return fitted, ok
+
+
 def render_social_card(post, category, out_dir="/tmp/videshi_social"):
     """Render a branded 1080x1920 'social post card' from a real X post.
     post = {name, handle, avatar, photo, text}. Returns local PNG path or None.
@@ -1801,8 +1857,15 @@ def render_social_card(post, category, out_dir="/tmp/videshi_social"):
         # the post photo, rounded + gold-framed
         photo = _sc_download_image(post["photo"])
         pw = W - 2 * MX
-        ph = int(pw * 0.62)
-        photo = ImageOps.fit(photo, (pw, ph), Image.LANCZOS)
+        ph = int(pw * 0.78)  # taller frame: fills the card better, less portrait crop
+        # Face-aware crop + verification: center the crop on detected faces and
+        # confirm no face is cut by a frame edge. If a face can't be preserved,
+        # bail out (return None) so we never ship a beheaded photo — the caller
+        # falls through to the normal media chain.
+        photo, crop_ok = _sc_face_aware_fit(photo, pw, ph)
+        if not crop_ok:
+            print(f"  ⚠️ social card: face would be cropped for @{post.get('handle')} — skipping card")
+            return None
         rc = Image.new("L", (pw, ph), 0)
         ImageDraw.Draw(rc).rounded_rectangle([0, 0, pw, ph], radius=28, fill=255)
         d.rounded_rectangle([MX - 4, y - 4, MX + pw + 4, y + ph + 4], radius=32, outline=_CARD_GOLD, width=3)

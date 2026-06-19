@@ -172,17 +172,27 @@ def upload_file(local_path, remote_path, content_type):
 
 
 # ── download via curl (proxy-friendly, avoids requests 429 on wikimedia) ─────
-def curl_download(src_url, dest_path, timeout=120):
-    try:
-        r = subprocess.run(
-            ["curl", "-sS", "-L", "--max-time", str(timeout),
-             "-A", UA, "-o", dest_path, src_url],
-            capture_output=True, text=True, timeout=timeout + 15)
-        if r.returncode == 0 and os.path.exists(dest_path) and os.path.getsize(dest_path) > 1024:
-            return True
-        print(f"  ⚠ curl download failed rc={r.returncode}: {r.stderr[:160]}")
-    except Exception as e:
-        print(f"  ⚠ curl download error: {e}")
+def curl_download(src_url, dest_path, timeout=120, retries=3):
+    """Download via curl (proxy-friendly; avoids requests 429 on wikimedia).
+    Retries transient failures (Wikimedia upload host intermittently 429s)."""
+    import time as _t
+    for attempt in range(retries):
+        try:
+            r = subprocess.run(
+                ["curl", "-sS", "-L", "--retry", "2", "--retry-delay", "2",
+                 "--max-time", str(timeout), "-A", UA, "-o", dest_path, src_url],
+                capture_output=True, text=True, timeout=timeout + 20)
+            if r.returncode == 0 and os.path.exists(dest_path) and os.path.getsize(dest_path) > 1024:
+                return True
+            if attempt < retries - 1:
+                _t.sleep(2 + attempt * 2)
+                continue
+            print(f"  ⚠ curl download failed rc={r.returncode}: {r.stderr[:160]}")
+        except Exception as e:
+            if attempt < retries - 1:
+                _t.sleep(2 + attempt * 2)
+                continue
+            print(f"  ⚠ curl download error: {e}")
     return False
 
 

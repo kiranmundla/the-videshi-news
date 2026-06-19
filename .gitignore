@@ -37,3 +37,4 @@ reel-preview-*.jpg
 pipeline/travel-writer-*.py
 pipeline/reels/voice-samples/
 pipeline/indexing-submitted.json
+pipeline/.x-profiles.json

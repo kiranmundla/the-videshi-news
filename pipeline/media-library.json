@@ -1,0 +1,160 @@
+{
+ "_description": "Media library mirror — high-quality, attribution-clean images+videos for article/reel fallback. Source of truth is the Supabase media_library table; this mirror lets the pipeline read without a DB round-trip.",
+ "_updated": "2026-06-19T05:27:51Z",
+ "assets": [
+  {
+   "id": "person--narendra-modi--6432d2",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/person/narendra-modi-6432d2.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/person/narendra-modi-6432d2.jpg",
+   "subject": "Narendra Modi",
+   "subject_type": "person",
+   "caption": "Narendra Modi Stadium",
+   "attribution": "Wikimedia Commons / Ishi6181, CC0",
+   "license": "CC0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Narendra_Modi_Stadium_Ahmedabad.jpg",
+   "tags": [
+    "narendra modi"
+   ],
+   "width": 4032,
+   "height": 3024,
+   "duration": null,
+   "quality_score": 92.0,
+   "added_date": "2026-06-19T05:23:16Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "person--narendra-modi--bfe42b",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/person/narendra-modi-bfe42b.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/person/narendra-modi-bfe42b.jpg",
+   "subject": "Narendra Modi",
+   "subject_type": "person",
+   "caption": "Narendra Modi Stadium",
+   "attribution": "Wikimedia Commons / A Cricket Premi, CC BY-SA 4.0",
+   "license": "CC BY-SA 4.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Narendra_Modi_Stadium_view_from_the_gallery.jpg",
+   "tags": [
+    "narendra modi"
+   ],
+   "width": 3656,
+   "height": 2039,
+   "duration": null,
+   "quality_score": 86.7,
+   "added_date": "2026-06-19T05:23:21Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "place--mumbai--ced2e4",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/place/mumbai-ced2e4.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/place/mumbai-ced2e4.jpg",
+   "subject": "Mumbai",
+   "subject_type": "place",
+   "caption": "Interior of Keneseth Eliyahoo Synagogue, Mumbai",
+   "attribution": "Wikimedia Commons / Rangan Datta Wiki, CC BY-SA 4.0",
+   "license": "CC BY-SA 4.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Keneseth_Eliyahoo_Synagogue,_Interior_4.jpg",
+   "tags": [
+    "mumbai"
+   ],
+   "width": 4565,
+   "height": 3023,
+   "duration": null,
+   "quality_score": 92.0,
+   "added_date": "2026-06-19T05:23:35Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "place--mumbai--28b6ae",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/place/mumbai-28b6ae.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/place/mumbai-28b6ae.jpg",
+   "subject": "Mumbai",
+   "subject_type": "place",
+   "caption": "Scenic view of Middle Ground Coastal Battery, an island in the Arabian Sea near Mumbai's Gateway of India, showcasing historical maritime architecture and strategic coastal defense",
+   "attribution": "Wikimedia Commons / iMahesh, CC BY-SA 4.0",
+   "license": "CC BY-SA 4.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Middle_Ground_Coastal_Battery,_Arabian_Sea,_Mumbai,_India.jpg",
+   "tags": [
+    "mumbai"
+   ],
+   "width": 6000,
+   "height": 4000,
+   "duration": null,
+   "quality_score": 92.0,
+   "added_date": "2026-06-19T05:23:48Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "concept--indian-rupee--8c4437",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/concept/indian-rupee-8c4437.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/concept/indian-rupee-8c4437.jpg",
+   "subject": "Indian rupee",
+   "subject_type": "concept",
+   "caption": "note form azad hind fauz curency",
+   "attribution": "Wikimedia Commons / Ravisaxena520, CC BY-SA 4.0",
+   "license": "CC BY-SA 4.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:1000_rupee_note_of_bank_of_independent.jpg",
+   "tags": [
+    "indian rupee"
+   ],
+   "width": 2296,
+   "height": 1296,
+   "duration": null,
+   "quality_score": 65.6,
+   "added_date": "2026-06-19T05:23:55Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "concept--indian-rupee--ad2e36",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/concept/indian-rupee-ad2e36.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/concept/indian-rupee-ad2e36.jpg",
+   "subject": "Indian rupee",
+   "subject_type": "concept",
+   "caption": "2018 (₹1) Indian 1 Rupee Note in Jamshedpur, Jharkhand. The Indian 1-rupee note (₹1) (₹1 = 100 paise) is the smallest Indian banknote in circulation and the only one being issued by the Government of India, as all other banknotes in circulation are issued by the Reserve Bank of I",
+   "attribution": "Wikimedia Commons / Ank Kumar, CC BY-SA 4.0",
+   "license": "CC BY-SA 4.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:2018_(₹1)_Indian_1_Rupee_Note,_Jamshedpur,_Jharkhand_(_Ank_Kumar,_Infosys_Limited_)_01.jpg",
+   "tags": [
+    "indian rupee"
+   ],
+   "width": 2347,
+   "height": 1501,
+   "duration": null,
+   "quality_score": 66.4,
+   "added_date": "2026-06-19T05:24:00Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "place--mumbai--624129",
+   "media_type": "video",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/place/mumbai-624129.webm",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/place/mumbai-624129-poster.jpg",
+   "subject": "Mumbai",
+   "subject_type": "place",
+   "caption": "Local train starting from Mumbai CSTM",
+   "attribution": "Wikimedia Commons / Suyash Dwivedi, CC BY-SA 4.0",
+   "license": "CC BY-SA 4.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Local_train_starting_from_Mumbai_CSTM_001.webm",
+   "tags": [
+    "mumbai"
+   ],
+   "width": 1080,
+   "height": 1920,
+   "duration": 9.54,
+   "quality_score": 73.5,
+   "added_date": "2026-06-19T05:27:51Z",
+   "last_used": null,
+   "times_used": 0
+  }
+ ]
+}
