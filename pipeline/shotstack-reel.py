@@ -2227,7 +2227,7 @@ def match_social_card_post(article, hours=None, max_handles=None):
 
 def source_storyboard_images(article, storyboard, count=8):
     """Source B-roll media scene-by-scene from the storyboard.
-    Priority: 1) Article hero for scene 1  2) Pexels stock VIDEO by scene description  3) Pexels HD image by scene description  4) Wikipedia by scene queries  5) Same-category articles (fallback only).
+    Priority (Kiran 2026-06-18 reorder): 1) Article hero for scene 1  2) Social cards (X→Threads→IG, multi-photo, mid scenes only)  3) Media library (curated pool)  4) Wikipedia entity images  5) Wikimedia Commons  6) Pexels stock VIDEO  7) Pexels HD image  8) Same-category articles (fallback only).  Scene 1 (hero) and the final CTA scene are never social.
     Returns (urls, media_meta) where urls is a list of URLs and media_meta maps url -> {"type": "video"|"image", "duration": N}."""
     urls = []
     used_in_this_reel = set()
