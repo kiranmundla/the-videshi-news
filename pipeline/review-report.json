@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-19T19:45:09.992981+00:00",
+  "timestamp": "2026-06-19T20:15:15.990492+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
+    "pass": 2,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "19a24a54-ea0c-4061-804e-cca92324abdd",
-      "headline": "An Ankle Twisted in the Powerplay Ended One World Cup. It Began Another for an Uncapped Spinner Who Was Already in England.",
-      "slug": "shreyanka-patil-ankle-injury-ruled-out-womens-t20-world-cup-2026-prema-rawat-uncapped-legspinner-replacement-uttarakhand-rcb-india-nri",
+      "id": "6a25f26c-f3ca-4c74-b1fc-116f57a51dac",
+      "headline": "ICE Says OPT Is a 'Magnet for Fraud.' Indian Graduates Are the Ones Exposed",
+      "slug": "ice-opt-fraud-crackdown-10000-students-suspect-employers-india-20260619",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -23,19 +23,55 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image does not directly relate to the topic of immigration or OPT specifically."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article connects to the diaspora by referencing the impact of the Indian women's cricket team's success on NRI communities, particularly in the UK."
+          "quality": 9,
+          "note": "The article effectively addresses the concerns of Indian graduates in the U.S. regarding OPT and its implications."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes from Prema Rawat or other players to enhance the narrative.",
-          "Add a brief section on the significance of the Women's T20 World Cup for the Indian diaspora."
+          "Consider using an image that more directly represents the theme of immigration or the OPT program.",
+          "Include quotes or testimonials from Indian graduates to enhance the personal connection to the diaspora experience."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "eb711807-ff74-4165-8fd7-3db5c2bec852",
+      "headline": "A Texas Bill Wants to End the One H-1B Feature Indians Quietly Depend On",
+      "slug": "chip-roy-white-collar-worker-jobs-act-dual-intent-opt-h1b-india-20260619",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 3,
+          "issue": "irrelevant"
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article discusses the implications of the Texas bill on Indian H-1B visa holders, making it highly relevant to the Indian diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the hero image with one that directly relates to the H-1B visa or immigration to better match the article's topic.",
+          "Consider adding quotes or perspectives from Indian professionals affected by the bill to enhance the personal connection for diaspora readers."
         ],
         "verdict": "pass"
       },

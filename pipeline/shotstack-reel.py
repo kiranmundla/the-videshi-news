@@ -3897,18 +3897,26 @@ SOCIAL_HANDLES = {
 def build_end_card_html(logo_url=None):
     """Build branded end card with social handles. All inline styles for Shotstack compatibility.
     NOTE: the logo is added as a separate Shotstack image clip (HTML <img> does not
-    render in Shotstack's HTML asset), so logo_url is accepted but not embedded here."""
+    render in Shotstack's HTML asset), so logo_url is accepted but not embedded here.
+
+    Layout matches Kiran's reference storyboard outro: globe logo (added as a
+    separate image clip above), THE VIDESHI wordmark + GLOBAL INDIAN NEWS tagline,
+    then a large 'FOLLOW @the.videshi' CTA with the handle in gold, and a compact
+    row of the real per-platform handles below (IG/YT/Threads = @the.videshi,
+    X = @thevideshi). The big gold handle is the directive-#5 focal point."""
     html = f"""<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;width:100%;height:100%;background:linear-gradient(180deg,#0a1628 0%,#0f1f35 50%,#0a1628 100%);padding:60px 40px;box-sizing:border-box;">
-  <div style="margin-top:140px;font-family:Inter;font-size:78px;font-weight:700;color:#D4AF37;letter-spacing:9px;margin-bottom:14px;">THE VIDESHI</div>
-  <div style="font-family:Inter;font-size:26px;color:rgba(255,255,255,0.55);letter-spacing:3px;text-transform:uppercase;margin-bottom:44px;">News for the Indian Diaspora</div>
-  <div style="width:64px;height:3px;background:#D4AF37;margin-bottom:44px;opacity:0.6;"></div>
-  <div style="font-family:Inter;font-size:44px;font-weight:700;color:#fff;letter-spacing:1px;margin-bottom:52px;">thevideshi.com</div>
-  <div style="display:flex;flex-direction:column;gap:20px;align-items:center;">
-    <div style="display:flex;gap:18px;align-items:center;"><span style="font-family:Inter;font-size:22px;font-weight:700;color:#D4AF37;letter-spacing:2px;width:175px;text-align:right;">YOUTUBE</span><span style="font-family:Inter;font-size:28px;color:rgba(255,255,255,0.85);">@the.videshi</span></div>
-    <div style="display:flex;gap:18px;align-items:center;"><span style="font-family:Inter;font-size:22px;font-weight:700;color:#D4AF37;letter-spacing:2px;width:175px;text-align:right;">INSTAGRAM</span><span style="font-family:Inter;font-size:28px;color:rgba(255,255,255,0.85);">@the.videshi</span></div>
-    <div style="display:flex;gap:18px;align-items:center;"><span style="font-family:Inter;font-size:22px;font-weight:700;color:#D4AF37;letter-spacing:2px;width:175px;text-align:right;">THREADS</span><span style="font-family:Inter;font-size:28px;color:rgba(255,255,255,0.85);">@the.videshi</span></div>
-    <div style="display:flex;gap:18px;align-items:center;"><span style="font-family:Inter;font-size:22px;font-weight:700;color:#D4AF37;letter-spacing:2px;width:175px;text-align:right;">X</span><span style="font-family:Inter;font-size:28px;color:rgba(255,255,255,0.85);">@thevideshi</span></div>
-    <div style="display:flex;gap:18px;align-items:center;"><span style="font-family:Inter;font-size:22px;font-weight:700;color:#D4AF37;letter-spacing:2px;width:175px;text-align:right;">WHATSAPP</span><span style="font-family:Inter;font-size:28px;color:rgba(255,255,255,0.85);">The Videshi</span></div>
+  <div style="margin-top:120px;font-family:Inter;font-size:80px;font-weight:700;color:#D4AF37;letter-spacing:9px;margin-bottom:10px;">THE VIDESHI</div>
+  <div style="font-family:Inter;font-size:24px;color:rgba(255,255,255,0.55);letter-spacing:4px;text-transform:uppercase;margin-bottom:40px;">Global Indian News</div>
+  <div style="width:64px;height:3px;background:#D4AF37;margin-bottom:46px;opacity:0.6;"></div>
+  <div style="font-family:Inter;font-size:40px;font-weight:700;color:#ffffff;letter-spacing:2px;margin-bottom:8px;">FOLLOW</div>
+  <div style="font-family:Inter;font-size:62px;font-weight:900;color:#F2C84B;letter-spacing:1px;margin-bottom:14px;">@the.videshi</div>
+  <div style="font-family:Inter;font-size:27px;font-weight:600;color:rgba(255,255,255,0.82);line-height:1.35;margin-bottom:46px;max-width:760px;">FOR GLOBAL STORIES THAT<br/>IMPACT INDIANS EVERYWHERE</div>
+  <div style="font-family:Inter;font-size:40px;font-weight:700;color:#fff;letter-spacing:1px;margin-bottom:40px;">thevideshi.com</div>
+  <div style="display:flex;flex-wrap:wrap;gap:14px 34px;align-items:center;justify-content:center;max-width:900px;">
+    <span style="font-family:Inter;font-size:24px;color:rgba(255,255,255,0.85);"><span style="color:#D4AF37;font-weight:700;">YOUTUBE</span> @the.videshi</span>
+    <span style="font-family:Inter;font-size:24px;color:rgba(255,255,255,0.85);"><span style="color:#D4AF37;font-weight:700;">INSTAGRAM</span> @the.videshi</span>
+    <span style="font-family:Inter;font-size:24px;color:rgba(255,255,255,0.85);"><span style="color:#D4AF37;font-weight:700;">THREADS</span> @the.videshi</span>
+    <span style="font-family:Inter;font-size:24px;color:rgba(255,255,255,0.85);"><span style="color:#D4AF37;font-weight:700;">X</span> @thevideshi</span>
   </div>
 </div>"""
 

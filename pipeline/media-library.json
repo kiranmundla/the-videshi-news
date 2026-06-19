@@ -1,6 +1,6 @@
 {
  "_description": "Media library mirror — high-quality, attribution-clean images+videos for article/reel fallback. Source of truth is the Supabase media_library table; this mirror lets the pipeline read without a DB round-trip.",
- "_updated": "2026-06-19T19:56:38Z",
+ "_updated": "2026-06-19T20:15:04Z",
  "assets": [
   {
    "id": "person--narendra-modi--bfe42b",
@@ -197,28 +197,6 @@
    "duration": null,
    "quality_score": 92.0,
    "added_date": "2026-06-19T10:29:59Z",
-   "last_used": null,
-   "times_used": 0
-  },
-  {
-   "id": "place--united-states--770df6",
-   "media_type": "image",
-   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/place/united-states-770df6.jpg",
-   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/place/united-states-770df6.jpg",
-   "subject": "United States",
-   "subject_type": "place",
-   "caption": "County Barn, Bodie, California.",
-   "attribution": "Wikimedia Commons / King of Hearts, CC BY-SA 4.0",
-   "license": "CC BY-SA 4.0",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Bodie_September_2016_019.jpg",
-   "tags": [
-    "united states"
-   ],
-   "width": 4280,
-   "height": 2940,
-   "duration": null,
-   "quality_score": 92.0,
-   "added_date": "2026-06-19T10:30:08Z",
    "last_used": null,
    "times_used": 0
   },
@@ -616,6 +594,28 @@
    "quality_score": 76.5,
    "added_date": "2026-06-19T10:32:04Z",
    "last_used": "2026-06-19T19:56:38Z",
+   "times_used": 1
+  },
+  {
+   "id": "place--united-states--770df6",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/place/united-states-770df6.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/place/united-states-770df6.jpg",
+   "subject": "United States",
+   "subject_type": "place",
+   "caption": "County Barn, Bodie, California.",
+   "attribution": "Wikimedia Commons / King of Hearts, CC BY-SA 4.0",
+   "license": "CC BY-SA 4.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Bodie_September_2016_019.jpg",
+   "tags": [
+    "united states"
+   ],
+   "width": 4280,
+   "height": 2940,
+   "duration": null,
+   "quality_score": 92.0,
+   "added_date": "2026-06-19T10:30:08Z",
+   "last_used": "2026-06-19T20:15:04Z",
    "times_used": 1
   }
  ]
