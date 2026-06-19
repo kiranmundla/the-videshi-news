@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-19T10:45:17.035090+00:00",
+  "timestamp": "2026-06-19T11:15:11.927466+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
+    "pass": 1,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "64665f8c-c535-49c1-81df-7311ea3574bc",
-      "headline": "He Is the Son of an Anglo-Indian Mother and a Tamil Father. On Friday, He Could Play the World Cup Hosts in Seattle.",
-      "slug": "nishan-velupillay-australia-socceroos-world-cup-2026-usa-seattle-anglo-indian-sri-lankan-tamil-melbourne-diaspora-nri",
+      "id": "d079fcff-8a98-4ba1-a95d-f82c579b81f0",
+      "headline": "Rajkumar Hirani Is Finally Doing OTT \u2014 and He's Bringing His Son and Circuit Along for the Ride",
+      "slug": "pritam-and-pedro-rajkumar-hirani-ott-debut-jiohotstar-july-3-arshad-warsi-vir-hirani-vikrant-massey-where-to-watch-diaspora-nri-20260619",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -21,79 +21,13 @@
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects Velupillay's story to the Indian and Sri Lankan diaspora, highlighting the significance of his heritage and the pride it brings to immigrant communities."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from Velupillay or his family to enhance the personal connection.",
-          "Include more context about the significance of the World Cup for Indian football to deepen the narrative."
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/DZwgfzgiYcM/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not relate to the article's subject matter about Rajkumar Hirani's new OTT project."
+          }
         ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "5a2897c2-7ce2-40f6-9006-b6e2d749f1d3",
-      "headline": "After Years of Delay, India's Biggest Stock Exchange Files to Go Public. The NSE IPO Could Be Worth $57 Billion.",
-      "slug": "nse-ipo-draft-filing-2026-57-billion-valuation-diaspora-investors-20260619",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the NSE IPO to the diaspora by discussing the implications for NRIs and their increased access to Indian equity markets."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from financial analysts or experts to enhance credibility.",
-          "Include a brief overview of the NSE's historical significance to provide context for readers unfamiliar with the exchange."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "fec9e2bc-6cf4-474e-9528-e9064f1f597b",
-      "headline": "Modi Hands Out Rs 2,400 Crore to First-Time Workers Today. It's a Bet That India's Jobs Problem Can Be Bought Down.",
-      "slug": "modi-pm-vbry-2400-crore-employment-incentive-disbursal-20260619",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
         "image_match": {
           "score": 9,
           "issue": null
@@ -101,17 +35,18 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the employment scheme to the diaspora's interests in India's economic growth and remittances."
+          "note": "The article discusses the streaming platform JioHotstar, which is relevant for NRIs, but could further elaborate on how the content resonates with the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more statistics or examples of how similar schemes have worked in other countries to strengthen the argument.",
-          "Include quotes from experts or stakeholders to provide additional perspectives on the effectiveness of the scheme."
+          "Remove the irrelevant Instagram embed to maintain focus on the article's subject.",
+          "Expand on how the themes of the show relate to the diaspora experience or interests."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/DZwgfzgiYcM/",
         "promoted to published"
       ],
       "revised": false,
