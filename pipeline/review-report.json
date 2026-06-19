@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-19T00:45:25.868220+00:00",
+  "timestamp": "2026-06-19T01:15:16.145203+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 4,
+    "pass": 2,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,12 +11,17 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "a75dd8ff-4c46-4edf-8fa3-1761a51ae350",
-      "headline": "The 20-Gram Dosa: How India's Fitness Boom Is Rewriting Comfort Food",
-      "slug": "the-20-gram-dosa-how-indias-fitness-boom-is-rewriting-comfort-food",
+      "id": "88d9a252-e753-438d-8ab2-8af9f05ab975",
+      "headline": "The Show That Owned 2024's Group Chats Is Back \u2014 and This Time Shanvika Came for Power, Not Just Revenge.",
+      "slug": "thukra-ke-mera-pyaar-season-2-jiohotstar-june-19-sanchita-basu-dhaval-thakur-shraddha-pasi-revenge-where-to-watch-diaspora-nri-20260618",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "02d8dad4-dd75-4291-ae70-7af271bb687a",
+            "headline": "Thukra Ke Mera Pyaar Is Back \u2014 and This Time the Wronged Lov"
+          }
+        ],
         "broken_embeds": []
       },
       "llm_review": {
@@ -28,14 +33,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the trend of high-protein Indian food to the needs and preferences of the NRI community, highlighting their cultural attachment and dietary adjustments."
+          "quality": 8,
+          "note": "The article effectively connects the show's themes and viewing experience to the diaspora audience, emphasizing accessibility and cultural relevance."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes or anecdotes from diaspora individuals to enhance relatability.",
-          "Include more specific examples of how these recipes are being adapted in different regions abroad."
+          "Consider adding more direct quotes from the cast or creators to enhance engagement.",
+          "Include viewer reactions or social media buzz to provide a broader perspective on the show's impact."
         ],
         "verdict": "pass"
       },
@@ -47,9 +52,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "b4d1d3a5-7b07-4add-adc6-57337dfb0af2",
-      "headline": "Kerala's Moment: America Discovers the Malabar Coast on Its Plate",
-      "slug": "keralas-moment-america-discovers-the-malabar-coast-on-its-plate",
+      "id": "1a7e3dba-86ff-4e04-9ceb-983ef4f4aff2",
+      "headline": "Pralay Aayega. After Seven Years in the Dark, Tumbbad 2 Is Building a World So Big It Needs 1,000 Tons of Air Conditioning.",
+      "slug": "tumbbad-2-sohum-shah-nawazuddin-siddiqui-adesh-prasad-alia-bhatt-cameo-pralay-aayega-december-2027-where-to-watch-diaspora-nri-20260618",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -65,85 +70,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the resurgence of Keralan cuisine to the experiences of the Malayali diaspora, highlighting their cultural significance."
+          "note": "The article effectively connects the film's release to the diaspora audience, highlighting its streaming discovery and theatrical release plans."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes or anecdotes from diaspora members to enhance personal connection.",
-          "Include more statistics or studies on the growing popularity of Keralan cuisine in America."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "45065e46-22e5-4a64-9c4e-3a4bbd7ba643",
-      "headline": "Vikas Khanna's Bungalow Wins a Michelin Bib Gourmand \u2014 and the Chef Wept",
-      "slug": "vikas-khannas-bungalow-wins-a-michelin-bib-gourmand-and-the-chef-wept",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects Vikas Khanna's achievements and his restaurant's significance to the Indian diaspora, highlighting cultural pride and community."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more quotes from Vikas Khanna to enhance the emotional connection.",
-          "Include a brief mention of how the Bib Gourmand distinction impacts the restaurant's future or its reception among critics."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "3d03f439-7e88-463d-b67e-ab6188dbe013",
-      "headline": "An American Son of the Indian Diaspora Is Weeks From Orbit. Meet NASA's Anil Menon.",
-      "slug": "anil-menon-first-indian-american-nasa-astronaut-soyuz-ms29-iss-july-2026-diaspora-20260619",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects Menon's achievements to the Indian diaspora, highlighting the significance of his journey for Indian-Americans."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from Anil Menon or other relevant figures to enhance the narrative.",
-          "Include more context about the significance of the Soyuz MS-29 mission in relation to current space exploration trends."
+          "Consider adding more direct quotes from the filmmakers or actors to enhance the article's depth.",
+          "Include a brief overview of the original film's themes for readers unfamiliar with it."
         ],
         "verdict": "pass"
       },
