@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-19T19:15:11.554412+00:00",
+  "timestamp": "2026-06-19T19:45:09.992981+00:00",
   "mode": "fix",
   "stats": {
     "pass": 1,
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "318c7805-c96f-4479-a665-5eb5bba77c66",
-      "headline": "What to Watch This Week: A Telugu God, a Malayalam Mastermind and Colin Farrell Walk Into Your Weekend",
-      "slug": "what-to-watch-this-week-june-19-2026",
+      "id": "19a24a54-ea0c-4061-804e-cca92324abdd",
+      "headline": "An Ankle Twisted in the Powerplay Ended One World Cup. It Began Another for an Uncapped Spinner Who Was Already in England.",
+      "slug": "shreyanka-patil-ankle-injury-ruled-out-womens-t20-world-cup-2026-prema-rawat-uncapped-legspinner-replacement-uttarakhand-rcb-india-nri",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -23,19 +23,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image of Mohanlal is relevant to the article but does not directly match the headline's mention of multiple films and actors."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects with the diaspora by highlighting the accessibility of South Indian films and the cultural significance of the content."
+          "quality": 7,
+          "note": "The article connects to the diaspora by referencing the impact of the Indian women's cricket team's success on NRI communities, particularly in the UK."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more images or visuals related to the other films mentioned to enhance engagement.",
-          "Include a brief summary or rating for each film to provide more context for the diaspora audience."
+          "Include more direct quotes from Prema Rawat or other players to enhance the narrative.",
+          "Add a brief section on the significance of the Women's T20 World Cup for the Indian diaspora."
         ],
         "verdict": "pass"
       },
