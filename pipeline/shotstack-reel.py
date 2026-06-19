@@ -2315,6 +2315,8 @@ def source_storyboard_images(article, storyboard, count=8):
         "turkey", "turkish", "egypt", "egyptian", "iran", "iranian", "thailand",
         "thai", "vietnam", "indonesia", "indonesian", "philippines", "nepal",
         "afghan", "afghanistan", "ministry of interior",
+        "london", "britain", "british", "england", "english countryside",
+        "thames", "big ben", "buckingham", "westminster", "uk ",
     )
 
     def is_foreign_for_india(cand, anchored_to_india):
