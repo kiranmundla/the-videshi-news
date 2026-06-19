@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-19T18:45:12.944507+00:00",
+  "timestamp": "2026-06-19T19:15:11.554412+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 1,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "a1a11bb6-2edb-43b8-983f-71184a5a866f",
-      "headline": "India and Canada Want a Trade Deal Signed This Year. For Three Million Indians in Canada, the Reset Is Personal.",
-      "slug": "india-canada-cepa-trade-deal-modi-carney-g7-evian-year-end-target-diaspora-20260619",
+      "id": "318c7805-c96f-4479-a665-5eb5bba77c66",
+      "headline": "What to Watch This Week: A Telugu God, a Malayalam Mastermind and Colin Farrell Walk Into Your Weekend",
+      "slug": "what-to-watch-this-week-june-19-2026",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -23,55 +23,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively highlights the importance of the Indian diaspora in Canada and how the trade deal impacts them directly."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes or perspectives from members of the Indian diaspora in Canada to enhance the personal connection.",
-          "Include more specific examples of how the trade deal could benefit the diaspora, such as potential job opportunities or educational exchanges."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "ceb61d63-157a-4137-b5f1-9dd9c47bcc28",
-      "headline": "India Quietly Rewrote Its Foreigner Registration Rules. NRI Families With Foreign-Passport Kids Need to Read the Fine Print.",
-      "slug": "india-immigration-foreigners-amendment-rules-2026-frro-registration-oci-foreign-children-20260619",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image of Mohanlal is relevant to the article but does not directly match the headline's mention of multiple films and actors."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively addresses the implications of the new rules for NRI families, making it relevant and informative for the diaspora audience."
+          "note": "The article effectively connects with the diaspora by highlighting the accessibility of South Indian films and the cultural significance of the content."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from immigration experts or affected families to provide personal insights and enhance relatability.",
-          "Include a summary or bullet points at the end to highlight key changes for quick reference."
+          "Consider adding more images or visuals related to the other films mentioned to enhance engagement.",
+          "Include a brief summary or rating for each film to provide more context for the diaspora audience."
         ],
         "verdict": "pass"
       },
