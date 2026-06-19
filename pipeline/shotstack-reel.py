@@ -210,14 +210,73 @@ def score_article(article):
     return score
 
 
+def get_recently_failed(within_hours=18):
+    """Article IDs and slugs that FAILED QA recently.
+
+    Failed reels are never written to prebuilt_reels, so without this the
+    auto-picker has no memory of a failed attempt and re-picks the same
+    top-scored article on the very next run — burning both attempts in a
+    cycle on one story. We read the QA feedback log (which records every
+    attempt, pass or fail) and skip articles that failed within the cooldown
+    window so each run advances to a fresh article. Purely a picker guard;
+    does not touch QA scoring or the pass threshold.
+    """
+    failed_ids, failed_slugs = set(), set()
+    if not QA_FEEDBACK_LOG.exists():
+        return failed_ids, failed_slugs
+    cutoff = datetime.now() - timedelta(hours=within_hours)
+    try:
+        with open(QA_FEEDBACK_LOG) as f:
+            for line in f:
+                line = line.strip()
+                if not line:
+                    continue
+                try:
+                    e = json.loads(line)
+                except json.JSONDecodeError:
+                    continue
+                if e.get("passed", False):
+                    continue
+                ts = e.get("timestamp", "")
+                try:
+                    if datetime.fromisoformat(ts) < cutoff:
+                        continue
+                except (ValueError, TypeError):
+                    pass  # undated entry — treat as recent
+                if e.get("article_id"):
+                    failed_ids.add(e["article_id"])
+                if e.get("slug"):
+                    failed_slugs.add(e["slug"])
+    except Exception as ex:
+        print(f"  ⚠️ Could not read QA log for failed-article skip: {ex}")
+    return failed_ids, failed_slugs
+
+
 def pick_article(articles, existing_slugs, existing_ids=None):
-    """Pick best article that doesn't already have a reel (by slug OR article ID)."""
+    """Pick best article that doesn't already have a reel (by slug OR article ID),
+    and that hasn't recently failed QA (so we don't re-attempt the same story)."""
     existing_ids = existing_ids or set()
+    failed_ids, failed_slugs = get_recently_failed()
+    # QA log truncates slug to 80 chars — compare on the same prefix.
+    def slug_failed(slug):
+        if not slug:
+            return False
+        return slug in failed_slugs or slug[:80] in failed_slugs
+
     candidates = [a for a in articles
                   if a.get("slug") not in existing_slugs
-                  and a.get("id") not in existing_ids]
+                  and a.get("id") not in existing_ids
+                  and a.get("id") not in failed_ids
+                  and not slug_failed(a.get("slug"))]
     if not candidates:
-        return None
+        # Everything fresh recently failed QA — fall back to the original rule
+        # (skip only articles that already have a shipped reel) so the run still
+        # attempts something rather than going idle.
+        candidates = [a for a in articles
+                      if a.get("slug") not in existing_slugs
+                      and a.get("id") not in existing_ids]
+        if not candidates:
+            return None
     candidates.sort(key=lambda a: score_article(a), reverse=True)
     return candidates[0]
 
