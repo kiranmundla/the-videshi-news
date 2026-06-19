@@ -2631,17 +2631,33 @@ def source_storyboard_images(article, storyboard, count=8):
                 if asset and asset.get("url") not in used_in_this_reel:
                     break
                 asset = None
-            # 2) fall back to the scene's own queries as tag matches
+            # 2) fall back to the scene's own queries — but route through the
+            #    LLM relevance judge over a GATED shortlist (thing/place B-roll).
+            #    Persons are already handled exactly in step 1; this step only
+            #    pulls non-person assets, and the judge may say "none fit".
             if not asset:
+                scene_text = (visual or "") + " " + " ".join(queries[:3])
+                shortlist = []
+                seen_urls = set()
                 for q in queries[:3]:
                     try:
-                        asset = ml.find_media(tags=q.split(), exclude_concept=False,
-                                              min_quality=45, bump_usage=False)
+                        cands = ml.find_media_candidates(tags=q.split(), exclude_concept=False,
+                                                         min_quality=45, limit=6)
                     except Exception:
+                        cands = []
+                    for c in cands:
+                        cu = c.get("url")
+                        if cu and cu not in used_in_this_reel and cu not in seen_urls:
+                            seen_urls.add(cu)
+                            shortlist.append(c)
+                if shortlist:
+                    try:
+                        asset = ml.judge_best_asset(scene_text.strip(), shortlist,
+                                                    openai_key=OPENAI_KEY)
+                    except Exception:
+                        asset = shortlist[0]
+                    if asset and asset.get("url") in used_in_this_reel:
                         asset = None
-                    if asset and asset.get("url") not in used_in_this_reel:
-                        break
-                    asset = None
             if not asset:
                 continue
             mu = asset["url"]
