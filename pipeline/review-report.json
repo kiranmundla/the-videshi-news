@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-19T11:15:11.927466+00:00",
+  "timestamp": "2026-06-19T12:15:43.704290+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
+    "pass": 9,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "d079fcff-8a98-4ba1-a95d-f82c579b81f0",
-      "headline": "Rajkumar Hirani Is Finally Doing OTT \u2014 and He's Bringing His Son and Circuit Along for the Ride",
-      "slug": "pritam-and-pedro-rajkumar-hirani-ott-debut-jiohotstar-july-3-arshad-warsi-vir-hirani-vikrant-massey-where-to-watch-diaspora-nri-20260619",
+      "id": "8c854fcc-de73-4fa0-9d93-4db34f5a82bb",
+      "headline": "The Diaspora's Most Remarkable 2025 Election Win Came From an Island of 1.4 Million \u2014 and a Great-Granddaughter of Indentured Laborers",
+      "slug": "kamla-persad-bissessar-trinidad-prime-minister-caribbean-indian-diaspo-20260619",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -21,13 +21,7 @@
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/p/DZwgfzgiYcM/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post does not relate to the article's subject matter about Rajkumar Hirani's new OTT project."
-          }
-        ],
+        "embed_issues": [],
         "image_match": {
           "score": 9,
           "issue": null
@@ -35,18 +29,305 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses the streaming platform JioHotstar, which is relevant for NRIs, but could further elaborate on how the content resonates with the diaspora."
+          "note": "The article effectively connects the significance of Persad-Bissessar's election to the broader Indian diaspora, highlighting historical ties and cultural identity."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Remove the irrelevant Instagram embed to maintain focus on the article's subject.",
-          "Expand on how the themes of the show relate to the diaspora experience or interests."
+          "Consider adding quotes from diaspora leaders or community members to enhance the personal connection to the topic.",
+          "Include more context about the implications of her election for the Indian diaspora in other regions, such as North America or Europe."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DZwgfzgiYcM/",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "c37b4a0f-bdec-4792-8c90-3af644cae0c4",
+      "headline": "America's Oldest Indian Association Honored Seven 'Jewels.' The List Doubled as a Census of the Diaspora.",
+      "slug": "aia-ny-benefit-gala-2026-ratnas-indian-american-honorees-new-york-20260619",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the specific event or honorees mentioned in the article."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the achievements of the honorees to the broader narrative of the Indian diaspora in America."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including images or embeds that directly relate to the honorees or the event to enhance visual relevance.",
+          "Add quotes or testimonials from the honorees or attendees to provide a more personal touch to the narrative."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "4429dec2-34e6-438d-b009-5e1d033b408d",
+      "headline": "A Connecticut Diaspora Chapter Turned 20. Its Guest List Was a Map of How Far Indian-Americans Have Come.",
+      "slug": "gopio-ct-20th-anniversary-banquet-indian-american-leaders-connecticut-20260619",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the specific event or theme of the article, which focuses on a community celebration."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively highlights the achievements and contributions of Indian-Americans, making it relevant to the diaspora audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that directly represents the event or the honorees to enhance relevance.",
+          "Add quotes or anecdotes from attendees to provide a more personal touch to the narrative."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "26df28ea-c6c0-42b2-b985-3c514fbd5b44",
+      "headline": "India's Diplomats Are Calling Their Students in America \u2014 and the Timing Says Everything",
+      "slug": "indian-embassy-virtual-student-outreach-visa-freeze-safety-20260619",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image depicts a Women's Day celebration at the Indian Embassy, which is somewhat related but not directly tied to the article's focus on student outreach."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects with the diaspora by discussing the Indian government's outreach to students in the U.S. and the implications for their families back home."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that directly relates to the topic of student outreach or Indian students in the U.S.",
+          "Include quotes or testimonials from students who participated in the session to add a personal touch and enhance engagement."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "dd69492f-68a3-4957-8674-2e9cb1c2528b",
+      "headline": "The DoJ Wants to Take Back a Citizenship It Granted in 2017 \u2014 Over Forged H-1B Petitions",
+      "slug": "denaturalization-h1b-fraud-magnavision-neeraj-sharma-doj-india-20260619",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the case to the Indian diaspora's concerns about reputation and the implications of denaturalization."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include quotes from immigration experts or community leaders to enhance credibility.",
+          "Add a section discussing potential implications for future H-1B applicants."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "8f14a8e9-f572-4ee9-8de1-8cb3398bbb62",
+      "headline": "The 60-Day Cushion That Saved Indian Grads Is About to Be Cut in Half",
+      "slug": "f1-grace-period-30-days-day1-cpt-indian-students-dhs-rule-20260619",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses the impact of immigration policy changes on Indian students, making it relevant to the NRI community."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include quotes or testimonials from Indian students to add a personal touch.",
+          "Provide more context on the implications of the proposed rule for the broader U.S. economy."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "200e3fc8-50ce-4327-bca4-59dfbe49c6ef",
+      "headline": "Ghar Wapsi: India's Startups Are Sprinting Home Before They IPO. NRI Investors Should Read the Fine Print.",
+      "slug": "india-startups-reverse-flip-ghar-wapsi-ipo-nri-investors-20260619",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the topic of startups or IPOs, but it is a generic business-related image."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses NRI investors and their specific concerns regarding the reverse flip of startups."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that directly represents startups or IPOs.",
+          "Add a brief summary or conclusion that reiterates the key points for NRI investors."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "f1a4f44d-e2f6-4b54-b879-80910bf86b98",
+      "headline": "Threads Just Hit 500 Million Users. The Quiet Engine Behind It Is India.",
+      "slug": "threads-500-million-users-india-creators-meta-communities-20260619",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to Threads or its user base."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the growth of Threads to the Indian diaspora and highlights its significance for NRIs."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that directly represents Threads or its user base to enhance relevance.",
+          "Add more statistics or quotes from Indian users to strengthen the connection to the Indian market."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "b7cd436c-3f71-49a3-be66-9c1ce64f64e6",
+      "headline": "An Indian IT Giant Just Bought Into the AI That Could Replace It. The Logic Is Colder Than It Looks.",
+      "slug": "hcltech-sarvam-ai-stake-sovereign-ai-it-services-diaspora-20260619",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the implications of HCLTech's investment to the Indian diaspora, particularly regarding the H-1B and L-1 visa pipeline."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more direct quotes from industry experts to enhance credibility.",
+          "Include a brief overview of Sarvam AI's technology for readers unfamiliar with the company."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
         "promoted to published"
       ],
       "revised": false,
