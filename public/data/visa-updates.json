@@ -1,5 +1,14 @@
 [
   {
+    "id": "student-visa-slots-jul-aug-2026",
+    "date": "2026-06-15",
+    "label": "Jun 15, 2026",
+    "headline": "US Embassy India opens thousands of student visa slots for July\u2013August \u2014 more to come amid portal glitches",
+    "summary": "The US Embassy in India announced via @USAndIndia that since the F/M/J student visa appointment portal opened on June 14, thousands of Indian students have secured interview slots for July and August, with thousands more appointments still available and additional batches to open in the coming weeks. The opening-day rush triggered technical glitches on the scheduling portal; the embassy urged applicants not to refresh their accounts too frequently to avoid being locked out, and said it is working to resolve the issues. This is the main release of student visa appointments ahead of the Fall 2026 intake, critical timing for the large cohort of Indian students joining US colleges.",
+    "severity": "medium",
+    "source": "US Embassy India (@USAndIndia) / ANI"
+  },
+  {
     "id": "eb5-india-unreserved-exhausted",
     "date": "2026-06-12",
     "label": "Jun 12, 2026",
@@ -165,16 +174,6 @@
     "summary": "DHS sent its final rule to OMB that will replace the open-ended \"Duration of Status\" (D/S) framework for F-1 students and J-1 exchange visitors with fixed 4-year admission periods. Students needing more time must file formal USCIS extensions. F-1 grace period also cut from 60 to 30 days. Rule takes effect 60 days after Federal Register publication \u2014 expected imminently. Experts warn thousands of Indian students could lose flexibility for OPT/CPT extensions and face unlawful presence accrual if they overstay.",
     "severity": "high",
     "source": "DHS / NAFSA / OMB"
-  },
-  {
-    "id": "social-media-screening",
-    "date": "2025-12-15",
-    "label": "Dec 2025",
-    "headline": "Social media screening expanded to employment visas",
-    "summary": "Adds ~30 min per case, slashing daily appointment capacity by nearly half. Backlogs expected through Q2 2026.",
-    "severity": "medium",
-    "source": "US Embassy India",
-    "url": "/immigration/guides/social-media-screening"
   },
   {
     "id": "interview-waiver-eliminated",
