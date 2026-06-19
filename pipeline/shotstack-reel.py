@@ -3935,8 +3935,15 @@ def build_caption(article):
 
 def register_reel(article, video_url, video_path, caption, poster_url=None, thumbnail_url=None, qa_score_actual=8):
     """Register in prebuilt_reels for IG/YT posting crons."""
+    # Distribution dedup keys entirely on article_id; a row with a null/empty
+    # article_id would silently bypass cross-surface dedup and risk a double-post.
+    # Refuse to register such a reel.
+    article_id = article.get("id")
+    if not article_id:
+        print("  ⚠️ refusing to register reel: missing article_id")
+        return False
     payload = {
-        "article_id": article["id"],
+        "article_id": article_id,
         "article_slug": article.get("slug", "")[:80],  # Match existing slug lengths
         "headline": article.get("headline", ""),
         "video_path": f"pipeline/reels/{os.path.basename(video_path)}",
