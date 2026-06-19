@@ -986,15 +986,20 @@ def build_script_captions(words, script_text, hook_duration):
     for rc in raw_clips:
         text = rc["text"]
 
-        # High-contrast caption pill — positioned ABOVE the lower-third overlay
-        # Fully opaque black background — Shotstack HTML renderer weakens rgba
+        # High-contrast caption pill — positioned ABOVE the lower-third overlay.
+        # Fully opaque near-black background + a subtle gold hairline border so the
+        # pill edge is always defined against bright B-roll, and a heavier text
+        # shadow so individual glyphs stay crisp. This (plus the scrim track below)
+        # targets the recurring "poor contrast at <timestamp>" QA deduction.
         html = (
             f"<div style=\"display:flex;align-items:flex-end;justify-content:center;"
             f"width:100%;height:100%;padding:0 24px 0 24px;\">"
-            f"<div style=\"background:#000000;border-radius:12px;padding:14px 28px;"
+            f"<div style=\"background:#06080F;border-radius:14px;padding:16px 30px;"
+            f"border:2px solid rgba(212,175,55,0.55);"
+            f"box-shadow:0 6px 28px rgba(0,0,0,0.85);"
             f"font-family:Inter;font-size:42px;font-weight:900;"
             f"color:#FFFFFF;text-align:center;letter-spacing:1px;line-height:1.25;"
-            f"text-shadow: 0 2px 4px rgba(0,0,0,0.9);\">"
+            f"text-shadow: 0 2px 6px rgba(0,0,0,1),0 0 2px rgba(0,0,0,1);\">"
             f"{text}</div></div>"
         )
 
@@ -1008,7 +1013,15 @@ def build_script_captions(words, script_text, hook_duration):
             "start": rc["start"],
             "length": rc["duration"],
             "position": "center",
-            "offset": {"x": 0, "y": 0.05},
+            "offset": {"x": 0, "y": -0.26},
+            # Captions sit in the LOWER THIRD (y:-0.26), not mid-frame. Two reasons:
+            # (1) it lands the pill over the dedicated dark scrim band (which is
+            #     bottom-anchored), so the white text always has a dark backing —
+            #     the recurring "low contrast / poor readability" deduction; and
+            # (2) it moves the caption OFF the center of the frame, where image
+            #     text (banknote lettering, document headers, signage) frequently
+            #     sits — captions landing on top of that read to QA as "overlapping
+            #     text in some frames". Lower third is almost always clean image.
             # NO fade transition: a fade on a short (<1s) clip keeps the pill
             # semi-transparent for most of its life, which the QA gate reads as
             # "low contrast / poor readability". Hard cut = always full opacity.
@@ -1126,6 +1139,11 @@ _DIAGRAM_FILENAME_SIGNALS = (
     "diagram", "flowchart", "flow_chart", "infographic", "schematic",
     "timeline", "venn", "org_chart", "orgchart", "histogram", "bar_chart",
     "pie_chart", "line_chart", "flow-chart",
+    # Photomontage / collage / multi-image composites read as a busy grid of
+    # tiny tiled photos — the QA gate flags them as "repetitive / lacking visual
+    # variety" because one frame already looks like many. Reject by filename.
+    "photomontage", "photo_montage", "photo-montage", "montage", "collage",
+    "compilation", "composite", "_grid", "-grid", "mosaic",
 )
 
 
@@ -1230,7 +1248,19 @@ def mirror_to_supabase(url, article_id, scene_idx, reject_diagrams=False):
             except Exception:
                 pass
             return None
-        storage_path = f"reel-broll/{article_id}/scene-{scene_idx}.jpg"
+        # Content-hash the storage path so a DIFFERENT asset selected for the same
+        # scene on a re-render gets a DIFFERENT URL. Shotstack caches render assets
+        # by URL; the old stable path (scene-{idx}.jpg) meant a re-render that
+        # legitimately picked a better image still served the STALE cached one,
+        # silently masking sourcing fixes (and re-attempts in prod). Identical
+        # content hashes to the same URL, so the cache still helps when nothing changed.
+        try:
+            import hashlib
+            with open(local, "rb") as _fh:
+                _h = hashlib.md5(_fh.read()).hexdigest()[:10]
+        except Exception:
+            _h = str(int(time.time()))
+        storage_path = f"reel-broll/{article_id}/scene-{scene_idx}-{_h}.jpg"
         mirrored = upload_asset(local, storage_path, "image/jpeg")
         try:
             os.remove(local)
@@ -2895,37 +2925,62 @@ def source_storyboard_images(article, storyboard, count=8):
     #   • generic foreign stock  → "images don't match the story" (relevance)
     #   • too many full-screen text cards → "lacking visual variety" + the QA
     #     model hallucinates imagery into them ("shows a person working").
-    # Now that the sourcing fixes surface more real, relevant photos/videos,
-    # cards are a LAST resort, not a floor that fires alongside good imagery.
-    # So: convert generic Pexels to cards ONLY while we stay under the card cap.
-    # Scenes that are still empty after this become mandatory FLOOR cards below
-    # (a card beats a blank scene), and they get first claim on the budget.
-    CARD_CAP = 2            # max key-point cards per reel
-    GENERIC_PEXELS_CAP = 1  # at least one generic Pexels kept for motion/variety
+    # The QA log is lopsided: generic foreign stock (London Bridge, a cargo ship,
+    # a random cultural-dance clip) gets flagged for relevance on nearly every
+    # failure, while "too many cards" essentially never fires. Per Kiran's stated
+    # preference, a styled key-point card beats generic foreign stock. So:
+    #   • Generic STILL images are ALWAYS converted to cards (zero kept) — a static
+    #     off-topic foreign photo carries no motion benefit and only costs relevance.
+    #   • At most ONE generic VIDEO is kept, and only for motion/variety, and only
+    #     when the reel already has at least one genuinely relevant real clip so the
+    #     kept generic isn't carrying the whole reel.
+    # Empty scenes still become mandatory FLOOR cards below and get first claim on
+    # the (now larger) card budget.
+    CARD_CAP = 3            # max key-point cards per reel (raised: cards beat foreign stock)
     floor_bound = sum(1 for u in matched_urls if u is None)  # empty scenes → FLOOR cards
     card_budget = max(0, CARD_CAP - floor_bound)             # discretionary cards we can still afford
     generic_idxs = [i for i in range(len(matched_urls))
                     if matched_urls[i] is not None
                     and media_meta.get(matched_urls[i], {}).get("generic_pexels")]
-    max_convertible = max(0, len(generic_idxs) - GENERIC_PEXELS_CAP)
-    n_convert = min(max_convertible, card_budget)
-    if n_convert > 0:
-        # Convert the WEAKEST generic fills first: prefer keeping videos (motion)
-        # and low scene indices, so the ones we convert are images / later scenes.
-        ranked = sorted(
-            generic_idxs,
-            key=lambda i: (0 if media_meta.get(matched_urls[i], {}).get("type") == "video" else 1, i),
+    # Count genuinely relevant real clips (anchored / curated / social / card).
+    relevant_real = sum(
+        1 for i in range(len(matched_urls))
+        if matched_urls[i] is not None and i not in generic_idxs
+        and not media_meta.get(matched_urls[i], {}).get("is_card")
+    )
+    generic_videos = [i for i in generic_idxs
+                      if media_meta.get(matched_urls[i], {}).get("type") == "video"]
+    # Keep at most ONE generic video, and only if we already have a relevant real
+    # clip for variety. Otherwise keep none.
+    keep_generic = set()
+    if generic_videos and relevant_real >= 1:
+        keep_generic.add(generic_videos[0])  # keep the first generic video for motion
+    to_convert = [i for i in generic_idxs if i not in keep_generic]
+    # Respect the discretionary card budget; if it's exhausted, prefer converting
+    # the WEAKEST (stills before videos, later scenes before earlier) so the kept
+    # generics are the most motion/early-position useful.
+    if len(to_convert) > card_budget:
+        to_convert.sort(
+            key=lambda i: (0 if media_meta.get(matched_urls[i], {}).get("type") != "video" else 1, -i),
         )
-        keepers = ranked[:len(generic_idxs) - n_convert]
-        to_convert = [i for i in generic_idxs if i not in keepers]
-        print(f"  ✂️ {len(generic_idxs)} generic Pexels fills; card budget {card_budget} "
-              f"({floor_bound} scene(s) already empty→FLOOR); converting {len(to_convert)} to key-point cards...")
+        to_convert = to_convert[:card_budget]
+    n_convert = len(to_convert)
+    if n_convert > 0:
+        print(f"  ✂️ {len(generic_idxs)} generic Pexels fills "
+              f"({len(generic_videos)} video, {len(generic_idxs)-len(generic_videos)} still); "
+              f"card budget {card_budget} ({floor_bound} scene(s) empty→FLOOR); "
+              f"keeping {len(keep_generic)} generic video, converting {n_convert} to key-point cards...")
         for i in to_convert:
             scene = scenes[i] if i < len(scenes) else {}
             local = render_keypoint_card(scene, category, article, i)
             if not local:
                 continue  # leave the generic Pexels fill if card render fails
-            storage_path = f"reel-cards/{article_id}/scene-{i}.png"
+            try:
+                with open(local, "rb") as _fh:
+                    _ch = hashlib.md5(_fh.read()).hexdigest()[:10]
+            except Exception:
+                _ch = str(int(time.time()))
+            storage_path = f"reel-cards/{article_id}/scene-{i}-{_ch}.png"
             card_url = upload_asset(local, storage_path, "image/png")
             try:
                 os.remove(local)
@@ -2938,9 +2993,10 @@ def source_storyboard_images(article, storyboard, count=8):
                 used_in_this_reel.add(card_url)
                 media_meta[card_url] = {"type": "image", "duration": 0, "is_card": True}
                 print(f"  🎨 Scene {i+1}: {scene_descs[i][:46]}  →  key-point card (replaced generic Pexels)")
-    elif len(generic_idxs) > GENERIC_PEXELS_CAP:
-        print(f"  ⚠️ {len(generic_idxs)} generic Pexels fills kept (card budget exhausted by "
-              f"{floor_bound} empty scene(s)); not adding cards beyond cap {CARD_CAP}.")
+    elif generic_idxs:
+        print(f"  ⚠️ {len(generic_idxs)} generic Pexels fill(s) kept "
+              f"({len(keep_generic)} retained for motion; card budget exhausted by "
+              f"{floor_bound} empty scene(s)).")
 
 
     # ── 5. FLOOR: Styled KEY-POINT CARD (never generic foreign stock) ──
@@ -2959,7 +3015,12 @@ def source_storyboard_images(article, storyboard, count=8):
             local = render_keypoint_card(scene, category, article, i)
             if not local:
                 continue
-            storage_path = f"reel-cards/{article_id}/scene-{i}.png"
+            try:
+                with open(local, "rb") as _fh:
+                    _ch = hashlib.md5(_fh.read()).hexdigest()[:10]
+            except Exception:
+                _ch = str(int(time.time()))
+            storage_path = f"reel-cards/{article_id}/scene-{i}-{_ch}.png"
             card_url = upload_asset(local, storage_path, "image/png")
             try:
                 os.remove(local)
@@ -3283,7 +3344,7 @@ def build_anchor_reel_timeline(
   width: 100%;
   height: 100%;
   box-sizing: border-box;
-  background: linear-gradient(transparent 0%, rgba(8,18,34,0.0) 40%, rgba(8,18,34,0.65) 72%, rgba(8,18,34,0.9) 100%);
+  background: linear-gradient(transparent 0%, rgba(8,18,34,0.0) 20%, rgba(8,18,34,0.55) 42%, rgba(8,18,34,0.85) 62%, rgba(8,18,34,0.95) 100%);
 }
 """.strip()
     scrim_duration = max(total_voice_duration, 0.5)
@@ -3295,7 +3356,7 @@ def build_anchor_reel_timeline(
                     "html": "<div class='cap-scrim'></div>",
                     "css": caption_scrim_css,
                     "width": 1080,
-                    "height": 700,
+                    "height": 920,
                 },
                 "start": hook_duration,
                 "length": scrim_duration,
