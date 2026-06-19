@@ -2448,13 +2448,14 @@ def source_storyboard_images(article, storyboard, count=8):
 
 
 
-    # ── 1b. ENTITY PRE-PASS: real imagery of the story's named entities ──
+    # ── Entity miner + Wikipedia helpers (used by the 1c entity-fill pass below) ──
     # Generic Pexels stock is the #1 "image relevance" QA failure on niche topics
     # (e.g. "sovereign AI"), because the article hero is often generic and there's
     # no gallery. Before falling to stock, mine the headline + body for proper
     # nouns (companies, people, places) and pull their actual Wikipedia images.
-    # These are genuinely on-topic and add visual variety, so we seed up to 2
-    # scenes (after the hero) before Pexels ever runs.
+    # These are genuinely on-topic and add visual variety. NOTE: these are just
+    # the helpers + entity extraction; the actual scene-fill runs at 1c (after the
+    # 1b media-library pass), because Wikipedia lead-image quality is weak.
     def extract_named_entities(brand_text, prose_text, limit=8):
         """Cheap proper-noun miner — no NLP dependency.
         brand_text (headline + body): scanned only for brand tokens with internal
