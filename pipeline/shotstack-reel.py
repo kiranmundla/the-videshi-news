@@ -1658,7 +1658,7 @@ def render_keypoint_card(scene, category, article, idx, out_dir="/tmp/videshi_ca
 # through to the existing sourcing chain — it never breaks reel generation.
 
 SOCIAL_CARD_ENABLED = os.environ.get("VIDESHI_SOCIAL_CARD", "1") != "0"
-SOCIAL_CARD_LOOKBACK_HOURS = int(os.environ.get("VIDESHI_SOCIAL_CARD_HOURS", "168"))  # 7 days
+SOCIAL_CARD_LOOKBACK_HOURS = int(os.environ.get("VIDESHI_SOCIAL_CARD_HOURS", "720"))  # 30 days
 SOCIAL_CARD_MAX_HANDLES = int(os.environ.get("VIDESHI_SOCIAL_CARD_MAX_HANDLES", "3"))  # read/scrape spend cap per article
 # Per-platform fallback toggles. X is the reliable primary; Threads + Instagram
 # are best-effort scrapers tried only when X yields nothing for a matched entry.
