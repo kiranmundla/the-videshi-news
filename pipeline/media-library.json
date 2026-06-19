@@ -1,6 +1,6 @@
 {
  "_description": "Media library mirror — high-quality, attribution-clean images+videos for article/reel fallback. Source of truth is the Supabase media_library table; this mirror lets the pipeline read without a DB round-trip.",
- "_updated": "2026-06-19T12:01:38Z",
+ "_updated": "2026-06-19T19:56:38Z",
  "assets": [
   {
    "id": "person--narendra-modi--bfe42b",
@@ -333,28 +333,6 @@
    "times_used": 0
   },
   {
-   "id": "thing--travel--67073f",
-   "media_type": "image",
-   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/travel-67073f.jpg",
-   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/travel-67073f.jpg",
-   "subject": "travel",
-   "subject_type": "thing",
-   "caption": "Sea Bathing in Obama, Fukui (Osaka and Nagoya Rail Agency, 1930s). Japanese Poster (21\" X 30\").",
-   "attribution": "Wikimedia Commons / Japanese Government Railways, Public domain",
-   "license": "Public domain",
-   "source_url": "https://commons.wikimedia.org/wiki/File:1930s_Japan_Travel_Poster_-_01.jpg",
-   "tags": [
-    "travel"
-   ],
-   "width": 2056,
-   "height": 3000,
-   "duration": null,
-   "quality_score": 76.5,
-   "added_date": "2026-06-19T10:32:04Z",
-   "last_used": null,
-   "times_used": 0
-  },
-  {
    "id": "place--chennai--804bd3",
    "media_type": "image",
    "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/place/chennai-804bd3.jpg",
@@ -617,6 +595,28 @@
    "added_date": "2026-06-19T05:24:00Z",
    "last_used": "2026-06-19T12:01:38Z",
    "times_used": 2
+  },
+  {
+   "id": "thing--travel--67073f",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/travel-67073f.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/travel-67073f.jpg",
+   "subject": "travel",
+   "subject_type": "thing",
+   "caption": "Sea Bathing in Obama, Fukui (Osaka and Nagoya Rail Agency, 1930s). Japanese Poster (21\" X 30\").",
+   "attribution": "Wikimedia Commons / Japanese Government Railways, Public domain",
+   "license": "Public domain",
+   "source_url": "https://commons.wikimedia.org/wiki/File:1930s_Japan_Travel_Poster_-_01.jpg",
+   "tags": [
+    "travel"
+   ],
+   "width": 2056,
+   "height": 3000,
+   "duration": null,
+   "quality_score": 76.5,
+   "added_date": "2026-06-19T10:32:04Z",
+   "last_used": "2026-06-19T19:56:38Z",
+   "times_used": 1
   }
  ]
 }

@@ -868,6 +868,71 @@ def get_word_timestamps(audio_path, script_text):
         return None
 
 
+# Caption keyword-highlight stopword set — small function words that should
+# NEVER be gold even though they may be capitalized at the start of a sentence.
+_CAP_STOP = {
+    "THE", "A", "AN", "THIS", "THAT", "THESE", "THOSE", "AND", "BUT", "FOR",
+    "WITH", "FROM", "HERE", "WHY", "WHAT", "WHEN", "HOW", "IT", "ITS", "HE",
+    "SHE", "THEY", "WE", "YOU", "I", "IN", "ON", "OF", "TO", "AT", "BY", "AS",
+    "IS", "ARE", "WAS", "WERE", "HAS", "HAVE", "HAD", "WILL", "JUST", "NOW",
+    "THAN", "THEN", "EVEN", "THEIR", "HIS", "HER", "OUR", "NOT", "NO", "SO",
+    "OR", "IF", "OUT", "UP", "OVER", "INTO", "ALSO", "BEEN", "BE", "DO", "DID",
+    "GET", "GOT", "MORE", "MOST", "ABOUT", "AFTER", "BEFORE", "ALL", "ANY",
+}
+
+# A token is GOLD when it carries the news "punch": a number, a currency/percent
+# symbol, or a proper noun (a capitalized non-stopword in the original script).
+# Brand/URL tokens stay WHITE so the CTA reads as one clean unit, never broken
+# up into a multicolour string.
+_CAP_BRAND = {"THEVIDESHI", "VIDESHI", "COM", "THE", "DOT"}
+
+
+def _caption_is_gold(orig_word):
+    """Decide if a caption token should render in gold. `orig_word` is the
+    ORIGINAL-CASE script token (not the uppercased display token), so proper-noun
+    detection works (Whisper/uppercasing would otherwise erase the case signal)."""
+    core = orig_word.strip(".,;:!?\"'()[]—–-").strip()
+    if not core:
+        return False
+    up = core.upper()
+    # Never gold-out brand/URL tokens — keep the CTA visually unified. Catch both
+    # bare tokens ("VIDESHI") and glued forms ("THEVIDESHI.COM", "@THEVIDESHI").
+    if up in _CAP_BRAND or "VIDESHI" in up:
+        return False
+    # Numbers (12, 100, 2026, 1,200, 3.5) and number-bearing tokens (₹100, 10-day).
+    if any(ch.isdigit() for ch in core):
+        return True
+    # Standalone currency / percent / unit glyphs.
+    if up in ("₹", "$", "%", "CR", "CRORE", "LAKH", "BILLION", "MILLION", "TRILLION"):
+        return True
+    # ALL-CAPS acronym in the source (RBI, NSE, H-1B, GDP) — but not a 1-char stray.
+    if core.isupper() and len(core) >= 2 and up not in _CAP_STOP:
+        return True
+    # Proper noun: capitalized first letter in the original script, not a stopword,
+    # not the leading sentence word ambiguity (we accept those — a few extra gold
+    # words read fine and match the reference's generous highlighting).
+    if core[0].isupper() and up not in _CAP_STOP and len(core) >= 3:
+        return True
+    return False
+
+
+def _render_caption_html(orig_tokens):
+    """Build the caption pill inner HTML from original-case tokens, wrapping
+    'punch' tokens (numbers, currency, proper nouns) in gold and the rest in
+    white. Display text is uppercased (matches the reference's caption style),
+    but gold detection uses the ORIGINAL case for proper-noun accuracy."""
+    GOLD = "#F2C84B"
+    WHITE = "#FFFFFF"
+    spans = []
+    for tok in orig_tokens:
+        if not tok.strip():
+            continue
+        disp = tok.upper()
+        color = GOLD if _caption_is_gold(tok) else WHITE
+        spans.append(f"<span style=\"color:{color};\">{disp}</span>")
+    return " ".join(spans)
+
+
 def build_script_captions(words, script_text, hook_duration):
     """Build HTML caption clips from Whisper timestamps + original script text.
     Uses Whisper ONLY for timing, but takes the actual text from the original script
@@ -936,7 +1001,10 @@ def build_script_captions(words, script_text, hook_duration):
     # Build raw clip data first, then fix overlaps
     raw_clips = []
     for phrase in phrases:
-        text = " ".join(w.get("word", "") for w in phrase).strip().upper()
+        # Keep ORIGINAL-CASE text here so the render step can detect proper nouns
+        # for gold keyword highlighting. Display uppercasing happens at render time
+        # in _render_caption_html (the reference style is ALL-CAPS captions).
+        text = " ".join(w.get("word", "") for w in phrase).strip()
         start = hook_duration + phrase[0]["start"]
         end = hook_duration + phrase[-1]["end"]
         duration = max(end - start, 0.5)
@@ -991,6 +1059,12 @@ def build_script_captions(words, script_text, hook_duration):
         # pill edge is always defined against bright B-roll, and a heavier text
         # shadow so individual glyphs stay crisp. This (plus the scrim track below)
         # targets the recurring "poor contrast at <timestamp>" QA deduction.
+        #
+        # KEYWORD HIGHLIGHTING (matches Kiran's reference storyboard): the "punch"
+        # tokens — numbers, ₹/$/% , and proper nouns — render in gold (#F2C84B),
+        # the rest in white. _render_caption_html uppercases for display while
+        # using the original-case token to detect proper nouns.
+        inner = _render_caption_html(text.split())
         html = (
             f"<div style=\"display:flex;align-items:flex-end;justify-content:center;"
             f"width:100%;height:100%;padding:0 24px 0 24px;\">"
@@ -998,9 +1072,9 @@ def build_script_captions(words, script_text, hook_duration):
             f"border:2px solid rgba(212,175,55,0.55);"
             f"box-shadow:0 6px 28px rgba(0,0,0,0.85);"
             f"font-family:Inter;font-size:42px;font-weight:900;"
-            f"color:#FFFFFF;text-align:center;letter-spacing:1px;line-height:1.25;"
+            f"text-align:center;letter-spacing:1px;line-height:1.25;"
             f"text-shadow: 0 2px 6px rgba(0,0,0,1),0 0 2px rgba(0,0,0,1);\">"
-            f"{text}</div></div>"
+            f"{inner}</div></div>"
         )
 
         clips.append({
