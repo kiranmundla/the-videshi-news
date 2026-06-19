@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-19T21:15:32.872050+00:00",
+  "timestamp": "2026-06-19T22:15:28.853168+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 5,
+    "pass": 6,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "95c95c05-93ab-45c5-ab20-73e1f36d6b23",
-      "headline": "Jim Sarbh Shaved His Head for Real and Made a Show Without a Single Curse Word. India Might Send It to the Emmys.",
-      "slug": "made-in-india-titan-story-jim-sarbh-emmy-naseeruddin-shah-amazon-mx-player-prabhleen-sandhu-detox-show-where-to-watch-diaspora-nri-20260619",
+      "id": "1e5a9aee-0a20-4173-bc11-aec5354e35da",
+      "headline": "India's Banks Want to Lend You the Dollars to Deposit With Them \u2014 and GIFT City Is the Catch",
+      "slug": "india-banks-gift-city-lending-fcnr-dollar-deposit-scheme-nomura-55-billion-rupee-nri-investor-20260619-2200",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -23,19 +23,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image does not feature Jim Sarbh, who is the main subject of the article."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article connects well with the diaspora audience by discussing the show's accessibility and cultural significance."
+          "note": "The article effectively connects the financial scheme to NRIs, highlighting its relevance to their investment decisions."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the hero image with one featuring Jim Sarbh to better match the article's focus.",
-          "Expand on the diaspora angle by including more details on how NRIs can access the show."
+          "Include more specific examples or testimonials from NRIs who have benefited from similar schemes to enhance relatability.",
+          "Add a brief explanation of GIFT City for readers who may not be familiar with it."
         ],
         "verdict": "pass"
       },
@@ -47,15 +47,123 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "5e20b874-adfc-4e1e-b084-e19e83b8f484",
-      "headline": "Salman Khan Wants a Turquoise Bracelet Banned From the Movies. The Delhi High Court Just Told Him to Wait.",
-      "slug": "kala-hiran-salman-khan-delhi-high-court-injunction-deferred-july-1-bharat-shrinate-amit-jani-bracelet-personality-rights-where-to-watch-diaspora-nri-20260619",
+      "id": "66cb2643-d7d2-4426-bd6a-2c0a8c8620bf",
+      "headline": "A Head Injury Can Raise the Risk of Brain Disease. New Research Says the Danger May Run Both Ways.",
+      "slug": "traumatic-brain-injury-neurological-disorders-two-way-risk-falls-older-adults-neurology-aan-diaspora-20260619-2200",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the research findings to the concerns of the Indian diaspora, particularly regarding the care of ageing parents."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more statistics or data points to strengthen the argument about the urgency of fall prevention.",
+          "Include a brief section on how to communicate these risks to elderly parents, as this could be a valuable addition for diaspora readers."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "01870d12-f1f1-4bac-ad6e-1259fa7581c4",
+      "headline": "The Smartwatch on Your Wrist May Be Quietly Doing Your Heart a Favour, a Review of 14 Trials Finds",
+      "slug": "fitness-apps-wearables-heart-disease-patients-extra-1100-steps-jaha-meta-analysis-diaspora-20260619-2200",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the findings to the Indian diaspora's health concerns and technology adoption."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific statistics or studies related to the Indian diaspora's health to strengthen the connection.",
+          "Include a brief section on how readers can implement the findings in their daily lives."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "a337ab4e-fbe7-4805-88a2-fb1e3546cb8c",
+      "headline": "Ladakh Is Quietly Becoming India's Next Must-Do Trip \u2014 and a New Tunnel Is About to Make It a Year-Round One",
+      "slug": "ladakh-rising-destination-zoji-la-tunnel-nri-summer-escape-20260619",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the appeal of Ladakh to NRI families looking for a unique travel experience that combines leisure with cultural ties."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of activities or experiences in Ladakh that would appeal to diaspora travelers.",
+          "Include quotes or testimonials from travelers or tourism officials to enhance credibility and engagement."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "3f2ac540-7de5-42fe-9bbc-b26caeeac359",
+      "headline": "India's First Mumbai\u2013Bengaluru Vande Bharat Sleeper Just Got Its First Look \u2014 and It Reshapes the Overnight Run South",
+      "slug": "mumbai-bengaluru-vande-bharat-sleeper-train-first-look-nri-rail-20260619",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [
           {
-            "article_id": "6a0623b0-e2b4-45de-9610-a6b75659f822",
-            "headline": "Salman Khan and Farhan Akhtar Are Quietly Plotting a Two-Par"
+            "article_id": "fa22ce04-a41b-413d-96b4-3d38685e5f36",
+            "headline": "India Just Launched Its Longest Vande Bharat Yet \u2014 Nagpur to"
           }
         ],
         "broken_embeds": []
@@ -69,14 +177,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article connects well with the diaspora by discussing the implications of celebrity culture and legal battles that resonate with NRI audiences."
+          "quality": 9,
+          "note": "The article effectively connects the new train service to the needs and travel patterns of the diaspora, highlighting its significance for NRI families."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more context about the significance of the turquoise bracelet in Indian culture to enhance reader engagement.",
-          "Include quotes or reactions from diaspora communities regarding the legal battle to strengthen the connection with NRI readers."
+          "Consider adding a quote from a railway official or an expert to enhance credibility.",
+          "Include more details about the expected launch date or fare structure if available."
         ],
         "verdict": "pass"
       },
@@ -88,21 +196,12 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "a7a08033-a0bd-41d1-bcc2-c3a226bef789",
-      "headline": "Satya Nadella Warned Against AI Monopolies. Days Later He Started Charging by the Task.",
-      "slug": "satya-nadella-microsoft-copilot-cowork-usage-pricing-ai-agents-diaspor-20260619",
+      "id": "a71cde14-ae30-4a41-8c07-0545c5bf8851",
+      "headline": "India's New 10-Year E-Visa Is Live \u2014 and It Quietly Solves the Diaspora's Mixed-Passport Headache",
+      "slug": "india-10-year-evisa-us-uk-citizens-nri-family-mixed-passport-20260619",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "ea9e320d-41b8-44e5-8469-f39bafe1e072",
-            "headline": "Satya Nadella Has a New Word for the AI Age: 'Token Capital."
-          },
-          {
-            "article_id": "62f221bb-e11a-4fe2-8f09-97f0f36510f4",
-            "headline": "Microsoft Just Shipped an AI That Finishes Your Work, Not Dr"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
@@ -110,90 +209,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the implications of AI developments at Microsoft to the Indian diaspora, particularly Indian professionals in tech."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more specific examples of how Indian professionals are adapting to these changes in the tech landscape.",
-          "Include quotes or insights from Indian professionals in the industry to enhance the diaspora perspective."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "10baafa5-eacf-4214-8e60-a13279cd89d6",
-      "headline": "Nvidia's Biggest Threat Isn't a Rival. It's the Customers Now Selling Their Own Chips.",
-      "slug": "amazon-trainium-google-tpu-nvidia-ai-chip-war-indian-engineers-nri-20260619",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the specific topic of Nvidia or chip manufacturing."
+          "issue": "The image is relevant to the topic of travel and visas, but it could be more directly related to the Indian diaspora."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively highlights the role of Indian engineers and investors in the tech industry, making it relevant to the diaspora."
+          "note": "The article effectively addresses the concerns of the Indian diaspora regarding visa issues and family travel."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that depicts Nvidia or chip manufacturing to enhance visual alignment with the article's content.",
-          "Add more specific examples of how the diaspora is influencing the chip industry to strengthen the connection."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "0bf912d7-0a6f-407e-a678-7ddf4729b0a7",
-      "headline": "Google Put Gemini in a $99 Speaker. The Real Target Is the Phone in Every Indian Pocket.",
-      "slug": "google-gemini-home-speaker-android-17-sundar-pichai-india-nri-20260619",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image of Sundar Pichai is relevant as he is a key figure in the article, but it does not directly relate to the Google Home Speaker."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the developments in AI and technology to the Indian American experience, highlighting the significance of Indian-origin executives and the impact on NRIs."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider including a more direct image related to the Google Home Speaker to enhance visual relevance.",
-          "Add a brief section summarizing the implications of these technological advancements specifically for NRIs."
+          "Consider including a quote from a diaspora member to add a personal touch.",
+          "Add a section on how this visa change compares to other countries' visa policies for NRIs."
         ],
         "verdict": "pass"
       },
