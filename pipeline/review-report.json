@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-19T00:15:45.285445+00:00",
+  "timestamp": "2026-06-19T00:45:25.868220+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 7,
-    "flag": 1,
+    "pass": 4,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "55ec10ed-5f31-45ee-8d0c-4193eb6c9157",
-      "headline": "In the House of Lords, Sixty People Gathered to Argue That Diaspora Poetry Belongs in the Building",
-      "slug": "indian-diaspora-poets-house-of-lords-word-masala-britain-20260619",
+      "id": "a75dd8ff-4c46-4edf-8fa3-1761a51ae350",
+      "headline": "The 20-Gram Dosa: How India's Fitness Boom Is Rewriting Comfort Food",
+      "slug": "the-20-gram-dosa-how-indias-fitness-boom-is-rewriting-comfort-food",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -23,91 +23,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 3,
-          "issue": "The image of Lord Parekh does not directly relate to the article's focus on diaspora poetry."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively highlights the significance of diaspora poetry and its cultural implications for the Indian diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant hero image that reflects the theme of diaspora poetry.",
-          "Include quotes or testimonials from attendees to enhance the personal connection to the event."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "d89311c8-7634-4521-a077-03e4752ef9ff",
-      "headline": "Four Million Jains, Eight Hundred Teenagers, One New Jersey Ballroom: How a Tiny Faith Refuses to Thin Out",
-      "slug": "young-jains-america-2026-convention-diaspora-faith-20260619",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the specific event or theme of the article, which focuses on a Jain convention."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively highlights the challenges faced by the Jain diaspora and how the convention serves as a means to preserve their faith and culture."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider including a more relevant image that depicts the Jain convention or its participants.",
-          "Add quotes or testimonials from attendees to enhance the personal connection and impact of the article."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "46053432-a765-4316-b8ab-7f4b3990cc08",
-      "headline": "A Town of 25,000 Is About to Host 8,000 Sikhs. Squamish's Nagar Kirtan Returns After the Fire.",
-      "slug": "squamish-sikh-nagar-kirtan-returns-diaspora-bc-20260619",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 10,
+          "score": 9,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects the Sikh diaspora's cultural and spiritual practices to a small Canadian town, highlighting the significance of the Nagar Kirtan for both the local community and the diaspora."
+          "note": "The article effectively connects the trend of high-protein Indian food to the needs and preferences of the NRI community, highlighting their cultural attachment and dietary adjustments."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from attendees or participants to enhance the personal connection to the event.",
-          "Include more context about the significance of Nagar Kirtan in the Sikh faith for readers unfamiliar with the tradition."
+          "Consider adding quotes or anecdotes from diaspora individuals to enhance relatability.",
+          "Include more specific examples of how these recipes are being adapted in different regions abroad."
         ],
         "verdict": "pass"
       },
@@ -119,9 +47,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "9f186597-e0a7-45b6-b208-7ee32236968d",
-      "headline": "America's Best Indian Engineers Are Quietly Asking Britain for a Way Out",
-      "slug": "uk-global-talent-visa-indian-h1b-engineers-us-exodus-arithmetic-20260619",
+      "id": "b4d1d3a5-7b07-4add-adc6-57337dfb0af2",
+      "headline": "Kerala's Moment: America Discovers the Malabar Coast on Its Plate",
+      "slug": "keralas-moment-america-discovers-the-malabar-coast-on-its-plate",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -131,163 +59,91 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the article's focus on Indian engineers and immigration."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses the implications of immigration trends for Indian professionals, which is relevant to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that more directly represents Indian engineers or the immigration theme.",
-          "Add more personal stories or quotes from Indian engineers to enhance the diaspora connection."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "32b7db5d-5c92-4b5b-bbd2-964f0cb9b52e",
-      "headline": "An H-1B Worker Says He Paid His Boss $100,000 to Keep His Green Card Hopes Alive",
-      "slug": "h1b-worker-paid-employer-100k-lawsuit-texas-labor-trafficking-india-20260619",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the specific topic of H-1B workers or immigration, but it is a generic image that could represent the workforce."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively highlights issues faced by the Indian tech diaspora, particularly in the context of H-1B visa holders and their unique challenges."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that directly represents H-1B workers or immigration themes.",
-          "Include quotes or perspectives from more members of the Indian diaspora to enrich the narrative."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "5f920b09-8b37-4dd2-8687-56155d9f0f03",
-      "headline": "At the G7's AI Table, Seven Companies Got a Seat. Only One Was Indian \u2014 and It's a Two-Year-Old Startup.",
-      "slug": "g7-evian-ai-summit-sarvam-india-only-firm-diaspora-20260619",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the specific topic of AI or the G7 summit."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the significance of Sarvam AI's presence at the G7 to the Indian diaspora's pride and future opportunities."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that directly represents AI or the G7 summit to enhance relevance.",
-          "Add more context about Sarvam AI's technology and its potential impact on the global AI landscape."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "5ae1c1b8-6d47-4164-9d0f-96e3d34034d5",
-      "headline": "An IIT Just Open-Sourced an AI That Thinks in 22 Indian Languages. It Could Outlast the Billion-Dollar Startups.",
-      "slug": "bharatgen-iit-bombay-sovereign-ai-22-indian-languages-diaspora-20260619",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 6,
-          "issue": "The image does not directly relate to the topic of AI or the specific project discussed."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the project to the Indian diaspora, highlighting opportunities for contribution and cultural preservation."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that reflects AI or technology to enhance visual appeal.",
-          "Add more specific examples of how the diaspora can engage with BharatGen to strengthen the connection."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "27585759-d75a-4f30-aa47-7514b362317a",
-      "headline": "India's First Insurtech IPO of 2026 Opens Friday. The Grey Market Is Telling Investors to Slow Down.",
-      "slug": "turtlemint-ipo-insurtech-india-nri-investors-grey-market-20260619",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 8,
+          "score": 9,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects Turtlemint's business model to the interests of diaspora investors, particularly those with ties to small-town India."
+          "note": "The article effectively connects the resurgence of Keralan cuisine to the experiences of the Malayali diaspora, highlighting their cultural significance."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more specific examples of how diaspora families can engage with Turtlemint's offerings.",
-          "Include a brief comparison with other insurtech companies to provide context on Turtlemint's position in the market."
+          "Consider adding quotes or anecdotes from diaspora members to enhance personal connection.",
+          "Include more statistics or studies on the growing popularity of Keralan cuisine in America."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "45065e46-22e5-4a64-9c4e-3a4bbd7ba643",
+      "headline": "Vikas Khanna's Bungalow Wins a Michelin Bib Gourmand \u2014 and the Chef Wept",
+      "slug": "vikas-khannas-bungalow-wins-a-michelin-bib-gourmand-and-the-chef-wept",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects Vikas Khanna's achievements and his restaurant's significance to the Indian diaspora, highlighting cultural pride and community."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more quotes from Vikas Khanna to enhance the emotional connection.",
+          "Include a brief mention of how the Bib Gourmand distinction impacts the restaurant's future or its reception among critics."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "3d03f439-7e88-463d-b67e-ab6188dbe013",
+      "headline": "An American Son of the Indian Diaspora Is Weeks From Orbit. Meet NASA's Anil Menon.",
+      "slug": "anil-menon-first-indian-american-nasa-astronaut-soyuz-ms29-iss-july-2026-diaspora-20260619",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects Menon's achievements to the Indian diaspora, highlighting the significance of his journey for Indian-Americans."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from Anil Menon or other relevant figures to enhance the narrative.",
+          "Include more context about the significance of the Soyuz MS-29 mission in relation to current space exploration trends."
         ],
         "verdict": "pass"
       },
