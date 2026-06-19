@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-19T12:45:31.346955+00:00",
+  "timestamp": "2026-06-19T13:15:17.887285+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 5,
-    "flag": 0,
+    "pass": 1,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,45 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "c4facec3-5847-4835-b666-87539eb3f5f9",
-      "headline": "King of Fruits, Queen of the Feed: How Mango Season Conquered the Diaspora Internet",
-      "slug": "king-of-fruits-queen-of-the-feed-how-mango-season-conquered-the-diaspora-interne",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 10,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the mango season to the emotional and cultural experiences of the diaspora, highlighting nostalgia and culinary traditions."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more specific examples of how these recipes are shared within diaspora communities to enhance the connection.",
-          "Include quotes or anecdotes from diaspora members about their experiences with mango season to add a personal touch."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "4347ee90-5cd5-41a5-b83b-04f2fb84b5dd",
-      "headline": "Butter Chicken in the Costco Cart: Indian Ready-Meals Storm the American Freezer Aisle",
-      "slug": "butter-chicken-in-the-costco-cart-indian-ready-meals-storm-the-american-freezer",
+      "id": "a0ca67fa-73c1-492a-a359-577dfd69d453",
+      "headline": "Dhurandhar 2 Lands on Netflix India Today. The Most-Watched Indian Film in History Just Got Another Stage.",
+      "slug": "dhurandhar-2-the-revenge-netflix-india-june-19-ranveer-singh-aditya-dhar-70-million-views-raw-undekha-where-to-watch-diaspora-nri-20260619",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -65,13 +29,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the mainstreaming of Indian cuisine in America to the emotional and practical experiences of the NRI community."
+          "note": "The article effectively connects the film's release on Netflix to the NRI audience, highlighting its availability in international territories."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from industry experts or diaspora members to enhance the personal connection.",
-          "Include more statistics or data points to strengthen the argument about the growth of Indian cuisine in the U.S."
+          "Consider adding more quotes or reactions from NRI viewers to enhance the diaspora connection.",
+          "Include a brief comparison of the film's performance with other Indian films on streaming platforms to provide context."
         ],
         "verdict": "pass"
       },
@@ -83,17 +47,37 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "00f4ffdb-d2fe-44bc-98cc-09ceb3c73701",
-      "headline": "From Dubai to the Desert: How Indibar Became One of America's Restaurants of the Year",
-      "slug": "from-dubai-to-the-desert-how-indibar-became-one-of-americas-restaurants-of-the-y",
+      "id": "9b54b26a-3cb9-4084-a669-af113dd61b91",
+      "headline": "Cocktail 2 Opens Big. Fourteen Years On, the Diaspora's Favourite Love Triangle Is Pouring Again.",
+      "slug": "cocktail-2-day-1-box-office-opening-shahid-kapoor-kriti-sanon-rashmika-mandanna-homi-adajania-where-to-watch-diaspora-nri-20260619b",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "22d66315-9864-48f4-92ad-c9e128adb6a1",
+            "headline": "Cocktail 2 Just Got an 'A.' The Diaspora's Tickets Are Alrea"
+          },
+          {
+            "article_id": "8bbbe976-8e02-47ca-8969-5faf9ca01af1",
+            "headline": "Cocktail 2 Pours This Friday. Can Shahid, Kriti and Rashmika"
+          }
+        ],
         "broken_embeds": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DZt4kyIzglS/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel does not appear to be directly related to the film 'Cocktail 2' or its themes, making it irrelevant to the article."
+          },
+          {
+            "url": "https://youtube.com/watch?v=XXxUqLHq1xg",
+            "problem": "irrelevant",
+            "explanation": "The YouTube link should ideally be a trailer or a relevant clip from 'Cocktail 2', but it is unclear if it is directly related to the film."
+          }
+        ],
         "image_match": {
           "score": 9,
           "issue": null
@@ -101,89 +85,19 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the restaurant's success to the broader narrative of Indian cuisine's evolution in America, particularly for the diaspora."
+          "note": "The article effectively connects the film's release to the diaspora audience, highlighting its significance for NRIs and the anticipation for screenings in North America and the UK."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from the chefs or customers to enhance the narrative.",
-          "Include more details about the specific dishes offered at Indibar to give readers a better sense of the menu."
+          "Replace the irrelevant Instagram and YouTube links with content that directly relates to 'Cocktail 2', such as a trailer or promotional material.",
+          "Consider adding quotes or reactions from diaspora audiences or critics to strengthen the connection to the NRI community."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "49f9e88d-154d-495d-a300-dc59e1ced22e",
-      "headline": "India's Fuel Retailers Have Hit Their Borrowing Limit Absorbing Rs 1 Trillion in Losses to Keep Pump Prices Frozen",
-      "slug": "india-state-fuel-retailers-borrowing-limits-one-trillion-rupee-losses-price-freeze-20260619",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the economic implications of fuel prices to the diaspora's financial support for families in India."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more data or quotes from industry experts to strengthen the analysis.",
-          "Include potential future scenarios or expert predictions regarding fuel prices to engage readers further."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "a37068c5-6bfb-4874-8c38-a2079ebf37de",
-      "headline": "India Is Handing Its UAE Passport and Visa Counters to a New Operator on July 1. Millions of NRIs Need to Pay Attention.",
-      "slug": "india-uae-passport-visa-consular-services-new-provider-al-hind-july-2026-20260619",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the changes in consular services to the daily lives of NRIs, highlighting the impact on their bureaucratic processes."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include specific examples or anecdotes from NRIs to illustrate the impact of the changes.",
-          "Add a section on how NRIs can prepare for the transition to the new service provider."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DZt4kyIzglS/",
+        "Removed irrelevant embed: https://youtube.com/watch?v=XXxUqLHq1xg",
         "promoted to published"
       ],
       "revised": false,
