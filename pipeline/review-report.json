@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-19T18:15:51.742080+00:00",
+  "timestamp": "2026-06-19T18:45:12.944507+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 10,
-    "flag": 1,
+    "pass": 2,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,297 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "cc11ddbe-5977-4944-94bd-e54ec1e3a86f",
-      "headline": "France Is Getting Its First Traditional Hindu Temple, Carved in India and Rebuilt Stone by Stone Near Paris",
-      "slug": "france-first-traditional-hindu-temple-baps-paris-indian-stone-20260619",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 3,
-          "issue": "irrelevant"
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the temple's significance to the Indian diaspora in France, highlighting cultural transmission and community functions."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the hero image with one that directly represents the BAPS Swaminarayan Mandir in Bussy-Saint-Georges.",
-          "Include quotes or testimonials from members of the Indian diaspora in France to enhance the personal connection to the topic."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "8af248c3-8971-47ee-9cbc-71a657c24c71",
-      "headline": "America's Oldest Indian Association Swore In a New President. The Congratulatory Letters Told the Real Story.",
-      "slug": "aia-national-nec-2026-nilima-madan-sworn-in-diaspora-20260619",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the specific event of the AIA inauguration."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the AIA's significance to the Indian-American diaspora and highlights their evolving role in American civic life."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider including a more relevant image that depicts the inauguration event or the community gathering.",
-          "Add quotes from attendees or officials to enhance the personal connection and engagement with the diaspora."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "9f43144d-cf9a-41bb-9043-4caf195490ac",
-      "headline": "India Just Made Its NRI Savings Accounts the Best Deal in Years. The Window Closes September 30.",
-      "slug": "rbi-removes-rate-caps-nre-fcnr-nri-deposits-7-percent-20260619",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects with the diaspora by discussing financial opportunities and emotional ties to India."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more specific examples of how NRIs can take advantage of these new rates.",
-          "Add a section addressing potential risks or considerations for NRIs when investing in these accounts."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "6c293f70-710f-4602-90d0-3fb6118e3529",
-      "headline": "DeepSeek Just Raised $7.4 Billion to Stay Chinese. India's AI Startups Are Watching the Playbook Closely.",
-      "slug": "deepseek-7-4-billion-funding-founder-control-india-sovereign-ai-diaspo-20260619",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the article's focus on AI startups and financing."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively discusses the role of the Indian diaspora in funding and building AI models, making it relevant to NRI readers."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that visually represents AI technology or investment to better match the article's content.",
-          "Expand on the implications for Indian AI startups in more detail to enhance the diaspora connection."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "d8e64756-3cf3-4630-9040-d9629ef14ddf",
-      "headline": "An American Manufacturer Is Teaming With Adani to Build India's AI Backbone. The Diaspora Should Watch Where the Racks Get Made.",
-      "slug": "jabil-adani-ai-data-center-manufacturing-india-nri-investors-20260619",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to AI or data centers, but it is a generic tech-related image."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively addresses NRI investors and their concerns about India's AI infrastructure."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that directly represents AI or data centers.",
-          "Add a quote or perspective from an NRI investor to enhance the diaspora connection."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "6acec948-d52e-42a8-8bd1-eaf7bd5126b1",
-      "headline": "Accenture's Stock Just Cratered to a 7-Year Low. The Company That Employs the Most Indians Is Flashing a Warning.",
-      "slug": "accenture-q3-fy26-earnings-bookings-decline-ai-indian-it-workers-20260619",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 5,
-          "issue": "The image of Julie Sweet does not directly relate to the article's focus on Accenture's stock performance and its implications for the Indian diaspora."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects Accenture's performance to the Indian diaspora, highlighting the implications for Indian professionals in the tech industry."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that reflects the article's focus on Accenture's stock performance or its impact on the Indian workforce.",
-          "Add more data or quotes from industry experts to strengthen the analysis of the implications for the diaspora."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "74102617-430c-431e-968c-64e4be645796",
-      "headline": "Indians Pulled Back From the Stock Market in May \u2014 but Their Monthly SIPs Hit a Record Anyway",
-      "slug": "sip-record-high-26688-crore-equity-fund-inflows-12-month-low-amfi-may-2026-nri-investor-20260619-1800",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the SIP trends to NRI investors, highlighting the relevance of the data for the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a quote from an NRI investor to enhance the diaspora perspective.",
-          "Include a brief explanation of SIPs for readers who may not be familiar with the concept."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "0557fb20-7d88-4525-b596-228b4c00818b",
-      "headline": "Weight-Loss Drugs May Do Something Unexpected for Men: Lift Testosterone and Improve Sperm",
-      "slug": "glp-1-weight-loss-drugs-testosterone-sperm-quality-men-obesity-endo-2026-fertility-diaspora-20260619-1800",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively addresses male infertility in Indian families, highlighting cultural stigmas and the importance of discussing male factors in fertility."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more statistics or studies to strengthen the claims about the impact of GLP-1 drugs on testosterone and sperm quality.",
-          "Include quotes or insights from Indian health professionals to enhance the diaspora connection."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "f6ce433f-2866-4199-97a6-cddd05265652",
-      "headline": "Carrying Extra Weight Now Linked to 19 Cancers, Not 13 \u2014 and South Asians Show Up in the Fine Print",
-      "slug": "obesity-bmi-linked-19-cancers-nature-metabolism-review-1-5-million-cases-south-asia-diaspora-20260619-1800",
+      "id": "a1a11bb6-2edb-43b8-983f-71184a5a866f",
+      "headline": "India and Canada Want a Trade Deal Signed This Year. For Three Million Indians in Canada, the Reset Is Personal.",
+      "slug": "india-canada-cepa-trade-deal-modi-carney-g7-evian-year-end-target-diaspora-20260619",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -317,13 +29,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects the findings to the Indian diaspora, highlighting specific health risks relevant to this community."
+          "note": "The article effectively highlights the importance of the Indian diaspora in Canada and how the trade deal impacts them directly."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more specific statistics or studies related to South Asians to strengthen the diaspora angle.",
-          "Include quotes or insights from health experts to enhance credibility and engagement."
+          "Consider adding quotes or perspectives from members of the Indian diaspora in Canada to enhance the personal connection.",
+          "Include more specific examples of how the trade deal could benefit the diaspora, such as potential job opportunities or educational exchanges."
         ],
         "verdict": "pass"
       },
@@ -335,9 +47,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "a69705df-e14c-4116-8dbd-e5675a641b05",
-      "headline": "The Visa Stamp Isn't the Finish Line Anymore: US Embassy Tells Indians Screening Never Stops",
-      "slug": "us-embassy-india-continuous-visa-screening-warning-nri-20260619",
+      "id": "ceb61d63-157a-4137-b5f1-9dd9c47bcc28",
+      "headline": "India Quietly Rewrote Its Foreigner Registration Rules. NRI Families With Foreign-Passport Kids Need to Read the Fine Print.",
+      "slug": "india-immigration-foreigners-amendment-rules-2026-frro-registration-oci-foreign-children-20260619",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -353,49 +65,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively addresses the concerns of NRIs regarding visa regulations and continuous vetting."
+          "note": "The article effectively addresses the implications of the new rules for NRI families, making it relevant and informative for the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes from the U.S. Embassy to enhance credibility.",
-          "Add a section on how these changes specifically impact different visa categories for clarity."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "ed19c26d-6811-4aca-b959-9066f41ce12b",
-      "headline": "Delta Is Coming Back to India by Renting IndiGo's Map \u2014 and the Diaspora's Route Home Is Shifting Off the Gulf",
-      "slug": "delta-indigo-skyteam-partnership-atlanta-delhi-nri-route-20260619",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively discusses how Delta's return to India impacts the NRI community, particularly in terms of travel options."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more specific examples of how the diaspora can benefit from the new routes.",
-          "Add quotes from industry experts or diaspora members to enhance credibility and engagement."
+          "Consider adding quotes from immigration experts or affected families to provide personal insights and enhance relatability.",
+          "Include a summary or bullet points at the end to highlight key changes for quick reference."
         ],
         "verdict": "pass"
       },

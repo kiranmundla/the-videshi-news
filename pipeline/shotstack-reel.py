@@ -2395,6 +2395,41 @@ def source_storyboard_images(article, storyboard, count=8):
         meta = (str(cand.get("alt", "")) + " " + str(cand.get("page_url", ""))).lower()
         return not any(m in meta for m in _india_positive_markers)
 
+    # ── Off-topic visual-metaphor gate ──────────────────────────────────────
+    # The script-writer sometimes picks a visually-strong but topically-WRONG
+    # stock subject as a metaphor (e.g. "oil refinery with smokestacks" or "cargo
+    # ship docking" on an RBI deposit-rate story; an "RBI building" query that
+    # returns a campus Holi crowd). These pass the India anchor + people-signal
+    # filters but QA correctly flags "images do not relate to the topic" — the #1
+    # remaining relevance failure. When a scene's query calls for one of these
+    # strong literal subjects AND that subject does NOT actually appear in the
+    # article's own text, the visual is an off-topic metaphor: we skip stock for
+    # that scene and let it fall through to a key-point card (topic-relevant by
+    # construction, per Kiran's stated "card over generic foreign stock" rule).
+    _story_text = (headline + " " + (article.get("subheadline") or "") + " "
+                   + (article.get("body") or "")).lower()
+    _OFFTOPIC_METAPHOR_SUBJECTS = (
+        "refinery", "smokestack", "smoke stack", "oil rig", "oil pump",
+        "factory", "steel", "furnace", "cargo ship", "container ship",
+        "cargo", "shipping container", "port crane", "freight", "tanker",
+        "crowd", "festival", "parade", "dance", "dancing", "celebration",
+        "protest", "rally", "concert", "fireworks", "wedding", "temple festival",
+        "assembly line", "power plant", "wind turbine", "solar panel",
+    )
+
+    def is_offtopic_metaphor(query):
+        """True if the scene query calls for a strong literal subject that is NOT
+        mentioned anywhere in the article — i.e. an off-topic visual metaphor."""
+        ql = (query or "").lower()
+        for subj in _OFFTOPIC_METAPHOR_SUBJECTS:
+            if subj in ql and subj not in _story_text:
+                # Allow if a close keyword stem is in the story (e.g. "ship" vs
+                # "shipping"): only reject when the article truly never raises it.
+                stem = subj.split()[0]
+                if stem not in _story_text:
+                    return True
+        return False
+
     # ── 1. Article hero for scene 1 ──
     # Skip heroes from unvetted sources for the HOOK frame. The writer mostly
     # uses curated heroes (Wikimedia/Pexels/Supabase mirror), but occasionally
@@ -2771,6 +2806,9 @@ def source_storyboard_images(article, storyboard, count=8):
             if visual and visual not in queries:
                 queries = [visual] + queries
             for q in queries[:2]:
+                if is_offtopic_metaphor(q):
+                    print(f"  🚫 Scene {i+1}: '{q[:40]}' off-topic metaphor — skipping Commons, will use key-point card")
+                    continue
                 cq = anchor_query_to_india(q)
                 for cand in commons_image_search(cq, limit=6):
                     cu = cand["url"]
@@ -2805,6 +2843,9 @@ def source_storyboard_images(article, storyboard, count=8):
             if visual and visual not in queries:
                 queries = [visual] + queries
             for query in queries[:3]:
+                if is_offtopic_metaphor(query):
+                    print(f"  🚫 Scene {i+1}: '{query[:40]}' is an off-topic visual metaphor (not in article) — skipping stock, will use key-point card")
+                    continue
                 anchored = anchor_query_to_india(query) != query or any(t in query.lower() for t in _india_terms)
                 want_india_person = needs_india_person(query)
                 query = anchor_query_to_india(query)
@@ -2846,6 +2887,9 @@ def source_storyboard_images(article, storyboard, count=8):
             if visual and visual not in queries:
                 queries = [visual] + queries
             for query in queries[:3]:
+                if is_offtopic_metaphor(query):
+                    print(f"  🚫 Scene {i+1}: '{query[:40]}' is an off-topic visual metaphor (not in article) — skipping stock, will use key-point card")
+                    continue
                 anchored = anchor_query_to_india(query) != query or any(t in query.lower() for t in _india_terms)
                 want_india_person = needs_india_person(query)
                 query = anchor_query_to_india(query)
@@ -3113,10 +3157,10 @@ def build_hook_html(hook_line1, hook_line2, category):
     """Build HTML for the 3-second hook frame overlay."""
     badge = (category or "NEWS").upper().replace("-", " ")
     # Use inline styles for maximum compatibility with Shotstack's HTML renderer
-    html = f"""<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;width:100%;height:100%;padding:40px;box-sizing:border-box;background:linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.75) 50%, rgba(0,0,0,0.4) 100%);">
-  <div style="background:#C41E3A;color:#fff;font-family:Inter;font-size:28px;font-weight:700;padding:10px 32px;letter-spacing:5px;margin-bottom:50px;">{badge}</div>
-  <div style="font-family:Inter;font-size:84px;font-weight:900;color:#fff;line-height:1.0;margin-bottom:24px;text-shadow:0 4px 40px rgba(0,0,0,0.9),0 0 80px rgba(0,0,0,0.6);">{hook_line1}</div>
-  <div style="font-family:Inter;font-size:56px;font-weight:700;color:#D4AF37;line-height:1.1;text-shadow:0 2px 20px rgba(0,0,0,0.7);">{hook_line2}</div>
+    html = f"""<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;width:100%;height:100%;padding:40px;box-sizing:border-box;background:radial-gradient(ellipse 90% 55% at 50% 52%, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.66) 45%, rgba(0,0,0,0.30) 78%, rgba(0,0,0,0.18) 100%);">
+  <div style="background:#C41E3A;color:#fff;font-family:Inter;font-size:28px;font-weight:700;padding:10px 32px;letter-spacing:5px;margin-bottom:50px;box-shadow:0 4px 24px rgba(0,0,0,0.7);">{badge}</div>
+  <div style="font-family:Inter;font-size:84px;font-weight:900;color:#fff;line-height:1.0;margin-bottom:24px;text-shadow:0 4px 40px rgba(0,0,0,1),0 2px 10px rgba(0,0,0,1),0 0 80px rgba(0,0,0,0.85);">{hook_line1}</div>
+  <div style="font-family:Inter;font-size:56px;font-weight:700;color:#F2C84B;line-height:1.1;text-shadow:0 3px 22px rgba(0,0,0,1),0 1px 4px rgba(0,0,0,1);">{hook_line2}</div>
   <div style="font-family:Inter;font-size:16px;color:rgba(255,255,255,0.3);letter-spacing:6px;margin-top:60px;">THE VIDESHI</div>
 </div>"""
 
