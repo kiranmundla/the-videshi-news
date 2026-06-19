@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-19T14:45:16.000563+00:00",
+  "timestamp": "2026-06-19T15:15:34.928049+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 0,
+    "pass": 4,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "9042cf2e-fbb5-4acc-8e1b-a069c62bd0ae",
-      "headline": "The Diaspora Wants to Build India's Story a Permanent Home in Washington. It Will Cost $14 Million.",
-      "slug": "india-heritage-center-museum-washington-dc-diaspora-campaign-20260619",
+      "id": "c3adfbde-b857-41db-a1b6-528d4821bb5a",
+      "headline": "Nora Fatehi Walked Onto a World Cup Stage in Toronto and Became the Most Googled Bollywood Star on Earth",
+      "slug": "nora-fatehi-fifa-world-cup-2026-opening-ceremony-toronto-siir-siir-most-googled-bollywood-vegedream-sanjoy-where-to-watch-diaspora-nri-20260619",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -29,13 +29,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the initiative to the diaspora's desire to preserve cultural identity and educate future generations."
+          "note": "The article effectively connects Nora Fatehi's multicultural background and her performance at a global event to the pride of the Indian diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes or testimonials from diaspora members to enhance the personal connection.",
-          "Provide more details on how the museum will engage with the local community in Washington, DC."
+          "Consider adding more context about the significance of the World Cup for Indian fans.",
+          "Include quotes or reactions from the diaspora community to enhance the connection."
         ],
         "verdict": "pass"
       },
@@ -47,9 +47,58 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "7017498c-45c7-46cf-aeae-c09743f124e2",
-      "headline": "India's Oil Lifeline Through Hormuz Is Reopening. The Peace Holding It Open Just Wobbled.",
-      "slug": "india-strait-of-hormuz-reopens-oil-lifeline-fragile-us-iran-peace-20260619",
+      "id": "593fe449-25ab-4e0c-b399-6490ac8797a0",
+      "headline": "Los Angeles Just Gave Diljit Dosanjh His Own Day. The Boy From Dosanjh Kalan Now Owns a Date on the City Calendar.",
+      "slug": "diljit-dosanjh-day-los-angeles-city-council-january-6-2027-civic-resolution-monica-rodriguez-aura-tour-where-to-watch-diaspora-nri-20260619",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "bd12a9ba-a29f-4bb0-a8ce-88cc8560a29e",
+            "headline": "The Grammys Just Made Room for Asian Pop. They Forgot to Sav"
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/DZxSF9_m2uN/",
+            "problem": "duplicate",
+            "explanation": "The Instagram post is referenced multiple times in the article."
+          }
+        ],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects Diljit Dosanjh's achievement to the NRI community, highlighting its significance for Punjabi diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [
+          "https://www.instagram.com/p/DZxSF9_m2uN/"
+        ],
+        "suggestions": [
+          "Remove the duplicate reference to the Instagram post to streamline the article.",
+          "Consider adding a quote from a diaspora member or community leader to enhance the connection."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "43279770-e4ad-4d8f-823a-d01142e9e736",
+      "headline": "Razorpay Just Filed Quietly for Its IPO. India's Payment Giants Are Lining Up to Cash Out \u2014 and NRIs Want In.",
+      "slug": "razorpay-confidential-ipo-sebi-india-fintech-upi-nri-investors-20260619",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -64,14 +113,95 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article connects the reopening of the Strait of Hormuz to the diaspora's economic interests, but could elaborate more on personal impacts."
+          "quality": 8,
+          "note": "The article effectively addresses the interests and concerns of NRIs regarding investing in Indian IPOs, making it relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Expand on the personal implications for the diaspora regarding oil prices and trade.",
-          "Include quotes or perspectives from diaspora members to enhance relatability."
+          "Consider adding more specific examples of how NRIs can navigate the investment process to enhance practical value.",
+          "Include quotes or insights from industry experts to provide additional credibility and depth."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "ffab2030-b11d-458a-a7e3-566aeed0b7cf",
+      "headline": "Adobe Is Giving Its AI Away for Free. Shantanu Narayen Is Betting the Crowd Comes Back to Pay.",
+      "slug": "adobe-q2-fy26-shantanu-narayen-freemium-firefly-ai-nri-investors-20260619",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects Adobe's strategies and leadership to the Indian diaspora, particularly highlighting Shantanu Narayen's background and the company's impact on Indian engineers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more direct quotes from Shantanu Narayen to enhance the article's authority.",
+          "Include a brief overview of Adobe's competitors in the AI space to provide context for the freemium strategy."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "cfbf9dd4-09ae-4588-8f02-140d00f13172",
+      "headline": "The Men Who Run Microsoft and Google Just Bought a Piece of Lord's. The Buyer's List Reads Like an NRI Yearbook.",
+      "slug": "london-spirit-the-hundred-nikesh-arora-nadella-pichai-narayen-nri-20260619",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "aea2806f-7e95-4066-bc67-38d3bc376805",
+            "headline": "Nikesh Arora Just Closed His Third Big Deal in a Year. He's "
+          },
+          {
+            "article_id": "8aa4fd27-b618-460f-a6d7-ca8a0461c849",
+            "headline": "Nikesh Arora Spent $30 Billion Rebuilding Palo Alto Networks"
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image features Nikesh Arora, which is relevant to the article, but it could be more directly related to cricket or the London Spirit."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the diaspora's influence in technology and cricket ownership, making it relevant for NRI readers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including more images related to cricket or the London Spirit to enhance visual relevance.",
+          "Add quotes or reactions from the diaspora community regarding this investment to deepen the connection."
         ],
         "verdict": "pass"
       },
