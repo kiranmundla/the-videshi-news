@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-19T02:45:09.717386+00:00",
+  "timestamp": "2026-06-19T03:15:27.758787+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
-    "flag": 0,
+    "pass": 4,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,81 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "bb70692e-1f50-46a6-ba6b-db5ada3257af",
-      "headline": "California's Own Data Ranks Anti-Hindu Hate Second. A Diaspora Group Wants the State to Say So.",
-      "slug": "haf-california-state-of-hate-commission-anti-hindu-bias-23-percent-bay-area-temple-vandalism-20260619",
+      "id": "68ead2a9-e569-40cc-8ee6-e5fc33232b6f",
+      "headline": "Ramayana Is Heading to Hall H. India's $400 Million Epic Eyes a San Diego Comic-Con Trailer Drop in July.",
+      "slug": "ramayana-san-diego-comic-con-trailer-july-2026-ranbir-kapoor-sai-pallavi-yash-nitesh-tiwari-namit-malhotra-where-to-watch-diaspora-nri-20260618",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 2,
+          "issue": "irrelevant"
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses a significant Indian film project that may resonate with the diaspora, particularly in terms of cultural representation at a major global event."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the hero image with one that is more relevant to the Ramayana film or Comic-Con.",
+          "Expand on the diaspora angle by including quotes or perspectives from NRI audiences or filmmakers."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "6569141e-5551-4f77-9bb6-b558bd73810d",
+      "headline": "Kareena and Prithviraj, Both in Khaki, Finally Share a Frame. Meghna Gulzar's Daayra Locks Ganesh Chaturthi.",
+      "slug": "daayra-release-date-september-18-kareena-kapoor-prithviraj-sukumaran-meghna-gulzar-crime-thriller-song-less-where-to-watch-diaspora-nri-20260618",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the film's release timing with Ganesh Chaturthi, highlighting its significance for NRI audiences."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from the director or producers to enhance credibility.",
+          "Include more details about the film's plot or themes to engage readers further."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "d56811bf-0173-435f-87de-13558e2a574b",
+      "headline": "The Real AI War Isn't About Chatbots. It's About Who Owns the Data Underneath \u2014 and Indian Engineers Are Building Both Sides.",
+      "slug": "snowflake-databricks-system-of-intelligence-agentic-ai-data-platform-i-20260619",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -29,13 +101,85 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses anti-Hindu hate in California, which is relevant to the Indian diaspora, particularly those in the U.S."
+          "note": "The article effectively highlights the role of Indian engineers in the AI data landscape, making it relevant for the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes from community leaders or members to add a personal touch.",
-          "Provide more context on the implications of the data for the diaspora community."
+          "Consider adding more specific examples of Indian engineers or companies they work for to strengthen the diaspora connection.",
+          "Include quotes or insights from Indian engineers in the field to provide a personal touch and enhance relatability."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "872d9048-9320-43c9-bb50-3738c647dcea",
+      "headline": "ISRO Is Betting Its Reputation on One Rocket Launch in Early July. After Two Failures, the Diaspora Is Watching Its Money Too.",
+      "slug": "isro-pslv-comeback-launch-skyroot-private-space-nri-investors-20260619",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the ISRO launch to the interests of the diaspora, discussing both emotional and financial implications."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of diaspora investments in Indian space startups to enhance the connection.",
+          "Include quotes or insights from diaspora investors to provide a personal touch and strengthen the narrative."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "758b2ec3-7274-4818-b8d2-592e82c8cfd9",
+      "headline": "Cognizant Just Wired ServiceNow's AI Agents Into Its Own. The Company That Sells Indian Labor Is Selling Orchestration Now.",
+      "slug": "cognizant-servicenow-ai-agents-neuro-orchestration-it-jobs-diaspora-20260619",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the changes at Cognizant to the career implications for Indian engineers, making it relevant for the diaspora audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from industry experts or engineers to provide more personal insights.",
+          "Include a brief overview of how other companies are adapting to similar changes in AI to provide context."
         ],
         "verdict": "pass"
       },
