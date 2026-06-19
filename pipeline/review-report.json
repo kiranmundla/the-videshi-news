@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-19T07:15:22.190644+00:00",
+  "timestamp": "2026-06-19T07:45:10.079775+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 1,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "0394b743-8be9-4e35-bf49-a9a5e033d905",
-      "headline": "Baahubali Is Going to Annecy. India's $400 Crore Animated Gamble Just Crashed the Cannes of Cartoons.",
-      "slug": "baahubali-eternal-war-annecy-festival-work-in-progress-sold-out-rajamouli-prabhas-ishan-shukla-animated-2027-where-to-watch-diaspora-nri-20260619",
+      "id": "40400938-8345-4894-a3cb-02b3cf69123b",
+      "headline": "Nine Games, Zero Wins \u2014 Then They Beat the World Champions. India's Hockey Team Just Ended Its Misery in Rotterdam.",
+      "slug": "india-men-hockey-beat-world-champions-germany-3-1-fih-pro-league-2025-26-rotterdam-end-nine-match-winless-run-manpreet-singh-most-capped-nri",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -23,55 +23,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image features S. S. Rajamouli, which is relevant to the article, but it does not directly depict the animated film or its themes."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the film's international aspirations and the pride it brings to the Indian diaspora, highlighting its potential impact in global markets."
+          "note": "The article connects well with the diaspora by referencing India's historical achievements in hockey and the emotional significance of the sport."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider including more visuals or links related to the animated film itself to enhance reader engagement.",
-          "Add quotes or reactions from diaspora audiences or industry experts to strengthen the diaspora angle."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "ae3ebe0d-1bca-46be-99c5-35b9fdf8af33",
-      "headline": "Shraddha Kapoor Disappears Into a Tamasha Legend. The Eetha Teaser Is the Boldest She Has Ever Been.",
-      "slug": "eetha-teaser-shraddha-kapoor-vithabai-narayangaonkar-tamasha-laxman-utekar-cocktail-2-august-28-where-to-watch-diaspora-nri-20260619",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 6,
-          "issue": "The image does not directly relate to the film *Eetha* or the article's focus on Shraddha Kapoor's transformation for this specific role."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the film's release to NRI audiences, discussing its potential overseas theatrical rollout and relevance during festival weekends."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant hero image that reflects the theme of *Eetha* and Shraddha Kapoor's role.",
-          "Add more context about the significance of the Tamasha art form for readers who may not be familiar with it."
+          "Consider adding quotes from players or coaches to enhance the narrative.",
+          "Include more context about the significance of the win for the team's future prospects."
         ],
         "verdict": "pass"
       },
