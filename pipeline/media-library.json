@@ -1,6 +1,6 @@
 {
  "_description": "Media library mirror — high-quality, attribution-clean images+videos for article/reel fallback. Source of truth is the Supabase media_library table; this mirror lets the pipeline read without a DB round-trip.",
- "_updated": "2026-06-19T11:57:10Z",
+ "_updated": "2026-06-19T12:01:38Z",
  "assets": [
   {
    "id": "person--narendra-modi--bfe42b",
@@ -133,28 +133,6 @@
    "added_date": "2026-06-19T05:36:57Z",
    "last_used": null,
    "times_used": 0
-  },
-  {
-   "id": "concept--indian-rupee--ad2e36",
-   "media_type": "image",
-   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/concept/indian-rupee-ad2e36.jpg",
-   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/concept/indian-rupee-ad2e36.jpg",
-   "subject": "Indian rupee",
-   "subject_type": "concept",
-   "caption": "2018 (₹1) Indian 1 Rupee Note in Jamshedpur, Jharkhand. The Indian 1-rupee note (₹1) (₹1 = 100 paise) is the smallest Indian banknote in circulation and the only one being issued by the Government of India, as all other banknotes in circulation are issued by the Reserve Bank of I",
-   "attribution": "Wikimedia Commons / Ank Kumar, CC BY-SA 4.0",
-   "license": "CC BY-SA 4.0",
-   "source_url": "https://commons.wikimedia.org/wiki/File:2018_(₹1)_Indian_1_Rupee_Note,_Jamshedpur,_Jharkhand_(_Ank_Kumar,_Infosys_Limited_)_01.jpg",
-   "tags": [
-    "indian rupee"
-   ],
-   "width": 2347,
-   "height": 1501,
-   "duration": null,
-   "quality_score": 66.4,
-   "added_date": "2026-06-19T05:24:00Z",
-   "last_used": "2026-06-19T06:16:34Z",
-   "times_used": 1
   },
   {
    "id": "place--india--2472b4",
@@ -351,28 +329,6 @@
    "duration": null,
    "quality_score": 92.0,
    "added_date": "2026-06-19T10:31:53Z",
-   "last_used": null,
-   "times_used": 0
-  },
-  {
-   "id": "place--london--bcf81f",
-   "media_type": "image",
-   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/place/london-bcf81f.jpg",
-   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/place/london-bcf81f.jpg",
-   "subject": "London",
-   "subject_type": "place",
-   "caption": "HMS Belfast",
-   "attribution": "Wikimedia Commons / Dmitry A. Mottl, CC BY-SA 3.0",
-   "license": "CC BY-SA 3.0",
-   "source_url": "https://commons.wikimedia.org/wiki/File:HMS_Belfast_with_rainbow.jpg",
-   "tags": [
-    "london"
-   ],
-   "width": 3000,
-   "height": 2000,
-   "duration": null,
-   "quality_score": 76.5,
-   "added_date": "2026-06-19T10:31:59Z",
    "last_used": null,
    "times_used": 0
   },
@@ -617,6 +573,50 @@
    "added_date": "2026-06-19T10:30:25Z",
    "last_used": "2026-06-19T11:57:10Z",
    "times_used": 1
+  },
+  {
+   "id": "place--london--bcf81f",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/place/london-bcf81f.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/place/london-bcf81f.jpg",
+   "subject": "London",
+   "subject_type": "place",
+   "caption": "HMS Belfast",
+   "attribution": "Wikimedia Commons / Dmitry A. Mottl, CC BY-SA 3.0",
+   "license": "CC BY-SA 3.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:HMS_Belfast_with_rainbow.jpg",
+   "tags": [
+    "london"
+   ],
+   "width": 3000,
+   "height": 2000,
+   "duration": null,
+   "quality_score": 76.5,
+   "added_date": "2026-06-19T10:31:59Z",
+   "last_used": "2026-06-19T12:01:37Z",
+   "times_used": 1
+  },
+  {
+   "id": "concept--indian-rupee--ad2e36",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/concept/indian-rupee-ad2e36.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/concept/indian-rupee-ad2e36.jpg",
+   "subject": "Indian rupee",
+   "subject_type": "concept",
+   "caption": "2018 (₹1) Indian 1 Rupee Note in Jamshedpur, Jharkhand. The Indian 1-rupee note (₹1) (₹1 = 100 paise) is the smallest Indian banknote in circulation and the only one being issued by the Government of India, as all other banknotes in circulation are issued by the Reserve Bank of I",
+   "attribution": "Wikimedia Commons / Ank Kumar, CC BY-SA 4.0",
+   "license": "CC BY-SA 4.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:2018_(₹1)_Indian_1_Rupee_Note,_Jamshedpur,_Jharkhand_(_Ank_Kumar,_Infosys_Limited_)_01.jpg",
+   "tags": [
+    "indian rupee"
+   ],
+   "width": 2347,
+   "height": 1501,
+   "duration": null,
+   "quality_score": 66.4,
+   "added_date": "2026-06-19T05:24:00Z",
+   "last_used": "2026-06-19T12:01:38Z",
+   "times_used": 2
   }
  ]
 }
