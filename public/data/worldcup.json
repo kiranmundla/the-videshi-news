@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-06-18T23:58:59Z",
-  "stage": "Group Stage — 27 of 72 matches played",
+  "last_updated": "2026-06-19T03:57:46Z",
+  "stage": "Group Stage — 28 of 72 matches played",
   "hosts": "USA, Mexico & Canada",
   "dates": {
     "start": "2026-06-11",
@@ -22,25 +22,25 @@
         "code": "MEX",
         "flag": "🇲🇽",
         "rank": 14,
-        "p": 1,
-        "w": 1,
+        "p": 2,
+        "w": 2,
         "d": 0,
         "l": 0,
-        "gf": 2,
+        "gf": 3,
         "ga": 0,
-        "pts": 3
+        "pts": 6
       },
       {
         "name": "South Korea",
         "code": "KOR",
         "flag": "🇰🇷",
         "rank": 25,
-        "p": 1,
+        "p": 2,
         "w": 1,
         "d": 0,
-        "l": 0,
+        "l": 1,
         "gf": 2,
-        "ga": 1,
+        "ga": 2,
         "pts": 3
       },
       {
@@ -1088,8 +1088,8 @@
       "away": "South Korea",
       "venue": "Estadio Guadalajara",
       "city": "Guadalajara",
-      "status": "scheduled",
-      "score": null,
+      "status": "FT",
+      "score": "1-0",
       "home_code": "MEX",
       "away_code": "KOR"
     },
