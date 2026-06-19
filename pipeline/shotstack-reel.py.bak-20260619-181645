@@ -1658,7 +1658,7 @@ def render_keypoint_card(scene, category, article, idx, out_dir="/tmp/videshi_ca
 # through to the existing sourcing chain — it never breaks reel generation.
 
 SOCIAL_CARD_ENABLED = os.environ.get("VIDESHI_SOCIAL_CARD", "1") != "0"
-SOCIAL_CARD_LOOKBACK_HOURS = int(os.environ.get("VIDESHI_SOCIAL_CARD_HOURS", "720"))  # 30 days
+SOCIAL_CARD_LOOKBACK_HOURS = int(os.environ.get("VIDESHI_SOCIAL_CARD_HOURS", "168"))  # 7 days
 SOCIAL_CARD_MAX_HANDLES = int(os.environ.get("VIDESHI_SOCIAL_CARD_MAX_HANDLES", "3"))  # read/scrape spend cap per article
 # Per-platform fallback toggles. X is the reliable primary; Threads + Instagram
 # are best-effort scrapers tried only when X yields nothing for a matched entry.
@@ -2386,17 +2386,6 @@ def source_storyboard_images(article, storyboard, count=8):
     if hero and any(_hero_host == h or _hero_host.endswith("." + h) for h in _UNVETTED_HERO_HOSTS):
         print(f"  🚫 Skipping unvetted hero host '{_hero_host}' for hook (meme-risk) — scene 1 will source topical B-roll instead")
         hero = ""
-    if hero and is_url_downloadable(hero) and hero not in used_in_this_reel:
-        # Resolution guard for the HOOK frame. The hook fills 1080x1920 with
-        # fit=cover, and QA samples the poster at 1.5s — a sub-1080px hero gets
-        # upscaled and reads as "pixelated/blurry at 1.5s" (the #1 recurring QA
-        # failure). If the hero's shortest side is under MIN_IMAGE_DIM, drop it
-        # from the hook and let scene 1 fall through to entity/Commons/Pexels
-        # imagery (or the key-point-card floor), all of which are full-res.
-        _hero_dims = check_image_resolution(hero)
-        if _hero_dims and min(_hero_dims) < MIN_IMAGE_DIM:
-            print(f"  🚫 Hero too small for hook ({_hero_dims[0]}x{_hero_dims[1]} < {MIN_IMAGE_DIM}px) — sourcing a crisp scene-1 visual instead")
-            hero = ""
     if hero and is_url_downloadable(hero) and hero not in used_in_this_reel:
         hero = mirror_to_supabase(hero, article_id, 0)
         matched_urls[0] = hero
@@ -3325,21 +3314,14 @@ def build_anchor_reel_timeline(
             "filter": "darken",
         })
     else:
-        # STATIC hook (no zoomIn). The QA gate samples the poster frame at exactly
-        # 1.5s and repeatedly flagged "pixelated/blurry at 1.5s" — the #1 recurring
-        # failure. `zoomIn` magnifies the hero ~5-10% past native scale by 1.5s, so
-        # any hero that isn't comfortably above 1080px gets visibly upscaled right
-        # where the reviewer looks. Rendering the hook background STATIC keeps it at
-        # the sharpest possible cover scale. The hook HTML overlay still has its own
-        # zoom/settle animation, so the hook doesn't read as frozen.
         broll_clips.append({
             "asset": {"type": "image", "src": hook_url},
             "start": 0,
             "length": hook_duration,
             "fit": "cover",
+            "effect": "zoomIn",
             "filter": "darken",
         })
-
 
     # B-roll during voiceover — distribute media evenly
     per_image = total_voice_duration / n_images
