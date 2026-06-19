@@ -288,6 +288,33 @@ def compress_image(img_bytes, max_width=1200, quality=80):
 
 Upload to Supabase bucket `article-images` with filename `{slug}.jpg` (or `{article_id}.jpg`).
 
+**⚠️ CRITICAL — copy this upload function EXACTLY. Do NOT hand-roll your own.**
+The service key is the new `sb_secret_` format. Supabase Storage will reject the upload with `403 "Invalid Compact JWS"` if you send only `Authorization: Bearer` — you MUST also send the `apikey` header. (This bug has silently broken image uploads multiple times; every article then falls back to fragile external URLs.)
+
+```python
+import os, requests
+
+def upload_image_to_supabase(jpeg_bytes, filename):
+    """Upload compressed JPEG bytes to the article-images bucket. Returns public URL or None."""
+    base = os.environ["SUPABASE_URL"]
+    key  = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
+    r = requests.post(
+        f"{base}/storage/v1/object/article-images/{filename}",
+        headers={
+            "apikey": key,                       # ← REQUIRED. Omitting this = 403 Invalid Compact JWS
+            "Authorization": f"Bearer {key}",
+            "Content-Type": "image/jpeg",
+            "x-upsert": "true",                  # overwrite if the filename already exists
+        },
+        data=jpeg_bytes,
+        timeout=60,
+    )
+    if r.status_code not in (200, 201):
+        print(f"    ⚠ Supabase upload failed {r.status_code}: {r.text[:200]}")
+        return None
+    return f"{base}/storage/v1/object/public/article-images/{filename}"
+```
+
 ## Skip list
 Check `pipeline/image-skip-list.json` before sourcing. Articles in this list had images manually removed — don't re-source them.
 
