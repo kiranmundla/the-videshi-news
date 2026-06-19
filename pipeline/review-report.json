@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-19T02:15:31.270295+00:00",
+  "timestamp": "2026-06-19T02:45:09.717386+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 6,
+    "pass": 1,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "735ab1c5-f47c-401c-95c2-015ff88c59cc",
-      "headline": "The World's Biggest Investors Are Pouring Billions Into India's Data Centres \u2014 the Quiet Backbone of the AI Boom",
-      "slug": "india-data-centre-ai-boom-foreign-investment-cpp-ctrls-jabil-adani-nri-investor-20260619",
+      "id": "bb70692e-1f50-46a6-ba6b-db5ada3257af",
+      "headline": "California's Own Data Ranks Anti-Hindu Hate Second. A Diaspora Group Wants the State to Say So.",
+      "slug": "haf-california-state-of-hate-commission-anti-hindu-bias-23-percent-bay-area-temple-vandalism-20260619",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -29,193 +29,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article connects well with NRIs by highlighting the data-centre boom as part of India's growth story, appealing to those in tech and finance sectors."
+          "note": "The article discusses anti-Hindu hate in California, which is relevant to the Indian diaspora, particularly those in the U.S."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more specific examples of how NRIs can invest in or benefit from the data-centre boom.",
-          "Include quotes or insights from industry experts to enhance credibility and depth."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "a01ae12b-2d8c-4180-9e9c-0e98bddf894f",
-      "headline": "A Common Vitamin B3 Supplement Helped Older Adults With Clogged Leg Arteries Walk Farther, a New Trial Finds",
-      "slug": "nicotinamide-riboside-vitamin-b3-nad-peripheral-artery-disease-walking-trial-diaspora-20260619",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the findings of the study to the health challenges faced by the South Asian diaspora, making it relevant to NRI readers."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more specific statistics or studies related to PAD in the South Asian population to strengthen the diaspora angle.",
-          "Include quotes from experts or testimonials from participants to add a personal touch and enhance engagement."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "fd661199-4116-4563-8d80-5a9b592624cc",
-      "headline": "A High-Dose Omega-3 Pill Was Supposed to Sharpen Aging Brains. A Two-Year Trial Found It Did Nothing.",
-      "slug": "omega-3-dha-supplement-no-cognition-memory-benefit-lancet-ebiomedicine-trial-diaspora-20260619",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the findings of the study to the Indian-American community's reliance on omega-3 supplements for health."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more specific statistics or data from the trial to enhance credibility.",
-          "Include quotes from additional experts or researchers to provide a broader perspective on the implications of the study."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "dc3cfcfe-798a-45f9-bd43-2e0b45a0a9e7",
-      "headline": "India's Monsoon Is Lighter This Year \u2014 and That Quietly Makes It the Best Summer to Visit in a Decade",
-      "slug": "india-monsoon-2026-below-normal-travel-coorg-ladakh-meghalaya-nri-summ-20260619",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the lighter monsoon to the travel plans of diaspora families, making it relevant and appealing."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more specific examples of family-friendly activities during the monsoon season to enhance engagement.",
-          "Include tips on how to prepare for a monsoon trip, such as packing suggestions or travel insurance advice."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "e3cd546e-2e77-4fbb-8213-84775beb13cf",
-      "headline": "IndiGo Is About to Make the Bali Run Nonstop \u2014 and the A321XLR Is the Reason",
-      "slug": "indigo-a321xlr-bali-denpasar-nonstop-direct-nri-southeast-asia-20260619",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the Bali route to the needs of NRIs traveling to India, highlighting the convenience and cost benefits."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a quote from an IndiGo representative or an aviation expert to enhance credibility.",
-          "Include more statistics or data on the growth of Indian travelers to Bali to strengthen the argument."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "8d1b12e4-60e3-456d-8f40-dbf170910325",
-      "headline": "Lufthansa Is Betting Its 100th Year on India \u2014 and a First-Ever Zurich Flight Into the South",
-      "slug": "lufthansa-swiss-bengaluru-zurich-allegris-india-winter-expansion-nri-20260619",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not specifically depict Lufthansa or any related aviation theme, but it is a general travel-related image."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects Lufthansa's new routes and services to the needs of the Indian diaspora, particularly in terms of travel convenience and connections."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that features Lufthansa or its aircraft to enhance visual connection to the article's subject.",
-          "Add a brief section on how these changes might impact ticket prices or competition with other airlines for a more comprehensive analysis."
+          "Include quotes from community leaders or members to add a personal touch.",
+          "Provide more context on the implications of the data for the diaspora community."
         ],
         "verdict": "pass"
       },
