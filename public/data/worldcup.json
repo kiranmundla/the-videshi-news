@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-06-19T13:58:38Z",
-  "stage": "Group Stage — 28 of 72 matches played",
+  "last_updated": "2026-06-19T21:57:43Z",
+  "stage": "Group Stage — 29 of 72 matches played",
   "hosts": "USA, Mexico & Canada",
   "dates": {
     "start": "2026-06-11",
@@ -184,25 +184,25 @@
         "code": "USA",
         "flag": "🇺🇸",
         "rank": 17,
-        "p": 1,
-        "w": 1,
+        "p": 2,
+        "w": 2,
         "d": 0,
         "l": 0,
-        "gf": 4,
+        "gf": 6,
         "ga": 1,
-        "pts": 3
+        "pts": 6
       },
       {
         "name": "Australia",
         "code": "AUS",
         "flag": "🇦🇺",
         "rank": 27,
-        "p": 1,
+        "p": 2,
         "w": 1,
         "d": 0,
-        "l": 0,
+        "l": 1,
         "gf": 2,
-        "ga": 0,
+        "ga": 2,
         "pts": 3
       },
       {
@@ -1103,8 +1103,8 @@
       "away": "Australia",
       "venue": "Lumen Field",
       "city": "Seattle",
-      "status": "scheduled",
-      "score": null,
+      "status": "FT",
+      "score": "2-0",
       "home_code": "USA",
       "away_code": "AUS"
     },
