@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-19T20:45:18.589020+00:00",
+  "timestamp": "2026-06-19T21:15:32.872050+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
+    "pass": 5,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,50 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "2a368839-dc35-4282-a7ff-1e8c98611118",
-      "headline": "India's Banks Want to Lend Dollars Out of GIFT City. The Target: $55 Billion in Diaspora Money.",
-      "slug": "gift-city-banks-dollar-lending-fcnr-swap-scheme-diaspora-dollars-rbi-rupee-20260619",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "09b1269e-e860-4fb6-9772-dd2bfdf0c1b5",
-            "headline": "India's Biggest Brokerages Just Got Cleared to Sell You Appl"
-          }
-        ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 6,
-          "issue": "The image of a building in GIFT City is relevant, but it does not directly illustrate the financial aspect or the concept of lending dollars."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the financial strategies of Indian banks with the interests of the diaspora, highlighting the potential benefits for NRIs."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that visually represents the concept of diaspora investment or financial transactions to enhance relevance.",
-          "Add a brief section summarizing the implications for NRIs, making it clearer how these developments directly affect them."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "fe2b2043-7cf0-445e-91d8-2ce125b62168",
-      "headline": "Reliance Just Filed for the Jio IPO. It Could Be the Biggest Stock Debut in India's History.",
-      "slug": "reliance-jio-platforms-ipo-drhp-filed-sebi-largest-india-listing-ambani-agm-20260619",
+      "id": "95c95c05-93ab-45c5-ab20-73e1f36d6b23",
+      "headline": "Jim Sarbh Shaved His Head for Real and Made a Show Without a Single Curse Word. India Might Send It to the Emmys.",
+      "slug": "made-in-india-titan-story-jim-sarbh-emmy-naseeruddin-shah-amazon-mx-player-prabhleen-sandhu-detox-show-where-to-watch-diaspora-nri-20260619",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -65,18 +24,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image of Mukesh Ambani is relevant to the article's topic about the Jio IPO, but it could be more directly related to the IPO announcement itself."
+          "issue": "The image does not feature Jim Sarbh, who is the main subject of the article."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the Jio IPO to the interests of the global Indian diaspora, highlighting their desire for investment opportunities in India's digital growth."
+          "note": "The article connects well with the diaspora audience by discussing the show's accessibility and cultural significance."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more direct quotes from Mukesh Ambani regarding the IPO to enhance the article's depth.",
-          "Include a brief overview of how the Jio IPO could impact the Indian economy and diaspora investments."
+          "Replace the hero image with one featuring Jim Sarbh to better match the article's focus.",
+          "Expand on the diaspora angle by including more details on how NRIs can access the show."
         ],
         "verdict": "pass"
       },
@@ -88,12 +47,17 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "271cf8d4-2e69-4de0-8064-8dabee568cd3",
-      "headline": "Indian IT Stocks Just Crashed to a Three-Year Low. One Warning From Accenture Did It.",
-      "slug": "indian-it-stocks-crash-accenture-weak-outlook-nifty-it-three-year-low-tcs-infosys-20260619",
+      "id": "5e20b874-adfc-4e1e-b084-e19e83b8f484",
+      "headline": "Salman Khan Wants a Turquoise Bracelet Banned From the Movies. The Delhi High Court Just Told Him to Wait.",
+      "slug": "kala-hiran-salman-khan-delhi-high-court-injunction-deferred-july-1-bharat-shrinate-amit-jani-bracelet-personality-rights-where-to-watch-diaspora-nri-20260619",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "6a0623b0-e2b4-45de-9610-a6b75659f822",
+            "headline": "Salman Khan and Farhan Akhtar Are Quietly Plotting a Two-Par"
+          }
+        ],
         "broken_embeds": []
       },
       "llm_review": {
@@ -106,13 +70,130 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the impact of the IT sector's downturn to the Indian diaspora, highlighting its significance for families and employment opportunities abroad."
+          "note": "The article connects well with the diaspora by discussing the implications of celebrity culture and legal battles that resonate with NRI audiences."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more specific examples of how the downturn in the IT sector could directly affect the diaspora, such as potential job losses or changes in visa policies.",
-          "Include quotes or insights from diaspora members or experts to enhance the personal connection and relevance to the audience."
+          "Consider adding more context about the significance of the turquoise bracelet in Indian culture to enhance reader engagement.",
+          "Include quotes or reactions from diaspora communities regarding the legal battle to strengthen the connection with NRI readers."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "a7a08033-a0bd-41d1-bcc2-c3a226bef789",
+      "headline": "Satya Nadella Warned Against AI Monopolies. Days Later He Started Charging by the Task.",
+      "slug": "satya-nadella-microsoft-copilot-cowork-usage-pricing-ai-agents-diaspor-20260619",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "ea9e320d-41b8-44e5-8469-f39bafe1e072",
+            "headline": "Satya Nadella Has a New Word for the AI Age: 'Token Capital."
+          },
+          {
+            "article_id": "62f221bb-e11a-4fe2-8f09-97f0f36510f4",
+            "headline": "Microsoft Just Shipped an AI That Finishes Your Work, Not Dr"
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the implications of AI developments at Microsoft to the Indian diaspora, particularly Indian professionals in tech."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of how Indian professionals are adapting to these changes in the tech landscape.",
+          "Include quotes or insights from Indian professionals in the industry to enhance the diaspora perspective."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "10baafa5-eacf-4214-8e60-a13279cd89d6",
+      "headline": "Nvidia's Biggest Threat Isn't a Rival. It's the Customers Now Selling Their Own Chips.",
+      "slug": "amazon-trainium-google-tpu-nvidia-ai-chip-war-indian-engineers-nri-20260619",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the specific topic of Nvidia or chip manufacturing."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively highlights the role of Indian engineers and investors in the tech industry, making it relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that depicts Nvidia or chip manufacturing to enhance visual alignment with the article's content.",
+          "Add more specific examples of how the diaspora is influencing the chip industry to strengthen the connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "0bf912d7-0a6f-407e-a678-7ddf4729b0a7",
+      "headline": "Google Put Gemini in a $99 Speaker. The Real Target Is the Phone in Every Indian Pocket.",
+      "slug": "google-gemini-home-speaker-android-17-sundar-pichai-india-nri-20260619",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image of Sundar Pichai is relevant as he is a key figure in the article, but it does not directly relate to the Google Home Speaker."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the developments in AI and technology to the Indian American experience, highlighting the significance of Indian-origin executives and the impact on NRIs."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including a more direct image related to the Google Home Speaker to enhance visual relevance.",
+          "Add a brief section summarizing the implications of these technological advancements specifically for NRIs."
         ],
         "verdict": "pass"
       },
