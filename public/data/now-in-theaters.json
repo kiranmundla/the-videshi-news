@@ -1,8 +1,51 @@
 {
-  "generated_at": "2026-06-12T13:00:00Z",
-  "week_of": "Jun 12 – Jun 18, 2026",
-  "editorial_intro": "Spielberg returns to alien territory with the acclaimed Disclosure Day, Imtiaz Ali pairs Diljit and A.R. Rahman for a sweeping Partition love story, and the year's two breakout horror hits — both directed by twentysomething YouTubers — are still packing seats.",
+  "generated_at": "2026-06-19T13:00:00Z",
+  "week_of": "Jun 19 – Jun 25, 2026",
+  "editorial_intro": "Pixar brings the toys back after a decade, Bollywood floods the box office with Cocktail 2's four-star opening, and Spielberg's Disclosure Day still rules the multiplex. Add a stone-cold critics' favorite in The Furious and you've got the most loaded weekend of the summer so far.",
   "movies": [
+    {
+      "title": "Toy Story 5",
+      "slug": "toy-story-5",
+      "genre": "Animation",
+      "year": 2026,
+      "poster_url": "https://upload.wikimedia.org/wikipedia/en/0/08/Toy_Story_5_poster.jpg",
+      "rating": "",
+      "rating_source": "",
+      "release_date": "2026-06-19",
+      "status": "now_playing",
+      "cast": [
+        "Tom Hanks",
+        "Tim Allen",
+        "Joan Cusack",
+        "Tony Hale"
+      ],
+      "director": "Andrew Stanton",
+      "why_watch": "Woody, Buzz, and the gang are back after more than a decade — and this time the enemy is a screen, not a villain. Pixar's most loaded nostalgia bomb of the year is tracking for one of the biggest animated openings ever. You'll cry harder than the kids.",
+      "is_indian": false,
+      "ticket_url": "https://www.google.com/search?q=Toy+Story+5+showtimes+near+me",
+      "language": "English"
+    },
+    {
+      "title": "Cocktail 2",
+      "slug": "cocktail-2",
+      "genre": "Romance",
+      "year": 2026,
+      "poster_url": "https://upload.wikimedia.org/wikipedia/en/2/23/Cocktail_2_poster.jpg",
+      "rating": "4/5 (Taran Adarsh)",
+      "rating_source": "critics",
+      "release_date": "2026-06-19",
+      "status": "now_playing",
+      "cast": [
+        "Shahid Kapoor",
+        "Kriti Sanon",
+        "Rashmika Mandanna"
+      ],
+      "director": "Homi Adajania",
+      "why_watch": "Fourteen years on, Homi Adajania revives Bollywood's defining urban rom-com — this time with Shahid, Kriti and Rashmika in a messy modern love triangle, and a Pritam soundtrack already on repeat. Critics are calling it a 'WINNER,' and it topped IMDb's most-anticipated list of the year. The diaspora date-night pick of the summer.",
+      "is_indian": true,
+      "ticket_url": "https://www.google.com/search?q=Cocktail+2+showtimes+near+me",
+      "language": "Hindi"
+    },
     {
       "title": "Disclosure Day",
       "slug": "disclosure-day",
@@ -12,7 +55,7 @@
       "rating": "89% RT",
       "rating_source": "Rotten Tomatoes",
       "release_date": "2026-06-12",
-      "status": "opening",
+      "status": "now_playing",
       "cast": [
         "Emily Blunt",
         "Josh O'Connor",
@@ -21,10 +64,29 @@
         "Eve Hewson"
       ],
       "director": "Steven Spielberg",
-      "why_watch": "Spielberg's fifth alien movie and first since War of the Worlds — a government-conspiracy thriller about disclosure that critics are calling his best sci-fi since Close Encounters. Emily Blunt is getting early Oscar buzz.",
+      "why_watch": "Spielberg's first alien movie since War of the Worlds is a government-conspiracy thriller critics are calling his best sci-fi since Close Encounters. It topped the box office on debut and Emily Blunt is already drawing Oscar buzz. Pure big-screen Spielberg.",
       "is_indian": false,
       "ticket_url": "https://www.google.com/search?q=Disclosure+Day+showtimes+near+me",
       "language": "English"
+    },
+    {
+      "title": "The Furious",
+      "slug": "the-furious",
+      "genre": "Action",
+      "year": 2026,
+      "poster_url": "https://upload.wikimedia.org/wikipedia/en/e/eb/The_Furious_poster.jpg",
+      "rating": "Critics' 'Best of the Year' action pick",
+      "rating_source": "critics",
+      "release_date": "2026-06-19",
+      "status": "now_playing",
+      "cast": [
+        "Tse Miu"
+      ],
+      "director": "Kenji Tanigaki",
+      "why_watch": "The action film that united critics and fans this year. Choreographer-turned-director Kenji Tanigaki delivers bone-crunching, wall-to-wall combat in the tradition of The Raid. Limited US screens, so hunt it down — it's destined to be a martial-arts cult classic.",
+      "is_indian": false,
+      "ticket_url": "https://www.google.com/search?q=The+Furious+2026+showtimes+near+me",
+      "language": "Cantonese"
     },
     {
       "title": "Main Vaapas Aaunga",
@@ -35,7 +97,7 @@
       "rating": "3.5/5 avg",
       "rating_source": "critics",
       "release_date": "2026-06-12",
-      "status": "opening",
+      "status": "now_playing",
       "cast": [
         "Diljit Dosanjh",
         "Vedang Raina",
@@ -43,29 +105,32 @@
         "Naseeruddin Shah"
       ],
       "director": "Imtiaz Ali",
-      "why_watch": "Imtiaz Ali + A.R. Rahman + Diljit + Naseeruddin Shah in a Partition-era love story spanning 78 years. Naseer's performance as a dementia-stricken patriarch is being called career-defining. Bring tissues.",
+      "why_watch": "Imtiaz Ali + A.R. Rahman + Diljit + Naseeruddin Shah in a Partition-era love story spanning 78 years. Naseer's turn as a dementia-stricken patriarch is being called career-defining. Bring tissues — this one lingers.",
       "is_indian": true,
       "ticket_url": "https://www.google.com/search?q=Main+Vaapas+Aaunga+showtimes+near+me",
       "language": "Hindi"
     },
     {
-      "title": "Obsession",
-      "slug": "obsession",
-      "genre": "Horror",
+      "title": "Scary Movie",
+      "slug": "scary-movie-6",
+      "genre": "Horror Comedy",
       "year": 2026,
-      "poster_url": "https://upload.wikimedia.org/wikipedia/en/0/05/Obsession_theatrical_poster.jpeg",
-      "rating": "$230M+ worldwide",
+      "poster_url": "https://upload.wikimedia.org/wikipedia/en/2/29/Movie_poster_for_%22Scary_Movie%22.jpg",
+      "rating": "$105M+ worldwide",
       "rating_source": "box_office",
-      "release_date": "2026-05-01",
+      "release_date": "2026-06-05",
       "status": "now_playing",
       "cast": [
-        "Michael Johnston",
-        "Inde Navarrette"
+        "Anna Faris",
+        "Regina Hall",
+        "Marlon Wayans",
+        "Shawn Wayans",
+        "Kenan Thompson"
       ],
-      "director": "Curry Barker",
-      "why_watch": "Made for under $1M, now past $230M worldwide. A deranged monkey's-paw horror with a star-making turn from Inde Navarrette. The year's biggest box-office Cinderella story is still holding strong in week five.",
+      "director": "Michael Tiddes",
+      "why_watch": "The Wayans brothers reunite the original cast for the first time since 2001 and shattered every franchise record with a $55M domestic opening. It's dumb, it's raunchy, audiences can't get enough. Leave your brain at the door.",
       "is_indian": false,
-      "ticket_url": "https://www.google.com/search?q=Obsession+2026+movie+showtimes+near+me",
+      "ticket_url": "https://www.google.com/search?q=Scary+Movie+2026+showtimes+near+me",
       "language": "English"
     },
     {
@@ -91,49 +156,45 @@
       "language": "English"
     },
     {
-      "title": "Scary Movie",
-      "slug": "scary-movie-6",
-      "genre": "Horror Comedy",
+      "title": "Obsession",
+      "slug": "obsession",
+      "genre": "Horror",
       "year": 2026,
-      "poster_url": "https://upload.wikimedia.org/wikipedia/en/2/29/Movie_poster_for_%22Scary_Movie%22.jpg",
-      "rating": "$105M+ worldwide opening",
+      "poster_url": "https://upload.wikimedia.org/wikipedia/en/0/05/Obsession_theatrical_poster.jpeg",
+      "rating": "$230M+ worldwide",
       "rating_source": "box_office",
-      "release_date": "2026-06-05",
+      "release_date": "2026-05-01",
       "status": "now_playing",
       "cast": [
-        "Anna Faris",
-        "Regina Hall",
-        "Marlon Wayans",
-        "Shawn Wayans",
-        "Kenan Thompson"
+        "Michael Johnston",
+        "Inde Navarrette"
       ],
-      "director": "Michael Tiddes",
-      "why_watch": "The Wayans brothers are back with the original cast for the first time since 2001. Shattered every franchise record with a $55M domestic opening. It's dumb, it's raunchy, and audiences are eating it up.",
+      "director": "Curry Barker",
+      "why_watch": "Made for under $1M, now past $230M worldwide. A deranged monkey's-paw horror with a star-making turn from Inde Navarrette. The year's biggest box-office Cinderella story is still packing seats.",
       "is_indian": false,
-      "ticket_url": "https://www.google.com/search?q=Scary+Movie+2026+showtimes+near+me",
+      "ticket_url": "https://www.google.com/search?q=Obsession+2026+movie+showtimes+near+me",
       "language": "English"
     },
     {
-      "title": "I Love Boosters",
-      "slug": "i-love-boosters",
-      "genre": "Crime Comedy",
+      "title": "Pressure",
+      "slug": "pressure",
+      "genre": "War Drama",
       "year": 2026,
-      "poster_url": "https://upload.wikimedia.org/wikipedia/en/2/2c/I_Love_Boosters_poster.jpg",
-      "rating": "8/10",
-      "rating_source": "critics",
-      "release_date": "2026-05-22",
+      "poster_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Pressure_exerted_by_collisions.svg/500px-Pressure_exerted_by_collisions.svg.png",
+      "rating": "86% RT",
+      "rating_source": "Rotten Tomatoes",
+      "release_date": "2026-05-29",
       "status": "now_playing",
       "cast": [
-        "Keke Palmer",
-        "Demi Moore",
-        "LaKeith Stanfield",
-        "Don Cheadle",
-        "Will Poulter"
+        "Brendan Fraser",
+        "Andrew Scott",
+        "Kerry Condon",
+        "Damian Lewis"
       ],
-      "director": "Boots Riley",
-      "why_watch": "Boots Riley's wildly creative takedown of fast fashion and capitalism. Absurdist, hilarious, and already a future cult classic. If Sorry to Bother You was a warm-up, this is the main event.",
+      "director": "Anthony Maras",
+      "why_watch": "A D-Day thriller where the battle is over weather forecasts, not beaches. Brendan Fraser as Eisenhower and Andrew Scott as the meteorologist who saved the invasion. CinemaScore: A. A quietly gripping watch.",
       "is_indian": false,
-      "ticket_url": "https://www.google.com/search?q=I+Love+Boosters+showtimes+near+me",
+      "ticket_url": "https://www.google.com/search?q=Pressure+2026+movie+showtimes+near+me",
       "language": "English"
     },
     {
@@ -159,68 +220,28 @@
       "language": "Hindi"
     },
     {
-      "title": "Pressure",
-      "slug": "pressure",
-      "genre": "War Drama",
+      "title": "Welcome To The Jungle",
+      "slug": "welcome-to-the-jungle",
+      "genre": "Comedy",
       "year": 2026,
-      "poster_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Pressure_exerted_by_collisions.svg/500px-Pressure_exerted_by_collisions.svg.png",
-      "rating": "86% RT",
-      "rating_source": "Rotten Tomatoes",
-      "release_date": "2026-05-29",
-      "status": "now_playing",
-      "cast": [
-        "Brendan Fraser",
-        "Andrew Scott",
-        "Kerry Condon",
-        "Damian Lewis"
-      ],
-      "director": "Anthony Maras",
-      "why_watch": "A D-Day thriller where the battle is over weather forecasts, not beaches. Brendan Fraser as Eisenhower and Andrew Scott as the meteorologist who saved the invasion. CinemaScore: A.",
-      "is_indian": false,
-      "ticket_url": "https://www.google.com/search?q=Pressure+2026+movie+showtimes+near+me",
-      "language": "English"
-    },
-    {
-      "title": "Masters of the Universe",
-      "slug": "masters-of-the-universe",
-      "genre": "Fantasy Action",
-      "year": 2026,
-      "poster_url": "https://upload.wikimedia.org/wikipedia/en/d/d2/Masters_of_the_Universe.png",
-      "rating": "66% RT / 88% audience",
-      "rating_source": "Rotten Tomatoes",
-      "release_date": "2026-06-05",
-      "status": "now_playing",
-      "cast": [
-        "Nicholas Galitzine",
-        "Jared Leto",
-        "Camila Mendes",
-        "Idris Elba"
-      ],
-      "director": "Travis Knight",
-      "why_watch": "A big, colorful, nostalgia-fueled ride that audiences love (88% audience score) even if the box office is soft. Jared Leto's Skeletor steals the show. If you grew up on He-Man, this is your movie.",
-      "is_indian": false,
-      "ticket_url": "https://www.google.com/search?q=Masters+of+the+Universe+2026+showtimes+near+me",
-      "language": "English"
-    },
-    {
-      "title": "Toy Story 5",
-      "slug": "toy-story-5",
-      "genre": "Animation",
-      "year": 2026,
-      "poster_url": "https://upload.wikimedia.org/wikipedia/en/0/08/Toy_Story_5_poster.jpg",
+      "poster_url": "https://upload.wikimedia.org/wikipedia/en/d/d6/Welcometothejungle.jpg",
       "rating": "",
       "rating_source": "",
-      "release_date": "2026-06-19",
+      "release_date": "2026-06-26",
       "status": "coming_soon",
       "cast": [
-        "Tom Hanks",
-        "Tim Allen"
+        "Akshay Kumar",
+        "Suniel Shetty",
+        "Arshad Warsi",
+        "Disha Patani",
+        "Jacqueline Fernandez",
+        "Paresh Rawal"
       ],
-      "director": "Andrew Stanton",
-      "why_watch": "Woody, Buzz, and the gang return after more than a decade. Projected for one of the biggest animated openings ever. Taking the kids? You'll cry harder than they will.",
-      "is_indian": false,
-      "ticket_url": "https://www.google.com/search?q=Toy+Story+5+showtimes+near+me",
-      "language": "English"
+      "director": "Ahmed Khan",
+      "why_watch": "The third Welcome film is a full-blown ensemble circus — 25-plus stars, Akshay Kumar back with Ahmed Khan after 19 years, and the kind of loud, all-out comedy that plays best in a packed diaspora theater. Switch your brain off and laugh.",
+      "is_indian": true,
+      "ticket_url": "https://www.google.com/search?q=Welcome+To+The+Jungle+2026+showtimes+near+me",
+      "language": "Hindi"
     },
     {
       "title": "Supergirl",
@@ -239,7 +260,7 @@
         "Eve Ridley"
       ],
       "director": "Craig Gillespie",
-      "why_watch": "The DC universe continues after Superman. Milly Alcock's hard-living, foul-mouthed Kara Zor-El goes up against Jason Momoa's intergalactic bounty hunter Lobo. Looks wilder and weirder than its predecessor.",
+      "why_watch": "The DC universe rolls on after Superman. Milly Alcock's hard-living, foul-mouthed Kara Zor-El squares off against Jason Momoa's intergalactic bounty hunter Lobo. Looks wilder and weirder than its predecessor.",
       "is_indian": false,
       "ticket_url": "https://www.google.com/search?q=Supergirl+2026+movie+showtimes+near+me",
       "language": "English"
