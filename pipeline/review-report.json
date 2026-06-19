@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-19T08:45:15.961471+00:00",
+  "timestamp": "2026-06-19T09:15:29.106303+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
-    "flag": 0,
+    "pass": 4,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,45 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "c87be984-88af-4b55-a9e0-71d691a8697d",
-      "headline": "India's Arms Factories Just Hit a Record, and the Private Sector Is Finally Getting a Real Cut",
-      "slug": "india-record-defence-production-178-lakh-crore-fy26-exports-aatmanirbhar-20260619",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article mentions the Indian diaspora's role in the defence-tech start-up ecosystem, connecting the topic to NRI readers."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more direct quotes from industry experts or stakeholders to enhance credibility.",
-          "Include a brief section on how these changes in India's defence production might impact global geopolitics."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "381718b1-ceca-4932-9a8d-c065d4c148dc",
-      "headline": "Mumbai Has 40 Days of Drinking Water Left, and the Monsoon Is Running on Empty",
-      "slug": "mumbai-water-crisis-delayed-monsoon-2026-reservoirs-40-days-supply-20260619",
+      "id": "229781b6-731d-44ae-808f-942bad87f390",
+      "headline": "Preity Zinta Just Got Permission to Take Google and Meta to Court Over AI Deepfakes. The Dimpled Smile Is Done Being Polite.",
+      "slug": "preity-zinta-bombay-high-court-sue-google-meta-ai-deepfake-personality-rights-copyright-clause-xii-where-to-watch-diaspora-nri-20260619",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -65,13 +29,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article connects the water crisis to the diaspora's concerns about family and economic impacts."
+          "note": "The article effectively connects the legal battle to the diaspora's consumption of AI-manipulated content, making it relevant for NRI readers."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Expand on the diaspora angle to include specific examples of how the water crisis affects NRIs.",
-          "Include quotes or perspectives from diaspora members to enhance relatability."
+          "Consider adding quotes from Preity Zinta or her legal team to provide more depth and personal insight into her motivations.",
+          "Include a brief explanation of what personality rights entail for readers who may not be familiar with the legal terminology."
         ],
         "verdict": "pass"
       },
@@ -83,9 +47,52 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "17288ebb-05e1-4222-b19e-d52a947a9af5",
-      "headline": "India Just Rewrote the Rulebook for 4.5 Million OCI Holders. The Fine Print Forces a Hard Choice on Dual-Passport Families.",
-      "slug": "india-oci-rules-overhaul-2026-digital-portal-passport-update-mandate-dual-citizenship-20260619",
+      "id": "f9485a57-e2b8-4cab-a94d-c743bf9358e5",
+      "headline": "Rajkummar Rao Gained 10 Kilos to Become the Man Who Sent Kasab to the Gallows. The Prahaar Teaser Is a Gut-Punch.",
+      "slug": "prahaar-teaser-rajkummar-rao-ujjwal-nikam-26-11-prosecutor-maddock-dinesh-vijan-avinash-arun-august-7-where-to-watch-diaspora-nri-20260619",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/DZrVek3tpNH/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not appear to be directly related to the film or its themes, making it irrelevant to the article."
+          }
+        ],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the film's themes to the shared trauma of the diaspora, making it relevant for NRI readers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the irrelevant Instagram embed with a more relevant social media post related to the film or its themes.",
+          "Consider adding a quote from Rajkummar Rao or Ujjwal Nikam to enhance the personal connection to the story."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/DZrVek3tpNH/",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "ca146adc-5997-46cc-ae4d-0ebf84d15dfd",
+      "headline": "Jensen Huang Says the AI Era's Top Customer Isn't Human. India's Coders Should Listen Closely.",
+      "slug": "nvidia-jensen-huang-computex-agentic-ai-vera-cpu-indian-engineers-it-j-20260619",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -101,13 +108,85 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively addresses the implications of the OCI rule changes for the Indian diaspora, highlighting both benefits and challenges."
+          "note": "The article effectively connects the implications of AI advancements to Indian engineers and NRIs, discussing both opportunities and challenges."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from immigration experts or affected families to provide personal perspectives.",
-          "Include a section on how these changes might impact future OCI applicants or those considering applying."
+          "Consider adding quotes or insights from Indian engineers to provide a more personal perspective.",
+          "Include more data or statistics on the impact of AI on the Indian tech job market to strengthen the argument."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "f5429f90-ba85-47a2-b69a-e49efe19e9f4",
+      "headline": "India's Deep-Tech Pitch Just Raised $254 Million \u2014 in France. For the Diaspora, It's an Invitation.",
+      "slug": "bharat-innovates-2026-deep-tech-funding-nice-nri-investors-space-semic-20260619",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the deep-tech developments in India to the interests and opportunities for the diaspora, making it relevant and engaging."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from diaspora investors or entrepreneurs to enhance the personal connection.",
+          "Include specific examples of how diaspora investors can engage with the new funding opportunities."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "901b9a70-0e82-4f56-84c0-5f9773fb887d",
+      "headline": "Ola Electric Was Supposed to Win India's EV Race. It Just Lost Half Its Market in a Year.",
+      "slug": "ola-electric-india-ev-two-wheeler-shakeout-tvs-ather-nri-investors-20260619",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image of a scooter aligns with the topic of electric scooters, but it does not specifically represent Ola Electric."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the topic to NRI investors and their interests in the Indian EV market."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including more specific data or quotes from industry experts to enhance credibility.",
+          "Add a concluding section that summarizes the implications for NRIs and potential future trends in the EV market."
         ],
         "verdict": "pass"
       },
