@@ -391,8 +391,7 @@ For each scene, provide:
       re-entering on H-1B unaffordable for most laid-off Indians"
     • "Every H-1B Holder Is At Risk" → "Lawyers warn the pay-to-stay scheme
       mirrors quiet pressure thousands of visa workers already face"
-- "media_plan": one of "social" | "generate" | "card" | "media_library":
-    • "social" — show a REAL social post (X or Threads) from a public figure /
+- "media_plan": one of "social" | "generate" | "card" | "media_library":    • "social" — show a REAL social post (X or Threads) from a public figure /
       official account central to THIS story, in a branded attributed frame. Only
       choose this when the beat is literally about what a specific named person or
       org SAID or POSTED, and that account is a well-known verified handle. Add a
@@ -426,11 +425,44 @@ EDITORIAL ILLUSTRATION brief, never a photo:
 - Do NOT specify colors, borders, or framing — a fixed house style is appended
   automatically. Just describe the SUBJECT and MOOD in 1-2 sentences.
 
+SOCIAL SEARCH (top-level "social_search") — you are also the SEARCH EDITOR. We
+will search X and Threads for REAL public posts (photos AND video clips) about
+THIS story to use as attributed footage in the reel. Because you understand the
+story and a keyword robot does not, YOU compose the search so we find the right
+posts and reject look-alikes. Provide:
+- "query": a single search string a journalist would type to find posts about
+  THIS specific event. X SEARCH SYNTAX: a SPACE means AND (do NOT write the word
+  "AND"), OR must be uppercase, wrap multi-word names/events in "quotes". AND the
+  core subject with the specific hook by placing them space-separated. Use
+  (a OR b OR c) for synonyms of the same event. Keep it tight — do NOT dump the
+  whole headline. Strip clever/figurative headline words (they are not what
+  people post).
+    • Good (NZ nonstop story): "Air India" ("New Zealand" OR Auckland) (nonstop OR direct OR flight)
+    • Good (Neeraj throw): "Neeraj Chopra" (Doha OR 85.69 OR javelin)
+    • BAD: "Air India" AND "Air New Zealand"  ← never write the word AND
+    • BAD: Citizenship Was Supposed to Be the Finish Line  (figurative, matches nothing real)
+- "must_include": 1-3 LOWERCASE anchor substrings. A real post is only accepted
+  if its text contains the central subject AND at least one of these anchors.
+  These are your guardrail against off-topic look-alikes — choose the words that
+  uniquely tie a post to THIS story (a surname, place, number, event name), never
+  generic words like "india" or "flight".
+    • NZ story → ["new zealand","auckland","nonstop"]
+    • Neeraj story → ["neeraj","javelin","doha"]
+- "people": full names of the 1-2 people/orgs central to the story (for timeline
+  lookups). [] if the story is not about specific named people.
+If the story is genuinely not postable on social (abstract explainer, no real
+event/person to find), set query to "" and we will skip social sourcing.
+
 Return JSON only:
 {{
   "script": "the spoken narration",
   "hook_line1": "BOLD HOOK LINE",
   "hook_line2": "CONTEXT LINE",
+  "social_search": {{
+    "query": "a tight X/Threads search string to find REAL public posts about THIS exact story",
+    "must_include": ["anchor1", "anchor2"],
+    "people": ["Full Name Of Central Figure"]
+  }},
   "storyboard": [
     {{
       "scene": 1,
@@ -1934,6 +1966,27 @@ SOCIAL_CARD_MAX_HANDLES = int(os.environ.get("VIDESHI_SOCIAL_CARD_MAX_HANDLES", 
 # reel builds identically). Set the env var to "0" to disable a platform.
 SOCIAL_CARD_THREADS_ENABLED = os.environ.get("VIDESHI_SOCIAL_CARD_THREADS", "1") != "0"
 SOCIAL_CARD_INSTAGRAM_ENABLED = os.environ.get("VIDESHI_SOCIAL_CARD_INSTAGRAM", "1") != "0"
+# Story-aware topic search (PASS 0 in match_social_card_post): search ALL of X by
+# the GPT-composed query, not just registered handles. Gated by strict
+# must-include anchors so it never drifts off-story. The reliable way to surface
+# journalist / sports-desk / official coverage the registry can't see.
+SOCIAL_CARD_TOPIC_SEARCH = os.environ.get("VIDESHI_SOCIAL_TOPIC_SEARCH", "1") != "0"
+SOCIAL_CARD_VERIFIED_ONLY = os.environ.get("VIDESHI_SOCIAL_VERIFIED_ONLY", "1") != "0"
+SOCIAL_CARD_MIN_LIKES = int(os.environ.get("VIDESHI_SOCIAL_MIN_LIKES", "50"))
+
+
+def _scrub_x_query(q):
+    """Normalize a GPT-authored query to valid X search syntax. GPT sometimes
+    writes the literal word 'AND' (X treats a bare space as AND and 'AND' as a
+    literal search token, which wrecks recall). Strip standalone 'AND', collapse
+    whitespace, and cap length. OR and quotes/parens are preserved."""
+    if not q:
+        return ""
+    q = re.sub(r"\bAND\b", " ", q)          # bare AND -> implicit space-AND
+    q = re.sub(r"\s+", " ", q).strip()
+    # X recent-search caps query length; keep it well under the limit.
+    return q[:480]
+
 
 _fetch_tweets_mod = None
 _social_scrapers_mod = None
@@ -2337,6 +2390,76 @@ def match_social_card_post(article, hours=None, max_handles=None):
         return None
     hours = hours or SOCIAL_CARD_LOOKBACK_HOURS
     max_handles = max_handles or SOCIAL_CARD_MAX_HANDLES
+
+    # ── PASS 0 — STORY-AWARE TOPIC SEARCH (X) ───────────────────────────────
+    # When GPT (the search editor) supplied a precise query + strict anchors,
+    # search ALL of X for posts about THIS story — not just registered handles —
+    # then keep only posts that clear a hard relevance gate (central subject AND
+    # an anchor term). This is what surfaces the journalist/sports-desk/fan
+    # coverage the registry can't see. Falls through to registry passes on any
+    # miss. Prefers video posts (playable clips), then high engagement.
+    try:
+        ss = article.get("_social_search") or {}
+        ss_query = _scrub_x_query(ss.get("query") or "")
+        must_include = [m.lower().strip() for m in (ss.get("must_include") or []) if m and m.strip()]
+        people = [p for p in (ss.get("people") or []) if p and p.strip()]
+        if ss_query and SOCIAL_CARD_TOPIC_SEARCH:
+            mod0 = _load_fetch_tweets_module()
+            posts = []
+            # X recent-search only spans the last 7 days — cap regardless of the
+            # 30-day social-card lookback used for registry timeline reads.
+            search_hours = min(hours, 160)
+            try:
+                posts = mod0.search_topic_posts(
+                    ss_query, hours=search_hours,
+                    verified_only=SOCIAL_CARD_VERIFIED_ONLY, min_likes=SOCIAL_CARD_MIN_LIKES) or []
+            except Exception as e:
+                print(f"  ⚠️ X topic search failed: {e}")
+                posts = []
+
+            def _gate_ok(text):
+                t = (text or "").lower()
+                if not t:
+                    return False
+                # central subject: any supplied person surname OR any anchor
+                subj_ok = True
+                if people:
+                    subj_ok = any(
+                        (pp.split()[-1].lower() in t) or (pp.lower() in t) for pp in people)
+                anchor_ok = (not must_include) or any(m in t for m in must_include)
+                return subj_ok and anchor_ok
+
+            gated = [p for p in posts if _gate_ok(p.get("text"))]
+            if gated:
+                # Rank: video first (playable clip), then impressions, then likes.
+                gated.sort(key=lambda p: (1 if p.get("video") else 0,
+                                          p.get("impressions", 0) or 0,
+                                          p.get("likes", 0) or 0), reverse=True)
+                top = gated[0]
+                photos = [p for p in (top.get("photos") or []) if p]
+                out = {
+                    "name": top.get("name") or (f"@{top.get('handle')}" if top.get("handle") else ""),
+                    "handle": top.get("handle", ""),
+                    "avatar": top.get("avatar", ""),
+                    "photo": photos[0] if photos else "",
+                    "photos": photos,
+                    "photo_count": len(photos),
+                    "text": top.get("text", ""),
+                    "url": top.get("url", ""),
+                    "platform": "x",
+                    "video": top.get("video"),      # {url,width,height,duration} or None
+                    "verified": top.get("verified", False),
+                }
+                kind = "🎥 video" if out.get("video") else "📸 photo"
+                print(f"  🔎 Topic-search HIT ({kind}) @{out['handle']} "
+                      f"({len(gated)} passed gate of {len(posts)} found) — story-aware")
+                return out
+            elif posts:
+                print(f"  🔎 Topic-search: {len(posts)} found, 0 passed strict gate — "
+                      f"falling through to registry")
+    except Exception as e:
+        print(f"  ⚠️ Topic-search pass errored (continuing): {e}")
+
     try:
         registry = _load_social_registry()
         if not registry:
@@ -5420,6 +5543,11 @@ def run_anchor_reel(article, dry_run=False, use_production=False, no_publish=Fal
     # 4. Source B-roll media (storyboard-driven or legacy fallback)
     print("\n🖼️ Step 4: Sourcing B-roll media...")
     storyboard = script_data.get("storyboard", [])
+    # Thread GPT's SEARCH-EDITOR terms (query/must_include/people) onto the article
+    # so the social matcher can topic-search X/Threads with story-aware precision
+    # instead of registry-only keyword matching.
+    if isinstance(script_data.get("social_search"), dict):
+        article["_social_search"] = script_data["social_search"]
     media_meta = {}
     REEL_CLEAN = os.environ.get("VIDESHI_REEL_CLEAN", "1") != "0"
     if storyboard and REEL_CLEAN:

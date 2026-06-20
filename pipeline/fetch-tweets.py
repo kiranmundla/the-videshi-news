@@ -122,7 +122,7 @@ def fetch_recent_tweets(handle, hours=48, max_results=10):
         "start_time": start_time,
         "tweet.fields": "created_at,attachments,text,public_metrics",
         "expansions": "attachments.media_keys",
-        "media.fields": "type,url,preview_image_url,width,height",
+        "media.fields": "type,url,preview_image_url,width,height,variants,duration_ms",
         "exclude": "retweets,replies",
     }
 
@@ -201,6 +201,146 @@ def best_photo_tweet(handle, hours=48, topic_keywords=None):
     # No photo tweets — return most-liked overall
     tweets.sort(key=lambda t: -t["likes"])
     return tweets[0] if tweets else None
+
+
+def search_topic_posts(query, hours=72, max_results=30, verified_only=True, min_likes=50):
+    """
+    Topic search across ALL of X (not a single timeline) via the recent-search
+    endpoint. Returns posts that have usable still media — either a photo OR a
+    video/GIF PREVIEW FRAME (so the strongest video clips become usable cards).
+
+    Filters to high-quality sources the way the "Top" tab does: verified authors
+    and/or a minimum like floor. Each result dict matches the shape the reel
+    pipeline expects from best_photo_tweet(), plus author identity fields:
+        {id, text, created_at, photos[], photo_count, has_video, url, likes,
+         retweets, impressions, name, handle, avatar, verified}
+    Never raises — returns [] on any error (incl. 402/no-credits).
+    """
+    try:
+        sess = get_oauth_session()
+    except Exception as e:
+        print(f"X search: auth failed: {e}", file=sys.stderr)
+        return []
+
+    start_time = (datetime.now(timezone.utc) - timedelta(hours=hours)).strftime("%Y-%m-%dT%H:%M:%SZ")
+    # Require media, drop retweets/replies, English. (is:verified is a premium
+    # operator on some tiers, so we filter verification client-side instead.)
+    full_query = f"({query}) has:media -is:retweet -is:reply lang:en"
+    params = {
+        "query": full_query,
+        "max_results": min(max(max_results, 10), 100),
+        "start_time": start_time,
+        "sort_order": "relevancy",
+        "tweet.fields": "created_at,public_metrics,attachments,author_id",
+        "expansions": "attachments.media_keys,author_id",
+        "media.fields": "type,url,preview_image_url,width,height,variants,duration_ms",
+        "user.fields": "name,username,profile_image_url,verified,verified_type,public_metrics",
+    }
+    try:
+        resp = sess.get("https://api.twitter.com/2/tweets/search/recent",
+                        params=params, timeout=25)
+    except Exception as e:
+        print(f"X search: request failed: {e}", file=sys.stderr)
+        return []
+
+    if resp.status_code != 200:
+        print(f"X search error {resp.status_code}: {resp.text[:200]}", file=sys.stderr)
+        return []
+
+    data = resp.json()
+    tweets_raw = data.get("data", [])
+    media_map = {m["media_key"]: m for m in data.get("includes", {}).get("media", [])}
+    users_map = {u["id"]: u for u in data.get("includes", {}).get("users", [])}
+
+    def _best_mp4(m):
+        """Pick the highest-bitrate mp4 variant; return (url, width, height, duration_s)."""
+        variants = [v for v in (m.get("variants") or []) if v.get("content_type") == "video/mp4" and v.get("url")]
+        if not variants:
+            return None
+        best = max(variants, key=lambda v: v.get("bit_rate", 0))
+        return {
+            "url": best["url"],
+            "width": m.get("width", 0),
+            "height": m.get("height", 0),
+            "duration": round((m.get("duration_ms", 0) or 0) / 1000.0, 1),
+        }
+
+    results = []
+    for t in tweets_raw:
+        media_keys = t.get("attachments", {}).get("media_keys", [])
+        photos, has_video, video = [], False, None
+        for mk in media_keys:
+            m = media_map.get(mk)
+            if not m:
+                continue
+            if m["type"] == "photo":
+                if m.get("url"):
+                    photos.append(m["url"])
+            elif m["type"] in ("video", "animated_gif"):
+                has_video = True
+                # Use the video's poster frame as a still fallback for the card.
+                if m.get("preview_image_url"):
+                    photos.append(m["preview_image_url"])
+                # Capture the playable MP4 (highest-bitrate variant). First video wins.
+                if video is None:
+                    video = _best_mp4(m)
+        if not photos and not video:
+            continue  # no usable media at all
+
+        author = users_map.get(t.get("author_id"), {})
+        is_verified = bool(author.get("verified")) or author.get("verified_type") in ("blue", "business", "government")
+        metrics = t.get("public_metrics", {})
+        likes = metrics.get("like_count", 0) or 0
+        followers = (author.get("public_metrics", {}) or {}).get("followers_count", 0) or 0
+
+        # Quality gate: keep verified authors, OR unverified only if they clear a
+        # higher engagement/reach bar (avoids surfacing random low-quality posts).
+        if verified_only and not is_verified:
+            if likes < max(min_likes * 10, 500) and followers < 50000:
+                continue
+        elif not is_verified and likes < min_likes:
+            continue
+
+        handle = author.get("username", "")
+        results.append({
+            "id": t["id"],
+            "text": t.get("text", ""),
+            "created_at": t.get("created_at", ""),
+            "photos": photos,
+            "photo_count": len(photos),
+            "has_video": has_video,
+            "video": video,  # {url,width,height,duration} of best playable mp4, or None
+            "url": f"https://x.com/{handle or 'i'}/status/{t['id']}",
+            "likes": likes,
+            "retweets": metrics.get("retweet_count", 0) or 0,
+            "impressions": metrics.get("impression_count", 0) or 0,
+            "name": author.get("name", "") or (f"@{handle}" if handle else ""),
+            "handle": handle,
+            "avatar": author.get("profile_image_url", "").replace("_normal", "_400x400"),
+            "verified": is_verified,
+            "followers": followers,
+        })
+    return results
+
+
+def best_topic_post(query, hours=72, topic_keywords=None, verified_only=True, min_likes=50):
+    """Run search_topic_posts and pick the single strongest post: prefer keyword
+    relevance, then verified, then engagement (impressions then likes). Returns
+    one post dict or None."""
+    posts = search_topic_posts(query, hours=hours, verified_only=verified_only, min_likes=min_likes)
+    if not posts:
+        return None
+    kws = [k.lower() for k in (topic_keywords or [])]
+
+    def score(p):
+        text_l = (p.get("text", "") or "").lower()
+        rel = sum(1 for kw in kws if kw in text_l)
+        return (rel, 1 if p.get("verified") else 0,
+                p.get("impressions", 0), p.get("likes", 0))
+
+    posts.sort(key=score, reverse=True)
+    return posts[0]
+
 
 
 # ─── CLI ───────────────────────────────────────────────────────────────────────
