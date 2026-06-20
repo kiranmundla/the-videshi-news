@@ -1,52 +1,447 @@
 {
-  "timestamp": "2026-06-20T05:15:09.784330+00:00",
+  "timestamp": "2026-06-20T06:15:57.489083+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
-    "flag": 0,
+    "pass": 11,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
-  "revisions": 0,
+  "revisions": 1,
   "unpublished": 0,
   "articles": [
     {
-      "id": "f16ea512-ebf9-4dfd-96af-5a1fa2fc0e68",
-      "headline": "Tiger, Janhvi and Lakshya Walk Into a Love Triangle Built on Bullets. Dharma's Lag Ja Gale Locks Summer 2027.",
-      "slug": "lag-ja-gale-tiger-shroff-janhvi-kapoor-lakshya-dharma-raj-mehta-revenge-action-love-triangle-may-14-2027-where-to-watch-diaspora-nri-20260620",
+      "id": "7b93f7c7-e058-4b5b-919a-8a800153dbdd",
+      "headline": "Jio Files for India's Biggest-Ever IPO \u2014 and for the First Time, the Diaspora Can Own a Piece of It",
+      "slug": "jio-platforms-files-record-ipo-3-8-billion-india-largest-ambani-drhp-nri-investor-20260620-0600",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [
-          {
-            "url": "https://youtube.com/watch?v=jS6V17IQv5M",
-            "problem": "irrelevant",
-            "explanation": "The YouTube embed is for the original 'Lag Ja Gale' song by Lata Mangeshkar. While the article mentions the song, the film is a 'revenge-action love story' and the embed does not represent the new film's tone or content. It could be misleading."
-          }
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects Jio's ubiquity in India to NRI daily life and explains how NRIs can now invest, making the diaspora angle natural and relevant."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a small section on potential risks specific to NRI investors (e.g., currency fluctuation impact on returns) to provide a more balanced view.",
+          "Ensure the full prospectus details are available and linked when the IPO officially opens, as the article mentions 'read what the prospectus actually says'."
         ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "2447d4f5-907e-468f-bec7-0dfd33c60a1c",
+      "headline": "Two Hours of Lifting a Week Cut Women's Heart-Attack Risk by 44 Percent, a Harvard Study of 117,000 Women Finds",
+      "slug": "resistance-training-women-44-percent-lower-heart-attack-risk-jacc-harvard-nurses-health-study-diaspora-20260620-0600",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The diaspora angle is well-integrated and provides specific, relevant context for South Asian women, addressing both biological risk factors and cultural barriers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a call to action or a link to resources for beginners interested in resistance training.",
+          "Perhaps include a quote from a South Asian woman or health professional on the cultural aspect to add more voice."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "d60ff9fb-c32d-4d2d-8d6d-80ac209b67d2",
+      "headline": "That Long Afternoon Nap May Be Quietly Stressing a Diabetic's Liver, a New Study Warns",
+      "slug": "long-daytime-naps-fatty-liver-masld-risk-type-2-diabetes-endo-2026-wenzhou-diaspora-20260620-0600",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The diaspora angle is well-integrated and explained, connecting the research to specific health predispositions and cultural habits within the Indian diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Add a concluding sentence to the 'What To Actually Do' section, as it currently cuts off mid-sentence.",
+          "Consider adding a small, relevant social media embed (e.g., a tweet from an endocrinology association or a relevant health influencer) if available, to enhance engagement, ensuring it's highly relevant."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "a375c6f0-f98d-417d-88a1-2c6d63eb9b7b",
+      "headline": "Mumbai Gets a Second Front Door: Navi Mumbai Airport Goes International on July 15, Starting With the Gulf",
+      "slug": "navi-mumbai-airport-international-july-15-gulf-nri-gateway-20260620",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article explicitly connects the new airport to NRI/diaspora travel, particularly for Gulf routes and overall travel experience."
+        },
+        "factual_flags": [
+          "The article states 'Navi Mumbai International Airport (NMIA) will begin scheduled international passenger and cargo flights on July 15, 2026' but then later says 'The first one opens July 15.' This could be interpreted as a contradiction regarding the year, though context implies 2026. Clarifying the year in the latter statement would be beneficial."
+        ],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Clarify the year 'July 15' in the concluding sentence to avoid any ambiguity with the previously stated 'July 15, 2026'.",
+          "Consider adding a small map or a link to a map showing the location of NMIA relative to CSMIA and Mumbai's western suburbs, to better illustrate the 'different drives' point for NRIs."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "7ebf4463-91c5-4d58-b0c9-9f1830117803",
+      "headline": "The UAE's Overstay Amnesty Ends July 9 \u2014 Indian Residents Have One Last Window to Get Right",
+      "slug": "uae-final-30-day-grace-period-july-9-overstay-fine-nri-20260620",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 6,
+        "embed_issues": [],
         "image_match": {
           "score": 8,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The mention of 'packed multiplexes from Mumbai to Mississauga' and 'armies of fans across the diaspora' directly addresses the NRI audience, making the connection natural and relevant for an entertainment piece."
+          "quality": 8,
+          "note": "Clearly connects to Indian residents in UAE and NRI families abroad."
+        },
+        "factual_flags": [
+          "The article states the grace period runs from June 10 to July 9, 2026, but the headline and context imply it's for the current year (2024). This is a critical date discrepancy."
+        ],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Correct the year for the grace period (June 10 to July 9, 2026 should be 2024). This is a critical error.",
+          "Consider adding a direct link to the ICP's smart services or apps for readers to check their status, as mentioned in the article."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Revised by gemini-2.5-flash (597\u2192643 words)"
+      ],
+      "revised": true,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "01f7c3d3-2990-4a99-a932-7a04ea404527",
+      "headline": "Qatar Just Cut the Clock in Half: Expats Now Have 14 Days to Leave After a Permit Ends",
+      "slug": "qatar-residence-permit-grace-period-14-days-overstay-nri-workforce-20260620",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "Strong and relevant connection to Indian diaspora, especially NRIs in Qatar and their families abroad."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the current YouTube embed with a more relevant visual, perhaps a teaser or a behind-the-scenes clip if available, or remove it if no suitable alternative exists to avoid confusion.",
-          "Consider adding a brief explanation of why the original song is embedded, if the intent is to highlight the contrast, to make the relevance clearer to the reader."
+          "Consider adding a direct quote from an Indian expat or an immigration lawyer specializing in Indian cases for added human interest.",
+          "If possible, include a link to the Metrash app or official Qatar Ministry of Interior guidance for readers."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://youtube.com/watch?v=jS6V17IQv5M",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "a58fd82d-fc33-4caa-9f78-623b9baead73",
+      "headline": "A 33-Year-Old Indian Newspaper Just Won Australia's Top Multicultural Prize. The Timing Wasn't an Accident.",
+      "slug": "indian-link-australia-best-multicultural-publication-award-diaspora-me-20260620",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image is a generic photo of a newspaper, which matches the topic, but it's not specific to 'Indian Link' or Australia. A photo of the actual newspaper or its founders would be better."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article directly addresses the experiences of the Indian diaspora in Australia and explicitly connects it to wider diaspora communities globally, making it highly relevant for NRI readers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a direct quote from Pawan or Rajni Luthra about their feelings on the award or the current climate.",
+          "If possible, include a link to Indian Link's website or a specific award announcement for readers who want to learn more."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "478d12c3-77c8-4741-9119-4732e49d1759",
+      "headline": "Twenty-Six Years and $8.5 Million Later, a Pennsylvania Temple Opens a School to Outrun Forgetting",
+      "slug": "bharatiya-learning-center-chalfont-pennsylvania-indian-american-herita-20260620",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image shows a generic temple interior, which is relevant to the topic of a temple opening a school. However, it's not specific to the Bharatiya Temple in Chalfont, Pennsylvania, or a learning center. A more specific image of the new facility or its inauguration would be ideal."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The entire article is centered on the Indian diaspora experience in the US, specifically the efforts to preserve cultural and linguistic heritage for future generations of Indian Americans. It directly addresses the concerns and motivations of NRIs."
+        },
+        "factual_flags": [
+          "The headline states 'Twenty-Six Years and $8.5 Million Later', while the body mentions 'an idea that began in 1999' and 'Nearly three decades separate the vision from the ceremony'. If the article was conceived in 1999, then 26 years later would be 2025, not the present. If it's 'nearly three decades', then 26 years is a bit short. This is a minor inconsistency in the timeline calculation."
+        ],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Clarify the exact timeline discrepancy between '26 years' and 'nearly three decades' from the 1999 start date for better precision.",
+          "Consider adding a quote from a younger Indian American who has benefited from or is looking forward to using the center, to provide a youth perspective on cultural preservation."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "2abb23bf-4072-4208-87a9-62e2d43a660c",
+      "headline": "Half of America's Motels Have an Indian Owner. San Francisco Is Building Them a Museum.",
+      "slug": "tenderloin-museum-indo-american-hotelier-exhibit-patel-motel-san-franc-20260620",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 8,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article directly addresses a significant and often overlooked aspect of the Indian diaspora's contribution to American society, connecting it to NRI readers' heritage and identity."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Ensure the article is complete; it seems to cut off abruptly at the end.",
+          "Consider adding a quote from a current Indian-American hotelier or a descendant to bring a contemporary voice to the historical narrative."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "c3ac54d7-8cb2-4885-a150-14d3f5aa3db4",
+      "headline": "A US Cybersecurity Firm Just Opened in Bengaluru and Said the Quiet Part Out Loud: It Came for the Talent, Not the Discount.",
+      "slug": "nable-india-gcc-bengaluru-talent-not-cost-diaspora-tech-jobs-20260620",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image is a generic tech/office photo. While not mismatched, it doesn't specifically represent cybersecurity or Bengaluru."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article directly addresses the implications for NRIs, particularly regarding career choices, visa issues, and the changing perception of working in India versus abroad. It's a core part of the analysis."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a quote from an NRI who has made the move back to a GCC in India, or is considering it, to personalize the 'diaspora's choices' section.",
+          "If possible, include a small data point or anecdote about the compensation gap between Bay Area and Bengaluru for these roles, beyond just stating it exists."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "5843d2db-2d68-44eb-8fd2-0c6dafbaef35",
+      "headline": "TCS Just Opened India's First Oracle AI Lab. The Company That Sold Cheap Labor Is Trying to Sell Intelligence Instead.",
+      "slug": "tcs-oracle-ai-data-platform-lab-kolkata-it-services-pivot-diaspora-20260620",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image shows a server room, which is generally related to tech infrastructure. However, it doesn't specifically depict AI, Oracle, or a lab setting, making it a bit generic for the specific headline."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article explicitly addresses the diaspora angle in a dedicated section, clearly explaining the implications for Indian engineers abroad and those considering H-1B visas. It's well-integrated and highly relevant."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a quote from an industry analyst or an NRI engineer to provide an external perspective on the shift described.",
+          "If possible, include a small graphic or visual representation of the 'pyramid model' vs. the 'new model' to enhance understanding of the structural shift."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "856ccdaa-40b2-44b6-89d6-4c5a03ed8498",
+      "headline": "India Just Minted Its First Space Unicorn. The Money Came From Singapore, BlackRock \u2014 and the Founders of Swiggy.",
+      "slug": "skyroot-space-unicorn-funding-gic-blackrock-swiggy-nri-investors-20260620",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image is a generic space/galaxy photo. While relevant to the 'space' theme, it doesn't specifically represent a rocket company, a unicorn startup, or India's space sector. A more specific image (e.g., a rendering of Vikram-1, Skyroot's logo, or a photo of the founders) would be better."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The diaspora angle is well-integrated and thoughtfully explored, covering investment opportunities, potential employment for NRI talent, and the emotional connection to India's space ambitions. It feels natural and relevant, not forced."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a visual element (e.g., a graphic or a different image) that more directly represents Skyroot Aerospace or the Vikram-1 rocket.",
+          "Perhaps a very brief mention of the founders' background (e.g., where they studied or worked before ISRO) could add another layer of human interest, especially for the diaspora audience."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
         "promoted to published"
       ],
       "revised": false,
