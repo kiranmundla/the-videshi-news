@@ -2909,6 +2909,37 @@ def source_storyboard_images(article, storyboard, count=8):
     remaining = [i for i in range(len(matched_urls)) if matched_urls[i] is None
                  and i != last_idx and i != 0]  # leave CTA + HOOK for clean footage
     commons_budget = max(0, (len(remaining) - 1) // 2)  # fill ≤ half of mid gaps from Commons; leave the rest for Pexels motion + the key-point card floor (a marginal Commons photo loses to a card whose visual IS the story)
+    # Relevance vocabulary for gating Commons matches. Commons keyword search is
+    # loose — a query like "empty wallet finance" can return a 1900s archival
+    # workshop scan that shares no real subject with the story (the B&W beam bug,
+    # 2026-06-19). A Commons photo is only accepted if its FILE TITLE shares a
+    # meaningful token with this scene's own queries/visual OR the article's
+    # topic keywords. No overlap → it's off-topic → drop it and let the
+    # key-point-card floor fill the scene (a card's visual IS the story, so it is
+    # always on-topic). India anchor terms alone never count as a match (every
+    # India photo would otherwise pass).
+    try:
+        _art_kw = set(_social_card_keywords(article))
+    except Exception:
+        _art_kw = set()
+    _REL_STOP = {"india", "indian", "delhi", "mumbai", "the", "and", "for", "with",
+                 "from", "this", "that", "scene", "shot", "closeup", "close-up",
+                 "view", "aerial", "wide", "person", "people", "background"}
+    def _commons_is_relevant(title, scene_queries, scene_visual):
+        """True if the Commons file title shares a real subject token with the
+        scene intent or article topic. Tokens < 4 chars and India/filler words
+        don't count."""
+        tl = (title or "").lower()
+        title_toks = set(re.findall(r"[a-z][a-z'&-]{3,}", tl))
+        if not title_toks:
+            return False
+        want = set()
+        for q in list(scene_queries) + [scene_visual]:
+            for t in re.findall(r"[a-z][a-z'&-]{3,}", (q or "").lower()):
+                want.add(t)
+        want |= _art_kw
+        want -= _REL_STOP
+        return bool(want & title_toks)
     if remaining and commons_budget:
         print(f"  🏛️ Commons pass for {len(remaining)} mid scenes (budget {commons_budget})...")
         commons_filled = 0
@@ -2933,6 +2964,12 @@ def source_storyboard_images(article, storyboard, count=8):
                         continue
                     # Skip Commons results whose filename advertises a diagram/chart.
                     if any(sig in (cand.get("title", "") + cu).lower() for sig in _DIAGRAM_FILENAME_SIGNALS):
+                        continue
+                    # Relevance gate: the file title must share a real subject
+                    # token with the scene/article. Off-topic archival/random
+                    # scans (the B&W beam bug) share none → skip → card fills it.
+                    if not _commons_is_relevant(cand.get("title", ""), queries[:2], visual):
+                        print(f"  🚫 Scene {i+1}: Commons '{cand.get('title','')[5:45]}' shares no topic token — skipping (key-point card will fill)")
                         continue
                     mu = mirror_to_supabase(cu, article_id, i, reject_diagrams=True)
                     if not mu:

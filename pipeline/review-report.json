@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-20T02:45:17.844640+00:00",
+  "timestamp": "2026-06-20T03:15:24.614815+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
+    "pass": 4,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,15 +11,15 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "dc42df35-4f81-450c-8cf0-3b1ca545cfcc",
-      "headline": "The US Embassy Just Told Indian Visa Holders: The Vetting Never Stops \u2014 Even After You're Approved",
-      "slug": "us-embassy-india-warns-visa-screening-continues-after-granted-vetting-never-stops-20260620",
+      "id": "992dfac7-4ef0-4777-9048-e7436407f869",
+      "headline": "India Gets Spider-Man a Day Before America \u2014 and the Tickets Are Already a Wall of Red",
+      "slug": "spider-man-brand-new-day-india-early-release-july-30-tom-holland-zendaya-record-presales-imax-odyssey-where-to-watch-diaspora-nri-20260619",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [
           {
-            "article_id": "69322a92-6092-4321-9acf-94cdf4e179e6",
-            "headline": "The Visa-Stamping Shortcut Just Closed: Kolkata's Wait Jumps"
+            "article_id": "9dff173d-6d75-4b6b-bbf4-e79b3e326a35",
+            "headline": "India Gets Spider-Man First. Brand New Day Swings Into Theat"
           }
         ],
         "broken_embeds": []
@@ -34,13 +34,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively addresses the concerns of the Indian diaspora regarding visa vetting and its implications."
+          "note": "The article effectively connects the film's release timing to the NRI experience, highlighting the reversal of typical release patterns."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from Indian visa holders or immigration experts to provide personal perspectives.",
-          "Include statistics or data on the number of Indian visa holders affected by continuous vetting for added context."
+          "Consider adding more quotes or reactions from diaspora audiences to enhance the connection.",
+          "Include a brief section on the significance of the film's release timing for Indian audiences compared to previous Hollywood releases."
         ],
         "verdict": "pass"
       },
@@ -52,9 +52,45 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "4c4bc26f-410b-4ace-bbb6-8ec95ad44e7c",
-      "headline": "America's Tech Jobs Are Quietly Moving to Bengaluru. India's 'Capability Center' Workforce Is Nearing 2.4 Million.",
-      "slug": "india-gcc-boom-us-firms-bengaluru-global-capability-centers-2-4-million-workforce-20260620",
+      "id": "fcba1d6d-f315-49e9-a36b-4decdf9d0188",
+      "headline": "India Will Build a Quarter of the World's iPhones This Year. A Pollution Notice Shows How Hard the Climb Still Is.",
+      "slug": "apple-india-iphone-manufacturing-tata-foxconn-supply-chain-nri-20260620",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to iPhone manufacturing or pollution issues."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the topic to the Indian American community by discussing job markets and economic impacts in their hometowns."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that directly relates to iPhone manufacturing or the pollution issue to enhance relevance.",
+          "Add more statistics or data points to strengthen the argument about the impact of Apple's manufacturing shift on the Indian economy."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "2d234ea8-807b-4869-a0fa-d03c0d7bd291",
+      "headline": "Tesla Opened Its Fifth India Showroom in a Tech Hub Full of Future NRIs. The Price Tag Tells You Who It's Really For.",
+      "slug": "tesla-india-fifth-showroom-hyderabad-model-y-price-nri-ev-20260620",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -70,13 +106,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses the implications of the GCC boom for the Indian diaspora, highlighting how it reframes migration narratives."
+          "note": "The article effectively connects Tesla's pricing strategy in India to the experiences and frustrations of the NRI community."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more specific examples of how the GCC boom is impacting the Indian diaspora directly.",
-          "Add quotes or insights from diaspora members to enhance the personal connection."
+          "Consider adding more direct quotes or testimonials from NRIs regarding their views on Tesla's pricing in India.",
+          "Include a brief comparison of Tesla's market strategy in India versus other countries to provide more context."
         ],
         "verdict": "pass"
       },
@@ -88,9 +124,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "2c7b81aa-df23-407d-8a63-a1e3b660687b",
-      "headline": "An H-1B Worker Says He Paid $100,000 to Keep His Job. His Lawsuit Exposes the Visa's Dark Side.",
-      "slug": "h1b-labor-trafficking-lawsuit-telugu-worker-pay-to-stay-michigan-green-card-20260620",
+      "id": "13381b90-7885-4839-a4aa-d94efe7b76d5",
+      "headline": "Vinod Khosla Says India's $200 Billion IT Industry 'Will Be Gone.' The Diaspora's Oldest Career Ladder Is Wobbling.",
+      "slug": "vinod-khosla-india-it-industry-ai-disruption-tcs-infosys-wipro-nri-20260620",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -105,14 +141,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively highlights the exploitation within the Indian-American community, making it relevant to diaspora readers."
+          "quality": 9,
+          "note": "The article effectively connects the implications of Khosla's statements to the experiences and concerns of the Indian diaspora, particularly regarding career paths and investments."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from immigration experts or community leaders to provide more depth.",
-          "Include statistics on H-1B visa holders to contextualize the issue further."
+          "Consider adding more direct quotes from Khosla to enhance credibility.",
+          "Include perspectives from other industry experts to provide a more balanced view."
         ],
         "verdict": "pass"
       },
