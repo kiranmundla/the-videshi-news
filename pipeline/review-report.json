@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-20T13:15:11.278774+00:00",
+  "timestamp": "2026-06-20T13:45:10.160087+00:00",
   "mode": "fix",
   "stats": {
     "pass": 1,
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "39dee9b5-916b-492d-8824-51150deecd3f",
-      "headline": "Vicky Kaushal Just Cancelled 18 Months of His Life for One Role. Mahavatar Is Bollywood's Biggest Bet on a God.",
-      "slug": "vicky-kaushal-mahavatar-18-months-blocked-parashurama-amar-kaushik-maddock-mythological-epic-ramayana-pralay-where-to-watch-diaspora-nri-20260620",
+      "id": "389f9404-140d-4511-8f19-7e00fe3730d3",
+      "headline": "Two Indian-Americans Made the U.S. Open Weekend. Three Recent Champions Did Not.",
+      "slug": "sahith-theegala-akshay-bhatia-indian-american-golfers-us-open-2026-weekend-shinnecock-hills-cut-diaspora-nri",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -29,13 +29,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the film's themes to the diaspora experience, highlighting cultural significance."
+          "note": "The article effectively highlights the achievements of Indian-American golfers, connecting their success to the diaspora community."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more quotes from Vicky Kaushal or Amar Kaushik to enhance the article's depth.",
-          "Include more context about the significance of mythological films in contemporary Indian cinema."
+          "Consider adding quotes from the players or their coaches to enhance the narrative.",
+          "Include more statistics or historical context about Indian-Americans in golf to deepen the analysis."
         ],
         "verdict": "pass"
       },
