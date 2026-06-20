@@ -1,5 +1,14 @@
 [
   {
+    "id": "h1b-domestic-renewal-pilot-december-2026",
+    "date": "2026-06-19",
+    "label": "Jun 19, 2026",
+    "headline": "US to revive domestic H-1B visa renewal pilot in December \u2014 ~20,000 slots, mostly for Indians",
+    "summary": "Julie Stufft, Deputy Assistant Secretary of State for Visa Services, confirmed the US will launch a domestic visa renewal pilot for certain H-1B holders starting December, allowing eligible workers already inside the US to renew without traveling abroad for a consular interview. The State Department will issue about 20,000 visas over the first three months, and Stufft said the 'vast majority' will go to Indian nationals \u2014 the largest skilled-worker group in the US \u2014 with plans to expand. She acknowledged India's 6-to-12-month interview wait times are 'not what we need,' and said the program will free up US missions in India to focus on first-time applicants. A Federal Register notice with eligibility rules and application steps is expected soon. The move, flagged in the recent India-US joint statement and welcomed by the diaspora, revives the domestic revalidation concept first piloted in early 2024.",
+    "severity": "high",
+    "source": "US State Department (Julie Stufft) / The Indian Eye / EY"
+  },
+  {
     "id": "student-visa-slots-jul-aug-2026",
     "date": "2026-06-15",
     "label": "Jun 15, 2026",
@@ -165,15 +174,6 @@
     "summary": "ICE announced coordinated enforcement targeting schools, students, and employers involved in fraudulent CPT/OPT programs. Thousands of Indian professionals who used Day 1 CPT to maintain F-1 status between H-1B lottery attempts now face scrutiny \u2014 prior CPT use may affect pending H-1B petitions.",
     "severity": "high",
     "source": "ICE / DHS"
-  },
-  {
-    "id": "dhs-duration-of-status-elimination",
-    "date": "2026-05-05",
-    "label": "May 5, 2026",
-    "headline": "DHS finalizes rule to eliminate \"Duration of Status\" for F-1 & J-1 visas \u2014 4-year cap on student stays",
-    "summary": "DHS sent its final rule to OMB that will replace the open-ended \"Duration of Status\" (D/S) framework for F-1 students and J-1 exchange visitors with fixed 4-year admission periods. Students needing more time must file formal USCIS extensions. F-1 grace period also cut from 60 to 30 days. Rule takes effect 60 days after Federal Register publication \u2014 expected imminently. Experts warn thousands of Indian students could lose flexibility for OPT/CPT extensions and face unlawful presence accrual if they overstay.",
-    "severity": "high",
-    "source": "DHS / NAFSA / OMB"
   },
   {
     "id": "interview-waiver-eliminated",
