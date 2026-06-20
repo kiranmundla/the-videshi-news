@@ -294,14 +294,14 @@ def generate_script(article, force_new=False):
     slug = article.get("slug", "unknown")
 
     # Script cache — reuse if already generated
-    SCRIPT_CACHE_VERSION = "clean2"  # bump to invalidate old caches (clean reel: card_text + media_plan)
+    SCRIPT_CACHE_VERSION = "clean3"  # bump to invalidate old caches (clean reel: card_text + card_subtext + media_plan)
     cache_path = BUILD_DIR / f"script-{slug}.json"
     if not force_new and cache_path.exists():
         try:
             cached = json.loads(cache_path.read_text())
             _sb = cached.get("storyboard", []) or []
             _ver_ok = cached.get("v") == SCRIPT_CACHE_VERSION
-            _cards_ok = bool(_sb) and all(s.get("card_text") for s in _sb)
+            _cards_ok = bool(_sb) and all(s.get("card_text") and s.get("card_subtext") for s in _sb)
             if _ver_ok and _cards_ok:
                 print(f"  📝 Using cached script ({len(cached['script'].split())} words)")
                 print(f"  📝 Hook: {cached.get('hook_line1', '')} / {cached.get('hook_line2', '')}")
@@ -379,6 +379,18 @@ For each scene, provide:
   way you'd headline it on a card. Title-case-ish, no trailing period. Lead with
   the number/name when there is one. Examples: "Telugu Worker Forced To Pay
   $30,000", "Federal Lawsuit Filed In Michigan", "Every H-1B Holder Is At Risk".
+- "card_subtext": MANDATORY for EVERY scene. A SUPPORTING context line that sits
+  UNDER the card_text headline — it adds the concrete detail the headline alone
+  can't carry (the who/where/why/how-much/what-next), so the card reads like a
+  newspaper headline + standfirst instead of a lone phrase. 9 to 18 words, one
+  sentence, plain sentence case, no trailing period. It MUST add NEW information,
+  never just reword card_text. Pair examples (headline → subtext):
+    • "Telugu Worker Forced To Pay $30,000" → "He paid a staffing agent to keep
+      his H-1B status, then sued under federal trafficking law"
+    • "Now The Way Out Costs $100,000" → "A new consular fee makes leaving and
+      re-entering on H-1B unaffordable for most laid-off Indians"
+    • "Every H-1B Holder Is At Risk" → "Lawyers warn the pay-to-stay scheme
+      mirrors quiet pressure thousands of visa workers already face"
 - "media_plan": one of "social" | "generate" | "card" | "media_library":
     • "social" — show a REAL social post (X or Threads) from a public figure /
       official account central to THIS story, in a branded attributed frame. Only
@@ -425,6 +437,7 @@ Return JSON only:
       "narration": "first ~15 words...",
       "scene_role": "hook",
       "card_text": "Punchy Hook Key Point",
+      "card_subtext": "a one-sentence supporting detail that adds new context under the headline",
       "media_plan": "generate",
       "image_prompt": "a symbolic editorial illustration of ... (subject + mood, no people, no text)"
     }},
@@ -433,6 +446,7 @@ Return JSON only:
       "narration": "next ~15 words...",
       "scene_role": "beat",
       "card_text": "Next Beat Key Point",
+      "card_subtext": "a one-sentence supporting detail that adds new context under the headline",
       "media_plan": "social",
       "social_hint": "handle_or_name + what they said"
     }},
@@ -441,6 +455,7 @@ Return JSON only:
       "narration": "next ~15 words...",
       "scene_role": "beat",
       "card_text": "Another Beat Key Point",
+      "card_subtext": "a one-sentence supporting detail that adds new context under the headline",
       "media_plan": "card"
     }}
   ]
@@ -1633,6 +1648,7 @@ _CARD_NAVY_TOP = (8, 16, 30)
 _CARD_NAVY_BOT = (19, 33, 54)
 _CARD_WHITE = (245, 247, 250)
 _CARD_MUTED = (150, 165, 185)
+_CARD_SUBTEXT = (203, 214, 230)
 _INTER_DIR = "/usr/share/fonts/truetype/inter"
 
 _CARD_STOP = {"The","A","An","This","That","These","Those","And","But","For","With","From",
@@ -1688,6 +1704,30 @@ def _card_pick_text(scene, article):
             words.pop()
         text = " ".join(words).rstrip(',;:') + "…"
     return text or "The Videshi"
+
+
+def _card_pick_subtext(scene, article):
+    """The supporting standfirst line under the headline. Prefer GPT's authored
+    card_subtext; fall back to a meaty narration sentence that isn't already the
+    headline; else empty (renderer just skips it)."""
+    st = (scene.get("card_subtext") or "").strip()
+    if st:
+        st = re.sub(r'\s+', ' ', st).strip().rstrip('.')
+        # guard against subtext that merely echoes the headline
+        head = re.sub(r'[^a-z0-9 ]', '', (_card_pick_text(scene, article) or "").lower())
+        if st and re.sub(r'[^a-z0-9 ]', '', st.lower())[:40] != head[:40]:
+            return st
+    narr = (scene.get("narration") or "").strip()
+    head = (_card_pick_text(scene, article) or "").lower()
+    sents = [s.strip() for s in re.split(r'(?<=[.!?])\s+', narr) if s.strip()]
+    for s in sents:
+        if s.lower()[:30] != head[:30] and len(s.split()) >= 6:
+            s = re.sub(r'\s+', ' ', s).strip().rstrip('.')
+            words = s.split()
+            if len(words) > 22:
+                s = " ".join(words[:22]) + "…"
+            return s
+    return ""
 
 
 def _card_is_highlight(word):
@@ -1796,11 +1836,36 @@ def render_keypoint_card(scene, category, article, idx, out_dir="/tmp/videshi_ca
 
         line_h = 104
         block_h = line_h * len(lines)
-        # Anchor the key-point into the UPPER-MIDDLE region (below the eyebrow rule,
-        # above ~y1150) so the live caption pill — which sits at lower-center during
-        # mid-reel scenes — never collides with the card's own text.
+
+        # Supporting standfirst line(s) under the headline — fills the empty
+        # mid-card space and gives each card a headline + context structure.
+        sub_text = "" if text_free else _card_pick_subtext(scene, article)
+        sub_font = _card_font(43, "semibold")
+        sub_line_h = 58
+        sub_lines = []
+        if sub_text:
+            sub_max_w = W - 2 * MX - 40
+            sub_space_w = draw.textlength(" ", font=sub_font)
+            sw_words = sub_text.split()
+            scur, scur_w = [], 0
+            for wd in sw_words:
+                ww = draw.textlength(wd, font=sub_font)
+                add = ww + (sub_space_w if scur else 0)
+                if scur and scur_w + add > sub_max_w:
+                    sub_lines.append(scur); scur = [wd]; scur_w = ww
+                else:
+                    scur.append(wd); scur_w += add
+            if scur:
+                sub_lines.append(scur)
+        sub_gap = 44 if sub_lines else 0
+        sub_block_h = sub_line_h * len(sub_lines)
+
+        # Anchor the headline+subtext group into the UPPER-MIDDLE region (below the
+        # eyebrow rule, above ~y1150) so the live caption pill — which sits at
+        # lower-center during mid-reel scenes — never collides with card text.
         region_top, region_bot = 360, 1160
-        start_y = region_top + max(0, (region_bot - region_top - block_h) // 2)
+        group_h = block_h + sub_gap + sub_block_h
+        start_y = region_top + max(0, (region_bot - region_top - group_h) // 2)
         if not text_free:
             draw.rectangle([MX, start_y + 8, MX + 10, start_y + block_h - 12], fill=_CARD_GOLD)
             text_x0 = MX + 40
@@ -1814,6 +1879,21 @@ def render_keypoint_card(scene, category, article, idx, out_dir="/tmp/videshi_ca
                     draw.text((xx, yy), wd, font=body_font, fill=color)
                     xx += draw.textlength(wd, font=body_font) + space_w
                 yy += line_h
+
+            # subtext standfirst, muted, indented to match headline text column
+            if sub_lines:
+                sy = start_y + block_h + sub_gap
+                # thin gold tick above the standfirst as a visual separator
+                draw.line([(text_x0, sy - 20), (text_x0 + 56, sy - 20)],
+                          fill=_CARD_GOLD, width=3)
+                sub_space_w = draw.textlength(" ", font=sub_font)
+                for sline in sub_lines:
+                    sx = text_x0
+                    for wd in sline:
+                        draw.text((sx + 1, sy + 2), wd, font=sub_font, fill=(0, 0, 0))
+                        draw.text((sx, sy), wd, font=sub_font, fill=_CARD_SUBTEXT)
+                        sx += draw.textlength(wd, font=sub_font) + sub_space_w
+                    sy += sub_line_h
 
         # wordmark
         wm_font = _card_font(38, "bold")
