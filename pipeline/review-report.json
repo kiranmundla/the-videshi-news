@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-20T04:17:02.956505+00:00",
+  "timestamp": "2026-06-20T04:45:18.095041+00:00",
   "mode": "fix",
   "stats": {
     "pass": 1,
@@ -11,16 +11,16 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "94c7b504-0ce1-45ee-88dd-11ee0aa2223a",
-      "headline": "The DOJ Plans 250 Denaturalization Cases by October. Indian Americans Are in the Crosshairs",
-      "slug": "doj-denaturalization-250-cases-citizenship-stripping-indian-americans-20260620",
+      "id": "8c374059-9115-45ec-b44c-eba6ee5fac09",
+      "headline": "He Is 15, He Broke the IPL's Records, and Now India Are Sending His Parents With Him to Watch His Debut",
+      "slug": "vaibhav-sooryavanshi-15-maiden-india-t20i-call-up-ireland-england-tour-2026-shreyas-iyer-captain-suryakumar-dropped-parents-tour-nri",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
-        "overall_score": 8,
+        "overall_score": 7,
         "embed_issues": [],
         "image_match": {
           "score": 9,
@@ -28,16 +28,16 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article directly addresses Indian Americans and provides specific examples relevant to the community."
+          "quality": 7,
+          "note": "The headline explicitly mentions 'nri' in the image entities, and the article's final section 'Why the Diaspora W' (though cut off) clearly indicates an intention to connect with NRI readers. The 'parents on tour' angle also resonates with family values often highlighted in diaspora content."
         },
         "factual_flags": [
-          "The article states 'between 2008 and June 2026, a total of 166 such complaints were filed'. The year '2026' seems like a typo and should likely be '2016' or '2018' to make sense in the context of 'previous two decades' and 'under two months this year'."
+          "The article mentions 'IPL in 2025' and '2026 IPL season' which implies these events have already happened, but the current year is 2024. This suggests the article is set in a future timeline or is speculative without explicitly stating so, which could be confusing or misleading."
         ],
         "duplicate_embeds": [],
         "suggestions": [
-          "Correct the typo in the date range '2008 and June 2026' to ensure factual accuracy.",
-          "Consider adding a brief 'What to actually do' section with actionable advice for naturalized Indian Americans, even if it's general guidance like consulting an immigration lawyer for specific concerns."
+          "Clarify the timeline regarding the IPL seasons (2025, 2026) to avoid factual confusion, perhaps by framing it as a 'future projection' or 'hypothetical scenario' if that's the intent.",
+          "Complete the final section 'Why the Diaspora W' to fully develop the diaspora angle and ensure a cohesive narrative."
         ],
         "verdict": "flag"
       },
@@ -49,16 +49,16 @@
       "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "3b256157-a37a-4fac-9fc7-41f7aa20659b",
-      "headline": "The Supreme Court Will Decide if a Green Card Comes With the Right to Ask a Judge for Release",
-      "slug": "supreme-court-genalo-black-green-card-detention-bond-hearing-india-20260620",
+      "id": "bab9e7e8-997a-49b8-83f8-d75cabc4d5a1",
+      "headline": "India's Pilots Reject the AI171 'Suicide' Verdict. Their Simulator Says the Plane Failed, Not the Crew.",
+      "slug": "air-india-ai171-crash-pilots-body-electrical-failure-simulator-challenges-suicide-theory-20260620",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
-        "overall_score": 8,
+        "overall_score": 7,
         "embed_issues": [],
         "image_match": {
           "score": 9,
@@ -66,14 +66,16 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the Supreme Court case to Indian Americans and NRIs, explaining why green card holders should be concerned and how it impacts their perception of permanent residency."
+          "quality": 7,
+          "note": "The article covers a significant event involving India's national airline and a major aviation disaster, which would naturally be of interest to NRIs. The mention of the London-bound flight also adds a direct connection for many in the diaspora."
         },
-        "factual_flags": [],
+        "factual_flags": [
+          "The article states 'June 12, 2025 crash' but then refers to 'a year after Air India Flight AI171 fell out of the sky'. If the crash was in 2025, 'a year after' would imply 2026, not the current year of publication. This needs clarification for consistency."
+        ],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a brief concluding sentence or call to action, perhaps encouraging readers to stay informed or outlining potential future developments.",
-          "Ensure the article clearly states the full name of the case, including the 'v.' for clarity, as it's sometimes presented as 'Genalo v. Black' and other times 'Genalo v Black'."
+          "Clarify the exact date of the crash and the 'a year after' timeline to ensure factual accuracy and consistency.",
+          "Consider adding a quote or perspective from an NRI aviation expert or a family member of a victim living abroad, if available, to strengthen the diaspora angle further."
         ],
         "verdict": "pass"
       },
