@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-20T18:45:13.943151+00:00",
+  "timestamp": "2026-06-20T19:15:16.059259+00:00",
   "mode": "fix",
   "stats": {
     "pass": 2,
@@ -11,12 +11,17 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "520e9393-4803-48df-ac7f-9d9673e073a6",
-      "headline": "An Emergency-Room Doctor From Minneapolis Is About to Become the Diaspora's Newest Astronaut. Liftoff Is July 14.",
-      "slug": "anil-menon-indian-american-nasa-astronaut-first-iss-mission-soyuz-ms29-july-14-20260620",
+      "id": "4aea5052-2968-4fbd-ae3c-e441d064098e",
+      "headline": "Georgekutty Comes Home to Your Living Room. Drishyam 3 Lands on Prime Video, and the Diaspora Can Finally See How the Lie Holds.",
+      "slug": "drishyam-3-mohanlal-amazon-prime-video-ott-release-june-18-jeethu-joseph-231-crore-box-office-where-to-watch-diaspora-nri-20260620",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "c38cdb5f-6637-43bf-98a1-c6e8e109d782",
+            "headline": "Georgekutty Comes Home. Drishyam 3 Lands on Prime Video Toda"
+          }
+        ],
         "broken_embeds": []
       },
       "llm_review": {
@@ -29,13 +34,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects Menon's achievements to the pride of the Indian diaspora, highlighting his heritage and the significance of his journey."
+          "note": "The article effectively connects the film's themes to the diaspora experience, emphasizing accessibility and shared viewing."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from Dr. Menon or other relevant figures to enhance the personal connection and emotional impact of the story.",
-          "Include more details about the scientific experiments Menon will conduct to provide readers with a deeper understanding of the mission's significance."
+          "Consider adding more quotes from critics or audience reactions to enhance credibility.",
+          "Include a brief comparison of the film's reception in India versus the diaspora to deepen the analysis."
         ],
         "verdict": "pass"
       },
@@ -47,12 +52,21 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "deb3ce28-adda-44b4-a198-4674794f86c6",
-      "headline": "Citizenship Was Supposed to Be the Finish Line. The Justice Department Is Quietly Reopening Old Files.",
-      "slug": "doj-denaturalization-push-indian-american-citizens-trump-second-term-naturalized-20260620",
+      "id": "d0670569-8693-4310-8e90-9c63470bb6f0",
+      "headline": "Diljit's Main Vaapas Aaunga Showed a Pakistan Without Villains. The Internet Cried 'Anti-National.' A.R. Rahman Just Laughed.",
+      "slug": "main-vaapas-aaunga-diljit-dosanjh-imtiaz-ali-ar-rahman-anti-national-tere-paas-main-box-office-where-to-watch-diaspora-nri-20260620",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "593fe449-25ab-4e0c-b399-6490ac8797a0",
+            "headline": "Los Angeles Just Gave Diljit Dosanjh His Own Day. The Boy Fr"
+          },
+          {
+            "article_id": "bd12a9ba-a29f-4bb0-a8ce-88cc8560a29e",
+            "headline": "The Grammys Just Made Room for Asian Pop. They Forgot to Sav"
+          }
+        ],
         "broken_embeds": []
       },
       "llm_review": {
@@ -64,14 +78,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively addresses the concerns of Indian-Americans regarding denaturalization, making it relevant to the diaspora."
+          "quality": 9,
+          "note": "The article effectively connects the film's themes to the diaspora experience, particularly regarding partition and identity."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from immigration attorneys or affected individuals to provide personal perspectives.",
-          "Include more statistics or data on the impact of denaturalization on the Indian-American community."
+          "Consider adding more direct quotes from the film or its creators to enhance engagement.",
+          "Include a brief section on audience reactions or reviews to provide a broader perspective."
         ],
         "verdict": "pass"
       },

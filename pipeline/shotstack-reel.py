@@ -19,7 +19,7 @@ Usage:
   python3 shotstack-reel.py --format pulse     # Quick Pulse format (no voice)
 """
 
-import os, sys, json, time, random, re, argparse, subprocess, hashlib
+import os, sys, json, time, random, re, argparse, subprocess, hashlib, uuid
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 import requests
@@ -861,9 +861,11 @@ def generate_tts(text):
         print(f"❌ Audio download failed: {audio_r.status_code}")
         return None, 0
 
-    # HeyGen returns WAV — convert to MP3 with loudness normalization
-    wav_path = BUILD_DIR / "ss-tts-raw.wav"
-    mp3_path = BUILD_DIR / "ss-tts-voice.mp3"
+    # HeyGen returns WAV — convert to MP3 with loudness normalization.
+    # Unique per-call filenames so concurrent renders never collide on a shared file.
+    _tts_tok = f"{os.getpid()}-{uuid.uuid4().hex[:8]}"
+    wav_path = BUILD_DIR / f"ss-tts-raw-{_tts_tok}.wav"
+    mp3_path = BUILD_DIR / f"ss-tts-voice-{_tts_tok}.mp3"
     with open(wav_path, "wb") as f:
         f.write(audio_r.content)
 
