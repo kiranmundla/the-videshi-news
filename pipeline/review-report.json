@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-20T07:15:10.291965+00:00",
+  "timestamp": "2026-06-20T07:45:11.813868+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 0,
-    "flag": 1,
+    "pass": 1,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,47 +11,35 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "7c742d66-41e5-4d5b-bbb2-1931cdd1f6c7",
-      "headline": "Sunny Deol and Rajkumar Santoshi Reunite After 30 Years for Batwara 1947. The Teaser Is a Partition Saga With a Roar.",
-      "slug": "batwara-1947-teaser-sunny-deol-rajkumar-santoshi-reunion-shabana-azmi-preity-zinta-karan-deol-aamir-khan-ar-rahman-partition-august-14-where-to-watch-diaspora-nri-20260620",
+      "id": "cb71a592-c810-490e-adfe-2f9f492760b4",
+      "headline": "Six Goals, Zero Conceded: India's Women Storm Into the Nations Cup Final \u2014 and to the Brink of the Pro League",
+      "slug": "india-women-hockey-beat-chile-6-0-fih-nations-cup-2026-final-auckland-pro-league-promotion-salima-tete-navneet-deepika-nri",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "ba197b1e-9598-446c-a1e9-3a6004f49295",
-            "headline": "Three Decades After Ghatak, Sunny Deol and Rajkumar Santoshi"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/p/DZrilWPCHse/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post does not appear to be directly related to the film 'Batwara 1947' or its themes."
-          }
-        ],
+        "embed_issues": [],
         "image_match": {
           "score": 9,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the film's themes of Partition and migration to the experiences of the NRI audience, making it relevant and engaging."
+          "quality": 8,
+          "note": "The article effectively connects the performance of the Indian women's hockey team to the interests of the diaspora, highlighting the accessibility of matches and the significance of the team's achievements."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant Instagram embed with a more relevant one that connects to the film or its themes.",
-          "Consider adding more quotes or insights from the cast or crew to enhance the depth of the article."
+          "Consider adding quotes from players or coaches to enhance the narrative.",
+          "Include more context about the significance of the Pro League for the team's future."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DZrilWPCHse/",
         "promoted to published"
       ],
       "revised": false,
