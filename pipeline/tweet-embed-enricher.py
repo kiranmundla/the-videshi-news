@@ -45,6 +45,10 @@ REGISTRY_PATH = os.path.expanduser('~/workspace/the-videshi-news/pipeline/social
 # Load X API credentials (OAuth1 user-context) so we can use the same X-search
 # path the reel pipeline uses, instead of scraping DuckDuckGo (now bot-blocked).
 load_env(os.path.expanduser('~/workspace/.env.twitter'))
+load_env(os.path.expanduser('~/workspace/.env.openai'))
+load_env(os.path.expanduser('~/workspace/.env.google-ai'))
+OPENAI_KEY = os.environ.get('OPENAI_API_KEY', '')
+GEMINI_KEY = os.environ.get('GOOGLE_AI_API_KEY', '')
 
 # --- Import the shared X-search module (pipeline/fetch-tweets.py) ---
 _FETCH_TWEETS_MOD = None
@@ -142,11 +146,11 @@ _STOPWORDS = {
     'big','bigger','clean','seals','refuses','tried','trap','wants','showed',
 }
 
-def build_search_query(headline, max_terms=5):
-    """Turn a headline into a tight X search query. The recent-search endpoint
-    rejects full sentences ('Ambiguous use of operators'), so we keep only
-    high-signal terms: proper nouns (capitalized words) first, then other
-    content words, dropping stopwords/numbers/punctuation.
+def _heuristic_query(headline, max_terms=5):
+    """Fallback when GPT is unavailable: keep only high-signal terms from the
+    headline (proper nouns first), dropping stopwords/numbers/punctuation.
+    The recent-search endpoint rejects full sentences ('Ambiguous use of
+    operators'), so we must reduce to plain keywords.
     """
     # Split on the first sentence-ending punctuation so we focus on the main
     # clause. NOTE: do not split on '-' — it would chop hyphenated words like
@@ -171,6 +175,80 @@ def build_search_query(headline, max_terms=5):
         if len(terms) >= max_terms:
             break
     return ' '.join(terms)
+
+def _gpt_query(headline, subheadline='', body=''):
+    """Ask GPT to read the article and return the best X search keywords.
+    GPT understands the actual entities/event far better than stopword-stripping
+    a headline (which mangles things like 'Emergency-Room Doctor' -> 'Emergency').
+    Returns a query string, or '' on any failure (caller falls back).
+    """
+    snippet = (body or '')[:1200]
+    prompt = (
+        "You are helping search X (Twitter) for a post relevant to a news "
+        "article. Read the article and return the BEST short search query to "
+        "find a relevant tweet on X.\n\n"
+        "Rules:\n"
+        "- 2 to 5 words, only the most distinctive terms (people, orgs, places, "
+        "the specific event). Use the actual proper names.\n"
+        "- NO operators, hashtags, quotes, punctuation, or boolean words — just "
+        "plain keywords separated by spaces.\n"
+        "- Prefer specific named entities over generic words.\n\n"
+        f"HEADLINE: {headline}\n"
+        f"SUBHEADLINE: {subheadline}\n"
+        f"ARTICLE: {snippet}\n\n"
+        'Respond in JSON: {"query": "the search keywords"}'
+    )
+    # OpenAI first.
+    if OPENAI_KEY:
+        try:
+            r = requests.post(
+                "https://api.openai.com/v1/chat/completions",
+                headers={"Authorization": f"Bearer {OPENAI_KEY}",
+                         "Content-Type": "application/json"},
+                json={"model": "gpt-4o-mini",
+                      "messages": [{"role": "user", "content": prompt}],
+                      "temperature": 0.2,
+                      "response_format": {"type": "json_object"}},
+                timeout=30,
+            )
+            if r.status_code == 200:
+                q = json.loads(r.json()["choices"][0]["message"]["content"]).get("query", "")
+                q = re.sub(r'[^\w\s]', ' ', q).strip()
+                if q:
+                    return ' '.join(q.split()[:6])
+            else:
+                print(f"  ⚠ GPT query {r.status_code}: {r.text[:120]}")
+        except Exception as e:
+            print(f"  ⚠ GPT query error: {e}")
+    # Gemini fallback (thinkingBudget:0 — see AGENTS.md note on JSON truncation).
+    if GEMINI_KEY:
+        try:
+            r = requests.post(
+                f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={GEMINI_KEY}",
+                headers={"Content-Type": "application/json"},
+                json={"contents": [{"parts": [{"text": prompt}]}],
+                      "generationConfig": {"responseMimeType": "application/json",
+                                            "temperature": 0.2,
+                                            "thinkingConfig": {"thinkingBudget": 0}}},
+                timeout=30,
+            )
+            if r.status_code == 200:
+                txt = r.json()["candidates"][0]["content"]["parts"][0]["text"]
+                q = json.loads(txt).get("query", "")
+                q = re.sub(r'[^\w\s]', ' ', q).strip()
+                if q:
+                    return ' '.join(q.split()[:6])
+        except Exception as e:
+            print(f"  ⚠ Gemini query error: {e}")
+    return ''
+
+def build_search_query(headline, subheadline='', body='', max_terms=5):
+    """Best X search query for an article: GPT reads it and picks the entities;
+    if GPT is unavailable, fall back to a headline keyword heuristic."""
+    q = _gpt_query(headline, subheadline, body)
+    if q:
+        return q
+    return _heuristic_query(headline, max_terms=max_terms)
 
 def search_tweet(query, handle=None):
     """Find a relevant, embeddable tweet via the X API (the same recent-search
@@ -209,7 +287,13 @@ def search_tweet(query, handle=None):
     if not candidates:
         return None, None, None
 
-    # Rank: keyword relevance, then verified, then reach.
+    # Don't cite ourselves — embedding @thevideshi's own tweet in a Videshi
+    # article is circular. Drop our own handle from candidates.
+    candidates = [p for p in candidates
+                  if (p.get('handle', '') or '').lower() != 'thevideshi']
+    if not candidates:
+        return None, None, None
+
     def _rel(p):
         text_l = (p.get('text', '') or '').lower()
         return sum(1 for k in kw if k.lower() in text_l)
@@ -304,7 +388,15 @@ def main():
         headline = article['headline']
         article_text = extract_entities(article)
         print(f"\n   📰 [{article['category']}] {headline[:80]}...")
-        
+
+        # Build the X search query once (GPT reads the article; heuristic fallback)
+        keywords = build_search_query(
+            headline,
+            subheadline=article.get('subheadline', ''),
+            body=article.get('body', ''),
+        )
+        print(f"      🔑 query: {keywords!r}")
+
         # Step 1: Check registry for known handles
         matches = find_handle(article_text, registry)
         
@@ -313,8 +405,6 @@ def main():
             # Try each matched person/org
             for name, handle in matches[:2]:
                 print(f"      🔍 Searching @{handle} ({name})...")
-                # Search with handle + headline keywords
-                keywords = build_search_query(headline)
                 tweet_url, tweet_id, verify_out = search_tweet(keywords, handle=handle)
                 if tweet_url:
                     print(f"      ✅ Found: {tweet_url}")
@@ -325,9 +415,8 @@ def main():
                 time.sleep(1)  # Rate limit
         
         if not tweet_url:
-            # Step 2: Generic search with headline
+            # Step 2: Generic topic search
             print(f"      🔍 Generic search...")
-            keywords = build_search_query(headline)
             tweet_url, tweet_id, verify_out = search_tweet(keywords)
             if tweet_url:
                 print(f"      ✅ Found: {tweet_url}")
