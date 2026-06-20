@@ -294,13 +294,19 @@ def generate_script(article, force_new=False):
     slug = article.get("slug", "unknown")
 
     # Script cache — reuse if already generated
+    SCRIPT_CACHE_VERSION = "clean1"  # bump to invalidate old caches (clean reel: card_text required)
     cache_path = BUILD_DIR / f"script-{slug}.json"
     if not force_new and cache_path.exists():
         try:
             cached = json.loads(cache_path.read_text())
-            print(f"  📝 Using cached script ({len(cached['script'].split())} words)")
-            print(f"  📝 Hook: {cached.get('hook_line1', '')} / {cached.get('hook_line2', '')}")
-            return cached
+            _sb = cached.get("storyboard", []) or []
+            _ver_ok = cached.get("v") == SCRIPT_CACHE_VERSION
+            _cards_ok = bool(_sb) and all(s.get("card_text") for s in _sb)
+            if _ver_ok and _cards_ok:
+                print(f"  📝 Using cached script ({len(cached['script'].split())} words)")
+                print(f"  📝 Hook: {cached.get('hook_line1', '')} / {cached.get('hook_line2', '')}")
+                return cached
+            print("  ♻️ Cached script is pre-clean1 (no card_text) — regenerating")
         except Exception:
             pass  # Corrupted cache — regenerate
 
@@ -352,26 +358,26 @@ HOOK TEXT (shown on screen before voice starts):
 - hook_line1: 3-5 words, ALL CAPS. The "stop scrolling" line. Make it PROVOCATIVE and high-stakes — a threat, a shock, a reversal, or a bold claim. "OIL LIFELINE OPEN" is too flat. "STRAIT CHOKEHOLD BREAKS" or "INDIA DODGED DISASTER" has punch. Use power words (CRISIS, SHOCK, COLLAPSE, WAR, WIN, DODGED, EXPOSED, SLASHED) where the facts support them — but never overstate beyond what the article says.
 - hook_line2: 3-5 words, ALL CAPS. Twists the knife or raises the stakes further — a number, a consequence, or a cliffhanger.
 
-STORYBOARD: Plan 6-8 visual scenes that match the narration beat-by-beat.
-Each scene is ONE B-roll video clip or image shown for ~4-6 seconds while the voice plays.
-- Scene 1 = the HOOK background (darkened). Choose something dramatic, cinematic, wide-angle.
-- Scenes 2-7 = the narration beats. Each visual must match EXACTLY what's being said in that moment.
+STORYBOARD: Plan 6-8 scenes that match the narration beat-by-beat.
+Each scene fills ~4-6 seconds of screen time while the voice plays. Most scenes
+will be rendered as a BRANDED ON-SCREEN CARD that displays one short key point in
+The Videshi house style (navy + gold). So the MOST IMPORTANT thing you give us
+per scene is the "card_text" — the single punchy line that belongs on screen for
+that beat.
+- Scene 1 = the HOOK. scene_role "hook".
+- Middle scenes = the narration beats. scene_role "beat".
+- The LAST scene = the closing call-to-action. scene_role "cta".
 - More scenes = more visual variety = better retention.
 
 For each scene, provide:
-- "narration": the exact words spoken during that scene (copy from script)
-- "visual": a SPECIFIC, concrete description of the ideal stock video clip or photo. Not "Indian economy" — say "close-up of Indian 500 rupee notes being counted by hand" or "aerial drone shot of Mumbai Marine Drive coastline at sunset". Be CINEMATIC and precise — think what a videographer would actually film.
-- "search_queries": TWO Pexels search queries, each 2-4 words. These search BOTH Pexels video AND photo libraries. First query = most specific visual, second = broader fallback.
-  GOOD queries: "Indian rupee notes", "cargo ship ocean", "Mumbai skyline aerial", "Indian family celebrating"
-  BAD queries: "economic crisis concept", "tension building scene", "elements clashing" (too abstract — returns nothing useful)
-
-CRITICAL RULES FOR SEARCH QUERIES:
-- NEVER use celebrity, politician, or public figure names — Pexels has NO footage of specific people. Instead describe the VISUAL CONCEPT: "Bollywood dance performance" not "Sunny Deol".
-- ALWAYS include "Indian" or "India" in queries when the story is about India, Bollywood, Indian culture, or the diaspora. "Indian parliament building" not "parliament building". "Indian currency notes" not "currency notes".
-- Every scene's visual must be DIFFERENT and RELEVANT to that specific narration beat. A story about remittances needs rupee notes, bank transfers, families — NOT steel factories or oil tankers.
-- Think like a VIDEO PRODUCER: what would a videographer actually shoot? "cargo ship sailing ocean waves" works. "geopolitical tension escalating" does not produce usable footage.
-- Keep queries SHORT and CONCRETE — 2-4 words max. "Indian soldiers marching" not "dramatic military parade of Indian army troops in formation".
-- AVOID scenes that would return protest photos, political signs, or text-heavy footage. No "crowd running", "protest", "demonstration". Instead use evocative visuals: "smoke rising over rooftops", "empty train platform".
+- "narration": the exact words spoken during that scene (copy from script).
+- "card_text": MANDATORY. A SHORT, punchy key point distilling that beat — 4 to 9
+  words, the essence of what is narrated, the way you'd headline it on a card.
+  Title-case-ish, no trailing period. Lead with the number/name when there is
+  one. Examples: "Telugu Worker Forced To Pay $30,000", "Federal Lawsuit Filed In
+  Michigan", "Every H-1B Holder Is At Risk". This is what the viewer reads, so
+  make it land on its own.
+- "scene_role": one of "hook" | "beat" | "cta".
 
 Return JSON only:
 {{
@@ -382,14 +388,14 @@ Return JSON only:
     {{
       "scene": 1,
       "narration": "first ~15 words...",
-      "visual": "specific visual description for this beat",
-      "search_queries": ["specific query 1", "broader fallback query"]
+      "card_text": "Punchy Hook Key Point",
+      "scene_role": "hook"
     }},
     {{
       "scene": 2,
       "narration": "next ~15 words...",
-      "visual": "specific visual description",
-      "search_queries": ["specific query 1", "broader fallback query"]
+      "card_text": "Next Beat Key Point",
+      "scene_role": "beat"
     }}
   ]
 }}"""
@@ -411,6 +417,7 @@ Return JSON only:
         return None
 
     result = json.loads(r.json()["choices"][0]["message"]["content"])
+    result["v"] = SCRIPT_CACHE_VERSION
     print(f"  📝 Script: {len(result['script'].split())} words")
     print(f"  📝 Hook: {result.get('hook_line1', '')} / {result.get('hook_line2', '')}")
 
@@ -1610,6 +1617,13 @@ def _card_font(size, weight="bold"):
 
 
 def _card_pick_text(scene, article):
+    # Clean-reel path: GPT now authors a purpose-built card line per scene.
+    # Prefer it outright when present — it's already short, punchy, and on-message.
+    ct = (scene.get("card_text") or "").strip()
+    if ct:
+        ct = re.sub(r'\s+', ' ', ct).strip().rstrip('.')
+        if ct:
+            return ct
     narr = (scene.get("narration") or "").strip()
     sents = [s.strip() for s in re.split(r'(?<=[.!?])\s+', narr) if s.strip()]
     pick = None
@@ -1671,8 +1685,11 @@ def _card_glow(W, H, cx, cy, radius, color, max_alpha):
     return layer, glow
 
 
-def render_keypoint_card(scene, category, article, idx, out_dir="/tmp/videshi_cards"):
-    """Render a branded 1080x1920 key-point graphic. Returns local PNG path or None."""
+def render_keypoint_card(scene, category, article, idx, out_dir="/tmp/videshi_cards", text_free=False):
+    """Render a branded 1080x1920 key-point graphic. Returns local PNG path or None.
+    text_free=True renders the branded background + eyebrow + wordmark but OMITS
+    the key-point line — used for scene 0, where the hook title overlay already
+    owns the on-screen text (drawing the card line too causes a 3-layer collision)."""
     try:
         from PIL import Image, ImageDraw
     except Exception as e:
@@ -1738,18 +1755,19 @@ def render_keypoint_card(scene, category, article, idx, out_dir="/tmp/videshi_ca
         # mid-reel scenes — never collides with the card's own text.
         region_top, region_bot = 360, 1160
         start_y = region_top + max(0, (region_bot - region_top - block_h) // 2)
-        draw.rectangle([MX, start_y + 8, MX + 10, start_y + block_h - 12], fill=_CARD_GOLD)
-        text_x0 = MX + 40
+        if not text_free:
+            draw.rectangle([MX, start_y + 8, MX + 10, start_y + block_h - 12], fill=_CARD_GOLD)
+            text_x0 = MX + 40
 
-        yy = start_y
-        for line in lines:
-            xx = text_x0
-            for wd in line:
-                color = _CARD_GOLD_SOFT if _card_is_highlight(wd) else _CARD_WHITE
-                draw.text((xx + 2, yy + 3), wd, font=body_font, fill=(0, 0, 0))
-                draw.text((xx, yy), wd, font=body_font, fill=color)
-                xx += draw.textlength(wd, font=body_font) + space_w
-            yy += line_h
+            yy = start_y
+            for line in lines:
+                xx = text_x0
+                for wd in line:
+                    color = _CARD_GOLD_SOFT if _card_is_highlight(wd) else _CARD_WHITE
+                    draw.text((xx + 2, yy + 3), wd, font=body_font, fill=(0, 0, 0))
+                    draw.text((xx, yy), wd, font=body_font, fill=color)
+                    xx += draw.textlength(wd, font=body_font) + space_w
+                yy += line_h
 
         # wordmark
         wm_font = _card_font(38, "bold")
@@ -3322,6 +3340,287 @@ def source_storyboard_images(article, storyboard, count=8):
     return urls, media_meta
 
 
+# ═══════════════════════════════════════════════════════════════════════════════
+# CLEAN REEL SOURCING (approach 1) — article assets + GPT cards ONLY.
+# No Pexels, no Wikipedia, no Commons, no matching heuristics. Every scene
+# resolves to exactly one of: (1) the article hero (scene 0 only), (2) one of the
+# article's OWN inline social embeds, or (3) a GPT-authored branded key-point card.
+# ═══════════════════════════════════════════════════════════════════════════════
+
+# Matches the bare social-post URLs the writers splice into article body markdown
+# (before "## Diaspora Impact"). Captures handle + status id so we can fetch.
+_X_EMBED_RE = re.compile(
+    r"https?://(?:www\.)?(?:x|twitter)\.com/([A-Za-z0-9_]{1,15})/status/(\d+)", re.I)
+_THREADS_EMBED_RE = re.compile(
+    r"https?://(?:www\.)?threads\.(?:net|com)/@([A-Za-z0-9_.]+)/post/([A-Za-z0-9_-]+)", re.I)
+_IG_EMBED_RE = re.compile(
+    r"https?://(?:www\.)?instagram\.com/(?:p|reel)/([A-Za-z0-9_-]+)", re.I)
+
+
+def extract_inline_embeds(body):
+    """Parse the article body markdown for the social post URLs the writers
+    embed inline. Returns an ordered, de-duplicated list of dicts:
+      {"platform": "x"|"threads"|"instagram", "handle": str|None,
+       "post_id": str|None, "url": str}
+    Hard-news articles usually have none (embeds: []), in which case this returns
+    []. Never raises."""
+    out, seen = [], set()
+    if not body:
+        return out
+    try:
+        for m in _X_EMBED_RE.finditer(body):
+            url = m.group(0)
+            if url in seen:
+                continue
+            seen.add(url)
+            out.append({"platform": "x", "handle": m.group(1),
+                        "post_id": m.group(2), "url": url})
+        for m in _THREADS_EMBED_RE.finditer(body):
+            url = m.group(0)
+            if url in seen:
+                continue
+            seen.add(url)
+            out.append({"platform": "threads", "handle": m.group(1),
+                        "post_id": m.group(2), "url": url})
+        for m in _IG_EMBED_RE.finditer(body):
+            url = m.group(0)
+            if url in seen:
+                continue
+            seen.add(url)
+            out.append({"platform": "instagram", "handle": None,
+                        "post_id": m.group(1), "url": url})
+    except Exception as e:
+        print(f"  ⚠️ embed parse failed: {e}")
+    return out
+
+
+def _embed_to_post(emb):
+    """Resolve one inline embed to a render-ready post dict for render_social_card.
+    For X we fetch the author's recent tweets and pick the one matching the
+    embedded status id (so the card shows the exact embedded post); falls back to
+    best_photo_tweet for that handle. Threads/IG use the existing scrapers'
+    best-photo-post for the handle (no fetch-by-URL exists). Returns a post dict
+    with at least one photo, or None. Never raises."""
+    platform = emb.get("platform")
+    try:
+        if platform == "x":
+            mod = _load_fetch_tweets_module()
+            if not mod:
+                return None
+            handle = emb.get("handle")
+            post = None
+            try:
+                tweets = mod.fetch_recent_tweets(handle, hours=24 * 14)
+            except Exception as e:
+                print(f"  ⚠️ X embed fetch failed for @{handle}: {e}")
+                tweets = []
+            # Prefer the exact embedded status id.
+            for t in tweets or []:
+                if str(t.get("id")) == str(emb.get("post_id")) and t.get("photos"):
+                    post = t
+                    break
+            if not post:
+                try:
+                    post = mod.best_photo_tweet(handle, hours=24 * 14)
+                except Exception:
+                    post = None
+            if not post or not post.get("photos"):
+                return None
+            prof = _x_profile(handle)
+            return {
+                "name": prof.get("name", "") or f"@{handle}",
+                "handle": handle,
+                "avatar": prof.get("avatar", ""),
+                "photo": post["photos"][0],
+                "photos": post["photos"],
+                "photo_count": len(post["photos"]),
+                "text": post.get("text", ""),
+                "url": post.get("url", emb.get("url", "")),
+                "platform": "x",
+            }
+        elif platform in ("threads", "instagram"):
+            scrapers = _load_social_scrapers_module()
+            if not scrapers:
+                return None
+            handle = emb.get("handle")
+            if platform == "threads" and handle:
+                p = scrapers.threads_best_photo_post(handle, hours=24 * 30)
+            elif platform == "instagram" and handle:
+                p = scrapers.instagram_best_photo_post(handle, hours=24 * 30)
+            else:
+                # IG embeds have no handle in the URL — can't fetch by shortcode.
+                return None
+            if not p or not p.get("photos"):
+                return None
+            return {
+                "name": p.get("name", "") or (f"@{handle}" if handle else ""),
+                "handle": handle or "",
+                "avatar": p.get("avatar", ""),
+                "photo": p["photos"][0],
+                "photos": p["photos"],
+                "photo_count": len(p["photos"]),
+                "text": p.get("text", ""),
+                "url": p.get("url", emb.get("url", "")),
+                "platform": platform,
+            }
+    except Exception as e:
+        print(f"  ⚠️ embed resolve failed ({platform}): {e}")
+    return None
+
+
+def source_reel_media_clean(article, storyboard, count=8):
+    """APPROACH-1 sourcing. Same return shape as source_storyboard_images
+    (urls, media_meta), but every scene resolves to ONE of three sources only:
+      0) Scene 0 (hook): the article hero photo IF it passes the resolution
+         check; otherwise a GPT card for that scene.
+      1) The article's OWN inline social embeds (X→Threads→IG), rendered through
+         the existing render_social_card path, assigned to MID scenes only
+         (never scene 0, never the final CTA scene). Face-crop guarded.
+      2) Every remaining scene: a GPT-authored branded key-point card via
+         render_keypoint_card (which now prefers scene["card_text"]).
+    No Pexels, no Wikipedia, no Commons, no matching."""
+    media_meta = {}
+    used_in_this_reel = set()
+
+    hero = article.get("image_url", "") or ""
+    category = article.get("category", "")
+    article_id = article.get("id", "")
+    body = article.get("body", "") or ""
+
+    MIN_IMAGE_DIM = 1000
+
+    def check_image_resolution(url):
+        try:
+            r = requests.get(url, timeout=8, stream=True,
+                             headers={"User-Agent": "Mozilla/5.0 (compatible; TheVideshi/1.0)",
+                                      "Range": "bytes=0-65535"})
+            if r.status_code not in (200, 206):
+                return None
+            from io import BytesIO
+            from PIL import Image
+            img = Image.open(BytesIO(r.content))
+            return (img.width, img.height)
+        except Exception:
+            return None
+
+    scenes = storyboard if storyboard else []
+    scenes = scenes[:count]
+    n = len(scenes)
+    if n == 0:
+        return [], {}
+    matched_urls = [None] * n
+    last_idx = n - 1  # final scene = CTA, never social
+
+    n_hero = n_embed = n_card = 0
+
+    # ── 1. Scene 0: article hero (resolution-gated) ──
+    _hero_host = ""
+    try:
+        from urllib.parse import urlparse as _up
+        _hero_host = (_up(hero).hostname or "").lower()
+    except Exception:
+        _hero_host = ""
+    _UNVETTED_HERO_HOSTS = ("flickr.com", "staticflickr.com", "live.staticflickr.com")
+    if hero and any(_hero_host == h or _hero_host.endswith("." + h) for h in _UNVETTED_HERO_HOSTS):
+        print(f"  🚫 Skipping unvetted hero host '{_hero_host}' for hook (meme-risk)")
+        hero = ""
+    if hero and is_url_downloadable(hero):
+        _dims = check_image_resolution(hero)
+        if _dims and min(_dims) < MIN_IMAGE_DIM:
+            print(f"  🚫 Hero too small for hook ({_dims[0]}x{_dims[1]} < {MIN_IMAGE_DIM}px) — scene 1 will use a card")
+            hero = ""
+    if hero and is_url_downloadable(hero):
+        mu = mirror_to_supabase(hero, article_id, 0)
+        if mu:
+            matched_urls[0] = mu
+            used_in_this_reel.add(mu)
+            media_meta[mu] = {"type": "image", "duration": 0, "curated": True,
+                              "generic_pexels": False}
+            n_hero += 1
+            print(f"  🎬 Scene 1: article hero")
+        else:
+            print("  ⚠️ Hero mirror failed — scene 1 will use a card")
+
+    # ── 2. Article's OWN inline embeds → mid scenes only ──
+    embeds = extract_inline_embeds(body)
+    if embeds:
+        print(f"  📡 Found {len(embeds)} inline embed(s) in article body: "
+              + ", ".join(f"{e['platform']}:@{e.get('handle') or '?'}" for e in embeds))
+        mid_slots = [i for i in range(1, n) if i != last_idx and matched_urls[i] is None]
+        slot_ptr = 0
+        for emb in embeds:
+            if slot_ptr >= len(mid_slots):
+                break
+            post = _embed_to_post(emb)
+            if not post:
+                print(f"  ⚠️ Embed {emb['platform']}:@{emb.get('handle') or '?'} not fetchable — skipping (scene will use a card)")
+                continue
+            photos = post.get("photos") or ([post["photo"]] if post.get("photo") else [])
+            for photo_url in photos:
+                if slot_ptr >= len(mid_slots):
+                    break
+                local = render_social_card(post, category, photo_url=photo_url, card_idx=slot_ptr)
+                if not local:
+                    continue  # face-crop guard rejected this photo
+                slot = mid_slots[slot_ptr]
+                storage_path = f"reel-social/{article_id}/scene-{slot}.png"
+                card_url = upload_asset(local, storage_path, "image/png")
+                try:
+                    os.remove(local)
+                except Exception:
+                    pass
+                if not card_url or card_url in used_in_this_reel:
+                    continue
+                matched_urls[slot] = card_url
+                used_in_this_reel.add(card_url)
+                media_meta[card_url] = {"type": "image", "duration": 0,
+                                        "is_social_card": True, "curated": True,
+                                        "generic_pexels": False,
+                                        "source_url": post.get("url", "")}
+                n_embed += 1
+                slot_ptr += 1
+                print(f"  📡 Scene {slot+1}: social card ({post['platform']} @{post['handle']})")
+
+    # ── 3. Every remaining scene: GPT-authored branded card ──
+    for i in range(n):
+        if matched_urls[i] is not None:
+            continue
+        scene = scenes[i]
+        # Scene 0 (the hook) is overlaid by the hook title + eyebrow pill. Drawing
+        # the card's own key-point line there too creates a 3-layer text collision
+        # (the #1 readability QA hit), so render scene 0 as a text-free branded bg.
+        local = render_keypoint_card(scene, category, article, i, text_free=(i == 0))
+        if not local:
+            print(f"  ⚠️ Scene {i+1}: card render failed (PIL?) — leaving empty")
+            continue
+        try:
+            with open(local, "rb") as _fh:
+                _ch = hashlib.md5(_fh.read()).hexdigest()[:10]
+        except Exception:
+            _ch = str(int(time.time()))
+        storage_path = f"reel-cards/{article_id}/scene-{i}-{_ch}.png"
+        card_url = upload_asset(local, storage_path, "image/png")
+        try:
+            os.remove(local)
+        except Exception:
+            pass
+        if not card_url:
+            print(f"  ⚠️ Scene {i+1}: card upload failed — leaving empty")
+            continue
+        matched_urls[i] = card_url
+        used_in_this_reel.add(card_url)
+        media_meta[card_url] = {"type": "image", "duration": 0, "is_card": True,
+                                "curated": True, "generic_pexels": False}
+        n_card += 1
+        _ctxt = _card_pick_text(scene, article)
+        print(f"  🎨 Scene {i+1}: key-point card — \"{_ctxt[:48]}\"")
+
+    urls = [u for u in matched_urls if u is not None]
+    print(f"  🖼️ CLEAN sourcing: {len(urls)}/{n} scenes "
+          f"(hero={n_hero}, embed={n_embed}, card={n_card})")
+    return urls, media_meta
+
+
 def source_image_urls(article, image_queries, count=5):
     """Legacy fallback — used when script has image_queries instead of storyboard."""
     urls = []
@@ -3795,18 +4094,28 @@ def build_anchor_reel_timeline(
     # band caused them to overlap during the 3–7s window (the #1 "overlapping text"
     # QA failure). Captions now own the lower third exclusively.
     # caption_scrim_track sits directly beneath the captions to guarantee contrast.
+    # When every scene is a key-point/social card (clean-reel mode), all caption
+    # pills get suppressed as redundant — the cards already carry the on-screen
+    # text. That leaves caption_track empty, which Shotstack rejects (tracks must
+    # have >=1 clip). So include the caption + scrim tracks only when captions
+    # actually remain.
+    _has_captions = bool((caption_track or {}).get("clips"))
+    _all_tracks = []
+    if _has_captions:
+        _all_tracks.append(caption_track)    # Top layer
+    _all_tracks.append(logo_track)
+    _all_tracks.append(hook_track)
+    if _has_captions:
+        _all_tracks.append(caption_scrim_track)  # Dark band behind captions (text-free)
+    _all_tracks.append(end_card_track)   # Branded end card
+    _all_tracks.append(broll_track)      # Visual base
+    _all_tracks.append(voice_track)      # Audio (bottom)
+    if not _has_captions:
+        print("  ℹ️ No caption clips remain (all-card reel) — captions/scrim tracks omitted")
     timeline = {
         "background": NAVY,
         "fonts": [{"src": FONT_URL}],
-        "tracks": [
-            caption_track,    # Top layer
-            logo_track,
-            hook_track,
-            caption_scrim_track,  # Dark band behind captions (text-free)
-            end_card_track,   # Branded end card
-            broll_track,      # Visual base
-            voice_track,      # Audio (bottom)
-        ],
+        "tracks": _all_tracks,
     }
 
     # Add soundtrack if music available
@@ -4771,7 +5080,7 @@ def cross_post_reel(article, video_url, video_path, caption, poster_url=None):
 # MAIN ORCHESTRATION
 # ═══════════════════════════════════════════════════════════════════════════════
 
-def run_anchor_reel(article, dry_run=False, use_production=False):
+def run_anchor_reel(article, dry_run=False, use_production=False, no_publish=False):
     """Generate a full Anchor Reel for an article."""
     headline = article.get("headline", "Unknown")
     category = article.get("category", "news")
@@ -4826,7 +5135,11 @@ def run_anchor_reel(article, dry_run=False, use_production=False):
     print("\n🖼️ Step 4: Sourcing B-roll media...")
     storyboard = script_data.get("storyboard", [])
     media_meta = {}
-    if storyboard:
+    REEL_CLEAN = os.environ.get("VIDESHI_REEL_CLEAN", "1") != "0"
+    if storyboard and REEL_CLEAN:
+        print("  🧹 CLEAN mode (approach 1): article hero + own embeds + GPT cards only")
+        image_urls, media_meta = source_reel_media_clean(article, storyboard)
+    elif storyboard:
         image_urls, media_meta = source_storyboard_images(article, storyboard)
     else:
         print("  ⚠️ No storyboard in script — falling back to legacy image_queries")
@@ -4934,6 +5247,17 @@ def run_anchor_reel(article, dry_run=False, use_production=False):
     # 9. AI Quality Gate
     print("\n🔍 Step 9: AI Quality Gate...")
     qa_passed, qa_score, qa_notes = run_qa_gate(str(final_path), article, script_data)
+    if no_publish:
+        # Test mode: report QA but never publish/distribute, regardless of pass/fail.
+        status = "PASSED" if qa_passed else "FAILED"
+        print(f"  {'✅' if qa_passed else '❌'} QA {status} (score: {qa_score}) — {qa_notes}")
+        print(f"\n{'='*60}")
+        print(f"🧪 NO-PUBLISH RUN COMPLETE (not registered/distributed)")
+        print(f"   MP4: {final_path}")
+        print(f"   Shotstack URL: {output_url}")
+        print(f"   QA score: {qa_score} ({status})")
+        print(f"{'='*60}\n")
+        return qa_passed
     if not qa_passed:
         print(f"  ❌ QA FAILED (score: {qa_score}) — {qa_notes}")
         # TODO: auto-revise loop (regenerate script + re-render)
@@ -5048,6 +5372,7 @@ def main():
     parser.add_argument("--production", action="store_true", default=True, help="Use production API (default: True)")
     parser.add_argument("--test", action="store_true", help="Quick test with first available article")
     parser.add_argument("--hours", type=int, default=24, help="Look back N hours for articles")
+    parser.add_argument("--no-publish", action="store_true", help="Render + QA only; do NOT register/distribute (test mode)")
     args = parser.parse_args()
 
     print("🎬 Shotstack Reel Renderer for The Videshi")
@@ -5086,7 +5411,8 @@ def main():
     if args.format == "pulse":
         success = run_quick_pulse(article, dry_run=args.dry_run, use_production=args.production)
     else:
-        success = run_anchor_reel(article, dry_run=args.dry_run, use_production=args.production)
+        success = run_anchor_reel(article, dry_run=args.dry_run, use_production=args.production,
+                                  no_publish=args.no_publish)
 
     sys.exit(0 if success else 1)
 
