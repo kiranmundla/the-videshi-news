@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-20T11:15:24.597478+00:00",
+  "timestamp": "2026-06-20T12:15:37.271003+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
-    "flag": 1,
+    "pass": 8,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "cb495ccb-03a5-4adc-bea6-bbdf08cb89d4",
-      "headline": "Sara Ali Khan Walked Into Royal Ascot in Ivory and Stood Beside King Charles, Henry Cavill and a Princess",
-      "slug": "sara-ali-khan-royal-ascot-2026-ivory-fascinator-henry-cavill-king-charles-british-royals-global-stage-where-to-watch-diaspora-nri-20260620",
+      "id": "ca4db43c-dd21-4d94-9f83-4c27569f4bb0",
+      "headline": "The Last Safety Valve for Backlogged Indians Is a Work Permit Almost Nobody Uses",
+      "slug": "compelling-circumstances-ead-h1b-layoff-green-card-backlog-india-20260620",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -24,18 +24,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image does not directly relate to the Royal Ascot event or Sara Ali Khan's appearance there."
+          "issue": "The image does not directly relate to the topic of immigration or work permits."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects Sara Ali Khan's presence at a prestigious event to the experiences of the NRI diaspora, highlighting cultural intersections."
+          "quality": 8,
+          "note": "The article effectively addresses the concerns of the Indian American community regarding immigration and work permits."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider including an image from the Royal Ascot event to better match the article's content.",
-          "Add more context about the significance of Royal Ascot for Indian celebrities to enhance the diaspora connection."
+          "Include a more relevant image that depicts immigration or work permits.",
+          "Add a personal story or testimonial from an individual affected by the compelling-circumstances EAD to enhance relatability."
         ],
         "verdict": "pass"
       },
@@ -47,9 +47,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "f39f59ea-49ff-481f-8dcf-63d9d6839a90",
-      "headline": "India's Got Latent Is Back, and Netflix Is Daring You to Watch It Without a Filter",
-      "slug": "indias-got-latent-season-2-samay-raina-netflix-youtube-simulcast-june-20-no-filter-comeback-where-to-watch-diaspora-nri-20260620",
+      "id": "9c9ef158-9568-41bb-888d-8290f8e24198",
+      "headline": "The 60-Day Layoff Clock Was Never Really 60 Days. Now the Way Out Costs $100,000",
+      "slug": "h1b-layoff-60-day-grace-period-100k-fee-reentry-trap-india-20260620",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -57,32 +57,250 @@
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/reel/DZxXXKygplR/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram reel does not appear to be directly related to the content of the article, which focuses on the Netflix show and its context."
-          }
-        ],
+        "embed_issues": [],
         "image_match": {
-          "score": 5,
-          "issue": "The image does not feature Samay Raina or any relevant content related to 'India's Got Latent', which may confuse readers."
+          "score": 7,
+          "issue": "The image does not directly relate to the topic of immigration or layoffs."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects with the diaspora by discussing the simulcast availability for NRIs, highlighting their viewing experience."
+          "note": "The article effectively addresses the challenges faced by Indian professionals in the U.S. job market, making it highly relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the Instagram embed with a more relevant link that connects directly to the show's content or promotional material.",
-          "Consider using an image that features Samay Raina or a scene from 'India's Got Latent' to better match the article's focus."
+          "Consider using an image that more directly represents the themes of immigration or layoffs.",
+          "Add a section with resources or contacts for immigration lawyers to assist affected individuals."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/reel/DZxXXKygplR/",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "59b2ad7c-5a6d-42cb-83ce-7312f9e92292",
+      "headline": "India Dangled a 7% Dollar Return at the Diaspora. Now Its Banks Are Scrambling to Fund the Promise.",
+      "slug": "nri-fcnr-deposit-scheme-gift-city-banks-rbi-dollar-inflows-diaspora-20260620",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image of GIFT City is relevant but does not directly illustrate the financial aspect discussed in the article."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the financial strategies of Indian banks to the diaspora's interests, particularly in terms of investment opportunities."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a more illustrative image that directly relates to the financial theme, such as a graphic showing the interest rates or a chart of remittances.",
+          "Include quotes or testimonials from NRIs to enhance the personal connection and impact of the financial changes discussed."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "b6f090b1-3422-49ef-a819-4ab13cdfdd22",
+      "headline": "He Wore No. 10 for New Zealand and Made History for India Without Ever Playing for It",
+      "slug": "indian-heritage-players-fifa-world-cup-2026-sarpreet-singh-diaspora-20260620",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the achievements of players of Indian heritage in international football to the diaspora experience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from Sarpreet Singh or other players mentioned to enhance the personal connection.",
+          "Include more statistics or historical context about Indian football to provide depth."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "22777c59-0337-489d-8fe4-3ef14944c9ed",
+      "headline": "A Doctor Born to Immigrants Is About to Spend Eight Months in Orbit. The Diaspora Has a New Kind of Hero.",
+      "slug": "anil-menon-nasa-astronaut-iss-mission-diaspora-first-spaceflight-20260620",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 10,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects Anil Menon's achievements to the broader Indian diaspora narrative, highlighting the dual heritage and the evolving aspirations of second-generation immigrants."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from Anil Menon or experts in the field to enhance the narrative.",
+          "Include more context on the significance of Menon's mission for the Indian diaspora."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "f41ba0bb-0eb3-4557-859b-bc389c0eb956",
+      "headline": "India's Chip Bet Has a Quiet Winner: A Bengaluru Startup Making the 'Power Brain' for AI Data Centres",
+      "slug": "c2i-peak-xv-power-chip-india-semiconductor-design-ai-data-center-nri-20260620",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the specific topic of AI data centers or chips, but is visually appealing and relevant to technology."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the topic of Indian chip startups to the interests of NRIs, particularly in terms of investment opportunities and returning talent."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including more specific examples of how NRIs can engage with or invest in these startups.",
+          "Add a more relevant image that directly represents AI data centers or semiconductor technology."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "b487be98-1875-4f7d-bbc6-bd1bfa832c3b",
+      "headline": "Qualcomm Is Reportedly Spending $10 Billion to Finally Crash Nvidia's Party",
+      "slug": "qualcomm-tenstorrent-ai-chip-data-center-pivot-jim-keller-indian-engin-20260620",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image is relevant to the tech theme but does not specifically depict Qualcomm or AI chips."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively highlights Qualcomm's impact on Indian engineers and the semiconductor industry, making it relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a more specific image related to Qualcomm or AI chips to enhance visual relevance.",
+          "Include quotes or insights from Indian engineers or industry experts to strengthen the diaspora connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "ce24a107-26ff-4f89-a44b-29094202e128",
+      "headline": "Nikesh Arora Is Buying the Whole Security Stack. The Bill Is Already Past $28 Billion.",
+      "slug": "nikesh-arora-palo-alto-chronosphere-cyberark-agentic-security-nri-20260620",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "cfbf9dd4-09ae-4588-8f02-140d00f13172",
+            "headline": "The Men Who Run Microsoft and Google Just Bought a Piece of "
+          },
+          {
+            "article_id": "aea2806f-7e95-4066-bc67-38d3bc376805",
+            "headline": "Nikesh Arora Just Closed His Third Big Deal in a Year. He's "
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the topic to Indian-origin engineers in cybersecurity, highlighting job market implications."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more direct quotes from Nikesh Arora to enhance the article's depth.",
+          "Include a brief overview of Palo Alto Networks' previous acquisitions for context."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
         "promoted to published"
       ],
       "revised": false,
