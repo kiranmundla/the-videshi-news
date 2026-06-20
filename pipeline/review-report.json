@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-20T22:15:27.021941+00:00",
+  "timestamp": "2026-06-20T22:45:17.509289+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 6,
+    "pass": 3,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,153 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "e6422072-55e9-4246-9109-dc26879817b4",
-      "headline": "India Just Redrew Its Desert Travel Map \u2014 and Jaisalmer's Camel Safaris Are Firmly Inside the Lines",
-      "slug": "india-immigration-order-2026-rajasthan-desert-jaisalmer-oci-nri-20260620",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 10,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the changes in travel regulations to the interests and concerns of diaspora families planning trips to Rajasthan."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from travel experts or diaspora members to enhance the article's relatability.",
-          "Include a brief section on how these changes might impact tourism businesses in Jaisalmer."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "cac48e75-798e-43c7-adf9-f68236236ee5",
-      "headline": "Everyone Says Skip India in the Monsoon. For NRI Families Who Travel on the School Calendar, That's a Mistake",
-      "slug": "india-monsoon-travel-guide-2026-nri-families-where-to-go-20260620",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively addresses NRI families and their travel considerations during the monsoon season."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding personal anecdotes or testimonials from NRIs who have traveled during the monsoon to enhance relatability.",
-          "Include more specific tips or resources for booking accommodations during the monsoon season."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "7beb1b4c-0206-49e4-b7b8-c5d8369e837a",
-      "headline": "IndiGo Is About to Fly a Single-Aisle Jet 8 Hours to Bali \u2014 and the Diaspora's Wedding Map Just Changed",
-      "slug": "indigo-a321xlr-bali-nonstop-delhi-mumbai-nri-wedding-20260620",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the new flight route to the Indian diaspora's travel habits, particularly for weddings and family vacations."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from airline representatives or travel experts to enhance credibility.",
-          "Include more statistics or data on the impact of this route on travel trends among the diaspora."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "0bd781c7-29f6-433a-a5d8-b6651572907b",
-      "headline": "India's Central Bank Holds Rates and Trims Its Growth Forecast as the West Asia War Clouds the Outlook",
-      "slug": "rbi-mpc-minutes-hold-repo-5-25-cut-fy27-growth-6-6-percent-west-asia-conflict-nri-investor-20260620-2200",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the RBI's decisions to the interests of NRIs, discussing implications for investments and remittances."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more specific examples of how the RBI's decisions have historically impacted NRI investments.",
-          "Include quotes or insights from diaspora financial experts to enhance the article's relevance to NRI readers."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "29544d3a-2508-42f8-9ea3-88ba1cbb605b",
-      "headline": "When You Stop Eating at Night May Matter as Much as What You Eat, a Northwestern Study Finds",
-      "slug": "sleep-aligned-fasting-overnight-blood-pressure-heart-rate-northwestern-circadian-atvb-diaspora-20260620-2200",
+      "id": "dcd8abf0-b001-4c34-9aa1-73c3858cc127",
+      "headline": "Seattle Chased 217 in Texas and Barely Broke Stride. America's T20 League Is Producing Run-Fests the Diaspora Built It For.",
+      "slug": "seattle-orcas-beat-washington-freedom-mlc-2026-chase-217-tim-seifert-78-breetzke-66-shanaka-grand-prairie-netravalkar-diaspora-nri",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -173,13 +29,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects the study's findings to the cultural habits of Indian-origin families, making it relevant for the diaspora."
+          "note": "The article effectively connects the cricket match to the NRI diaspora, highlighting their role in supporting the league."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a quote from a participant in the study to provide a personal touch.",
-          "Include more specific statistics or data points from the study to enhance credibility."
+          "Consider adding quotes from players or coaches to enhance the narrative.",
+          "Include statistics or historical context about the league's growth to provide depth."
         ],
         "verdict": "pass"
       },
@@ -191,9 +47,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "889bd14f-9044-4ad7-9012-6aa26deb6bd8",
-      "headline": "A Few Cups of Coffee a Day May Be Quietly Guarding Your Heart, a Study of 468,000 Adults Finds",
-      "slug": "moderate-coffee-lower-heart-disease-stroke-death-risk-uk-biobank-semmelweis-468000-adults-diaspora-20260620-2200",
+      "id": "c7813e46-af8d-4e8d-b4cb-a050abd1d074",
+      "headline": "A Proposed Visa Rule Would Give Indian Graduates 30 Days to Solve a Problem That Can Take Years",
+      "slug": "us-f1-student-visa-rule-30-day-grace-day-1-cpt-indian-students-h1b-20260620",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -208,14 +64,50 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the study's findings to the Indian diaspora's cultural practices and health concerns."
+          "quality": 8,
+          "note": "The article effectively connects the proposed visa changes to the concerns of Indian families and students, highlighting the impact on their educational and career aspirations."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a quote from a health expert to enhance credibility.",
-          "Include more specific statistics on heart disease rates among South Asians to strengthen the diaspora angle."
+          "Consider adding quotes or testimonials from affected students to enhance the personal impact of the story.",
+          "Include statistics or data on the number of Indian students affected by these changes to provide a clearer picture of the issue."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "3cedcbc9-9c21-4ad9-8389-eed063999905",
+      "headline": "In Paris, Modi Told the Diaspora They Are India's Soft Power. Then He Made Their Lives a Little Easier.",
+      "slug": "modi-paris-indian-diaspora-address-upi-france-student-mobility-vivatech-20260620",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects Modi's speech to the diaspora's experiences and benefits, making it relevant for NRI readers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more direct quotes from diaspora members to enhance personal connection.",
+          "Add a brief section on how these announcements compare to other countries' treatment of their diaspora."
         ],
         "verdict": "pass"
       },
