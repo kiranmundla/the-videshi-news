@@ -707,6 +707,18 @@
         "x": null,
         "threads": null,
         "instagram": "saraalikhan95"
+      },
+      {
+        "name": "Manoj Bajpayee",
+        "x": null,
+        "threads": null,
+        "instagram": "bajpayee.manoj"
+      },
+      {
+        "name": "Adah Sharma",
+        "x": null,
+        "threads": null,
+        "instagram": "adaborz"
       }
     ],
     "organizations": [
@@ -862,7 +874,5 @@
         "instagram": null
       }
     ]
-  },
-  "Manoj Bajpayee": "@bajpayee.manoj",
-  "Adah Sharma": "@adaborz"
+  }
 }

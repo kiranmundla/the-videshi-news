@@ -203,7 +203,7 @@ def best_photo_tweet(handle, hours=48, topic_keywords=None):
     return tweets[0] if tweets else None
 
 
-def search_topic_posts(query, hours=72, max_results=30, verified_only=True, min_likes=50):
+def search_topic_posts(query, hours=72, max_results=30, verified_only=True, min_likes=50, require_media=True):
     """
     Topic search across ALL of X (not a single timeline) via the recent-search
     endpoint. Returns posts that have usable still media — either a photo OR a
@@ -223,9 +223,10 @@ def search_topic_posts(query, hours=72, max_results=30, verified_only=True, min_
         return []
 
     start_time = (datetime.now(timezone.utc) - timedelta(hours=hours)).strftime("%Y-%m-%dT%H:%M:%SZ")
-    # Require media, drop retweets/replies, English. (is:verified is a premium
-    # operator on some tiers, so we filter verification client-side instead.)
-    full_query = f"({query}) has:media -is:retweet -is:reply lang:en"
+    # Drop retweets/replies, English. Media is required for reel cards
+    # (require_media=True) but optional for text embeds (require_media=False).
+    media_clause = "has:media " if require_media else ""
+    full_query = f"({query}) {media_clause}-is:retweet -is:reply lang:en"
     params = {
         "query": full_query,
         "max_results": min(max(max_results, 10), 100),
@@ -284,8 +285,8 @@ def search_topic_posts(query, hours=72, max_results=30, verified_only=True, min_
                 # Capture the playable MP4 (highest-bitrate variant). First video wins.
                 if video is None:
                     video = _best_mp4(m)
-        if not photos and not video:
-            continue  # no usable media at all
+        if require_media and not photos and not video:
+            continue  # no usable media at all (reel cards need a still)
 
         author = users_map.get(t.get("author_id"), {})
         is_verified = bool(author.get("verified")) or author.get("verified_type") in ("blue", "business", "government")
