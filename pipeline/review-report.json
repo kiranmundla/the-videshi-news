@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-20T13:45:10.160087+00:00",
+  "timestamp": "2026-06-20T14:15:35.242992+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
+    "pass": 6,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "389f9404-140d-4511-8f19-7e00fe3730d3",
-      "headline": "Two Indian-Americans Made the U.S. Open Weekend. Three Recent Champions Did Not.",
-      "slug": "sahith-theegala-akshay-bhatia-indian-american-golfers-us-open-2026-weekend-shinnecock-hills-cut-diaspora-nri",
+      "id": "f35edbdb-2284-4c52-aa2e-f666a1aef327",
+      "headline": "Foreign Money Fled India in April, but a Record Surge in NRI Remittances Helped Cushion the Blow",
+      "slug": "india-balance-of-payments-deficit-april-fpi-outflows-remittances-16-billion-surge-nri-investor-20260620-1400",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -29,13 +29,198 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively highlights the achievements of Indian-American golfers, connecting their success to the diaspora community."
+          "note": "The article effectively highlights the significant role of NRI remittances in stabilizing India's economy, making it relevant for diaspora readers."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from the players or their coaches to enhance the narrative.",
-          "Include more statistics or historical context about Indian-Americans in golf to deepen the analysis."
+          "Consider adding more specific examples of how NRI remittances have impacted local economies in India.",
+          "Include quotes or insights from diaspora members to enhance the personal connection to the topic."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "4f4d881d-a368-40db-b750-5cad9e3361d1",
+      "headline": "Hormone-Disrupting Chemicals Are Turning Up in Breast Milk and Babies' Urine, a New Study Finds",
+      "slug": "endocrine-disrupting-chemicals-bpa-phthalates-breast-milk-infant-urine-life-milch-endo-2026-diaspora-20260620-1400",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article provides practical advice specifically for young Indian families abroad, making the diaspora angle relevant and well-integrated."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of products or brands that are safer alternatives for diaspora families.",
+          "Include a brief section on how these findings might influence policy or consumer behavior in the diaspora context."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "9ce36fb7-9902-4682-978c-69f43791c481",
+      "headline": "Testosterone Alone Won't Fix Diabetes Risk in Older Men, a New Follow-Up Finds \u2014 the Lifestyle Still Has to Change",
+      "slug": "testosterone-not-replacement-lifestyle-change-older-men-prediabetes-t4dm-substudy-endo-2026-diaspora-20260620-1400",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the findings to the South Asian community's predisposition to diabetes, making it relevant for diaspora readers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from experts or additional studies to enhance credibility.",
+          "Include more specific statistics or data points related to the South Asian diaspora's diabetes risk for a stronger impact."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "06b1702c-e19b-4442-9cfb-b82a7098d414",
+      "headline": "Air India Opens Its First Lounge Outside India \u2014 and It Picked San Francisco",
+      "slug": "air-india-maharaja-lounge-sfo-first-overseas-bay-area-nri-20260620",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the lounge opening to the Indian diaspora in the Bay Area, highlighting its significance for Indian-American travelers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from Air India executives or travelers to enhance the narrative.",
+          "Include more details about the expected impact on competition with other airlines for the diaspora market."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "294cc3b8-da2c-49ea-806a-6d0733d93112",
+      "headline": "Europe Just Got Easier to Fly Through: Germany and France Drop Transit Visas for Indians",
+      "slug": "germany-france-drop-airport-transit-visa-indians-frankfurt-nri-20260620",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "ed5e85e0-a03c-4a26-90a9-dac5de869ab0",
+            "headline": "Germany Just Dropped the Transit Visa for Indians \u2014 and Fran"
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the visa changes to the travel patterns of the Indian diaspora, highlighting the practical benefits for NRIs."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes or reactions from Indian travelers or diaspora members to enhance relatability.",
+          "Include a brief comparison of transit visa requirements in other countries for a broader context."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "ba4ebe4c-5689-4648-895b-5b47e76b3021",
+      "headline": "Your US Visa Is Now an Argentina Visa Too \u2014 and Patagonia Just Got a Lot Closer",
+      "slug": "argentina-visa-free-indians-us-visa-green-card-patagonia-nri-20260620",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 6,
+          "issue": "The image of Cataratas del Iguaz\u00fa is relevant to Argentina but does not directly match the article's focus on visa changes."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively addresses the diaspora by discussing how the visa changes impact Indian Americans and their travel plans."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that directly relates to the visa topic or showcases Indian travelers in Argentina.",
+          "Add a brief section on how to prepare for travel to Argentina, including tips for Indian travelers."
         ],
         "verdict": "pass"
       },
