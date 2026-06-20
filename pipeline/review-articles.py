@@ -107,7 +107,8 @@ def call_gemini(prompt, article_text, model="gemini-2.5-flash", max_tokens=800):
         "generationConfig": {
             "temperature": 0.1,
             "maxOutputTokens": max_tokens,
-            "responseMimeType": "application/json"
+            "responseMimeType": "application/json",
+            "thinkingConfig": {"thinkingBudget": 0}
         }
     }
     url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={GEMINI_KEY}"
@@ -165,6 +166,7 @@ def call_gemini_text(prompt, article_text, model="gemini-2.5-flash", max_tokens=
         "generationConfig": {
             "temperature": 0.3,
             "maxOutputTokens": max_tokens,
+            "thinkingConfig": {"thinkingBudget": 0},
         }
     }
     url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={GEMINI_KEY}"

@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-20T03:15:24.614815+00:00",
+  "timestamp": "2026-06-20T04:17:02.956505+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 4,
-    "flag": 0,
+    "pass": 1,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,122 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "992dfac7-4ef0-4777-9048-e7436407f869",
-      "headline": "India Gets Spider-Man a Day Before America \u2014 and the Tickets Are Already a Wall of Red",
-      "slug": "spider-man-brand-new-day-india-early-release-july-30-tom-holland-zendaya-record-presales-imax-odyssey-where-to-watch-diaspora-nri-20260619",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "9dff173d-6d75-4b6b-bbf4-e79b3e326a35",
-            "headline": "India Gets Spider-Man First. Brand New Day Swings Into Theat"
-          }
-        ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the film's release timing to the NRI experience, highlighting the reversal of typical release patterns."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more quotes or reactions from diaspora audiences to enhance the connection.",
-          "Include a brief section on the significance of the film's release timing for Indian audiences compared to previous Hollywood releases."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "fcba1d6d-f315-49e9-a36b-4decdf9d0188",
-      "headline": "India Will Build a Quarter of the World's iPhones This Year. A Pollution Notice Shows How Hard the Climb Still Is.",
-      "slug": "apple-india-iphone-manufacturing-tata-foxconn-supply-chain-nri-20260620",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to iPhone manufacturing or pollution issues."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the topic to the Indian American community by discussing job markets and economic impacts in their hometowns."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that directly relates to iPhone manufacturing or the pollution issue to enhance relevance.",
-          "Add more statistics or data points to strengthen the argument about the impact of Apple's manufacturing shift on the Indian economy."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "2d234ea8-807b-4869-a0fa-d03c0d7bd291",
-      "headline": "Tesla Opened Its Fifth India Showroom in a Tech Hub Full of Future NRIs. The Price Tag Tells You Who It's Really For.",
-      "slug": "tesla-india-fifth-showroom-hyderabad-model-y-price-nri-ev-20260620",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects Tesla's pricing strategy in India to the experiences and frustrations of the NRI community."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more direct quotes or testimonials from NRIs regarding their views on Tesla's pricing in India.",
-          "Include a brief comparison of Tesla's market strategy in India versus other countries to provide more context."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "13381b90-7885-4839-a4aa-d94efe7b76d5",
-      "headline": "Vinod Khosla Says India's $200 Billion IT Industry 'Will Be Gone.' The Diaspora's Oldest Career Ladder Is Wobbling.",
-      "slug": "vinod-khosla-india-it-industry-ai-disruption-tcs-infosys-wipro-nri-20260620",
+      "id": "94c7b504-0ce1-45ee-88dd-11ee0aa2223a",
+      "headline": "The DOJ Plans 250 Denaturalization Cases by October. Indian Americans Are in the Crosshairs",
+      "slug": "doj-denaturalization-250-cases-citizenship-stripping-indian-americans-20260620",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -142,13 +29,51 @@
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects the implications of Khosla's statements to the experiences and concerns of the Indian diaspora, particularly regarding career paths and investments."
+          "note": "The article directly addresses Indian Americans and provides specific examples relevant to the community."
+        },
+        "factual_flags": [
+          "The article states 'between 2008 and June 2026, a total of 166 such complaints were filed'. The year '2026' seems like a typo and should likely be '2016' or '2018' to make sense in the context of 'previous two decades' and 'under two months this year'."
+        ],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Correct the typo in the date range '2008 and June 2026' to ensure factual accuracy.",
+          "Consider adding a brief 'What to actually do' section with actionable advice for naturalized Indian Americans, even if it's general guidance like consulting an immigration lawyer for specific concerns."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "3b256157-a37a-4fac-9fc7-41f7aa20659b",
+      "headline": "The Supreme Court Will Decide if a Green Card Comes With the Right to Ask a Judge for Release",
+      "slug": "supreme-court-genalo-black-green-card-detention-bond-hearing-india-20260620",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the Supreme Court case to Indian Americans and NRIs, explaining why green card holders should be concerned and how it impacts their perception of permanent residency."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more direct quotes from Khosla to enhance credibility.",
-          "Include perspectives from other industry experts to provide a more balanced view."
+          "Consider adding a brief concluding sentence or call to action, perhaps encouraging readers to stay informed or outlining potential future developments.",
+          "Ensure the article clearly states the full name of the case, including the 'v.' for clarity, as it's sometimes presented as 'Genalo v. Black' and other times 'Genalo v Black'."
         ],
         "verdict": "pass"
       },
@@ -157,7 +82,7 @@
       ],
       "revised": false,
       "unpublished": false,
-      "llm_source": "gpt-4o-mini"
+      "llm_source": "gemini-2.5-flash"
     }
   ]
 }

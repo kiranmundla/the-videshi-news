@@ -294,7 +294,7 @@ def generate_script(article, force_new=False):
     slug = article.get("slug", "unknown")
 
     # Script cache — reuse if already generated
-    SCRIPT_CACHE_VERSION = "clean1"  # bump to invalidate old caches (clean reel: card_text required)
+    SCRIPT_CACHE_VERSION = "clean2"  # bump to invalidate old caches (clean reel: card_text + media_plan)
     cache_path = BUILD_DIR / f"script-{slug}.json"
     if not force_new and cache_path.exists():
         try:
@@ -358,26 +358,61 @@ HOOK TEXT (shown on screen before voice starts):
 - hook_line1: 3-5 words, ALL CAPS. The "stop scrolling" line. Make it PROVOCATIVE and high-stakes — a threat, a shock, a reversal, or a bold claim. "OIL LIFELINE OPEN" is too flat. "STRAIT CHOKEHOLD BREAKS" or "INDIA DODGED DISASTER" has punch. Use power words (CRISIS, SHOCK, COLLAPSE, WAR, WIN, DODGED, EXPOSED, SLASHED) where the facts support them — but never overstate beyond what the article says.
 - hook_line2: 3-5 words, ALL CAPS. Twists the knife or raises the stakes further — a number, a consequence, or a cliffhanger.
 
-STORYBOARD: Plan 6-8 scenes that match the narration beat-by-beat.
-Each scene fills ~4-6 seconds of screen time while the voice plays. Most scenes
-will be rendered as a BRANDED ON-SCREEN CARD that displays one short key point in
-The Videshi house style (navy + gold). So the MOST IMPORTANT thing you give us
-per scene is the "card_text" — the single punchy line that belongs on screen for
-that beat.
+STORYBOARD: Plan 6-8 scenes that match the narration beat-by-beat. For EACH
+scene you also act as the visual director: you decide HOW that beat should be
+shown on screen by choosing a "media_plan". You CANNOT browse, fetch, or verify
+anything — you only PLAN. A separate system executes your plan, verifies sources,
+and silently falls back to a branded card if your choice can't be fulfilled.
 - Scene 1 = the HOOK. scene_role "hook".
 - Middle scenes = the narration beats. scene_role "beat".
 - The LAST scene = the closing call-to-action. scene_role "cta".
-- More scenes = more visual variety = better retention.
+- More scenes = more visual variety = better retention. Vary the media_plan
+  across scenes — a reel that is ALL identical cards reads as monotonous. Mix in
+  a generated illustration or a social embed where the beat supports it.
 
 For each scene, provide:
 - "narration": the exact words spoken during that scene (copy from script).
-- "card_text": MANDATORY. A SHORT, punchy key point distilling that beat — 4 to 9
-  words, the essence of what is narrated, the way you'd headline it on a card.
-  Title-case-ish, no trailing period. Lead with the number/name when there is
-  one. Examples: "Telugu Worker Forced To Pay $30,000", "Federal Lawsuit Filed In
-  Michigan", "Every H-1B Holder Is At Risk". This is what the viewer reads, so
-  make it land on its own.
 - "scene_role": one of "hook" | "beat" | "cta".
+- "card_text": MANDATORY for EVERY scene (it's the on-screen text for "card"
+  scenes AND the safe fallback if any richer plan fails). A SHORT, punchy key
+  point distilling the beat — 4 to 9 words, the essence of what's narrated, the
+  way you'd headline it on a card. Title-case-ish, no trailing period. Lead with
+  the number/name when there is one. Examples: "Telugu Worker Forced To Pay
+  $30,000", "Federal Lawsuit Filed In Michigan", "Every H-1B Holder Is At Risk".
+- "media_plan": one of "social" | "generate" | "card" | "media_library":
+    • "social" — show a REAL social post (X or Threads) from a public figure /
+      official account central to THIS story, in a branded attributed frame. Only
+      choose this when the beat is literally about what a specific named person or
+      org SAID or POSTED, and that account is a well-known verified handle. Add a
+      "social_hint" with the handle (no @) or the person/org name + topic. The
+      executor will try to fetch a recent on-topic post; if none exists it falls
+      back to your card_text. Never pick "social" for scene 1 or the final CTA.
+    • "generate" — show a custom GENERATED editorial illustration for an abstract
+      or scene-setting beat (a concept, a mood, a setting) that no card or real
+      photo captures well. Add an "image_prompt" (see GENERATE RULES). Great for
+      the hook background and for conceptual beats. Use sparingly: 1-3 per reel.
+    • "media_library" — show a real curated photo from our in-house library IF the
+      beat is about a concrete, common, photographable Indian subject (a city
+      skyline, currency, a generic crowd, a flag). Add a "media_subject" (2-4
+      words, concrete, India-anchored). If nothing fits, executor falls to card.
+    • "card" — the default. A clean branded text card showing card_text. Choose
+      this whenever unsure; it is always safe and on-brand.
+
+GENERATE RULES (only when media_plan = "generate") — write "image_prompt" as an
+EDITORIAL ILLUSTRATION brief, never a photo:
+- It MUST be a stylized, abstract, or symbolic illustration — NOT a photograph,
+  NOT photoreal.
+- ABSOLUTELY NO real, identifiable person (no politician, celebrity, athlete —
+  no faces of named people). NO depiction of a real news event staged as if it
+  were a real photo. NO logos of real companies. NO text, letters, words, or
+  numbers anywhere in the image (all text lives on separate cards).
+- Describe symbolic/conceptual visuals: objects, documents, silhouettes,
+  landscapes, geometric motifs, light. e.g. "a lone silhouetted figure dwarfed by
+  towering faceless office buildings, oppressive scale, symbolizing worker
+  powerlessness" or "an official-looking legal document partially torn,
+  dramatic shadow, symbolizing a lawsuit". Keep it to ONE clear concept.
+- Do NOT specify colors, borders, or framing — a fixed house style is appended
+  automatically. Just describe the SUBJECT and MOOD in 1-2 sentences.
 
 Return JSON only:
 {{
@@ -388,14 +423,25 @@ Return JSON only:
     {{
       "scene": 1,
       "narration": "first ~15 words...",
+      "scene_role": "hook",
       "card_text": "Punchy Hook Key Point",
-      "scene_role": "hook"
+      "media_plan": "generate",
+      "image_prompt": "a symbolic editorial illustration of ... (subject + mood, no people, no text)"
     }},
     {{
       "scene": 2,
       "narration": "next ~15 words...",
+      "scene_role": "beat",
       "card_text": "Next Beat Key Point",
-      "scene_role": "beat"
+      "media_plan": "social",
+      "social_hint": "handle_or_name + what they said"
+    }},
+    {{
+      "scene": 3,
+      "narration": "next ~15 words...",
+      "scene_role": "beat",
+      "card_text": "Another Beat Key Point",
+      "media_plan": "card"
     }}
   ]
 }}"""
@@ -3341,11 +3387,71 @@ def source_storyboard_images(article, storyboard, count=8):
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
-# CLEAN REEL SOURCING (approach 1) — article assets + GPT cards ONLY.
-# No Pexels, no Wikipedia, no Commons, no matching heuristics. Every scene
-# resolves to exactly one of: (1) the article hero (scene 0 only), (2) one of the
-# article's OWN inline social embeds, or (3) a GPT-authored branded key-point card.
+# CLEAN REEL SOURCING (approach 1, v2 — GPT-directed) — NO Pexels/Wikipedia/Commons.
+# Per scene the visual resolves in priority:
+#   A) SOCIAL EMBED (X→Threads): the article's OWN inline body embeds (highest
+#      confidence) + ACTIVE registry sourcing via match_social_card_post. Rendered
+#      through the existing "ON THE FEED" branded social card. Mid scenes only.
+#   B) GPT DIRECTS the rest via per-scene media_plan: "generate" (gpt-image-1
+#      branded editorial illustration), "media_library" (curated in-house photo),
+#      or "card" (PIL branded key-point card; the safe default).
+#   C) Scene 0 (hook) = article hero if it passes resolution, else generate/card.
 # ═══════════════════════════════════════════════════════════════════════════════
+
+# Locked house-style suffix appended to EVERY gpt-image-1 prompt so all generated
+# images stay visually consistent and brand-safe. Text is NEVER baked in (it goes
+# on PIL cards), and no real identifiable person is ever depicted.
+_BRAND_GEN_SUFFIX = (
+    " — Rendered as a refined editorial illustration in The Videshi house style: "
+    "deep navy background (#1a1a2e) with antique gold (#c9a24a) accents, delicate "
+    "Indian jaali lattice linework framing the vertical margins, subtle aged-paper "
+    "grain texture, a soft cinematic glow toward the center, high-end magazine "
+    "art-direction. Flat stylized vector-meets-painterly look, NOT a photograph and "
+    "NOT photorealistic. Absolutely NO text, letters, words, numbers, captions, or "
+    "logos anywhere. NO real or identifiable human faces. Vertical 9:16 composition "
+    "with clear empty space in the upper-middle and lower thirds for overlaid text."
+)
+
+
+def generate_themed_image(image_prompt, article_id, idx, out_dir="/tmp/videshi_gen"):
+    """Generate a brand-themed editorial illustration with gpt-image-1, upload it,
+    and return the public URL (or None on any failure). The locked brand suffix is
+    appended so output is consistent + brand-safe. Never raises."""
+    if not image_prompt or not OPENAI_KEY:
+        return None
+    try:
+        os.makedirs(out_dir, exist_ok=True)
+        full_prompt = image_prompt.strip().rstrip(".") + "." + _BRAND_GEN_SUFFIX
+        r = requests.post(
+            "https://api.openai.com/v1/images/generations",
+            headers={"Authorization": f"Bearer {OPENAI_KEY}", "Content-Type": "application/json"},
+            json={"model": "gpt-image-1", "prompt": full_prompt[:3900],
+                  "size": "1024x1536", "n": 1},
+            timeout=120,
+        )
+        if r.status_code != 200:
+            print(f"  ⚠️ gpt-image-1 failed ({r.status_code}): {r.text[:160]}")
+            return None
+        data = r.json().get("data", [])
+        if not data or not data[0].get("b64_json"):
+            print("  ⚠️ gpt-image-1 returned no image data")
+            return None
+        import base64
+        png = base64.b64decode(data[0]["b64_json"])
+        local = os.path.join(out_dir, f"gen_{article_id}_{idx}.png")
+        with open(local, "wb") as fh:
+            fh.write(png)
+        storage_path = f"reel-gen/{article_id}/scene-{idx}.png"
+        url = upload_asset(local, storage_path, "image/png")
+        try:
+            os.remove(local)
+        except Exception:
+            pass
+        return url
+    except Exception as e:
+        print(f"  ⚠️ generate_themed_image error: {e}")
+        return None
+
 
 # Matches the bare social-post URLs the writers splice into article body markdown
 # (before "## Diaspora Impact"). Captures handle + status id so we can fetch.
@@ -3469,16 +3575,21 @@ def _embed_to_post(emb):
 
 
 def source_reel_media_clean(article, storyboard, count=8):
-    """APPROACH-1 sourcing. Same return shape as source_storyboard_images
-    (urls, media_meta), but every scene resolves to ONE of three sources only:
-      0) Scene 0 (hook): the article hero photo IF it passes the resolution
-         check; otherwise a GPT card for that scene.
-      1) The article's OWN inline social embeds (X→Threads→IG), rendered through
-         the existing render_social_card path, assigned to MID scenes only
-         (never scene 0, never the final CTA scene). Face-crop guarded.
-      2) Every remaining scene: a GPT-authored branded key-point card via
-         render_keypoint_card (which now prefers scene["card_text"]).
-    No Pexels, no Wikipedia, no Commons, no matching."""
+    """APPROACH-1 v2 (GPT-directed). Same return shape as source_storyboard_images
+    (urls, media_meta). Per-scene the visual resolves by priority:
+      A) SOCIAL EMBED (X→Threads) — the article's OWN inline body embeds PLUS
+         active registry sourcing (match_social_card_post). Rendered through the
+         existing "ON THE FEED" branded social card. MID scenes only (never the
+         hook, never the final CTA). Preference goes to scenes GPT marked
+         media_plan=="social"; leftover social cards then fill other mid scenes
+         that GPT left as plain cards, for variety.
+      B) GPT DIRECTS the rest via each scene's media_plan:
+           "generate"      → gpt-image-1 branded editorial illustration
+           "media_library" → curated in-house photo (find_media)
+           "card"          → PIL branded key-point card (the safe default)
+      C) Scene 0 (hook) = article hero if it passes resolution; else a generated
+         themed background (if GPT planned one) or a text-free branded card.
+    No Pexels, no Wikipedia, no Commons, no heuristic matching."""
     media_meta = {}
     used_in_this_reel = set()
 
@@ -3510,10 +3621,11 @@ def source_reel_media_clean(article, storyboard, count=8):
         return [], {}
     matched_urls = [None] * n
     last_idx = n - 1  # final scene = CTA, never social
+    plans = [(s.get("media_plan") or "card").strip().lower() for s in scenes]
 
-    n_hero = n_embed = n_card = 0
+    n_hero = n_embed = n_card = n_gen = n_lib = 0
 
-    # ── 1. Scene 0: article hero (resolution-gated) ──
+    # ── C. Scene 0: article hero (resolution-gated) ──
     _hero_host = ""
     try:
         from urllib.parse import urlparse as _up
@@ -3527,7 +3639,7 @@ def source_reel_media_clean(article, storyboard, count=8):
     if hero and is_url_downloadable(hero):
         _dims = check_image_resolution(hero)
         if _dims and min(_dims) < MIN_IMAGE_DIM:
-            print(f"  🚫 Hero too small for hook ({_dims[0]}x{_dims[1]} < {MIN_IMAGE_DIM}px) — scene 1 will use a card")
+            print(f"  🚫 Hero too small for hook ({_dims[0]}x{_dims[1]} < {MIN_IMAGE_DIM}px) — scene 1 falls to generate/card")
             hero = ""
     if hero and is_url_downloadable(hero):
         mu = mirror_to_supabase(hero, article_id, 0)
@@ -3539,31 +3651,59 @@ def source_reel_media_clean(article, storyboard, count=8):
             n_hero += 1
             print(f"  🎬 Scene 1: article hero")
         else:
-            print("  ⚠️ Hero mirror failed — scene 1 will use a card")
+            print("  ⚠️ Hero mirror failed — scene 1 falls to generate/card")
 
-    # ── 2. Article's OWN inline embeds → mid scenes only ──
+    # ── A. Build the social-card POOL: inline embeds first (highest confidence),
+    #       then ACTIVE registry sourcing. Each pool entry is a render-ready post. ──
+    social_pool = []  # list of post dicts (with .photos)
+    seen_post_urls = set()
+
+    def _add_post(post):
+        if not post:
+            return
+        pu = post.get("url", "")
+        if pu and pu in seen_post_urls:
+            return
+        if pu:
+            seen_post_urls.add(pu)
+        if post.get("photos") or post.get("photo"):
+            social_pool.append(post)
+
     embeds = extract_inline_embeds(body)
     if embeds:
-        print(f"  📡 Found {len(embeds)} inline embed(s) in article body: "
+        print(f"  📡 {len(embeds)} inline embed(s) in body: "
               + ", ".join(f"{e['platform']}:@{e.get('handle') or '?'}" for e in embeds))
-        mid_slots = [i for i in range(1, n) if i != last_idx and matched_urls[i] is None]
-        slot_ptr = 0
         for emb in embeds:
-            if slot_ptr >= len(mid_slots):
-                break
             post = _embed_to_post(emb)
-            if not post:
-                print(f"  ⚠️ Embed {emb['platform']}:@{emb.get('handle') or '?'} not fetchable — skipping (scene will use a card)")
-                continue
+            if post:
+                _add_post(post)
+            else:
+                print(f"  ⚠️ Inline embed {emb['platform']}:@{emb.get('handle') or '?'} not fetchable — skipping")
+
+    # Active registry sourcing — only bother if we still want social content.
+    n_social_planned = sum(1 for i, p in enumerate(plans)
+                           if p == "social" and 0 < i < last_idx)
+    try:
+        reg_post = match_social_card_post(article)
+    except Exception as e:
+        reg_post = None
+        print(f"  ⚠️ Active registry sourcing failed: {e}")
+    if reg_post:
+        print(f"  📡 Registry match: {reg_post['platform']} @{reg_post['handle']}")
+        _add_post(reg_post)
+
+    # Render the pool into branded social cards (face-crop guarded). Expand
+    # multi-photo posts into multiple cards.
+    social_cards = []  # list of (card_url, post)
+    if social_pool:
+        sidx = 0
+        for post in social_pool:
             photos = post.get("photos") or ([post["photo"]] if post.get("photo") else [])
             for photo_url in photos:
-                if slot_ptr >= len(mid_slots):
-                    break
-                local = render_social_card(post, category, photo_url=photo_url, card_idx=slot_ptr)
+                local = render_social_card(post, category, photo_url=photo_url, card_idx=sidx)
                 if not local:
                     continue  # face-crop guard rejected this photo
-                slot = mid_slots[slot_ptr]
-                storage_path = f"reel-social/{article_id}/scene-{slot}.png"
+                storage_path = f"reel-social/{article_id}/card-{sidx}.png"
                 card_url = upload_asset(local, storage_path, "image/png")
                 try:
                     os.remove(local)
@@ -3571,53 +3711,117 @@ def source_reel_media_clean(article, storyboard, count=8):
                     pass
                 if not card_url or card_url in used_in_this_reel:
                     continue
-                matched_urls[slot] = card_url
+                social_cards.append((card_url, post))
                 used_in_this_reel.add(card_url)
-                media_meta[card_url] = {"type": "image", "duration": 0,
-                                        "is_social_card": True, "curated": True,
-                                        "generic_pexels": False,
-                                        "source_url": post.get("url", "")}
-                n_embed += 1
-                slot_ptr += 1
-                print(f"  📡 Scene {slot+1}: social card ({post['platform']} @{post['handle']})")
+                sidx += 1
+        print(f"  📡 Social pool → {len(social_cards)} usable branded card(s)")
 
-    # ── 3. Every remaining scene: GPT-authored branded card ──
+    # Assign social cards to MID scenes. Pass 1: scenes GPT marked "social".
+    # Pass 2: leftover cards fill remaining mid scenes GPT left as plain "card".
+    mid_social_planned = [i for i in range(1, last_idx) if plans[i] == "social" and matched_urls[i] is None]
+    mid_card_slots = [i for i in range(1, last_idx) if plans[i] in ("card", "media_library") and matched_urls[i] is None]
+    assign_order = mid_social_planned + [i for i in mid_card_slots if i not in mid_social_planned]
+    card_ptr = 0
+    for slot in assign_order:
+        if card_ptr >= len(social_cards):
+            break
+        card_url, post = social_cards[card_ptr]
+        card_ptr += 1
+        matched_urls[slot] = card_url
+        media_meta[card_url] = {"type": "image", "duration": 0,
+                                "is_social_card": True, "curated": True,
+                                "generic_pexels": False,
+                                "source_url": post.get("url", "")}
+        n_embed += 1
+        print(f"  📡 Scene {slot+1}: social card ({post['platform']} @{post['handle']})")
+
+    # ── B. GPT directs every remaining scene by its media_plan ──
     for i in range(n):
         if matched_urls[i] is not None:
             continue
         scene = scenes[i]
-        # Scene 0 (the hook) is overlaid by the hook title + eyebrow pill. Drawing
-        # the card's own key-point line there too creates a 3-layer text collision
-        # (the #1 readability QA hit), so render scene 0 as a text-free branded bg.
-        local = render_keypoint_card(scene, category, article, i, text_free=(i == 0))
-        if not local:
-            print(f"  ⚠️ Scene {i+1}: card render failed (PIL?) — leaving empty")
-            continue
-        try:
-            with open(local, "rb") as _fh:
-                _ch = hashlib.md5(_fh.read()).hexdigest()[:10]
-        except Exception:
-            _ch = str(int(time.time()))
-        storage_path = f"reel-cards/{article_id}/scene-{i}-{_ch}.png"
-        card_url = upload_asset(local, storage_path, "image/png")
-        try:
-            os.remove(local)
-        except Exception:
-            pass
-        if not card_url:
-            print(f"  ⚠️ Scene {i+1}: card upload failed — leaving empty")
-            continue
-        matched_urls[i] = card_url
-        used_in_this_reel.add(card_url)
-        media_meta[card_url] = {"type": "image", "duration": 0, "is_card": True,
-                                "curated": True, "generic_pexels": False}
-        n_card += 1
-        _ctxt = _card_pick_text(scene, article)
-        print(f"  🎨 Scene {i+1}: key-point card — \"{_ctxt[:48]}\"")
+        plan = plans[i]
+        url = None
+        meta = None
+
+        # "generate" — gpt-image-1 branded editorial illustration.
+        if plan == "generate" and scene.get("image_prompt"):
+            gurl = generate_themed_image(scene.get("image_prompt"), article_id, i)
+            if gurl:
+                url = gurl
+                meta = {"type": "image", "duration": 0, "is_generated": True,
+                        "curated": True, "generic_pexels": False}
+                n_gen += 1
+                print(f"  🖌️ Scene {i+1}: generated illustration — \"{scene.get('image_prompt','')[:48]}\"")
+            else:
+                print(f"  ⚠️ Scene {i+1}: generate failed — falling to card")
+
+        # "media_library" — curated in-house photo.
+        if url is None and plan == "media_library":
+            subj = (scene.get("media_subject") or "").strip()
+            if subj and subj.lower() not in _FOREIGN_GEO_SUBJECTS:
+                ml = _load_media_library_lookup()
+                asset = None
+                if ml:
+                    try:
+                        asset = ml.find_media(subject=subj, exclude_concept=False,
+                                              min_quality=50, bump_usage=False)
+                    except Exception:
+                        asset = None
+                if asset:
+                    au = asset.get("url")
+                    if au and au not in used_in_this_reel and is_url_downloadable(au):
+                        try:
+                            ml.find_media(subject=asset.get("subject"),
+                                          media_type=asset.get("media_type"),
+                                          exclude_concept=False, bump_usage=True)
+                        except Exception:
+                            pass
+                        url = au
+                        mtype = "video" if asset.get("media_type") == "video" else "image"
+                        meta = {"type": mtype, "duration": asset.get("duration") or 0,
+                                "curated": True, "generic_pexels": False,
+                                "source_url": asset.get("source_url", "")}
+                        n_lib += 1
+                        print(f"  🗂️ Scene {i+1}: media-library photo (\"{subj}\")")
+            if url is None:
+                print(f"  ⚠️ Scene {i+1}: media_library had no fit for \"{subj}\" — falling to card")
+
+        # "card" / default / any failed plan → PIL branded key-point card.
+        if url is None:
+            # Scene 0 (hook) gets a text-free branded bg (hook title overlays it),
+            # avoiding the 3-layer text collision that hurt readability QA.
+            local = render_keypoint_card(scene, category, article, i, text_free=(i == 0))
+            if not local:
+                print(f"  ⚠️ Scene {i+1}: card render failed (PIL?) — leaving empty")
+                continue
+            try:
+                with open(local, "rb") as _fh:
+                    _ch = hashlib.md5(_fh.read()).hexdigest()[:10]
+            except Exception:
+                _ch = str(int(time.time()))
+            storage_path = f"reel-cards/{article_id}/scene-{i}-{_ch}.png"
+            url = upload_asset(local, storage_path, "image/png")
+            try:
+                os.remove(local)
+            except Exception:
+                pass
+            if not url:
+                print(f"  ⚠️ Scene {i+1}: card upload failed — leaving empty")
+                continue
+            meta = {"type": "image", "duration": 0, "is_card": True,
+                    "curated": True, "generic_pexels": False}
+            n_card += 1
+            _ctxt = _card_pick_text(scene, article)
+            print(f"  🎨 Scene {i+1}: key-point card — \"{_ctxt[:48]}\"")
+
+        matched_urls[i] = url
+        used_in_this_reel.add(url)
+        media_meta[url] = meta
 
     urls = [u for u in matched_urls if u is not None]
-    print(f"  🖼️ CLEAN sourcing: {len(urls)}/{n} scenes "
-          f"(hero={n_hero}, embed={n_embed}, card={n_card})")
+    print(f"  🖼️ CLEAN-v2 sourcing: {len(urls)}/{n} scenes "
+          f"(hero={n_hero}, social={n_embed}, generated={n_gen}, lib={n_lib}, card={n_card})")
     return urls, media_meta
 
 
