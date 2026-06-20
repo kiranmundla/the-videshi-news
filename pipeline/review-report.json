@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-20T12:45:36.240787+00:00",
+  "timestamp": "2026-06-20T13:15:11.278774+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 4,
-    "flag": 1,
+    "pass": 1,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "a2337d2d-856a-4761-b5e8-67de7e9de4ae",
-      "headline": "Germany Just Made Layovers Easier for Indian Travellers. Lufthansa Thinks That Changes the Map to America.",
-      "slug": "germany-scraps-airport-transit-visa-indians-frankfurt-munich-lufthansa-diaspora-20260620",
+      "id": "39dee9b5-916b-492d-8824-51150deecd3f",
+      "headline": "Vicky Kaushal Just Cancelled 18 Months of His Life for One Role. Mahavatar Is Bollywood's Biggest Bet on a God.",
+      "slug": "vicky-kaushal-mahavatar-18-months-blocked-parashurama-amar-kaushik-maddock-mythological-epic-ramayana-pralay-where-to-watch-diaspora-nri-20260620",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -29,159 +29,15 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the visa changes to the experiences of the Indian diaspora, highlighting the benefits for students and professionals."
+          "note": "The article effectively connects the film's themes to the diaspora experience, highlighting cultural significance."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from Indian travellers or diaspora members to personalize the impact of the visa changes.",
-          "Include a brief comparison of transit visa requirements in other countries to provide context."
+          "Consider adding more quotes from Vicky Kaushal or Amar Kaushik to enhance the article's depth.",
+          "Include more context about the significance of mythological films in contemporary Indian cinema."
         ],
         "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "9472ec36-4154-4511-ac73-d09f9e48256b",
-      "headline": "India's Two Biggest Green-Card Doors Just Slammed Shut Until October. The July Visa Bulletin Spells It Out.",
-      "slug": "july-2026-visa-bulletin-eb2-eb5-india-unavailable-eb1-retrogression-green-card-20260620",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively addresses the impact of visa changes on the Indian-American community, making it relevant for diaspora readers."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include quotes from immigration experts or affected individuals to add personal stories and depth.",
-          "Provide a brief overview of alternative visa options for those affected to enhance practical guidance."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "0f87cad4-6ec3-4d7f-bf1b-f5bd30f75e52",
-      "headline": "Masala on the Chip Aisle: Why 'Next-Gen Indian' Was Named America's Cuisine of the Year",
-      "slug": "masala-on-the-chip-aisle-why-next-gen-indian-was-named-americas-cuisine-of-the-y",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 6,
-          "issue": "The image of potato chips does not specifically represent 'Next-Gen Indian' cuisine, which may include more diverse Indian food items."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses the impact of Indian flavors on American culture and the mixed feelings of the diaspora regarding commercialization."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that better represents the diversity of 'Next-Gen Indian' cuisine rather than just potato chips.",
-          "Add more quotes or insights from Indian-American voices to enhance the diaspora perspective."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "8e2d6798-e1a8-48e7-8af0-54ac785e1d12",
-      "headline": "Beyond Butter Chicken: Regional Indian Dining Lands in America's Heartland",
-      "slug": "beyond-butter-chicken-regional-indian-dining-lands-in-americas-heartland",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 3,
-          "issue": "The image of a kebab does not match the article's focus on regional Indian dining, which includes a variety of dishes beyond just kebabs."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the experiences of NRIs with the emergence of regional Indian dining in America, highlighting a sense of belonging."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more representative image that showcases a variety of regional Indian dishes to align with the article's theme.",
-          "Add quotes or anecdotes from NRI diners to enhance the personal connection to the diaspora experience."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "0f432a23-2f8a-4977-ae59-68d209a099ed",
-      "headline": "The British Are Coming: London's Indian Dining Empire Storms New York",
-      "slug": "the-british-are-coming-londons-indian-dining-empire-storms-new-york",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 3,
-          "issue": "irrelevant"
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses the impact of British-Indian restaurants on the Indian-American community, making it relevant to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the hero image with one that better represents Indian dining or the specific restaurants mentioned.",
-          "Include quotes or perspectives from Indian-Americans to enhance the diaspora connection."
-        ],
-        "verdict": "flag"
       },
       "actions_taken": [
         "promoted to published"
