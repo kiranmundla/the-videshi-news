@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-20T10:15:34.835046+00:00",
+  "timestamp": "2026-06-20T10:45:15.276467+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 6,
+    "pass": 2,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,45 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "50b7230f-9dd8-4312-bbfb-63b6ba79ce97",
-      "headline": "Delhi-NCR Finally Has Its Third Airport \u2014 and Mumbai's Second One Goes Global Next Month",
-      "slug": "noida-jewar-airport-open-navi-mumbai-international-july-nri-gateways-20260620",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the new airports to the needs of the diaspora, discussing congestion relief and geographical advantages."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from diaspora members or travel experts to enhance the personal connection.",
-          "Include more specific statistics or projections about how these airports will impact travel times for NRIs."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "8416c7be-350e-4b63-9a40-b35dffa03070",
-      "headline": "India Just Made It Easier to Fly a Foreign Passport Home \u2014 11 New Gateways and a 120-Day Window",
-      "slug": "india-evisa-overhaul-11-new-ports-120-day-window-nri-foreign-passport-20260620",
+      "id": "ede3db79-26b4-4ae6-81b5-b0152985e7c5",
+      "headline": "The Bay Area's Team Began Its Season 117 for 2 \u2014 and Still Lost. The Unicorns' Collapse Handed LA the Opener.",
+      "slug": "san-francisco-unicorns-lose-mlc-2026-opener-la-knight-riders-7-wickets-dls-colin-munro-pretorius-grand-prairie-bay-area-diaspora-nri",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -65,13 +29,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively addresses the needs and concerns of the NRI community regarding visa processes."
+          "note": "The article effectively connects the performance of the Unicorns to the Bay Area's South Asian diaspora, highlighting their investment in the team and the cultural significance of cricket in the community."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes or testimonials from NRIs who have experienced the visa process to enhance relatability.",
-          "Include a brief comparison of the old and new visa processes to highlight the improvements more clearly."
+          "Consider adding quotes from players or coaches to enhance the narrative.",
+          "Include more statistics or historical context about the Unicorns' performance in previous seasons for depth."
         ],
         "verdict": "pass"
       },
@@ -83,9 +47,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "bb67ef59-6e7e-4ef0-b413-c48c0f0b4175",
-      "headline": "India's Biggest Stock Exchange Is Finally Going Public \u2014 in What Could Be the Country's Largest IPO Ever",
-      "slug": "nse-files-drhp-largest-ipo-india-30000-crore-offer-for-sale-5-lakh-crore-valuation-nri-investor-20260620-1000",
+      "id": "ec0de570-160c-47fa-8df3-587e094fd90b",
+      "headline": "India Scrapped the Gulf's NEET Centres. Now Diaspora Families Are Flying Their Kids Home for Sunday's Re-Test.",
+      "slug": "neet-ug-2026-retest-june-21-overseas-centres-closed-gulf-nri-families-telegram-ban-20260620",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -101,121 +65,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively addresses NRIs by discussing the implications of the IPO for non-resident investors and the recent regulatory changes that facilitate their participation."
+          "note": "The article effectively highlights the impact of the NEET changes on Indian families in the Gulf, making it relevant for diaspora readers."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more specific examples of how NRIs can participate in the IPO process.",
-          "Include a brief overview of the potential risks associated with investing in the IPO to provide a balanced perspective."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "6a8a4abf-8b4d-403a-a19b-6af8b7a1a1f5",
-      "headline": "The Work-Visa Wait Is Back to Four Months \u2014 and It's About to Get Worse Before October",
-      "slug": "us-consulate-india-h1b-l-visa-backlog-75-125-days-nri-summer-20260620",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the topic of work visas or immigration, but it is a neutral image that does not detract from the article."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively addresses the challenges faced by NRIs regarding work visa processing and the implications for their travel plans."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that more directly represents the theme of immigration or work visas.",
-          "Add a quote or anecdote from an NRI to personalize the impact of the visa wait times."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "ddb75a1c-7e8f-4923-861d-182a90d01341",
-      "headline": "A Drug Designed to Mend Broken Hearts May Also Heal Damaged Kidneys, Early Research Suggests",
-      "slug": "experimental-heart-drug-ad-np1-enpp1-heals-kidney-tissue-ucla-cell-stem-cell-diaspora-20260620-1000",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the research to the health challenges faced by the South Asian diaspora, making it relevant and impactful."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from additional experts to enhance credibility.",
-          "Include more statistics on the prevalence of heart and kidney diseases in the South Asian community for added context."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "4a2103af-4398-4234-8191-0f6c71b7bf24",
-      "headline": "Cutting Sugar Out Completely May Backfire on Your Gut, a New Study Warns",
-      "slug": "zero-sugar-sucrose-free-diet-gut-microbiome-inflammation-dasman-endo-2026-diaspora-20260620-1000",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the research findings to the dietary habits and health concerns of the Indian diaspora, particularly regarding sugar consumption."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a quote from a health expert or nutritionist to enhance credibility.",
-          "Include more specific examples of traditional Indian foods that balance sugar intake."
+          "Consider adding quotes from more diaspora families to enhance personal stories.",
+          "Include statistics or data on how many students are affected by the changes to provide a broader context."
         ],
         "verdict": "pass"
       },
