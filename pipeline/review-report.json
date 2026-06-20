@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-19T23:15:20.936057+00:00",
+  "timestamp": "2026-06-20T00:15:36.774819+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 0,
+    "pass": 6,
     "flag": 2,
     "fail": 0,
     "error": 0
@@ -11,47 +11,35 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "1978c4e8-d4f5-44bc-a91c-7d340a5b4a5c",
-      "headline": "The Dhamaal Boys Are Back, Louder and Dumber Than Ever. Dhamaal 4 Lands July 10 and Refuses to Apologise.",
-      "slug": "dhamaal-4-qeher-song-guru-randhawa-ajay-devgn-riteish-deshmukh-arshad-warsi-indra-kumar-july-10-where-to-watch-diaspora-nri-20260619b",
+      "id": "cfe22405-5b18-4513-96a8-d5f85bfd0cf7",
+      "headline": "India Has a New Job for Its 35 Million Emigrants: Sell the Country to Their Foreign Friends",
+      "slug": "chalo-india-diaspora-tourism-ambassadors-makemytrip-homecoming-20260620",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "89b621ae-25a0-4497-b792-cb483512c387",
-            "headline": "Dhamaal 4 Trailer Is Pure Chaos. Ajay Devgn's Gang Is Back, "
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/p/DZxFScjjgkA/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post does not appear to be directly related to the film or its promotion, making it irrelevant to the article's subject."
-          }
-        ],
+        "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image does not directly relate to the article's focus on tourism and the diaspora's role in promoting India."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects with diaspora readers by discussing the film's appeal to family audiences and the cultural significance of the franchise."
+          "quality": 9,
+          "note": "The article effectively connects with the diaspora by discussing their role in promoting tourism and their emotional ties to India."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant Instagram embed with a more relevant social media post related to the film's promotion.",
-          "Consider adding quotes or insights from the cast or crew to enhance the article's depth."
+          "Consider using a more relevant image that depicts Indian tourism or the diaspora engaging with foreign friends.",
+          "Add quotes or testimonials from diaspora members to enhance the personal connection and perspective."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DZxFScjjgkA/",
         "promoted to published"
       ],
       "revised": false,
@@ -59,52 +47,251 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "6c3eaa64-a417-4435-8dff-f6ca8d498208",
-      "headline": "Sunny Deol and Rajkumar Santoshi Reunite After Three Decades. Batwara 1947 Is the Partition Epic the Diaspora Has Been Bracing For.",
-      "slug": "batwara-1947-teaser-sunny-deol-rajkumar-santoshi-reunion-aamir-khan-narrator-ar-rahman-shabana-azmi-preity-zinta-august-14-where-to-watch-diaspora-nri-20260619",
+      "id": "4e0fc3b3-e17e-4351-b501-671ad4073604",
+      "headline": "Four Telugu Conventions in One Summer: How a Language Spoken 8,000 Miles Away Refuses to Fade in America",
+      "slug": "mata-telugu-convention-philadelphia-diaspora-language-survival-20260620",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "ba197b1e-9598-446c-a1e9-3a6004f49295",
-            "headline": "Three Decades After Ghatak, Sunny Deol and Rajkumar Santoshi"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/reel/DZt6O3BM0bS/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram reel does not appear to be directly related to the film 'Batwara 1947' or its themes, making it less relevant to the article."
-          },
-          {
-            "url": "https://youtube.com/watch?v=DstkbSnWFf4",
-            "problem": "broken",
-            "explanation": "The YouTube link provided does not lead to a valid video, which detracts from the article's credibility."
-          }
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not specifically depict the Telugu conventions or cultural elements mentioned in the article."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the Telugu conventions to the NRI experience, highlighting cultural preservation and community engagement."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including images or videos from the actual conventions to enhance the visual connection to the article's content.",
+          "Add quotes or testimonials from attendees to provide personal perspectives on the significance of these conventions."
         ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "8c29bf3e-7a3f-4b1c-9c16-0c0d2fa6dc47",
+      "headline": "India Just Doubled the Rate on NRI Dollar Deposits. Now the Diaspora Is Racing to Break Its Old Ones.",
+      "slug": "nri-fcnr-deposits-rate-cap-break-rebook-scramble-20260620",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
         "image_match": {
           "score": 9,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the film's themes to the experiences of the diaspora, particularly in relation to the Partition."
+          "quality": 8,
+          "note": "The article effectively connects the financial changes to the diaspora's interests and concerns."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the broken YouTube link with a valid one that showcases the teaser for 'Batwara 1947'.",
-          "Consider finding a more relevant Instagram post that ties directly to the film or its themes."
+          "Consider adding quotes from diaspora members or financial experts to enhance relatability.",
+          "Include a brief summary of potential risks for NRIs to provide a balanced view."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "ad541364-2502-4a80-bbd8-777cd0879145",
+      "headline": "BigBasket Just Hired an Amazon Veteran to Save It. The Company That Invented Indian Grocery Is Now the Underdog.",
+      "slug": "bigbasket-amit-nanda-ceo-amazon-tata-quick-commerce-diaspora-20260620",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image is relevant to the topic of grocery delivery but lacks a direct connection to BigBasket specifically."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects BigBasket's operations to the concerns of NRIs, highlighting its importance for families in India."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more specific image related to BigBasket or grocery delivery to enhance relevance.",
+          "Expand on the implications of the leadership change for the diaspora community to deepen the connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "0bc48950-e9cf-4d6a-bdfa-33395d41c473",
+      "headline": "A Canadian Pension Fund Just Bet $1 Billion on India's AI Plumbing. The Diaspora Builds Both Ends of It.",
+      "slug": "ctrls-datacenters-cpp-investments-india-ai-data-center-nri-20260620",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to AI or data centers, but is visually appealing and relevant to technology."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the investment in India's AI infrastructure to the professional and investment interests of the Indian diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that more directly represents AI or data centers to enhance relevance.",
+          "Add a quote or perspective from a diaspora member to strengthen the connection further."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "41169b40-2d99-4472-9a4b-7ad8efc966cb",
+      "headline": "Ambani Just Priced India's Biggest IPO Ever. Two American Tech Giants Are Already Inside Jio.",
+      "slug": "jio-platforms-ipo-ambani-reliance-record-listing-nri-investors-20260620",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 6,
+          "issue": "The image does not directly relate to the IPO or Jio Platforms specifically."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the IPO to NRI investors, discussing implications and opportunities for them."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that reflects the IPO or Jio Platforms specifically.",
+          "Add more context about the implications of the IPO for the Indian economy or tech sector."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "5e6869af-8ecd-4d75-9159-5495798bb1c1",
+      "headline": "Trump Says 'Highly Skilled Indians' Will Get More Opportunities. Read the Fine Print First",
+      "slug": "trump-g7-highly-skilled-indians-compact-wage-h1b-signal-20260620",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 3,
+          "issue": "The image of Donald Trump does not directly relate to the article's focus on immigration policies affecting Indian professionals."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively discusses the implications of U.S. immigration policy on the Indian diaspora, particularly those on H-1B visas."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that reflects the topic of immigration and Indian professionals.",
+          "Add a section that includes quotes or reactions from Indian professionals or diaspora members regarding Trump's remarks."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/reel/DZt6O3BM0bS/",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "25329017-c42b-4ba7-9c87-5e543bfc6561",
+      "headline": "The Visa in Your Passport Is No Longer a Settled Fact",
+      "slug": "us-embassy-continuous-vetting-visa-revocation-surge-india-20260620",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 6,
+          "issue": "The image does not directly relate to the topic of visas or immigration."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses visa issues that directly affect the Indian diaspora, particularly those in the U.S."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include a more relevant image that depicts immigration or visa processes.",
+          "Add quotes or anecdotes from Indian visa holders to enhance the personal connection to the diaspora."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
         "promoted to published"
       ],
       "revised": false,
