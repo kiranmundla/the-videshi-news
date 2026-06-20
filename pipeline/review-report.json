@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-20T08:45:11.233271+00:00",
+  "timestamp": "2026-06-20T09:15:25.880888+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
+    "pass": 5,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,45 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "8525135d-deac-42b6-98a7-cbd5fd0659ba",
-      "headline": "The India-UK Trade Deal Finally Has a Date \u2014 and a Quiet Win for NRI Pay Packets",
-      "slug": "india-uk-trade-deal-ceta-double-contribution-convention-july-15-national-insurance-exemption-20260620",
+      "id": "fb1a264d-41d9-4475-ba96-e1fb72c91534",
+      "headline": "She Took a Train From Kalyan to Andheri for Years. Now Sushmita Siingh Walked Cannes and Signed Her First Hollywood-Adjacent Film.",
+      "slug": "sushmita-siingh-bombay-stories-cannes-debut-international-film-eric-atlan-mouni-roy-manto-paris-film-awards-where-to-watch-diaspora-nri-20260620",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 5,
+          "issue": "The image does not feature Sushmita Siingh or relate directly to the Cannes Film Festival."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article highlights Sushmita Siingh's journey from India to an international film festival, which resonates with the NRI audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the hero image with one featuring Sushmita Siingh at Cannes to enhance relevance.",
+          "Include more context about the significance of Cannes for Indian filmmakers to strengthen the diaspora connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "881fb4de-c505-4a47-af7b-cde4c5b5c80d",
+      "headline": "Toy Story 5 Breaks the Franchise's Own Records Overseas. In India, the Toys Came Home to a Half-Empty Room.",
+      "slug": "toy-story-5-record-global-opening-muted-india-box-office-tom-hanks-andrew-stanton-disney-pixar-where-to-watch-diaspora-nri-20260620",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -28,14 +64,122 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively highlights the benefits of the trade deal for NRIs, particularly regarding the Double Contribution Convention."
+          "quality": 9,
+          "note": "The article effectively connects the film's themes to the experiences of diaspora parents, making it relatable for NRI readers."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes from NRI professionals to enhance relatability.",
-          "Add a section on potential challenges or criticisms of the trade deal for a balanced perspective."
+          "Consider adding more direct quotes or insights from diaspora parents to enhance the connection.",
+          "Include a brief comparison of box office performance in other countries to provide a broader context."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "a68fac35-5191-468c-b60a-35c7395a46d0",
+      "headline": "One in Five ChatGPT Users Is Now Indian. OpenAI Just Told the World Where Its Future Is.",
+      "slug": "chatgpt-india-200-million-users-openai-for-india-tata-stargate-diaspor-20260620",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 5,
+          "issue": "The image does not directly relate to the article's focus on ChatGPT and its user demographics."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively discusses the implications of OpenAI's strategy for the Indian diaspora, highlighting both opportunities and challenges."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that directly relates to ChatGPT or its impact in India.",
+          "Expand on the implications for the diaspora with more specific examples or quotes from diaspora members."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "79dff86c-49bf-473d-9f41-089163284684",
+      "headline": "India Just Switched On UPI in a Nice Department Store. It's Now in Nine Countries \u2014 and That's the Point.",
+      "slug": "upi-global-expansion-france-nine-countries-nri-fintech-digital-public-20260620",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly depict UPI or the specific context of the article."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects UPI's expansion to the interests of the NRI community, particularly in terms of travel and investment."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that directly relates to UPI transactions or showcases its use in an international context.",
+          "Expand on the implications of UPI's expansion for NRIs in terms of potential investment opportunities."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "081ad16f-1c96-4754-be12-514dd327e4a5",
+      "headline": "Tech's 2026 Layoffs Just Passed 183,000. For Indians on H-1B, the Real Clock Is 60 Days.",
+      "slug": "tech-layoffs-2026-h1b-60-day-grace-indian-workers-ai-restructuring-20260620",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image depicts a workspace, which is relevant to the tech industry but does not specifically relate to layoffs or the emotional impact on H-1B workers."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively addresses the challenges faced by Indian H-1B visa holders, making it highly relevant to the diaspora audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that more directly represents the theme of layoffs or the emotional impact on workers.",
+          "Include quotes or anecdotes from affected individuals to enhance the human element of the story."
         ],
         "verdict": "pass"
       },
