@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-20T19:45:07.341015+00:00",
+  "timestamp": "2026-06-20T20:15:13.817593+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
+    "pass": 2,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "cf5d63d3-8ea5-4cf4-b213-34ce906bafeb",
-      "headline": "Jaiswal's Unbeaten 110 Seals a 3-0 Sweep \u2014 and the First Clean Verdict on India's Post-Kohli ODI Team",
-      "slug": "india-sweep-afghanistan-3-0-odi-series-chennai-jaiswal-110-prasidh-krishna-5-23-nine-wickets-gill-new-era-2027-world-cup-nri",
+      "id": "92f7b384-ace1-41cd-bda9-388ca55e223d",
+      "headline": "The U.S. Citizenship Test Just Got Twice as Hard \u2014 and Indian Families Are Feeling It",
+      "slug": "2025-naturalization-civics-test-128-questions-20-asked-indian-families-citizenship-20260620",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -23,19 +23,55 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image does not directly relate to the topic of the U.S. Citizenship Test or Indian families."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the performance of Indian players to the interests of the diaspora, highlighting future tours and the significance of emerging players."
+          "quality": 9,
+          "note": "The article effectively discusses the impact of the citizenship test changes on Indian families, making it highly relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more statistics or historical context to enhance the analysis of the team's performance.",
-          "Include quotes from players or coaches to provide more depth and personal insight into the series."
+          "Consider using a more relevant image that depicts Indian families or individuals studying for the citizenship test.",
+          "Add quotes or testimonials from Indian families or community leaders to enhance the personal connection to the diaspora experience."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "da829c77-c0aa-463b-a9dd-0555ad00b211",
+      "headline": "U.S. Tourist-Visa Bond Wall Hits 50 Countries: India Spared, But Nepal and Bangladesh Aren't",
+      "slug": "visa-bond-pilot-50-countries-india-spared-nepal-bangladesh-bhutan-nri-families-20260620",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 6,
+          "issue": "The image does not directly relate to the topic of U.S. tourist visas or immigration."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively discusses the implications of the visa bond on Indian-American families with relatives from affected countries."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that more directly represents the theme of immigration or U.S. tourist visas.",
+          "Add a brief section on how the visa bond system has been received by the affected countries or communities."
         ],
         "verdict": "pass"
       },
