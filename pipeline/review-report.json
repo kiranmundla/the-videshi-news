@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-20T00:15:36.774819+00:00",
+  "timestamp": "2026-06-20T00:45:27.408119+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 6,
-    "flag": 2,
+    "pass": 5,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "cfe22405-5b18-4513-96a8-d5f85bfd0cf7",
-      "headline": "India Has a New Job for Its 35 Million Emigrants: Sell the Country to Their Foreign Friends",
-      "slug": "chalo-india-diaspora-tourism-ambassadors-makemytrip-homecoming-20260620",
+      "id": "f3c42e63-b5f2-4451-a40d-d5568b322412",
+      "headline": "New York Moves to Make August 15 India Independence Day. For the Diaspora, It's a Marker of Arrival.",
+      "slug": "new-york-senate-india-independence-day-resolution-august-15-indian-american-recognition-20260620",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -23,19 +23,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the article's focus on tourism and the diaspora's role in promoting India."
+          "score": 5,
+          "issue": "The image does not directly relate to the article's topic of India Independence Day or the Indian-American community."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects with the diaspora by discussing their role in promoting tourism and their emotional ties to India."
+          "note": "The article effectively connects the resolution to the Indian-American community's sense of belonging and civic recognition."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that depicts Indian tourism or the diaspora engaging with foreign friends.",
-          "Add quotes or testimonials from diaspora members to enhance the personal connection and perspective."
+          "Consider using a more relevant image that reflects the Indian Independence Day celebrations or the Indian-American community.",
+          "Add quotes or perspectives from members of the Indian-American community to enhance the personal connection to the topic."
         ],
         "verdict": "pass"
       },
@@ -47,9 +47,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "4e0fc3b3-e17e-4351-b501-671ad4073604",
-      "headline": "Four Telugu Conventions in One Summer: How a Language Spoken 8,000 Miles Away Refuses to Fade in America",
-      "slug": "mata-telugu-convention-philadelphia-diaspora-language-survival-20260620",
+      "id": "f841d658-6019-43d1-a148-1c43d25a6d63",
+      "headline": "India's Women Open Their World Cup With a 95-Run Demolition \u2014 and the Diaspora Has a Home Tournament in England",
+      "slug": "india-women-t20-world-cup-2026-england-mandhana-netherlands-diaspora-20260620",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -59,19 +59,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image does not specifically depict the Telugu conventions or cultural elements mentioned in the article."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects the Telugu conventions to the NRI experience, highlighting cultural preservation and community engagement."
+          "note": "The article effectively connects the women's World Cup to the Indian diaspora, highlighting the significance of the tournament being held in England and its impact on British-Indian fans."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider including images or videos from the actual conventions to enhance the visual connection to the article's content.",
-          "Add quotes or testimonials from attendees to provide personal perspectives on the significance of these conventions."
+          "Consider adding quotes from players or coaches to enhance the narrative.",
+          "Include more statistics or historical context about the women's team to enrich the article."
         ],
         "verdict": "pass"
       },
@@ -83,9 +83,45 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "8c29bf3e-7a3f-4b1c-9c16-0c0d2fa6dc47",
-      "headline": "India Just Doubled the Rate on NRI Dollar Deposits. Now the Diaspora Is Racing to Break Its Old Ones.",
-      "slug": "nri-fcnr-deposits-rate-cap-break-rebook-scramble-20260620",
+      "id": "ce403d53-e1c5-464e-bea2-270a426b31c8",
+      "headline": "40% of Indian Americans Have Thought About Leaving the US. The 'Reverse Brain Drain' Just Got Its Numbers.",
+      "slug": "carnegie-survey-40-percent-indian-americans-thought-leaving-us-reverse-brain-drain-20260620",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the article's focus on Indian Americans and their sentiments about leaving the US."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the survey findings to the experiences and sentiments of the Indian American diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that reflects the Indian American community or the theme of migration.",
+          "Add quotes or anecdotes from Indian Americans to enhance the personal connection to the survey findings."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "e34e05cb-b41a-4c94-ab83-1844ec3b4a86",
+      "headline": "From the Desi Aisle to the Frozen Mainstream: Indian Food Brands Storm American Grocery",
+      "slug": "from-the-desi-aisle-to-the-frozen-mainstream-indian-food-brands-storm-american-g",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -101,13 +137,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the financial changes to the diaspora's interests and concerns."
+          "note": "The article effectively connects the growth of Indian food brands in mainstream American grocery stores to the experiences and needs of the NRI community."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from diaspora members or financial experts to enhance relatability.",
-          "Include a brief summary of potential risks for NRIs to provide a balanced view."
+          "Include quotes from NRI consumers or industry experts to add depth and personal perspectives.",
+          "Consider adding a section on how these changes in the grocery landscape might affect traditional Indian cooking practices among the diaspora."
         ],
         "verdict": "pass"
       },
@@ -119,117 +155,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "ad541364-2502-4a80-bbd8-777cd0879145",
-      "headline": "BigBasket Just Hired an Amazon Veteran to Save It. The Company That Invented Indian Grocery Is Now the Underdog.",
-      "slug": "bigbasket-amit-nanda-ceo-amazon-tata-quick-commerce-diaspora-20260620",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image is relevant to the topic of grocery delivery but lacks a direct connection to BigBasket specifically."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects BigBasket's operations to the concerns of NRIs, highlighting its importance for families in India."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more specific image related to BigBasket or grocery delivery to enhance relevance.",
-          "Expand on the implications of the leadership change for the diaspora community to deepen the connection."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "0bc48950-e9cf-4d6a-bdfa-33395d41c473",
-      "headline": "A Canadian Pension Fund Just Bet $1 Billion on India's AI Plumbing. The Diaspora Builds Both Ends of It.",
-      "slug": "ctrls-datacenters-cpp-investments-india-ai-data-center-nri-20260620",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to AI or data centers, but is visually appealing and relevant to technology."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the investment in India's AI infrastructure to the professional and investment interests of the Indian diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that more directly represents AI or data centers to enhance relevance.",
-          "Add a quote or perspective from a diaspora member to strengthen the connection further."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "41169b40-2d99-4472-9a4b-7ad8efc966cb",
-      "headline": "Ambani Just Priced India's Biggest IPO Ever. Two American Tech Giants Are Already Inside Jio.",
-      "slug": "jio-platforms-ipo-ambani-reliance-record-listing-nri-investors-20260620",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 6,
-          "issue": "The image does not directly relate to the IPO or Jio Platforms specifically."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the IPO to NRI investors, discussing implications and opportunities for them."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that reflects the IPO or Jio Platforms specifically.",
-          "Add more context about the implications of the IPO for the Indian economy or tech sector."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "5e6869af-8ecd-4d75-9159-5495798bb1c1",
-      "headline": "Trump Says 'Highly Skilled Indians' Will Get More Opportunities. Read the Fine Print First",
-      "slug": "trump-g7-highly-skilled-indians-compact-wage-h1b-signal-20260620",
+      "id": "189a6537-b471-457f-9020-07c96082a89c",
+      "headline": "California on a Plate, India in the Soul: How Cal-India Cuisine Conquered Silicon Valley",
+      "slug": "california-on-a-plate-india-in-the-soul-how-cal-india-cuisine-conquered-silicon",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -240,18 +168,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 3,
-          "issue": "The image of Donald Trump does not directly relate to the article's focus on immigration policies affecting Indian professionals."
+          "issue": "irrelevant"
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively discusses the implications of U.S. immigration policy on the Indian diaspora, particularly those on H-1B visas."
+          "quality": 9,
+          "note": "The article effectively connects the rise of Cal-India cuisine to the experiences and evolution of the Indian-American community, making it relevant and relatable."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that reflects the topic of immigration and Indian professionals.",
-          "Add a section that includes quotes or reactions from Indian professionals or diaspora members regarding Trump's remarks."
+          "Replace the hero image with one that features a dish from the Cal-India Collective to better match the article's focus.",
+          "Consider adding quotes or testimonials from diners or community members to enhance the personal connection to the diaspora."
         ],
         "verdict": "flag"
       },
@@ -263,33 +191,33 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "25329017-c42b-4ba7-9c87-5e543bfc6561",
-      "headline": "The Visa in Your Passport Is No Longer a Settled Fact",
-      "slug": "us-embassy-continuous-vetting-visa-revocation-surge-india-20260620",
+      "id": "a6c0fadc-4fdf-4d77-b847-7946e2b809ed",
+      "headline": "Paneer Goes Pro: India's Cottage Cheese Becomes America's Vegetarian Protein of Choice",
+      "slug": "paneer-goes-pro-indias-cottage-cheese-becomes-americas-vegetarian-protein-of-cho",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
-        "overall_score": 7,
+        "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 6,
-          "issue": "The image does not directly relate to the topic of visas or immigration."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses visa issues that directly affect the Indian diaspora, particularly those in the U.S."
+          "note": "The article effectively discusses the impact of paneer's mainstream acceptance on the Indian diaspora, highlighting both validation and cultural appropriation concerns."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include a more relevant image that depicts immigration or visa processes.",
-          "Add quotes or anecdotes from Indian visa holders to enhance the personal connection to the diaspora."
+          "Include quotes or anecdotes from Indian Americans to enhance the personal connection to the diaspora experience.",
+          "Add more statistics or studies on the health benefits of paneer to strengthen the argument for its popularity."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
         "promoted to published"
