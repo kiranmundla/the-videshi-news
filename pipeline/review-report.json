@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-20T00:45:27.408119+00:00",
+  "timestamp": "2026-06-20T01:15:09.671150+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 5,
-    "flag": 1,
+    "pass": 1,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,84 +11,17 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "f3c42e63-b5f2-4451-a40d-d5568b322412",
-      "headline": "New York Moves to Make August 15 India Independence Day. For the Diaspora, It's a Marker of Arrival.",
-      "slug": "new-york-senate-india-independence-day-resolution-august-15-indian-american-recognition-20260620",
+      "id": "270fc65c-d12f-404c-ac11-e35d50d511e6",
+      "headline": "A Bridge Made of Lipstick. Amazon Just Turned the Bandra-Worli Sea Link Into a Countdown to Bollywood's Biggest Beauty Night.",
+      "slug": "amazon-beautyverse-2026-mumbai-june-20-ananya-panday-shilpa-shetty-sonakshi-sinha-karisma-kapoor-jacqueline-fernandez-bandra-worli-sea-link-where-to-watch-diaspora-nri-20260619",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 5,
-          "issue": "The image does not directly relate to the article's topic of India Independence Day or the Indian-American community."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the resolution to the Indian-American community's sense of belonging and civic recognition."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that reflects the Indian Independence Day celebrations or the Indian-American community.",
-          "Add quotes or perspectives from members of the Indian-American community to enhance the personal connection to the topic."
+        "duplicate_images": [
+          {
+            "article_id": "e91b89b1-6f1d-4c07-9dd9-55c34477d72b",
+            "headline": "Bollywood Is Throwing India's Biggest Beauty Party on June 2"
+          }
         ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "f841d658-6019-43d1-a148-1c43d25a6d63",
-      "headline": "India's Women Open Their World Cup With a 95-Run Demolition \u2014 and the Diaspora Has a Home Tournament in England",
-      "slug": "india-women-t20-world-cup-2026-england-mandhana-netherlands-diaspora-20260620",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the women's World Cup to the Indian diaspora, highlighting the significance of the tournament being held in England and its impact on British-Indian fans."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from players or coaches to enhance the narrative.",
-          "Include more statistics or historical context about the women's team to enrich the article."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "ce403d53-e1c5-464e-bea2-270a426b31c8",
-      "headline": "40% of Indian Americans Have Thought About Leaving the US. The 'Reverse Brain Drain' Just Got Its Numbers.",
-      "slug": "carnegie-survey-40-percent-indian-americans-thought-leaving-us-reverse-brain-drain-20260620",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
@@ -96,126 +29,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image does not directly relate to the article's focus on Indian Americans and their sentiments about leaving the US."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the survey findings to the experiences and sentiments of the Indian American diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that reflects the Indian American community or the theme of migration.",
-          "Add quotes or anecdotes from Indian Americans to enhance the personal connection to the survey findings."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "e34e05cb-b41a-4c94-ab83-1844ec3b4a86",
-      "headline": "From the Desi Aisle to the Frozen Mainstream: Indian Food Brands Storm American Grocery",
-      "slug": "from-the-desi-aisle-to-the-frozen-mainstream-indian-food-brands-storm-american-g",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
+          "issue": "The image of Ananya Panday is relevant to the topic of beauty and Bollywood but does not directly depict the Bandra-Worli Sea Link or the event itself."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the growth of Indian food brands in mainstream American grocery stores to the experiences and needs of the NRI community."
+          "note": "The article effectively connects the event to the diaspora by discussing how NRIs are familiar with the celebrities and trends in Indian beauty, making it relevant to their interests."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes from NRI consumers or industry experts to add depth and personal perspectives.",
-          "Consider adding a section on how these changes in the grocery landscape might affect traditional Indian cooking practices among the diaspora."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "189a6537-b471-457f-9020-07c96082a89c",
-      "headline": "California on a Plate, India in the Soul: How Cal-India Cuisine Conquered Silicon Valley",
-      "slug": "california-on-a-plate-india-in-the-soul-how-cal-india-cuisine-conquered-silicon",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 3,
-          "issue": "irrelevant"
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the rise of Cal-India cuisine to the experiences and evolution of the Indian-American community, making it relevant and relatable."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the hero image with one that features a dish from the Cal-India Collective to better match the article's focus.",
-          "Consider adding quotes or testimonials from diners or community members to enhance the personal connection to the diaspora."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "a6c0fadc-4fdf-4d77-b847-7946e2b809ed",
-      "headline": "Paneer Goes Pro: India's Cottage Cheese Becomes America's Vegetarian Protein of Choice",
-      "slug": "paneer-goes-pro-indias-cottage-cheese-becomes-americas-vegetarian-protein-of-cho",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively discusses the impact of paneer's mainstream acceptance on the Indian diaspora, highlighting both validation and cultural appropriation concerns."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include quotes or anecdotes from Indian Americans to enhance the personal connection to the diaspora experience.",
-          "Add more statistics or studies on the health benefits of paneer to strengthen the argument for its popularity."
+          "Consider including a direct image of the Bandra-Worli Sea Link during the event to enhance visual relevance.",
+          "Add quotes or insights from diaspora members or influencers to strengthen the connection with NRI readers."
         ],
         "verdict": "pass"
       },
