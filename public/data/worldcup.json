@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-06-20T03:59:04Z",
-  "stage": "Group Stage — 31 of 72 matches played",
+  "last_updated": "2026-06-20T05:58:10Z",
+  "stage": "Group Stage — 32 of 72 matches played",
   "hosts": "USA, Mexico & Canada",
   "dates": {
     "start": "2026-06-11",
@@ -206,29 +206,29 @@
         "pts": 3
       },
       {
-        "name": "Turkey",
-        "code": "TUR",
-        "flag": "🇹🇷",
-        "rank": 22,
-        "p": 1,
-        "w": 0,
-        "d": 0,
-        "l": 1,
-        "gf": 0,
-        "ga": 2,
-        "pts": 0
-      },
-      {
         "name": "Paraguay",
         "code": "PAR",
         "flag": "🇵🇾",
         "rank": 40,
-        "p": 1,
-        "w": 0,
+        "p": 2,
+        "w": 1,
         "d": 0,
         "l": 1,
-        "gf": 1,
+        "gf": 2,
         "ga": 4,
+        "pts": 3
+      },
+      {
+        "name": "Turkey",
+        "code": "TUR",
+        "flag": "🇹🇷",
+        "rank": 22,
+        "p": 2,
+        "w": 0,
+        "d": 0,
+        "l": 2,
+        "gf": 0,
+        "ga": 3,
         "pts": 0
       }
     ],
@@ -1148,8 +1148,8 @@
       "away": "Paraguay",
       "venue": "Levi's Stadium",
       "city": "San Francisco Bay Area",
-      "status": "scheduled",
-      "score": null,
+      "status": "FT",
+      "score": "0-1",
       "home_code": "TUR",
       "away_code": "PAR"
     },
@@ -1783,6 +1783,27 @@
     }
   },
   "highlights": [
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DZy6gWsigG3/",
+      "account": "@fifaworldcup",
+      "caption": "Ten-man Paraguay hold on for a famous win! 🇵🇾 — Turkey 0-1 Paraguay #FIFAWorldCup",
+      "date": "2026-06-20"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DZy6TwNiBvA",
+      "account": "@fifaworldcup",
+      "caption": "🇹🇷 0-1 🇵🇾 — Matías Galarza strikes inside the first minute and Paraguay survive a red card to send Turkey out",
+      "date": "2026-06-20"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DZy8_j_iI4a",
+      "account": "@fifaworldcup",
+      "caption": "Three vital points for Paraguay at Levi's Stadium 🇵🇾 — Turkey 0-1 Paraguay",
+      "date": "2026-06-20"
+    },
     {
       "platform": "instagram",
       "url": "https://www.instagram.com/reel/DZyrhH9oQR5/",
