@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-20T14:45:14.609753+00:00",
+  "timestamp": "2026-06-20T15:15:28.478383+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 0,
+    "pass": 3,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,58 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "d2b1ddde-c1d8-4e20-9159-c62f2195295c",
-      "headline": "The Fed Just Hinted Its Next Move Is Up, Not Down. For NRIs, That Quietly Rewrites the Math on the Rupee and Their Dollar Savings.",
-      "slug": "fed-warsh-first-meeting-hawkish-dot-plot-rate-hike-2026-dollar-rupee-nri-deposits-20260620",
+      "id": "38cd9862-3aa3-4845-9ba9-b8864b643751",
+      "headline": "Shah Rukh Khan Is Spending \u20b950 Crore on a Single Scene. King Is Coming for Christmas \u2014 and the Whole World Calendar.",
+      "slug": "king-shah-rukh-khan-50-crore-europe-sequence-christmas-2026-suhana-khan-debut-deepika-padukone-siddharth-anand-avengers-dune-clash-where-to-watch-diaspora-nri-20260620",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DYCURWlo0ah/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel does not appear to be directly related to the article's focus on the film 'King' and its production details."
+          },
+          {
+            "url": "https://youtube.com/watch?v=M3mfut2RdHk",
+            "problem": "irrelevant",
+            "explanation": "The YouTube link is not specified to be related to the film 'King' or its promotional content."
+          }
+        ],
+        "image_match": {
+          "score": 5,
+          "issue": "The image of Shah Rukh Khan at a launch event does not directly relate to the film 'King' or its production details."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the film's release strategy and its significance to the NRI audience, particularly regarding the Christmas release."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the irrelevant Instagram and YouTube links with content that directly relates to the film 'King'.",
+          "Consider using an image that features Shah Rukh Khan in a context related to the film 'King' to enhance relevance."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DYCURWlo0ah/",
+        "Removed irrelevant embed: https://youtube.com/watch?v=M3mfut2RdHk",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "4d0fae0a-3bfe-4b32-95d0-509493de2c48",
+      "headline": "India's Court Backs the Telegram Ban. For 150 Million Users, the Precedent Is the Real Story.",
+      "slug": "telegram-india-ban-upheld-delhi-court-free-speech-diaspora-20260620",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -23,19 +72,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
+          "score": 10,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the Fed's decisions to the financial implications for NRIs, making it relevant for the diaspora."
+          "quality": 9,
+          "note": "The article effectively connects the implications of the Telegram ban to the Indian diaspora, highlighting its relevance to their communication and business needs."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more specific examples of how NRIs can navigate the changing financial landscape.",
-          "Include quotes or insights from diaspora financial experts to enhance credibility and relatability."
+          "Consider adding more statistics or quotes from diaspora members to strengthen the connection to the NRI community.",
+          "Include a brief overview of Telegram's significance in the Indian context for readers unfamiliar with the platform."
         ],
         "verdict": "pass"
       },
@@ -47,9 +96,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "3d666567-0f60-4456-866c-9d34db9bfa30",
-      "headline": "The UAE Just Gave Stranded Residents One Last Window. For Indians Caught by the Spring Airspace Chaos, the Clock Runs to July 9.",
-      "slug": "uae-final-30-day-visa-grace-period-overstay-fines-airspace-disruption-indian-residents-20260620",
+      "id": "0dad2996-6194-4f76-8703-7d7fd53ff576",
+      "headline": "Tim Cook Says Apple's Price Hikes Are 'Unavoidable.' His Successor Inherits the Bill.",
+      "slug": "apple-tim-cook-price-hike-memory-john-ternus-iphone-nri-20260620",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -65,13 +114,49 @@
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively highlights the impact of the grace period on the Indian diaspora in the UAE, making it relevant and engaging for NRI readers."
+          "note": "The article effectively connects Apple's pricing strategy to the Indian diaspora's purchasing habits and cultural significance of Apple products."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from affected individuals or officials to provide a personal touch.",
-          "Include a brief summary of the implications of the overstay fines for those who miss the deadline."
+          "Consider adding more data or quotes from industry experts to strengthen the analysis of the impact on the Indian diaspora.",
+          "Include a brief section on potential alternatives for consumers facing these price hikes."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "18a79f47-75ab-4a1b-8de2-77ecbab15b85",
+      "headline": "Micron Heads Into Earnings With a Memory Shortage So Tight Even Apple Is Flinching",
+      "slug": "micron-earnings-sanjay-mehrotra-ai-memory-gujarat-hbm-nri-20260620",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image of Sanjay Mehrotra is relevant as he is the CEO of Micron, but it could be more directly related to the topic of memory shortages."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the memory shortage and Micron's success to the Indian American community, highlighting both consumer impacts and opportunities."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that directly illustrates the memory shortage or its impact on consumers for a stronger visual connection.",
+          "Add a brief section summarizing the implications of Micron's performance for the Indian diaspora in terms of investment opportunities."
         ],
         "verdict": "pass"
       },
