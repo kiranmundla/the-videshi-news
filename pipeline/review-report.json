@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-20T09:15:25.880888+00:00",
+  "timestamp": "2026-06-20T10:15:34.835046+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 5,
+    "pass": 6,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "fb1a264d-41d9-4475-ba96-e1fb72c91534",
-      "headline": "She Took a Train From Kalyan to Andheri for Years. Now Sushmita Siingh Walked Cannes and Signed Her First Hollywood-Adjacent Film.",
-      "slug": "sushmita-siingh-bombay-stories-cannes-debut-international-film-eric-atlan-mouni-roy-manto-paris-film-awards-where-to-watch-diaspora-nri-20260620",
+      "id": "50b7230f-9dd8-4312-bbfb-63b6ba79ce97",
+      "headline": "Delhi-NCR Finally Has Its Third Airport \u2014 and Mumbai's Second One Goes Global Next Month",
+      "slug": "noida-jewar-airport-open-navi-mumbai-international-july-nri-gateways-20260620",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -23,19 +23,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 5,
-          "issue": "The image does not feature Sushmita Siingh or relate directly to the Cannes Film Festival."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article highlights Sushmita Siingh's journey from India to an international film festival, which resonates with the NRI audience."
+          "quality": 8,
+          "note": "The article effectively connects the new airports to the needs of the diaspora, discussing congestion relief and geographical advantages."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the hero image with one featuring Sushmita Siingh at Cannes to enhance relevance.",
-          "Include more context about the significance of Cannes for Indian filmmakers to strengthen the diaspora connection."
+          "Consider adding quotes from diaspora members or travel experts to enhance the personal connection.",
+          "Include more specific statistics or projections about how these airports will impact travel times for NRIs."
         ],
         "verdict": "pass"
       },
@@ -47,9 +47,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "881fb4de-c505-4a47-af7b-cde4c5b5c80d",
-      "headline": "Toy Story 5 Breaks the Franchise's Own Records Overseas. In India, the Toys Came Home to a Half-Empty Room.",
-      "slug": "toy-story-5-record-global-opening-muted-india-box-office-tom-hanks-andrew-stanton-disney-pixar-where-to-watch-diaspora-nri-20260620",
+      "id": "8416c7be-350e-4b63-9a40-b35dffa03070",
+      "headline": "India Just Made It Easier to Fly a Foreign Passport Home \u2014 11 New Gateways and a 120-Day Window",
+      "slug": "india-evisa-overhaul-11-new-ports-120-day-window-nri-foreign-passport-20260620",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -65,13 +65,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects the film's themes to the experiences of diaspora parents, making it relatable for NRI readers."
+          "note": "The article effectively addresses the needs and concerns of the NRI community regarding visa processes."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more direct quotes or insights from diaspora parents to enhance the connection.",
-          "Include a brief comparison of box office performance in other countries to provide a broader context."
+          "Consider adding quotes or testimonials from NRIs who have experienced the visa process to enhance relatability.",
+          "Include a brief comparison of the old and new visa processes to highlight the improvements more clearly."
         ],
         "verdict": "pass"
       },
@@ -83,9 +83,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "a68fac35-5191-468c-b60a-35c7395a46d0",
-      "headline": "One in Five ChatGPT Users Is Now Indian. OpenAI Just Told the World Where Its Future Is.",
-      "slug": "chatgpt-india-200-million-users-openai-for-india-tata-stargate-diaspor-20260620",
+      "id": "bb67ef59-6e7e-4ef0-b413-c48c0f0b4175",
+      "headline": "India's Biggest Stock Exchange Is Finally Going Public \u2014 in What Could Be the Country's Largest IPO Ever",
+      "slug": "nse-files-drhp-largest-ipo-india-30000-crore-offer-for-sale-5-lakh-crore-valuation-nri-investor-20260620-1000",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -95,19 +95,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 5,
-          "issue": "The image does not directly relate to the article's focus on ChatGPT and its user demographics."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively discusses the implications of OpenAI's strategy for the Indian diaspora, highlighting both opportunities and challenges."
+          "note": "The article effectively addresses NRIs by discussing the implications of the IPO for non-resident investors and the recent regulatory changes that facilitate their participation."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that directly relates to ChatGPT or its impact in India.",
-          "Expand on the implications for the diaspora with more specific examples or quotes from diaspora members."
+          "Consider adding more specific examples of how NRIs can participate in the IPO process.",
+          "Include a brief overview of the potential risks associated with investing in the IPO to provide a balanced perspective."
         ],
         "verdict": "pass"
       },
@@ -119,9 +119,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "79dff86c-49bf-473d-9f41-089163284684",
-      "headline": "India Just Switched On UPI in a Nice Department Store. It's Now in Nine Countries \u2014 and That's the Point.",
-      "slug": "upi-global-expansion-france-nine-countries-nri-fintech-digital-public-20260620",
+      "id": "6a8a4abf-8b4d-403a-a19b-6af8b7a1a1f5",
+      "headline": "The Work-Visa Wait Is Back to Four Months \u2014 and It's About to Get Worse Before October",
+      "slug": "us-consulate-india-h1b-l-visa-backlog-75-125-days-nri-summer-20260620",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -132,54 +132,90 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image does not directly depict UPI or the specific context of the article."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects UPI's expansion to the interests of the NRI community, particularly in terms of travel and investment."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that directly relates to UPI transactions or showcases its use in an international context.",
-          "Expand on the implications of UPI's expansion for NRIs in terms of potential investment opportunities."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "081ad16f-1c96-4754-be12-514dd327e4a5",
-      "headline": "Tech's 2026 Layoffs Just Passed 183,000. For Indians on H-1B, the Real Clock Is 60 Days.",
-      "slug": "tech-layoffs-2026-h1b-60-day-grace-indian-workers-ai-restructuring-20260620",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image depicts a workspace, which is relevant to the tech industry but does not specifically relate to layoffs or the emotional impact on H-1B workers."
+          "issue": "The image does not directly relate to the topic of work visas or immigration, but it is a neutral image that does not detract from the article."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively addresses the challenges faced by Indian H-1B visa holders, making it highly relevant to the diaspora audience."
+          "note": "The article effectively addresses the challenges faced by NRIs regarding work visa processing and the implications for their travel plans."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that more directly represents the theme of layoffs or the emotional impact on workers.",
-          "Include quotes or anecdotes from affected individuals to enhance the human element of the story."
+          "Consider using an image that more directly represents the theme of immigration or work visas.",
+          "Add a quote or anecdote from an NRI to personalize the impact of the visa wait times."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "ddb75a1c-7e8f-4923-861d-182a90d01341",
+      "headline": "A Drug Designed to Mend Broken Hearts May Also Heal Damaged Kidneys, Early Research Suggests",
+      "slug": "experimental-heart-drug-ad-np1-enpp1-heals-kidney-tissue-ucla-cell-stem-cell-diaspora-20260620-1000",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the research to the health challenges faced by the South Asian diaspora, making it relevant and impactful."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from additional experts to enhance credibility.",
+          "Include more statistics on the prevalence of heart and kidney diseases in the South Asian community for added context."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "4a2103af-4398-4234-8191-0f6c71b7bf24",
+      "headline": "Cutting Sugar Out Completely May Backfire on Your Gut, a New Study Warns",
+      "slug": "zero-sugar-sucrose-free-diet-gut-microbiome-inflammation-dasman-endo-2026-diaspora-20260620-1000",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the research findings to the dietary habits and health concerns of the Indian diaspora, particularly regarding sugar consumption."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a quote from a health expert or nutritionist to enhance credibility.",
+          "Include more specific examples of traditional Indian foods that balance sugar intake."
         ],
         "verdict": "pass"
       },
