@@ -1,3 +1,5 @@
+# ⚠️ ARCHIVED 2026-06-20: HARDCODED one-off (fixed article_id/video_url). DO NOT RUN.
+# Canonical distributor is distribute-reels.py (dynamic fetch + article-level dedup).
 #!/usr/bin/env python3
 """Distribute prebuilt reels to remaining platforms."""
 

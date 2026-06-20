@@ -192,7 +192,10 @@ def post_youtube_short(reel, video_path, headline, caption):
             patch_reel(reel['id'], {'yt_posted_at': now_iso(), 'yt_video_id': f'dedup-log-{vid}'})
             return f"SKIP (slug already in youtube-log: {vid})"
     
-    title = headline[:93] + ' #Shorts' if len(headline) > 93 else headline + ' #Shorts'
+    # YouTube hard-limits titles to 100 chars. " #Shorts" is 8 chars, so the
+    # headline must be truncated to 91 to stay within 99 (1 char safety margin).
+    SUFFIX = ' #Shorts'
+    title = (headline[:91].rstrip() + SUFFIX) if len(headline) + len(SUFFIX) > 100 else headline + SUFFIX
     
     # Category-specific hashtags
     caption_lower = caption.lower()
