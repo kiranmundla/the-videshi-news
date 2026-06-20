@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-20T20:15:13.817593+00:00",
+  "timestamp": "2026-06-20T20:45:14.647451+00:00",
   "mode": "fix",
   "stats": {
     "pass": 2,
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "92f7b384-ace1-41cd-bda9-388ca55e223d",
-      "headline": "The U.S. Citizenship Test Just Got Twice as Hard \u2014 and Indian Families Are Feeling It",
-      "slug": "2025-naturalization-civics-test-128-questions-20-asked-indian-families-citizenship-20260620",
+      "id": "79390f78-adb9-4ab2-9bc6-a4daa365022f",
+      "headline": "A Box of Alphonsos Now Costs as Much as Lobster. The War in the Gulf Is Part of the Reason.",
+      "slug": "indian-mango-season-us-diaspora-hormuz-war-airfreight-prices-kesar-alphonso-sonpari-20260620",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -23,19 +23,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the topic of the U.S. Citizenship Test or Indian families."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively discusses the impact of the citizenship test changes on Indian families, making it highly relevant to the diaspora."
+          "quality": 8,
+          "note": "The article effectively connects the rising costs of mangoes to the emotional ties of the diaspora, making it relevant for NRI readers."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that depicts Indian families or individuals studying for the citizenship test.",
-          "Add quotes or testimonials from Indian families or community leaders to enhance the personal connection to the diaspora experience."
+          "Consider adding more statistics or data points to strengthen the economic argument.",
+          "Include quotes or anecdotes from diaspora members to enhance the personal connection."
         ],
         "verdict": "pass"
       },
@@ -47,9 +47,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "da829c77-c0aa-463b-a9dd-0555ad00b211",
-      "headline": "U.S. Tourist-Visa Bond Wall Hits 50 Countries: India Spared, But Nepal and Bangladesh Aren't",
-      "slug": "visa-bond-pilot-50-countries-india-spared-nepal-bangladesh-bhutan-nri-families-20260620",
+      "id": "3905036f-8256-4e0f-a997-df1540e19234",
+      "headline": "Three Tankers, 94 Indian Sailors, and a Strait That Tried to Trap Them. They Finally Got Out.",
+      "slug": "indian-seafarers-strait-of-hormuz-tankers-clear-94-crew-iran-ceasefire-20260620",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -59,19 +59,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 6,
-          "issue": "The image does not directly relate to the topic of U.S. tourist visas or immigration."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively discusses the implications of the visa bond on Indian-American families with relatives from affected countries."
+          "quality": 8,
+          "note": "The article effectively connects the plight of Indian seafarers to the broader Indian diaspora, highlighting their economic contributions and the impact on their families."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that more directly represents the theme of immigration or U.S. tourist visas.",
-          "Add a brief section on how the visa bond system has been received by the affected countries or communities."
+          "Consider adding quotes from the seafarers or their families to provide a more personal touch.",
+          "Include more context about the geopolitical implications of the Strait of Hormuz situation for Indian interests."
         ],
         "verdict": "pass"
       },
