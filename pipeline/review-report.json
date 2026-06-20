@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-20T17:15:32.797980+00:00",
+  "timestamp": "2026-06-20T18:16:00.015584+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 0,
-    "flag": 1,
+    "pass": 12,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,28 +11,17 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "ac614937-f3ec-4945-a8f2-7f10dd22fb39",
-      "headline": "Eighteen Years, Forty-Odd Stars, One Jungle. Welcome 3 Lands June 26 and It Wants the Whole Family Back in the Hall.",
-      "slug": "welcome-to-the-jungle-welcome-3-june-26-release-akshay-kumar-suniel-shetty-ensemble-deewane-hain-ahmed-khan-where-to-watch-diaspora-nri-20260620",
+      "id": "a6299064-2375-4611-902c-86f50caf9122",
+      "headline": "America's Oldest Indian Association Swore In a New Board. The Guest List Was a Map of How Far the Community Has Come.",
+      "slug": "aia-association-indians-america-nec-2026-swearing-in-diaspora-new-york-20260620",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "62e2e142-a04a-4cda-b0bc-261faa3ed613",
-            "headline": "Akshay and Suniel Are Back in the Same Frame. The Welcome to"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/reel/DZwi1UetrhE/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram reel does not appear to be directly related to the film or its promotion, making it irrelevant to the article's subject."
-          }
-        ],
+        "embed_issues": [],
         "image_match": {
           "score": 9,
           "issue": null
@@ -40,18 +29,413 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the film's appeal to the diaspora audience, particularly through references to Akshay Kumar's global popularity and the cultural significance of the film."
+          "note": "The article effectively connects the historical and current significance of the AIA to the Indian diaspora, highlighting community achievements and the importance of cultural events."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant Instagram embed with a more relevant social media post related to the film.",
-          "Consider adding quotes or insights from diaspora audiences or critics to enhance the connection with NRI readers."
+          "Consider adding quotes from attendees or leaders to provide personal insights and enhance engagement.",
+          "Include more specific examples of how the AIA has influenced policy or community initiatives to strengthen the narrative."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/reel/DZwi1UetrhE/",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "679d5323-008b-4463-87c3-1338620cb2ca",
+      "headline": "After Three Temples Were Hit in Two Weeks, Hindu Americans Are Done Quietly Repainting the Walls",
+      "slug": "hindu-american-foundation-california-state-of-hate-temple-vandalism-di-20260620",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image depicts a temple, which is relevant to the article's subject, but lacks specific context related to the vandalism incidents discussed."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the incidents of vandalism to the broader experiences and concerns of the Indian diaspora in the U.S., highlighting their shift from silence to advocacy."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including more specific images or graphics related to the incidents mentioned to enhance visual relevance.",
+          "Add quotes or testimonials from community members to provide a personal touch and deepen the emotional impact."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "e53fbf2a-432a-4e04-bc64-544c4c826a52",
+      "headline": "An Award-Winning Indian Kitchen Is Opening in a Phoenix Mall. That's a Bigger Deal Than It Sounds.",
+      "slug": "nadu-indian-restaurant-phoenix-debut-michelin-james-beard-diaspora-20260620",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the opening of NADU to broader trends in the Indian diaspora, highlighting cultural shifts and economic empowerment."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from local Indian community members or food critics to enhance the article's depth.",
+          "Include more details about the menu or specific dishes that will be offered at the new location to engage readers further."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "dded90d0-18a2-471a-a7b4-a2563c5e3540",
+      "headline": "After a Record Exodus, Foreign Investors Tiptoed Back Into Indian Stocks This Week",
+      "slug": "foreign-investors-turn-net-buyers-1209-crore-india-equities-us-iran-peace-oil-nifty-rally-nri-investor-20260620-1800",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the foreign investment trends to the interests of NRIs, explaining how these trends impact their investments."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of how NRIs can navigate the current market conditions.",
+          "Include a brief summary of the potential long-term implications for NRIs if the trends continue."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "7394c539-55c6-4de6-aa74-ec5eaa17fc01",
+      "headline": "Carrying Extra Weight Does Not Just Raise Dementia Risk \u2014 It May Directly Cause It, a Study of 500,000 People Finds",
+      "slug": "high-bmi-blood-pressure-direct-cause-vascular-dementia-mendelian-randomization-jcem-500000-diaspora-20260620-1800",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the study's findings to the health risks faced by the South Asian diaspora, making it relevant and informative."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific statistics or studies related to the South Asian diaspora to strengthen the diaspora angle.",
+          "Include a brief section on practical steps NRIs can take to manage their weight and blood pressure."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "42757c5c-5100-4c11-ad6d-52650578732f",
+      "headline": "Hormone Therapy May Quietly Be Protecting Older Women's Bones, a New Study Finds",
+      "slug": "menopausal-hormone-therapy-69-percent-lower-low-bone-density-dxa-endo-2026-women-diaspora-20260620-1800",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses the specific health concerns of Indian and South Asian women regarding menopause and bone health, making it relevant for the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more statistics or data points to strengthen the argument about the benefits of hormone therapy.",
+          "Include quotes or testimonials from NRI women who have experienced menopause to provide a personal touch."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "0df698d3-6f3c-4060-a21a-cd04da12656d",
+      "headline": "Diwali Is November 8 \u2014 Here's the Fare Math That Saves NRI Families Hundreds on the Trip Home",
+      "slug": "diwali-2026-us-india-airfare-guide-nri-booking-window-20260620",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively addresses the needs and concerns of NRI families traveling for Diwali, making it highly relevant."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a section on potential travel restrictions or requirements for NRIs traveling to India during the festival season.",
+          "Include a brief comparison of fares from different airlines to provide more context for readers."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "77ac672a-597a-4392-b7c1-8e45c56aede9",
+      "headline": "Goa Goes Hunting for New Tourists in Poland, Kazakhstan and Uzbekistan",
+      "slug": "goa-new-international-routes-poland-kazakhstan-uzbekistan-nri-20260620",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the tourism strategy to the interests and travel patterns of the NRI diaspora, making it relevant and engaging."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from tourism officials or industry experts to enhance credibility.",
+          "Include statistics or data on current tourist demographics to provide context for the proposed changes."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "53c8dfa1-f28b-4e19-a2a3-738d1ffecfc7",
+      "headline": "India and New Zealand Are Finally Planning a Nonstop \u2014 and the Codeshare to Use Until It Lands",
+      "slug": "air-india-air-new-zealand-direct-flight-2028-codeshare-nri-20260620",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the topic to the Indian diaspora, highlighting the benefits of the new route for NRIs."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a quote from an airline representative or a travel expert to enhance credibility.",
+          "Include more specific statistics or anecdotes about the Indian community in New Zealand to deepen the diaspora connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "56509c71-f6a8-4d40-855d-5c2ef2fabfba",
+      "headline": "America Restricted Its Best AI Models. India's Answer Is a Scramble to Build Its Own.",
+      "slug": "india-sovereign-ai-us-export-curbs-modi-g7-sarvam-nri-investors-20260620",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 3,
+          "issue": "The image of Narendra Modi does not directly relate to the topic of AI models and technology."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively discusses the implications of India's AI developments for the NRI community, particularly in terms of investment and career opportunities."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the hero image with something more relevant to AI technology or the Indian tech landscape.",
+          "Expand on the implications for NRIs in terms of specific investment opportunities or success stories in the AI sector."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "23132849-b168-4ea3-afd4-d3fbcc1d1230",
+      "headline": "Everyone Is Betting on AI Chips. Arvind Krishna Just Bet $10 Billion That IBM Wins With Quantum.",
+      "slug": "ibm-arvind-krishna-quantum-10-billion-bet-2029-nri-engineers-20260620",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects Arvind Krishna's leadership at IBM to the Indian-American diaspora, highlighting the significance of his role in U.S. technology strategy."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more quotes or perspectives from other industry experts to enhance credibility.",
+          "Include a brief explanation of the CHIPS Act for readers who may not be familiar with it."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "298aae8d-8b40-4e1b-a59e-34cde1323eae",
+      "headline": "Google Just Lost Two of Its AI Crown Jewels in 48 Hours. Sundar Pichai's Real Problem Is Retention.",
+      "slug": "google-ai-talent-drain-shazeer-openai-pichai-gemini-nri-20260620",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the topic of talent retention in AI at Google to the experiences and challenges faced by Indian engineers in the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes or insights from diaspora engineers to enhance the personal connection.",
+          "Include more data or statistics on the impact of talent loss in the tech industry to strengthen the argument."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
         "promoted to published"
       ],
       "revised": false,
