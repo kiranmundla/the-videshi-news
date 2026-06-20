@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-20T19:15:16.059259+00:00",
+  "timestamp": "2026-06-20T19:45:07.341015+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 1,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,17 +11,12 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "4aea5052-2968-4fbd-ae3c-e441d064098e",
-      "headline": "Georgekutty Comes Home to Your Living Room. Drishyam 3 Lands on Prime Video, and the Diaspora Can Finally See How the Lie Holds.",
-      "slug": "drishyam-3-mohanlal-amazon-prime-video-ott-release-june-18-jeethu-joseph-231-crore-box-office-where-to-watch-diaspora-nri-20260620",
+      "id": "cf5d63d3-8ea5-4cf4-b213-34ce906bafeb",
+      "headline": "Jaiswal's Unbeaten 110 Seals a 3-0 Sweep \u2014 and the First Clean Verdict on India's Post-Kohli ODI Team",
+      "slug": "india-sweep-afghanistan-3-0-odi-series-chennai-jaiswal-110-prasidh-krishna-5-23-nine-wickets-gill-new-era-2027-world-cup-nri",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "c38cdb5f-6637-43bf-98a1-c6e8e109d782",
-            "headline": "Georgekutty Comes Home. Drishyam 3 Lands on Prime Video Toda"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
@@ -34,58 +29,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the film's themes to the diaspora experience, emphasizing accessibility and shared viewing."
+          "note": "The article effectively connects the performance of Indian players to the interests of the diaspora, highlighting future tours and the significance of emerging players."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more quotes from critics or audience reactions to enhance credibility.",
-          "Include a brief comparison of the film's reception in India versus the diaspora to deepen the analysis."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "d0670569-8693-4310-8e90-9c63470bb6f0",
-      "headline": "Diljit's Main Vaapas Aaunga Showed a Pakistan Without Villains. The Internet Cried 'Anti-National.' A.R. Rahman Just Laughed.",
-      "slug": "main-vaapas-aaunga-diljit-dosanjh-imtiaz-ali-ar-rahman-anti-national-tere-paas-main-box-office-where-to-watch-diaspora-nri-20260620",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "593fe449-25ab-4e0c-b399-6490ac8797a0",
-            "headline": "Los Angeles Just Gave Diljit Dosanjh His Own Day. The Boy Fr"
-          },
-          {
-            "article_id": "bd12a9ba-a29f-4bb0-a8ce-88cc8560a29e",
-            "headline": "The Grammys Just Made Room for Asian Pop. They Forgot to Sav"
-          }
-        ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the film's themes to the diaspora experience, particularly regarding partition and identity."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more direct quotes from the film or its creators to enhance engagement.",
-          "Include a brief section on audience reactions or reviews to provide a broader perspective."
+          "Consider adding more statistics or historical context to enhance the analysis of the team's performance.",
+          "Include quotes from players or coaches to provide more depth and personal insight into the series."
         ],
         "verdict": "pass"
       },
