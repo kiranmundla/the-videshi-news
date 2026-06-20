@@ -36,6 +36,26 @@ BATCH_API = "https://indexing.googleapis.com/batch"
 LEDGER_PATH = os.path.expanduser("~/workspace/the-videshi-news/pipeline/indexing-submitted.json")
 LEDGER_TTL_DAYS = 14
 
+# Google Indexing API allows 200 publish requests/day. On heavy publishing days
+# the 3h cron can cumulatively cross that and 429 on every URL. We cap how many
+# we submit per Pacific calendar day, leaving headroom, and let the rest ride on
+# the PubSubHubbub + IndexNow pings (which have no such cap). Resets at midnight PT.
+DAILY_BUDGET = int(os.environ.get("VIDESHI_INDEXING_DAILY_BUDGET", "180"))
+PACIFIC_TZ = timezone(timedelta(hours=-7))  # PDT; ledger only needs day-bucketing
+
+
+def submitted_today(ledger):
+    """Count ledger entries submitted during the current Pacific calendar day."""
+    today = datetime.now(PACIFIC_TZ).date()
+    n = 0
+    for ts in ledger.values():
+        try:
+            if datetime.fromisoformat(ts).astimezone(PACIFIC_TZ).date() == today:
+                n += 1
+        except (ValueError, TypeError):
+            continue
+    return n
+
 
 def load_ledger():
     """Load the submitted-URL ledger: {url: iso_timestamp}."""
@@ -200,6 +220,12 @@ def main():
                 pending.append((slug, url))
         print(f"{len(articles)} recent articles; {skipped} already submitted (skipped), "
               f"{len(pending)} new to submit:\n")
+        used_today = submitted_today(ledger)
+        remaining = max(0, DAILY_BUDGET - used_today)
+        if len(pending) > remaining:
+            print(f"⚠️  Daily budget guard: {used_today}/{DAILY_BUDGET} already submitted today; "
+                  f"capping this run to {remaining} (rest ride on IndexNow, retry after midnight PT).")
+            pending = pending[:remaining]
         ok = 0
         for slug, url in pending:
             success = submit_url(url)
