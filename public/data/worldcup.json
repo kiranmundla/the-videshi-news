@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-06-19T21:57:43Z",
-  "stage": "Group Stage — 29 of 72 matches played",
+  "last_updated": "2026-06-20T00:02:38Z",
+  "stage": "Group Stage — 30 of 72 matches played",
   "hosts": "USA, Mexico & Canada",
   "dates": {
     "start": "2026-06-11",
@@ -126,16 +126,29 @@
     ],
     "C": [
       {
+        "name": "Morocco",
+        "code": "MAR",
+        "flag": "🇲🇦",
+        "rank": 7,
+        "p": 2,
+        "w": 1,
+        "d": 1,
+        "l": 0,
+        "gf": 2,
+        "ga": 1,
+        "pts": 4
+      },
+      {
         "name": "Scotland",
         "code": "SCO",
         "flag": "🏴󠁧󠁢󠁳󠁣󠁴󠁿",
         "rank": 42,
-        "p": 1,
+        "p": 2,
         "w": 1,
         "d": 0,
-        "l": 0,
+        "l": 1,
         "gf": 1,
-        "ga": 0,
+        "ga": 1,
         "pts": 3
       },
       {
@@ -143,19 +156,6 @@
         "code": "BRA",
         "flag": "🇧🇷",
         "rank": 6,
-        "p": 1,
-        "w": 0,
-        "d": 1,
-        "l": 0,
-        "gf": 1,
-        "ga": 1,
-        "pts": 1
-      },
-      {
-        "name": "Morocco",
-        "code": "MAR",
-        "flag": "🇲🇦",
-        "rank": 7,
         "p": 1,
         "w": 0,
         "d": 1,
@@ -1118,8 +1118,8 @@
       "away": "Morocco",
       "venue": "Gillette Stadium",
       "city": "Boston",
-      "status": "scheduled",
-      "score": null,
+      "status": "FT",
+      "score": "0-1",
       "home_code": "SCO",
       "away_code": "MAR"
     },
