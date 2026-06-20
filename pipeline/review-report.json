@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-20T01:45:11.120528+00:00",
+  "timestamp": "2026-06-20T02:15:34.956703+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
+    "pass": 6,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,81 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "388f24c6-9dfa-46c6-852f-14cc83a993fc",
-      "headline": "New Captain, New Trophy, New Era: India Begin in England Without Rohit and Kohli for the First Time in a Generation",
-      "slug": "india-england-first-test-headingley-2026-shubman-gill-captain-anderson-tendulkar-trophy-new-era-rohit-kohli-retired-pant-bumrah-nri",
+      "id": "4facdf9d-96f7-4a84-938e-3c6dfd1d982a",
+      "headline": "New Zealand Just Finalized Its Skilled-Migrant Overhaul \u2014 and the Fine Print Cuts Both Ways for Indian Professionals",
+      "slug": "new-zealand-skilled-migrant-overhaul-august-indian-professionals-20260620",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the topic of immigration or skilled migrants."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively addresses the implications of New Zealand's immigration changes for Indian professionals, making it relevant for the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that directly relates to immigration or skilled migrants to enhance relevance.",
+          "Add a brief section on how these changes compare to immigration policies in other countries like Canada or Australia for broader context."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "53667169-f125-4961-8570-5f84147dc82f",
+      "headline": "Indian Consular Services in the UAE Get a New Operator on July 1 \u2014 Here's What 3.5 Million NRIs Need to Watch",
+      "slug": "india-uae-consular-services-al-hind-takeover-july-nri-20260620",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the topic of Indian consular services."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the changes in consular services to the Indian American diaspora, highlighting the implications for families with ties to the UAE."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that directly represents Indian consular services or the UAE to enhance relevance.",
+          "Add a brief section on how NRIs can prepare for the transition to the new operator to provide additional value."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "7949b9de-7624-4427-8ca2-2d48f138ea5a",
+      "headline": "Vietnam Is Going Digital at Every Airport \u2014 and the Diaspora's Favorite New Getaway Now Needs Paperwork Before You Board",
+      "slug": "vietnam-digital-arrival-card-all-airports-nri-qr-rule-20260620",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -29,13 +101,121 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the significance of the series to the Indian diaspora, highlighting the emotional and cultural ties."
+          "note": "The article effectively addresses the needs and concerns of Indian American travelers, making it relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from players or coaches to enhance the narrative.",
-          "Include statistics or historical context about India's performance in England to provide depth."
+          "Consider adding a section with tips for completing the digital declaration to enhance reader experience.",
+          "Include a brief comparison of Vietnam's new rules with those of other popular destinations for Indian travelers."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "06976cbe-d24c-4f86-9a67-f289369484e8",
+      "headline": "NRIs Are Breaking Their Own Bank Deposits to Chase a Better Rate \u2014 and Banks Want the RBI's Blessing",
+      "slug": "nris-break-fcnr-deposits-rebook-higher-rates-banks-seek-rbi-approval-1-billion-penalty-nri-investor-20260620-0200",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses the financial concerns of NRIs regarding bank deposits and the RBI's policies."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from financial experts or NRIs to provide personal insights and enhance relatability.",
+          "Include a brief summary or conclusion to reinforce the key takeaways for NRI readers."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "50ea1d61-a1e9-482d-8661-ea0cc2764d57",
+      "headline": "A Non-Hormone Pill for Menopause Just Passed Its First Real-World Test \u2014 on Hot Flashes and Mood Alike",
+      "slug": "fezolinetant-non-hormone-menopause-hot-flashes-mood-real-world-option-vms-study-endo-2026-diaspora-20260620-0200",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the findings to the cultural context of Indian families, addressing the stigma and lack of discussion around menopause."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from South Asian women or healthcare professionals to enhance the diaspora angle.",
+          "Include more statistics or data on the prevalence of menopause symptoms in the Indian diaspora for added context."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "e3d6ec9a-6d56-4cdf-a6ef-30490a4b42f2",
+      "headline": "Ozempic's Active Ingredient May Quietly Be Protecting Bones, a Study of 60,000 Diabetics Finds",
+      "slug": "semaglutide-ozempic-15-percent-lower-bone-fracture-risk-type-2-diabetes-stanford-endo-2026-diaspora-20260620-0200",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the findings to the health concerns of the Indian diaspora, particularly regarding diabetes and bone health."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific statistics or quotes from the study to enhance credibility.",
+          "Include a brief section on how the findings might influence treatment options for the diaspora community."
         ],
         "verdict": "pass"
       },
