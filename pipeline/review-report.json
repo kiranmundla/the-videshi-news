@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-20T22:45:17.509289+00:00",
+  "timestamp": "2026-06-20T23:15:09.805001+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
+    "pass": 1,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,48 +11,17 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "dcd8abf0-b001-4c34-9aa1-73c3858cc127",
-      "headline": "Seattle Chased 217 in Texas and Barely Broke Stride. America's T20 League Is Producing Run-Fests the Diaspora Built It For.",
-      "slug": "seattle-orcas-beat-washington-freedom-mlc-2026-chase-217-tim-seifert-78-breetzke-66-shanaka-grand-prairie-netravalkar-diaspora-nri",
+      "id": "0cc09b5d-39a8-4a33-8c9d-18ce3a3600f4",
+      "headline": "Ananya Panday Walked Into Monaco in Molten Gold. A 152-Year-Old Swiss House Just Bet Its Future on Her.",
+      "slug": "ananya-panday-piaget-monaco-gaurav-gupta-gold-gown-friend-of-maison-bollywood-swiss-luxury-watch-where-to-watch-diaspora-nri-20260620",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the cricket match to the NRI diaspora, highlighting their role in supporting the league."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from players or coaches to enhance the narrative.",
-          "Include statistics or historical context about the league's growth to provide depth."
+        "duplicate_images": [
+          {
+            "article_id": "270fc65c-d12f-404c-ac11-e35d50d511e6",
+            "headline": "A Bridge Made of Lipstick. Amazon Just Turned the Bandra-Wor"
+          }
         ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "c7813e46-af8d-4e8d-b4cb-a050abd1d074",
-      "headline": "A Proposed Visa Rule Would Give Indian Graduates 30 Days to Solve a Problem That Can Take Years",
-      "slug": "us-f1-student-visa-rule-30-day-grace-day-1-cpt-indian-students-h1b-20260620",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
@@ -65,49 +34,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the proposed visa changes to the concerns of Indian families and students, highlighting the impact on their educational and career aspirations."
+          "note": "The article connects well with the diaspora by discussing the global influence of Bollywood stars and their impact on luxury brands, which resonates with NRI readers."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes or testimonials from affected students to enhance the personal impact of the story.",
-          "Include statistics or data on the number of Indian students affected by these changes to provide a clearer picture of the issue."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "3cedcbc9-9c21-4ad9-8389-eed063999905",
-      "headline": "In Paris, Modi Told the Diaspora They Are India's Soft Power. Then He Made Their Lives a Little Easier.",
-      "slug": "modi-paris-indian-diaspora-address-upi-france-student-mobility-vivatech-20260620",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects Modi's speech to the diaspora's experiences and benefits, making it relevant for NRI readers."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more direct quotes from diaspora members to enhance personal connection.",
-          "Add a brief section on how these announcements compare to other countries' treatment of their diaspora."
+          "Consider adding more direct quotes from Ananya Panday or Piaget representatives to enhance the article's depth.",
+          "Include a brief section on the significance of luxury branding in the Indian diaspora context to strengthen the connection."
         ],
         "verdict": "pass"
       },
