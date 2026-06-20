@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-06-20T19:57:32Z",
-  "stage": "Group Stage — 33 of 72 matches played",
+  "last_updated": "2026-06-20T22:01:40Z",
+  "stage": "Group Stage — 34 of 72 matches played",
   "hosts": "USA, Mexico & Canada",
   "dates": {
     "start": "2026-06-11",
@@ -238,25 +238,25 @@
         "code": "GER",
         "flag": "🇩🇪",
         "rank": 10,
-        "p": 1,
-        "w": 1,
+        "p": 2,
+        "w": 2,
         "d": 0,
         "l": 0,
-        "gf": 7,
-        "ga": 1,
-        "pts": 3
+        "gf": 9,
+        "ga": 2,
+        "pts": 6
       },
       {
         "name": "Ivory Coast",
         "code": "CIV",
         "flag": "🇨🇮",
         "rank": 33,
-        "p": 1,
+        "p": 2,
         "w": 1,
         "d": 0,
-        "l": 0,
-        "gf": 1,
-        "ga": 0,
+        "l": 1,
+        "gf": 2,
+        "ga": 2,
         "pts": 3
       },
       {
@@ -1179,8 +1179,8 @@
       "away": "Ivory Coast",
       "venue": "BMO Field",
       "city": "Toronto",
-      "status": "scheduled",
-      "score": null,
+      "status": "FT",
+      "score": "2-1",
       "home_code": "GER",
       "away_code": "CIV"
     },
