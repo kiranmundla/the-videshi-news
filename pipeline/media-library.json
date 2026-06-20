@@ -1,6 +1,6 @@
 {
  "_description": "Media library mirror — high-quality, attribution-clean images+videos for article/reel fallback. Source of truth is the Supabase media_library table; this mirror lets the pipeline read without a DB round-trip.",
- "_updated": "2026-06-19T20:46:00Z",
+ "_updated": "2026-06-20T03:56:37Z",
  "assets": [
   {
    "id": "person--narendra-modi--bfe42b",
@@ -553,50 +553,6 @@
    "times_used": 1
   },
   {
-   "id": "concept--indian-rupee--ad2e36",
-   "media_type": "image",
-   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/concept/indian-rupee-ad2e36.jpg",
-   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/concept/indian-rupee-ad2e36.jpg",
-   "subject": "Indian rupee",
-   "subject_type": "concept",
-   "caption": "2018 (₹1) Indian 1 Rupee Note in Jamshedpur, Jharkhand. The Indian 1-rupee note (₹1) (₹1 = 100 paise) is the smallest Indian banknote in circulation and the only one being issued by the Government of India, as all other banknotes in circulation are issued by the Reserve Bank of I",
-   "attribution": "Wikimedia Commons / Ank Kumar, CC BY-SA 4.0",
-   "license": "CC BY-SA 4.0",
-   "source_url": "https://commons.wikimedia.org/wiki/File:2018_(₹1)_Indian_1_Rupee_Note,_Jamshedpur,_Jharkhand_(_Ank_Kumar,_Infosys_Limited_)_01.jpg",
-   "tags": [
-    "indian rupee"
-   ],
-   "width": 2347,
-   "height": 1501,
-   "duration": null,
-   "quality_score": 66.4,
-   "added_date": "2026-06-19T05:24:00Z",
-   "last_used": "2026-06-19T12:01:38Z",
-   "times_used": 2
-  },
-  {
-   "id": "thing--travel--67073f",
-   "media_type": "image",
-   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/travel-67073f.jpg",
-   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/travel-67073f.jpg",
-   "subject": "travel",
-   "subject_type": "thing",
-   "caption": "Sea Bathing in Obama, Fukui (Osaka and Nagoya Rail Agency, 1930s). Japanese Poster (21\" X 30\").",
-   "attribution": "Wikimedia Commons / Japanese Government Railways, Public domain",
-   "license": "Public domain",
-   "source_url": "https://commons.wikimedia.org/wiki/File:1930s_Japan_Travel_Poster_-_01.jpg",
-   "tags": [
-    "travel"
-   ],
-   "width": 2056,
-   "height": 3000,
-   "duration": null,
-   "quality_score": 76.5,
-   "added_date": "2026-06-19T10:32:04Z",
-   "last_used": "2026-06-19T19:56:38Z",
-   "times_used": 1
-  },
-  {
    "id": "place--united-states--770df6",
    "media_type": "image",
    "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/place/united-states-770df6.jpg",
@@ -617,6 +573,50 @@
    "added_date": "2026-06-19T10:30:08Z",
    "last_used": "2026-06-19T20:46:00Z",
    "times_used": 5
+  },
+  {
+   "id": "concept--indian-rupee--ad2e36",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/concept/indian-rupee-ad2e36.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/concept/indian-rupee-ad2e36.jpg",
+   "subject": "Indian rupee",
+   "subject_type": "concept",
+   "caption": "2018 (₹1) Indian 1 Rupee Note in Jamshedpur, Jharkhand. The Indian 1-rupee note (₹1) (₹1 = 100 paise) is the smallest Indian banknote in circulation and the only one being issued by the Government of India, as all other banknotes in circulation are issued by the Reserve Bank of I",
+   "attribution": "Wikimedia Commons / Ank Kumar, CC BY-SA 4.0",
+   "license": "CC BY-SA 4.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:2018_(₹1)_Indian_1_Rupee_Note,_Jamshedpur,_Jharkhand_(_Ank_Kumar,_Infosys_Limited_)_01.jpg",
+   "tags": [
+    "indian rupee"
+   ],
+   "width": 2347,
+   "height": 1501,
+   "duration": null,
+   "quality_score": 66.4,
+   "added_date": "2026-06-19T05:24:00Z",
+   "last_used": "2026-06-20T03:34:00Z",
+   "times_used": 3
+  },
+  {
+   "id": "thing--travel--67073f",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/travel-67073f.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/travel-67073f.jpg",
+   "subject": "travel",
+   "subject_type": "thing",
+   "caption": "Sea Bathing in Obama, Fukui (Osaka and Nagoya Rail Agency, 1930s). Japanese Poster (21\" X 30\").",
+   "attribution": "Wikimedia Commons / Japanese Government Railways, Public domain",
+   "license": "Public domain",
+   "source_url": "https://commons.wikimedia.org/wiki/File:1930s_Japan_Travel_Poster_-_01.jpg",
+   "tags": [
+    "travel"
+   ],
+   "width": 2056,
+   "height": 3000,
+   "duration": null,
+   "quality_score": 76.5,
+   "added_date": "2026-06-19T10:32:04Z",
+   "last_used": "2026-06-20T03:56:37Z",
+   "times_used": 2
   }
  ]
 }
