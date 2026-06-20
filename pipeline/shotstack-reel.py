@@ -1974,6 +1974,99 @@ SOCIAL_CARD_TOPIC_SEARCH = os.environ.get("VIDESHI_SOCIAL_TOPIC_SEARCH", "1") !=
 SOCIAL_CARD_VERIFIED_ONLY = os.environ.get("VIDESHI_SOCIAL_VERIFIED_ONLY", "1") != "0"
 SOCIAL_CARD_MIN_LIKES = int(os.environ.get("VIDESHI_SOCIAL_MIN_LIKES", "50"))
 
+# ── Social VIDEO source gate (stricter than photos) ──────────────────────────
+# Photos render inside our branded "ON THE FEED" frame, so the source handle is
+# visually secondary. A full-bleed video clip, by contrast, plays as if it's OUR
+# footage with a "via @handle" credit — so the handle MUST read as a legitimate
+# publisher/official, not a meme/fan repost account (X "blue" verification is
+# purchasable, so the `verified` flag alone is not enough). A post's video is
+# accepted only when its handle is in the curated allowlist below:
+#   1. our own social-embed-registry.json + pulse-leaders.json (people/orgs we vet)
+#   2. a hand-maintained set of news/sports/official wire + desk handles
+# AND it is not caught by the meme/fan blocklist pattern. Toggle with
+# VIDESHI_SOCIAL_VIDEO_PUBLISHER_ONLY=0 to fall back to verified-only.
+SOCIAL_VIDEO_PUBLISHER_ONLY = os.environ.get("VIDESHI_SOCIAL_VIDEO_PUBLISHER_ONLY", "1") != "0"
+
+# Known publisher / wire / official-desk handles whose video we trust to embed
+# full-bleed. Lowercase, no leading "@". Curated; extend as new desks appear.
+SOCIAL_VIDEO_PUBLISHER_HANDLES = {
+    # Indian wires & national news
+    "ani", "pti_news", "ptiofficial", "ddnewslive", "ddnational", "the_hindu",
+    "indiatoday", "ndtv", "ndtvindia", "timesofindia", "toi_india",
+    "httweets", "indianexpress", "the_indian_express", "news18dotcom",
+    "cnnnews18", "republic", "wionews", "firstpost", "thequint", "thewire_in",
+    "livemint", "moneycontrolcom", "economictimes", "business_standard",
+    "bstandardnews", "scroll_in", "the_print_in", "theprintindia",
+    # Cricket / sports desks
+    "bcci", "icc", "ipl", "cricbuzz", "espncricinfo", "starsportsindia",
+    "jiocinema", "sportstarweb", "wisdenindia", "indiancricket",
+    "broadcastpro", "sonysportsnetwk",
+    # Global wires & desks (diaspora-relevant)
+    "reuters", "reutersindia", "ap", "apnews", "afp", "bbcworld", "bbcnews",
+    "bbcbreaking", "cnn", "cnni", "aljazeera", "ajenglish", "bloomberg",
+    "guardian", "nytimes", "washingtonpost", "wsj", "ft",
+    # Indian govt / official handles
+    "pib_india", "pibindia", "mygovindia", "airnewsalerts", "ddindialive",
+    "meaindia", "drsjaishankar", "pmoindia", "narendramodi", "isro",
+}
+
+# Meme / fan / aggregator handle signals — never embed their video full-bleed
+# even if "verified" (purchased blue). Substring match on the lowercased handle.
+SOCIAL_VIDEO_BLOCK_SUBSTRINGS = (
+    "meme", "memer", "memes", "troll", "trolls", "fan", "fans", "fanclub",
+    "fc_", "_fc", "updates", "update_", "fanpage", "viral", "trends",
+    "comedy", "funny", "roast", "banter", "sarcasm", "spoof", "parody",
+)
+
+_VIDEO_ALLOWLIST_CACHE = None
+
+
+def _build_video_handle_allowlist():
+    """Curated publisher handles ∪ our vetted registry + pulse-leader handles.
+    Cached. All lowercase, no leading @."""
+    global _VIDEO_ALLOWLIST_CACHE
+    if _VIDEO_ALLOWLIST_CACHE is not None:
+        return _VIDEO_ALLOWLIST_CACHE
+    allow = set(SOCIAL_VIDEO_PUBLISHER_HANDLES)
+
+    def _harvest(path):
+        try:
+            with open(PIPELINE_DIR / path) as fh:
+                data = json.load(fh)
+        except Exception:
+            return
+
+        def walk(o):
+            if isinstance(o, dict):
+                for k, v in o.items():
+                    if k in ("x", "twitter", "handle") and isinstance(v, str) and v.strip():
+                        allow.add(v.strip().lstrip("@").lower())
+                    else:
+                        walk(v)
+            elif isinstance(o, list):
+                for x in o:
+                    walk(x)
+        walk(data)
+
+    _harvest("social-embed-registry.json")
+    _harvest("pulse-leaders.json")
+    _VIDEO_ALLOWLIST_CACHE = allow
+    return allow
+
+
+def _social_video_handle_ok(handle, verified=False):
+    """True if `handle` is trustworthy enough to embed its video FULL-BLEED.
+    Publisher/registry allowlist membership AND not meme/fan-flagged. When
+    SOCIAL_VIDEO_PUBLISHER_ONLY is off, falls back to verified-only."""
+    h = (handle or "").strip().lstrip("@").lower()
+    if not h:
+        return False
+    if any(sub in h for sub in SOCIAL_VIDEO_BLOCK_SUBSTRINGS):
+        return False
+    if not SOCIAL_VIDEO_PUBLISHER_ONLY:
+        return bool(verified)
+    return h in _build_video_handle_allowlist()
+
 
 def _scrub_x_query(q):
     """Normalize a GPT-authored query to valid X search syntax. GPT sometimes
@@ -3987,9 +4080,17 @@ def source_reel_media_clean(article, storyboard, count=8):
     if social_pool:
         sidx = 0
         # ── Video posts first (preferred): download, trim, re-host ──
+        # Video plays full-bleed as if it were our footage, so the source handle
+        # must clear the publisher allowlist (X "blue" verification is buyable;
+        # meme/fan reposts of broadcast footage are exactly what we must avoid).
+        # A video post that fails the gate still contributes its STILLS below.
         for post in social_pool:
             vid = post.get("video")
             if not vid or not vid.get("url"):
+                continue
+            if not _social_video_handle_ok(post.get("handle"), post.get("verified")):
+                print(f"  🚫 Social video skipped — @{post.get('handle')} not a trusted "
+                      f"publisher handle (will use its stills if any)")
                 continue
             vurl, vdur = _download_and_host_social_video(vid, article_id, sidx)
             if not vurl or vurl in used_in_this_reel:
@@ -4538,26 +4639,32 @@ def build_anchor_reel_timeline(
                     plat = (meta.get("social_platform") or "x").lower()
                     plat_label = {"x": "X", "twitter": "X", "threads": "Threads",
                                   "instagram": "Instagram"}.get(plat, plat.title())
-                    chip_html = (f"<div class='attrib'><span class='av'>via</span>"
+                    # "via @handle  ·  X" — a clear middot separator and generous
+                    # spacing so the platform never reads as part of the handle
+                    # (the earlier "@handleX" run-together readability flag).
+                    chip_html = (f"<div class='attrib'>"
+                                 f"<span class='av'>via</span>"
                                  f"<span class='hd'>@{handle}</span>"
-                                 f"<span class='pl'>{plat_label}</span></div>")
+                                 f"<span class='dot'>·</span>"
+                                 f"<span class='pl'>{plat_label}</span>"
+                                 f"</div>")
                     chip_css = (
                         ".attrib { font-family: 'Inter'; display: inline-flex; align-items: center; "
-                        "gap: 8px; padding: 9px 15px; background: rgba(8,18,34,0.78); "
-                        "border-left: 3px solid #d4af37; border-radius: 6px; white-space: nowrap; "
-                        "box-shadow: 0 2px 8px rgba(0,0,0,0.6); }"
-                        " .attrib .av { color: #c9d4e6; font-size: 20px; font-weight: 600; }"
+                        "gap: 11px; padding: 10px 18px; background: rgba(8,18,34,0.82); "
+                        "border-left: 4px solid #d4af37; border-radius: 7px; white-space: nowrap; "
+                        "box-shadow: 0 2px 9px rgba(0,0,0,0.65); }"
+                        " .attrib .av { color: #c9d4e6; font-size: 19px; font-weight: 600; }"
                         " .attrib .hd { color: #ffffff; font-size: 23px; font-weight: 800; letter-spacing: 0.3px; }"
-                        " .attrib .pl { color: #d4af37; font-size: 19px; font-weight: 700; "
-                        "border: 1px solid rgba(212,175,55,0.6); border-radius: 4px; padding: 1px 7px; }"
+                        " .attrib .dot { color: #d4af37; font-size: 22px; font-weight: 800; margin: 0 1px; }"
+                        " .attrib .pl { color: #d4af37; font-size: 20px; font-weight: 800; letter-spacing: 0.5px; }"
                     )
                     social_attrib_clips.append({
                         "asset": {"type": "html", "html": chip_html, "css": chip_css,
-                                  "width": 520, "height": 48},
+                                  "width": 560, "height": 50},
                         "start": round(hook_duration + (i * per_image), 2),
                         "length": scene_length,
                         "position": "topLeft",
-                        "offset": {"x": 0.02, "y": -0.06},
+                        "offset": {"x": 0.022, "y": -0.035},
                         "transition": {"in": "fade", "out": "fade"},
                     })
         else:

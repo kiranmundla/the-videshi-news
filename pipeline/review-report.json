@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-20T21:15:29.967929+00:00",
+  "timestamp": "2026-06-20T22:15:27.021941+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 4,
-    "flag": 1,
+    "pass": 6,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,96 +11,35 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "63a8efdb-25f8-430d-849a-1dbc75fb91e2",
-      "headline": "5,000 Dancers, a God Who Answers, and No Big Star to Hide Behind. Nagabandham's Hindi Trailer Bets Everything on Spectacle.",
-      "slug": "nagabandham-hindi-trailer-virat-karrna-abhishek-nama-nabha-natesh-rishabh-sawhney-5000-dancers-budget-mythological-july-3-where-to-watch-diaspora-nri-20260620",
+      "id": "e6422072-55e9-4246-9109-dc26879817b4",
+      "headline": "India Just Redrew Its Desert Travel Map \u2014 and Jaisalmer's Camel Safaris Are Firmly Inside the Lines",
+      "slug": "india-immigration-order-2026-rajasthan-desert-jaisalmer-oci-nri-20260620",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "6e7f6125-5253-495f-addb-7fd011263b5b",
-            "headline": "5,000 Dancers, a Serpent Goddess, and a July 3 Worldwide Dro"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 5,
-          "issue": "The image does not match the article's focus on the film 'Nagabandham' and its themes."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the film's themes to the diaspora audience's cultural background."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the hero image with one that directly relates to 'Nagabandham' or its cast.",
-          "Consider adding more context about the film's significance to Indian cinema for a broader audience."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "69ee695b-0713-4c49-acd9-047468c0e514",
-      "headline": "Cocktail 2 Refuses to Fizzle. Day Two Pours Bigger Than Day One, and Shahid Kapoor Has His Third-Biggest Opener Ever.",
-      "slug": "cocktail-2-weekend-box-office-day-2-surge-shahid-kapoor-third-biggest-opener-kriti-sanon-rashmika-mandanna-homi-adajania-where-to-watch-diaspora-nri-20260620",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "9b54b26a-3cb9-4084-a669-af113dd61b91",
-            "headline": "Cocktail 2 Opens Big. Fourteen Years On, the Diaspora's Favo"
-          },
-          {
-            "article_id": "22d66315-9864-48f4-92ad-c9e128adb6a1",
-            "headline": "Cocktail 2 Just Got an 'A.' The Diaspora's Tickets Are Alrea"
-          },
-          {
-            "article_id": "8bbbe976-8e02-47ca-8969-5faf9ca01af1",
-            "headline": "Cocktail 2 Pours This Friday. Can Shahid, Kriti and Rashmika"
-          }
-        ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/p/DZxKj9gAJDF/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post does not seem to directly relate to the film's performance or critical reception, making it less relevant to the article's focus."
-          }
-        ],
-        "image_match": {
-          "score": 9,
+          "score": 10,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the film's themes and its appeal to the diaspora audience, particularly referencing the original film's resonance with NRIs."
+          "quality": 9,
+          "note": "The article effectively connects the changes in travel regulations to the interests and concerns of diaspora families planning trips to Rajasthan."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider replacing the irrelevant Instagram embed with a more relevant social media post that discusses the film's reception or audience reactions.",
-          "Add more context about the film's themes and how they resonate with the diaspora audience to strengthen the connection."
+          "Consider adding quotes from travel experts or diaspora members to enhance the article's relatability.",
+          "Include a brief section on how these changes might impact tourism businesses in Jaisalmer."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DZxKj9gAJDF/",
         "promoted to published"
       ],
       "revised": false,
@@ -108,9 +47,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "f0969be6-7013-44e8-84a7-1d1fa3da9704",
-      "headline": "HCLTech Just Bought a Slice of India's Sovereign-AI Dream for $150 Million. The Buyer List Tells You Where the Money Now Flows.",
-      "slug": "hcltech-sarvam-ai-stake-sovereign-ai-india-nri-investors-models-20260620",
+      "id": "cac48e75-798e-43c7-adf9-f68236236ee5",
+      "headline": "Everyone Says Skip India in the Monsoon. For NRI Families Who Travel on the School Calendar, That's a Mistake",
+      "slug": "india-monsoon-travel-guide-2026-nri-families-where-to-go-20260620",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -126,13 +65,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the investment to diaspora investors, highlighting opportunities in India's tech landscape."
+          "note": "The article effectively addresses NRI families and their travel considerations during the monsoon season."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more specific examples of how NRIs can engage with the Indian tech market.",
-          "Include quotes from industry experts or stakeholders to enhance credibility and depth."
+          "Consider adding personal anecdotes or testimonials from NRIs who have traveled during the monsoon to enhance relatability.",
+          "Include more specific tips or resources for booking accommodations during the monsoon season."
         ],
         "verdict": "pass"
       },
@@ -144,9 +83,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "c77db39c-7581-4568-a116-3215a7320c75",
-      "headline": "Wipro Just Opened a Claude Lab in Bengaluru and Promised to Retrain 10,000 People. It Is Also Admitting What AI Does to Its Old Model.",
-      "slug": "wipro-anthropic-claude-ai-center-bengaluru-it-services-nri-jobs-20260620",
+      "id": "7beb1b4c-0206-49e4-b7b8-c5d8369e837a",
+      "headline": "IndiGo Is About to Fly a Single-Aisle Jet 8 Hours to Bali \u2014 and the Diaspora's Wedding Map Just Changed",
+      "slug": "indigo-a321xlr-bali-nonstop-delhi-mumbai-nri-wedding-20260620",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -156,19 +95,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image is relevant to the tech theme but does not specifically represent Wipro or AI."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the implications of Wipro's announcement to the Indian diaspora, particularly regarding visa sponsorship and career opportunities."
+          "quality": 8,
+          "note": "The article effectively connects the new flight route to the Indian diaspora's travel habits, particularly for weddings and family vacations."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more specific image related to Wipro or AI to enhance relevance.",
-          "Add a quote from a Wipro representative or an industry expert to provide more depth."
+          "Consider adding quotes from airline representatives or travel experts to enhance credibility.",
+          "Include more statistics or data on the impact of this route on travel trends among the diaspora."
         ],
         "verdict": "pass"
       },
@@ -180,9 +119,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "cecb43b7-a091-4395-9081-d9cc423e4632",
-      "headline": "India Sees a Million Empty Chip Jobs. Its Minister Wants Indian Graduates to Fill Them \u2014 Worldwide.",
-      "slug": "india-semiconductor-talent-shortage-vaishnaw-million-jobs-nri-chip-20260620",
+      "id": "0bd781c7-29f6-433a-a5d8-b6651572907b",
+      "headline": "India's Central Bank Holds Rates and Trims Its Growth Forecast as the West Asia War Clouds the Outlook",
+      "slug": "rbi-mpc-minutes-hold-repo-5-25-cut-fy27-growth-6-6-percent-west-asia-conflict-nri-investor-20260620-2200",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -192,19 +131,91 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image features Ashwini Vaishnaw, which is relevant to the article, but it could be more directly related to the semiconductor industry."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the semiconductor industry's needs with the opportunities for Indian engineers in the diaspora, discussing both optimistic and cautious perspectives."
+          "quality": 8,
+          "note": "The article effectively connects the RBI's decisions to the interests of NRIs, discussing implications for investments and remittances."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider including more specific examples of Indian graduates who have successfully transitioned into roles in the semiconductor industry globally.",
-          "Add a quote from an Indian engineer in the diaspora to provide a personal perspective on the opportunities and challenges discussed."
+          "Consider adding more specific examples of how the RBI's decisions have historically impacted NRI investments.",
+          "Include quotes or insights from diaspora financial experts to enhance the article's relevance to NRI readers."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "29544d3a-2508-42f8-9ea3-88ba1cbb605b",
+      "headline": "When You Stop Eating at Night May Matter as Much as What You Eat, a Northwestern Study Finds",
+      "slug": "sleep-aligned-fasting-overnight-blood-pressure-heart-rate-northwestern-circadian-atvb-diaspora-20260620-2200",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the study's findings to the cultural habits of Indian-origin families, making it relevant for the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a quote from a participant in the study to provide a personal touch.",
+          "Include more specific statistics or data points from the study to enhance credibility."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "889bd14f-9044-4ad7-9012-6aa26deb6bd8",
+      "headline": "A Few Cups of Coffee a Day May Be Quietly Guarding Your Heart, a Study of 468,000 Adults Finds",
+      "slug": "moderate-coffee-lower-heart-disease-stroke-death-risk-uk-biobank-semmelweis-468000-adults-diaspora-20260620-2200",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the study's findings to the Indian diaspora's cultural practices and health concerns."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a quote from a health expert to enhance credibility.",
+          "Include more specific statistics on heart disease rates among South Asians to strengthen the diaspora angle."
         ],
         "verdict": "pass"
       },
