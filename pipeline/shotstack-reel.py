@@ -326,17 +326,18 @@ Category: {category}
 Body: {body[:3000]}
 
 SCRIPT RULES:
-1. HOOK (first 3 seconds): Start with a jaw-dropping fact, a bold claim, or a "wait what?" moment. No pleasantries, no setup — hit them immediately. The hook must STOP THE SCROLL.
-2. SUBSTANCE: This is NOT a headline — it's a mini-briefing. After the hook, deliver the ESSENCE of the story:
+1. HOOK (first 3 seconds): Open with a punch to the gut. A shocking number, a "you won't believe this" reversal, a high-stakes threat, or a bold provocative claim. Lead with the single most dramatic, emotionally charged fact in the whole story. No pleasantries, no setup, no slow build — detonate immediately. The hook must FORCE the thumb to stop. If the first line is calm or measured, it has FAILED.
+2. SUBSTANCE: This is NOT a headline — it's a mini-briefing with the energy of breaking news. After the hook, deliver the ESSENCE of the story:
    - What happened (the core facts, with specific numbers/names/dates)
-   - Why it matters (the real-world impact, especially for NRIs/diaspora)
-   - What's next (the forward-looking angle or unanswered question)
-   The viewer should walk away understanding the story, not just knowing a headline exists.
+   - Why it matters (the real-world impact, especially for NRIs/diaspora) — make the stakes feel PERSONAL and URGENT
+   - What's next (the forward-looking angle, the cliffhanger, the unanswered question)
+   The viewer should walk away feeling something — alarmed, vindicated, amazed — not just informed.
    CRITICAL: Do NOT just restate the headline in different words. If your script could be replaced by reading the headline aloud, it has FAILED. Dig into the article body for the 2-3 most surprising or important details and BUILD the narration around those.
-3. TENSION: Build intrigue. Use contrast, stakes, or a narrative arc. "Here's why that matters for every NRI watching this."
-4. PAYOFF: Land with a punch — a surprising twist, a forward-looking take, or a line that makes them want to share it.
-5. TONE: Talk like a smart friend explaining something important over coffee. Confident, clear, slightly urgent. NOT a news robot, NOT breathless hype.
-6. PACING: Short sentences. Vary rhythm. Let key facts land.
+3. TENSION: Maximize drama. Use sharp contrast, rising stakes, cliffhangers, and a clear villain/victim/turning-point where the facts support one. "Here's the part nobody is talking about." "And this is where it gets worse for every NRI watching."
+4. PAYOFF: Land with a knockout — a jaw-dropping twist, a provocative forward-looking take, or a line so striking people screenshot it.
+5. TONE: Urgent, dramatic, high-energy — like the best breaking-news anchor who makes you NEED to know what happens next. Bold and provocative, with attitude. Punchy and emotional, NOT flat, NOT a measured "over coffee" explainer, NOT a monotone news robot. Sensationalize the FRAMING and the STAKES — but see rule 5b.
+5b. THE CREDIBILITY LINE (non-negotiable): Sensationalism lives in the WORDS, ENERGY, and FRAMING — never in the facts. NEVER invent, inflate, or distort a number, quote, name, date, or event. NEVER imply something the article does not support. Every dramatic claim must trace directly back to the article. We are tabloid in ENERGY, ironclad in ACCURACY. A single fabricated fact destroys the brand. When in doubt, dramatize the real stake, do not manufacture a fake one.
+6. PACING: Short, punchy sentences. Hard stops. Vary rhythm for impact. Let the biggest facts land in their own sentence.
 7. LENGTH: 120-160 words. That's 45-65 seconds spoken. Enough to actually inform, not just tease.
 8. SPECIFICS: Include at least 3-4 concrete numbers, names, or details from the article. Vague summaries = failed script.
 9. NO "Welcome to The Videshi", NO emoji, NO hashtags.
@@ -348,8 +349,8 @@ SCRIPT RULES:
    This is the LAST line of the script. It must be there every time.
 
 HOOK TEXT (shown on screen before voice starts):
-- hook_line1: 3-5 words, ALL CAPS. The "stop scrolling" line.
-- hook_line2: 3-5 words, ALL CAPS. Adds context or intrigue.
+- hook_line1: 3-5 words, ALL CAPS. The "stop scrolling" line. Make it PROVOCATIVE and high-stakes — a threat, a shock, a reversal, or a bold claim. "OIL LIFELINE OPEN" is too flat. "STRAIT CHOKEHOLD BREAKS" or "INDIA DODGED DISASTER" has punch. Use power words (CRISIS, SHOCK, COLLAPSE, WAR, WIN, DODGED, EXPOSED, SLASHED) where the facts support them — but never overstate beyond what the article says.
+- hook_line2: 3-5 words, ALL CAPS. Twists the knife or raises the stakes further — a number, a consequence, or a cliffhanger.
 
 STORYBOARD: Plan 6-8 visual scenes that match the narration beat-by-beat.
 Each scene is ONE B-roll video clip or image shown for ~4-6 seconds while the voice plays.
