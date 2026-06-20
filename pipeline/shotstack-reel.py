@@ -294,7 +294,7 @@ def generate_script(article, force_new=False):
     slug = article.get("slug", "unknown")
 
     # Script cache — reuse if already generated
-    SCRIPT_CACHE_VERSION = "clean3"  # bump to invalidate old caches (clean reel: card_text + card_subtext + media_plan)
+    SCRIPT_CACHE_VERSION = "clean4"  # bump to invalidate old caches (clean4: + social_search search-editor block)
     cache_path = BUILD_DIR / f"script-{slug}.json"
     if not force_new and cache_path.exists():
         try:
@@ -2398,11 +2398,30 @@ def match_social_card_post(article, hours=None, max_handles=None):
     # an anchor term). This is what surfaces the journalist/sports-desk/fan
     # coverage the registry can't see. Falls through to registry passes on any
     # miss. Prefers video posts (playable clips), then high engagement.
+    ss = article.get("_social_search") or {}
+    must_include = [m.lower().strip() for m in (ss.get("must_include") or []) if m and m.strip()]
+    people = [p for p in (ss.get("people") or []) if p and p.strip()]
+
+    def _subject_gate(text):
+        """Hard relevance gate shared by every pass. A post is on-story only if
+        it mentions a central person (when GPT named one) AND an anchor term.
+        When GPT supplied no anchors at all the gate is open (registry name-match
+        is the only signal we have), but whenever anchors exist they are enforced
+        on the registry path too — this is what stops an off-story promo tweet
+        (e.g. a product launch from an official handle) from being selected."""
+        t = (text or "").lower()
+        if not must_include and not people:
+            return True          # no GPT signal -> nothing to gate on
+        if not t:
+            return False
+        subj_ok = True
+        if people:
+            subj_ok = any((pp.split()[-1].lower() in t) or (pp.lower() in t) for pp in people)
+        anchor_ok = (not must_include) or any(m in t for m in must_include)
+        return subj_ok and anchor_ok
+
     try:
-        ss = article.get("_social_search") or {}
         ss_query = _scrub_x_query(ss.get("query") or "")
-        must_include = [m.lower().strip() for m in (ss.get("must_include") or []) if m and m.strip()]
-        people = [p for p in (ss.get("people") or []) if p and p.strip()]
         if ss_query and SOCIAL_CARD_TOPIC_SEARCH:
             mod0 = _load_fetch_tweets_module()
             posts = []
@@ -2417,19 +2436,7 @@ def match_social_card_post(article, hours=None, max_handles=None):
                 print(f"  ⚠️ X topic search failed: {e}")
                 posts = []
 
-            def _gate_ok(text):
-                t = (text or "").lower()
-                if not t:
-                    return False
-                # central subject: any supplied person surname OR any anchor
-                subj_ok = True
-                if people:
-                    subj_ok = any(
-                        (pp.split()[-1].lower() in t) or (pp.lower() in t) for pp in people)
-                anchor_ok = (not must_include) or any(m in t for m in must_include)
-                return subj_ok and anchor_ok
-
-            gated = [p for p in posts if _gate_ok(p.get("text"))]
+            gated = [p for p in posts if _subject_gate(p.get("text"))]
             if gated:
                 # Rank: video first (playable clip), then impressions, then likes.
                 gated.sort(key=lambda p: (1 if p.get("video") else 0,
@@ -2573,6 +2580,11 @@ def match_social_card_post(article, hours=None, max_handles=None):
             t = fetch_x(c["x"])
             if not t:
                 continue
+            # Reject off-story posts when GPT gave us anchors — stops an official
+            # handle's unrelated promo (product launch, ad) from being selected.
+            if not _subject_gate(t.get("text")):
+                print(f"  ⏭️  @{c['x']} post failed relevance gate — skipping")
+                continue
             rel, likes = _rel_likes(t)
             cand = _norm(t, "x", c.get("name", ""), c["x"])
             if best_x is None or (rel, likes) > (best_x[0], best_x[1]):
@@ -2599,6 +2611,9 @@ def match_social_card_post(article, hours=None, max_handles=None):
                 attempts += 1
                 p = fetch(h)
                 if not p:
+                    continue
+                if not _subject_gate(p.get("text")):
+                    print(f"  ⏭️  {platform} @{h} post failed relevance gate — skipping")
                     continue
                 rel, likes = _rel_likes(p)
                 cand = _norm(p, platform, c.get("name", ""), h)
