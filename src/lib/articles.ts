@@ -313,12 +313,38 @@ export async function getRelatedArticles(
 
 export async function searchArticles(query: string, limit = 30): Promise<Article[]> {
   // PostgREST uses * as the URL-safe wildcard in .or() filter strings (not %)
-  const q = `*${query}*`;
+  const raw = query.trim();
+
+  // Build a set of query variants so visa/abbreviation terms match regardless of
+  // how the user types them. Articles consistently write "H-1B", "H-4", "EB-2",
+  // "O-1" etc. with hyphens, but users search "h1b", "eb2", "o1" without.
+  // We generate both a hyphen-stripped and a hyphen-inserted form and OR them all.
+  const variants = new Set<string>();
+  variants.add(raw);
+  // collapse any spaces/hyphens between a letter-run and a digit-run: "h 1 b" -> "h1b"
+  const collapsed = raw.replace(/\s+/g, " ");
+  variants.add(collapsed);
+  // strip hyphens entirely: "H-1B" -> "H1B", "EB-2" -> "EB2"
+  variants.add(raw.replace(/-/g, ""));
+  // insert a hyphen between a letter group and the following digit: "h1b" -> "h-1b", "eb2" -> "eb-2"
+  variants.add(raw.replace(/([A-Za-z])(\d)/g, "$1-$2"));
+  // also handle the trailing-letter visa forms like "h1-b" -> "h-1-b" is overkill;
+  // the two forms above cover H1B<->H-1B and EB2<->EB-2 which are the common cases.
+
+  const escapeLike = (s: string) => s.replace(/[*]/g, "");
+  const orParts: string[] = [];
+  for (const v of variants) {
+    const t = escapeLike(v.trim());
+    if (!t) continue;
+    const q = `*${t}*`;
+    orParts.push(`headline.ilike.${q}`, `subheadline.ilike.${q}`, `body.ilike.${q}`);
+  }
+
   const { data, error } = await supabase
     .from("p2_articles")
     .select(P2_COLS)
     .eq("status", "published")
-    .or(`headline.ilike.${q},subheadline.ilike.${q},body.ilike.${q}`)
+    .or(orParts.join(","))
     .order("published_at", { ascending: false })
     .limit(limit);
 
