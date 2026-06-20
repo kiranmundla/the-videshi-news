@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-20T12:15:37.271003+00:00",
+  "timestamp": "2026-06-20T12:45:36.240787+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 8,
-    "flag": 0,
+    "pass": 4,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,117 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "ca4db43c-dd21-4d94-9f83-4c27569f4bb0",
-      "headline": "The Last Safety Valve for Backlogged Indians Is a Work Permit Almost Nobody Uses",
-      "slug": "compelling-circumstances-ead-h1b-layoff-green-card-backlog-india-20260620",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the topic of immigration or work permits."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively addresses the concerns of the Indian American community regarding immigration and work permits."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include a more relevant image that depicts immigration or work permits.",
-          "Add a personal story or testimonial from an individual affected by the compelling-circumstances EAD to enhance relatability."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "9c9ef158-9568-41bb-888d-8290f8e24198",
-      "headline": "The 60-Day Layoff Clock Was Never Really 60 Days. Now the Way Out Costs $100,000",
-      "slug": "h1b-layoff-60-day-grace-period-100k-fee-reentry-trap-india-20260620",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the topic of immigration or layoffs."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively addresses the challenges faced by Indian professionals in the U.S. job market, making it highly relevant to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that more directly represents the themes of immigration or layoffs.",
-          "Add a section with resources or contacts for immigration lawyers to assist affected individuals."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "59b2ad7c-5a6d-42cb-83ce-7312f9e92292",
-      "headline": "India Dangled a 7% Dollar Return at the Diaspora. Now Its Banks Are Scrambling to Fund the Promise.",
-      "slug": "nri-fcnr-deposit-scheme-gift-city-banks-rbi-dollar-inflows-diaspora-20260620",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image of GIFT City is relevant but does not directly illustrate the financial aspect discussed in the article."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the financial strategies of Indian banks to the diaspora's interests, particularly in terms of investment opportunities."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a more illustrative image that directly relates to the financial theme, such as a graphic showing the interest rates or a chart of remittances.",
-          "Include quotes or testimonials from NRIs to enhance the personal connection and impact of the financial changes discussed."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "b6f090b1-3422-49ef-a819-4ab13cdfdd22",
-      "headline": "He Wore No. 10 for New Zealand and Made History for India Without Ever Playing for It",
-      "slug": "indian-heritage-players-fifa-world-cup-2026-sarpreet-singh-diaspora-20260620",
+      "id": "a2337d2d-856a-4761-b5e8-67de7e9de4ae",
+      "headline": "Germany Just Made Layovers Easier for Indian Travellers. Lufthansa Thinks That Changes the Map to America.",
+      "slug": "germany-scraps-airport-transit-visa-indians-frankfurt-munich-lufthansa-diaspora-20260620",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -136,86 +28,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the achievements of players of Indian heritage in international football to the diaspora experience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from Sarpreet Singh or other players mentioned to enhance the personal connection.",
-          "Include more statistics or historical context about Indian football to provide depth."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "22777c59-0337-489d-8fe4-3ef14944c9ed",
-      "headline": "A Doctor Born to Immigrants Is About to Spend Eight Months in Orbit. The Diaspora Has a New Kind of Hero.",
-      "slug": "anil-menon-nasa-astronaut-iss-mission-diaspora-first-spaceflight-20260620",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 10,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects Anil Menon's achievements to the broader Indian diaspora narrative, highlighting the dual heritage and the evolving aspirations of second-generation immigrants."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from Anil Menon or experts in the field to enhance the narrative.",
-          "Include more context on the significance of Menon's mission for the Indian diaspora."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "f41ba0bb-0eb3-4557-859b-bc389c0eb956",
-      "headline": "India's Chip Bet Has a Quiet Winner: A Bengaluru Startup Making the 'Power Brain' for AI Data Centres",
-      "slug": "c2i-peak-xv-power-chip-india-semiconductor-design-ai-data-center-nri-20260620",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the specific topic of AI data centers or chips, but is visually appealing and relevant to technology."
-        },
-        "diaspora_angle": {
-          "present": true,
           "quality": 8,
-          "note": "The article effectively connects the topic of Indian chip startups to the interests of NRIs, particularly in terms of investment opportunities and returning talent."
+          "note": "The article effectively connects the visa changes to the experiences of the Indian diaspora, highlighting the benefits for students and professionals."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider including more specific examples of how NRIs can engage with or invest in these startups.",
-          "Add a more relevant image that directly represents AI data centers or semiconductor technology."
+          "Consider adding quotes from Indian travellers or diaspora members to personalize the impact of the visa changes.",
+          "Include a brief comparison of transit visa requirements in other countries to provide context."
         ],
         "verdict": "pass"
       },
@@ -227,57 +47,12 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "b487be98-1875-4f7d-bbc6-bd1bfa832c3b",
-      "headline": "Qualcomm Is Reportedly Spending $10 Billion to Finally Crash Nvidia's Party",
-      "slug": "qualcomm-tenstorrent-ai-chip-data-center-pivot-jim-keller-indian-engin-20260620",
+      "id": "9472ec36-4154-4511-ac73-d09f9e48256b",
+      "headline": "India's Two Biggest Green-Card Doors Just Slammed Shut Until October. The July Visa Bulletin Spells It Out.",
+      "slug": "july-2026-visa-bulletin-eb2-eb5-india-unavailable-eb1-retrogression-green-card-20260620",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image is relevant to the tech theme but does not specifically depict Qualcomm or AI chips."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively highlights Qualcomm's impact on Indian engineers and the semiconductor industry, making it relevant to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a more specific image related to Qualcomm or AI chips to enhance visual relevance.",
-          "Include quotes or insights from Indian engineers or industry experts to strengthen the diaspora connection."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "ce24a107-26ff-4f89-a44b-29094202e128",
-      "headline": "Nikesh Arora Is Buying the Whole Security Stack. The Bill Is Already Past $28 Billion.",
-      "slug": "nikesh-arora-palo-alto-chronosphere-cyberark-agentic-security-nri-20260620",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "cfbf9dd4-09ae-4588-8f02-140d00f13172",
-            "headline": "The Men Who Run Microsoft and Google Just Bought a Piece of "
-          },
-          {
-            "article_id": "aea2806f-7e95-4066-bc67-38d3bc376805",
-            "headline": "Nikesh Arora Just Closed His Third Big Deal in a Year. He's "
-          }
-        ],
         "broken_embeds": []
       },
       "llm_review": {
@@ -290,15 +65,123 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the topic to Indian-origin engineers in cybersecurity, highlighting job market implications."
+          "note": "The article effectively addresses the impact of visa changes on the Indian-American community, making it relevant for diaspora readers."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more direct quotes from Nikesh Arora to enhance the article's depth.",
-          "Include a brief overview of Palo Alto Networks' previous acquisitions for context."
+          "Include quotes from immigration experts or affected individuals to add personal stories and depth.",
+          "Provide a brief overview of alternative visa options for those affected to enhance practical guidance."
         ],
         "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "0f87cad4-6ec3-4d7f-bf1b-f5bd30f75e52",
+      "headline": "Masala on the Chip Aisle: Why 'Next-Gen Indian' Was Named America's Cuisine of the Year",
+      "slug": "masala-on-the-chip-aisle-why-next-gen-indian-was-named-americas-cuisine-of-the-y",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 6,
+          "issue": "The image of potato chips does not specifically represent 'Next-Gen Indian' cuisine, which may include more diverse Indian food items."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the impact of Indian flavors on American culture and the mixed feelings of the diaspora regarding commercialization."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that better represents the diversity of 'Next-Gen Indian' cuisine rather than just potato chips.",
+          "Add more quotes or insights from Indian-American voices to enhance the diaspora perspective."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "8e2d6798-e1a8-48e7-8af0-54ac785e1d12",
+      "headline": "Beyond Butter Chicken: Regional Indian Dining Lands in America's Heartland",
+      "slug": "beyond-butter-chicken-regional-indian-dining-lands-in-americas-heartland",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 3,
+          "issue": "The image of a kebab does not match the article's focus on regional Indian dining, which includes a variety of dishes beyond just kebabs."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the experiences of NRIs with the emergence of regional Indian dining in America, highlighting a sense of belonging."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more representative image that showcases a variety of regional Indian dishes to align with the article's theme.",
+          "Add quotes or anecdotes from NRI diners to enhance the personal connection to the diaspora experience."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "0f432a23-2f8a-4977-ae59-68d209a099ed",
+      "headline": "The British Are Coming: London's Indian Dining Empire Storms New York",
+      "slug": "the-british-are-coming-londons-indian-dining-empire-storms-new-york",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 3,
+          "issue": "irrelevant"
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the impact of British-Indian restaurants on the Indian-American community, making it relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the hero image with one that better represents Indian dining or the specific restaurants mentioned.",
+          "Include quotes or perspectives from Indian-Americans to enhance the diaspora connection."
+        ],
+        "verdict": "flag"
       },
       "actions_taken": [
         "promoted to published"
