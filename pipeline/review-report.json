@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-20T16:45:17.178639+00:00",
+  "timestamp": "2026-06-20T17:15:32.797980+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
-    "flag": 0,
+    "pass": 0,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,17 +11,28 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "6ee97fcd-321b-4e60-b866-73ebfc451dfb",
-      "headline": "India Has Never Played a World Cup. On Sunday in Vancouver, a Punjabi From Auckland Carries Its Hopes Anyway.",
-      "slug": "sarpreet-singh-first-sikh-footballer-world-cup-2026-new-zealand-egypt-vancouver-jalandhar-punjab-diaspora-nri",
+      "id": "ac614937-f3ec-4945-a8f2-7f10dd22fb39",
+      "headline": "Eighteen Years, Forty-Odd Stars, One Jungle. Welcome 3 Lands June 26 and It Wants the Whole Family Back in the Hall.",
+      "slug": "welcome-to-the-jungle-welcome-3-june-26-release-akshay-kumar-suniel-shetty-ensemble-deewane-hain-ahmed-khan-where-to-watch-diaspora-nri-20260620",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "62e2e142-a04a-4cda-b0bc-261faa3ed613",
+            "headline": "Akshay and Suniel Are Back in the Same Frame. The Welcome to"
+          }
+        ],
         "broken_embeds": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DZwi1UetrhE/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel does not appear to be directly related to the film or its promotion, making it irrelevant to the article's subject."
+          }
+        ],
         "image_match": {
           "score": 9,
           "issue": null
@@ -29,89 +40,18 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the story of Sarpreet Singh to the Indian diaspora, highlighting the significance of his achievements for the community."
+          "note": "The article effectively connects the film's appeal to the diaspora audience, particularly through references to Akshay Kumar's global popularity and the cultural significance of the film."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from fans or community members to enhance the emotional connection.",
-          "Include more context about the significance of the World Cup for the Indian diaspora."
+          "Replace the irrelevant Instagram embed with a more relevant social media post related to the film.",
+          "Consider adding quotes or insights from diaspora audiences or critics to enhance the connection with NRI readers."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "df3c34db-8184-4e4d-b61e-356929c1e8b8",
-      "headline": "The Gulf's Oil Is Flowing Again Through Hormuz. India Is in No Rush to Go Back.",
-      "slug": "india-no-hurry-gulf-crude-hormuz-reopens-russian-oil-pump-price-hikes-refiners-20260620",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the oil situation to the economic impact on the diaspora, particularly regarding remittances and household budgets."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more specific examples of how the oil prices affect the diaspora's daily life.",
-          "Include quotes from experts or diaspora members to enhance the narrative."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "e135b629-76d9-4844-97aa-baa9e067cbae",
-      "headline": "For the First Time in Six Years, Indians Are the Most Deported Nationality From Canada",
-      "slug": "canada-indians-top-deported-nationality-2026-cbsa-removals-record-pending-inventory-20260620",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses the implications of deportations on the Indian diaspora in Canada, making it relevant to NRI readers."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from experts or affected individuals to provide personal perspectives on the issue.",
-          "Include more statistics or comparisons with other nationalities to enhance the context of the deportation figures."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DZwi1UetrhE/",
         "promoted to published"
       ],
       "revised": false,
