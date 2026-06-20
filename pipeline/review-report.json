@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-20T16:15:15.785581+00:00",
+  "timestamp": "2026-06-20T16:45:17.178639+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 3,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,50 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "fe9db05e-9031-44be-95d1-9e8a6e2c50d9",
-      "headline": "Stateside H-1B Visa Renewals Are Coming Back in December \u2014 and the First 20,000 Are Mostly for Indians",
-      "slug": "h1b-domestic-visa-renewal-pilot-december-2026-india-20000-slots-20260620",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "a69705df-e14c-4116-8dbd-e5675a641b05",
-            "headline": "The Visa Stamp Isn't the Finish Line Anymore: US Embassy Tel"
-          }
-        ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses H-1B visa renewals, which directly impacts the Indian diaspora in the US, making it relevant and engaging for NRI readers."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more statistics or data on the number of H-1B visa holders to provide context.",
-          "Add quotes or testimonials from affected individuals to personalize the impact of the changes."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "f1f8cb21-a001-407c-bb32-ee0fe5ffed72",
-      "headline": "EB-2 India Just Went Dark for the Rest of the Year. The July Visa Bulletin Made It Official",
-      "slug": "eb2-india-unavailable-july-2026-visa-bulletin-eb1-retrogression-20260620",
+      "id": "6ee97fcd-321b-4e60-b866-73ebfc451dfb",
+      "headline": "India Has Never Played a World Cup. On Sunday in Vancouver, a Punjabi From Auckland Carries Its Hopes Anyway.",
+      "slug": "sarpreet-singh-first-sikh-footballer-world-cup-2026-new-zealand-egypt-vancouver-jalandhar-punjab-diaspora-nri",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -70,13 +29,85 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses the implications of visa bulletin changes specifically for Indian nationals, which is highly relevant to the NRI community."
+          "note": "The article effectively connects the story of Sarpreet Singh to the Indian diaspora, highlighting the significance of his achievements for the community."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more personal stories or testimonials from affected individuals to enhance relatability.",
-          "Add a section on potential future changes or advocacy efforts related to immigration policy for Indian nationals."
+          "Consider adding quotes from fans or community members to enhance the emotional connection.",
+          "Include more context about the significance of the World Cup for the Indian diaspora."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "df3c34db-8184-4e4d-b61e-356929c1e8b8",
+      "headline": "The Gulf's Oil Is Flowing Again Through Hormuz. India Is in No Rush to Go Back.",
+      "slug": "india-no-hurry-gulf-crude-hormuz-reopens-russian-oil-pump-price-hikes-refiners-20260620",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the oil situation to the economic impact on the diaspora, particularly regarding remittances and household budgets."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of how the oil prices affect the diaspora's daily life.",
+          "Include quotes from experts or diaspora members to enhance the narrative."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "e135b629-76d9-4844-97aa-baa9e067cbae",
+      "headline": "For the First Time in Six Years, Indians Are the Most Deported Nationality From Canada",
+      "slug": "canada-indians-top-deported-nationality-2026-cbsa-removals-record-pending-inventory-20260620",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the implications of deportations on the Indian diaspora in Canada, making it relevant to NRI readers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from experts or affected individuals to provide personal perspectives on the issue.",
+          "Include more statistics or comparisons with other nationalities to enhance the context of the deportation figures."
         ],
         "verdict": "pass"
       },
