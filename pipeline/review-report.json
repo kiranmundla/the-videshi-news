@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-20T06:45:14.474340+00:00",
+  "timestamp": "2026-06-20T07:15:10.291965+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 0,
+    "pass": 0,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,71 +11,47 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "5b30c02a-ae64-4ee9-8758-c481e25e5b75",
-      "headline": "Dhaka's Hindus March by Torchlight, Chanting 'Jai Shri Ram,' After a Shoe Is Placed on Lord Ram",
-      "slug": "bangladesh-hindu-minority-dhaka-protest-lord-ram-statue-gaibandha-jai-shri-ram-20260620",
+      "id": "7c742d66-41e5-4d5b-bbb2-1931cdd1f6c7",
+      "headline": "Sunny Deol and Rajkumar Santoshi Reunite After 30 Years for Batwara 1947. The Teaser Is a Partition Saga With a Roar.",
+      "slug": "batwara-1947-teaser-sunny-deol-rajkumar-santoshi-reunion-shabana-azmi-preity-zinta-karan-deol-aamir-khan-ar-rahman-partition-august-14-where-to-watch-diaspora-nri-20260620",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "ba197b1e-9598-446c-a1e9-3a6004f49295",
+            "headline": "Three Decades After Ghatak, Sunny Deol and Rajkumar Santoshi"
+          }
+        ],
         "broken_embeds": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/DZrilWPCHse/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not appear to be directly related to the film 'Batwara 1947' or its themes."
+          }
+        ],
         "image_match": {
           "score": 9,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article discusses the plight of Hindus in Bangladesh, which resonates with the Indian diaspora concerned about religious minorities."
+          "quality": 9,
+          "note": "The article effectively connects the film's themes of Partition and migration to the experiences of the NRI audience, making it relevant and engaging."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes or perspectives from diaspora members to enhance the connection.",
-          "Provide more context on the historical relationship between Hindus in Bangladesh and the Indian diaspora."
+          "Replace the irrelevant Instagram embed with a more relevant one that connects to the film or its themes.",
+          "Consider adding more quotes or insights from the cast or crew to enhance the depth of the article."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "7ebf4463-91c5-4d58-b0c9-9f1830117803",
-      "headline": "The UAE's Overstay Amnesty Ends July 9 \u2014 Indian Residents Have One Last Window to Get Right",
-      "slug": "uae-final-30-day-grace-period-july-9-overstay-fine-nri-20260620",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively addresses the concerns of the Indian diaspora in the UAE and provides actionable information relevant to their situation."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a direct link to the ICP's smart services for easier access.",
-          "Include a brief summary of the consequences of not acting before the deadline for clarity."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/DZrilWPCHse/",
         "promoted to published"
       ],
       "revised": false,
