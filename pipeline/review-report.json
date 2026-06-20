@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-20T01:15:09.671150+00:00",
+  "timestamp": "2026-06-20T01:45:11.120528+00:00",
   "mode": "fix",
   "stats": {
     "pass": 1,
@@ -11,36 +11,31 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "270fc65c-d12f-404c-ac11-e35d50d511e6",
-      "headline": "A Bridge Made of Lipstick. Amazon Just Turned the Bandra-Worli Sea Link Into a Countdown to Bollywood's Biggest Beauty Night.",
-      "slug": "amazon-beautyverse-2026-mumbai-june-20-ananya-panday-shilpa-shetty-sonakshi-sinha-karisma-kapoor-jacqueline-fernandez-bandra-worli-sea-link-where-to-watch-diaspora-nri-20260619",
+      "id": "388f24c6-9dfa-46c6-852f-14cc83a993fc",
+      "headline": "New Captain, New Trophy, New Era: India Begin in England Without Rohit and Kohli for the First Time in a Generation",
+      "slug": "india-england-first-test-headingley-2026-shubman-gill-captain-anderson-tendulkar-trophy-new-era-rohit-kohli-retired-pant-bumrah-nri",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "e91b89b1-6f1d-4c07-9dd9-55c34477d72b",
-            "headline": "Bollywood Is Throwing India's Biggest Beauty Party on June 2"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image of Ananya Panday is relevant to the topic of beauty and Bollywood but does not directly depict the Bandra-Worli Sea Link or the event itself."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the event to the diaspora by discussing how NRIs are familiar with the celebrities and trends in Indian beauty, making it relevant to their interests."
+          "note": "The article effectively connects the significance of the series to the Indian diaspora, highlighting the emotional and cultural ties."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider including a direct image of the Bandra-Worli Sea Link during the event to enhance visual relevance.",
-          "Add quotes or insights from diaspora members or influencers to strengthen the connection with NRI readers."
+          "Consider adding quotes from players or coaches to enhance the narrative.",
+          "Include statistics or historical context about India's performance in England to provide depth."
         ],
         "verdict": "pass"
       },
