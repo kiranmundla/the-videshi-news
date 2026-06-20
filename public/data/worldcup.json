@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-06-20T00:02:38Z",
-  "stage": "Group Stage — 30 of 72 matches played",
+  "last_updated": "2026-06-20T03:59:04Z",
+  "stage": "Group Stage — 31 of 72 matches played",
   "hosts": "USA, Mexico & Canada",
   "dates": {
     "start": "2026-06-11",
@@ -126,6 +126,19 @@
     ],
     "C": [
       {
+        "name": "Brazil",
+        "code": "BRA",
+        "flag": "🇧🇷",
+        "rank": 6,
+        "p": 2,
+        "w": 1,
+        "d": 1,
+        "l": 0,
+        "gf": 4,
+        "ga": 1,
+        "pts": 4
+      },
+      {
         "name": "Morocco",
         "code": "MAR",
         "flag": "🇲🇦",
@@ -152,29 +165,16 @@
         "pts": 3
       },
       {
-        "name": "Brazil",
-        "code": "BRA",
-        "flag": "🇧🇷",
-        "rank": 6,
-        "p": 1,
-        "w": 0,
-        "d": 1,
-        "l": 0,
-        "gf": 1,
-        "ga": 1,
-        "pts": 1
-      },
-      {
         "name": "Haiti",
         "code": "HAI",
         "flag": "🇭🇹",
         "rank": 83,
-        "p": 1,
+        "p": 2,
         "w": 0,
         "d": 0,
-        "l": 1,
+        "l": 2,
         "gf": 0,
-        "ga": 1,
+        "ga": 4,
         "pts": 0
       }
     ],
@@ -1133,8 +1133,8 @@
       "away": "Haiti",
       "venue": "Lincoln Financial Field",
       "city": "Philadelphia",
-      "status": "scheduled",
-      "score": null,
+      "status": "FT",
+      "score": "3-0",
       "home_code": "BRA",
       "away_code": "HAI"
     },
@@ -1783,6 +1783,20 @@
     }
   },
   "highlights": [
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/reel/DZyrhH9oQR5/",
+      "account": "@fifaworldcup",
+      "caption": "You voted Vinícius Júnior Superior Player of the Match! 👑 — Brazil 3-0 Haiti #FIFAWorldCup",
+      "date": "2026-06-19"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DZypBMwlqHB",
+      "account": "@fifaworldcup",
+      "caption": "Three goals and three points for Brazil! 👏 — 🇧🇷 3-0 🇭🇹",
+      "date": "2026-06-19"
+    },
     {
       "platform": "instagram",
       "url": "https://www.instagram.com/p/DZyBrVryimj/",
