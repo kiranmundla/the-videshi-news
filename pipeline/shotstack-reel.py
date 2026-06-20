@@ -3794,6 +3794,68 @@ def _embed_to_post(emb):
     return None
 
 
+def _download_and_host_social_video(video, article_id, sidx, max_seconds=12):
+    """Download a matched social MP4, optionally hard-trim it to max_seconds with
+    ffmpeg, and re-host on Supabase so the renderer plays a stable in-house URL
+    (X video CDN links expire and can rate-limit the Shotstack fetcher). Returns
+    (public_url, duration) or (None, 0) on any failure — callers fall through to
+    photo cards, so this must never raise."""
+    src = (video or {}).get("url")
+    if not src:
+        return None, 0
+    tmp_in = f"/tmp/social_vid_{article_id}_{sidx}_in.mp4"
+    tmp_out = f"/tmp/social_vid_{article_id}_{sidx}.mp4"
+    try:
+        r = requests.get(src, timeout=40, stream=True,
+                         headers={"User-Agent": "Mozilla/5.0 (compatible; TheVideshi/1.0)"})
+        if r.status_code != 200:
+            print(f"  ⚠️ social video download HTTP {r.status_code}")
+            return None, 0
+        total = 0
+        with open(tmp_in, "wb") as fh:
+            for chunk in r.iter_content(chunk_size=262144):
+                if not chunk:
+                    continue
+                fh.write(chunk)
+                total += len(chunk)
+                if total > 60 * 1024 * 1024:   # 60MB safety cap
+                    break
+        if total < 20 * 1024:                  # too small to be a real clip
+            print("  ⚠️ social video too small — skipping")
+            return None, 0
+
+        src_dur = float((video or {}).get("duration") or 0)
+        out_path = tmp_in
+        out_dur = src_dur if src_dur > 0 else max_seconds
+        # Hard-trim long clips so one social scene can't swallow the reel, and
+        # normalize to a clean keyframe-aligned MP4 the cloud renderer accepts.
+        if src_dur <= 0 or src_dur > max_seconds:
+            try:
+                subprocess.run(
+                    ["ffmpeg", "-y", "-i", tmp_in, "-t", str(max_seconds),
+                     "-c:v", "libx264", "-preset", "veryfast", "-pix_fmt", "yuv420p",
+                     "-an", "-movflags", "+faststart", tmp_out],
+                    capture_output=True, timeout=120)
+                if os.path.exists(tmp_out) and os.path.getsize(tmp_out) > 20 * 1024:
+                    out_path = tmp_out
+                    out_dur = float(max_seconds)
+            except Exception as e:
+                print(f"  ⚠️ social video trim failed (using full clip): {e}")
+
+        storage_path = f"reel-social/{article_id}/clip-{sidx}.mp4"
+        url = upload_asset(out_path, storage_path, "video/mp4")
+        return (url, out_dur) if url else (None, 0)
+    except Exception as e:
+        print(f"  ⚠️ social video host failed: {e}")
+        return None, 0
+    finally:
+        for p in (tmp_in, tmp_out):
+            try:
+                os.remove(p)
+            except Exception:
+                pass
+
+
 def source_reel_media_clean(article, storyboard, count=8):
     """APPROACH-1 v2 (GPT-directed). Same return shape as source_storyboard_images
     (urls, media_meta). Per-scene the visual resolves by priority:
@@ -3886,7 +3948,10 @@ def source_reel_media_clean(article, storyboard, count=8):
             return
         if pu:
             seen_post_urls.add(pu)
-        if post.get("photos") or post.get("photo"):
+        # Accept a post that carries EITHER a usable still OR a playable video
+        # clip. Video-only posts (no photos) were previously dropped here, which
+        # meant a perfectly on-story social video never reached the reel.
+        if post.get("photos") or post.get("photo") or post.get("video"):
             social_pool.append(post)
 
     embeds = extract_inline_embeds(body)
@@ -3912,11 +3977,29 @@ def source_reel_media_clean(article, storyboard, count=8):
         print(f"  📡 Registry match: {reg_post['platform']} @{reg_post['handle']}")
         _add_post(reg_post)
 
-    # Render the pool into branded social cards (face-crop guarded). Expand
-    # multi-photo posts into multiple cards.
-    social_cards = []  # list of (card_url, post)
+    # Build the social media pool into render-ready items. A post with a playable
+    # video clip becomes a FULL-BLEED video scene (with a "via @handle"
+    # attribution lower-third added at render time); a post with stills becomes
+    # one or more branded "ON THE FEED" photo cards. Video is preferred, so it is
+    # ordered first and claims social scenes before the photo cards.
+    # Each item: {"kind": "video"|"card", "url", "post", "duration"}.
+    social_items = []
     if social_pool:
         sidx = 0
+        # ── Video posts first (preferred): download, trim, re-host ──
+        for post in social_pool:
+            vid = post.get("video")
+            if not vid or not vid.get("url"):
+                continue
+            vurl, vdur = _download_and_host_social_video(vid, article_id, sidx)
+            if not vurl or vurl in used_in_this_reel:
+                continue
+            social_items.append({"kind": "video", "url": vurl, "post": post,
+                                  "duration": vdur or vid.get("duration") or 8})
+            used_in_this_reel.add(vurl)
+            sidx += 1
+            print(f"  🎥 Social video hosted ({post.get('platform')} @{post.get('handle')}, {round(vdur or 0,1)}s)")
+        # ── Then photo posts: branded cards (face-crop guarded, multi-photo expand) ──
         for post in social_pool:
             photos = post.get("photos") or ([post["photo"]] if post.get("photo") else [])
             for photo_url in photos:
@@ -3931,29 +4014,44 @@ def source_reel_media_clean(article, storyboard, count=8):
                     pass
                 if not card_url or card_url in used_in_this_reel:
                     continue
-                social_cards.append((card_url, post))
+                social_items.append({"kind": "card", "url": card_url, "post": post, "duration": 0})
                 used_in_this_reel.add(card_url)
                 sidx += 1
-        print(f"  📡 Social pool → {len(social_cards)} usable branded card(s)")
+        n_vid_items = sum(1 for it in social_items if it["kind"] == "video")
+        print(f"  📡 Social pool → {len(social_items)} item(s) "
+              f"({n_vid_items} video, {len(social_items)-n_vid_items} branded card)")
 
-    # Assign social cards to MID scenes. Pass 1: scenes GPT marked "social".
-    # Pass 2: leftover cards fill remaining mid scenes GPT left as plain "card".
+    # Assign social items to MID scenes. Pass 1: scenes GPT marked "social".
+    # Pass 2: leftover items fill remaining mid scenes GPT left as plain "card".
     mid_social_planned = [i for i in range(1, last_idx) if plans[i] == "social" and matched_urls[i] is None]
     mid_card_slots = [i for i in range(1, last_idx) if plans[i] in ("card", "media_library") and matched_urls[i] is None]
     assign_order = mid_social_planned + [i for i in mid_card_slots if i not in mid_social_planned]
-    card_ptr = 0
+    item_ptr = 0
     for slot in assign_order:
-        if card_ptr >= len(social_cards):
+        if item_ptr >= len(social_items):
             break
-        card_url, post = social_cards[card_ptr]
-        card_ptr += 1
-        matched_urls[slot] = card_url
-        media_meta[card_url] = {"type": "image", "duration": 0,
-                                "is_social_card": True, "curated": True,
-                                "generic_pexels": False,
-                                "source_url": post.get("url", "")}
+        item = social_items[item_ptr]
+        item_ptr += 1
+        post = item["post"]
+        matched_urls[slot] = item["url"]
+        handle = post.get("handle", "")
+        if item["kind"] == "video":
+            media_meta[item["url"]] = {
+                "type": "video", "duration": item["duration"],
+                "is_social_video": True, "curated": True, "generic_pexels": False,
+                "social_handle": handle, "social_platform": post.get("platform", "x"),
+                "social_name": post.get("name", ""),
+                "source_url": post.get("url", ""),
+            }
+            print(f"  🎥 Scene {slot+1}: social VIDEO full-bleed ({post.get('platform')} @{handle})")
+        else:
+            media_meta[item["url"]] = {
+                "type": "image", "duration": 0,
+                "is_social_card": True, "curated": True, "generic_pexels": False,
+                "source_url": post.get("url", ""),
+            }
+            print(f"  📡 Scene {slot+1}: social card ({post.get('platform')} @{handle})")
         n_embed += 1
-        print(f"  📡 Scene {slot+1}: social card ({post['platform']} @{post['handle']})")
 
     # ── B. GPT directs every remaining scene by its media_plan ──
     for i in range(n):
@@ -4408,21 +4506,60 @@ def build_anchor_reel_timeline(
 
     # B-roll during voiceover — distribute media evenly
     per_image = total_voice_duration / n_images
+    social_attrib_clips = []   # "via @handle" lower-thirds for full-bleed social video
     for i, url in enumerate(image_urls):
         meta = media_meta.get(url, {})
         scene_length = round(per_image + 0.3, 2)  # Slight overlap for transition
 
         if meta.get("type") == "video":
-            # Stock video clip — trim from a random offset for variety, mute audio
+            # Stock video clip — trim from a random offset for variety, mute audio.
+            # Social video plays from the start (it's a real post; a random mid-clip
+            # offset would look arbitrary) and is already hard-trimmed at hosting.
             src_duration = meta.get("duration", 10)
-            max_trim = max(0, src_duration - per_image - 1)
-            trim_start = round(random.uniform(0, max_trim), 2) if max_trim > 0 else 0
+            if meta.get("is_social_video"):
+                trim_start = 0
+            else:
+                max_trim = max(0, src_duration - per_image - 1)
+                trim_start = round(random.uniform(0, max_trim), 2) if max_trim > 0 else 0
             clip = {
                 "asset": {"type": "video", "src": url, "trim": trim_start, "volume": 0},
                 "start": round(hook_duration + (i * per_image), 2),
                 "length": scene_length,
                 "fit": "cover",
             }
+            # Full-bleed SOCIAL video → attribution chip so the source is always
+            # credited. Anchored TOP-LEFT (not bottom): the lower band is owned by
+            # the voice-synced captions, and stacking a chyron there is the
+            # documented #1 "overlapping text" QA failure. Top-left is clear of
+            # both the captions and the top-right watermark.
+            if meta.get("is_social_video"):
+                handle = (meta.get("social_handle") or "").lstrip("@")
+                if handle:
+                    plat = (meta.get("social_platform") or "x").lower()
+                    plat_label = {"x": "X", "twitter": "X", "threads": "Threads",
+                                  "instagram": "Instagram"}.get(plat, plat.title())
+                    chip_html = (f"<div class='attrib'><span class='av'>via</span>"
+                                 f"<span class='hd'>@{handle}</span>"
+                                 f"<span class='pl'>{plat_label}</span></div>")
+                    chip_css = (
+                        ".attrib { font-family: 'Inter'; display: inline-flex; align-items: center; "
+                        "gap: 8px; padding: 9px 15px; background: rgba(8,18,34,0.78); "
+                        "border-left: 3px solid #d4af37; border-radius: 6px; white-space: nowrap; "
+                        "box-shadow: 0 2px 8px rgba(0,0,0,0.6); }"
+                        " .attrib .av { color: #c9d4e6; font-size: 20px; font-weight: 600; }"
+                        " .attrib .hd { color: #ffffff; font-size: 23px; font-weight: 800; letter-spacing: 0.3px; }"
+                        " .attrib .pl { color: #d4af37; font-size: 19px; font-weight: 700; "
+                        "border: 1px solid rgba(212,175,55,0.6); border-radius: 4px; padding: 1px 7px; }"
+                    )
+                    social_attrib_clips.append({
+                        "asset": {"type": "html", "html": chip_html, "css": chip_css,
+                                  "width": 520, "height": 48},
+                        "start": round(hook_duration + (i * per_image), 2),
+                        "length": scene_length,
+                        "position": "topLeft",
+                        "offset": {"x": 0.02, "y": -0.06},
+                        "transition": {"in": "fade", "out": "fade"},
+                    })
         else:
             # Static image — Ken Burns effect for PHOTOS. Key-point CARDS are
             # full-bleed 1080x1920 text graphics: any zoom/pan (even "zoomIn")
@@ -4524,9 +4661,12 @@ def build_anchor_reel_timeline(
     # have >=1 clip). So include the caption + scrim tracks only when captions
     # actually remain.
     _has_captions = bool((caption_track or {}).get("clips"))
+    _social_attrib_track = {"clips": social_attrib_clips} if social_attrib_clips else None
     _all_tracks = []
     if _has_captions:
         _all_tracks.append(caption_track)    # Top layer
+    if _social_attrib_track:
+        _all_tracks.append(_social_attrib_track)  # "via @handle" chips over social video
     _all_tracks.append(logo_track)
     _all_tracks.append(hook_track)
     if _has_captions:
@@ -4536,6 +4676,8 @@ def build_anchor_reel_timeline(
     _all_tracks.append(voice_track)      # Audio (bottom)
     if not _has_captions:
         print("  ℹ️ No caption clips remain (all-card reel) — captions/scrim tracks omitted")
+    if _social_attrib_track:
+        print(f"  🎥 {len(social_attrib_clips)} social-video attribution chip(s) added")
     timeline = {
         "background": NAVY,
         "fonts": [{"src": FONT_URL}],
