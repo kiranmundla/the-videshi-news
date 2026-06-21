@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-21T00:15:41.489177+00:00",
+  "timestamp": "2026-06-21T00:45:28.834413+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 9,
+    "pass": 5,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "f7190b80-087a-4ab5-b4c6-d84d9a021cc2",
-      "headline": "Meta's AI Dream Job Has Turned 'Soul-Crushing.' For Indians on H-1B, Quitting Isn't an Option.",
-      "slug": "meta-ai-unit-morale-soul-crushing-h1b-indian-engineers-zuckerberg-rete-20260621",
+      "id": "1adde08c-69c7-4c7b-9ad3-85ed9bc0e0f4",
+      "headline": "Ghar Ka Khana, Delivered: The Quiet Boom in America's Indian Tiffin Economy",
+      "slug": "ghar-ka-khana-delivered-the-quiet-boom-in-americas-indian-tiffin-economy",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -29,13 +29,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the challenges faced by Indian H-1B workers at Meta to broader issues of immigration and job security, making it relevant for the diaspora."
+          "note": "The article effectively connects the tiffin economy to the emotional and cultural needs of the diaspora, highlighting how it addresses their longing for home-cooked meals."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes or testimonials from affected Indian engineers to enhance the personal angle.",
-          "Include more data or statistics on attrition rates among Indian engineers in the tech industry for added context."
+          "Consider adding quotes or testimonials from users of tiffin services to enhance the personal connection.",
+          "Include more statistics or data on the growth of the tiffin economy to strengthen the argument."
         ],
         "verdict": "pass"
       },
@@ -47,86 +47,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "09285437-e664-43b0-acae-04dc55036da2",
-      "headline": "An IIT Madras Engineer Just Raised $27 Million to Make AI Prove It's Right",
-      "slug": "pramaana-labs-27-million-seed-khosla-ai-formal-verification-iit-madras-20260621",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the story to the Indian diaspora by highlighting the founder's background and the implications for Indian engineers in the tech industry."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes or insights from the founder or investors to enhance the narrative.",
-          "Include more context on the implications of AI accountability for industries beyond those mentioned."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "61f3dd68-1eab-4f65-a7ed-80b7df428f7f",
-      "headline": "Adobe Is Giving Its Software Away. Shantanu Narayen's Parting Bet Is a 90-Million-User Gamble.",
-      "slug": "adobe-shantanu-narayen-freemium-firefly-creative-cloud-price-nri-creat-20260621",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "813a5e9c-11aa-4465-a187-52321857f7b3",
-            "headline": "Adobe Beat Earnings and Hit a 7-Year Low. The CFO Left for a"
-          }
-        ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects Adobe's strategy to the Indian diaspora, highlighting employment and entrepreneurial opportunities."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from industry experts or stakeholders to enhance credibility.",
-          "Include more specific examples of how the freemium model has impacted Indian creators or businesses."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "e72d40da-1cf7-4f06-b45b-fee26adc59dc",
-      "headline": "Should an Indian Student Fly Home This Summer? The Visa Stamp No Longer Guarantees a Way Back",
-      "slug": "f1-opt-students-summer-travel-india-visa-reentry-risk-2026-20260621",
+      "id": "3c9228cc-93d3-4f47-b924-6cf03db24d07",
+      "headline": "Kati Rolls Cross the Hudson: How New York's Indian Street Food Is Franchising the American Suburb",
+      "slug": "kati-rolls-cross-the-hudson-how-new-yorks-indian-street-food-is-franchising-the",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -137,18 +60,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image does not directly relate to the topic of immigration or students traveling home."
+          "issue": "The image depicts making kati rolls in Kolkata, which is relevant but does not directly represent the franchising aspect in New York."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article addresses the concerns of Indian students studying abroad, making it highly relevant to the diaspora."
+          "note": "The article effectively connects the franchising of kati rolls to the experiences and sentiments of the Indian diaspora, highlighting both excitement and concern."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that directly represents the theme of immigration or Indian students traveling.",
-          "Add a section with personal anecdotes or quotes from students to enhance relatability."
+          "Consider adding quotes from local customers or franchise owners to provide personal perspectives.",
+          "Include more statistics or data on the growth of Indian street food in the U.S. to strengthen the argument."
         ],
         "verdict": "pass"
       },
@@ -160,9 +83,45 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "2ba18883-39eb-4547-9a56-1b1b83292caf",
-      "headline": "Twenty Years Ago It Was a Day in a Park. This Weekend DesiFest Took Over Downtown Toronto for Three Days.",
-      "slug": "desifest-toronto-20th-anniversary-south-asian-festival-canada-diaspora-20260621",
+      "id": "cf96b893-1fda-407f-ae58-12df4e91cbda",
+      "headline": "From Baymeadows to Main Street: How Patel Brothers Became the Anchor of Suburban Desi America",
+      "slug": "from-baymeadows-to-main-street-how-patel-brothers-became-the-anchor-of-suburban",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the growth of Patel Brothers to the experiences and needs of the Indian diaspora in America."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from customers or community members to enhance the personal connection.",
+          "Include more statistics or data on the impact of Patel Brothers on local economies to strengthen the argument."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "37ddb690-6c70-4a85-9865-024a99c3bea3",
+      "headline": "Britain May Change Prime Ministers on Monday. The India-UK Trade Deal Was Due to Be Signed in July.",
+      "slug": "uk-starmer-resignation-brink-burnham-india-uk-ceta-trade-deal-july-15-nri-impact-20260621",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -178,13 +137,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the festival's significance to the South Asian diaspora in Canada, highlighting cultural evolution and community engagement."
+          "note": "The article effectively connects the political situation in the UK to the interests of the Indian diaspora, particularly regarding the India-UK trade deal."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes from festival attendees or performers to add personal perspectives.",
-          "Provide more context on the historical significance of DesiFest for readers unfamiliar with its background."
+          "Consider adding more direct quotes from political analysts or experts to enhance credibility.",
+          "Include a brief overview of the potential impacts of the trade deal on the Indian economy for a more comprehensive perspective."
         ],
         "verdict": "pass"
       },
@@ -196,81 +155,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "5ec2e02f-1d7b-4744-89a8-b60131b8bf5e",
-      "headline": "The Work Permit Indian Wives Depend On Is Being Drafted Out of Existence \u2014 and Expanded \u2014 at the Same Time",
-      "slug": "h4-ead-rescission-omb-no-timeline-expansion-rule-india-spouses-20260621",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the topic of work permits or immigration."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively addresses the concerns of Indian spouses in the U.S. regarding work permits, making it highly relevant to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that directly represents the theme of work permits or immigration to enhance relevance.",
-          "Add a section that includes personal stories or testimonials from affected Indian spouses to deepen the connection with the diaspora audience."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "9ddae4fd-d46d-4a42-a599-9444480576ef",
-      "headline": "Washington Says the $100,000 H-1B Fee Isn't a Tax. The Appeals Court Will Decide if Indians Pay It",
-      "slug": "h1b-100k-fee-first-circuit-appeal-not-a-tax-india-consular-20260621",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the topic of immigration or H-1B visas."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article discusses the implications of the H-1B fee on Indian workers, making it highly relevant to the Indian diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that directly relates to immigration or H-1B visas to enhance relevance.",
-          "Add a brief summary or conclusion to reinforce the implications for Indian workers and the diaspora."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "cd1096e9-a8d7-4990-915f-a524bb864218",
-      "headline": "On the Longest Day, Britain's Indian Diaspora Rolls Out Its Mats \u2014 and Its Soft Power",
-      "slug": "international-day-of-yoga-2026-uk-indian-diaspora-soft-power-20260621",
+      "id": "26fdf10f-b91e-43cd-a55c-5cabbb7b1468",
+      "headline": "Days After the Oil Started Flowing Again, Iran's Guards Declared the Strait of Hormuz Shut. India's Refiners Are Watching the Water.",
+      "slug": "irgc-declares-strait-hormuz-shut-us-iran-switzerland-talks-india-oil-lifeline-doubt-20260621",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -286,49 +173,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the Indian diaspora's participation in Yoga Day to broader themes of cultural visibility and soft power."
+          "note": "The article effectively connects the geopolitical situation to the economic implications for the diaspora, particularly regarding remittances and deposits."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes or testimonials from participants to enhance the personal connection to the event.",
-          "Add a brief section on the historical significance of Yoga Day to provide context for readers unfamiliar with its origins."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "b4b20e04-af24-4ea8-88d7-b61c9a764967",
-      "headline": "Nine Women, Three Cities, One Dance: How Brazil's Indian Diaspora Choreographed a Welcome for Modi",
-      "slug": "brazil-indian-diaspora-women-modi-welcome-operation-sindoor-dance-20260621",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively highlights the efforts of the Indian diaspora in Brazil, showcasing their cultural contributions and community dynamics."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes or perspectives from more performers to enrich the narrative.",
-          "Include a brief background on the significance of Modi's visit to Brazil for additional context."
+          "Consider adding more direct quotes from experts or officials to enhance credibility.",
+          "Include a brief overview of how the situation has historically affected Indian refiners to provide context."
         ],
         "verdict": "pass"
       },
