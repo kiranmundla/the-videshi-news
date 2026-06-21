@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-21T22:15:45.655786+00:00",
+  "timestamp": "2026-06-21T22:45:28.287421+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 5,
-    "flag": 1,
+    "pass": 3,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,17 +11,17 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "a15c7f57-5b67-4844-b538-29d8de3c2a52",
-      "headline": "India Is Dangling Higher Dollar Rates to Pull NRI Money Home \u2014 and Banks Now Want to Route It Through GIFT City",
-      "slug": "rbi-fcnr-b-dollar-deposit-scheme-hedging-subsidy-gift-city-nri-inflows-rupee-nri-investor-20260621-2200",
+      "id": "a7943890-817e-4da8-b3b3-9a30ea3c877d",
+      "headline": "Europe Just Launched Its First Big-League T20 \u2014 and the Diaspora Built Half the Talent Pool",
+      "slug": "european-t20-premier-league-etpl-icc-sanctioned-draft-registration-2026-glasgow-edinburgh-dublin-belfast-amsterdam-rotterdam-ireland-scotland-netherlands-diaspora-nri",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Reserve Bank of India building",
-          "reason": "The photo shows the Reserve Bank of India, relevant to the story about RBI policies."
+          "what_photo_shows": "Malahide Cricket Ground in Dublin",
+          "reason": "The photo shows a cricket ground in Dublin, relevant to the story about European T20 cricket."
         },
         "inline_image_mismatches": []
       },
@@ -30,144 +30,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively addresses the financial incentives for NRIs to invest in India, making it relevant to the diaspora audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from NRI investors or financial experts to enhance credibility.",
-          "Include a brief section on potential risks for NRIs investing under the new scheme."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "3c79ad36-30f3-4578-b5aa-484e87fb8591",
-      "headline": "A Daily Multivitamin Modestly Slowed the Body's Biological Clock in a Two-Year Trial \u2014 but the Effect Was Small",
-      "slug": "daily-multivitamin-cocoa-flavanols-epigenetic-clock-biological-aging-cosmos-substudy-diaspora-20260621-2200",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "bottle of multivitamins spilled",
-          "reason": "The photo shows multivitamins, which are relevant to the story about a multivitamin trial."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article connects the multivitamin's cultural significance in diaspora homes, making it relevant to NRI readers."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more specific examples of how diaspora communities incorporate multivitamins into their daily lives.",
-          "Include quotes or insights from diaspora health experts to enhance the article's relevance."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "add48bea-b046-4e02-9bb0-edc8c8d4d013",
-      "headline": "Fish-Oil Pills Did Reach the Brain \u2014 but Did Nothing for Memory, a Two-Year Trial of At-Risk Adults Finds",
-      "slug": "omega-3-fish-oil-dha-no-cognitive-benefit-alzheimer-risk-usc-ebiomedicine-trial-diaspora-20260621-2200",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Omega-3 fish oil supplement box",
-          "reason": "The photo shows an omega-3 supplement, relevant to the story about fish-oil pills and memory."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 8,
-          "issue": "The image of fish oil supplements is relevant to the article's topic."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 6,
-          "note": "The article briefly mentions the significance of fish oil for Indian families abroad, but this section is incomplete."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Expand on the diaspora angle to provide more context on how fish oil is perceived and used within Indian communities abroad.",
-          "Include more specific data or quotes from the study to enhance credibility and depth."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "fe5e9b40-30a4-42e2-9557-803f982f8ba0",
-      "headline": "Bengaluru Finally Gets a Nonstop to Europe \u2014 SWISS Launches a Five-a-Week Zurich Link in October",
-      "slug": "swiss-bengaluru-zurich-nonstop-lufthansa-group-india-nri-tech-capital-20260621",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Swiss International Air Lines Airbus A330-300",
-          "reason": "The photo shows the correct aircraft related to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 10,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects the new flight route to the Indian diaspora, highlighting its significance for Indian-Americans and the broader diaspora community."
+          "note": "The article effectively highlights the role of the South Asian diaspora in European cricket, making it relevant for NRI readers."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from airline representatives or travel experts to enhance credibility.",
-          "Include potential impacts on ticket prices or travel times to provide more value to readers."
+          "Consider adding quotes from players or officials to enhance the article's depth.",
+          "Include more statistics or historical context about the impact of the diaspora on European cricket."
         ],
         "verdict": "pass"
       },
@@ -179,68 +53,17 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "3e34047d-c9a7-43d7-8488-eee6f63a1248",
-      "headline": "Indian Passport and Visa Services in the UAE Go Dark for Five Days \u2014 Here's the Window Before June 25",
-      "slug": "indian-passport-visa-services-uae-suspended-june-al-hind-takeover-nri-20260621",
+      "id": "d7637a57-c02d-4518-aab4-947a7c524fb2",
+      "headline": "India Is Switching Who Handles Passports in the UAE. For Five Days, the Window Closes Entirely.",
+      "slug": "india-uae-passport-visa-consular-services-pause-june-26-30-al-hind-bls-sgivs-handover-20260621",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "51152650-d62a-459c-8074-6c57aa0bb531",
-            "headline": "India Rewrote the OCI Rulebook \u2014 and Most of the Diaspora Ha"
-          },
-          {
-            "article_id": "f4d9e42f-96d5-4412-b962-ebc050954513",
-            "headline": "India Just Quietly Tightened Its Rules for Foreigners \u2014 and "
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
           "what_photo_shows": "Indian passport on a table",
-          "reason": "The photo of an Indian passport is relevant to the story about Indian passport services."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 10,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the changes in passport and visa services to the large Indian diaspora in the UAE, highlighting the potential impact on their travel and documentation needs."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from officials or community members to enhance credibility and engagement.",
-          "Include a brief FAQ section addressing common concerns about the transition to the new service provider."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "f8e87805-506f-4bb5-8185-28cb6c31bcb0",
-      "headline": "India's Vande Bharat Fleet Tops 160 Trains \u2014 and the New Routes Run Straight Through the Diaspora's Pilgrimage Map",
-      "slug": "vande-bharat-160-trains-new-heritage-routes-khajuraho-nri-pilgrimage-20260621",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Vande Bharat Express at a station",
-          "reason": "The photo shows a Vande Bharat train, relevant to the story."
+          "reason": "The photo of an Indian passport is relevant to the story about passport services in the UAE."
         },
         "inline_image_mismatches": []
       },
@@ -253,14 +76,56 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the new train routes to the needs and travel patterns of the diaspora, particularly in relation to pilgrimage and family visits."
+          "quality": 8,
+          "note": "The article effectively addresses the concerns of the Indian diaspora in the UAE regarding passport and visa services."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more statistics or data on the impact of these new routes on diaspora travel patterns.",
-          "Include quotes or testimonials from diaspora members who have used the Vande Bharat trains to enhance relatability."
+          "Consider adding quotes from officials or community members to enhance the article's depth.",
+          "Include a brief overview of the new service provider, Al Hind Tours and Travel LLC, to inform readers about what to expect."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "4562bc14-d198-411a-bbcf-b9630271fdf9",
+      "headline": "India's Trade Minister Just Summoned Washington's Negotiator to Delhi. The Clock Runs Out July 24.",
+      "slug": "india-us-ministerial-trade-talks-delhi-goyal-greer-july-24-tariff-deadline-bta-20260621",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Piyush Goyal smiling",
+          "reason": "The photo shows India's Commerce Minister Piyush Goyal, relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the trade negotiations to the interests of the Indian diaspora, highlighting the impact on businesses and families."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from experts or stakeholders to enhance credibility.",
+          "Include more context on the implications of the trade deal for specific sectors within the Indian diaspora."
         ],
         "verdict": "pass"
       },
