@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-21T06:24:44.319279+00:00",
+  "timestamp": "2026-06-21T06:45:21.493391+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
+    "pass": 2,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,17 +11,17 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "e7d1a923-5054-4362-ac06-e701a7f00032",
-      "headline": "DoorDash Built a Chatbot That Orders Your Dinner. The Engineers Who Built It Tell a Bigger Story.",
-      "slug": "doordash-ask-doordash-ai-chatbot-agentic-gig-economy-indian-engineers-20260621",
+      "id": "b9d67664-02ae-4078-a1ac-1b121d16e16c",
+      "headline": "Indian Families Just Cut Their Study-Abroad Spending to the Lowest in Seven Years. The Reason Sits at Foreign Visa Desks.",
+      "slug": "indian-study-abroad-spending-falls-22-percent-1-billion-rbi-lowest-since-2017-visa-curbs-20260621",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "autonomous food-delivery robot in restaurant",
-          "reason": "The photo shows a food-delivery robot, relevant to the story about AI in delivery services."
+          "what_photo_shows": "students walking on university campus",
+          "reason": "The photo shows students on a campus, relevant to the study-abroad spending story."
         },
         "inline_image_mismatches": []
       },
@@ -35,17 +35,66 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the topic of AI in gig economy platforms to the experiences and challenges faced by Indian engineers in the diaspora."
+          "note": "The article effectively connects the decline in study-abroad spending to the future of the Indian diaspora, highlighting the implications for the global Indian community."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more direct quotes from the engineers involved to enhance the narrative.",
-          "Include specific examples of how Indian engineers have influenced AI development in the gig economy."
+          "Consider adding quotes from experts or affected families to provide personal perspectives on the issue.",
+          "Include more data or comparisons with previous years to enhance the analysis of trends."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "b817618d-8ed2-4a01-a6c0-283a30e2b0ef",
+      "headline": "On the Longest Day of the Year, the Diaspora's Most Successful Export Comes Home Again",
+      "slug": "international-day-of-yoga-2026-modi-kolkata-red-road-healthy-ageing-diaspora-2500-sites-20260621",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "mass yoga demonstration outdoors",
+          "reason": "The photo shows a mass yoga event, aligning with the story about International Day of Yoga."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/narendramodi/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram link to Narendra Modi does not directly relate to the broader diaspora experience or the theme of Yoga Day as it focuses on a specific individual rather than the collective diaspora engagement."
+          }
+        ],
+        "image_match": {
+          "score": 9,
+          "issue": "The image depicts a significant event related to Yoga Day, aligning well with the article's focus on the diaspora's connection to yoga."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the significance of Yoga Day to the global Indian diaspora, highlighting their role in popularizing yoga internationally."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider replacing the Instagram link with a more relevant social media post that highlights the diaspora's involvement in Yoga Day celebrations.",
+          "Expand on the diaspora's perspective by including quotes or anecdotes from Indian practitioners abroad to enhance the personal connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/narendramodi/",
         "promoted to published"
       ],
       "revised": false,
