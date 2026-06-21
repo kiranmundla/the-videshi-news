@@ -120,13 +120,6 @@
     "added_date": "2026-05-01"
   },
   {
-    "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/snapshots/indian-community-celebration-10003451.jpg",
-    "label": "Three Native American men in traditional attire play guitars outdoors, capturing a cultural musical moment. · 📷 Sami  Aksu",
-    "source": "pexels",
-    "added_date": "2026-05-27",
-    "pexels_id": 10003451
-  },
-  {
     "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/snapshots/indian-community-celebration-10892569.jpg",
     "label": "A group of musicians celebrating a traditional Indian festival with vibrant attire and instruments. · 📷 Swastik Arora",
     "source": "pexels",
@@ -258,5 +251,12 @@
     "source": "pexels",
     "added_date": "2026-06-14",
     "pexels_id": 36587841
+  },
+  {
+    "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/snapshots/kerala-houseboat-backwaters-32518360.jpg",
+    "label": "Tranquil Kerala backwaters with houseboats and palm trees at sunrise. · 📷 Suman Boipai",
+    "source": "pexels",
+    "added_date": "2026-06-21",
+    "pexels_id": 32518360
   }
 ]
