@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-21T11:15:13.009971+00:00",
+  "timestamp": "2026-06-21T12:16:02.203049+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
+    "pass": 9,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,17 +11,17 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "bda0575d-6978-4b13-bebf-70bcccb1c016",
-      "headline": "Allu Arjun Walks. Jr. NTR Picks Up the Spear. 'God of War' Just Got Its Warrior \u2014 and It's the Costliest Film of His Life.",
-      "slug": "god-of-war-jr-ntr-trivikram-allu-arjun-exit-kartikeya-murugan-mythological-epic-costliest-film-where-to-watch-diaspora-nri-20260621",
+      "id": "daa07ee7-ecdc-4406-95f9-82f9210b2f64",
+      "headline": "A Bill in Congress Would Let Indian Nurses and Doctors Skip the Green Card's Country Cap. If It Passes",
+      "slug": "healthcare-workforce-resilience-act-recapture-green-cards-nurses-physi-20260621",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Man with sunglasses and beard",
-          "reason": "The photo plausibly shows Jr. NTR, matching the story topic."
+          "what_photo_shows": "The US Capitol building",
+          "reason": "The photo of the US Capitol is relevant to a story about a bill in Congress."
         },
         "inline_image_mismatches": []
       },
@@ -30,18 +30,364 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image does not directly relate to the film 'God of War' or the specific context of Jr. NTR's role."
+          "issue": "The image of a healthcare professional aligns with the article's topic on Indian nurses and doctors, but it lacks a direct connection to the legislative aspect."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the film's release and its significance to NRI audiences, particularly in terms of box office potential."
+          "quality": 9,
+          "note": "The article effectively addresses the concerns of the Indian diaspora regarding immigration and green card issues, making it highly relevant."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider including a more relevant image that directly represents 'God of War' or Jr. NTR in the context of the film.",
-          "Add quotes or insights from industry experts or the director to enhance credibility and depth."
+          "Consider including a more specific image that directly relates to the legislative process or Indian healthcare professionals to enhance visual relevance.",
+          "Add quotes or testimonials from Indian nurses or doctors to provide a personal touch and illustrate the impact of the bill."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "c2471c46-f702-4031-aa71-042a19de1a6f",
+      "headline": "From December, the US Wants H-1B and H-4 Applicants to Open Up Their Social Media",
+      "slug": "social-media-public-vetting-h1b-h4-december-15-indians-f1-20260621",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "smartphone with social media apps",
+          "reason": "The photo aligns with the story about social media and visa applicants."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the topic of H-1B and H-4 visa applicants or social media."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively addresses the concerns of the Indian diaspora, particularly H-1B and H-4 applicants, making it highly relevant."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that reflects the topic of immigration and social media.",
+          "Add a section with expert opinions or quotes from immigration lawyers to enhance credibility."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "8148e3da-33a1-4f13-841f-7ba2cf3f92ed",
+      "headline": "A Court Just Spared Indian Doctors a $100,000 Visa Bill. The Reprieve Comes With Fine Print",
+      "slug": "h1b-physician-100k-fee-blocked-aapi-indian-doctors-img-rural-20260621",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "doctor in hospital corridor",
+          "reason": "The photo shows a doctor in a hospital, relevant to the story about Indian doctors and visas."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the visa issue to the experiences of the Indian diaspora, particularly Indian doctors in the U.S."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes or perspectives from more Indian doctors to enhance the personal connection.",
+          "Include more statistics or data on the impact of Indian doctors in rural healthcare to strengthen the argument."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "dcb7ff6f-c71d-4e04-bc5f-1e9ac767ed9c",
+      "headline": "A Slice of Kolkata Lands in Wembley This Weekend \u2014 Right Down to the Imported Biryani",
+      "slug": "london-mahotsav-2026-bengali-diaspora-uk-cultural-festival-20260621",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Bharatanatyam dancer performing on stage",
+          "reason": "The photo shows Indian cultural performance relevant to the diaspora event."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image is relevant but does not specifically depict Kolkata or the festival."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the festival to the Bengali diaspora experience in the UK."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including a relevant image that depicts Kolkata or the festival atmosphere.",
+          "Add quotes or testimonials from attendees or organizers to enhance the personal connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "660f81d5-186c-4ddc-80fa-c7a483f709f9",
+      "headline": "One in Seven American Patients Sees a Doctor of Indian Origin. Now Their Association Is Fighting to Protect the Pipeline.",
+      "slug": "aapi-44th-convention-tampa-indian-physicians-h1b-visa-diaspora-20260621",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "healthcare professionals in a clinic",
+          "reason": "The photo shows healthcare professionals, which aligns with the story about doctors."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the Indian diaspora's contributions to the American healthcare system and highlights the significance of the AAPI."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from attendees or speakers at the convention to provide personal insights.",
+          "Include statistics or anecdotes about the impact of Indian-origin physicians on specific communities to enhance the narrative."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "21c4cc12-5193-4e97-aa32-3768e78748f4",
+      "headline": "Half of America's Top Young Inventors This Year Share One Country of Origin. It Isn't a Coincidence.",
+      "slug": "national-stem-festival-2026-indian-american-champions-diaspora-20260621",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "teenagers working on robotics project",
+          "reason": "The photo shows teenagers collaborating on a STEM project, which aligns with the story about young inventors."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively highlights the achievements of Indian-American students and connects their success to the broader Indian diaspora's emphasis on education and STEM."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from the students or their parents to provide a more personal touch.",
+          "Include statistics or comparisons with other ethnic groups to further emphasize the significance of the Indian-American achievements."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "a6b2ba26-9be8-47a5-9955-198f80e76a04",
+      "headline": "Every Tech Boss Says AI Will Gut Entry-Level Jobs. The CEO Who Employs 350,000 People Is Hiring 20,000 Graduates Anyway.",
+      "slug": "cognizant-ravi-kumar-graduate-hiring-ai-jobs-india-nri-20260621",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "14590a9e-a5d8-4cbe-b928-a5245b1ae4fc",
+            "headline": "The H-1B's Quietest Weapon Against New Indian Grads Isn't th"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "software engineers in an office",
+          "reason": "The photo shows software engineers, which aligns with the tech industry context of the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects Cognizant's hiring practices to the Indian diaspora, highlighting its role in shaping opportunities for Indian graduates."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes or perspectives from recent graduates hired by Cognizant to provide a personal touch.",
+          "Include more data or examples from other companies to strengthen the argument against the fearmongering narrative."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "9670102a-3367-4b6b-8403-083ead04b2cc",
+      "headline": "India Won't Legalize Crypto, but It Just Made the Paperwork Punishing. NRIs With Wallets, Take Note.",
+      "slug": "india-crypto-tax-reporting-penalties-vda-nri-investors-20260621",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "stack of Bitcoin tokens",
+          "reason": "The photo shows Bitcoin tokens, relevant to the crypto taxation story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image is relevant to the topic of crypto but lacks specific elements that directly connect to the Indian context."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively addresses the implications of India's crypto policy on NRIs, making it highly relevant for the diaspora audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including specific examples of how NRIs can navigate the new regulations.",
+          "Add a quote from a financial expert or a diaspora member to enhance credibility and relatability."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "c12045fe-347e-4205-97de-3279cd757c19",
+      "headline": "ISRO Bet Its Reputation on a Reliable Rocket. After Two Failures, the Workhorse Flies Again Within Days.",
+      "slug": "isro-pslv-return-to-flight-failures-launch-newspace-nri-20260621",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "872d9048-9320-43c9-bb50-3738c647dcea",
+            "headline": "ISRO Is Betting Its Reputation on One Rocket Launch in Early"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "A rocket launching from a pad",
+          "reason": "The photo shows a rocket launch, which matches the space-tech story about the PSLV."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the PSLV's success to the interests of the Indian diaspora, particularly in terms of investment and national pride."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from ISRO officials or industry experts to enhance credibility.",
+          "Include more specific examples of diaspora investments in Indian space startups to strengthen the diaspora angle."
         ],
         "verdict": "pass"
       },
