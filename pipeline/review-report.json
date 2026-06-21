@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-21T08:15:26.523271+00:00",
+  "timestamp": "2026-06-21T08:45:26.244559+00:00",
   "mode": "fix",
   "stats": {
     "pass": 3,
@@ -11,61 +11,17 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "0458cb92-f744-4a73-9f78-b3f857c065a3",
-      "headline": "India's Consulates in the UAE Go Dark for Five Days \u2014 and 3.5 Million NRIs Have to Plan Around It",
-      "slug": "india-uae-passport-visa-services-pause-june-2026-al-hind-nri-20260621",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MISMATCH",
-          "what_photo_shows": "Philippine passports at an airport",
-          "reason": "The photo shows Philippine passports, not related to Indian consular services."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image description is missing, making it difficult to assess relevance."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively addresses the concerns of NRIs in the UAE regarding consular services."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include a relevant image description to enhance the article's visual context.",
-          "Consider adding quotes or testimonials from affected NRIs to provide a personal touch."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "Cleared mismatched image (Philippine passports at an airport)",
-        "held: image mismatch"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "image_mismatch": true,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "882b79d7-7633-45b8-a5e4-4b60d2cac924",
-      "headline": "A New USCIS Rule Means a Wrong Signature Can Sink Your Green Card \u2014 Even After It's Accepted",
-      "slug": "uscis-signature-rule-july-10-2026-invalid-signature-denial-india-20260621",
+      "id": "27bfcbe7-feab-4bc3-bdec-ee115ecfc77d",
+      "headline": "Europe Is Cooking. If Your Summer Plans Run Through Paris or Rome, Read This First.",
+      "slug": "europe-record-june-heatwave-france-alcohol-ban-40c-diaspora-travellers-students-20260621",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "hand signing a legal document",
-          "reason": "The photo subject is relevant to the story about signature rules."
+          "what_photo_shows": "Tourists at Rome's Colosseum",
+          "reason": "The photo shows a relevant location mentioned in the story."
         },
         "inline_image_mismatches": []
       },
@@ -74,18 +30,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 9,
-          "issue": "The image of documents and signatures aligns well with the article's topic on immigration filings and signatures."
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the new USCIS rule to the Indian diaspora, particularly in relation to employment-based immigration."
+          "quality": 8,
+          "note": "The article effectively connects the heatwave situation in Europe to the travel plans of Indian families, making it relevant for the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more statistics or expert opinions to strengthen the argument.",
-          "Include a brief summary of the potential impacts on the diaspora community to enhance reader engagement."
+          "Consider adding more specific travel tips for Indian families visiting Europe during heatwaves.",
+          "Include quotes or anecdotes from Indian travelers to enhance relatability."
         ],
         "verdict": "pass"
       },
@@ -97,17 +53,17 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "e0bfe836-767e-45aa-b275-393cb3e2e2ef",
-      "headline": "EB-5 Was the Indian Escape Hatch From the Green Card Backlog. It Just Slammed Shut Until October",
-      "slug": "eb5-india-unreserved-exhausted-october-2026-investor-visa-backlog-20260621",
+      "id": "6ad79a68-763c-4876-8784-09a5f2234e03",
+      "headline": "The Talks That Will Decide India's Oil Bill Just Opened on a Swiss Mountaintop",
+      "slug": "us-iran-peace-talks-open-buergenstock-vance-pakistan-mediation-hormuz-india-oil-20260621",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "US passport and dollar bills",
-          "reason": "The photo symbolically represents the EB-5 investor visa route."
+          "what_photo_shows": "Buergenstock resort on a mountain",
+          "reason": "The photo shows the Buergenstock resort, the venue for the talks."
         },
         "inline_image_mismatches": []
       },
@@ -115,19 +71,56 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the topic of immigration or EB-5 visas."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses the impact of EB-5 visa changes on Indian nationals, making it relevant for the diaspora."
+          "note": "The article effectively connects the geopolitical situation to the Indian diaspora's concerns, particularly regarding oil prices and repatriation efforts."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that directly relates to immigration or the EB-5 visa process.",
-          "Add a quote from an immigration expert or lawyer to enhance credibility and provide additional insights."
+          "Add more context on how the outcomes of the talks could specifically impact the Indian diaspora beyond oil prices.",
+          "Include quotes or perspectives from diaspora members to enhance relatability."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "0458cb92-f744-4a73-9f78-b3f857c065a3",
+      "headline": "India's Consulates in the UAE Go Dark for Five Days \u2014 and 3.5 Million NRIs Have to Plan Around It",
+      "slug": "india-uae-passport-visa-services-pause-june-2026-al-hind-nri-20260621",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "missing image description"
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively addresses the concerns of the Indian diaspora in the UAE regarding consular services."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include a relevant image that visually represents the topic of consular services or the Indian community in the UAE.",
+          "Add a brief summary or bullet points at the end to recap the key takeaways for NRIs."
         ],
         "verdict": "pass"
       },
