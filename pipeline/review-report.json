@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-21T17:15:13.862195+00:00",
+  "timestamp": "2026-06-21T17:45:15.376260+00:00",
   "mode": "fix",
   "stats": {
     "pass": 1,
@@ -11,22 +11,17 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "2724dd04-b87d-4503-8a49-3e6e9f868010",
-      "headline": "The Dhamaal Boys Chase a Mountain of Gold. Dhamaal 4 Lands July 10 and It Has No Intention of Growing Up.",
-      "slug": "dhamaal-4-trailer-qeher-song-ajay-devgn-arshad-warsi-riteish-deshmukh-jaaved-jaaferi-indra-kumar-july-10-worldwide-where-to-watch-diaspora-nri-20260621",
+      "id": "0550ce33-2e86-4280-ba1a-9d7afbbb9f79",
+      "headline": "India's Unbeaten Run Ends at Old Trafford, Undone by a Marizanne Kapp Masterclass",
+      "slug": "india-women-lose-south-africa-6-wickets-t20-world-cup-2026-kapp-81-old-trafford-first-defeat-charani-mandhana-nri",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "1978c4e8-d4f5-44bc-a91c-7d340a5b4a5c",
-            "headline": "The Dhamaal Boys Are Back, Louder and Dumber Than Ever. Dham"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Theatrical release poster for Dhamaal 4",
-          "reason": "The poster matches the movie mentioned in the headline."
+          "what_photo_shows": "cricketer in blue and yellow uniform",
+          "reason": "The photo shows a cricketer, which matches the cricket story topic."
         },
         "inline_image_mismatches": []
       },
@@ -40,13 +35,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the film's release to NRI audiences by highlighting the same-day global rollout, making it relevant for diaspora readers."
+          "note": "The article effectively connects the match's outcome to the sentiments of Indian cricket fans abroad, highlighting their expectations and the cultural context."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more quotes or insights from the cast or crew to enhance the article's depth.",
-          "Include a brief comparison with previous films in the franchise to provide context for new readers."
+          "Consider adding quotes from players or coaches to enhance the narrative.",
+          "Include statistics or historical context about India's performance in previous World Cups for deeper analysis."
         ],
         "verdict": "pass"
       },
