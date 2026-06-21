@@ -335,52 +335,6 @@ _SKIP_ENTITIES = {
 _MIN_WORDS_FOR_INLINE = 200
 
 
-# Pronouns, verbs, and quantity words that must NOT appear in a "named entity".
-# News headlines are title-cased (every word capitalized), so the proper-noun
-# regex otherwise treats ordinary phrases like "Trap Them" or "Three Tankers"
-# as names and fetches a wrong Wikipedia image (e.g. the band "Trap Them").
-_ENTITY_BANNED_WORDS = {
-    'they','them','their','it','its','this','that','these','those','he','she',
-    'we','you','us','his','her','him','my','our','your',
-    'tried','got','get','told','made','make','makes','tries','trying','keeps',
-    'kept','finally','out','again','now','then','here','there','just','still',
-    'three','four','five','six','seven','eight','nine','ten','two','one',
-    'who','what','when','where','why','how','a','an','and','but','or','so',
-    'tankers','sailors','crew','strait',  # generic nouns from this story class
-}
-_ENTITY_CONNECTORS = {'of','the','and','de','van','von','al','el','bin','da','del','la'}
-
-
-def _entity_confirmed_in_body(name, body):
-    """True only if `name` appears capitalized MID-sentence in the body.
-    Body prose is sentence-cased (unlike the title-cased headline), so a word
-    capitalized in the middle of a sentence is a genuine proper noun. This
-    filters out title-case artifacts that are not real names."""
-    for m in re.finditer(re.escape(name), body or ""):
-        j = m.start() - 1
-        while j >= 0 and body[j] in ' \t':
-            j -= 1
-        if j < 0:
-            continue  # start of body — capitalization not meaningful
-        if body[j] in '.!?\n>*#-':  # sentence/heading start — not meaningful
-            continue
-        return True
-    return False
-
-
-def _is_safe_entity(name, body):
-    """Guard before fetching a Wikipedia image for a headline-derived entity.
-    Rejects pronoun/verb/quantity phrases and anything not confirmed as a real
-    proper noun in the body. Protects the person/identity-match rule."""
-    words = [w.lower() for w in name.split()]
-    if any(w in _ENTITY_BANNED_WORDS for w in words):
-        return False
-    distinctive = [w for w in words if w not in _ENTITY_CONNECTORS]
-    if not distinctive:
-        return False
-    return _entity_confirmed_in_body(name, body)
-
-
 def extract_entities(headline, body):
     """Extract notable entities (people, places, orgs) from headline + first few paragraphs.
     Returns a list of entity names, most important first."""
@@ -433,10 +387,6 @@ def extract_entities(headline, body):
             name = " ".join(words)
 
             if name.lower() in _SKIP_ENTITIES or len(name) < 4 or len(name.split()) < 2:
-                continue
-            # Guard: reject title-case artifacts (pronouns/verbs/quantities) and
-            # require the name to be a genuine proper noun confirmed in the body.
-            if not _is_safe_entity(name, body):
                 continue
             key = name.lower()
             if key not in seen:
