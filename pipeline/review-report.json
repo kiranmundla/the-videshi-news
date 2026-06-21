@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-21T19:45:13.649306+00:00",
+  "timestamp": "2026-06-21T20:15:19.614199+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
+    "pass": 2,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,17 +11,17 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "87b0c8a5-9922-486b-b1c4-fe2fe5e7adab",
-      "headline": "A Smaller India Heads to Glasgow \u2014 and the Sports It Wins Most Aren't on the Bill",
-      "slug": "india-125-130-athletes-glasgow-2026-commonwealth-games-wrestling-badminton-hockey-dropped-ioa-raghuram-iyer-ahmedabad-2030-diaspora",
+      "id": "a058fa89-7c55-44b7-ac7c-e953acff8b66",
+      "headline": "Your US Visa Is a Second Passport in Disguise \u2014 Here's Where It Lets Indians Travel Without Applying for a Visa",
+      "slug": "us-visa-green-card-visa-free-travel-destinations-indian-passport-2026-20260621",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "female weightlifter with medal",
-          "reason": "The photo shows a weightlifter, relevant to the story about India's athletes in Glasgow."
+          "verdict": "MISMATCH",
+          "what_photo_shows": "Russian passport on a world map",
+          "reason": "The photo shows a Russian passport, not related to US visa travel for Indians."
         },
         "inline_image_mismatches": []
       },
@@ -29,27 +29,73 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "Image URL and entities are missing, making it impossible to assess relevance."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the Commonwealth Games to the Indian diaspora, highlighting their accessibility and significance."
+          "quality": 9,
+          "note": "The article directly addresses Indian diaspora travelers and their unique visa challenges."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more specific examples of how the diaspora can engage with the Commonwealth Games.",
-          "Add quotes or perspectives from diaspora members to enhance relatability."
+          "Include a relevant image that visually represents the article's theme.",
+          "Add hyperlinks to official immigration sources for the countries mentioned to enhance credibility."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "promoted to published"
+        "Cleared mismatched image (Russian passport on a world map)",
+        "held: image mismatch"
       ],
       "revised": false,
       "unpublished": false,
+      "image_mismatch": true,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "3227cfe2-908c-4003-bd1d-796c3edc3008",
+      "headline": "The Hardest Part of an American Work Visa Right Now Isn't Approval \u2014 It's Getting an Appointment in India",
+      "slug": "us-visa-appointment-backlog-india-consulates-work-visa-waits-20260621",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MISMATCH",
+          "what_photo_shows": "map, camera, compass, and visa-themed notebook",
+          "reason": "The photo does not show a passport with a visa stamp, which is relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image description is missing, making it difficult to assess relevance."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the challenges faced by Indian professionals seeking work visas, which is highly relevant to the NRI community."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include a relevant image description to enhance the article's visual appeal.",
+          "Consider adding quotes or anecdotes from affected individuals to personalize the narrative."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "Cleared mismatched image (map, camera, compass, and visa-themed notebook)",
+        "held: image mismatch"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "image_mismatch": true,
       "llm_source": "gpt-4o-mini"
     }
   ]
