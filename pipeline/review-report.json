@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-21T13:15:11.458034+00:00",
+  "timestamp": "2026-06-21T13:45:11.434630+00:00",
   "mode": "fix",
   "stats": {
     "pass": 1,
@@ -11,17 +11,17 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "8a3c3aa5-d3d5-4958-a6cb-6144c890e184",
-      "headline": "Cocktail 2 Grew on Saturday When Everyone Else Crashes. Shahid's Third-Biggest Opener Has the Diaspora Pouring Again.",
-      "slug": "cocktail-2-opening-weekend-box-office-saturday-jump-shahid-kapoor-third-biggest-opener-kriti-sanon-rashmika-mandanna-homi-adajania-where-to-watch-diaspora-nri-20260621",
+      "id": "48625793-4b31-4b50-a794-6a428c9a3da2",
+      "headline": "India's Women Won in Auckland, and With It a Ticket Back to the Top Table of World Hockey",
+      "slug": "india-women-hockey-beat-new-zealand-2-0-fih-nations-cup-final-2026-auckland-pro-league-promotion-navneet-kaur-sunelita-toppo-deepika-savita-nri",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A man in a green jacket",
-          "reason": "The photo shows Shahid Kapoor, who is relevant to the story."
+          "verdict": "MISMATCH",
+          "what_photo_shows": "woman receiving an award",
+          "reason": "The photo shows an award ceremony, not related to hockey or the mentioned event."
         },
         "inline_image_mismatches": []
       },
@@ -29,27 +29,29 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image is not provided, but the description should match the article's focus on women's hockey."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the film's release and its significance to NRI audiences, discussing the original film's impact on the diaspora."
+          "quality": 9,
+          "note": "The article effectively connects the win to the Indian diaspora, highlighting the emotional resonance and cultural significance."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more quotes or reactions from diaspora audiences to enhance the connection.",
-          "Include a brief comparison of the film's reception in India versus overseas to provide more context."
+          "Include a relevant image that depicts the women's hockey team or the final match to enhance visual engagement.",
+          "Consider adding quotes from players or coaches to provide a more personal touch to the narrative."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "promoted to published"
+        "Cleared mismatched image (woman receiving an award)",
+        "held: image mismatch"
       ],
       "revised": false,
       "unpublished": false,
+      "image_mismatch": true,
       "llm_source": "gpt-4o-mini"
     }
   ]
