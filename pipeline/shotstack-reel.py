@@ -24,6 +24,140 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 import requests
 
+# ── ANIMATED MP4 DATA CARDS ──────────────────────────────────────────────────
+# Shotstack renders an `html` asset as a SINGLE static snapshot (CSS @keyframes
+# do NOT play — verified empirically 2026-06-21). So genuinely animated data
+# cards are pre-rendered as 1080x1920 MP4 clips (PIL frames -> ffmpeg) and placed
+# on the timeline as VIDEO clips. Loaded best-effort; if it fails to import the
+# pipeline silently falls back to the static PIL key-point cards.
+try:
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import anim_cards as _ANIM
+    _ANIM_OK = True
+except Exception as _e:
+    _ANIM = None
+    _ANIM_OK = False
+    print(f"  ⚠️ anim_cards unavailable ({_e}) — animated cards will fall back to static PIL")
+
+# Music selector: mood-driven, deterministically-rotating picker (reads
+# music/music-index.json). Best-effort import; if it fails we fall back to the
+# legacy hardcoded CATEGORY_MUSIC dict below.
+try:
+    from music.music_selector import select_music as _select_music
+    _MUSIC_SELECTOR_OK = True
+except Exception as _e:
+    _select_music = None
+    _MUSIC_SELECTOR_OK = False
+    print(f"  ⚠️ music_selector unavailable ({_e}) — using legacy CATEGORY_MUSIC map")
+
+
+def _coerce_tiles(raw):
+    """Normalize a GPT stat_grid `tiles` payload into [(value, label, color), ...]
+    assigning the 4 brand accent colors in order (GPT never picks colors)."""
+    if not _ANIM_OK or not isinstance(raw, list):
+        return []
+    palette = [_ANIM.BLUE, _ANIM.GREEN_BR, _ANIM.SAFFRON, _ANIM.GOLD_BR]
+    out = []
+    for idx, tile in enumerate(raw[:4]):
+        val = lab = None
+        if isinstance(tile, (list, tuple)) and len(tile) >= 2:
+            val, lab = str(tile[0]), str(tile[1])
+        elif isinstance(tile, dict):
+            val = str(tile.get("value") or tile.get("big") or tile.get("number") or "")
+            lab = str(tile.get("label") or tile.get("text") or "")
+        if val and lab:
+            out.append((val, lab, palette[idx % len(palette)]))
+    return out
+
+
+def _anim_card_for_scene(scene, i, n_scenes, article, used_archetypes):
+    """Decide whether this storyboard beat should become an ANIMATED data card
+    (and which archetype), then render it to a local MP4. ARTICLE-DRIVEN.
+
+    PRIMARY path: GPT's explicit `card_style` ("hero_stat" | "stat_grid" |
+    "diaspora_panel") plus the structured payload it emitted for that scene.
+    SECONDARY fallback (older cached scripts with no card_style): a keyword
+    detector over the scene text that synthesizes a sensible card from
+    card_text / card_subtext / numbers.
+
+    Returns (local_mp4_path, archetype_label) or (None, None) if this beat is not
+    a stat/diaspora beat, the payload is unusable, or rendering failed (caller
+    then uses the static PIL key-point card).
+    """
+    if not _ANIM_OK:
+        return None, None
+
+    style = (scene.get("card_style") or "").strip().lower()
+    card_text = str(scene.get("card_text", "")).strip()
+    card_subtext = str(scene.get("card_subtext", "")).strip()
+
+    # ── PRIMARY: explicit card_style + structured payload from GPT ──
+    try:
+        if style == "diaspora_panel" and "diaspora" not in used_archetypes:
+            payload = scene.get("diaspora_panel") or scene.get("card_payload") or {}
+            title = str(payload.get("title") or card_text or "").strip()
+            subtitle = str(payload.get("subtitle") or card_subtext or "").strip()
+            bullets = [str(b).strip() for b in (payload.get("bullets") or []) if str(b).strip()]
+            if title and len(bullets) >= 2:
+                used_archetypes.add("diaspora")
+                return _ANIM.render_diaspora_panel_mp4(
+                    title=title, subtitle=subtitle, bullets=bullets[:4]), "diaspora_panel"
+
+        if style == "stat_grid" and "grid" not in used_archetypes:
+            payload = scene.get("stat_grid") or scene.get("card_payload") or {}
+            tiles = _coerce_tiles(payload.get("tiles"))
+            eyebrow = str(payload.get("eyebrow") or "BY THE NUMBERS").strip()
+            if len(tiles) >= 2:
+                used_archetypes.add("grid")
+                return _ANIM.render_stat_grid_mp4(tiles=tiles, eyebrow=eyebrow), "stat_grid"
+
+        if style == "hero_stat" and "hero" not in used_archetypes:
+            payload = scene.get("hero_stat") or scene.get("card_payload") or {}
+            big = str(payload.get("big") or "").strip()
+            sub = str(payload.get("sub") or card_subtext or card_text or "").strip()
+            eyebrow = str(payload.get("eyebrow") or "BY THE NUMBERS").strip()
+            if big:
+                used_archetypes.add("hero")
+                return _ANIM.render_hero_stat_mp4(big=big, sub=sub, eyebrow=eyebrow), "hero_stat"
+    except Exception as _e:
+        print(f"  ⚠️ anim card (explicit style '{style}') failed: {_e} — trying fallback")
+
+    # ── SECONDARY: keyword fallback for older cached scripts (no card_style) ──
+    # Only fires when GPT did NOT set a usable card_style. Synthesizes a card
+    # from the article's own card_text/card_subtext + any number it carries.
+    if style in ("hero_stat", "stat_grid", "diaspora_panel"):
+        # GPT asked for a style but payload was unusable — don't second-guess with
+        # a keyword card; let the static PIL card handle it.
+        return None, None
+
+    txt = " ".join(str(scene.get(k, "")) for k in
+                   ("card_text", "card_subtext", "narration", "scene_role")).lower()
+    has_num = bool(re.search(r"\d", card_text))  # number must be in the headline itself
+    diaspora_cue = any(w in (card_text + " " + card_subtext).lower() for w in
+                       ("nri", "diaspora", "back home", "remittance", "remit", "indian americans"))
+
+    # diaspora panel from card_text + subtext + a couple of derived bullets
+    if diaspora_cue and "diaspora" not in used_archetypes and card_subtext:
+        used_archetypes.add("diaspora")
+        bullets = [b.strip() for b in re.split(r"(?<=[.;])\s+", card_subtext) if b.strip()]
+        if len(bullets) < 2:
+            bullets = [card_subtext, card_text]
+        return _ANIM.render_diaspora_panel_mp4(
+            title=card_text, subtitle="", bullets=bullets[:4]), "diaspora_panel"
+
+    # hero stat when the headline leads with a standalone number
+    if has_num and "hero" not in used_archetypes:
+        m = re.search(r"([₹$€£]?\s?[+\-]?\d[\d,]*(?:\.\d+)?\s?(?:%|percent|trillion|billion|million|crore|lakh|k|bn|tn|t|b|m)?)",
+                      card_text, re.I)
+        if m and m.group(1).strip():
+            used_archetypes.add("hero")
+            return _ANIM.render_hero_stat_mp4(
+                big=m.group(1).strip(), sub=card_subtext or card_text,
+                eyebrow="BY THE NUMBERS"), "hero_stat"
+
+    return None, None
+
+
 # ─── Config ──────────────────────────────────────────────────────────────────
 
 PIPELINE_DIR = Path(__file__).parent
@@ -294,7 +428,7 @@ def generate_script(article, force_new=False):
     slug = article.get("slug", "unknown")
 
     # Script cache — reuse if already generated
-    SCRIPT_CACHE_VERSION = "clean4"  # bump to invalidate old caches (clean4: + social_search search-editor block)
+    SCRIPT_CACHE_VERSION = "clean5"  # bump to invalidate old caches (clean5: + card_style anim payloads + story_mood)
     cache_path = BUILD_DIR / f"script-{slug}.json"
     if not force_new and cache_path.exists():
         try:
@@ -409,6 +543,35 @@ For each scene, provide:
     • "card" — the default. A clean branded text card showing card_text. Choose
       this whenever unsure; it is always safe and on-brand.
 
+ANIMATED DATA CARDS (optional "card_style") — for a "card" beat that is really
+ABOUT NUMBERS or the diaspora-impact, you may upgrade it to an animated data
+card by adding a "card_style" plus its structured payload. These render as
+motion graphics (counting numbers, staggered tiles, bullets sliding in) and are
+far more engaging than a plain text card for stat-heavy beats. RULES:
+- Use card_style on AT MOST 2-3 scenes total, ONLY on genuine number/stat beats
+  or the single diaspora-impact beat. NEVER on scene 1 (the hook) or the final
+  CTA. Most scenes should have NO card_style.
+- Every figure MUST come from THIS article's verified facts — never invent or
+  inflate a number. If you're unsure of a number, do NOT use a stat card.
+- card_text and card_subtext remain MANDATORY on the scene (they are the safe
+  fallback if the animated render fails). Set "media_plan": "card" on these.
+- You do NOT pick colors — the renderer assigns the brand palette.
+The three styles and their payloads:
+  • "hero_stat" — ONE signature number that counts up huge on screen. Payload:
+    "hero_stat": {{"big": "<short stat, e.g. $1.3T or 19% or ₹4,400cr>",
+                   "sub": "<one-line meaning of that number>",
+                   "eyebrow": "<2-4 word kicker, e.g. BY THE NUMBERS>"}}
+  • "stat_grid" — 2-4 key figures as a tile grid. Payload:
+    "stat_grid": {{"tiles": [["$135","IPO price / share"],
+                             ["$85.7B","raised — largest ever"],
+                             ["+19%","first-day pop"], ["$2.66T","valuation"]],
+                   "eyebrow": "<kicker>"}}  (2 to 4 tiles; each = [value, label])
+  • "diaspora_panel" — saffron India/NRI impact panel. RESERVE for the explicit
+    diaspora-impact beat. Payload:
+    "diaspora_panel": {{"title": "<panel headline>",
+                        "subtitle": "<one supporting line>",
+                        "bullets": ["<fact>","<fact>","<fact>"]}}  (3-4 bullets)
+
 GENERATE RULES (only when media_plan = "generate") — write "image_prompt" as an
 EDITORIAL ILLUSTRATION brief, never a photo:
 - It MUST be a stylized, abstract, or symbolic illustration — NOT a photograph,
@@ -453,11 +616,26 @@ posts and reject look-alikes. Provide:
 If the story is genuinely not postable on social (abstract explainer, no real
 event/person to find), set query to "" and we will skip social sourcing.
 
+STORY MOOD (top-level "story_mood") — classify the EMOTIONAL TONE of this story
+so we can score it the right music bed. Choose EXACTLY ONE:
+- "triumphant"  — a landmark win, record, breakthrough, first-ever (soaring).
+- "celebratory" — festive, joyful, a happy milestone (upbeat, party energy).
+- "somber"      — tragedy, loss, hardship, a grim immigration story (subdued).
+- "tense"       — conflict, threat, standoff, crisis, breaking danger (urgent).
+- "neutral-news"— a straight news update with no strong emotional charge.
+- "uplifting"   — hopeful, inspiring, human-interest with a positive arc.
+- "cultural"    — festivals, food, heritage, the arts, diaspora culture.
+- "tech"        — technology, startups, markets, business, innovation.
+- "chill"       — lifestyle, travel, light/relaxed features.
+Pick the one that best fits the DOMINANT tone — when torn between tone and topic,
+prefer the emotional tone (a triumphant tech story is "triumphant", not "tech").
+
 Return JSON only:
 {{
   "script": "the spoken narration",
   "hook_line1": "BOLD HOOK LINE",
   "hook_line2": "CONTEXT LINE",
+  "story_mood": "one of: triumphant | celebratory | somber | tense | neutral-news | uplifting | cultural | tech | chill",
   "social_search": {{
     "query": "a tight X/Threads search string to find REAL public posts about THIS exact story",
     "must_include": ["anchor1", "anchor2"],
@@ -489,6 +667,16 @@ Return JSON only:
       "card_text": "Another Beat Key Point",
       "card_subtext": "a one-sentence supporting detail that adds new context under the headline",
       "media_plan": "card"
+    }},
+    {{
+      "scene": 4,
+      "narration": "the numbers beat ~15 words...",
+      "scene_role": "beat",
+      "card_text": "The Deal In Four Figures",
+      "card_subtext": "fallback context line if the animated card can't render",
+      "media_plan": "card",
+      "card_style": "stat_grid",
+      "stat_grid": {{"tiles": [["$135","IPO price / share"], ["$85.7B","raised — largest ever"], ["+19%","first-day pop"], ["$2.66T","valuation in a week"]], "eyebrow": "BY THE NUMBERS"}}
     }}
   ]
 }}"""
@@ -1239,7 +1427,27 @@ def upload_asset(local_path, storage_path, content_type="application/octet-strea
 
 
 def ensure_music_uploaded(music_file):
-    """Ensure a music file is available at a public URL. Upload if needed."""
+    """Ensure a music file is available at a public URL. Upload if needed.
+
+    Accepts either a bare filename (legacy behavior — resolved against the music/
+    dir by name/prefix) OR an absolute path to a file on disk (from the music
+    selector). An absolute path that exists is uploaded directly under its
+    basename storage key.
+    """
+    # Absolute-path input (from select_music): upload directly by basename.
+    if os.path.isabs(str(music_file)) and os.path.exists(music_file):
+        basename = os.path.basename(music_file)
+        storage_path = f"music/{basename}"
+        public_url = f"{STORAGE_BASE}/{storage_path}"
+        r = requests.head(public_url, timeout=10)
+        if r.status_code == 200:
+            return public_url
+        url = upload_asset(str(music_file), storage_path, "audio/mpeg")
+        if url:
+            return url
+        print(f"  ⚠️ Music upload failed for {basename}")
+        return None
+
     storage_path = f"music/{music_file}"
     public_url = f"{STORAGE_BASE}/{storage_path}"
 
@@ -1271,9 +1479,47 @@ def ensure_music_uploaded(music_file):
     return None
 
 
+def pick_music_for_article(article, story_mood=None):
+    """Mood-driven music selection with deterministic rotation.
+
+    Returns (music_url, music_volume, attribution_str). Uses the index-backed
+    music_selector when available (keyed off story_mood, falling back to the
+    article category, then a safe default), rotating deterministically on the
+    article id so re-renders are stable but different articles vary. Falls back
+    to the legacy hardcoded CATEGORY_MUSIC dict if the selector is unavailable.
+    attribution_str is non-empty ONLY for CC-BY tracks (must be credited).
+    """
+    category = article.get("category", "news")
+    music_volume = MUSIC_VOLUME.get(category, 0.05)
+    attribution = ""
+    if _MUSIC_SELECTOR_OK:
+        try:
+            sel = _select_music(
+                category,
+                story_mood=story_mood,
+                target_variant="30s",
+                article_id=article.get("id"),
+            )
+            music_url = ensure_music_uploaded(sel["path"])
+            attribution = sel.get("attribution", "") or ""
+            fam = sel.get("family", "?")
+            print(f"  🎵 Music: {os.path.basename(sel['path'])} "
+                  f"[{fam} | mood={story_mood or 'category'} | {sel.get('license','?')}]")
+            if music_url:
+                return music_url, music_volume, attribution
+            print("  ⚠️ Selector track upload failed — falling back to CATEGORY_MUSIC")
+        except Exception as e:
+            print(f"  ⚠️ music_selector failed ({e}) — falling back to CATEGORY_MUSIC")
+    # Legacy fallback
+    music_file = CATEGORY_MUSIC.get(category, "breaking-news-30s.mp3")
+    music_url = ensure_music_uploaded(music_file)
+    return music_url, music_volume, attribution
+
+
 # ═══════════════════════════════════════════════════════════════════════════════
 # IMAGE SOURCING — Collect public URLs (no local download needed)
 # ═══════════════════════════════════════════════════════════════════════════════
+
 
 BLOCKED_DOMAINS = [
     # NOTE: wikimedia image hosts (upload.wikimedia.org / commons.wikimedia.org)
@@ -4155,6 +4401,7 @@ def source_reel_media_clean(article, storyboard, count=8):
         n_embed += 1
 
     # ── B. GPT directs every remaining scene by its media_plan ──
+    _used_archetypes = set()  # each animated card archetype used at most once per reel
     for i in range(n):
         if matched_urls[i] is not None:
             continue
@@ -4206,8 +4453,44 @@ def source_reel_media_clean(article, storyboard, count=8):
             if url is None:
                 print(f"  ⚠️ Scene {i+1}: media_library had no fit for \"{subj}\" — falling to card")
 
-        # "card" / default / any failed plan → PIL branded key-point card.
+        # "card" / default / any failed plan → ANIMATED MP4 data card (for
+        # stat/diaspora beats), else static PIL branded key-point card (fallback).
         if url is None:
+            # ── Try an animated data card first (article-driven) ──
+            # Scene 0 (hook) is skipped — it must stay a text-free branded bg so
+            # the hook title overlays cleanly (3-layer text collision = QA fail).
+            if i != 0:
+                _anim_path, _arch = _anim_card_for_scene(
+                    scene, i, n, article, _used_archetypes)
+                if _anim_path and os.path.exists(_anim_path):
+                    try:
+                        with open(_anim_path, "rb") as _fh:
+                            _ch = hashlib.md5(_fh.read()).hexdigest()[:10]
+                    except Exception:
+                        _ch = str(int(time.time()))
+                    storage_path = f"reel-cards/{article_id}/anim-{_arch}-{i}-{_ch}.mp4"
+                    aurl = upload_asset(_anim_path, storage_path, "video/mp4")
+                    try:
+                        os.remove(_anim_path)
+                    except Exception:
+                        pass
+                    if aurl:
+                        # Mark as VIDEO so the timeline places it full-bleed; the
+                        # is_anim_card flag forces trim=0 (entrance plays from t0)
+                        # and suppresses Ken Burns crop. 12s source holds the final
+                        # frame, so it fills any scene_length.
+                        meta = {"type": "video", "duration": 12.0, "is_card": True,
+                                "is_anim_card": True, "curated": True,
+                                "generic_pexels": False}
+                        n_card += 1
+                        print(f"  🎬 Scene {i+1}: ANIMATED data card — {_arch}")
+                        matched_urls[i] = aurl
+                        used_in_this_reel.add(aurl)
+                        media_meta[aurl] = meta
+                        continue
+                    else:
+                        print(f"  ⚠️ Scene {i+1}: anim-card upload failed — falling to static card")
+
             # Scene 0 (hook) gets a text-free branded bg (hook title overlays it),
             # avoiding the 3-layer text collision that hurt readability QA.
             local = render_keypoint_card(scene, category, article, i, text_free=(i == 0))
@@ -4617,7 +4900,9 @@ def build_anchor_reel_timeline(
             # Social video plays from the start (it's a real post; a random mid-clip
             # offset would look arbitrary) and is already hard-trimmed at hosting.
             src_duration = meta.get("duration", 10)
-            if meta.get("is_social_video"):
+            if meta.get("is_social_video") or meta.get("is_anim_card"):
+                # Social video & animated data cards play from the START so the
+                # entrance/count-up animation is never trimmed off.
                 trim_start = 0
             else:
                 max_trim = max(0, src_duration - per_image - 1)
@@ -5301,7 +5586,7 @@ def build_caption(article):
     return caption
 
 
-def register_reel(article, video_url, video_path, caption, poster_url=None, thumbnail_url=None, qa_score_actual=8):
+def register_reel(article, video_url, video_path, caption, poster_url=None, thumbnail_url=None, qa_score_actual=8, music_attribution=None):
     """Register in prebuilt_reels for IG/YT posting crons."""
     # Distribution dedup keys entirely on article_id; a row with a null/empty
     # article_id would silently bypass cross-surface dedup and risk a double-post.
@@ -5328,6 +5613,11 @@ def register_reel(article, video_url, video_path, caption, poster_url=None, thum
         payload["poster_url"] = poster_url
     if thumbnail_url:
         payload["thumbnail_url"] = thumbnail_url
+    # Persist CC-BY music credit if a column exists (the credit is ALSO already
+    # appended to `caption`, which is the authoritative source distribution uses;
+    # this is a best-effort structured copy and is stripped if the column is absent).
+    if music_attribution:
+        payload["music_attribution"] = music_attribution
 
     r = requests.post(
         f"{SB_URL}/rest/v1/prebuilt_reels",
@@ -5339,11 +5629,12 @@ def register_reel(article, video_url, video_path, caption, poster_url=None, thum
     if r.status_code in (200, 201):
         print(f"  ✅ Registered in prebuilt_reels")
         return True
-    elif r.status_code == 400 and ("poster_url" in r.text or "thumbnail_url" in r.text):
-        # Columns don't exist yet — retry without poster/thumbnail
-        print(f"  ⚠️ poster_url/thumbnail_url columns not in DB yet — registering without them")
+    elif r.status_code == 400 and ("poster_url" in r.text or "thumbnail_url" in r.text or "music_attribution" in r.text):
+        # Columns don't exist yet — retry without the optional columns
+        print(f"  ⚠️ optional column(s) not in DB yet — registering without them")
         payload.pop("poster_url", None)
         payload.pop("thumbnail_url", None)
+        payload.pop("music_attribution", None)
         r2 = requests.post(
             f"{SB_URL}/rest/v1/prebuilt_reels",
             headers=SB_HEADERS,
@@ -5840,11 +6131,10 @@ def run_anchor_reel(article, dry_run=False, use_production=False, no_publish=Fal
             return False
         print(f"  ✅ {len(image_urls)} valid media after preflight")
 
-    # 5. Ensure music is uploaded
+    # 5. Ensure music is uploaded (mood-driven selection + CC-BY attribution)
     print("\n🎵 Step 5: Setting up music...")
-    music_file = CATEGORY_MUSIC.get(category, "breaking-news-30s.mp3")
-    music_url = ensure_music_uploaded(music_file)
-    music_volume = MUSIC_VOLUME.get(category, 0.05)
+    story_mood = (script_data.get("story_mood") or "").strip().lower() or None
+    music_url, music_volume, reel_music_attribution = pick_music_for_article(article, story_mood=story_mood)
 
     # 6. Build Shotstack timeline
     print("\n🔧 Step 6: Building Shotstack timeline...")
@@ -5959,9 +6249,16 @@ def run_anchor_reel(article, dry_run=False, use_production=False, no_publish=Fal
     if video_url:
         print("\n📋 Step 11: Registering reel...")
         caption = build_caption(article)
+        # CC-BY auto-credit: when a CC-BY track was used, append the required
+        # attribution to the caption. Distribution crons build every platform's
+        # post text from prebuilt_reels.caption, so this credit propagates to
+        # IG/YT/Threads/X/FB descriptions automatically.
+        if reel_music_attribution:
+            caption = f"{caption}\n\n🎵 {reel_music_attribution}"
+            print(f"  🎵 Appended CC-BY music credit to caption: {reel_music_attribution}")
         register_reel(article, video_url, str(uploaded_video_path), caption,
                       poster_url=uploaded_poster_url, thumbnail_url=uploaded_thumb_url,
-                      qa_score_actual=qa_score)
+                      qa_score_actual=qa_score, music_attribution=reel_music_attribution or None)
 
     # 12. Done — distribution handled by videshi-distribute-reels cron
     # (generates once, distributes to IG/YT/Threads/X/FB from prebuilt_reels)
@@ -5996,10 +6293,8 @@ def run_quick_pulse(article, dry_run=False, use_production=False):
     if not image_urls:
         return False
 
-    # Music
-    music_file = CATEGORY_MUSIC.get(category, "breaking-news-30s.mp3")
-    music_url = ensure_music_uploaded(music_file)
-    music_volume = MUSIC_VOLUME.get(category, 0.05)
+    # Music (mood-driven selection; Quick Pulse has no script so category path)
+    music_url, music_volume, _qp_music_attribution = pick_music_for_article(article, story_mood=None)
 
     # Build timeline
     edit_json = build_quick_pulse_timeline(
@@ -6035,7 +6330,11 @@ def run_quick_pulse(article, dry_run=False, use_production=False):
     video_url, uploaded_video_path = upload_final_reel(str(final_path), final_name)
     if video_url:
         caption = build_caption(article)
-        register_reel(article, video_url, str(uploaded_video_path), caption)
+        if _qp_music_attribution:
+            caption = f"{caption}\n\n🎵 {_qp_music_attribution}"
+            print(f"  🎵 Appended CC-BY music credit to caption: {_qp_music_attribution}")
+        register_reel(article, video_url, str(uploaded_video_path), caption,
+                      music_attribution=_qp_music_attribution or None)
         # Distribution handled by videshi-distribute-reels cron
 
     print(f"\n✅ QUICK PULSE COMPLETE: {final_path}")

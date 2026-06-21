@@ -136,6 +136,10 @@ def _fmt_number(prefix,val,suffix,decimals,had_comma):
 # ════════════════════════════════════════════════════════════════════════════
 def render_hero_stat_mp4(big, sub, eyebrow="BY THE NUMBERS", out_dir="/tmp/videshi_anim",
                          duration=3.6, accent=GOLD_BR, pad_to=12.0):
+    # QA polish (2026-06-21): the count-up must LAND EARLY and hold the final
+    # value for most of the clip, so the vision QA gate (which samples a single
+    # frame) can never catch a mid-count number (it once misread $103 before the
+    # value settled on $135). count-up completes by ~42% of the animated window.
     from PIL import Image, ImageDraw
     try:
         os.makedirs(out_dir, exist_ok=True)
@@ -147,8 +151,8 @@ def render_hero_stat_mp4(big, sub, eyebrow="BY THE NUMBERS", out_dir="/tmp/vides
                 t=fi/(n-1) if n>1 else 1.0
                 img=base.copy(); d=ImageDraw.Draw(img)
                 _eyebrow(d,eyebrow,accent)
-                # count-up over first 65% of clip
-                cu=clamp01(t/0.65)
+                # count-up over first 42% of clip, then HOLD final value (QA polish)
+                cu=clamp01(t/0.42)
                 if parsed:
                     prefix,val,suffix,dec,hc=parsed
                     cur=val*ease_out_cubic(cu)
@@ -225,8 +229,8 @@ def render_stat_grid_mp4(tiles, eyebrow="THE DEAL IN FIGURES", out_dir="/tmp/vid
                     # use a near-final solid once ent>0.15 — entrance motion carries the eye)
                     d.rounded_rectangle([x,yy,x+gw,yy+gh],radius=24,fill=PANEL)
                     d.rounded_rectangle([x,yy,x+gw,yy+14],radius=7,fill=ac)
-                    # count-up number
-                    cu=clamp01((t*duration-delay)/1.1)
+                    # count-up lands early then holds (QA polish — avoid mid-count frame)
+                    cu=clamp01((t*duration-delay)/0.6)
                     if parsed[idx]:
                         prefix,val,suffix,dec,hc=parsed[idx]
                         disp=_fmt_number(prefix,val*ease_out_cubic(cu),suffix,dec,hc)
@@ -239,7 +243,7 @@ def render_stat_grid_mp4(tiles, eyebrow="THE DEAL IN FIGURES", out_dir="/tmp/vid
                     d.text((x+34,yy+46),disp,font=nf,fill=(20,30,50))
                     lf=_font(32,"semibold")
                     for j,ln in enumerate(_wrap(d,lab,lf,gw-60)):
-                        d.text((x+34,yy+168+j*40)," ".join(ln),font=lf,fill=(96,110,130))
+                        d.text((x+34,yy+168+j*40)," ".join(ln),font=lf,fill=(74,88,108))
                 _wordmark(d)
                 img.save(os.path.join(fd,f"f_{fi:04d}.png"))
             out=os.path.join(out_dir,f"grid_{abs(hash(str(tiles)))%10**8}.mp4")
@@ -292,7 +296,12 @@ def render_diaspora_panel_mp4(title, subtitle, bullets, eyebrow="THE DIASPORA AN
                     d.rounded_rectangle([MX,pyy,W-MX,pyy+ph],radius=26,fill=(16,28,48),
                                         outline=(40,56,84),width=2)
                     d.rounded_rectangle([MX,pyy,MX+14,pyy+ph],radius=7,fill=SAFFRON)
-                    d.text((MX+50,pyy+40),title.split("—")[0].strip()[:22].upper() if False else "STARLINK IN INDIA",
+                    # panel label derived from the title (first clause before an
+                    # em/en dash), uppercased — generalized, no hardcoded story text.
+                    _plabel=re.split(r"[—–\-:]", title)[0].strip()
+                    if len(_plabel) > 26 or len(_plabel) < 3:
+                        _plabel = "THE DIASPORA ANGLE"
+                    d.text((MX+50,pyy+40),_plabel[:26].upper(),
                            font=_font(52,"extrabold"),fill=WHITE)
                     d.text((MX+50,pyy+110),subtitle,font=_font(36,"semibold"),fill=GOLD_BR)
                     yy=pyy+pad_top
@@ -304,7 +313,7 @@ def render_diaspora_panel_mp4(title, subtitle, bullets, eyebrow="THE DIASPORA AN
                         d.ellipse([MX+50+bdx,yy+10,MX+50+18+bdx,yy+28],fill=SAFFRON)
                         for j,ln in enumerate(bl):
                             d.text((MX+88+bdx,yy+j*46)," ".join(ln),font=ff,
-                                   fill=(214,224,238) if bent>0.5 else MUTED)
+                                   fill=(226,234,244) if bent>0.5 else SUBTEXT)
                         yy+=46*len(bl)+26
                 _wordmark(d)
                 img.save(os.path.join(fd,f"f_{fi:04d}.png"))
