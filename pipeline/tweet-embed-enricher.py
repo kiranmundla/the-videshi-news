@@ -280,6 +280,11 @@ def search_tweet(query, handle=None):
     # Relevance keywords from the query (drop tiny stopword-ish tokens).
     kw = [w for w in re.findall(r'\w+', query) if len(w) > 2]
 
+    # Distinctive keywords = query terms minus generic geo/political tokens.
+    # Defined up-front because _distinct_rel/_score (used in candidates.sort)
+    # close over it; defining it after the sort raised a NameError.
+    distinct_kw = [k for k in kw if k.lower() not in _GENERIC_TOKENS]
+
     # Gather candidates. When we have a known handle, bias to that author first
     # (from:handle), then fall back to a topic-wide search.
     candidates = []
@@ -325,8 +330,8 @@ def search_tweet(query, handle=None):
     # Relevance floor: avoid embedding a tweet that merely shares generic
     # country/political words with the headline (e.g. an "India rejects OIC on
     # J&K" tweet matching an India-UK-trade article only on 'india'+'uk').
-    # Distinctive keywords = query terms minus generic geo/political tokens.
-    distinct_kw = [k for k in kw if k.lower() not in _GENERIC_TOKENS]
+    # distinct_kw (query terms minus generic geo/political tokens) is defined
+    # at the top of this function.
     # Require >=2 total keyword hits AND >=1 hit on a distinctive entity.
     # When the query is all-generic (no distinctive terms) or a single term,
     # fall back to the old total-hits floor so legitimately generic stories
