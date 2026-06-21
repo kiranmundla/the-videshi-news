@@ -256,13 +256,29 @@ def _gpt_query(headline, subheadline='', body=''):
             print(f"  ⚠ Gemini query error: {e}")
     return ''
 
+def _sanitize_query(q):
+    """X recent-search rejects a query whose first/last bare token is a boolean
+    operator (and/or/not) — 'ambiguous use of <op> as a keyword' → HTTP 400.
+    Strip leading/trailing operator and stopword tokens so a trailing 'and'
+    (from a truncated headline) doesn't skip the article."""
+    if not q:
+        return q
+    _OPS = {'and', 'or', 'not'}
+    toks = q.split()
+    # Trim from both ends while the edge token is an operator or a stopword.
+    while toks and (toks[0].lower() in _OPS or toks[0].lower() in _STOPWORDS):
+        toks.pop(0)
+    while toks and (toks[-1].lower() in _OPS or toks[-1].lower() in _STOPWORDS):
+        toks.pop()
+    return ' '.join(toks).strip()
+
 def build_search_query(headline, subheadline='', body='', max_terms=5):
     """Best X search query for an article: GPT reads it and picks the entities;
     if GPT is unavailable, fall back to a headline keyword heuristic."""
     q = _gpt_query(headline, subheadline, body)
-    if q:
-        return q
-    return _heuristic_query(headline, max_terms=max_terms)
+    if not q:
+        q = _heuristic_query(headline, max_terms=max_terms)
+    return _sanitize_query(q)
 
 def search_tweet(query, handle=None):
     """Find a relevant, embeddable tweet via the X API (the same recent-search
