@@ -39,9 +39,15 @@ OUT = os.path.join(HERE, "..", "public", "data", "tech-buzz.json")
 OUT = os.path.normpath(OUT)
 LEADERS = os.path.join(HERE, "pulse-leaders.json")
 
-# Lookback window. Most leaders tweet daily; widen so less-frequent
-# posters (sports figures off-season, etc.) still surface something recent.
-HOURS = int(os.environ.get("PULSE_HOURS", "240"))  # 10 days
+# Handle corrections — accounts that renamed/moved since the list was built.
+# Keyed by leader NAME so it doesn't matter what stale handle is on file.
+HANDLE_OVERRIDE = {
+    "Usha Vance": "SLOTUS",          # Second Lady official account
+    "Mark Zuckerberg": "finkd",      # Zuck's actual personal handle
+    "Hardik Pandya": "hardikpandya7",
+    # Ratan Tata (deceased; RNTata2000 inactive) and Ajay Banga (no personal
+    # handle) intentionally left to fall through to placeholder.
+}
 
 
 def is_placeholder(post):
@@ -55,13 +61,61 @@ def is_placeholder(post):
     return False
 
 
+def fetch_latest_original(handle, max_results=10):
+    """Latest original tweets (no RT/replies), NO time window — returns the
+    person's genuine most-recent words even if they post infrequently.
+    This is the behavior the Pulse strips originally had."""
+    uid = ft.get_user_id(handle)
+    if not uid:
+        return []
+    sess = ft.get_oauth_session()
+    params = {
+        "max_results": max(5, min(max_results, 100)),
+        "tweet.fields": "created_at,attachments,text,public_metrics",
+        "expansions": "attachments.media_keys",
+        "media.fields": "type,url,preview_image_url",
+        "exclude": "retweets,replies",
+    }
+    r = sess.get(f"https://api.twitter.com/2/users/{uid}/tweets", params=params, timeout=20)
+    if r.status_code != 200:
+        print(f"  X API {r.status_code} for {handle}: {r.text[:120]}", file=sys.stderr)
+        return []
+    data = r.json()
+    media_map = {m["media_key"]: m for m in data.get("includes", {}).get("media", [])}
+    out = []
+    for t in data.get("data", []):
+        photos = []
+        for mk in t.get("attachments", {}).get("media_keys", []):
+            m = media_map.get(mk)
+            if m and m.get("type") == "photo":
+                photos.append(m.get("url", ""))
+        out.append({
+            "id": t["id"], "text": t.get("text", ""),
+            "created_at": t.get("created_at", ""), "photos": photos,
+            "url": f"https://x.com/{handle}/status/{t['id']}",
+        })
+    return out
+
+
 def pick_best(tweets):
-    """Most recent original tweet with real text; tie-break by engagement."""
+    """Most recent original tweet with meaningful text.
+    Skip tweets whose text is just a bare t.co link (renders as a naked URL
+    in the card) in favor of one with real words; fall back to newest if all
+    are link-only."""
+    import re as _re
+    def meaningful(t):
+        txt = (t.get("text") or "").strip()
+        if not txt:
+            return False
+        stripped = _re.sub(r'https?://\S+', '', txt).strip()
+        return len(stripped) >= 15
     cands = [t for t in tweets if (t.get("text") or "").strip()]
     if not cands:
         return None
-    # X API returns newest-first already, but sort defensively.
     cands.sort(key=lambda t: t.get("created_at", ""), reverse=True)
+    for t in cands:
+        if meaningful(t):
+            return t
     return cands[0]
 
 
@@ -86,12 +140,12 @@ def main():
 
     for ld in leaders:
         name = ld["name"]
-        handle = existing_handle.get(name) or ld["handle"]
+        handle = HANDLE_OVERRIDE.get(name) or existing_handle.get(name) or ld["handle"]
         category = ld["category"]
 
         post = None
         try:
-            tweets = ft.fetch_recent_tweets(handle, hours=HOURS, max_results=10)
+            tweets = fetch_latest_original(handle, max_results=10)
             best = pick_best(tweets) if tweets else None
             if best:
                 ts = (best.get("created_at") or "")[:10] or datetime.now(timezone.utc).strftime("%Y-%m-%d")
