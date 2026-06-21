@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-21T07:16:24.109192+00:00",
+  "timestamp": "2026-06-21T07:45:12.967602+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
-    "flag": 1,
+    "pass": 1,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,71 +11,17 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "60cb58b0-a36c-4429-b609-20fef9bd6c63",
-      "headline": "The 'Manjummel Boys' Director Is Back, and This Time He's Made Something That Bites. 'Balan: The Boy' Goes From Cannes to Five Languages.",
-      "slug": "balan-the-boy-chidambaram-jithu-madhavan-manjummel-boys-malayalam-psychological-thriller-cannes-five-languages-tovino-thomas-where-to-watch-diaspora-nri-20260621",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "04d27e9c-6157-4f90-b1ed-07355e6a7bb1",
-            "headline": "Tovino Thomas Crashes the College Fest. Athiradi Lands on So"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A man in a plaid shirt",
-          "reason": "The photo plausibly shows Tovino Thomas, relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/p/DZzUYT9Pik8/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post does not seem to relate directly to the film or its themes, making it less relevant to the article's focus."
-          }
-        ],
-        "image_match": {
-          "score": 6,
-          "issue": "The image features Tovino Thomas, who is mentioned in the article, but it does not directly represent the film 'Balan: The Boy' or its themes."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses the film's impact on audiences across South India and the diaspora, highlighting its cultural significance."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the irrelevant Instagram embed with a more relevant social media post or image that connects directly to 'Balan: The Boy'.",
-          "Consider adding more context about the film's reception among diaspora audiences to strengthen the connection."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DZzUYT9Pik8/",
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "d4d02ebb-cc90-4eb3-8729-abcf14224528",
-      "headline": "Rajkumar Hirani Finally Joins the Streaming Game. And He's Brought Arshad Warsi, a New Hirani, and a Whole Lot of Chaos.",
-      "slug": "pritam-and-pedro-rajkumar-hirani-ott-debut-jiohotstar-arshad-warsi-vir-hirani-vikrant-massey-july-3-where-to-watch-diaspora-nri-20260621",
+      "id": "c51c94ef-b5e0-4818-ac52-e00bde797007",
+      "headline": "Two Hundreds, 460 Runs, One Game: America's Cricket League Just Staged Its Most Brutal Run-Fest Yet",
+      "slug": "washington-freedom-beat-mi-new-york-mlc-2026-mitchell-owen-155-kieron-pollard-100-two-centuries-grand-prairie-diaspora-nri",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Arshad Warsi outdoors",
-          "reason": "The photo shows Arshad Warsi, who is relevant to the story."
+          "what_photo_shows": "Kieron Pollard in cricket attire",
+          "reason": "The photo shows Kieron Pollard, relevant to the cricket story."
         },
         "inline_image_mismatches": []
       },
@@ -89,98 +35,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the release of the series to the diaspora audience by highlighting simultaneous streaming access for NRIs."
+          "note": "The article effectively connects the match to the Indian and South Asian diaspora, highlighting their presence and interest in American cricket."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more quotes or insights from the cast or crew to enhance the depth of the article.",
-          "Include a brief overview of Rajkumar Hirani's previous works to provide context for readers unfamiliar with his filmography."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "9248970c-16b4-4024-b000-76d31f8f4111",
-      "headline": "Samantha Ruth Prabhu Walked Back Into a Cinema and the Whole South Exhaled. Then a White T-Shirt Started a Different Conversation.",
-      "slug": "samantha-ruth-prabhu-maa-inti-bangaaram-theatrical-comeback-myositis-raj-nidimoru-pregnancy-speculation-family-man-citadel-where-to-watch-diaspora-nri-20260621",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": null,
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article connects well with diaspora readers by discussing Samantha's films and their availability on streaming platforms."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more direct quotes from Samantha or industry experts to enhance credibility.",
-          "Add a brief section on the cultural significance of Samantha's return for the South Indian film industry."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "960ee946-b1ad-4735-8542-a46652a3393f",
-      "headline": "Janhvi Kapoor's Nightsuit Just Said the Quiet Part Out Loud. 'If Lost, Please Return to Shikhar Pahariya.'",
-      "slug": "janhvi-kapoor-viral-nightsuit-if-lost-return-to-shikhar-pahariya-soft-launch-relationship-peddi-ram-charan-where-to-watch-diaspora-nri-20260621",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "f16ea512-ebf9-4dfd-96af-5a1fa2fc0e68",
-            "headline": "Tiger, Janhvi and Lakshya Walk Into a Love Triangle Built on"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A woman at an event",
-          "reason": "The photo plausibly shows Janhvi Kapoor, matching the story topic."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article connects Janhvi Kapoor's career developments to the diaspora audience by discussing her upcoming Telugu film and its potential reach on streaming platforms."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more direct quotes from Janhvi or Shikhar to enhance the personal connection.",
-          "Include more context about the significance of the relationship in Bollywood to deepen the analysis."
+          "Consider adding quotes from players or coaches to enhance the narrative.",
+          "Include more statistics or historical context about Major League Cricket to provide depth."
         ],
         "verdict": "pass"
       },
