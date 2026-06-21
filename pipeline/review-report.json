@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-21T21:15:50.065450+00:00",
+  "timestamp": "2026-06-21T22:15:45.655786+00:00",
   "mode": "fix",
   "stats": {
     "pass": 5,
-    "flag": 0,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,17 +11,17 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "beb9bb26-f180-4cdd-98b6-11c8093b496b",
-      "headline": "A Year Ago, Aamir Khan Said No to Prime Video's 120 Crore. Sitaare Zameen Par Turned One, and the Gamble Looks Like Genius.",
-      "slug": "aamir-khan-sitaare-zameen-par-one-year-prime-video-120-crore-rejected-pay-per-view-rs-prasanna-genelia-deshmukh-where-to-watch-diaspora-nri-20260621",
+      "id": "a15c7f57-5b67-4844-b538-29d8de3c2a52",
+      "headline": "India Is Dangling Higher Dollar Rates to Pull NRI Money Home \u2014 and Banks Now Want to Route It Through GIFT City",
+      "slug": "rbi-fcnr-b-dollar-deposit-scheme-hedging-subsidy-gift-city-nri-inflows-rupee-nri-investor-20260621-2200",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Aamir Khan",
-          "reason": "The photo shows Aamir Khan, who is the subject of the story."
+          "what_photo_shows": "Reserve Bank of India building",
+          "reason": "The photo shows the Reserve Bank of India, relevant to the story about RBI policies."
         },
         "inline_image_mismatches": []
       },
@@ -35,13 +35,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the film's release and its reception to the NRI audience, highlighting its appeal in international markets."
+          "note": "The article effectively addresses the financial incentives for NRIs to invest in India, making it relevant to the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more quotes or insights from Aamir Khan or the director to enhance the narrative.",
-          "Include a brief comparison of the film's performance with other recent releases to provide context."
+          "Consider adding quotes from NRI investors or financial experts to enhance credibility.",
+          "Include a brief section on potential risks for NRIs investing under the new scheme."
         ],
         "verdict": "pass"
       },
@@ -53,59 +53,17 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "62fe12a7-ada2-4d27-8137-6be7246f2356",
-      "headline": "Netflix Just Bought the Entire South. Thirteen Telugu Titans, From Pawan Kalyan to Nani's 'Mad Max', Are Coming to Your Living Room.",
-      "slug": "netflix-south-2026-telugu-slate-pawan-kalyan-ustaad-nani-paradise-ram-charan-peddi-vijay-deverakonda-vd14-amitabh-bachchan-where-to-watch-diaspora-nri-20260621",
+      "id": "3c79ad36-30f3-4578-b5aa-484e87fb8591",
+      "headline": "A Daily Multivitamin Modestly Slowed the Body's Biological Clock in a Two-Year Trial \u2014 but the Effect Was Small",
+      "slug": "daily-multivitamin-cocoa-flavanols-epigenetic-clock-biological-aging-cosmos-substudy-diaspora-20260621-2200",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Ram Charan at an event",
-          "reason": "The photo shows Ram Charan, who is relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image features Ram Charan, which is relevant to the article's focus on Telugu cinema, but it does not directly relate to the Netflix acquisition."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively addresses the challenges faced by Telugu film fans abroad and highlights how Netflix's acquisition will benefit the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more direct quotes or reactions from filmmakers or actors involved in the Netflix slate to enhance engagement.",
-          "Include a brief overview of Netflix's strategy in acquiring regional films to provide context for the significance of this move."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "a7752486-756c-489d-a414-cef31334ef52",
-      "headline": "Nikesh Arora Is Spending $28 Billion to Own the AI Security Stack. His Engineers Are Watching Closely.",
-      "slug": "nikesh-arora-palo-alto-cyberark-chronosphere-agentic-security-nri-engi-20260621",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "man speaking at TechCrunch Disrupt",
-          "reason": "The photo shows Nikesh Arora, relevant to the story."
+          "what_photo_shows": "bottle of multivitamins spilled",
+          "reason": "The photo shows multivitamins, which are relevant to the story about a multivitamin trial."
         },
         "inline_image_mismatches": []
       },
@@ -119,13 +77,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the topic of cybersecurity acquisitions to the Indian diaspora, particularly regarding job security and investment interests."
+          "note": "The article connects the multivitamin's cultural significance in diaspora homes, making it relevant to NRI readers."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more specific examples of how these acquisitions might impact Indian professionals in the tech industry.",
-          "Include quotes or insights from industry experts to enhance credibility and depth."
+          "Consider adding more specific examples of how diaspora communities incorporate multivitamins into their daily lives.",
+          "Include quotes or insights from diaspora health experts to enhance the article's relevance."
         ],
         "verdict": "pass"
       },
@@ -137,17 +95,59 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "c520378b-7346-4485-ae9c-b11c85ba93a3",
-      "headline": "Nadella, Pichai and Arora Just Bought a Cricket Team at Lord's. They Outbid the IPL to Do It.",
-      "slug": "london-spirit-hundred-tech-consortium-nadella-pichai-arora-gajwani-nri-20260621",
+      "id": "add48bea-b046-4e02-9bb0-edc8c8d4d013",
+      "headline": "Fish-Oil Pills Did Reach the Brain \u2014 but Did Nothing for Memory, a Two-Year Trial of At-Risk Adults Finds",
+      "slug": "omega-3-fish-oil-dha-no-cognitive-benefit-alzheimer-risk-usc-ebiomedicine-trial-diaspora-20260621-2200",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "The Pavilion at Lord's Cricket Ground",
-          "reason": "The photo shows Lord's Cricket Ground, relevant to the cricket team story."
+          "what_photo_shows": "Omega-3 fish oil supplement box",
+          "reason": "The photo shows an omega-3 supplement, relevant to the story about fish-oil pills and memory."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 8,
+          "issue": "The image of fish oil supplements is relevant to the article's topic."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 6,
+          "note": "The article briefly mentions the significance of fish oil for Indian families abroad, but this section is incomplete."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Expand on the diaspora angle to provide more context on how fish oil is perceived and used within Indian communities abroad.",
+          "Include more specific data or quotes from the study to enhance credibility and depth."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "fe5e9b40-30a4-42e2-9557-803f982f8ba0",
+      "headline": "Bengaluru Finally Gets a Nonstop to Europe \u2014 SWISS Launches a Five-a-Week Zurich Link in October",
+      "slug": "swiss-bengaluru-zurich-nonstop-lufthansa-group-india-nri-tech-capital-20260621",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Swiss International Air Lines Airbus A330-300",
+          "reason": "The photo shows the correct aircraft related to the story."
         },
         "inline_image_mismatches": []
       },
@@ -155,19 +155,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
+          "score": 10,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects the story of Indian-origin tech billionaires buying a cricket team to the interests and identity of the Indian diaspora."
+          "note": "The article effectively connects the new flight route to the Indian diaspora, highlighting its significance for Indian-Americans and the broader diaspora community."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from the executives involved to provide more depth and personal insight into their motivations.",
-          "Include more context about the significance of The Hundred and its impact on cricket globally to enhance reader understanding."
+          "Consider adding quotes from airline representatives or travel experts to enhance credibility.",
+          "Include potential impacts on ticket prices or travel times to provide more value to readers."
         ],
         "verdict": "pass"
       },
@@ -179,26 +179,26 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "567688c0-8edf-457f-8b2d-ae87d4269998",
-      "headline": "Trump Said Apple Will Build Chips With Intel. Apple and Intel Said Nothing. That Silence Is the Story.",
-      "slug": "apple-intel-chip-deal-trump-foundry-memory-crunch-nri-engineers-20260621",
+      "id": "3e34047d-c9a7-43d7-8488-eee6f63a1248",
+      "headline": "Indian Passport and Visa Services in the UAE Go Dark for Five Days \u2014 Here's the Window Before June 25",
+      "slug": "indian-passport-visa-services-uae-suspended-june-al-hind-takeover-nri-20260621",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [
           {
-            "article_id": "aae18d99-d361-415e-9c13-eb9495db5a9a",
-            "headline": "India Just Shipped a Chip of Its Own. It Powers an Electrici"
+            "article_id": "51152650-d62a-459c-8074-6c57aa0bb531",
+            "headline": "India Rewrote the OCI Rulebook \u2014 and Most of the Diaspora Ha"
           },
           {
-            "article_id": "f41ba0bb-0eb3-4557-859b-bc389c0eb956",
-            "headline": "India's Chip Bet Has a Quiet Winner: A Bengaluru Startup Mak"
+            "article_id": "f4d9e42f-96d5-4412-b962-ebc050954513",
+            "headline": "India Just Quietly Tightened Its Rules for Foreigners \u2014 and "
           }
         ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "silicon wafer for semiconductors",
-          "reason": "The photo shows a silicon wafer, relevant to semiconductor manufacturing in the tech story."
+          "what_photo_shows": "Indian passport on a table",
+          "reason": "The photo of an Indian passport is relevant to the story about Indian passport services."
         },
         "inline_image_mismatches": []
       },
@@ -206,19 +206,61 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image of a silicon wafer is relevant to the topic of chip manufacturing, but it could be more directly related to Apple and Intel specifically."
+          "score": 10,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects the story to Indian engineers and the implications for the Indian diaspora, providing a nuanced perspective."
+          "note": "The article effectively connects the changes in passport and visa services to the large Indian diaspora in the UAE, highlighting the potential impact on their travel and documentation needs."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a more specific image related to Apple and Intel to enhance visual relevance.",
-          "Include quotes or reactions from industry experts to provide additional depth to the analysis."
+          "Consider adding quotes from officials or community members to enhance credibility and engagement.",
+          "Include a brief FAQ section addressing common concerns about the transition to the new service provider."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "f8e87805-506f-4bb5-8185-28cb6c31bcb0",
+      "headline": "India's Vande Bharat Fleet Tops 160 Trains \u2014 and the New Routes Run Straight Through the Diaspora's Pilgrimage Map",
+      "slug": "vande-bharat-160-trains-new-heritage-routes-khajuraho-nri-pilgrimage-20260621",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Vande Bharat Express at a station",
+          "reason": "The photo shows a Vande Bharat train, relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the new train routes to the needs and travel patterns of the diaspora, particularly in relation to pilgrimage and family visits."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more statistics or data on the impact of these new routes on diaspora travel patterns.",
+          "Include quotes or testimonials from diaspora members who have used the Vande Bharat trains to enhance relatability."
         ],
         "verdict": "pass"
       },
