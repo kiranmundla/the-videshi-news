@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-06-20T22:01:40Z",
-  "stage": "Group Stage — 34 of 72 matches played",
+  "last_updated": "2026-06-21T01:58:37Z",
+  "stage": "Group Stage — 35 of 72 matches played",
   "hosts": "USA, Mexico & Canada",
   "dates": {
     "start": "2026-06-11",
@@ -264,26 +264,26 @@
         "code": "ECU",
         "flag": "🇪🇨",
         "rank": 23,
-        "p": 1,
+        "p": 2,
         "w": 0,
-        "d": 0,
+        "d": 1,
         "l": 1,
         "gf": 0,
         "ga": 1,
-        "pts": 0
+        "pts": 1
       },
       {
         "name": "Curaçao",
         "code": "CUW",
         "flag": "🇨🇼",
         "rank": 82,
-        "p": 1,
+        "p": 2,
         "w": 0,
-        "d": 0,
+        "d": 1,
         "l": 1,
         "gf": 1,
         "ga": 7,
-        "pts": 0
+        "pts": 1
       }
     ],
     "F": [
@@ -1194,8 +1194,8 @@
       "away": "Curaçao",
       "venue": "Arrowhead Stadium",
       "city": "Kansas City",
-      "status": "scheduled",
-      "score": null,
+      "status": "FT",
+      "score": "0-0",
       "home_code": "ECU",
       "away_code": "CUW"
     },
