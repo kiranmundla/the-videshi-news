@@ -1,6 +1,6 @@
 {
  "_description": "Media library mirror — high-quality, attribution-clean images+videos for article/reel fallback. Source of truth is the Supabase media_library table; this mirror lets the pipeline read without a DB round-trip.",
- "_updated": "2026-06-20T10:32:11Z",
+ "_updated": "2026-06-21T01:57:50Z",
  "assets": [
   {
    "id": "person--narendra-modi--bfe42b",
@@ -373,28 +373,6 @@
    "duration": null,
    "quality_score": 92.0,
    "added_date": "2026-06-19T10:32:25Z",
-   "last_used": null,
-   "times_used": 0
-  },
-  {
-   "id": "thing--indian-tech--221bce",
-   "media_type": "image",
-   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/indian-tech-221bce.jpg",
-   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/indian-tech-221bce.jpg",
-   "subject": "indian tech",
-   "subject_type": "thing",
-   "caption": "Indian Air Force IL-76",
-   "attribution": "Wikimedia Commons / Wikimedia Commons, Public domain",
-   "license": "Public domain",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Indian_Air_Force_IL-76.JPG",
-   "tags": [
-    "indian tech"
-   ],
-   "width": 3000,
-   "height": 1907,
-   "duration": null,
-   "quality_score": 76.5,
-   "added_date": "2026-06-19T10:32:30Z",
    "last_used": null,
    "times_used": 0
   },
@@ -1057,6 +1035,28 @@
    "added_date": "2026-06-20T10:32:11Z",
    "last_used": null,
    "times_used": 0
+  },
+  {
+   "id": "thing--indian-tech--221bce",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/indian-tech-221bce.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/indian-tech-221bce.jpg",
+   "subject": "indian tech",
+   "subject_type": "thing",
+   "caption": "Indian Air Force IL-76",
+   "attribution": "Wikimedia Commons / Wikimedia Commons, Public domain",
+   "license": "Public domain",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Indian_Air_Force_IL-76.JPG",
+   "tags": [
+    "indian tech"
+   ],
+   "width": 3000,
+   "height": 1907,
+   "duration": null,
+   "quality_score": 76.5,
+   "added_date": "2026-06-19T10:32:30Z",
+   "last_used": "2026-06-21T01:57:50Z",
+   "times_used": 1
   }
  ]
 }
