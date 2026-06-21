@@ -123,21 +123,50 @@ whose subject plainly contradicts the story topic (e.g. a wrong country/landmark
 Reply with strict JSON only:
 {{"verdict":"MATCH"|"MISMATCH","what_photo_shows":"<5-12 words>","reason":"<one short sentence>"}}"""
 
+def _sniff_image_mime(data):
+    """Return a real image mime from magic bytes, or None if data is not an image.
+    Guards against HTML/error stubs (e.g. Wikimedia rate-limit pages) that the
+    naive size check used to wave through — those reached the vision API, were
+    rejected as 'unsupported image format', and made the gate fail OPEN."""
+    if not data or len(data) < 100:
+        return None
+    if data[:3] == b"\xff\xd8\xff":
+        return "image/jpeg"
+    if data[:8] == b"\x89PNG\r\n\x1a\n":
+        return "image/png"
+    if data[:6] in (b"GIF87a", b"GIF89a"):
+        return "image/gif"
+    if data[:4] == b"RIFF" and data[8:12] == b"WEBP":
+        return "image/webp"
+    return None
+
+
 def _download_image_b64(url):
-    """Download an image, return (b64, mime) or (None, None). curl for proxy + 429 resistance."""
+    """Download an image, return (b64, mime), or (None, reason).
+    Validates real image magic bytes and retries past HTML/error stubs so a
+    throttled CDN response can never be mistaken for a checkable image.
+    On failure the second element is a short reason string (not a mime), which
+    callers can treat as 'could not verify' rather than 'verified OK'."""
     import base64
-    ext = (url.rsplit(".", 1)[-1].split("?")[0].lower() if "." in url else "jpg")
-    mime = {"jpg": "image/jpeg", "jpeg": "image/jpeg", "png": "image/png",
-            "webp": "image/webp", "gif": "image/gif"}.get(ext, "image/jpeg")
-    try:
-        r = subprocess.run(
-            ["curl", "-sS", "-L", "-A", "TheVideshi/1.0 (thevideshi.com)", "-o", "-", url],
-            capture_output=True, timeout=45)
-        if r.returncode == 0 and r.stdout and len(r.stdout) > 500:
+    last = "download-failed"
+    for attempt in range(3):
+        try:
+            r = subprocess.run(
+                ["curl", "-sS", "-L", "-A", "TheVideshi/1.0 (thevideshi.com)", "-o", "-", url],
+                capture_output=True, timeout=45)
+        except Exception:
+            last = "curl-exception"
+            time.sleep(2 * (attempt + 1)); continue
+        if r.returncode != 0 or not r.stdout:
+            last = f"curl-rc-{r.returncode}"
+            time.sleep(2 * (attempt + 1)); continue
+        mime = _sniff_image_mime(r.stdout)
+        if mime and len(r.stdout) > 1000:
             return base64.b64encode(r.stdout).decode("ascii"), mime
-    except Exception:
-        pass
-    return None, None
+        # Not a real image (HTML stub / throttle page / truncated) — retry.
+        last = "not-an-image" if not mime else "too-small"
+        time.sleep(2 * (attempt + 1))
+    return None, last
 
 def vision_image_match(article):
     """Look at the actual hero image and decide if its subject fits the story.
@@ -149,7 +178,11 @@ def vision_image_match(article):
         return None
     b64, mime = _download_image_b64(url)
     if not b64:
-        return None
+        # Could not fetch a real image (stub / throttle / network). This is NOT
+        # the same as "looks fine" — return UNVERIFIED so the gate can hold the
+        # article instead of failing open (the moth-image failure mode).
+        return {"verdict": "UNVERIFIED", "what_photo_shows": "(image unreadable)",
+                "reason": f"could not download image: {mime}"}
     prompt = VISION_JUDGE_PROMPT.format(
         headline=article.get("headline", "") or "",
         subheadline=article.get("subheadline", "") or "",
