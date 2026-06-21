@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-21T13:45:11.434630+00:00",
+  "timestamp": "2026-06-21T14:15:52.507683+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
+    "pass": 7,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,17 +11,17 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "48625793-4b31-4b50-a794-6a428c9a3da2",
-      "headline": "India's Women Won in Auckland, and With It a Ticket Back to the Top Table of World Hockey",
-      "slug": "india-women-hockey-beat-new-zealand-2-0-fih-nations-cup-final-2026-auckland-pro-league-promotion-navneet-kaur-sunelita-toppo-deepika-savita-nri",
+      "id": "058610dd-852c-4a32-b493-022e458f24c7",
+      "headline": "Two Indian Airports Just Made the World's Most Beautiful List \u2014 and One Isn't Even Fully Open",
+      "slug": "navi-mumbai-guwahati-worlds-most-beautiful-airports-2026-prix-versaill-20260621",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
-          "verdict": "MISMATCH",
-          "what_photo_shows": "woman receiving an award",
-          "reason": "The photo shows an award ceremony, not related to hockey or the mentioned event."
+          "verdict": "MATCH",
+          "what_photo_shows": "Navi Mumbai International Airport interior",
+          "reason": "The photo shows Navi Mumbai International Airport, relevant to the story about beautiful airports."
         },
         "inline_image_mismatches": []
       },
@@ -29,29 +29,274 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image is not provided, but the description should match the article's focus on women's hockey."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
+          "note": "The article effectively connects the significance of the airports to the NRI experience, emphasizing the emotional and practical implications for diaspora travelers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from diaspora members or travel experts to enhance the personal connection.",
+          "Include more details about the expected impact of these airports on international travel for NRIs."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "c7a5ab16-874c-43e9-9571-0c77a928c2e5",
+      "headline": "Saudi Arabia Will Now Give You 96 Free Hours on the Way Home to India \u2014 Umrah Included",
+      "slug": "saudi-96-hour-free-stopover-visa-nri-umrah-layover-hack-20260621",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "At-Turaif district in Diriyah",
+          "reason": "The photo shows a site relevant to Saudi Arabia's stopover itineraries."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the stopover visa program to the needs and interests of the Indian diaspora, particularly in relation to travel and pilgrimage."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of itineraries or experiences available during the stopover to enhance reader engagement.",
+          "Include testimonials or quotes from travelers who have used the stopover visa to provide a personal touch."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "f81b85e9-35b2-4989-99a8-a961cc433fd6",
+      "headline": "America's National Parks Just Got a Two-Tier Price Tag \u2014 and It Splits Right Through an NRI Family",
+      "slug": "us-national-parks-nonresident-fee-2026-nri-visiting-parents-surcharge-20260621",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Tunnel View over Yosemite Valley",
+          "reason": "The photo shows Yosemite, relevant to the national parks story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the new pricing system to the experiences of NRI families, making it highly relevant."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from affected families or experts to enhance the narrative.",
+          "Include a brief comparison of the pricing system with other countries' national parks to provide context."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "142d6b46-ddd8-4119-86aa-f702cc947de3",
+      "headline": "India's Tax Tribunal Says Money NRIs Send Into Their NRE Accounts From Foreign Salaries Cannot Be Taxed as 'Unexplained' Income",
+      "slug": "itat-nre-account-foreign-salary-credits-not-unexplained-income-tax-ruling-nri-investor-20260621-1400",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Indian tax office building",
+          "reason": "The photo shows a tax office, relevant to the tax story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses the concerns of NRIs regarding taxation of their remittances, making it relevant and informative for the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a quote from a tax expert or an NRI to provide a personal touch and enhance relatability.",
+          "Include a brief summary of the tribunal's ruling at the beginning for readers who may skim the article."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "aaae8be2-3754-4ffe-928e-534ce627ae49",
+      "headline": "Weakening Muscles May Quietly Make It Easier for Cancer to Grow, New Research Suggests \u2014 and Exercise May Reverse It",
+      "slug": "weakening-muscles-sarcopenia-cancer-growth-mir-7a-5p-exercise-duke-nus-study-diaspora-20260621-1400",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "people doing resistance exercise outdoors",
+          "reason": "The photo shows resistance exercise, relevant to the story on muscle and cancer prevention."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article connects the research findings to the health vulnerabilities of the South Asian diaspora, making it relevant."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific statistics or studies related to the South Asian population's health to strengthen the diaspora angle.",
+          "Include quotes from experts or researchers to enhance credibility and engagement."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "50889b81-76cb-4bc8-a4eb-cb54f5331996",
+      "headline": "The Order You Eat Your Food May Matter Almost as Much as What's On the Plate, a Glucose-Monitor Study Finds",
+      "slug": "food-order-fibre-protein-before-carbs-lowers-post-meal-blood-sugar-cgm-study-diaspora-20260621-1400",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "traditional Indian meal on banana leaf",
+          "reason": "The photo shows a meal with rice and various dishes, relevant to the nutrition topic."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the findings to the Indian diaspora's higher risk of type 2 diabetes."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of traditional Indian foods that could benefit from the suggested eating order.",
+          "Include quotes from experts or researchers to enhance credibility and engagement."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "48625793-4b31-4b50-a794-6a428c9a3da2",
+      "headline": "India's Women Won in Auckland, and With It a Ticket Back to the Top Table of World Hockey",
+      "slug": "india-women-hockey-beat-new-zealand-2-0-fih-nations-cup-final-2026-auckland-pro-league-promotion-navneet-kaur-sunelita-toppo-deepika-savita-nri",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image description is missing, making it difficult to assess its relevance to the article."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
           "note": "The article effectively connects the win to the Indian diaspora, highlighting the emotional resonance and cultural significance."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include a relevant image that depicts the women's hockey team or the final match to enhance visual engagement.",
-          "Consider adding quotes from players or coaches to provide a more personal touch to the narrative."
+          "Include a relevant image description to enhance the image match score.",
+          "Consider adding quotes from players or coaches to provide more depth and personal insight into the victory."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "Cleared mismatched image (woman receiving an award)",
-        "held: image mismatch"
+        "promoted to published"
       ],
       "revised": false,
       "unpublished": false,
-      "image_mismatch": true,
       "llm_source": "gpt-4o-mini"
     }
   ]
