@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-21T01:15:10.608983+00:00",
+  "timestamp": "2026-06-21T01:45:17.989750+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 0,
-    "flag": 1,
+    "pass": 1,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,28 +11,17 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "ef6db29d-9b55-44bb-b784-405bd2d5b53b",
-      "headline": "Alpha Hands the Woman the Gun. YRF's First Female-Led Spy Film Names Her Sita and Lets Her Rewrite the Myth.",
-      "slug": "alpha-trailer-alia-bhatt-sharvari-yrf-spy-universe-bobby-deol-hrithik-roshan-cameo-anil-kapoor-shiv-rawail-july-3-where-to-watch-diaspora-nri-20260620",
+      "id": "25f41bba-6f8b-4b50-94ad-d8c94d4f162e",
+      "headline": "San Francisco Bounced Back in Texas, and an Indian-American Was There at the Finish",
+      "slug": "san-francisco-unicorns-beat-texas-super-kings-mlc-2026-pretorius-69-krishnamurthy-ashwin-grand-prairie-diaspora-nri",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "8098893b-7842-4915-8058-bd4bf64602ee",
-            "headline": "Alpha Has Arrived. After Six Films of Tiger, Pathaan and War"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/reel/DZrXE9fB1sc/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram reel does not appear to be directly related to the film or its themes, making it less relevant to the article."
-          }
-        ],
+        "embed_issues": [],
         "image_match": {
           "score": 9,
           "issue": null
@@ -40,18 +29,17 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the film's release timing with the diaspora audience, highlighting the simultaneous release in key international markets."
+          "note": "The article effectively highlights the significance of the Indian-American player and the diaspora's role in Major League Cricket."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant Instagram embed with a more relevant social media post related to the film or its themes.",
-          "Consider adding more quotes or insights from the cast or crew to enhance the depth of the article."
+          "Consider adding quotes from players or coaches to enhance the narrative.",
+          "Include more statistics or historical context about the teams or players to enrich the article."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/reel/DZrXE9fB1sc/",
         "promoted to published"
       ],
       "revised": false,
