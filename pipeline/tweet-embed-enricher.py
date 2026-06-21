@@ -146,6 +146,20 @@ _STOPWORDS = {
     'big','bigger','clean','seals','refuses','tried','trap','wants','showed',
 }
 
+# Generic geo/political/topic tokens that are too common to anchor relevance on
+# their own. A candidate tweet matching ONLY these (e.g. 'india'+'uk') is a
+# keyword collision, not a real topical match — the floor requires at least one
+# hit on a DISTINCTIVE entity (named person/org/specific term) outside this set.
+_GENERIC_TOKENS = {
+    'india','indian','indians','uk','britain','british','us','usa','america',
+    'american','china','chinese','pakistan','europe','european','eu','world',
+    'global','nation','national','country','government','govt','state','states',
+    'pm','president','minister','ministry','official','officials','leader',
+    'leaders','trade','deal','talks','summit','meeting','market','markets',
+    'economy','economic','political','politics','policy','news','report',
+    'update','latest','breaking','says','said','new','plan','plans',
+}
+
 def _heuristic_query(headline, max_terms=5):
     """Fallback when GPT is unavailable: keep only high-signal terms from the
     headline (proper nouns first), dropping stopwords/numbers/punctuation.
@@ -297,19 +311,35 @@ def search_tweet(query, handle=None):
     def _rel(p):
         text_l = (p.get('text', '') or '').lower()
         return sum(1 for k in kw if k.lower() in text_l)
+    def _distinct_rel(p):
+        """Count hits on DISTINCTIVE keywords only (named people/orgs/specific
+        terms), excluding generic geo/political tokens. A tweet that matches
+        only 'india'+'uk' has 0 distinctive hits and must be rejected."""
+        text_l = (p.get('text', '') or '').lower()
+        return sum(1 for k in distinct_kw if k.lower() in text_l)
     def _score(p):
-        return (_rel(p), 1 if p.get('verified') else 0,
+        return (_distinct_rel(p), _rel(p), 1 if p.get('verified') else 0,
                 p.get('impressions', 0) or 0, p.get('likes', 0) or 0)
     candidates.sort(key=_score, reverse=True)
 
-    # Relevance floor: avoid embedding a tweet that merely shares one generic
-    # word with the headline (e.g. "Emergency" matching an unrelated post).
-    # Require >=2 keyword hits, or all of them when the query is very short.
+    # Relevance floor: avoid embedding a tweet that merely shares generic
+    # country/political words with the headline (e.g. an "India rejects OIC on
+    # J&K" tweet matching an India-UK-trade article only on 'india'+'uk').
+    # Distinctive keywords = query terms minus generic geo/political tokens.
+    distinct_kw = [k for k in kw if k.lower() not in _GENERIC_TOKENS]
+    # Require >=2 total keyword hits AND >=1 hit on a distinctive entity.
+    # When the query is all-generic (no distinctive terms) or a single term,
+    # fall back to the old total-hits floor so legitimately generic stories
+    # are not over-filtered.
     min_hits = 1 if len(kw) <= 1 else 2
 
     # Verify each candidate renders through react-tweet; return the first valid.
     for p in candidates[:5]:
         if _rel(p) < min_hits:
+            continue
+        # When the article HAS distinctive entities, the matched tweet must
+        # hit at least one of them — generic geo-token collisions are rejected.
+        if distinct_kw and _distinct_rel(p) < 1:
             continue
         tweet_id = p.get('id')
         if not tweet_id:
