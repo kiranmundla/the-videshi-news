@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-21T04:45:26.550596+00:00",
+  "timestamp": "2026-06-21T05:15:14.946762+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
+    "pass": 2,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,17 +11,17 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "3e49ec28-60f2-470e-bd81-a8deefc8b99c",
-      "headline": "India's First Insurtech IPO Is Live. The Muted Grey Market Says the Easy-Money Era of Desi Startups Is Over.",
-      "slug": "turtlemint-ipo-india-first-insurtech-listing-price-band-nri-investors-policybazaar-20260621",
+      "id": "55e41812-5a7e-4b35-acba-6d304ab85cfb",
+      "headline": "Ranbir Kapoor's Ramayana Is Now the Most Wanted Film in India. A $500 Million God Is Coming for Diwali.",
+      "slug": "ramayana-ranbir-kapoor-most-anticipated-bookmyshow-interest-chart-yash-ravana-sai-pallavi-hans-zimmer-ar-rahman-dneg-diwali-2026-where-to-watch-diaspora-nri-20260620",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Bombay Stock Exchange building",
-          "reason": "The photo shows the Bombay Stock Exchange, relevant to the IPO story."
+          "what_photo_shows": "Ranbir Kapoor waving",
+          "reason": "The photo shows Ranbir Kapoor, who is relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -35,55 +35,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the IPO to the interests of NRIs, discussing their ability to participate in Indian IPOs and the implications for the diaspora."
+          "note": "The article discusses the film's global distribution strategy, which is particularly relevant to the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more direct quotes from industry experts or analysts to enhance credibility.",
-          "Include a brief comparison with other recent IPOs to provide context for Turtlemint's performance."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "b9645646-13a1-4a1a-ab68-dd34a57638a2",
-      "headline": "India's First Spacecraft Built for Humans Is Almost Ready to Fly. A Robot Goes First, and the Diaspora Is Watching.",
-      "slug": "gaganyaan-1-uncrewed-test-h2-2026-vyommitra-india-space-economy-45-billion-diaspora-20260621",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "illustration of Gaganyaan spacecraft",
-          "reason": "The photo shows the Gaganyaan spacecraft, relevant to the story about India's space mission."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects India's space ambitions to the global Indian community, highlighting the contributions of Indian-origin professionals."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more direct quotes from diaspora members or experts to enhance the connection.",
-          "Include more specific examples of how the diaspora is contributing to or benefiting from India's space program."
+          "Include more quotes or perspectives from diaspora audiences or critics to enhance the connection.",
+          "Add a brief section on how the film's themes resonate with the Indian diaspora."
         ],
         "verdict": "pass"
       },
@@ -102,11 +60,6 @@
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MISMATCH",
-          "what_photo_shows": "Cricketer in Kolkata Knight Riders jersey",
-          "reason": "The photo shows a player in a Kolkata Knight Riders jersey, not related to the India Test match story."
-        },
         "inline_image_mismatches": []
       },
       "llm_review": {
@@ -114,7 +67,7 @@
         "embed_issues": [],
         "image_match": {
           "score": 5,
-          "issue": "hero image description missing"
+          "issue": "missing image description"
         },
         "diaspora_angle": {
           "present": true,
@@ -124,18 +77,16 @@
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include a relevant hero image description to enhance the visual connection to the article.",
-          "Expand on the diaspora angle by including quotes or reactions from NRI fans or communities."
+          "Include a relevant image that captures the essence of the match or the players mentioned.",
+          "Expand on the diaspora angle to include more specific references to how the match impacts Indian communities abroad."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "Cleared mismatched image (Cricketer in Kolkata Knight Riders jersey)",
-        "held: image mismatch"
+        "promoted to published"
       ],
       "revised": false,
       "unpublished": false,
-      "image_mismatch": true,
       "llm_source": "gpt-4o-mini"
     }
   ]
