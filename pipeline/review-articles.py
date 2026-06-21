@@ -683,6 +683,40 @@ def review_article(article, recent_articles, fix_mode=False, pre_publish=False):
         elif vmatch:
             print(f"  🖼️✅ Image OK — {vmatch.get('what_photo_shows','')}")
 
+    # ── Pre-check 5: Vision check on INLINE body images ──
+    # Decorative inline images (mostly Wikimedia) are matched off title-cased
+    # phrases and are frequently wrong subjects (album covers, wrong city/person).
+    # The hero (Pre-check 4) is separate; this scans images embedded in the body.
+    if (pre_publish or fix_mode):
+        inline_imgs = re.findall(r'!\[[^\]]*\]\((https?://[^)\s]+)\)', body)
+        bad_inline = []
+        for iurl in inline_imgs:
+            if iurl == image_url:  # hero already handled
+                continue
+            m = re.search(r'!\[([^\]]*)\]\(' + re.escape(iurl) + r'\)', body)
+            alt = m.group(1) if m else ""
+            iv = vision_image_match({
+                "headline": headline, "subheadline": article.get("subheadline", ""),
+                "image_url": iurl, "image_caption": alt,
+                "vertical": vertical, "category": article.get("category", ""),
+            })
+            if iv and (iv.get("verdict") or "").upper() == "MISMATCH":
+                bad_inline.append((iurl, iv.get("what_photo_shows", "")))
+                print(f"  🖼️❌ Inline image MISMATCH — {iv.get('what_photo_shows','?')} | {iv.get('reason','')[:60]}")
+        result["pre_checks"]["inline_image_mismatches"] = [u for u, _ in bad_inline]
+        if bad_inline and fix_mode:
+            new_body = body
+            for iurl, _ in bad_inline:
+                new_body = re.sub(r'\n*!\[[^\]]*\]\(' + re.escape(iurl) + r'\)\n*', '\n\n', new_body)
+            new_body = re.sub(r'\n{3,}', '\n\n', new_body)
+            if new_body != body:
+                status = sb_patch(article["id"], {"body": new_body})
+                if status in (200, 204):
+                    result["actions_taken"].append(f"Removed {len(bad_inline)} mismatched inline image(s)")
+                    print(f"  ✅ Removed {len(bad_inline)} mismatched inline image(s)")
+                    body = new_body
+                    article["body"] = body
+
     # ── Build article text for LLM review ──
     article_text = f"""HEADLINE: {headline}
 VERTICAL: {vertical}
