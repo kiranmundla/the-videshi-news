@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-06-21T16:02:01Z",
-  "stage": "Group Stage — 36 of 72 matches played",
+  "last_updated": "2026-06-21T19:57:24Z",
+  "stage": "Group Stage — 37 of 72 matches played",
   "hosts": "USA, Mexico & Canada",
   "dates": {
     "start": "2026-06-11",
@@ -396,6 +396,19 @@
     ],
     "H": [
       {
+        "name": "Spain",
+        "code": "ESP",
+        "flag": "🇪🇸",
+        "rank": 2,
+        "p": 2,
+        "w": 1,
+        "d": 1,
+        "l": 0,
+        "gf": 4,
+        "ga": 0,
+        "pts": 4
+      },
+      {
         "name": "Uruguay",
         "code": "URU",
         "flag": "🇺🇾",
@@ -409,32 +422,6 @@
         "pts": 1
       },
       {
-        "name": "Saudi Arabia",
-        "code": "KSA",
-        "flag": "🇸🇦",
-        "rank": 61,
-        "p": 1,
-        "w": 0,
-        "d": 1,
-        "l": 0,
-        "gf": 1,
-        "ga": 1,
-        "pts": 1
-      },
-      {
-        "name": "Spain",
-        "code": "ESP",
-        "flag": "🇪🇸",
-        "rank": 2,
-        "p": 1,
-        "w": 0,
-        "d": 1,
-        "l": 0,
-        "gf": 0,
-        "ga": 0,
-        "pts": 1
-      },
-      {
         "name": "Cape Verde",
         "code": "CPV",
         "flag": "🇨🇻",
@@ -445,6 +432,19 @@
         "l": 0,
         "gf": 0,
         "ga": 0,
+        "pts": 1
+      },
+      {
+        "name": "Saudi Arabia",
+        "code": "KSA",
+        "flag": "🇸🇦",
+        "rank": 61,
+        "p": 2,
+        "w": 0,
+        "d": 1,
+        "l": 1,
+        "gf": 1,
+        "ga": 5,
         "pts": 1
       }
     ],
@@ -1225,8 +1225,8 @@
       "away": "Saudi Arabia",
       "venue": "Mercedes-Benz Stadium",
       "city": "Atlanta",
-      "status": "scheduled",
-      "score": null,
+      "status": "FT",
+      "score": "4-0",
       "home_code": "ESP",
       "away_code": "KSA"
     },
