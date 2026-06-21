@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-21T00:45:28.834413+00:00",
+  "timestamp": "2026-06-21T01:15:10.608983+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 5,
-    "flag": 0,
+    "pass": 0,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,17 +11,28 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "1adde08c-69c7-4c7b-9ad3-85ed9bc0e0f4",
-      "headline": "Ghar Ka Khana, Delivered: The Quiet Boom in America's Indian Tiffin Economy",
-      "slug": "ghar-ka-khana-delivered-the-quiet-boom-in-americas-indian-tiffin-economy",
+      "id": "ef6db29d-9b55-44bb-b784-405bd2d5b53b",
+      "headline": "Alpha Hands the Woman the Gun. YRF's First Female-Led Spy Film Names Her Sita and Lets Her Rewrite the Myth.",
+      "slug": "alpha-trailer-alia-bhatt-sharvari-yrf-spy-universe-bobby-deol-hrithik-roshan-cameo-anil-kapoor-shiv-rawail-july-3-where-to-watch-diaspora-nri-20260620",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "8098893b-7842-4915-8058-bd4bf64602ee",
+            "headline": "Alpha Has Arrived. After Six Films of Tiger, Pathaan and War"
+          }
+        ],
         "broken_embeds": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DZrXE9fB1sc/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel does not appear to be directly related to the film or its themes, making it less relevant to the article."
+          }
+        ],
         "image_match": {
           "score": 9,
           "issue": null
@@ -29,161 +40,18 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the tiffin economy to the emotional and cultural needs of the diaspora, highlighting how it addresses their longing for home-cooked meals."
+          "note": "The article effectively connects the film's release timing with the diaspora audience, highlighting the simultaneous release in key international markets."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes or testimonials from users of tiffin services to enhance the personal connection.",
-          "Include more statistics or data on the growth of the tiffin economy to strengthen the argument."
+          "Replace the irrelevant Instagram embed with a more relevant social media post related to the film or its themes.",
+          "Consider adding more quotes or insights from the cast or crew to enhance the depth of the article."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "3c9228cc-93d3-4f47-b924-6cf03db24d07",
-      "headline": "Kati Rolls Cross the Hudson: How New York's Indian Street Food Is Franchising the American Suburb",
-      "slug": "kati-rolls-cross-the-hudson-how-new-yorks-indian-street-food-is-franchising-the",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image depicts making kati rolls in Kolkata, which is relevant but does not directly represent the franchising aspect in New York."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the franchising of kati rolls to the experiences and sentiments of the Indian diaspora, highlighting both excitement and concern."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from local customers or franchise owners to provide personal perspectives.",
-          "Include more statistics or data on the growth of Indian street food in the U.S. to strengthen the argument."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "cf96b893-1fda-407f-ae58-12df4e91cbda",
-      "headline": "From Baymeadows to Main Street: How Patel Brothers Became the Anchor of Suburban Desi America",
-      "slug": "from-baymeadows-to-main-street-how-patel-brothers-became-the-anchor-of-suburban",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the growth of Patel Brothers to the experiences and needs of the Indian diaspora in America."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from customers or community members to enhance the personal connection.",
-          "Include more statistics or data on the impact of Patel Brothers on local economies to strengthen the argument."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "37ddb690-6c70-4a85-9865-024a99c3bea3",
-      "headline": "Britain May Change Prime Ministers on Monday. The India-UK Trade Deal Was Due to Be Signed in July.",
-      "slug": "uk-starmer-resignation-brink-burnham-india-uk-ceta-trade-deal-july-15-nri-impact-20260621",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the political situation in the UK to the interests of the Indian diaspora, particularly regarding the India-UK trade deal."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more direct quotes from political analysts or experts to enhance credibility.",
-          "Include a brief overview of the potential impacts of the trade deal on the Indian economy for a more comprehensive perspective."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "26fdf10f-b91e-43cd-a55c-5cabbb7b1468",
-      "headline": "Days After the Oil Started Flowing Again, Iran's Guards Declared the Strait of Hormuz Shut. India's Refiners Are Watching the Water.",
-      "slug": "irgc-declares-strait-hormuz-shut-us-iran-switzerland-talks-india-oil-lifeline-doubt-20260621",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the geopolitical situation to the economic implications for the diaspora, particularly regarding remittances and deposits."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more direct quotes from experts or officials to enhance credibility.",
-          "Include a brief overview of how the situation has historically affected Indian refiners to provide context."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DZrXE9fB1sc/",
         "promoted to published"
       ],
       "revised": false,
