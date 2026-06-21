@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-21T09:15:30.825113+00:00",
+  "timestamp": "2026-06-21T10:15:35.264833+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 4,
+    "pass": 6,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,17 +11,59 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "83834d48-0854-45e4-8a91-b5485a11128e",
-      "headline": "After a Year of Delays, Yash's 'Toxic' Finally Plants Its Flag \u2014 August 26, IMAX, and a Female Cast Stacked to the Ceiling",
-      "slug": "toxic-yash-release-date-locked-august-26-2026-imax-nayanthara-kiara-advani-huma-qureshi-geetu-mohandas-where-to-watch-diaspora-nri-20260621",
+      "id": "856763a1-d0b0-4608-8205-262b33d570fd",
+      "headline": "India's IT Giants Just Hit a Three-Year Low \u2014 and a Warning From Accenture Lit the Fuse",
+      "slug": "india-it-stocks-three-year-low-accenture-warning-infosys-tcs-wipro-hcltech-nri-investor-20260621-1000",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Yash in promotional poster for 'Toxic'",
-          "reason": "The photo shows Yash, who is relevant to the story about the film 'Toxic'."
+          "what_photo_shows": "modern office buildings and greenery",
+          "reason": "The photo plausibly depicts an IT company campus, relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the health of India's IT sector to the livelihoods and investments of the Indian diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more data or quotes from industry experts to enhance credibility.",
+          "Include a brief overview of how the IT sector's performance impacts the broader Indian economy."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "88af2cb4-7d4f-4faa-8e23-280514090f5c",
+      "headline": "A Structured Lifestyle Program Slowed Brain Aging in 2,000 Older Adults \u2014 and the Recipe Is Strikingly Ordinary",
+      "slug": "us-pointer-trial-structured-lifestyle-mind-diet-exercise-slows-cognitive-decline-2111-adults-diaspora-20260621-1000",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "close-up of leafy greens",
+          "reason": "Leafy greens are part of the MIND diet mentioned in the study."
         },
         "inline_image_mismatches": []
       },
@@ -35,13 +77,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively highlights the film's release in multiple languages and premium formats, appealing directly to the diaspora audience."
+          "note": "The article effectively connects the findings of the study to the health risks prevalent in the Indian diaspora, making it relevant and engaging for this audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more quotes or insights from the cast or crew to enhance the depth of the article.",
-          "Include a brief section on the significance of the film's themes or its cultural impact to engage readers further."
+          "Consider adding more specific examples of how the structured lifestyle program can be implemented within the Indian diaspora context.",
+          "Include quotes or insights from experts in the field to enhance credibility and depth."
         ],
         "verdict": "pass"
       },
@@ -53,17 +95,17 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "c0def06a-bfa5-458b-9d57-9048d774691a",
-      "headline": "Ather's Stock Fell When It Raised \u20b92,500 Crore. The CEO's One-Line Post Explains Why It Shouldn't Have.",
-      "slug": "ather-energy-2500-crore-qip-fundraise-ev-mass-market-nri-investors-20260621",
+      "id": "1c523515-9300-4738-833e-7b48db51319e",
+      "headline": "Exercise May Work as Well as Pills or Therapy for Depression and Anxiety, a Review of Hundreds of Trials Finds",
+      "slug": "exercise-depression-anxiety-as-effective-medication-therapy-bjsm-umbrella-review-diaspora-20260621-1000",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Riders on electric scooters in city",
-          "reason": "The photo shows electric scooters, relevant to the Ather Energy story."
+          "what_photo_shows": "people exercising in a park",
+          "reason": "The photo shows people engaging in physical activity, which relates to the exercise and mental health topic."
         },
         "inline_image_mismatches": []
       },
@@ -71,19 +113,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to Ather Energy or electric vehicles."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the diaspora to Ather's fundraising and expansion, highlighting investment opportunities and the potential for expatriate talent to return."
+          "note": "The article effectively connects the topic of mental health and exercise to the Indian diaspora, addressing cultural stigmas and the importance of seeking help."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that depicts Ather Energy or electric vehicles to enhance visual connection.",
-          "Expand on the diaspora angle by including specific examples of how NRIs can engage with Ather or the Indian EV market."
+          "Consider adding specific examples or testimonials from individuals in the diaspora who have benefited from exercise for mental health.",
+          "Include more statistics or data specific to the Indian diaspora to strengthen the connection."
         ],
         "verdict": "pass"
       },
@@ -95,17 +137,17 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "1c8c497a-fe16-4c9e-93ff-98e8d47876f8",
-      "headline": "Razorpay Filed for Its IPO at a $2 Billion Discount. The Markdown Is the Story.",
-      "slug": "razorpay-ipo-confidential-filing-valuation-reset-reverse-flip-nri-fint-20260621",
+      "id": "2b2bcd61-10d6-444f-a66a-c8509d82770a",
+      "headline": "Summer Fares to India Are the Highest in Years \u2014 Here's the August-Tuesday Formula That Beats Them",
+      "slug": "us-india-summer-airfare-2026-august-tuesday-secondary-airport-nri-20260621",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "stock-exchange display with market data",
-          "reason": "The photo shows a stock-exchange display, relevant to an IPO story."
+          "what_photo_shows": "airport departure board",
+          "reason": "The photo shows an airport scene relevant to travel fares."
         },
         "inline_image_mismatches": []
       },
@@ -114,18 +156,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image does not directly relate to Razorpay or fintech specifically, but it is a generic business-related image."
+          "issue": "The image depicts a travel scene but does not specifically relate to India or the context of high fares."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects the topic of Razorpay's IPO to the interests of the NRI community, discussing implications for diaspora investors."
+          "note": "The article directly addresses NRIs and their travel needs, making it highly relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that directly represents fintech or Razorpay.",
-          "Add more statistics or examples of how the diaspora has been impacted by similar IPOs in the past."
+          "Consider using an image that specifically represents travel to India to enhance relevance.",
+          "Add a section with tips on how to find the best deals or resources for NRIs to book flights."
         ],
         "verdict": "pass"
       },
@@ -137,17 +179,17 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "c0185d16-7a8f-4c5f-bb96-1117952dc539",
-      "headline": "Dhurandhar 2 Finally Comes Home to India \u2014 and Netflix Is Pouring the 'Raw and Undekha' Cut Straight Into Your Living Room",
-      "slug": "dhurandhar-2-the-revenge-raw-undekha-netflix-india-streaming-june-19-ranveer-singh-aditya-dhar-five-languages-where-to-watch-diaspora-nri-20260621",
+      "id": "a5195b58-bb9d-422c-b72b-af2dc4f017af",
+      "headline": "This Is the Summer Business Class to India Got Cheap \u2014 Etihad's Abu Dhabi Hub Shows Why",
+      "slug": "etihad-business-class-india-cheap-summer-abu-dhabi-miles-nri-20260621",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A man in ornate clothing",
-          "reason": "The photo plausibly shows Ranveer Singh, relevant to the story."
+          "what_photo_shows": "Etihad Airways Airbus A350-1000",
+          "reason": "The photo shows the aircraft type mentioned in the story."
         },
         "inline_image_mismatches": []
       },
@@ -155,19 +197,61 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image features Ranveer Singh, which is relevant to the article about 'Dhurandhar 2', but it does not directly depict the film or its themes."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects with the diaspora by discussing the film's availability on Netflix in multiple languages and the significance of its global reach."
+          "quality": 8,
+          "note": "The article effectively addresses the needs and interests of NRIs regarding travel options and loyalty programs."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider including more direct quotes or reactions from diaspora audiences to enhance the connection.",
-          "Add a brief summary of the film's plot for readers unfamiliar with the franchise."
+          "Consider adding more specific examples of how NRIs can benefit from the discussed fare changes.",
+          "Include a brief comparison with other airlines to enhance the context of Etihad's offerings."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "42ae6c41-d133-4d21-b107-c60ff91c1e7e",
+      "headline": "Japan Just Raised Its Visa Fee Fivefold and Hiked the Departure Tax \u2014 but the Weak Yen Still Wins for NRIs",
+      "slug": "japan-visa-fee-fivefold-departure-tax-hike-july-nri-weak-yen-20260621",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Tokyo skyline with Mount Fuji",
+          "reason": "The photo shows a relevant location for a Japan travel story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses the concerns and interests of NRIs traveling to Japan, particularly regarding visa fees and travel logistics."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more specific examples of how the fee changes might impact travel plans for NRIs.",
+          "Add a section on potential alternatives for NRIs considering travel to Japan, such as other destinations or travel tips."
         ],
         "verdict": "pass"
       },
