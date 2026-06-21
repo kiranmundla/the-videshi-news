@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-21T08:45:26.244559+00:00",
+  "timestamp": "2026-06-21T09:15:30.825113+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
+    "pass": 4,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,17 +11,17 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "27bfcbe7-feab-4bc3-bdec-ee115ecfc77d",
-      "headline": "Europe Is Cooking. If Your Summer Plans Run Through Paris or Rome, Read This First.",
-      "slug": "europe-record-june-heatwave-france-alcohol-ban-40c-diaspora-travellers-students-20260621",
+      "id": "83834d48-0854-45e4-8a91-b5485a11128e",
+      "headline": "After a Year of Delays, Yash's 'Toxic' Finally Plants Its Flag \u2014 August 26, IMAX, and a Female Cast Stacked to the Ceiling",
+      "slug": "toxic-yash-release-date-locked-august-26-2026-imax-nayanthara-kiara-advani-huma-qureshi-geetu-mohandas-where-to-watch-diaspora-nri-20260621",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Tourists at Rome's Colosseum",
-          "reason": "The photo shows a relevant location mentioned in the story."
+          "what_photo_shows": "Yash in promotional poster for 'Toxic'",
+          "reason": "The photo shows Yash, who is relevant to the story about the film 'Toxic'."
         },
         "inline_image_mismatches": []
       },
@@ -35,13 +35,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the heatwave situation in Europe to the travel plans of Indian families, making it relevant for the diaspora audience."
+          "note": "The article effectively highlights the film's release in multiple languages and premium formats, appealing directly to the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more specific travel tips for Indian families visiting Europe during heatwaves.",
-          "Include quotes or anecdotes from Indian travelers to enhance relatability."
+          "Consider adding more quotes or insights from the cast or crew to enhance the depth of the article.",
+          "Include a brief section on the significance of the film's themes or its cultural impact to engage readers further."
         ],
         "verdict": "pass"
       },
@@ -53,55 +53,18 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "6ad79a68-763c-4876-8784-09a5f2234e03",
-      "headline": "The Talks That Will Decide India's Oil Bill Just Opened on a Swiss Mountaintop",
-      "slug": "us-iran-peace-talks-open-buergenstock-vance-pakistan-mediation-hormuz-india-oil-20260621",
+      "id": "c0def06a-bfa5-458b-9d57-9048d774691a",
+      "headline": "Ather's Stock Fell When It Raised \u20b92,500 Crore. The CEO's One-Line Post Explains Why It Shouldn't Have.",
+      "slug": "ather-energy-2500-crore-qip-fundraise-ev-mass-market-nri-investors-20260621",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Buergenstock resort on a mountain",
-          "reason": "The photo shows the Buergenstock resort, the venue for the talks."
+          "what_photo_shows": "Riders on electric scooters in city",
+          "reason": "The photo shows electric scooters, relevant to the Ather Energy story."
         },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the geopolitical situation to the Indian diaspora's concerns, particularly regarding oil prices and repatriation efforts."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Add more context on how the outcomes of the talks could specifically impact the Indian diaspora beyond oil prices.",
-          "Include quotes or perspectives from diaspora members to enhance relatability."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "0458cb92-f744-4a73-9f78-b3f857c065a3",
-      "headline": "India's Consulates in the UAE Go Dark for Five Days \u2014 and 3.5 Million NRIs Have to Plan Around It",
-      "slug": "india-uae-passport-visa-services-pause-june-2026-al-hind-nri-20260621",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
         "inline_image_mismatches": []
       },
       "llm_review": {
@@ -109,18 +72,102 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "missing image description"
+          "issue": "The image does not directly relate to Ather Energy or electric vehicles."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively addresses the concerns of the Indian diaspora in the UAE regarding consular services."
+          "quality": 8,
+          "note": "The article effectively connects the diaspora to Ather's fundraising and expansion, highlighting investment opportunities and the potential for expatriate talent to return."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include a relevant image that visually represents the topic of consular services or the Indian community in the UAE.",
-          "Add a brief summary or bullet points at the end to recap the key takeaways for NRIs."
+          "Consider using a more relevant image that depicts Ather Energy or electric vehicles to enhance visual connection.",
+          "Expand on the diaspora angle by including specific examples of how NRIs can engage with Ather or the Indian EV market."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "1c8c497a-fe16-4c9e-93ff-98e8d47876f8",
+      "headline": "Razorpay Filed for Its IPO at a $2 Billion Discount. The Markdown Is the Story.",
+      "slug": "razorpay-ipo-confidential-filing-valuation-reset-reverse-flip-nri-fint-20260621",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "stock-exchange display with market data",
+          "reason": "The photo shows a stock-exchange display, relevant to an IPO story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to Razorpay or fintech specifically, but it is a generic business-related image."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the topic of Razorpay's IPO to the interests of the NRI community, discussing implications for diaspora investors."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that directly represents fintech or Razorpay.",
+          "Add more statistics or examples of how the diaspora has been impacted by similar IPOs in the past."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "c0185d16-7a8f-4c5f-bb96-1117952dc539",
+      "headline": "Dhurandhar 2 Finally Comes Home to India \u2014 and Netflix Is Pouring the 'Raw and Undekha' Cut Straight Into Your Living Room",
+      "slug": "dhurandhar-2-the-revenge-raw-undekha-netflix-india-streaming-june-19-ranveer-singh-aditya-dhar-five-languages-where-to-watch-diaspora-nri-20260621",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "A man in ornate clothing",
+          "reason": "The photo plausibly shows Ranveer Singh, relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image features Ranveer Singh, which is relevant to the article about 'Dhurandhar 2', but it does not directly depict the film or its themes."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects with the diaspora by discussing the film's availability on Netflix in multiple languages and the significance of its global reach."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including more direct quotes or reactions from diaspora audiences to enhance the connection.",
+          "Add a brief summary of the film's plot for readers unfamiliar with the franchise."
         ],
         "verdict": "pass"
       },
