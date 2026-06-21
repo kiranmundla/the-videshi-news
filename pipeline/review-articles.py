@@ -700,7 +700,8 @@ def review_article(article, recent_articles, fix_mode=False, pre_publish=False):
     if image_url and (pre_publish or fix_mode):
         vmatch = vision_image_match(article)
         result["pre_checks"]["vision_image_match"] = vmatch
-        if vmatch and (vmatch.get("verdict") or "").upper() == "MISMATCH":
+        _verdict = (vmatch.get("verdict") if vmatch else "") or ""
+        if vmatch and _verdict.upper() == "MISMATCH":
             shows = vmatch.get("what_photo_shows", "?")
             print(f"  🖼️❌ Image MISMATCH — photo shows: {shows} | {vmatch.get('reason','')[:70]}")
             result["image_mismatch"] = True
@@ -713,6 +714,11 @@ def review_article(article, recent_articles, fix_mode=False, pre_publish=False):
                     print(f"  ✅ Cleared mismatched image")
                     image_url = ""
                     article["image_url"] = ""
+        elif vmatch and _verdict.upper() == "UNVERIFIED":
+            # Image could not be downloaded/read → we genuinely don't know if it
+            # fits. Hold rather than fail open (the moth-image failure mode).
+            print(f"  🖼️🔒 Image UNVERIFIED — {vmatch.get('reason','')[:70]} (holding)")
+            result["image_unverified"] = True
         elif vmatch:
             print(f"  🖼️✅ Image OK — {vmatch.get('what_photo_shows','')}")
 
@@ -812,6 +818,11 @@ BODY:
                     # Vision check cleared a wrong photo; hold for re-sourcing, don't publish image-less.
                     print(f"  🔒 Held in review — image was mismatched, awaiting re-source")
                     result["actions_taken"].append("held: image mismatch")
+                elif result.get("image_unverified"):
+                    # Hero image could not be read → can't confirm it's right. Hold
+                    # rather than publish an unchecked photo (fail-closed).
+                    print(f"  🔒 Held in review — hero image unverifiable, awaiting recheck")
+                    result["actions_taken"].append("held: image unverified")
                 else:
                     now_ts = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
                     status = sb_patch(article["id"], {"status": "published", "published_at": now_ts})
