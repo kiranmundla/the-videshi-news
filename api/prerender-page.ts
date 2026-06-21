@@ -294,6 +294,7 @@ async function renderEventsIndex(): Promise<string> {
   );
 
   const eventLinks = events
+    .filter((e: any) => e.slug)
     .map(
       (e: any) =>
         `<li><a href="${SITE}/events/${esc(e.slug)}">${esc(e.title)}</a>
