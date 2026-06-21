@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-21T16:15:28.048317+00:00",
+  "timestamp": "2026-06-21T16:45:19.112879+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
+    "pass": 2,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,22 +11,17 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "61225d65-7adf-4a05-9986-13fbace27d82",
-      "headline": "The Work Permit Indians Quietly Depend On Just Got a Lot More Fragile",
-      "slug": "ead-automatic-extension-ends-validity-cut-h4-spouses-india-backlog-20260621",
+      "id": "e739edd7-0a98-47c3-8bc2-7cce417f9340",
+      "headline": "India Has More Rice Than It Can Store \u2014 and Is Suddenly Struggling to Sell It Abroad",
+      "slug": "india-rice-exports-value-down-basmati-gulf-war-africa-dollar-crunch-record-stocks-fy26-20260621",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "ff7a5aee-08a8-4555-995f-141fc0fd9741",
-            "headline": "A Court Told USCIS to Restart Frozen Work Permits. Indian Gr"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "USCIS Employment Authorization Document",
-          "reason": "The photo shows a work permit relevant to the immigration story."
+          "what_photo_shows": "bowl of rice",
+          "reason": "The photo of rice is relevant to the story about rice exports."
         },
         "inline_image_mismatches": []
       },
@@ -35,18 +30,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 9,
-          "issue": "The image of the USCIS EAD card is relevant to the article's topic on work permits."
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively discusses the impact of changes in work permits on Indian expatriates, particularly H-4 spouses and green card applicants."
+          "note": "The article effectively connects the rice trade issues to the diaspora experience, particularly in relation to the availability and pricing of basmati rice."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes or anecdotes from affected individuals to personalize the impact of the changes.",
-          "Add a section on potential solutions or advocacy efforts to address the issues raised."
+          "Consider adding more specific examples of how the rice trade impacts diaspora communities in different countries.",
+          "Include quotes from diaspora members or experts to enhance the personal connection to the topic."
         ],
         "verdict": "pass"
       },
@@ -58,22 +53,17 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "59a51d5b-4153-4594-9b45-3ed163f7966a",
-      "headline": "The Open-Ended Student Visa Is Ending. India's 360,000 Students Are the Most Exposed",
-      "slug": "f1-duration-of-status-final-rule-omb-four-year-india-students-opt-20260621",
+      "id": "98f465bd-f8ee-4ddf-9102-8e5db8fc4d64",
+      "headline": "India's Central Bank Just Cut Its Growth Forecast \u2014 and Pointed Straight at the Gulf War and the Monsoon",
+      "slug": "rbi-growth-cut-6-6-percent-fy27-mpc-minutes-repo-5-25-malhotra-gulf-war-monsoon-20260621",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "8f14a8e9-f572-4ee9-8de1-8cb3398bbb62",
-            "headline": "The 60-Day Cushion That Saved Indian Grads Is About to Be Cu"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "International students on campus",
-          "reason": "The photo shows international students, relevant to the student visa story."
+          "what_photo_shows": "man in suit and tie",
+          "reason": "The photo plausibly shows the Reserve Bank of India Governor."
         },
         "inline_image_mismatches": []
       },
@@ -81,77 +71,23 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image of students does relate to the topic of student visas, but it lacks a direct connection to the specific context of Indian students."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively highlights the impact of visa changes on Indian students, making it highly relevant to the diaspora audience."
+          "quality": 8,
+          "note": "The article effectively connects the RBI's decisions to the financial implications for the diaspora, making it relevant for NRI readers."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider including quotes or testimonials from Indian students to enhance the personal connection to the topic.",
-          "Add a section on potential responses or actions from the Indian government or educational institutions regarding the visa changes."
+          "Consider adding more direct quotes from diaspora members or experts to enhance the personal connection.",
+          "Include a brief section on how the RBI's decisions might specifically impact different segments of the diaspora, such as students or professionals."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "2886a105-1489-41e1-95b7-c8983bdf69f5",
-      "headline": "USCIS Just Told Green-Card Seekers to Go Home to Apply. Indians Wait the Longest to Hear It",
-      "slug": "uscis-adjustment-status-extraordinary-relief-consular-processing-india-20260621",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "dd69492f-68a3-4957-8674-2e9cb1c2528b",
-            "headline": "The DoJ Wants to Take Back a Citizenship It Granted in 2017 "
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "USCIS Application Support Center",
-          "reason": "The photo shows a USCIS center relevant to the immigration story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://x.com/USCIS",
-            "problem": "irrelevant",
-            "explanation": "The USCIS Twitter link does not provide additional context or relevant information directly related to the article's focus on the new policy memo and its implications for Indian green card seekers."
-          }
-        ],
-        "image_match": {
-          "score": 7,
-          "issue": "The image depicts a USCIS Application Support Center, which is relevant to the topic of immigration and green card applications, but it does not directly illustrate the specific changes discussed in the article."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively highlights the impact of the new USCIS policy on Indian immigrants, making it highly relevant to the NRI community."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the irrelevant USCIS Twitter link with a more relevant source that discusses the implications of the new policy.",
-          "Consider adding quotes or insights from immigration experts or affected individuals to enhance the article's depth."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "Removed irrelevant embed: https://x.com/USCIS",
         "promoted to published"
       ],
       "revised": false,
