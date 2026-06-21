@@ -99,6 +99,96 @@ def call_openai(prompt, article_text, model="gpt-4o-mini", max_tokens=800):
         print(f"  ⚠️  OpenAI parse error: {e}")
         return None
 
+# ── Vision image-match check (looks at the actual photo pixels) ──
+VISION_JUDGE_PROMPT = """You are a photo desk editor for an Indian-diaspora news site. \
+You are shown ONE photo and the headline/subject it was attached to. Decide ONLY whether \
+the photo's SUBJECT plausibly belongs to this story.
+
+Headline: {headline}
+Subheadline: {subheadline}
+Vertical: {vertical}
+Caption/entities on the photo: {caption}
+
+Judge ONLY the photo's subject vs the story topic — NOT whether the headline or caption \
+claims are factually true. Rules:
+- If the photo shows the correct named person, it is a MATCH even if the caption gets a \
+detail wrong (job title, jersey number, "resigning", team, etc.). Do not second-guess facts.
+- A generic but on-topic photo (a graduation scene for a student-visa story, a stock oil \
+tanker for a shipping story, a city skyline for a city story) is a MATCH.
+- MISMATCH only when the subject is clearly WRONG: a different named person, a music \
+album cover / band on a non-music story, an unrelated company logo, a meme, or a photo \
+whose subject plainly contradicts the story topic (e.g. a wrong country/landmark).
+- When unsure, answer MATCH. Bias strongly toward MATCH; flag only gross mismatches.
+
+Reply with strict JSON only:
+{{"verdict":"MATCH"|"MISMATCH","what_photo_shows":"<5-12 words>","reason":"<one short sentence>"}}"""
+
+def _download_image_b64(url):
+    """Download an image, return (b64, mime) or (None, None). curl for proxy + 429 resistance."""
+    import base64
+    ext = (url.rsplit(".", 1)[-1].split("?")[0].lower() if "." in url else "jpg")
+    mime = {"jpg": "image/jpeg", "jpeg": "image/jpeg", "png": "image/png",
+            "webp": "image/webp", "gif": "image/gif"}.get(ext, "image/jpeg")
+    try:
+        r = subprocess.run(
+            ["curl", "-sS", "-L", "-A", "TheVideshi/1.0 (thevideshi.com)", "-o", "-", url],
+            capture_output=True, timeout=45)
+        if r.returncode == 0 and r.stdout and len(r.stdout) > 500:
+            return base64.b64encode(r.stdout).decode("ascii"), mime
+    except Exception:
+        pass
+    return None, None
+
+def vision_image_match(article):
+    """Look at the actual hero image and decide if its subject fits the story.
+    Returns dict {verdict, what_photo_shows, reason} or None if unavailable/skipped."""
+    if not OPENAI_KEY:
+        return None
+    url = (article.get("image_url") or "").strip()
+    if not url:
+        return None
+    b64, mime = _download_image_b64(url)
+    if not b64:
+        return None
+    prompt = VISION_JUDGE_PROMPT.format(
+        headline=article.get("headline", "") or "",
+        subheadline=article.get("subheadline", "") or "",
+        vertical=article.get("vertical", "") or article.get("category", "") or "",
+        caption=(article.get("image_caption") or article.get("image_entities") or "(none)"),
+    )
+    payload = {
+        "model": "gpt-4o",
+        "messages": [{
+            "role": "user",
+            "content": [
+                {"type": "text", "text": prompt},
+                {"type": "image_url", "image_url": {"url": f"data:{mime};base64,{b64}", "detail": "low"}},
+            ],
+        }],
+        "max_tokens": 150,
+        "temperature": 0,
+        "response_format": {"type": "json_object"},
+    }
+    for attempt in range(3):
+        try:
+            r = subprocess.run(
+                ["curl", "-s", "https://api.openai.com/v1/chat/completions",
+                 "-H", f"Authorization: Bearer {OPENAI_KEY}",
+                 "-H", "Content-Type: application/json",
+                 "-d", json.dumps(payload)],
+                capture_output=True, text=True, timeout=90)
+            data = json.loads(r.stdout)
+            if "error" in data:
+                msg = data["error"].get("message", "")[:80]
+                if any(s in msg.lower() for s in ("rate", "overload", "timeout", "try again")):
+                    time.sleep(2 * (attempt + 1)); continue
+                print(f"  ⚠️  Vision error: {msg}")
+                return None
+            return json.loads(data["choices"][0]["message"]["content"])
+        except Exception:
+            time.sleep(1.5 * (attempt + 1))
+    return None
+
 def call_gemini(prompt, article_text, model="gemini-2.5-flash", max_tokens=800):
     if not GEMINI_KEY:
         return None
@@ -561,7 +651,28 @@ def review_article(article, recent_articles, fix_mode=False, pre_publish=False):
                     print(f"  ✅ Removed {count} broken/hallucinated embed(s)")
                     body = fixed_body
                     article["body"] = body
-    
+
+    # ── Pre-check 4: Vision image match (looks at the actual photo) ──
+    # Only run when there's an image and we're gating publication, to keep cost down.
+    if image_url and (pre_publish or fix_mode):
+        vmatch = vision_image_match(article)
+        result["pre_checks"]["vision_image_match"] = vmatch
+        if vmatch and (vmatch.get("verdict") or "").upper() == "MISMATCH":
+            shows = vmatch.get("what_photo_shows", "?")
+            print(f"  🖼️❌ Image MISMATCH — photo shows: {shows} | {vmatch.get('reason','')[:70]}")
+            result["image_mismatch"] = True
+            if fix_mode:
+                # Clear the bad image so the article can't publish with a wrong photo.
+                # A null image_url sends it back for re-sourcing on the next writer pass.
+                status = sb_patch(article["id"], {"image_url": ""})
+                if status in (200, 204):
+                    result["actions_taken"].append(f"Cleared mismatched image ({shows})")
+                    print(f"  ✅ Cleared mismatched image")
+                    image_url = ""
+                    article["image_url"] = ""
+        elif vmatch:
+            print(f"  🖼️✅ Image OK — {vmatch.get('what_photo_shows','')}")
+
     # ── Build article text for LLM review ──
     article_text = f"""HEADLINE: {headline}
 VERTICAL: {vertical}
@@ -620,13 +731,18 @@ BODY:
         if fix_mode and verdict == "pass":
             # Pre-publish gate: promote passing articles to published
             if pre_publish and article.get("status") == "review":
-                now_ts = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
-                status = sb_patch(article["id"], {"status": "published", "published_at": now_ts})
-                if status in (200, 204):
-                    result["actions_taken"].append("promoted to published")
-                    print(f"  ✅ Promoted to published (score {score})")
+                if result.get("image_mismatch"):
+                    # Vision check cleared a wrong photo; hold for re-sourcing, don't publish image-less.
+                    print(f"  🔒 Held in review — image was mismatched, awaiting re-source")
+                    result["actions_taken"].append("held: image mismatch")
                 else:
-                    print(f"  ⚠️ Failed to promote (HTTP {status})")
+                    now_ts = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+                    status = sb_patch(article["id"], {"status": "published", "published_at": now_ts})
+                    if status in (200, 204):
+                        result["actions_taken"].append("promoted to published")
+                        print(f"  ✅ Promoted to published (score {score})")
+                    else:
+                        print(f"  ⚠️ Failed to promote (HTTP {status})")
 
         elif fix_mode and verdict == "fail":
             fail_result = handle_fail(article, llm_result, fix_mode)
