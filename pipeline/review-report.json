@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-21T10:45:26.625569+00:00",
+  "timestamp": "2026-06-21T11:15:13.009971+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
+    "pass": 1,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,17 +11,17 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "496c29c4-b070-4bc2-9053-b95172aa228c",
-      "headline": "Kohli Is Coming Back to England \u2014 This Time With a White Ball, and the Diaspora Is Counting Down",
-      "slug": "virat-kohli-recalled-india-odi-squad-england-tour-july-2026-edgbaston-lords-fitness-test-jaiswal-dropped-harshit-rana-gill-captain-diaspora-nri",
+      "id": "bda0575d-6978-4b13-bebf-70bcccb1c016",
+      "headline": "Allu Arjun Walks. Jr. NTR Picks Up the Spear. 'God of War' Just Got Its Warrior \u2014 and It's the Costliest Film of His Life.",
+      "slug": "god-of-war-jr-ntr-trivikram-allu-arjun-exit-kartikeya-murugan-mythological-epic-costliest-film-where-to-watch-diaspora-nri-20260621",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "cricketer in India jersey",
-          "reason": "The photo shows a cricketer in an India jersey, relevant to the cricket story."
+          "what_photo_shows": "Man with sunglasses and beard",
+          "reason": "The photo plausibly shows Jr. NTR, matching the story topic."
         },
         "inline_image_mismatches": []
       },
@@ -29,103 +29,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects Kohli's return to the emotional significance for the Indian diaspora, highlighting the cultural and familial ties."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from fans or experts to enhance the emotional connection.",
-          "Include more statistics or historical context about Kohli's impact on the Indian diaspora."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "597520bd-e4ef-4ce5-9e34-1490d9913093",
-      "headline": "On the Longest Day, India's Quietest Export Filled Parks From Kolkata to Birmingham",
-      "slug": "international-day-of-yoga-2026-modi-kolkata-red-road-healthy-ageing-diaspora-worldwide-20260621",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "mass yoga session outdoors",
-          "reason": "The photo shows a mass yoga session, aligning with the story about International Day of Yoga."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image does not directly relate to the film 'God of War' or the specific context of Jr. NTR's role."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the International Day of Yoga to the diaspora experience, highlighting how yoga serves as a cultural bridge for Indian communities abroad."
+          "note": "The article effectively connects the film's release and its significance to NRI audiences, particularly in terms of box office potential."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes or testimonials from diaspora participants to enhance the personal connection.",
-          "Include more statistics or data on participation rates in different countries to provide a broader context."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "b3c3df37-b432-4fb3-ae01-f14a0c054674",
-      "headline": "Bangladesh's New Prime Minister Picked His First Trip Abroad. He Did Not Pick India.",
-      "slug": "bangladesh-pm-tarique-rahman-first-foreign-trip-malaysia-china-skips-india-hasina-teesta-20260621",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A man speaking at an event",
-          "reason": "The photo plausibly shows the named person, Tarique Rahman."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": "The image is relevant to the article's topic about Bangladesh's new Prime Minister and his foreign trip."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the geopolitical implications of the Prime Minister's trip to the Indian diaspora, particularly those with Bangladeshi origins."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more direct quotes from experts or officials to enhance credibility.",
-          "Include a brief historical context of Bangladesh-India relations to provide readers with a deeper understanding."
+          "Consider including a more relevant image that directly represents 'God of War' or Jr. NTR in the context of the film.",
+          "Add quotes or insights from industry experts or the director to enhance credibility and depth."
         ],
         "verdict": "pass"
       },
