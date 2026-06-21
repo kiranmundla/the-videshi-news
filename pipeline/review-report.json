@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-21T02:45:12.215666+00:00",
+  "timestamp": "2026-06-21T03:15:32.311009+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 5,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,13 +11,18 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "e5f41a65-57c3-46fa-9422-94fed66649f5",
-      "headline": "India Held the Line on Petrol Prices Through a War. Now Its State Oil Companies Are Running Out of Room to Borrow.",
-      "slug": "india-state-fuel-retailers-borrowing-limits-one-trillion-rupee-losses-gulf-oil-shock-20260621",
+      "id": "16b08059-aa0b-47e1-8413-dedce48b5737",
+      "headline": "A UiPath Veteran Just Joined Trupeer AI. It's a Familiar Move in the India-US Tech Playbook.",
+      "slug": "trupeer-ai-raghu-subramanian-uipath-enterprise-ai-gcc-indian-startup-n-20260621",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
-        "broken_embeds": []
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "enterprise software team at work",
+          "reason": "The photo shows a team working, which aligns with the tech company context."
+        }
       },
       "llm_review": {
         "overall_score": 8,
@@ -29,13 +34,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the economic implications of fuel prices to the interests of the NRI community, particularly regarding investments and remittances."
+          "note": "The article effectively connects the diaspora's role in the India-US tech corridor and highlights the significance of Indian talent in global enterprises."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more data or quotes from experts to strengthen the analysis of the economic impact on state oil companies.",
-          "Include a brief overview of how similar situations have been handled in other countries for comparative context."
+          "Consider adding quotes from industry experts or stakeholders to enhance credibility.",
+          "Include more specific examples of how Trupeer AI's platform has been utilized by companies to illustrate its impact."
         ],
         "verdict": "pass"
       },
@@ -47,13 +52,64 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "ad44883b-20fc-4659-b1e5-b462717b783f",
-      "headline": "The Rule That Will End Open-Ended Study in America Just Cleared the White House. 360,000 Indian Students Are Next.",
-      "slug": "dhs-f1-duration-of-status-final-rule-clears-omb-indian-students-fixed-four-year-20260621",
+      "id": "ddbe80b3-a6ff-474f-8c3a-eb3952abea8d",
+      "headline": "75,000 Firewalls, One Stolen Password at a Time: Why India Was Among the Worst Hit by 'FortiBleed'",
+      "slug": "fortibleed-fortinet-breach-75000-firewalls-india-worst-hit-cybersecuri-20260621",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
-        "broken_embeds": []
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "rows of servers in a data center",
+          "reason": "The photo subject is relevant to the technology and data breach story."
+        }
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image depicts a data center, which is relevant to the topic of cybersecurity but does not directly relate to the specific incident of FortiBleed."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the impact of the FortiBleed incident to the Indian diaspora, particularly in relation to Indian IT professionals and their roles in global cybersecurity."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including more specific examples of how the FortiBleed incident has affected Indian companies or individuals in the diaspora.",
+          "Add a concluding section that summarizes the implications of the breach for both India and the global cybersecurity landscape."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "aae18d99-d361-415e-9c13-eb9495db5a9a",
+      "headline": "India Just Shipped a Chip of Its Own. It Powers an Electricity Meter, and That's the Point.",
+      "slug": "india-first-homegrown-chip-azimuth-cyient-arka-smart-meter-semiconduct-20260621",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "f41ba0bb-0eb3-4557-859b-bc389c0eb956",
+            "headline": "India's Chip Bet Has a Quiet Winner: A Bengaluru Startup Mak"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "a silicon wafer",
+          "reason": "The photo shows a silicon wafer, relevant to semiconductor manufacturing."
+        }
       },
       "llm_review": {
         "overall_score": 8,
@@ -65,13 +121,95 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively discusses the implications of the new rule on Indian students and their families, making it relevant to the diaspora."
+          "note": "The article effectively connects the semiconductor development to the Indian diaspora, highlighting the role of Indian engineers abroad and the potential for investment and relocation."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes from immigration experts or affected students to add depth and personal perspectives.",
-          "Provide a brief comparison of the new rule with the previous system to clarify the changes for readers."
+          "Consider adding more statistics or data points about the impact of this chip on the Indian economy or the global semiconductor market.",
+          "Include quotes from industry experts or stakeholders to enhance credibility and provide diverse perspectives."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "c0c812e5-b440-4fda-adf2-17ad711ddeaf",
+      "headline": "Three Miserable Husbands, One Bored God. Save the Tigers Season 3 Drags Marriage All the Way to Heaven.",
+      "slug": "save-the-tigers-season-3-jiohotstar-ott-release-vennela-kishore-lord-indra-priyadarshi-telugu-comedy-where-to-watch-diaspora-nri-20260620",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "man with headband under umbrella",
+          "reason": "The photo plausibly shows Vennela Kishore, relevant to the story."
+        }
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image of Vennela Kishore does not directly relate to the article's headline about the show 'Save the Tigers' and its themes."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects with NRI readers by discussing the show's appeal to Telugu diaspora and its cultural relevance."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that directly relates to the show's themes or characters mentioned in the article.",
+          "Add more context about the show's reception among the diaspora to enhance the connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "04d27e9c-6157-4f90-b1ed-07355e6a7bb1",
+      "headline": "Tovino Thomas Crashes the College Fest. Athiradi Lands on SonyLIV in Five Languages, and the Diaspora Gets the Whole Joke.",
+      "slug": "athiradi-sonyliv-ott-release-tovino-thomas-basil-joseph-malayalam-action-comedy-five-languages-where-to-watch-diaspora-nri-20260620",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "man in plaid shirt smiling",
+          "reason": "The photo plausibly shows Tovino Thomas, matching the story topic."
+        }
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the film's multi-language availability to the diaspora experience, making it relevant for NRI readers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more direct quotes from the film or its creators to enhance engagement.",
+          "Include a brief section on the reception of the film in both India and among the diaspora to provide context."
         ],
         "verdict": "pass"
       },
