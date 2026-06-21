@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-21T20:45:29.139645+00:00",
+  "timestamp": "2026-06-21T21:15:50.065450+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 4,
+    "pass": 5,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,17 +11,17 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "22d5679c-98ec-44aa-bfc2-b4afab144f9e",
-      "headline": "One Warning From Accenture Knocked India's IT Stocks to a Three-Year Low. The Diaspora's Bellwether Sector Is Flashing Red.",
-      "slug": "india-nifty-it-three-year-low-accenture-warning-infosys-tcs-wipro-discretionary-spending-20260621",
+      "id": "beb9bb26-f180-4cdd-98b6-11c8093b496b",
+      "headline": "A Year Ago, Aamir Khan Said No to Prime Video's 120 Crore. Sitaare Zameen Par Turned One, and the Gamble Looks Like Genius.",
+      "slug": "aamir-khan-sitaare-zameen-par-one-year-prime-video-120-crore-rejected-pay-per-view-rs-prasanna-genelia-deshmukh-where-to-watch-diaspora-nri-20260621",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "pyramid-shaped building on IT campus",
-          "reason": "The photo shows an IT campus, relevant to the story about India's IT sector."
+          "what_photo_shows": "Aamir Khan",
+          "reason": "The photo shows Aamir Khan, who is the subject of the story."
         },
         "inline_image_mismatches": []
       },
@@ -31,133 +31,194 @@
         "image_match": {
           "score": 9,
           "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the IT sector's performance to the diaspora's economic interests and employment opportunities."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more specific examples of how the downturn in IT stocks has directly impacted diaspora communities.",
-          "Include quotes or perspectives from diaspora members or experts to enhance the personal connection."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "1c55b31d-ad21-4e8d-bf5e-461b8167d31d",
-      "headline": "Ambani Just Filed the Papers for What Could Be India's Biggest-Ever IPO. The Diaspora's Phone Carrier Is Going Public.",
-      "slug": "reliance-jio-platforms-ipo-drhp-sebi-filing-mukesh-ambani-record-india-listing-20260621",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A man in a suit and tie",
-          "reason": "The photo plausibly shows Mukesh Ambani, relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the IPO to the interests of the Indian diaspora, emphasizing its relevance to NRIs."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from diaspora investors or experts to enhance the personal connection.",
-          "Include more details on how NRIs can participate in the IPO to provide practical information."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "a058fa89-7c55-44b7-ac7c-e953acff8b66",
-      "headline": "Your US Visa Is a Second Passport in Disguise \u2014 Here's Where It Lets Indians Travel Without Applying for a Visa",
-      "slug": "us-visa-green-card-visa-free-travel-destinations-indian-passport-2026-20260621",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "hero image not provided"
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article directly addresses the Indian diaspora by discussing travel benefits related to US visas, which is highly relevant to NRIs."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include a hero image that visually represents the theme of travel or visas to enhance engagement.",
-          "Consider adding a section with tips for NRIs on how to prepare for travel using their US visa."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "3227cfe2-908c-4003-bd1d-796c3edc3008",
-      "headline": "The Hardest Part of an American Work Visa Right Now Isn't Approval \u2014 It's Getting an Appointment in India",
-      "slug": "us-visa-appointment-backlog-india-consulates-work-visa-waits-20260621",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image description is missing, making it difficult to assess relevance."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses the challenges faced by Indian professionals seeking US work visas, which is highly relevant to the NRI community."
+          "note": "The article effectively connects the film's release and its reception to the NRI audience, highlighting its appeal in international markets."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include a relevant image description to enhance the article's visual appeal and context.",
-          "Consider adding quotes or anecdotes from affected individuals to personalize the narrative."
+          "Consider adding more quotes or insights from Aamir Khan or the director to enhance the narrative.",
+          "Include a brief comparison of the film's performance with other recent releases to provide context."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "62fe12a7-ada2-4d27-8137-6be7246f2356",
+      "headline": "Netflix Just Bought the Entire South. Thirteen Telugu Titans, From Pawan Kalyan to Nani's 'Mad Max', Are Coming to Your Living Room.",
+      "slug": "netflix-south-2026-telugu-slate-pawan-kalyan-ustaad-nani-paradise-ram-charan-peddi-vijay-deverakonda-vd14-amitabh-bachchan-where-to-watch-diaspora-nri-20260621",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Ram Charan at an event",
+          "reason": "The photo shows Ram Charan, who is relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image features Ram Charan, which is relevant to the article's focus on Telugu cinema, but it does not directly relate to the Netflix acquisition."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively addresses the challenges faced by Telugu film fans abroad and highlights how Netflix's acquisition will benefit the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more direct quotes or reactions from filmmakers or actors involved in the Netflix slate to enhance engagement.",
+          "Include a brief overview of Netflix's strategy in acquiring regional films to provide context for the significance of this move."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "a7752486-756c-489d-a414-cef31334ef52",
+      "headline": "Nikesh Arora Is Spending $28 Billion to Own the AI Security Stack. His Engineers Are Watching Closely.",
+      "slug": "nikesh-arora-palo-alto-cyberark-chronosphere-agentic-security-nri-engi-20260621",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "man speaking at TechCrunch Disrupt",
+          "reason": "The photo shows Nikesh Arora, relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the topic of cybersecurity acquisitions to the Indian diaspora, particularly regarding job security and investment interests."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of how these acquisitions might impact Indian professionals in the tech industry.",
+          "Include quotes or insights from industry experts to enhance credibility and depth."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "c520378b-7346-4485-ae9c-b11c85ba93a3",
+      "headline": "Nadella, Pichai and Arora Just Bought a Cricket Team at Lord's. They Outbid the IPL to Do It.",
+      "slug": "london-spirit-hundred-tech-consortium-nadella-pichai-arora-gajwani-nri-20260621",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "The Pavilion at Lord's Cricket Ground",
+          "reason": "The photo shows Lord's Cricket Ground, relevant to the cricket team story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the story of Indian-origin tech billionaires buying a cricket team to the interests and identity of the Indian diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from the executives involved to provide more depth and personal insight into their motivations.",
+          "Include more context about the significance of The Hundred and its impact on cricket globally to enhance reader understanding."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "567688c0-8edf-457f-8b2d-ae87d4269998",
+      "headline": "Trump Said Apple Will Build Chips With Intel. Apple and Intel Said Nothing. That Silence Is the Story.",
+      "slug": "apple-intel-chip-deal-trump-foundry-memory-crunch-nri-engineers-20260621",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "aae18d99-d361-415e-9c13-eb9495db5a9a",
+            "headline": "India Just Shipped a Chip of Its Own. It Powers an Electrici"
+          },
+          {
+            "article_id": "f41ba0bb-0eb3-4557-859b-bc389c0eb956",
+            "headline": "India's Chip Bet Has a Quiet Winner: A Bengaluru Startup Mak"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "silicon wafer for semiconductors",
+          "reason": "The photo shows a silicon wafer, relevant to semiconductor manufacturing in the tech story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image of a silicon wafer is relevant to the topic of chip manufacturing, but it could be more directly related to Apple and Intel specifically."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the story to Indian engineers and the implications for the Indian diaspora, providing a nuanced perspective."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a more specific image related to Apple and Intel to enhance visual relevance.",
+          "Include quotes or reactions from industry experts to provide additional depth to the analysis."
         ],
         "verdict": "pass"
       },
