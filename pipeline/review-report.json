@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-21T20:15:19.614199+00:00",
+  "timestamp": "2026-06-21T20:45:29.139645+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 4,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,17 +11,17 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "a058fa89-7c55-44b7-ac7c-e953acff8b66",
-      "headline": "Your US Visa Is a Second Passport in Disguise \u2014 Here's Where It Lets Indians Travel Without Applying for a Visa",
-      "slug": "us-visa-green-card-visa-free-travel-destinations-indian-passport-2026-20260621",
+      "id": "22d5679c-98ec-44aa-bfc2-b4afab144f9e",
+      "headline": "One Warning From Accenture Knocked India's IT Stocks to a Three-Year Low. The Diaspora's Bellwether Sector Is Flashing Red.",
+      "slug": "india-nifty-it-three-year-low-accenture-warning-infosys-tcs-wipro-discretionary-spending-20260621",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
-          "verdict": "MISMATCH",
-          "what_photo_shows": "Russian passport on a world map",
-          "reason": "The photo shows a Russian passport, not related to US visa travel for Indians."
+          "verdict": "MATCH",
+          "what_photo_shows": "pyramid-shaped building on IT campus",
+          "reason": "The photo shows an IT campus, relevant to the story about India's IT sector."
         },
         "inline_image_mismatches": []
       },
@@ -29,29 +29,106 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "Image URL and entities are missing, making it impossible to assess relevance."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article directly addresses Indian diaspora travelers and their unique visa challenges."
+          "note": "The article effectively connects the IT sector's performance to the diaspora's economic interests and employment opportunities."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include a relevant image that visually represents the article's theme.",
-          "Add hyperlinks to official immigration sources for the countries mentioned to enhance credibility."
+          "Consider adding more specific examples of how the downturn in IT stocks has directly impacted diaspora communities.",
+          "Include quotes or perspectives from diaspora members or experts to enhance the personal connection."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "Cleared mismatched image (Russian passport on a world map)",
-        "held: image mismatch"
+        "promoted to published"
       ],
       "revised": false,
       "unpublished": false,
-      "image_mismatch": true,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "1c55b31d-ad21-4e8d-bf5e-461b8167d31d",
+      "headline": "Ambani Just Filed the Papers for What Could Be India's Biggest-Ever IPO. The Diaspora's Phone Carrier Is Going Public.",
+      "slug": "reliance-jio-platforms-ipo-drhp-sebi-filing-mukesh-ambani-record-india-listing-20260621",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "A man in a suit and tie",
+          "reason": "The photo plausibly shows Mukesh Ambani, relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the IPO to the interests of the Indian diaspora, emphasizing its relevance to NRIs."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from diaspora investors or experts to enhance the personal connection.",
+          "Include more details on how NRIs can participate in the IPO to provide practical information."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "a058fa89-7c55-44b7-ac7c-e953acff8b66",
+      "headline": "Your US Visa Is a Second Passport in Disguise \u2014 Here's Where It Lets Indians Travel Without Applying for a Visa",
+      "slug": "us-visa-green-card-visa-free-travel-destinations-indian-passport-2026-20260621",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "hero image not provided"
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article directly addresses the Indian diaspora by discussing travel benefits related to US visas, which is highly relevant to NRIs."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include a hero image that visually represents the theme of travel or visas to enhance engagement.",
+          "Consider adding a section with tips for NRIs on how to prepare for travel using their US visa."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
       "llm_source": "gpt-4o-mini"
     },
     {
@@ -62,11 +139,6 @@
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MISMATCH",
-          "what_photo_shows": "map, camera, compass, and visa-themed notebook",
-          "reason": "The photo does not show a passport with a visa stamp, which is relevant to the story."
-        },
         "inline_image_mismatches": []
       },
       "llm_review": {
@@ -79,23 +151,21 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses the challenges faced by Indian professionals seeking work visas, which is highly relevant to the NRI community."
+          "note": "The article discusses the challenges faced by Indian professionals seeking US work visas, which is highly relevant to the NRI community."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include a relevant image description to enhance the article's visual appeal.",
+          "Include a relevant image description to enhance the article's visual appeal and context.",
           "Consider adding quotes or anecdotes from affected individuals to personalize the narrative."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "Cleared mismatched image (map, camera, compass, and visa-themed notebook)",
-        "held: image mismatch"
+        "promoted to published"
       ],
       "revised": false,
       "unpublished": false,
-      "image_mismatch": true,
       "llm_source": "gpt-4o-mini"
     }
   ]
