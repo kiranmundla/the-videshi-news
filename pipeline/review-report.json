@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-21T19:15:19.639815+00:00",
+  "timestamp": "2026-06-21T19:45:13.649306+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 0,
-    "flag": 1,
+    "pass": 1,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,53 +11,41 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "c24568c2-9979-4366-acc6-ccab4bdfd5ee",
-      "headline": "Bollywood's New Dads Took Over Father's Day. The Leading Men Are Posting Diapers, Not Six-Packs Now.",
-      "slug": "bollywood-new-dads-fathers-day-2026-ranveer-singh-vicky-kaushal-sidharth-malhotra-karan-deol-sunny-deol-batwara-1947-where-to-watch-diaspora-nri-20260621",
+      "id": "87b0c8a5-9922-486b-b1c4-fe2fe5e7adab",
+      "headline": "A Smaller India Heads to Glasgow \u2014 and the Sports It Wins Most Aren't on the Bill",
+      "slug": "india-125-130-athletes-glasgow-2026-commonwealth-games-wrestling-badminton-hockey-dropped-ioa-raghuram-iyer-ahmedabad-2030-diaspora",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "c0185d16-7a8f-4c5f-bb96-1117952dc539",
-            "headline": "Dhurandhar 2 Finally Comes Home to India \u2014 and Netflix Is Po"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Ranveer Singh in traditional attire",
-          "reason": "The photo shows Ranveer Singh, who is mentioned in the headline."
+          "what_photo_shows": "female weightlifter with medal",
+          "reason": "The photo shows a weightlifter, relevant to the story about India's athletes in Glasgow."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/p/DZ1uNrMEzhh/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post is not directly related to the theme of Bollywood fathers and their Father's Day tributes."
-          }
-        ],
+        "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image of Ranveer Singh does not directly relate to the article's focus on Father's Day tributes from various Bollywood fathers."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the Father's Day sentiments expressed by Bollywood stars to the experiences of the NRI community, making it relatable."
+          "quality": 8,
+          "note": "The article effectively connects the Commonwealth Games to the Indian diaspora, highlighting their accessibility and significance."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant Instagram embed with a more relevant post that highlights Bollywood fathers on Father's Day.",
-          "Consider using an image that features multiple Bollywood fathers or a more thematic representation of fatherhood."
+          "Include more specific examples of how the diaspora can engage with the Commonwealth Games.",
+          "Add quotes or perspectives from diaspora members to enhance relatability."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DZ1uNrMEzhh/",
         "promoted to published"
       ],
       "revised": false,
