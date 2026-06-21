@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-21T01:45:17.989750+00:00",
+  "timestamp": "2026-06-21T02:15:30.694861+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
+    "pass": 6,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "25f41bba-6f8b-4b50-94ad-d8c94d4f162e",
-      "headline": "San Francisco Bounced Back in Texas, and an Indian-American Was There at the Finish",
-      "slug": "san-francisco-unicorns-beat-texas-super-kings-mlc-2026-pretorius-69-krishnamurthy-ashwin-grand-prairie-diaspora-nri",
+      "id": "f807bcc3-dda8-4b44-9786-c70337832c28",
+      "headline": "Want to Watch the 2026 World Cup in Mexico? Indians on US Visas Can Skip the Mexican Visa \u2014 but Mind the Re-Entry Trap",
+      "slug": "world-cup-2026-mexico-nri-us-visa-reentry-h1b-guide-20260621",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -29,13 +29,193 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively highlights the significance of the Indian-American player and the diaspora's role in Major League Cricket."
+          "note": "The article effectively addresses the Indian diaspora's unique situation regarding travel to Mexico for the World Cup, making it relevant and informative."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from players or coaches to enhance the narrative.",
-          "Include more statistics or historical context about the teams or players to enrich the article."
+          "Consider adding a section with tips for booking accommodations or travel arrangements in Mexico for the World Cup.",
+          "Include a brief overview of the World Cup schedule to provide context for the travel advice."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "06b0acd1-0e48-46e0-b17c-b474fa53623b",
+      "headline": "British Airways Just Made It Easier to Fly Home to India From St. Louis, Dallas, and Miami",
+      "slug": "british-airways-india-us-heathrow-st-louis-dallas-miami-nri-20260621",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively addresses the needs and concerns of the Indian diaspora in mid-sized US cities, highlighting the benefits of new flight routes."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes or testimonials from travelers to enhance the personal connection.",
+          "Include more data or statistics on the Indian diaspora in the mentioned cities to strengthen the article's relevance."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "a9c6c420-0c40-413f-9121-b0ace37c3fb2",
+      "headline": "Thailand Is About to End Visa-Free Entry for Indian Passports \u2014 Here's the Window Before the 15-Day Cap Hits",
+      "slug": "thailand-visa-free-india-passport-15-day-cap-voa-20260621",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses the impact of the visa changes on the Indian diaspora, particularly those traveling on Indian passports."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a quote from a travel expert or an NRI to enhance credibility.",
+          "Include a brief section on alternative destinations for Indian travelers affected by the visa changes."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "9fe45c32-75e9-4e95-9400-22907d558864",
+      "headline": "Gold Is Supposed to Soar When the World Looks Dangerous. This Year It Is Doing the Opposite.",
+      "slug": "gold-price-falls-toward-4000-hawkish-fed-dollar-us-iran-deal-war-premium-unwinds-nri-investor-20260621-0200",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the topic of gold prices to the Indian diaspora's cultural and financial practices."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more data or expert opinions on the future of gold prices to enhance the analysis.",
+          "Include a brief overview of how gold prices have historically reacted to geopolitical events for context."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "cb936441-418a-4fa0-b3e8-fbf073077006",
+      "headline": "A Common Vitamin May Be Quietly Shaping How the Brain Ages, a Study of 2,000 Older Adults Finds",
+      "slug": "vitamin-c-blood-levels-brain-gray-matter-default-mode-network-hirosaki-plos-one-2044-adults-diaspora-20260621-0200",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the study's findings to the dietary habits of Indian-origin families, making it relevant for the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of how diaspora communities can incorporate vitamin C-rich foods into their diets.",
+          "Include a brief mention of any potential cultural variations in dietary habits related to vitamin C intake among different Indian communities."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "8217deb0-28e5-48b6-8397-a2cef7ec3514",
+      "headline": "It Is Not Just How Many Fruits You Eat, but Which Ones \u2014 a Study of 30,000 Adults Points to a Missing Nutrient",
+      "slug": "flavanols-berries-apples-green-tea-heart-disease-reading-harvard-food-function-30000-adults-diaspora-20260621-0200",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the study's findings to the health concerns of the Indian diaspora, making it relevant and actionable."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a quote from a health expert to enhance credibility.",
+          "Include specific examples of how to incorporate flavanol-rich foods into traditional Indian dishes."
         ],
         "verdict": "pass"
       },
