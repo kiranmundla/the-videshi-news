@@ -171,12 +171,22 @@ def vision_image_match(article):
     }
     for attempt in range(3):
         try:
-            r = subprocess.run(
-                ["curl", "-s", "https://api.openai.com/v1/chat/completions",
-                 "-H", f"Authorization: Bearer {OPENAI_KEY}",
-                 "-H", "Content-Type: application/json",
-                 "-d", json.dumps(payload)],
-                capture_output=True, text=True, timeout=90)
+            import tempfile
+            with tempfile.NamedTemporaryFile("w", suffix=".json", delete=False) as tf:
+                json.dump(payload, tf)
+                tf_path = tf.name
+            try:
+                r = subprocess.run(
+                    ["curl", "-s", "https://api.openai.com/v1/chat/completions",
+                     "-H", f"Authorization: Bearer {OPENAI_KEY}",
+                     "-H", "Content-Type: application/json",
+                     "-d", f"@{tf_path}"],
+                    capture_output=True, text=True, timeout=90)
+            finally:
+                try:
+                    os.unlink(tf_path)
+                except Exception:
+                    pass
             data = json.loads(r.stdout)
             if "error" in data:
                 msg = data["error"].get("message", "")[:80]
@@ -795,7 +805,7 @@ def main():
             article_id = sys.argv[i + 1]
     
     # Fetch articles
-    select = "id,headline,slug,body,image_url,image_entities,vertical,published_at,status"
+    select = "id,headline,subheadline,slug,body,image_url,image_caption,image_entities,vertical,category,published_at,status"
     
     if article_id:
         articles = sb_get(f"p2_articles?select={select}&id=eq.{article_id}")
