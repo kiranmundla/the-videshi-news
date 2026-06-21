@@ -1,6 +1,6 @@
 {
-  "version": "2.0",
-  "description": "Music library for The Videshi news reels. All tracks are royalty-free (Pixabay CC0 license).",
+  "version": "3.0",
+  "description": "Music library for The Videshi news reels. Tracks are royalty-free: Pixabay (CC0) and Incompetech / Kevin MacLeod (CC BY 4.0 \u2014 attribution recorded per track). Selection is mood-driven via story_mood_map with deterministic per-article rotation.",
   "tracks": [
     {
       "filename": "upbeat-celebration-midnight-celebration.mp3",
@@ -9,11 +9,27 @@
       "duration_s": 86,
       "source": "pixabay",
       "license": "CC0",
-      "use_for": ["sports", "entertainment", "festivals", "lifestyle & health"],
+      "use_for": [
+        "sports",
+        "entertainment",
+        "festivals",
+        "lifestyle & health"
+      ],
       "variants": {
         "15s": "upbeat-celebration-midnight-celebration-15s.mp3",
         "30s": "upbeat-celebration-midnight-celebration-30s.mp3"
-      }
+      },
+      "mood_tags": [
+        "energetic",
+        "festive",
+        "triumphant",
+        "party"
+      ],
+      "energy": 4,
+      "tempo": "upbeat",
+      "has_vocals": false,
+      "source_url": "https://pixabay.com/music/",
+      "author": "Pixabay"
     },
     {
       "filename": "upbeat-celebration-celebration.mp3",
@@ -22,11 +38,27 @@
       "duration_s": 160,
       "source": "pixabay",
       "license": "CC0",
-      "use_for": ["sports", "entertainment", "festivals", "lifestyle & health"],
+      "use_for": [
+        "sports",
+        "entertainment",
+        "festivals",
+        "lifestyle & health"
+      ],
       "variants": {
         "15s": "upbeat-celebration-celebration-15s.mp3",
         "30s": "upbeat-celebration-celebration-30s.mp3"
-      }
+      },
+      "mood_tags": [
+        "energetic",
+        "festive",
+        "joyful",
+        "party"
+      ],
+      "energy": 5,
+      "tempo": "upbeat",
+      "has_vocals": false,
+      "source_url": "https://pixabay.com/music/",
+      "author": "Pixabay"
     },
     {
       "filename": "upbeat-celebration-festival.mp3",
@@ -35,11 +67,26 @@
       "duration_s": 160,
       "source": "pixabay",
       "license": "CC0",
-      "use_for": ["sports", "entertainment", "festivals"],
+      "use_for": [
+        "sports",
+        "entertainment",
+        "festivals"
+      ],
       "variants": {
         "15s": "upbeat-celebration-festival-15s.mp3",
         "30s": "upbeat-celebration-festival-30s.mp3"
-      }
+      },
+      "mood_tags": [
+        "festive",
+        "energetic",
+        "happy",
+        "celebratory"
+      ],
+      "energy": 5,
+      "tempo": "upbeat",
+      "has_vocals": false,
+      "source_url": "https://pixabay.com/music/",
+      "author": "Pixabay"
     },
     {
       "filename": "cinematic-epic-hollywood-trailer.mp3",
@@ -48,11 +95,27 @@
       "duration_s": 122,
       "source": "pixabay",
       "license": "CC0",
-      "use_for": ["news", "documentary", "politics", "long-form"],
+      "use_for": [
+        "news",
+        "documentary",
+        "politics",
+        "long-form"
+      ],
       "variants": {
         "15s": "cinematic-epic-hollywood-trailer-15s.mp3",
         "30s": "cinematic-epic-hollywood-trailer-30s.mp3"
-      }
+      },
+      "mood_tags": [
+        "dramatic",
+        "building",
+        "powerful",
+        "cinematic"
+      ],
+      "energy": 4,
+      "tempo": "mid",
+      "has_vocals": false,
+      "source_url": "https://pixabay.com/music/",
+      "author": "Pixabay"
     },
     {
       "filename": "cinematic-epic-risk.mp3",
@@ -61,11 +124,27 @@
       "duration_s": 73,
       "source": "pixabay",
       "license": "CC0",
-      "use_for": ["news", "politics", "markets & finance", "investigative"],
+      "use_for": [
+        "news",
+        "politics",
+        "markets & finance",
+        "investigative"
+      ],
       "variants": {
         "15s": "cinematic-epic-risk-15s.mp3",
         "30s": "cinematic-epic-risk-30s.mp3"
-      }
+      },
+      "mood_tags": [
+        "tense",
+        "dramatic",
+        "suspenseful",
+        "building"
+      ],
+      "energy": 3,
+      "tempo": "mid",
+      "has_vocals": false,
+      "source_url": "https://pixabay.com/music/",
+      "author": "Pixabay"
     },
     {
       "filename": "cinematic-epic-total-war-epic-action-cinematic-trailer-main.mp3",
@@ -74,11 +153,27 @@
       "duration_s": 71,
       "source": "pixabay",
       "license": "CC0",
-      "use_for": ["news", "politics", "conflict", "documentary"],
+      "use_for": [
+        "news",
+        "politics",
+        "conflict",
+        "documentary"
+      ],
       "variants": {
         "15s": "cinematic-epic-total-war-epic-action-cinematic-trailer-main-15s.mp3",
         "30s": "cinematic-epic-total-war-epic-action-cinematic-trailer-main-30s.mp3"
-      }
+      },
+      "mood_tags": [
+        "epic",
+        "intense",
+        "action",
+        "powerful"
+      ],
+      "energy": 5,
+      "tempo": "driving",
+      "has_vocals": false,
+      "source_url": "https://pixabay.com/music/",
+      "author": "Pixabay"
     },
     {
       "filename": "breaking-news-background.mp3",
@@ -87,11 +182,27 @@
       "duration_s": 160,
       "source": "pixabay",
       "license": "CC0",
-      "use_for": ["news", "nri world", "markets & finance", "breaking"],
+      "use_for": [
+        "news",
+        "nri world",
+        "markets & finance",
+        "breaking"
+      ],
       "variants": {
         "15s": "breaking-news-background-15s.mp3",
         "30s": "breaking-news-background-30s.mp3"
-      }
+      },
+      "mood_tags": [
+        "urgent",
+        "tense",
+        "fast-paced",
+        "news"
+      ],
+      "energy": 4,
+      "tempo": "driving",
+      "has_vocals": false,
+      "source_url": "https://pixabay.com/music/",
+      "author": "Pixabay"
     },
     {
       "filename": "breaking-news-breaking-news.mp3",
@@ -100,11 +211,27 @@
       "duration_s": 124,
       "source": "pixabay",
       "license": "CC0",
-      "use_for": ["news", "nri world", "markets & finance", "breaking"],
+      "use_for": [
+        "news",
+        "nri world",
+        "markets & finance",
+        "breaking"
+      ],
       "variants": {
         "15s": "breaking-news-breaking-news-15s.mp3",
         "30s": "breaking-news-breaking-news-30s.mp3"
-      }
+      },
+      "mood_tags": [
+        "urgent",
+        "dramatic",
+        "alert",
+        "fast-paced"
+      ],
+      "energy": 4,
+      "tempo": "driving",
+      "has_vocals": false,
+      "source_url": "https://pixabay.com/music/",
+      "author": "Pixabay"
     },
     {
       "filename": "pixabay-breaking-full.mp3",
@@ -113,12 +240,27 @@
       "duration_s": 116,
       "source": "pixabay",
       "license": "CC0",
-      "use_for": ["news", "nri world", "markets & finance", "breaking"],
+      "use_for": [
+        "news",
+        "nri world",
+        "markets & finance",
+        "breaking"
+      ],
       "variants": {
         "15s": "pixabay-breaking-15s.mp3",
         "20s": "pixabay-breaking-20s.mp3",
         "30s": "pixabay-breaking-30s.mp3"
-      }
+      },
+      "mood_tags": [
+        "urgent",
+        "tension",
+        "news"
+      ],
+      "energy": 4,
+      "tempo": "driving",
+      "has_vocals": false,
+      "source_url": "https://pixabay.com/music/",
+      "author": "Pixabay"
     },
     {
       "filename": "tech-corporate-technology.mp3",
@@ -127,11 +269,27 @@
       "duration_s": 137,
       "source": "pixabay",
       "license": "CC0",
-      "use_for": ["technology", "business", "startups", "innovation"],
+      "use_for": [
+        "technology",
+        "business",
+        "startups",
+        "innovation"
+      ],
       "variants": {
         "15s": "tech-corporate-technology-15s.mp3",
         "30s": "tech-corporate-technology-30s.mp3"
-      }
+      },
+      "mood_tags": [
+        "modern",
+        "clean",
+        "innovation",
+        "professional"
+      ],
+      "energy": 3,
+      "tempo": "mid",
+      "has_vocals": false,
+      "source_url": "https://pixabay.com/music/",
+      "author": "Pixabay"
     },
     {
       "filename": "tech-corporate-presentation.mp3",
@@ -140,11 +298,27 @@
       "duration_s": 137,
       "source": "pixabay",
       "license": "CC0",
-      "use_for": ["technology", "business", "markets & finance", "professional"],
+      "use_for": [
+        "technology",
+        "business",
+        "markets & finance",
+        "professional"
+      ],
       "variants": {
         "15s": "tech-corporate-presentation-15s.mp3",
         "30s": "tech-corporate-presentation-30s.mp3"
-      }
+      },
+      "mood_tags": [
+        "modern",
+        "sleek",
+        "corporate",
+        "upbeat"
+      ],
+      "energy": 3,
+      "tempo": "upbeat",
+      "has_vocals": false,
+      "source_url": "https://pixabay.com/music/",
+      "author": "Pixabay"
     },
     {
       "filename": "emotional-inspiring-cinematic.mp3",
@@ -153,11 +327,27 @@
       "duration_s": 132,
       "source": "pixabay",
       "license": "CC0",
-      "use_for": ["human interest", "social impact", "inspiring", "documentary"],
+      "use_for": [
+        "human interest",
+        "social impact",
+        "inspiring",
+        "documentary"
+      ],
       "variants": {
         "15s": "emotional-inspiring-cinematic-15s.mp3",
         "30s": "emotional-inspiring-cinematic-30s.mp3"
-      }
+      },
+      "mood_tags": [
+        "uplifting",
+        "cinematic",
+        "hopeful",
+        "emotional"
+      ],
+      "energy": 3,
+      "tempo": "mid",
+      "has_vocals": false,
+      "source_url": "https://pixabay.com/music/",
+      "author": "Pixabay"
     },
     {
       "filename": "emotional-inspiring-emotional-uplifting.mp3",
@@ -166,11 +356,27 @@
       "duration_s": 139,
       "source": "pixabay",
       "license": "CC0",
-      "use_for": ["human interest", "community", "inspiring", "social"],
+      "use_for": [
+        "human interest",
+        "community",
+        "inspiring",
+        "social"
+      ],
       "variants": {
         "15s": "emotional-inspiring-emotional-uplifting-15s.mp3",
         "30s": "emotional-inspiring-emotional-uplifting-30s.mp3"
-      }
+      },
+      "mood_tags": [
+        "emotional",
+        "uplifting",
+        "warm",
+        "moving"
+      ],
+      "energy": 3,
+      "tempo": "mid",
+      "has_vocals": false,
+      "source_url": "https://pixabay.com/music/",
+      "author": "Pixabay"
     },
     {
       "filename": "emotional-inspiring-inspiring-uplifting.mp3",
@@ -179,11 +385,27 @@
       "duration_s": 122,
       "source": "pixabay",
       "license": "CC0",
-      "use_for": ["lifestyle & health", "sports", "community", "feel-good"],
+      "use_for": [
+        "lifestyle & health",
+        "sports",
+        "community",
+        "feel-good"
+      ],
       "variants": {
         "15s": "emotional-inspiring-inspiring-uplifting-15s.mp3",
         "30s": "emotional-inspiring-inspiring-uplifting-30s.mp3"
-      }
+      },
+      "mood_tags": [
+        "inspiring",
+        "uplifting",
+        "bright",
+        "hopeful"
+      ],
+      "energy": 4,
+      "tempo": "upbeat",
+      "has_vocals": false,
+      "source_url": "https://pixabay.com/music/",
+      "author": "Pixabay"
     },
     {
       "filename": "emotional-inspiring-uplifting-piano.mp3",
@@ -192,11 +414,28 @@
       "duration_s": 159,
       "source": "pixabay",
       "license": "CC0",
-      "use_for": ["human interest", "memorial", "social impact", "inspiring"],
+      "use_for": [
+        "human interest",
+        "memorial",
+        "social impact",
+        "inspiring"
+      ],
       "variants": {
         "15s": "emotional-inspiring-uplifting-piano-15s.mp3",
         "30s": "emotional-inspiring-uplifting-piano-30s.mp3"
-      }
+      },
+      "mood_tags": [
+        "emotional",
+        "gentle",
+        "moving",
+        "cinematic",
+        "piano"
+      ],
+      "energy": 2,
+      "tempo": "slow",
+      "has_vocals": false,
+      "source_url": "https://pixabay.com/music/",
+      "author": "Pixabay"
     },
     {
       "filename": "indian-classical-diwali-festival.mp3",
@@ -205,11 +444,28 @@
       "duration_s": 124,
       "source": "pixabay",
       "license": "CC0",
-      "use_for": ["entertainment", "food", "festivals", "culture", "bollywood"],
+      "use_for": [
+        "entertainment",
+        "food",
+        "festivals",
+        "culture",
+        "bollywood"
+      ],
       "variants": {
         "15s": "indian-classical-diwali-festival-15s.mp3",
         "30s": "indian-classical-diwali-festival-30s.mp3"
-      }
+      },
+      "mood_tags": [
+        "festive",
+        "cultural",
+        "traditional",
+        "celebratory"
+      ],
+      "energy": 4,
+      "tempo": "upbeat",
+      "has_vocals": false,
+      "source_url": "https://pixabay.com/music/",
+      "author": "Pixabay"
     },
     {
       "filename": "indian-classical-free-soul-sitar.mp3",
@@ -218,11 +474,27 @@
       "duration_s": 265,
       "source": "pixabay",
       "license": "CC0",
-      "use_for": ["culture", "heritage", "spiritual", "documentary"],
+      "use_for": [
+        "culture",
+        "heritage",
+        "spiritual",
+        "documentary"
+      ],
       "variants": {
         "15s": "indian-classical-free-soul-sitar-15s.mp3",
         "30s": "indian-classical-free-soul-sitar-30s.mp3"
-      }
+      },
+      "mood_tags": [
+        "sitar",
+        "meditative",
+        "traditional",
+        "cultural"
+      ],
+      "energy": 2,
+      "tempo": "slow",
+      "has_vocals": false,
+      "source_url": "https://pixabay.com/music/",
+      "author": "Pixabay"
     },
     {
       "filename": "indian-classical-indian-music-with-sitar-tanpura-and-sarangi.mp3",
@@ -231,11 +503,27 @@
       "duration_s": 49,
       "source": "pixabay",
       "license": "CC0",
-      "use_for": ["culture", "heritage", "classical music", "documentary"],
+      "use_for": [
+        "culture",
+        "heritage",
+        "classical music",
+        "documentary"
+      ],
       "variants": {
         "15s": "indian-classical-indian-music-with-sitar-tanpura-and-sarangi-15s.mp3",
         "30s": "indian-classical-indian-music-with-sitar-tanpura-and-sarangi-30s.mp3"
-      }
+      },
+      "mood_tags": [
+        "sitar",
+        "tanpura",
+        "classical",
+        "traditional"
+      ],
+      "energy": 2,
+      "tempo": "slow",
+      "has_vocals": false,
+      "source_url": "https://pixabay.com/music/",
+      "author": "Pixabay"
     },
     {
       "filename": "indian-beat.mp3",
@@ -244,11 +532,28 @@
       "duration_s": 148,
       "source": "pixabay",
       "license": "CC0",
-      "use_for": ["entertainment", "food", "festivals", "bollywood", "cricket"],
+      "use_for": [
+        "entertainment",
+        "food",
+        "festivals",
+        "bollywood",
+        "cricket"
+      ],
       "variants": {
         "15s": "indian-beat-15s.mp3",
         "30s": "indian-beat-30s.mp3"
-      }
+      },
+      "mood_tags": [
+        "rhythmic",
+        "energetic",
+        "indian",
+        "fusion"
+      ],
+      "energy": 4,
+      "tempo": "upbeat",
+      "has_vocals": false,
+      "source_url": "https://pixabay.com/music/",
+      "author": "Pixabay"
     },
     {
       "filename": "indian-flute.mp3",
@@ -257,11 +562,28 @@
       "duration_s": 193,
       "source": "pixabay",
       "license": "CC0",
-      "use_for": ["culture", "heritage", "spiritual", "nature", "documentary"],
+      "use_for": [
+        "culture",
+        "heritage",
+        "spiritual",
+        "nature",
+        "documentary"
+      ],
       "variants": {
         "15s": "indian-flute-15s.mp3",
         "30s": "indian-flute-30s.mp3"
-      }
+      },
+      "mood_tags": [
+        "peaceful",
+        "meditative",
+        "flute",
+        "serene"
+      ],
+      "energy": 2,
+      "tempo": "slow",
+      "has_vocals": false,
+      "source_url": "https://pixabay.com/music/",
+      "author": "Pixabay"
     },
     {
       "filename": "indian-lofi-bg.mp3",
@@ -270,11 +592,27 @@
       "duration_s": 268,
       "source": "pixabay",
       "license": "CC0",
-      "use_for": ["lifestyle & health", "food", "travel", "culture"],
+      "use_for": [
+        "lifestyle & health",
+        "food",
+        "travel",
+        "culture"
+      ],
       "variants": {
         "15s": "indian-lofi-bg-15s.mp3",
         "30s": "indian-lofi-bg-30s.mp3"
-      }
+      },
+      "mood_tags": [
+        "lofi",
+        "chill",
+        "fusion",
+        "ambient"
+      ],
+      "energy": 2,
+      "tempo": "slow",
+      "has_vocals": false,
+      "source_url": "https://pixabay.com/music/",
+      "author": "Pixabay"
     },
     {
       "filename": "chill-lifestyle-rain-bliss.mp3",
@@ -283,11 +621,27 @@
       "duration_s": 134,
       "source": "pixabay",
       "license": "CC0",
-      "use_for": ["travel", "food", "lifestyle & health", "weather"],
+      "use_for": [
+        "travel",
+        "food",
+        "lifestyle & health",
+        "weather"
+      ],
       "variants": {
         "15s": "chill-lifestyle-rain-bliss-15s.mp3",
         "30s": "chill-lifestyle-rain-bliss-30s.mp3"
-      }
+      },
+      "mood_tags": [
+        "relaxed",
+        "mellow",
+        "ambient",
+        "chill-hop"
+      ],
+      "energy": 2,
+      "tempo": "slow",
+      "has_vocals": false,
+      "source_url": "https://pixabay.com/music/",
+      "author": "Pixabay"
     },
     {
       "filename": "chill-lifestyle-lofi-study.mp3",
@@ -296,11 +650,27 @@
       "duration_s": 147,
       "source": "pixabay",
       "license": "CC0",
-      "use_for": ["travel", "food", "lifestyle & health", "education"],
+      "use_for": [
+        "travel",
+        "food",
+        "lifestyle & health",
+        "education"
+      ],
       "variants": {
         "15s": "chill-lifestyle-lofi-study-15s.mp3",
         "30s": "chill-lifestyle-lofi-study-30s.mp3"
-      }
+      },
+      "mood_tags": [
+        "calm",
+        "peaceful",
+        "lofi",
+        "study"
+      ],
+      "energy": 2,
+      "tempo": "slow",
+      "has_vocals": false,
+      "source_url": "https://pixabay.com/music/",
+      "author": "Pixabay"
     },
     {
       "filename": "chill-lifestyle-lifestyle.mp3",
@@ -309,11 +679,26 @@
       "duration_s": 53,
       "source": "pixabay",
       "license": "CC0",
-      "use_for": ["lifestyle & health", "food", "travel"],
+      "use_for": [
+        "lifestyle & health",
+        "food",
+        "travel"
+      ],
       "variants": {
         "15s": "chill-lifestyle-lifestyle-15s.mp3",
         "30s": "chill-lifestyle-lifestyle-30s.mp3"
-      }
+      },
+      "mood_tags": [
+        "light",
+        "casual",
+        "upbeat",
+        "lifestyle"
+      ],
+      "energy": 3,
+      "tempo": "mid",
+      "has_vocals": false,
+      "source_url": "https://pixabay.com/music/",
+      "author": "Pixabay"
     },
     {
       "filename": "chill-lifestyle-sweet-life-luxury-chill.mp3",
@@ -322,11 +707,27 @@
       "duration_s": 102,
       "source": "pixabay",
       "license": "CC0",
-      "use_for": ["travel", "food", "lifestyle & health", "luxury"],
+      "use_for": [
+        "travel",
+        "food",
+        "lifestyle & health",
+        "luxury"
+      ],
       "variants": {
         "15s": "chill-lifestyle-sweet-life-luxury-chill-15s.mp3",
         "30s": "chill-lifestyle-sweet-life-luxury-chill-30s.mp3"
-      }
+      },
+      "mood_tags": [
+        "luxury",
+        "smooth",
+        "chill",
+        "sophisticated"
+      ],
+      "energy": 2,
+      "tempo": "slow",
+      "has_vocals": false,
+      "source_url": "https://pixabay.com/music/",
+      "author": "Pixabay"
     },
     {
       "filename": "dramatic-dark-suspense-thriller.mp3",
@@ -335,11 +736,28 @@
       "duration_s": 160,
       "source": "pixabay",
       "license": "CC0",
-      "use_for": ["crisis", "tragedy", "conflict", "investigative", "crime"],
+      "use_for": [
+        "crisis",
+        "tragedy",
+        "conflict",
+        "investigative",
+        "crime"
+      ],
       "variants": {
         "15s": "dramatic-dark-suspense-thriller-15s.mp3",
         "30s": "dramatic-dark-suspense-thriller-30s.mp3"
-      }
+      },
+      "mood_tags": [
+        "dark",
+        "suspenseful",
+        "tension",
+        "thriller"
+      ],
+      "energy": 3,
+      "tempo": "mid",
+      "has_vocals": false,
+      "source_url": "https://pixabay.com/music/",
+      "author": "Pixabay"
     },
     {
       "filename": "pixabay-dramatic-full.mp3",
@@ -348,12 +766,28 @@
       "duration_s": 102,
       "source": "pixabay",
       "license": "CC0",
-      "use_for": ["crisis", "tragedy", "conflict", "war"],
+      "use_for": [
+        "crisis",
+        "tragedy",
+        "conflict",
+        "war"
+      ],
       "variants": {
         "15s": "pixabay-dramatic-15s.mp3",
         "20s": "pixabay-dramatic-20s.mp3",
         "30s": "pixabay-dramatic-30s.mp3"
-      }
+      },
+      "mood_tags": [
+        "dramatic",
+        "intense",
+        "dark",
+        "cinematic"
+      ],
+      "energy": 4,
+      "tempo": "mid",
+      "has_vocals": false,
+      "source_url": "https://pixabay.com/music/",
+      "author": "Pixabay"
     },
     {
       "filename": "pixabay-upbeat-full.mp3",
@@ -362,46 +796,564 @@
       "duration_s": 122,
       "source": "pixabay",
       "license": "CC0",
-      "use_for": ["sports", "entertainment", "lifestyle & health", "technology"],
+      "use_for": [
+        "sports",
+        "entertainment",
+        "lifestyle & health",
+        "technology"
+      ],
       "variants": {
         "15s": "pixabay-upbeat-15s.mp3",
         "20s": "pixabay-upbeat-20s.mp3",
         "30s": "pixabay-upbeat-30s.mp3"
+      },
+      "mood_tags": [
+        "upbeat",
+        "bright",
+        "energetic",
+        "positive"
+      ],
+      "energy": 4,
+      "tempo": "upbeat",
+      "has_vocals": false,
+      "source_url": "https://pixabay.com/music/",
+      "author": "Pixabay"
+    },
+    {
+      "filename": "tech-corporate-the-show-must-be-go.mp3",
+      "category": "tech-corporate",
+      "mood": "modern, driving, upbeat, tech, bright",
+      "mood_tags": [
+        "modern",
+        "driving",
+        "upbeat",
+        "tech",
+        "bright"
+      ],
+      "energy": 4,
+      "tempo": "driving",
+      "has_vocals": false,
+      "duration_s": 216,
+      "source": "incompetech",
+      "license": "CC-BY-4.0",
+      "author": "Kevin MacLeod (incompetech.com)",
+      "source_url": "https://incompetech.com/music/royalty-free/",
+      "attribution": "Music by Kevin MacLeod (incompetech.com), licensed under Creative Commons: By Attribution 4.0 (CC BY 4.0)",
+      "use_for": [
+        "technology",
+        "startups",
+        "markets & finance",
+        "business"
+      ],
+      "variants": {
+        "15s": "tech-corporate-the-show-must-be-go-15s.mp3",
+        "30s": "tech-corporate-the-show-must-be-go-30s.mp3"
+      }
+    },
+    {
+      "filename": "tech-corporate-digital-lemonade.mp3",
+      "category": "tech-corporate",
+      "mood": "clean, modern, light, tech, optimistic",
+      "mood_tags": [
+        "clean",
+        "modern",
+        "light",
+        "tech",
+        "optimistic"
+      ],
+      "energy": 3,
+      "tempo": "upbeat",
+      "has_vocals": false,
+      "duration_s": 180,
+      "source": "incompetech",
+      "license": "CC-BY-4.0",
+      "author": "Kevin MacLeod (incompetech.com)",
+      "source_url": "https://incompetech.com/music/royalty-free/",
+      "attribution": "Music by Kevin MacLeod (incompetech.com), licensed under Creative Commons: By Attribution 4.0 (CC BY 4.0)",
+      "use_for": [
+        "technology",
+        "startups",
+        "business",
+        "innovation"
+      ],
+      "variants": {
+        "15s": "tech-corporate-digital-lemonade-15s.mp3",
+        "30s": "tech-corporate-digital-lemonade-30s.mp3"
+      }
+    },
+    {
+      "filename": "tech-corporate-cipher.mp3",
+      "category": "tech-corporate",
+      "mood": "sleek, driving, mysterious, tech, modern",
+      "mood_tags": [
+        "sleek",
+        "driving",
+        "mysterious",
+        "tech",
+        "modern"
+      ],
+      "energy": 4,
+      "tempo": "driving",
+      "has_vocals": false,
+      "duration_s": 231,
+      "source": "incompetech",
+      "license": "CC-BY-4.0",
+      "author": "Kevin MacLeod (incompetech.com)",
+      "source_url": "https://incompetech.com/music/royalty-free/",
+      "attribution": "Music by Kevin MacLeod (incompetech.com), licensed under Creative Commons: By Attribution 4.0 (CC BY 4.0)",
+      "use_for": [
+        "technology",
+        "markets & finance",
+        "cyber",
+        "innovation"
+      ],
+      "variants": {
+        "15s": "tech-corporate-cipher-15s.mp3",
+        "30s": "tech-corporate-cipher-30s.mp3"
+      }
+    },
+    {
+      "filename": "dramatic-dark-anxiety.mp3",
+      "category": "dramatic-dark",
+      "mood": "tense, dark, uneasy, minimal, brooding",
+      "mood_tags": [
+        "tense",
+        "dark",
+        "uneasy",
+        "minimal",
+        "brooding"
+      ],
+      "energy": 3,
+      "tempo": "slow",
+      "has_vocals": false,
+      "duration_s": 111,
+      "source": "incompetech",
+      "license": "CC-BY-4.0",
+      "author": "Kevin MacLeod (incompetech.com)",
+      "source_url": "https://incompetech.com/music/royalty-free/",
+      "attribution": "Music by Kevin MacLeod (incompetech.com), licensed under Creative Commons: By Attribution 4.0 (CC BY 4.0)",
+      "use_for": [
+        "crisis",
+        "investigative",
+        "immigration",
+        "somber"
+      ],
+      "variants": {
+        "15s": "dramatic-dark-anxiety-15s.mp3",
+        "30s": "dramatic-dark-anxiety-30s.mp3"
+      }
+    },
+    {
+      "filename": "dramatic-dark-darkest-child.mp3",
+      "category": "dramatic-dark",
+      "mood": "dark, ominous, serious, brooding, tense",
+      "mood_tags": [
+        "dark",
+        "ominous",
+        "serious",
+        "brooding",
+        "tense"
+      ],
+      "energy": 3,
+      "tempo": "slow",
+      "has_vocals": false,
+      "duration_s": 239,
+      "source": "incompetech",
+      "license": "CC-BY-4.0",
+      "author": "Kevin MacLeod (incompetech.com)",
+      "source_url": "https://incompetech.com/music/royalty-free/",
+      "attribution": "Music by Kevin MacLeod (incompetech.com), licensed under Creative Commons: By Attribution 4.0 (CC BY 4.0)",
+      "use_for": [
+        "crisis",
+        "tragedy",
+        "investigative",
+        "crime"
+      ],
+      "variants": {
+        "15s": "dramatic-dark-darkest-child-15s.mp3",
+        "30s": "dramatic-dark-darkest-child-30s.mp3"
+      }
+    },
+    {
+      "filename": "anthemic-triumph-rising-tide.mp3",
+      "category": "anthemic-triumph",
+      "mood": "soaring, epic, uplifting, triumphant, building",
+      "mood_tags": [
+        "soaring",
+        "epic",
+        "uplifting",
+        "triumphant",
+        "building"
+      ],
+      "energy": 4,
+      "tempo": "mid",
+      "has_vocals": false,
+      "duration_s": 277,
+      "source": "incompetech",
+      "license": "CC-BY-4.0",
+      "author": "Kevin MacLeod (incompetech.com)",
+      "source_url": "https://incompetech.com/music/royalty-free/",
+      "attribution": "Music by Kevin MacLeod (incompetech.com), licensed under Creative Commons: By Attribution 4.0 (CC BY 4.0)",
+      "use_for": [
+        "landmark",
+        "big news",
+        "achievement",
+        "markets & finance"
+      ],
+      "variants": {
+        "15s": "anthemic-triumph-rising-tide-15s.mp3",
+        "30s": "anthemic-triumph-rising-tide-30s.mp3"
+      }
+    },
+    {
+      "filename": "anthemic-triumph-heroic-age.mp3",
+      "category": "anthemic-triumph",
+      "mood": "heroic, triumphant, bold, soaring, grand",
+      "mood_tags": [
+        "heroic",
+        "triumphant",
+        "bold",
+        "soaring",
+        "grand"
+      ],
+      "energy": 5,
+      "tempo": "driving",
+      "has_vocals": false,
+      "duration_s": 97,
+      "source": "incompetech",
+      "license": "CC-BY-4.0",
+      "author": "Kevin MacLeod (incompetech.com)",
+      "source_url": "https://incompetech.com/music/royalty-free/",
+      "attribution": "Music by Kevin MacLeod (incompetech.com), licensed under Creative Commons: By Attribution 4.0 (CC BY 4.0)",
+      "use_for": [
+        "landmark",
+        "sports",
+        "achievement",
+        "victory"
+      ],
+      "variants": {
+        "15s": "anthemic-triumph-heroic-age-15s.mp3",
+        "30s": "anthemic-triumph-heroic-age-30s.mp3"
+      }
+    },
+    {
+      "filename": "anthemic-triumph-eternal-hope.mp3",
+      "category": "anthemic-triumph",
+      "mood": "hopeful, soaring, inspiring, uplifting, grand",
+      "mood_tags": [
+        "hopeful",
+        "soaring",
+        "inspiring",
+        "uplifting",
+        "grand"
+      ],
+      "energy": 3,
+      "tempo": "mid",
+      "has_vocals": false,
+      "duration_s": 284,
+      "source": "incompetech",
+      "license": "CC-BY-4.0",
+      "author": "Kevin MacLeod (incompetech.com)",
+      "source_url": "https://incompetech.com/music/royalty-free/",
+      "attribution": "Music by Kevin MacLeod (incompetech.com), licensed under Creative Commons: By Attribution 4.0 (CC BY 4.0)",
+      "use_for": [
+        "achievement",
+        "human interest",
+        "milestone",
+        "inspiring"
+      ],
+      "variants": {
+        "15s": "anthemic-triumph-eternal-hope-15s.mp3",
+        "30s": "anthemic-triumph-eternal-hope-30s.mp3"
+      }
+    },
+    {
+      "filename": "anthemic-triumph-exhilarate.mp3",
+      "category": "anthemic-triumph",
+      "mood": "uplifting, energetic, triumphant, bright, soaring",
+      "mood_tags": [
+        "uplifting",
+        "energetic",
+        "triumphant",
+        "bright",
+        "soaring"
+      ],
+      "energy": 4,
+      "tempo": "upbeat",
+      "has_vocals": false,
+      "duration_s": 146,
+      "source": "incompetech",
+      "license": "CC-BY-4.0",
+      "author": "Kevin MacLeod (incompetech.com)",
+      "source_url": "https://incompetech.com/music/royalty-free/",
+      "attribution": "Music by Kevin MacLeod (incompetech.com), licensed under Creative Commons: By Attribution 4.0 (CC BY 4.0)",
+      "use_for": [
+        "landmark",
+        "sports",
+        "achievement",
+        "good news"
+      ],
+      "variants": {
+        "15s": "anthemic-triumph-exhilarate-15s.mp3",
+        "30s": "anthemic-triumph-exhilarate-30s.mp3"
+      }
+    },
+    {
+      "filename": "cinematic-epic-crossing-the-chasm.mp3",
+      "category": "cinematic-epic",
+      "mood": "epic, building, cinematic, dramatic, powerful",
+      "mood_tags": [
+        "epic",
+        "building",
+        "cinematic",
+        "dramatic",
+        "powerful"
+      ],
+      "energy": 4,
+      "tempo": "mid",
+      "has_vocals": false,
+      "duration_s": 197,
+      "source": "incompetech",
+      "license": "CC-BY-4.0",
+      "author": "Kevin MacLeod (incompetech.com)",
+      "source_url": "https://incompetech.com/music/royalty-free/",
+      "attribution": "Music by Kevin MacLeod (incompetech.com), licensed under Creative Commons: By Attribution 4.0 (CC BY 4.0)",
+      "use_for": [
+        "news",
+        "documentary",
+        "politics",
+        "long-form"
+      ],
+      "variants": {
+        "15s": "cinematic-epic-crossing-the-chasm-15s.mp3",
+        "30s": "cinematic-epic-crossing-the-chasm-30s.mp3"
+      }
+    },
+    {
+      "filename": "cinematic-epic-killers.mp3",
+      "category": "cinematic-epic",
+      "mood": "intense, driving, dark-epic, cinematic, powerful",
+      "mood_tags": [
+        "intense",
+        "driving",
+        "dark-epic",
+        "cinematic",
+        "powerful"
+      ],
+      "energy": 5,
+      "tempo": "driving",
+      "has_vocals": false,
+      "duration_s": 305,
+      "source": "incompetech",
+      "license": "CC-BY-4.0",
+      "author": "Kevin MacLeod (incompetech.com)",
+      "source_url": "https://incompetech.com/music/royalty-free/",
+      "attribution": "Music by Kevin MacLeod (incompetech.com), licensed under Creative Commons: By Attribution 4.0 (CC BY 4.0)",
+      "use_for": [
+        "news",
+        "conflict",
+        "investigative",
+        "politics"
+      ],
+      "variants": {
+        "15s": "cinematic-epic-killers-15s.mp3",
+        "30s": "cinematic-epic-killers-30s.mp3"
+      }
+    },
+    {
+      "filename": "breaking-news-investigations.mp3",
+      "category": "breaking-news",
+      "mood": "urgent, investigative, tense, driving, news",
+      "mood_tags": [
+        "urgent",
+        "investigative",
+        "tense",
+        "driving",
+        "news"
+      ],
+      "energy": 4,
+      "tempo": "driving",
+      "has_vocals": false,
+      "duration_s": 94,
+      "source": "incompetech",
+      "license": "CC-BY-4.0",
+      "author": "Kevin MacLeod (incompetech.com)",
+      "source_url": "https://incompetech.com/music/royalty-free/",
+      "attribution": "Music by Kevin MacLeod (incompetech.com), licensed under Creative Commons: By Attribution 4.0 (CC BY 4.0)",
+      "use_for": [
+        "news",
+        "investigative",
+        "markets & finance",
+        "breaking"
+      ],
+      "variants": {
+        "15s": "breaking-news-investigations-15s.mp3",
+        "30s": "breaking-news-investigations-30s.mp3"
+      }
+    },
+    {
+      "filename": "breaking-news-newer-wave.mp3",
+      "category": "breaking-news",
+      "mood": "urgent, modern, driving, news, alert",
+      "mood_tags": [
+        "urgent",
+        "modern",
+        "driving",
+        "news",
+        "alert"
+      ],
+      "energy": 4,
+      "tempo": "driving",
+      "has_vocals": false,
+      "duration_s": 175,
+      "source": "incompetech",
+      "license": "CC-BY-4.0",
+      "author": "Kevin MacLeod (incompetech.com)",
+      "source_url": "https://incompetech.com/music/royalty-free/",
+      "attribution": "Music by Kevin MacLeod (incompetech.com), licensed under Creative Commons: By Attribution 4.0 (CC BY 4.0)",
+      "use_for": [
+        "news",
+        "nri world",
+        "markets & finance",
+        "breaking"
+      ],
+      "variants": {
+        "15s": "breaking-news-newer-wave-15s.mp3",
+        "30s": "breaking-news-newer-wave-30s.mp3"
       }
     }
   ],
   "categories": {
     "upbeat-celebration": {
       "description": "Victory, sports wins, festivals, good news",
-      "article_categories": ["sports", "entertainment", "festivals", "lifestyle & health"]
+      "article_categories": [
+        "sports",
+        "entertainment",
+        "festivals",
+        "lifestyle & health"
+      ]
     },
     "cinematic-epic": {
       "description": "Dramatic, building, documentary, powerful stories",
-      "article_categories": ["news", "politics", "documentary", "long-form"]
+      "article_categories": [
+        "news",
+        "politics",
+        "documentary",
+        "long-form"
+      ]
     },
     "breaking-news": {
       "description": "Urgent, tension, fast-paced news alerts",
-      "article_categories": ["news", "nri world", "markets & finance"]
+      "article_categories": [
+        "news",
+        "nri world",
+        "markets & finance"
+      ]
     },
     "tech-corporate": {
       "description": "Modern, clean, innovation, professional",
-      "article_categories": ["technology", "business", "startups", "markets & finance"]
+      "article_categories": [
+        "technology",
+        "business",
+        "startups",
+        "markets & finance"
+      ]
     },
     "emotional-inspiring": {
       "description": "Uplifting, human interest, hope, community",
-      "article_categories": ["human interest", "social impact", "community", "inspiring"]
+      "article_categories": [
+        "human interest",
+        "social impact",
+        "community",
+        "inspiring"
+      ]
     },
     "indian-classical": {
-      "description": "Sitar, tabla, flute — cultural, heritage, Bollywood",
-      "article_categories": ["entertainment", "food", "culture", "festivals", "bollywood"]
+      "description": "Sitar, tabla, flute \u2014 cultural, heritage, Bollywood",
+      "article_categories": [
+        "entertainment",
+        "food",
+        "culture",
+        "festivals",
+        "bollywood"
+      ]
     },
     "chill-lifestyle": {
       "description": "Relaxed, lofi, food/travel/lifestyle content",
-      "article_categories": ["travel", "food", "lifestyle & health"]
+      "article_categories": [
+        "travel",
+        "food",
+        "lifestyle & health"
+      ]
     },
     "dramatic-dark": {
       "description": "Crisis, tragedy, investigative, conflict",
-      "article_categories": ["crisis", "tragedy", "conflict", "crime", "investigative"]
+      "article_categories": [
+        "crisis",
+        "tragedy",
+        "conflict",
+        "crime",
+        "investigative"
+      ]
+    },
+    "anthemic-triumph": {
+      "description": "Soaring, epic-but-uplifting victory-scale beds for landmark/milestone stories",
+      "article_categories": [
+        "news",
+        "markets & finance",
+        "sports",
+        "technology"
+      ]
     }
+  },
+  "story_mood_map": {
+    "triumphant": [
+      "anthemic-triumph",
+      "cinematic-epic",
+      "upbeat-celebration"
+    ],
+    "celebratory": [
+      "upbeat-celebration",
+      "indian-classical",
+      "anthemic-triumph"
+    ],
+    "somber": [
+      "dramatic-dark",
+      "emotional-inspiring"
+    ],
+    "tense": [
+      "breaking-news",
+      "dramatic-dark",
+      "cinematic-epic"
+    ],
+    "neutral-news": [
+      "breaking-news",
+      "cinematic-epic",
+      "tech-corporate"
+    ],
+    "uplifting": [
+      "emotional-inspiring",
+      "anthemic-triumph",
+      "upbeat-celebration"
+    ],
+    "cultural": [
+      "indian-classical",
+      "upbeat-celebration",
+      "emotional-inspiring"
+    ],
+    "tech": [
+      "tech-corporate",
+      "cinematic-epic",
+      "breaking-news"
+    ],
+    "chill": [
+      "chill-lifestyle",
+      "indian-classical",
+      "emotional-inspiring"
+    ]
+  },
+  "licenses": {
+    "CC0": "No attribution required (Pixabay).",
+    "CC-BY-4.0": "Attribution required. Use the per-track 'attribution' string. Music by Kevin MacLeod (incompetech.com)."
   }
 }

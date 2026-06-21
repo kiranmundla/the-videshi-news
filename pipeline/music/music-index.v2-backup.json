@@ -1,0 +1,407 @@
+{
+  "version": "2.0",
+  "description": "Music library for The Videshi news reels. All tracks are royalty-free (Pixabay CC0 license).",
+  "tracks": [
+    {
+      "filename": "upbeat-celebration-midnight-celebration.mp3",
+      "category": "upbeat-celebration",
+      "mood": "energetic, festive, triumphant",
+      "duration_s": 86,
+      "source": "pixabay",
+      "license": "CC0",
+      "use_for": ["sports", "entertainment", "festivals", "lifestyle & health"],
+      "variants": {
+        "15s": "upbeat-celebration-midnight-celebration-15s.mp3",
+        "30s": "upbeat-celebration-midnight-celebration-30s.mp3"
+      }
+    },
+    {
+      "filename": "upbeat-celebration-celebration.mp3",
+      "category": "upbeat-celebration",
+      "mood": "energetic, festive, joyful, party",
+      "duration_s": 160,
+      "source": "pixabay",
+      "license": "CC0",
+      "use_for": ["sports", "entertainment", "festivals", "lifestyle & health"],
+      "variants": {
+        "15s": "upbeat-celebration-celebration-15s.mp3",
+        "30s": "upbeat-celebration-celebration-30s.mp3"
+      }
+    },
+    {
+      "filename": "upbeat-celebration-festival.mp3",
+      "category": "upbeat-celebration",
+      "mood": "festive, energetic, happy, celebratory",
+      "duration_s": 160,
+      "source": "pixabay",
+      "license": "CC0",
+      "use_for": ["sports", "entertainment", "festivals"],
+      "variants": {
+        "15s": "upbeat-celebration-festival-15s.mp3",
+        "30s": "upbeat-celebration-festival-30s.mp3"
+      }
+    },
+    {
+      "filename": "cinematic-epic-hollywood-trailer.mp3",
+      "category": "cinematic-epic",
+      "mood": "dramatic, building, powerful, cinematic",
+      "duration_s": 122,
+      "source": "pixabay",
+      "license": "CC0",
+      "use_for": ["news", "documentary", "politics", "long-form"],
+      "variants": {
+        "15s": "cinematic-epic-hollywood-trailer-15s.mp3",
+        "30s": "cinematic-epic-hollywood-trailer-30s.mp3"
+      }
+    },
+    {
+      "filename": "cinematic-epic-risk.mp3",
+      "category": "cinematic-epic",
+      "mood": "tense, dramatic, suspenseful, building",
+      "duration_s": 73,
+      "source": "pixabay",
+      "license": "CC0",
+      "use_for": ["news", "politics", "markets & finance", "investigative"],
+      "variants": {
+        "15s": "cinematic-epic-risk-15s.mp3",
+        "30s": "cinematic-epic-risk-30s.mp3"
+      }
+    },
+    {
+      "filename": "cinematic-epic-total-war-epic-action-cinematic-trailer-main.mp3",
+      "category": "cinematic-epic",
+      "mood": "epic, intense, action, powerful",
+      "duration_s": 71,
+      "source": "pixabay",
+      "license": "CC0",
+      "use_for": ["news", "politics", "conflict", "documentary"],
+      "variants": {
+        "15s": "cinematic-epic-total-war-epic-action-cinematic-trailer-main-15s.mp3",
+        "30s": "cinematic-epic-total-war-epic-action-cinematic-trailer-main-30s.mp3"
+      }
+    },
+    {
+      "filename": "breaking-news-background.mp3",
+      "category": "breaking-news",
+      "mood": "urgent, tense, fast-paced, news",
+      "duration_s": 160,
+      "source": "pixabay",
+      "license": "CC0",
+      "use_for": ["news", "nri world", "markets & finance", "breaking"],
+      "variants": {
+        "15s": "breaking-news-background-15s.mp3",
+        "30s": "breaking-news-background-30s.mp3"
+      }
+    },
+    {
+      "filename": "breaking-news-breaking-news.mp3",
+      "category": "breaking-news",
+      "mood": "urgent, dramatic, alert, fast-paced",
+      "duration_s": 124,
+      "source": "pixabay",
+      "license": "CC0",
+      "use_for": ["news", "nri world", "markets & finance", "breaking"],
+      "variants": {
+        "15s": "breaking-news-breaking-news-15s.mp3",
+        "30s": "breaking-news-breaking-news-30s.mp3"
+      }
+    },
+    {
+      "filename": "pixabay-breaking-full.mp3",
+      "category": "breaking-news",
+      "mood": "urgent, tension, news",
+      "duration_s": 116,
+      "source": "pixabay",
+      "license": "CC0",
+      "use_for": ["news", "nri world", "markets & finance", "breaking"],
+      "variants": {
+        "15s": "pixabay-breaking-15s.mp3",
+        "20s": "pixabay-breaking-20s.mp3",
+        "30s": "pixabay-breaking-30s.mp3"
+      }
+    },
+    {
+      "filename": "tech-corporate-technology.mp3",
+      "category": "tech-corporate",
+      "mood": "modern, clean, innovation, professional",
+      "duration_s": 137,
+      "source": "pixabay",
+      "license": "CC0",
+      "use_for": ["technology", "business", "startups", "innovation"],
+      "variants": {
+        "15s": "tech-corporate-technology-15s.mp3",
+        "30s": "tech-corporate-technology-30s.mp3"
+      }
+    },
+    {
+      "filename": "tech-corporate-presentation.mp3",
+      "category": "tech-corporate",
+      "mood": "modern, sleek, corporate, upbeat",
+      "duration_s": 137,
+      "source": "pixabay",
+      "license": "CC0",
+      "use_for": ["technology", "business", "markets & finance", "professional"],
+      "variants": {
+        "15s": "tech-corporate-presentation-15s.mp3",
+        "30s": "tech-corporate-presentation-30s.mp3"
+      }
+    },
+    {
+      "filename": "emotional-inspiring-cinematic.mp3",
+      "category": "emotional-inspiring",
+      "mood": "uplifting, cinematic, hopeful, emotional",
+      "duration_s": 132,
+      "source": "pixabay",
+      "license": "CC0",
+      "use_for": ["human interest", "social impact", "inspiring", "documentary"],
+      "variants": {
+        "15s": "emotional-inspiring-cinematic-15s.mp3",
+        "30s": "emotional-inspiring-cinematic-30s.mp3"
+      }
+    },
+    {
+      "filename": "emotional-inspiring-emotional-uplifting.mp3",
+      "category": "emotional-inspiring",
+      "mood": "emotional, uplifting, warm, moving",
+      "duration_s": 139,
+      "source": "pixabay",
+      "license": "CC0",
+      "use_for": ["human interest", "community", "inspiring", "social"],
+      "variants": {
+        "15s": "emotional-inspiring-emotional-uplifting-15s.mp3",
+        "30s": "emotional-inspiring-emotional-uplifting-30s.mp3"
+      }
+    },
+    {
+      "filename": "emotional-inspiring-inspiring-uplifting.mp3",
+      "category": "emotional-inspiring",
+      "mood": "inspiring, uplifting, bright, hopeful",
+      "duration_s": 122,
+      "source": "pixabay",
+      "license": "CC0",
+      "use_for": ["lifestyle & health", "sports", "community", "feel-good"],
+      "variants": {
+        "15s": "emotional-inspiring-inspiring-uplifting-15s.mp3",
+        "30s": "emotional-inspiring-inspiring-uplifting-30s.mp3"
+      }
+    },
+    {
+      "filename": "emotional-inspiring-uplifting-piano.mp3",
+      "category": "emotional-inspiring",
+      "mood": "emotional, piano, gentle, moving, cinematic",
+      "duration_s": 159,
+      "source": "pixabay",
+      "license": "CC0",
+      "use_for": ["human interest", "memorial", "social impact", "inspiring"],
+      "variants": {
+        "15s": "emotional-inspiring-uplifting-piano-15s.mp3",
+        "30s": "emotional-inspiring-uplifting-piano-30s.mp3"
+      }
+    },
+    {
+      "filename": "indian-classical-diwali-festival.mp3",
+      "category": "indian-classical",
+      "mood": "festive, cultural, traditional, celebratory",
+      "duration_s": 124,
+      "source": "pixabay",
+      "license": "CC0",
+      "use_for": ["entertainment", "food", "festivals", "culture", "bollywood"],
+      "variants": {
+        "15s": "indian-classical-diwali-festival-15s.mp3",
+        "30s": "indian-classical-diwali-festival-30s.mp3"
+      }
+    },
+    {
+      "filename": "indian-classical-free-soul-sitar.mp3",
+      "category": "indian-classical",
+      "mood": "sitar, tabla, flute, meditative, traditional",
+      "duration_s": 265,
+      "source": "pixabay",
+      "license": "CC0",
+      "use_for": ["culture", "heritage", "spiritual", "documentary"],
+      "variants": {
+        "15s": "indian-classical-free-soul-sitar-15s.mp3",
+        "30s": "indian-classical-free-soul-sitar-30s.mp3"
+      }
+    },
+    {
+      "filename": "indian-classical-indian-music-with-sitar-tanpura-and-sarangi.mp3",
+      "category": "indian-classical",
+      "mood": "sitar, tanpura, sarangi, classical, traditional",
+      "duration_s": 49,
+      "source": "pixabay",
+      "license": "CC0",
+      "use_for": ["culture", "heritage", "classical music", "documentary"],
+      "variants": {
+        "15s": "indian-classical-indian-music-with-sitar-tanpura-and-sarangi-15s.mp3",
+        "30s": "indian-classical-indian-music-with-sitar-tanpura-and-sarangi-30s.mp3"
+      }
+    },
+    {
+      "filename": "indian-beat.mp3",
+      "category": "indian-classical",
+      "mood": "rhythmic, energetic, indian, fusion",
+      "duration_s": 148,
+      "source": "pixabay",
+      "license": "CC0",
+      "use_for": ["entertainment", "food", "festivals", "bollywood", "cricket"],
+      "variants": {
+        "15s": "indian-beat-15s.mp3",
+        "30s": "indian-beat-30s.mp3"
+      }
+    },
+    {
+      "filename": "indian-flute.mp3",
+      "category": "indian-classical",
+      "mood": "peaceful, meditative, flute, serene",
+      "duration_s": 193,
+      "source": "pixabay",
+      "license": "CC0",
+      "use_for": ["culture", "heritage", "spiritual", "nature", "documentary"],
+      "variants": {
+        "15s": "indian-flute-15s.mp3",
+        "30s": "indian-flute-30s.mp3"
+      }
+    },
+    {
+      "filename": "indian-lofi-bg.mp3",
+      "category": "indian-classical",
+      "mood": "lofi, chill, indian fusion, ambient",
+      "duration_s": 268,
+      "source": "pixabay",
+      "license": "CC0",
+      "use_for": ["lifestyle & health", "food", "travel", "culture"],
+      "variants": {
+        "15s": "indian-lofi-bg-15s.mp3",
+        "30s": "indian-lofi-bg-30s.mp3"
+      }
+    },
+    {
+      "filename": "chill-lifestyle-rain-bliss.mp3",
+      "category": "chill-lifestyle",
+      "mood": "relaxed, chill-hop, mellow, ambient",
+      "duration_s": 134,
+      "source": "pixabay",
+      "license": "CC0",
+      "use_for": ["travel", "food", "lifestyle & health", "weather"],
+      "variants": {
+        "15s": "chill-lifestyle-rain-bliss-15s.mp3",
+        "30s": "chill-lifestyle-rain-bliss-30s.mp3"
+      }
+    },
+    {
+      "filename": "chill-lifestyle-lofi-study.mp3",
+      "category": "chill-lifestyle",
+      "mood": "calm, peaceful, lofi, chill-hop, study",
+      "duration_s": 147,
+      "source": "pixabay",
+      "license": "CC0",
+      "use_for": ["travel", "food", "lifestyle & health", "education"],
+      "variants": {
+        "15s": "chill-lifestyle-lofi-study-15s.mp3",
+        "30s": "chill-lifestyle-lofi-study-30s.mp3"
+      }
+    },
+    {
+      "filename": "chill-lifestyle-lifestyle.mp3",
+      "category": "chill-lifestyle",
+      "mood": "light, casual, upbeat, lifestyle",
+      "duration_s": 53,
+      "source": "pixabay",
+      "license": "CC0",
+      "use_for": ["lifestyle & health", "food", "travel"],
+      "variants": {
+        "15s": "chill-lifestyle-lifestyle-15s.mp3",
+        "30s": "chill-lifestyle-lifestyle-30s.mp3"
+      }
+    },
+    {
+      "filename": "chill-lifestyle-sweet-life-luxury-chill.mp3",
+      "category": "chill-lifestyle",
+      "mood": "luxury, smooth, chill, sophisticated",
+      "duration_s": 102,
+      "source": "pixabay",
+      "license": "CC0",
+      "use_for": ["travel", "food", "lifestyle & health", "luxury"],
+      "variants": {
+        "15s": "chill-lifestyle-sweet-life-luxury-chill-15s.mp3",
+        "30s": "chill-lifestyle-sweet-life-luxury-chill-30s.mp3"
+      }
+    },
+    {
+      "filename": "dramatic-dark-suspense-thriller.mp3",
+      "category": "dramatic-dark",
+      "mood": "dark, suspenseful, tension, thriller",
+      "duration_s": 160,
+      "source": "pixabay",
+      "license": "CC0",
+      "use_for": ["crisis", "tragedy", "conflict", "investigative", "crime"],
+      "variants": {
+        "15s": "dramatic-dark-suspense-thriller-15s.mp3",
+        "30s": "dramatic-dark-suspense-thriller-30s.mp3"
+      }
+    },
+    {
+      "filename": "pixabay-dramatic-full.mp3",
+      "category": "dramatic-dark",
+      "mood": "dramatic, intense, dark, cinematic",
+      "duration_s": 102,
+      "source": "pixabay",
+      "license": "CC0",
+      "use_for": ["crisis", "tragedy", "conflict", "war"],
+      "variants": {
+        "15s": "pixabay-dramatic-15s.mp3",
+        "20s": "pixabay-dramatic-20s.mp3",
+        "30s": "pixabay-dramatic-30s.mp3"
+      }
+    },
+    {
+      "filename": "pixabay-upbeat-full.mp3",
+      "category": "upbeat-celebration",
+      "mood": "upbeat, bright, energetic, positive",
+      "duration_s": 122,
+      "source": "pixabay",
+      "license": "CC0",
+      "use_for": ["sports", "entertainment", "lifestyle & health", "technology"],
+      "variants": {
+        "15s": "pixabay-upbeat-15s.mp3",
+        "20s": "pixabay-upbeat-20s.mp3",
+        "30s": "pixabay-upbeat-30s.mp3"
+      }
+    }
+  ],
+  "categories": {
+    "upbeat-celebration": {
+      "description": "Victory, sports wins, festivals, good news",
+      "article_categories": ["sports", "entertainment", "festivals", "lifestyle & health"]
+    },
+    "cinematic-epic": {
+      "description": "Dramatic, building, documentary, powerful stories",
+      "article_categories": ["news", "politics", "documentary", "long-form"]
+    },
+    "breaking-news": {
+      "description": "Urgent, tension, fast-paced news alerts",
+      "article_categories": ["news", "nri world", "markets & finance"]
+    },
+    "tech-corporate": {
+      "description": "Modern, clean, innovation, professional",
+      "article_categories": ["technology", "business", "startups", "markets & finance"]
+    },
+    "emotional-inspiring": {
+      "description": "Uplifting, human interest, hope, community",
+      "article_categories": ["human interest", "social impact", "community", "inspiring"]
+    },
+    "indian-classical": {
+      "description": "Sitar, tabla, flute — cultural, heritage, Bollywood",
+      "article_categories": ["entertainment", "food", "culture", "festivals", "bollywood"]
+    },
+    "chill-lifestyle": {
+      "description": "Relaxed, lofi, food/travel/lifestyle content",
+      "article_categories": ["travel", "food", "lifestyle & health"]
+    },
+    "dramatic-dark": {
+      "description": "Crisis, tragedy, investigative, conflict",
+      "article_categories": ["crisis", "tragedy", "conflict", "crime", "investigative"]
+    }
+  }
+}

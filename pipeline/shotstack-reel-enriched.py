@@ -24,6 +24,95 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 import requests
 
+# ── ENRICHED BUILD: animated MP4 data-card renderer ──────────────────────────
+# Shotstack renders `html` assets as a SINGLE static snapshot (CSS @keyframes do
+# NOT play — verified empirically 2026-06-21). So genuinely animated data cards
+# are pre-rendered as 1080x1920 MP4 clips (PIL frames -> ffmpeg) and placed on
+# the timeline as VIDEO clips. This module is loaded best-effort; if it fails to
+# import, the pipeline silently falls back to the static PIL key-point cards.
+try:
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import anim_cards as _ANIM
+    _ANIM_OK = True
+except Exception as _e:
+    _ANIM = None
+    _ANIM_OK = False
+    print(f"  ⚠️ anim_cards unavailable ({_e}) — enriched cards will fall back to static PIL")
+
+
+def _enriched_anim_card_for_scene(scene, i, n_scenes, article, used_archetypes):
+    """ENRICHED: decide whether this storyboard beat should become an ANIMATED
+    data card (and which archetype), then render it to a local MP4.
+
+    Returns (local_mp4_path, archetype_label) or (None, None) if this beat is not
+    a stat/diaspora beat or rendering failed (caller then uses the static card).
+
+    SpaceX-only content: the three archetypes carry the article's verified facts.
+    Detection is keyword-driven over the scene's headline/standfirst/voiceover so
+    the right beat gets the right card, and each archetype is used at most once.
+    """
+    if not _ANIM_OK:
+        return None, None
+    card_text = " ".join(str(scene.get(k, "")) for k in ("card_text", "card_subtext")).lower()
+    txt = " ".join(str(scene.get(k, "")) for k in
+                   ("card_text", "card_subtext", "narration", "scene_role",
+                    "headline", "standfirst", "voiceover", "caption", "key_point", "text")).lower()
+    plan = (scene.get("media_plan") or "").lower()
+    has_num = bool(re.search(r"\d", txt))
+
+    # ── DIASPORA: trigger on a CARD-TEXT diaspora token so it lands on the
+    #    explicit India/NRI beat (e.g. "The Future of NRI Investments"), not a
+    #    beat that merely mentions "Indian" in passing narration.
+    diaspora_card_cue = any(w in card_text for w in
+                            ("nri", "future", "cross-border", "cross border",
+                             "starlink", "diaspora", "remit", "back home"))
+    # ── STAT GRID: an IPO/deal/markets beat carrying the headline figures.
+    grid_cue = (any(w in txt for w in
+                ("ipo", "oversubscribed", "shares", "valuation", "raised", "raise",
+                 "nasdaq", "price", "surge", "billion", "trillion", "market"))
+                and (has_num or "oversubscribed" in txt or "ipo" in txt))
+    stat_cue = grid_cue or has_num or any(w in txt for w in
+               ("record", "richest", "wealth", "net worth", "percent", "%"))
+
+    # 1) DIASPORA PANEL — saffron India/NRI panel (Starlink-frozen angle).
+    if diaspora_card_cue and "diaspora" not in used_archetypes:
+        used_archetypes.add("diaspora")
+        return _ANIM.render_diaspora_panel_mp4(
+            title="Worth $2.2 trillion — still grounded in India",
+            subtitle="The world's biggest IPO, still on hold",
+            bullets=[
+                "Starlink — SpaceX's internet arm — is still not live in India",
+                "June 2026: New Delhi withheld final security clearance",
+                "It already holds GMPCS + IN-SPACe licences, yet sits in limbo",
+                "For NRIs back home, rural broadband keeps waiting on politics",
+            ],
+        ), "diaspora_panel"
+
+    # 2) STAT GRID — the deal in four figures.
+    if grid_cue and "grid" not in used_archetypes:
+        used_archetypes.add("grid")
+        return _ANIM.render_stat_grid_mp4(
+            tiles=[
+                ("$135", "IPO price / share", _ANIM.BLUE),
+                ("$85.7B", "raised — largest ever", _ANIM.GREEN_BR),
+                ("+19%", "first-day pop on Nasdaq", _ANIM.SAFFRON),
+                ("$2.66T", "valuation within a week", _ANIM.GOLD_BR),
+            ],
+            eyebrow="THE DEAL IN FIGURES",
+        ), "stat_grid"
+
+    # 3) HERO STAT — the signature trillionaire number (any remaining card beat).
+    if (plan == "card" or stat_cue) and "hero" not in used_archetypes:
+        used_archetypes.add("hero")
+        return _ANIM.render_hero_stat_mp4(
+            big="$1.3T",
+            sub="Musk — the world's first trillionaire",
+            eyebrow="BY THE NUMBERS",
+        ), "hero_stat"
+
+    return None, None
+
+
 # ─── Config ──────────────────────────────────────────────────────────────────
 
 PIPELINE_DIR = Path(__file__).parent
@@ -4155,6 +4244,7 @@ def source_reel_media_clean(article, storyboard, count=8):
         n_embed += 1
 
     # ── B. GPT directs every remaining scene by its media_plan ──
+    _enriched_used_archetypes = set()  # ENRICHED: each anim archetype used once
     for i in range(n):
         if matched_urls[i] is not None:
             continue
@@ -4206,8 +4296,44 @@ def source_reel_media_clean(article, storyboard, count=8):
             if url is None:
                 print(f"  ⚠️ Scene {i+1}: media_library had no fit for \"{subj}\" — falling to card")
 
-        # "card" / default / any failed plan → PIL branded key-point card.
+        # "card" / default / any failed plan → ENRICHED animated MP4 card, else
+        # static PIL branded key-point card (safe fallback).
         if url is None:
+            # ── ENRICHED: try an animated data card for stat/diaspora beats ──
+            # Scene 0 (hook) is skipped — it must stay a text-free branded bg so
+            # the hook title overlays cleanly (3-layer text collision = QA fail).
+            if i != 0:
+                _anim_path, _arch = _enriched_anim_card_for_scene(
+                    scene, i, n, article, _enriched_used_archetypes)
+                if _anim_path and os.path.exists(_anim_path):
+                    try:
+                        with open(_anim_path, "rb") as _fh:
+                            _ch = hashlib.md5(_fh.read()).hexdigest()[:10]
+                    except Exception:
+                        _ch = str(int(time.time()))
+                    storage_path = f"reel-cards/{article_id}/anim-{_arch}-{i}-{_ch}.mp4"
+                    url = upload_asset(_anim_path, storage_path, "video/mp4")
+                    try:
+                        os.remove(_anim_path)
+                    except Exception:
+                        pass
+                    if url:
+                        # Mark as VIDEO so the timeline places it full-bleed; the
+                        # is_anim_card flag forces trim=0 (entrance plays from t0)
+                        # and suppresses Ken Burns crop. 12s source holds final
+                        # frame, so it fills any scene_length.
+                        meta = {"type": "video", "duration": 12.0, "is_card": True,
+                                "is_anim_card": True, "curated": True,
+                                "generic_pexels": False}
+                        n_card += 1
+                        print(f"  🎬 Scene {i+1}: ANIMATED data card — {_arch}")
+                        matched_urls[i] = url
+                        used_in_this_reel.add(url)
+                        media_meta[url] = meta
+                        continue
+                    else:
+                        print(f"  ⚠️ Scene {i+1}: anim-card upload failed — falling to static card")
+
             # Scene 0 (hook) gets a text-free branded bg (hook title overlays it),
             # avoiding the 3-layer text collision that hurt readability QA.
             local = render_keypoint_card(scene, category, article, i, text_free=(i == 0))
@@ -4617,7 +4743,9 @@ def build_anchor_reel_timeline(
             # Social video plays from the start (it's a real post; a random mid-clip
             # offset would look arbitrary) and is already hard-trimmed at hosting.
             src_duration = meta.get("duration", 10)
-            if meta.get("is_social_video"):
+            if meta.get("is_social_video") or meta.get("is_anim_card"):
+                # Social video & ENRICHED animated cards play from the START so
+                # the entrance/count-up animation is never trimmed off.
                 trim_start = 0
             else:
                 max_trim = max(0, src_duration - per_image - 1)
