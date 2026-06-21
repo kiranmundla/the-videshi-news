@@ -403,8 +403,12 @@ def check_image_health():
             continue
 
         try:
-            r = requests.head(url, timeout=8, allow_redirects=True,
-                              headers={"User-Agent": "TheVideshi/1.0"})
+            # NOTE: HEAD requests always 400 on upload.wikimedia.org (the
+            # dominant hero-image source), so we MUST use GET. Use a tiny Range
+            # request so we don't download the whole file just to validate it.
+            r = requests.get(url, timeout=10, allow_redirects=True, stream=True,
+                             headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)",
+                                      "Range": "bytes=0-2048"})
             if r.status_code >= 400:
                 broken.append({
                     "id": a["id"], "headline": a["headline"][:60],
@@ -412,17 +416,28 @@ def check_image_health():
                 })
             else:
                 ct = r.headers.get("content-type", "")
-                cl = int(r.headers.get("content-length", 0) or 0)
-                if "image" not in ct:
+                # content-length on a Range request is the chunk size, so for
+                # total size prefer content-range total when present.
+                cr = r.headers.get("content-range", "")
+                total = 0
+                if "/" in cr:
+                    try:
+                        total = int(cr.rsplit("/", 1)[1])
+                    except ValueError:
+                        total = 0
+                if not total:
+                    total = int(r.headers.get("content-length", 0) or 0)
+                if ct and "image" not in ct and "octet-stream" not in ct:
                     not_image.append({
                         "id": a["id"], "headline": a["headline"][:60],
                         "content_type": ct[:40], "url": url[:80],
                     })
-                elif cl > 0 and cl < 5000:
+                elif total > 0 and total < 5000:
                     tiny.append({
                         "id": a["id"], "headline": a["headline"][:60],
-                        "bytes": cl, "url": url[:80],
+                        "bytes": total, "url": url[:80],
                     })
+            r.close()
         except Exception as e:
             broken.append({
                 "id": a["id"], "headline": a["headline"][:60],
@@ -538,6 +553,59 @@ def check_article_quality():
         "action_needed": (
             f"{len(issues)}/{len(articles)} recent articles have quality issues"
             if len(issues) > 5 else None
+        ),
+    }
+
+
+# ─── Check: Pulse tweet freshness ─────────────────────────────────────────────
+
+def check_pulse_freshness():
+    """The India/World/Tech/Sports Pulse strips read public/data/tech-buzz.json.
+    Each leader card shows posts[0].text. When the refresh degrades, cards fall
+    back to 'Follow @handle for the latest updates.' placeholders — a visible
+    user-facing bug. Flag if too many cards are placeholders or missing text."""
+    path = os.path.expanduser("~/workspace/the-videshi-news/public/data/tech-buzz.json")
+    try:
+        with open(path) as f:
+            data = json.load(f)
+    except Exception as e:
+        return {
+            "check": "pulse_freshness",
+            "alert": True,
+            "action_needed": f"cannot read tech-buzz.json: {str(e)[:60]}",
+        }
+
+    leaders = data.get("leaders", [])
+    placeholders = []
+    empty = []
+    for l in leaders:
+        posts = l.get("posts") or []
+        text = (posts[0].get("text") if posts else "") or ""
+        t = text.strip().lower()
+        if not posts or not text.strip():
+            empty.append(l.get("name", l.get("handle", "?")))
+        elif t.startswith("follow @") or "for the latest updates" in t:
+            placeholders.append(l.get("name", l.get("handle", "?")))
+
+    total = len(leaders)
+    bad = len(placeholders) + len(empty)
+    fresh = total - bad
+    # A handful of accounts legitimately have no usable tweet (deceased /
+    # no personal handle / replies-only). Alert only when it's clearly broken.
+    return {
+        "check": "pulse_freshness",
+        "total_leaders": total,
+        "fresh": fresh,
+        "placeholder_count": len(placeholders),
+        "empty_count": len(empty),
+        "placeholders": placeholders[:15],
+        "empty": empty[:10],
+        "alert": total > 0 and (len(empty) > 0 or len(placeholders) > 6),
+        "action_needed": (
+            f"Pulse strips degraded: {bad}/{total} cards lack a real tweet "
+            f"({len(empty)} empty, {len(placeholders)} placeholders). "
+            f"Re-run refresh-pulse-xapi.py."
+            if (len(empty) > 0 or len(placeholders) > 6) else None
         ),
     }
 
@@ -782,6 +850,7 @@ def run_all(fix=False):
         check_null_published_at(fix=fix),
         check_aged_articles(fix=fix),
         check_worldcup_social_embeds(fix=fix),
+        check_pulse_freshness(),
     ]
 
     report = {
