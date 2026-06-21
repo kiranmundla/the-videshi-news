@@ -38,3 +38,6 @@ pipeline/travel-writer-*.py
 pipeline/reels/voice-samples/
 pipeline/indexing-submitted.json
 pipeline/.x-profiles.json
+
+# Per-run writer scripts are throwaway artifacts (category-writer-YYYYMMDD-HHMM.py / -MMDD.py)
+pipeline/*-writer-[0-9]*.py
