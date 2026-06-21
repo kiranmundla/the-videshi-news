@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-21T12:45:35.018908+00:00",
+  "timestamp": "2026-06-21T13:15:11.458034+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 5,
+    "pass": 1,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,17 +11,17 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "350a82cb-6d6f-48cf-8999-7d99077b9859",
-      "headline": "India's Women Have Won Everything So Far. South Africa Are the Test That Tells Us If It's Real.",
-      "slug": "india-women-south-africa-t20-world-cup-old-trafford-preview-harmanpreet-wolvaardt-revenge-20260621",
+      "id": "8a3c3aa5-d3d5-4958-a6cb-6144c890e184",
+      "headline": "Cocktail 2 Grew on Saturday When Everyone Else Crashes. Shahid's Third-Biggest Opener Has the Diaspora Pouring Again.",
+      "slug": "cocktail-2-opening-weekend-box-office-saturday-jump-shahid-kapoor-third-biggest-opener-kriti-sanon-rashmika-mandanna-homi-adajania-where-to-watch-diaspora-nri-20260621",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Old Trafford Cricket Ground map",
-          "reason": "The photo shows Old Trafford, relevant to the cricket match story."
+          "what_photo_shows": "A man in a green jacket",
+          "reason": "The photo shows Shahid Kapoor, who is relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -35,181 +35,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the significance of the match to the Indian diaspora, highlighting their presence and support at Old Trafford."
+          "note": "The article effectively connects the film's release and its significance to NRI audiences, discussing the original film's impact on the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from players or coaches to enhance the narrative.",
-          "Include more statistics or historical context about India-South Africa matches to deepen the analysis."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "bcd6ba4c-ecc0-486b-95d2-e4d62d033eb0",
-      "headline": "America's Top Trade Negotiator Lands in Delhi This Week. A Long-Awaited Deal May Be Within Reach.",
-      "slug": "ustr-jamieson-greer-india-visit-june-23-interim-trade-deal-record-exports-section-301-diaspora-20260621",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "man in suit with US flag",
-          "reason": "The photo plausibly shows a US official, fitting the story's context."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the trade negotiations to the interests of the Indian diaspora, highlighting how the outcomes will impact their economic activities."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from diaspora members or experts to enhance the personal connection to the topic.",
-          "Include more specific examples of how the trade deal could directly affect diaspora communities in different countries."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "92eff8ed-7427-4e03-ba67-dc5730dc1749",
-      "headline": "Ghee Was Right All Along: America's New Dietary Guidelines Vindicate the Indian Kitchen",
-      "slug": "ghee-was-right-all-along-americas-new-dietary-guidelines-vindicate-the-indian-ki",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "close-up of ghee",
-          "reason": "The photo shows ghee, which is relevant to the story about dietary guidelines and Indian cooking."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 10,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the topic of ghee to the experiences and cultural significance for the NRI community."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a quote from a nutritionist or a cultural figure to enhance credibility.",
-          "Include a brief section on how ghee is perceived in other cultures to broaden the article's appeal."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "23c68865-795d-420a-b5cd-f97e833d435e",
-      "headline": "From a 7-Eleven Counter to the Beard Awards: A Self-Taught Chef Rewrites the Indian-American Kitchen Story",
-      "slug": "from-a-7-eleven-counter-to-the-beard-awards-a-self-taught-chef-rewrites-the-indi",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "plate of steamed momos",
-          "reason": "The photo shows momos, relevant to the story about Himalayan cuisine."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively highlights the significance of Sundas's achievements for the Nepali and broader South Asian diaspora, connecting his personal journey to the immigrant experience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from Sundas or other chefs to provide more personal insight into his journey.",
-          "Include more details about the impact of Sundas's work on the local culinary scene to enhance the narrative."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "091cb0e8-bff0-4c7c-b7e2-b832c366c973",
-      "headline": "Regional India, Plated for Critics: How Chef Sujan Sarkar Is Spreading Michelin-Grade Indian Across America",
-      "slug": "regional-india-plated-for-critics-how-chef-sujan-sarkar-is-spreading-michelin-gr",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "regional Indian thali with curries and breads",
-          "reason": "The photo shows a regional Indian thali, which matches the story about Indian cuisine."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": "The image of a Non-Veg Thali aligns well with the article's focus on regional Indian cuisine."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the rise of regional Indian cuisine in America to the experiences and heritage of the Indian diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from Chef Sujan Sarkar to provide a more personal touch.",
-          "Include more details about the specific dishes offered at NADU and Indienne to enhance reader engagement."
+          "Consider adding more quotes or reactions from diaspora audiences to enhance the connection.",
+          "Include a brief comparison of the film's reception in India versus overseas to provide more context."
         ],
         "verdict": "pass"
       },
