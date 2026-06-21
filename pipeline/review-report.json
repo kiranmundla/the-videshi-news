@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-21T17:45:15.376260+00:00",
+  "timestamp": "2026-06-21T18:16:33.672345+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
+    "pass": 12,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,17 +11,17 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "0550ce33-2e86-4280-ba1a-9d7afbbb9f79",
-      "headline": "India's Unbeaten Run Ends at Old Trafford, Undone by a Marizanne Kapp Masterclass",
-      "slug": "india-women-lose-south-africa-6-wickets-t20-world-cup-2026-kapp-81-old-trafford-first-defeat-charani-mandhana-nri",
+      "id": "8c3eafff-33cd-46da-83de-a3cf24673e10",
+      "headline": "Two Indian-Origin Students Pitched the Impossible in Under Two Minutes. They Walked Out of Purdue With the Top Prize.",
+      "slug": "purdue-moonshot-pitch-challenge-indian-origin-students-diaspora-stem-20260621",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "cricketer in blue and yellow uniform",
-          "reason": "The photo shows a cricketer, which matches the cricket story topic."
+          "what_photo_shows": "Frederick L. Hovde Hall at Purdue",
+          "reason": "The photo shows a Purdue University building, relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -35,13 +35,477 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the match's outcome to the sentiments of Indian cricket fans abroad, highlighting their expectations and the cultural context."
+          "note": "The article effectively highlights the achievements of Indian-origin students and connects their success to the broader narrative of the Indian diaspora in America."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from players or coaches to enhance the narrative.",
-          "Include statistics or historical context about India's performance in previous World Cups for deeper analysis."
+          "Consider adding quotes from the students about their experiences to enhance the personal connection.",
+          "Include more context about the significance of the Moonshot Pitch Challenge for a broader audience."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "ae0353c5-1f55-4eac-9921-a470ececb150",
+      "headline": "Buying a Flat in India Has Long Been a Compliance Nightmare for NRIs. Delhi Just Promised to Fix It.",
+      "slug": "nri-property-purchase-pan-system-tds-compliance-easing-october-20260621",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "residential apartment building in Bengaluru",
+          "reason": "The photo shows a residential building in India, relevant to the property purchase story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image is relevant to the topic of buying property in India but lacks specific elements that directly connect to NRIs."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively addresses the challenges faced by NRIs in property transactions and discusses recent changes that will benefit them."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include specific examples or anecdotes from NRIs who have faced these challenges to enhance relatability.",
+          "Consider adding a section on how NRIs can prepare for the upcoming changes in the property buying process."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "baad17a4-2152-4cde-b4a7-792f0ad533d4",
+      "headline": "On the Same Saturday, Two Sikh Parades Shut Down Streets 1,200 Miles Apart. Neither Was an Accident.",
+      "slug": "sikh-nagar-kirtan-parades-salem-squamish-diaspora-public-faith-20260621",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Sikh Nagar Kirtan procession",
+          "reason": "The photo shows a Sikh Nagar Kirtan, which is relevant to the story about Sikh parades."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the Sikh parades to the diaspora experience, highlighting cultural identity and community outreach."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include quotes or perspectives from participants in the parades to enhance personal connection.",
+          "Add a brief historical context about the significance of the Nagar Kirtan for readers unfamiliar with Sikh traditions."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "1000baa0-c26d-418a-be2e-a4b35395ccc4",
+      "headline": "IndiGo Is Pushing Into Europe on Single-Aisle Jets \u2014 and Quietly Building a Path to America",
+      "slug": "indigo-europe-expansion-copenhagen-heathrow-delta-codeshare-nri-us-20260621",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "IndiGo Airbus A321neo on tarmac",
+          "reason": "The photo shows an IndiGo Airbus A321neo, relevant to the aviation story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects IndiGo's expansion to the needs of the NRI community, highlighting the convenience of booking through tickets."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more statistics or data on the expected impact of these new routes on NRI travel.",
+          "Include quotes from industry experts or airline representatives to enhance credibility."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "5d31a8b7-b6e1-4a2a-aae9-232e00825ef9",
+      "headline": "You Can Finally Take a Train Into the Kashmir Valley \u2014 and It Crosses the World's Highest Rail Bridge",
+      "slug": "vande-bharat-jammu-srinagar-kashmir-chenab-bridge-nri-pilgrimage-20260621",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Chenab Rail Bridge in mountains",
+          "reason": "The photo shows the Chenab Rail Bridge, relevant to the story about the train route."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 10,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the new train service to the experiences and needs of the NRI community, particularly in relation to pilgrimage and family visits."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more personal anecdotes or quotes from NRIs about their travel experiences to enhance relatability.",
+          "Include a section on how this new train service might impact tourism in the Kashmir Valley, particularly for international visitors."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "2857146a-8738-4505-8ddf-5b762302509b",
+      "headline": "Europe Just Set a Price on Its New Travel Permit \u2014 and It Hits the Diaspora's Cheapest Route Home",
+      "slug": "etias-europe-travel-authorization-2026-fee-nri-naturalized-passport-20260621",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "border control hall at airport",
+          "reason": "The photo shows a border control area relevant to the travel permit story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses the Indian diaspora's unique travel challenges and considerations regarding the new ETIAS system."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include a brief comparison of ETIAS with other travel authorizations to enhance understanding.",
+          "Add a section on how the diaspora can prepare for the ETIAS application process."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "f98a6aab-e6cd-4f33-a5ef-83bda1a99f07",
+      "headline": "India's Digital Fraud Rate Is Now Nearly Double the World's. The Weak Point Is the Account You Already Have.",
+      "slug": "india-digital-fraud-rate-7-1-percent-transunion-account-takeover-nri-c-20260621",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "person typing on a laptop",
+          "reason": "The photo illustrates digital fraud and account-takeover risk."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the issue of digital fraud to the NRI experience, highlighting vulnerabilities specific to their financial interactions."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of recent fraud cases affecting NRIs to enhance relatability.",
+          "Include a brief section on how NRIs can protect themselves against these frauds, beyond just multi-factor authentication."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "2b107c76-6f2d-463a-a468-8d05436e812a",
+      "headline": "India's Carmakers Just Got a Duty-Free Lane Into Britain's EV Market. The Fine Print Is a 15-Year Wait.",
+      "slug": "india-uk-fta-ev-exports-tata-maruti-mahindra-duty-free-quota-nri-brita-20260621",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Tata electric car on Indian road",
+          "reason": "The photo shows a Tata electric car, relevant to the story about India's carmakers and the UK EV market."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the Indian diaspora in the UK to the potential market for Indian EVs, highlighting cultural familiarity and the significance of Indian manufacturing."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from industry experts or stakeholders to enhance credibility.",
+          "Include more data or statistics on the potential impact of Indian EVs in the UK market."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "14224053-ad0a-4f56-9f39-08312630f857",
+      "headline": "India's Data-Centre Pipeline Just Hit 8.33 Gigawatts. The Real Bottleneck Is Power, Not Demand.",
+      "slug": "india-data-centre-pipeline-8-33-gigawatts-knight-frank-ai-mumbai-hyder-20260621",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "server racks in a data centre",
+          "reason": "The photo shows a data centre, which is relevant to the story about data-centre capacity."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image depicts a data center environment, which is relevant to the article's topic."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the Indian diaspora to the developments in India's data-center industry, highlighting job opportunities and investment potential."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more statistics or data points to strengthen the argument about the power constraints.",
+          "Include quotes or insights from industry experts to enhance credibility and depth."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "6a7d0d23-ba20-43de-8de2-9484e2435d99",
+      "headline": "India Is Courting Foreign Bond Money \u2014 but the RBI Wants It Trading at Home, Not Through Euroclear",
+      "slug": "rbi-rejects-offshore-settlement-euroclear-sovereign-bonds-nds-om-foreign-investors-rupee-nri-investor-20260621-1800",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Reserve Bank of India building",
+          "reason": "The photo shows the Reserve Bank of India, relevant to the story about RBI's bond trading policies."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the implications of RBI's policies on the Indian bond market to NRIs, highlighting its impact on their investments and the broader financial system."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of how NRI investments are affected by these changes in the bond market.",
+          "Include quotes or insights from NRI investors to provide a personal perspective on the topic."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "57e24d2a-7c73-43e1-a1ed-baa203f5470e",
+      "headline": "Fasting May Protect the Mind by Reshaping the Gut, a New Study on Stress and Depression Suggests",
+      "slug": "intermittent-fasting-gut-microbiome-depression-myelin-chiba-zhengzhou-gut-brain-axis-study-diaspora-20260621-1800",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MISMATCH",
+          "what_photo_shows": "book cover on clocks and watches",
+          "reason": "The subject is unrelated to the study on fasting and mental health."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image description is missing, making it difficult to assess relevance."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article connects fasting practices in Indian culture to the scientific findings, making it relevant for diaspora readers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include a relevant image description to improve the image match score.",
+          "Consider adding quotes or insights from diaspora community members about their fasting practices to enhance the cultural connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "Cleared mismatched image (book cover on clocks and watches)",
+        "held: image mismatch"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "image_mismatch": true,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "92f7baac-5f12-4ee7-81c8-b671be70fecf",
+      "headline": "Lose the Hidden Belly Fat and the Body Seems to Remember \u2014 Even After the Weight Comes Back, a 10-Year Study Finds",
+      "slug": "visceral-fat-metabolic-memory-lasting-diabetes-protection-circulation-ben-gurion-central-direct-plus-diaspora-20260621-1800",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "person measuring waist circumference",
+          "reason": "The photo relates to body fat measurement, relevant to the study on visceral fat."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses health implications relevant to the diaspora, particularly in relation to dietary habits and metabolic health, which can resonate with NRI readers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include a brief mention of how these findings might specifically impact the Indian diaspora, considering dietary habits prevalent in Indian communities.",
+          "Add a section on practical dietary recommendations based on the study's findings to enhance reader engagement."
         ],
         "verdict": "pass"
       },
