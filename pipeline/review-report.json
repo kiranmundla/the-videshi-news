@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-21T14:45:23.869538+00:00",
+  "timestamp": "2026-06-21T15:15:39.634862+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 5,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,17 +11,17 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "82337f9c-43fe-41c5-84bc-57573b7c1614",
-      "headline": "After 15 Years, India Is Counting Itself Again \u2014 On a Phone, and Asking About Caste for the First Time Since 1931",
-      "slug": "india-census-2027-resumes-first-digital-caste-enumeration-houselisting-begins-diaspora-20260621",
+      "id": "0dc87d77-02f9-4d93-ab19-ff34cc778ce3",
+      "headline": "A Judge Killed Trump's $100,000 H-1B Fee. Four Days Later, It Was Back. Welcome to the Whiplash.",
+      "slug": "h1b-100000-fee-struck-down-stayed-appeal-indian-tech-workers-nri-20260621",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "crowded street in Kolkata",
-          "reason": "The photo shows a crowded street in Kolkata, which aligns with the census story."
+          "what_photo_shows": "US passport on a map",
+          "reason": "The photo is relevant to a story about visa fees and immigration."
         },
         "inline_image_mismatches": []
       },
@@ -35,13 +35,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the census to the interests and implications for the Indian diaspora, discussing how it affects investment and property ownership."
+          "note": "The article effectively highlights the impact of the H-1B fee on Indian technology workers, making it relevant to the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more direct quotes from experts or officials to enhance credibility.",
-          "Include a brief section on how the diaspora can engage with or respond to the census process."
+          "Consider adding quotes from affected individuals or experts to enhance the narrative.",
+          "Include more context on the implications of the fee for the Indian diaspora in the U.S."
         ],
         "verdict": "pass"
       },
@@ -53,17 +53,17 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "fb5d7429-0cdd-413a-a343-b6f3701d8fa8",
-      "headline": "India's States Are Sending Cash Straight to Women. The Bill Is Now Big Enough to Worry the Economists.",
-      "slug": "india-states-cash-transfer-schemes-women-fiscal-warning-finance-commission-ladki-bahin-20260621",
+      "id": "973055cf-774e-42a1-b741-ccafc188524c",
+      "headline": "Mukesh Ambani Just Filed the Paperwork for India's Biggest IPO Ever. The NRI Question Is Whether to Believe the $180 Billion Price Tag.",
+      "slug": "jio-platforms-ipo-drhp-reliance-ambani-180-billion-nri-investors-20260621",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A man in a suit and tie",
-          "reason": "The photo plausibly shows an economist relevant to the story."
+          "what_photo_shows": "A man in a suit, smiling",
+          "reason": "The photo plausibly shows Mukesh Ambani, relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -77,13 +77,139 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the cash transfer schemes to the diaspora by highlighting their impact on families supported by NRIs."
+          "note": "The article effectively connects the IPO to the emotional and practical interests of NRIs, highlighting the significance of Jio for the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more specific examples of how these cash transfers have directly impacted diaspora families.",
-          "Include quotes or testimonials from NRIs to enhance the personal connection to the topic."
+          "Consider adding more specific examples of how Jio's services impact the diaspora, such as testimonials or case studies.",
+          "Include a brief overview of the risks associated with investing in such a high-valuation IPO to provide a balanced perspective."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "99d99538-32f5-4849-ab87-ddaecd3b374f",
+      "headline": "Accenture Lost a Fifth of Its Value in a Day. The Tremor Is Already Reaching Bengaluru and New Jersey.",
+      "slug": "accenture-stock-crash-q3-ai-indian-it-services-tcs-infosys-cognizant-n-20260621",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Accenture office building",
+          "reason": "The photo shows an Accenture office, relevant to the story about Accenture's stock drop."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the impact of Accenture's stock drop on Indian IT professionals in the diaspora, particularly in the US."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from industry experts or analysts to enhance credibility.",
+          "Include more specific examples of how the stock drop may affect Indian engineers in the diaspora."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "ebb24b61-2e93-4bca-a5c6-a68cd3463c2c",
+      "headline": "Bhuvan Bam Picks Up the Clapboard for Dhindora 2. The YouTube Kid Who Crossed 500 Million Views Now Has Netflix Holding the Camera.",
+      "slug": "dhindora-2-bhuvan-bam-filming-begins-netflix-india-titu-mama-rajpal-yadav-punjab-where-to-watch-diaspora-nri-20260621",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "A man in a suit",
+          "reason": "The photo plausibly shows Bhuvan Bam, relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects Bhuvan Bam's work to the diaspora experience, highlighting how his humor resonates with NRIs."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more quotes from Bhuvan Bam or other industry figures to enhance the narrative.",
+          "Include a brief section on the impact of Dhindora on Indian digital content to provide more context."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "9f5d2485-3d03-4588-b488-0bbdf961cc7f",
+      "headline": "Priyanka Chopra Adds Angelina Jolie to a Slate That Already Has Rajamouli, Mira Nair and Orlando Bloom. The Desi Queen Is Building an Empire.",
+      "slug": "priyanka-chopra-angelina-jolie-collaboration-varanasi-rajamouli-mira-nair-amri-orlando-bloom-global-slate-where-to-watch-diaspora-nri-20260621",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Priyanka Chopra Jonas",
+          "reason": "The photo shows Priyanka Chopra Jonas, matching the story's subject."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article connects well with diaspora readers by discussing Chopra's cross-cultural projects and her refusal to choose between Bollywood and Hollywood."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more direct quotes from Priyanka Chopra to enhance the personal connection.",
+          "Add a brief section on the significance of Chopra's projects for the Indian diaspora."
         ],
         "verdict": "pass"
       },
