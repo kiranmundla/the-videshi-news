@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-21T07:45:12.967602+00:00",
+  "timestamp": "2026-06-21T08:15:26.523271+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
+    "pass": 3,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,17 +11,61 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "c51c94ef-b5e0-4818-ac52-e00bde797007",
-      "headline": "Two Hundreds, 460 Runs, One Game: America's Cricket League Just Staged Its Most Brutal Run-Fest Yet",
-      "slug": "washington-freedom-beat-mi-new-york-mlc-2026-mitchell-owen-155-kieron-pollard-100-two-centuries-grand-prairie-diaspora-nri",
+      "id": "0458cb92-f744-4a73-9f78-b3f857c065a3",
+      "headline": "India's Consulates in the UAE Go Dark for Five Days \u2014 and 3.5 Million NRIs Have to Plan Around It",
+      "slug": "india-uae-passport-visa-services-pause-june-2026-al-hind-nri-20260621",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MISMATCH",
+          "what_photo_shows": "Philippine passports at an airport",
+          "reason": "The photo shows Philippine passports, not related to Indian consular services."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image description is missing, making it difficult to assess relevance."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively addresses the concerns of NRIs in the UAE regarding consular services."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include a relevant image description to enhance the article's visual context.",
+          "Consider adding quotes or testimonials from affected NRIs to provide a personal touch."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "Cleared mismatched image (Philippine passports at an airport)",
+        "held: image mismatch"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "image_mismatch": true,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "882b79d7-7633-45b8-a5e4-4b60d2cac924",
+      "headline": "A New USCIS Rule Means a Wrong Signature Can Sink Your Green Card \u2014 Even After It's Accepted",
+      "slug": "uscis-signature-rule-july-10-2026-invalid-signature-denial-india-20260621",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Kieron Pollard in cricket attire",
-          "reason": "The photo shows Kieron Pollard, relevant to the cricket story."
+          "what_photo_shows": "hand signing a legal document",
+          "reason": "The photo subject is relevant to the story about signature rules."
         },
         "inline_image_mismatches": []
       },
@@ -30,18 +74,60 @@
         "embed_issues": [],
         "image_match": {
           "score": 9,
-          "issue": null
+          "issue": "The image of documents and signatures aligns well with the article's topic on immigration filings and signatures."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the match to the Indian and South Asian diaspora, highlighting their presence and interest in American cricket."
+          "quality": 9,
+          "note": "The article effectively connects the new USCIS rule to the Indian diaspora, particularly in relation to employment-based immigration."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from players or coaches to enhance the narrative.",
-          "Include more statistics or historical context about Major League Cricket to provide depth."
+          "Consider adding more statistics or expert opinions to strengthen the argument.",
+          "Include a brief summary of the potential impacts on the diaspora community to enhance reader engagement."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "e0bfe836-767e-45aa-b275-393cb3e2e2ef",
+      "headline": "EB-5 Was the Indian Escape Hatch From the Green Card Backlog. It Just Slammed Shut Until October",
+      "slug": "eb5-india-unreserved-exhausted-october-2026-investor-visa-backlog-20260621",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "US passport and dollar bills",
+          "reason": "The photo symbolically represents the EB-5 investor visa route."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the topic of immigration or EB-5 visas."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the impact of EB-5 visa changes on Indian nationals, making it relevant for the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that directly relates to immigration or the EB-5 visa process.",
+          "Add a quote from an immigration expert or lawyer to enhance credibility and provide additional insights."
         ],
         "verdict": "pass"
       },
