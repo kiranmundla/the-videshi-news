@@ -288,7 +288,7 @@ async function renderEventsIndex(): Promise<string> {
   const today = new Date().toISOString().split("T")[0];
   const events = await sbFetch(
     "events",
-    "name,slug,date,city,state,category,venue_name",
+    "title,slug,date,city,state,category,venue_name",
     `date=gte.${today}&order=date.asc`,
     50
   );
@@ -296,7 +296,7 @@ async function renderEventsIndex(): Promise<string> {
   const eventLinks = events
     .map(
       (e: any) =>
-        `<li><a href="${SITE}/events/${esc(e.slug)}">${esc(e.name)}</a>
+        `<li><a href="${SITE}/events/${esc(e.slug)}">${esc(e.title)}</a>
          <br><small>${esc(e.date || "")} · ${esc(e.city || "")}${e.state ? `, ${esc(e.state)}` : ""} · ${esc(e.category || "")}</small></li>`
     )
     .join("\n");
@@ -325,25 +325,25 @@ async function renderEventsIndex(): Promise<string> {
 async function renderEventDetail(slug: string): Promise<string | null> {
   const rows = await sbFetch(
     "events",
-    "name,slug,date,end_date,city,state,venue_name,venue_address,category,long_description,artist_info,venue_info,ticket_url,latitude,longitude",
+    "title,slug,date,end_date,city,state,venue_name,category,long_description,artist_info,venue_info,ticket_url,latitude,longitude",
     `slug=eq.${encodeURIComponent(slug)}`,
     1
   );
   if (!rows.length) return null;
 
   const e = rows[0];
-  const desc = e.long_description || e.name;
+  const desc = e.long_description || e.title;
   const location = [e.venue_name, e.city, e.state].filter(Boolean).join(", ");
 
   return pageShell({
-    title: `${e.name} — The Videshi Events`,
-    description: `${e.name} at ${location}. ${e.date || ""}. Find tickets, venue info, and details.`,
+    title: `${e.title} — The Videshi Events`,
+    description: `${e.title} at ${location}. ${e.date || ""}. Find tickets, venue info, and details.`,
     url: `${SITE}/events/${e.slug}`,
     type: "article",
     jsonLd: {
       "@context": "https://schema.org",
       "@type": "Event",
-      name: e.name,
+      name: e.title,
       startDate: e.date,
       ...(e.end_date && { endDate: e.end_date }),
       location: {
@@ -351,7 +351,7 @@ async function renderEventDetail(slug: string): Promise<string | null> {
         name: e.venue_name || "",
         address: {
           "@type": "PostalAddress",
-          streetAddress: e.venue_address || "",
+          streetAddress: "",
           addressLocality: e.city || "",
           addressRegion: e.state || "",
           addressCountry: "US",
@@ -363,7 +363,7 @@ async function renderEventDetail(slug: string): Promise<string | null> {
     },
     body: `
 <article>
-  <h1>${esc(e.name)}</h1>
+  <h1>${esc(e.title)}</h1>
   <p><strong>Date:</strong> ${esc(e.date || "")}</p>
   <p><strong>Venue:</strong> ${esc(location)}</p>
   <p><strong>Category:</strong> ${esc(e.category || "")}</p>
