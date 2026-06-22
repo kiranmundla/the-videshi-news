@@ -1,6 +1,6 @@
 {
  "_description": "Media library mirror — high-quality, attribution-clean images+videos for article/reel fallback. Source of truth is the Supabase media_library table; this mirror lets the pipeline read without a DB round-trip.",
- "_updated": "2026-06-22T10:32:39Z",
+ "_updated": "2026-06-22T16:39:47Z",
  "assets": [
   {
    "id": "person--narendra-modi--bfe42b",
@@ -465,28 +465,6 @@
    "times_used": 0
   },
   {
-   "id": "person--narendra-modi--6432d2",
-   "media_type": "image",
-   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/person/narendra-modi-6432d2.jpg",
-   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/person/narendra-modi-6432d2.jpg",
-   "subject": "Narendra Modi",
-   "subject_type": "person",
-   "caption": "Narendra Modi Stadium",
-   "attribution": "Wikimedia Commons / Ishi6181, CC0",
-   "license": "CC0",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Narendra_Modi_Stadium_Ahmedabad.jpg",
-   "tags": [
-    "narendra modi"
-   ],
-   "width": 4032,
-   "height": 3024,
-   "duration": null,
-   "quality_score": 92.0,
-   "added_date": "2026-06-19T05:23:16Z",
-   "last_used": "2026-06-19T11:57:09Z",
-   "times_used": 2
-  },
-  {
    "id": "place--delhi--400e94",
    "media_type": "image",
    "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/place/delhi-400e94.jpg",
@@ -615,28 +593,6 @@
    "duration": null,
    "quality_score": 92.0,
    "added_date": "2026-06-20T10:30:03Z",
-   "last_used": null,
-   "times_used": 0
-  },
-  {
-   "id": "thing--immigration--5181dc",
-   "media_type": "image",
-   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/immigration-5181dc.jpg",
-   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/immigration-5181dc.jpg",
-   "subject": "immigration",
-   "subject_type": "thing",
-   "caption": "Detention center at U.S. Immigration Station, Angel Island",
-   "attribution": "Wikimedia Commons / E bailey, CC BY-SA 4.0",
-   "license": "CC BY-SA 4.0",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Detention_center_at_U.S._Immigration_Station_Angel_Island.jpg",
-   "tags": [
-    "immigration"
-   ],
-   "width": 4982,
-   "height": 3321,
-   "duration": null,
-   "quality_score": 92.0,
-   "added_date": "2026-06-20T10:30:12Z",
    "last_used": null,
    "times_used": 0
   },
@@ -945,28 +901,6 @@
    "duration": null,
    "quality_score": 60.6,
    "added_date": "2026-06-20T10:31:46Z",
-   "last_used": null,
-   "times_used": 0
-  },
-  {
-   "id": "thing--uscis--cb27b0",
-   "media_type": "image",
-   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/uscis-cb27b0.jpg",
-   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/uscis-cb27b0.jpg",
-   "subject": "USCIS",
-   "subject_type": "thing",
-   "caption": "CAMP SPRINGS (June 20, 2024) Department of Homeland Security (DHS), Senior Official Performing the Duties of the Deputy Secretary, Kristie Canegallo, attends a USCIS All-Employee Town Hall at USCIS Headquarters in Camp Springs, M.D. (DHS photo by Mikaela McGee)",
-   "attribution": "Wikimedia Commons / DHSgov, Public domain",
-   "license": "Public domain",
-   "source_url": "https://commons.wikimedia.org/wiki/File:DHS_Senior_Official_Kristie_Canegallo,_attends_a_USCIS_All-Employee_Town_Hall_at_USCIS_Headquarters_in_Camp_Springs,_Maryland_on_June_20,_2024_-_10.jpg",
-   "tags": [
-    "uscis"
-   ],
-   "width": 3500,
-   "height": 2333,
-   "duration": null,
-   "quality_score": 84.2,
-   "added_date": "2026-06-20T10:31:52Z",
    "last_used": null,
    "times_used": 0
   },
@@ -1785,28 +1719,6 @@
    "times_used": 0
   },
   {
-   "id": "thing--green-card--4b23e3",
-   "media_type": "image",
-   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/green-card-4b23e3.jpg",
-   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/green-card-4b23e3.jpg",
-   "subject": "green card",
-   "subject_type": "thing",
-   "caption": "Alien Registration Receipt Card form AR-3",
-   "attribution": "Wikimedia Commons / Bobjgalindo, CC BY 4.0",
-   "license": "CC BY 4.0",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Alien_Registration_Receipt_Card_form_AR-3.jpg",
-   "tags": [
-    "green card"
-   ],
-   "width": 3264,
-   "height": 2448,
-   "duration": null,
-   "quality_score": 80.6,
-   "added_date": "2026-06-22T10:32:09Z",
-   "last_used": null,
-   "times_used": 0
-  },
-  {
    "id": "place--tamil-nadu--85d262",
    "media_type": "image",
    "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/place/tamil-nadu-85d262.jpg",
@@ -1915,6 +1827,94 @@
    "added_date": "2026-06-22T10:32:39Z",
    "last_used": null,
    "times_used": 0
+  },
+  {
+   "id": "person--narendra-modi--6432d2",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/person/narendra-modi-6432d2.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/person/narendra-modi-6432d2.jpg",
+   "subject": "Narendra Modi",
+   "subject_type": "person",
+   "caption": "Narendra Modi Stadium",
+   "attribution": "Wikimedia Commons / Ishi6181, CC0",
+   "license": "CC0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Narendra_Modi_Stadium_Ahmedabad.jpg",
+   "tags": [
+    "narendra modi"
+   ],
+   "width": 4032,
+   "height": 3024,
+   "duration": null,
+   "quality_score": 92.0,
+   "added_date": "2026-06-19T05:23:16Z",
+   "last_used": "2026-06-22T16:38:14Z",
+   "times_used": 3
+  },
+  {
+   "id": "thing--uscis--cb27b0",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/uscis-cb27b0.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/uscis-cb27b0.jpg",
+   "subject": "USCIS",
+   "subject_type": "thing",
+   "caption": "CAMP SPRINGS (June 20, 2024) Department of Homeland Security (DHS), Senior Official Performing the Duties of the Deputy Secretary, Kristie Canegallo, attends a USCIS All-Employee Town Hall at USCIS Headquarters in Camp Springs, M.D. (DHS photo by Mikaela McGee)",
+   "attribution": "Wikimedia Commons / DHSgov, Public domain",
+   "license": "Public domain",
+   "source_url": "https://commons.wikimedia.org/wiki/File:DHS_Senior_Official_Kristie_Canegallo,_attends_a_USCIS_All-Employee_Town_Hall_at_USCIS_Headquarters_in_Camp_Springs,_Maryland_on_June_20,_2024_-_10.jpg",
+   "tags": [
+    "uscis"
+   ],
+   "width": 3500,
+   "height": 2333,
+   "duration": null,
+   "quality_score": 84.2,
+   "added_date": "2026-06-20T10:31:52Z",
+   "last_used": "2026-06-22T16:39:45Z",
+   "times_used": 1
+  },
+  {
+   "id": "thing--immigration--5181dc",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/immigration-5181dc.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/immigration-5181dc.jpg",
+   "subject": "immigration",
+   "subject_type": "thing",
+   "caption": "Detention center at U.S. Immigration Station, Angel Island",
+   "attribution": "Wikimedia Commons / E bailey, CC BY-SA 4.0",
+   "license": "CC BY-SA 4.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Detention_center_at_U.S._Immigration_Station_Angel_Island.jpg",
+   "tags": [
+    "immigration"
+   ],
+   "width": 4982,
+   "height": 3321,
+   "duration": null,
+   "quality_score": 92.0,
+   "added_date": "2026-06-20T10:30:12Z",
+   "last_used": "2026-06-22T16:39:46Z",
+   "times_used": 1
+  },
+  {
+   "id": "thing--green-card--4b23e3",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/green-card-4b23e3.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/green-card-4b23e3.jpg",
+   "subject": "green card",
+   "subject_type": "thing",
+   "caption": "Alien Registration Receipt Card form AR-3",
+   "attribution": "Wikimedia Commons / Bobjgalindo, CC BY 4.0",
+   "license": "CC BY 4.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Alien_Registration_Receipt_Card_form_AR-3.jpg",
+   "tags": [
+    "green card"
+   ],
+   "width": 3264,
+   "height": 2448,
+   "duration": null,
+   "quality_score": 80.6,
+   "added_date": "2026-06-22T10:32:09Z",
+   "last_used": "2026-06-22T16:39:47Z",
+   "times_used": 1
   }
  ]
 }

@@ -2164,11 +2164,99 @@ def _card_glow(W, H, cx, cy, radius, color, max_alpha):
     return layer, glow
 
 
-def render_keypoint_card(scene, category, article, idx, out_dir="/tmp/videshi_cards", text_free=False):
+def _card_image_background(url, W, H):
+    """Download `url` and return a 1080x1920 RGB image cropped to cover, darkened
+    and scrimmed so overlaid card text stays readable — the "SpaceX image overlay"
+    treatment. Returns None on any failure (caller falls back to navy)."""
+    try:
+        from io import BytesIO
+        from PIL import Image, ImageEnhance, ImageDraw, ImageFilter
+        content = None
+        try:
+            r = requests.get(url, timeout=12,
+                             headers={"User-Agent": "Mozilla/5.0 (compatible; TheVideshi/1.0)"})
+            if r.status_code == 200 and r.content:
+                content = r.content
+        except Exception:
+            content = None
+        # Some hosts (e.g. upload.wikimedia.org) 429 Python requests but serve
+        # fine to curl through the egress proxy — fall back to curl.
+        if not content:
+            try:
+                import subprocess, tempfile
+                tf = tempfile.NamedTemporaryFile(suffix=".img", delete=False)
+                tf.close()
+                cp = subprocess.run(
+                    ["curl", "-sS", "-L", "--max-time", "20",
+                     "-A", "TheVideshi/1.0 (thevideshi.com)",
+                     "-o", tf.name, url],
+                    capture_output=True)
+                if cp.returncode == 0 and os.path.getsize(tf.name) > 1024:
+                    with open(tf.name, "rb") as fh:
+                        head = fh.read(64)
+                        # reject HTML error pages served with 200
+                        if not head.lstrip()[:1] in (b"<",) and b"<!doctype" not in head.lower() and b"<html" not in head.lower():
+                            fh.seek(0)
+                            content = fh.read()
+                try:
+                    os.unlink(tf.name)
+                except Exception:
+                    pass
+            except Exception:
+                content = None
+        if not content:
+            return None
+        src = Image.open(BytesIO(content)).convert("RGB")
+        # cover-crop to 9:16
+        sw, sh = src.size
+        target = W / H
+        ar = sw / sh
+        if ar > target:
+            nw = int(sh * target); x0 = (sw - nw) // 2
+            src = src.crop((x0, 0, x0 + nw, sh))
+        else:
+            nh = int(sw / target); y0 = (sh - nh) // 2
+            src = src.crop((0, y0, sw, y0 + nh))
+        src = src.resize((W, H), Image.LANCZOS)
+        # global darken so any image reads as a brand-dim backdrop
+        src = ImageEnhance.Brightness(src).enhance(0.46)
+        src = ImageEnhance.Color(src).enhance(0.85)
+        base = src.convert("RGBA")
+        # vertical scrim: darker top + bottom, slightly clearer middle, so the
+        # eyebrow (top), the headline block (upper-middle) and the wordmark
+        # (bottom) all sit on readable tone.
+        scrim = Image.new("L", (1, H), 0)
+        sp = scrim.load()
+        for y in range(H):
+            t = y / max(H - 1, 1)
+            # smooth bowl: ~150 alpha at edges, ~70 mid
+            edge = abs(t - 0.5) * 2  # 0 mid → 1 edges
+            sp[0, y] = int(70 + 95 * (edge ** 1.4))
+        scrim = scrim.resize((W, H))
+        dark = Image.new("RGBA", (W, H), (6, 12, 24, 0))
+        dark.putalpha(scrim)
+        out = Image.alpha_composite(base, dark)
+        # subtle brand glow + gold diagonal texture so it stays on-style
+        tex = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+        td = ImageDraw.Draw(tex)
+        for k in range(-H, W, 54):
+            td.line([(k, 0), (k + H, H)], fill=(212, 175, 55, 8), width=1)
+        out = Image.alpha_composite(out, tex)
+        return out.convert("RGB")
+    except Exception as e:
+        print(f"  ℹ️ card image background failed ({e}) — using navy")
+        return None
+
+
+def render_keypoint_card(scene, category, article, idx, out_dir="/tmp/videshi_cards", text_free=False, bg_url=None):
     """Render a branded 1080x1920 key-point graphic. Returns local PNG path or None.
     text_free=True renders the branded background + eyebrow + wordmark but OMITS
     the key-point line — used for scene 0, where the hook title overlay already
-    owns the on-screen text (drawing the card line too causes a 3-layer collision)."""
+    owns the on-screen text (drawing the card line too causes a 3-layer collision).
+    bg_url: when given, the card text is composited over that REAL image (darkened
+    + scrim, the SpaceX-style overlay Kiran asked for) instead of a flat navy
+    gradient. Any download/decode failure silently falls back to the navy bg, so
+    a card is always produced."""
     try:
         from PIL import Image, ImageDraw
     except Exception as e:
@@ -2177,26 +2265,36 @@ def render_keypoint_card(scene, category, article, idx, out_dir="/tmp/videshi_ca
     try:
         os.makedirs(out_dir, exist_ok=True)
         W, H = 1080, 1920
-        # Vary the background subtly per scene index so multiple cards in one reel
-        # don't read as identical "repeated text slide" (a QA "lacking visual
-        # variety" trigger). Two on-brand navy variants + mirrored glow placement.
-        if idx % 2 == 0:
-            img = _card_vgradient(W, H, _CARD_NAVY_TOP, _CARD_NAVY_BOT)
-            glow_cx, glow2_cx = int(W * 0.82), int(W * 0.12)
-        else:
-            img = _card_vgradient(W, H, (10, 20, 38), (24, 40, 64))
-            glow_cx, glow2_cx = int(W * 0.18), int(W * 0.88)
+        # ── Background ──────────────────────────────────────────────────────
+        # Preferred: a REAL image (library photo / generated illustration),
+        # darkened + scrimmed so the text reads — the "SpaceX image overlay" look.
+        # Fallback: the on-brand navy gradient (kept ONLY for when no image is
+        # available, e.g. generation down). Kiran's directive: never a bare navy
+        # text slide when an appropriate image can back it.
+        img = None
+        if bg_url:
+            img = _card_image_background(bg_url, W, H)
+        if img is None:
+            # Vary the navy background subtly per scene index so multiple fallback
+            # cards in one reel don't read as identical "repeated text slide".
+            if idx % 2 == 0:
+                img = _card_vgradient(W, H, _CARD_NAVY_TOP, _CARD_NAVY_BOT)
+                glow_cx, glow2_cx = int(W * 0.82), int(W * 0.12)
+            else:
+                img = _card_vgradient(W, H, (10, 20, 38), (24, 40, 64))
+                glow_cx, glow2_cx = int(W * 0.18), int(W * 0.88)
 
-        layer, mask = _card_glow(W, H, glow_cx, int(H * 0.20), 720, (60, 48, 18), 70)
-        img.paste(layer, (0, 0), mask)
-        layer2, mask2 = _card_glow(W, H, glow2_cx, int(H * 0.92), 760, (10, 22, 44), 90)
-        img.paste(layer2, (0, 0), mask2)
+            layer, mask = _card_glow(W, H, glow_cx, int(H * 0.20), 720, (60, 48, 18), 70)
+            img.paste(layer, (0, 0), mask)
+            layer2, mask2 = _card_glow(W, H, glow2_cx, int(H * 0.92), 760, (10, 22, 44), 90)
+            img.paste(layer2, (0, 0), mask2)
 
-        tex = Image.new("RGBA", (W, H), (0, 0, 0, 0))
-        td = ImageDraw.Draw(tex)
-        for k in range(-H, W, 54):
-            td.line([(k, 0), (k + H, H)], fill=(212, 175, 55, 10), width=1)
-        img = Image.alpha_composite(img.convert("RGBA"), tex).convert("RGB")
+            tex = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+            td = ImageDraw.Draw(tex)
+            for k in range(-H, W, 54):
+                td.line([(k, 0), (k + H, H)], fill=(212, 175, 55, 10), width=1)
+            img = Image.alpha_composite(img.convert("RGBA"), tex).convert("RGB")
+
 
         draw = ImageDraw.Draw(img)
         MX = 96
@@ -3109,6 +3207,10 @@ def source_storyboard_images(article, storyboard, count=8):
     urls = []
     used_in_this_reel = set()
     media_meta = {}  # url -> {"type": "video"|"image", "duration": N}
+    # Shared budget for gpt-image-1 card backgrounds across all card-fallback
+    # sites in this function (section-A: generic-convert, FLOOR, MIN-CARDS).
+    # Same env var as the section-B path so total per-reel spend stays capped.
+    _card_bg_gen_budget = [int(os.environ.get("VIDESHI_CARD_BG_GEN_BUDGET", "2"))]
 
     hero = article.get("image_url", "")
     category = article.get("category", "")
@@ -3921,7 +4023,11 @@ def source_storyboard_images(article, storyboard, count=8):
               f"keeping {len(keep_generic)} generic video, converting {n_convert} to key-point cards...")
         for i in to_convert:
             scene = scenes[i] if i < len(scenes) else {}
-            local = render_keypoint_card(scene, category, article, i)
+            _bg_url, _ = _card_background_url(scene, article, article_id, i,
+                                              used_in_this_reel, _card_bg_gen_budget)
+            if _bg_url:
+                used_in_this_reel.add(_bg_url)
+            local = render_keypoint_card(scene, category, article, i, bg_url=_bg_url)
             if not local:
                 continue  # leave the generic Pexels fill if card render fails
             try:
@@ -3961,7 +4067,11 @@ def source_storyboard_images(article, storyboard, count=8):
         print(f"  🎨 {len(remaining)} scenes unfilled — rendering styled key-point cards...")
         for i in remaining:
             scene = scenes[i] if i < len(scenes) else {}
-            local = render_keypoint_card(scene, category, article, i)
+            _bg_url, _ = _card_background_url(scene, article, article_id, i,
+                                              used_in_this_reel, _card_bg_gen_budget)
+            if _bg_url:
+                used_in_this_reel.add(_bg_url)
+            local = render_keypoint_card(scene, category, article, i, bg_url=_bg_url)
             if not local:
                 continue
             try:
@@ -4028,7 +4138,11 @@ def source_storyboard_images(article, storyboard, count=8):
                   f"scene(s) to branded key-point cards (scenes {[i+1 for i in to_cardify]})")
         for i in to_cardify:
             scene = scenes[i] if i < len(scenes) else {}
-            local = render_keypoint_card(scene, category, article, i)
+            _bg_url, _ = _card_background_url(scene, article, article_id, i,
+                                              used_in_this_reel, _card_bg_gen_budget)
+            if _bg_url:
+                used_in_this_reel.add(_bg_url)
+            local = render_keypoint_card(scene, category, article, i, bg_url=_bg_url)
             if not local:
                 continue
             try:
@@ -4123,6 +4237,52 @@ def generate_themed_image(image_prompt, article_id, idx, out_dir="/tmp/videshi_g
     except Exception as e:
         print(f"  ⚠️ generate_themed_image error: {e}")
         return None
+
+
+def _card_background_url(scene, article, article_id, idx, used_in_this_reel,
+                         gen_budget):
+    """Find an APPROPRIATE real-image URL to back a key-point text card (so the
+    card reads like the SpaceX image-overlay style, not a flat navy slide). Order:
+      1) curated media-library photo for the scene's media_subject/visual (FREE,
+         preferred) — generic-but-on-topic is fine per Kiran.
+      2) a brand-styled gpt-image-1 illustration, but only while gen_budget[0] > 0
+         (caps OpenAI spend per reel; decremented on use).
+    Returns (url|None, used_generation_bool). Bare foreign-geo subjects are skipped
+    (documented off-topic trap). Never raises."""
+    # 1) media library (free)
+    subj = (scene.get("media_subject") or "").strip()
+    if not subj:
+        v = (scene.get("visual") or "").strip()
+        subj = v if v and v.lower() not in _FOREIGN_GEO_SUBJECTS else ""
+    if subj and subj.lower() not in _FOREIGN_GEO_SUBJECTS:
+        ml = _load_media_library_lookup()
+        if ml:
+            try:
+                asset = ml.find_media(subject=subj, exclude_concept=True,
+                                      min_quality=45, bump_usage=False)
+            except Exception:
+                asset = None
+            if asset and asset.get("media_type") != "video":
+                au = asset.get("url")
+                if au and au not in used_in_this_reel and is_url_downloadable(au):
+                    try:
+                        ml._bump(asset)
+                    except Exception:
+                        pass
+                    return au, False
+    # 2) generated illustration (budgeted)
+    if gen_budget[0] > 0:
+        prompt = (scene.get("image_prompt") or "").strip()
+        if not prompt:
+            seed = (scene.get("visual") or "").strip() or (article.get("headline") or "").strip()
+            if seed:
+                prompt = "a symbolic editorial scene evoking " + seed
+        if prompt:
+            gurl = generate_themed_image(prompt, article_id, f"cardbg{idx}")
+            if gurl:
+                gen_budget[0] -= 1
+                return gurl, True
+    return None, False
 
 
 # Matches the bare social-post URLs the writers splice into article body markdown
@@ -4591,6 +4751,11 @@ def source_reel_media_clean(article, storyboard, count=8):
 
     # ── B. GPT directs every remaining scene by its media_plan ──
     _used_archetypes = set()  # each animated card archetype used at most once per reel
+    # Per-reel budget for GENERATED card backgrounds (caps OpenAI spend; library
+    # photos are free and unbudgeted). Plain text cards get a real image behind
+    # the text up to this many generations; beyond it they reuse library photos
+    # or fall to navy.
+    _card_bg_gen_budget = [int(os.environ.get("VIDESHI_CARD_BG_GEN_BUDGET", "2"))]
     for i in range(n):
         if matched_urls[i] is not None:
             continue
@@ -4681,8 +4846,19 @@ def source_reel_media_clean(article, storyboard, count=8):
                         print(f"  ⚠️ Scene {i+1}: anim-card upload failed — falling to static card")
 
             # Scene 0 (hook) gets a text-free branded bg (hook title overlays it),
-            # avoiding the 3-layer text collision that hurt readability QA.
-            local = render_keypoint_card(scene, category, article, i, text_free=(i == 0))
+            # avoiding the 3-layer text collision that hurt readability QA. Every
+            # OTHER text card gets a REAL image behind its text (the SpaceX
+            # image-overlay look Kiran asked for) — library photo (free) or a
+            # budgeted generated illustration; navy only if neither is available.
+            _bg_url = None
+            if i != 0:
+                _bg_url, _used_gen = _card_background_url(
+                    scene, article, article_id, i, used_in_this_reel,
+                    _card_bg_gen_budget)
+                if _bg_url:
+                    used_in_this_reel.add(_bg_url)
+            local = render_keypoint_card(scene, category, article, i,
+                                         text_free=(i == 0), bg_url=_bg_url)
             if not local:
                 print(f"  ⚠️ Scene {i+1}: card render failed (PIL?) — leaving empty")
                 continue
