@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-22T18:16:27.781123+00:00",
+  "timestamp": "2026-06-22T18:45:28.415747+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 11,
+    "pass": 4,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,17 +11,17 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "9c64fb96-5650-4029-8846-3f7e0c5a08f7",
-      "headline": "The RBI Burned Through Nearly $9 Billion in a Single Month Defending the Rupee \u2014 and Reserves Are at a One-Year Low",
-      "slug": "rbi-net-dollar-sales-april-89-billion-forex-reserves-one-year-low-rupee-defence-nri-investor-20260622-1800",
+      "id": "d8087101-82ed-4ca6-b927-975aeb1c8595",
+      "headline": "Hackers Just Dumped 200,000 Files From an Indian Apple Supplier. Some Are Marked 'Trade Secret.'",
+      "slug": "tata-electronics-cyber-breach-apple-tesla-trade-secrets-world-leaks-ransomware-20260622",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Reserve Bank of India building",
-          "reason": "The photo shows the Reserve Bank of India, relevant to the story about RBI's actions."
+          "what_photo_shows": "Bombay House, Tata headquarters",
+          "reason": "The photo shows Bombay House, relevant to the Tata Electronics breach story."
         },
         "inline_image_mismatches": []
       },
@@ -35,13 +35,55 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the RBI's actions to the financial implications for NRIs, making it relevant for the diaspora audience."
+          "note": "The article effectively connects the cybersecurity breach to the broader implications for the Indian diaspora, highlighting the pride and economic impact of the 'Make in India' initiative."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more specific examples of how the rupee's fluctuations directly impact NRI investments or remittances.",
-          "Include a brief explanation of what NRE and FCNR deposits are for readers who may not be familiar with these terms."
+          "Consider adding more context about the implications of the breach for the Indian tech industry and its global reputation.",
+          "Include quotes or reactions from diaspora members or experts to enhance the connection with the NRI audience."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "5c948206-1776-4c53-8626-3eb03ff5715c",
+      "headline": "India's Central Bank Just Made the Diaspora an Offer It Has Used Only Once Before. NRI Deposit Rates Are Now Near 7%.",
+      "slug": "rbi-fcnr-nre-deposit-drive-hedging-cost-nri-dollars-rupee-7-percent-20260622",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Reserve Bank of India building",
+          "reason": "The photo shows the Reserve Bank of India, relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses the financial interests of the Indian diaspora, particularly NRIs, by discussing the new deposit rates and their implications."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a quote from an NRI to provide a personal perspective on how these changes impact them.",
+          "Include a brief comparison of the current rates with historical rates to give readers context."
         ],
         "verdict": "pass"
       },
@@ -60,11 +102,6 @@
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MISMATCH",
-          "what_photo_shows": "variety of green vegetables",
-          "reason": "The photo does not show beetroot, which is central to the story."
-        },
         "inline_image_mismatches": []
       },
       "llm_review": {
@@ -72,7 +109,7 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image description is not provided, making it difficult to assess its relevance."
+          "issue": "The image description is missing, making it difficult to assess relevance."
         },
         "diaspora_angle": {
           "present": true,
@@ -84,265 +121,6 @@
         "suggestions": [
           "Include a relevant image description to enhance the image match score.",
           "Expand on the diaspora angle by providing specific statistics or examples related to hypertension in the Indian community."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "Cleared mismatched image (variety of green vegetables)",
-        "held: image mismatch"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "image_mismatch": true,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "3c0fdeb7-b9de-49be-b1d9-b9cfeecb9c68",
-      "headline": "A Lesser-Known Estrogen Made in Body Fat May Explain Why Obesity Drives Breast Cancer After Menopause",
-      "slug": "estrone-body-fat-obesity-postmenopausal-breast-cancer-georgetown-glp1-diaspora-20260622-1800",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "people holding pink ribbon on field",
-          "reason": "The pink ribbon is a symbol for breast cancer awareness, relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article connects the findings to the health risks faced by South Asian women, making it relevant for the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more specific statistics or studies related to the Indian diaspora's health to strengthen the diaspora angle.",
-          "Include quotes from experts or researchers to enhance credibility and engagement."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "f8c5073b-82f0-475f-a44a-ecc189fa3ec6",
-      "headline": "NRIs Sent India a Record $135 Billion. The Catch: Wiring Money the Old Way Quietly Skims Billions Off the Top.",
-      "slug": "nri-remittances-record-135-billion-fees-tax-forms-145-146-compliance-20260622",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Indian rupee notes and coins",
-          "reason": "The photo shows Indian currency, relevant to remittance story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the topic of remittances or financial transactions."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively addresses the financial challenges faced by NRIs, making it relevant and engaging for the diaspora audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that visually represents remittances or financial transactions to enhance relevance.",
-          "Add a section with practical tips for NRIs on how to optimize their money transfers."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "8d0d386f-6752-4175-beb1-aa1e1ac64d75",
-      "headline": "A New Mandir Opens in Oxford This Weekend. Getting There Took Years, a King's Message, and a Lot of Volunteers With Orange Lanyards.",
-      "slug": "oxford-hindu-mandir-grand-opening-community-centre-uk-diaspora-temple-20260622",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "priest performing aarti with diya",
-          "reason": "The photo shows a religious ceremony relevant to a mandir opening."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image is a generic temple interior. While relevant to the topic, it doesn't specifically depict the Oxford Mandir or its opening, which the headline emphasizes. A more specific image would be better."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article explicitly discusses the experiences of diaspora communities, the shift from temporary spaces to permanent institutions, and the implications for second and third generations. It's central to the narrative."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "If possible, source an actual image of the Oxford Hindu Mandir & Community Centre, especially one depicting the opening or its exterior, to enhance relevance.",
-          "Consider adding a brief quote from a volunteer or a community member about what this opening means to them personally, to add a human-interest touch."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "b6f8610d-b3d1-4365-b525-3d0648368c50",
-      "headline": "Britain Spent Years Talking About Its Minorities as One Block. A New Report Says the Indians Quietly Walked Off With the Trophy.",
-      "slug": "british-indians-most-successful-ethnic-group-policy-exchange-mints-hom-20260622",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "a street in London's historic district",
-          "reason": "The photo shows a London street, relevant to the story about British Indian home ownership in London."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the specific topic of British Indians or their success in the UK."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses the success of the British Indian community, which is relevant to the diaspora audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that reflects the British Indian community or their achievements.",
-          "Add more direct quotes or anecdotes from members of the British Indian community to enhance relatability."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "976871f7-7237-4db9-89ff-d6f739b255e5",
-      "headline": "Wipro Just Bet Its Future on Teaching 10,000 Engineers to Use Claude. Their Old Jobs Are the Reason.",
-      "slug": "wipro-anthropic-claude-coe-bengaluru-10000-engineers-ai-reskill-nri-20260622",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "c77db39c-7581-4568-a116-3215a7320c75",
-            "headline": "Wipro Just Opened a Claude Lab in Bengaluru and Promised to "
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Wipro office campus in Bengaluru",
-          "reason": "The photo shows Wipro's office campus, relevant to the story about Wipro's AI center."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the implications of Wipro's strategy to Indian engineers in the diaspora, discussing how AI impacts their career paths."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more direct quotes from Wipro executives or industry experts to enhance credibility.",
-          "Include specific examples of how AI has already impacted job roles in the IT sector to provide more context."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "fd304d24-4a88-470f-98ff-5f4c7dc1e66c",
-      "headline": "India Has Its Second AI Unicorn. The Most Telling Part Is Who Wrote the $150 Million Cheque.",
-      "slug": "sarvam-ai-unicorn-hcltech-234-million-sovereign-llm-india-nri-20260622",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "server racks in a data center",
-          "reason": "The photo shows server racks relevant to AI and tech infrastructure."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to AI or the specific company Sarvam, but is a generic tech-related image."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the developments in Indian AI to NRI investors and Indian engineers abroad, highlighting opportunities and trends relevant to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that directly represents AI or the specific company Sarvam.",
-          "Expand on the implications for the diaspora in terms of investment opportunities or career prospects in the Indian tech landscape."
         ],
         "verdict": "pass"
       },
@@ -361,11 +139,6 @@
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MISMATCH",
-          "what_photo_shows": "Person wearing Freecharge shirt",
-          "reason": "The photo shows a person associated with Freecharge, not CRED."
-        },
         "inline_image_mismatches": []
       },
       "llm_review": {
@@ -373,104 +146,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image description is missing, making it difficult to assess its relevance."
+          "issue": "The image description is missing, making it difficult to assess relevance."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects the leadership change at WhatsApp to the Indian diaspora's use of the app for communication."
+          "note": "The article effectively connects the leadership change at WhatsApp to the Indian diaspora's use of the app."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
           "Include a relevant image description to enhance the image match score.",
           "Consider adding quotes or reactions from diaspora members to further enrich the diaspora angle."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "Cleared mismatched image (Person wearing Freecharge shirt)",
-        "held: image mismatch"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "image_mismatch": true,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "f3c65eb5-b168-4fae-978c-77deda26d334",
-      "headline": "The Monsoon Has Crossed India \u2014 Here's How NRI Families Keep It From Wrecking the Trip Home",
-      "slug": "india-monsoon-flight-disruption-nri-connection-planning-summer-20260622",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "passengers checking departure board",
-          "reason": "The photo aligns with the story about flight disruptions."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively addresses the challenges faced by NRI families during the monsoon season, making it relevant and useful for the diaspora audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding personal anecdotes or quotes from NRI families to enhance relatability.",
-          "Include a section on how the monsoon affects travel plans differently in various regions of India."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "6672dc87-157a-4e12-a929-da567bde9274",
-      "headline": "The $250 'Visa Integrity Fee' Is Now Real \u2014 and Indian Travelers Can't Use the Exit Everyone Else Has",
-      "slug": "us-250-visa-integrity-fee-indians-no-waiver-refund-nri-20260622",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "U.S. passport with hundred-dollar bills",
-          "reason": "The photo illustrates the financial aspect of U.S. visa costs."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the topic of visa fees or immigration."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively discusses the impact of the visa integrity fee on Indian travelers and the diaspora, making it highly relevant."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that directly relates to immigration or visa processes to enhance relevance.",
-          "Add a section with expert opinions or quotes from immigration attorneys to provide additional depth."
         ],
         "verdict": "pass"
       },
