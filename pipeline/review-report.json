@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-22T16:45:26.739103+00:00",
+  "timestamp": "2026-06-22T17:15:13.486171+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
-    "flag": 0,
+    "pass": 0,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,17 +11,22 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "a66d9dc5-02ee-47d6-91f0-319640d62233",
-      "headline": "India Sacked the Captain Who Won Them the T20 World Cup \u2014 and Left Him Out of the Team Altogether",
-      "slug": "india-sack-suryakumar-yadav-t20i-captain-dropped-squad-shreyas-iyer-new-captain-england-ireland-asian-games-2026-form-diaspora-nri",
+      "id": "21f8d10a-7987-40ed-aa0c-7ce678771cde",
+      "headline": "Ram Charan Finally Reveals Klin Kaara. Telugu Cinema's Most Guarded Baby Got a Face on Her Third Birthday.",
+      "slug": "ram-charan-upasana-klin-kaara-face-reveal-third-birthday-konidela-peddi-mega-family-where-to-watch-diaspora-nri-20260622",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "62fe12a7-ada2-4d27-8137-6be7246f2356",
+            "headline": "Netflix Just Bought the Entire South. Thirteen Telugu Titans"
+          }
+        ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "man at an airport terminal",
-          "reason": "The photo plausibly shows Shreyas Iyer, relevant to the cricket story."
+          "what_photo_shows": "Ram Charan at an event",
+          "reason": "The photo shows Ram Charan, relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -29,105 +34,21 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 3,
+          "issue": "The image does not match the article's topic about Klin Kaara's birthday reveal."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the cricket selection controversy to diaspora sentiments, discussing how it will resonate in global Indian communities."
+          "note": "The article connects well with the diaspora audience by discussing the Konidela family's significance and how their milestones resonate with Telugu communities abroad."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from players or selectors to enhance the narrative.",
-          "Include more context about the impact of this decision on the team's future performance."
+          "Replace the hero image with one that features Klin Kaara or relates directly to her birthday reveal.",
+          "Consider adding more quotes or reactions from diaspora members to enhance the connection with the audience."
         ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "564de07a-e551-4997-b54f-fb0b8a9883c1",
-      "headline": "Fourteen Students Walked Into a Coaching Centre in Lucknow. They Never Walked Out.",
-      "slug": "lucknow-coaching-centre-fire-14-students-killed-aliganj-fire-safety-india-diaspora-20260622",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "fire and emergency services vehicles",
-          "reason": "The photo shows fire services, relevant to a fire incident story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the tragedy to the diaspora by discussing the coaching ecosystem that impacts students who later become part of the NRI community."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes or reactions from diaspora members to enhance the connection.",
-          "Include statistics or data on coaching centre safety to provide more context."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "6e63f2cf-ee44-49b8-b9fa-0f4ced1cc993",
-      "headline": "An Indian Founder Now Runs the App 500 Million Indians Use Every Day",
-      "slug": "kunal-shah-cred-founder-whatsapp-global-head-meta-900-million-investment-diaspora-20260622",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "man in Freecharge shirt",
-          "reason": "The photo plausibly shows Kunal Shah, relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the story of Kunal Shah to the broader narrative of Indian entrepreneurs making significant impacts globally, which resonates with the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from Kunal Shah or industry experts to enhance the article's depth.",
-          "Include more context on WhatsApp's competition in India to provide a clearer picture of the market landscape."
-        ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
         "promoted to published"
