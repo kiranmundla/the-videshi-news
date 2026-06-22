@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-22T12:45:52.753722+00:00",
+  "timestamp": "2026-06-22T13:15:23.212975+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 5,
-    "flag": 0,
+    "pass": 1,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,23 +11,42 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "17445c6c-6c6a-4b2c-a3fe-7c250487812a",
-      "headline": "The Desi Pantry Gold Rush: How Clean-Label Indian Food Brands Raised Millions and Set Their Sights on America",
-      "slug": "the-desi-pantry-gold-rush-how-clean-label-indian-food-brands-raised-millions-and",
+      "id": "f91626b1-a508-4119-b260-779d01eb6d3e",
+      "headline": "A Man With a Flag Rushed the Stage at Chase Center. Diljit Dosanjh Didn't Miss a Beat \u2014 He Stepped Back, Let Security Work, and Kept the Aura Glowing.",
+      "slug": "diljit-dosanjh-chase-center-san-francisco-stage-invasion-khalistan-protester-arrested-aura-world-tour-2026-wembley-diaspora-nri-20260622",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "593fe449-25ab-4e0c-b399-6490ac8797a0",
+            "headline": "Los Angeles Just Gave Diljit Dosanjh His Own Day. The Boy Fr"
+          },
+          {
+            "article_id": "029f07fa-9d29-4de9-ac4d-b59e24c46494",
+            "headline": "They Tried to Bury Main Vaapas Aaunga. Eight Days Later, It'"
+          },
+          {
+            "article_id": "d0670569-8693-4310-8e90-9c63470bb6f0",
+            "headline": "Diljit's Main Vaapas Aaunga Showed a Pakistan Without Villai"
+          }
+        ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A bowl of pure ghee",
-          "reason": "The photo shows ghee, relevant to the story about Indian pantry staples."
+          "what_photo_shows": "A man in a turban and suit",
+          "reason": "The photo shows a man who could be Diljit Dosanjh, relevant to the story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/DZ2w8hRmy0i/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post linked does not appear to be directly relevant to the incident described in the article."
+          }
+        ],
         "image_match": {
           "score": 9,
           "issue": null
@@ -35,17 +54,18 @@
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects the rise of clean-label Indian food brands to the preferences and experiences of the NRI community, highlighting both cultural nostalgia and practical convenience."
+          "note": "The article effectively connects Diljit Dosanjh's performance and the significance of his concerts to the NRI diaspora experience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from industry experts or founders to enhance credibility and provide personal insights.",
-          "Include more specific examples of how these brands are marketed to the diaspora to strengthen the connection."
+          "Replace the irrelevant Instagram link with a more relevant one that showcases the incident or Diljit's response.",
+          "Consider adding more context about the Khalistan movement for readers who may not be familiar with it."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/DZ2w8hRmy0i/",
         "promoted to published"
       ],
       "revised": false,
@@ -53,17 +73,17 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "d719c4b4-5c18-4760-908d-696b79945ccb",
-      "headline": "Mithai Goes Couture: How Indian Sweets Are Trading the Syrup Tin for the Gallery Case",
-      "slug": "mithai-goes-couture-how-indian-sweets-are-trading-the-syrup-tin-for-the-gallery",
+      "id": "6560091b-1788-4334-a1f0-ebde84cec41d",
+      "headline": "Georgekutty Walks Into 200 Countries at Once. Drishyam 3 Lands on Prime Video and the Diaspora Finally Gets the Twist Everyone's Been Whispering About.",
+      "slug": "drishyam-3-prime-video-ott-release-mohanlal-georgekutty-jeethu-joseph-malayalam-tamil-telugu-kannada-diaspora-nri-20260622",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "assortment of burfi and peda",
-          "reason": "The photo shows Indian sweets relevant to the story about artisanal mithai."
+          "what_photo_shows": "Official poster for Drishyam 3",
+          "reason": "The photo shows the official poster for Drishyam 3, matching the story topic."
         },
         "inline_image_mismatches": []
       },
@@ -77,139 +97,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the evolution of mithai to the experiences and preferences of the diaspora, highlighting how new artisanal versions cater to their needs."
+          "note": "The article effectively connects the film's release to the diaspora experience, emphasizing accessibility and cultural significance."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from chefs or industry experts to enhance credibility.",
-          "Include more examples of specific diaspora reactions to the new mithai trends."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "7d3db246-12b4-4daf-9cd0-f8d7943fbbbe",
-      "headline": "Chai Pani Comes to the Capital: A Two-Time Beard Winner Brings Unapologetic Street Food to Washington",
-      "slug": "chai-pani-comes-to-the-capital-a-two-time-beard-winner-brings-unapologetic-stree",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A plate of sev puri",
-          "reason": "The photo shows sev puri, which is relevant to the story about Chai Pani's street food."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the opening of Chai Pani to the experiences and cultural significance for the NRI community."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from the chef or owners to enhance the personal connection to the story.",
-          "Include more details about the menu items to entice readers further."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "ec14e463-2ce6-4c0e-b4d5-ac8a94994bf0",
-      "headline": "Nearly 18,000 Indians Are Trapped at Sea in the Gulf. Three Have Already Come Home in Coffins.",
-      "slug": "indian-seafarers-stranded-gulf-oman-hormuz-us-navy-strikes-settebello-jaishankar-protest-20260622",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "crude oil tanker underway",
-          "reason": "The photo shows a crude oil tanker, relevant to the story about tankers in the Gulf."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses the plight of Indian seafarers, which directly impacts the Indian diaspora and their families, making it relevant to NRI readers."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include quotes or reactions from diaspora communities regarding the situation to enhance the emotional connection.",
-          "Add more context about the implications of this incident on India-US relations for a deeper understanding."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "2cc50372-a485-4dc2-a35d-61785fccdcf7",
-      "headline": "The Rupee's Best Run in Months Just Ended. The Reason Sits in Washington, Not Delhi.",
-      "slug": "indian-rupee-snaps-six-session-winning-streak-hawkish-fed-dollar-remittances-nri-20260622",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Indian rupee notes and US dollars",
-          "reason": "The photo shows currency relevant to the story about the rupee and dollar."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the rupee's performance to the diaspora's financial interests, particularly regarding remittances and investment."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more specific examples of how the rupee's fluctuations directly impact the diaspora's financial decisions.",
-          "Include quotes from financial experts or diaspora members to enhance credibility and relatability."
+          "Consider adding more quotes or reactions from diaspora viewers to enhance the connection.",
+          "Include a brief overview of the previous films in the franchise for readers unfamiliar with the series."
         ],
         "verdict": "pass"
       },
