@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-22T22:45:22.455293+00:00",
+  "timestamp": "2026-06-22T23:15:14.139286+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
-    "flag": 0,
+    "pass": 0,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,125 +11,53 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "f2818435-532e-4ce8-a76e-0bf6f0f6b437",
-      "headline": "No Indian in the Singles Again: At Wimbledon, the Flag Now Travels in the Doubles Draw",
-      "slug": "india-wimbledon-2026-no-singles-doubles-yuki-bhambri-sriram-balaji-rajeev-ram-diaspora-nri",
+      "id": "1d8e4dca-50a2-4edf-ad14-18105a319a90",
+      "headline": "India Tried to Cancel 'India's Got Latent'. It Came Back on Netflix AND YouTube at Once \u2014 and Pulled 15 Million in an Afternoon.",
+      "slug": "indias-got-latent-season-2-samay-raina-netflix-youtube-simulcast-alia-bhatt-sharvari-comeback-controversy-where-to-watch-diaspora-nri-20260622",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "f39f59ea-49ff-481f-8dcf-63d9d6839a90",
+            "headline": "India's Got Latent Is Back, and Netflix Is Daring You to Wat"
+          }
+        ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Tennis player hitting a ball",
-          "reason": "The photo shows a tennis player, relevant to the Wimbledon tennis story."
+          "what_photo_shows": "Comedian Samay Raina",
+          "reason": "The photo shows Samay Raina, relevant to the story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/DZz0fYajiyH/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not seem to relate directly to the content of the article about 'India's Got Latent' and its comeback."
+          }
+        ],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 5,
+          "issue": "The image of Samay Raina does not directly match the headline or the broader topic of the article, which discusses the show's return and its impact."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively highlights Rajeev Ram's connection to India and the diaspora experience, making it relevant for NRI readers."
+          "quality": 7,
+          "note": "The article connects to the diaspora by discussing the show's relevance and appeal to NRIs, but the connection could be more explicitly developed."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more quotes or anecdotes from the players to enhance engagement.",
-          "Add a brief historical context about Indian tennis at Wimbledon to deepen the narrative."
+          "Replace the irrelevant Instagram embed with a more relevant one that highlights the show's return or its impact.",
+          "Enhance the diaspora angle by including specific references to how NRIs can engage with the show or its themes."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "72f7394c-a5e2-43fb-bd6f-5cf27fdc7ada",
-      "headline": "Washington Just Moved to End the Open-Ended Student Visa. India's 360,000 Students Are First in Line.",
-      "slug": "us-f1-duration-of-status-fixed-term-rule-indian-students-30-day-grace-period-20260622",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Stanford University campus",
-          "reason": "The photo of a university campus is relevant to a student visa story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the changes in US student visa policies to the aspirations and challenges faced by Indian families and students."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from affected students or immigration experts to provide personal perspectives.",
-          "Include statistics or data on how many students have shifted to other countries due to US immigration policies."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "cceedeea-42e1-4662-be2f-88f86047d2b9",
-      "headline": "They Grew Up American. At 21, the Law Says They Have to Leave.",
-      "slug": "documented-dreamers-indian-diaspora-aging-out-americas-children-act-deportation-20260622",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "The US Capitol building",
-          "reason": "The US Capitol is relevant to a story about US immigration legislation."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively highlights the plight of Documented Dreamers, particularly focusing on Indian families, making it relevant to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes or anecdotes from more individuals affected by the aging out process to provide a personal touch.",
-          "Include more statistics or data on the impact of the America's CHILDREN Act to strengthen the argument."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/DZz0fYajiyH/",
         "promoted to published"
       ],
       "revised": false,
