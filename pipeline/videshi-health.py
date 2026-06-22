@@ -23,9 +23,37 @@ Usage:
 import json
 import sys
 import os
+import time
 import requests
+from requests.adapters import HTTPAdapter
+try:
+    from urllib3.util.retry import Retry
+except Exception:  # pragma: no cover
+    from requests.packages.urllib3.util.retry import Retry
 from datetime import datetime, timezone, timedelta
 from collections import Counter
+
+# The egress proxy intermittently drops connections (RemoteDisconnected /
+# ProxyError) mid-run. Route all requests through a retrying session with
+# backoff so a transient proxy hiccup doesn't abort the whole health check.
+_RETRY = Retry(
+    total=5,
+    connect=5,
+    read=5,
+    backoff_factor=1.5,
+    status_forcelist=(429, 500, 502, 503, 504),
+    allowed_methods=frozenset(["GET", "HEAD", "PATCH", "POST", "DELETE"]),
+)
+_SESSION = requests.Session()
+_adapter = HTTPAdapter(max_retries=_RETRY)
+_SESSION.mount("https://", _adapter)
+_SESSION.mount("http://", _adapter)
+# Override the module-level helpers so every existing requests.get/patch/head
+# call in this file goes through the retrying session.
+requests.get = _SESSION.get
+requests.patch = _SESSION.patch
+requests.head = _SESSION.head
+requests.post = _SESSION.post
 
 SB_URL = os.environ.get("SUPABASE_URL", "https://lboecaekpynbpyijrbfz.supabase.co")
 SB_KEY = os.environ.get("SUPABASE_SERVICE_ROLE_KEY", "")
@@ -70,13 +98,13 @@ CAROUSEL_CATEGORIES = ["news", "entertainment", "sports", "technology", "markets
 
 
 def sb_get(table, params):
-    r = requests.get(f"{REST}/{table}?{params}", headers=HEADERS)
+    r = requests.get(f"{REST}/{table}?{params}", headers=HEADERS, timeout=30)
     return r.json() if r.ok else []
 
 
 def sb_get_count(table, params):
     h = {**HEADERS, "Prefer": "count=exact"}
-    r = requests.get(f"{REST}/{table}?{params}&select=id&limit=1", headers=h)
+    r = requests.get(f"{REST}/{table}?{params}&select=id&limit=1", headers=h, timeout=30)
     cr = r.headers.get("content-range", "")
     try:
         return int(cr.split("/")[1])
@@ -86,7 +114,7 @@ def sb_get_count(table, params):
 
 def sb_patch(table, filters, data):
     h = {**HEADERS, "Prefer": "return=representation"}
-    r = requests.patch(f"{REST}/{table}?{filters}", headers=h, json=data)
+    r = requests.patch(f"{REST}/{table}?{filters}", headers=h, json=data, timeout=30)
     return r.json() if r.ok and r.text else []
 
 
@@ -629,28 +657,33 @@ def check_tweet_embeds(fix=False):
 
     # Fetch articles that contain x.com or twitter.com URLs in their body
     hdrs = {"apikey": SB_KEY, "Authorization": f"Bearer {SB_KEY}"}
-    articles_x = requests.get(
-        f"{REST}/p2_articles",
-        params={
+
+    def _fetch_articles(body_filter):
+        # Large body responses occasionally get truncated by the egress proxy
+        # (ChunkedEncodingError). Retry a few times with backoff.
+        params = {
             "select": "id,headline,slug,body,category",
             "status": "eq.published",
-            "body": "ilike.*x.com*",
+            "body": f"ilike.*{body_filter}*",
             "order": "published_at.desc",
             "limit": "200",
-        },
-        headers=hdrs, timeout=15
-    ).json()
-    articles_tw = requests.get(
-        f"{REST}/p2_articles",
-        params={
-            "select": "id,headline,slug,body,category",
-            "status": "eq.published",
-            "body": "ilike.*twitter.com*",
-            "order": "published_at.desc",
-            "limit": "200",
-        },
-        headers=hdrs, timeout=15
-    ).json()
+        }
+        last_err = None
+        for attempt in range(5):
+            try:
+                resp = requests.get(f"{REST}/p2_articles", params=params,
+                                    headers=hdrs, timeout=30)
+                return resp.json()
+            except Exception as e:  # ChunkedEncodingError, ProxyError, etc.
+                last_err = e
+                time.sleep(1.5 * (attempt + 1))
+        print(f"WARN: tweet-embed article fetch ({body_filter}) failed after retries: {last_err}",
+              file=sys.stderr)
+        return []
+
+    articles_x = _fetch_articles("x.com")
+    articles_tw = _fetch_articles("twitter.com")
+
 
     # Merge and dedup, then filter to only those with actual status URLs in body
     seen = set()
