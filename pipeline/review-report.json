@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-22T20:45:18.606271+00:00",
+  "timestamp": "2026-06-22T21:15:35.676245+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 4,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,17 +11,17 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "03bedb61-1598-46f0-a846-f5a2115efaec",
-      "headline": "Washington Just Cleared $482 Million to Keep India's Apaches and Big Guns Firing \u2014 Days Before the Trade Fight Resumes",
-      "slug": "us-notifies-482-million-apache-m777-howitzer-sustainment-india-defense-fms-20260622",
+      "id": "f34cb5b2-84c2-46ab-a83e-07254f3ad907",
+      "headline": "What to Watch This Week: Dragons Return, Carmy Says Goodbye, and a Jungle Reopens",
+      "slug": "what-to-watch-this-week-june-22-2026-house-of-the-dragon-the-bear-welcome-to-the-jungle-blast-avatar-where-to-watch-diaspora-nri",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Indian Air Force Apache helicopter",
-          "reason": "The photo shows an Apache helicopter, relevant to the story about India's Apache fleet."
+          "what_photo_shows": "Akshay Kumar in a suit",
+          "reason": "The photo shows Akshay Kumar, who is mentioned in the story."
         },
         "inline_image_mismatches": []
       },
@@ -29,19 +29,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 3,
+          "issue": "irrelevant"
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article connects the US-India defense relationship to broader implications for the Indian-American community, making it relevant."
+          "note": "The article connects well with the diaspora by mentioning streaming options available for Indian audiences and highlighting content relevant to Indian culture."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more specific examples of how the defense relationship impacts the Indian diaspora, such as economic opportunities or community initiatives.",
-          "Add a brief section on potential future developments in US-India relations that may affect the diaspora."
+          "Replace the hero image with one that is more relevant to the article's content, such as a promotional image from one of the shows mentioned.",
+          "Consider adding more specific details about how these shows resonate with the Indian diaspora or their cultural significance."
         ],
         "verdict": "pass"
       },
@@ -53,17 +53,17 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "54e446a4-0a79-43e3-b408-3bfc53f87c1c",
-      "headline": "America Just Proposed Making Citizenship Cost $1,330 \u2014 and Killing the Discount for Those Who Can't Pay",
-      "slug": "uscis-naturalization-fee-hike-1330-eliminate-waivers-indian-green-card-holders-20260622",
+      "id": "fd1fceac-721a-48fd-96a6-dbdb63de6ef6",
+      "headline": "Prabhas and Ranbir Kapoor Are Circling the Same Weekend. Independence Day 2026 Just Became Indian Cinema's Bloodiest Battlefield.",
+      "slug": "prabhas-fauzi-ranbir-kapoor-love-and-war-independence-day-2026-clash-naagzilla-box-office-screen-war-where-to-watch-diaspora-nri-20260622",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "people taking oath at naturalization ceremony",
-          "reason": "The photo shows a naturalization ceremony, which is relevant to the story about citizenship costs."
+          "what_photo_shows": "A man speaking at an event",
+          "reason": "The photo plausibly shows Prabhas, relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -77,13 +77,107 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the proposed citizenship fee increase to the Indian diaspora, highlighting the significant number of Indian green-card holders affected by the changes."
+          "note": "The article effectively connects the film releases to NRI audiences, discussing their preferences and viewing habits."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more direct quotes from affected individuals or advocacy groups to enhance the emotional impact.",
-          "Include a brief section on potential responses or actions that the Indian diaspora can take regarding the proposed rule."
+          "Include more direct quotes from industry insiders to enhance credibility.",
+          "Add a brief overview of the significance of Independence Day releases in Indian cinema history."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "e6eb1944-dbe6-43dd-889b-911804f2ba3a",
+      "headline": "The World Will Be Short a Million Chip Engineers. India Just Made That Its Pitch.",
+      "slug": "india-semiconductor-talent-gap-vaishnaw-million-engineers-nri-return-20260622",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "cecb43b7-a091-4395-9081-d9cc423e4632",
+            "headline": "India Sees a Million Empty Chip Jobs. Its Minister Wants Ind"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "A man in a blue jacket",
+          "reason": "The photo plausibly shows Ashwini Vaishnaw, relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 5,
+          "issue": "The image of Ashwini Vaishnaw is relevant as he is a key figure in the semiconductor mission, but it does not directly illustrate the broader topic of chip engineering or the global semiconductor industry."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the semiconductor industry's developments in India to the interests of the Indian diaspora, particularly professionals and investors."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including more visuals or infographics that represent the semiconductor industry or engineering workforce to enhance reader engagement.",
+          "Add quotes or insights from diaspora professionals to provide a personal touch and further connect with the audience."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "c30e835e-77b2-4a78-811b-34b261f1b0f3",
+      "headline": "Two Resignations Wiped $250 Billion Off Google. For Indian Engineers in AI, the Real Lesson Is About Leverage.",
+      "slug": "google-deepmind-jumper-shazeer-defect-anthropic-openai-indian-engineer-20260622",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "0bf912d7-0a6f-407e-a678-7ddf4729b0a7",
+            "headline": "Google Put Gemini in a $99 Speaker. The Real Target Is the P"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Sundar Pichai, Alphabet and Google CEO",
+          "reason": "The photo shows Sundar Pichai, relevant to the story about Google."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the resignations to the experiences and challenges faced by Indian engineers in the tech industry, particularly regarding visa issues and job mobility."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more statistics or quotes from Indian engineers to strengthen the diaspora perspective.",
+          "Include a brief conclusion summarizing the key takeaways for Indian engineers to enhance the article's impact."
         ],
         "verdict": "pass"
       },
