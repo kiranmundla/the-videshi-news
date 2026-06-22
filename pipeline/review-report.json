@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-21T23:15:16.858907+00:00",
+  "timestamp": "2026-06-22T00:15:48.707978+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 0,
+    "pass": 7,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,17 +11,17 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "bea3bd30-56d5-43c4-80f7-7564933c96eb",
-      "headline": "A Cricketer Beat Shah Rukh Khan to India's Most Valuable Celebrity. And the Only Woman in the Top Three Hasn't Made a Hindi Film in Seven Years.",
-      "slug": "fortune-india-most-valuable-celebrities-2026-virat-kohli-shah-rukh-khan-priyanka-chopra-interbrand-allu-arjun-alia-bhatt-where-to-watch-diaspora-nri-20260621",
+      "id": "e577ca10-2fc0-41fd-a788-a23f7e0129d5",
+      "headline": "A $40 Box of Mangoes, a WhatsApp Group, and a Culture War the Diaspora Didn't Ask For",
+      "slug": "indian-mango-season-america-diaspora-demand-kesar-alphonso-whatsapp-backlash-20260622",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Virat Kohli in cricket jersey",
-          "reason": "The photo shows Virat Kohli, who is relevant to the story."
+          "what_photo_shows": "Two mangoes on straw",
+          "reason": "The photo shows mangoes, relevant to the story about Indian mangoes."
         },
         "inline_image_mismatches": []
       },
@@ -35,13 +35,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the celebrity rankings to the diaspora's understanding of star power beyond box office success."
+          "note": "The article effectively connects the cultural significance of mangoes to the Indian diaspora's experiences and challenges in America."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more statistics or data points to support claims about brand value and celebrity rankings.",
-          "Include quotes or insights from the methodology used by Interbrand to enhance credibility."
+          "Consider adding quotes or anecdotes from Indian Americans to enhance the personal connection to the topic.",
+          "Include more data or statistics on the growth of Indian mango sales in the U.S. to strengthen the economic argument."
         ],
         "verdict": "pass"
       },
@@ -53,22 +53,17 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "1536fa32-6cc7-4b5a-af00-ca3dbc3ecef9",
-      "headline": "Kareena Kapoor and Prithviraj Sukumaran Put on the Same Uniform. Meghna Gulzar Just Locked the Casting Coup of the Year for September 18.",
-      "slug": "daayra-kareena-kapoor-khan-prithviraj-sukumaran-meghna-gulzar-september-18-2026-junglee-pictures-true-crime-thriller-where-to-watch-diaspora-nri-20260621",
+      "id": "3a8eba8a-a5cc-4413-86da-ea50dede41c3",
+      "headline": "They Grew Up American on Paper. At 21, the Paper Runs Out \u2014 and Indians Are Most of Them.",
+      "slug": "documented-dreamers-indian-americas-children-act-aging-out-green-card-backlog-20260622",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "6569141e-5551-4f77-9bb6-b558bd73810d",
-            "headline": "Kareena and Prithviraj, Both in Khaki, Finally Share a Frame"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Kareena Kapoor Khan at an event",
-          "reason": "The photo shows Kareena Kapoor Khan, who is mentioned in the headline."
+          "what_photo_shows": "The US Capitol building",
+          "reason": "The photo of the US Capitol is relevant to a story about legislative efforts in Congress."
         },
         "inline_image_mismatches": []
       },
@@ -82,13 +77,265 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the film's themes and the actors' appeal to NRI audiences, highlighting the diaspora's interest in substantive cinema."
+          "note": "The article effectively connects the issue of documented dreamers to the experiences of NRI families, highlighting the emotional and economic implications."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from the actors or director to enhance the article's depth.",
-          "Include more details about the film's plot or themes to engage readers further."
+          "Include more personal stories or quotes from documented dreamers to enhance emotional engagement.",
+          "Provide additional context on the America's Children Act and its potential impact on the NRI community."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "03c9626c-3ce0-4e6d-b27f-52d7b6f6beaa",
+      "headline": "A Connecticut Diaspora Group Turned 20 by Writing Two $25,000 Checks \u2014 and Reading the Room on Immigration",
+      "slug": "gopio-connecticut-20th-anniversary-honors-five-indian-american-leaders-charity-20260622",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "woman speaking at an event",
+          "reason": "The photo plausibly shows a person who could be the state senator mentioned."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the achievements of the Connecticut diaspora group to broader themes of immigration and community integration, making it relevant for NRI readers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from attendees or participants to provide personal perspectives on the event.",
+          "Include more context about the charities receiving the donations to enhance the article's depth."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "79d9562b-9db9-4e7d-b531-beecdc3af092",
+      "headline": "The H-1B Coin Flip Is Dead. The New System Rewards a Very Specific Indian Applicant",
+      "slug": "h1b-wage-weighted-selection-us-masters-71-percent-india-fy2027-20260622",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "software developers working in an office",
+          "reason": "The photo shows software developers, relevant to the H-1B visa topic."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the topic of H-1B visas or immigration."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively discusses the implications of the new H-1B system on Indian applicants, making it highly relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that directly relates to immigration or the H-1B visa process to enhance relevance.",
+          "Add a brief conclusion summarizing the key takeaways for Indian applicants to reinforce the article's message."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "91b25dc6-c405-43a2-916f-af1beb056906",
+      "headline": "The Lottery Loser's Last Trick Is About to Disappear \u2014 and Indian Grads Lean on It Most",
+      "slug": "day-1-cpt-crackdown-30-day-grace-period-f1-indian-students-h1b-20260622",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "graduates in caps and gowns",
+          "reason": "The photo shows a graduation scene relevant to a student-visa story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the impact of immigration policy changes on Indian graduates, making it highly relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include quotes or anecdotes from Indian graduates affected by the proposed rule to enhance relatability.",
+          "Add a section on potential alternatives or solutions for Indian graduates facing these changes."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "cc35cbfa-b8c1-4753-81a3-269b422cf14e",
+      "headline": "Raj Subramaniam Spent Four Years Rebuilding FedEx. Tuesday's Earnings Are the First Test Without a Safety Net.",
+      "slug": "fedex-raj-subramaniam-earnings-one-fedex-network-2-automation-nri-20260622",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "man in suit with flag background",
+          "reason": "The photo plausibly shows a CEO-like figure, fitting the story about FedEx's CEO."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the impact of FedEx's restructuring and AI integration to Indian-origin engineers, making it relevant for the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more direct quotes from Raj Subramaniam or industry experts to enhance credibility.",
+          "Include a brief overview of FedEx's historical performance to provide context for the current changes."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "60ac5c07-2026-4fee-b999-e3cf9132cda8",
+      "headline": "Tata Just Handed BigBasket to an Amazon Veteran. The Mandate: Survive the 10-Minute War.",
+      "slug": "bigbasket-amit-nanda-ceo-tata-quick-commerce-nri-investors-20260622",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "workers handling delivery boxes",
+          "reason": "The photo shows delivery workers, relevant to the quick-commerce market story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the article's focus on BigBasket and quick commerce."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the topic to the diaspora by discussing how quick-commerce apps assist NRIs in managing life for their aging parents in India."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that reflects the themes of online grocery shopping or quick commerce.",
+          "Expand on the diaspora angle with more examples or statistics to strengthen the connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "e49365df-a96f-419b-a7df-a28f3c4bda76",
+      "headline": "UPI Just Went Live in a Paris Department Store. The Real Target Isn't Tourists \u2014 It's Visa and Mastercard.",
+      "slug": "upi-france-galeries-lafayette-live-npci-lyra-nri-diaspora-20260622",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Galeries Lafayette department store",
+          "reason": "The photo shows the Galeries Lafayette store, relevant to the UPI launch story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the UPI launch in France to the diaspora's needs, particularly in terms of convenience and remittance."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of how UPI could benefit NRIs in their daily transactions.",
+          "Include quotes or insights from diaspora members or experts to enhance the personal connection."
         ],
         "verdict": "pass"
       },
