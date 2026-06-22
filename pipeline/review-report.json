@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-22T06:45:22.342126+00:00",
+  "timestamp": "2026-06-22T07:45:12.559814+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 1,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,17 +11,17 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "18639dda-9393-468c-a634-fe63258ba990",
-      "headline": "India's Monsoon Was Supposed to Break the Heat. Three Weeks In, the Rain Gauges Are Still Running a Third Empty.",
-      "slug": "india-weak-monsoon-rain-deficit-mumbai-water-rationing-kharif-sowing-food-inflation-20260622",
+      "id": "e22da52a-10fa-47b2-8903-c88b4f78fed0",
+      "headline": "India's Women Won in Auckland \u2014 and Won Their Way Back to Hockey's Top Table",
+      "slug": "india-women-hockey-win-fih-nations-cup-2026-beat-new-zealand-final-auckland-pro-league-promotion-navneet-kaur-toppo-diaspora",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "monsoon clouds over unsown farmland",
-          "reason": "The photo aligns with the story about delayed monsoon rains affecting agriculture."
+          "what_photo_shows": "woman receiving a sports award",
+          "reason": "The photo shows a woman related to sports, fitting the hockey story."
         },
         "inline_image_mismatches": []
       },
@@ -35,55 +35,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the impact of the monsoon on food inflation and economic factors that are relevant to the NRI community."
+          "note": "The article effectively connects the success of the Indian women's hockey team to the emotional significance for the diaspora, particularly in regions with strong Indian communities."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more data or quotes from experts to enhance credibility.",
-          "Include a brief historical context of monsoon patterns to provide readers with a comparative perspective."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "628b2b10-3a9e-4b32-981f-78755b27686a",
-      "headline": "An Explosion Tore Through Qatar's Biggest Gas Hub. The Search Is On for 18 Missing in a City Built by Indian Hands.",
-      "slug": "qatar-ras-laffan-barzan-gas-plant-explosion-54-injured-18-missing-indian-workers-20260622",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "gas flare and power lines in desert",
-          "reason": "The photo shows Ras Laffan's industrial area, relevant to the gas hub story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the incident to the Indian diaspora in Qatar, highlighting their significant presence and the emotional impact of the explosion on Indian families."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from affected families or officials to enhance the emotional depth of the article.",
-          "Include more context on the safety measures in place at such facilities to inform readers about potential risks."
+          "Consider adding quotes from players or coaches to enhance the narrative.",
+          "Include more statistics or historical context about India's performance in women's hockey to enrich the article."
         ],
         "verdict": "pass"
       },
