@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-22T02:15:54.701517+00:00",
+  "timestamp": "2026-06-22T02:45:24.803762+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 5,
-    "flag": 1,
+    "pass": 3,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,37 +11,37 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "603a8645-6d07-463b-9f8b-5156e4472aab",
-      "headline": "Your US Visa Doesn't Stop Being Reviewed After You Get It \u2014 and Indian Travelers Are Learning That the Hard Way",
-      "slug": "us-visa-continuous-screening-after-approval-india-ssss-nri-travel-advi-20260622",
+      "id": "61377aa1-e5c9-4be8-b286-82c8d98d4647",
+      "headline": "India Just Made Cough Syrup a Prescription Drug. The Backstory Is the Deaths of More Than 140 Children.",
+      "slug": "india-cough-syrup-prescription-only-schedule-k-amendment-contamination-deaths-pharmacy-of-world-20260622",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "US Customs and Border Protection officers",
-          "reason": "The photo shows officers relevant to US visa and immigration processes."
+          "what_photo_shows": "bottles of cough syrup",
+          "reason": "The photo shows cough syrup, relevant to the story about regulation changes."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 8,
+        "overall_score": 7,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image is relevant to the topic of US immigration but does not directly illustrate the continuous vetting process discussed in the article."
+          "score": 8,
+          "issue": "The image is relevant to the topic of cough syrup regulation."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively addresses the concerns of Indian travelers and NRIs regarding US visa processes, making it highly relevant to the diaspora."
+          "quality": 7,
+          "note": "The article discusses India's pharmaceutical reputation, which resonates with the diaspora's interest in India's global standing."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider including a more direct visual representation of the continuous vetting process to enhance reader understanding.",
-          "Add a brief section on how these changes might affect future visa policies or travel trends for Indian travelers."
+          "Expand on the diaspora angle by including specific impacts on NRI communities or their perceptions of Indian pharmaceuticals.",
+          "Include quotes from health experts or diaspora members to enhance credibility and engagement."
         ],
         "verdict": "pass"
       },
@@ -53,108 +53,17 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "16dcb1cc-68c1-4f86-931e-71b0e89ebb83",
-      "headline": "Global Entry Is Testing a Walk-Through Camera at Six US Airports \u2014 and It Changes the Best Perk of the Indian Diaspora's Favorite Program",
-      "slug": "global-entry-camera-capture-pilot-six-us-airports-indian-citizens-nri-20260622",
+      "id": "0a37cb2b-1eb3-4bee-b65c-5fdf8f29b95c",
+      "headline": "India Is Switching Who Runs Its Visa Desks in the UAE. For Five Days at Month's End, the Lines Go Dark.",
+      "slug": "india-uae-passport-visa-attestation-services-pause-june-26-30-al-hind-takeover-20260622",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Global Entry kiosk at US airport",
-          "reason": "The photo shows a Global Entry kiosk, relevant to the story about Global Entry changes."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the Global Entry program to the Indian diaspora, highlighting its significance for Indian travelers."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a quote from a user or expert to enhance credibility.",
-          "Include more statistics or data on the number of Indian travelers using Global Entry to strengthen the argument."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "1e260095-2d7b-4fa1-9110-eaf39a59bf83",
-      "headline": "IndiGo Is Adding Six New International Cities on Narrowbody Jets \u2014 and Quietly Building the Hub the Diaspora Will Connect Through",
-      "slug": "indigo-six-new-international-routes-nairobi-jakarta-central-asia-bali-20260622",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "IndiGo Airbus A321neo in flight",
-          "reason": "The photo shows an IndiGo Airbus A321neo, relevant to the aviation story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://x.com/IndiGo6E",
-            "problem": "irrelevant",
-            "explanation": "The Twitter link does not provide relevant content related to the article's subject matter."
-          }
-        ],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the airline's new routes to the needs and interests of the diaspora, highlighting the benefits for NRI travelers."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the irrelevant Twitter link with a more relevant source or embed that discusses the new routes or their impact on the diaspora.",
-          "Consider adding quotes or testimonials from diaspora travelers to enhance the personal connection to the topic."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "Removed irrelevant embed: https://x.com/IndiGo6E",
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "cb42c094-b9cc-41e0-a079-82c7a54bbed9",
-      "headline": "Foreigners Keep Selling Indian Stocks. Indians Keep Buying \u2014 and That Has Quietly Rewired the Market",
-      "slug": "india-domestic-investors-absorb-foreign-selling-sip-record-dii-fii-structural-shift-nri-investor-20260622-0200",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Bombay Stock Exchange building",
-          "reason": "The photo shows the Bombay Stock Exchange, relevant to the stock market story."
+          "what_photo_shows": "Republic of India passport",
+          "reason": "The photo of an Indian passport is relevant to the visa and passport services story."
         },
         "inline_image_mismatches": []
       },
@@ -168,13 +77,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the changing dynamics of the Indian stock market to the investment behavior of NRIs, providing valuable insights."
+          "note": "The article effectively connects the visa desk transition to the daily lives of the Indian diaspora in the UAE, highlighting the importance of consular services."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more specific examples of how NRIs can adapt their investment strategies based on the new market dynamics.",
-          "Include quotes or insights from financial experts to enhance credibility and depth."
+          "Consider adding quotes from community members or officials to enhance the human element of the story.",
+          "Include more details on how the transition might affect specific groups within the Indian community, such as students or workers."
         ],
         "verdict": "pass"
       },
@@ -193,11 +102,6 @@
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MISMATCH",
-          "what_photo_shows": "a baby's crib with star projections",
-          "reason": "The photo shows a baby's crib, unrelated to adult sleep or feeling older."
-        },
         "inline_image_mismatches": []
       },
       "llm_review": {
@@ -208,59 +112,15 @@
           "issue": "The image description is missing, making it difficult to assess relevance."
         },
         "diaspora_angle": {
-          "present": false,
-          "quality": 0,
-          "note": "The article does not connect to NRI/diaspora readers."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include a relevant image description to enhance the article's visual appeal.",
-          "Add a section that connects the findings to the Indian diaspora, perhaps discussing sleep patterns or health perceptions within that community."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Cleared mismatched image (a baby's crib with star projections)",
-        "held: image mismatch"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "image_mismatch": true,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "c6453421-615b-4326-aaeb-83300fa97cdc",
-      "headline": "India's Most Famous Paddler Missed the Asian Games Team by One Ranking Place",
-      "slug": "manika-batra-left-out-india-asian-games-2026-squad-table-tennis-selection-row-ttfi-ranking-rule-pm-modi-appeal-diaspora",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Manika Batra at an award ceremony",
-          "reason": "The photo shows Manika Batra, relevant to the story about her."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
           "present": true,
           "quality": 7,
-          "note": "The article discusses a prominent Indian athlete's situation, which resonates with the diaspora's interest in Indian sports and representation on global platforms."
+          "note": "The article discusses sleep health, which is relevant to the diaspora's interest in wellness and preventive health."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes or reactions from diaspora communities or Indian sports fans to enhance the connection.",
-          "Provide more context on how this selection impacts India's chances in the upcoming Asian Games."
+          "Include a relevant image description to enhance the image match score.",
+          "Consider adding a section on how sleep issues may specifically affect the NRI community."
         ],
         "verdict": "pass"
       },
