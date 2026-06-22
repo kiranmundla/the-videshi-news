@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-22T16:15:27.830589+00:00",
+  "timestamp": "2026-06-22T16:45:26.739103+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 1,
+    "pass": 3,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,17 +11,17 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "7b3c53b3-fcf8-4928-b00d-03543baf78f9",
-      "headline": "AI Is Erasing the Jobs That Anchored India\u2019s Tech Diaspora",
-      "slug": "ai-layoffs-h1b-60-day-clock-opendoor-india-shutdown-indian-tech-workers-20260622",
+      "id": "a66d9dc5-02ee-47d6-91f0-319640d62233",
+      "headline": "India Sacked the Captain Who Won Them the T20 World Cup \u2014 and Left Him Out of the Team Altogether",
+      "slug": "india-sack-suryakumar-yadav-t20i-captain-dropped-squad-shreyas-iyer-new-captain-england-ireland-asian-games-2026-form-diaspora-nri",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "empty office workstations",
-          "reason": "The photo of empty workstations aligns with the story about job losses due to AI."
+          "what_photo_shows": "man at an airport terminal",
+          "reason": "The photo plausibly shows Shreyas Iyer, relevant to the cricket story."
         },
         "inline_image_mismatches": []
       },
@@ -29,19 +29,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to AI or job loss in the tech sector."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively discusses the impact of AI on the Indian diaspora, particularly regarding H-1B visa holders."
+          "quality": 8,
+          "note": "The article effectively connects the cricket selection controversy to diaspora sentiments, discussing how it will resonate in global Indian communities."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding relevant images that depict AI technology or job loss in the tech sector to enhance visual relevance.",
-          "Include quotes or testimonials from affected individuals in the diaspora to provide a personal touch and deepen the narrative."
+          "Consider adding quotes from players or selectors to enhance the narrative.",
+          "Include more context about the impact of this decision on the team's future performance."
         ],
         "verdict": "pass"
       },
@@ -53,17 +53,17 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "ac0d6bb2-c9ea-49b8-b885-6e24ba6b4303",
-      "headline": "What an H-1B Actually Costs in 2026, Line by Line",
-      "slug": "true-cost-h1b-2026-fee-stack-100000-proclamation-indian-workers-20260622",
+      "id": "564de07a-e551-4997-b54f-fb0b8a9883c1",
+      "headline": "Fourteen Students Walked Into a Coaching Centre in Lucknow. They Never Walked Out.",
+      "slug": "lucknow-coaching-centre-fire-14-students-killed-aliganj-fire-safety-india-diaspora-20260622",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "US currency bills",
-          "reason": "The photo of US currency is relevant to the story about H-1B costs."
+          "what_photo_shows": "fire and emergency services vehicles",
+          "reason": "The photo shows fire services, relevant to a fire incident story."
         },
         "inline_image_mismatches": []
       },
@@ -71,19 +71,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the H-1B visa topic."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively discusses the implications of H-1B costs on Indian professionals, making it highly relevant for the diaspora."
+          "quality": 8,
+          "note": "The article effectively connects the tragedy to the diaspora by discussing the coaching ecosystem that impacts students who later become part of the NRI community."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that reflects the H-1B visa theme or the Indian diaspora.",
-          "Add a section that includes personal stories or testimonials from Indian professionals affected by these changes to enhance relatability."
+          "Consider adding quotes or reactions from diaspora members to enhance the connection.",
+          "Include statistics or data on coaching centre safety to provide more context."
         ],
         "verdict": "pass"
       },
@@ -95,17 +95,17 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "13defa77-3e86-4ca5-90c8-a3d1fccdde86",
-      "headline": "They Grew Up American. At 21, the Law Tells Them to Leave.",
-      "slug": "documented-dreamers-americas-children-act-indian-aging-out-21-green-card-backlog-20260622",
+      "id": "6e63f2cf-ee44-49b8-b9fa-0f4ced1cc993",
+      "headline": "An Indian Founder Now Runs the App 500 Million Indians Use Every Day",
+      "slug": "kunal-shah-cred-founder-whatsapp-global-head-meta-900-million-investment-diaspora-20260622",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "The US Capitol building",
-          "reason": "The photo of the US Capitol is relevant to the legislative topic."
+          "what_photo_shows": "man in Freecharge shirt",
+          "reason": "The photo plausibly shows Kunal Shah, relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -113,21 +113,21 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 3,
-          "issue": "irrelevant"
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article discusses the plight of Indian families affected by U.S. immigration laws, which is highly relevant to the Indian diaspora."
+          "quality": 8,
+          "note": "The article effectively connects the story of Kunal Shah to the broader narrative of Indian entrepreneurs making significant impacts globally, which resonates with the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that reflects the theme of immigration or the experiences of Documented Dreamers.",
-          "Add a personal story or quote from another Documented Dreamer to enhance emotional engagement."
+          "Consider adding quotes from Kunal Shah or industry experts to enhance the article's depth.",
+          "Include more context on WhatsApp's competition in India to provide a clearer picture of the market landscape."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
         "promoted to published"

@@ -1,6 +1,6 @@
 {
  "_description": "Media library mirror — high-quality, attribution-clean images+videos for article/reel fallback. Source of truth is the Supabase media_library table; this mirror lets the pipeline read without a DB round-trip.",
- "_updated": "2026-06-22T16:39:47Z",
+ "_updated": "2026-06-22T16:41:13Z",
  "assets": [
   {
    "id": "person--narendra-modi--bfe42b",
@@ -329,28 +329,6 @@
    "duration": null,
    "quality_score": 92.0,
    "added_date": "2026-06-19T10:32:12Z",
-   "last_used": null,
-   "times_used": 0
-  },
-  {
-   "id": "thing--h1b--b8b882",
-   "media_type": "image",
-   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/h1b-b8b882.jpg",
-   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/h1b-b8b882.jpg",
-   "subject": "h1b",
-   "subject_type": "thing",
-   "caption": "This image is excerpted from a U.S. Government Accountability Office report, available here: www.gao.gov/products/GAO-11-26",
-   "attribution": "Wikimedia Commons / U.S. Government Accountability Office from Washington, DC, United States, Public domain",
-   "license": "Public domain",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Figure_2-_Process_of_Obtaining_an_H-1B_Visa_(5405276752).jpg",
-   "tags": [
-    "h1b"
-   ],
-   "width": 2275,
-   "height": 1517,
-   "duration": null,
-   "quality_score": 65.3,
-   "added_date": "2026-06-19T10:32:17Z",
    "last_used": null,
    "times_used": 0
   },
@@ -1851,28 +1829,6 @@
    "times_used": 3
   },
   {
-   "id": "thing--uscis--cb27b0",
-   "media_type": "image",
-   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/uscis-cb27b0.jpg",
-   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/uscis-cb27b0.jpg",
-   "subject": "USCIS",
-   "subject_type": "thing",
-   "caption": "CAMP SPRINGS (June 20, 2024) Department of Homeland Security (DHS), Senior Official Performing the Duties of the Deputy Secretary, Kristie Canegallo, attends a USCIS All-Employee Town Hall at USCIS Headquarters in Camp Springs, M.D. (DHS photo by Mikaela McGee)",
-   "attribution": "Wikimedia Commons / DHSgov, Public domain",
-   "license": "Public domain",
-   "source_url": "https://commons.wikimedia.org/wiki/File:DHS_Senior_Official_Kristie_Canegallo,_attends_a_USCIS_All-Employee_Town_Hall_at_USCIS_Headquarters_in_Camp_Springs,_Maryland_on_June_20,_2024_-_10.jpg",
-   "tags": [
-    "uscis"
-   ],
-   "width": 3500,
-   "height": 2333,
-   "duration": null,
-   "quality_score": 84.2,
-   "added_date": "2026-06-20T10:31:52Z",
-   "last_used": "2026-06-22T16:39:45Z",
-   "times_used": 1
-  },
-  {
    "id": "thing--immigration--5181dc",
    "media_type": "image",
    "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/immigration-5181dc.jpg",
@@ -1895,6 +1851,50 @@
    "times_used": 1
   },
   {
+   "id": "thing--h1b--b8b882",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/h1b-b8b882.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/h1b-b8b882.jpg",
+   "subject": "h1b",
+   "subject_type": "thing",
+   "caption": "This image is excerpted from a U.S. Government Accountability Office report, available here: www.gao.gov/products/GAO-11-26",
+   "attribution": "Wikimedia Commons / U.S. Government Accountability Office from Washington, DC, United States, Public domain",
+   "license": "Public domain",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Figure_2-_Process_of_Obtaining_an_H-1B_Visa_(5405276752).jpg",
+   "tags": [
+    "h1b"
+   ],
+   "width": 2275,
+   "height": 1517,
+   "duration": null,
+   "quality_score": 65.3,
+   "added_date": "2026-06-19T10:32:17Z",
+   "last_used": "2026-06-22T16:41:11Z",
+   "times_used": 2
+  },
+  {
+   "id": "thing--uscis--cb27b0",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/uscis-cb27b0.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/uscis-cb27b0.jpg",
+   "subject": "USCIS",
+   "subject_type": "thing",
+   "caption": "CAMP SPRINGS (June 20, 2024) Department of Homeland Security (DHS), Senior Official Performing the Duties of the Deputy Secretary, Kristie Canegallo, attends a USCIS All-Employee Town Hall at USCIS Headquarters in Camp Springs, M.D. (DHS photo by Mikaela McGee)",
+   "attribution": "Wikimedia Commons / DHSgov, Public domain",
+   "license": "Public domain",
+   "source_url": "https://commons.wikimedia.org/wiki/File:DHS_Senior_Official_Kristie_Canegallo,_attends_a_USCIS_All-Employee_Town_Hall_at_USCIS_Headquarters_in_Camp_Springs,_Maryland_on_June_20,_2024_-_10.jpg",
+   "tags": [
+    "uscis"
+   ],
+   "width": 3500,
+   "height": 2333,
+   "duration": null,
+   "quality_score": 84.2,
+   "added_date": "2026-06-20T10:31:52Z",
+   "last_used": "2026-06-22T16:41:12Z",
+   "times_used": 2
+  },
+  {
    "id": "thing--green-card--4b23e3",
    "media_type": "image",
    "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/green-card-4b23e3.jpg",
@@ -1913,8 +1913,8 @@
    "duration": null,
    "quality_score": 80.6,
    "added_date": "2026-06-22T10:32:09Z",
-   "last_used": "2026-06-22T16:39:47Z",
-   "times_used": 1
+   "last_used": "2026-06-22T16:41:13Z",
+   "times_used": 2
   }
  ]
 }

@@ -134,6 +134,16 @@ def _matches(asset, subject, tags, subject_type, media_type, min_quality, exclud
     # ── THING / OBJECT (and anything else non-sensitive): TAG-TOKEN MATCH is
     # appropriate — generic B-roll (currency, cricket bat, passport, ballot box)
     # should match on tags/subject tokens. Whole-token only, no substring brush. ──
+    # Short alphanumeric domain subjects (h1b, h-1b, eb5, l1, opt, cbp) tokenize to
+    # nothing under the 4-char minimum, so a punctuation-insensitive normalized
+    # compare rescues them. THING-only, so this never relaxes person/org identity.
+    if a_type not in ("person", "org", "organization"):
+        import re as _re
+        a_norm = _re.sub(r"[^a-z0-9]", "", asset_subject)
+        q_norm = _re.sub(r"[^a-z0-9]", "", q_subject)
+        if a_norm and len(a_norm) >= 3 and q_norm and (
+                a_norm == q_norm or a_norm in q_norm or q_norm in a_norm):
+            return True
     if q_subject_tokens and (q_subject_tokens & (asset_subject_tokens | asset_tag_set)):
         return True
     if q_tag_tokens and (q_tag_tokens & (asset_tag_set | asset_subject_tokens)):
