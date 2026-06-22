@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-22T10:15:39.018020+00:00",
+  "timestamp": "2026-06-22T10:45:35.533586+00:00",
   "mode": "fix",
   "stats": {
     "pass": 5,
@@ -11,106 +11,17 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "b9215ebf-ad2f-4d32-a544-13412ed2cc05",
-      "headline": "Canada's Student-Visa Door Is Closing on Indians \u2014 Rejection Rates Are Up and the Money Bar Just Got Higher",
-      "slug": "canada-student-visa-crackdown-indians-rejection-proof-of-funds-cap-20260622",
+      "id": "4efea845-29e2-41a6-9b68-2aac5b68e85e",
+      "headline": "Seventeen Years After Her First Match in England, Harmanpreet Kaur Walked Out for Her 200th \u2014 a Number No Cricketer Had Ever Reached",
+      "slug": "harmanpreet-kaur-first-cricketer-200-t20i-milestone-women-t20-world-cup-2026-old-trafford-south-africa-debut-2009-england-diaspora-nri",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "modern university library interior",
-          "reason": "The photo shows a university library, relevant to the student-visa story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the topic of Canadian student visas or Indian students."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively addresses the concerns of Indian families considering education in Canada, making it relevant to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that depicts Indian students or Canadian educational institutions.",
-          "Add quotes or testimonials from affected students or families to enhance the personal connection."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "8e84313e-4fea-4175-bbb8-efa61f959b49",
-      "headline": "The F-1 'Stay as Long as You Study' Era Is Ending \u2014 and the Clock Now Starts the Day You Land",
-      "slug": "us-f1-duration-of-status-fixed-term-rule-white-house-indian-students-20260622",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "8f14a8e9-f572-4ee9-8de1-8cb3398bbb62",
-            "headline": "The 60-Day Cushion That Saved Indian Grads Is About to Be Cu"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "students walking on campus",
-          "reason": "The photo shows students on a university campus, relevant to the student visa story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the topic of F-1 visas or immigration, but it is a generic educational image."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively addresses the implications of the new rule on Indian students and their families, making it highly relevant to the NRI audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that directly represents the topic of F-1 visas or international students.",
-          "Add a section summarizing the potential impact of the rule on Indian students specifically, to enhance clarity."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "389f63b6-54cd-4de6-9cee-ecd707085355",
-      "headline": "Ambani's Jio Files for What Could Be India's Biggest IPO Ever \u2014 and This Time, No One Is Cashing Out",
-      "slug": "jio-platforms-drhp-sebi-fresh-issue-ipo-27-crore-shares-india-largest-listing-ambani-nri-investor-20260622-1000",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Mukesh Ambani holding an award",
-          "reason": "The photo shows Mukesh Ambani, relevant to the story about Jio's IPO."
+          "what_photo_shows": "Harmanpreet Kaur holding a trophy",
+          "reason": "The photo shows Harmanpreet Kaur, relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -124,13 +35,97 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the IPO to the emotional and practical significance for NRIs, highlighting Jio's role in the daily lives of Indians."
+          "note": "The article effectively connects Harmanpreet's achievements to the pride of the Indian diaspora, highlighting her influence and the growth of women's cricket."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more specific examples of how Jio's services impact the diaspora community.",
-          "Include quotes or insights from NRI investors to enhance the personal connection."
+          "Consider adding quotes from Harmanpreet or other players to enhance the emotional connection.",
+          "Include more statistics or comparisons to other players to provide deeper context."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "2cb83adf-3eac-4718-8f3d-6c4fd38f2bb0",
+      "headline": "A Boston Judge Killed the $100,000 H-1B Fee. The Government Wants It Back Before You Can Exhale.",
+      "slug": "h1b-100000-fee-struck-down-judge-sorokin-appeal-first-circuit-indian-physicians-20260622",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "federal courthouse in Boston",
+          "reason": "The photo shows the courthouse relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the implications of the H-1B fee ruling specifically for Indian professionals and students, making it highly relevant for the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Add more quotes or perspectives from Indian professionals affected by the ruling to enhance the human interest angle.",
+          "Include a brief explanation of the H-1B visa process for readers who may not be familiar with it."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "fd948985-2bc6-432f-a7b8-558d1c3ec856",
+      "headline": "Starmer Just Quit. The Man Likely to Replace Him Has Said Nothing About the India Trade Deal That Starts in Three Weeks.",
+      "slug": "keir-starmer-resigns-uk-prime-minister-burnham-india-uk-trade-deal-july-15-20260622",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Andy Burnham, a politician",
+          "reason": "The photo shows Andy Burnham, who is relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the political changes in the UK to the implications for the Indian diaspora, particularly regarding the trade deal."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more direct quotes or statements from Andy Burnham regarding the trade deal to enhance the article's depth.",
+          "Add a brief historical context about previous trade agreements between India and the UK to provide readers with a better understanding of the significance of this deal."
         ],
         "verdict": "pass"
       },
@@ -149,11 +144,6 @@
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MISMATCH",
-          "what_photo_shows": "cup of coffee with sugar cubes",
-          "reason": "The photo does not relate directly to the study on sugar and gut health."
-        },
         "inline_image_mismatches": []
       },
       "llm_review": {
@@ -161,7 +151,7 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image description is missing, making it difficult to assess relevance."
+          "issue": "hero image not provided"
         },
         "diaspora_angle": {
           "present": true,
@@ -171,18 +161,16 @@
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include a relevant image description to enhance the image match score.",
-          "Add more context or examples of how the findings could impact specific dietary practices within the diaspora."
+          "Include a relevant hero image that reflects the article's theme.",
+          "Provide more context on how the study's findings could influence dietary practices specifically within the Indian diaspora."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "Cleared mismatched image (cup of coffee with sugar cubes)",
-        "held: image mismatch"
+        "promoted to published"
       ],
       "revised": false,
       "unpublished": false,
-      "image_mismatch": true,
       "llm_source": "gpt-4o-mini"
     },
     {
@@ -193,11 +181,6 @@
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MISMATCH",
-          "what_photo_shows": "a restaurant storefront",
-          "reason": "The photo shows a restaurant, unrelated to diet and exercise programs or diabetes research."
-        },
         "inline_image_mismatches": []
       },
       "llm_review": {
@@ -215,18 +198,16 @@
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include a relevant image description to improve the image match score.",
-          "Consider adding more specific examples of lifestyle changes that can be easily adopted by the diaspora community."
+          "Include a relevant image description to enhance the image match score.",
+          "Consider adding quotes from health experts or testimonials from individuals in the diaspora to strengthen the article's connection to the audience."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "Cleared mismatched image (a restaurant storefront)",
-        "held: image mismatch"
+        "promoted to published"
       ],
       "revised": false,
       "unpublished": false,
-      "image_mismatch": true,
       "llm_source": "gpt-4o-mini"
     }
   ]
