@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-22T00:45:44.635827+00:00",
+  "timestamp": "2026-06-22T01:45:15.291548+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 5,
-    "flag": 0,
+    "pass": 0,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,214 +11,60 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "9bf9ede3-ae2b-4134-a200-b584b9a29cc8",
-      "headline": "Lobster-Priced and Sold Out by Morning: Inside America's Indian Mango Frenzy",
-      "slug": "indian-mango-frenzy-america-alphonso-kesar-sonpari-luxury-2026",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Basket of Alphonso mangoes",
-          "reason": "The photo shows Alphonso mangoes, which are relevant to the story about Indian mango demand."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the mango frenzy to the emotional and cultural significance for the Indian diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes or anecdotes from more members of the diaspora to enhance the personal connection.",
-          "Include more statistics or data on the growth of the Indian mango market in the U.S. to provide a broader context."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "954dbb70-d533-477b-b4f6-4bd29466e16a",
-      "headline": "From Mayfair to the Frozen Aisle: A Two-Michelin Indian Kitchen Bets on America's Pantry",
-      "slug": "gymkhana-fine-foods-whole-foods-jks-restaurants-premium-indian-cpg",
+      "id": "82ff24c2-6e17-4ef5-8681-bbfc4d97277f",
+      "headline": "Sunny Deol Stopped Shouting. In the Batwara 1947 Teaser, He Whispers \u2014 and Aamir Khan's Voice Does the Rest.",
+      "slug": "batwara-1947-teaser-sunny-deol-aamir-khan-narrator-shabana-azmi-preity-zinta-rajkumar-santoshi-ar-rahman-august-14-partition-where-to-watch-diaspora-nri-20260621",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [
           {
-            "article_id": "4347ee90-5cd5-41a5-b83b-04f2fb84b5dd",
-            "headline": "Butter Chicken in the Costco Cart: Indian Ready-Meals Storm "
+            "article_id": "7c742d66-41e5-4d5b-bbb2-1931cdd1f6c7",
+            "headline": "Sunny Deol and Rajkumar Santoshi Reunite After 30 Years for "
           }
         ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "a plate of butter chicken",
-          "reason": "The photo shows butter chicken, relevant to the story about Indian curry sauces."
+          "what_photo_shows": "Theatrical poster for Batwara 1947",
+          "reason": "The photo shows the poster for the film mentioned in the story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DZt6O3BM0bS/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel does not appear to be directly related to the teaser or the film's themes, making it less relevant to the article."
+          },
+          {
+            "url": "https://youtube.com/watch?v=DstkbSnWFf4",
+            "problem": "duplicate",
+            "explanation": "The YouTube link is mentioned in the body but could be considered a duplicate if it is also included in the embeds."
+          }
+        ],
         "image_match": {
           "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively discusses the implications of the Gymkhana launch for the Indian diaspora, addressing both validation and authenticity concerns."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more quotes from the founders or chefs to provide personal insights and enhance engagement.",
-          "Include a brief comparison with other Indian food brands in the U.S. to contextualize Gymkhana's market position."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "9aaff059-6f4a-4a1e-b43f-d31faca8b9aa",
-      "headline": "The Fox Nut Goes Global: How a Bihar Fasting Snack Became America's Newest Superfood",
-      "slug": "makhana-fox-nut-superfood-america-bihar-high-protein-snack",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Roasted phool makhana in a glass",
-          "reason": "The photo shows phool makhana, which is relevant to the story about fox nuts."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 10,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects the rise of makhana to the Indian diaspora's cultural nostalgia and health trends in the West."
+          "note": "The article effectively connects the film's themes of Partition to the diaspora experience, making it relevant for NRI readers."
         },
         "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from industry experts or diaspora members to enhance credibility and personal connection.",
-          "Include more specific examples of brands or products that are popular in the U.S. market to provide readers with actionable insights."
+        "duplicate_embeds": [
+          "https://youtube.com/watch?v=DstkbSnWFf4"
         ],
-        "verdict": "pass"
+        "suggestions": [
+          "Replace the irrelevant Instagram link with a more relevant social media post or remove it altogether.",
+          "Clarify the YouTube link usage to avoid duplication."
+        ],
+        "verdict": "flag"
       },
       "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "e3122e4e-7eb5-4221-94e8-dead9539c871",
-      "headline": "A Third Community Has Been Drawn Into Manipur's War. Now the Kukis Are Begging Modi to Step In.",
-      "slug": "manipur-kuki-naga-violence-escalation-14-killed-11-villages-burnt-kuki-inpi-modi-memorandum-20260621",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "lush green hills in Manipur",
-          "reason": "The photo shows a landscape in Manipur, relevant to the story's location."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article connects the conflict to the diaspora by highlighting the Kuki and Naga communities' Christian identity, which may resonate with diaspora readers."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Expand on the diaspora's potential role or response to the conflict to enhance relevance.",
-          "Include quotes or perspectives from diaspora members to provide a more personal connection."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "9ca4e234-77b0-45b4-9ae8-bcb636ed7c04",
-      "headline": "Pakistan's Defence Minister Says It Will 'Go to War' With India Over Water. The Treaty Has Been Suspended Since Last Year.",
-      "slug": "pakistan-khawaja-asif-war-threat-india-indus-waters-treaty-suspension-water-crisis-20260621",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Man speaking with Pakistan flag",
-          "reason": "The photo plausibly shows Pakistan's Defence Minister Khawaja Asif."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the geopolitical tensions to the concerns of the Indian diaspora, highlighting the potential impacts on families and remittances."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more context about the historical significance of the Indus Waters Treaty for readers unfamiliar with the topic.",
-          "Include quotes or perspectives from diaspora members to enhance the connection to NRI experiences."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DZt6O3BM0bS/",
         "promoted to published"
       ],
       "revised": false,
