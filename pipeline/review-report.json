@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-22T06:17:08.121515+00:00",
+  "timestamp": "2026-06-22T06:45:22.342126+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 14,
+    "pass": 2,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,17 +11,17 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "1c547c86-ccae-4c45-97fa-96aaf95841af",
-      "headline": "\u2018Unity in Diversity\u2019: Britain's South Asian Month Tries to Hold a Fracturing Family Together",
-      "slug": "south-asian-heritage-month-2026-uk-unity-in-diversity-diaspora-20260622",
+      "id": "18639dda-9393-468c-a634-fe63258ba990",
+      "headline": "India's Monsoon Was Supposed to Break the Heat. Three Weeks In, the Rain Gauges Are Still Running a Third Empty.",
+      "slug": "india-weak-monsoon-rain-deficit-mumbai-water-rationing-kharif-sowing-food-inflation-20260622",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Diyas and rangoli at a celebration",
-          "reason": "The photo depicts a South Asian cultural celebration, aligning with the story's theme."
+          "what_photo_shows": "monsoon clouds over unsown farmland",
+          "reason": "The photo aligns with the story about delayed monsoon rains affecting agriculture."
         },
         "inline_image_mismatches": []
       },
@@ -35,13 +35,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively discusses the South Asian diaspora in Britain and its complexities, making it relevant to NRI readers."
+          "note": "The article effectively connects the impact of the monsoon on food inflation and economic factors that are relevant to the NRI community."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from community leaders or participants to enhance the personal connection to the topic.",
-          "Include more specific examples of events or activities planned for South Asian Heritage Month to provide readers with actionable information."
+          "Consider adding more data or quotes from experts to enhance credibility.",
+          "Include a brief historical context of monsoon patterns to provide readers with a comparative perspective."
         ],
         "verdict": "pass"
       },
@@ -53,101 +53,17 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "97ebb239-8914-4a7d-a24e-b15e3a0e0981",
-      "headline": "The Diaspora Built Itself Around Its Children. Now It Is Building for Its Parents.",
-      "slug": "india-home-senior-center-hicksville-long-island-aging-diaspora-care-20260622",
+      "id": "628b2b10-3a9e-4b32-981f-78755b27686a",
+      "headline": "An Explosion Tore Through Qatar's Biggest Gas Hub. The Search Is On for 18 Missing in a City Built by Indian Hands.",
+      "slug": "qatar-ras-laffan-barzan-gas-plant-explosion-54-injured-18-missing-indian-workers-20260622",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "elderly Indian women sitting together",
-          "reason": "The photo shows elderly Indian women, which aligns with the story about a senior centre for Indian immigrants."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively discusses the aging Indian American population and their needs, connecting well with the diaspora audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include quotes or anecdotes from seniors who will benefit from the center to add a personal touch.",
-          "Provide more statistics or data on the aging Indian American population to strengthen the argument."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "d951ad55-920b-487f-8ab5-991d40858436",
-      "headline": "Marry Out, and You Are Out: India's Top Court Weighs a Rule That Empties the Fire Temple of Its Daughters",
-      "slug": "parsi-women-interfaith-marriage-excommunication-supreme-court-sabarimala-diaspora-20260622",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "interior of a Zoroastrian fire temple",
-          "reason": "The photo shows a Zoroastrian fire temple, relevant to the story about Parsi practices."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the issue to the diaspora, highlighting the implications for Zoroastrians worldwide."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes or perspectives from diaspora Zoroastrians to enhance the connection.",
-          "Include more context on the historical significance of the practice for a deeper understanding."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "26fc298a-48d2-4da3-b0ce-9a2617a8dcac",
-      "headline": "India's Holy Cities Are Finally Getting Real Hotels \u2014 ITC Plants Its Flag in Ayodhya",
-      "slug": "itc-welcomhotel-ayodhya-pilgrimage-hotel-boom-nri-saryu-20260622",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Ram Mandir in Ayodhya",
-          "reason": "The photo shows a landmark in Ayodhya, relevant to the story about hotels there."
+          "what_photo_shows": "gas flare and power lines in desert",
+          "reason": "The photo shows Ras Laffan's industrial area, relevant to the gas hub story."
         },
         "inline_image_mismatches": []
       },
@@ -161,13 +77,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects the topic of new hotel developments in pilgrimage towns to the needs and experiences of the NRI diaspora, particularly in terms of travel logistics and emotional significance."
+          "note": "The article effectively connects the incident to the Indian diaspora in Qatar, highlighting their significant presence and the emotional impact of the explosion on Indian families."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from ITC representatives or industry experts to enhance credibility.",
-          "Include more statistics or data on the growth of religious tourism to provide a stronger context."
+          "Consider adding quotes from affected families or officials to enhance the emotional depth of the article.",
+          "Include more context on the safety measures in place at such facilities to inform readers about potential risks."
         ],
         "verdict": "pass"
       },
@@ -177,459 +93,6 @@
       "revised": false,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "ba8e0b8d-5197-46d6-a0fe-3f40209eacd0",
-      "headline": "Navi Mumbai's New Airport Goes International July 15 \u2014 and the Gulf Diaspora Is First in Line",
-      "slug": "navi-mumbai-airport-international-launch-july-15-abu-dhabi-gulf-nri-20260622",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "058610dd-852c-4a32-b493-022e458f24c7",
-            "headline": "Two Indian Airports Just Made the World's Most Beautiful Lis"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "airport terminal interior",
-          "reason": "The photo shows an airport terminal, relevant to the story about Navi Mumbai's airport."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 10,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively highlights the significance of the new airport for the Gulf diaspora, emphasizing convenience and connectivity."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from diaspora members or aviation experts to enhance the article's depth.",
-          "Include more specific statistics or data on expected passenger traffic to further substantiate claims."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "7445d3ad-c00b-47fd-9efd-94be81e455f0",
-      "headline": "For Once, the Worry Is a Rate Hike: India's Central Bank Holds Steady as War-Driven Oil Tests Its Nerve",
-      "slug": "rbi-minutes-rate-hold-wait-watch-iran-oil-inflation-rupee-hike-bets-nri-20260622-0600",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Reserve Bank of India building",
-          "reason": "The photo shows the Reserve Bank of India, relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article connects the economic situation to NRIs' financial interests, particularly in fixed deposits and accounts."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Expand on how the rate hike or hold impacts NRIs specifically, perhaps with examples or expert opinions.",
-          "Include more data or quotes from diaspora members to strengthen the connection to the NRI community."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "9b208eb7-a421-4651-82e3-d7a90f7a89da",
-      "headline": "Two Hours of Lifting a Week May Be a Sweet Spot for Living Longer, a 147,000-Person Study Finds",
-      "slug": "strength-training-resistance-90-120-minutes-week-lower-death-risk-bjsm-study-diaspora-20260622-0600",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Person lifting dumbbells in gym",
-          "reason": "The photo shows strength training, which is relevant to the study on lifting."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the study's findings to the health risks faced by the South Asian diaspora, making it relevant and informative."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a quote from a diaspora health expert to strengthen the connection to the audience.",
-          "Include practical tips for incorporating strength training into a busy lifestyle, particularly for the diaspora audience."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "1d24a43b-fd18-4ae4-8224-152d38decf1a",
-      "headline": "Everyone Is Rushing to IPO Their AI Company. The Indian-Born CEO of Perplexity Says He'll Wait Until 2028.",
-      "slug": "perplexity-aravind-srinivas-2028-ipo-anthropic-openai-cnn-suit-nri-20260622",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Man wearing Perplexity shirt",
-          "reason": "The photo plausibly shows Aravind Srinivas, related to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the Indian diaspora's influence in the AI sector, particularly through the lens of Aravind Srinivas's approach."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more direct quotes from Aravind Srinivas to enhance the article's depth.",
-          "Include a brief overview of the current IPO landscape for AI companies to provide context."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "cad5c570-0cb0-4a9e-9274-3f2f0585612e",
-      "headline": "Mukesh Ambani Just Filed the Papers for India's Biggest-Ever IPO. The Next Generation Is Running It.",
-      "slug": "jio-platforms-ipo-drhp-filed-sebi-ambani-180-billion-nri-investors-20260622",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "fe2b2043-7cf0-445e-91d8-2ce125b62168",
-            "headline": "Reliance Just Filed for the Jio IPO. It Could Be the Biggest"
-          },
-          {
-            "article_id": "41169b40-2d99-4472-9a4b-7ad8efc966cb",
-            "headline": "Ambani Just Priced India's Biggest IPO Ever. Two American Te"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A man in a suit and tie",
-          "reason": "The photo plausibly shows Mukesh Ambani, relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the IPO to diaspora investors, discussing the implications and challenges they may face."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more specific examples of how diaspora investors can participate in the IPO process.",
-          "Include a brief overview of the potential risks associated with investing in the IPO to provide a more balanced perspective."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "600ce843-76d5-4cd0-b283-1a700970301a",
-      "headline": "A Chipmaker Micron Once Nearly Bought Just Became Korea's Most Valuable Company",
-      "slug": "sk-hynix-overtakes-samsung-memory-supercycle-micron-gujarat-nri-20260622",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "processor die under macro lens",
-          "reason": "The photo shows a processor die, relevant to the chipmaking story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the semiconductor industry's developments to the interests of the NRI diaspora, particularly those involved in investments and potential relocations."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more direct quotes or insights from industry experts to enhance credibility.",
-          "Include a brief overview of Micron's Indian facility to provide more context for diaspora readers."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "029f07fa-9d29-4de9-ac4d-b59e24c46494",
-      "headline": "They Tried to Bury Main Vaapas Aaunga. Eight Days Later, It's Pulling a Queen.",
-      "slug": "main-vaapas-aaunga-box-office-turnaround-queen-comparison-imtiaz-ali-diljit-dosanjh-ar-rahman-second-saturday-where-to-watch-diaspora-nri-20260621",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "593fe449-25ab-4e0c-b399-6490ac8797a0",
-            "headline": "Los Angeles Just Gave Diljit Dosanjh His Own Day. The Boy Fr"
-          },
-          {
-            "article_id": "d0670569-8693-4310-8e90-9c63470bb6f0",
-            "headline": "Diljit's Main Vaapas Aaunga Showed a Pakistan Without Villai"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A man in a turban and suit",
-          "reason": "The photo shows Diljit Dosanjh, relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the film's themes of belonging and return to the experiences of the NRI community."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more direct quotes from audience reactions to enhance engagement.",
-          "Include a brief overview of the film's plot to provide context for readers unfamiliar with it."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "09623df9-6314-45f5-ae16-4ea91fa22203",
-      "headline": "While Wall Street Panics About AI Killing IT Jobs, a US Firm Just Opened in Bengaluru to Hire More",
-      "slug": "n-able-bengaluru-gcc-hiring-cybersecurity-india-talent-nri-engineers-20260622",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "software developers in an office",
-          "reason": "The photo shows developers collaborating, relevant to the tech and hiring story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 8,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article explicitly addresses the diaspora angle, particularly for NRI engineers considering a move back to India, and how the changing landscape impacts their career choices and perceptions."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a quote from an NRI engineer who has either returned to India for a GCC role or is considering it, to personalize the diaspora angle further.",
-          "Perhaps include a small infographic or chart illustrating the projected growth of the GCC workforce in India, especially in AI and cybersecurity, to visually support the data."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "d353977c-9e20-48a0-b87c-6ca3046409bf",
-      "headline": "Nvidia Is Building India Its First AI University. The Real Prize Is 10,000 Engineers a Year.",
-      "slug": "nvidia-andhra-pradesh-ai-university-india-talent-naidu-nri-engineers-20260622",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "10baafa5-eacf-4214-8e60-a13279cd89d6",
-            "headline": "Nvidia's Biggest Threat Isn't a Rival. It's the Customers No"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "an older man in a suit",
-          "reason": "The photo plausibly shows Nvidia CEO Jensen Huang, relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 5,
-          "issue": "The image does not directly relate to the article's topic of an AI university in India."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the establishment of the AI university to the interests and career prospects of the Indian diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that directly represents the AI university or its impact on education in India.",
-          "Expand on the potential implications for the diaspora in terms of job opportunities and collaboration with Indian engineers."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "293a4972-4842-4a04-8d09-c1379f45585e",
-      "headline": "Satya Nadella Helped Build the AI Arms Race. Now He Says It's Time to Stop Fighting It.",
-      "slug": "satya-nadella-microsoft-ai-reset-deepseek-frontier-models-nri-engineer-20260622",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "a7a08033-a0bd-41d1-bcc2-c3a226bef789",
-            "headline": "Satya Nadella Warned Against AI Monopolies. Days Later He St"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A man in glasses and suit",
-          "reason": "The photo plausibly shows Satya Nadella, relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The diaspora angle is well-integrated, connecting Nadella's background and the implications for Indian engineers in the tech industry."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a quote from an Indian engineer or tech professional to further ground the 'diaspora angle' section.",
-          "Ensure the article concludes with a strong summary statement, as it currently ends abruptly."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
     }
   ]
 }
