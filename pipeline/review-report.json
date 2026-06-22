@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-22T22:16:18.521310+00:00",
+  "timestamp": "2026-06-22T22:45:22.455293+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 6,
+    "pass": 3,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,59 +11,17 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "4b490fca-661d-4ee4-87b9-2e2fdfa96a8e",
-      "headline": "Gold Was Supposed to Soar During the Iran War. It Fell Nearly 10% Instead \u2014 Now JP Morgan Sees a 40% Rebound",
-      "slug": "gold-defied-safe-haven-iran-war-fell-10-percent-jp-morgan-40-percent-rebound-nri-investor-20260622-2200",
+      "id": "f2818435-532e-4ce8-a76e-0bf6f0f6b437",
+      "headline": "No Indian in the Singles Again: At Wimbledon, the Flag Now Travels in the Doubles Draw",
+      "slug": "india-wimbledon-2026-no-singles-doubles-yuki-bhambri-sriram-balaji-rajeev-ram-diaspora-nri",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "gold and silver bars",
-          "reason": "The photo shows gold bars, relevant to the gold price story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 8,
-          "issue": "The image relates to gold prices and the Iran war, matching the article's topic."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses gold investment, which is relevant to NRIs, especially those investing in Indian markets."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more specific examples or quotes from NRI investors to strengthen the diaspora angle.",
-          "Add a brief section on how geopolitical events typically affect gold prices for a more comprehensive analysis."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "d60603ea-21d0-4fcd-bd9d-3697a5d0e2c2",
-      "headline": "IndiGo Just Built a Budget Bridge From India to Australia \u2014 Through a Beach in Bali",
-      "slug": "indigo-jetstar-codeshare-bali-australia-india-bridge-nri-budget-20260622",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "IndiGo Airbus A320neo on tarmac",
-          "reason": "The photo shows an IndiGo aircraft, relevant to the aviation story."
+          "what_photo_shows": "Tennis player hitting a ball",
+          "reason": "The photo shows a tennis player, relevant to the Wimbledon tennis story."
         },
         "inline_image_mismatches": []
       },
@@ -77,13 +35,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively highlights the benefits of the new route for the Indian diaspora in Australia, making it relevant and engaging."
+          "note": "The article effectively highlights Rajeev Ram's connection to India and the diaspora experience, making it relevant for NRI readers."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from travelers or industry experts to enhance the article's depth.",
-          "Include more specific examples of how this new route could impact travel patterns for the diaspora."
+          "Include more quotes or anecdotes from the players to enhance engagement.",
+          "Add a brief historical context about Indian tennis at Wimbledon to deepen the narrative."
         ],
         "verdict": "pass"
       },
@@ -95,17 +53,17 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "b3ce87d3-17ec-4486-b1d2-ee88087b12ec",
-      "headline": "More Than 1 in 3 Older Adults Fall Short on Protein \u2014 and Vegetarians and Meal-Skippers Are Most at Risk",
-      "slug": "protein-gap-older-adults-vegetarians-meal-skipping-muscle-frailty-spread-across-meals-diaspora-20260622-2200",
+      "id": "72f7394c-a5e2-43fb-bd6f-5cf27fdc7ada",
+      "headline": "Washington Just Moved to End the Open-Ended Student Visa. India's 360,000 Students Are First in Line.",
+      "slug": "us-f1-duration-of-status-fixed-term-rule-indian-students-30-day-grace-period-20260622",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "variety of legumes and grains",
-          "reason": "The photo shows legumes, which are relevant to the story about protein sources for older adults."
+          "what_photo_shows": "Stanford University campus",
+          "reason": "The photo of a university campus is relevant to a student visa story."
         },
         "inline_image_mismatches": []
       },
@@ -119,13 +77,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the protein intake issue to the Indian diaspora's dietary habits, making it relevant for the audience."
+          "note": "The article effectively connects the changes in US student visa policies to the aspirations and challenges faced by Indian families and students."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding specific examples of vegetarian protein sources popular in Indian cuisine to enhance relatability.",
-          "Include a brief section on how to incorporate more protein into traditional Indian meals."
+          "Consider adding quotes from affected students or immigration experts to provide personal perspectives.",
+          "Include statistics or data on how many students have shifted to other countries due to US immigration policies."
         ],
         "verdict": "pass"
       },
@@ -137,17 +95,17 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "2ff7a477-5982-4dae-b575-18a046e6ca21",
-      "headline": "The Health Benefits of Coffee May Hinge on the Clock: Morning Drinkers Lived Longer in a 40,000-Person Study",
-      "slug": "morning-coffee-timing-lower-mortality-cardiovascular-death-nhanes-european-heart-journal-40000-adults-diaspora-20260622-2200",
+      "id": "cceedeea-42e1-4662-be2f-88f86047d2b9",
+      "headline": "They Grew Up American. At 21, the Law Says They Have to Leave.",
+      "slug": "documented-dreamers-indian-diaspora-aging-out-americas-children-act-deportation-20260622",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "person holding a cup of coffee",
-          "reason": "The photo of coffee is relevant to the story about coffee's health benefits."
+          "what_photo_shows": "The US Capitol building",
+          "reason": "The US Capitol is relevant to a story about US immigration legislation."
         },
         "inline_image_mismatches": []
       },
@@ -161,97 +119,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the health benefits of coffee to the cultural significance of caffeine consumption in Indian households, making it relevant for the diaspora."
+          "note": "The article effectively highlights the plight of Documented Dreamers, particularly focusing on Indian families, making it relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a quote from a health expert to enhance credibility.",
-          "Include more specific examples of how coffee consumption patterns differ in the diaspora."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "0b7eee65-b089-4f55-b8a4-09433cf8e253",
-      "headline": "Ladakh Is About to Get Easier to Reach \u2014 and the Diaspora's 'Someday' Trip Just Moved Up",
-      "slug": "ladakh-tourism-zoji-la-tunnel-hanle-dark-sky-nri-family-trip-20260622",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Pangong Tso lake in Ladakh",
-          "reason": "The photo shows a location relevant to the Ladakh travel story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the improvements in accessibility to the interests of the diaspora, particularly families looking for travel options."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more personal anecdotes or quotes from diaspora families to enhance relatability.",
-          "Include specific examples of how the improved access has already impacted tourism or local businesses in Ladakh."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "2edc9097-9f27-44f3-859b-439172727bd6",
-      "headline": "Akasa Air Just Took Its 39th Jet \u2014 and It's Filling the Gap Air India Is Leaving Behind",
-      "slug": "akasa-air-39th-jet-expansion-air-india-scaleback-nri-domestic-20260622",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Akasa Air Boeing 737 MAX 8-200",
-          "reason": "The photo shows an Akasa Air aircraft, relevant to the airline expansion story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects Akasa Air's growth to the needs of NRIs, particularly in terms of domestic connectivity and family reunions."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more statistics or data points about Akasa Air's performance compared to competitors to strengthen the analysis.",
-          "Include quotes from industry experts or stakeholders to provide additional perspectives on Akasa's impact on the aviation market."
+          "Consider adding quotes or anecdotes from more individuals affected by the aging out process to provide a personal touch.",
+          "Include more statistics or data on the impact of the America's CHILDREN Act to strengthen the argument."
         ],
         "verdict": "pass"
       },
