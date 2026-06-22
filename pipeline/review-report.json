@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-22T14:45:25.080448+00:00",
+  "timestamp": "2026-06-22T15:15:50.464195+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 6,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,61 +11,17 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "befac136-1ec8-45a7-a9a9-a427df9bb271",
-      "headline": "India Just Rewrote the Rulebook for Foreigners Who Want to Stay. The Diaspora's Spouses and Kids Are the Quiet Winners.",
-      "slug": "india-visa-overhaul-2026-ten-year-extensions-consolidated-categories-intern-salary-e-visa-oci-diaspora-20260622",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MISMATCH",
-          "what_photo_shows": "Cambodian visa in a passport",
-          "reason": "The photo shows a Cambodian visa, unrelated to Indian immigration changes."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 5,
-          "issue": "missing image description"
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively discusses changes in immigration laws that directly benefit diaspora families, making it highly relevant."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include a relevant hero image that visually represents the topic of immigration or diaspora families.",
-          "Add a brief summary or conclusion to reinforce the implications of the changes discussed."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "Cleared mismatched image (Cambodian visa in a passport)",
-        "held: image mismatch"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "image_mismatch": true,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "9b18ab4f-9ffc-4b1e-9dc5-b339cbd6ef8d",
-      "headline": "India Has Flown 1,700 of Its Own Out of a War Zone. The Planes Are Still Going Back for More.",
-      "slug": "operation-sindhu-india-evacuates-indians-iran-israel-war-mashhad-armenia-students-diaspora-20260622",
+      "id": "9dfee839-32df-4814-a423-d7574061503c",
+      "headline": "Olivia Wilde Brings a Dinner Party From Hell to Indian Screens. Seth Rogen, Penelope Cruz and Edward Norton Are Already RSVP'd.",
+      "slug": "the-invite-olivia-wilde-a24-india-release-seth-rogen-penelope-cruz-edward-norton-sundance-pvrinox-where-to-watch-diaspora-nri-20260622",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "airport arrivals area",
-          "reason": "The photo shows an airport arrivals area, relevant to the story about flights bringing people home."
+          "what_photo_shows": "Poster for The Invite film",
+          "reason": "The photo shows a poster for the film mentioned in the story."
         },
         "inline_image_mismatches": []
       },
@@ -79,13 +35,223 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the evacuation operation to the Indian diaspora's experiences and expectations."
+          "note": "The article effectively connects the film's themes to the NRI audience, highlighting its relevance in the context of urban Indian viewers."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes from evacuees or officials to add a personal touch.",
-          "Provide more context on the historical significance of similar operations for the diaspora."
+          "Consider adding more details about the film's reception in India to enhance the diaspora connection.",
+          "Include quotes or insights from Indian critics or audiences to provide a local perspective."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "101dca29-b6a9-46f2-9bd5-68a066754adc",
+      "headline": "Cocktail 2 Closes Its First Weekend at \u20b944 Crore. Shahid Kapoor's Rom-Com Is the Comeback Nobody Bet On.",
+      "slug": "cocktail-2-first-weekend-box-office-44-crore-shahid-kapoor-third-biggest-opener-kriti-sanon-rashmika-mandanna-welcome-to-the-jungle-clash-where-to-watch-diaspora-nri-20260622",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "69ee695b-0713-4c49-acd9-047468c0e514",
+            "headline": "Cocktail 2 Refuses to Fizzle. Day Two Pours Bigger Than Day "
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Poster for Cocktail 2 film",
+          "reason": "The photo is the official poster for Cocktail 2, matching the story topic."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the film's success to NRI audiences, discussing their preferences and potential viewership."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more quotes or insights from critics or audience reactions to enhance the article's depth.",
+          "Include a brief comparison of the film's performance with other recent releases to provide context."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "adc16827-9341-4f13-af13-7f137bdc26ae",
+      "headline": "India Designs the World's Software and Assembles Its iPhones. Now an Adani-Jabil Deal Wants It to Build the AI Machine Itself.",
+      "slug": "jabil-adani-ai-data-center-manufacturing-india-liquid-cooled-racks-nri-20260622",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "liquid-cooled server racks",
+          "reason": "The photo shows server racks relevant to AI data centers."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the developments in AI hardware manufacturing to the interests of the Indian diaspora, particularly in terms of career opportunities and investment potential."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of how NRIs can engage with or benefit from the developments mentioned.",
+          "Include quotes or insights from diaspora professionals in the tech industry to enhance the personal connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "a6d6f961-2f02-4e5d-917e-44d90e0770d3",
+      "headline": "Qualcomm Spent 20 Years as a Phone-Chip Giant. On Wednesday It Has to Prove It Can Build for the Data Center.",
+      "slug": "qualcomm-investor-day-dragonfly-data-center-ai-chip-cristiano-amon-nri-20260622",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "close-up of a semiconductor wafer",
+          "reason": "The photo is relevant to the tech and semiconductor focus of the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects Qualcomm's strategic moves to the interests of Indian engineers and NRI investors, highlighting the implications for employment and investment."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from industry experts or analysts to enhance credibility.",
+          "Include more specific examples of how Qualcomm's changes might directly impact Indian engineers' careers."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "4dbbf900-ee5f-49ff-a616-bd1c25d78e05",
+      "headline": "Two IIT Grads Built a $2 Billion AI Company in Under a Year. They Haven't Shipped a Product Yet.",
+      "slug": "upscale-ai-2-billion-barun-kar-rajiv-khemani-nvidia-premji-nri-20260622",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "servers and networking cables",
+          "reason": "The photo shows a modern AI data center, relevant to the tech story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the success of the founders to the Indian diaspora's narrative of achievement in the tech industry."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from the founders or industry experts to enhance credibility and engagement.",
+          "Include more context on how the Indian diaspora is influencing the tech landscape in the US."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "befac136-1ec8-45a7-a9a9-a427df9bb271",
+      "headline": "India Just Rewrote the Rulebook for Foreigners Who Want to Stay. The Diaspora's Spouses and Kids Are the Quiet Winners.",
+      "slug": "india-visa-overhaul-2026-ten-year-extensions-consolidated-categories-intern-salary-e-visa-oci-diaspora-20260622",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 5,
+          "issue": "missing image description"
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively highlights changes in immigration laws that directly benefit diaspora families, making it relevant and engaging for NRI readers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Add a relevant hero image with a description that reflects the article's focus on immigration changes.",
+          "Include quotes or testimonials from diaspora families to enhance the personal connection to the topic."
         ],
         "verdict": "pass"
       },
