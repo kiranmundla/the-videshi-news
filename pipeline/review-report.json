@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-22T20:15:19.581765+00:00",
+  "timestamp": "2026-06-22T20:45:18.606271+00:00",
   "mode": "fix",
   "stats": {
     "pass": 2,
@@ -11,17 +11,17 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "61450e7f-7274-40da-9fa5-33380105e363",
-      "headline": "The First Wage-Weighted H-1B Season Ends Monday. The Rules Changed Everything.",
-      "slug": "fy2027-h1b-cap-season-closes-june-30-wage-weighted-lottery-100k-fee-staffing-firms-20260622",
+      "id": "03bedb61-1598-46f0-a846-f5a2115efaec",
+      "headline": "Washington Just Cleared $482 Million to Keep India's Apaches and Big Guns Firing \u2014 Days Before the Trade Fight Resumes",
+      "slug": "us-notifies-482-million-apache-m777-howitzer-sustainment-india-defense-fms-20260622",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Code on a developer's screen",
-          "reason": "The photo of code relates to the H-1B visa topic for tech workers."
+          "what_photo_shows": "Indian Air Force Apache helicopter",
+          "reason": "The photo shows an Apache helicopter, relevant to the story about India's Apache fleet."
         },
         "inline_image_mismatches": []
       },
@@ -29,19 +29,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the H-1B visa topic."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article discusses the impact of H-1B visa changes on the Indian diaspora, making it highly relevant."
+          "quality": 8,
+          "note": "The article connects the US-India defense relationship to broader implications for the Indian-American community, making it relevant."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that directly relates to the H-1B visa or immigration theme.",
-          "Add more statistics or quotes from experts to strengthen the analysis of the impact on the Indian diaspora."
+          "Include more specific examples of how the defense relationship impacts the Indian diaspora, such as economic opportunities or community initiatives.",
+          "Add a brief section on potential future developments in US-India relations that may affect the diaspora."
         ],
         "verdict": "pass"
       },
@@ -53,17 +53,17 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "b617eaea-6707-45d5-be35-ac160393499f",
-      "headline": "The Pipeline Is Drying Up: Why Indian Students Are Quitting America",
-      "slug": "indian-student-enrollment-collapse-us-universities-sevis-gmac-f1-h1b-pipeline-20260622",
+      "id": "54e446a4-0a79-43e3-b408-3bfc53f87c1c",
+      "headline": "America Just Proposed Making Citizenship Cost $1,330 \u2014 and Killing the Discount for Those Who Can't Pay",
+      "slug": "uscis-naturalization-fee-hike-1330-eliminate-waivers-indian-green-card-holders-20260622",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Students walking on a university campus",
-          "reason": "The photo shows students on a campus, relevant to the story about Indian students in US universities."
+          "what_photo_shows": "people taking oath at naturalization ceremony",
+          "reason": "The photo shows a naturalization ceremony, which is relevant to the story about citizenship costs."
         },
         "inline_image_mismatches": []
       },
@@ -71,19 +71,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the topic of Indian students in America."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the decline in Indian student enrollment to broader immigration trends affecting the Indian diaspora."
+          "note": "The article effectively connects the proposed citizenship fee increase to the Indian diaspora, highlighting the significant number of Indian green-card holders affected by the changes."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that depicts Indian students or the educational environment in the US.",
-          "Add more personal stories or quotes from Indian students to enhance the emotional connection with the diaspora audience."
+          "Consider adding more direct quotes from affected individuals or advocacy groups to enhance the emotional impact.",
+          "Include a brief section on potential responses or actions that the Indian diaspora can take regarding the proposed rule."
         ],
         "verdict": "pass"
       },
