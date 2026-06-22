@@ -47,14 +47,33 @@ OPENAI_KEY = os.environ.get("OPENAI_API_KEY", "")
 GEMINI_KEY = os.environ.get("GOOGLE_AI_API_KEY", "")
 
 # ── Supabase helpers ──
-def sb_get(path):
+class SupabaseUnavailable(Exception):
+    pass
+
+def sb_get(path, _retries=3):
     url = f"{SUPABASE_URL}/rest/v1/{path}"
-    r = subprocess.run(
-        ["curl", "-s", url, "-H", f"apikey: {SUPABASE_KEY}", "-H", f"Authorization: Bearer {SUPABASE_KEY}"],
-        capture_output=True, text=True, timeout=30
-    )
-    data = json.loads(r.stdout)
-    return data if isinstance(data, list) else []
+    last = ""
+    for attempt in range(_retries):
+        r = subprocess.run(
+            ["curl", "-s", "-w", "\n%{http_code}", url,
+             "-H", f"apikey: {SUPABASE_KEY}", "-H", f"Authorization: Bearer {SUPABASE_KEY}"],
+            capture_output=True, text=True, timeout=30
+        )
+        body, _, code = r.stdout.rpartition("\n")
+        code = code.strip()
+        if code.startswith("5") or code in ("000", "429"):
+            # Backend/edge outage (e.g. Cloudflare 522) or rate limit — retry with backoff.
+            last = code
+            time.sleep(5 * (attempt + 1))
+            continue
+        try:
+            data = json.loads(body)
+        except json.JSONDecodeError:
+            last = f"non-JSON response (HTTP {code})"
+            time.sleep(5 * (attempt + 1))
+            continue
+        return data if isinstance(data, list) else []
+    raise SupabaseUnavailable(f"Supabase unreachable after {_retries} attempts (last: {last})")
 
 def sb_patch(article_id, data):
     url = f"{SUPABASE_URL}/rest/v1/p2_articles?id=eq.{article_id}"
@@ -964,4 +983,8 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except SupabaseUnavailable as e:
+        print(f"SUPABASE_UNAVAILABLE: {e}", file=sys.stderr)
+        sys.exit(2)
