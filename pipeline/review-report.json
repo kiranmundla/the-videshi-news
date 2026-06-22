@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-22T18:45:28.415747+00:00",
+  "timestamp": "2026-06-22T19:45:10.310408+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 4,
+    "pass": 1,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,17 +11,17 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "d8087101-82ed-4ca6-b927-975aeb1c8595",
-      "headline": "Hackers Just Dumped 200,000 Files From an Indian Apple Supplier. Some Are Marked 'Trade Secret.'",
-      "slug": "tata-electronics-cyber-breach-apple-tesla-trade-secrets-world-leaks-ransomware-20260622",
+      "id": "925cc794-31d2-4d2f-9a32-6f73243bb722",
+      "headline": "One Defeat Turned India's World Cup Into a Tightrope: Beat Australia, or Trust a Calculator",
+      "slug": "india-women-t20-world-cup-2026-semifinal-qualification-scenarios-south-africa-loss-bangladesh-australia-lords-harmanpreet-net-run-rate-diaspora-nri",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Bombay House, Tata headquarters",
-          "reason": "The photo shows Bombay House, relevant to the Tata Electronics breach story."
+          "what_photo_shows": "Harmanpreet Kaur with a trophy",
+          "reason": "The photo shows Harmanpreet Kaur, relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -35,129 +35,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the cybersecurity breach to the broader implications for the Indian diaspora, highlighting the pride and economic impact of the 'Make in India' initiative."
+          "note": "The article effectively connects the Indian women's cricket team's performance to the diaspora's interest, highlighting the significance of the upcoming match for NRI viewers."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more context about the implications of the breach for the Indian tech industry and its global reputation.",
-          "Include quotes or reactions from diaspora members or experts to enhance the connection with the NRI audience."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "5c948206-1776-4c53-8626-3eb03ff5715c",
-      "headline": "India's Central Bank Just Made the Diaspora an Offer It Has Used Only Once Before. NRI Deposit Rates Are Now Near 7%.",
-      "slug": "rbi-fcnr-nre-deposit-drive-hedging-cost-nri-dollars-rupee-7-percent-20260622",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Reserve Bank of India building",
-          "reason": "The photo shows the Reserve Bank of India, relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively addresses the financial interests of the Indian diaspora, particularly NRIs, by discussing the new deposit rates and their implications."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a quote from an NRI to provide a personal perspective on how these changes impact them.",
-          "Include a brief comparison of the current rates with historical rates to give readers context."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "7f4780d5-56dd-4930-88a0-cd65f6fe1790",
-      "headline": "The Bacteria in Your Mouth Help Beetroot Lower Blood Pressure \u2014 and It Works Best as You Age",
-      "slug": "nitrate-vegetables-beetroot-oral-microbiome-blood-pressure-older-adults-exeter-kings-college-diaspora-20260622-1800",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image description is missing, making it difficult to assess relevance."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article connects well with the Indian diaspora by addressing hypertension, a common health issue in South Asian communities."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include a relevant image description to enhance the image match score.",
-          "Expand on the diaspora angle by providing specific statistics or examples related to hypertension in the Indian community."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "cf799c73-9f65-42b3-b399-44ca95207c64",
-      "headline": "Meta Just Hired an Indian Founder to Run WhatsApp. The $900 Million Beside It Tells You Why.",
-      "slug": "kunal-shah-whatsapp-global-head-meta-900-million-cred-stake-nri-20260622",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image description is missing, making it difficult to assess relevance."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the leadership change at WhatsApp to the Indian diaspora's use of the app."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include a relevant image description to enhance the image match score.",
-          "Consider adding quotes or reactions from diaspora members to further enrich the diaspora angle."
+          "Consider adding quotes from players or coaches to enhance the narrative.",
+          "Include more statistics or historical context about the Indian women's team in World Cups to enrich the article."
         ],
         "verdict": "pass"
       },
