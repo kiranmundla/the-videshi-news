@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-22T12:16:09.809308+00:00",
+  "timestamp": "2026-06-22T12:45:52.753722+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 7,
-    "flag": 1,
+    "pass": 5,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,17 +11,17 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "88a49591-7147-4266-bb13-37d8b9111306",
-      "headline": "A Procedure Can Reverse a Stroke in Minutes. Fewer Than 3% of the World Can Get It \u2014 and an Indian Doctor Has Spent a Decade Fixing That.",
-      "slug": "dileep-yavagal-aan-lifetime-achievement-mission-thrombectomy-stroke-care-equity-20260622",
+      "id": "17445c6c-6c6a-4b2c-a3fe-7c250487812a",
+      "headline": "The Desi Pantry Gold Rush: How Clean-Label Indian Food Brands Raised Millions and Set Their Sights on America",
+      "slug": "the-desi-pantry-gold-rush-how-clean-label-indian-food-brands-raised-millions-and",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "interventional procedure in progress",
-          "reason": "The photo shows a procedure relevant to stroke treatment."
+          "what_photo_shows": "A bowl of pure ghee",
+          "reason": "The photo shows ghee, relevant to the story about Indian pantry staples."
         },
         "inline_image_mismatches": []
       },
@@ -31,274 +31,17 @@
         "image_match": {
           "score": 9,
           "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively highlights Dr. Yavagal's contributions to stroke care in India, connecting his achievements to the Indian diaspora's impact on global health."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more personal anecdotes or quotes from Dr. Yavagal to enhance the narrative.",
-          "Include statistics or testimonials from patients who have benefited from the procedure to provide a more human angle."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "ed6af091-3604-4a63-90fc-d265d0b2247a",
-      "headline": "The Most Powerful Old-Boys' Network in Tech Isn't From Stanford. It Just Turned 75 and Threw Itself a Party in California.",
-      "slug": "iit-75-years-iit2026-long-beach-panIIT-diaspora-alumni-network-20260622",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "IIT campus at night",
-          "reason": "The photo shows an IIT campus, relevant to the IIT alumni gathering story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the IIT alumni network to the Indian diaspora, highlighting their influence and contributions in the U.S."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include quotes or anecdotes from attendees to add a personal touch.",
-          "Provide more context on the significance of the IITs in the global tech landscape."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "ecd88da2-3c5c-4cc3-acbf-84b2101ce638",
-      "headline": "An Immigrant Now Runs One of Manhattan's Most Closely Watched Neighborhoods. A 250-Year-Old Award Just Made the Point.",
-      "slug": "raju-mann-battery-park-city-alexander-hamilton-immigrant-achievement-award-2026-20260622",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Federal Hall National Memorial",
-          "reason": "The photo shows Federal Hall, relevant to the award ceremony location."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the story of Raju Mann to the broader narrative of Indian immigrants in public service, making it relevant for the diaspora audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from Raju Mann or other honorees to provide personal insights and enhance engagement.",
-          "Include more context about the significance of the Alexander Hamilton Immigrant Achievement Awards to further emphasize its importance."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "4a0f0d19-fff4-409e-a7d9-301cbbe4100b",
-      "headline": "The Dropbox Is Closed: US Visa Renewals for Indians Now Mean an In-Person Interview \u2014 No Exceptions",
-      "slug": "us-visa-dropbox-interview-waiver-eliminated-h1b-students-india-20260622",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "United States diplomatic seal",
-          "reason": "The photo shows a US diplomatic seal, relevant to the visa renewal topic."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively addresses the impact of visa changes on the Indian diaspora, particularly H-1B workers and families."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include quotes or testimonials from affected individuals to add a personal touch.",
-          "Provide a brief summary of the previous dropbox system for context."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "021710ce-4f36-43d1-af88-845165b9e94c",
-      "headline": "The $100,000 Toll Most Employers Paid Anyway: What Mullin\u2019s Numbers Reveal About the H-1B",
-      "slug": "h1b-100k-fee-200000-paid-mullin-senate-testimony-india-20260622",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Stacks of US one-hundred-dollar bills",
-          "reason": "The photo subject relates to the story about H-1B fees."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively discusses the implications of the H-1B fee on the Indian diaspora, highlighting both opportunities and challenges."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more statistics or data points to strengthen the argument about the impact on smaller employers.",
-          "Include quotes or perspectives from affected individuals or organizations to provide a more personal touch."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "71f08039-4b2a-475d-a067-15b363b7dddf",
-      "headline": "India Took 120 of Its Hardest Startups to France. The Pitch Wasn't Software \u2014 It Was Rockets and Chips.",
-      "slug": "bharat-innovates-2026-nice-deep-tech-startups-modi-macron-nri-investor-20260622",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "e9c925b2-22cc-47ec-9642-1e482e59ed4e",
-            "headline": "In Paris, Modi Told the Diaspora They Are India's Reflection"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Prime Minister Narendra Modi",
-          "reason": "The photo shows Narendra Modi, who is relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 2,
-          "issue": "irrelevant"
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the Indian diaspora to the deep-tech investment landscape, highlighting their potential role and expertise."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the hero image with one that is more relevant to the topic of deep-tech startups or the Bharat Innovates event.",
-          "Expand on the potential impact of the diaspora's involvement in these startups to strengthen the connection."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "713eea78-19c4-491c-ab53-d871e6d9b776",
-      "headline": "Apple Now Makes Most of Its US iPhones in India. The Plumbing Underneath Is Starting to Creak.",
-      "slug": "apple-india-iphone-manufacturing-tata-foxconn-supply-chain-nri-20260622",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "smartphone circuit boards in production",
-          "reason": "The photo shows smartphone circuit boards, relevant to iPhone assembly."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the specific topic of iPhone manufacturing in India."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects the manufacturing shift to the diaspora's identity and investment opportunities."
+          "note": "The article effectively connects the rise of clean-label Indian food brands to the preferences and experiences of the NRI community, highlighting both cultural nostalgia and practical convenience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that depicts iPhone manufacturing or assembly in India.",
-          "Add more statistics or quotes from industry experts to strengthen the analysis of the manufacturing shift."
+          "Consider adding quotes from industry experts or founders to enhance credibility and provide personal insights.",
+          "Include more specific examples of how these brands are marketed to the diaspora to strengthen the connection."
         ],
         "verdict": "pass"
       },
@@ -310,17 +53,17 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "6992ef2e-36a6-4b35-926b-16ebb78529f3",
-      "headline": "Micron Reports Wednesday. For Sanjay Mehrotra, the Hard Part Isn't the Number \u2014 It's What Comes After.",
-      "slug": "micron-q3-earnings-sanjay-mehrotra-hbm-ai-memory-nri-engineers-20260622",
+      "id": "d719c4b4-5c18-4760-908d-696b79945ccb",
+      "headline": "Mithai Goes Couture: How Indian Sweets Are Trading the Syrup Tin for the Gallery Case",
+      "slug": "mithai-goes-couture-how-indian-sweets-are-trading-the-syrup-tin-for-the-gallery",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "smiling man in a suit",
-          "reason": "The photo plausibly shows Sanjay Mehrotra, relevant to the story."
+          "what_photo_shows": "assortment of burfi and peda",
+          "reason": "The photo shows Indian sweets relevant to the story about artisanal mithai."
         },
         "inline_image_mismatches": []
       },
@@ -334,13 +77,139 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects Micron's operations and its impact on the Indian diaspora, particularly Indian-origin engineers in the US and the significance of Micron's investment in India."
+          "note": "The article effectively connects the evolution of mithai to the experiences and preferences of the diaspora, highlighting how new artisanal versions cater to their needs."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more direct quotes from Sanjay Mehrotra or analysts to enhance credibility and engagement.",
-          "Include a brief overview of Micron's competitors to provide context on its market position."
+          "Consider adding quotes from chefs or industry experts to enhance credibility.",
+          "Include more examples of specific diaspora reactions to the new mithai trends."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "7d3db246-12b4-4daf-9cd0-f8d7943fbbbe",
+      "headline": "Chai Pani Comes to the Capital: A Two-Time Beard Winner Brings Unapologetic Street Food to Washington",
+      "slug": "chai-pani-comes-to-the-capital-a-two-time-beard-winner-brings-unapologetic-stree",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "A plate of sev puri",
+          "reason": "The photo shows sev puri, which is relevant to the story about Chai Pani's street food."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the opening of Chai Pani to the experiences and cultural significance for the NRI community."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from the chef or owners to enhance the personal connection to the story.",
+          "Include more details about the menu items to entice readers further."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "ec14e463-2ce6-4c0e-b4d5-ac8a94994bf0",
+      "headline": "Nearly 18,000 Indians Are Trapped at Sea in the Gulf. Three Have Already Come Home in Coffins.",
+      "slug": "indian-seafarers-stranded-gulf-oman-hormuz-us-navy-strikes-settebello-jaishankar-protest-20260622",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "crude oil tanker underway",
+          "reason": "The photo shows a crude oil tanker, relevant to the story about tankers in the Gulf."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the plight of Indian seafarers, which directly impacts the Indian diaspora and their families, making it relevant to NRI readers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include quotes or reactions from diaspora communities regarding the situation to enhance the emotional connection.",
+          "Add more context about the implications of this incident on India-US relations for a deeper understanding."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "2cc50372-a485-4dc2-a35d-61785fccdcf7",
+      "headline": "The Rupee's Best Run in Months Just Ended. The Reason Sits in Washington, Not Delhi.",
+      "slug": "indian-rupee-snaps-six-session-winning-streak-hawkish-fed-dollar-remittances-nri-20260622",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Indian rupee notes and US dollars",
+          "reason": "The photo shows currency relevant to the story about the rupee and dollar."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the rupee's performance to the diaspora's financial interests, particularly regarding remittances and investment."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of how the rupee's fluctuations directly impact the diaspora's financial decisions.",
+          "Include quotes from financial experts or diaspora members to enhance credibility and relatability."
         ],
         "verdict": "pass"
       },
