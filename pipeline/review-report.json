@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-22T09:16:04.148467+00:00",
+  "timestamp": "2026-06-22T10:15:39.018020+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 6,
+    "pass": 5,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,17 +11,17 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "892dd702-17fc-4afe-bf32-391c046b36de",
-      "headline": "A Construction Giant Wants to Be India's AI Landlord. It Just Built Another Company to Do It.",
-      "slug": "lt-vyoma-ltn-compute-india-sovereign-ai-data-centre-pipeline-8gw-20260622",
+      "id": "b9215ebf-ad2f-4d32-a544-13412ed2cc05",
+      "headline": "Canada's Student-Visa Door Is Closing on Indians \u2014 Rejection Rates Are Up and the Money Bar Just Got Higher",
+      "slug": "canada-student-visa-crackdown-indians-rejection-proof-of-funds-cap-20260622",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "server racks in a data center",
-          "reason": "The photo shows server racks, relevant to the data-centre topic."
+          "what_photo_shows": "modern university library interior",
+          "reason": "The photo shows a university library, relevant to the student-visa story."
         },
         "inline_image_mismatches": []
       },
@@ -29,19 +29,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image does not directly relate to the topic of Canadian student visas or Indian students."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the data-centre developments to the daily digital interactions of the Indian diaspora, highlighting the relevance of infrastructure to NRIs."
+          "note": "The article effectively addresses the concerns of Indian families considering education in Canada, making it relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more specific examples of how the diaspora benefits from these developments in data infrastructure.",
-          "Include quotes or insights from industry experts to enhance credibility and depth."
+          "Consider using a more relevant image that depicts Indian students or Canadian educational institutions.",
+          "Add quotes or testimonials from affected students or families to enhance the personal connection."
         ],
         "verdict": "pass"
       },
@@ -53,126 +53,42 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "da6ebb0e-2862-4ce5-ac6a-c182f8f62348",
-      "headline": "India's First Private Rocket Is on the Pad. Its Backers Include an Alphabet Board Member.",
-      "slug": "skyroot-vikram-1-india-first-private-orbital-launch-unicorn-ram-shriram-20260622",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "rocket launching into sky",
-          "reason": "The photo shows a rocket, relevant to the story about a private rocket launch."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the rise of Skyroot Aerospace to the Indian diaspora, particularly highlighting Ram Shriram's involvement."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more quotes or insights from diaspora members to enhance the personal connection.",
-          "Add a brief section on the potential impact of private space companies on India's economy."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "3dc08e97-0352-46d9-ba78-d8d1ad989eec",
-      "headline": "The Other AI Chip Giant: How Broadcom Quietly Built a $56 Billion-a-Year Silicon Machine",
-      "slug": "broadcom-ai-chip-revenue-surge-hock-tan-google-anthropic-openai-20260622",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "close-up of a computer chip",
-          "reason": "The photo shows a computer chip, relevant to the AI semiconductor topic."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects Broadcom's operations to the Indian diaspora, highlighting the significant role of Indian engineers in the company's success."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more specific examples of how the Indian diaspora has influenced Broadcom's success.",
-          "Include quotes or insights from industry experts to enhance credibility and depth."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "0d67b566-c831-4c27-9734-18d8465fb619",
-      "headline": "The Censor Board Took Its Scissors to Welcome To The Jungle. Fourteen Cuts Later, Akshay Kumar's Comedy Limps Into Friday.",
-      "slug": "welcome-to-the-jungle-cbfc-cuts-disha-patani-jacqueline-fernandez-bikini-visuals-paani-of-kashmir-akshay-kumar-june-26-where-to-watch-diaspora-nri-20260622",
+      "id": "8e84313e-4fea-4175-bbb8-efa61f959b49",
+      "headline": "The F-1 'Stay as Long as You Study' Era Is Ending \u2014 and the Clock Now Starts the Day You Land",
+      "slug": "us-f1-duration-of-status-fixed-term-rule-white-house-indian-students-20260622",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [
           {
-            "article_id": "ac614937-f3ec-4945-a8f2-7f10dd22fb39",
-            "headline": "Eighteen Years, Forty-Odd Stars, One Jungle. Welcome 3 Lands"
+            "article_id": "8f14a8e9-f572-4ee9-8de1-8cb3398bbb62",
+            "headline": "The 60-Day Cushion That Saved Indian Grads Is About to Be Cu"
           }
         ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Welcome To The Jungle movie poster",
-          "reason": "The photo shows a poster for the movie 'Welcome To The Jungle', which matches the story about the film's release and censorship."
+          "what_photo_shows": "students walking on campus",
+          "reason": "The photo shows students on a university campus, relevant to the student visa story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 7,
+        "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image does not directly relate to the topic of F-1 visas or immigration, but it is a generic educational image."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article discusses censorship in Indian cinema, which is relevant to the diaspora audience interested in cultural issues."
+          "quality": 9,
+          "note": "The article effectively addresses the implications of the new rule on Indian students and their families, making it highly relevant to the NRI audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes from the film or its creators to enhance engagement.",
-          "Add a brief section on how the diaspora perceives censorship in Indian films."
+          "Consider using a more relevant image that directly represents the topic of F-1 visas or international students.",
+          "Add a section summarizing the potential impact of the rule on Indian students specifically, to enhance clarity."
         ],
         "verdict": "pass"
       },
@@ -184,22 +100,17 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "3979a2d4-749c-4379-976e-d0e351208bd0",
-      "headline": "Samantha Ruth Prabhu Is Pregnant. The South's Most Watched Comeback Just Got Its Most Personal Chapter.",
-      "slug": "samantha-ruth-prabhu-pregnant-confirmed-raj-nidimoru-first-child-maa-inti-bangaaram-nandini-reddy-family-man-where-to-watch-diaspora-nri-20260622",
+      "id": "389f63b6-54cd-4de6-9cee-ecd707085355",
+      "headline": "Ambani's Jio Files for What Could Be India's Biggest IPO Ever \u2014 and This Time, No One Is Cashing Out",
+      "slug": "jio-platforms-drhp-sebi-fresh-issue-ipo-27-crore-shares-india-largest-listing-ambani-nri-investor-20260622-1000",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "9248970c-16b4-4024-b000-76d31f8f4111",
-            "headline": "Samantha Ruth Prabhu Walked Back Into a Cinema and the Whole"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "woman in red saree at event",
-          "reason": "The photo plausibly shows Samantha Ruth Prabhu."
+          "what_photo_shows": "Mukesh Ambani holding an award",
+          "reason": "The photo shows Mukesh Ambani, relevant to the story about Jio's IPO."
         },
         "inline_image_mismatches": []
       },
@@ -213,13 +124,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects Samantha's journey to the diaspora audience, highlighting her global reach and the shared experience of her health battle and comeback."
+          "note": "The article effectively connects the IPO to the emotional and practical significance for NRIs, highlighting Jio's role in the daily lives of Indians."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more direct quotes from Samantha or her representatives to enhance the personal touch.",
-          "Include a brief overview of her previous works to provide context for readers unfamiliar with her career."
+          "Consider adding more specific examples of how Jio's services impact the diaspora community.",
+          "Include quotes or insights from NRI investors to enhance the personal connection."
         ],
         "verdict": "pass"
       },
@@ -231,40 +142,91 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "ed44274a-877b-4eac-b6a8-55a581a7d6d1",
-      "headline": "Oil Is Falling After the Iran Deal. Your Flight to India Is Not Going to Get Cheaper Anytime Soon.",
-      "slug": "airline-fares-stay-high-despite-iran-oil-deal-india-routes-diaspora-travel-20260622",
+      "id": "9604f091-eea7-4680-a228-8ad73a83861b",
+      "headline": "Cutting Out Sugar Entirely May Backfire on the Gut, a New Study Suggests \u2014 the Lesson Is Moderation, Not Zero",
+      "slug": "complete-sugar-elimination-sucrose-free-low-fat-diet-gut-microbiome-liver-inflammation-endo-2026-dasman-diaspora-20260622-1000",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MISMATCH",
+          "what_photo_shows": "cup of coffee with sugar cubes",
+          "reason": "The photo does not relate directly to the study on sugar and gut health."
+        },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 7,
+        "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 5,
-          "issue": "hero image not provided"
+          "score": 7,
+          "issue": "The image description is missing, making it difficult to assess relevance."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article directly addresses NRIs and their travel concerns, making it relevant."
+          "quality": 9,
+          "note": "The article effectively connects the study's findings to the dietary habits and health concerns of the Indian diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include a relevant hero image to enhance visual appeal.",
-          "Add more specific examples of airlines or routes that NRIs frequently use to strengthen the diaspora connection."
+          "Include a relevant image description to enhance the image match score.",
+          "Add more context or examples of how the findings could impact specific dietary practices within the diaspora."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "promoted to published"
+        "Cleared mismatched image (cup of coffee with sugar cubes)",
+        "held: image mismatch"
       ],
       "revised": false,
       "unpublished": false,
+      "image_mismatch": true,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "d1c8b628-6573-4e84-8d11-2bcbab30286b",
+      "headline": "Diet and Exercise Beat a Popular Diabetes Pill at Holding Off Multiple Diseases, a 21-Year Trial Finds",
+      "slug": "lifestyle-intervention-beats-metformin-multimorbidity-dpp-dppos-jama-21-year-trial-diaspora-20260622-1000",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MISMATCH",
+          "what_photo_shows": "a restaurant storefront",
+          "reason": "The photo shows a restaurant, unrelated to diet and exercise programs or diabetes research."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image description is missing, making it difficult to assess relevance."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the study's findings to the health concerns of the Indian diaspora, emphasizing the relevance of lifestyle changes over medication."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include a relevant image description to improve the image match score.",
+          "Consider adding more specific examples of lifestyle changes that can be easily adopted by the diaspora community."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "Cleared mismatched image (a restaurant storefront)",
+        "held: image mismatch"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "image_mismatch": true,
       "llm_source": "gpt-4o-mini"
     }
   ]
