@@ -187,8 +187,8 @@ def fetch_recent_articles(hours=4):
     }
     resp = requests.get(url, params=params, headers=headers, timeout=10)
     if resp.status_code != 200:
-        print(f"❌ Supabase error: {resp.status_code}")
-        return []
+        print(f"❌ Supabase error: {resp.status_code} (could not fetch recent articles)")
+        sys.exit(1)
     return resp.json()
 
 

@@ -160,7 +160,10 @@ def main():
             },
             timeout=10,
         )
-        articles = resp.json() if resp.status_code == 200 else []
+        if resp.status_code != 200:
+            print(f"❌ Supabase error: {resp.status_code} (could not fetch recent articles)")
+            sys.exit(1)
+        articles = resp.json()
         
         if not articles:
             print(f"No articles in the last {hours}h")
