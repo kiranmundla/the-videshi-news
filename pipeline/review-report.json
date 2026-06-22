@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-22T08:15:21.925230+00:00",
+  "timestamp": "2026-06-22T08:45:21.548494+00:00",
   "mode": "fix",
   "stats": {
     "pass": 2,
@@ -11,17 +11,17 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "418e8774-0d0a-471c-987c-a98ec8dff5f3",
-      "headline": "As the H-1B Ladder Narrows, Indians Are Quietly Switching to the Side Doors",
-      "slug": "o1-cap-exempt-h1b-alternative-routes-indians-lottery-squeeze-20260622",
+      "id": "ed44274a-877b-4eac-b6a8-55a581a7d6d1",
+      "headline": "Oil Is Falling After the Iran Deal. Your Flight to India Is Not Going to Get Cheaper Anytime Soon.",
+      "slug": "airline-fares-stay-high-despite-iran-oil-deal-india-routes-diaspora-travel-20260622",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "scientist in a laboratory",
-          "reason": "The photo shows a scientist in a laboratory, which aligns with the story about researchers using cap-exempt routes."
+          "verdict": "MISMATCH",
+          "what_photo_shows": "domestic departures board",
+          "reason": "The photo shows domestic flights, not relevant to international flights to India."
         },
         "inline_image_mismatches": []
       },
@@ -29,41 +29,43 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image is relevant to the topic of immigration but does not specifically depict the H-1B visa or the professional context discussed."
+          "score": 5,
+          "issue": "hero image description does not match article topic"
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively addresses the challenges faced by Indian professionals in the U.S. immigration system, making it highly relevant to the Indian diaspora."
+          "quality": 8,
+          "note": "The article effectively addresses the impact of fuel prices on flights for NRIs, making it relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include specific examples or anecdotes from individuals who have switched to alternative visa routes to enhance relatability.",
-          "Add a section discussing potential future changes in immigration policy that could affect the diaspora."
+          "Include a relevant image that reflects the article's focus on airline fares and fuel prices.",
+          "Add more specific examples of airlines or routes that NRIs frequently use to enhance relatability."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "promoted to published"
+        "Cleared mismatched image (domestic departures board)",
+        "held: image mismatch"
       ],
       "revised": false,
       "unpublished": false,
+      "image_mismatch": true,
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "ad57251d-a50a-4182-b997-52e4b4113027",
-      "headline": "Forget the $100,000 Fee. The Quiet Wage Rule Is the H-1B Change That Follows Indians All the Way to the Green Card",
-      "slug": "dol-prevailing-wage-rule-h1b-perm-salary-floor-indians-green-card-20260622",
+      "id": "756e0dd7-7fbd-45a9-b2b7-1b51e86951cc",
+      "headline": "India Just Gathered the Security Chiefs of China, Russia and Iran in One Delhi Room. Doval Is in the Chair.",
+      "slug": "brics-national-security-advisers-meeting-new-delhi-doval-wang-yi-shoigu-20260622",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "U.S. Department of Labor building",
-          "reason": "The photo shows the U.S. Department of Labor, relevant to the story on wage rules."
+          "what_photo_shows": "Ajit Doval in a suit",
+          "reason": "The photo shows Ajit Doval, relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -71,19 +73,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image of the Department of Labor building is relevant but does not directly illustrate the article's focus on the H-1B wage rule."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively highlights how changes to the H-1B program disproportionately affect Indian workers, making it highly relevant to the diaspora."
+          "quality": 8,
+          "note": "The article effectively connects the geopolitical meeting to the interests and concerns of the Indian diaspora, particularly regarding trade and security."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more directly related image that depicts H-1B workers or the impact of immigration policies.",
-          "Add a brief section summarizing the implications of the wage rule for Indian professionals seeking green cards."
+          "Consider adding quotes from experts or officials to enhance credibility and engagement.",
+          "Include more specific examples of how the outcomes of this meeting could directly impact NRIs."
         ],
         "verdict": "pass"
       },
