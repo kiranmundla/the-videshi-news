@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-22T13:47:11.608829+00:00",
+  "timestamp": "2026-06-22T14:15:53.685412+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
+    "pass": 6,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,17 +11,17 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "7992c600-708e-4542-b239-2c6058e93ae9",
-      "headline": "India Picked Its England One-Day Squad, and the Team Sheet Read Like a Changing of the Guard",
-      "slug": "india-odi-squad-england-tour-2026-shubman-gill-captain-all-formats-bumrah-returns-jaiswal-dropped-kohli-fitness-diaspora-nri",
+      "id": "a199cd0c-7c67-4af3-b96e-9a4b9e621912",
+      "headline": "The Rupee Just Had Its Best Week in Months. Now a Resurgent Dollar Will Test Whether It Holds.",
+      "slug": "rupee-best-week-oil-falls-dollar-one-year-high-hawkish-fed-bonds-foreign-inflows-nri-investor-20260622-1400",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A man in a beige blazer",
-          "reason": "The photo plausibly shows Shubman Gill, relevant to the cricket story."
+          "what_photo_shows": "Indian 1000 rupee banknote",
+          "reason": "The photo shows Indian currency, relevant to the story about the rupee."
         },
         "inline_image_mismatches": []
       },
@@ -35,13 +35,223 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the squad announcement to the emotional investment of the Indian diaspora, highlighting the transition in leadership and its significance."
+          "note": "The article effectively connects the rupee's performance to the financial interests of NRIs, discussing remittances and investments."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from players or selectors to enhance the narrative.",
-          "Include more context about the significance of the England tour for the Indian team."
+          "Consider adding more data or examples related to NRI investments to strengthen the diaspora angle.",
+          "Include a brief summary or conclusion to wrap up the article and reinforce key points."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "265b91c1-882a-4a2a-92af-a402145007e7",
+      "headline": "People Born With Naturally Lower Cholesterol Are Far Less Likely to Develop Dementia, a Million-Person Study Finds",
+      "slug": "lower-ldl-cholesterol-genes-dementia-risk-mendelian-randomization-bristol-alzheimers-dementia-diaspora-20260622-1400",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "scientist handling blood samples",
+          "reason": "The photo shows a lab setting relevant to a health study."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the study's findings to the health concerns of the Indian diaspora, emphasizing the relevance of cholesterol management for both heart and brain health."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific statistics or data points related to the Indian diaspora's health to strengthen the connection.",
+          "Include quotes or insights from health professionals within the diaspora community to enhance credibility and relatability."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "bbed2b6d-4d5a-4cb6-99af-57c19e8f2f9f",
+      "headline": "A Diet Built to Lower Blood Pressure Just Beat Five Rivals at Protecting the Aging Brain",
+      "slug": "dash-diet-beats-mediterranean-mind-cognitive-decline-jama-neurology-harvard-159000-diaspora-20260622-1400",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "person writing near fruits and salad",
+          "reason": "The photo shows healthy foods, relevant to a diet and health story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the findings to the Indian diaspora's health concerns, particularly hypertension and dementia."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of DASH-friendly Indian dishes to enhance relatability.",
+          "Include a brief summary of the study's methodology to strengthen the article's credibility."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "24e8761e-63e8-42f6-9e2d-d9133a029899",
+      "headline": "Pricier Flights Are Fueling an India Hotel-Building Boom \u2014 and It's Landing in the Towns NRIs Actually Visit",
+      "slug": "india-domestic-hotel-boom-2026-tier2-pilgrimage-nri-families-20260622",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Taj Lake Palace on Lake Pichola",
+          "reason": "The photo shows an iconic Indian hotel relevant to the hospitality story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the hotel-building boom to the needs and travel patterns of NRIs, making it relevant for the diaspora audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding specific examples of new hotel openings in Tier-2 and Tier-3 towns to enhance the article's depth.",
+          "Include quotes or insights from diaspora travelers to provide a personal touch and further connect with the audience."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "63ab1e07-0962-4412-843f-5c76cfa60158",
+      "headline": "The Leela Is Opening a Luxury Resort in the Thar Desert \u2014 and Jaisalmer Just Joined the NRI Rajasthan Circuit",
+      "slug": "leela-jaisalmer-luxury-desert-resort-rajasthan-circuit-nri-20260622",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Jaisalmer Fort sandstone ramparts",
+          "reason": "The photo shows Jaisalmer Fort, relevant to the resort story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the luxury resort opening to the needs and interests of NRI families, particularly in the context of multi-generational travel and special occasions."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from industry experts or stakeholders to enhance credibility.",
+          "Include more specific examples of how the resort caters to NRI families, such as unique services or amenities."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "34efd0a8-5238-4c0c-86c7-06dff72f8f5a",
+      "headline": "Qatar Airways Quietly Rebuilt Its Network \u2014 and the Diaspora's Connection Home Through Doha Is Back",
+      "slug": "qatar-airways-network-restoration-doha-india-routes-nri-summer-20260622",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Qatar Airways Airbus A350-900",
+          "reason": "The photo shows a Qatar Airways aircraft relevant to the aviation story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the airline's operations to the needs of the Indian diaspora, highlighting specific routes and their importance."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes or testimonials from travelers to enhance the personal connection.",
+          "Include more data or statistics about the volume of NRI travelers using Qatar Airways to strengthen the narrative."
         ],
         "verdict": "pass"
       },
