@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-22T10:45:35.533586+00:00",
+  "timestamp": "2026-06-22T11:15:16.918369+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 5,
-    "flag": 0,
+    "pass": 0,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,23 +11,29 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "4efea845-29e2-41a6-9b68-2aac5b68e85e",
-      "headline": "Seventeen Years After Her First Match in England, Harmanpreet Kaur Walked Out for Her 200th \u2014 a Number No Cricketer Had Ever Reached",
-      "slug": "harmanpreet-kaur-first-cricketer-200-t20i-milestone-women-t20-world-cup-2026-old-trafford-south-africa-debut-2009-england-diaspora-nri",
+      "id": "09ececb1-77d3-41a8-b775-78def623aa38",
+      "headline": "Huma Qureshi Picks Up a Red Umbrella and a Body Count. The Baby Do Die Do Trailer Just Made the Year's Most Dangerous Woman Deaf, Mute and Unstoppable.",
+      "slug": "baby-do-die-do-official-trailer-huma-qureshi-desi-hitwoman-saqib-saleem-nachiket-samant-july-3-where-to-watch-diaspora-nri-20260622",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Harmanpreet Kaur holding a trophy",
-          "reason": "The photo shows Harmanpreet Kaur, relevant to the story."
+          "what_photo_shows": "woman with large earrings",
+          "reason": "The photo plausibly shows Huma Qureshi, matching the story topic."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DZ4M_HfMPPm/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel does not appear to be directly related to the article's subject matter, which focuses on the film and its trailer."
+          }
+        ],
         "image_match": {
           "score": 9,
           "issue": null
@@ -35,175 +41,18 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects Harmanpreet's achievements to the pride of the Indian diaspora, highlighting her influence and the growth of women's cricket."
+          "note": "The article effectively connects the film's release to NRI audiences by mentioning where they can watch it and highlighting its significance."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from Harmanpreet or other players to enhance the emotional connection.",
-          "Include more statistics or comparisons to other players to provide deeper context."
+          "Replace the irrelevant Instagram embed with a more relevant link or remove it altogether.",
+          "Consider adding more context about the film's themes and its reception to enhance the article's depth."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "2cb83adf-3eac-4718-8f3d-6c4fd38f2bb0",
-      "headline": "A Boston Judge Killed the $100,000 H-1B Fee. The Government Wants It Back Before You Can Exhale.",
-      "slug": "h1b-100000-fee-struck-down-judge-sorokin-appeal-first-circuit-indian-physicians-20260622",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "federal courthouse in Boston",
-          "reason": "The photo shows the courthouse relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses the implications of the H-1B fee ruling specifically for Indian professionals and students, making it highly relevant for the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Add more quotes or perspectives from Indian professionals affected by the ruling to enhance the human interest angle.",
-          "Include a brief explanation of the H-1B visa process for readers who may not be familiar with it."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "fd948985-2bc6-432f-a7b8-558d1c3ec856",
-      "headline": "Starmer Just Quit. The Man Likely to Replace Him Has Said Nothing About the India Trade Deal That Starts in Three Weeks.",
-      "slug": "keir-starmer-resigns-uk-prime-minister-burnham-india-uk-trade-deal-july-15-20260622",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Andy Burnham, a politician",
-          "reason": "The photo shows Andy Burnham, who is relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the political changes in the UK to the implications for the Indian diaspora, particularly regarding the trade deal."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more direct quotes or statements from Andy Burnham regarding the trade deal to enhance the article's depth.",
-          "Add a brief historical context about previous trade agreements between India and the UK to provide readers with a better understanding of the significance of this deal."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "9604f091-eea7-4680-a228-8ad73a83861b",
-      "headline": "Cutting Out Sugar Entirely May Backfire on the Gut, a New Study Suggests \u2014 the Lesson Is Moderation, Not Zero",
-      "slug": "complete-sugar-elimination-sucrose-free-low-fat-diet-gut-microbiome-liver-inflammation-endo-2026-dasman-diaspora-20260622-1000",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "hero image not provided"
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the study's findings to the dietary habits and health concerns of the Indian diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include a relevant hero image that reflects the article's theme.",
-          "Provide more context on how the study's findings could influence dietary practices specifically within the Indian diaspora."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "d1c8b628-6573-4e84-8d11-2bcbab30286b",
-      "headline": "Diet and Exercise Beat a Popular Diabetes Pill at Holding Off Multiple Diseases, a 21-Year Trial Finds",
-      "slug": "lifestyle-intervention-beats-metformin-multimorbidity-dpp-dppos-jama-21-year-trial-diaspora-20260622-1000",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image description is missing, making it difficult to assess relevance."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the study's findings to the health concerns of the Indian diaspora, emphasizing the relevance of lifestyle changes over medication."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include a relevant image description to enhance the image match score.",
-          "Consider adding quotes from health experts or testimonials from individuals in the diaspora to strengthen the article's connection to the audience."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DZ4M_HfMPPm/",
         "promoted to published"
       ],
       "revised": false,
