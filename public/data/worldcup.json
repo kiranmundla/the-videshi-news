@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-06-22T03:58:34Z",
-  "stage": "Group Stage — 40 of 72 matches played",
+  "last_updated": "2026-06-22T19:57:47Z",
+  "stage": "Group Stage — 41 of 72 matches played",
   "hosts": "USA, Mexico & Canada",
   "dates": {
     "start": "2026-06-11",
@@ -508,25 +508,25 @@
         "code": "ARG",
         "flag": "🇦🇷",
         "rank": 1,
-        "p": 1,
-        "w": 1,
+        "p": 2,
+        "w": 2,
         "d": 0,
         "l": 0,
-        "gf": 3,
+        "gf": 5,
         "ga": 0,
-        "pts": 3
+        "pts": 6
       },
       {
         "name": "Austria",
         "code": "AUT",
         "flag": "🇦🇹",
         "rank": 24,
-        "p": 1,
+        "p": 2,
         "w": 1,
         "d": 0,
-        "l": 0,
+        "l": 1,
         "gf": 3,
-        "ga": 1,
+        "ga": 3,
         "pts": 3
       },
       {
@@ -1285,8 +1285,8 @@
       "away": "Austria",
       "venue": "AT&T Stadium",
       "city": "Dallas",
-      "status": "scheduled",
-      "score": null,
+      "status": "FT",
+      "score": "2-0",
       "home_code": "ARG",
       "away_code": "AUT"
     },
@@ -1785,6 +1785,20 @@
     }
   },
   "highlights": [
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DZ5koEYisLn",
+      "account": "@fifaworldcup",
+      "caption": "🇦🇷 2-0 🇦🇹 — Argentina make it two wins from two to top Group J",
+      "date": "2026-06-22"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DZ5ZjuhitvQ",
+      "account": "@fifaworldcup",
+      "caption": "Argentina on the front foot against Austria in Dallas 🇦🇷",
+      "date": "2026-06-22"
+    },
     {
       "platform": "threads",
       "url": "https://www.threads.com/@fifaworldcup/post/DZ311YVFhAL",
