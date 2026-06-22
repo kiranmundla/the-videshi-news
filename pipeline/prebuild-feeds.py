@@ -19,7 +19,38 @@ import re
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 
+import time
 import requests
+
+# ── Resilient HTTP ────────────────────────────────────────────────────
+# The large Supabase fetches occasionally die mid-stream on transient proxy
+# drops (ChunkedEncodingError / ConnectionError) or brief 5xx. A single
+# hiccup must NOT silently fail the whole feed rebuild, so retry with backoff.
+def _get_with_retry(get_url: str, *, headers: dict, params: dict | None = None,
+                    attempts: int = 5, base_delay: float = 1.5) -> requests.Response:
+    last_exc = None
+    for attempt in range(1, attempts + 1):
+        try:
+            resp = requests.get(get_url, headers=headers, params=params, timeout=60)
+            # Retry on transient server-side errors; return everything else
+            # (including 4xx) to the caller to handle as before.
+            if resp.status_code >= 500 or resp.status_code == 429:
+                last_exc = RuntimeError(f"HTTP {resp.status_code}")
+                if attempt < attempts:
+                    time.sleep(base_delay * attempt)
+                    continue
+            return resp
+        except (requests.exceptions.ChunkedEncodingError,
+                requests.exceptions.ConnectionError,
+                requests.exceptions.Timeout) as e:
+            last_exc = e
+            if attempt < attempts:
+                time.sleep(base_delay * attempt)
+                continue
+            raise
+    if last_exc:
+        raise last_exc
+    raise RuntimeError("unreachable retry state")
 
 # ── Config ────────────────────────────────────────────────────────────
 REPO_ROOT = Path(__file__).resolve().parent.parent
@@ -86,7 +117,7 @@ def fetch_all_published(url: str, key: str) -> list[dict]:
             "offset": str(offset),
             "limit": str(batch),
         }
-        resp = requests.get(f"{url}/rest/v1/p2_articles", headers=headers, params=params)
+        resp = _get_with_retry(f"{url}/rest/v1/p2_articles", headers=headers, params=params)
         resp.raise_for_status()
         rows = resp.json()
         if not rows:
@@ -117,7 +148,7 @@ def fetch_table(url: str, key: str, table: str, order: str = "id.asc",
         }
         if filters:
             params.update(filters)
-        resp = requests.get(f"{url}/rest/v1/{table}", headers=headers, params=params)
+        resp = _get_with_retry(f"{url}/rest/v1/{table}", headers=headers, params=params)
         resp.raise_for_status()
         rows = resp.json()
         if not rows:
@@ -213,7 +244,7 @@ def article_without_body(a: dict) -> dict:
 def fetch_editorial(url: str, key: str) -> dict | None:
     """Fetch the latest is_editorial=true article from Supabase."""
     headers = {"apikey": key, "Authorization": f"Bearer {key}"}
-    resp = requests.get(
+    resp = _get_with_retry(
         f"{url}/rest/v1/p2_articles",
         headers=headers,
         params={
