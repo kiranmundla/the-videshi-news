@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-22T01:45:15.291548+00:00",
+  "timestamp": "2026-06-22T02:15:54.701517+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 0,
+    "pass": 5,
     "flag": 1,
     "fail": 0,
     "error": 0
@@ -11,22 +11,101 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "82ff24c2-6e17-4ef5-8681-bbfc4d97277f",
-      "headline": "Sunny Deol Stopped Shouting. In the Batwara 1947 Teaser, He Whispers \u2014 and Aamir Khan's Voice Does the Rest.",
-      "slug": "batwara-1947-teaser-sunny-deol-aamir-khan-narrator-shabana-azmi-preity-zinta-rajkumar-santoshi-ar-rahman-august-14-partition-where-to-watch-diaspora-nri-20260621",
+      "id": "603a8645-6d07-463b-9f8b-5156e4472aab",
+      "headline": "Your US Visa Doesn't Stop Being Reviewed After You Get It \u2014 and Indian Travelers Are Learning That the Hard Way",
+      "slug": "us-visa-continuous-screening-after-approval-india-ssss-nri-travel-advi-20260622",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "7c742d66-41e5-4d5b-bbb2-1931cdd1f6c7",
-            "headline": "Sunny Deol and Rajkumar Santoshi Reunite After 30 Years for "
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Theatrical poster for Batwara 1947",
-          "reason": "The photo shows the poster for the film mentioned in the story."
+          "what_photo_shows": "US Customs and Border Protection officers",
+          "reason": "The photo shows officers relevant to US visa and immigration processes."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image is relevant to the topic of US immigration but does not directly illustrate the continuous vetting process discussed in the article."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively addresses the concerns of Indian travelers and NRIs regarding US visa processes, making it highly relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including a more direct visual representation of the continuous vetting process to enhance reader understanding.",
+          "Add a brief section on how these changes might affect future visa policies or travel trends for Indian travelers."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "16dcb1cc-68c1-4f86-931e-71b0e89ebb83",
+      "headline": "Global Entry Is Testing a Walk-Through Camera at Six US Airports \u2014 and It Changes the Best Perk of the Indian Diaspora's Favorite Program",
+      "slug": "global-entry-camera-capture-pilot-six-us-airports-indian-citizens-nri-20260622",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Global Entry kiosk at US airport",
+          "reason": "The photo shows a Global Entry kiosk, relevant to the story about Global Entry changes."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the Global Entry program to the Indian diaspora, highlighting its significance for Indian travelers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a quote from a user or expert to enhance credibility.",
+          "Include more statistics or data on the number of Indian travelers using Global Entry to strengthen the argument."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "1e260095-2d7b-4fa1-9110-eaf39a59bf83",
+      "headline": "IndiGo Is Adding Six New International Cities on Narrowbody Jets \u2014 and Quietly Building the Hub the Diaspora Will Connect Through",
+      "slug": "indigo-six-new-international-routes-nairobi-jakarta-central-asia-bali-20260622",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "IndiGo Airbus A321neo in flight",
+          "reason": "The photo shows an IndiGo Airbus A321neo, relevant to the aviation story."
         },
         "inline_image_mismatches": []
       },
@@ -34,14 +113,9 @@
         "overall_score": 8,
         "embed_issues": [
           {
-            "url": "https://www.instagram.com/reel/DZt6O3BM0bS/",
+            "url": "https://x.com/IndiGo6E",
             "problem": "irrelevant",
-            "explanation": "The Instagram reel does not appear to be directly related to the teaser or the film's themes, making it less relevant to the article."
-          },
-          {
-            "url": "https://youtube.com/watch?v=DstkbSnWFf4",
-            "problem": "duplicate",
-            "explanation": "The YouTube link is mentioned in the body but could be considered a duplicate if it is also included in the embeds."
+            "explanation": "The Twitter link does not provide relevant content related to the article's subject matter."
           }
         ],
         "image_match": {
@@ -50,21 +124,147 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the film's themes of Partition to the diaspora experience, making it relevant for NRI readers."
+          "quality": 8,
+          "note": "The article effectively connects the airline's new routes to the needs and interests of the diaspora, highlighting the benefits for NRI travelers."
         },
         "factual_flags": [],
-        "duplicate_embeds": [
-          "https://youtube.com/watch?v=DstkbSnWFf4"
-        ],
+        "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant Instagram link with a more relevant social media post or remove it altogether.",
-          "Clarify the YouTube link usage to avoid duplication."
+          "Replace the irrelevant Twitter link with a more relevant source or embed that discusses the new routes or their impact on the diaspora.",
+          "Consider adding quotes or testimonials from diaspora travelers to enhance the personal connection to the topic."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://x.com/IndiGo6E",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "cb42c094-b9cc-41e0-a079-82c7a54bbed9",
+      "headline": "Foreigners Keep Selling Indian Stocks. Indians Keep Buying \u2014 and That Has Quietly Rewired the Market",
+      "slug": "india-domestic-investors-absorb-foreign-selling-sip-record-dii-fii-structural-shift-nri-investor-20260622-0200",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Bombay Stock Exchange building",
+          "reason": "The photo shows the Bombay Stock Exchange, relevant to the stock market story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the changing dynamics of the Indian stock market to the investment behavior of NRIs, providing valuable insights."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of how NRIs can adapt their investment strategies based on the new market dynamics.",
+          "Include quotes or insights from financial experts to enhance credibility and depth."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "732a3070-a76c-40bd-89f5-89de220cabb2",
+      "headline": "How Old Do You Feel? Your Answer May Reveal How Well You're Sleeping, a New Study Finds",
+      "slug": "subjective-age-feeling-older-poor-sleep-insomnia-national-sleep-foundation-sleep-2026-diaspora-20260622-0200",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MISMATCH",
+          "what_photo_shows": "a baby's crib with star projections",
+          "reason": "The photo shows a baby's crib, unrelated to adult sleep or feeling older."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image description is missing, making it difficult to assess relevance."
+        },
+        "diaspora_angle": {
+          "present": false,
+          "quality": 0,
+          "note": "The article does not connect to NRI/diaspora readers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include a relevant image description to enhance the article's visual appeal.",
+          "Add a section that connects the findings to the Indian diaspora, perhaps discussing sleep patterns or health perceptions within that community."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/reel/DZt6O3BM0bS/",
+        "Cleared mismatched image (a baby's crib with star projections)",
+        "held: image mismatch"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "image_mismatch": true,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "c6453421-615b-4326-aaeb-83300fa97cdc",
+      "headline": "India's Most Famous Paddler Missed the Asian Games Team by One Ranking Place",
+      "slug": "manika-batra-left-out-india-asian-games-2026-squad-table-tennis-selection-row-ttfi-ranking-rule-pm-modi-appeal-diaspora",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Manika Batra at an award ceremony",
+          "reason": "The photo shows Manika Batra, relevant to the story about her."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses a prominent Indian athlete's situation, which resonates with the diaspora's interest in Indian sports and representation on global platforms."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include quotes or reactions from diaspora communities or Indian sports fans to enhance the connection.",
+          "Provide more context on how this selection impacts India's chances in the upcoming Asian Games."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
         "promoted to published"
       ],
       "revised": false,
