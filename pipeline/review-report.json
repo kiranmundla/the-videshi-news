@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-22T13:15:23.212975+00:00",
+  "timestamp": "2026-06-22T13:47:11.608829+00:00",
   "mode": "fix",
   "stats": {
     "pass": 1,
-    "flag": 1,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,79 +11,17 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "f91626b1-a508-4119-b260-779d01eb6d3e",
-      "headline": "A Man With a Flag Rushed the Stage at Chase Center. Diljit Dosanjh Didn't Miss a Beat \u2014 He Stepped Back, Let Security Work, and Kept the Aura Glowing.",
-      "slug": "diljit-dosanjh-chase-center-san-francisco-stage-invasion-khalistan-protester-arrested-aura-world-tour-2026-wembley-diaspora-nri-20260622",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "593fe449-25ab-4e0c-b399-6490ac8797a0",
-            "headline": "Los Angeles Just Gave Diljit Dosanjh His Own Day. The Boy Fr"
-          },
-          {
-            "article_id": "029f07fa-9d29-4de9-ac4d-b59e24c46494",
-            "headline": "They Tried to Bury Main Vaapas Aaunga. Eight Days Later, It'"
-          },
-          {
-            "article_id": "d0670569-8693-4310-8e90-9c63470bb6f0",
-            "headline": "Diljit's Main Vaapas Aaunga Showed a Pakistan Without Villai"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A man in a turban and suit",
-          "reason": "The photo shows a man who could be Diljit Dosanjh, relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/p/DZ2w8hRmy0i/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post linked does not appear to be directly relevant to the incident described in the article."
-          }
-        ],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects Diljit Dosanjh's performance and the significance of his concerts to the NRI diaspora experience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the irrelevant Instagram link with a more relevant one that showcases the incident or Diljit's response.",
-          "Consider adding more context about the Khalistan movement for readers who may not be familiar with it."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DZ2w8hRmy0i/",
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "6560091b-1788-4334-a1f0-ebde84cec41d",
-      "headline": "Georgekutty Walks Into 200 Countries at Once. Drishyam 3 Lands on Prime Video and the Diaspora Finally Gets the Twist Everyone's Been Whispering About.",
-      "slug": "drishyam-3-prime-video-ott-release-mohanlal-georgekutty-jeethu-joseph-malayalam-tamil-telugu-kannada-diaspora-nri-20260622",
+      "id": "7992c600-708e-4542-b239-2c6058e93ae9",
+      "headline": "India Picked Its England One-Day Squad, and the Team Sheet Read Like a Changing of the Guard",
+      "slug": "india-odi-squad-england-tour-2026-shubman-gill-captain-all-formats-bumrah-returns-jaiswal-dropped-kohli-fitness-diaspora-nri",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Official poster for Drishyam 3",
-          "reason": "The photo shows the official poster for Drishyam 3, matching the story topic."
+          "what_photo_shows": "A man in a beige blazer",
+          "reason": "The photo plausibly shows Shubman Gill, relevant to the cricket story."
         },
         "inline_image_mismatches": []
       },
@@ -97,13 +35,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the film's release to the diaspora experience, emphasizing accessibility and cultural significance."
+          "note": "The article effectively connects the squad announcement to the emotional investment of the Indian diaspora, highlighting the transition in leadership and its significance."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more quotes or reactions from diaspora viewers to enhance the connection.",
-          "Include a brief overview of the previous films in the franchise for readers unfamiliar with the series."
+          "Consider adding quotes from players or selectors to enhance the narrative.",
+          "Include more context about the significance of the England tour for the Indian team."
         ],
         "verdict": "pass"
       },
