@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-22T00:15:48.707978+00:00",
+  "timestamp": "2026-06-22T00:45:44.635827+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 7,
-    "flag": 1,
+    "pass": 5,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,17 +11,17 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "e577ca10-2fc0-41fd-a788-a23f7e0129d5",
-      "headline": "A $40 Box of Mangoes, a WhatsApp Group, and a Culture War the Diaspora Didn't Ask For",
-      "slug": "indian-mango-season-america-diaspora-demand-kesar-alphonso-whatsapp-backlash-20260622",
+      "id": "9bf9ede3-ae2b-4134-a200-b584b9a29cc8",
+      "headline": "Lobster-Priced and Sold Out by Morning: Inside America's Indian Mango Frenzy",
+      "slug": "indian-mango-frenzy-america-alphonso-kesar-sonpari-luxury-2026",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Two mangoes on straw",
-          "reason": "The photo shows mangoes, relevant to the story about Indian mangoes."
+          "what_photo_shows": "Basket of Alphonso mangoes",
+          "reason": "The photo shows Alphonso mangoes, which are relevant to the story about Indian mango demand."
         },
         "inline_image_mismatches": []
       },
@@ -31,145 +31,19 @@
         "image_match": {
           "score": 9,
           "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the cultural significance of mangoes to the Indian diaspora's experiences and challenges in America."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes or anecdotes from Indian Americans to enhance the personal connection to the topic.",
-          "Include more data or statistics on the growth of Indian mango sales in the U.S. to strengthen the economic argument."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "3a8eba8a-a5cc-4413-86da-ea50dede41c3",
-      "headline": "They Grew Up American on Paper. At 21, the Paper Runs Out \u2014 and Indians Are Most of Them.",
-      "slug": "documented-dreamers-indian-americas-children-act-aging-out-green-card-backlog-20260622",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "The US Capitol building",
-          "reason": "The photo of the US Capitol is relevant to a story about legislative efforts in Congress."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the issue of documented dreamers to the experiences of NRI families, highlighting the emotional and economic implications."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more personal stories or quotes from documented dreamers to enhance emotional engagement.",
-          "Provide additional context on the America's Children Act and its potential impact on the NRI community."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "03c9626c-3ce0-4e6d-b27f-52d7b6f6beaa",
-      "headline": "A Connecticut Diaspora Group Turned 20 by Writing Two $25,000 Checks \u2014 and Reading the Room on Immigration",
-      "slug": "gopio-connecticut-20th-anniversary-honors-five-indian-american-leaders-charity-20260622",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "woman speaking at an event",
-          "reason": "The photo plausibly shows a person who could be the state senator mentioned."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the achievements of the Connecticut diaspora group to broader themes of immigration and community integration, making it relevant for NRI readers."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from attendees or participants to provide personal perspectives on the event.",
-          "Include more context about the charities receiving the donations to enhance the article's depth."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "79d9562b-9db9-4e7d-b531-beecdc3af092",
-      "headline": "The H-1B Coin Flip Is Dead. The New System Rewards a Very Specific Indian Applicant",
-      "slug": "h1b-wage-weighted-selection-us-masters-71-percent-india-fy2027-20260622",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "software developers working in an office",
-          "reason": "The photo shows software developers, relevant to the H-1B visa topic."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the topic of H-1B visas or immigration."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively discusses the implications of the new H-1B system on Indian applicants, making it highly relevant to the diaspora."
+          "note": "The article effectively connects the mango frenzy to the emotional and cultural significance for the Indian diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that directly relates to immigration or the H-1B visa process to enhance relevance.",
-          "Add a brief conclusion summarizing the key takeaways for Indian applicants to reinforce the article's message."
+          "Consider adding quotes or anecdotes from more members of the diaspora to enhance the personal connection.",
+          "Include more statistics or data on the growth of the Indian mango market in the U.S. to provide a broader context."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
         "promoted to published"
@@ -179,17 +53,22 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "91b25dc6-c405-43a2-916f-af1beb056906",
-      "headline": "The Lottery Loser's Last Trick Is About to Disappear \u2014 and Indian Grads Lean on It Most",
-      "slug": "day-1-cpt-crackdown-30-day-grace-period-f1-indian-students-h1b-20260622",
+      "id": "954dbb70-d533-477b-b4f6-4bd29466e16a",
+      "headline": "From Mayfair to the Frozen Aisle: A Two-Michelin Indian Kitchen Bets on America's Pantry",
+      "slug": "gymkhana-fine-foods-whole-foods-jks-restaurants-premium-indian-cpg",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "4347ee90-5cd5-41a5-b83b-04f2fb84b5dd",
+            "headline": "Butter Chicken in the Costco Cart: Indian Ready-Meals Storm "
+          }
+        ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "graduates in caps and gowns",
-          "reason": "The photo shows a graduation scene relevant to a student-visa story."
+          "what_photo_shows": "a plate of butter chicken",
+          "reason": "The photo shows butter chicken, relevant to the story about Indian curry sauces."
         },
         "inline_image_mismatches": []
       },
@@ -203,13 +82,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses the impact of immigration policy changes on Indian graduates, making it highly relevant to the diaspora."
+          "note": "The article effectively discusses the implications of the Gymkhana launch for the Indian diaspora, addressing both validation and authenticity concerns."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes or anecdotes from Indian graduates affected by the proposed rule to enhance relatability.",
-          "Add a section on potential alternatives or solutions for Indian graduates facing these changes."
+          "Consider adding more quotes from the founders or chefs to provide personal insights and enhance engagement.",
+          "Include a brief comparison with other Indian food brands in the U.S. to contextualize Gymkhana's market position."
         ],
         "verdict": "pass"
       },
@@ -221,17 +100,17 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "cc35cbfa-b8c1-4753-81a3-269b422cf14e",
-      "headline": "Raj Subramaniam Spent Four Years Rebuilding FedEx. Tuesday's Earnings Are the First Test Without a Safety Net.",
-      "slug": "fedex-raj-subramaniam-earnings-one-fedex-network-2-automation-nri-20260622",
+      "id": "9aaff059-6f4a-4a1e-b43f-d31faca8b9aa",
+      "headline": "The Fox Nut Goes Global: How a Bihar Fasting Snack Became America's Newest Superfood",
+      "slug": "makhana-fox-nut-superfood-america-bihar-high-protein-snack",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "man in suit with flag background",
-          "reason": "The photo plausibly shows a CEO-like figure, fitting the story about FedEx's CEO."
+          "what_photo_shows": "Roasted phool makhana in a glass",
+          "reason": "The photo shows phool makhana, which is relevant to the story about fox nuts."
         },
         "inline_image_mismatches": []
       },
@@ -239,61 +118,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
+          "score": 10,
           "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the impact of FedEx's restructuring and AI integration to Indian-origin engineers, making it relevant for the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more direct quotes from Raj Subramaniam or industry experts to enhance credibility.",
-          "Include a brief overview of FedEx's historical performance to provide context for the current changes."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "60ac5c07-2026-4fee-b999-e3cf9132cda8",
-      "headline": "Tata Just Handed BigBasket to an Amazon Veteran. The Mandate: Survive the 10-Minute War.",
-      "slug": "bigbasket-amit-nanda-ceo-tata-quick-commerce-nri-investors-20260622",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "workers handling delivery boxes",
-          "reason": "The photo shows delivery workers, relevant to the quick-commerce market story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the article's focus on BigBasket and quick commerce."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects the topic to the diaspora by discussing how quick-commerce apps assist NRIs in managing life for their aging parents in India."
+          "note": "The article effectively connects the rise of makhana to the Indian diaspora's cultural nostalgia and health trends in the West."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that reflects the themes of online grocery shopping or quick commerce.",
-          "Expand on the diaspora angle with more examples or statistics to strengthen the connection."
+          "Consider adding quotes from industry experts or diaspora members to enhance credibility and personal connection.",
+          "Include more specific examples of brands or products that are popular in the U.S. market to provide readers with actionable insights."
         ],
         "verdict": "pass"
       },
@@ -305,17 +142,59 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "e49365df-a96f-419b-a7df-a28f3c4bda76",
-      "headline": "UPI Just Went Live in a Paris Department Store. The Real Target Isn't Tourists \u2014 It's Visa and Mastercard.",
-      "slug": "upi-france-galeries-lafayette-live-npci-lyra-nri-diaspora-20260622",
+      "id": "e3122e4e-7eb5-4221-94e8-dead9539c871",
+      "headline": "A Third Community Has Been Drawn Into Manipur's War. Now the Kukis Are Begging Modi to Step In.",
+      "slug": "manipur-kuki-naga-violence-escalation-14-killed-11-villages-burnt-kuki-inpi-modi-memorandum-20260621",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Galeries Lafayette department store",
-          "reason": "The photo shows the Galeries Lafayette store, relevant to the UPI launch story."
+          "what_photo_shows": "lush green hills in Manipur",
+          "reason": "The photo shows a landscape in Manipur, relevant to the story's location."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article connects the conflict to the diaspora by highlighting the Kuki and Naga communities' Christian identity, which may resonate with diaspora readers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Expand on the diaspora's potential role or response to the conflict to enhance relevance.",
+          "Include quotes or perspectives from diaspora members to provide a more personal connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "9ca4e234-77b0-45b4-9ae8-bcb636ed7c04",
+      "headline": "Pakistan's Defence Minister Says It Will 'Go to War' With India Over Water. The Treaty Has Been Suspended Since Last Year.",
+      "slug": "pakistan-khawaja-asif-war-threat-india-indus-waters-treaty-suspension-water-crisis-20260621",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Man speaking with Pakistan flag",
+          "reason": "The photo plausibly shows Pakistan's Defence Minister Khawaja Asif."
         },
         "inline_image_mismatches": []
       },
@@ -329,13 +208,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the UPI launch in France to the diaspora's needs, particularly in terms of convenience and remittance."
+          "note": "The article effectively connects the geopolitical tensions to the concerns of the Indian diaspora, highlighting the potential impacts on families and remittances."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more specific examples of how UPI could benefit NRIs in their daily transactions.",
-          "Include quotes or insights from diaspora members or experts to enhance the personal connection."
+          "Consider adding more context about the historical significance of the Indus Waters Treaty for readers unfamiliar with the topic.",
+          "Include quotes or perspectives from diaspora members to enhance the connection to NRI experiences."
         ],
         "verdict": "pass"
       },
