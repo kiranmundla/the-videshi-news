@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-22T19:45:10.310408+00:00",
+  "timestamp": "2026-06-22T20:15:19.581765+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
+    "pass": 2,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,17 +11,17 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "925cc794-31d2-4d2f-9a32-6f73243bb722",
-      "headline": "One Defeat Turned India's World Cup Into a Tightrope: Beat Australia, or Trust a Calculator",
-      "slug": "india-women-t20-world-cup-2026-semifinal-qualification-scenarios-south-africa-loss-bangladesh-australia-lords-harmanpreet-net-run-rate-diaspora-nri",
+      "id": "61450e7f-7274-40da-9fa5-33380105e363",
+      "headline": "The First Wage-Weighted H-1B Season Ends Monday. The Rules Changed Everything.",
+      "slug": "fy2027-h1b-cap-season-closes-june-30-wage-weighted-lottery-100k-fee-staffing-firms-20260622",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Harmanpreet Kaur with a trophy",
-          "reason": "The photo shows Harmanpreet Kaur, relevant to the story."
+          "what_photo_shows": "Code on a developer's screen",
+          "reason": "The photo of code relates to the H-1B visa topic for tech workers."
         },
         "inline_image_mismatches": []
       },
@@ -29,19 +29,61 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image does not directly relate to the H-1B visa topic."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the Indian women's cricket team's performance to the diaspora's interest, highlighting the significance of the upcoming match for NRI viewers."
+          "quality": 9,
+          "note": "The article discusses the impact of H-1B visa changes on the Indian diaspora, making it highly relevant."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from players or coaches to enhance the narrative.",
-          "Include more statistics or historical context about the Indian women's team in World Cups to enrich the article."
+          "Consider using an image that directly relates to the H-1B visa or immigration theme.",
+          "Add more statistics or quotes from experts to strengthen the analysis of the impact on the Indian diaspora."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "b617eaea-6707-45d5-be35-ac160393499f",
+      "headline": "The Pipeline Is Drying Up: Why Indian Students Are Quitting America",
+      "slug": "indian-student-enrollment-collapse-us-universities-sevis-gmac-f1-h1b-pipeline-20260622",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Students walking on a university campus",
+          "reason": "The photo shows students on a campus, relevant to the story about Indian students in US universities."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the topic of Indian students in America."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the decline in Indian student enrollment to broader immigration trends affecting the Indian diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that depicts Indian students or the educational environment in the US.",
+          "Add more personal stories or quotes from Indian students to enhance the emotional connection with the diaspora audience."
         ],
         "verdict": "pass"
       },
