@@ -4394,11 +4394,12 @@ def source_reel_media_clean(article, storyboard, count=8):
     # reel, which kept its hero photo and got a rich photo-backed hook). The hook
     # is the single most important frame, so before dropping to navy we give it a
     # REAL rich background sourced from the hook's OWN scene (topic-relevant by
-    # construction — never a loose article-entity match, which is the off-topic
-    # trap). Order mirrors CLEAN-mode priority (curated photo → generated
-    # illustration); NO Pexels/Wikipedia/Commons. Skip when GPT already planned
-    # scene 0 as "generate" (section B handles that natively below).
-    if matched_urls[0] is None and plans and plans[0] != "generate":
+    # construction). Order mirrors CLEAN-mode priority (curated photo → generated
+    # illustration); NO Pexels/Wikipedia/Commons. Runs whenever the hero is empty
+    # REGARDLESS of GPT's plan, so it also covers a planned-"generate" hook whose
+    # generation fails (e.g. OpenAI quota dry) — section B would otherwise drop
+    # such a hook straight to navy.
+    if matched_urls[0] is None:
         _hook_scene = scenes[0] if scenes else {}
         # 1) Curated in-house photo (closest to the SpaceX real-photo look).
         #    Use the hook's concrete media_subject, else its visual — but never a
