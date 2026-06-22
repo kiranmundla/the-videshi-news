@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-06-22T01:57:31Z",
-  "stage": "Group Stage — 39 of 72 matches played",
+  "last_updated": "2026-06-22T03:58:34Z",
+  "stage": "Group Stage — 40 of 72 matches played",
   "hosts": "USA, Mexico & Canada",
   "dates": {
     "start": "2026-06-11",
@@ -342,6 +342,19 @@
     ],
     "G": [
       {
+        "name": "Egypt",
+        "code": "EGY",
+        "flag": "🇪🇬",
+        "rank": 29,
+        "p": 2,
+        "w": 1,
+        "d": 1,
+        "l": 0,
+        "gf": 4,
+        "ga": 2,
+        "pts": 4
+      },
+      {
         "name": "Iran",
         "code": "IRN",
         "flag": "🇮🇷",
@@ -372,25 +385,12 @@
         "code": "NZL",
         "flag": "🇳🇿",
         "rank": 85,
-        "p": 1,
+        "p": 2,
         "w": 0,
         "d": 1,
-        "l": 0,
-        "gf": 2,
-        "ga": 2,
-        "pts": 1
-      },
-      {
-        "name": "Egypt",
-        "code": "EGY",
-        "flag": "🇪🇬",
-        "rank": 29,
-        "p": 1,
-        "w": 0,
-        "d": 1,
-        "l": 0,
-        "gf": 1,
-        "ga": 1,
+        "l": 1,
+        "gf": 3,
+        "ga": 5,
         "pts": 1
       }
     ],
@@ -1785,6 +1785,20 @@
     }
   },
   "highlights": [
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DZ311YVFhAL",
+      "account": "@fifaworldcup",
+      "caption": "Egypt come from behind to beat New Zealand 3-1 and top Group G ⚽🇪🇬",
+      "date": "2026-06-21"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DZ31T8RCCXU/",
+      "account": "@fifaworldcup",
+      "caption": "Mohamed Salah inspires Egypt to a historic first World Cup win 🇪🇬 — Egypt 3-1 New Zealand #FIFAWorldCup",
+      "date": "2026-06-21"
+    },
     {
       "platform": "instagram",
       "url": "https://www.instagram.com/reel/DZ3kyKVo1B2/",
