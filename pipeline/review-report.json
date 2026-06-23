@@ -1,25 +1,29 @@
 {
-  "timestamp": "2026-06-23T18:16:22.239788+00:00",
+  "timestamp": "2026-06-23T18:45:37.308437+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 6,
-    "flag": 5,
+    "pass": 3,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
-  "revisions": 2,
+  "revisions": 1,
   "unpublished": 0,
   "articles": [
     {
-      "id": "32ade1b5-1094-4458-b2c8-94b6c37db7cf",
-      "headline": "Britain's Big India Summit Left London This Year. It Went to the Midlands Instead.",
-      "slug": "uk-india-week-2026-warwick-gujarat-west-midlands-investment-diaspora-20260623",
+      "id": "957b8839-54af-4d82-99d1-47a730111d1f",
+      "headline": "Adani Just Opened an Airport in the Heart of Kutch. For the Gujarati Diaspora, It's a New Door Home.",
+      "slug": "adani-mundra-airport-first-scheduled-flights-star-air-kutch-gujarat-airport-expansion-20260623",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
-        "vision_image_match": null,
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "A Star Air Embraer regional jet taking off.",
+          "reason": "The photo shows a Star Air aircraft, which is directly mentioned in the headline and subheadline as the regional carrier for the new airport."
+        },
         "inline_image_mismatches": []
       },
       "llm_review": {
@@ -32,17 +36,15 @@
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article explicitly connects the shift in venue to the Indian diaspora in Britain, highlighting their role in regional economies and as 'connective tissue'."
+          "note": "The article explicitly addresses the diaspora angle in a dedicated section, making a strong and relevant connection for Gujarati NRIs."
         },
-        "factual_flags": [
-          "The article mentions 'exchanges that began in February 2026' which is in the future. This is likely a typo and should be 2023 or 2024."
-        ],
+        "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Correct the factual error regarding the year 'February 2026' to a past or current year.",
-          "Consider adding a quote from a diaspora member or a local business leader to further strengthen the 'diaspora as connective tissue' point."
+          "Consider adding a quote from a diaspora member or a local Kutch resident to personalize the impact of the new airport.",
+          "If possible, include a small map showing Mundra's location relative to major Gujarati diaspora hubs (e.g., Mumbai, Ahmedabad) and the Kutch region."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
         "promoted to published"
@@ -52,38 +54,40 @@
       "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "1cbb7c4f-843f-42aa-8fb6-a13b335414c1",
-      "headline": "Two American Doctors Got One of India's Highest Honours This Week. Both Left India Decades Ago.",
-      "slug": "padma-awards-2026-diaspora-physicians-nori-prateek-sharma-civil-investiture-20260623",
+      "id": "755eec10-c805-4056-9b7d-11e281241860",
+      "headline": "India's Drug Regulator Just Flagged 159 Medicines as Substandard. Some Are Drugs You Take Every Day.",
+      "slug": "india-drug-regulator-159-medicines-fail-quality-test-may-nsq-alert-spurious-20260623",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
-        "vision_image_match": null,
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "A pile of white medicine tablets.",
+          "reason": "The photo of medicine tablets is a generic but on-topic image for a story about substandard drugs."
+        },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 8,
+        "overall_score": 7,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
+          "score": 8,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article directly addresses the diaspora angle, explaining why these awards resonate with NRIs and their significance."
+          "quality": 8,
+          "note": "The 'Why the Diaspora Should Care' section directly addresses NRIs and their common practice of sourcing medicines from India, making the connection natural and relevant."
         },
-        "factual_flags": [
-          "The article mentions '2026 Padma Awards' and '2026 is no exception' multiple times, which seems to be a typo and should likely be '2024' or the current year. This is a significant factual error if not corrected."
-        ],
+        "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Correct the year '2026' to the actual year of the awards (likely 2024) throughout the article.",
-          "Consider adding a quote from one of the awardees or a prominent NRI doctor to personalize the 'Why It Matters' section further."
+          "Consider adding a quote from an NRI or a pharmacist serving the diaspora to further personalize the 'Why the Diaspora Should Care' section.",
+          "If possible, include a small graphic or table summarizing the types of drugs most frequently flagged as substandard over the past year."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
         "promoted to published"
@@ -101,48 +105,11 @@
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
-        "vision_image_match": null,
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 6,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Mukesh Ambani receiving an award with a woman and another man.",
+          "reason": "The photo clearly shows Mukesh Ambani, who is the central figure of the story."
         },
-        "diaspora_angle": {
-          "present": false,
-          "quality": 1,
-          "note": "The article ends abruptly before the 'Why It Matters for the Diaspora' section is developed. As it stands, there is no diaspora angle."
-        },
-        "factual_flags": [
-          "The article mentions FY26 and 2026 multiple times, which seems to imply a future date for an AGM that has already occurred and reported record financial performance. This is a contradiction. FY26 would typically refer to the fiscal year ending in March 2026, and an AGM reporting on it would happen later in 2026 or 2027. If the article is meant to be current, these dates are problematic."
-        ],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Complete the 'Why It Matters for the Diaspora' section to genuinely connect with NRI readers, or remove the heading if the angle cannot be developed naturally.",
-          "Clarify the fiscal year and calendar year references (FY26, 2026) to ensure factual accuracy and consistency, as they currently create a temporal contradiction."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Revised by gemini-2.5-flash (847\u2192846 words)"
-      ],
-      "revised": true,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "deaefcdf-df88-43df-a21e-ca0802ecd088",
-      "headline": "Dangerous Heat Now Reaches More of the World \u2014 and the Nights Are No Longer a Refuge",
-      "slug": "global-heat-stress-intensification-tropical-nights-nature-climate-change-health-diaspora-20260623-1800",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": null,
         "inline_image_mismatches": []
       },
       "llm_review": {
@@ -154,14 +121,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The diaspora angle is clearly stated and well-integrated, connecting the global heat issue to both family in India and NRIs in new regions."
+          "quality": 7,
+          "note": "The article explicitly includes a 'Why It Matters for the Diaspora' section, which is good. The content within that section (though truncated in the provided text) is crucial for assessing its quality."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a specific call to action or resource for diaspora members regarding heat safety, perhaps linking to relevant health advisories.",
-          "While the article mentions 'image entities' in the prompt, none were provided in the body. If available, ensure they are accurate and comprehensive for SEO."
+          "Ensure the 'Why It Matters for the Diaspora' section is fully developed and provides concrete, actionable insights or relevant context for NRI investors.",
+          "Consider adding a small infographic or chart to visualize Reliance's current EBITDA and the projected doubling, to make the financial targets more digestible."
         ],
         "verdict": "pass"
       },
@@ -181,277 +148,40 @@
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
-        "vision_image_match": null,
+        "vision_image_match": {
+          "verdict": "MISMATCH",
+          "what_photo_shows": "A vintage book cover titled \"The Sick-A-Bed Lady.\"",
+          "reason": "The photo shows a book cover, which is unrelated to a scientific study about sleep, genes, and Alzheimer's."
+        },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 6,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 1,
+          "issue": "No image URL or entities provided, making it impossible to assess the match. This is a critical missing piece for a news article."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 5,
-          "note": "The diaspora angle is present but feels somewhat tacked on at the end, and the article cuts off before fully developing it. It needs to be integrated more naturally or expanded upon."
+          "quality": 4,
+          "note": "The 'Why It Matters for the Diaspora' section is present but incomplete, cutting off mid-sentence. This makes the current angle feel forced and underdeveloped. If completed well, it could be a natural fit, but as is, it's weak."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Expand and integrate the 'Why It Matters for the Diaspora' section more thoroughly into the article, rather than as an abrupt ending.",
-          "Ensure the article has a complete conclusion. It currently cuts off mid-sentence."
+          "Complete the 'Why It Matters for the Diaspora' section to provide a meaningful connection for NRI readers, perhaps discussing genetic predispositions in specific ethnic groups or the challenges of sleep patterns for NRIs.",
+          "Ensure a hero image and its description/entities are provided for every article to allow for proper review of image relevance and quality."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
-        "Revised by gemini-2.5-flash (847\u2192941 words)"
+        "Cleared mismatched image (A vintage book cover titled \"The Sick-A-Bed Lady.\")",
+        "Revised by gemini-2.5-flash (941\u2192941 words)"
       ],
       "revised": true,
       "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "ff2d2c21-78e9-4675-b85b-011e14ba6cd2",
-      "headline": "Diwali Flights Home Go on Sale Now \u2014 and the DGCA Is Adding 1,700 Extra Flights to Stop the Usual Fare Gouge",
-      "slug": "diwali-2026-flights-india-dgca-extra-flights-nri-booking-window-20260623",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": null,
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 8,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "Strong and natural connection to NRI/diaspora readers, directly addressing their concerns about Diwali travel."
-        },
-        "factual_flags": [
-          "Diwali falls on November 8 this year - this is incorrect for 2024. Diwali is on November 1, 2024. The article might be referring to a future year or has a typo."
-        ],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Correct the Diwali date for the current year (2024) to maintain factual accuracy.",
-          "Consider adding a small section on visa considerations or travel advisories if relevant to NRI travel."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "17b3432a-f67a-465e-9560-212d313d2a79",
-      "headline": "Samarkand Is the Silk Road Trip Indians Can Do on a $20 Visa and a Three-Hour Flight \u2014 and 2026 Is the Year It Booms",
-      "slug": "uzbekistan-samarkand-silk-road-india-evisa-nonstop-nri-trip-20260623",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": null,
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article explicitly targets 'Indian families' and 'NRI families', highlighting the ease of travel and cultural resonance for South Asians."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a small section on local cuisine or unique shopping experiences to further entice readers.",
-          "Perhaps include a brief mention of safety or local customs for first-time travelers to Uzbekistan."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "55affeb8-a8f6-408f-8d03-b9417ecae58a",
-      "headline": "Air India's New Maharaja Lounge at SFO Is the First Real Sign Its US Overhaul Has Crossed the Pacific",
-      "slug": "air-india-maharaja-lounge-sfo-overhaul-bay-area-diaspora-nri-20260623",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": null,
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "Strong and natural connection to the NRI/diaspora readers, especially those in the Bay Area."
-        },
-        "factual_flags": [
-          "The article states Air India suspended its Bengaluru\u2013San Francisco and Mumbai\u2013San Francisco nonstops from March 2026, but then implies these routes are currently paused ('The lounge opens just as the routes that would fill it have thinned'). This could be clearer if the suspension is already in effect or upcoming."
-        ],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Clarify the exact status of the Bengaluru-SFO and Mumbai-SFO nonstops \u2013 are they currently suspended or will be suspended in March 2026? This impacts the 'catch' section significantly.",
-          "Consider adding a small section on what other Star Alliance lounges are available at SFO for comparison or alternative options for Star Alliance Gold members."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "bec6f3e0-532d-4027-ab15-2ef0b1170f07",
-      "headline": "Ola Electric Built India's Biggest Scooter Factory. Its Quieter Rival Is Opening a Store a Day.",
-      "slug": "ola-electric-ather-india-ev-scooter-profitability-race-20260623",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": null,
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The 'Why NRIs should care' section is well-integrated and provides relevant investment and homeland connection angles."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a small comparison table for key metrics (e.g., market share, store count, delivery units) for Ola and Ather to enhance readability.",
-          "While the article is strong, a quote from an industry analyst or an NRI investor could add further depth and perspective."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "ea0de8e8-9458-4cb2-b87a-42246462641b",
-      "headline": "Sundar Pichai Spent Three Years Being Called Late to AI. Google's Cloud Backlog Just Hit $460 Billion.",
-      "slug": "sundar-pichai-google-cloud-backlog-ai-gemini-momentum-20260623",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "c30e835e-77b2-4a78-811b-34b261f1b0f3",
-            "headline": "Two Resignations Wiped $250 Billion Off Google. For Indian E"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": null,
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The diaspora angle is well-integrated and provides relevant insights for Indian engineers and professionals, connecting Pichai's story to broader NRI experiences."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a small section on potential competitive challenges Google might face in the AI cloud space, even with its current backlog.",
-          "Perhaps include a quote from an Indian engineer (even if anonymized) to add a personal touch to the 'What it means inside Google' section."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "3589a7da-fc73-4bb2-afd9-a329a9c762f7",
-      "headline": "India Just Approved Its First Silicon-Carbide Fab. The Map of Where Chips Get Made Is Quietly Shifting East.",
-      "slug": "india-silicon-carbide-fab-odisha-semiconductor-mission-20260623",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": null,
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The 'The diaspora calculation' section directly addresses NRI engineers and their potential roles, making the connection natural and relevant."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a small infographic or map showing the locations of the approved projects across India to visually reinforce the 'geographic spread' point.",
-          "Perhaps include a brief quote from an NRI engineer (even if hypothetical or a general sentiment) to further personalize the 'diaspora calculation' section."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
+      "image_mismatch": true,
       "llm_source": "gemini-2.5-flash"
     }
   ]
