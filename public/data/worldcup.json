@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-06-22T19:57:47Z",
-  "stage": "Group Stage — 41 of 72 matches played",
+  "last_updated": "2026-06-23T02:00:02Z",
+  "stage": "Group Stage — 42 of 72 matches played",
   "hosts": "USA, Mexico & Canada",
   "dates": {
     "start": "2026-06-11",
@@ -450,6 +450,19 @@
     ],
     "I": [
       {
+        "name": "France",
+        "code": "FRA",
+        "flag": "🇫🇷",
+        "rank": 3,
+        "p": 2,
+        "w": 2,
+        "d": 0,
+        "l": 0,
+        "gf": 6,
+        "ga": 1,
+        "pts": 6
+      },
+      {
         "name": "Norway",
         "code": "NOR",
         "flag": "🇳🇴",
@@ -459,19 +472,6 @@
         "d": 0,
         "l": 0,
         "gf": 4,
-        "ga": 1,
-        "pts": 3
-      },
-      {
-        "name": "France",
-        "code": "FRA",
-        "flag": "🇫🇷",
-        "rank": 3,
-        "p": 1,
-        "w": 1,
-        "d": 0,
-        "l": 0,
-        "gf": 3,
         "ga": 1,
         "pts": 3
       },
@@ -493,12 +493,12 @@
         "code": "IRQ",
         "flag": "🇮🇶",
         "rank": 56,
-        "p": 1,
+        "p": 2,
         "w": 0,
         "d": 0,
-        "l": 1,
+        "l": 2,
         "gf": 1,
-        "ga": 4,
+        "ga": 7,
         "pts": 0
       }
     ],
@@ -1300,8 +1300,8 @@
       "away": "Iraq",
       "venue": "Lincoln Financial Field",
       "city": "Philadelphia",
-      "status": "scheduled",
-      "score": null,
+      "status": "FT",
+      "score": "3-0",
       "home_code": "FRA",
       "away_code": "IRQ"
     },
@@ -1785,6 +1785,34 @@
     }
   },
   "highlights": [
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DZ6L77Zi5cP/",
+      "account": "@fifaworldcup",
+      "caption": "Kylian Mbappé strikes twice as France beat Iraq 🇫🇷 — France 3-0 Iraq #FIFAWorldCup",
+      "date": "2026-06-22"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DZ6MC1qkUrC",
+      "account": "@fifaworldcup",
+      "caption": "France's victory earns them a place in the Round of 32 💪 — France 3-0 Iraq",
+      "date": "2026-06-22"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DZ6M843l-th",
+      "account": "@fifaworldcup",
+      "caption": "Kylian Mbappé earns the Superior Player of the Match trophy ✨ — France 3-0 Iraq",
+      "date": "2026-06-22"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DZ5yQVpCiLh",
+      "account": "@fifaworldcup",
+      "caption": "🇫🇷 1-0 🇮🇶 — Mbappé opens the scoring against Iraq in Philadelphia",
+      "date": "2026-06-22"
+    },
     {
       "platform": "threads",
       "url": "https://www.threads.com/@fifaworldcup/post/DZ5koEYisLn",
