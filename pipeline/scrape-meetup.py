@@ -207,7 +207,7 @@ def fetch_meetup_events(city: dict, keyword: str) -> list:
     }
 
     try:
-        resp = requests.get(url, params=params, headers={"User-Agent": UA}, timeout=20)
+        resp = requests.get(url, params=params, headers={"User-Agent": UA}, timeout=12)
         if resp.status_code != 200:
             return []
     except Exception as e:
@@ -453,8 +453,8 @@ def main():
     parser = argparse.ArgumentParser(description="Scrape Meetup events for Indian diaspora")
     parser.add_argument("--dry-run", action="store_true", help="Print events without inserting")
     parser.add_argument("--city", type=str, default=None, help="Single city slug (e.g. 'bay-area')")
-    parser.add_argument("--batch", type=str, choices=["A", "B"], default=None,
-                        help="Run batch A (first 7 cities) or B (last 7 cities)")
+    parser.add_argument("--batch", type=str, choices=["A", "B", "C", "D"], default=None,
+                        help="Run a quarter of the city list (A/B/C/D, ~3-4 cities each) to stay under the worker time limit")
     args = parser.parse_args()
 
     if not args.dry_run and (not SB_URL or not SB_KEY):
@@ -468,11 +468,18 @@ def main():
             print(f"Unknown city: {args.city}. Available: {', '.join(c['slug'] for c in CITIES)}")
             sys.exit(1)
     elif args.batch:
-        mid = len(CITIES) // 2  # 7 each for 14 cities
-        if args.batch == "A":
-            cities = CITIES[:mid]
-        else:
-            cities = CITIES[mid:]
+        # Split the city list into 4 quarters (~3-4 cities each) so a single
+        # run stays well under the 30-minute worker cap even when Meetup is slow.
+        # Legacy A/B (7 cities each) reliably overran; quarters do not.
+        n = len(CITIES)
+        q = (n + 3) // 4  # ceil(n/4)
+        slices = {
+            "A": CITIES[0:q],
+            "B": CITIES[q:2 * q],
+            "C": CITIES[2 * q:3 * q],
+            "D": CITIES[3 * q:],
+        }
+        cities = slices[args.batch]
         print(f"🔀 Running batch {args.batch}: {', '.join(c['display'] for c in cities)}")
 
     # Get existing events for dedup
