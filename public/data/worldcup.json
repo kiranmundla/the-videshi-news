@@ -1,6 +1,6 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-06-23T22:03:04Z",
+  "last_updated": "2026-06-23T23:59:16Z",
   "stage": "Group Stage — 46 of 72 matches played",
   "hosts": "USA, Mexico & Canada",
   "dates": {
@@ -1785,6 +1785,20 @@
     }
   },
   "highlights": [
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DZ8dKvNCH58/",
+      "account": "@fifaworldcup",
+      "caption": "It ends in a draw for England and Ghana 🤝 #FIFAWorldCup",
+      "date": "2026-06-23"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DZ8c4UkD2Wv",
+      "account": "@fifaworldcup",
+      "caption": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 0-0 🇬🇭 — England and Ghana share the spoils in Foxborough",
+      "date": "2026-06-23"
+    },
     {
       "platform": "instagram",
       "url": "https://www.instagram.com/p/DZ8H9q0CUaD/",
