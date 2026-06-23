@@ -52,16 +52,6 @@
    "priority": 4
   },
   {
-   "subject": "oci",
-   "subject_type": "thing",
-   "tags": [
-    "oci"
-   ],
-   "first_seen": "2026-06-19T05:23:04Z",
-   "article_id": "f4d9e42f-96d5-4412-b962-ebc050954513",
-   "priority": 5
-  },
-  {
    "subject": "fro",
    "subject_type": "thing",
    "tags": [
@@ -189,7 +179,7 @@
    ],
    "first_seen": "2026-06-19T05:23:04Z",
    "article_id": "8d1b12e4-60e3-456d-8f40-dbf170910325",
-   "priority": 14
+   "priority": 17
   },
   {
    "subject": "lufthansa",
@@ -302,26 +292,6 @@
    "priority": 7
   },
   {
-   "subject": "Priyanka Chopra",
-   "subject_type": "person",
-   "tags": [
-    "priyanka chopra"
-   ],
-   "first_seen": "2026-06-19T05:23:04Z",
-   "article_id": "45065e46-22e5-4a64-9c4e-3a4bbd7ba643",
-   "priority": 6
-  },
-  {
-   "subject": "fintech",
-   "subject_type": "thing",
-   "tags": [
-    "fintech"
-   ],
-   "first_seen": "2026-06-19T05:23:04Z",
-   "article_id": "27585759-d75a-4f30-aa47-7514b362317a",
-   "priority": 6
-  },
-  {
    "subject": "insurtech",
    "subject_type": "thing",
    "tags": [
@@ -360,46 +330,6 @@
    "first_seen": "2026-06-19T05:36:15Z",
    "article_id": "5ae1c1b8-6d47-4164-9d0f-96e3d34034d5",
    "priority": 2
-  },
-  {
-   "subject": "Sam Altman",
-   "subject_type": "person",
-   "tags": [
-    "sam altman"
-   ],
-   "first_seen": "2026-06-19T05:36:15Z",
-   "article_id": "5f920b09-8b37-4dd2-8687-56155d9f0f03",
-   "priority": 6
-  },
-  {
-   "subject": "Arvind Krishna",
-   "subject_type": "person",
-   "tags": [
-    "arvind krishna"
-   ],
-   "first_seen": "2026-06-19T05:36:15Z",
-   "article_id": "5f920b09-8b37-4dd2-8687-56155d9f0f03",
-   "priority": 6
-  },
-  {
-   "subject": "Shantanu Narayen",
-   "subject_type": "person",
-   "tags": [
-    "shantanu narayen"
-   ],
-   "first_seen": "2026-06-19T05:36:15Z",
-   "article_id": "5f920b09-8b37-4dd2-8687-56155d9f0f03",
-   "priority": 5
-  },
-  {
-   "subject": "Keir Starmer",
-   "subject_type": "person",
-   "tags": [
-    "keir starmer"
-   ],
-   "first_seen": "2026-06-19T05:36:15Z",
-   "article_id": "5f920b09-8b37-4dd2-8687-56155d9f0f03",
-   "priority": 6
   },
   {
    "subject": "Emmanuel Macron",
@@ -510,16 +440,6 @@
    "first_seen": "2026-06-19T10:29:23Z",
    "article_id": "5f37c15c-d5ff-409a-9615-c1626f17869a",
    "priority": 5
-  },
-  {
-   "subject": "Lucknow",
-   "subject_type": "place",
-   "tags": [
-    "lucknow"
-   ],
-   "first_seen": "2026-06-19T10:29:23Z",
-   "article_id": "5f37c15c-d5ff-409a-9615-c1626f17869a",
-   "priority": 6
   },
   {
    "subject": "air india express",
@@ -692,16 +612,6 @@
    "priority": 2
   },
   {
-   "subject": "opt",
-   "subject_type": "thing",
-   "tags": [
-    "opt"
-   ],
-   "first_seen": "2026-06-19T10:29:23Z",
-   "article_id": "6cfa7dec-c0d6-4a10-bb11-37099112f160",
-   "priority": 4
-  },
-  {
    "subject": "fees",
    "subject_type": "thing",
    "tags": [
@@ -710,26 +620,6 @@
    "first_seen": "2026-06-19T10:29:23Z",
    "article_id": "6cfa7dec-c0d6-4a10-bb11-37099112f160",
    "priority": 3
-  },
-  {
-   "subject": "Prabhas",
-   "subject_type": "person",
-   "tags": [
-    "prabhas"
-   ],
-   "first_seen": "2026-06-19T10:29:23Z",
-   "article_id": "0394b743-8be9-4e35-bf49-a9a5e033d905",
-   "priority": 6
-  },
-  {
-   "subject": "airports",
-   "subject_type": "thing",
-   "tags": [
-    "airports"
-   ],
-   "first_seen": "2026-06-19T10:29:23Z",
-   "article_id": "c24f0295-5173-4130-8cf6-6319e4491cad",
-   "priority": 6
   },
   {
    "subject": "vietnam",
@@ -749,7 +639,7 @@
    ],
    "first_seen": "2026-06-19T10:29:23Z",
    "article_id": "fc881b4c-a99e-40b8-aed5-8ef743d99b87",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "Nirmala Sitharaman",
@@ -760,16 +650,6 @@
    "first_seen": "2026-06-19T10:29:23Z",
    "article_id": "0e27c534-33a9-400e-bd4b-0764f98a64c4",
    "priority": 5
-  },
-  {
-   "subject": "Elon Musk",
-   "subject_type": "person",
-   "tags": [
-    "elon musk"
-   ],
-   "first_seen": "2026-06-19T10:29:23Z",
-   "article_id": "980355a1-017a-4244-92ff-8d13074e69a6",
-   "priority": 6
   },
   {
    "subject": "semiconductors",
@@ -859,7 +739,7 @@
    ],
    "first_seen": "2026-06-19T10:29:23Z",
    "article_id": "e5fc7b74-664d-470c-8dbf-e805b486e97a",
-   "priority": 4
+   "priority": 5
   },
   {
    "subject": "politics",
@@ -969,7 +849,7 @@
    ],
    "first_seen": "2026-06-20T10:29:23Z",
    "article_id": "bb67ef59-6e7e-4ef0-b413-c48c0f0b4175",
-   "priority": 4
+   "priority": 5
   },
   {
    "subject": "Nagpur",
@@ -1049,7 +929,7 @@
    ],
    "first_seen": "2026-06-20T10:29:23Z",
    "article_id": "081ad16f-1c96-4754-be12-514dd327e4a5",
-   "priority": 3
+   "priority": 4
   },
   {
    "subject": "upi",
@@ -1060,16 +940,6 @@
    "first_seen": "2026-06-20T10:29:23Z",
    "article_id": "79dff86c-49bf-473d-9f41-089163284684",
    "priority": 2
-  },
-  {
-   "subject": "india tech",
-   "subject_type": "thing",
-   "tags": [
-    "india tech"
-   ],
-   "first_seen": "2026-06-20T10:29:23Z",
-   "article_id": "79dff86c-49bf-473d-9f41-089163284684",
-   "priority": 5
   },
   {
    "subject": "digital payments",
@@ -1209,7 +1079,7 @@
    ],
    "first_seen": "2026-06-20T10:29:23Z",
    "article_id": "288af0ec-6b10-49ad-bda4-86ca4ef6c9bc",
-   "priority": 3
+   "priority": 4
   },
   {
    "subject": "turkey",
@@ -1319,7 +1189,7 @@
    ],
    "first_seen": "2026-06-20T10:29:23Z",
    "article_id": "5843d2db-2d68-44eb-8fd2-0c6dafbaef35",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "diaspora jobs",
@@ -1339,7 +1209,7 @@
    ],
    "first_seen": "2026-06-20T10:29:23Z",
    "article_id": "c3ac54d7-8cb2-4885-a150-14d3f5aa3db4",
-   "priority": 3
+   "priority": 4
   },
   {
    "subject": "talent",
@@ -1462,16 +1332,6 @@
    "priority": 3
   },
   {
-   "subject": "Sydney",
-   "subject_type": "place",
-   "tags": [
-    "sydney"
-   ],
-   "first_seen": "2026-06-20T10:29:23Z",
-   "article_id": "a58fd82d-fc33-4caa-9f78-623b9baead73",
-   "priority": 6
-  },
-  {
    "subject": "Melbourne",
    "subject_type": "place",
    "tags": [
@@ -1479,7 +1339,7 @@
    ],
    "first_seen": "2026-06-20T10:29:23Z",
    "article_id": "a58fd82d-fc33-4caa-9f78-623b9baead73",
-   "priority": 4
+   "priority": 5
   },
   {
    "subject": "media",
@@ -1512,16 +1372,6 @@
    "priority": 2
   },
   {
-   "subject": "Mukesh Ambani",
-   "subject_type": "person",
-   "tags": [
-    "mukesh ambani"
-   ],
-   "first_seen": "2026-06-20T10:29:23Z",
-   "article_id": "7b93f7c7-e058-4b5b-919a-8a800153dbdd",
-   "priority": 7
-  },
-  {
    "subject": "Tiger Shroff",
    "subject_type": "person",
    "tags": [
@@ -1539,7 +1389,7 @@
    ],
    "first_seen": "2026-06-20T10:29:23Z",
    "article_id": "f16ea512-ebf9-4dfd-96af-5a1fa2fc0e68",
-   "priority": 6
+   "priority": 7
   },
   {
    "subject": "Dharma Productions",
@@ -1669,7 +1519,7 @@
    ],
    "first_seen": "2026-06-20T10:29:23Z",
    "article_id": "2d234ea8-807b-4869-a0fa-d03c0d7bd291",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "model y",
@@ -1679,7 +1529,7 @@
    ],
    "first_seen": "2026-06-20T10:29:23Z",
    "article_id": "2d234ea8-807b-4869-a0fa-d03c0d7bd291",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "us india trade",
@@ -1792,16 +1642,6 @@
    "priority": 2
   },
   {
-   "subject": "Ranveer Singh",
-   "subject_type": "person",
-   "tags": [
-    "ranveer singh"
-   ],
-   "first_seen": "2026-06-21T10:29:30Z",
-   "article_id": "c0185d16-7a8f-4c5f-bb96-1117952dc539",
-   "priority": 7
-  },
-  {
    "subject": "Netflix India",
    "subject_type": "thing",
    "tags": [
@@ -1889,7 +1729,7 @@
    ],
    "first_seen": "2026-06-21T10:29:30Z",
    "article_id": "e0bfe836-767e-45aa-b275-393cb3e2e2ef",
-   "priority": 2
+   "priority": 4
   },
   {
    "subject": "investor visa",
@@ -1909,7 +1749,7 @@
    ],
    "first_seen": "2026-06-21T10:29:30Z",
    "article_id": "e0bfe836-767e-45aa-b275-393cb3e2e2ef",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "i 140",
@@ -1919,7 +1759,7 @@
    ],
    "first_seen": "2026-06-21T10:29:30Z",
    "article_id": "882b79d7-7633-45b8-a5e4-4b60d2cac924",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "policy",
@@ -1940,16 +1780,6 @@
    "first_seen": "2026-06-21T10:29:30Z",
    "article_id": "960ee946-b1ad-4735-8542-a46652a3393f",
    "priority": 5
-  },
-  {
-   "subject": "Samantha Ruth Prabhu",
-   "subject_type": "person",
-   "tags": [
-    "samantha ruth prabhu"
-   ],
-   "first_seen": "2026-06-21T10:29:30Z",
-   "article_id": "9248970c-16b4-4024-b000-76d31f8f4111",
-   "priority": 6
   },
   {
    "subject": "tunisia",
@@ -1980,16 +1810,6 @@
    "first_seen": "2026-06-21T10:29:30Z",
    "article_id": "542c10ab-27e0-4e99-a08d-c93f6652a751",
    "priority": 2
-  },
-  {
-   "subject": "Amit Shah",
-   "subject_type": "person",
-   "tags": [
-    "amit shah"
-   ],
-   "first_seen": "2026-06-21T10:29:30Z",
-   "article_id": "b817618d-8ed2-4a01-a6c0-283a30e2b0ef",
-   "priority": 5
   },
   {
    "subject": "Yogi Adityanath",
@@ -2202,16 +2022,6 @@
    "priority": 2
   },
   {
-   "subject": "Rohit Sharma",
-   "subject_type": "person",
-   "tags": [
-    "rohit sharma"
-   ],
-   "first_seen": "2026-06-21T10:29:30Z",
-   "article_id": "14b1f4ac-109d-42cf-9999-ee66548fa494",
-   "priority": 5
-  },
-  {
    "subject": "Rishabh Pant",
    "subject_type": "person",
    "tags": [
@@ -2219,7 +2029,7 @@
    ],
    "first_seen": "2026-06-21T10:29:30Z",
    "article_id": "14b1f4ac-109d-42cf-9999-ee66548fa494",
-   "priority": 5
+   "priority": 6
   },
   {
    "subject": "Shubman Gill",
@@ -2229,7 +2039,7 @@
    ],
    "first_seen": "2026-06-21T10:29:30Z",
    "article_id": "14b1f4ac-109d-42cf-9999-ee66548fa494",
-   "priority": 5
+   "priority": 6
   },
   {
    "subject": "KL Rahul",
@@ -2240,16 +2050,6 @@
    "first_seen": "2026-06-21T10:29:30Z",
    "article_id": "14b1f4ac-109d-42cf-9999-ee66548fa494",
    "priority": 5
-  },
-  {
-   "subject": "Shah Rukh Khan",
-   "subject_type": "person",
-   "tags": [
-    "shah rukh khan"
-   ],
-   "first_seen": "2026-06-21T10:29:30Z",
-   "article_id": "55e41812-5a7e-4b35-acba-6d304ab85cfb",
-   "priority": 6
   },
   {
    "subject": "Amitabh Bachchan",
@@ -2269,7 +2069,7 @@
    ],
    "first_seen": "2026-06-22T10:29:23Z",
    "article_id": "8e84313e-4fea-4175-bbb8-efa61f959b49",
-   "priority": 4
+   "priority": 6
   },
   {
    "subject": "students",
@@ -2539,7 +2339,7 @@
    ],
    "first_seen": "2026-06-22T10:29:23Z",
    "article_id": "418e8774-0d0a-471c-987c-a98ec8dff5f3",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "Hockey India",
@@ -2870,7 +2670,447 @@
    "first_seen": "2026-06-22T10:29:23Z",
    "article_id": "9ca4e234-77b0-45b4-9ae8-bcb636ed7c04",
    "priority": 2
+  },
+  {
+   "subject": "guwahati",
+   "subject_type": "thing",
+   "tags": [
+    "guwahati"
+   ],
+   "first_seen": "2026-06-23T10:29:22Z",
+   "article_id": "82dd1602-f07f-4d7a-9008-8be8d275ea68",
+   "priority": 2
+  },
+  {
+   "subject": "northeast india",
+   "subject_type": "thing",
+   "tags": [
+    "northeast india"
+   ],
+   "first_seen": "2026-06-23T10:29:22Z",
+   "article_id": "82dd1602-f07f-4d7a-9008-8be8d275ea68",
+   "priority": 2
+  },
+  {
+   "subject": "bangkok",
+   "subject_type": "thing",
+   "tags": [
+    "bangkok"
+   ],
+   "first_seen": "2026-06-23T10:29:22Z",
+   "article_id": "a829ba72-1bea-449a-ba3b-bce19f49efc1",
+   "priority": 2
+  },
+  {
+   "subject": "accenture",
+   "subject_type": "thing",
+   "tags": [
+    "accenture"
+   ],
+   "first_seen": "2026-06-23T10:29:22Z",
+   "article_id": "025a371f-643e-49a9-af75-a49136760310",
+   "priority": 2
+  },
+  {
+   "subject": "adobe",
+   "subject_type": "thing",
+   "tags": [
+    "adobe"
+   ],
+   "first_seen": "2026-06-23T10:29:22Z",
+   "article_id": "dd315d47-16ab-4b53-8026-32d5bb3b57cb",
+   "priority": 2
+  },
+  {
+   "subject": "firefly",
+   "subject_type": "thing",
+   "tags": [
+    "firefly"
+   ],
+   "first_seen": "2026-06-23T10:29:22Z",
+   "article_id": "dd315d47-16ab-4b53-8026-32d5bb3b57cb",
+   "priority": 2
+  },
+  {
+   "subject": "indian origin ceo",
+   "subject_type": "thing",
+   "tags": [
+    "indian origin ceo"
+   ],
+   "first_seen": "2026-06-23T10:29:22Z",
+   "article_id": "dd315d47-16ab-4b53-8026-32d5bb3b57cb",
+   "priority": 2
+  },
+  {
+   "subject": "Salman Khan",
+   "subject_type": "person",
+   "tags": [
+    "salman khan"
+   ],
+   "first_seen": "2026-06-23T10:29:22Z",
+   "article_id": "67f7bbf3-0ed5-442f-9b1c-f753e8d5a91a",
+   "priority": 5
+  },
+  {
+   "subject": "us visa",
+   "subject_type": "thing",
+   "tags": [
+    "us visa"
+   ],
+   "first_seen": "2026-06-23T10:29:22Z",
+   "article_id": "e19c1732-b0b1-467d-aed0-322d5e05d419",
+   "priority": 2
+  },
+  {
+   "subject": "b1 b2",
+   "subject_type": "thing",
+   "tags": [
+    "b1 b2"
+   ],
+   "first_seen": "2026-06-23T10:29:22Z",
+   "article_id": "e19c1732-b0b1-467d-aed0-322d5e05d419",
+   "priority": 2
+  },
+  {
+   "subject": "visa appointment",
+   "subject_type": "thing",
+   "tags": [
+    "visa appointment"
+   ],
+   "first_seen": "2026-06-23T10:29:22Z",
+   "article_id": "e19c1732-b0b1-467d-aed0-322d5e05d419",
+   "priority": 2
+  },
+  {
+   "subject": "state department",
+   "subject_type": "thing",
+   "tags": [
+    "state department"
+   ],
+   "first_seen": "2026-06-23T10:29:22Z",
+   "article_id": "e19c1732-b0b1-467d-aed0-322d5e05d419",
+   "priority": 2
+  },
+  {
+   "subject": "consulate india",
+   "subject_type": "thing",
+   "tags": [
+    "consulate india"
+   ],
+   "first_seen": "2026-06-23T10:29:22Z",
+   "article_id": "e19c1732-b0b1-467d-aed0-322d5e05d419",
+   "priority": 2
+  },
+  {
+   "subject": "h1b lottery",
+   "subject_type": "thing",
+   "tags": [
+    "h1b lottery"
+   ],
+   "first_seen": "2026-06-23T10:29:22Z",
+   "article_id": "f418e846-87c9-4c63-bee0-035e537687f9",
+   "priority": 2
+  },
+  {
+   "subject": "fy2027",
+   "subject_type": "thing",
+   "tags": [
+    "fy2027"
+   ],
+   "first_seen": "2026-06-23T10:29:22Z",
+   "article_id": "f418e846-87c9-4c63-bee0-035e537687f9",
+   "priority": 2
+  },
+  {
+   "subject": "wage weighted",
+   "subject_type": "thing",
+   "tags": [
+    "wage weighted"
+   ],
+   "first_seen": "2026-06-23T10:29:22Z",
+   "article_id": "f418e846-87c9-4c63-bee0-035e537687f9",
+   "priority": 2
+  },
+  {
+   "subject": "eb 2",
+   "subject_type": "thing",
+   "tags": [
+    "eb 2"
+   ],
+   "first_seen": "2026-06-23T10:29:22Z",
+   "article_id": "b9654815-b50a-46c8-9ded-3184d4e6da7a",
+   "priority": 2
+  },
+  {
+   "subject": "eb 3",
+   "subject_type": "thing",
+   "tags": [
+    "eb 3"
+   ],
+   "first_seen": "2026-06-23T10:29:22Z",
+   "article_id": "b9654815-b50a-46c8-9ded-3184d4e6da7a",
+   "priority": 2
+  },
+  {
+   "subject": "india backlog",
+   "subject_type": "thing",
+   "tags": [
+    "india backlog"
+   ],
+   "first_seen": "2026-06-23T10:29:22Z",
+   "article_id": "b9654815-b50a-46c8-9ded-3184d4e6da7a",
+   "priority": 2
+  },
+  {
+   "subject": "quantum computing",
+   "subject_type": "thing",
+   "tags": [
+    "quantum computing"
+   ],
+   "first_seen": "2026-06-23T10:29:22Z",
+   "article_id": "da63c5ad-4b01-4be9-81e2-3f042d1c9626",
+   "priority": 2
+  },
+  {
+   "subject": "trump",
+   "subject_type": "thing",
+   "tags": [
+    "trump"
+   ],
+   "first_seen": "2026-06-23T10:29:22Z",
+   "article_id": "da63c5ad-4b01-4be9-81e2-3f042d1c9626",
+   "priority": 2
+  },
+  {
+   "subject": "post quantum cryptography",
+   "subject_type": "thing",
+   "tags": [
+    "post quantum cryptography"
+   ],
+   "first_seen": "2026-06-23T10:29:22Z",
+   "article_id": "da63c5ad-4b01-4be9-81e2-3f042d1c9626",
+   "priority": 2
+  },
+  {
+   "subject": "stem",
+   "subject_type": "thing",
+   "tags": [
+    "stem"
+   ],
+   "first_seen": "2026-06-23T10:29:22Z",
+   "article_id": "da63c5ad-4b01-4be9-81e2-3f042d1c9626",
+   "priority": 2
+  },
+  {
+   "subject": "pravasi rishta",
+   "subject_type": "thing",
+   "tags": [
+    "pravasi rishta"
+   ],
+   "first_seen": "2026-06-23T10:29:22Z",
+   "article_id": "aa7c0312-efca-4db8-9bf7-9ef3eabccf71",
+   "priority": 2
+  },
+  {
+   "subject": "mea",
+   "subject_type": "thing",
+   "tags": [
+    "mea"
+   ],
+   "first_seen": "2026-06-23T10:29:22Z",
+   "article_id": "aa7c0312-efca-4db8-9bf7-9ef3eabccf71",
+   "priority": 2
+  },
+  {
+   "subject": "consular",
+   "subject_type": "thing",
+   "tags": [
+    "consular"
+   ],
+   "first_seen": "2026-06-23T10:29:22Z",
+   "article_id": "aa7c0312-efca-4db8-9bf7-9ef3eabccf71",
+   "priority": 2
+  },
+  {
+   "subject": "indiaspora",
+   "subject_type": "thing",
+   "tags": [
+    "indiaspora"
+   ],
+   "first_seen": "2026-06-23T10:29:22Z",
+   "article_id": "77daa187-59c1-4101-9301-7c29a7aab24f",
+   "priority": 2
+  },
+  {
+   "subject": "fortune 500",
+   "subject_type": "thing",
+   "tags": [
+    "fortune 500"
+   ],
+   "first_seen": "2026-06-23T10:29:22Z",
+   "article_id": "77daa187-59c1-4101-9301-7c29a7aab24f",
+   "priority": 2
+  },
+  {
+   "subject": "air new zealand",
+   "subject_type": "thing",
+   "tags": [
+    "air new zealand"
+   ],
+   "first_seen": "2026-06-23T10:29:22Z",
+   "article_id": "51903924-0ac4-4280-9c55-fb3be50dbd44",
+   "priority": 2
+  },
+  {
+   "subject": "new zealand",
+   "subject_type": "thing",
+   "tags": [
+    "new zealand"
+   ],
+   "first_seen": "2026-06-23T10:29:22Z",
+   "article_id": "51903924-0ac4-4280-9c55-fb3be50dbd44",
+   "priority": 2
+  },
+  {
+   "subject": "permits",
+   "subject_type": "thing",
+   "tags": [
+    "permits"
+   ],
+   "first_seen": "2026-06-23T10:29:22Z",
+   "article_id": "b94a4ac6-7291-431c-bc5d-242be9b745b1",
+   "priority": 2
+  },
+  {
+   "subject": "air canada",
+   "subject_type": "thing",
+   "tags": [
+    "air canada"
+   ],
+   "first_seen": "2026-06-23T10:29:22Z",
+   "article_id": "5a00798c-3b34-4792-94c7-0990f85468c2",
+   "priority": 2
+  },
+  {
+   "subject": "Mumbai Indians",
+   "subject_type": "thing",
+   "tags": [
+    "mumbai indians"
+   ],
+   "first_seen": "2026-06-23T10:29:22Z",
+   "article_id": "385053f5-7727-4c91-9754-f868a95d3829",
+   "priority": 2
+  },
+  {
+   "subject": "eb2",
+   "subject_type": "thing",
+   "tags": [
+    "eb2"
+   ],
+   "first_seen": "2026-06-23T10:29:22Z",
+   "article_id": "a88f63cc-1e23-42c6-88a5-2d2ae13eea74",
+   "priority": 2
+  },
+  {
+   "subject": "eb3",
+   "subject_type": "thing",
+   "tags": [
+    "eb3"
+   ],
+   "first_seen": "2026-06-23T10:29:22Z",
+   "article_id": "a88f63cc-1e23-42c6-88a5-2d2ae13eea74",
+   "priority": 2
+  },
+  {
+   "subject": "visa fraud",
+   "subject_type": "thing",
+   "tags": [
+    "visa fraud"
+   ],
+   "first_seen": "2026-06-23T10:29:22Z",
+   "article_id": "724bfdae-0721-4e43-8ed4-1b15021edbcc",
+   "priority": 2
+  },
+  {
+   "subject": "fake degrees",
+   "subject_type": "thing",
+   "tags": [
+    "fake degrees"
+   ],
+   "first_seen": "2026-06-23T10:29:22Z",
+   "article_id": "724bfdae-0721-4e43-8ed4-1b15021edbcc",
+   "priority": 2
+  },
+  {
+   "subject": "congress",
+   "subject_type": "thing",
+   "tags": [
+    "congress"
+   ],
+   "first_seen": "2026-06-23T10:29:22Z",
+   "article_id": "724bfdae-0721-4e43-8ed4-1b15021edbcc",
+   "priority": 2
+  },
+  {
+   "subject": "ibm",
+   "subject_type": "thing",
+   "tags": [
+    "ibm"
+   ],
+   "first_seen": "2026-06-23T10:29:22Z",
+   "article_id": "c91bad88-3db2-4461-a6c1-879b51bffa47",
+   "priority": 2
+  },
+  {
+   "subject": "zoho",
+   "subject_type": "thing",
+   "tags": [
+    "zoho"
+   ],
+   "first_seen": "2026-06-23T10:29:22Z",
+   "article_id": "3ebc725a-c015-4bbc-8910-2f8319da6e5e",
+   "priority": 2
+  },
+  {
+   "subject": "sridhar vembu",
+   "subject_type": "thing",
+   "tags": [
+    "sridhar vembu"
+   ],
+   "first_seen": "2026-06-23T10:29:22Z",
+   "article_id": "3ebc725a-c015-4bbc-8910-2f8319da6e5e",
+   "priority": 2
+  },
+  {
+   "subject": "saas",
+   "subject_type": "thing",
+   "tags": [
+    "saas"
+   ],
+   "first_seen": "2026-06-23T10:29:22Z",
+   "article_id": "3ebc725a-c015-4bbc-8910-2f8319da6e5e",
+   "priority": 2
+  },
+  {
+   "subject": "ai bubble",
+   "subject_type": "thing",
+   "tags": [
+    "ai bubble"
+   ],
+   "first_seen": "2026-06-23T10:29:22Z",
+   "article_id": "3ebc725a-c015-4bbc-8910-2f8319da6e5e",
+   "priority": 2
+  },
+  {
+   "subject": "atmanirbhar",
+   "subject_type": "thing",
+   "tags": [
+    "atmanirbhar"
+   ],
+   "first_seen": "2026-06-23T10:29:22Z",
+   "article_id": "3ebc725a-c015-4bbc-8910-2f8319da6e5e",
+   "priority": 2
   }
  ],
- "_updated": "2026-06-22T10:29:23Z"
+ "_updated": "2026-06-23T10:29:22Z"
 }
