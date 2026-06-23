@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-23T04:45:38.990344+00:00",
+  "timestamp": "2026-06-23T05:15:20.314514+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
+    "pass": 2,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,59 +11,26 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "95ea77c4-bf6b-4c98-95a4-6312d7733794",
-      "headline": "India Re-Ran Its Biggest Medical Exam to Restore Trust. Police Arrested 30 People for Rigging It Anyway.",
-      "slug": "neet-ug-2026-re-exam-solver-gang-busted-bihar-30-arrested-mbbs-proxies-biometric-staff-20260623",
+      "id": "f445feba-8eb5-4249-b3a7-b937f3ae7e47",
+      "headline": "Janhvi Kapoor Just Made Eyewear a Flex. POP MART's First India Drop Lands on Her Face \u2014 and the Diaspora's Wishlist.",
+      "slug": "janhvi-kapoor-lenskart-pop-mart-india-debut-labubu-sweet-bean-i-want-a-hug-eyewear-collection-peyush-bansal-blind-box-charms-where-to-watch-diaspora-nri-20260623",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "People outside an examination center",
-          "reason": "The photo shows a scene related to an examination center, which fits the story about the NEET-UG exam."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the NEET exam's integrity issues to the concerns of the Indian diaspora, highlighting the impact on families considering medical education in India."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from affected students or parents to provide a personal touch.",
-          "Include more details on the implications of the arrests for future NEET exams."
+        "duplicate_images": [
+          {
+            "article_id": "960ee946-b1ad-4735-8542-a46652a3393f",
+            "headline": "Janhvi Kapoor's Nightsuit Just Said the Quiet Part Out Loud."
+          },
+          {
+            "article_id": "f16ea512-ebf9-4dfd-96af-5a1fa2fc0e68",
+            "headline": "Tiger, Janhvi and Lakshya Walk Into a Love Triangle Built on"
+          }
         ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "12cc7637-058a-4dc3-b820-3b1c6cf9b781",
-      "headline": "SpaceX Just Had the Second-Biggest One-Day Wipeout in US Market History. A Lot of Indian Portfolios Felt It.",
-      "slug": "spacex-worst-day-since-ipo-sheds-400-billion-falls-below-debut-close-musk-nasdaq-india-20260623",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "SpaceX rocket on launch pad",
-          "reason": "The photo of a SpaceX rocket is relevant to the story about SpaceX's market impact."
+          "what_photo_shows": "A woman at an event",
+          "reason": "The photo plausibly shows Janhvi Kapoor, matching the story topic."
         },
         "inline_image_mismatches": []
       },
@@ -77,13 +44,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the impact of SpaceX's stock performance to Indian portfolios and the diaspora's investment strategies."
+          "note": "The article effectively connects the product launch to the diaspora's familiarity with POP MART and its global presence."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from financial experts or analysts to enhance credibility.",
-          "Include more data or examples of how Indian portfolios specifically have been affected to strengthen the diaspora angle."
+          "Consider adding more direct quotes from Janhvi Kapoor or Lenskart representatives to enhance the article's depth.",
+          "Include a brief section on the potential impact of this collaboration on the Indian eyewear market."
         ],
         "verdict": "pass"
       },
@@ -95,17 +62,22 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "385053f5-7727-4c91-9754-f868a95d3829",
-      "headline": "MI New York Found Their Feet in Texas, and an Edison-Raised Captain Led the Way Home",
-      "slug": "mi-new-york-beat-texas-super-kings-8-wickets-mlc-2026-monank-patel-46-pooran-68-bosch-4-29-grand-prairie-diaspora-nri",
+      "id": "6ef4c9cb-d380-4ccb-95d7-ce65a7f23585",
+      "headline": "A Golden Lotus, a Stolen Temple, and No Star to Sell It. 'Nagabandham' Is Betting Everything on Spectacle.",
+      "slug": "nagabandham-hindi-trailer-abhishek-nama-virat-karrna-nabha-natesh-brahma-kamalam-naga-sadhus-july-3-2026-pan-india-mythological-epic-where-to-watch-diaspora-nri-20260623",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "63a8efdb-25f8-430d-849a-1dbc75fb91e2",
+            "headline": "5,000 Dancers, a God Who Answers, and No Big Star to Hide Be"
+          }
+        ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Trent Boult in cricket attire",
-          "reason": "The photo shows Trent Boult, who is mentioned in the story."
+          "what_photo_shows": "A woman identified as Nabha Natesh",
+          "reason": "The photo shows Nabha Natesh, who is relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -113,19 +85,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image of Nabha Natesh is relevant to the article, but it could be more directly related to the film's themes or visuals."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively highlights the connection between Monank Patel's journey and the pride of the Indian-American community."
+          "note": "The article effectively connects the film's release to the diaspora audience by mentioning its availability in multiple languages and theatrical runs in key regions."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from fans or community members to enhance the diaspora connection.",
-          "Include more statistics or historical context about MI New York's performance in the league for added depth."
+          "Consider including more direct quotes or insights from the diaspora audience or critics to enhance the connection.",
+          "Add a brief section discussing the significance of the film's themes to the Indian diaspora."
         ],
         "verdict": "pass"
       },
