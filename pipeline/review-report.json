@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-23T12:45:25.860641+00:00",
+  "timestamp": "2026-06-23T13:15:14.038824+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
-    "flag": 2,
+    "pass": 1,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "5cb3940d-59e5-404f-ade6-3bf5543b63e1",
-      "headline": "The Pantry Invasion: How Indian Pickles and Masala Crisp Conquered the American Shelf",
-      "slug": "the-pantry-invasion-how-indian-pickles-and-masala-crisp-conquered-the-american-s",
+      "id": "c8d7b38f-b7c3-471f-a205-3d7cb9b24a4e",
+      "headline": "They Named Their Debut After Bollywood's Most Sacred Friendship Anthem. 'Tera Yaar Hoon Main' Just Dropped Its Title Track \u2014 and the Nostalgia Is Lethal.",
+      "slug": "tera-yaar-hoon-main-title-track-teaser-aman-indra-kumar-akanksha-sharma-milap-zaveri-sachet-tandon-paresh-rawal-july-31-2026-where-to-watch-diaspora-nri-20260623",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -25,173 +25,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article directly addresses the NRI experience with pickles and the 'complicated joy' of seeing them go mainstream, offering a nuanced perspective."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a specific example of a diaspora-founded brand that has successfully navigated the balance between authenticity and mainstream appeal.",
-          "The article ends abruptly. Ensure the 'What's Next' section is fully developed and concludes the piece effectively."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "c81b6484-3832-4c97-bb1a-aec3c7093d41",
-      "headline": "Curry at Scale: Can Indian Food Crack America's Fast-Casual Code?",
-      "slug": "curry-at-scale-can-indian-food-crack-americas-fast-casual-code",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": null,
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 6,
+          "issue": "The image is of Paresh Rawal, who is mentioned in the article as a supporting actor, but the headline and main topic are about the new film's title track and its lead actors. It's not the most representative hero image."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The 'Diaspora Impact' section directly addresses NRI readers, discussing authenticity and normalization of Indian food."
+          "note": "The article explicitly connects the theme of friendship and distance to the diaspora audience, noting it's a 'tailor-made tug at the heart' and 'pure nostalgia-as-comfort-food' for NRIs."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a quote from an Indian-American consumer or food critic to strengthen the 'Diaspora Impact' section.",
-          "The article ends abruptly. Ensure the 'What's Next' section is fully developed before publication."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "3e820ce7-d7fe-4814-beab-dac912215036",
-      "headline": "Record Nominations, Zero Wins: India's Empty Night at the Beard Awards",
-      "slug": "record-nominations-zero-wins-indias-empty-night-at-the-beard-awards",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": null,
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 8,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article directly addresses the impact on Indian-Americans and the community's struggle for recognition in the culinary world, making it highly relevant for NRI readers."
-        },
-        "factual_flags": [
-          "The article mentions 'March 31, when the James Beard Foundation read out its 2026 finalists' and 'June 15, at the Lyric Opera of Chicago, the medals were handed out'. This implies the event is in the future (2026), but the tone and context suggest it's a past event being reported. This is an internal contradiction regarding the year."
-        ],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Correct the year '2026' to the actual year the awards took place throughout the article to avoid confusion.",
-          "Expand on the 'What's Next' section with more concrete examples or quotes from the chefs about their future plans, as it currently ends abruptly."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "3c3ea600-df13-4c55-bc1e-e298c6f2b605",
-      "headline": "America Will Now Sell You a Faster Visa Interview for $750. India's Families Are the Obvious Market.",
-      "slug": "us-750-dollar-expedited-b1-b2-visa-interview-pilot-july-2026-diaspora-family-visit-20260623",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": null,
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article explicitly connects the visa changes to the needs and concerns of the Indian diaspora, making it highly relevant."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a small section on potential advocacy efforts by diaspora organizations regarding the inclusion of Indian consulates in the pilot program.",
-          "If possible, include a quote from an NRI expressing their perspective on the new fee and its implications for their families."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "577ead34-d3a2-4efd-9275-a1ecc726f62e",
-      "headline": "Two of the Main Roads to a US Green Card Just Closed for Indians \u2014 Until October at the Earliest",
-      "slug": "july-2026-visa-bulletin-india-eb2-eb5-unavailable-eb1-retrogress-green-card-diaspora-20260623",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": null,
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "Directly addresses the impact on the Indian diaspora in America, particularly those in the green card backlog."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a small 'What to do now?' section with advice for affected individuals, even if general.",
-          "Perhaps include a link to the official Visa Bulletin for readers who want to verify the information directly."
+          "Consider a hero image that features the new lead actors or a promotional still from the film's title track teaser to better align with the headline's focus.",
+          "While the article mentions the film's release date, it could briefly touch upon potential international distribution plans or platforms relevant to the diaspora audience, if known."
         ],
         "verdict": "pass"
       },
