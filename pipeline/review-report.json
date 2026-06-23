@@ -1,19 +1,19 @@
 {
-  "timestamp": "2026-06-23T22:15:40.617490+00:00",
+  "timestamp": "2026-06-23T22:45:31.005636+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 6,
-    "flag": 0,
+    "pass": 3,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
-  "revisions": 0,
+  "revisions": 1,
   "unpublished": 0,
   "articles": [
     {
-      "id": "bfe9aeae-3c30-4329-9642-0a9995c07dd8",
-      "headline": "India Just Opened Nine New Airports to e-Visa Arrivals \u2014 and Added 11 Countries to the List",
-      "slug": "india-evisa-new-ports-arrival-countries-calicut-coimbatore-nri-20260623",
+      "id": "807d4692-fc9b-45f0-83d3-29bb62ef11b0",
+      "headline": "Rishabh Pant Is Going Home to Delhi \u2014 and He Took a 12-Crore Pay Cut to Get There",
+      "slug": "ipl-2027-rishabh-pant-kuldeep-yadav-trade-confirmed-delhi-capitals-lucknow-super-giants-15-crore-pay-cut-homecoming-diaspora-nri",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,28 +21,28 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "An open passport with travel stamps",
-          "reason": "The photo of a passport with travel stamps is directly relevant to a story about e-Visas and immigration."
+          "what_photo_shows": "Rishabh Pant in a cricket jersey",
+          "reason": "The photo clearly shows Rishabh Pant, who is the subject of the story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 8,
+        "overall_score": 7,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image shows a person looking at a map, which generally relates to travel, but it's not specific to airports, visas, or India. It's a bit generic for the headline's specificity."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article explicitly connects the e-Visa changes to NRIs, their foreign family members, and the convenience of direct travel to ancestral regions. The 'Why this matters to NRIs' section is well-articulated."
+          "quality": 8,
+          "note": "The 'Why the Diaspora Will Be Watching' section directly addresses the NRI audience and connects the news to their viewing habits and sentiment."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a link to the official Indian e-Visa portal or Ministry of Home Affairs announcement for readers to verify details.",
-          "If possible, include a small map graphic highlighting the new airport locations for better visualization."
+          "Consider adding a small quote from Pant or a Delhi Capitals/Lucknow Super Giants official, even if it's a generic statement, to add more voice to the piece.",
+          "While the article mentions the IPL confirmed the trade, a link to the official announcement or a relevant news source would strengthen credibility."
         ],
         "verdict": "pass"
       },
@@ -54,9 +54,9 @@
       "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "12961eac-766b-4ef6-8684-e5706b395315",
-      "headline": "The US Will Now Sell You a Visa Interview Within 10 Days \u2014 for $750 on Top of the Fee",
-      "slug": "us-expedited-visa-interview-750-fee-pilot-b1b2-india-nri-20260623",
+      "id": "85951e2f-0571-4b6d-991a-f9de1159b028",
+      "headline": "India's Market Rally Just Hit a Wall. The Warning Sign Wasn't Oil \u2014 It Was the Monsoon.",
+      "slug": "sensex-falls-893-points-nifty-pmi-three-month-low-monsoon-it-metals-drag-20260623",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,8 +64,51 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A US Embassy sign on a city street.",
-          "reason": "The photo of a US Embassy sign is directly relevant to a story about US visa interviews."
+          "what_photo_shows": "The Bombay Stock Exchange building with a digital ticker.",
+          "reason": "The photo clearly shows the Bombay Stock Exchange, which is directly relevant to a story about India's stock market and the Sensex."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 6,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The 'Why the Diaspora Should Care' section directly addresses NRIs, making the connection explicit and relevant for those with investments in India."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Expand on the specific NRI investment routes and how the market changes impact them, perhaps with a brief example.",
+          "Consider adding a quote from an NRI investor or financial advisor to strengthen the diaspora angle."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Revised by gemini-2.5-flash (884\u2192956 words)"
+      ],
+      "revised": true,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "bdc1c1a6-3f59-49f1-8fe0-0234fd0389ae",
+      "headline": "A US Court Just Cleared the Way to Deport People From Anywhere in America \u2014 Without a Judge",
+      "slug": "dc-circuit-revives-nationwide-expedited-removal-trump-deportation-indians-overstay-20260623",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "ICE agents detaining a person next to a car",
+          "reason": "The photo depicts immigration enforcement, which directly relates to the story about fast-track deportations."
         },
         "inline_image_mismatches": []
       },
@@ -73,19 +116,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 8,
+          "score": 9,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "Strong and natural connection to NRI/diaspora readers, addressing specific pain points like family visits and the financial implications."
+          "note": "The article explicitly connects the ruling to the Indian community and visa overstays, which is highly relevant to NRIs."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a small 'What to watch for' box with key dates (July 1, Dec 31, 2026) and the expected announcement of participating posts.",
-          "Perhaps a brief mention of how this compares to other countries' visa systems, if relevant and concise, to add broader context."
+          "Consider adding a brief explanation of what an F-1, H-1B, and B-2 visa are for readers who may not be familiar with the acronyms.",
+          "The article ends abruptly. Ensure the full text is provided for a complete review."
         ],
         "verdict": "pass"
       },
@@ -105,11 +148,6 @@
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MISMATCH",
-          "what_photo_shows": "An airport terminal with a US flag and 'U.S. Preclearance' sign.",
-          "reason": "The photo clearly shows a US flag and 'U.S. Preclearance' signage, indicating a US or US-bound airport, not an Indian airport."
-        },
         "inline_image_mismatches": []
       },
       "llm_review": {
@@ -127,139 +165,8 @@
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a small map graphic showing the location of Jewar relative to Delhi and IGI, and perhaps the Yamuna Expressway corridor, to visually reinforce the geographical benefit for NRIs.",
+          "Consider adding a small map graphic showing the location of Jewar relative to Delhi and IGI, and perhaps the Yamuna Expressway corridor, to visually aid understanding for diaspora readers unfamiliar with the geography.",
           "If possible, include a quote from an NRI or a travel expert on the potential impact of the new airport."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "Cleared mismatched image (An airport terminal with a US flag and 'U.S. Preclearance' sign.)",
-        "held: image mismatch"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "image_mismatch": true,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "9bc9f0f1-dec2-4e30-8cf0-20a57cfeacf2",
-      "headline": "India Is Courting the Diaspora\u2019s Dollars to Rescue the Rupee \u2014 and Banks Are Racing to Cash In",
-      "slug": "rbi-fcnr-diaspora-dollar-deposit-scheme-loans-against-fx-deposits-rupee-defence-gift-city-nri-investor-20260623-2200",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "The Reserve Bank of India building in Mumbai.",
-          "reason": "The photo shows the headquarters of the Reserve Bank of India, which is directly relevant to a story about the RBI's financial policies."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article directly addresses NRIs, their financial interests, and their potential impact on the Indian economy, making the diaspora angle central and well-integrated."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a small 'how-to' section or a link to an explainer for NRIs interested in participating in FCNR deposits, as the article is quite technical.",
-          "Perhaps include a quote from an NRI investor or a financial advisor specializing in NRI investments to add a personal touch or expert opinion on the scheme's attractiveness."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "0ec18be0-f6d1-40f0-90a4-832f1e93afe8",
-      "headline": "Four Minutes a Day Was Enough to Make Frail Older Adults Steadier on Their Feet, a Trial Finds",
-      "slug": "four-minute-daily-strength-routine-fast2-older-adults-balance-leg-strength-falls-plos-one-penn-state-diaspora-20260623-2200",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Older adults exercising, performing balance and strength movements.",
-          "reason": "The photo depicts older adults engaged in exercises, which directly aligns with the story about a daily exercise program for older adults."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The diaspora angle is well-integrated and provides a relevant context for NRI readers, addressing common challenges faced by aging parents in diaspora homes."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a link to the actual study or a reputable health organization for further reading on the FAST-2 program, if publicly available.",
-          "Ensure the article concludes with a clear call to action or a summary of the main takeaway, as it currently ends mid-sentence."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "00a549a6-0e57-4ad9-8797-50b2c6b57ccf",
-      "headline": "A Joint-Pain Supplement Millions Take May Quietly Speed Up Alzheimer\u2019s, a New Study Warns",
-      "slug": "glucosamine-supplement-hyperglycosylation-alzheimers-faster-decline-mortality-nature-metabolism-diaspora-20260623-2200",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "a pile of amber-colored dietary supplement capsules",
-          "reason": "The photo clearly shows dietary supplement capsules, which are directly relevant to a story about a joint-pain supplement."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The 'Why It Matters for Diaspora Families' section is well-integrated and relevant, highlighting specific cultural practices around supplement use."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a call to action for readers to consult their doctors before making changes to their supplement regimen.",
-          "Perhaps include a brief mention of the prevalence of Alzheimer's in the South Asian diaspora, if data is readily available, to further strengthen the 'Why It Matters' section."
         ],
         "verdict": "pass"
       },
