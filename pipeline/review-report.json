@@ -1,19 +1,133 @@
 {
-  "timestamp": "2026-06-23T13:45:26.064073+00:00",
+  "timestamp": "2026-06-23T15:45:41.353543+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 1,
+    "pass": 4,
+    "flag": 2,
     "fail": 0,
     "error": 0
   },
-  "revisions": 0,
+  "revisions": 1,
   "unpublished": 0,
   "articles": [
     {
-      "id": "9ea81ed9-6850-4dd8-9720-46fb86f8ac3e",
-      "headline": "India Lose Another All-Rounder Before England \u2014 and Hand a Mumbai Newcomer His First Cap",
-      "slug": "nitish-kumar-reddy-ruled-out-india-t20i-ireland-england-quadriceps-injury-suryansh-shedge-maiden-call-up-shreyas-iyer-belfast-diaspora-nri",
+      "id": "04765cf2-3d01-45c6-81e5-ca614bfd8a26",
+      "headline": "Skip the Summer Crush: The Monsoon Is India's Best-Value Season \u2014 If You Know Where the Rain Is a Feature",
+      "slug": "monsoon-travel-india-2026-best-value-destinations-nri-guide-20260623",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": null,
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article consistently frames advice and observations through the lens of NRI travelers, addressing their specific constraints (school calendar, family visits) and interests (wellness for parents, novelty for kids)."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a small section on monsoon-specific health precautions (e.g., waterborne diseases, mosquito control) relevant for diaspora travelers.",
+          "Perhaps include a brief mention of specific airlines or routes that tend to be more reliable during monsoon, if such data is available, to further aid flight planning."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "50d9024b-64c5-4f64-a16f-89dfa653f225",
+      "headline": "The Cheapest Flights Home to India in 2026 Aren't in Summer \u2014 They're in September",
+      "slug": "cheapest-flights-india-september-2026-shoulder-season-fares-nri-20260623",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": null,
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article explicitly targets NRI/diaspora readers, offering specific advice relevant to their travel patterns and needs."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a small section on visa considerations for NRIs who might have OCI cards or other specific visa statuses, as this can sometimes impact travel planning.",
+          "Perhaps include a brief mention of travel insurance, especially for those self-transferring domestic flights in India."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "97f387e5-7d02-4ac9-a266-2c2ce4d51906",
+      "headline": "Bali Just Started Enforcing Its Rupiah-Only Rule \u2014 and the NRI Dollar No Longer Works at the Villa Door",
+      "slug": "bali-rupiah-only-enforcement-foreign-currency-nri-dollar-villa-20260623",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": null,
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively highlights how the new rule specifically impacts NRI travelers due to their currency habits and booking methods."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a small 'What to do' or 'Quick Tips' box for easy reader reference on how to prepare for the new rules.",
+          "Perhaps include a sentence or two on the broader economic reasons behind Indonesia's stricter enforcement, if relevant and concise."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "86f5ed79-69ac-489a-a478-fe449ce4ab98",
+      "headline": "India Just Bought More Russian Oil Than Ever \u2014 Right as Washington's Sanctions Waiver Expires",
+      "slug": "india-record-russian-crude-imports-june-2026-us-sanctions-waiver-expires-hormuz-rupee-nri-investor-20260623-1400",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -30,67 +144,20 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The 'Why the Diaspora Is Watching This One' section explicitly connects the tour to NRI/diaspora readers in Britain and Ireland, explaining the accessibility and significance."
+          "quality": 7,
+          "note": "The article explicitly includes a 'Why It Matters for the Diaspora' section, which is good. However, the section is cut off mid-sentence, making it incomplete and less impactful."
         },
         "factual_flags": [
-          "IPL 2025 and IPL 2026 are mentioned, which implies future dates for current events. This should be corrected to the current or past year (e.g., IPL 2024)."
+          "The article mentions a 'four-month war centred on Iran' which 'throttled energy flows through the Strait of Hormuz'. This is a significant claim that lacks specific details or a clear reference to a known conflict of that scale and duration impacting Hormuz in the specified timeframe (before June). While tensions exist, a 'four-month war' causing such a severe throttling of flows needs more substantiation."
         ],
         "duplicate_embeds": [],
         "suggestions": [
-          "Correct the IPL year references (2025, 2026) to reflect current or past seasons.",
-          "Consider adding a quote from Suryansh Shedge or Shreyas Iyer about the call-up or the team's prospects to enhance reader engagement."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "ba7f2445-131b-4214-9908-4244e707a20f",
-      "headline": "Three Generations of the Pataudi Women Took London \u2014 and Sara Ali Khan Made the Whole Internet Misty",
-      "slug": "sara-ali-khan-london-getaway-sharmila-tagore-amrita-singh-moments-forever-pataudi-women-udta-teer-ayushmann-khurrana-where-to-watch-diaspora-nri-20260623",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": null,
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/p/DZ7C6trCCCn/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram URL provided is for a post from January 2017, featuring a different celebrity (Disha Patani) and not Sara Ali Khan's London family photos as described in the article. This is a broken embed in terms of content."
-          }
-        ],
-        "image_match": {
-          "score": 7,
-          "issue": "The image shows Sara Ali Khan promoting a film, not in a casual London setting with her family, which is the core subject of the article. While it's Sara Ali Khan, it doesn't match the specific context of the headline and body."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article explicitly connects the Pataudi women's London trip to the NRI experience, particularly for those in London, and mentions how Sara's travelogue resonates with 'desis abroad'. It also highlights where diaspora viewers can find her films."
-        },
-        "factual_flags": [
-          "The article states Sara Ali Khan's Instagram caption was 'London for a minute,' then 'Moments forever.' Two lines. However, the provided Instagram embed URL is incorrect and does not show this post, making it impossible to verify the caption or the images described. This is a critical factual discrepancy."
-        ],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Correct the Instagram embed URL to the actual post featuring Sara Ali Khan, Amrita Singh, and Sharmila Tagore in London. This is crucial for the article's credibility.",
-          "Update the hero image to one that better reflects the 'three generations of Pataudi women took London' theme, ideally a candid shot or a relevant promotional image if the exact candid one isn't available."
+          "Complete the 'Why It Matters for the Diaspora' section, as it currently ends mid-sentence. Expand on the specific ways oil prices affect NRIs beyond just 'eroding the value' (e.g., remittances, investment, travel costs).",
+          "Clarify or provide a source for the 'four-month war centred on Iran' claim, as it's a major assertion that could be misinterpreted or factually inaccurate without further context."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DZ7C6trCCCn/",
         "promoted to published"
       ],
       "revised": false,
@@ -98,9 +165,9 @@
       "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "c804fcd3-b4e6-4a6a-8516-2e0f516f64c4",
-      "headline": "Tamannaah Bhatia Names the 'Gaze' Nobody in South Cinema Says Out Loud \u2014 and Refuses to Call Her Dance Numbers 'Item Songs'",
-      "slug": "tamannaah-bhatia-patriarchal-gaze-south-cinema-item-song-party-song-forbes-india-peddi-janhvi-kapoor-stree-2-where-to-watch-diaspora-nri-20260623",
+      "id": "38573c3d-462d-47b9-a791-0bc144c84312",
+      "headline": "A Common Vitamin in Citrus and Greens Is Linked to a Better-Preserved Brain in Older Age",
+      "slug": "vitamin-c-blood-levels-brain-structure-grey-matter-default-mode-network-hirosaki-plos-one-2044-adults-diaspora-20260623-1400",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -118,13 +185,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article explicitly connects the 'party numbers' phenomenon to diaspora weddings ('every wedding from Hyderabad to Houston') and mentions streaming platforms relevant to NRIs."
+          "note": "The diaspora angle is well-integrated and provides specific, relevant examples of Indian foods rich in Vitamin C, connecting it directly to the readers' cultural context."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a direct quote or a short anecdote from an NRI perspective to further strengthen the diaspora angle, perhaps about the cultural significance of these dance numbers at diaspora events.",
-          "Ensure all mentioned film titles and actor names are consistently bolded or unbolded throughout the article for stylistic uniformity."
+          "Consider adding a sentence or two about how cooking methods in Indian cuisine might affect vitamin C content, given the 'catch is how the food is trea' sentence fragment at the end.",
+          "Ensure the article concludes with a strong summary statement or call to action, as the current ending is abrupt."
         ],
         "verdict": "pass"
       },
@@ -132,6 +199,44 @@
         "promoted to published"
       ],
       "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "bdebfdbd-3f53-4647-9aec-71e2fe560721",
+      "headline": "A Weight-Loss Drug That Was Feared to Weaken Bones May Actually Help Protect Them",
+      "slug": "semaglutide-ozempic-lower-bone-fracture-risk-type-2-diabetes-endo-2026-stanford-59000-adults-diaspora-20260623-1400",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": null,
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 6,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 5,
+          "note": "The diaspora angle is present but feels somewhat tacked on at the very end and is incomplete. It needs more development to be truly impactful."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Expand the 'Why It Matters for the Diaspora' section significantly. It currently ends abruptly and doesn't fully explore the implications for NRIs.",
+          "Consider adding a relevant social media embed (e.g., a tweet from an Indian health expert or organization discussing diabetes/bone health) if appropriate and available."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Revised by gemini-2.5-flash (834\u2192906 words)"
+      ],
+      "revised": true,
       "unpublished": false,
       "llm_source": "gemini-2.5-flash"
     }
