@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-23T04:15:22.126638+00:00",
+  "timestamp": "2026-06-23T04:45:38.990344+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 3,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,17 +11,17 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "724bfdae-0721-4e43-8ed4-1b15021edbcc",
-      "headline": "A Fake-Degree Bust in India Just Became Washington's Newest H-1B Weapon",
-      "slug": "india-fake-degree-racket-h1b-scrutiny-schmitt-credential-fraud-20260623",
+      "id": "95ea77c4-bf6b-4c98-95a4-6312d7733794",
+      "headline": "India Re-Ran Its Biggest Medical Exam to Restore Trust. Police Arrested 30 People for Rigging It Anyway.",
+      "slug": "neet-ug-2026-re-exam-solver-gang-busted-bihar-30-arrested-mbbs-proxies-biometric-staff-20260623",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "stack of framed diplomas",
-          "reason": "The photo illustrates academic credentials relevant to the fake-degree story."
+          "what_photo_shows": "People outside an examination center",
+          "reason": "The photo shows a scene related to an examination center, which fits the story about the NEET-UG exam."
         },
         "inline_image_mismatches": []
       },
@@ -29,21 +29,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 5,
-          "issue": "The image does not directly relate to the topic of fake degrees or immigration."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article discusses the implications of the fake degree scandal on Indian H-1B visa holders, making it relevant to the diaspora."
+          "quality": 9,
+          "note": "The article effectively connects the NEET exam's integrity issues to the concerns of the Indian diaspora, highlighting the impact on families considering medical education in India."
         },
-        "factual_flags": [
-          "The claim that 80-90% of H-1B visas issued to Indians are tainted by fraud is contested and unsupported by USCIS data."
-        ],
+        "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that directly relates to the topic of education or immigration to enhance relevance.",
-          "Clarify the contested claims regarding fraud rates in H-1B visas to avoid potential misinformation."
+          "Consider adding quotes from affected students or parents to provide a personal touch.",
+          "Include more details on the implications of the arrests for future NEET exams."
         ],
         "verdict": "pass"
       },
@@ -55,48 +53,83 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "a88f63cc-1e23-42c6-88a5-2d2ae13eea74",
-      "headline": "For Indians, the July Visa Bulletin Has a New Worst-Case Word: 'Unavailable'",
-      "slug": "july-2026-visa-bulletin-eb2-india-unavailable-eb1-retrogression-20260623",
+      "id": "12cc7637-058a-4dc3-b820-3b1c6cf9b781",
+      "headline": "SpaceX Just Had the Second-Biggest One-Day Wipeout in US Market History. A Lot of Indian Portfolios Felt It.",
+      "slug": "spacex-worst-day-since-ipo-sheds-400-billion-falls-below-debut-close-musk-nasdaq-india-20260623",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "open passport with visa stamps",
-          "reason": "The photo subject is relevant to the immigration and visa topic."
+          "what_photo_shows": "SpaceX rocket on launch pad",
+          "reason": "The photo of a SpaceX rocket is relevant to the story about SpaceX's market impact."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://x.com/USCIS",
-            "problem": "irrelevant",
-            "explanation": "The USCIS link does not provide additional context or relevance to the article's main topic about the July Visa Bulletin."
-          }
-        ],
+        "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the topic of immigration or visas."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively addresses the concerns of the Indian diaspora regarding visa backlogs and the implications of the July Visa Bulletin."
+          "quality": 8,
+          "note": "The article effectively connects the impact of SpaceX's stock performance to Indian portfolios and the diaspora's investment strategies."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the hero image with one that visually represents immigration or the visa process.",
-          "Provide more context or links to resources that can help readers understand the implications of the 'Unavailable' status."
+          "Consider adding quotes from financial experts or analysts to enhance credibility.",
+          "Include more data or examples of how Indian portfolios specifically have been affected to strengthen the diaspora angle."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://x.com/USCIS",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "385053f5-7727-4c91-9754-f868a95d3829",
+      "headline": "MI New York Found Their Feet in Texas, and an Edison-Raised Captain Led the Way Home",
+      "slug": "mi-new-york-beat-texas-super-kings-8-wickets-mlc-2026-monank-patel-46-pooran-68-bosch-4-29-grand-prairie-diaspora-nri",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Trent Boult in cricket attire",
+          "reason": "The photo shows Trent Boult, who is mentioned in the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively highlights the connection between Monank Patel's journey and the pride of the Indian-American community."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from fans or community members to enhance the diaspora connection.",
+          "Include more statistics or historical context about MI New York's performance in the league for added depth."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
         "promoted to published"
       ],
       "revised": false,
