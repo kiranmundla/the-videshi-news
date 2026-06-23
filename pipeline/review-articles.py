@@ -187,10 +187,58 @@ def _download_image_b64(url):
         time.sleep(2 * (attempt + 1))
     return None, last
 
+def _gemini_vision_judge(prompt, b64, mime):
+    """Vision fallback for vision_image_match() when OpenAI is unavailable.
+    Gemini 2.5 Flash accepts inline image data. Returns parsed dict or None."""
+    if not GEMINI_KEY:
+        return None
+    payload = {
+        "contents": [{"parts": [
+            {"text": prompt},
+            {"inline_data": {"mime_type": mime, "data": b64}},
+        ]}],
+        "generationConfig": {
+            "temperature": 0,
+            "maxOutputTokens": 200,
+            "responseMimeType": "application/json",
+            "thinkingConfig": {"thinkingBudget": 0},
+        },
+    }
+    model = "gemini-2.5-flash"
+    url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={GEMINI_KEY}"
+    import tempfile
+    for attempt in range(2):
+        try:
+            with tempfile.NamedTemporaryFile("w", suffix=".json", delete=False) as tf:
+                json.dump(payload, tf)
+                tf_path = tf.name
+            try:
+                r = subprocess.run(
+                    ["curl", "-s", url, "-H", "Content-Type: application/json", "-d", f"@{tf_path}"],
+                    capture_output=True, text=True, timeout=90)
+            finally:
+                try:
+                    os.unlink(tf_path)
+                except Exception:
+                    pass
+            data = json.loads(r.stdout)
+            if "error" in data:
+                msg = data["error"].get("message", "")[:80]
+                if any(s in msg.lower() for s in ("rate", "overload", "quota", "try again", "resource")):
+                    time.sleep(2 * (attempt + 1)); continue
+                print(f"  ⚠️  Gemini-vision error: {msg}")
+                return None
+            text = data["candidates"][0]["content"]["parts"][0]["text"]
+            return json.loads(text)
+        except Exception:
+            time.sleep(1.5 * (attempt + 1))
+    return None
+
+
 def vision_image_match(article):
     """Look at the actual hero image and decide if its subject fits the story.
     Returns dict {verdict, what_photo_shows, reason} or None if unavailable/skipped."""
-    if not OPENAI_KEY:
+    if not OPENAI_KEY and not GEMINI_KEY:
         return None
     url = (article.get("image_url") or "").strip()
     if not url:
@@ -221,34 +269,48 @@ def vision_image_match(article):
         "temperature": 0,
         "response_format": {"type": "json_object"},
     }
-    for attempt in range(3):
-        try:
-            import tempfile
-            with tempfile.NamedTemporaryFile("w", suffix=".json", delete=False) as tf:
-                json.dump(payload, tf)
-                tf_path = tf.name
+    openai_failed = not OPENAI_KEY
+    if OPENAI_KEY:
+        for attempt in range(3):
             try:
-                r = subprocess.run(
-                    ["curl", "-s", "https://api.openai.com/v1/chat/completions",
-                     "-H", f"Authorization: Bearer {OPENAI_KEY}",
-                     "-H", "Content-Type: application/json",
-                     "-d", f"@{tf_path}"],
-                    capture_output=True, text=True, timeout=90)
-            finally:
+                import tempfile
+                with tempfile.NamedTemporaryFile("w", suffix=".json", delete=False) as tf:
+                    json.dump(payload, tf)
+                    tf_path = tf.name
                 try:
-                    os.unlink(tf_path)
-                except Exception:
-                    pass
-            data = json.loads(r.stdout)
-            if "error" in data:
-                msg = data["error"].get("message", "")[:80]
-                if any(s in msg.lower() for s in ("rate", "overload", "timeout", "try again")):
-                    time.sleep(2 * (attempt + 1)); continue
-                print(f"  ⚠️  Vision error: {msg}")
-                return None
-            return json.loads(data["choices"][0]["message"]["content"])
-        except Exception:
-            time.sleep(1.5 * (attempt + 1))
+                    r = subprocess.run(
+                        ["curl", "-s", "https://api.openai.com/v1/chat/completions",
+                         "-H", f"Authorization: Bearer {OPENAI_KEY}",
+                         "-H", "Content-Type: application/json",
+                         "-d", f"@{tf_path}"],
+                        capture_output=True, text=True, timeout=90)
+                finally:
+                    try:
+                        os.unlink(tf_path)
+                    except Exception:
+                        pass
+                data = json.loads(r.stdout)
+                if "error" in data:
+                    msg = data["error"].get("message", "")[:80]
+                    if any(s in msg.lower() for s in ("rate", "overload", "timeout", "try again")):
+                        time.sleep(2 * (attempt + 1)); continue
+                    # Quota / billing / other hard error → fall back to Gemini vision.
+                    print(f"  ⚠️  Vision (gpt-4o) error: {msg} — trying Gemini-vision fallback")
+                    openai_failed = True
+                    break
+                return json.loads(data["choices"][0]["message"]["content"])
+            except Exception:
+                time.sleep(1.5 * (attempt + 1))
+        else:
+            openai_failed = True
+    # ── Gemini-vision fallback ──
+    # Without this, the wrong-photo gate is completely offline whenever OpenAI is
+    # depleted (which has been the steady state). Gemini keeps the check alive.
+    if openai_failed:
+        gv = _gemini_vision_judge(prompt, b64, mime)
+        if gv:
+            print(f"  🔁 Vision judged via Gemini fallback")
+            return gv
     return None
 
 def call_gemini(prompt, article_text, model="gemini-2.5-flash", max_tokens=800):
