@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-23T13:15:14.038824+00:00",
+  "timestamp": "2026-06-23T13:45:26.064073+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
-    "flag": 0,
+    "pass": 2,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,96 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "c8d7b38f-b7c3-471f-a205-3d7cb9b24a4e",
-      "headline": "They Named Their Debut After Bollywood's Most Sacred Friendship Anthem. 'Tera Yaar Hoon Main' Just Dropped Its Title Track \u2014 and the Nostalgia Is Lethal.",
-      "slug": "tera-yaar-hoon-main-title-track-teaser-aman-indra-kumar-akanksha-sharma-milap-zaveri-sachet-tandon-paresh-rawal-july-31-2026-where-to-watch-diaspora-nri-20260623",
+      "id": "9ea81ed9-6850-4dd8-9720-46fb86f8ac3e",
+      "headline": "India Lose Another All-Rounder Before England \u2014 and Hand a Mumbai Newcomer His First Cap",
+      "slug": "nitish-kumar-reddy-ruled-out-india-t20i-ireland-england-quadriceps-injury-suryansh-shedge-maiden-call-up-shreyas-iyer-belfast-diaspora-nri",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": null,
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The 'Why the Diaspora Is Watching This One' section explicitly connects the tour to NRI/diaspora readers in Britain and Ireland, explaining the accessibility and significance."
+        },
+        "factual_flags": [
+          "IPL 2025 and IPL 2026 are mentioned, which implies future dates for current events. This should be corrected to the current or past year (e.g., IPL 2024)."
+        ],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Correct the IPL year references (2025, 2026) to reflect current or past seasons.",
+          "Consider adding a quote from Suryansh Shedge or Shreyas Iyer about the call-up or the team's prospects to enhance reader engagement."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "ba7f2445-131b-4214-9908-4244e707a20f",
+      "headline": "Three Generations of the Pataudi Women Took London \u2014 and Sara Ali Khan Made the Whole Internet Misty",
+      "slug": "sara-ali-khan-london-getaway-sharmila-tagore-amrita-singh-moments-forever-pataudi-women-udta-teer-ayushmann-khurrana-where-to-watch-diaspora-nri-20260623",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": null,
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/DZ7C6trCCCn/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram URL provided is for a post from January 2017, featuring a different celebrity (Disha Patani) and not Sara Ali Khan's London family photos as described in the article. This is a broken embed in terms of content."
+          }
+        ],
+        "image_match": {
+          "score": 7,
+          "issue": "The image shows Sara Ali Khan promoting a film, not in a casual London setting with her family, which is the core subject of the article. While it's Sara Ali Khan, it doesn't match the specific context of the headline and body."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article explicitly connects the Pataudi women's London trip to the NRI experience, particularly for those in London, and mentions how Sara's travelogue resonates with 'desis abroad'. It also highlights where diaspora viewers can find her films."
+        },
+        "factual_flags": [
+          "The article states Sara Ali Khan's Instagram caption was 'London for a minute,' then 'Moments forever.' Two lines. However, the provided Instagram embed URL is incorrect and does not show this post, making it impossible to verify the caption or the images described. This is a critical factual discrepancy."
+        ],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Correct the Instagram embed URL to the actual post featuring Sara Ali Khan, Amrita Singh, and Sharmila Tagore in London. This is crucial for the article's credibility.",
+          "Update the hero image to one that better reflects the 'three generations of Pataudi women took London' theme, ideally a candid shot or a relevant promotional image if the exact candid one isn't available."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/DZ7C6trCCCn/",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "c804fcd3-b4e6-4a6a-8516-2e0f516f64c4",
+      "headline": "Tamannaah Bhatia Names the 'Gaze' Nobody in South Cinema Says Out Loud \u2014 and Refuses to Call Her Dance Numbers 'Item Songs'",
+      "slug": "tamannaah-bhatia-patriarchal-gaze-south-cinema-item-song-party-song-forbes-india-peddi-janhvi-kapoor-stree-2-where-to-watch-diaspora-nri-20260623",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -25,19 +112,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 6,
-          "issue": "The image is of Paresh Rawal, who is mentioned in the article as a supporting actor, but the headline and main topic are about the new film's title track and its lead actors. It's not the most representative hero image."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article explicitly connects the theme of friendship and distance to the diaspora audience, noting it's a 'tailor-made tug at the heart' and 'pure nostalgia-as-comfort-food' for NRIs."
+          "note": "The article explicitly connects the 'party numbers' phenomenon to diaspora weddings ('every wedding from Hyderabad to Houston') and mentions streaming platforms relevant to NRIs."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider a hero image that features the new lead actors or a promotional still from the film's title track teaser to better align with the headline's focus.",
-          "While the article mentions the film's release date, it could briefly touch upon potential international distribution plans or platforms relevant to the diaspora audience, if known."
+          "Consider adding a direct quote or a short anecdote from an NRI perspective to further strengthen the diaspora angle, perhaps about the cultural significance of these dance numbers at diaspora events.",
+          "Ensure all mentioned film titles and actor names are consistently bolded or unbolded throughout the article for stylistic uniformity."
         ],
         "verdict": "pass"
       },
