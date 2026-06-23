@@ -259,13 +259,11 @@ def load_env(path):
 SB_ENV = load_env("~/.env.supabase") or load_env("~/workspace/.env.supabase")
 HG_ENV = load_env("~/workspace/.env.heygen")
 OAI_ENV = load_env("~/workspace/.env.openai") or load_env("~/.env.openai")
-GAI_ENV = load_env("~/workspace/.env.google-ai") or load_env("~/.env.google-ai")
 SS_ENV = load_env("~/workspace/the-videshi-news/pipeline/.env.shotstack")
 
 SB_KEY = SB_ENV.get("SUPABASE_SERVICE_ROLE_KEY", "")
 HEYGEN_KEY = HG_ENV.get("HEYGEN_API_KEY", "")
 OPENAI_KEY = OAI_ENV.get("OPENAI_API_KEY", "")
-GEMINI_KEY = GAI_ENV.get("GOOGLE_AI_API_KEY", "") or GAI_ENV.get("GEMINI_API_KEY", "")
 SHOTSTACK_KEY = SS_ENV.get("SHOTSTACK_SANDBOX_KEY", "")
 SHOTSTACK_PROD_KEY = SS_ENV.get("SHOTSTACK_PRODUCTION_KEY", "")
 
@@ -274,57 +272,6 @@ SB_HEADERS = {
     "Authorization": f"Bearer {SB_KEY}",
     "Content-Type": "application/json",
 }
-
-
-# ═══════════════════════════════════════════════════════════════════════════════
-# LLM FALLBACK — Gemini (used when OpenAI quota is depleted / 429 insufficient_quota)
-# Mirrors the proven OpenAI→Gemini fallback in review-articles.py. Gemini 2.5
-# Flash is a *thinking* model; thinkingBudget:0 is REQUIRED or JSON truncates
-# mid-string (see AGENTS.md). curl is used so the egress proxy auth is honored.
-# ═══════════════════════════════════════════════════════════════════════════════
-
-def gemini_json(prompt, model="gemini-2.5-flash", max_tokens=2000, temperature=0.8, images=None):
-    """Call Gemini and parse a JSON object from the response. `images` is an
-    optional list of base64 JPEG strings (for vision QA). Returns a dict or None."""
-    if not GEMINI_KEY:
-        return None
-    parts = [{"text": prompt}]
-    for b64 in (images or []):
-        parts.append({"inlineData": {"mimeType": "image/jpeg", "data": b64}})
-    payload = {
-        "contents": [{"parts": parts}],
-        "generationConfig": {
-            "temperature": temperature,
-            "maxOutputTokens": max_tokens,
-            "responseMimeType": "application/json",
-            "thinkingConfig": {"thinkingBudget": 0},
-        },
-    }
-    url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={GEMINI_KEY}"
-    try:
-        import tempfile
-        # Vision payloads are large → write to file and use -d @file (avoids
-        # "Argument list too long"; see AGENTS.md review-articles vision note).
-        with tempfile.NamedTemporaryFile("w", suffix=".json", delete=False) as tf:
-            tf.write(json.dumps(payload))
-            tf_path = tf.name
-        r = subprocess.run(
-            ["curl", "-s", url, "-H", "Content-Type: application/json", "-d", f"@{tf_path}"],
-            capture_output=True, text=True, timeout=120,
-        )
-        try:
-            os.remove(tf_path)
-        except OSError:
-            pass
-        data = json.loads(r.stdout)
-        if "error" in data:
-            print(f"  ⚠️ Gemini error: {str(data['error'].get('message',''))[:120]}")
-            return None
-        text = data["candidates"][0]["content"]["parts"][0]["text"]
-        return json.loads(text)
-    except Exception as e:
-        print(f"  ⚠️ Gemini call/parse error: {e}")
-        return None
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -747,14 +694,10 @@ Return JSON only:
     )
 
     if r.status_code != 200:
-        print(f"❌ Script generation failed: {r.status_code} — trying Gemini fallback")
-        result = gemini_json(prompt, max_tokens=4000, temperature=0.8)
-        if not result or not result.get("script"):
-            print("❌ Gemini fallback also failed for script generation")
-            return None
-        print("  ✅ Script generated via Gemini fallback")
-    else:
-        result = json.loads(r.json()["choices"][0]["message"]["content"])
+        print(f"❌ Script generation failed: {r.status_code}")
+        return None
+
+    result = json.loads(r.json()["choices"][0]["message"]["content"])
     result["v"] = SCRIPT_CACHE_VERSION
     print(f"  📝 Script: {len(result['script'].split())} words")
     print(f"  📝 Hook: {result.get('hook_line1', '')} / {result.get('hook_line2', '')}")
@@ -5941,21 +5884,10 @@ Return JSON only:
         )
 
         if r.status_code != 200:
-            print(f"  ⚠️ QA API error: {r.status_code} — trying Gemini vision fallback")
-            # Reconstruct the text prompt + frames for Gemini vision.
-            qa_text = "\n".join(
-                part["text"] for part in content if part.get("type") == "text"
-            )
-            result = gemini_json(
-                qa_text, max_tokens=600, temperature=0,
-                images=[f["b64"] for f in frames],
-            )
-            if not result:
-                print("  ⚠️ Gemini vision QA fallback also failed — fail closed")
-                return False, 0, "QA failed (OpenAI + Gemini both failed — fail closed)"
-            print("  ✅ QA gate scored via Gemini vision fallback")
-        else:
-            result = json.loads(r.json()["choices"][0]["message"]["content"])
+            print(f"  ⚠️ QA API error: {r.status_code}")
+            return False, 0, "QA failed (API error — fail closed)"
+
+        result = json.loads(r.json()["choices"][0]["message"]["content"])
         score = result.get("score", 5)
         non_neg = result.get("non_negotiable_failures", [])
         issues = result.get("issues", [])
