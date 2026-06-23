@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-23T16:45:44.679573+00:00",
+  "timestamp": "2026-06-23T17:15:46.142569+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
-    "flag": 3,
+    "pass": 2,
+    "flag": 2,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "09af81c9-9b73-4d63-8265-3c78c8a80948",
-      "headline": "A Doctor Who Built SpaceX's Medical Unit Is About to Become an Astronaut. His Roots Run to Kerala.",
-      "slug": "anil-menon-indian-american-astronaut-soyuz-ms29-iss-launch-july-2026-diaspora-20260623",
+      "id": "59ed9b08-2c5f-4447-b667-b7575fc9e08b",
+      "headline": "Shraddha Kapoor Dances Through Labour Pain. The 'Eetha' Teaser Is the Transformation Nobody Saw Coming.",
+      "slug": "eetha-teaser-shraddha-kapoor-vithabai-narayangaonkar-laxman-utekar-maddock-films-cocktail-2-ajay-atul-august-28-2026-vvan-clash-where-to-watch-diaspora-nri-20260623",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -22,26 +22,33 @@
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
+        "overall_score": 7,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/DZ6yzfLiODj/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel is from 2017 and features a random person dancing, not Shraddha Kapoor or anything related to the Eetha movie or Tamasha performance. It does not support the article's content."
+          }
+        ],
         "image_match": {
-          "score": 9,
+          "score": 8,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The 'Why the Diaspora Should Care' section is well-integrated and clearly articulates the connection, referencing other prominent Indian-origin astronauts and the broader context of Indian involvement in space."
+          "quality": 7,
+          "note": "The article explicitly addresses diaspora audiences and how the film will travel internationally, including the importance of subtitles for cultural context."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a direct quote from Menon or someone close to him to personalize the narrative further.",
-          "Ensure the image entities are populated for better SEO and content matching."
+          "Replace the irrelevant Instagram embed with a relevant one, perhaps a clip of Shraddha Kapoor's performance or a fan reaction to the 'Eetha' teaser if available.",
+          "Consider adding a sentence or two about the significance of Lavani and Tamasha for Maharashtrian culture, which would further enrich the diaspora angle."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/DZ6yzfLiODj/",
         "promoted to published"
       ],
       "revised": false,
@@ -49,49 +56,9 @@
       "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "7c8e4440-bf02-49ce-921c-c5ab637f76d1",
-      "headline": "The Dream Degree Abroad Is Getting Too Expensive and Too Risky. Indian Families Are Doing the Math.",
-      "slug": "indian-students-rethink-studying-abroad-rupee-crash-visa-crackdown-perfect-storm-20260623",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": null,
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The 'Why the Diaspora Should Care' section directly and effectively connects the issue to NRI readers, explaining financial implications and changing perceptions of foreign degrees."
-        },
-        "factual_flags": [
-          "The article states 'More than 1.2 million Indian students were enrolled in higher education abroad in 2025' and then immediately after 'Indian enrolment fell nearly 7% between February 2025 and February 2026'. This implies future dates (2025, 2026) are being used as if they are current or past, which is confusing and likely an error in the year. It should be '2024' or '2023' for current/past data."
-        ],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Correct the factual inconsistency regarding the years (2025/2026) for student enrollment data to reflect current or past figures accurately.",
-          "Consider adding a specific example or short anecdote from an NRI family experiencing these challenges to further personalize the 'Why the Diaspora Should Care' section."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "8bc369e3-93f7-4ddc-aac4-803e01b1ba80",
-      "headline": "Pant Goes Home: Delhi Capitals Bring Back Their Talisman, and Send Kuldeep the Other Way",
-      "slug": "rishabh-pant-returns-delhi-capitals-kuldeep-yadav-lucknow-super-giants-ipl-2027-trade-pay-cut-27-crore-15-crore-diaspora-nri",
+      "id": "4f6024ef-3746-4f64-813e-1c54077d04ac",
+      "headline": "Yash Names the Day. 'Toxic' Crashes Into a Four-Film Raksha Bandhan Bloodbath on August 26.",
+      "slug": "toxic-yash-release-date-august-26-2026-raksha-bandhan-clash-geetu-mohandas-nayanthara-kiara-advani-vvan-eetha-khosla-ka-ghosla-2-where-to-watch-diaspora-nri-20260623",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -103,9 +70,9 @@
         "overall_score": 6,
         "embed_issues": [
           {
-            "url": "https://www.instagram.com/reel/DZ7YuYbNuZC/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram reel is from 2016 and features a random cricket highlight, not related to Rishabh Pant, Kuldeep Yadav, or the trade discussed in the article. The date 'DZ7YuYbNuZC' suggests a very old post, likely not relevant to current IPL news."
+            "url": "https://www.instagram.com/p/DZ1mYlfM-Ky/",
+            "problem": "broken",
+            "explanation": "The Instagram URL leads to a 'Sorry, this page isn't available' error. It's likely an old or incorrect link for a post from 2026."
           }
         ],
         "image_match": {
@@ -115,22 +82,68 @@
         "diaspora_angle": {
           "present": true,
           "quality": 7,
-          "note": "The diaspora angle is present and reasonably well-integrated, connecting Pant's story and the IPL's global appeal to NRI readers. It doesn't feel overly forced."
+          "note": "The article explicitly mentions the diaspora angle with the simultaneous English shoot and six-language rollout, targeting US, UK, and Canadian multiplexes. It feels natural and relevant to the film's global ambitions."
         },
         "factual_flags": [
-          "The article refers to 'IPL 2026' and '2027 season' as if they are in the future, but the current year is 2024. This suggests the article is either speculative fiction or based on a future timeline, which should be clarified or corrected for a news platform.",
-          "The Instagram reel URL 'DZ7YuYbNuZC' appears to be a placeholder or an invalid/very old ID, as Instagram reel IDs are typically shorter and more recent. This needs verification."
+          "The article states 'worldwide, August 26, 2026' for the release date, but the Instagram embed URL (even if broken) has 'DZ1mYlfM-Ky' which suggests a much older post ID, not one from 2026. This creates a strong internal contradiction regarding the timeliness of the embedded content.",
+          "The article mentions 'Father's Day' as the day the poster dropped, but Father's Day is typically in June, not August. While the release date is August 26, 2026, the poster drop date seems inconsistent with the 'Father's Day' reference if it's meant to be recent relative to the article's implied present."
         ],
         "duplicate_embeds": [],
         "suggestions": [
-          "Clarify the timeline of the article (e.g., 'a look ahead to the 2027 season' or 'hypothetical scenario') as it discusses future IPL seasons and events as if they have already happened or are confirmed.",
-          "Replace the irrelevant Instagram embed with a relevant social media post about Rishabh Pant, Kuldeep Yadav, or the Delhi Capitals/Lucknow Super Giants trade, ideally from a reputable source."
+          "Verify and update the Instagram embed URL to a working and relevant post, ideally one that actually announces the 2026 release date or the 'Honour Thy Father' poster.",
+          "Clarify the 'Father's Day' reference in relation to the poster drop and the August 26, 2026 release date to avoid confusion about the timeline."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/reel/DZ7YuYbNuZC/",
-        "Revised by gemini-2.5-flash (754\u2192825 words)"
+        "Revised by gemini-2.5-flash (680\u2192725 words)"
+      ],
+      "revised": true,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "8bc369e3-93f7-4ddc-aac4-803e01b1ba80",
+      "headline": "Pant Goes Home: Delhi Capitals Bring Back Their Talisman, and Send Kuldeep the Other Way",
+      "slug": "rishabh-pant-returns-delhi-capitals-kuldeep-yadav-lucknow-super-giants-ipl-2027-trade-pay-cut-27-crore-15-crore-diaspora-nri",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [
+          {
+            "url": "https://x.com/ParthJindal11/status/1798028741366917454",
+            "problem": "broken",
+            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
+          }
+        ],
+        "vision_image_match": null,
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 5,
+        "embed_issues": [],
+        "image_match": {
+          "score": 8,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 6,
+          "note": "The diaspora angle is present but feels a bit tacked on at the end. The 'Why the Diaspora Will Be Watching' section is good, but the earlier mentions of 'global Indian diaspora' feel slightly forced given the speculative nature of the article."
+        },
+        "factual_flags": [
+          "The entire article is based on a 'speculative' and 'hypothetical' scenario (IPL 2026, 2027, 2025 mega auction). This needs to be made extremely clear upfront, as it reads like real news but is entirely fictional. The repeated use of 'hypothetical' and 'speculative' throughout the body is a major red flag for a news platform."
+        ],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Clarify immediately and prominently that this is a fictional, speculative piece about a future IPL scenario, perhaps in the headline or a clear editor's note at the very beginning. The current framing is misleading for a news article.",
+          "Re-evaluate the purpose of publishing a purely speculative piece as a news article. If it's an opinion or analysis of potential future scenarios, it should be framed as such."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Removed 1 broken/hallucinated embed(s)",
+        "Revised by gemini-2.5-flash (824\u2192935 words)"
       ],
       "revised": true,
       "unpublished": false,
@@ -145,7 +158,7 @@
         "duplicate_images": [],
         "broken_embeds": [
           {
-            "url": "https://x.com/DrVandana_Gupta/status/1712497645161048455",
+            "url": "https://x.com/TheVideshi/status/1800689972000000000",
             "problem": "broken",
             "detail": "react-tweet returned null (deleted/protected/nonexistent)"
           }
@@ -154,7 +167,7 @@
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 6,
+        "overall_score": 7,
         "embed_issues": [],
         "image_match": {
           "score": 9,
@@ -162,22 +175,22 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 5,
-          "note": "The diaspora angle is present but feels somewhat tacked on at the very end and is incomplete. It needs more development to be truly impactful."
+          "quality": 7,
+          "note": "The article explicitly includes a 'Why It Matters for the Diaspora' section, which is a good start. However, the section is cut off, so its full quality cannot be assessed. Assuming it connects diabetes prevalence in India/NRIs to the drug's implications."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Expand the 'Why It Matters for the Diaspora' section significantly. Provide more context, statistics, and actionable insights relevant to NRIs. Consider adding quotes from Indian health professionals or diaspora members.",
-          "Ensure the article has a complete ending. The current version cuts off abruptly at the start of the diaspora section."
+          "Complete the 'Why It Matters for the Diaspora' section to fully elaborate on the relevance to NRIs.",
+          "Consider adding a quote from an Indian-origin medical professional or patient, if available, to strengthen the diaspora connection."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
         "Removed 1 broken/hallucinated embed(s)",
-        "Revised by gemini-2.5-flash (999\u21921092 words)"
+        "promoted to published"
       ],
-      "revised": true,
+      "revised": false,
       "unpublished": false,
       "llm_source": "gemini-2.5-flash"
     }
