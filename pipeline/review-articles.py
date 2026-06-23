@@ -471,13 +471,25 @@ def verify_embed_urls(body, published_at=None):
         
         try:
             r = subprocess.run(
-                ["curl", "-s", "--connect-timeout", "5", "--max-time", "10", "-o", "/dev/null", "-w", "%{http_code}",
+                ["curl", "-s", "--connect-timeout", "5", "--max-time", "10",
+                 "-A", "Mozilla/5.0",
                  f"https://www.instagram.com/p/{shortcode}/embed/"],
                 capture_output=True, text=True, timeout=15
             )
-            status_code = r.stdout.strip()
-            if status_code in ("404", "410"):
-                issues.append({"url": full_url, "problem": "broken", "detail": f"Instagram embed returned {status_code}"})
+            html = r.stdout or ""
+            # A removed/broken IG post returns HTTP 200 with a placeholder page
+            # ("The link to this photo or video may be broken, or the post may
+            # have been removed."), so a status check alone is not enough — we
+            # must inspect the page body for the removal markers.
+            low = html.lower()
+            if ("may be broken" in low or "post may have been removed" in low
+                    or "embedisbroken" in low.replace(" ", "")):
+                issues.append({"url": full_url, "problem": "broken",
+                               "detail": "Instagram embed shows removed/broken placeholder"})
+            elif len(html) < 2000 and "class=\"Embed" not in html:
+                # Unexpectedly tiny page with no embed scaffold → treat as broken.
+                issues.append({"url": full_url, "problem": "broken",
+                               "detail": f"Instagram embed page empty/invalid ({len(html)} bytes)"})
         except Exception as e:
             print(f"  ⚠️  Could not verify IG {shortcode}: {e}")
     
