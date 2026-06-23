@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-06-23T03:57:45Z",
-  "stage": "Group Stage — 43 of 72 matches played",
+  "last_updated": "2026-06-23T05:58:39Z",
+  "stage": "Group Stage — 44 of 72 matches played",
   "hosts": "USA, Mexico & Canada",
   "dates": {
     "start": "2026-06-11",
@@ -530,29 +530,29 @@
         "pts": 3
       },
       {
-        "name": "Jordan",
-        "code": "JOR",
-        "flag": "🇯🇴",
-        "rank": 63,
-        "p": 1,
-        "w": 0,
-        "d": 0,
-        "l": 1,
-        "gf": 1,
-        "ga": 3,
-        "pts": 0
-      },
-      {
         "name": "Algeria",
         "code": "ALG",
         "flag": "🇩🇿",
         "rank": 28,
-        "p": 1,
-        "w": 0,
+        "p": 2,
+        "w": 1,
         "d": 0,
         "l": 1,
-        "gf": 0,
-        "ga": 3,
+        "gf": 2,
+        "ga": 4,
+        "pts": 3
+      },
+      {
+        "name": "Jordan",
+        "code": "JOR",
+        "flag": "🇯🇴",
+        "rank": 63,
+        "p": 2,
+        "w": 0,
+        "d": 0,
+        "l": 2,
+        "gf": 2,
+        "ga": 5,
         "pts": 0
       }
     ],
@@ -1785,6 +1785,27 @@
     }
   },
   "highlights": [
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DZ6oCELiC8g/",
+      "account": "@fifaworldcup",
+      "caption": "Algeria claim all three points! 🇩🇿 — Jordan 1-2 Algeria #FIFAWorldCup",
+      "date": "2026-06-22"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DZ6knM_li9j",
+      "account": "@fifaworldcup",
+      "caption": "🇯🇴 1-2 🇩🇿 — Algeria edge Jordan at Levi's Stadium",
+      "date": "2026-06-22"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DZ6p1FKHJtT/",
+      "account": "@fifaworldcup",
+      "caption": "Matchday 12 ✔️ — World Cup highlights #FIFAWorldCup",
+      "date": "2026-06-22"
+    },
     {
       "platform": "instagram",
       "url": "https://www.instagram.com/p/DZ6L77Zi5cP/",
