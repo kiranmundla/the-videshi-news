@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-22T23:15:14.139286+00:00",
+  "timestamp": "2026-06-23T00:15:47.256615+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 0,
+    "pass": 6,
     "flag": 1,
     "fail": 0,
     "error": 0
@@ -11,53 +11,300 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "1d8e4dca-50a2-4edf-ad14-18105a319a90",
-      "headline": "India Tried to Cancel 'India's Got Latent'. It Came Back on Netflix AND YouTube at Once \u2014 and Pulled 15 Million in an Afternoon.",
-      "slug": "indias-got-latent-season-2-samay-raina-netflix-youtube-simulcast-alia-bhatt-sharvari-comeback-controversy-where-to-watch-diaspora-nri-20260622",
+      "id": "58bf4be1-bce5-482c-a81a-fcd565faa7e6",
+      "headline": "Washington Just Built a Machine to Audit H-1B Employers. Indian IT Firms Are the Target",
+      "slug": "h1b-enforcement-project-firewall-dol-dhs-moa-indian-it-staffing-audits-20260623",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "f39f59ea-49ff-481f-8dcf-63d9d6839a90",
-            "headline": "India's Got Latent Is Back, and Netflix Is Daring You to Wat"
-          }
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MISMATCH",
+          "what_photo_shows": "Ukrainian passports and US dollars",
+          "reason": "The photo shows Ukrainian passports, unrelated to H-1B visa story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 5,
+          "issue": "missing image description"
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the implications of H-1B enforcement on Indian professionals, making it relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include a relevant image that visually represents the topic of H-1B enforcement.",
+          "Provide more context on how these changes specifically affect the Indian diaspora in the U.S."
         ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Cleared mismatched image (Ukrainian passports and US dollars)",
+        "held: image mismatch"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "image_mismatch": true,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "61f96642-e441-4d64-9cf9-088d2ee997e2",
+      "headline": "The Tax Break That Makes Indian Grads Cheaper to Hire Is in Congress's Crosshairs",
+      "slug": "opt-fica-tax-exemption-cotton-fair-tax-act-indian-students-stem-20260623",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Comedian Samay Raina",
-          "reason": "The photo shows Samay Raina, relevant to the story."
+          "what_photo_shows": "students at a graduation ceremony",
+          "reason": "The photo shows a graduation scene relevant to the student-visa story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/p/DZz0fYajiyH/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post does not seem to relate directly to the content of the article about 'India's Got Latent' and its comeback."
-          }
-        ],
+        "embed_issues": [],
         "image_match": {
-          "score": 5,
-          "issue": "The image of Samay Raina does not directly match the headline or the broader topic of the article, which discusses the show's return and its impact."
+          "score": 7,
+          "issue": "The image does not directly relate to the topic of tax breaks or hiring practices."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article connects to the diaspora by discussing the show's relevance and appeal to NRIs, but the connection could be more explicitly developed."
+          "quality": 8,
+          "note": "The article discusses the impact of tax changes on Indian graduates, which is highly relevant to the Indian diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant Instagram embed with a more relevant one that highlights the show's return or its impact.",
-          "Enhance the diaspora angle by including specific references to how NRIs can engage with the show or its themes."
+          "Consider adding relevant social media embeds that discuss the implications of the tax changes on Indian graduates.",
+          "Include a more relevant image that visually represents the topic of hiring practices or tax implications."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DZz0fYajiyH/",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "c31c5bc8-f43c-4961-960f-4f849935d586",
+      "headline": "India Wants the Diaspora's Dollars Back. It's Offering 7.1% \u2014 and a $55 Billion Bet \u2014 to Get Them.",
+      "slug": "nri-fcnr-deposit-rate-war-rbi-forex-swap-55-billion-diaspora-dollars-20260623",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Reserve Bank of India headquarters",
+          "reason": "The photo shows the Reserve Bank of India, relevant to the story about RBI schemes."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses the financial interests of the NRI community and discusses the implications of the RBI's strategy on diaspora investments."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more direct quotes or testimonials from NRIs to enhance relatability.",
+          "Add a section on potential risks or considerations for NRIs when investing in these deposits."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "cfc60674-274b-41ab-8e95-40075211ea25",
+      "headline": "The Diaspora Used to Ask Britain to Let It In. This Week It Hosted the Conversation in the House of Lords.",
+      "slug": "viksit-bharat-2047-house-of-lords-nri-association-uk-diaspora-living-b-20260623",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "House of Lords chamber",
+          "reason": "The photo shows the House of Lords, relevant to the story about a forum held there."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively discusses the Indian diaspora's role in UK-India relations and highlights their evolving identity and influence."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from attendees or speakers to enhance the narrative.",
+          "Include more specific examples of how the diaspora has influenced UK policies or economic ties."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "2fad4e39-b896-42b1-a120-843636869da3",
+      "headline": "A Ransomware Gang Says It Stole Apple and Tesla Secrets \u2014 From a Tata Plant in India.",
+      "slug": "tata-electronics-cyber-breach-apple-tesla-secrets-world-leaks-ransomwa-20260622",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "code on a screen during cybersecurity incident",
+          "reason": "The photo subject aligns with the cybersecurity incident topic."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the specific topic of ransomware or cybersecurity."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the implications of the incident to the interests of the NRI community, particularly regarding investment and trust in India's manufacturing capabilities."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that reflects the themes of cybersecurity or the companies involved.",
+          "Add more context about the implications of the breach for the Indian tech industry and its global reputation."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "975338e9-f078-4384-90d5-543ea36d5fed",
+      "headline": "Forbes Just Named the 50 Hottest AI Startups. Six Are Run by Indian Americans.",
+      "slug": "forbes-ai-50-2026-indian-american-founders-abridge-perplexity-glean-to-20260622",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Engineer interacting with AI robot",
+          "reason": "The photo shows an engineer working with AI, relevant to the AI startup story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the achievements of Indian American founders in the AI sector to the diaspora community, highlighting the significance of their contributions."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes or insights from the founders mentioned to provide a personal touch.",
+          "Include more context on the significance of the AI 50 list for the Indian diaspora beyond just the companies listed."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "6c407756-7c57-4585-b77c-5e896feaf792",
+      "headline": "Every Big Tech Firm Is Cutting H-1B Hiring. Nvidia Just Doubled Down \u2014 and Indians Are the Reason.",
+      "slug": "nvidia-h1b-hiring-surge-indian-engineers-google-amazon-cuts-jensen-hua-20260622",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "d353977c-9e20-48a0-b87c-6ca3046409bf",
+            "headline": "Nvidia Is Building India Its First AI University. The Real P"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "an older man in a suit",
+          "reason": "The photo plausibly shows Jensen Huang, relevant to the Nvidia story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 6,
+          "issue": "The image of Jensen Huang does not directly relate to the article's focus on H-1B hiring trends."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively addresses the impact of H-1B hiring trends on Indian professionals, making it highly relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant hero image that directly relates to H-1B hiring or Indian engineers.",
+          "Add a quote or perspective from an Indian engineer to enhance the personal connection to the diaspora experience."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
         "promoted to published"
       ],
       "revised": false,
