@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-23T11:15:12.783698+00:00",
+  "timestamp": "2026-06-23T12:15:45.885326+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
-    "flag": 0,
+    "pass": 8,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,12 +11,59 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "fb4db35f-26e6-4248-ada7-84fc0e2b9138",
-      "headline": "Sunny Deol Marches South. The Gadar Star's Next Is a Telugu 'Mass Feast' \u2014 and the Diaspora's About to Get Loud.",
-      "slug": "sdgm-sunny-deol-gopichand-malineni-pan-india-action-mass-feast-s-thaman-mythri-movie-makers-telugu-debut-gadar-2-where-to-watch-diaspora-nri-20260623",
+      "id": "751d3193-ba42-405d-ac97-adac4f0063cb",
+      "headline": "USCIS Says You Can Job-Hunt on a Tourist Visa. Starting the Job Is the Hard Part",
+      "slug": "uscis-b1-b2-tourist-visa-job-search-change-of-status-india-h1b-20260623",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": null,
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 8,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article directly addresses the implications for Indian nationals, particularly H-1B holders, making the diaspora angle very strong and relevant."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a small 'key takeaways' box for readers who might skim, given the complexity of the topic.",
+          "Perhaps include a link to the official USCIS statement or a reputable immigration law firm's analysis for further reading."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "05f8c98d-2cd9-48e7-a6a4-411bba8c44ca",
+      "headline": "USCIS to Green-Card Seekers: Go Home to Apply. For Indians, Home Is a Decade Away",
+      "slug": "uscis-adjustment-status-extraordinary-consular-processing-h4-india-20260623",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "f418e846-87c9-4c63-bee0-035e537687f9",
+            "headline": "The H-1B Lottery Just Got Easier to Win. For Indian Grads, T"
+          },
+          {
+            "article_id": "2886a105-1489-41e1-95b7-c8983bdf69f5",
+            "headline": "USCIS Just Told Green-Card Seekers to Go Home to Apply. Indi"
+          }
+        ],
         "broken_embeds": [],
         "vision_image_match": null,
         "inline_image_mismatches": []
@@ -31,13 +78,281 @@
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article explicitly connects Sunny Deol's appeal to first-generation NRIs and the overseas success of Gadar 2, making the diaspora angle central and natural."
+          "note": "The article directly addresses the impact on Indian diaspora, particularly NRIs seeking green cards, and explains why they are disproportionately affected."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a sentence or two about the potential cultural implications or challenges of a Hindi star leading a Telugu film, beyond just box office success.",
-          "If possible, include a link to the actual X (formerly Twitter) post by Sunny Deol for direct reader reference."
+          "Consider adding a direct quote from an affected Indian immigrant or an immigration lawyer specializing in Indian cases to personalize the impact.",
+          "If possible, include a link to the actual USCIS policy memo or a reputable legal analysis of it for readers who want to delve deeper."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "a4c9b314-b0b2-44c6-99b0-81928eb792e5",
+      "headline": "An H-1B Win in Boston, an Appeal in Washington: Why the $100,000 Fee Fight Isn't Over",
+      "slug": "h1b-100k-fee-three-circuits-appeal-sorokin-uncertainty-india-20260623",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": null,
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image is a generic photo of a courthouse, which aligns with the legal topic but isn't specific to H-1B or immigration. It's acceptable but not highly illustrative."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article directly addresses the impact on Indian engineers and diaspora workers, and specifically mentions the American Association of Physicians of Indian Origin. This is a strong and natural diaspora angle."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a brief explanation of what H-1B visas are for readers who might be less familiar with the specifics.",
+          "If possible, include a quote from an Indian H-1B applicant or an immigration lawyer specializing in Indian clients to personalize the impact."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "56cd1679-7457-46b9-9e51-35b3c0a9185c",
+      "headline": "Washington Has a Museum for Almost Everyone. A Group of Indian-Americans Is Tired of the Gap.",
+      "slug": "india-heritage-center-museum-washington-dc-amitabh-sharma-diaspora-his-20260623",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": null,
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 8,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The entire article is centered on the Indian-American diaspora's efforts to establish a museum, directly addressing their identity and connection to heritage."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a quote from a younger Indian-American to emphasize the 'second-generation anxiety' mentioned.",
+          "If possible, include a link to the India Heritage Center's website or a relevant social media page for readers who want to learn more."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "c3edcebe-5e2f-4ac5-8655-94442040f828",
+      "headline": "India Says NRIs Can Buy Its Mutual Funds. For Indians in America and Canada, Most Fund Houses Say No Anyway.",
+      "slug": "nri-mutual-funds-fatca-us-canada-amc-refuse-gift-city-fema-diaspora-20260623",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": null,
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image shows a person looking at a phone with a city skyline in the background, which is generic. While it doesn't directly contradict the article, it doesn't strongly represent 'mutual funds' or 'NRIs investing' beyond a general financial/urban theme. A more specific image related to finance, investment, or the diaspora could improve relevance."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article directly addresses a significant financial challenge faced by NRIs in the US and Canada, making it highly relevant and valuable for the diaspora audience. The angle is natural and central to the piece."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a small sidebar or infographic summarizing the 'workarounds' and their accessibility for different investor profiles (e.g., retail vs. accredited).",
+          "If possible, include a quote from an NRI investor in the US/Canada describing their personal experience with these barriers, to add a human element."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "184ce217-4db4-4696-a892-67e3b3dc41d2",
+      "headline": "The Diaspora Has Spent 20 Years Collecting Trophies. India Just Handed It a Database Instead.",
+      "slug": "glo-india-icons-of-impact-gala-trade-facilitation-portal-mission-500-d-20260623",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": null,
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image shows a person working on a laptop, which is generic. While it doesn't contradict the article, it doesn't strongly represent 'trophies' or 'trade facilitation portal' specifically."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article is explicitly about the Indian diaspora's role in trade and how a new government initiative targets them. The angle is central and well-developed."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a quote from an Indian-American business leader or entrepreneur expressing their perspective on the portal or the 'living bridge' concept.",
+          "If possible, include a small screenshot or mock-up of the portal's interface to make it more tangible for readers."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "4f440769-c5cf-44ff-b799-1fdcfc164710",
+      "headline": "India Taxes Crypto at 30% and Calls It Compliance, Not a Ban. For NRIs Holding Bitcoin, the Fine Print Is Brutal.",
+      "slug": "india-crypto-30-percent-tax-tds-penalties-nri-investors-upi-digital-ru-20260623",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": null,
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 8,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article clearly and effectively explains the specific implications for NRIs, making it highly relevant to the target audience."
+        },
+        "factual_flags": [
+          "The article mentions 'March 2026' twice in the first two paragraphs and 'April 2026' once. Given the current date, these dates seem to refer to the future, which is unusual for reporting on current tax policy. It's possible these are typos and should be 2024 or 2025, or it's reporting on future policy implementation. Clarification is needed."
+        ],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Clarify the dates 'March 2026' and 'April 2026' to ensure accuracy regarding when these policies were or will be implemented.",
+          "Consider adding a brief explanation of what 'cess' means for international readers who may not be familiar with Indian tax terminology."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "45e249b4-8549-4d8c-baff-ec118dcd529c",
+      "headline": "India Is Pouring Billions Into Deep Tech. Its Most Ambitious Founders Are Still Buying One-Way Tickets to America.",
+      "slug": "india-deep-tech-funding-surge-founders-relocate-us-biocompute-reverse-20260623",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": null,
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image shows a person working with circuit boards, which aligns with 'deep tech' but doesn't specifically evoke the 'founders buying one-way tickets' or the 'pouring billions' aspect of the headline. It's generally relevant but not perfectly illustrative."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article explicitly addresses NRIs in the section 'Why NRIs should watch this closely,' connecting the founder's move to the historical context of the diaspora and the evolving 'reverse brain drain' narrative. It's well-integrated and natural."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a quote from an NRI founder who has successfully built a deep tech company in the US, to provide a contrasting perspective or further elaborate on the 'bridge' role.",
+          "If possible, include a small graphic or chart illustrating the growth of deep tech investment in India to visually support the 'billions pouring in' claim."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "b703aeac-851e-45b8-9fa7-3e9d8b4d7038",
+      "headline": "A Trillion Dollars Vanished From the Nasdaq in a Day. The Engineers Who Built the AI Boom Have the Most to Lose.",
+      "slug": "nasdaq-trillion-dollar-ai-selloff-bubble-fears-indian-tech-workers-rsu-20260623",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": null,
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 8,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The 'Why this lands differently for Indian techies' section is excellent and directly addresses the NRI/diaspora angle in a meaningful way."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a quote from an Indian tech worker in the Bay Area to personalize the 'diaspora angle' section further.",
+          "Ensure the image entities for the hero image are updated to reflect the content (e.g., 'stock market chart', 'tech worker', 'AI')."
         ],
         "verdict": "pass"
       },
