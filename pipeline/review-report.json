@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-23T20:15:27.752894+00:00",
+  "timestamp": "2026-06-23T20:45:16.348635+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 1,
     "flag": 1,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "cd482f46-9f9f-4aea-b4c4-7dd0fccbc6fa",
-      "headline": "America Is Slamming the Door on Legal Immigration. The Bill Is Coming Due",
-      "slug": "legal-immigration-decline-economic-cost-indians-green-card-workforce-20260623",
+      "id": "b7d7d5b4-44b6-4deb-855d-270fdab4367e",
+      "headline": "UK-India Week Just Opened at Warwick \u2014 and the Real Action Is a Gujarat-to-West-Midlands Handshake",
+      "slug": "uk-india-week-2026-university-warwick-gujarat-west-midlands-partnership-smarter-regions-20260623",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "The US Capitol building with an American flag.",
-          "reason": "The US Capitol is a relevant symbol for a story about US legal immigration policy."
+          "what_photo_shows": "The University of Warwick campus with a double-decker bus",
+          "reason": "The photo shows the University of Warwick, which is explicitly named as the host of the event in the headline and caption."
         },
         "inline_image_mismatches": []
       },
@@ -30,65 +30,21 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image is a generic photo of a city skyline, which broadly fits 'America' and 'economy' but doesn't specifically illustrate 'immigration' or 'slamming the door'. It's not mismatched, but not highly specific."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article explicitly focuses on the impact on Indians, who are the largest group affected by these changes, and directly addresses the 'diaspora's double bind'. This is highly relevant and well-integrated."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a specific quote from an affected Indian immigrant or an Indian diaspora organization to personalize the impact.",
-          "If possible, include a small graphic or chart illustrating the decline in Indian green-card recipients mentioned in the text, as visual data can be very impactful."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "7433200d-c24e-4ba0-b5b1-18c16a8c27c0",
-      "headline": "Indians Still Want to Study Abroad. They Just Stopped Choosing America",
-      "slug": "indian-students-rerouting-germany-netherlands-ireland-us-f1-decline-20260623",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Graduates in gowns celebrating outdoors in front of a building and statue.",
-          "reason": "The photo depicts graduates, which is a generic but on-topic image for a story about students studying abroad."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 8,
+          "score": 9,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The 'Why the diaspora should care' section explicitly connects the topic to NRI/diaspora readers, explaining the long-term impact on the Indian American community and future generations."
+          "note": "The article explicitly connects the partnership to the Gujarati diaspora in the West Midlands, highlighting its relevance to their ancestral state and adopted region."
         },
         "factual_flags": [
-          "The article mentions 'The number of Indians studying abroad fell 6.1% in 2025' and then later 'SEVIS data shared with India's Rajya Sabha showed Indian students in American institutions fell from 378,787 in February 2025 to 352,644 in February 2026'. The dates seem to be in the future (2025, 2026) which is unusual for reporting on past or current trends. This needs clarification or correction.",
-          "The article states 'US F-1 visas for Indian students dropped 69% in peak months of 2025'. Again, 2025 is in the future. This date needs to be verified and corrected."
+          "The article mentions a West Midlands mayoral delegation travelling to Gujarat 'earlier in 2026', but the UK-India Week is also stated to be the '10th edition this week'. This implies the article is being written in 2026, which contradicts the current year. This needs to be fact-checked for temporal consistency."
         ],
         "duplicate_embeds": [],
         "suggestions": [
-          "Correct the future-dated years (2025, 2026) to reflect actual past or current data, as this significantly impacts the factual accuracy.",
-          "Consider adding a quote from an Indian student who chose a non-US destination to personalize the 'reroute' narrative."
+          "Clarify the temporal discrepancy regarding the year 2026 for the mayoral delegation and the current UK-India Week edition.",
+          "Consider adding a quote from a diaspora leader or entrepreneur to further strengthen the 'Why the Diaspora Should Care' section."
         ],
         "verdict": "flag"
       },
@@ -100,51 +56,48 @@
       "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "e4bc19a5-0ca1-4eb5-bb4b-4e5da70f3bb0",
-      "headline": "The $800,000 Escape Hatch: Why Indians Are Pouring Into the EB-5 Investor Visa",
-      "slug": "eb5-investor-visa-india-surge-unreserved-retrogression-escape-hatch-20260623",
+      "id": "cd27c2a9-bdf1-42ed-8e2a-1b4ee9ba4390",
+      "headline": "India Isn't Just the World's Biggest Source of Skilled Migrants. Its Workers Now Out-Earn the Locals.",
+      "slug": "india-tops-global-skilled-migration-map-deel-h1b-uk-blue-card-wage-premium-20260623",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "751d3193-ba42-405d-ac97-adac4f0063cb",
-            "headline": "USCIS Says You Can Job-Hunt on a Tourist Visa. Starting the "
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "US passport, hundred-dollar bills, and a stock chart on a phone",
-          "reason": "The photo's subject directly illustrates the EB-5 investor visa topic, involving money and US residency."
+          "verdict": "MISMATCH",
+          "what_photo_shows": "A book cover titled 'The Panjab, North-West Frontier Province and Kashmir'",
+          "reason": "The photo shows a historical geography book cover, not skilled professionals or global talent data related to migration."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 8,
+        "overall_score": 7,
         "embed_issues": [],
         "image_match": {
-          "score": 8,
+          "score": 7,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "Strong and natural connection to NRI/diaspora readers, directly addressing their immigration challenges and financial decisions."
+          "quality": 8,
+          "note": "The article directly addresses the diaspora's experience and economic standing, and explicitly includes a 'Why the Diaspora Should Care' section."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a brief explanation of what 'aging out' means for children in the context of immigration.",
-          "Perhaps include a quote from an Indian professional who has used or is considering the EB-5 visa to add a personal touch."
+          "Complete the 'Why the Diaspora Should Care' section, as it currently cuts off mid-sentence.",
+          "Consider adding a specific example or quote from an NRI professional to personalize the 'wage premium' or 'reverse flow' sections."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "promoted to published"
+        "Cleared mismatched image (A book cover titled 'The Panjab, North-West Frontier Province and Kashmir')",
+        "held: image mismatch"
       ],
       "revised": false,
       "unpublished": false,
+      "image_mismatch": true,
       "llm_source": "gemini-2.5-flash"
     }
   ]
