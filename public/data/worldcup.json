@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-06-23T19:57:35Z",
-  "stage": "Group Stage — 45 of 72 matches played",
+  "last_updated": "2026-06-23T22:03:04Z",
+  "stage": "Group Stage — 46 of 72 matches played",
   "hosts": "USA, Mexico & Canada",
   "dates": {
     "start": "2026-06-11",
@@ -616,26 +616,26 @@
         "code": "ENG",
         "flag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
         "rank": 4,
-        "p": 1,
+        "p": 2,
         "w": 1,
-        "d": 0,
+        "d": 1,
         "l": 0,
         "gf": 4,
         "ga": 2,
-        "pts": 3
+        "pts": 4
       },
       {
         "name": "Ghana",
         "code": "GHA",
         "flag": "🇬🇭",
         "rank": 73,
-        "p": 1,
+        "p": 2,
         "w": 1,
-        "d": 0,
+        "d": 1,
         "l": 0,
         "gf": 1,
         "ga": 0,
-        "pts": 3
+        "pts": 4
       },
       {
         "name": "Panama",
@@ -1360,8 +1360,8 @@
       "away": "Ghana",
       "venue": "Gillette Stadium",
       "city": "Boston",
-      "status": "scheduled",
-      "score": null,
+      "status": "FT",
+      "score": "0-0",
       "home_code": "ENG",
       "away_code": "GHA"
     },
