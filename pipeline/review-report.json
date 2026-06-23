@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-23T06:16:26.807029+00:00",
+  "timestamp": "2026-06-23T06:45:24.892231+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 11,
+    "pass": 3,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,17 +11,17 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "5a00798c-3b34-4792-94c7-0990f85468c2",
-      "headline": "Air Canada Just Made Vancouver\u2013Delhi a Year-Round Nonstop \u2014 and the West Coast Diaspora Gets a Third Canadian Gateway Home",
-      "slug": "air-canada-vancouver-delhi-year-round-nonstop-west-coast-diaspora-nri-20260623",
+      "id": "4305e7dd-1a40-4204-9050-7cda52dae671",
+      "headline": "India's Economy Is Still Growing Fast. The Mood of the People Running It Just Hit a Four-Year Low.",
+      "slug": "india-private-sector-growth-three-month-low-business-confidence-pmi-june-2026-diaspora-investors-20260623",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Vancouver skyline and mountains",
-          "reason": "The photo shows Vancouver, relevant to the Vancouver\u2013Delhi flight story."
+          "what_photo_shows": "Mumbai's financial district building",
+          "reason": "The photo shows Mumbai's financial district, relevant to the economy story."
         },
         "inline_image_mismatches": []
       },
@@ -35,13 +35,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively highlights the significance of the new route for the South Asian community in British Columbia and the broader West Coast diaspora."
+          "note": "The article effectively connects the economic data to the interests of the diaspora, particularly in terms of investment and family ties."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes from diaspora members or travel experts to enhance the personal connection.",
-          "Add a section on potential impacts on travel costs or competition among airlines."
+          "Consider adding more specific examples of how the economic changes are impacting the diaspora community directly.",
+          "Include quotes or insights from diaspora investors to enhance the personal connection."
         ],
         "verdict": "pass"
       },
@@ -53,17 +53,17 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "b94a4ac6-7291-431c-bc5d-242be9b745b1",
-      "headline": "India Just Rewrote Its Permit Rules for Western Rajasthan \u2014 and Wrote OCI Cardholders Into the Law for the First Time",
-      "slug": "india-immigration-foreigners-amendment-order-2026-oci-rajasthan-protec-20260623",
+      "id": "2dc8bc4f-c2b3-47b8-a2f1-abb498bf1fe7",
+      "headline": "India and China Say Their Ties Are 'Normalising' Again. The Diaspora Has Heard This Before.",
+      "slug": "india-china-ties-normalising-doval-wang-yi-meet-brics-nsa-delhi-diaspora-flights-visas-20260623",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Jaisalmer Fort in Rajasthan",
-          "reason": "The photo shows Jaisalmer Fort, relevant to the story about Rajasthan."
+          "what_photo_shows": "Ajit Doval, India's National Security Adviser",
+          "reason": "The photo shows Ajit Doval, who is relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -77,223 +77,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively addresses the implications of the new immigration rules for OCI cardholders, making it relevant for the diaspora."
+          "note": "The article effectively connects the geopolitical developments to the everyday experiences of the Indian diaspora, discussing the implications for travel and business."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from immigration experts or diaspora members to enhance credibility and engagement.",
-          "Include a brief summary of the previous rules for context, which could help readers understand the significance of the changes."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "51903924-0ac4-4280-9c55-fb3be50dbd44",
-      "headline": "Air New Zealand Is Finally Studying a Nonstop to India \u2014 but the Diaspora Shouldn't Hold Its Breath Until 2028",
-      "slug": "air-new-zealand-india-nonstop-flight-evaluation-auckland-delhi-nri-20260623",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Auckland skyline from Mission Bay",
-          "reason": "The photo shows Auckland's skyline, relevant to the story about flights from Auckland to India."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image of Auckland skyline is relevant but does not directly depict the topic of nonstop flights to India."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively discusses the implications of the potential nonstop flights for the Indian diaspora in New Zealand and beyond."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that directly relates to the topic of flights or travel between New Zealand and India.",
-          "Add more specific data or quotes from diaspora members to enhance the personal connection to the topic."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "77daa187-59c1-4101-9301-7c29a7aab24f",
-      "headline": "Indian-Americans Are 1.5% of the Country. They Pay 5-6% of Its Income Taxes.",
-      "slug": "indiaspora-report-indian-americans-income-tax-fortune-500-unicorns-20260623",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "diverse team in business meeting",
-          "reason": "The photo aligns with the topic of Indian-American success in business."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image is relevant but does not directly depict the Indian-American community or the themes discussed in the article."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the contributions of the Indian-American community to broader societal issues, making it relevant for diaspora readers."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that more directly represents the Indian-American community or its contributions.",
-          "Include quotes or testimonials from community members or leaders to enhance the personal connection to the data presented."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "aa7c0312-efca-4db8-9bf7-9ef3eabccf71",
-      "headline": "India Has 31 Million People Abroad. Until This Week, It Didn't Have a Working Phone Book.",
-      "slug": "global-pravasi-rishta-portal-mea-diaspora-register-nri-oci-connect-20260623",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Indian diaspora community gathering",
-          "reason": "The photo shows a gathering of the Indian diaspora, which is relevant to the story about the diaspora register."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the topic of a phone book or digital connectivity."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively discusses the new portal aimed at connecting with the Indian diaspora, highlighting its importance and potential benefits."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that visually represents the concept of connectivity or digital communication to better match the article's theme.",
-          "Add a quote or anecdote from a diaspora member to enhance the personal connection and illustrate the impact of the new portal."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "29c52d77-0e00-4a0e-be06-6627f1034261",
-      "headline": "India Faces Its Weakest Monsoon in 11 Years \u2014 but This Time the Economy Is Better Armoured",
-      "slug": "india-weakest-monsoon-11-years-el-nino-heat-food-inflation-growth-rupee-irrigation-buffers-nri-investor-20260623-0600",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "farmer with oxen in flooded field",
-          "reason": "The image relates to agriculture and monsoon impact."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses economic implications of the monsoon, which is relevant to NRIs interested in India's economic stability."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include quotes or insights from NRI investors to strengthen the diaspora connection.",
-          "Add a section on how NRIs can engage with or invest in Indian agriculture during this period."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "e3522c36-6834-4821-aace-55ac4dbca713",
-      "headline": "People on Ozempic-Style Drugs Are Moving Less, Not More \u2014 and Doctors Say That Undercuts the Benefit",
-      "slug": "glp1-weight-loss-drugs-less-physical-activity-steps-decline-endo-2026-muscle-loss-diaspora-20260623-0600",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "person lifting dumbbells in gym",
-          "reason": "The photo relates to exercise and physical activity, relevant to the story's focus on movement and health."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article connects the findings to the Indian diaspora's health concerns, particularly regarding obesity and metabolic health."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Expand on the diaspora angle to include specific statistics or studies related to South Asians and obesity.",
-          "Include quotes or insights from Indian health experts to strengthen the connection to the diaspora."
+          "Consider adding more specific examples of how the diaspora has adapted to the changes in India-China relations.",
+          "Include quotes or perspectives from diaspora members to enhance the personal connection."
         ],
         "verdict": "pass"
       },
@@ -312,11 +102,6 @@
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MISMATCH",
-          "what_photo_shows": "cover of a sports handbook",
-          "reason": "The photo is unrelated to aging or neurological studies."
-        },
         "inline_image_mismatches": []
       },
       "llm_review": {
@@ -324,151 +109,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "image entities not provided"
+          "issue": "The image description is missing, making it difficult to assess relevance."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article connects the findings to the concerns of the Indian diaspora regarding aging, making it relevant."
+          "note": "The article connects the findings to the Indian diaspora's concerns about ageing, making it relevant."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include specific image entities to enhance relevance and engagement.",
-          "Expand on the diaspora angle by providing examples of how these findings can be applied in the context of Indian culture or practices."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "Cleared mismatched image (cover of a sports handbook)",
-        "held: image mismatch"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "image_mismatch": true,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "65fa4316-b1a1-417b-93d3-4824d91c1089",
-      "headline": "India's IT Giants Promised a Better Year in April. Three Months In, Analysts Already See FY27 Slipping.",
-      "slug": "india-it-fy27-outlook-ai-automation-tcs-infosys-wipro-nri-investors-20260623",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "fd304d24-4a88-470f-98ff-5f4c7dc1e66c",
-            "headline": "India Has Its Second AI Unicorn. The Most Telling Part Is Wh"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "glass pyramid at Infosys campus",
-          "reason": "The photo shows a landmark at Infosys, relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the impact of India's IT sector performance on NRI investors and their families, making it relevant to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more specific examples of how the IT sector's performance affects NRI investors' portfolios.",
-          "Include quotes or insights from more analysts or industry experts to enhance credibility."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "da63c5ad-4b01-4be9-81e2-3f042d1c9626",
-      "headline": "Trump Wants a Working Quantum Computer by 2028 \u2014 Sooner Than IBM Plans One. Indian Talent Is Already in the Race.",
-      "slug": "trump-quantum-computing-executive-orders-2028-india-diaspora-talent-20260623",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "IBM quantum computer display",
-          "reason": "The photo shows an IBM quantum computer, relevant to the story about quantum computing."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the topic of quantum computing to the Indian diaspora, highlighting the opportunities for Indian-origin researchers and the implications for Indian talent in the field."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more specific examples of Indian-origin researchers or companies involved in quantum computing to strengthen the diaspora angle.",
-          "Include quotes or insights from Indian experts in the field to provide a more diverse perspective."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "45ed3a20-c1f5-4e96-9384-a106a6ebeaff",
-      "headline": "Oracle Just Cut 21,000 Jobs in a Year \u2014 Its Biggest Purge Ever. The Filing Names AI as the Reason.",
-      "slug": "oracle-21000-job-cuts-ai-restructuring-h1b-indian-engineers-20260623",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Oracle headquarters in Redwood City",
-          "reason": "The photo shows Oracle's headquarters, relevant to the story about Oracle job cuts."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image is relevant to Oracle but does not depict the current state of the company or its workforce."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the layoffs at Oracle to the Indian diaspora, particularly those on work visas in the US."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider updating the hero image to reflect a more current representation of Oracle's operations or workforce.",
-          "Add more statistics or quotes from affected employees to enhance the human interest angle."
+          "Include a relevant image description to enhance the image match score.",
+          "Expand on the diaspora angle by providing specific examples or anecdotes related to the Indian community."
         ],
         "verdict": "pass"
       },
