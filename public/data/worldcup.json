@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-06-23T02:00:02Z",
-  "stage": "Group Stage — 42 of 72 matches played",
+  "last_updated": "2026-06-23T03:57:45Z",
+  "stage": "Group Stage — 43 of 72 matches played",
   "hosts": "USA, Mexico & Canada",
   "dates": {
     "start": "2026-06-11",
@@ -467,25 +467,25 @@
         "code": "NOR",
         "flag": "🇳🇴",
         "rank": 31,
-        "p": 1,
-        "w": 1,
+        "p": 2,
+        "w": 2,
         "d": 0,
         "l": 0,
-        "gf": 4,
-        "ga": 1,
-        "pts": 3
+        "gf": 7,
+        "ga": 3,
+        "pts": 6
       },
       {
         "name": "Senegal",
         "code": "SEN",
         "flag": "🇸🇳",
         "rank": 15,
-        "p": 1,
+        "p": 2,
         "w": 0,
         "d": 0,
-        "l": 1,
-        "gf": 1,
-        "ga": 3,
+        "l": 2,
+        "gf": 3,
+        "ga": 6,
         "pts": 0
       },
       {
@@ -1315,8 +1315,8 @@
       "away": "Senegal",
       "venue": "MetLife Stadium",
       "city": "New York/New Jersey",
-      "status": "scheduled",
-      "score": null,
+      "status": "FT",
+      "score": "3-2",
       "home_code": "NOR",
       "away_code": "SEN"
     },
