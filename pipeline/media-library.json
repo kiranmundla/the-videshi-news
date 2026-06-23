@@ -1,6 +1,6 @@
 {
  "_description": "Media library mirror — high-quality, attribution-clean images+videos for article/reel fallback. Source of truth is the Supabase media_library table; this mirror lets the pipeline read without a DB round-trip.",
- "_updated": "2026-06-23T02:21:06Z",
+ "_updated": "2026-06-23T10:07:44Z",
  "assets": [
   {
    "id": "person--narendra-modi--bfe42b",
@@ -1851,28 +1851,6 @@
    "times_used": 2
   },
   {
-   "id": "thing--uscis--cb27b0",
-   "media_type": "image",
-   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/uscis-cb27b0.jpg",
-   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/uscis-cb27b0.jpg",
-   "subject": "USCIS",
-   "subject_type": "thing",
-   "caption": "CAMP SPRINGS (June 20, 2024) Department of Homeland Security (DHS), Senior Official Performing the Duties of the Deputy Secretary, Kristie Canegallo, attends a USCIS All-Employee Town Hall at USCIS Headquarters in Camp Springs, M.D. (DHS photo by Mikaela McGee)",
-   "attribution": "Wikimedia Commons / DHSgov, Public domain",
-   "license": "Public domain",
-   "source_url": "https://commons.wikimedia.org/wiki/File:DHS_Senior_Official_Kristie_Canegallo,_attends_a_USCIS_All-Employee_Town_Hall_at_USCIS_Headquarters_in_Camp_Springs,_Maryland_on_June_20,_2024_-_10.jpg",
-   "tags": [
-    "uscis"
-   ],
-   "width": 3500,
-   "height": 2333,
-   "duration": null,
-   "quality_score": 84.2,
-   "added_date": "2026-06-20T10:31:52Z",
-   "last_used": "2026-06-22T16:41:12Z",
-   "times_used": 2
-  },
-  {
    "id": "thing--green-card--4b23e3",
    "media_type": "image",
    "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/green-card-4b23e3.jpg",
@@ -1915,6 +1893,28 @@
    "added_date": "2026-06-19T05:24:00Z",
    "last_used": "2026-06-23T02:21:05Z",
    "times_used": 4
+  },
+  {
+   "id": "thing--uscis--cb27b0",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/uscis-cb27b0.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/uscis-cb27b0.jpg",
+   "subject": "USCIS",
+   "subject_type": "thing",
+   "caption": "CAMP SPRINGS (June 20, 2024) Department of Homeland Security (DHS), Senior Official Performing the Duties of the Deputy Secretary, Kristie Canegallo, attends a USCIS All-Employee Town Hall at USCIS Headquarters in Camp Springs, M.D. (DHS photo by Mikaela McGee)",
+   "attribution": "Wikimedia Commons / DHSgov, Public domain",
+   "license": "Public domain",
+   "source_url": "https://commons.wikimedia.org/wiki/File:DHS_Senior_Official_Kristie_Canegallo,_attends_a_USCIS_All-Employee_Town_Hall_at_USCIS_Headquarters_in_Camp_Springs,_Maryland_on_June_20,_2024_-_10.jpg",
+   "tags": [
+    "uscis"
+   ],
+   "width": 3500,
+   "height": 2333,
+   "duration": null,
+   "quality_score": 84.2,
+   "added_date": "2026-06-20T10:31:52Z",
+   "last_used": "2026-06-23T10:07:44Z",
+   "times_used": 3
   }
  ]
 }
