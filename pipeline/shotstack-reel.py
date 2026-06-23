@@ -4193,10 +4193,12 @@ def source_storyboard_images(article, storyboard, count=8):
 # on PIL cards), and no real identifiable person is ever depicted.
 _BRAND_GEN_SUFFIX = (
     " — Rendered as a refined editorial illustration in The Videshi house style: "
-    "deep navy background (#1a1a2e) with antique gold (#c9a24a) accents, delicate "
-    "Indian jaali lattice linework framing the vertical margins, subtle aged-paper "
-    "grain texture, a soft cinematic glow toward the center, high-end magazine "
-    "art-direction. Flat stylized vector-meets-painterly look, NOT a photograph and "
+    "a rich mid-tone navy background (#22305a) with luminous antique gold (#d4b25e) "
+    "accents, delicate Indian jaali lattice linework framing the vertical margins, "
+    "subtle aged-paper grain texture, a bright warm cinematic glow lighting the "
+    "center of the composition so the scene reads clearly and is NOT dark or murky, "
+    "high-end magazine art-direction. Keep the overall image well-lit and vibrant, "
+    "not shadowy. Flat stylized vector-meets-painterly look, NOT a photograph and "
     "NOT photorealistic. Absolutely NO text, letters, words, numbers, captions, or "
     "logos anywhere. NO real or identifiable human faces. Vertical 9:16 composition "
     "with clear empty space in the upper-middle and lower thirds for overlaid text."

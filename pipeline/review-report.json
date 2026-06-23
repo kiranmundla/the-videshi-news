@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-23T08:15:28.219337+00:00",
+  "timestamp": "2026-06-23T08:45:15.951022+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
+    "pass": 2,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,22 +11,17 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "b9654815-b50a-46c8-9ded-3184d4e6da7a",
-      "headline": "EB-2 India Just Hit 'Unavailable.' The Workaround Hiding One Row Below",
-      "slug": "eb2-india-unavailable-july-bulletin-eb3-downgrade-strategy-green-card-20260623",
+      "id": "2f3348b1-e85c-4888-9b02-4ce698e45a6b",
+      "headline": "India's Biggest Stock Exchange Is Finally Going Public \u2014 in What Would Be the Country's Largest IPO Ever",
+      "slug": "nse-files-drhp-largest-india-ipo-30000-crore-derivatives-exchange-diaspora-investors-20260623",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "f1f8cb21-a001-407c-bb32-ee0fe5ffed72",
-            "headline": "EB-2 India Just Went Dark for the Rest of the Year. The July"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "United States permanent resident card",
-          "reason": "The photo of a green card is relevant to the immigration story."
+          "what_photo_shows": "National Stock Exchange building",
+          "reason": "The photo shows the National Stock Exchange, relevant to the IPO story."
         },
         "inline_image_mismatches": []
       },
@@ -39,14 +34,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively addresses the concerns of the Indian diaspora regarding immigration and green card processes."
+          "quality": 8,
+          "note": "The article effectively connects the NSE IPO to diaspora investors, highlighting its significance and implications for them."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a brief summary or conclusion to reinforce the key takeaways for readers.",
-          "Include quotes or insights from immigration experts to enhance credibility and provide additional perspectives."
+          "Consider adding more quotes from financial experts or analysts to enhance credibility.",
+          "Include a brief comparison of NSE's IPO with other significant IPOs globally to provide context."
         ],
         "verdict": "pass"
       },
@@ -58,17 +53,17 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "f418e846-87c9-4c63-bee0-035e537687f9",
-      "headline": "The H-1B Lottery Just Got Easier to Win. For Indian Grads, There's a Catch",
-      "slug": "h1b-fy2027-selection-rate-jumps-50-percent-demand-collapse-india-grads-20260623",
+      "id": "bd3cd257-d247-4bdf-a76f-8ead70170bae",
+      "headline": "India Is Buying More Russian Oil Than Ever Before \u2014 Even After Washington Pulled the Permission Slip",
+      "slug": "india-pivots-russian-crude-coal-record-imports-iran-war-hormuz-energy-diaspora-20260623",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "software developer at dual monitors",
-          "reason": "The photo shows a software developer, relevant to the H-1B visa topic."
+          "what_photo_shows": "oil tanker at sea",
+          "reason": "The photo shows an oil tanker, relevant to the story about oil imports."
         },
         "inline_image_mismatches": []
       },
@@ -76,61 +71,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the H-1B lottery or immigration, but it is a generic representation of a professional setting."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively addresses the concerns of Indian graduates and professionals in the tech sector regarding the H-1B lottery, making it highly relevant to the diaspora."
+          "quality": 8,
+          "note": "The article effectively connects the topic of oil imports to the financial implications for the diaspora, particularly regarding remittances and economic stability."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that more directly represents the theme of immigration or the H-1B lottery.",
-          "Add a brief summary or conclusion to reinforce the key takeaways for Indian applicants."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "e19c1732-b0b1-467d-aed0-322d5e05d419",
-      "headline": "Pay $750, Skip the U.S. Visa Line \u2014 but Only if You're a Tourist, Not an H-1B",
-      "slug": "us-750-expedite-fee-b1-b2-visa-appointment-pilot-nri-families-20260623",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "open passport with visa stamps",
-          "reason": "The photo of a passport with visa stamps is relevant to a story about U.S. visas."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the topic of U.S. visa applications."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively addresses the concerns of the Indian diaspora regarding U.S. visa processes."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that more closely represents the theme of U.S. visa applications or travel.",
-          "Add a section summarizing the implications of this fee for different visa categories to enhance clarity."
+          "Consider adding more data or quotes from experts to strengthen the analysis of the geopolitical implications.",
+          "Include a brief overview of how the changes in oil imports might affect specific sectors in India that are relevant to the diaspora."
         ],
         "verdict": "pass"
       },
