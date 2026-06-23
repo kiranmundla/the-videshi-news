@@ -40,6 +40,21 @@ def load_env(path):
 
 load_env(os.path.expanduser("~/workspace/.env.supabase"))
 load_env(os.path.expanduser("~/workspace/.env.twitter"))
+load_env(os.path.expanduser("~/workspace/.env.openai"))
+load_env(os.path.expanduser("~/workspace/.env.google-ai"))
+
+# ── Reuse the vision wrong-photo gate from the reviewer ──
+# A hero swap on a LIVE article must never push a clearly wrong-subject photo
+# (Gandalf meme on a visa story, Miss-America pageant on an immigration story).
+# review-articles.py already has a vision judge with an OpenAI→Gemini fallback;
+# import it rather than re-implement. Guarded so enrichment still runs if the
+# reviewer module can't be loaded for any reason.
+try:
+    _review = SourceFileLoader("review_articles", os.path.join(PIPELINE_DIR, "review-articles.py")).load_module()
+    _vision_image_match = getattr(_review, "vision_image_match", None)
+except Exception as _e:
+    _vision_image_match = None
+    print(f"  ⚠️  Could not load vision check from review-articles.py: {_e}")
 
 SUPABASE_URL = os.environ.get("SUPABASE_URL", "")
 SUPABASE_KEY = os.environ.get("SUPABASE_SERVICE_ROLE_KEY", "")
@@ -58,6 +73,21 @@ _session.mount("https://", HTTPAdapter(max_retries=Retry(total=3, backoff_factor
 # ═══════════════════════════════════════════
 # IMAGE ENRICHMENT — Openverse + Wikimedia
 # ═══════════════════════════════════════════
+
+# Generic geo/common tokens that must NOT, on their own, justify a hero-image
+# swap. A title that overlaps the headline only on words like "india"/"america"/
+# "visa" is not a real subject match. Mirrors the tweet enricher's set.
+_GENERIC_TOKENS = {
+    'india','indian','indians','uk','britain','british','us','usa','america',
+    'american','china','chinese','pakistan','europe','european','world',
+    'global','nation','national','country','government','govt','state','states',
+    'president','minister','ministry','official','officials','leader','leaders',
+    'trade','deal','talks','summit','meeting','market','markets','economy',
+    'economic','political','politics','policy','news','report','update','latest',
+    'breaking','will','your','just','door','sell','now','visa','visas',
+    'legal','immigration','people','workers','study','abroad',
+}
+
 
 def search_openverse(query, limit=5):
     """Search Openverse for CC-licensed images."""
@@ -174,13 +204,22 @@ def extract_main_subject(headline):
 
 
 def is_relevant_image(result, subject, headline):
-    """Check if an image result is actually relevant to the article."""
+    """Check if an image result is actually relevant to the article.
+
+    Hardened (2026-06-23): a 2-word headline overlap is NOT enough when both
+    words are generic geo/common tokens — that's how "America" matched a
+    Miss-America pageant photo and a Gandalf meme landed on a visa story. The
+    overlap must include at least one DISTINCTIVE (non-generic) word, the same
+    distinctive-entity floor used in the tweet enricher.
+    """
     title = (result.get("title", "") or "").lower()
     headline_lower = headline.lower()
     subject_lower = (subject or "").lower()
 
-    # Skip obvious junk: book scans, documents, SVGs, logos
-    junk_patterns = [".djvu", "notes and queries", "volume ", "series ", "hitty"]
+    # Skip obvious junk: book scans, documents, SVGs, logos, internet memes
+    junk_patterns = [".djvu", "notes and queries", "volume ", "series ", "hitty",
+                     "meme", "use the force", "harry", "gandalf",
+                     "pageant", "miss america", "mrs. america", "mrs america"]
     if any(j in title for j in junk_patterns):
         return False
 
@@ -189,11 +228,13 @@ def is_relevant_image(result, subject, headline):
     if parts and any(p in title for p in parts):
         return True
 
-    # Check headline keyword overlap (at least 2 significant words)
+    # Check headline keyword overlap — but require a DISTINCTIVE word in it.
     headline_words = {w.lower() for w in headline.split() if len(w) > 3}
     title_words = {w.lower() for w in title.split() if len(w) > 3}
     overlap = headline_words & title_words
-    if len(overlap) >= 2:
+    distinctive_overlap = {w for w in overlap if w not in _GENERIC_TOKENS}
+    # Need >=2 total overlapping words AND at least one of them distinctive.
+    if len(overlap) >= 2 and distinctive_overlap:
         return True
 
     # If it's from wikimedia/flickr and has a reasonable title, accept with lower bar
@@ -673,7 +714,26 @@ def main():
             new_url, credit = find_better_image(article["headline"], article.get("image_url", ""))
             if new_url:
                 print(f"     → {new_url[:80]}")
-                if apply:
+                # Vision sanity-check BEFORE overwriting a live hero. The
+                # keyword floor stops most mismatches, but a final pixel-level
+                # look is what prevents a Gandalf meme / pageant photo going
+                # live. Only block on a clear MISMATCH; allow MATCH, UNVERIFIED,
+                # or an unavailable judge (fail-open so enrichment still runs).
+                vision_ok = True
+                if _vision_image_match:
+                    try:
+                        probe = dict(article)
+                        probe["image_url"] = new_url
+                        probe["image_caption"] = credit or article.get("image_caption", "")
+                        verdict = _vision_image_match(probe)
+                        if verdict and verdict.get("verdict") == "MISMATCH":
+                            vision_ok = False
+                            print(f"     🚫 Vision MISMATCH — skipping swap: {verdict.get('reason','')[:90]}")
+                    except Exception as _ve:
+                        print(f"     ⚠️  Vision check errored (allowing swap): {_ve}")
+                if not vision_ok:
+                    print(f"     — Kept original hero (candidate failed vision check)")
+                elif apply:
                     updates = {"image_url": new_url}
                     if credit:
                         updates["image_caption"] = credit
