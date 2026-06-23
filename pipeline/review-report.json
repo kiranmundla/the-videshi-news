@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-23T01:15:21.192736+00:00",
+  "timestamp": "2026-06-23T01:45:11.907701+00:00",
   "mode": "fix",
   "stats": {
     "pass": 1,
-    "flag": 1,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,17 +11,17 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "530a1122-f133-4598-9824-2fcb97032514",
-      "headline": "Allu Arjun Faces the Court From a Mumbai Film Set. The Pushpa 2 Stampede Case Catches Up With the Pan-India Star.",
-      "slug": "allu-arjun-virtual-court-nampally-pushpa-2-sandhya-theatre-stampede-case-accused-11-revathi-sri-teja-deferred-hearing-where-to-watch-diaspora-nri-20260622",
+      "id": "23ea666e-7deb-4327-81d4-812d7f18bce4",
+      "headline": "Three Centuries, One Collapse: India Pile Up 471 at Headingley, Then Watch England Punch Straight Back",
+      "slug": "india-england-first-test-headingley-day-two-pant-134-three-centuries-471-all-out-collapse-pope-100-bumrah-diaspora-nri",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A man holding a microphone",
-          "reason": "The photo plausibly shows Allu Arjun, relevant to the story."
+          "what_photo_shows": "Cricketer in Indian team jersey",
+          "reason": "The photo shows a cricketer, relevant to the cricket story."
         },
         "inline_image_mismatches": []
       },
@@ -35,66 +35,17 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article connects well with NRI readers by discussing the global impact of *Pushpa 2* and the implications of the incident."
+          "note": "The article effectively connects with the diaspora by highlighting Rishabh Pant's journey and the emotional weight of his performance for NRIs."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more quotes from Allu Arjun or his family to provide a personal touch.",
-          "Include more context on the impact of the incident on the film industry and fan culture."
+          "Consider adding more quotes or reactions from players or analysts to enhance engagement.",
+          "Include a brief historical context about India's past collapses to deepen the narrative."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "c4b4650a-7ce7-4cca-918c-b9cbc1736ad4",
-      "headline": "The Kapoors Begin a Wedding the Quiet Way. Anshula Kapoor's Pre-Wedding Lit Up With Gold, Phulkari, and the Whole Clan in One Frame.",
-      "slug": "anshula-kapoor-rohan-thakkar-pre-wedding-mata-ki-chowki-arjun-janhvi-khushi-shanaya-kapoor-july-2026-central-park-proposal-where-to-watch-diaspora-nri-20260622",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Anshula Kapoor at an event",
-          "reason": "The photo shows Anshula Kapoor, relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/p/DZ5DzdhihIK/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post does not seem to directly relate to the wedding event described in the article."
-          }
-        ],
-        "image_match": {
-          "score": 6,
-          "issue": "The image does not depict the wedding or Anshula Kapoor, which is the main focus of the article."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the wedding to the diaspora experience, particularly through the couple's international romance."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the hero image with one that features Anshula Kapoor or the wedding event to better match the article's content.",
-          "Consider adding more context or quotes from family members to enhance the narrative around the wedding."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DZ5DzdhihIK/",
         "promoted to published"
       ],
       "revised": false,
