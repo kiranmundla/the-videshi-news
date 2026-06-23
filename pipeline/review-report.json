@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-23T02:45:20.279722+00:00",
+  "timestamp": "2026-06-23T03:15:41.811298+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 5,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,17 +11,26 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "0af26d81-5828-4707-a7cc-772375e11626",
-      "headline": "After Pulling a Record $30 Billion Out of India, Foreign Investors Just Made Their Biggest Bet Back in Months",
-      "slug": "foreign-investors-return-indian-equities-biggest-daily-buy-since-february-record-30-billion-exodus-nri-20260623",
+      "id": "631b9117-c6a4-4433-8606-233d3a1787ba",
+      "headline": "Ranveer Singh Is Fighting Zombies. Vicky Kaushal Is Becoming a God. Bollywood's Next Bench Just Made Its Biggest Bets.",
+      "slug": "ranveer-singh-pralay-zombie-epic-maa-kasam-films-kalyani-priyadarshan-vicky-kaushal-mahavatar-parashurama-amar-kaushik-maddock-18-months-where-to-watch-diaspora-nri-20260623",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "c0185d16-7a8f-4c5f-bb96-1117952dc539",
+            "headline": "Dhurandhar 2 Finally Comes Home to India \u2014 and Netflix Is Po"
+          },
+          {
+            "article_id": "c24568c2-9979-4366-acc6-ccab4bdfd5ee",
+            "headline": "Bollywood's New Dads Took Over Father's Day. The Leading Men"
+          }
+        ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Bombay Stock Exchange building",
-          "reason": "The photo shows the Bombay Stock Exchange, relevant to the story about foreign investment in Indian stocks."
+          "what_photo_shows": "A man in ornate clothing",
+          "reason": "The photo plausibly shows Ranveer Singh, relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -34,14 +43,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the foreign investment trends to the interests of the NRI community, highlighting their stake in Indian equities."
+          "quality": 7,
+          "note": "The article discusses major Bollywood projects that may appeal to the diaspora audience, but could further emphasize the cultural significance for NRIs."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more specific examples of how the NRI community is reacting to these investment trends.",
-          "Include quotes from diaspora investors to provide a personal touch and enhance relatability."
+          "Include more direct references to how these films might resonate with the diaspora audience.",
+          "Add quotes or insights from industry experts or diaspora members to enhance the article's depth."
         ],
         "verdict": "pass"
       },
@@ -53,17 +62,59 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "04413044-78f1-4257-bcf4-71e4b5646e5a",
-      "headline": "America Just Lifted Iran's Oil Sanctions for 60 Days. For India, the Relief Is Already Floating Through Hormuz.",
-      "slug": "us-waives-iran-sanctions-60-days-buergenstock-peace-talks-hormuz-tankers-oil-falls-india-20260623",
+      "id": "b5f47084-a383-44a6-8df1-dffad52f8184",
+      "headline": "Shah Rukh Khan Takes Back Christmas \u2014 and Brings Suhana With Him. 'King' Locks December 25.",
+      "slug": "king-shah-rukh-khan-christmas-2026-december-25-suhana-khan-debut-leon-professional-siddharth-anand-ramayana-gap-deepika-rani-mukerji-where-to-watch-diaspora-nri-20260623",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "US Navy frigate and oil tanker",
-          "reason": "The photo shows a US Navy frigate escorting an oil tanker, relevant to the story about tanker traffic through the Strait of Hormuz."
+          "what_photo_shows": "Promotional poster for King movie",
+          "reason": "The photo is a promotional poster for the movie 'King', matching the entertainment story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image is relevant to Shah Rukh Khan but does not directly represent the film 'King' as it is a general image of SRK."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the film's release timing to NRI audiences, highlighting the cultural significance of a Christmas release."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more specific image related to the film 'King' for better relevance.",
+          "Expand on the diaspora angle by including quotes or reactions from NRI audiences or film critics."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "019a7abd-533c-4cbc-98ea-a7124cd471be",
+      "headline": "Washington Cut Off Anthropic's Best AI Models to Foreign Nationals Overnight. Indian Engineers Just Learned Who Owns the Switch.",
+      "slug": "anthropic-fable-mythos-export-ban-foreign-nationals-sovereign-ai-india-20260623",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "man speaking at event",
+          "reason": "The photo shows a person who could be Anthropic's CEO, relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -77,13 +128,97 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the geopolitical developments to the Indian diaspora's economic interests and safety."
+          "note": "The article effectively connects the implications of US export controls on AI models to the Indian diaspora, particularly Indian engineers and IT firms."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more specific statistics or quotes from diaspora members to enhance the personal connection.",
-          "Include a brief overview of how previous sanctions affected India to provide context."
+          "Consider adding quotes or perspectives from Indian engineers or companies affected by the export ban to enhance the personal connection.",
+          "Include more data or statistics on the impact of the ban on the Indian tech industry to strengthen the argument."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "3ebc725a-c015-4bbc-8910-2f8319da6e5e",
+      "headline": "Every Tech CEO Is Pouring Billions Into AI Data Centres. The Founder of India's Biggest SaaS Firm Says He'll Sit It Out.",
+      "slug": "zoho-sridhar-vembu-ai-bubble-warning-made-in-india-erp-sovereignty-nri-20260623",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Zoho Corporation's headquarters",
+          "reason": "The photo shows Zoho's headquarters, relevant to the story about its founder."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses NRIs by discussing opportunities in India and encouraging them to consider returning."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more statistics or data to support claims about Zoho's market position compared to competitors.",
+          "Add quotes or insights from industry experts to enhance credibility and depth."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "c91bad88-3db2-4461-a6c1-879b51bffa47",
+      "headline": "Arvind Krishna Spent Years Calling IBM an AI Company. Now He's Buying OpenAI's Help to Prove It.",
+      "slug": "ibm-openai-cyber-daybreak-project-lightwell-arvind-krishna-nri-enginee-20260623",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "man speaking at a conference",
+          "reason": "The photo shows a man speaking at a conference, which aligns with the tech story about IBM and AI."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the implications of IBM's AI strategy to Indian engineers and the diaspora, discussing both opportunities and risks."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more direct quotes from Arvind Krishna or other industry leaders to enhance credibility.",
+          "Include more specific examples of how Indian engineers are adapting to these changes in the AI landscape."
         ],
         "verdict": "pass"
       },
