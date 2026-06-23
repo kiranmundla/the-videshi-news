@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-23T06:45:24.892231+00:00",
+  "timestamp": "2026-06-23T07:15:25.494239+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
+    "pass": 2,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,17 +11,82 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "4305e7dd-1a40-4204-9050-7cda52dae671",
-      "headline": "India's Economy Is Still Growing Fast. The Mood of the People Running It Just Hit a Four-Year Low.",
-      "slug": "india-private-sector-growth-three-month-low-business-confidence-pmi-june-2026-diaspora-investors-20260623",
+      "id": "0d0e095d-24bc-44fd-ad62-9d0185a27881",
+      "headline": "Akshay Kumar Opens the Jungle. After 19 Years, 'Welcome' Returns With Half of Bollywood and a Plagiarism Debate.",
+      "slug": "welcome-to-the-jungle-trailer-akshay-kumar-ahmed-khan-tropic-thunder-comparison-suniel-shetty-paresh-rawal-june-26-advance-booking-where-to-watch-diaspora-nri-20260623",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "0d67b566-c831-4c27-9734-18d8465fb619",
+            "headline": "The Censor Board Took Its Scissors to Welcome To The Jungle."
+          },
+          {
+            "article_id": "ac614937-f3ec-4945-a8f2-7f10dd22fb39",
+            "headline": "Eighteen Years, Forty-Odd Stars, One Jungle. Welcome 3 Lands"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "poster for Welcome To The Jungle",
+          "reason": "The photo shows the official poster for the movie mentioned in the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DZb92GLNWkK/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel does not appear to be directly related to the film or its promotional content."
+          },
+          {
+            "url": "https://youtube.com/watch?v=R704yP3dlXw",
+            "problem": "duplicate",
+            "explanation": "The YouTube link is relevant but should not be repeated in the article."
+          }
+        ],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the film's release to diaspora audiences, highlighting its global theatrical release and appeal."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [
+          "https://youtube.com/watch?v=R704yP3dlXw"
+        ],
+        "suggestions": [
+          "Remove the irrelevant Instagram link to maintain focus on relevant content.",
+          "Ensure that the YouTube link is not duplicated in the article."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DZb92GLNWkK/",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "9c206bc8-2ad6-4fb3-b199-ffba4d1fd84f",
+      "headline": "Emraan Hashmi Walks Back Into the Dark. After Five Years, the King of Bollywood Horror Returns \u2014 With a Soundtrack.",
+      "slug": "rooh-emraan-hashmi-musical-horror-mayank-sharma-breathe-vishal-kapoor-chhorii-2027-hindi-tamil-telugu-where-to-watch-diaspora-nri-20260623",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Mumbai's financial district building",
-          "reason": "The photo shows Mumbai's financial district, relevant to the economy story."
+          "what_photo_shows": "Emraan Hashmi at an event",
+          "reason": "The photo shows Emraan Hashmi, matching the story about his film."
         },
         "inline_image_mismatches": []
       },
@@ -35,92 +100,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the economic data to the interests of the diaspora, particularly in terms of investment and family ties."
+          "note": "The article discusses the pan-India release strategy and how it connects with the diaspora's interest in Indian horror films."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more specific examples of how the economic changes are impacting the diaspora community directly.",
-          "Include quotes or insights from diaspora investors to enhance the personal connection."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "2dc8bc4f-c2b3-47b8-a2f1-abb498bf1fe7",
-      "headline": "India and China Say Their Ties Are 'Normalising' Again. The Diaspora Has Heard This Before.",
-      "slug": "india-china-ties-normalising-doval-wang-yi-meet-brics-nsa-delhi-diaspora-flights-visas-20260623",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Ajit Doval, India's National Security Adviser",
-          "reason": "The photo shows Ajit Doval, who is relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the geopolitical developments to the everyday experiences of the Indian diaspora, discussing the implications for travel and business."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more specific examples of how the diaspora has adapted to the changes in India-China relations.",
-          "Include quotes or perspectives from diaspora members to enhance the personal connection."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "f4811e23-4b02-4692-aee4-8c149eb2d3c0",
-      "headline": "The Weakness That Comes With Age May Live as Much in the Brain as in the Muscle, a New Study Finds",
-      "slug": "age-related-weakness-brain-nervous-system-neural-drive-ohio-university-journal-neurophysiology-66-adults-diaspora-20260623-0600",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image description is missing, making it difficult to assess relevance."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article connects the findings to the Indian diaspora's concerns about ageing, making it relevant."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include a relevant image description to enhance the image match score.",
-          "Expand on the diaspora angle by providing specific examples or anecdotes related to the Indian community."
+          "Include more direct quotes or insights from Emraan Hashmi to enhance the personal connection.",
+          "Add a brief section on the historical context of horror films in Indian cinema to enrich the article."
         ],
         "verdict": "pass"
       },
