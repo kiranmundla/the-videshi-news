@@ -280,7 +280,62 @@ def build_search_query(headline, subheadline='', body='', max_terms=5):
         q = _heuristic_query(headline, max_terms=max_terms)
     return _sanitize_query(q)
 
-def search_tweet(query, handle=None):
+# --- Source-quality guard -------------------------------------------------
+# A verified (paid blue-check) account is NOT an authoritative news source.
+# Partisan hot-take accounts clear the keyword + verified floors but are a poor
+# tonal fit for hard-news articles (e.g. @angertab's "VP Vance and POTUS are
+# crushing IRAN! The Strait of Hormuz is 100% open!" on a sober oil-sanctions
+# piece). Two deterministic filters reject these:
+#   1. An explicit handle blocklist (grows as bad sources surface).
+#   2. A hype-text heuristic (rally-cry phrasing, ALL-CAPS shouting) applied
+#      to hard-news categories only — sports/entertainment may be exuberant.
+
+# Handles never to embed (lowercase, no @). Grow this list as bad sources appear.
+_BLOCKED_HANDLES = {
+    'angertab',
+}
+
+# Categories where tone matters most — apply the hype filter here.
+_HARD_NEWS_CATEGORIES = {'news', 'technology', 'nri-world'}
+
+# Phrases that signal a partisan hot-take rather than reporting.
+_HYPE_PATTERNS = [
+    r'\bcrushing\b', r'\bdestroy(?:ing|ed|s)?\b', r'\bowned\b', r'\bbigly\b',
+    r'\bwake up\b', r'\bsheeple\b', r'\bMAGA\b', r'\bWWG1WGA\b', r'\bWEF\b',
+    r'\b100%\s+(?:open|done|over|true|fake)\b', r'\bgame over\b',
+    r'\bthank you,?\s+(?:potus|president|mr president)\b',
+    r'\bcan you believe\b', r'\bfinally someone\b', r'\bso-?called\b',
+    r'\bhoax\b', r'\bwitch ?hunt\b', r'\bfake news\b', r'\bclown world\b',
+]
+_HYPE_RE = [re.compile(p, re.I) for p in _HYPE_PATTERNS]
+
+def _caps_ratio(text):
+    letters = [c for c in text if c.isalpha()]
+    if not letters:
+        return 0.0
+    return sum(1 for c in letters if c.isupper()) / len(letters)
+
+def is_low_quality_source(p, category=None):
+    """True if a candidate tweet is from a blocked handle or reads as partisan
+    hype. The hype heuristic applies only to hard-news categories (or when the
+    category is unknown); sports/entertainment posts are allowed to be loud."""
+    handle = (p.get('handle', '') or '').lower().lstrip('@')
+    if handle in _BLOCKED_HANDLES:
+        return True
+    text = p.get('text', '') or ''
+    apply_hype = (category is None) or (category in _HARD_NEWS_CATEGORIES)
+    if apply_hype:
+        for rx in _HYPE_RE:
+            if rx.search(text):
+                return True
+        # Sustained ALL-CAPS shouting (excludes short tweets that are mostly
+        # acronyms/tickers).
+        if len(text) >= 40 and _caps_ratio(text) > 0.4:
+            return True
+    return False
+
+
+def search_tweet(query, handle=None, category=None):
     """Find a relevant, embeddable tweet via the X API (the same recent-search
     path the reel pipeline uses), then verify it renders through react-tweet.
     Returns (tweet_url, tweet_id, verify_output) or (None, None, None).
@@ -361,6 +416,11 @@ def search_tweet(query, handle=None):
         # When the article HAS distinctive entities, the matched tweet must
         # hit at least one of them — generic geo-token collisions are rejected.
         if distinct_kw and _distinct_rel(p) < 1:
+            continue
+        # Source-quality guard: reject blocked handles and partisan hot-takes
+        # before we ever verify/embed them.
+        if is_low_quality_source(p, category=category):
+            print(f"      🚫 Skipped low-quality source @{p.get('handle','?')}: {(p.get('text','') or '')[:80]!r}")
             continue
         tweet_id = p.get('id')
         if not tweet_id:
@@ -456,7 +516,7 @@ def main():
             # Try each matched person/org
             for name, handle in matches[:2]:
                 print(f"      🔍 Searching @{handle} ({name})...")
-                tweet_url, tweet_id, verify_out = search_tweet(keywords, handle=handle)
+                tweet_url, tweet_id, verify_out = search_tweet(keywords, handle=handle, category=article['category'])
                 if tweet_url:
                     print(f"      ✅ Found: {tweet_url}")
                     print(f"         {verify_out}")
@@ -468,7 +528,7 @@ def main():
         if not tweet_url:
             # Step 2: Generic topic search
             print(f"      🔍 Generic search...")
-            tweet_url, tweet_id, verify_out = search_tweet(keywords)
+            tweet_url, tweet_id, verify_out = search_tweet(keywords, category=article['category'])
             if tweet_url:
                 print(f"      ✅ Found: {tweet_url}")
                 print(f"         {verify_out}")
