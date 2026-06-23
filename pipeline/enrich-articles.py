@@ -185,10 +185,9 @@ def is_relevant_image(result, subject, headline):
         return False
 
     # For named subjects, check if result title contains any part of the subject
-    if subject_lower:
-        parts = [p for p in subject_lower.split() if len(p) > 2]
-        if parts and any(p in title for p in parts):
-            return True
+    parts = [p for p in subject_lower.split() if len(p) > 2] if subject_lower else []
+    if parts and any(p in title for p in parts):
+        return True
 
     # Check headline keyword overlap (at least 2 significant words)
     headline_words = {w.lower() for w in headline.split() if len(w) > 3}
