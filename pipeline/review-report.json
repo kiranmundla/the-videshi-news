@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-23T00:45:43.515033+00:00",
+  "timestamp": "2026-06-23T01:15:21.192736+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 6,
-    "flag": 0,
+    "pass": 1,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,59 +11,17 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "9487e06e-a0bc-43ea-a491-e2c3e9eb305f",
-      "headline": "Beyond Butter Chicken: The Dosa Belt Pushes Into America's Second Cities",
-      "slug": "beyond-butter-chicken-the-dosa-belt-pushes-into-americas-second-cities",
+      "id": "530a1122-f133-4598-9824-2fcb97032514",
+      "headline": "Allu Arjun Faces the Court From a Mumbai Film Set. The Pushpa 2 Stampede Case Catches Up With the Pan-India Star.",
+      "slug": "allu-arjun-virtual-court-nampally-pushpa-2-sandhya-theatre-stampede-case-accused-11-revathi-sri-teja-deferred-hearing-where-to-watch-diaspora-nri-20260622",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Masala dosa with sambar and chutney",
-          "reason": "The photo shows a South Indian dish relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively highlights the impact of regional Indian cuisine on the NRI community, emphasizing the importance of representation and accessibility."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes or testimonials from NRI customers to enhance the personal connection to the diaspora experience.",
-          "Include more statistics or data on the growth of South Indian cuisine in the U.S. to strengthen the argument."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "d5be69b8-b5e9-4571-a944-d746cd26e36a",
-      "headline": "Chai's American Hour: How a Roadside Ritual Became a Billion-Dollar Cafe Staple",
-      "slug": "chais-american-hour-how-a-roadside-ritual-became-a-billion-dollar-cafe-staple",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "two glasses of masala chai",
-          "reason": "The photo shows masala chai, which is relevant to the story about its popularity."
+          "what_photo_shows": "A man holding a microphone",
+          "reason": "The photo plausibly shows Allu Arjun, relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -77,13 +35,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the trend of chai in America to the NRI community, discussing both pride and irritation, which resonates well with diaspora readers."
+          "note": "The article connects well with NRI readers by discussing the global impact of *Pushpa 2* and the implications of the incident."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes or anecdotes from NRI individuals to enhance the personal connection to the diaspora experience.",
-          "Include more specific examples of diaspora-led chai brands to provide concrete illustrations of the trend."
+          "Consider adding more quotes from Allu Arjun or his family to provide a personal touch.",
+          "Include more context on the impact of the incident on the film industry and fan culture."
         ],
         "verdict": "pass"
       },
@@ -95,164 +53,48 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "96c958d0-4198-4ae6-892c-8c4e70f937be",
-      "headline": "The Double Diaspora Plates Up: A Chopped Champion Brings Trinidad, Durban and Guyana to the East Village",
-      "slug": "the-double-diaspora-plates-up-a-chopped-champion-brings-trinidad-durban-and-guya",
+      "id": "c4b4650a-7ce7-4cca-918c-b9cbc1736ad4",
+      "headline": "The Kapoors Begin a Wedding the Quiet Way. Anshula Kapoor's Pre-Wedding Lit Up With Gold, Phulkari, and the Whole Clan in One Frame.",
+      "slug": "anshula-kapoor-rohan-thakkar-pre-wedding-mata-ki-chowki-arjun-janhvi-khushi-shanaya-kapoor-july-2026-central-park-proposal-where-to-watch-diaspora-nri-20260622",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "street food stall with people",
-          "reason": "The photo shows a street food scene, relevant to the food story."
+          "what_photo_shows": "Anshula Kapoor at an event",
+          "reason": "The photo shows Anshula Kapoor, relevant to the story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/DZ5DzdhihIK/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not seem to directly relate to the wedding event described in the article."
+          }
+        ],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 6,
+          "issue": "The image does not depict the wedding or Anshula Kapoor, which is the main focus of the article."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the restaurant's concept to the broader Indian diaspora experience, highlighting the historical migration and cultural significance."
+          "note": "The article effectively connects the wedding to the diaspora experience, particularly through the couple's international romance."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from patrons or food critics to enhance the article's depth.",
-          "Include more details about the restaurant's opening and initial reception to provide context."
+          "Replace the hero image with one that features Anshula Kapoor or the wedding event to better match the article's content.",
+          "Consider adding more context or quotes from family members to enhance the narrative around the wedding."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "2db9f0e0-b9d6-4bda-afe0-d0491b24d30d",
-      "headline": "America's Top Trade Envoy Lands in Delhi Tuesday. India Wants a Better Deal Than Its Rivals \u2014 and an Apology at Sea.",
-      "slug": "india-us-trade-deal-talks-ustr-jamieson-greer-delhi-tariff-edge-seafarers-deaths-20260623",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MISMATCH",
-          "what_photo_shows": "business meeting at a port trust",
-          "reason": "The photo shows a port trust meeting, not related to the trade envoy's arrival."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 5,
-          "issue": "hero image not provided"
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the trade deal to the interests of the Indian diaspora, highlighting its impact on businesses and the economy."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include a relevant hero image that reflects the article's content.",
-          "Provide more context on the implications of the trade deal for specific sectors within the diaspora."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "Cleared mismatched image (business meeting at a port trust)",
-        "held: image mismatch"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "image_mismatch": true,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "5339f511-d33a-4e3c-8985-b23b987b8e1b",
-      "headline": "Britain Is About to Change Prime Ministers Again. Its 1.9 Million Indians Have a Stake in Who's Next.",
-      "slug": "uk-pm-keir-starmer-resigns-andy-burnham-frontrunner-british-indian-diaspora-ceta-20260623",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "10 Downing Street entrance",
-          "reason": "The photo shows 10 Downing Street, relevant to a UK prime minister story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the political changes in the UK to the Indian diaspora's interests, particularly regarding immigration and economic agreements."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more direct quotes or perspectives from members of the Indian diaspora to enhance relatability.",
-          "Provide a brief background on the significance of the CETA for the diaspora to deepen understanding."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "58bf4be1-bce5-482c-a81a-fcd565faa7e6",
-      "headline": "Washington Just Built a Machine to Audit H-1B Employers. Indian IT Firms Are the Target",
-      "slug": "h1b-enforcement-project-firewall-dol-dhs-moa-indian-it-staffing-audits-20260623",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 5,
-          "issue": "missing image description"
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses the implications of H-1B enforcement on Indian professionals, making it relevant to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include a relevant image that visually represents the topic of H-1B enforcement.",
-          "Provide more context or examples of how these changes specifically impact Indian professionals in the diaspora."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/DZ5DzdhihIK/",
         "promoted to published"
       ],
       "revised": false,
