@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-23T03:15:41.811298+00:00",
+  "timestamp": "2026-06-23T04:15:22.126638+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 5,
+    "pass": 2,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,26 +11,17 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "631b9117-c6a4-4433-8606-233d3a1787ba",
-      "headline": "Ranveer Singh Is Fighting Zombies. Vicky Kaushal Is Becoming a God. Bollywood's Next Bench Just Made Its Biggest Bets.",
-      "slug": "ranveer-singh-pralay-zombie-epic-maa-kasam-films-kalyani-priyadarshan-vicky-kaushal-mahavatar-parashurama-amar-kaushik-maddock-18-months-where-to-watch-diaspora-nri-20260623",
+      "id": "724bfdae-0721-4e43-8ed4-1b15021edbcc",
+      "headline": "A Fake-Degree Bust in India Just Became Washington's Newest H-1B Weapon",
+      "slug": "india-fake-degree-racket-h1b-scrutiny-schmitt-credential-fraud-20260623",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "c0185d16-7a8f-4c5f-bb96-1117952dc539",
-            "headline": "Dhurandhar 2 Finally Comes Home to India \u2014 and Netflix Is Po"
-          },
-          {
-            "article_id": "c24568c2-9979-4366-acc6-ccab4bdfd5ee",
-            "headline": "Bollywood's New Dads Took Over Father's Day. The Leading Men"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A man in ornate clothing",
-          "reason": "The photo plausibly shows Ranveer Singh, relevant to the story."
+          "what_photo_shows": "stack of framed diplomas",
+          "reason": "The photo illustrates academic credentials relevant to the fake-degree story."
         },
         "inline_image_mismatches": []
       },
@@ -38,19 +29,21 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 5,
+          "issue": "The image does not directly relate to the topic of fake degrees or immigration."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article discusses major Bollywood projects that may appeal to the diaspora audience, but could further emphasize the cultural significance for NRIs."
+          "quality": 8,
+          "note": "The article discusses the implications of the fake degree scandal on Indian H-1B visa holders, making it relevant to the diaspora."
         },
-        "factual_flags": [],
+        "factual_flags": [
+          "The claim that 80-90% of H-1B visas issued to Indians are tainted by fraud is contested and unsupported by USCIS data."
+        ],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct references to how these films might resonate with the diaspora audience.",
-          "Add quotes or insights from industry experts or diaspora members to enhance the article's depth."
+          "Consider using an image that directly relates to the topic of education or immigration to enhance relevance.",
+          "Clarify the contested claims regarding fraud rates in H-1B visas to avoid potential misinformation."
         ],
         "verdict": "pass"
       },
@@ -62,167 +55,48 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "b5f47084-a383-44a6-8df1-dffad52f8184",
-      "headline": "Shah Rukh Khan Takes Back Christmas \u2014 and Brings Suhana With Him. 'King' Locks December 25.",
-      "slug": "king-shah-rukh-khan-christmas-2026-december-25-suhana-khan-debut-leon-professional-siddharth-anand-ramayana-gap-deepika-rani-mukerji-where-to-watch-diaspora-nri-20260623",
+      "id": "a88f63cc-1e23-42c6-88a5-2d2ae13eea74",
+      "headline": "For Indians, the July Visa Bulletin Has a New Worst-Case Word: 'Unavailable'",
+      "slug": "july-2026-visa-bulletin-eb2-india-unavailable-eb1-retrogression-20260623",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Promotional poster for King movie",
-          "reason": "The photo is a promotional poster for the movie 'King', matching the entertainment story."
+          "what_photo_shows": "open passport with visa stamps",
+          "reason": "The photo subject is relevant to the immigration and visa topic."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://x.com/USCIS",
+            "problem": "irrelevant",
+            "explanation": "The USCIS link does not provide additional context or relevance to the article's main topic about the July Visa Bulletin."
+          }
+        ],
         "image_match": {
           "score": 7,
-          "issue": "The image is relevant to Shah Rukh Khan but does not directly represent the film 'King' as it is a general image of SRK."
+          "issue": "The image does not directly relate to the topic of immigration or visas."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects the film's release timing to NRI audiences, highlighting the cultural significance of a Christmas release."
+          "note": "The article effectively addresses the concerns of the Indian diaspora regarding visa backlogs and the implications of the July Visa Bulletin."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more specific image related to the film 'King' for better relevance.",
-          "Expand on the diaspora angle by including quotes or reactions from NRI audiences or film critics."
+          "Replace the hero image with one that visually represents immigration or the visa process.",
+          "Provide more context or links to resources that can help readers understand the implications of the 'Unavailable' status."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "019a7abd-533c-4cbc-98ea-a7124cd471be",
-      "headline": "Washington Cut Off Anthropic's Best AI Models to Foreign Nationals Overnight. Indian Engineers Just Learned Who Owns the Switch.",
-      "slug": "anthropic-fable-mythos-export-ban-foreign-nationals-sovereign-ai-india-20260623",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "man speaking at event",
-          "reason": "The photo shows a person who could be Anthropic's CEO, relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the implications of US export controls on AI models to the Indian diaspora, particularly Indian engineers and IT firms."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes or perspectives from Indian engineers or companies affected by the export ban to enhance the personal connection.",
-          "Include more data or statistics on the impact of the ban on the Indian tech industry to strengthen the argument."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "3ebc725a-c015-4bbc-8910-2f8319da6e5e",
-      "headline": "Every Tech CEO Is Pouring Billions Into AI Data Centres. The Founder of India's Biggest SaaS Firm Says He'll Sit It Out.",
-      "slug": "zoho-sridhar-vembu-ai-bubble-warning-made-in-india-erp-sovereignty-nri-20260623",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Zoho Corporation's headquarters",
-          "reason": "The photo shows Zoho's headquarters, relevant to the story about its founder."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively addresses NRIs by discussing opportunities in India and encouraging them to consider returning."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more statistics or data to support claims about Zoho's market position compared to competitors.",
-          "Add quotes or insights from industry experts to enhance credibility and depth."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "c91bad88-3db2-4461-a6c1-879b51bffa47",
-      "headline": "Arvind Krishna Spent Years Calling IBM an AI Company. Now He's Buying OpenAI's Help to Prove It.",
-      "slug": "ibm-openai-cyber-daybreak-project-lightwell-arvind-krishna-nri-enginee-20260623",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "man speaking at a conference",
-          "reason": "The photo shows a man speaking at a conference, which aligns with the tech story about IBM and AI."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the implications of IBM's AI strategy to Indian engineers and the diaspora, discussing both opportunities and risks."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more direct quotes from Arvind Krishna or other industry leaders to enhance credibility.",
-          "Include more specific examples of how Indian engineers are adapting to these changes in the AI landscape."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
+        "Removed irrelevant embed: https://x.com/USCIS",
         "promoted to published"
       ],
       "revised": false,
