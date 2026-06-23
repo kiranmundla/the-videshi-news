@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-23T19:15:11.077502+00:00",
+  "timestamp": "2026-06-23T19:45:10.090180+00:00",
   "mode": "fix",
   "stats": {
     "pass": 1,
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "f80db36c-4dbf-4ffa-b779-26e89dfce056",
-      "headline": "Hrithik Roshan Flies to Chennai for Jailer 2. Forty Years After His Debut, the Child Actor Returns to Rajinikanth's Side.",
-      "slug": "jailer-2-hrithik-roshan-chennai-cameo-rajinikanth-bhagwaan-dada-reunion-shah-rukh-khan-king-nelson-sun-pictures-where-to-watch-diaspora-nri-20260623",
+      "id": "86ed95a9-bfdf-49d0-8b28-eea82d57ba12",
+      "headline": "Fifteen Golds in Mersin: India's Young Para-Shuttlers Just Announced the Next Generation",
+      "slug": "india-27-medals-para-badminton-2026-world-abilitysport-youth-games-mersin-turkiye-15-gold-haris-mythili-srikumar-akash-ranjan-mund-manisha-patel-diaspora-nri",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Hrithik Roshan smiling and showing a watch",
-          "reason": "The photo clearly shows Hrithik Roshan, who is the main subject of the headline."
+          "what_photo_shows": "Mansi Joshi receiving an award at a ceremony",
+          "reason": "The photo shows the named person, Mansi Joshi, who is relevant to the para-sport story."
         },
         "inline_image_mismatches": []
       },
@@ -36,13 +36,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article explicitly connects to NRI/diaspora readers in the final paragraph, detailing the film's global release and fan screenings in diaspora hubs."
+          "note": "The diaspora angle is well-integrated and provides a thoughtful connection for NRI readers, linking the success to themes of inclusion and national pride."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a quote from a film critic or industry expert about the significance of this casting or the pan-India trend.",
-          "Perhaps include a small, relevant social media embed (e.g., a fan reaction to the news, if available and appropriate) to enhance engagement."
+          "Consider adding a quote from one of the young athletes or a coach to add a personal touch and more emotional depth.",
+          "While the article is strong, a brief mention of the challenges these athletes might still face in India (even with improving infrastructure) could add nuance, without detracting from the positive message."
         ],
         "verdict": "pass"
       },
