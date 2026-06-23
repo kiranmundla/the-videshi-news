@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-23T20:45:16.348635+00:00",
+  "timestamp": "2026-06-23T21:15:51.430188+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
-    "flag": 1,
+    "pass": 6,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "b7d7d5b4-44b6-4deb-855d-270fdab4367e",
-      "headline": "UK-India Week Just Opened at Warwick \u2014 and the Real Action Is a Gujarat-to-West-Midlands Handshake",
-      "slug": "uk-india-week-2026-university-warwick-gujarat-west-midlands-partnership-smarter-regions-20260623",
+      "id": "2ceb4634-785f-429f-8f6d-014f688deef0",
+      "headline": "Indians Are Putting Solar on the Roof Faster Than Anyone Expected. Investors Just Poured Rs 510 Crore Into the Company Riding That Wave.",
+      "slug": "solarsquare-funding-india-rooftop-solar-pm-surya-ghar-20260623",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "The University of Warwick campus with a double-decker bus",
-          "reason": "The photo shows the University of Warwick, which is explicitly named as the host of the event in the headline and caption."
+          "what_photo_shows": "Rooftop solar panels on homes in an Indian city.",
+          "reason": "The photo clearly shows rooftop solar panels in an Indian residential setting, which directly matches the story's topic of rooftop solar in India."
         },
         "inline_image_mismatches": []
       },
@@ -35,18 +35,187 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article explicitly connects the partnership to the Gujarati diaspora in the West Midlands, highlighting its relevance to their ancestral state and adopted region."
+          "quality": 8,
+          "note": "The diaspora angle is well-integrated and provides specific, relatable scenarios for NRIs, both as consumers and potential investors."
         },
-        "factual_flags": [
-          "The article mentions a West Midlands mayoral delegation travelling to Gujarat 'earlier in 2026', but the UK-India Week is also stated to be the '10th edition this week'. This implies the article is being written in 2026, which contradicts the current year. This needs to be fact-checked for temporal consistency."
-        ],
+        "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Clarify the temporal discrepancy regarding the year 2026 for the mayoral delegation and the current UK-India Week edition.",
-          "Consider adding a quote from a diaspora leader or entrepreneur to further strengthen the 'Why the Diaspora Should Care' section."
+          "Consider adding a small section on the competitive landscape or other key players in the Indian residential solar market to provide more context.",
+          "While the article mentions the PM Surya Ghar scheme, a brief explanation of its key benefits or how it works for the average homeowner could enhance reader understanding."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "2790ec19-3abe-432a-b5ac-5067dfcdc77c",
+      "headline": "Foreign Satellite Giants Are Stuck at India's Door. Mukesh Ambani Just Decided to Build His Own Constellation.",
+      "slug": "jio-sovereign-leo-satellite-constellation-starlink-india-20260623",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "An artist's impression of a low-Earth-orbit satellite constellation around Earth.",
+          "reason": "The photo directly illustrates the concept of a low-Earth-orbit satellite constellation, which is the core subject of the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The diaspora angle is well-integrated and feels natural, connecting the technical topic to NRI concerns about family connectivity and national pride in strategic infrastructure."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a quote from an NRI or a diaspora-focused organization to further strengthen the 'What it means for the diaspora' section.",
+          "Ensure the article concludes with a strong summary or forward-looking statement, as it currently cuts off mid-sentence."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "5d8b89c6-5955-4de1-8d48-ef83ac9919a0",
+      "headline": "A Swiggy Rider Can Now Start a Mutual Fund in a Few Taps. India Just Wired Investing Into the Gig Economy.",
+      "slug": "swiggy-zerodha-fund-house-gig-workers-mutual-funds-20260623",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "A Swiggy delivery partner on a scooter in India.",
+          "reason": "The photo clearly shows a Swiggy delivery partner, which is directly relevant to the story about Swiggy riders and investing in India's gig economy."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The diaspora angle is explicitly addressed in a dedicated section, connecting the topic to NRI investment and observing India's digital infrastructure advancements."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Ensure the article has a strong conclusion, as it currently cuts off abruptly.",
+          "Consider adding a quote from an actual Swiggy rider, if possible, to provide a ground-level perspective on the new feature."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "c7935a02-ee7b-4ad3-99f6-3f5a51b17c6f",
+      "headline": "Arjun Rampal Is Playing a Fallen Billionaire. The Producer Just Admitted Who He's 'Loosely Based' On.",
+      "slug": "billionaire-arjun-rampal-vijay-mallya-inspired-tycoon-hansal-mehta-robbie-grewal-prabhleen-sandhu-amazon-mx-player-dhurandhar-where-to-watch-diaspora-nri-20260623",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Arjun Rampal in a black shirt and jacket",
+          "reason": "The photo clearly shows Arjun Rampal, who is the subject of the headline and story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 8,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article explicitly connects the 'rise-and-fall tycoon drama' to the diaspora's 'insatiable hunger' for such content, and mentions the satisfaction of watching from abroad."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a sentence or two about the potential release date or platform availability for NRI viewers, as the article cuts off mid-sentence when discussing 'NRI viewers, the platform is'."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "070d3f50-3dda-4d15-8d9c-cb4146c5cf9f",
+      "headline": "Ranbir Said No. Imran Said No. Saif Ali Khan Said 'Okay, Chal' \u2014 and Walked Into a Classic.",
+      "slug": "saif-ali-khan-cocktail-casting-reveal-ranbir-kapoor-imran-khan-rejected-deepika-padukone-veronica-homi-adajania-cocktail-2-where-to-watch-diaspora-nri-20260623",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Saif Ali Khan at an event",
+          "reason": "The photo shows Saif Ali Khan, who is the central subject of the headline and subheadline."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article explicitly mentions the diaspora's access to the films and their cultural impact (desi weddings)."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a direct quote from Homi Adajania or another cast member about Saif's performance to further support the narrative.",
+          "Perhaps include a brief mention of the 'desi-cinema distributors' by name if possible, to make the diaspora angle even more concrete."
+        ],
+        "verdict": "pass"
       },
       "actions_taken": [
         "promoted to published"
@@ -64,11 +233,6 @@
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MISMATCH",
-          "what_photo_shows": "A book cover titled 'The Panjab, North-West Frontier Province and Kashmir'",
-          "reason": "The photo shows a historical geography book cover, not skilled professionals or global talent data related to migration."
-        },
         "inline_image_mismatches": []
       },
       "llm_review": {
@@ -76,28 +240,26 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": null
+          "issue": "No image URL or entities provided, so cannot fully assess. Assuming a relevant image would be used."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article directly addresses the diaspora's experience and economic standing, and explicitly includes a 'Why the Diaspora Should Care' section."
+          "note": "The article directly addresses the diaspora's situation and interests, particularly regarding wages and the changing global landscape for skilled Indian migrants. The 'Why the Diaspora Should Care' section explicitly targets this audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Complete the 'Why the Diaspora Should Care' section, as it currently cuts off mid-sentence.",
-          "Consider adding a specific example or quote from an NRI professional to personalize the 'wage premium' or 'reverse flow' sections."
+          "Ensure the 'Why the Diaspora Should Care' section is fully developed and provides clear takeaways for the NRI audience.",
+          "Consider adding a specific anecdote or short case study of an Indian professional benefiting from the wage premium or reverse migration trend to make the data more relatable."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "Cleared mismatched image (A book cover titled 'The Panjab, North-West Frontier Province and Kashmir')",
-        "held: image mismatch"
+        "promoted to published"
       ],
       "revised": false,
       "unpublished": false,
-      "image_mismatch": true,
       "llm_source": "gemini-2.5-flash"
     }
   ]
