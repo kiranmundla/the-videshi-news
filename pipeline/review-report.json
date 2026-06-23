@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-23T07:45:15.076008+00:00",
+  "timestamp": "2026-06-23T08:15:28.219337+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
+    "pass": 3,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,17 +11,22 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "f984e56f-2c91-4b45-aab8-af3bfc7f043a",
-      "headline": "Five Hundreds Were Not Enough: England Chase 371 at Headingley, and India's New Era Opens With a Defeat",
-      "slug": "england-chase-371-beat-india-five-wickets-headingley-first-test-duckett-149-gill-captaincy-debut-defeat-five-centuries-diaspora-nri",
+      "id": "b9654815-b50a-46c8-9ded-3184d4e6da7a",
+      "headline": "EB-2 India Just Hit 'Unavailable.' The Workaround Hiding One Row Below",
+      "slug": "eb2-india-unavailable-july-bulletin-eb3-downgrade-strategy-green-card-20260623",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "f1f8cb21-a001-407c-bb32-ee0fe5ffed72",
+            "headline": "EB-2 India Just Went Dark for the Rest of the Year. The July"
+          }
+        ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "cricketer in action",
-          "reason": "The photo shows a cricketer, relevant to the cricket story."
+          "what_photo_shows": "United States permanent resident card",
+          "reason": "The photo of a green card is relevant to the immigration story."
         },
         "inline_image_mismatches": []
       },
@@ -34,14 +39,98 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article connects well with the diaspora by discussing the significance of the match for British-Indians and NRIs."
+          "quality": 9,
+          "note": "The article effectively addresses the concerns of the Indian diaspora regarding immigration and green card processes."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from players or coaches to enhance the narrative.",
-          "Include more context about the implications of this match for India's future in Test cricket."
+          "Consider adding a brief summary or conclusion to reinforce the key takeaways for readers.",
+          "Include quotes or insights from immigration experts to enhance credibility and provide additional perspectives."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "f418e846-87c9-4c63-bee0-035e537687f9",
+      "headline": "The H-1B Lottery Just Got Easier to Win. For Indian Grads, There's a Catch",
+      "slug": "h1b-fy2027-selection-rate-jumps-50-percent-demand-collapse-india-grads-20260623",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "software developer at dual monitors",
+          "reason": "The photo shows a software developer, relevant to the H-1B visa topic."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the H-1B lottery or immigration, but it is a generic representation of a professional setting."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively addresses the concerns of Indian graduates and professionals in the tech sector regarding the H-1B lottery, making it highly relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that more directly represents the theme of immigration or the H-1B lottery.",
+          "Add a brief summary or conclusion to reinforce the key takeaways for Indian applicants."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "e19c1732-b0b1-467d-aed0-322d5e05d419",
+      "headline": "Pay $750, Skip the U.S. Visa Line \u2014 but Only if You're a Tourist, Not an H-1B",
+      "slug": "us-750-expedite-fee-b1-b2-visa-appointment-pilot-nri-families-20260623",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "open passport with visa stamps",
+          "reason": "The photo of a passport with visa stamps is relevant to a story about U.S. visas."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the topic of U.S. visa applications."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively addresses the concerns of the Indian diaspora regarding U.S. visa processes."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that more closely represents the theme of U.S. visa applications or travel.",
+          "Add a section summarizing the implications of this fee for different visa categories to enhance clarity."
         ],
         "verdict": "pass"
       },
