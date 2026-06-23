@@ -645,6 +645,41 @@ BODY:
         return "revise"
 
 
+# ── Fiction / fabrication self-admission detector (no LLM, hard fail) ──
+# A real news article never tells the reader it is invented. If the body (or an
+# editor's note) admits the piece is fictional, imagined, or a speculative
+# scenario presented as if it were reported news, that's an absolute editorial
+# red line — archive it immediately, never publish, regardless of LLM score.
+# These patterns are deliberately specific so they don't trip on legitimate
+# reporting that merely *discusses* speculation (IPO speculation, analyst
+# scenarios, "speculative investment", etc.).
+_FICTION_ADMISSION_PATTERNS = [
+    r"this (?:article|piece|story|report) is (?:a )?(?:purely )?(?:work of )?fiction(?:al)?",
+    r"this (?:article|piece|story|report) is (?:purely )?(?:a )?hypothetical",
+    r"this (?:article|piece|story|report) is (?:purely )?speculative and (?:is )?not based on",
+    r"this (?:article|piece|story|report) (?:is|was) (?:entirely |purely )?(?:imagined|made up|invented|fabricated)",
+    r"(?:a )?(?:fictional|imagined|hypothetical|speculative) (?:account|scenario|narrative|depiction) (?:of|envisioning|imagining)",
+    r"(?:editor'?s? note|disclaimer)[:\s].{0,120}(?:fiction|fictional|hypothetical|imagined|not (?:based on|a real)|did not (?:happen|occur)|has not (?:happened|occurred))",
+    r"does not (?:depict|reflect|describe) (?:real|actual) events",
+    r"(?:these events|this) (?:has|have) not (?:yet )?(?:happened|occurred|taken place) (?:in reality|and (?:is|are) (?:purely )?(?:speculative|hypothetical|imagined))",
+    r"for (?:illustrative|entertainment|creative) purposes only",
+    r"any resemblance to (?:real|actual) (?:events|persons)",
+]
+_FICTION_ADMISSION_RE = re.compile("|".join(_FICTION_ADMISSION_PATTERNS), re.IGNORECASE)
+
+
+def detect_fiction_admission(body):
+    """Return the matched snippet if the body self-identifies as fiction, else None."""
+    if not body:
+        return None
+    m = _FICTION_ADMISSION_RE.search(body)
+    if not m:
+        return None
+    start = max(0, m.start() - 40)
+    end = min(len(body), m.end() + 40)
+    return body[start:end].strip()
+
+
 # ── Main review function ──
 def review_article(article, recent_articles, fix_mode=False, pre_publish=False):
     """Review a single article with pre-checks + LLM review + auto-revision."""
@@ -667,6 +702,26 @@ def review_article(article, recent_articles, fix_mode=False, pre_publish=False):
         "unpublished": False,
     }
     
+    # ── Pre-check 0: Fiction / fabrication self-admission (hard fail) ──
+    # An article that admits it's fictional/hypothetical/speculative-as-fact is
+    # an absolute editorial red line. Archive immediately — no LLM, no score, no
+    # publish. This is the moth-image equivalent for text fabrication.
+    fiction_snippet = detect_fiction_admission(body)
+    result["pre_checks"]["fiction_admission"] = fiction_snippet
+    if fiction_snippet:
+        print(f"  🚫 FICTION ADMISSION detected: …{fiction_snippet}…")
+        result["fiction_admission"] = True
+        if fix_mode and article.get("status") != "archived":
+            status = sb_patch(article["id"], {"status": "archived"})
+            if status in (200, 204):
+                result["unpublished"] = True
+                result["actions_taken"].append("ARCHIVED: self-admitted fiction/fabrication")
+                print(f"  🗑️  ARCHIVED — article self-identifies as fiction; never publish")
+            else:
+                print(f"  ⚠️ Failed to archive fiction article (HTTP {status})")
+        # Don't waste LLM budget reviewing a piece we're already killing.
+        return result
+
     # ── Pre-check 1: Duplicate embeds ──
     dup_embeds = check_duplicate_embeds(body)
     result["pre_checks"]["duplicate_embeds"] = dup_embeds

@@ -1,60 +1,15 @@
 {
-  "timestamp": "2026-06-23T17:15:46.142569+00:00",
+  "timestamp": "2026-06-23T17:45:28.623166+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 2,
+    "pass": 1,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
-  "revisions": 2,
+  "revisions": 1,
   "unpublished": 0,
   "articles": [
-    {
-      "id": "59ed9b08-2c5f-4447-b667-b7575fc9e08b",
-      "headline": "Shraddha Kapoor Dances Through Labour Pain. The 'Eetha' Teaser Is the Transformation Nobody Saw Coming.",
-      "slug": "eetha-teaser-shraddha-kapoor-vithabai-narayangaonkar-laxman-utekar-maddock-films-cocktail-2-ajay-atul-august-28-2026-vvan-clash-where-to-watch-diaspora-nri-20260623",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": null,
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/p/DZ6yzfLiODj/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram reel is from 2017 and features a random person dancing, not Shraddha Kapoor or anything related to the Eetha movie or Tamasha performance. It does not support the article's content."
-          }
-        ],
-        "image_match": {
-          "score": 8,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article explicitly addresses diaspora audiences and how the film will travel internationally, including the importance of subtitles for cultural context."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the irrelevant Instagram embed with a relevant one, perhaps a clip of Shraddha Kapoor's performance or a fan reaction to the 'Eetha' teaser if available.",
-          "Consider adding a sentence or two about the significance of Lavani and Tamasha for Maharashtrian culture, which would further enrich the diaspora angle."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DZ6yzfLiODj/",
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
     {
       "id": "4f6024ef-3746-4f64-813e-1c54077d04ac",
       "headline": "Yash Names the Day. 'Toxic' Crashes Into a Four-Film Raksha Bandhan Bloodbath on August 26.",
@@ -67,38 +22,31 @@
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 6,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/p/DZ1mYlfM-Ky/",
-            "problem": "broken",
-            "explanation": "The Instagram URL leads to a 'Sorry, this page isn't available' error. It's likely an old or incorrect link for a post from 2026."
-          }
-        ],
+        "overall_score": 7,
+        "embed_issues": [],
         "image_match": {
           "score": 9,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article explicitly mentions the diaspora angle with the simultaneous English shoot and six-language rollout, targeting US, UK, and Canadian multiplexes. It feels natural and relevant to the film's global ambitions."
+          "quality": 8,
+          "note": "The article explicitly mentions the film is 'built to travel' and targets 'US, UK and Canadian multiplexes', directly addressing the diaspora angle naturally."
         },
         "factual_flags": [
-          "The article states 'worldwide, August 26, 2026' for the release date, but the Instagram embed URL (even if broken) has 'DZ1mYlfM-Ky' which suggests a much older post ID, not one from 2026. This creates a strong internal contradiction regarding the timeliness of the embedded content.",
-          "The article mentions 'Father's Day' as the day the poster dropped, but Father's Day is typically in June, not August. While the release date is August 26, 2026, the poster drop date seems inconsistent with the 'Father's Day' reference if it's meant to be recent relative to the article's implied present."
+          "The article states 'August 26, 2026' for the release date, but the Instagram embed (posted June 16, 2024) also states '26-08-2026'. This implies the release is in 2026, which is quite far off for a news article about an immediate 'bloodbath' and 'festive stretch' in August. This could be a typo for 2024 or 2025, or the article is genuinely discussing a 2026 release in a way that feels immediate."
         ],
         "duplicate_embeds": [],
         "suggestions": [
-          "Verify and update the Instagram embed URL to a working and relevant post, ideally one that actually announces the 2026 release date or the 'Honour Thy Father' poster.",
-          "Clarify the 'Father's Day' reference in relation to the poster drop and the August 26, 2026 release date to avoid confusion about the timeline."
+          "Clarify the release year for 'August 26, 2026' as it creates confusion regarding the immediacy of the 'bloodbath' and 'festive stretch' mentioned.",
+          "Consider adding a brief explanation of what Raksha Bandhan is for international readers who might not be familiar with the festival."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
-        "Revised by gemini-2.5-flash (680\u2192725 words)"
+        "promoted to published"
       ],
-      "revised": true,
+      "revised": false,
       "unpublished": false,
       "llm_source": "gemini-2.5-flash"
     },
@@ -111,7 +59,7 @@
         "duplicate_images": [],
         "broken_embeds": [
           {
-            "url": "https://x.com/ParthJindal11/status/1798028741366917454",
+            "url": "https://x.com/ParthJindal11/status/1848970000000000000",
             "problem": "broken",
             "detail": "react-tweet returned null (deleted/protected/nonexistent)"
           }
@@ -120,54 +68,7 @@
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 5,
-        "embed_issues": [],
-        "image_match": {
-          "score": 8,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 6,
-          "note": "The diaspora angle is present but feels a bit tacked on at the end. The 'Why the Diaspora Will Be Watching' section is good, but the earlier mentions of 'global Indian diaspora' feel slightly forced given the speculative nature of the article."
-        },
-        "factual_flags": [
-          "The entire article is based on a 'speculative' and 'hypothetical' scenario (IPL 2026, 2027, 2025 mega auction). This needs to be made extremely clear upfront, as it reads like real news but is entirely fictional. The repeated use of 'hypothetical' and 'speculative' throughout the body is a major red flag for a news platform."
-        ],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Clarify immediately and prominently that this is a fictional, speculative piece about a future IPL scenario, perhaps in the headline or a clear editor's note at the very beginning. The current framing is misleading for a news article.",
-          "Re-evaluate the purpose of publishing a purely speculative piece as a news article. If it's an opinion or analysis of potential future scenarios, it should be framed as such."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Removed 1 broken/hallucinated embed(s)",
-        "Revised by gemini-2.5-flash (824\u2192935 words)"
-      ],
-      "revised": true,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "bdebfdbd-3f53-4647-9aec-71e2fe560721",
-      "headline": "A Weight-Loss Drug That Was Feared to Weaken Bones May Actually Help Protect Them",
-      "slug": "semaglutide-ozempic-lower-bone-fracture-risk-type-2-diabetes-endo-2026-stanford-59000-adults-diaspora-20260623-1400",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [
-          {
-            "url": "https://x.com/TheVideshi/status/1800689972000000000",
-            "problem": "broken",
-            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
-          }
-        ],
-        "vision_image_match": null,
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
+        "overall_score": 6,
         "embed_issues": [],
         "image_match": {
           "score": 9,
@@ -176,21 +77,23 @@
         "diaspora_angle": {
           "present": true,
           "quality": 7,
-          "note": "The article explicitly includes a 'Why It Matters for the Diaspora' section, which is a good start. However, the section is cut off, so its full quality cannot be assessed. Assuming it connects diabetes prevalence in India/NRIs to the drug's implications."
+          "note": "The diaspora angle is present and integrated naturally, especially in the introduction and the financial flexibility section, linking fan engagement and potential NRI investment."
         },
-        "factual_flags": [],
+        "factual_flags": [
+          "The entire article is explicitly stated to be fictional and speculative, which is an internal contradiction to a 'factual flag' in a real news context. However, given the prompt, it's important to note that the article itself acknowledges its speculative nature multiple times, which is good practice for a fictional piece."
+        ],
         "duplicate_embeds": [],
         "suggestions": [
-          "Complete the 'Why It Matters for the Diaspora' section to fully elaborate on the relevance to NRIs.",
-          "Consider adding a quote from an Indian-origin medical professional or patient, if available, to strengthen the diaspora connection."
+          "Ensure the article clearly states its speculative nature at the very beginning, perhaps even in the headline or a prominent sub-headline, to manage reader expectations immediately.",
+          "The article ends abruptly. It needs a proper conclusion to summarize the impact of the hypothetical trade and perhaps reiterate the speculative nature."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
         "Removed 1 broken/hallucinated embed(s)",
-        "promoted to published"
+        "Revised by gemini-2.5-flash (934\u21921084 words)"
       ],
-      "revised": false,
+      "revised": true,
       "unpublished": false,
       "llm_source": "gemini-2.5-flash"
     }
