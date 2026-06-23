@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-23T10:15:42.650696+00:00",
+  "timestamp": "2026-06-23T10:45:19.014571+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 5,
-    "flag": 0,
+    "pass": 1,
+    "flag": 2,
     "fail": 0,
     "error": 0
   },
@@ -11,18 +11,14 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "0fd99a76-3adf-4eca-b2d0-28f8e67db090",
-      "headline": "An Accenture Warning Knocks Indian IT \u2014 and the Bigger Fear Is What It Signals for Next Year",
-      "slug": "indian-it-stocks-slump-accenture-guidance-cut-infosys-tcs-wipro-fy27-ai-weak-demand-nri-investor-20260623-1000",
+      "id": "a4cda023-704e-47d4-933c-66a9676ec89b",
+      "headline": "Eleven Balls: A 15-Year-Old Just Broke the Fastest-Fifty Record in 50-Over Cricket",
+      "slug": "vaibhav-sooryavanshi-15-fastest-fifty-list-a-history-11-balls-94-off-29-india-a-sri-lanka-dambulla-tri-series-youngest-india-debut-diaspora-nri",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Bombay Stock Exchange building",
-          "reason": "The photo of the Bombay Stock Exchange is relevant to the Indian IT market story."
-        },
+        "vision_image_match": null,
         "inline_image_mismatches": []
       },
       "llm_review": {
@@ -35,153 +31,29 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the Indian IT sector's performance to the diaspora, highlighting its significance for NRIs and their families."
+          "note": "The diaspora angle is well-integrated and explained, focusing on accessibility for British-Indian crowds and general NRI interest."
         },
-        "factual_flags": [],
+        "factual_flags": [
+          "The article states Kaushalya Weeraratne's record stood for 21 years, but then says he set it in 2005. 2024 - 2005 = 19 years, not 21."
+        ],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more specific examples of how the IT sector impacts NRI investments or employment.",
-          "Include quotes or insights from diaspora members to enhance the personal connection."
+          "Correct the factual inconsistency regarding the duration Kaushalya Weeraratne's record stood.",
+          "Consider adding a quote from an NRI fan or expert to further strengthen the diaspora connection, if possible."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
         "promoted to published"
       ],
       "revised": false,
       "unpublished": false,
-      "llm_source": "gpt-4o-mini"
+      "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "72e73be8-3bc3-4bbe-b69b-2e79d0a4f48b",
-      "headline": "Scientists Have Found Microplastics Inside the Human Eye \u2014 and the More There Were, the Higher the Pressure",
-      "slug": "microplastics-human-eye-trabecular-meshwork-glaucoma-intraocular-pressure-first-evidence-diaspora-20260623-1000",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "close-up of a human eye",
-          "reason": "The photo of a human eye is relevant to the story about microplastics in the eye."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the issue of glaucoma and microplastics to the Indian diaspora, highlighting the prevalence of glaucoma in Indian families and the environmental context."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more specific statistics or studies related to the prevalence of glaucoma in the Indian diaspora to strengthen the diaspora angle.",
-          "Include a brief mention of potential preventive measures or ongoing research related to microplastics and eye health."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "92fa3a5d-468c-49c1-a153-78885aef98e8",
-      "headline": "One of the Biggest Risks for Dementia Is Also One of the Easiest to Treat \u2014 and It Sits in the Ears",
-      "slug": "hearing-loss-modifiable-dementia-risk-all-of-us-16270-achieve-hearing-aids-cognitive-decline-diaspora-20260623-1000",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "elderly woman with headphones",
-          "reason": "The photo relates to hearing aids and cognitive decline in older adults."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article connects the topic of hearing loss and dementia to Indian households, which is relevant for the diaspora audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Expand on the diaspora angle by including specific cultural practices or beliefs related to hearing loss and dementia in Indian communities.",
-          "Provide more statistics or studies that specifically relate to the Indian population to strengthen the relevance for NRI readers."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "a829ba72-1bea-449a-ba3b-bce19f49efc1",
-      "headline": "Thailand Just Took Indians Off Its Visa-Free List \u2014 Bangkok Now Costs a Fee and a 15-Day Clock",
-      "slug": "thailand-india-visa-on-arrival-end-visa-free-nri-bangkok-20260623",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Wat Arun in Bangkok",
-          "reason": "The photo shows a landmark in Bangkok, relevant to the story about Thailand."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively discusses the implications of the visa changes specifically for the NRI community, highlighting how it affects family gatherings and travel patterns."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from travel experts or diaspora members to enhance the article's relatability.",
-          "Include a comparison with visa policies of other countries for Indian travelers to provide broader context."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "82dd1602-f07f-4d7a-9008-8be8d275ea68",
-      "headline": "Air India Just Gave the Northeast Diaspora a Straight Line Home \u2014 Nonstop Guwahati\u2013Gulf Flights Start August 4",
-      "slug": "air-india-guwahati-dubai-abu-dhabi-nonstop-northeast-diaspora-nri-20260623",
+      "id": "dbf63239-2e13-4ee2-9627-1a8fffd6a863",
+      "headline": "India Just Rewrote the Rules on Foreign Money for Its Charities \u2014 and Diaspora Donors Are in the Frame",
+      "slug": "centre-tightens-fcra-rules-ngo-foreign-funding-donor-disclosure-diaspora-giving-20260623",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -199,15 +71,55 @@
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article directly addresses the impact on the Northeast diaspora and NRIs, explaining both direct and indirect benefits."
+          "note": "The article explicitly highlights the impact on diaspora donors and their giving mechanisms, making it highly relevant."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a small map graphic showing the new routes and how they connect to major hubs for better visualization.",
-          "If possible, include a quote from a member of the Northeast diaspora expressing their thoughts on the new flights to add a personal touch."
+          "Consider adding a specific example of a US/UK charitable intermediary or donor-advised fund to make the impact more concrete for readers.",
+          "If possible, include a quote from an NRI donor or a representative of a diaspora-linked charity to add a human element to the policy changes."
         ],
         "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "4f95d2df-1d39-48bf-9a79-ae8e383a0bfa",
+      "headline": "India Just Released the Results of the Exam That Decides a Million College Futures",
+      "slug": "cuet-ug-2026-result-declared-nta-scorecard-central-university-admissions-diaspora-20260623",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": null,
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The 'Why the Diaspora Should Care' section clearly and naturally connects the topic to NRI/diaspora readers, explaining the relevance for their children's education and the practical implications of the admissions timeline."
+        },
+        "factual_flags": [
+          "The article mentions 'CUET UG 2026' in the headline and body, but the image URL and description also refer to '2026'. Given that the results were just declared, it's highly probable this should be '2024'. This is a significant factual discrepancy that needs correction."
+        ],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Correct the year '2026' to '2024' throughout the article, headline, and image metadata, as it appears to be a consistent error.",
+          "Consider adding a small section or a call-out box with direct links to official NTA/CUET resources for NRI/OCI applicants, if available, to enhance the practical value for diaspora readers."
+        ],
+        "verdict": "flag"
       },
       "actions_taken": [
         "promoted to published"
