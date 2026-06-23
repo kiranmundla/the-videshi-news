@@ -2218,12 +2218,9 @@ def _card_image_background(url, W, H):
             nh = int(sw / target); y0 = (sh - nh) // 2
             src = src.crop((0, y0, sw, y0 + nh))
         src = src.resize((W, H), Image.LANCZOS)
-        # global darken so any image reads as a brand-dim backdrop. Lifted from
-        # 0.46 → 0.62 (Kiran flagged reels reading too dark, 2026-06-23). Text
-        # legibility is still protected by the bowl scrim below + each overlay's
-        # own dedicated dark band, so the backdrop itself can sit brighter.
-        src = ImageEnhance.Brightness(src).enhance(0.62)
-        src = ImageEnhance.Color(src).enhance(0.92)
+        # global darken so any image reads as a brand-dim backdrop
+        src = ImageEnhance.Brightness(src).enhance(0.46)
+        src = ImageEnhance.Color(src).enhance(0.85)
         base = src.convert("RGBA")
         # vertical scrim: darker top + bottom, slightly clearer middle, so the
         # eyebrow (top), the headline block (upper-middle) and the wordmark
@@ -2232,10 +2229,9 @@ def _card_image_background(url, W, H):
         sp = scrim.load()
         for y in range(H):
             t = y / max(H - 1, 1)
-            # smooth bowl: ~120 alpha at edges, ~40 mid (eased from 150/70 so the
-            # backdrop reads brighter while edges still anchor eyebrow/wordmark)
+            # smooth bowl: ~150 alpha at edges, ~70 mid
             edge = abs(t - 0.5) * 2  # 0 mid → 1 edges
-            sp[0, y] = int(40 + 80 * (edge ** 1.4))
+            sp[0, y] = int(70 + 95 * (edge ** 1.4))
         scrim = scrim.resize((W, H))
         dark = Image.new("RGBA", (W, H), (6, 12, 24, 0))
         dark.putalpha(scrim)
@@ -4968,7 +4964,7 @@ def build_hook_html(hook_line1, hook_line2, category):
     """Build HTML for the 3-second hook frame overlay."""
     badge = (category or "NEWS").upper().replace("-", " ")
     # Use inline styles for maximum compatibility with Shotstack's HTML renderer
-    html = f"""<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;width:100%;height:100%;padding:40px;box-sizing:border-box;background:radial-gradient(ellipse 90% 55% at 50% 52%, rgba(0,0,0,0.62) 0%, rgba(0,0,0,0.45) 45%, rgba(0,0,0,0.18) 78%, rgba(0,0,0,0.08) 100%);">
+    html = f"""<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;width:100%;height:100%;padding:40px;box-sizing:border-box;background:radial-gradient(ellipse 90% 55% at 50% 52%, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.66) 45%, rgba(0,0,0,0.30) 78%, rgba(0,0,0,0.18) 100%);">
   <div style="background:#C41E3A;color:#fff;font-family:Inter;font-size:28px;font-weight:700;padding:10px 32px;letter-spacing:5px;margin-bottom:50px;box-shadow:0 4px 24px rgba(0,0,0,0.7);">{badge}</div>
   <div style="font-family:Inter;font-size:84px;font-weight:900;color:#fff;line-height:1.0;margin-bottom:24px;text-shadow:0 4px 40px rgba(0,0,0,1),0 2px 10px rgba(0,0,0,1),0 0 80px rgba(0,0,0,0.85);">{hook_line1}</div>
   <div style="font-family:Inter;font-size:56px;font-weight:700;color:#F2C84B;line-height:1.1;text-shadow:0 3px 22px rgba(0,0,0,1),0 1px 4px rgba(0,0,0,1);">{hook_line2}</div>
