@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-23T15:45:41.353543+00:00",
+  "timestamp": "2026-06-23T16:15:35.346820+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 4,
-    "flag": 2,
+    "pass": 1,
+    "flag": 3,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "04765cf2-3d01-45c6-81e5-ca614bfd8a26",
-      "headline": "Skip the Summer Crush: The Monsoon Is India's Best-Value Season \u2014 If You Know Where the Rain Is a Feature",
-      "slug": "monsoon-travel-india-2026-best-value-destinations-nri-guide-20260623",
+      "id": "b6a7c7bf-d66c-415e-890c-78ef6ad84570",
+      "headline": "Indian Green-Card Numbers Have Nearly Halved in Two Years. The Data Tells a Bigger Story",
+      "slug": "indian-green-card-recipients-halved-2022-2024-legal-immigration-declin-20260623",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -25,135 +25,21 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image shows a person looking at a city skyline, which is generally relevant to immigration/new beginnings, but doesn't specifically depict green cards, legal documents, or the Indian diaspora. It's a bit generic."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article consistently frames advice and observations through the lens of NRI travelers, addressing their specific constraints (school calendar, family visits) and interests (wellness for parents, novelty for kids)."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a small section on monsoon-specific health precautions (e.g., waterborne diseases, mosquito control) relevant for diaspora travelers.",
-          "Perhaps include a brief mention of specific airlines or routes that tend to be more reliable during monsoon, if such data is available, to further aid flight planning."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "50d9024b-64c5-4f64-a16f-89dfa653f225",
-      "headline": "The Cheapest Flights Home to India in 2026 Aren't in Summer \u2014 They're in September",
-      "slug": "cheapest-flights-india-september-2026-shoulder-season-fares-nri-20260623",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": null,
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article explicitly targets NRI/diaspora readers, offering specific advice relevant to their travel patterns and needs."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a small section on visa considerations for NRIs who might have OCI cards or other specific visa statuses, as this can sometimes impact travel planning.",
-          "Perhaps include a brief mention of travel insurance, especially for those self-transferring domestic flights in India."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "97f387e5-7d02-4ac9-a266-2c2ce4d51906",
-      "headline": "Bali Just Started Enforcing Its Rupiah-Only Rule \u2014 and the NRI Dollar No Longer Works at the Villa Door",
-      "slug": "bali-rupiah-only-enforcement-foreign-currency-nri-dollar-villa-20260623",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": null,
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively highlights how the new rule specifically impacts NRI travelers due to their currency habits and booking methods."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a small 'What to do' or 'Quick Tips' box for easy reader reference on how to prepare for the new rules.",
-          "Perhaps include a sentence or two on the broader economic reasons behind Indonesia's stricter enforcement, if relevant and concise."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "86f5ed79-69ac-489a-a478-fe449ce4ab98",
-      "headline": "India Just Bought More Russian Oil Than Ever \u2014 Right as Washington's Sanctions Waiver Expires",
-      "slug": "india-record-russian-crude-imports-june-2026-us-sanctions-waiver-expires-hormuz-rupee-nri-investor-20260623-1400",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": null,
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article explicitly includes a 'Why It Matters for the Diaspora' section, which is good. However, the section is cut off mid-sentence, making it incomplete and less impactful."
+          "note": "The article directly addresses the impact on the Indian diaspora, specifically mentioning employment-based immigrants, per-country caps, and the cascading effects on families and future generations of NRIs."
         },
         "factual_flags": [
-          "The article mentions a 'four-month war centred on Iran' which 'throttled energy flows through the Strait of Hormuz'. This is a significant claim that lacks specific details or a clear reference to a known conflict of that scale and duration impacting Hormuz in the specified timeframe (before June). While tensions exist, a 'four-month war' causing such a severe throttling of flows needs more substantiation."
+          "The article mentions 'The loudest immigration fights of 2026' and 'Policy reversals have softened some of 2026\u2019s sharpest edges.' This implies the article is set in 2026, but the data cited is for 2022-2024. This creates a temporal inconsistency that could confuse readers. It should be clarified if the article is a forward-looking piece from 2024/2025 or if the years mentioned are typos."
         ],
         "duplicate_embeds": [],
         "suggestions": [
-          "Complete the 'Why It Matters for the Diaspora' section, as it currently ends mid-sentence. Expand on the specific ways oil prices affect NRIs beyond just 'eroding the value' (e.g., remittances, investment, travel costs).",
-          "Clarify or provide a source for the 'four-month war centred on Iran' claim, as it's a major assertion that could be misinterpreted or factually inaccurate without further context."
+          "Clarify the temporal setting of the article (e.g., 'Looking ahead to 2026, the immigration fights...' or correct the years if they are typos).",
+          "Consider adding a specific quote from an NRI or an immigration lawyer specializing in Indian cases to personalize the impact of these statistics."
         ],
         "verdict": "flag"
       },
@@ -165,9 +51,9 @@
       "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "38573c3d-462d-47b9-a791-0bc144c84312",
-      "headline": "A Common Vitamin in Citrus and Greens Is Linked to a Better-Preserved Brain in Older Age",
-      "slug": "vitamin-c-blood-levels-brain-structure-grey-matter-default-mode-network-hirosaki-plos-one-2044-adults-diaspora-20260623-1400",
+      "id": "812f336f-c07a-49d7-ad78-2d127c6891dc",
+      "headline": "TCS, Infosys and the 40% H-1B Drop: India's IT Giants Are Quietly Walking Away From the Visa",
+      "slug": "indian-it-firms-h1b-approvals-fall-40-percent-tcs-infosys-offshore-loc-20260623",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -179,19 +65,59 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
+          "score": 8,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The diaspora angle is well-integrated and provides specific, relevant examples of Indian foods rich in Vitamin C, connecting it directly to the readers' cultural context."
+          "quality": 9,
+          "note": "The article directly addresses the impact on Indian-Americans and future engineers from India, making the diaspora angle very strong and relevant."
+        },
+        "factual_flags": [
+          "The article states 'as of 31 March 2026' for H-1B visa grants, which is a future date. This should likely be '2025' or '2024' depending on the actual data source."
+        ],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Correct the future date '31 March 2026' to reflect the actual reporting period for the H-1B visa data.",
+          "Consider adding a brief concluding sentence that summarizes the 'new model' for engineers in India seeking U.S. opportunities, reinforcing the 'bottom line'."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "30292af9-e1ec-42b2-a53e-39b68a74c784",
+      "headline": "The Last Step to Citizenship Just Got 75% More Expensive. Indians Are at the Front of the Line",
+      "slug": "n400-citizenship-fee-hike-75-percent-waivers-eliminated-indians-natura-20260623",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": null,
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 8,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "Strong and natural connection to NRI/diaspora readers, explaining direct impact."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a sentence or two about how cooking methods in Indian cuisine might affect vitamin C content, given the 'catch is how the food is trea' sentence fragment at the end.",
-          "Ensure the article concludes with a strong summary statement or call to action, as the current ending is abrupt."
+          "Consider adding a call to action or specific guidance on how readers can submit comments during the 60-day window.",
+          "Perhaps include a brief quote from an immigration attorney or an affected individual to add a human element."
         ],
         "verdict": "pass"
       },
@@ -209,7 +135,13 @@
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
-        "broken_embeds": [],
+        "broken_embeds": [
+          {
+            "url": "https://x.com/DrVandanaSoni/status/1799042621008064843",
+            "problem": "broken",
+            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
+          }
+        ],
         "vision_image_match": null,
         "inline_image_mismatches": []
       },
@@ -229,12 +161,13 @@
         "duplicate_embeds": [],
         "suggestions": [
           "Expand the 'Why It Matters for the Diaspora' section significantly. It currently ends abruptly and doesn't fully explore the implications for NRIs.",
-          "Consider adding a relevant social media embed (e.g., a tweet from an Indian health expert or organization discussing diabetes/bone health) if appropriate and available."
+          "Consider adding a relevant social media embed (e.g., a tweet from an Indian endocrinologist or a health organization discussing diabetes in India/diaspora) to enhance engagement, ensuring it's highly relevant."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
-        "Revised by gemini-2.5-flash (834\u2192906 words)"
+        "Removed 1 broken/hallucinated embed(s)",
+        "Revised by gemini-2.5-flash (905\u21921000 words)"
       ],
       "revised": true,
       "unpublished": false,
