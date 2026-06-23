@@ -1330,8 +1330,8 @@
       "away": "Algeria",
       "venue": "Levi's Stadium",
       "city": "San Francisco Bay Area",
-      "status": "scheduled",
-      "score": null,
+      "status": "FT",
+      "score": "1-2",
       "home_code": "JOR",
       "away_code": "ALG"
     },
