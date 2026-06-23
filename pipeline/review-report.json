@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-23T09:15:52.230801+00:00",
+  "timestamp": "2026-06-23T10:15:42.650696+00:00",
   "mode": "fix",
   "stats": {
     "pass": 5,
@@ -11,17 +11,17 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "55533b4e-ab02-4895-b987-f6a728410b04",
-      "headline": "The Doctor Returns to Bhathkandi. 'Gram Chikitsalay' Season 2 Quietly Lands on Prime Video \u2014 and It Might Be TVF's Warmest Show Yet.",
-      "slug": "gram-chikitsalay-season-2-prime-video-june-23-2026-amol-parashar-dr-prabhat-tvf-vinay-pathak-dinesh-lal-yadav-bhathkandi-where-to-watch-diaspora-nri-20260623",
+      "id": "0fd99a76-3adf-4eca-b2d0-28f8e67db090",
+      "headline": "An Accenture Warning Knocks Indian IT \u2014 and the Bigger Fear Is What It Signals for Next Year",
+      "slug": "indian-it-stocks-slump-accenture-guidance-cut-infosys-tcs-wipro-fy27-ai-weak-demand-nri-investor-20260623-1000",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Amol Parashar at an event",
-          "reason": "The photo shows Amol Parashar, who is relevant to the story."
+          "what_photo_shows": "Bombay Stock Exchange building",
+          "reason": "The photo of the Bombay Stock Exchange is relevant to the Indian IT market story."
         },
         "inline_image_mismatches": []
       },
@@ -29,19 +29,145 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image features Amol Parashar, who is relevant to the article, but it is from a different project (The Archies) and may not directly represent Gram Chikitsalay."
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the Indian IT sector's performance to the diaspora, highlighting its significance for NRIs and their families."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of how the IT sector impacts NRI investments or employment.",
+          "Include quotes or insights from diaspora members to enhance the personal connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "72e73be8-3bc3-4bbe-b69b-2e79d0a4f48b",
+      "headline": "Scientists Have Found Microplastics Inside the Human Eye \u2014 and the More There Were, the Higher the Pressure",
+      "slug": "microplastics-human-eye-trabecular-meshwork-glaucoma-intraocular-pressure-first-evidence-diaspora-20260623-1000",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "close-up of a human eye",
+          "reason": "The photo of a human eye is relevant to the story about microplastics in the eye."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the issue of glaucoma and microplastics to the Indian diaspora, highlighting the prevalence of glaucoma in Indian families and the environmental context."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific statistics or studies related to the prevalence of glaucoma in the Indian diaspora to strengthen the diaspora angle.",
+          "Include a brief mention of potential preventive measures or ongoing research related to microplastics and eye health."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "92fa3a5d-468c-49c1-a153-78885aef98e8",
+      "headline": "One of the Biggest Risks for Dementia Is Also One of the Easiest to Treat \u2014 and It Sits in the Ears",
+      "slug": "hearing-loss-modifiable-dementia-risk-all-of-us-16270-achieve-hearing-aids-cognitive-decline-diaspora-20260623-1000",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "elderly woman with headphones",
+          "reason": "The photo relates to hearing aids and cognitive decline in older adults."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article connects the topic of hearing loss and dementia to Indian households, which is relevant for the diaspora audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Expand on the diaspora angle by including specific cultural practices or beliefs related to hearing loss and dementia in Indian communities.",
+          "Provide more statistics or studies that specifically relate to the Indian population to strengthen the relevance for NRI readers."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "a829ba72-1bea-449a-ba3b-bce19f49efc1",
+      "headline": "Thailand Just Took Indians Off Its Visa-Free List \u2014 Bangkok Now Costs a Fee and a 15-Day Clock",
+      "slug": "thailand-india-visa-on-arrival-end-visa-free-nri-bangkok-20260623",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Wat Arun in Bangkok",
+          "reason": "The photo shows a landmark in Bangkok, relevant to the story about Thailand."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects the show's themes to the diaspora experience, highlighting the emotional resonance for NRIs."
+          "note": "The article effectively discusses the implications of the visa changes specifically for the NRI community, highlighting how it affects family gatherings and travel patterns."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a hero image that directly relates to Gram Chikitsalay to enhance visual relevance.",
-          "Add a brief summary of the first season for readers who may not be familiar with it."
+          "Consider adding quotes from travel experts or diaspora members to enhance the article's relatability.",
+          "Include a comparison with visa policies of other countries for Indian travelers to provide broader context."
         ],
         "verdict": "pass"
       },
@@ -53,65 +179,14 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "67f7bbf3-0ed5-442f-9b1c-f753e8d5a91a",
-      "headline": "Ekta Kapoor Wants Her Stars in Jail. Farah Khan and Riteish Deshmukh Hold the Keys When 'Lock Upp 2' Lands on Netflix.",
-      "slug": "lock-upp-2-sach-ya-sazaa-netflix-june-27-farah-khan-riteish-deshmukh-ekta-kapoor-ram-kapoor-shivangi-joshi-pamela-serena-where-to-watch-diaspora-nri-20260623",
+      "id": "82dd1602-f07f-4d7a-9008-8be8d275ea68",
+      "headline": "Air India Just Gave the Northeast Diaspora a Straight Line Home \u2014 Nonstop Guwahati\u2013Gulf Flights Start August 4",
+      "slug": "air-india-guwahati-dubai-abu-dhabi-nonstop-northeast-diaspora-nri-20260623",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Farah Khan holding an award",
-          "reason": "Farah Khan is mentioned as a co-host in the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image features Farah Khan, which is relevant to the article, but it does not depict the broader context of the show or its themes."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article connects well with NRI viewers by discussing the global reach of the show and its appeal to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider including more details about how the show specifically engages with diaspora audiences.",
-          "Add a brief summary of the first season's success to provide context for new viewers."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "dd315d47-16ab-4b53-8026-32d5bb3b57cb",
-      "headline": "Adobe's Indian-Born CEO Spent 18 Years Building a Subscription Empire. On His Way Out, He's Tearing Up the Playbook.",
-      "slug": "adobe-shantanu-narayen-freemium-ai-firefly-cfo-exit-succession-nri-20260623",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "61f3dd68-1eab-4f65-a7ed-80b7df428f7f",
-            "headline": "Adobe Is Giving Its Software Away. Shantanu Narayen's Partin"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "man in suit with glasses",
-          "reason": "The photo plausibly shows Shantanu Narayen, relevant to the story."
-        },
+        "vision_image_match": null,
         "inline_image_mismatches": []
       },
       "llm_review": {
@@ -123,14 +198,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects Narayen's impact to the Indian diaspora, highlighting pride and aspiration within the community."
+          "quality": 9,
+          "note": "The article directly addresses the impact on the Northeast diaspora and NRIs, explaining both direct and indirect benefits."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more quotes or insights from Narayen to enhance the narrative.",
-          "Include a brief overview of Adobe's future plans post-Narayen to provide closure."
+          "Consider adding a small map graphic showing the new routes and how they connect to major hubs for better visualization.",
+          "If possible, include a quote from a member of the Northeast diaspora expressing their thoughts on the new flights to add a personal touch."
         ],
         "verdict": "pass"
       },
@@ -139,91 +214,7 @@
       ],
       "revised": false,
       "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "fd7be6e0-8707-4b29-9f7f-4879bebd955b",
-      "headline": "Tesla Now Has Five Showrooms in India and Almost No Sales. The Real Test Starts This Summer.",
-      "slug": "tesla-india-expansion-hyderabad-bengaluru-model-y-import-duty-nri-20260623",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Tesla Model Y car",
-          "reason": "The photo shows a Tesla Model Y, relevant to the story about Tesla in India."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects Tesla's expansion in India to the interests of the NRI community, highlighting potential quality-of-life improvements."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more data or quotes from industry experts to strengthen the analysis of Tesla's market position.",
-          "Include a brief comparison with other EV companies in India to provide context on Tesla's performance."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "025a371f-643e-49a9-af75-a49136760310",
-      "headline": "Accenture Just Had Its Worst Week on Record. The Fear Driving It Lands Hardest on Indian IT.",
-      "slug": "accenture-worst-week-ai-fears-it-services-tcs-infosys-wipro-nri-20260623",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "office complex in Hyderabad",
-          "reason": "The photo shows an Accenture office complex relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the impact of Accenture's performance on Indian IT and the implications for Indian professionals in the US, making it relevant for the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more direct quotes from industry experts or analysts to enhance credibility.",
-          "Include a brief overview of how Accenture's performance historically affects Indian IT to provide more context."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
+      "llm_source": "gemini-2.5-flash"
     }
   ]
 }
