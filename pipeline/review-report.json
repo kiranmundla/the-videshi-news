@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-23T01:45:11.907701+00:00",
+  "timestamp": "2026-06-23T02:15:42.565812+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
-    "flag": 0,
+    "pass": 4,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,17 +11,59 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "23ea666e-7deb-4327-81d4-812d7f18bce4",
-      "headline": "Three Centuries, One Collapse: India Pile Up 471 at Headingley, Then Watch England Punch Straight Back",
-      "slug": "india-england-first-test-headingley-day-two-pant-134-three-centuries-471-all-out-collapse-pope-100-bumrah-diaspora-nri",
+      "id": "9448af91-0416-470e-9a09-3367ae8823f2",
+      "headline": "India's Stock Exchange Is Going Public: NSE Files for a \u20b930,000-Crore IPO, Set to Be the Country's Largest Ever",
+      "slug": "nse-ipo-drhp-30000-crore-offer-for-sale-largest-india-listing-premji-damani-windfall-nri-investor-20260623-0200",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Cricketer in Indian team jersey",
-          "reason": "The photo shows a cricketer, relevant to the cricket story."
+          "what_photo_shows": "National Stock Exchange building",
+          "reason": "The photo shows the NSE building, relevant to the story about its IPO."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses the IPO of NSE, which is relevant to NRIs interested in investment opportunities in India."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more direct quotes from industry experts or analysts to enhance credibility.",
+          "Add a section on how this IPO could impact NRI investors specifically."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "1d4e8d14-b376-4060-81ec-2861bed72a70",
+      "headline": "Your Body's \u2018Biological Age\u2019 May Start Falling in Just Four Weeks on a Plant-Forward Diet, a New Trial Suggests",
+      "slug": "short-term-diet-change-lowers-biological-age-four-weeks-plant-forward-complex-carbs-aging-cell-diaspora-20260623-0200",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "broccoli and lettuce",
+          "reason": "The photo shows plant-based foods relevant to the diet story."
         },
         "inline_image_mismatches": []
       },
@@ -35,13 +77,144 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects with the diaspora by highlighting Rishabh Pant's journey and the emotional weight of his performance for NRIs."
+          "note": "The article connects the findings to the Indian diaspora by emphasizing the simplicity of dietary changes that can benefit health."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more quotes or reactions from players or analysts to enhance engagement.",
-          "Include a brief historical context about India's past collapses to deepen the narrative."
+          "Expand on the diaspora angle by including specific dietary practices or preferences common in the Indian community that align with the study's findings.",
+          "Consider adding quotes or insights from Indian nutritionists or health experts to enhance local relevance."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "db0fc9ff-3349-49de-844a-c5d2d5006785",
+      "headline": "How Fit You Are in Midlife May Forecast How Long \u2014 and How Well \u2014 You Live, a 24,000-Person Study Finds",
+      "slug": "midlife-cardiorespiratory-fitness-longer-lifespan-healthspan-treadmill-jacc-24576-adults-diaspora-20260623-0200",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "person exercising outdoors",
+          "reason": "The photo shows physical activity, relevant to fitness and health."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 8,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 6,
+          "note": "The article attempts to connect the findings to the Indian diaspora but lacks depth in exploring specific cultural or lifestyle factors that may affect fitness in this community."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Expand on how cultural factors within the Indian diaspora may influence fitness and health outcomes.",
+          "Include specific examples or anecdotes related to fitness practices in the Indian diaspora to enhance relatability."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "0bbad83f-b132-4b91-84ec-e34d410943e3",
+      "headline": "IndiGo Is Quietly Wiring India to Nairobi, Jakarta and the Caucasus \u2014 174 New Weekly Flights by September",
+      "slug": "indigo-six-new-international-destinations-nairobi-jakarta-caucasus-nri-20260623",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "IndiGo Airbus A320neo in flight",
+          "reason": "The photo shows an IndiGo aircraft, relevant to the airline's expansion story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the new routes to the Indian diaspora, particularly in East Africa and Central Asia, highlighting the significance of these connections for Indian expatriates."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from industry experts or airline representatives to enhance credibility.",
+          "Include more statistics or data on the expected impact of these new routes on travel patterns among the diaspora."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "b72dc155-9532-49e2-b0e5-50fb5c2eb2c1",
+      "headline": "India Is About to Make Its Tourist Visa Last a Year With Unlimited Entries \u2014 a Gift for the OCI-less Spouse",
+      "slug": "india-evisa-liberalization-one-year-multiple-entry-nri-spouse-oci-20260623",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "ca4db43c-dd21-4d94-9f83-4c27569f4bb0",
+            "headline": "The Last Safety Valve for Backlogged Indians Is a Work Permi"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "open passport with travel stamps",
+          "reason": "The photo of a passport with stamps is relevant to a story about visas and travel."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the topic of visas or travel, but it is a general travel-related image."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively addresses the needs and concerns of the Indian diaspora, particularly those with mixed-status families."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that directly relates to travel or visas.",
+          "Add a section with potential FAQs regarding the new visa rules to enhance reader understanding."
         ],
         "verdict": "pass"
       },
