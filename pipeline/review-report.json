@@ -1,19 +1,19 @@
 {
-  "timestamp": "2026-06-23T18:45:37.308437+00:00",
+  "timestamp": "2026-06-23T19:15:11.077502+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
-    "flag": 1,
+    "pass": 1,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
-  "revisions": 1,
+  "revisions": 0,
   "unpublished": 0,
   "articles": [
     {
-      "id": "957b8839-54af-4d82-99d1-47a730111d1f",
-      "headline": "Adani Just Opened an Airport in the Heart of Kutch. For the Gujarati Diaspora, It's a New Door Home.",
-      "slug": "adani-mundra-airport-first-scheduled-flights-star-air-kutch-gujarat-airport-expansion-20260623",
+      "id": "f80db36c-4dbf-4ffa-b779-26e89dfce056",
+      "headline": "Hrithik Roshan Flies to Chennai for Jailer 2. Forty Years After His Debut, the Child Actor Returns to Rajinikanth's Side.",
+      "slug": "jailer-2-hrithik-roshan-chennai-cameo-rajinikanth-bhagwaan-dada-reunion-shah-rukh-khan-king-nelson-sun-pictures-where-to-watch-diaspora-nri-20260623",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A Star Air Embraer regional jet taking off.",
-          "reason": "The photo shows a Star Air aircraft, which is directly mentioned in the headline and subheadline as the regional carrier for the new airport."
+          "what_photo_shows": "Hrithik Roshan smiling and showing a watch",
+          "reason": "The photo clearly shows Hrithik Roshan, who is the main subject of the headline."
         },
         "inline_image_mismatches": []
       },
@@ -31,61 +31,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article explicitly addresses the diaspora angle in a dedicated section, making a strong and relevant connection for Gujarati NRIs."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a quote from a diaspora member or a local Kutch resident to personalize the impact of the new airport.",
-          "If possible, include a small map showing Mundra's location relative to major Gujarati diaspora hubs (e.g., Mumbai, Ahmedabad) and the Kutch region."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "755eec10-c805-4056-9b7d-11e281241860",
-      "headline": "India's Drug Regulator Just Flagged 159 Medicines as Substandard. Some Are Drugs You Take Every Day.",
-      "slug": "india-drug-regulator-159-medicines-fail-quality-test-may-nsq-alert-spurious-20260623",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A pile of white medicine tablets.",
-          "reason": "The photo of medicine tablets is a generic but on-topic image for a story about substandard drugs."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 8,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The 'Why the Diaspora Should Care' section directly addresses NRIs and their common practice of sourcing medicines from India, making the connection natural and relevant."
+          "note": "The article explicitly connects to NRI/diaspora readers in the final paragraph, detailing the film's global release and fan screenings in diaspora hubs."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a quote from an NRI or a pharmacist serving the diaspora to further personalize the 'Why the Diaspora Should Care' section.",
-          "If possible, include a small graphic or table summarizing the types of drugs most frequently flagged as substandard over the past year."
+          "Consider adding a quote from a film critic or industry expert about the significance of this casting or the pan-India trend.",
+          "Perhaps include a small, relevant social media embed (e.g., a fan reaction to the news, if available and appropriate) to enhance engagement."
         ],
         "verdict": "pass"
       },
@@ -94,94 +51,6 @@
       ],
       "revised": false,
       "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "481f92f8-fcbc-4b4c-baac-a209e7f9d5e4",
-      "headline": "Reliance Lays Out a Five-Year Plan to Double Its Earnings \u2014 With AI and the Sun at the Centre",
-      "slug": "reliance-agm-2026-double-ebitda-ai-new-energy-fmcg-record-profit-nri-investor-20260623-1800",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Mukesh Ambani receiving an award with a woman and another man.",
-          "reason": "The photo clearly shows Mukesh Ambani, who is the central figure of the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article explicitly includes a 'Why It Matters for the Diaspora' section, which is good. The content within that section (though truncated in the provided text) is crucial for assessing its quality."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Ensure the 'Why It Matters for the Diaspora' section is fully developed and provides concrete, actionable insights or relevant context for NRI investors.",
-          "Consider adding a small infographic or chart to visualize Reliance's current EBITDA and the projected doubling, to make the financial targets more digestible."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "add74fd6-2e6e-4175-83b6-1a1a09941679",
-      "headline": "Why Poor Sleep Harms Some Brains More Than Others May Come Down to a Single Gene",
-      "slug": "aqp4-gene-sleep-interaction-alzheimers-grey-matter-edith-cowan-precision-health-diaspora-20260623-1800",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MISMATCH",
-          "what_photo_shows": "A vintage book cover titled \"The Sick-A-Bed Lady.\"",
-          "reason": "The photo shows a book cover, which is unrelated to a scientific study about sleep, genes, and Alzheimer's."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 6,
-        "embed_issues": [],
-        "image_match": {
-          "score": 1,
-          "issue": "No image URL or entities provided, making it impossible to assess the match. This is a critical missing piece for a news article."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 4,
-          "note": "The 'Why It Matters for the Diaspora' section is present but incomplete, cutting off mid-sentence. This makes the current angle feel forced and underdeveloped. If completed well, it could be a natural fit, but as is, it's weak."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Complete the 'Why It Matters for the Diaspora' section to provide a meaningful connection for NRI readers, perhaps discussing genetic predispositions in specific ethnic groups or the challenges of sleep patterns for NRIs.",
-          "Ensure a hero image and its description/entities are provided for every article to allow for proper review of image relevance and quality."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Cleared mismatched image (A vintage book cover titled \"The Sick-A-Bed Lady.\")",
-        "Revised by gemini-2.5-flash (941\u2192941 words)"
-      ],
-      "revised": true,
-      "unpublished": false,
-      "image_mismatch": true,
       "llm_source": "gemini-2.5-flash"
     }
   ]
