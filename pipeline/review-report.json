@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-24T12:48:27.246473+00:00",
+  "timestamp": "2026-06-24T13:15:27.267379+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 7,
-    "flag": 0,
+    "pass": 1,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "878c042e-1251-40bc-b985-6de670248570",
-      "headline": "Rasmalai Tres Leches and Kunafa Cheesecake: How Desi Dessert Mashups Conquered the Diaspora Party",
-      "slug": "rasmalai-tres-leches-and-kunafa-cheesecake-how-desi-dessert-mashups-conquered-th",
+      "id": "5600a751-6e07-488b-8276-8ce467bc751d",
+      "headline": "Couture, Crystals and a Whole Lot of Attitude: Inside Bollywood Hungama's Style Icons Summit 2026",
+      "slug": "bollywood-hungama-style-icons-summit-awards-2026-vaani-kapoor-nawazuddin-siddiqui-mithila-palkar-pooja-hegde-tamannaah-bhatia-red-carpet-panels-where-to-watch-diaspora-nri-20260624",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,30 +21,32 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Rasmalai dessert with nuts and saffron in a bowl",
-          "reason": "The photo clearly shows Rasmalai, which is directly mentioned in the headline and caption as a key subject of the story."
+          "what_photo_shows": "Vaani Kapoor in a black strapless dress at an event.",
+          "reason": "The photo shows Vaani Kapoor, who is explicitly mentioned in the subheadline as attending the event."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 8,
+        "overall_score": 7,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image features Vaani Kapoor, who is mentioned in the article, but the specific event in the image (Elle Beauty Awards 2023) does not match the article's subject (Bollywood Hungama Style Icons Summit 2026)."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article directly addresses the diaspora experience and its cultural significance."
+          "quality": 8,
+          "note": "The article explicitly connects the event to the diaspora, highlighting how content is made available for NRIs and describing it as an 'annual ritual for the fashion-obsessed desi abroad'."
         },
-        "factual_flags": [],
+        "factual_flags": [
+          "The article refers to 'Bollywood Hungama Style Icons Summit and Awards 2026' and states it 'rolled out across June 24'. This implies the event has already happened in 2026, which is in the future. This is a significant chronological inconsistency."
+        ],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a specific example of a viral reel or social media account that popularized one of these mashups to strengthen the 'algorithm' point.",
-          "The article ends abruptly. Ensure the conclusion is complete and provides a strong wrap-up."
+          "Correct the year of the event (2026) to reflect a past or current event, as the article describes it as having already occurred.",
+          "Consider replacing the hero image with one directly from a Bollywood Hungama Style Icons event, if available, to improve topical relevance."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
         "promoted to published"
@@ -54,9 +56,9 @@
       "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "a2c1f269-c032-4667-b28d-eef888704215",
-      "headline": "The Drumstick Tree's American Reckoning: Moringa's Superfood Boom Meets a Safety Scare",
-      "slug": "the-drumstick-trees-american-reckoning-moringas-superfood-boom-meets-a-safety-sc",
+      "id": "cccefc32-392d-47e9-a205-f91363fd8445",
+      "headline": "16 Celebs, One Underground Bunker, Zero Loyalty: Kunal Kemmu's 'Alliance' Is Prime Video's Most Ruthless Game Yet",
+      "slug": "alliance-prime-video-reality-show-kunal-kemmu-host-16-celebrities-ravi-kishan-mini-mathur-nikhil-chinapa-banijay-asia-june-26-240-countries-where-to-watch-diaspora-nri-20260624",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,14 +66,20 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Dried moringa leaf powder in a wooden box",
-          "reason": "The photo clearly depicts dried moringa leaf powder, which is the central subject of the story about moringa's superfood boom and safety scare."
+          "what_photo_shows": "Kunal Kemmu standing in front of a movie poster.",
+          "reason": "The photo clearly shows Kunal Kemmu, who is the named subject of the headline and story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 7,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DZ6xv-wlLor/",
+            "problem": "irrelevant",
+            "explanation": "This Instagram reel is from 2017 and features a random person, not related to the 'Alliance' show, Kunal Kemmu, or any of the mentioned celebrities. It seems like a placeholder or an error."
+          }
+        ],
         "image_match": {
           "score": 9,
           "issue": null
@@ -79,239 +87,22 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The 'Diaspora Impact' section directly addresses the NRI perspective, connecting personal experience with the market trend and safety concerns."
+          "note": "The article explicitly mentions the simultaneous global release and its significance for NRI viewers, making the diaspora angle natural and well-integrated."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a quote from an NRI consumer or business owner to personalize the 'Diaspora Impact' section further.",
-          "Perhaps include a brief mention of traditional Indian uses of moringa beyond just sambar and stir-fries, to enrich the cultural context."
+          "Replace the irrelevant Instagram embed with a relevant social media post about 'Alliance' or one of its cast members to enhance reader engagement.",
+          "Consider adding a sentence or two about the global appeal of Indian reality TV formats, especially for the diaspora, to further strengthen the NRI connection."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DZ6xv-wlLor/",
         "promoted to published"
       ],
       "revised": false,
       "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "5a30f14e-e8ee-4a83-9715-0b3015764707",
-      "headline": "From Amritsar's Bylanes to Harvard's Stage: Vikas Khanna's Long American Vindication",
-      "slug": "from-amritsars-bylanes-to-harvards-stage-vikas-khannas-long-american-vindication",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Vikas Khanna, Michelin-starred chef and restaurateur",
-          "reason": "The photo clearly shows Vikas Khanna, who is the subject of the headline and caption."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article explicitly connects Khanna's journey and achievements to the NRI experience, particularly the struggle for acceptance of Indian culture in America."
-        },
-        "factual_flags": [
-          "The article mentions *TIME* named him to its '2026 TIME100' list. This seems like a typo and should likely be '2024 TIME100' or a similar current year, as future lists are not typically announced so far in advance."
-        ],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Verify the '2026 TIME100' claim and correct the year if it's a typo.",
-          "Consider adding a quote or two from other Indian-American chefs or food critics to provide external validation of Khanna's impact, if space permits."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "bae8a036-d2b0-4383-b9b8-748d8df5826f",
-      "headline": "Britain Is About to Smash Its June Heat Record. For 1.9 Million Indians There, This Is a Safety Story.",
-      "slug": "uk-europe-record-heatwave-met-office-red-alert-indians-britain-diaspora-20260624",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "The City of London skyline with the River Thames and boats.",
-          "reason": "The photo shows a generic but on-topic city skyline for a story about Britain and its heatwave."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article explicitly connects the heatwave to the Indian diaspora's specific vulnerabilities and challenges, making it highly relevant."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a small section on specific resources or helplines available for the Indian diaspora in the UK during such heatwaves, if any exist.",
-          "Ensure the article concludes with a strong call to action or a summary of key safety advice, as it currently ends mid-sentence."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "673b3b61-fb5e-4b23-b37a-4985cf384599",
-      "headline": "One of India's Biggest Automakers Woke Up to a Ransomware Attack. The Bigger Worry Is What It Signals.",
-      "slug": "bajaj-auto-ransomware-attack-cert-in-cyber-india-manufacturing-20260624",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A Bajaj motorcycle and a sign with the Bajaj logo.",
-          "reason": "The photo clearly shows a Bajaj motorcycle and the Bajaj logo, which is directly relevant to the story about Bajaj Auto."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 8,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The 'What It Means for the Diaspora' section directly addresses NRI investors and business owners, making a clear connection."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a quote from a cybersecurity expert on the broader implications for Indian manufacturing.",
-          "If possible, include a small graphic or chart showing the increase in ransomware attacks on manufacturers globally or in India over the past few years to visually support the 'Pattern, Not an Isolated Strike' section."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "2a9ff1f0-e198-444b-bde8-873a0ecc1254",
-      "headline": "How a Single Sunday of Yoga Maps Britain's Indian Diaspora",
-      "slug": "international-yoga-day-2026-uk-diaspora-healthy-ageing-soft-power-20260624",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 8,
-          "issue": "No image URL or entities provided, so cannot fully assess. Assuming a relevant image would depict yoga in a UK setting."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article directly addresses the Indian diaspora's role in organizing and transmitting yoga, and its relevance to the 'Healthy Ageing' theme for established NRI communities."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a specific quote from an NRI participant or organizer to personalize the narrative further.",
-          "If possible, include a small data point or statistic about the growth of yoga participation among the Indian diaspora in the UK."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "06967b15-0bb4-4ffd-b49c-b91a8ec377cb",
-      "headline": "An Indian-Born CEO Out-Earned Tim Cook and Satya Nadella. His Own Shareholders Have Voted No Seven Times.",
-      "slug": "nikesh-arora-palo-alto-networks-highest-paid-ceo-pay-say-on-pay-nri-20260624",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "a7752486-756c-489d-a414-cef31334ef52",
-            "headline": "Nikesh Arora Is Spending $28 Billion to Own the AI Security "
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "UNVERIFIED",
-          "what_photo_shows": "(image unreadable)",
-          "reason": "could not download image: curl-exception"
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The 'Why the diaspora should care' section is well-integrated and provides a thoughtful, nuanced perspective on the broader implications for the Indian diaspora, moving beyond simple celebration to critical analysis."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a brief mention of the specific nature of the 'say-on-pay' vote (e.g., advisory vs. binding) earlier in the article for clarity, though it is explained later.",
-          "Perhaps a very short quote from a shareholder or activist investor, if available and concise, could add another layer to the 'skeptics' argument."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "held: image unverified"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "image_unverified": true,
       "llm_source": "gemini-2.5-flash"
     }
   ]
