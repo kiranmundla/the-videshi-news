@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-24T01:15:26.149949+00:00",
+  "timestamp": "2026-06-24T01:45:12.862162+00:00",
   "mode": "fix",
   "stats": {
     "pass": 1,
-    "flag": 1,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "c5662e33-0f58-4411-9e1a-a9665277b18b",
-      "headline": "India Just Walked Into the Cannes of Animation. 'Baahubali: The Eternal War' Is Maahishmati's Most Daring Bet Yet.",
-      "slug": "baahubali-the-eternal-war-annecy-2026-work-in-progress-ss-rajamouli-prabhas-ishan-shukla-3d-animation-mm-keeravani-2027-where-to-watch-diaspora-nri-20260623",
+      "id": "c50ec7d8-91b4-46d1-9ade-c4b80d409c3d",
+      "headline": "India's Women Sprinters Beat China for Relay Gold \u2014 a Statement Beyond the Javelin",
+      "slug": "india-women-4x100m-relay-gold-asian-relays-championships-2026-shangyu-china-srabani-nanda-tamanna-beat-china-sprint-diaspora-nri",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,60 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Director SS Rajamouli, a man with a grey beard",
-          "reason": "The photo clearly shows SS Rajamouli, who is the subject of the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/reel/DXJE1inErt6/",
-            "problem": "irrelevant",
-            "explanation": "This Instagram reel is from 2016 and features a promotional video for Baahubali 2, not 'Baahubali: The Eternal War' or the Annecy festival. It's outdated and doesn't directly support the article's current focus."
-          }
-        ],
-        "image_match": {
-          "score": 8,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article naturally connects to NRI/diaspora readers by highlighting India's growing presence on the global stage (Annecy, 'Cannes of Animation') and the international recognition of Indian IP like Baahubali, which resonates strongly with the diaspora. The mention of 'pan-Indian cinema' and 'homegrown animated mythologies' further strengthens this connection."
-        },
-        "factual_flags": [
-          "The article states the Annecy festival ran 'June 21 to 27', but then mentions 'Annecy International Animation Film Festival 2026'. This creates a contradiction regarding the timing of the festival being discussed. If the festival ran in June 2024, the '2026' mention for the film's selection is confusing. Clarification is needed."
-        ],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Clarify the Annecy festival dates and the year of 'Baahubali: The Eternal War's' selection. The current text is confusing regarding whether the festival just happened or is in 2026.",
-          "Replace the irrelevant Instagram embed with a more current and relevant social media post or trailer for 'Baahubali: The Eternal War' if available, or a post related to Annecy 2024/2026."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/reel/DXJE1inErt6/",
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "7d970dc2-a3ce-4805-be70-c919adc6e871",
-      "headline": "Rajkumar Hirani Finally Goes Streaming \u2014 and Hands His Own Son the Lead. 'Pritam And Pedro' Lands July 3.",
-      "slug": "pritam-and-pedro-rajkumar-hirani-ott-debut-vir-hirani-acting-debut-arshad-warsi-vikrant-massey-jiohotstar-july-3-cybercrime-comedy-where-to-watch-diaspora-nri-20260623",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Filmmaker Rajkumar Hirani, a man with a mustache and glasses",
-          "reason": "The photo clearly shows Rajkumar Hirani, who is the central figure of the story."
+          "what_photo_shows": "Srabani Nanda, an Indian sprinter, with a flag",
+          "reason": "The photo shows a named Indian sprinter, Srabani Nanda, who is directly mentioned in the caption as part of the gold-winning relay team, matching the story's subject of Indian women sprinters."
         },
         "inline_image_mismatches": []
       },
@@ -88,13 +36,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The diaspora angle is explicitly stated and relevant, highlighting accessibility for NRIs."
+          "note": "The 'Why the Diaspora Should Be Watching' section explicitly connects the achievements to NRI readers, explaining why this broader success is significant beyond individual stars."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a brief sentence about JioHotstar's availability in other key NRI regions beyond US, UK, Canada if applicable.",
-          "Perhaps a small quote from Vir Hirani about working with his father could add more depth to the 'father-son' dynamic."
+          "Consider adding a quote from one of the athletes or the coach to give the article more personal touch and immediacy.",
+          "While the diaspora angle is present, perhaps a brief mention of how NRIs can follow or support these athletes (e.g., social media, upcoming events) could further engage the audience."
         ],
         "verdict": "pass"
       },
