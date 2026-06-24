@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-24T08:45:24.568639+00:00",
+  "timestamp": "2026-06-24T09:16:00.822247+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
-    "flag": 0,
+    "pass": 4,
+    "flag": 2,
     "fail": 0,
     "error": 0
   },
@@ -11,56 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "e8c2f2f3-c75b-41ba-8c20-01775e58cb78",
-      "headline": "India Is Mounting Its Biggest-Ever Security Operation for the Amarnath Pilgrimage. Here's Why This Year Is Different.",
-      "slug": "amarnath-yatra-2026-record-paramilitary-deployment-670-capf-july-3-security-diaspora-20260624",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MISMATCH",
-          "what_photo_shows": "A bird on a stone wall with green foliage in the background.",
-          "reason": "The photo shows a bird, which is unrelated to the Amarnath Pilgrimage story about security operations and pilgrims."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "No image URL or entities provided, so cannot fully assess. Assuming a relevant image would depict the pilgrimage or security forces."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The 'Why the Diaspora Should Care' section explicitly and effectively connects the topic to NRI readers, addressing both direct participation and broader implications for J&K-origin diaspora."
-        },
-        "factual_flags": [
-          "The article states the pilgrimage begins on July 3 and concludes on August 28, making it a 57-day pilgrimage. However, July 3 to August 28 is 57 days inclusive, which means 56 nights. If it's 57 full days, it would be 58 calendar days. This is a minor discrepancy but worth clarifying for precision."
-        ],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "If possible, include a quote from an NRI who has participated in or plans to participate in the Yatra to further personalize the diaspora angle.",
-          "Consider adding a small section on the historical context of security incidents during the Amarnath Yatra to fully explain 'why this year is different' beyond just the current tense environment."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "Cleared mismatched image (A bird on a stone wall with green foliage in the background.)",
-        "held: image mismatch"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "image_mismatch": true,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "77a803e3-77ce-4365-9a06-0fb3cd5eb8e7",
-      "headline": "Becoming an American Is About to Get Much More Expensive. Indian Green-Card Holders Will Feel It First.",
-      "slug": "us-citizenship-naturalization-fee-hike-80-percent-n400-indians-green-card-20260624",
+      "id": "153ed30f-f786-4972-91fa-e60a8bd3a198",
+      "headline": "The Real-Life Superman Moment: David Corenswet Shields Milly Alcock at the Supergirl Premiere",
+      "slug": "supergirl-premiere-david-corenswet-protects-milly-alcock-photographer-real-life-superman-james-gunn-dcu-june-26-where-to-watch-diaspora-nri-20260624",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -68,8 +21,120 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A man shaking hands at a naturalization ceremony",
-          "reason": "The photo depicts a naturalization ceremony, which is directly relevant to the story about the cost of US citizenship."
+          "what_photo_shows": "A headshot of actor David Corenswet.",
+          "reason": "The photo clearly shows David Corenswet, who is the main subject of the headline."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/DZ6X7f6HHE1/",
+            "problem": "irrelevant",
+            "explanation": "This Instagram post is from 2018 and features Dwayne 'The Rock' Johnson, completely unrelated to the article's topic of David Corenswet and Milly Alcock at the Supergirl premiere."
+          }
+        ],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The diaspora angle feels natural and relevant, connecting the Hollywood incident to similar experiences faced by Indian stars and the audience's familiarity with consent discussions."
+        },
+        "factual_flags": [
+          "The article states 'Supergirl, directed by Craig Gillespie and produced by Gunn himself, is tracking for an opening weekend...' and later mentions 'Superman opened to last July'. This implies Supergirl is already released or about to be, but the headline and body refer to a 'Supergirl premiere' and 'days before release'. This creates a slight confusion regarding the film's release status. Also, 'Man of Tomorrow' is the title of the upcoming Superman film, not a separate project where Corenswet and Alcock reunite after Supergirl."
+        ],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Correct the factual inaccuracies regarding the release status of 'Supergirl' and the title of the upcoming Superman film ('Man of Tomorrow').",
+          "Replace the irrelevant Instagram embed with a relevant social media post, perhaps one showing the actual incident or fan reactions to it."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/DZ6X7f6HHE1/",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "04ab66bc-5373-4112-8651-d1d8e3d7af52",
+      "headline": "Arijit Sings, the Internet Swoons: \u201cLeher,\u201d Cocktail 2\u2019s First Full Song, Is the Grown-Up Ballad the Franchise Needed",
+      "slug": "leher-song-cocktail-2-arijit-singh-pritam-shahid-kapoor-kriti-sanon-rashmika-mandanna-homi-adajania-where-to-watch-diaspora-nri-20260624",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "101dca29-b6a9-46f2-9bd5-68a066754adc",
+            "headline": "Cocktail 2 Closes Its First Weekend at \u20b944 Crore. Shahid Kap"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Official poster for the movie Cocktail 2",
+          "reason": "The photo shows the official poster for 'Cocktail 2', which is directly relevant to the headline discussing a song from 'Cocktail 2'."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DZ9IFX1oprm/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel is from 2017 and features a random dance performance, not related to Cocktail 2 or the song 'Leher'."
+          }
+        ],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the film and its music to the NRI experience, referencing past impact and future relevance for diaspora readers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the irrelevant Instagram embed with a relevant one, perhaps a clip of 'Leher' or a promotional post for Cocktail 2.",
+          "Consider adding a brief mention of the director or key cast members' connection to the diaspora, if applicable, to further strengthen the angle."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DZ9IFX1oprm/",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "61f8eaa4-924a-46a4-9d48-e26a476944e7",
+      "headline": "India Can't Out-Build Taiwan's Chip Fabs. So It's Betting It Can Out-Design Everyone.",
+      "slug": "india-semiconductor-chip-design-talent-vaishnaw-vlsi-diaspora-engineer-20260624",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "e6eb1944-dbe6-43dd-889b-911804f2ba3a",
+            "headline": "The World Will Be Short a Million Chip Engineers. India Just"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Indian IT and Electronics Minister Ashwini Vaishnaw",
+          "reason": "The photo shows the named minister who is relevant to a story about India's tech strategy."
         },
         "inline_image_mismatches": []
       },
@@ -83,13 +148,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article explicitly highlights the impact on Indian green-card holders and connects to NRI/diaspora readers naturally and effectively."
+          "note": "The 'What it means for the diaspora' section is well-integrated and provides concrete implications for NRIs."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a call to action for readers to participate in the 60-day public comment period, perhaps with a link or guidance on how to submit comments.",
-          "While the article mentions 'Indian outlets have pegged the new paper fee at roughly \u20b91.26 lakh,' it might be beneficial to cite a specific outlet or source for this conversion."
+          "Consider adding a brief mention of specific Indian companies or institutions that are leading the charge in chip design education or R&D to further solidify the 'design brain' argument.",
+          "While the article mentions 'Bharat Innovates showcase', a link to this or similar initiatives could add value for readers interested in exploring investment or return-to-India options."
         ],
         "verdict": "pass"
       },
@@ -101,9 +166,9 @@
       "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "6fd530da-8153-492f-adb6-c0f8a1a39301",
-      "headline": "The Green Card Memo Has a Loophole Most Indians Missed: It May Not Touch H-1B Holders At All",
-      "slug": "adjustment-of-status-memo-dual-intent-h1b-l1-carveout-indians-green-ca-20260624",
+      "id": "0a9f7d10-26bd-459c-ad84-fa0d1f05d6e8",
+      "headline": "Nvidia and Azim Premji Just Bet $190 Million on AI's Least Glamorous Problem. The Founders Are Indian-American.",
+      "slug": "upscale-ai-190-million-premji-invest-nvidia-diaspora-founders-networki-20260624",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -111,8 +176,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "John Lennon's U.S. green card",
-          "reason": "The photo shows a green card, which is directly relevant to a story about green card policy and immigration."
+          "what_photo_shows": "Fiber-optic cables in a data center network rack",
+          "reason": "The photo depicts networking 'plumbing' which directly relates to the story's subject of connecting AI chips."
         },
         "inline_image_mismatches": []
       },
@@ -121,20 +186,113 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image is of John Lennon's Green Card, which is iconic but not directly related to the H-1B/L-1 and Indian diaspora focus of the article. While it's a 'Green Card', a more relevant image might depict the H-1B process or the Indian diaspora in the US."
+          "issue": "The image shows a generic server room, which is broadly related to 'deep infrastructure' but doesn't specifically evoke 'AI's least glamorous problem' or 'networking between chips'. It's acceptable but not highly specific."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article directly addresses a critical issue for the Indian diaspora, specifically H-1B and L-1 visa holders, and their concerns regarding green card processing. It's highly relevant and naturally integrated."
+          "note": "The diaspora angle is very strong and naturally integrated, highlighting Indian-American entrepreneurship, Indian investment, and relevance for NRI engineers and investors. It explicitly addresses 'Why this matters to an NRI'."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a brief introductory sentence explaining the significance of the Green Card memo for the Indian diaspora, even before diving into the 'What the Memo Says' section, to immediately hook the target audience.",
-          "Explore if there are any real-world examples or anecdotes (even anonymized) of Indian H-1B holders who were initially panicked but then reassured by the clarification, to add a human element."
+          "Consider adding a quote from one of the founders about the specific challenges or vision for open standards in AI networking to further humanize the technical details.",
+          "If possible, include a small graphic or diagram (even a simple conceptual one) to illustrate the 'plumbing' aspect of AI networking, as it's a less glamorous but crucial concept."
         ],
         "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "32400fbc-47ad-453d-9091-ef584fa685a7",
+      "headline": "Meta Just Made an Indian Founder the Boss of WhatsApp. The $900 Million Price Tag Tells the Real Story.",
+      "slug": "kunal-shah-whatsapp-ceo-meta-cred-900-million-deal-nri-fintech-20260624",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "cf799c73-9f65-42b3-b399-44ca95207c64",
+            "headline": "Meta Just Hired an Indian Founder to Run WhatsApp. The $900 "
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Kunal Shah, founder of CRED, wearing a Freecharge shirt.",
+          "reason": "The photo shows the named person, Kunal Shah, as specified in the caption and headline."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article explicitly addresses the NRI reader and connects the news to diaspora themes like leadership and investment."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Ensure the article concludes cleanly, as the last sentence appears cut off.",
+          "Consider adding a brief explanation of what UPI is for readers less familiar with Indian payment systems."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "e8c2f2f3-c75b-41ba-8c20-01775e58cb78",
+      "headline": "India Is Mounting Its Biggest-Ever Security Operation for the Amarnath Pilgrimage. Here's Why This Year Is Different.",
+      "slug": "amarnath-yatra-2026-record-paramilitary-deployment-670-capf-july-3-security-diaspora-20260624",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Security personnel guarding pilgrims at a cave shrine entrance.",
+          "reason": "The photo depicts security personnel and pilgrims at a cave shrine, which directly relates to the Amarnath Pilgrimage and its security operation."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The 'Why the Diaspora Should Care' section explicitly and effectively connects the event to NRI readers, covering both pilgrims and those concerned about governance in J&K."
+        },
+        "factual_flags": [
+          "The article states the pilgrimage begins on July 3 and concludes on August 28, but then mentions '2026 Yatra'. This is likely a typo and should be '2024 Yatra'."
+        ],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Correct the '2026 Yatra' typo to '2024 Yatra' for accuracy.",
+          "Consider adding a quote from an NRI pilgrim or a Kashmiri diaspora member to personalize the 'diaspora angle' section further."
+        ],
+        "verdict": "flag"
       },
       "actions_taken": [
         "promoted to published"
