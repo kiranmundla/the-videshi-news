@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-24T21:15:38.492903+00:00",
+  "timestamp": "2026-06-24T22:15:47.090663+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
-    "flag": 2,
+    "pass": 5,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "37699234-43dd-48b1-886b-8609e86ecd4e",
-      "headline": "At 20, Priyanka Chopra Turned Down the Bigger Cheque. Twenty-Six Years Later, at Cannes, She Explained Why It Was Genius.",
-      "slug": "priyanka-chopra-cannes-lions-2026-brand-philosophy-turned-down-money-varanasi-rajamouli-reset-orlando-bloom-glass-ceiling-where-to-watch-diaspora-nri-20260624",
+      "id": "14784723-3bd4-4710-b2d7-9ef62050aba4",
+      "headline": "India Threw Open Its Bond Market to the World. The World Is Still Deciding Whether to Walk In.",
+      "slug": "india-bond-market-opening-foreign-inflows-capital-gains-tax-far-bloomberg-index-fairfax-nri-investor-20260624-2200",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Priyanka Chopra Jonas smiling, wearing a light-colored outfit and necklace.",
-          "reason": "The photo clearly shows Priyanka Chopra Jonas, who is the main subject of the headline and story."
+          "what_photo_shows": "A large building on a street in India with cars and trees.",
+          "reason": "The photo shows a generic but on-topic scene of a building in India, which is relevant to a story about India's bond market."
         },
         "inline_image_mismatches": []
       },
@@ -35,18 +35,16 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects Chopra's journey to the NRI experience of breaking barriers and creating opportunities."
+          "quality": 7,
+          "note": "The mention of Prem Watsa, an India-born financier, and Fairfax's investment provides a natural, albeit brief, connection to the diaspora. It's not forced."
         },
-        "factual_flags": [
-          "Cannes Lions 2026 is in the future, implying the article is speculative or has a typo. It should likely be 2024."
-        ],
+        "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Correct the year 'Cannes Lions 2026' to 'Cannes Lions 2024' for factual accuracy.",
-          "Consider adding a concluding sentence or two, as the article ends abruptly with 'Chopr'."
+          "Consider adding a small section or a quote from an NRI investor's perspective on the bond market changes, if available, to strengthen the diaspora angle further.",
+          "Ensure all RBI officials' names are correctly spelled and titles are accurate (e.g., Sanjay Malhotra is not the RBI Governor, Shaktikanta Das is)."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
         "promoted to published"
@@ -56,23 +54,18 @@
       "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "87f7c3d8-6cab-4f2d-ae1b-cd5c303046b0",
-      "headline": "Aamir Khan Is Getting Married at Home, in His Living Room, With No Cameras. And the Whole Country Can't Look Away.",
-      "slug": "aamir-khan-gauri-spratt-wedding-july-5-2026-private-registered-marriage-home-mumbai-lagaan-kajol-kiran-rao-where-to-watch-diaspora-nri-20260624",
+      "id": "ae9fd053-774f-490d-a53a-9537d6cd8989",
+      "headline": "Three Years of Diet and Exercise Paid Off for Two Decades \u2014 Far Beyond Diabetes, a New Study Finds",
+      "slug": "lifestyle-program-multimorbidity-21-percent-lower-risk-dpp-prediabetes-20-year-jama-study-diaspora-20260624-2200",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "beb9bb26-f180-4cdd-98b6-11c8093b496b",
-            "headline": "A Year Ago, Aamir Khan Said No to Prime Video's 120 Crore. S"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Aamir Khan with a mustache and glasses",
-          "reason": "The photo clearly shows Aamir Khan, who is the subject of the story."
+          "verdict": "MISMATCH",
+          "what_photo_shows": "A graph comparing environmental impact and mortality risk of various foods.",
+          "reason": "The photo's subject is about the environmental impact of food and mortality risk, which is not directly related to the story's focus on diet and exercise for chronic disease prevention."
         },
         "inline_image_mismatches": []
       },
@@ -80,21 +73,64 @@
         "overall_score": 7,
         "embed_issues": [],
         "image_match": {
-          "score": 8,
+          "score": 7,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The diaspora angle is present but feels a bit tacked on at the end. It could be integrated more throughout the article."
+          "quality": 8,
+          "note": "The 'Why It Matters for the Diaspora' section directly addresses the relevance to South Asians, specifically mentioning their higher risk for type 2 diabetes."
         },
-        "factual_flags": [
-          "The article mentions 'July 5' and '2026' for the wedding date, which implies a future event. However, the tone and some descriptions (e.g., 'fans... have already migrated to Gauri's sparse Instagram, leaving 'happy married life' under a photo...') suggest it's either happening imminently or has already happened, creating a slight temporal ambiguity. The article also mentions 'Aamir introduced her to the world in 2025, on his 60th birthday', which further solidifies the future timeline, but the present tense in other parts can be confusing."
-        ],
+        "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Clarify the timeline of the wedding (future vs. present) to avoid confusion for readers.",
-          "Integrate the 'diaspora angle' more organically throughout the piece, perhaps by drawing parallels earlier or exploring the NRI perspective on celebrity privacy vs. spectacle in India."
+          "Consider adding a specific call to action or resource for NRIs regarding diabetes prevention, perhaps linking to relevant health organizations or community initiatives.",
+          "Ensure the hero image (once provided) visually represents the article's focus on long-term health and lifestyle changes, possibly with a diverse representation."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "Cleared mismatched image (A graph comparing environmental impact and mortality risk of various foods.)",
+        "held: image mismatch"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "image_mismatch": true,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "63fa0d8e-092e-4cde-8db9-d638fd5aef9b",
+      "headline": "Lifting Weights Just an Hour or Two a Week Is Linked to a Longer Life, a 30-Year Study Finds",
+      "slug": "strength-training-longevity-150000-people-30-year-study-90-120-minutes-cardiovascular-dementia-diaspora-20260624-2200",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "A woman lifting weights in a gym setting.",
+          "reason": "The photo clearly depicts a person engaged in weightlifting, which directly relates to the story's topic of strength training and its health benefits."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 6,
+          "note": "The image entities include 'diaspora', suggesting an attempt to connect, but the article body itself lacks specific NRI/diaspora relevance. It's a general health article."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Integrate specific examples or perspectives relevant to the Indian diaspora regarding fitness trends, health challenges, or cultural attitudes towards strength training to strengthen the 'diaspora angle'.",
+          "Consider adding a quote from an Indian health professional or an NRI sharing their experience with strength training and longevity to make the content more relatable to the target audience."
         ],
         "verdict": "pass"
       },
@@ -106,9 +142,9 @@
       "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "cb1d225f-8d0c-4c51-907c-6aee5a90a079",
-      "headline": "Nvidia Gets the Headlines. But an Indian-Origin CEO Sells the One Chip AI Data Centers Can't Run Without.",
-      "slug": "sitime-rajesh-vashist-ai-timing-chips-data-center-nvidia-nri-semicondu-20260624",
+      "id": "748fbde4-72cc-4deb-a66f-367677a56444",
+      "headline": "Nepal Is Quietly Booming This Monsoon \u2014 and It's the Visa-Free Escape the Diaspora's India Trip Is Missing",
+      "slug": "nepal-monsoon-tourism-surge-pokhara-chitwan-visa-free-nri-escape-20260624",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -116,8 +152,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A close-up of a motherboard and microchips",
-          "reason": "The photo depicts generic computer components, which are relevant to a story about chips and AI data centers."
+          "what_photo_shows": "Phewa Lake at Pokhara with boats and hills at sunset",
+          "reason": "The photo depicts Phewa Lake in Pokhara, which is explicitly mentioned in the story's caption and subheadline as a key location for Nepal's tourism surge."
         },
         "inline_image_mismatches": []
       },
@@ -125,22 +161,64 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 8,
+          "score": 9,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The diaspora angle is well-integrated, highlighting an Indian-origin CEO and connecting to NRI investors and engineers."
+          "note": "The article directly addresses NRIs and frames Nepal as an ideal add-on to an India trip, leveraging the visa-free aspect for Indian passport holders."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a small section on specific travel agencies or tour operators that cater to this India-Nepal combined itinerary, especially for diaspora families.",
+          "Perhaps include a brief mention of cultural similarities/differences that might appeal or be relevant to an NRI audience."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "5b0ce6a7-6191-43bd-bf6c-108bad47a75f",
+      "headline": "Argentina Now Lets Indians In Visa-Free \u2014 If They Hold a US Visa or Green Card",
+      "slug": "argentina-visa-free-indians-us-visa-green-card-h1b-patagonia-nri-20260624",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Iguaz\u00fa Falls, a major landmark in Argentina",
+          "reason": "The photo shows Iguaz\u00fa Falls, a landmark in Argentina, which is directly relevant to a story about travel to Argentina."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "Strong and natural connection to NRI/diaspora readers, specifically Indian-Americans with US visas/Green Cards."
         },
         "factual_flags": [
-          "SiTime stock has roughly tripled in 2026 - This date is in the future and likely a typo. Should be 2023 or 2024.",
-          "eight straight quarters of triple-digit earnings growth and 80% growth in the AI data-center business this year - This seems to contradict the earlier statement of 'Revenue surged 88% to $113.6 million in the most recent quarter' unless 'earnings growth' refers to something different than revenue growth, which should be clarified."
+          "The article states 'As of April 2026, that list quietly gained its most spectacular entry yet \u2014 Argentina.' and then 'Under a policy that took effect this spring'. These dates contradict each other. 'This spring' (2024) and 'April 2026' are two years apart."
         ],
         "duplicate_embeds": [],
         "suggestions": [
-          "Correct the typo '2026' to the appropriate year (likely 2023 or 2024).",
-          "Clarify the 'triple-digit earnings growth' statement in relation to the '88% revenue surge' to avoid confusion."
+          "Clarify the effective date of the policy (April 2026 vs. 'this spring').",
+          "Consider adding a small section on how to verify the current terms with airlines/immigration, perhaps with a link to an official source if available, as mentioned in the body."
         ],
         "verdict": "flag"
       },
@@ -152,9 +230,9 @@
       "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "ae3b3c32-c8d3-4896-a1cf-ddc7641412a3",
-      "headline": "India Got Its First 'Sovereign AI' Unicorn. The Twist Is Who Wrote the Biggest Cheque.",
-      "slug": "sarvam-ai-unicorn-hcltech-150-million-sovereign-ai-india-nri-bessemer-20260624",
+      "id": "63402c17-2362-409b-a14e-ed93860148b4",
+      "headline": "Air India's 'Easy Connect' Starts From Varanasi June 25 \u2014 One Check-In From a Small City to the World",
+      "slug": "air-india-easy-connect-varanasi-hub-spoke-tier2-international-nri-20260624",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -162,8 +240,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A microprocessor circuit board with gold contacts and green traces.",
-          "reason": "The photo depicts compute infrastructure, which is directly relevant to a story about AI models and tech companies."
+          "what_photo_shows": "Scindia Ghat on the Ganges at dawn in Varanasi",
+          "reason": "The photo shows Varanasi, which is the named city in the headline and caption."
         },
         "inline_image_mismatches": []
       },
@@ -172,66 +250,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image is a generic tech/AI visual. While not mismatched, it doesn't specifically represent 'sovereign AI' or the companies mentioned. A more specific image, if available, would be better."
+          "issue": "The image is of Scindia Ghat in Varanasi, which is relevant to the city mentioned in the headline. However, it's a scenic shot and doesn't directly depict aviation or the 'Easy Connect' service. A more direct image related to airports, Air India, or the concept of connectivity might be stronger."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article explicitly addresses the diaspora angle in a dedicated section, discussing investment opportunities and talent implications for NRIs, making it highly relevant and well-integrated."
+          "note": "The article explicitly addresses the diaspora angle, explaining how 'Easy Connect' benefits NRIs and their families, particularly elderly relatives traveling from India. It's well-integrated and natural."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a brief explanation or context for 'Ola Krutrim's collapse' for readers who might not be familiar with it, as it's mentioned as a cautionary tale.",
-          "If possible, include a quote from an NRI investor or engineer to further strengthen the 'What it means for the diaspora' section with a direct voice."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "f7059124-dfde-47dc-a933-3f11cb328aee",
-      "headline": "Oracle Just Told the SEC That AI Cost 21,000 Jobs. India Took More Than Half of Them.",
-      "slug": "oracle-21000-ai-layoffs-india-12000-cuts-h1b-nri-tech-workers-20260624",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "7ce3129b-e77e-4142-999e-a863a601b7de",
-            "headline": "Cognizant Just Wired ServiceNow's AI Agents Into Its Own. Th"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Servers in a data center",
-          "reason": "The photo shows generic tech infrastructure, which is relevant to a story about AI and tech job cuts at Oracle."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image shows a person working on a laptop in a modern office setting, which generally fits 'tech' and 'jobs'. However, it doesn't specifically convey 'AI' or 'layoffs' or 'India' in a distinct way. It's generic but not mismatched."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article explicitly addresses the impact on Indian employees, particularly those on H-1B/L-1 visas, and provides actionable advice for NRI professionals. The 'Where the cuts landed' and 'Why the NRI engineer should pay attention' sections are very strong."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a quote from an affected NRI or an expert on H-1B visa implications to add a human element and further strengthen the diaspora angle.",
-          "While the image is acceptable, a more thematic image (e.g., illustrating AI's impact on jobs, or a visual representation of the 'human capital for compute power' trade-off) could enhance the article's visual appeal and message."
+          "Consider adding a quote from an NRI or a hypothetical scenario from their perspective to further personalize the diaspora impact.",
+          "If possible, include a small graphic or map illustrating the hub-and-spoke model with Varanasi and Delhi, and potential future cities."
         ],
         "verdict": "pass"
       },
