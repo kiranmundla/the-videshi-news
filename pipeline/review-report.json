@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-24T18:16:47.180170+00:00",
+  "timestamp": "2026-06-24T18:45:19.642949+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 14,
+    "pass": 1,
     "flag": 1,
     "fail": 0,
     "error": 0
@@ -11,18 +11,18 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "a886cc5b-07f6-4a5e-ab97-c37eb8647a79",
-      "headline": "A Diaspora With No Homeland to Return To Is Trying to Build One in the Cloud",
-      "slug": "sindhi-diaspora-sana-convention-toronto-indus-london-declaration-ident-20260624",
+      "id": "668a83d1-c7d6-43bf-9c63-acd37f07b3fc",
+      "headline": "India's Newest Mega-Airport Is About to Send Its First Plane Abroad. The Destination Is Abu Dhabi.",
+      "slug": "navi-mumbai-airport-first-international-flight-abu-dhabi-air-india-express-july-15-diaspora-20260624",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Members of the South Asian diaspora at a community cultural event.",
-          "reason": "The photo depicts a gathering of people from the South Asian diaspora, which aligns with the story about the Sindhi diaspora and their community efforts."
+          "verdict": "MISMATCH",
+          "what_photo_shows": "An Akasa Air aircraft on the tarmac.",
+          "reason": "The photo shows an Akasa Air aircraft, but the story is about Air India Express."
         },
         "inline_image_mismatches": []
       },
@@ -31,77 +31,36 @@
         "embed_issues": [],
         "image_match": {
           "score": 8,
-          "issue": null
+          "issue": "Image entities are missing, so a direct match cannot be confirmed, but the headline and topic are clear."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The entire article is centered on a specific diaspora community and its unique challenges, making it highly relevant to NRI readers."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a small map or infographic showing the historical region of Sindh and the global dispersal of the community to enhance reader understanding.",
-          "Perhaps include a quote from a younger Sindhi individual to balance the 'generational anxiety' perspective and offer a forward-looking view."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "d22afa6a-c8e9-4db5-8500-b0080232cc32",
-      "headline": "The Gulf Was the Diaspora's Safe Haven. A War Is Forcing 9 Million Indians to Recalculate.",
-      "slug": "indian-diaspora-gulf-west-asia-conflict-mutual-aid-migrant-workers-uae-20260624",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Dubai skyline at dusk",
-          "reason": "The photo shows the Dubai skyline, which is relevant to a story about Indians in the Gulf region."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image of a city skyline is generally relevant to the Gulf region, but it's a generic stock photo. A more specific image related to the conflict or Indian workers would be stronger."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article is entirely focused on the Indian diaspora in the Gulf, detailing their experiences, contributions, and challenges during the conflict. It naturally connects to NRI readers."
+          "note": "The 'Why It Matters for the Diaspora' section is excellent and directly addresses NRI relevance, particularly for Gulf-based Indians."
         },
         "factual_flags": [
-          "The article states 'the United States and Israel went to war with Iran' in late February. This is a significant factual claim that is not accurate. While tensions are high and proxy conflicts exist, a direct, declared war between these nations has not occurred in late February as described."
+          "The article states NMIA was inaugurated in October 2024 and began domestic operations in December 2025. This seems contradictory as December 2025 is in the future, implying the airport is not yet operational for domestic flights, which conflicts with 'already handling around 20,000 passengers a day'."
         ],
         "duplicate_embeds": [],
         "suggestions": [
-          "Correct the factual inaccuracy regarding the 'war' between the US, Israel, and Iran. This is a critical error that undermines credibility.",
-          "Consider adding a quote or two from an Indian worker or community leader in the Gulf to personalize the narrative and add more direct voices."
+          "Clarify the inauguration and operational dates for Navi Mumbai International Airport to resolve the factual contradiction.",
+          "Consider adding a quote from an NRI or an expert on diaspora travel to further enrich the 'Why It Matters' section."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
-        "promoted to published"
+        "Cleared mismatched image (An Akasa Air aircraft on the tarmac.)",
+        "held: image mismatch"
       ],
       "revised": false,
       "unpublished": false,
+      "image_mismatch": true,
       "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "cf63f138-bab9-4520-abec-83006db8e69b",
-      "headline": "\u2018On the Menu\u2019: Indian-American Lawmakers Tell the Diaspora to Stop Watching and Start Running for Office",
-      "slug": "indian-american-lawmakers-fiids-capitol-hill-run-for-office-anti-india-20260624",
+      "id": "31e27fe3-2c6f-4ad9-a95b-12e81cdd1fd4",
+      "headline": "Trump's Trade Envoy Has Left Delhi. India Says the Two Sides Are Now Mapping the Way to a Deal.",
+      "slug": "india-us-interim-trade-deal-greer-goyal-talks-pathways-very-close-diaspora-20260624",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -109,180 +68,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Congressman Raja Krishnamoorthi in front of an American flag.",
-          "reason": "The photo shows the named individual, Congressman Raja Krishnamoorthi, who is directly mentioned in the caption and is relevant to the story about Indian-American lawmakers."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 10,
-          "note": "The entire article is centered on the Indian-American diaspora and their political engagement."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a quote from an attendee or a 'second-generation' Indian-American to provide a different perspective on the call to action.",
-          "If possible, include a link to the FIIDS organization or a relevant report on anti-Hindu/Indian hate incidents for readers who want more information."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "7ce3129b-e77e-4142-999e-a863a601b7de",
-      "headline": "Cognizant Just Wired ServiceNow's AI Agents Into Its Own. The Indian IT Workforce Is the Experiment.",
-      "slug": "cognizant-servicenow-ai-agents-neuro-orchestration-it-services-nri-20260624",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Servers in a data center",
-          "reason": "The photo of servers in a data center is a generic but on-topic image for a story about IT services, AI agents, and automation."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image of a person working on a laptop is generic and doesn't specifically represent AI agents or the Indian IT workforce. While not mismatched, it's not highly specific."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article explicitly addresses the impact on Indian engineers, H-1B visa holders, and the 'diaspora's foot in the door,' making the diaspora angle central and well-integrated."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a quote from an Indian IT professional (either in India or abroad) to provide a ground-level perspective on these changes.",
-          "If possible, include a visual (e.g., a simple infographic) to illustrate the 'orchestration layer' concept versus manual intervention, as this is a core technical point."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "bdd121c2-b7bc-4362-8206-e0efa35c7aa1",
-      "headline": "An Indian-Born CEO Now Supplies the Memory for Claude \u2014 and Has Bought a Slice of the Company That Builds It.",
-      "slug": "micron-anthropic-deal-sanjay-mehrotra-hbm-claude-supply-nri-20260624",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "a green memory module on a circuit board",
-          "reason": "The photo shows a memory module, which is directly relevant to the story about memory supply for AI and a semiconductor company."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image is a generic tech/AI visual. While not incorrect, it doesn't specifically represent Micron, Anthropic, or Sanjay Mehrotra, which would be ideal for a more direct match."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The 'Why this lands for the diaspora' section is well-structured and provides clear, relevant connections for NRI readers, covering investors, engineers, and the India fab."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a direct quote from Sanjay Mehrotra or an industry analyst to further personalize the narrative around the 'man at the chokepoint' section.",
-          "If possible, include a small graphic or chart illustrating Micron's projected growth or market share in HBM to visually reinforce the financial data."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "1f92f229-7a6f-4d2d-b11c-1edde53727d2",
-      "headline": "UPI Was Built So Indians Could Split a Dinner Bill. It Just Went Live at a Paris Department Store.",
-      "slug": "upi-international-expansion-france-cambodia-nepal-npci-nri-20260624",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A person making a contactless QR-code payment with a smartphone.",
-          "reason": "The photo depicts a contactless payment using a QR code, which is directly relevant to the story about UPI's expansion and its use for payments."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image shows a person using a phone to pay, which aligns with the UPI topic. However, the specific entities or context of the image (e.g., location, type of transaction) are not provided, making a perfect match assessment difficult without more information. It's a generic payment image."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article explicitly addresses the diaspora angle, explaining both the immediate travel benefits and the potential structural benefits for remittances, making it highly relevant for NRI readers."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a small 'how-to' section or a link to an official guide for NRIs looking to set up UPI with NRE/NRO accounts, given the 'partial and bank-dependent' rollout.",
-          "If possible, include a quote from an NRI who has used UPI abroad to add a personal touch and validate the benefits described."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "bce37ca3-5351-4725-b14f-4e67761ba5a0",
-      "headline": "India Opens a New Door to the World's Markets \u2014 and It Runs Through GIFT City",
-      "slug": "gift-city-new-route-global-markets-us-stocks-fund-level-tax-lrs-tcs-nri-investor-20260624-1800",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "An Indian financial-district skyline with construction and buildings.",
-          "reason": "The photo shows a generic Indian financial district skyline, which is appropriate for a story about India's economy and financial hub."
+          "what_photo_shows": "Piyush Goyal, India's Commerce and Industry Minister",
+          "reason": "The photo shows the named person, Piyush Goyal, who is central to the story's topic of trade talks."
         },
         "inline_image_mismatches": []
       },
@@ -296,364 +83,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article explicitly connects GIFT City to NRIs and the diaspora, explaining its relevance and purpose for this audience."
+          "note": "The 'Why It Matters for the Diaspora' section is well-integrated and clearly explains the impact on NRI businesses and professionals."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a brief, high-level comparison table or bullet points summarizing the 'old way' vs. 'GIFT City way' for investing abroad, especially regarding tax and compliance.",
-          "Expand slightly on the 'global earnings and global inv' sentence at the end to provide a more complete thought or transition, as the article cuts off there."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "51aafcbc-d851-4cdb-a310-1470520c3ea6",
-      "headline": "One Question \u2014 'How Old Do You Feel?' \u2014 May Reveal Whether You're Sleeping Well Enough",
-      "slug": "subjective-age-feeling-older-poor-sleep-quality-national-sleep-foundation-journal-sleep-3100-adults-diaspora-20260624-1800",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A book cover titled 'The Sick-A-Bed Lady'",
-          "reason": "The book title 'The Sick-A-Bed Lady' relates to the story's topic of sleep and health."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The diaspora angle is well-integrated and provides specific, relatable examples for NRI readers."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a call to action for readers to share their own experiences with sleep and 'subjective age' in the comments.",
-          "Perhaps include a brief mention of common sleep hygiene tips relevant to the diaspora context, e.g., managing screen time for late-night calls."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "8f5c6d1a-29c0-4d7b-b19d-06476efb32f4",
-      "headline": "Aging Doesn't Have to Mean Decline \u2014 Nearly Half of Older Adults Got Sharper or Stronger, a Yale Study Finds",
-      "slug": "yale-aging-mindset-older-adults-improve-cognition-physical-function-geriatrics-health-retirement-study-diaspora-20260624-1800",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Two older adults walking outdoors, smiling",
-          "reason": "The photo depicts older adults, which is directly relevant to the story about aging and longevity."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 8,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The diaspora angle is present and relevant, connecting the research to common experiences in Indian-origin families. It could be slightly expanded to offer more specific examples or advice tailored to NRIs."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a quote from an NRI or an expert on aging within the Indian diaspora to strengthen the 'Why It Matters for the Diaspora' section.",
-          "Explore if there are any specific cultural nuances within the Indian diaspora regarding attitudes towards aging that could be briefly mentioned."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "4dfc9434-b4b1-4b85-9382-7cd695f5823e",
-      "headline": "American Airlines' Longest Flight on Earth Is Now JFK\u2013Delhi at 17 Hours \u2014 and the Reason Is a Tax on the Diaspora",
-      "slug": "american-airlines-jfk-delhi-17-hour-longest-flight-russia-airspace-nri-20260624",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "View of clouds and sunset from an airplane window",
-          "reason": "The photo depicts an airplane view, which is highly relevant to a story about long-haul flights and aviation."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article directly addresses the impact on the Indian diaspora, framing the extended flight time as a 'diaspora tax' and discussing its implications for travel convenience and cost."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a small graphic or map illustrating the longer flight path due to Russian airspace closure to enhance reader understanding.",
-          "While the article mentions 'Air India's own JFK and Newark services,' a brief comparison of their flight times or routes to Delhi could add further context for diaspora travelers."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "7a6dd2ce-1e1f-491c-a342-ad943e699547",
-      "headline": "The US Will Sell You a Visa Interview in 10 Days for $750 \u2014 but Read the Fine Print Before the Diaspora Reaches for It",
-      "slug": "us-expedited-visa-interview-750-fee-pilot-b1b2-india-diaspora-backlog-20260624",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A US passport, credit cards, and travel documents",
-          "reason": "The photo depicts travel documents and a US passport, which are directly relevant to a story about US visa interviews and immigration."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article directly addresses the impact on the Indian diaspora and NRIs, explaining why the visa wait times and the new program are particularly relevant to them."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a small 'What to do next' section with direct links to official State Department resources or a reputable immigration law firm's guide, if available, once the pilot details are confirmed.",
-          "If possible, include a quote from an NRI or an immigration expert on their initial reaction to this program to add a human element."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "b92155f0-6034-46bb-9e87-5ac478963070",
-      "headline": "India's UAE Consulates Go Dark for Five Days From June 26 \u2014 Sort Your Passport Before Thursday or Wait Until July",
-      "slug": "india-uae-embassy-consular-services-pause-june-26-30-passport-visa-nri-20260624",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "An open passport with immigration stamps",
-          "reason": "The photo of a passport with immigration stamps is directly relevant to a story about passport services and immigration."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image shows a passport, which is relevant, but the entities are not provided, making a full match assessment difficult. Assuming the image is a generic passport photo."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article explicitly addresses the diaspora, explaining why the issue matters to NRIs in the UAE and even those in other countries who use the UAE as a transit hub or for consular services."
-        },
-        "factual_flags": [
-          "The article states 'From June 26 to June 30, 2026' and then 'current operators... stop accepting new applications at close of business on Thursday, June 25'. This creates a slight contradiction in the exact start date of the service suspension for new applications. It should be clarified if June 25 is the last day for submissions or if the suspension truly begins on June 26."
-        ],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Clarify the exact cutoff date for applications: is it end of day June 25 or does the suspension start on June 26?",
-          "Consider adding a direct link to the official Indian Embassy/Consulate website in the UAE for readers to verify information and access emergency contacts."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "baf3080c-c64b-47ef-a7d8-7f85737ac744",
-      "headline": "India Promised Chips for Years. By November, a Tata Plant in Assam Says It Will Actually Ship 48 Million of Them.",
-      "slug": "tata-semiconductor-assam-guwahati-chip-exports-november-india-mission-20260624",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Close-up of microchips and other components on a circuit board.",
-          "reason": "The photo clearly depicts microchips and circuit board components, which are directly relevant to a story about semiconductor manufacturing and shipping."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image shows a person working on a circuit board, which is related to electronics, but not specifically a semiconductor chip manufacturing plant or packaging facility. It's generic but acceptable."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article directly addresses NRIs in the 'Why an NRI semiconductor engineer should care' section, making a strong and relevant connection to career opportunities and the 'is it real?' question many in the diaspora have."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a small map graphic showing Guwahati and other key semiconductor locations in India to provide geographical context for readers.",
-          "While the article is strong, a quote from an actual NRI semiconductor engineer (even if anonymous) discussing their perspective on India's chip ambitions could add further depth to the diaspora angle."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "9fda19c6-1989-485f-850d-77b2bff9af37",
-      "headline": "Hackers Put Apple and Tesla Trade Secrets on the Dark Web. The Leak Came From a Tata Plant in Tamil Nadu.",
-      "slug": "tata-electronics-cyber-breach-apple-tesla-trade-secrets-iphone-20260624",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A figure with code projected onto them, illustrating a data breach.",
-          "reason": "The photo generically depicts a data breach, which is the central topic of the headline and subheadline."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 8,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The diaspora angle is well-integrated and thoughtfully explored, connecting the breach to NRI pride and professional opportunities."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a quote from a cybersecurity expert (Indian or otherwise) to provide external validation or further context on the implications of such a breach.",
-          "If possible, include a small graphic or chart showing India's projected growth in iPhone production to visually support the 'China+1' strategy."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "fadeae4f-f910-435a-9e7b-1682f9d5b193",
-      "headline": "A Credit-Card Rewards Founder From Bengaluru Just Got Handed WhatsApp's 3 Billion Users",
-      "slug": "kunal-shah-cred-whatsapp-ceo-meta-900-million-nri-20260624",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "cf799c73-9f65-42b3-b399-44ca95207c64",
-            "headline": "Meta Just Hired an Indian Founder to Run WhatsApp. The $900 "
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Kunal Shah, founder of CRED and FreeCharge",
-          "reason": "The photo shows the named person, Kunal Shah, who is the subject of the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article explicitly connects the news to NRI readers and explains its impact on their daily lives and investment interests."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a small 'About Kunal Shah' sidebar or infographic for readers unfamiliar with his background.",
-          "Perhaps include a quote from an NRI expressing their perspective on WhatsApp's role in their lives or the potential changes."
+          "Consider adding a brief explanation of 'Mission 500' for readers who might not be familiar with the initiative.",
+          "Perhaps include a sentence or two on the specific types of 'American products' India is expected to buy more of, if details are available."
         ],
         "verdict": "pass"
       },
