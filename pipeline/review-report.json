@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-24T07:45:13.643271+00:00",
+  "timestamp": "2026-06-24T08:15:27.980148+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
-    "flag": 0,
+    "pass": 2,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "3ce4b7ef-0639-48fc-b2b7-8166c9771a84",
-      "headline": "A 7-Foot-4 Teenager From Punjab Has the NBA Internet Calling India Its Next 'Wemby'",
-      "slug": "jagmeet-singh-74-punjab-india-basketball-prospect-viral-indian-wemby-victor-wembanyama-courtside-camp-nba-pipeline-diaspora",
+      "id": "9090730a-1b38-4e0b-b5b4-046af61cfb17",
+      "headline": "The Quiet Fee Increases Are Back: Premium Processing Now Costs Indians More at Every Step",
+      "slug": "premium-processing-fee-increase-i907-h1b-i140-opt-indians-2026-20260624",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A young Indian man with basketballs on a court.",
-          "reason": "The photo shows a basketball player in an NBA Basketball School shirt, which is relevant to a story about an Indian basketball prospect and the NBA's development pipeline in India."
+          "what_photo_shows": "A U.S. passport, credit cards, and a boarding pass.",
+          "reason": "The photo depicts items associated with travel and financial transactions, which are relevant to immigration and processing fees."
         },
         "inline_image_mismatches": []
       },
@@ -30,19 +30,109 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image of a person looking at a phone with a blurred background is generic and doesn't strongly convey 'immigration fees' or 'premium processing'. While not entirely mismatched, a more thematic image could be used."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The 'Why The Diaspora Is Watching' section directly addresses the NRI connection, explaining why this story resonates with them."
+          "quality": 9,
+          "note": "The article directly addresses how these fee increases disproportionately affect Indian immigrants and NRIs, explaining why they utilize premium processing more than other groups. It also connects to the broader financial burden on the diaspora."
+        },
+        "factual_flags": [
+          "The article states 'Under a final rule that took effect March 1, 2026'. This date is in the future. Given the context of 'latest premium-processing fee increase' and 'took effect March 1', it's highly likely a typo and should be March 1, 2024."
+        ],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Correct the typo for the effective date of the new rule (March 1, 2026 should likely be March 1, 2024).",
+          "Consider adding a small call-out box or infographic to visually summarize the old vs. new fees for quick reader reference."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "6fd530da-8153-492f-adb6-c0f8a1a39301",
+      "headline": "The Green Card Memo Has a Loophole Most Indians Missed: It May Not Touch H-1B Holders At All",
+      "slug": "adjustment-of-status-memo-dual-intent-h1b-l1-carveout-indians-green-ca-20260624",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MISMATCH",
+          "what_photo_shows": "Two Ukrainian passports",
+          "reason": "The photo shows Ukrainian passports, which are not relevant to a story about Indian immigrants and U.S. green cards."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "No image URL or entities provided, so cannot fully assess. Assuming a relevant image would depict immigration documents, a USCIS building, or people discussing immigration."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article directly addresses a critical concern for Indian NRIs, specifically H-1B and L-1 visa holders, and offers a nuanced interpretation of a significant policy change."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a quote from an NRI basketball fan or coach to further strengthen the diaspora angle.",
-          "If possible, include a link to the viral video clip of Jagmeet Singh, as it's central to the story."
+          "Consider adding a small 'What to watch for next' section to discuss potential future developments or challenges.",
+          "If possible, include a quote from an actual H-1B holder expressing their initial concerns and relief (anonymized if necessary) to add a human element."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "Cleared mismatched image (Two Ukrainian passports)",
+        "held: image mismatch"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "image_mismatch": true,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "0553f97e-c001-4a93-97ea-fa4d351e27ec",
+      "headline": "The Government Just Told a Court It Wants to Reconsider H-4 Work Permits. 90,000 Indian Spouses Are Listening.",
+      "slug": "h4-ead-dhs-reconsider-save-jobs-usa-indian-spouses-work-permit-20260624",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "A professional woman working at a laptop in an office.",
+          "reason": "The photo depicts a professional working, which is directly relevant to the H-4 EAD work permit story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image shows a person looking at a city skyline, which is a bit generic for an article specifically about H-4 work permits and Indian spouses. While it conveys a sense of aspiration or looking towards the future, it doesn't directly represent the topic of immigration documents or legal processes. A more specific image related to documents, a family, or even a symbolic representation of 'waiting' or 'opportunity' might be stronger."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article directly addresses the impact on Indian spouses and households, explaining why the H-4 EAD program is particularly relevant to the Indian diaspora due to green card backlogs. It clearly connects the policy changes to the lived experiences and financial decisions of NRIs."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a quote from an affected H-4 spouse or an immigration lawyer to personalize the impact and provide expert commentary.",
+          "While the article mentions 'immigration lawyers are already urging affected families,' it could be strengthened by suggesting where readers can find more information or resources, e.g., specific organizations or legal aid groups."
         ],
         "verdict": "pass"
       },
