@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-24T00:16:24.768975+00:00",
+  "timestamp": "2026-06-24T00:45:40.977816+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 6,
-    "flag": 1,
+    "pass": 4,
+    "flag": 2,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "5ce58d52-6f49-4871-bf28-b8aba9635ed9",
-      "headline": "An H-1B Stamp in India Now Takes Four Months. The Escape Route Just Got Bolted Shut",
-      "slug": "us-visa-stamping-india-tcn-third-country-backlog-h1b-l1-stranded-20260624",
+      "id": "05b6eeea-5577-4275-9a50-b6fc3830ffd7",
+      "headline": "No Meat, No Compromise: The All-Vegetarian Indian Chains Betting on America's Appetite",
+      "slug": "no-meat-no-compromise-the-all-vegetarian-indian-chains-betting-on-americas-appet",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,96 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A hand holding a passport with visa stamps.",
-          "reason": "The photo of a passport with visa documentation is directly relevant to a story about work visas and immigration."
+          "what_photo_shows": "A South Indian vegetarian thali with various dishes",
+          "reason": "The photo clearly depicts an all-vegetarian Indian meal, which directly relates to the story about vegetarian Indian chains and meatless menus."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article explicitly discusses the impact on vegetarian NRIs and the normalization of plant-based feasts for their children, making the diaspora angle strong and natural."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a quote from an NRI customer or a food critic to provide an external perspective on the dining experience.",
+          "If possible, include a small section on the economic impact or job creation by these expanding chains."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "14bc20af-573c-4f8e-80fd-8a158d5d2ad5",
+      "headline": "Don't Call It a Curry House: The Rule-Breaking Chefs Blowing Up Indian Dining in America",
+      "slug": "dont-call-it-a-curry-house-the-rule-breaking-chefs-blowing-up-indian-dining-in-a",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "A mixed tandoori platter with various Indian dishes.",
+          "reason": "The photo shows a familiar Indian dish, which is directly relevant to a story about reinventing Indian dining."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image is a generic 'Chicken Tandoor Mix Platter', which represents the traditional Indian dining the article is critiquing, rather than the 'rule-breaking' new wave. While it provides context, a more representative image of the new culinary style would be better."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article explicitly addresses the diaspora's perspective, including both pride and unease, and discusses the impact on Indian-American identity. This is a strong and natural connection."
+        },
+        "factual_flags": [
+          "The article mentions '2026 has become its breakout' and 'keep cresting through 2026 and beyond'. This implies the article was written in 2026 or later, but the current date is 2024. This is an internal contradiction regarding the timeline of events."
+        ],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Clarify the timeline regarding the '2026 breakout' to align with the current publication date, or rephrase to indicate future predictions.",
+          "Consider sourcing a hero image that better reflects the 'rule-breaking' or 'progressive' Indian dining concepts discussed in the article, perhaps a dish from one of the mentioned restaurants."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "4b93af03-d183-4135-8ca9-9d0088af11e4",
+      "headline": "The Forgotten Grain's Comeback: How Ragi and Jowar Are Storming America's Snack Aisle",
+      "slug": "the-forgotten-grains-comeback-how-ragi-and-jowar-are-storming-americas-snack-ais",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Ragi idli and sambar on a plate",
+          "reason": "The photo shows a millet dish, which is directly relevant to the story about ragi and jowar."
         },
         "inline_image_mismatches": []
       },
@@ -36,13 +124,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article directly addresses a critical issue for Indian professionals (NRIs) on H-1B and L visas, highlighting the impact on their careers and families. The 'gallling inversion' for the diaspora is a strong connection."
+          "note": "The diaspora angle is central to the article, exploring the cultural significance and ironic 'homecoming' of millets for Indian Americans."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a quote from an affected H-1B worker or an immigration lawyer to personalize the impact of these delays.",
-          "Perhaps include a small sidebar or link to resources for NRIs currently facing this issue, if available."
+          "Consider adding a specific example of a 'Ragi Bites'-style product or a California/New York startup to make the 'Current Developments' section more concrete.",
+          "The article ends abruptly. Ensure the full text is provided for a complete review and a more satisfying conclusion for the reader."
         ],
         "verdict": "pass"
       },
@@ -54,9 +142,9 @@
       "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "6c3ac415-633d-4fd4-8778-983b59a056e1",
-      "headline": "Forget the Courts. The Real Threat to the H-1B Is the Bill Pile Building in Congress",
-      "slug": "h1b-congress-bills-crane-end-abuse-act-grassley-durbin-legislation-ind-20260624",
+      "id": "2f84a072-b2a2-42a4-8927-cb7cb03e21ca",
+      "headline": "Japan's New PM Makes Her First India Trip Next Week \u2014 With 50 Company Bosses and a Shopping List of Chips",
+      "slug": "india-japan-summit-delhi-takaichi-first-visit-guwahati-dropped-semiconductors-20260624",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,8 +152,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "The United States Capitol building at dusk.",
-          "reason": "The story discusses bills in Congress, and the Capitol is the seat of Congress."
+          "what_photo_shows": "A woman identified as Sanae Takaichi, with a Japanese flag in the background.",
+          "reason": "The photo shows the named person mentioned in the headline and caption, making it a direct match for the story's subject."
         },
         "inline_image_mismatches": []
       },
@@ -78,16 +166,18 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "Explicitly connects the impact of potential H-1B changes to Indian diaspora, particularly those on H-1B, H-4, F-1 visas, and those seeking green cards."
+          "quality": 8,
+          "note": "The 'Why the Diaspora Should Care' section directly addresses NRI readers with relevant information on talent mobility and job opportunities in Japan."
         },
-        "factual_flags": [],
+        "factual_flags": [
+          "The article states Takaichi took office in 'October 2025', but the headline implies her visit is 'next week' (July 1-3), which would be 2024. This is a contradiction in dates."
+        ],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a small section on the current status of these bills (e.g., 'As of [date], none of these bills have moved past introduction, but their growing bipartisan support signals a shift in legislative intent.').",
-          "Perhaps include a quote from an affected NRI or an immigration lawyer to add a human element and expert perspective."
+          "Correct the discrepancy in the year Sanae Takaichi took office (October 2025 vs. implied 2024 visit).",
+          "Consider adding a quote from an Indian diaspora member in Japan or an expert on India-Japan talent mobility to further strengthen the diaspora angle."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
         "promoted to published"
@@ -97,9 +187,9 @@
       "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "c4974da9-8e15-460c-9216-eea7b06793c7",
-      "headline": "Each Summer, a Building-Sized Chariot Rolls Down a North American Street. That's the Whole Point.",
-      "slug": "ratha-yatra-festival-tour-north-america-iskcon-diaspora-public-faith-20260624",
+      "id": "f57be840-f6ee-41d0-b026-09e2d80b65e4",
+      "headline": "For the First Time Since 1973, Congress Has Told a President to End a War. The War Is With Iran.",
+      "slug": "us-senate-war-powers-resolution-halt-iran-war-rebuke-trump-diaspora-20260624",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -107,8 +197,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A large crowd and a decorated chariot under an overpass.",
-          "reason": "The photo clearly depicts a Ratha Yatra procession with a large chariot, which directly matches the story's subject of a building-sized chariot rolling down a street."
+          "what_photo_shows": "The US Senate chamber with lawmakers present",
+          "reason": "The photo depicts the US Senate, which is directly relevant to the story about the Senate's vote."
         },
         "inline_image_mismatches": []
       },
@@ -121,14 +211,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article directly addresses the diaspora's role, motivations, and impact of the Ratha Yatra in North America, making it highly relevant for NRI readers."
+          "quality": 8,
+          "note": "The diaspora angle is well-integrated and explains the tangible impact of the conflict on NRIs, particularly those in the Gulf and their families in India."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a quote from an NRI participant or organizer to personalize the experience.",
-          "Perhaps include a small section on the challenges or logistics of organizing such large-scale events in North American cities."
+          "Consider adding a quote from an NRI or an expert on the Indian economy/diaspora to further strengthen the 'diaspora angle' section.",
+          "Ensure the image entities are populated to allow for a more precise image match review."
         ],
         "verdict": "pass"
       },
@@ -148,11 +238,6 @@
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MISMATCH",
-          "what_photo_shows": "Volunteers packing food donations into boxes labeled 'Lagos Food Bank Initiative'",
-          "reason": "The photo clearly shows a food bank in Lagos, which is in Nigeria, contradicting the story's focus on feeding Americans."
-        },
         "inline_image_mismatches": []
       },
       "llm_review": {
@@ -160,153 +245,20 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "No image URL or entities provided, so cannot fully assess match. Assuming a relevant image would depict the Asavas or a HungerMitao event."
+          "issue": "No image URL or entities provided, so cannot fully assess. Assuming a relevant image would depict the Asavas or a HungerMitao event."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The entire article is centered on the unique philanthropic shift within the Indian diaspora, making it highly relevant and well-executed for NRI readers."
+          "note": "The entire article is centered on the Indian diaspora's philanthropic shift and identity in the US, making it highly relevant and well-executed for an NRI audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Ensure a strong, relevant hero image is selected that visually represents the 'HungerMitao' initiative or the Asavas.",
-          "Consider adding a small call-to-action or link to the HungerMitao website for readers who might be inspired to contribute."
+          "Ensure a strong hero image is selected that clearly represents the Asavas or the HungerMitao initiative, aligning with the headline's focus.",
+          "Consider adding a small call-to-action or link to HungerMitao's website if appropriate for reader engagement."
         ],
         "verdict": "pass"
-      },
-      "actions_taken": [
-        "Cleared mismatched image (Volunteers packing food donations into boxes labeled 'Lagos Food Bank Initiative')",
-        "held: image mismatch"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "image_mismatch": true,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "d92388db-6b06-4564-8c34-652b1602e5d5",
-      "headline": "A Cricket Legend and a Blind Industrialist Walked Into a Charity Gala. The Diaspora Opened Its Wallet.",
-      "slug": "sankara-eye-foundation-gala-gavaskar-srikanth-bolla-diaspora-philanthr-20260624",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Sunil Gavaskar, former India cricket captain",
-          "reason": "The photo clearly shows Sunil Gavaskar, who is explicitly mentioned as a key figure in the story's headline and subheadline."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article is explicitly about NRI philanthropy and its evolution, making the diaspora angle central and well-developed."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a quote from a donor to personalize the 'loosened wallets' aspect.",
-          "Perhaps a brief mention of the specific locations in India where Sankara operates could add more concrete detail for readers."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "c9d2a65b-2401-4fe0-bb6b-1a172e4731a5",
-      "headline": "An AI That Refuses to Answer Until It Can Prove It Is Right. IIT Madras Alumni Just Raised $27 Million to Build It.",
-      "slug": "pramaana-labs-khosla-formal-verification-ai-iit-madras-20260624",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Vinod Khosla, Indian-American venture capitalist",
-          "reason": "The photo clearly shows Vinod Khosla, who is explicitly named in the caption and subheadline as a key figure in the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article explicitly connects the startup to IIT Madras alumni and Indian-American capital, and dedicates a section to 'The India thread' and 'Why the diaspora should watch', making the diaspora angle very strong and natural."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Expand on the 'Why the diaspora should watch' section, as it currently cuts off mid-sentence. This is a key part of the article's value proposition for The Videshi readers.",
-          "Consider adding a quote from one of the other co-founders to provide a more diverse perspective on the company's vision."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "d49def29-1006-4758-82b9-0adb0c2ebcd2",
-      "headline": "Razorpay Came Home to India, Then Quietly Filed to Go Public. The Reverse-Flip Era Has Its Marquee Test.",
-      "slug": "razorpay-confidential-ipo-sebi-reverse-flip-india-fintech-20260624",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "The Bombay Stock Exchange building with stock tickers.",
-          "reason": "The photo shows the Bombay Stock Exchange, which is directly relevant to a story about an Indian company filing for an IPO on Indian exchanges."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 8,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The 'Why the diaspora should care' section directly addresses NRIs and their historical investment structures, making a strong and relevant connection."
-        },
-        "factual_flags": [
-          "FY25 revenue and profit figures seem to be a typo, as FY25 has not concluded. It should likely be FY24 or FY23."
-        ],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Correct the fiscal year reference for Razorpay's financial figures (FY25 likely should be FY24 or FY23).",
-          "Consider adding a sentence or two about the specific challenges NRIs face in participating in Indian main-board IPOs, as mentioned in the last paragraph, to fully flesh out that point."
-        ],
-        "verdict": "flag"
       },
       "actions_taken": [
         "promoted to published"
