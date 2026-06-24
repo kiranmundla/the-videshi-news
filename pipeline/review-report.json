@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-24T07:15:49.441375+00:00",
+  "timestamp": "2026-06-24T07:45:13.643271+00:00",
   "mode": "fix",
   "stats": {
     "pass": 1,
@@ -11,28 +11,23 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "5a09e603-f886-474d-8a7b-fe36016796ff",
-      "headline": "Huma Qureshi Doesn't Say a Word in 'Baby Do Die Do' \u2014 and That's the Whole Terrifying Point",
-      "slug": "baby-do-die-do-trailer-huma-qureshi-deaf-mute-hitwoman-saqib-saleem-nachiket-samant-july-3-alpha-clash-where-to-watch-diaspora-nri-20260624",
+      "id": "3ce4b7ef-0639-48fc-b2b7-8166c9771a84",
+      "headline": "A 7-Foot-4 Teenager From Punjab Has the NBA Internet Calling India Its Next 'Wemby'",
+      "slug": "jagmeet-singh-74-punjab-india-basketball-prospect-viral-indian-wemby-victor-wembanyama-courtside-camp-nba-pipeline-diaspora",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "09ececb1-77d3-41a8-b775-78def623aa38",
-            "headline": "Huma Qureshi Picks Up a Red Umbrella and a Body Count. The B"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Huma Qureshi, a woman with brown hair and large earrings",
-          "reason": "The photo clearly shows Huma Qureshi, who is the subject of the headline and caption."
+          "what_photo_shows": "A young Indian man with basketballs on a court.",
+          "reason": "The photo shows a basketball player in an NBA Basketball School shirt, which is relevant to a story about an Indian basketball prospect and the NBA's development pipeline in India."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 7,
+        "overall_score": 8,
         "embed_issues": [],
         "image_match": {
           "score": 9,
@@ -40,14 +35,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The diaspora angle is present and relevant, focusing on the film's international release for NRI audiences."
+          "quality": 8,
+          "note": "The 'Why The Diaspora Is Watching' section directly addresses the NRI connection, explaining why this story resonates with them."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a sentence or two about the significance of a deaf-mute protagonist in Indian cinema, perhaps touching on representation.",
-          "Ensure the YouTube embed is correctly formatted for the platform's CMS (e.g., using a shortcode if applicable)."
+          "Consider adding a quote from an NRI basketball fan or coach to further strengthen the diaspora angle.",
+          "If possible, include a link to the viral video clip of Jagmeet Singh, as it's central to the story."
         ],
         "verdict": "pass"
       },
