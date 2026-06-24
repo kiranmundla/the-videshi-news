@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-24T02:15:48.594717+00:00",
+  "timestamp": "2026-06-24T02:45:20.993756+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 4,
-    "flag": 2,
+    "pass": 2,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,106 +11,18 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "d2247498-62d6-4d86-9ce4-bf7cebb9c596",
-      "headline": "Planning the Great American Road Trip This Summer? Here's Which National Parks Make You Reserve a Spot \u2014 and Which Don't",
-      "slug": "us-national-parks-2026-timed-entry-reservations-nri-family-road-trip-20260624",
+      "id": "96c5403a-7eea-470d-a84b-a4de94ba728d",
+      "headline": "A Rescue Plan for 11,000 Stranded Sailors Is Now Underway in the Gulf. Many of Them Are Indian.",
+      "slug": "imo-evacuation-11000-seafarers-strait-hormuz-ceasefire-indian-crews-diaspora-20260624",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A mountain road winding through Glacier National Park, Montana.",
-          "reason": "The photo explicitly shows Glacier National Park, which is directly mentioned in the headline and subheadline as a key location for national park reservations."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article explicitly frames the road trip experience through the lens of an Indian diaspora family, mentioning grandparents from India, theplas, and specific policy changes affecting international visitors."
-        },
-        "factual_flags": [
-          "The article repeatedly mentions '2026' for policy changes and dates, but the current year is 2024. This needs to be corrected to the current year or the intended future year consistently."
-        ],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Standardize the year mentioned throughout the article. If it's for the upcoming summer, it should be 2024, not 2026.",
-          "Consider adding a brief mention of other popular parks like Zion or Grand Canyon if their reservation policies are relevant to the 'Great American Road Trip' theme, even if they haven't changed recently."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "96e40a65-438e-4470-8ab6-db45aeb03a27",
-      "headline": "Your US Visa Is Also a Mexico and Caribbean Visa \u2014 the Beach Trip the Diaspora Keeps Overlooking",
-      "slug": "mexico-caribbean-visa-free-us-visa-green-card-nri-summer-beach-20260624",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "beach on Mexico's Caribbean coast",
-          "reason": "The photo shows a beach in Mexico, relevant to the story about travel to Mexico."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article is explicitly targeted at the Indian diaspora (NRIs) and directly addresses their unique travel opportunities based on their US visa status."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a small table or list of specific Caribbean nations that offer visa waivers for US visa holders, as this would be highly actionable for readers.",
-          "Perhaps include a brief mention of potential flight durations/costs from a major US hub to a popular Mexican destination to further emphasize the 'fraction of a long-haul fare' claim."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "ada46e57-4642-4f39-9401-0986da703820",
-      "headline": "The UK's Travel Permit Is Now Mandatory \u2014 and Which One You Need Depends on Which Passport You Carry",
-      "slug": "uk-eta-mandatory-nri-indian-passport-us-citizen-visa-split-20260624",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A traveler holding an open passport with visa stamps.",
-          "reason": "The photo of a passport directly relates to the story about travel permits and passports for UK travel."
+          "verdict": "MISMATCH",
+          "what_photo_shows": "An interior view of a ship's lounge or dining area",
+          "reason": "The photo shows an interior space with tables and chairs, not an oil tanker at sea as described in the caption and story."
         },
         "inline_image_mismatches": []
       },
@@ -124,29 +36,29 @@
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article directly addresses the complexities for NRIs with different passports and mixed-status families, making it highly relevant."
+          "note": "The article explicitly connects the issue to Indian seafarers and their families, highlighting the remittance aspect and the 'Why the Diaspora Should Care' section is well-integrated."
         },
-        "factual_flags": [
-          "The article states 'Since 25 February 2026, the UK's Electronic Travel Authorisation (ETA) has been enforced'. This date is in the future, implying the ETA is not currently enforced, which contradicts the overall tone of urgency and 'now mandatory'. The UK ETA scheme began phasing in late 2023 and became mandatory for certain nationalities in early 2024, with more added later. The date '25 February 2026' seems incorrect for the current enforcement."
-        ],
+        "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Correct the factual error regarding the ETA enforcement date to reflect current timelines.",
-          "Consider adding a brief note on which specific nationalities are currently subject to ETA, as the article implies it's mandatory for US/Canadian citizens, but the full rollout is staggered."
+          "Consider adding a quote from an affected family member in India or an NRI community leader to further personalize the diaspora angle.",
+          "If possible, include a map showing the Strait of Hormuz and the affected areas to provide better geographical context for readers."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
-        "promoted to published"
+        "Cleared mismatched image (An interior view of a ship's lounge or dining area)",
+        "held: image mismatch"
       ],
       "revised": false,
       "unpublished": false,
+      "image_mismatch": true,
       "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "71c2adec-9473-491e-bc62-b667f2d5858d",
-      "headline": "India\u2019s Economy Just Cooled to a Three-Month Low \u2014 and a Resurgent Dollar Is Squeezing the Rupee Again",
-      "slug": "india-private-sector-growth-three-month-low-pmi-dollar-fed-rate-hike-rupee-markets-pullback-nri-investor-20260624-0200",
+      "id": "a0df7999-3ae9-4cf0-895a-33ef83cb1851",
+      "headline": "India's Monsoon Is Running 43% Short, and the Government Is Drawing Up Plans for 300 Districts",
+      "slug": "india-weak-monsoon-43-percent-deficit-300-districts-contingency-el-nino-diaspora-20260624",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -154,8 +66,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "The Bombay Stock Exchange building with 'BSE' displayed.",
-          "reason": "The photo shows the Bombay Stock Exchange, which is directly relevant to a story about Indian markets and economy."
+          "what_photo_shows": "A farmer sowing seeds in a field",
+          "reason": "The photo of an Indian farmer in a field directly relates to the story about India's monsoon and its impact on farm districts and livelihoods."
         },
         "inline_image_mismatches": []
       },
@@ -168,14 +80,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the economic situation to NRIs by discussing the implications of currency fluctuations on remittances and investments."
+          "quality": 9,
+          "note": "The article effectively connects the impact of the monsoon on rural India to the diaspora through remittances and economic implications."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more specific examples of how NRIs can take advantage of the current economic conditions.",
-          "Include expert opinions or quotes to enhance credibility and depth."
+          "Consider adding more statistics or data points related to the economic impact of the monsoon on the diaspora.",
+          "Include quotes from diaspora members or experts to enhance the personal connection to the topic."
         ],
         "verdict": "pass"
       },
@@ -185,92 +97,6 @@
       "revised": false,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "179712f3-6305-4811-aef8-adcb8e4bd5ca",
-      "headline": "It May Not Be How Much Protein You Eat, but Which Building Blocks \u2014 a New Longevity-Diet Study Suggests",
-      "slug": "usc-longevity-diet-methionine-amino-acid-protein-quality-frailty-healthspan-cell-metabolism-diaspora-20260624-0200",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A variety of lentils and legumes",
-          "reason": "The photo shows lentils and legumes, which are relevant to a story about protein and diet."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The 'Why It Resonates in Diaspora Kitchens' section directly addresses the NRI audience, connecting the study's findings to traditional Indian diets versus Western dietary trends. It feels natural and relevant."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a specific example of a traditional Indian meal that aligns with the 'low but sufficient methionine' concept to further ground the diaspora angle.",
-          "Ensure the article concludes with a strong summary statement or a call to action (e.g., 'consult a nutritionist') to reinforce the 'note of caution'."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "ee9f276c-3c2c-44e6-a50e-5757070ddf4d",
-      "headline": "A High-Dose Omega-3 Pill Reached the Brain but Did Nothing for Memory, a Gold-Standard Trial Finds",
-      "slug": "omega-3-dha-supplement-no-memory-cognition-benefit-lancet-ebiomedicine-randomized-trial-diaspora-20260624-0200",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Box of Omega-3 fish oil capsules",
-          "reason": "The photo clearly shows a product related to Omega-3 fish oil, which is the central topic of the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The 'What Diaspora Families Should Take From It' section directly addresses NRI readers and their common practices regarding supplements, making the connection natural and relevant."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a brief mention of alternative, proven methods for brain health (e.g., diet, exercise) to reinforce the 'drop in the ocean' point.",
-          "Perhaps include a quote from an Indian-origin medical professional or nutritionist, if available, to further strengthen the diaspora angle's authority."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
     }
   ]
 }
