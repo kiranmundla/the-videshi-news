@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-24T05:15:23.686116+00:00",
+  "timestamp": "2026-06-24T05:45:13.571024+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
+    "pass": 1,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,109 +11,12 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "c77648c4-6bff-4cf2-892e-936cc06d2004",
-      "headline": "Salman Khan Wants to Play a Warrior King \u2014 and He's Picked Rang De Basanti's Director to Do It",
-      "slug": "salman-khan-rakeysh-omprakash-mehra-period-epic-excel-entertainment-farhan-akhtar-two-part-historical-warrior-king-where-to-watch-diaspora-nri-20260624",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Salman Khan with a beard",
-          "reason": "The photo clearly shows Salman Khan, who is the main subject of the headline."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The diaspora angle is well-integrated and naturally explains the appeal of such a film to NRI audiences."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a small 'Related Articles' section at the end, linking to other Salman Khan or period epic news.",
-          "If possible, include a speculative mention of which historical figure Salman Khan might portray, even if it's just a popular fan theory, to engage readers further."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
       "id": "277df04a-b6fe-47a5-9a11-287679b5ae7e",
       "headline": "A Khalistan Flag Crashed Diljit's Chase Center Finale. He Didn't Miss a Beat.",
       "slug": "diljit-dosanjh-san-francisco-chase-center-aura-tour-khalistan-flag-stage-invasion-protester-arrested-sikhs-for-justice-where-to-watch-diaspora-nri-20260624",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "029f07fa-9d29-4de9-ac4d-b59e24c46494",
-            "headline": "They Tried to Bury Main Vaapas Aaunga. Eight Days Later, It'"
-          },
-          {
-            "article_id": "f91626b1-a508-4119-b260-779d01eb6d3e",
-            "headline": "A Man With a Flag Rushed the Stage at Chase Center. Diljit D"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MISMATCH",
-          "what_photo_shows": "A man in a black turban and suit.",
-          "reason": "The photo does not show Diljit Dosanjh, the named person in the headline and caption."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 8,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "Strong and natural connection to the NRI/diaspora experience, particularly the Punjabi community in the Bay Area."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a sentence or two about the historical context of the Khalistan movement for readers less familiar with it.",
-          "If possible, include a link to one of the videos mentioned (e.g., the SF incident or his Instagram statement) to enhance reader engagement."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "Cleared mismatched image (A man in a black turban and suit.)",
-        "held: image mismatch"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "image_mismatch": true,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "68269f75-ccb2-489b-9693-0119a1b93e3e",
-      "headline": "England Name Their Squad for India \u2014 and a World Cup Score to Settle at Home",
-      "slug": "england-t20i-squad-india-2026-harry-brook-captain-jos-buttler-james-coles-jofra-archer-five-match-series-world-cup-semifinal-rematch-diaspora-nri",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "inline_image_mismatches": []
@@ -128,13 +31,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The 'Why the Diaspora Should Be Watching' section is excellent and directly addresses the NRI audience, explaining the relevance and accessibility of the matches."
+          "note": "Strong and natural connection to the NRI/diaspora experience, particularly the Punjabi community in the Bay Area and the broader Khalistan debate within the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a small section on key Indian players to watch, similar to the detail provided for the England squad, to balance the perspective.",
-          "If possible, include a quote from an Indian diaspora fan or community leader to further personalize the 'Why the Diaspora Should Be Watching' section."
+          "Consider adding a sentence or two about the historical context of the Khalistan movement for readers less familiar with it, perhaps as a brief parenthetical or a linked explainer.",
+          "If possible, include a link to one of the videos mentioned (e.g., the SF incident or his Instagram statement) to enhance reader engagement, ensuring it's a relevant and working embed."
         ],
         "verdict": "pass"
       },
