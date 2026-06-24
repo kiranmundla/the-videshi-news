@@ -30,10 +30,11 @@ export type EventItem = {
   is_featured: boolean | null;
   venue_images: string[] | null;
   seatmap_url: string | null;
+  created_at?: string | null;
 };
 
 // Base columns that always exist
-const BASE_COLS = "id,title,date,time,end_date,venue_name,city,state,category,description,image_url,ticket_url,source,price_range,organizer,audience";
+const BASE_COLS = "id,title,date,time,end_date,venue_name,city,state,category,description,image_url,ticket_url,source,price_range,organizer,audience,created_at";
 
 // Extended columns (added by migration-event-detail.sql)
 // If the migration hasn't been run yet, we fall back to BASE_COLS

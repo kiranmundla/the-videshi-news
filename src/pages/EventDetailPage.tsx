@@ -97,6 +97,50 @@ function getCtaText(priceRange: string | null): string {
   return "Get Tickets";
 }
 
+/**
+ * Build a schema.org Offer object from the event's freeform price_range.
+ * Returns a COMPLETE offer (price, priceCurrency, availability, validFrom, url)
+ * or null when no price can be determined — never a partial offer, so Google
+ * Search Console stops reporting missing "offers" subfields.
+ */
+function buildOffers(event: EventItem): Record<string, unknown> | null {
+  const raw = (event.price_range || "").trim();
+  const lower = raw.toLowerCase();
+
+  // validFrom: when the listing became available (created_at), else event date.
+  const validFromSrc = event.created_at || event.date || null;
+  let validFrom: string | undefined;
+  if (validFromSrc) {
+    const d = new Date(validFromSrc);
+    if (!isNaN(d.getTime())) validFrom = d.toISOString();
+  }
+
+  const url = event.ticket_url || (event.slug ? `https://www.thevideshi.com/events/${event.slug}` : undefined);
+
+  const base = {
+    "@type": "Offer",
+    priceCurrency: "USD",
+    availability: "https://schema.org/InStock",
+    ...(validFrom ? { validFrom } : {}),
+    ...(url ? { url } : {}),
+  };
+
+  // Free events → price 0.
+  if (lower && (lower === "free" || lower.startsWith("free"))) {
+    return { ...base, price: "0" };
+  }
+
+  // Undeterminable prices → no offer at all (avoid partial/incorrect data).
+  if (!raw || ["tbd", "varies", "none"].includes(lower)) return null;
+
+  // Extract the first numeric amount, e.g. "From $59", "$45.73-$121.05", "$250+".
+  const match = raw.replace(/,/g, "").match(/\d+(?:\.\d+)?/);
+  if (!match) return null;
+  const amount = match[0];
+  // "$0-$0" or a parsed 0 on a non-free label → treat as free.
+  return { ...base, price: amount };
+}
+
 function isPastEvent(dateStr: string): boolean {
   const eventDate = new Date(dateStr + "T23:59:59");
   return eventDate < new Date();
@@ -438,6 +482,7 @@ export default function EventDetailPage() {
               },
             },
             ...(event.organizer ? { organizer: { "@type": "Organization", name: event.organizer } } : {}),
+            ...(buildOffers(event) ? { offers: buildOffers(event) } : {}),
           })}
         </script>
       </Helmet>
