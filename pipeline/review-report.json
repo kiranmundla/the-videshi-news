@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-24T20:45:16.661655+00:00",
+  "timestamp": "2026-06-24T21:15:38.492903+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 0,
+    "pass": 3,
+    "flag": 2,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "5619c567-f041-47c3-b8a5-9a114c1a8aa4",
-      "headline": "India Isn't at the World Cup. But Three Players of Indian Descent Are.",
-      "slug": "indian-origin-players-2026-fifa-world-cup-sarpreet-singh-tahsin-jamshid-nishan-velupillay-diaspora-20260624",
+      "id": "37699234-43dd-48b1-886b-8609e86ecd4e",
+      "headline": "At 20, Priyanka Chopra Turned Down the Bigger Cheque. Twenty-Six Years Later, at Cannes, She Explained Why It Was Genius.",
+      "slug": "priyanka-chopra-cannes-lions-2026-brand-philosophy-turned-down-money-varanasi-rajamouli-reset-orlando-bloom-glass-ceiling-where-to-watch-diaspora-nri-20260624",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,13 +21,13 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Sarpreet Singh in a red shirt on a football field.",
-          "reason": "The photo shows Sarpreet Singh, who is explicitly named in the headline and caption as a subject of the story."
+          "what_photo_shows": "Priyanka Chopra Jonas smiling, wearing a light-colored outfit and necklace.",
+          "reason": "The photo clearly shows Priyanka Chopra Jonas, who is the main subject of the headline and story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 8,
+        "overall_score": 7,
         "embed_issues": [],
         "image_match": {
           "score": 9,
@@ -35,14 +35,66 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The entire article is centered around the diaspora angle, making it highly relevant and well-executed for the target audience."
+          "quality": 8,
+          "note": "The article effectively connects Chopra's journey to the NRI experience of breaking barriers and creating opportunities."
         },
-        "factual_flags": [],
+        "factual_flags": [
+          "Cannes Lions 2026 is in the future, implying the article is speculative or has a typo. It should likely be 2024."
+        ],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a brief concluding sentence to the article, as it currently ends mid-sentence.",
-          "If possible, include a quote or social media embed from one of the players or their families to further personalize the story."
+          "Correct the year 'Cannes Lions 2026' to 'Cannes Lions 2024' for factual accuracy.",
+          "Consider adding a concluding sentence or two, as the article ends abruptly with 'Chopr'."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "87f7c3d8-6cab-4f2d-ae1b-cd5c303046b0",
+      "headline": "Aamir Khan Is Getting Married at Home, in His Living Room, With No Cameras. And the Whole Country Can't Look Away.",
+      "slug": "aamir-khan-gauri-spratt-wedding-july-5-2026-private-registered-marriage-home-mumbai-lagaan-kajol-kiran-rao-where-to-watch-diaspora-nri-20260624",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "beb9bb26-f180-4cdd-98b6-11c8093b496b",
+            "headline": "A Year Ago, Aamir Khan Said No to Prime Video's 120 Crore. S"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Aamir Khan with a mustache and glasses",
+          "reason": "The photo clearly shows Aamir Khan, who is the subject of the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 8,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The diaspora angle is present but feels a bit tacked on at the end. It could be integrated more throughout the article."
+        },
+        "factual_flags": [
+          "The article mentions 'July 5' and '2026' for the wedding date, which implies a future event. However, the tone and some descriptions (e.g., 'fans... have already migrated to Gauri's sparse Instagram, leaving 'happy married life' under a photo...') suggest it's either happening imminently or has already happened, creating a slight temporal ambiguity. The article also mentions 'Aamir introduced her to the world in 2025, on his 60th birthday', which further solidifies the future timeline, but the present tense in other parts can be confusing."
+        ],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Clarify the timeline of the wedding (future vs. present) to avoid confusion for readers.",
+          "Integrate the 'diaspora angle' more organically throughout the piece, perhaps by drawing parallels earlier or exploring the NRI perspective on celebrity privacy vs. spectacle in India."
         ],
         "verdict": "pass"
       },
@@ -54,9 +106,9 @@
       "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "70029ded-e2da-4e77-8340-4c843c80de25",
-      "headline": "Kohli's Name Is on India's England Squad. Whether He Boards the Plane Is Another Question.",
-      "slug": "india-odi-squad-england-tour-kohli-fitness-gill-captain-bumrah-returns-diaspora-20260624",
+      "id": "cb1d225f-8d0c-4c51-907c-6aee5a90a079",
+      "headline": "Nvidia Gets the Headlines. But an Indian-Origin CEO Sells the One Chip AI Data Centers Can't Run Without.",
+      "slug": "sitime-rajesh-vashist-ai-timing-chips-data-center-nvidia-nri-semicondu-20260624",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,8 +116,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Virat Kohli in an India cricket jersey",
-          "reason": "The photo clearly shows Virat Kohli, who is the main subject of the headline and subheadline."
+          "what_photo_shows": "A close-up of a motherboard and microchips",
+          "reason": "The photo depicts generic computer components, which are relevant to a story about chips and AI data centers."
         },
         "inline_image_mismatches": []
       },
@@ -73,19 +125,113 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
+          "score": 8,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
+          "quality": 8,
+          "note": "The diaspora angle is well-integrated, highlighting an Indian-origin CEO and connecting to NRI investors and engineers."
+        },
+        "factual_flags": [
+          "SiTime stock has roughly tripled in 2026 - This date is in the future and likely a typo. Should be 2023 or 2024.",
+          "eight straight quarters of triple-digit earnings growth and 80% growth in the AI data-center business this year - This seems to contradict the earlier statement of 'Revenue surged 88% to $113.6 million in the most recent quarter' unless 'earnings growth' refers to something different than revenue growth, which should be clarified."
+        ],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Correct the typo '2026' to the appropriate year (likely 2023 or 2024).",
+          "Clarify the 'triple-digit earnings growth' statement in relation to the '88% revenue surge' to avoid confusion."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "ae3b3c32-c8d3-4896-a1cf-ddc7641412a3",
+      "headline": "India Got Its First 'Sovereign AI' Unicorn. The Twist Is Who Wrote the Biggest Cheque.",
+      "slug": "sarvam-ai-unicorn-hcltech-150-million-sovereign-ai-india-nri-bessemer-20260624",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "A microprocessor circuit board with gold contacts and green traces.",
+          "reason": "The photo depicts compute infrastructure, which is directly relevant to a story about AI models and tech companies."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image is a generic tech/AI visual. While not mismatched, it doesn't specifically represent 'sovereign AI' or the companies mentioned. A more specific image, if available, would be better."
+        },
+        "diaspora_angle": {
+          "present": true,
           "quality": 9,
-          "note": "The diaspora angle is well-integrated and explained, particularly in the dedicated section 'Why It Matters for the Diaspora'."
+          "note": "The article explicitly addresses the diaspora angle in a dedicated section, discussing investment opportunities and talent implications for NRIs, making it highly relevant and well-integrated."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a brief mention of the specific dates/venues for the T20I series for completeness, similar to the ODI series.",
-          "Ensure the image entities are populated for future reviews, as they were missing in this request."
+          "Consider adding a brief explanation or context for 'Ola Krutrim's collapse' for readers who might not be familiar with it, as it's mentioned as a cautionary tale.",
+          "If possible, include a quote from an NRI investor or engineer to further strengthen the 'What it means for the diaspora' section with a direct voice."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "f7059124-dfde-47dc-a933-3f11cb328aee",
+      "headline": "Oracle Just Told the SEC That AI Cost 21,000 Jobs. India Took More Than Half of Them.",
+      "slug": "oracle-21000-ai-layoffs-india-12000-cuts-h1b-nri-tech-workers-20260624",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "7ce3129b-e77e-4142-999e-a863a601b7de",
+            "headline": "Cognizant Just Wired ServiceNow's AI Agents Into Its Own. Th"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Servers in a data center",
+          "reason": "The photo shows generic tech infrastructure, which is relevant to a story about AI and tech job cuts at Oracle."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image shows a person working on a laptop in a modern office setting, which generally fits 'tech' and 'jobs'. However, it doesn't specifically convey 'AI' or 'layoffs' or 'India' in a distinct way. It's generic but not mismatched."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article explicitly addresses the impact on Indian employees, particularly those on H-1B/L-1 visas, and provides actionable advice for NRI professionals. The 'Where the cuts landed' and 'Why the NRI engineer should pay attention' sections are very strong."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a quote from an affected NRI or an expert on H-1B visa implications to add a human element and further strengthen the diaspora angle.",
+          "While the image is acceptable, a more thematic image (e.g., illustrating AI's impact on jobs, or a visual representation of the 'human capital for compute power' trade-off) could enhance the article's visual appeal and message."
         ],
         "verdict": "pass"
       },
