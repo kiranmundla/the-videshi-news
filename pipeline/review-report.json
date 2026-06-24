@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-24T22:15:47.090663+00:00",
+  "timestamp": "2026-06-24T22:45:29.111962+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 5,
+    "pass": 3,
     "flag": 1,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "14784723-3bd4-4710-b2d7-9ef62050aba4",
-      "headline": "India Threw Open Its Bond Market to the World. The World Is Still Deciding Whether to Walk In.",
-      "slug": "india-bond-market-opening-foreign-inflows-capital-gains-tax-far-bloomberg-index-fairfax-nri-investor-20260624-2200",
+      "id": "8554381d-883d-4481-a49d-ecb205961f09",
+      "headline": "Neeraj Chopra Is Back \u2014 a Rusty Fourth in Doha, but a Glasgow Ticket in Hand",
+      "slug": "neeraj-chopra-doha-diamond-league-2026-comeback-fourth-85-69m-back-injury-pathirage-commonwealth-games-qualify-diaspora-nri",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,13 +21,65 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A large building on a street in India with cars and trees.",
-          "reason": "The photo shows a generic but on-topic scene of a building in India, which is relevant to a story about India's bond market."
+          "what_photo_shows": "Neeraj Chopra wearing a suit and an Olympic gold medal.",
+          "reason": "The photo clearly shows Neeraj Chopra, who is the subject of the story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 7,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DZy_z04PS-T/",
+            "problem": "broken",
+            "explanation": "The Instagram reel URL is malformed or points to a non-existent post. It should be a valid, accessible link."
+          }
+        ],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The diaspora angle is well-integrated and feels natural, especially in the concluding section. It highlights the athlete's significance to NRIs without being forced."
+        },
+        "factual_flags": [
+          "The article states Chopra had not competed since the '2025 World Athletics Championships in Tokyo last September'. This seems to be a typo, as 2025 is in the future. It should likely be 2024 or a different year/event.",
+          "The article mentions Chopra finished second in Doha in '2024, and second again in 2025 with that 90.23m national record'. This contradicts the earlier statement that he set the 90.23m record 'a year ago' (from June 19, which would be 2023) and that he hadn't competed since September. The years for his Doha performances seem inconsistent and potentially incorrect."
+        ],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Verify and correct the years mentioned for Neeraj Chopra's past competitions and national record setting to ensure factual accuracy and consistency.",
+          "Replace the broken Instagram embed with a valid and relevant social media post from Neeraj Chopra or a reputable athletics news source about his comeback or the Doha event."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "2bd3d3ef-7bdd-4a76-8fa7-5d7b6172d33d",
+      "headline": "Canada Is About to Spend Half a Trillion on Defence. It Wants India to Build a Lot of It.",
+      "slug": "canada-india-defence-aerospace-partnership-cooter-hockey-stick-5-percent-gdp-gsoia-diaspora-20260624",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "A Royal Canadian Air Force CF-18 Hornet fighter jet.",
+          "reason": "The photo shows a Canadian military aircraft, which is directly relevant to a story about Canada's defence spending and military budget."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
         "embed_issues": [],
         "image_match": {
           "score": 9,
@@ -35,14 +87,57 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The mention of Prem Watsa, an India-born financier, and Fairfax's investment provides a natural, albeit brief, connection to the diaspora. It's not forced."
+          "quality": 8,
+          "note": "The 'Why It Matters for the Diaspora' section is well-integrated and explains the relevance clearly, connecting it to jobs and community sentiment."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a small section or a quote from an NRI investor's perspective on the bond market changes, if available, to strengthen the diaspora angle further.",
-          "Ensure all RBI officials' names are correctly spelled and titles are accurate (e.g., Sanjay Malhotra is not the RBI Governor, Shaktikanta Das is)."
+          "Consider adding a quote from an Indo-Canadian business leader or community member to further ground the diaspora angle.",
+          "The article ends abruptly with 'Indian t'. Ensure the full text is included."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "f5d2d2e5-602a-4a66-a0e7-f3d3c5d94580",
+      "headline": "The Supreme Court Just Made the Green Card a Little Less Secure at the Border",
+      "slug": "supreme-court-blanche-lau-green-card-reentry-moral-turpitude-thomas-6-3-diaspora-20260624",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "The United States Supreme Court building with an American flag.",
+          "reason": "The photo clearly shows the Supreme Court, which is the subject of the story's ruling."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The 'Why It Matters for the Diaspora' section directly and effectively connects the legal ruling to Indian green-card holders, making it highly relevant."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a brief explanation of what constitutes a 'crime involving moral turpitude' for readers unfamiliar with the legal term.",
+          "Ensure the article concludes with a strong summary or call to action, as it currently ends mid-sentence."
         ],
         "verdict": "pass"
       },
@@ -62,11 +157,6 @@
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MISMATCH",
-          "what_photo_shows": "A graph comparing environmental impact and mortality risk of various foods.",
-          "reason": "The photo's subject is about the environmental impact of food and mortality risk, which is not directly related to the story's focus on diet and exercise for chronic disease prevention."
-        },
         "inline_image_mismatches": []
       },
       "llm_review": {
@@ -79,189 +169,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The 'Why It Matters for the Diaspora' section directly addresses the relevance to South Asians, specifically mentioning their higher risk for type 2 diabetes."
+          "note": "The 'Why It Matters for the Diaspora' section directly addresses the relevance to South Asians and their specific health risks, making it a natural and strong connection."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a specific call to action or resource for NRIs regarding diabetes prevention, perhaps linking to relevant health organizations or community initiatives.",
-          "Ensure the hero image (once provided) visually represents the article's focus on long-term health and lifestyle changes, possibly with a diverse representation."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "Cleared mismatched image (A graph comparing environmental impact and mortality risk of various foods.)",
-        "held: image mismatch"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "image_mismatch": true,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "63fa0d8e-092e-4cde-8db9-d638fd5aef9b",
-      "headline": "Lifting Weights Just an Hour or Two a Week Is Linked to a Longer Life, a 30-Year Study Finds",
-      "slug": "strength-training-longevity-150000-people-30-year-study-90-120-minutes-cardiovascular-dementia-diaspora-20260624-2200",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A woman lifting weights in a gym setting.",
-          "reason": "The photo clearly depicts a person engaged in weightlifting, which directly relates to the story's topic of strength training and its health benefits."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 6,
-          "note": "The image entities include 'diaspora', suggesting an attempt to connect, but the article body itself lacks specific NRI/diaspora relevance. It's a general health article."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Integrate specific examples or perspectives relevant to the Indian diaspora regarding fitness trends, health challenges, or cultural attitudes towards strength training to strengthen the 'diaspora angle'.",
-          "Consider adding a quote from an Indian health professional or an NRI sharing their experience with strength training and longevity to make the content more relatable to the target audience."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "748fbde4-72cc-4deb-a66f-367677a56444",
-      "headline": "Nepal Is Quietly Booming This Monsoon \u2014 and It's the Visa-Free Escape the Diaspora's India Trip Is Missing",
-      "slug": "nepal-monsoon-tourism-surge-pokhara-chitwan-visa-free-nri-escape-20260624",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Phewa Lake at Pokhara with boats and hills at sunset",
-          "reason": "The photo depicts Phewa Lake in Pokhara, which is explicitly mentioned in the story's caption and subheadline as a key location for Nepal's tourism surge."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article directly addresses NRIs and frames Nepal as an ideal add-on to an India trip, leveraging the visa-free aspect for Indian passport holders."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a small section on specific travel agencies or tour operators that cater to this India-Nepal combined itinerary, especially for diaspora families.",
-          "Perhaps include a brief mention of cultural similarities/differences that might appeal or be relevant to an NRI audience."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "5b0ce6a7-6191-43bd-bf6c-108bad47a75f",
-      "headline": "Argentina Now Lets Indians In Visa-Free \u2014 If They Hold a US Visa or Green Card",
-      "slug": "argentina-visa-free-indians-us-visa-green-card-h1b-patagonia-nri-20260624",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Iguaz\u00fa Falls, a major landmark in Argentina",
-          "reason": "The photo shows Iguaz\u00fa Falls, a landmark in Argentina, which is directly relevant to a story about travel to Argentina."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "Strong and natural connection to NRI/diaspora readers, specifically Indian-Americans with US visas/Green Cards."
-        },
-        "factual_flags": [
-          "The article states 'As of April 2026, that list quietly gained its most spectacular entry yet \u2014 Argentina.' and then 'Under a policy that took effect this spring'. These dates contradict each other. 'This spring' (2024) and 'April 2026' are two years apart."
-        ],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Clarify the effective date of the policy (April 2026 vs. 'this spring').",
-          "Consider adding a small section on how to verify the current terms with airlines/immigration, perhaps with a link to an official source if available, as mentioned in the body."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "63402c17-2362-409b-a14e-ed93860148b4",
-      "headline": "Air India's 'Easy Connect' Starts From Varanasi June 25 \u2014 One Check-In From a Small City to the World",
-      "slug": "air-india-easy-connect-varanasi-hub-spoke-tier2-international-nri-20260624",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Scindia Ghat on the Ganges at dawn in Varanasi",
-          "reason": "The photo shows Varanasi, which is the named city in the headline and caption."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image is of Scindia Ghat in Varanasi, which is relevant to the city mentioned in the headline. However, it's a scenic shot and doesn't directly depict aviation or the 'Easy Connect' service. A more direct image related to airports, Air India, or the concept of connectivity might be stronger."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article explicitly addresses the diaspora angle, explaining how 'Easy Connect' benefits NRIs and their families, particularly elderly relatives traveling from India. It's well-integrated and natural."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a quote from an NRI or a hypothetical scenario from their perspective to further personalize the diaspora impact.",
-          "If possible, include a small graphic or map illustrating the hub-and-spoke model with Varanasi and Delhi, and potential future cities."
+          "Consider adding a specific call to action or resource for NRIs related to diabetes prevention programs or healthy lifestyle guidance.",
+          "Ensure the hero image (if one were provided) visually represents 'diet and exercise' or 'preventive health' in a way that resonates with the diaspora audience."
         ],
         "verdict": "pass"
       },
