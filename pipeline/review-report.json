@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-24T16:45:22.343883+00:00",
+  "timestamp": "2026-06-24T17:15:29.670887+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
-    "flag": 0,
+    "pass": 2,
+    "flag": 2,
     "fail": 0,
     "error": 0
   },
@@ -11,61 +11,23 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "76158901-bafc-490d-b176-6754701a6522",
-      "headline": "UK-India Week opens at Warwick, betting on a Gujarat\u2013West Midlands corridor",
-      "slug": "uk-india-week-2026-warwick-gujarat-west-midlands-corridor",
+      "id": "7e5d3ddd-817a-4d76-8f6c-db017c27870e",
+      "headline": "Sunny Deol Holds a Torch, Not a Hand Pump, This Time. 'Batwara 1947' Reunites Him With Santoshi for the Partition Film Bollywood Keeps Avoiding.",
+      "slug": "batwara-1947-sunny-deol-first-look-lahore-1947-retitled-rajkumar-santoshi-aamir-khan-preity-zinta-shabana-azmi-partition-august-14-where-to-watch-diaspora-nri-20260624",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "The University of Warwick campus with a double-decker bus.",
-          "reason": "The photo shows the University of Warwick, which is explicitly named as the host venue in the caption and relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The diaspora angle is well-integrated and explains the relevance of regional partnerships to NRI businesses and communities, particularly those of Gujarati origin in the West Midlands. It also broadens the scope to other NRIs."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a quote from a diaspora business owner or community leader in the West Midlands to further strengthen the 'Diaspora Impact' section.",
-          "The article ends abruptly. Ensure the full text is provided for a complete review, especially the 'What's Next' section."
+        "duplicate_images": [
+          {
+            "article_id": "82ff24c2-6e17-4ef5-8681-bbfc4d97277f",
+            "headline": "Sunny Deol Stopped Shouting. In the Batwara 1947 Teaser, He "
+          }
         ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "ea531a4a-2def-4ac5-9f4c-af6a2fb32363",
-      "headline": "India Finally Gave Its Track Stars a Night of Their Own \u2014 and Neeraj Chopra Owned It",
-      "slug": "inaugural-indian-athletics-awards-afi-neeraj-chopra-best-male-athlete-parul-chaudhary-pt-usha-lifetime-achievement-new-delhi-2026-diaspora-nri",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Neeraj Chopra wearing a medal and suit",
-          "reason": "The photo clearly shows Neeraj Chopra, who is the central figure of the headline and subheadline."
+          "what_photo_shows": "Movie poster for 'Batwara 1947' featuring Sunny Deol",
+          "reason": "The photo is the first-look poster for the movie 'Batwara 1947', which is the central subject of the headline and subheadline."
         },
         "inline_image_mismatches": []
       },
@@ -79,15 +41,15 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The 'Why the Diaspora Should Watch' section explicitly connects the topic to NRI readers, highlighting Chopra's unique appeal beyond cricket and the relevance of athletics in Western school systems."
+          "note": "The article explicitly connects the film's theme to the diaspora, particularly Punjabi families, and mentions the worldwide release for NRIs."
         },
         "factual_flags": [
-          "Neeraj Chopra's award is for 'Best Male Athlete of the Year 2025', but the article later refers to his 2025 season achievements as if it's in the past. This creates a slight temporal confusion. It should be clarified if the award is for past performance (e.g., 2024 achievements recognized in 2025) or a forward-looking title."
+          "Principal photography wrapped back in October 2025, but the release date is August 14, 2026. This implies a very long post-production or a typo in the wrap date, as 2025 is in the future relative to the current context (assuming the article is being reviewed now)."
         ],
         "duplicate_embeds": [],
         "suggestions": [
-          "Clarify the award year for Neeraj Chopra (e.g., 'Best Male Athlete of the Year for 2024, awarded in 2025') to resolve the temporal inconsistency.",
-          "Consider adding a quote from one of the 'Lifetime Achievement' awardees to add more depth and historical perspective to the event."
+          "Clarify the discrepancy in the principal photography wrap date (October 2025) versus the release date (August 2026) to avoid confusion.",
+          "Consider adding a brief explanation of 'Raksha Bandhan corridor' for non-Indian readers, if the platform targets a broader diaspora audience."
         ],
         "verdict": "pass"
       },
@@ -99,33 +61,136 @@
       "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "70a8a5b3-9cef-4575-bb7e-9f29f8e91980",
-      "headline": "Forget the $100,000 Fee. The Wage-Level RFE Is the H-1B Threat Quietly Hitting Indians Hardest",
-      "slug": "h1b-wage-level-rfe-surge-uscis-denials-indians-niw-20260624",
+      "id": "dbc34438-85ec-42a4-b910-6586dbb819e6",
+      "headline": "Nolan Is Coming to Mumbai. 'The Odyssey' Just Made India a First-Stop on the Map \u2014 and Locked Every IMAX Screen in the Country.",
+      "slug": "the-odyssey-christopher-nolan-mumbai-india-premiere-july-2026-matt-damon-tom-holland-imax-lockout-spider-man-where-to-watch-diaspora-nri-20260624",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Official movie poster for Christopher Nolan's 'The Odyssey'",
+          "reason": "The photo shows the movie poster for 'The Odyssey', which is the central subject of the headline."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [
+          {
+            "url": "https://youtube.com/watch?v=Mzw2ttJD2qQ",
+            "problem": "irrelevant",
+            "explanation": "The YouTube link is for a trailer of 'The Odyssey' (2010), not Christopher Nolan's upcoming film. This is a critical factual error."
+          }
+        ],
+        "image_match": {
+          "score": 7,
+          "issue": "The image is a fan-made poster for 'The Odyssey' (2026) and not an official one. While it matches the topic, using an unofficial asset for a news article is not ideal."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article explicitly addresses NRIs with details about streaming availability and simultaneous worldwide release, making it relevant for the diaspora."
+        },
+        "factual_flags": [
+          "The YouTube embed links to a 2010 film trailer, not Nolan's upcoming 'The Odyssey'. This is a significant factual error.",
+          "The image used is a fan-made poster, not an official one for Nolan's film."
+        ],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the YouTube embed with an official trailer or a relevant clip for Christopher Nolan's 'The Odyssey' (if available), or remove it if no official content exists yet.",
+          "Replace the hero image with an official poster or a production still once available, or use a generic image related to Christopher Nolan if no official 'The Odyssey' assets are released."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://youtube.com/watch?v=Mzw2ttJD2qQ",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "280303fe-393b-4e96-a40e-e3d5424fc0a3",
+      "headline": "China Just Got the WTO to Put India's 'Make in India' Solar Push on Trial",
+      "slug": "wto-panel-india-solar-it-tariffs-china-dispute-make-in-india-pli-20260624",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "An aerial view of a large solar installation in a desert landscape.",
+          "reason": "The photo depicts a solar installation, which is directly relevant to a story about solar tariffs and incentives."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The diaspora angle is present and directly connects the trade dispute to NRI investment and support for 'Make in India'. It feels a bit tacked on at the end, but the connection is clear."
+        },
+        "factual_flags": [
+          "The article states 'On Monday, June 23' but then refers to 'December 2025' and 'May 22 meeting' in the past tense. This indicates a potential date inconsistency or future-dated information presented as past."
+        ],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Clarify the dates mentioned in the article, especially 'June 23', 'December 2025', and 'May 22' to ensure temporal consistency and accuracy.",
+          "Consider integrating the diaspora angle more organically throughout the article, rather than confining it to a single concluding section, to enhance its relevance for NRI readers."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "604e1bc3-ad1e-45dd-a0ab-e975a2b6513c",
+      "headline": "After Two Decades of Talking, India and Europe Finally Have a Date. The 'Mother of All Deals' Gets Signed by December.",
+      "slug": "india-eu-free-trade-agreement-signed-december-2026-in-force-february-2027-goyal-diaspora-20260624",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Piyush Goyal, Commerce and Industry Minister of India",
+          "reason": "The photo shows the named person, Piyush Goyal, who is central to the story about the India-EU free-trade pact."
+        },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "No image URL or entities provided, so cannot fully assess. Assuming a relevant image would depict H-1B related documents, a USCIS building, or a professional looking stressed."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article explicitly details how the H-1B wage-level RFEs disproportionately affect Indian professionals due to volume and profile, and also touches on EB-2 NIW issues, making it highly relevant to the Indian diaspora."
+          "quality": 8,
+          "note": "The article explicitly addresses the diaspora angle in a dedicated section, connecting it to business opportunities and professional mobility."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Ensure the hero image is highly relevant and visually impactful, perhaps showing a stack of visa applications or a digital signature interface.",
-          "Consider adding a short quote from an affected individual (anonymized if necessary) to personalize the impact of these policy changes."
+          "Consider adding a quote from a diaspora business owner in Europe to personalize the impact of the deal.",
+          "Expand slightly on the 'professional-mobility chapters' to give more concrete examples of how it benefits skilled workers."
         ],
         "verdict": "pass"
       },
