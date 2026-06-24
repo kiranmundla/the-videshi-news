@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-24T10:45:26.008841+00:00",
+  "timestamp": "2026-06-24T11:15:19.602792+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 1,
     "flag": 1,
     "fail": 0,
     "error": 0
@@ -11,24 +11,39 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "0d53a940-77ce-4cd5-9b80-63c2c423c3a7",
-      "headline": "India Has Never Had a Sprinter Like Animesh Kujur. Now He's Heading to the Commonwealth Games.",
-      "slug": "animesh-kujur-india-fastest-man-sprinter-100m-200m-national-record-commonwealth-games-glasgow-2026-diaspora",
+      "id": "81b262d9-09ed-4b15-9d71-64ad57008ebe",
+      "headline": "\u20b971 Crore and a Lifeline: Cocktail 2 Hands Shahid Kapoor the Hit He's Been Chasing \u2014 But the Fizz Is Fading",
+      "slug": "cocktail-2-box-office-71-crore-opening-weekend-shahid-kapoor-kriti-sanon-rashmika-mandanna-homi-adajania-weekday-drop-hit-where-to-watch-diaspora-nri-20260624",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "101dca29-b6a9-46f2-9bd5-68a066754adc",
+            "headline": "Cocktail 2 Closes Its First Weekend at \u20b944 Crore. Shahid Kap"
+          },
+          {
+            "article_id": "04ab66bc-5373-4112-8651-d1d8e3d7af52",
+            "headline": "Arijit Sings, the Internet Swoons: \u201cLeher,\u201d Cocktail 2\u2019s Fir"
+          }
+        ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Animesh Kujur, an Indian sprinter, in an athletic uniform.",
-          "reason": "The photo clearly shows Animesh Kujur, who is the subject of the headline and story."
+          "what_photo_shows": "Movie poster for Cocktail 2 featuring Shahid Kapoor, Kriti Sanon, and Rashmika Mandanna.",
+          "reason": "The photo is a movie poster for 'Cocktail 2' and features the lead actor Shahid Kapoor, directly matching the story's subject."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
+        "overall_score": 7,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/DZxKj9gAJDF/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post is from 2018 and features a random person, not related to the movie 'Cocktail 2' or its cast/crew. It seems like a placeholder or an error."
+          }
+        ],
         "image_match": {
           "score": 9,
           "issue": null
@@ -36,19 +51,20 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The diaspora angle is explicitly stated and well-justified in the 'Why It Resonates Beyond India' section, connecting Kujur's achievements to the pride and representation for NRIs."
+          "note": "The article explicitly mentions the film's overseas performance and its availability for the diaspora, including streaming options and subtitles, which is directly relevant to NRI readers."
         },
         "factual_flags": [
-          "The article mentions '2025 Asian Athletics Championships in Gumi, South Korea' and '2026 Commonwealth Games in Glasgow'. It also mentions '2025 he had already become the first Indian male sprinter to qualify for a World Athletics Championships in a short-sprint event, lining up in Tokyo'. The dates seem inconsistent, implying events in the future (2025, 2026) have already happened or are being discussed as past events. This needs clarification or correction."
+          "The article states 'top-five opening weekend for Bollywood in 2026' but the context implies the film was released in June of the current year (2024 or 2025 based on other film release dates mentioned). This year discrepancy needs clarification."
         ],
         "duplicate_embeds": [],
         "suggestions": [
-          "Clarify the timeline of events (2025, 2026) to ensure consistency and accuracy, as some future events are discussed as if they have already occurred.",
-          "Consider adding a quote from Animesh Kujur or his coach to provide a more personal touch and insight into his journey and aspirations."
+          "Verify and correct the year mentioned for the 'top-five opening weekend' to ensure factual accuracy.",
+          "Replace the irrelevant Instagram embed with a relevant social media post about 'Cocktail 2' or its stars, or remove it if no suitable embed is found."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/DZxKj9gAJDF/",
         "promoted to published"
       ],
       "revised": false,
@@ -56,85 +72,54 @@
       "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "1ec3e859-1b13-4d71-8e55-6d1efcfb618b",
-      "headline": "India Will Now Let Its Banks Lend NRIs Money to Buy More Indian Deposits. The Returns Could Touch 15%.",
-      "slug": "rbi-banks-lend-nris-against-dollar-fcnr-deposits-leverage-gift-city-rupee-20260624",
+      "id": "b237cad2-fac5-40b2-a2de-da3fd2b70fd9",
+      "headline": "\"Sita Aaj Lanka Khud Jalane Aayi Hai\": The Alpha Trailer Hands the YRF Spy Universe to Two Women \u2014 and a Hrithik Cameo Lit the Fuse",
+      "slug": "alpha-trailer-yrf-spy-universe-alia-bhatt-sharvari-hrithik-roshan-cameo-bobby-deol-anil-kapoor-shiv-rawail-july-3-2026-where-to-watch-diaspora-nri-20260624",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "ef028f5c-f7d4-4ea5-a0b2-fc017df135e0",
+            "headline": "Alia Bhatt and Sharvari Burn Down the Boys' Club. 'Alpha' Is"
+          }
+        ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "The Reserve Bank of India building in Mumbai.",
-          "reason": "The photo shows the building of the Reserve Bank of India, which is directly mentioned in the headline and caption as the entity clearing the new lending scheme."
+          "what_photo_shows": "Movie poster for 'Alpha' featuring Alia Bhatt and others",
+          "reason": "The photo shows the movie 'Alpha' and Alia Bhatt, which are central to the story about the YRF Spy Universe and its female leads."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DZrXE9fB1sc/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel is a random post about a dog, not related to the Alpha movie trailer or the YRF Spy Universe."
+          }
+        ],
         "image_match": {
           "score": 9,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article directly addresses NRIs and their financial opportunities, making it highly relevant."
+          "quality": 8,
+          "note": "The article explicitly mentions worldwide release dates and YRF's focus on overseas markets, including the 'NRI multiplex pull' with the Hrithik cameo."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a small 'What are FCNR deposits?' explainer box for readers less familiar with financial jargon.",
-          "Perhaps include a brief disclaimer about the risks associated with leverage, even if mentioned briefly at the end."
+          "Replace the irrelevant Instagram embed with a relevant one, perhaps an official YRF post about Alpha or a fan reaction to the trailer.",
+          "Consider adding a brief mention of the director's previous work and how it might influence Alpha's tone, beyond just 'quietly devastating'."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "437e18b3-d695-4174-9b37-5b450d57c8d2",
-      "headline": "Their Lawmakers Have a Message for 5 Million Indian-Americans: Stop Being on the Menu, Get a Seat at the Table.",
-      "slug": "indian-american-lawmakers-urge-diaspora-run-for-office-anti-india-hate-20260624",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Congressman Raja Krishnamoorthi in a suit with an American flag background.",
-          "reason": "The photo clearly shows Congressman Raja Krishnamoorthi, who is explicitly named in the headline and caption as a key figure in the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The entire article is centered on the Indian-American diaspora, their political representation, and challenges."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a concluding sentence or paragraph to 'What Comes Next' to provide a sense of closure or future outlook, as the article currently ends abruptly.",
-          "While the article mentions 'attacks and vandalism targeting Hindu temples,' it could briefly elaborate on one or two specific, well-known incidents to add concrete examples to the 'Why the Alarm' section."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DZrXE9fB1sc/",
         "promoted to published"
       ],
       "revised": false,
