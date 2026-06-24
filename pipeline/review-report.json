@@ -1,15 +1,234 @@
 {
-  "timestamp": "2026-06-24T02:45:20.993756+00:00",
+  "timestamp": "2026-06-24T03:15:48.788221+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 0,
+    "pass": 4,
+    "flag": 2,
     "fail": 0,
     "error": 0
   },
   "revisions": 0,
   "unpublished": 0,
   "articles": [
+    {
+      "id": "98b666e4-afb2-4dd9-9a22-39835fdee479",
+      "headline": "Zendaya Is Wearing Spider-Man's Colours Now \u2014 and the 'Brand New Day' Press Tour Has Become the Best Show in Town",
+      "slug": "zendaya-spider-man-brand-new-day-press-tour-versace-chainmail-rome-tom-holland-married-louis-vuitton-fashion-where-to-watch-diaspora-nri-20260623",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Zendaya in a red dress",
+          "reason": "The photo clearly shows Zendaya, who is the subject of the headline and story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 6,
+          "issue": "The image is a generic headshot from 2019, not related to the current press tour or the specific outfits discussed in the article. It doesn't match the 'Spider-Man's Colours' or 'Brand New Day Press Tour' theme."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The diaspora angle is present and reasonably well-integrated, connecting the global appeal of Spider-Man and the marketing buzz to Indian and NRI audiences. It doesn't feel overly forced."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the hero image with one that reflects Zendaya's current press tour outfits, ideally one showcasing the 'Spider-Man colours' mentioned.",
+          "Consider adding a social media embed (e.g., Law Roach's Instagram story or Zendaya's 'hi from Rome' post) to visually support the claims about the press tour's impact and specific looks."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "68aa8e00-5931-461a-b125-6ab5a8243c53",
+      "headline": "The Dragons Came Back Hungry. 'House of the Dragon' Season 3 Lands on JioHotstar \u2014 and It Opens With a Death.",
+      "slug": "house-of-the-dragon-season-3-jiohotstar-premiere-battle-of-the-gullet-jace-death-matt-smith-emma-darcy-ryan-condal-where-to-watch-diaspora-nri-20260623",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Matt Smith holding a microphone and smiling.",
+          "reason": "The photo shows Matt Smith, who is named in the caption as returning to House of the Dragon Season 3, which is the subject of the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 8,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The diaspora angle is present and naturally integrated, focusing on JioHotstar availability and NRI viewing habits."
+        },
+        "factual_flags": [
+          "The article states the season premiered Sunday, June 21, but June 21, 2024, was a Friday. This is a factual error regarding the day of the week for the premiere."
+        ],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Correct the factual error regarding the premiere date (June 21 was a Friday, not a Sunday).",
+          "Consider adding a brief, relevant social media embed (e.g., a tweet from the show's official account or a cast member) to enhance engagement, ensuring it's topically relevant."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "0cc1441b-c6a0-4e62-9545-61539ed0f037",
+      "headline": "India Has a New Real-Estate Unicorn. The Twist Is How It Got There \u2014 and Who's Buying.",
+      "slug": "square-yards-unicorn-95-million-proptech-nri-real-estate-20260624",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Modern residential apartment towers against a blue sky",
+          "reason": "The photo shows residential apartment towers, which is a generic but on-topic image for a story about a real-estate unicorn and property platforms."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image shows a generic city skyline, which is broadly related to real estate but doesn't specifically evoke the 'twist' or 'who's buying' aspects of the headline. It's not a strong match for the unique angle of the article."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article explicitly states 'The diaspora is the business model' and thoroughly explains how Square Yards caters to NRIs, making the diaspora angle central and well-integrated."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider a more specific hero image that visually hints at the NRI connection or the 'twist' in funding, perhaps a graphic representing global reach or a blend of traditional and modern real estate elements.",
+          "While the article is strong, a brief mention of any competitive landscape or other platforms attempting to serve the NRI real estate market could add further context, even if Square Yards is presented as a leader."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "3091b058-14ff-46b3-9b60-2e6278607d4c",
+      "headline": "A Bengaluru Startup Wants to Build India's Largest Security Operations Centre. Bessemer Just Bet $15 Million on It.",
+      "slug": "mitigata-15-million-series-b-bessemer-cyber-resilience-india-20260624",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "A tablet displaying a VPN shield icon over a world map.",
+          "reason": "The photo depicts cybersecurity, which is relevant to a story about a security operations center and cyber-resilience."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 6,
+          "issue": "The image shows a person working on a laptop with code, which is generally related to tech, but it's a generic stock photo and doesn't specifically represent cybersecurity, a security operations center, or the startup Mitigata. It's not a strong match for the specific focus of the article."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The 'Why this lands for the diaspora' section explicitly and effectively connects the topic to NRI readers, covering both personal financial/data security and professional opportunities."
+        },
+        "factual_flags": [
+          "The article states 'It comes less than a year after the company's $5.9 million Series A in August 2025'. August 2025 is in the future, which is a clear factual error. It should likely be August 2023 or 2024."
+        ],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Correct the factual error regarding the Series A funding date (August 2025).",
+          "Consider a more specific or illustrative hero image that better reflects cybersecurity, a SOC, or the company's mission, if available."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "4ab06553-7c37-4b88-97f9-4c588cfbf3e9",
+      "headline": "India's Quietest AI Investor Just Showed Its Hand: Rs 1,003 Crore Across 54 Startups",
+      "slug": "info-edge-ai-deeptech-1003-crore-54-startups-naukri-redstart-20260624",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Founders at work in a startup office",
+          "reason": "The photo depicts a startup office environment, which is relevant to a story about investments in startups."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image shows a generic tech/AI concept, which broadly matches the topic, but isn't specific to Info Edge or Indian investment. It's acceptable but not perfect."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The 'Why an NRI should read past the headline' section directly addresses the diaspora, explaining Info Edge's relevance as a barometer and offering a 'sharper lesson' for those considering re-entry into India's startup scene. It feels natural and well-integrated."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a small infographic or chart to visualize Info Edge's investment breakdown or growth, as the article is very data-driven.",
+          "While the image is acceptable, a more specific image related to Indian tech investment or Info Edge (if available and permissible) could enhance the article."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
     {
       "id": "96c5403a-7eea-470d-a84b-a4de94ba728d",
       "headline": "A Rescue Plan for 11,000 Stranded Sailors Is Now Underway in the Gulf. Many of Them Are Indian.",
@@ -19,11 +238,6 @@
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MISMATCH",
-          "what_photo_shows": "An interior view of a ship's lounge or dining area",
-          "reason": "The photo shows an interior space with tables and chairs, not an oil tanker at sea as described in the caption and story."
-        },
         "inline_image_mismatches": []
       },
       "llm_review": {
@@ -36,58 +250,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article explicitly connects the issue to Indian seafarers and their families, highlighting the remittance aspect and the 'Why the Diaspora Should Care' section is well-integrated."
+          "note": "The article explicitly connects the issue to Indian seafarers and their families, highlighting the remittance aspect and the 'family' connection for the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a quote from an affected family member in India or an NRI community leader to further personalize the diaspora angle.",
-          "If possible, include a map showing the Strait of Hormuz and the affected areas to provide better geographical context for readers."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "Cleared mismatched image (An interior view of a ship's lounge or dining area)",
-        "held: image mismatch"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "image_mismatch": true,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "a0df7999-3ae9-4cf0-895a-33ef83cb1851",
-      "headline": "India's Monsoon Is Running 43% Short, and the Government Is Drawing Up Plans for 300 Districts",
-      "slug": "india-weak-monsoon-43-percent-deficit-300-districts-contingency-el-nino-diaspora-20260624",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A farmer sowing seeds in a field",
-          "reason": "The photo of an Indian farmer in a field directly relates to the story about India's monsoon and its impact on farm districts and livelihoods."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the impact of the monsoon on rural India to the diaspora through remittances and economic implications."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more statistics or data points related to the economic impact of the monsoon on the diaspora.",
-          "Include quotes from diaspora members or experts to enhance the personal connection to the topic."
+          "Consider adding a quote from an NRI family member or a representative of an Indian diaspora organization to further strengthen the 'Why the Diaspora Should Care' section.",
+          "If possible, include a map showing the Strait of Hormuz and the affected area to provide better geographical context for readers."
         ],
         "verdict": "pass"
       },
@@ -96,7 +265,7 @@
       ],
       "revised": false,
       "unpublished": false,
-      "llm_source": "gpt-4o-mini"
+      "llm_source": "gemini-2.5-flash"
     }
   ]
 }
