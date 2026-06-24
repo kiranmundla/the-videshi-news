@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-06-24T01:58:45Z",
-  "stage": "Group Stage — 47 of 72 matches played",
+  "last_updated": "2026-06-24T03:57:47Z",
+  "stage": "Group Stage — 48 of 72 matches played",
   "hosts": "USA, Mexico & Canada",
   "dates": {
     "start": "2026-06-11",
@@ -558,6 +558,19 @@
     ],
     "K": [
       {
+        "name": "Colombia",
+        "code": "COL",
+        "flag": "🇨🇴",
+        "rank": 13,
+        "p": 2,
+        "w": 2,
+        "d": 0,
+        "l": 0,
+        "gf": 4,
+        "ga": 1,
+        "pts": 6
+      },
+      {
         "name": "Portugal",
         "code": "POR",
         "flag": "🇵🇹",
@@ -571,29 +584,16 @@
         "pts": 4
       },
       {
-        "name": "Colombia",
-        "code": "COL",
-        "flag": "🇨🇴",
-        "rank": 13,
-        "p": 1,
-        "w": 1,
-        "d": 0,
-        "l": 0,
-        "gf": 3,
-        "ga": 1,
-        "pts": 3
-      },
-      {
         "name": "DR Congo",
         "code": "COD",
         "flag": "🇨🇩",
         "rank": 45,
-        "p": 1,
+        "p": 2,
         "w": 0,
         "d": 1,
-        "l": 0,
+        "l": 1,
         "gf": 1,
-        "ga": 1,
+        "ga": 2,
         "pts": 1
       },
       {
@@ -1390,8 +1390,8 @@
       "away": "DR Congo",
       "venue": "Estadio Guadalajara",
       "city": "Guadalajara",
-      "status": "scheduled",
-      "score": null,
+      "status": "FT",
+      "score": "1-0",
       "home_code": "COL",
       "away_code": "COD"
     },
