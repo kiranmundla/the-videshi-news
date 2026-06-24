@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-24T11:15:19.602792+00:00",
+  "timestamp": "2026-06-24T12:18:39.108267+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
-    "flag": 1,
+    "pass": 9,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,60 +11,42 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "81b262d9-09ed-4b15-9d71-64ad57008ebe",
-      "headline": "\u20b971 Crore and a Lifeline: Cocktail 2 Hands Shahid Kapoor the Hit He's Been Chasing \u2014 But the Fizz Is Fading",
-      "slug": "cocktail-2-box-office-71-crore-opening-weekend-shahid-kapoor-kriti-sanon-rashmika-mandanna-homi-adajania-weekday-drop-hit-where-to-watch-diaspora-nri-20260624",
+      "id": "96613ee7-c292-49fa-80f4-e2a33144b78c",
+      "headline": "In a Paris Concert Hall, Modi Recasts the Diaspora as India's Ambassadors Abroad",
+      "slug": "modi-paris-diaspora-address-salle-pleyel-india-france-rashtradoot-20260624",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "101dca29-b6a9-46f2-9bd5-68a066754adc",
-            "headline": "Cocktail 2 Closes Its First Weekend at \u20b944 Crore. Shahid Kap"
-          },
-          {
-            "article_id": "04ab66bc-5373-4112-8651-d1d8e3d7af52",
-            "headline": "Arijit Sings, the Internet Swoons: \u201cLeher,\u201d Cocktail 2\u2019s Fir"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Movie poster for Cocktail 2 featuring Shahid Kapoor, Kriti Sanon, and Rashmika Mandanna.",
-          "reason": "The photo is a movie poster for 'Cocktail 2' and features the lead actor Shahid Kapoor, directly matching the story's subject."
+          "what_photo_shows": "Narendra Modi at a dinner table with other officials",
+          "reason": "The photo clearly shows Prime Minister Narendra Modi, who is the central figure of the story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/p/DZxKj9gAJDF/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post is from 2018 and features a random person, not related to the movie 'Cocktail 2' or its cast/crew. It seems like a placeholder or an error."
-          }
-        ],
+        "overall_score": 8,
+        "embed_issues": [],
         "image_match": {
           "score": 9,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article explicitly mentions the film's overseas performance and its availability for the diaspora, including streaming options and subtitles, which is directly relevant to NRI readers."
+          "quality": 10,
+          "note": "The entire article is centered on the diaspora's role and connection to India, making it highly relevant for NRI readers."
         },
-        "factual_flags": [
-          "The article states 'top-five opening weekend for Bollywood in 2026' but the context implies the film was released in June of the current year (2024 or 2025 based on other film release dates mentioned). This year discrepancy needs clarification."
-        ],
+        "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Verify and correct the year mentioned for the 'top-five opening weekend' to ensure factual accuracy.",
-          "Replace the irrelevant Instagram embed with a relevant social media post about 'Cocktail 2' or its stars, or remove it if no suitable embed is found."
+          "Consider adding a quote from a critical or neutral voice within the diaspora, if available, to provide a more balanced perspective on Modi's address.",
+          "Perhaps a brief mention of any specific policy outcomes or initiatives that have resulted from previous such diaspora addresses could add more depth."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DZxKj9gAJDF/",
         "promoted to published"
       ],
       "revised": false,
@@ -72,54 +54,353 @@
       "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "b237cad2-fac5-40b2-a2de-da3fd2b70fd9",
-      "headline": "\"Sita Aaj Lanka Khud Jalane Aayi Hai\": The Alpha Trailer Hands the YRF Spy Universe to Two Women \u2014 and a Hrithik Cameo Lit the Fuse",
-      "slug": "alpha-trailer-yrf-spy-universe-alia-bhatt-sharvari-hrithik-roshan-cameo-bobby-deol-anil-kapoor-shiv-rawail-july-3-2026-where-to-watch-diaspora-nri-20260624",
+      "id": "2a9ff1f0-e198-444b-bde8-873a0ecc1254",
+      "headline": "How a Single Sunday of Yoga Maps Britain's Indian Diaspora",
+      "slug": "international-yoga-day-2026-uk-diaspora-healthy-ageing-soft-power-20260624",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "ef028f5c-f7d4-4ea5-a0b2-fc017df135e0",
-            "headline": "Alia Bhatt and Sharvari Burn Down the Boys' Club. 'Alpha' Is"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Movie poster for 'Alpha' featuring Alia Bhatt and others",
-          "reason": "The photo shows the movie 'Alpha' and Alia Bhatt, which are central to the story about the YRF Spy Universe and its female leads."
+          "verdict": "MISMATCH",
+          "what_photo_shows": "People at an outdoor event in Munich, Germany",
+          "reason": "The headline and subheadline specifically refer to events in Britain, while the photo caption states the event is in Munich, Germany."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/reel/DZrXE9fB1sc/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram reel is a random post about a dog, not related to the Alpha movie trailer or the YRF Spy Universe."
-          }
+        "embed_issues": [],
+        "image_match": {
+          "score": 8,
+          "issue": "No image URL or entities provided, so cannot fully assess. Assuming a relevant image would depict yoga in a UK setting."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article directly addresses the Indian diaspora's role in organizing and transmitting yoga, and its relevance to the community's aging population. This is a strong and natural diaspora angle."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a specific quote from an NRI participant or organizer to personalize the narrative further.",
+          "If possible, include a small sidebar or link to resources for NRIs interested in yoga for healthy aging in the UK."
         ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "Cleared mismatched image (People at an outdoor event in Munich, Germany)",
+        "held: image mismatch"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "image_mismatch": true,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "e503e660-9424-44cf-a557-69a9ba4b9671",
+      "headline": "On Long Island, a Parade Becomes a Measure of How Far Indian-Americans Have Come",
+      "slug": "india-day-parade-usa-2026-curtain-raiser-long-island-hicksville-diaspora-20260624",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "A parade float with people celebrating, including Indian-Americans with flags.",
+          "reason": "The photo depicts a parade with Indian-American participants and flags, which directly relates to the story about an India Day Parade and Indian-Americans."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
         "image_match": {
           "score": 9,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article explicitly mentions worldwide release dates and YRF's focus on overseas markets, including the 'NRI multiplex pull' with the Hrithik cameo."
+          "quality": 9,
+          "note": "The article directly addresses the Indian-American diaspora experience, its political integration, cultural preservation, and generational transfer of identity."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant Instagram embed with a relevant one, perhaps an official YRF post about Alpha or a fan reaction to the trailer.",
-          "Consider adding a brief mention of the director's previous work and how it might influence Alpha's tone, beyond just 'quietly devastating'."
+          "Consider adding a quote from a younger Indian-American attendee or organizer to strengthen the 'generational question' aspect.",
+          "Perhaps include a brief historical context of the parade's growth over the 15 years to emphasize 'how far Indian-Americans have come'."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/reel/DZrXE9fB1sc/",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "36906725-e578-47ee-9c98-125d8a275252",
+      "headline": "The Student Visa Safety Nets Indians Relied On Are About to Disappear",
+      "slug": "dhs-duration-of-status-day1-cpt-grace-period-indian-students-f1-20260624",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Graduates in caps and gowns celebrating at a commencement ceremony",
+          "reason": "The photo of university graduates is a generic but on-topic image for a story about student visas."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 8,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article directly addresses how these policy changes disproportionately affect Indian students and the Indian-American professional class, making it highly relevant for an NRI audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a call to action or information on how readers can track the rule's progress or provide feedback, if applicable.",
+          "Expand slightly on the 'collapsing enrollment numbers' with a specific data point or source if available, to strengthen the claim."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "e83349a8-eb56-4b16-b07f-3c85f1ba5758",
+      "headline": "Two Court Rulings, One Day, Opposite Directions: What Indians Should Take From June 23",
+      "slug": "expedited-removal-courthouse-arrests-rulings-indians-carry-proof-statu-20260624",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Sheriff vehicles parked in front of a US county courthouse",
+          "reason": "The photo shows a courthouse and law enforcement vehicles, which is relevant to a story about court rulings and ICE arrests at courthouses."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 8,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article directly addresses the Indian diaspora, specifically high-skilled workers, and explains the implications for them. It feels natural and relevant."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a brief concluding sentence to the article, as it currently ends mid-sentence.",
+          "Perhaps include a link to a resource for NRIs to find immigration counsel or check their status, if appropriate for the platform."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "091ae2e7-d142-4c3c-a0d2-d32591d503eb",
+      "headline": "America's $5 Million Gold Card Is Here. India's Rich Are Unimpressed",
+      "slug": "trump-gold-card-5-million-wealthy-indians-skeptical-eb5-uae-20260624",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "US passport, cash, and credit cards",
+          "reason": "The photo directly illustrates the themes of wealth, American residency, and financial transactions relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 8,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "Strong and relevant connection to NRI/diaspora readers, especially regarding the two-tier system and existing visa backlogs."
+        },
+        "factual_flags": [
+          "The article states 'President Donald Trump's \"Gold Card\"' and later 'the administration's suggestion'. While Trump has floated the idea, the article implies it's a current, active 'administration' proposal, which might be misleading if it's purely a campaign promise or a concept without formal legislative backing. Clarification on its current status (campaign promise vs. active proposal) would be beneficial."
+        ],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Clarify the current official status of the 'Gold Card' proposal \u2013 is it a formal administration proposal or a campaign promise from a former president? This impacts the perceived immediacy and feasibility.",
+          "Consider adding a brief comparison table or infographic for the different visa costs (Gold Card, EB-5, UAE Golden Visa) to visually reinforce the 'math problem' section."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "06967b15-0bb4-4ffd-b49c-b91a8ec377cb",
+      "headline": "An Indian-Born CEO Out-Earned Tim Cook and Satya Nadella. His Own Shareholders Have Voted No Seven Times.",
+      "slug": "nikesh-arora-palo-alto-networks-highest-paid-ceo-pay-say-on-pay-nri-20260624",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "a7752486-756c-489d-a414-cef31334ef52",
+            "headline": "Nikesh Arora Is Spending $28 Billion to Own the AI Security "
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "UNVERIFIED",
+          "what_photo_shows": "(image unreadable)",
+          "reason": "could not download image: curl-exception"
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The 'Why the diaspora should care' section is well-integrated and provides a thoughtful perspective on the broader implications for NRIs, moving beyond simple celebration to a more nuanced view of success and accountability."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a brief explanation of what a 'say-on-pay' vote entails for readers less familiar with corporate governance.",
+          "Perhaps include a very short quote from a shareholder or activist investor to give voice to the 'skeptics' mentioned."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "held: image unverified"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "image_unverified": true,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "a51827ef-a664-4692-bd40-fbad70d53ffe",
+      "headline": "An Indian IT Giant Just Won the Job of Running a US Chipmaker's Computers. The Twist Is What's Replacing the Humans.",
+      "slug": "infosys-globalfoundries-ai-managed-services-it-deal-automation-nri-20260624",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "A close-up of a computer processor's pins.",
+          "reason": "The photo shows a computer processor, which is directly relevant to a story about a chipmaker and IT services."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article explicitly connects the technological shift to the job security and career trajectory of Indian engineers in the US, directly addressing NRI concerns."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a quote from an NRI engineer or an expert on immigration/labor law to further ground the diaspora angle with a personal or legal perspective.",
+          "While the article is strong, a brief mention of the ethical implications or potential biases of AI in these 'managed services' could add another layer of depth, if relevant to the platform's editorial stance."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "3c56d7de-c502-45fa-b682-95ebeaba388d",
+      "headline": "Qualcomm Spent Two Decades Selling Phone Chips. In a Single Month It Has Bid Up to $14 Billion to Escape Them.",
+      "slug": "qualcomm-modular-tenstorrent-data-center-ai-chip-acquisitions-nvidia-n-20260624",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Tower servers in a data center",
+          "reason": "The photo shows data center servers, which are directly relevant to Qualcomm's bid to enter the data-center market."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image shows a person working on a laptop with code, which is generally related to tech, but it's not specifically illustrative of Qualcomm, chip manufacturing, or AI data centers. It's a generic tech image."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The diaspora angle is well-integrated and provides specific, relevant connections for Indian-American technologists, engineers in India, and NRI investors. It feels natural and adds value."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider finding a more specific hero image that visually represents Qualcomm, chip design, or AI infrastructure to enhance relevance.",
+          "While the article is strong, a brief mention of any specific Indian-origin leaders or key figures within Qualcomm or the acquired companies (if publicly known) could further strengthen the diaspora connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
         "promoted to published"
       ],
       "revised": false,
