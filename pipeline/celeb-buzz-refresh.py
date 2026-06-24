@@ -107,6 +107,20 @@ def main():
     today = now.strftime("%Y-%m-%d")
     print(f"Celebrity Buzz Refresh — {now.isoformat()}")
 
+    path = "/home/hatch/workspace/the-videshi-news/public/data/celebrity-buzz.json"
+
+    # Load existing file so a transient fetch failure (Wikipedia/Google rate-limit)
+    # never overwrites a previously-good thumbnail or caption with an empty one.
+    prev = {}
+    try:
+        with open(path) as f:
+            for p in json.load(f).get("posts", []):
+                prev[p.get("name") or p.get("celebrity")] = p
+    except Exception:
+        pass
+
+    GENERIC_CAP = "Stay updated with the latest from "
+
     posts = []
     missing_news = []
     missing_thumb = []
@@ -114,17 +128,29 @@ def main():
     for i, cel in enumerate(CELEBRITIES):
         name, handle = cel["name"], cel["handle"]
         print(f"[{i+1:2d}/23] {name}", end=" … ", flush=True)
+        old = prev.get(name, {})
 
+        # Thumbnail: retry once on miss, then fall back to the previous good value.
         thumb = wiki_thumb(name, cel.get("wiki"))
-        hl = news_headlines(name)
-        cap = caption_from(name, hl)
-
+        if not thumb:
+            time.sleep(1.5)
+            thumb = wiki_thumb(name, cel.get("wiki"))
+        fresh_thumb = bool(thumb)
+        if not thumb:
+            thumb = old.get("thumbnail", "")
         if not thumb:
             missing_thumb.append(name)
-        if not hl:
-            missing_news.append(name)
 
-        print(f"thumb={'✓' if thumb else '✗'}  news={len(hl)}  cap={cap[:70]}")
+        # Caption: only replace previous caption when we actually got fresh news.
+        hl = news_headlines(name)
+        if hl:
+            cap = caption_from(name, hl)
+        else:
+            missing_news.append(name)
+            old_cap = old.get("caption", "")
+            cap = old_cap if old_cap and not old_cap.startswith(GENERIC_CAP) else caption_from(name, hl)
+
+        print(f"thumb={'✓' if fresh_thumb else ('~' if thumb else '✗')}  news={len(hl)}  cap={cap[:60]}")
 
         posts.append({
             "celebrity": name,
@@ -140,7 +166,6 @@ def main():
         time.sleep(0.35)
 
     output = {"last_updated": now.isoformat(), "posts": posts}
-    path = "/home/hatch/workspace/the-videshi-news/public/data/celebrity-buzz.json"
     with open(path, "w") as f:
         json.dump(output, f, indent=2, ensure_ascii=False)
 
