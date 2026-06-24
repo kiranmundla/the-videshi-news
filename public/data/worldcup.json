@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-06-24T03:57:47Z",
-  "stage": "Group Stage — 48 of 72 matches played",
+  "last_updated": "2026-06-24T21:57:48Z",
+  "stage": "Group Stage — 50 of 72 matches played",
   "hosts": "USA, Mexico & Canada",
   "dates": {
     "start": "2026-06-11",
@@ -72,29 +72,29 @@
     ],
     "B": [
       {
-        "name": "Canada",
-        "code": "CAN",
-        "flag": "🇨🇦",
-        "rank": 30,
-        "p": 2,
-        "w": 1,
-        "d": 1,
-        "l": 0,
-        "gf": 7,
-        "ga": 1,
-        "pts": 4
-      },
-      {
         "name": "Switzerland",
         "code": "SUI",
         "flag": "🇨🇭",
         "rank": 19,
-        "p": 2,
-        "w": 1,
+        "p": 3,
+        "w": 2,
         "d": 1,
         "l": 0,
-        "gf": 5,
-        "ga": 2,
+        "gf": 7,
+        "ga": 3,
+        "pts": 7
+      },
+      {
+        "name": "Canada",
+        "code": "CAN",
+        "flag": "🇨🇦",
+        "rank": 30,
+        "p": 3,
+        "w": 1,
+        "d": 1,
+        "l": 1,
+        "gf": 8,
+        "ga": 3,
         "pts": 4
       },
       {
@@ -102,25 +102,25 @@
         "code": "BIH",
         "flag": "🇧🇦",
         "rank": 64,
-        "p": 2,
-        "w": 0,
+        "p": 3,
+        "w": 1,
         "d": 1,
         "l": 1,
-        "gf": 2,
-        "ga": 5,
-        "pts": 1
+        "gf": 5,
+        "ga": 6,
+        "pts": 4
       },
       {
         "name": "Qatar",
         "code": "QAT",
         "flag": "🇶🇦",
         "rank": 57,
-        "p": 2,
+        "p": 3,
         "w": 0,
         "d": 1,
-        "l": 1,
-        "gf": 1,
-        "ga": 7,
+        "l": 2,
+        "gf": 2,
+        "ga": 10,
         "pts": 1
       }
     ],
@@ -1405,8 +1405,8 @@
       "away": "Canada",
       "venue": "BC Place",
       "city": "Vancouver",
-      "status": "scheduled",
-      "score": null,
+      "status": "FT",
+      "score": "2-1",
       "home_code": "SUI",
       "away_code": "CAN"
     },
@@ -1420,8 +1420,8 @@
       "away": "Qatar",
       "venue": "Lumen Field",
       "city": "Seattle",
-      "status": "scheduled",
-      "score": null,
+      "status": "FT",
+      "score": "3-1",
       "home_code": "BIH",
       "away_code": "QAT"
     },
