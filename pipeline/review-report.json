@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-24T18:45:19.642949+00:00",
+  "timestamp": "2026-06-24T19:15:20.767593+00:00",
   "mode": "fix",
   "stats": {
     "pass": 1,
@@ -11,56 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "668a83d1-c7d6-43bf-9c63-acd37f07b3fc",
-      "headline": "India's Newest Mega-Airport Is About to Send Its First Plane Abroad. The Destination Is Abu Dhabi.",
-      "slug": "navi-mumbai-airport-first-international-flight-abu-dhabi-air-india-express-july-15-diaspora-20260624",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MISMATCH",
-          "what_photo_shows": "An Akasa Air aircraft on the tarmac.",
-          "reason": "The photo shows an Akasa Air aircraft, but the story is about Air India Express."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 8,
-          "issue": "Image entities are missing, so a direct match cannot be confirmed, but the headline and topic are clear."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The 'Why It Matters for the Diaspora' section is excellent and directly addresses NRI relevance, particularly for Gulf-based Indians."
-        },
-        "factual_flags": [
-          "The article states NMIA was inaugurated in October 2024 and began domestic operations in December 2025. This seems contradictory as December 2025 is in the future, implying the airport is not yet operational for domestic flights, which conflicts with 'already handling around 20,000 passengers a day'."
-        ],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Clarify the inauguration and operational dates for Navi Mumbai International Airport to resolve the factual contradiction.",
-          "Consider adding a quote from an NRI or an expert on diaspora travel to further enrich the 'Why It Matters' section."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Cleared mismatched image (An Akasa Air aircraft on the tarmac.)",
-        "held: image mismatch"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "image_mismatch": true,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "31e27fe3-2c6f-4ad9-a95b-12e81cdd1fd4",
-      "headline": "Trump's Trade Envoy Has Left Delhi. India Says the Two Sides Are Now Mapping the Way to a Deal.",
-      "slug": "india-us-interim-trade-deal-greer-goyal-talks-pathways-very-close-diaspora-20260624",
+      "id": "c0a980eb-cd2c-4b34-aaaa-ae76154a2672",
+      "headline": "Sonali Bendre Stopped Chasing the Paycheck. At 51, She's Chasing Something Harder to Buy.",
+      "slug": "sonali-bendre-paycheck-vs-passion-success-purpose-cancer-survivor-the-happy-pawdcast-raakh-ali-fazal-2026-where-to-watch-diaspora-nri-20260624",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -68,14 +21,20 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Piyush Goyal, India's Commerce and Industry Minister",
-          "reason": "The photo shows the named person, Piyush Goyal, who is central to the story's topic of trade talks."
+          "what_photo_shows": "Sonali Bendre smiling in a grey top",
+          "reason": "The photo clearly shows Sonali Bendre, who is the subject of the headline and story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/DZea3K7DKXv/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel is from 2018 and features a dance performance by Sonali Bendre. While it's her, it doesn't directly support the article's core theme of her post-cancer philosophy, passion over paycheck, or her current projects. A more recent post related to The Happy Pawdcast, her book club, or her cancer advocacy would be more relevant."
+          }
+        ],
         "image_match": {
           "score": 9,
           "issue": null
@@ -83,15 +42,73 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The 'Why It Matters for the Diaspora' section is well-integrated and clearly explains the impact on NRI businesses and professionals."
+          "note": "The diaspora angle is explicitly addressed in the final paragraph, connecting her journey to NRIs who grew up watching her films and followed her cancer battle. It feels natural and well-integrated."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a brief explanation of 'Mission 500' for readers who might not be familiar with the initiative.",
-          "Perhaps include a sentence or two on the specific types of 'American products' India is expected to buy more of, if details are available."
+          "Replace the current Instagram embed with a more recent one that directly supports her current endeavors (e.g., The Happy Pawdcast, her book club, or advocacy work) to better reflect the article's theme.",
+          "Consider adding a quote or a brief mention of how her global streaming presence for 'The Broken News 2' or 'Raakh' specifically resonates with the diaspora, beyond just 'work streams globally'."
         ],
         "verdict": "pass"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/DZea3K7DKXv/",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "44b98be6-9e3f-40c8-b482-09e210ec6306",
+      "headline": "Dhamaal 4 Blinks First: Ajay Devgn's Gang Sprints to July 10 to Clear the Decks for Nolan",
+      "slug": "dhamaal-4-release-date-july-10-2026-trailer-imagicaa-waterfall-ajay-devgn-arshad-warsi-riteish-deshmukh-nolan-odyssey-clash-where-to-watch-diaspora-nri-20260624",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "5b89d98c-af59-4fa3-968f-4a39fbe53730",
+            "headline": "The Dhamaal Boys Are Back, Older, Greyer, and Funnier. After"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Movie poster for Dhamaal 4 featuring Ajay Devgn and cast",
+          "reason": "The photo is a movie poster for 'Dhamaal 4' and the headline is about the movie 'Dhamaal 4' starring Ajay Devgn."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DZfHMfdoqfb/",
+            "problem": "broken",
+            "explanation": "The Instagram reel URL is malformed or points to a non-existent reel (DZfHMfdoqfb is not a valid reel ID format)."
+          }
+        ],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The diaspora angle is well-integrated and provides practical information for NRI audiences regarding release dates and viewing platforms."
+        },
+        "factual_flags": [
+          "The article mentions 'The Odyssey' as Christopher Nolan's film, but his upcoming film is 'The Anomaly' or 'The Oppenheimer' (if referring to a past film). 'The Odyssey' is not a known Nolan film. This needs correction.",
+          "The Instagram reel URL appears to be malformed or incorrect, which could be a factual error if it was intended to link to a specific, relevant post."
+        ],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Correct the name of Christopher Nolan's film mentioned in the article.",
+          "Verify and correct the Instagram reel URL to ensure it links to relevant content, or remove it if no suitable embed exists."
+        ],
+        "verdict": "flag"
       },
       "actions_taken": [
         "promoted to published"
