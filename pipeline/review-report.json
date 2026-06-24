@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-24T14:45:22.880257+00:00",
+  "timestamp": "2026-06-24T15:15:46.219869+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
+    "pass": 5,
     "flag": 1,
     "fail": 0,
     "error": 0
@@ -11,54 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "a3cc2dcf-c825-4ec5-9ff3-79316da5d8db",
-      "headline": "India Is Quietly Telling the Gulf to Pay Its 5 Million Workers More. It's a Billion-Dollar Bet With a Catch.",
-      "slug": "india-pushes-gulf-states-higher-minimum-wages-indian-workers-gcc-remittances-20260624",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MISMATCH",
-          "what_photo_shows": "A world map with various countries colored with stripes and a legend",
-          "reason": "The photo shows a world map with a legend of economic events, which does not depict construction in the Gulf or Indian workers."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "No image URL or entities provided, so cannot fully assess. Assuming a relevant image would depict Gulf region, Indian workers, or currency/remittances."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article directly addresses a policy impacting millions of Indian nationals in the Gulf, a core segment of the diaspora, and explicitly connects it to NRI/diaspora readers in the 'Why It Matters for the Diaspora' section."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a small sidebar or infographic to visually represent the flow of remittances from the Gulf to India over time, or the breakdown of Indian workers by GCC country.",
-          "If possible, include a direct quote from an Indian worker in the Gulf to personalize the impact of these wage changes."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "Cleared mismatched image (A world map with various countries colored with stripes and a legend)",
-        "held: image mismatch"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "image_mismatch": true,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "45e97c0c-fdac-4f16-94e8-cfee8c07ef5c",
-      "headline": "On July 15, an Indian Professional Posted to Britain Stops Paying Twice for the Same Pension",
-      "slug": "india-uk-fta-ceta-july-15-double-contribution-convention-diaspora-professionals-20260624",
+      "id": "372abbef-cfde-421c-9a47-0a7532b47e67",
+      "headline": "For 30 Years India Guarded Its Workhorse Rocket. It Just Decided to Hand the Keys to Private Firms.",
+      "slug": "isro-pslv-technology-transfer-private-sector-in-space-small-satellite-20260624",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -66,8 +21,51 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "London skyline with trees and buildings in foreground",
-          "reason": "The photo shows the City of London, which is relevant to a story about an India-UK trade pact and professional mobility."
+          "what_photo_shows": "An ISRO PSLV rocket lifting off from Sriharikota.",
+          "reason": "The photo clearly shows the PSLV rocket, which is the central subject of the news story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The diaspora angle is explicitly addressed and well-integrated, discussing investment and career opportunities for NRIs within the new regulatory framework."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a quote from an NRI investor or engineer to further strengthen the 'diaspora angle' section.",
+          "Perhaps include a brief mention of the environmental implications or sustainability efforts within India's expanding space sector, if relevant."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "4855052f-54c2-4f8d-b801-2a09a048982e",
+      "headline": "Every IT Firm Says AI Will Shrink Its Workforce. At Infosys's AGM, Nandan Nilekani Said the Opposite.",
+      "slug": "infosys-agm-nandan-nilekani-salil-parekh-ai-services-400-billion-fresh-20260624",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Nandan Nilekani, co-founder and chairman of Infosys, at an event.",
+          "reason": "The photo clearly shows Nandan Nilekani, who is the subject of the headline and subheadline."
         },
         "inline_image_mismatches": []
       },
@@ -81,17 +79,191 @@
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article directly addresses the impact of the trade deal on Indian professionals and NRIs, particularly regarding pension contributions and temporary work routes. The 'diaspora weary of shifting visa goalposts' line is a strong, natural connection."
+          "note": "The 'Why this matters to the diaspora' section is well-integrated and clearly explains the relevance to NRI readers, particularly regarding career paths and visa implications."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a quote from an NRI or an expert on diaspora employment to further strengthen the 'diaspora angle' section.",
+          "Perhaps a small sidebar or link to previous Videshi articles on H-1B visa trends could provide additional context for readers."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "bcb88b9d-36bf-4207-a519-778beff437d7",
+      "headline": "Wall Street Asked If Arista's AI Boom Was Over. Jayshree Ullal Just Lifted the Bet to 1.6 Terabits.",
+      "slug": "jayshree-ullal-arista-networks-ai-networking-1-6-terabit-data-center-n-20260624",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Jayshree Ullal, CEO of Arista Networks",
+          "reason": "The photo clearly shows Jayshree Ullal, who is the subject of the headline and subheadline."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The 'Why an NRI should care' section explicitly and effectively connects the article to the diaspora, highlighting Jayshree Ullal's background and the impact on Indian-American engineers and investors."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a small 'About Arista Networks' sidebar for readers less familiar with enterprise tech.",
+          "Perhaps include a quote from an Indian-American engineer or investor about their experience with Arista's growth, if possible, to further personalize the diaspora angle."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "41fb7170-2028-4af9-963e-e669374e24d1",
+      "headline": "Ramayana Walks Into Hall H: Ranbir and Yash Eye a San Diego Comic-Con Trailer Drop Beside Marvel and Dune",
+      "slug": "ramayana-trailer-san-diego-comic-con-july-2026-ranbir-kapoor-rama-yash-ravana-sai-pallavi-sita-nitesh-tiwari-namit-malhotra-hans-zimmer-ar-rahman-diwali-where-to-watch-diaspora-nri-20260624",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "A headshot of actor Ranbir Kapoor smiling.",
+          "reason": "The photo shows Ranbir Kapoor, who is explicitly named in the headline and caption as a key figure in the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 6,
+          "issue": "The image shows Ranbir Kapoor at an airport, which doesn't strongly align with the headline's focus on Comic-Con or the epic nature of Ramayana. While it's Ranbir, a more thematic or promotional image would be better."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article explicitly addresses the diaspora angle, highlighting the Comic-Con launch in their timezone and potential festival tours in Western cities, making it highly relevant for NRI readers."
         },
         "factual_flags": [
-          "The article states 'The Comprehensive Economic and Trade Agreement \u2014 CETA, the formal name for the free-trade agreement the two countries signed in July 2025 \u2014 comes into force on Wednesday, July 15'. However, the headline states 'On July 15, an Indian Professional Posted to Britain Stops Paying Twice for the Same Pension', implying July 15, 2024. If the agreement was signed in July 2025, it cannot come into force on July 15, 2024. This is a significant date discrepancy."
+          "The article states a budget of '\u20b94,000-crore-plus ($400\u2013500 million) across two parts'. While large, $400-500 million is a very high estimate for \u20b94,000 crore (which is closer to $480 million at current rates, but 'plus' makes it vague). It's a minor point but could be more precise or consistent."
         ],
         "duplicate_embeds": [],
         "suggestions": [
-          "Clarify the exact year for the CETA signing and implementation dates to resolve the factual contradiction.",
-          "Consider adding a brief quote from an Indian professional or an expert on diaspora affairs to further humanize the impact of the DCC."
+          "Consider sourcing a more thematic or promotional image for the article, perhaps concept art or a still that hints at the film's grandeur, rather than a paparazzi shot.",
+          "If possible, add a direct quote or social media embed from one of the film's producers or actors regarding the Comic-Con plans to strengthen the reporting."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "562a8ee0-3d2d-430a-9152-1f00d8b0b383",
+      "headline": "Nani Goes Pan-World: The Paradise Will Release in Nine Languages \u2014 Including Spanish",
+      "slug": "the-paradise-nani-nine-languages-spanish-dub-raghav-juyal-vikram-maalik-srikanth-odela-dasara-anirudh-mohan-babu-august-21-2026-where-to-watch-diaspora-nri-20260624",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "A smiling man identified as Nani",
+          "reason": "The photo shows Nani, who is the subject of the headline and caption."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DZxH-6BI7fo/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel is from 2017 and features a dance performance, not related to the current article about Nani's new film 'The Paradise' or Raghav Juyal's role in it."
+          }
+        ],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article explicitly discusses and effectively highlights the diaspora angle, particularly with the nine-language release including Spanish and English, and its implications for NRI audiences and global reach."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the irrelevant Instagram embed with a relevant one, perhaps a trailer or a character reveal for 'The Paradise' or Raghav Juyal's role.",
+          "Ensure all language counts are consistent; the body text lists 8 languages plus Spanish, totaling 9, but the initial list only shows 8. Clarify if English is counted separately or if there's a missing language in the initial enumeration."
         ],
         "verdict": "flag"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DZxH-6BI7fo/",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "a3cc2dcf-c825-4ec5-9ff3-79316da5d8db",
+      "headline": "India Is Quietly Telling the Gulf to Pay Its 5 Million Workers More. It's a Billion-Dollar Bet With a Catch.",
+      "slug": "india-pushes-gulf-states-higher-minimum-wages-indian-workers-gcc-remittances-20260624",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "No image URL or entities provided, so cannot fully assess. Assuming a relevant image would depict Gulf region, Indian workers, or currency/remittances."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article directly addresses a policy impacting millions of Indian nationals in the Gulf, a significant segment of the diaspora, and explicitly connects it to NRI/diaspora readers in the 'Why It Matters for the Diaspora' section."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Ensure the hero image clearly depicts the subject matter, perhaps showing Indian workers in the Gulf or a visual representation of remittances/wages.",
+          "Consider adding a small sidebar or infographic to visually represent the number of Indian workers, remittances, or the wage increase percentages if available."
+        ],
+        "verdict": "pass"
       },
       "actions_taken": [
         "promoted to published"
