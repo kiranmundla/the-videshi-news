@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-24T04:15:18.911961+00:00",
+  "timestamp": "2026-06-24T04:45:28.714244+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
-    "flag": 1,
+    "pass": 3,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,18 +11,18 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "3e200153-a7bd-4651-8038-58f5cf82302a",
-      "headline": "Set Your Accounts to Public: U.S. Visa Vetting Now Reaches H-1B and H-4 Indians",
-      "slug": "us-visa-social-media-vetting-expansion-h1b-h4-students-india-ds160-dis-20260624",
+      "id": "68269f75-ccb2-489b-9693-0119a1b93e3e",
+      "headline": "England Name Their Squad for India \u2014 and a World Cup Score to Settle at Home",
+      "slug": "england-t20i-squad-india-2026-harry-brook-captain-jos-buttler-james-coles-jofra-archer-five-match-series-world-cup-semifinal-rematch-diaspora-nri",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A smartphone displaying social media apps like Instagram and Snapchat.",
-          "reason": "The photo directly illustrates the story's topic of social media disclosure for U.S. visa vetting."
+          "verdict": "MISMATCH",
+          "what_photo_shows": "Two male cricketers on a field, one holding a bat.",
+          "reason": "The photo does not show Harry Brook, the named person in the caption and a key figure in the story."
         },
         "inline_image_mismatches": []
       },
@@ -36,17 +36,60 @@
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article explicitly details why this policy is particularly relevant to the Indian diaspora, covering scale, H-4 inclusion, and processing delays affecting NRIs."
+          "note": "The 'Why the Diaspora Should Be Watching' section is excellent and directly addresses the NRI audience, explaining the relevance and accessibility of the matches."
         },
-        "factual_flags": [
-          "The article states the policy began in 'June 2025' and expanded 'March 30, 2026'. These dates are in the future, suggesting a typo. It should likely be 2019 and 2020 respectively, or similar past dates."
-        ],
+        "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Correct the future dates (June 2025, March 30, 2026) to reflect when these policies actually went into effect.",
-          "Consider adding a brief 'What to do' section with practical advice for applicants, beyond just setting accounts to public."
+          "Consider adding a small section on key Indian players to watch, similar to the detail provided for the England squad, to balance the perspective for readers.",
+          "If possible, include quotes from players or coaches (even if from previous interviews) to add more voice and perspective to the team selections and rivalry."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "Cleared mismatched image (Two male cricketers on a field, one holding a bat.)",
+        "held: image mismatch"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "image_mismatch": true,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "aa39145f-ddca-441b-bb9d-cbdca89d9aa6",
+      "headline": "India Just Got Its First Sovereign-AI Unicorn. The Bigger Question Is Whether It's Building Fast Enough.",
+      "slug": "india-sovereign-ai-sarvam-unicorn-indiaai-mission-foreign-llm-dependence-diaspora-20260624",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "A data center server hall with blue lights",
+          "reason": "The photo of a data center is a generic but on-topic image for a story about AI models and sovereign AI infrastructure."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The diaspora angle is explicitly addressed and well-integrated, explaining why NRIs should care and the dual stakes involved."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a quote from an NRI working in AI about their perspective on India's sovereign AI push.",
+          "Expand slightly on the 'double-edged' stakes for NRIs to provide more concrete examples or implications."
+        ],
+        "verdict": "pass"
       },
       "actions_taken": [
         "promoted to published"
@@ -56,9 +99,9 @@
       "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "0c20a92a-c87f-4c67-a376-08460722c087",
-      "headline": "The Rule That Ends 'Stay as Long as You Study' Just Cleared Its Last Hurdle",
-      "slug": "dhs-duration-of-status-final-rule-omb-cleared-four-year-cap-f1-indian-20260624",
+      "id": "858335d8-17d7-4b77-a8d1-b0b3b62e506e",
+      "headline": "Ambani Just Filed the Paperwork for India's Biggest-Ever IPO. The Company Is Jio.",
+      "slug": "reliance-jio-platforms-ipo-drhp-largest-india-137-billion-ambani-diaspora-20260624",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -66,8 +109,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "International students walking on a university campus.",
-          "reason": "The photo depicts international students on a campus, which is directly relevant to a story about student visa rules."
+          "what_photo_shows": "A headshot of Mukesh Ambani, chairman of Reliance Industries.",
+          "reason": "The photo clearly shows Mukesh Ambani, who is the central figure of the story about Jio's IPO."
         },
         "inline_image_mismatches": []
       },
@@ -75,19 +118,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image of a person studying in a library is generally relevant to international students, but it doesn't specifically convey the 'immigration rule change' aspect of the headline. It's a bit generic."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article explicitly highlights the impact on Indian students, who form the largest cohort, and discusses their specific pathways (STEM, OPT, H-1B, Day 1 CPT), making it highly relevant and well-tailored for an NRI audience."
+          "quality": 8,
+          "note": "The 'Why the Diaspora Should Care' section directly addresses NRIs and provides relevant reasons for their interest, connecting personal impact with investment opportunities."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a quote from an Indian student or an immigration lawyer specializing in Indian cases to personalize the impact.",
-          "If possible, include a small graphic or timeline illustrating the 'before and after' of the D/S rule change for better clarity."
+          "Consider adding a small infographic or table summarizing key IPO figures (target raise, valuation, share percentage) for quick reader comprehension.",
+          "While the article mentions Meta and Google's stakes, a brief mention of other significant global investors (if any) could further emphasize the 'global scale' point."
         ],
         "verdict": "pass"
       },
