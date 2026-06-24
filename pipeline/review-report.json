@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-24T19:15:20.767593+00:00",
+  "timestamp": "2026-06-24T19:45:13.245301+00:00",
   "mode": "fix",
   "stats": {
     "pass": 1,
-    "flag": 1,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "c0a980eb-cd2c-4b34-aaaa-ae76154a2672",
-      "headline": "Sonali Bendre Stopped Chasing the Paycheck. At 51, She's Chasing Something Harder to Buy.",
-      "slug": "sonali-bendre-paycheck-vs-passion-success-purpose-cancer-survivor-the-happy-pawdcast-raakh-ali-fazal-2026-where-to-watch-diaspora-nri-20260624",
+      "id": "bf63eb18-b0aa-41c4-b342-45f3a30c8163",
+      "headline": "Badminton's Biggest Stage Comes Home: India Hosts the World Championships for the First Time in 17 Years",
+      "slug": "bwf-world-championships-2026-new-delhi-india-host-first-time-17-years-tickets-bookmyshow-indira-gandhi-stadium-sindhu-lakshya-sen-satwik-chirag-diaspora-nri",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Sonali Bendre smiling in a grey top",
-          "reason": "The photo clearly shows Sonali Bendre, who is the subject of the headline and story."
+          "what_photo_shows": "PV Sindhu smiling in traditional Indian attire",
+          "reason": "The photo clearly shows PV Sindhu, who is named in the headline and caption as a key player in the story."
         },
         "inline_image_mismatches": []
       },
@@ -30,9 +30,9 @@
         "overall_score": 8,
         "embed_issues": [
           {
-            "url": "https://www.instagram.com/p/DZea3K7DKXv/",
+            "url": "https://www.instagram.com/p/DZ44vWcNSG1/",
             "problem": "irrelevant",
-            "explanation": "The Instagram reel is from 2018 and features a dance performance by Sonali Bendre. While it's her, it doesn't directly support the article's core theme of her post-cancer philosophy, passion over paycheck, or her current projects. A more recent post related to The Happy Pawdcast, her book club, or her cancer advocacy would be more relevant."
+            "explanation": "The Instagram reel is from January 2022 and features a generic badminton highlight, not directly related to the 2026 BWF World Championships or the specific Indian players mentioned in the surrounding text. It doesn't add specific value to this article."
           }
         ],
         "image_match": {
@@ -42,75 +42,18 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The diaspora angle is explicitly addressed in the final paragraph, connecting her journey to NRIs who grew up watching her films and followed her cancer battle. It feels natural and well-integrated."
+          "note": "The 'Why the Diaspora Should Care' section is well-integrated and provides both emotional and practical reasons for NRI engagement, making it feel natural rather than forced."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the current Instagram embed with a more recent one that directly supports her current endeavors (e.g., The Happy Pawdcast, her book club, or advocacy work) to better reflect the article's theme.",
-          "Consider adding a quote or a brief mention of how her global streaming presence for 'The Broken News 2' or 'Raakh' specifically resonates with the diaspora, beyond just 'work streams globally'."
+          "Replace the irrelevant Instagram embed with a more current or specific social media post related to the 2026 championships, ticket sales, or one of the featured Indian players.",
+          "Consider adding a quote from an NRI fan or a brief anecdote about diaspora badminton leagues to further strengthen the diaspora angle."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DZea3K7DKXv/",
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "44b98be6-9e3f-40c8-b482-09e210ec6306",
-      "headline": "Dhamaal 4 Blinks First: Ajay Devgn's Gang Sprints to July 10 to Clear the Decks for Nolan",
-      "slug": "dhamaal-4-release-date-july-10-2026-trailer-imagicaa-waterfall-ajay-devgn-arshad-warsi-riteish-deshmukh-nolan-odyssey-clash-where-to-watch-diaspora-nri-20260624",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "5b89d98c-af59-4fa3-968f-4a39fbe53730",
-            "headline": "The Dhamaal Boys Are Back, Older, Greyer, and Funnier. After"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Movie poster for Dhamaal 4 featuring Ajay Devgn and cast",
-          "reason": "The photo is a movie poster for 'Dhamaal 4' and the headline is about the movie 'Dhamaal 4' starring Ajay Devgn."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/reel/DZfHMfdoqfb/",
-            "problem": "broken",
-            "explanation": "The Instagram reel URL is malformed or points to a non-existent reel (DZfHMfdoqfb is not a valid reel ID format)."
-          }
-        ],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The diaspora angle is well-integrated and provides practical information for NRI audiences regarding release dates and viewing platforms."
-        },
-        "factual_flags": [
-          "The article mentions 'The Odyssey' as Christopher Nolan's film, but his upcoming film is 'The Anomaly' or 'The Oppenheimer' (if referring to a past film). 'The Odyssey' is not a known Nolan film. This needs correction.",
-          "The Instagram reel URL appears to be malformed or incorrect, which could be a factual error if it was intended to link to a specific, relevant post."
-        ],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Correct the name of Christopher Nolan's film mentioned in the article.",
-          "Verify and correct the Instagram reel URL to ensure it links to relevant content, or remove it if no suitable embed exists."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/DZ44vWcNSG1/",
         "promoted to published"
       ],
       "revised": false,
