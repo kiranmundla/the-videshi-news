@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-24T08:15:27.980148+00:00",
+  "timestamp": "2026-06-24T08:45:24.568639+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 1,
+    "pass": 3,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,18 +11,18 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "9090730a-1b38-4e0b-b5b4-046af61cfb17",
-      "headline": "The Quiet Fee Increases Are Back: Premium Processing Now Costs Indians More at Every Step",
-      "slug": "premium-processing-fee-increase-i907-h1b-i140-opt-indians-2026-20260624",
+      "id": "e8c2f2f3-c75b-41ba-8c20-01775e58cb78",
+      "headline": "India Is Mounting Its Biggest-Ever Security Operation for the Amarnath Pilgrimage. Here's Why This Year Is Different.",
+      "slug": "amarnath-yatra-2026-record-paramilitary-deployment-670-capf-july-3-security-diaspora-20260624",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A U.S. passport, credit cards, and a boarding pass.",
-          "reason": "The photo depicts items associated with travel and financial transactions, which are relevant to immigration and processing fees."
+          "verdict": "MISMATCH",
+          "what_photo_shows": "A bird on a stone wall with green foliage in the background.",
+          "reason": "The photo shows a bird, which is unrelated to the Amarnath Pilgrimage story about security operations and pilgrims."
         },
         "inline_image_mismatches": []
       },
@@ -31,22 +31,67 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image of a person looking at a phone with a blurred background is generic and doesn't strongly convey 'immigration fees' or 'premium processing'. While not entirely mismatched, a more thematic image could be used."
+          "issue": "No image URL or entities provided, so cannot fully assess. Assuming a relevant image would depict the pilgrimage or security forces."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The 'Why the Diaspora Should Care' section explicitly and effectively connects the topic to NRI readers, addressing both direct participation and broader implications for J&K-origin diaspora."
+        },
+        "factual_flags": [
+          "The article states the pilgrimage begins on July 3 and concludes on August 28, making it a 57-day pilgrimage. However, July 3 to August 28 is 57 days inclusive, which means 56 nights. If it's 57 full days, it would be 58 calendar days. This is a minor discrepancy but worth clarifying for precision."
+        ],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "If possible, include a quote from an NRI who has participated in or plans to participate in the Yatra to further personalize the diaspora angle.",
+          "Consider adding a small section on the historical context of security incidents during the Amarnath Yatra to fully explain 'why this year is different' beyond just the current tense environment."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "Cleared mismatched image (A bird on a stone wall with green foliage in the background.)",
+        "held: image mismatch"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "image_mismatch": true,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "77a803e3-77ce-4365-9a06-0fb3cd5eb8e7",
+      "headline": "Becoming an American Is About to Get Much More Expensive. Indian Green-Card Holders Will Feel It First.",
+      "slug": "us-citizenship-naturalization-fee-hike-80-percent-n400-indians-green-card-20260624",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "A man shaking hands at a naturalization ceremony",
+          "reason": "The photo depicts a naturalization ceremony, which is directly relevant to the story about the cost of US citizenship."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article directly addresses how these fee increases disproportionately affect Indian immigrants and NRIs, explaining why they utilize premium processing more than other groups. It also connects to the broader financial burden on the diaspora."
+          "note": "The article explicitly highlights the impact on Indian green-card holders and connects to NRI/diaspora readers naturally and effectively."
         },
-        "factual_flags": [
-          "The article states 'Under a final rule that took effect March 1, 2026'. This date is in the future. Given the context of 'latest premium-processing fee increase' and 'took effect March 1', it's highly likely a typo and should be March 1, 2024."
-        ],
+        "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Correct the typo for the effective date of the new rule (March 1, 2026 should likely be March 1, 2024).",
-          "Consider adding a small call-out box or infographic to visually summarize the old vs. new fees for quick reader reference."
+          "Consider adding a call to action for readers to participate in the 60-day public comment period, perhaps with a link or guidance on how to submit comments.",
+          "While the article mentions 'Indian outlets have pegged the new paper fee at roughly \u20b91.26 lakh,' it might be beneficial to cite a specific outlet or source for this conversion."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
         "promoted to published"
@@ -65,54 +110,9 @@
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
-          "verdict": "MISMATCH",
-          "what_photo_shows": "Two Ukrainian passports",
-          "reason": "The photo shows Ukrainian passports, which are not relevant to a story about Indian immigrants and U.S. green cards."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "No image URL or entities provided, so cannot fully assess. Assuming a relevant image would depict immigration documents, a USCIS building, or people discussing immigration."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article directly addresses a critical concern for Indian NRIs, specifically H-1B and L-1 visa holders, and offers a nuanced interpretation of a significant policy change."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a small 'What to watch for next' section to discuss potential future developments or challenges.",
-          "If possible, include a quote from an actual H-1B holder expressing their initial concerns and relief (anonymized if necessary) to add a human element."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "Cleared mismatched image (Two Ukrainian passports)",
-        "held: image mismatch"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "image_mismatch": true,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "0553f97e-c001-4a93-97ea-fa4d351e27ec",
-      "headline": "The Government Just Told a Court It Wants to Reconsider H-4 Work Permits. 90,000 Indian Spouses Are Listening.",
-      "slug": "h4-ead-dhs-reconsider-save-jobs-usa-indian-spouses-work-permit-20260624",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A professional woman working at a laptop in an office.",
-          "reason": "The photo depicts a professional working, which is directly relevant to the H-4 EAD work permit story."
+          "what_photo_shows": "John Lennon's U.S. green card",
+          "reason": "The photo shows a green card, which is directly relevant to a story about green card policy and immigration."
         },
         "inline_image_mismatches": []
       },
@@ -121,18 +121,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image shows a person looking at a city skyline, which is a bit generic for an article specifically about H-4 work permits and Indian spouses. While it conveys a sense of aspiration or looking towards the future, it doesn't directly represent the topic of immigration documents or legal processes. A more specific image related to documents, a family, or even a symbolic representation of 'waiting' or 'opportunity' might be stronger."
+          "issue": "The image is of John Lennon's Green Card, which is iconic but not directly related to the H-1B/L-1 and Indian diaspora focus of the article. While it's a 'Green Card', a more relevant image might depict the H-1B process or the Indian diaspora in the US."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article directly addresses the impact on Indian spouses and households, explaining why the H-4 EAD program is particularly relevant to the Indian diaspora due to green card backlogs. It clearly connects the policy changes to the lived experiences and financial decisions of NRIs."
+          "note": "The article directly addresses a critical issue for the Indian diaspora, specifically H-1B and L-1 visa holders, and their concerns regarding green card processing. It's highly relevant and naturally integrated."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a quote from an affected H-4 spouse or an immigration lawyer to personalize the impact and provide expert commentary.",
-          "While the article mentions 'immigration lawyers are already urging affected families,' it could be strengthened by suggesting where readers can find more information or resources, e.g., specific organizations or legal aid groups."
+          "Consider adding a brief introductory sentence explaining the significance of the Green Card memo for the Indian diaspora, even before diving into the 'What the Memo Says' section, to immediately hook the target audience.",
+          "Explore if there are any real-world examples or anecdotes (even anonymized) of Indian H-1B holders who were initially panicked but then reassured by the clarification, to add a human element."
         ],
         "verdict": "pass"
       },
