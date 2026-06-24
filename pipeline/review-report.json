@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-24T19:45:13.245301+00:00",
+  "timestamp": "2026-06-24T20:15:23.491408+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
+    "pass": 3,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "bf63eb18-b0aa-41c4-b342-45f3a30c8163",
-      "headline": "Badminton's Biggest Stage Comes Home: India Hosts the World Championships for the First Time in 17 Years",
-      "slug": "bwf-world-championships-2026-new-delhi-india-host-first-time-17-years-tickets-bookmyshow-indira-gandhi-stadium-sindhu-lakshya-sen-satwik-chirag-diaspora-nri",
+      "id": "c0f9de26-6a26-4372-9305-fe2b44190901",
+      "headline": "World Cup Fever Meets a 14-Month Visa Wait. India Gets a Fast Lane \u2014 With Strings",
+      "slug": "fifa-pass-world-cup-visa-india-14-month-wait-750-fast-track-b1-b2-20260624",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,39 +21,118 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "PV Sindhu smiling in traditional Indian attire",
-          "reason": "The photo clearly shows PV Sindhu, who is named in the headline and caption as a key player in the story."
+          "what_photo_shows": "An open passport displaying travel stamps.",
+          "reason": "The photo of a passport with travel stamps is highly relevant to a story about visa waits and immigration."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 8,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "Strong and natural connection to NRI/diaspora readers, addressing a common pain point (family visas) and offering practical advice."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a small section on alternative visa options or general tips for strengthening a B1/B2 application, beyond just the fast lanes.",
+          "If possible, include a quote from an NRI or an immigration expert to add a human element or further authority to the analysis."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "5a42001f-d008-4c91-a5a3-d75f949aed67",
+      "headline": "Hundreds of Doctors Are Stuck at the Border of a July 30 Deadline. Many Are Indian",
+      "slug": "j1-waiver-physician-cliff-july-30-h1b-fee-indian-doctors-rural-20260624",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Doctors and nurses interacting in a hospital hallway",
+          "reason": "The photo depicts medical professionals, which is relevant to a story about doctors."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/p/DZ44vWcNSG1/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram reel is from January 2022 and features a generic badminton highlight, not directly related to the 2026 BWF World Championships or the specific Indian players mentioned in the surrounding text. It doesn't add specific value to this article."
-          }
-        ],
+        "embed_issues": [],
         "image_match": {
-          "score": 9,
+          "score": 8,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The 'Why the Diaspora Should Care' section is well-integrated and provides both emotional and practical reasons for NRI engagement, making it feel natural rather than forced."
+          "quality": 9,
+          "note": "The article explicitly connects the issue to Indian doctors and the Indian diaspora, highlighting their significant role in the US healthcare system and the personal impact of the policy."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant Instagram embed with a more current or specific social media post related to the 2026 championships, ticket sales, or one of the featured Indian players.",
-          "Consider adding a quote from an NRI fan or a brief anecdote about diaspora badminton leagues to further strengthen the diaspora angle."
+          "Consider adding a quote from an affected Indian doctor to personalize the story further.",
+          "If possible, include a link to the AAPI statement or relevant legal documents for readers who want to delve deeper into the legal seesaw."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DZ44vWcNSG1/",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "61224350-cecf-450f-be66-3d989ace3986",
+      "headline": "Washington Just Opened a New Front in the Asylum Crackdown: Fining the Lawyers",
+      "slug": "ice-dhs-fine-immigration-attorney-asylum-indian-nationals-doddamani-20260624",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "A judge signing documents with a gavel on the desk.",
+          "reason": "The photo depicts a legal setting with a judge and documents, which is relevant to a story about fining immigration lawyers and asylum claims."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 8,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article explicitly connects the issue to Indian nationals and the broader Indian diaspora, explaining the implications for NRIs."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a quote from an immigration lawyer (not involved in the case) to provide an independent legal perspective on the 'chilling effect' or the 'blurred line' argument.",
+          "If possible, include a brief update on the status of the Percival memo or any subsequent actions taken by DHS/ICE related to fining attorneys."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
         "promoted to published"
       ],
       "revised": false,
