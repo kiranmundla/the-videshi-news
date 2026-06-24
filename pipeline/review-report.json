@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-24T13:15:27.267379+00:00",
+  "timestamp": "2026-06-24T13:45:10.742458+00:00",
   "mode": "fix",
   "stats": {
     "pass": 1,
-    "flag": 1,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "5600a751-6e07-488b-8276-8ce467bc751d",
-      "headline": "Couture, Crystals and a Whole Lot of Attitude: Inside Bollywood Hungama's Style Icons Summit 2026",
-      "slug": "bollywood-hungama-style-icons-summit-awards-2026-vaani-kapoor-nawazuddin-siddiqui-mithila-palkar-pooja-hegde-tamannaah-bhatia-red-carpet-panels-where-to-watch-diaspora-nri-20260624",
+      "id": "ca258da1-d2fb-4332-a81b-ae52a7db3343",
+      "headline": "India Just Hosted Asia's Biggest Fencing Event for the First Time. Its Brightest Star Left With a Suspension.",
+      "slug": "india-hosts-asian-senior-fencing-championships-first-time-new-delhi-bhavani-devi-black-card-suspension-2026-diaspora",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,65 +21,14 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Vaani Kapoor in a black strapless dress at an event.",
-          "reason": "The photo shows Vaani Kapoor, who is explicitly mentioned in the subheadline as attending the event."
+          "what_photo_shows": "Bhavani Devi, India's first Olympic fencer, in competition.",
+          "reason": "The photo clearly shows Bhavani Devi, who is the central figure of the story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 7,
+        "overall_score": 8,
         "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image features Vaani Kapoor, who is mentioned in the article, but the specific event in the image (Elle Beauty Awards 2023) does not match the article's subject (Bollywood Hungama Style Icons Summit 2026)."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article explicitly connects the event to the diaspora, highlighting how content is made available for NRIs and describing it as an 'annual ritual for the fashion-obsessed desi abroad'."
-        },
-        "factual_flags": [
-          "The article refers to 'Bollywood Hungama Style Icons Summit and Awards 2026' and states it 'rolled out across June 24'. This implies the event has already happened in 2026, which is in the future. This is a significant chronological inconsistency."
-        ],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Correct the year of the event (2026) to reflect a past or current event, as the article describes it as having already occurred.",
-          "Consider replacing the hero image with one directly from a Bollywood Hungama Style Icons event, if available, to improve topical relevance."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "cccefc32-392d-47e9-a205-f91363fd8445",
-      "headline": "16 Celebs, One Underground Bunker, Zero Loyalty: Kunal Kemmu's 'Alliance' Is Prime Video's Most Ruthless Game Yet",
-      "slug": "alliance-prime-video-reality-show-kunal-kemmu-host-16-celebrities-ravi-kishan-mini-mathur-nikhil-chinapa-banijay-asia-june-26-240-countries-where-to-watch-diaspora-nri-20260624",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Kunal Kemmu standing in front of a movie poster.",
-          "reason": "The photo clearly shows Kunal Kemmu, who is the named subject of the headline and story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/reel/DZ6xv-wlLor/",
-            "problem": "irrelevant",
-            "explanation": "This Instagram reel is from 2017 and features a random person, not related to the 'Alliance' show, Kunal Kemmu, or any of the mentioned celebrities. It seems like a placeholder or an error."
-          }
-        ],
         "image_match": {
           "score": 9,
           "issue": null
@@ -87,18 +36,17 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article explicitly mentions the simultaneous global release and its significance for NRI viewers, making the diaspora angle natural and well-integrated."
+          "note": "The diaspora angle is well-integrated and provides a unique perspective on the sport's relevance to NRIs, especially regarding its role in Western education and athletics."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant Instagram embed with a relevant social media post about 'Alliance' or one of its cast members to enhance reader engagement.",
-          "Consider adding a sentence or two about the global appeal of Indian reality TV formats, especially for the diaspora, to further strengthen the NRI connection."
+          "Consider adding a quote from an Indian diaspora fencer or parent to further strengthen the 'Why It Matters to the Diaspora' section.",
+          "If possible, include a small infographic or table summarizing India's overall standings or medal count at the event for quick reader consumption."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/reel/DZ6xv-wlLor/",
         "promoted to published"
       ],
       "revised": false,
