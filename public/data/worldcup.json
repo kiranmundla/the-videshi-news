@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-06-23T23:59:16Z",
-  "stage": "Group Stage — 46 of 72 matches played",
+  "last_updated": "2026-06-24T01:58:45Z",
+  "stage": "Group Stage — 47 of 72 matches played",
   "hosts": "USA, Mexico & Canada",
   "dates": {
     "start": "2026-06-11",
@@ -638,29 +638,29 @@
         "pts": 4
       },
       {
-        "name": "Panama",
-        "code": "PAN",
-        "flag": "🇵🇦",
-        "rank": 34,
-        "p": 1,
-        "w": 0,
-        "d": 0,
-        "l": 1,
-        "gf": 0,
-        "ga": 1,
-        "pts": 0
-      },
-      {
         "name": "Croatia",
         "code": "CRO",
         "flag": "🇭🇷",
         "rank": 11,
-        "p": 1,
-        "w": 0,
+        "p": 2,
+        "w": 1,
         "d": 0,
         "l": 1,
-        "gf": 2,
+        "gf": 3,
         "ga": 4,
+        "pts": 3
+      },
+      {
+        "name": "Panama",
+        "code": "PAN",
+        "flag": "🇵🇦",
+        "rank": 34,
+        "p": 2,
+        "w": 0,
+        "d": 0,
+        "l": 2,
+        "gf": 0,
+        "ga": 2,
         "pts": 0
       }
     ]
@@ -1375,8 +1375,8 @@
       "away": "Croatia",
       "venue": "BMO Field",
       "city": "Toronto",
-      "status": "scheduled",
-      "score": null,
+      "status": "FT",
+      "score": "0-1",
       "home_code": "PAN",
       "away_code": "CRO"
     },
@@ -1785,6 +1785,20 @@
     }
   },
   "highlights": [
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DZ8sqXqCnXn",
+      "account": "@fifaworldcup",
+      "caption": "🇵🇦 0-1 🇭🇷 — Croatia edge Panama in Toronto on Modrić's 200th cap",
+      "date": "2026-06-23"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DZ8waGBCH-9/",
+      "account": "@fifaworldcup",
+      "caption": "Croatia walk away with +3 points 👏 — Croatia 1-0 Panama #FIFAWorldCup",
+      "date": "2026-06-23"
+    },
     {
       "platform": "instagram",
       "url": "https://www.instagram.com/p/DZ8dKvNCH58/",
