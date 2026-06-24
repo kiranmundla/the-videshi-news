@@ -1,43 +1,544 @@
 {
-  "timestamp": "2026-06-24T05:45:13.571024+00:00",
+  "timestamp": "2026-06-24T06:16:53.954121+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
-    "flag": 0,
+    "pass": 10,
+    "flag": 2,
     "fail": 0,
     "error": 0
   },
-  "revisions": 0,
+  "revisions": 1,
   "unpublished": 0,
   "articles": [
     {
-      "id": "277df04a-b6fe-47a5-9a11-287679b5ae7e",
-      "headline": "A Khalistan Flag Crashed Diljit's Chase Center Finale. He Didn't Miss a Beat.",
-      "slug": "diljit-dosanjh-san-francisco-chase-center-aura-tour-khalistan-flag-stage-invasion-protester-arrested-sikhs-for-justice-where-to-watch-diaspora-nri-20260624",
+      "id": "9da44335-73a4-478e-a179-9c76f756afb0",
+      "headline": "The Taste of Home Used to Arrive in a Suitcase. Now It Has a Shelf in the Duty-Free Hall.",
+      "slug": "indian-aisle-canada-duty-free-diaspora-taste-mainstream-retail-gwns-20260624",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "An airport duty-free retail hall with escalators and people.",
+          "reason": "The photo clearly depicts an airport duty-free hall, which is directly relevant to the story about premium Indian beverages entering duty-free retail."
+        },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 8,
+          "score": 7,
+          "issue": "The image is a generic photo of an airport duty-free shop, which matches the article's topic. However, it doesn't specifically show Indian products or brands, which would enhance the relevance."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article is explicitly about the Indian diaspora's role in creating demand for Indian products and the symbolic significance of this shift for NRIs. It's central to the narrative."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a quote from an actual Indo-Canadian consumer or a small anecdote to further personalize the diaspora's perspective.",
+          "If possible, include a specific example of one of the 'premium Indian beverages' being sold to give readers a concrete idea of the products."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "52e86faa-ce8c-4f22-b1a7-c9f65382fd08",
+      "headline": "A Stretch of the Jersey City Waterfront Vanished Under Colored Powder. For Thousands, It Was the Only Holi They Know.",
+      "slug": "surati-holi-hai-jersey-city-festival-colors-diaspora-community-buildin-20260624",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "People covered in colored powder at a Holi festival",
+          "reason": "The photo clearly depicts a Holi celebration with colored powder, which directly matches the story's topic."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "Strong and natural connection to the NRI/diaspora experience, particularly the Punjabi community in the Bay Area and the broader Khalistan debate within the diaspora."
+          "note": "The article directly addresses the diaspora experience of celebrating Holi, its evolution, and its significance for second-generation NRIs."
+        },
+        "factual_flags": [
+          "Surati Holi Hai 2026 is mentioned, but the article describes a past event ('On a Saturday in June'). This could be a typo and should likely be 2024 or 2025 if written in 2024."
+        ],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Correct the year '2026' for Surati Holi Hai to reflect the actual event year described.",
+          "Consider adding a quote from a second-generation attendee to further emphasize the 'only Holi they know' aspect."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "0be54a36-341f-4ab3-90ad-918d6a119f0e",
+      "headline": "Ottawa and Delhi Barely Spoke for Two Years. This Week, 100 Companies Flew In to Change That.",
+      "slug": "piyush-goyal-canada-business-delegation-cepa-indo-canadian-diaspora-th-20260624",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Indian Commerce Minister Piyush Goyal smiling",
+          "reason": "The photo shows the named person who is central to the story's topic."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article strongly connects to the NRI/diaspora experience, particularly for Indo-Canadians, and it feels natural and central to the narrative."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a sentence or two about the historical context of the Khalistan movement for readers less familiar with it, perhaps as a brief parenthetical or a linked explainer.",
-          "If possible, include a link to one of the videos mentioned (e.g., the SF incident or his Instagram statement) to enhance reader engagement, ensuring it's a relevant and working embed."
+          "Consider adding a small sidebar or infographic to visualize the $8.5 billion trade figure vs. the $50 billion target, and perhaps key sectors involved.",
+          "While the article mentions 'Sikh-separatist politics,' a brief, neutral sentence explaining the context of the 2023 killing (without taking sides) might be helpful for readers less familiar with the specific incident."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "fa8c84b1-8cb5-4e6e-9c41-7c3392f2df3b",
+      "headline": "Tata Motors Bets on a Five-Year Turnaround \u2014 \u20b96 Lakh Crore in Revenue, and a Promise to Clear Its Debt",
+      "slug": "tata-motors-pv-five-year-roadmap-six-lakh-crore-revenue-net-debt-free-fy29-jlr-fy27-guidance-nri-investor-20260624-0600",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "A Range Rover car, made by Tata Motors' Jaguar Land Rover unit.",
+          "reason": "The photo shows a Range Rover, which is explicitly mentioned in the caption as part of Tata Motors' turnaround plan, making it directly relevant to the story about Tata Motors' financial targets."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article mentions 'nri-investor' in the image URL and the company's expansion 'selectively abroad', which provides a natural, albeit subtle, connection for NRI readers interested in investing in Indian companies or tracking their global presence."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a small section or a concluding paragraph that explicitly addresses the implications for NRI investors, perhaps comparing Tata Motors' performance to other global auto giants or Indian blue-chip stocks.",
+          "Ensure the image description or alt text is fully optimized for SEO, including keywords like 'NRI investor' if relevant to the target audience."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "c405c194-1a1b-4fbd-9234-dbd5e6ea0cb6",
+      "headline": "It Isn't Just the Calories: Ultra-Processed Diets Are Now Linked to Falling Male Fertility",
+      "slug": "ultra-processed-food-male-fertility-sperm-quality-cell-metabolism-controlled-feeding-study-diaspora-20260624-0600",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "potato chips in a bag",
+          "reason": "Potato chips are a common example of ultra-processed food, which is the subject of the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The image URL includes 'diaspora' and the topic of health/fertility is universally relevant, including for NRIs who may have varying access to traditional Indian diets vs. processed foods abroad."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a small section or a call-out box on how this research might specifically impact NRIs, perhaps touching on dietary shifts when moving abroad or the availability of traditional vs. processed foods in different countries.",
+          "Ensure the image entities are populated for better SEO and content matching."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "57fd2dae-15d7-4eaf-a209-6a64b33fb1a9",
+      "headline": "A Simple Walk With Poles Eased Depression in Five Weeks, a New Trial Finds",
+      "slug": "nordic-walking-rapid-antidepressant-effect-five-weeks-randomized-trial-journal-affective-disorders-diaspora-20260624-0600",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MISMATCH",
+          "what_photo_shows": "The name F. Scott Fitzgerald on a blue book cover.",
+          "reason": "The photo shows the name of a famous author, which is unrelated to a story about Nordic walking and depression."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 6,
+        "embed_issues": [],
+        "image_match": {
+          "score": 1,
+          "issue": "No image URL or entities provided, making it impossible to assess the match. This is a critical missing piece for an editorial review."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 5,
+          "note": "The article attempts to connect to the diaspora, but the provided text cuts off mid-sentence in the 'Why It Matters for the Diaspora' section. The quality cannot be fully assessed without the complete section, but the intent is there. It feels a bit tacked on at the end rather than integrated throughout."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Complete the 'Why It Matters for the Diaspora' section to fully develop the connection for NRI readers and ensure it's not just a superficial addition.",
+          "Provide the hero image URL and entities for proper review of image relevance and quality."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Cleared mismatched image (The name F. Scott Fitzgerald on a blue book cover.)",
+        "Revised by gemini-2.5-flash (849\u2192921 words)"
+      ],
+      "revised": true,
+      "unpublished": false,
+      "image_mismatch": true,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "25f195f7-81a1-4322-83d8-2e8066eabe01",
+      "headline": "Nonstop Fares Home to India Are Up 22% \u2014 and the Layover You've Been Avoiding Is Suddenly the Smart Buy",
+      "slug": "india-flight-fares-2026-nonstop-22-percent-multistop-fuel-surcharge-nr-20260624",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "ff2d2c21-78e9-4675-b85b-011e14ba6cd2",
+            "headline": "Diwali Flights Home Go on Sale Now \u2014 and the DGCA Is Adding "
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "An airport departure board displaying flight information.",
+          "reason": "The photo of an airport departure board is highly relevant to a story about air travel fares and booking trips."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article directly addresses NRIs and their travel habits, making it highly relevant."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a small 'key takeaways' section for quick scanning.",
+          "Perhaps include a quote from an NRI traveler to personalize the impact of fare increases."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "125ca5ba-55d0-4fae-8abe-5dd69a365909",
+      "headline": "The OCI Card Just Went Fully Digital \u2014 and the New Fees and Penalty Clock Reward the Organised",
+      "slug": "india-e-oci-digital-card-2026-new-fees-eligibility-nri-portal-20260624",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "An Indian passport cover",
+          "reason": "The story discusses OCI cards and passport updates, making an Indian passport a relevant visual."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image is of an Indian passport, which is related to travel and Indian identity, but not specifically an OCI card. It's close enough given the topic."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The entire article is centered on a document crucial to the Indian diaspora, directly addressing their concerns and changes impacting them."
+        },
+        "factual_flags": [
+          "The article mentions 'Citizenship (Amendment) Rules, 2026' which seems like a typo, as it's likely referring to a past or current year, not a future one. This should be verified."
+        ],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Verify and correct the year mentioned for the 'Citizenship (Amendment) Rules, 2026'.",
+          "Consider adding a small section on how to access or navigate the new digital portal, perhaps with a screenshot or direct link."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "8aa377f9-55c2-410a-8620-155512fe96a2",
+      "headline": "Air India Cut Its Chicago, Newark and Mumbai\u2013JFK Nonstops for the Summer \u2014 Here's the US Map That's Left",
+      "slug": "air-india-summer-2026-us-canada-route-cuts-chicago-newark-jfk-nri-20260624",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "An Air India Boeing 777-300ER aircraft on a tarmac.",
+          "reason": "The photo shows an Air India aircraft, which is directly relevant to a story about Air India's flight changes."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article directly addresses the impact on Indian Americans and NRIs, offering practical advice for summer travel."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a small map graphic to visually represent the 'US Map That's Left' as mentioned in the headline.",
+          "Briefly mention if other airlines (e.g., United, Emirates) have also adjusted their India-US routes due to similar issues, for a broader context."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "65e0cae3-11b6-41d2-b156-ed81c4efe137",
+      "headline": "India Just Shipped $2.4 Billion of Phones to America in a Single Month. Apple Is Carrying Almost All of It.",
+      "slug": "india-smartphone-exports-us-surge-47-percent-apple-trump-cook-make-in-20260624",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Electronics assembly line components for smartphone exports",
+          "reason": "The photo shows electronic components, which are relevant to smartphone exports and manufacturing."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image shows a person using a smartphone, which is relevant to the topic of phone exports. However, it's a generic stock photo and doesn't specifically depict manufacturing or the India-US trade angle."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The 'Why the diaspora is in the middle of this' section explicitly and effectively connects the article to NRI/diaspora readers, highlighting their roles as consumers, stakeholders, and potential beneficiaries of new opportunities. It feels natural and well-integrated."
+        },
+        "factual_flags": [
+          "In the 'Five factories and counting' section, it states 'In April 2025, US-bound iPhone shipments from India rose 76%'. Given the article discusses April figures in the present context, 'April 2025' seems like a typo and should likely be 'April 2024' or 'April of the current year' to align with the rest of the article's timeline."
+        ],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Correct the typo 'April 2025' to 'April 2024' or similar to maintain chronological consistency.",
+          "Consider adding a quote from an NRI or an expert on diaspora economics to further strengthen the 'diaspora angle' section, making it more personal and authoritative."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "6325769d-1e90-4880-9ef3-ce89417cd7a1",
+      "headline": "Micron Is About to Post a 1,000% Profit Jump. The Indian-Born CEO Behind It Is Sitting on a Memory Shortage With No End in Sight.",
+      "slug": "micron-sanjay-mehrotra-q3-earnings-hbm-shortage-gujarat-fab-nri-invest-20260624",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "6992ef2e-36a6-4b35-926b-16ebb78529f3",
+            "headline": "Micron Reports Wednesday. For Sanjay Mehrotra, the Hard Part"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "A smiling man in a suit and tie.",
+          "reason": "The photo shows Sanjay Mehrotra, the CEO of Micron, who is the subject of the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The diaspora angle is strong and naturally integrated, focusing on the Indian-born CEO, investment opportunities for NRIs, and Micron's facility in Gujarat as a key development for India's semiconductor ambitions."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a small infographic or chart to visualize Micron's profit jump or revenue growth, as these numbers are central to the article.",
+          "Perhaps include a brief mention of the specific type of memory (e.g., HBM3, HBM3E) if relevant and not overly technical, to add more depth for tech-savvy readers."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "0a87a59c-d825-419b-95fb-e8ff2ef8b3a8",
+      "headline": "Satya Nadella Spent a Decade Cheering AI On. Now He Wants the Industry to Slow Its Own Hype.",
+      "slug": "satya-nadella-microsoft-ai-concentration-deepseek-azure-warning-nri-en-20260624",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "293a4972-4842-4a04-8d09-c1379f45585e",
+            "headline": "Satya Nadella Helped Build the AI Arms Race. Now He Says It'"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "A headshot of Satya Nadella, Microsoft's chief executive.",
+          "reason": "The photo clearly shows Satya Nadella, who is the named subject of the headline and caption."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The diaspora angle is well-integrated and relevant, connecting Nadella's statements to the career implications for Indian and Indian-American engineers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a concluding sentence or two to the 'What's next' section to provide a more definitive wrap-up.",
+          "Ensure all financial figures are double-checked for accuracy, especially the $190 billion capital spending figure and the $1 trillion market value shed, as these are significant claims."
         ],
         "verdict": "pass"
       },
