@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-24T22:45:29.111962+00:00",
+  "timestamp": "2026-06-24T23:15:16.956051+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
-    "flag": 1,
+    "pass": 2,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,18 +11,27 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "8554381d-883d-4481-a49d-ecb205961f09",
-      "headline": "Neeraj Chopra Is Back \u2014 a Rusty Fourth in Doha, but a Glasgow Ticket in Hand",
-      "slug": "neeraj-chopra-doha-diamond-league-2026-comeback-fourth-85-69m-back-injury-pathirage-commonwealth-games-qualify-diaspora-nri",
+      "id": "cfe25a00-83cf-4d0d-b73f-ac9da6f980f4",
+      "headline": "Twenty-Two Years Later, the 'Mohra' Couple Is Back. The Whole 'Welcome To The Jungle' Set Stood Up and Clapped.",
+      "slug": "welcome-to-the-jungle-akshay-kumar-raveena-tandon-reunion-22-years-mohra-ahmed-khan-suniel-shetty-june-26-2026-box-office-where-to-watch-diaspora-nri-20260624",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "0d0e095d-24bc-44fd-ad62-9d0185a27881",
+            "headline": "Akshay Kumar Opens the Jungle. After 19 Years, 'Welcome' Ret"
+          },
+          {
+            "article_id": "0d67b566-c831-4c27-9734-18d8465fb619",
+            "headline": "The Censor Board Took Its Scissors to Welcome To The Jungle."
+          }
+        ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Neeraj Chopra wearing a suit and an Olympic gold medal.",
-          "reason": "The photo clearly shows Neeraj Chopra, who is the subject of the story."
+          "what_photo_shows": "Official poster for the movie 'Welcome To The Jungle'",
+          "reason": "The photo shows the poster for 'Welcome To The Jungle', which is the movie discussed in the headline and subheadline."
         },
         "inline_image_mismatches": []
       },
@@ -30,9 +39,9 @@
         "overall_score": 7,
         "embed_issues": [
           {
-            "url": "https://www.instagram.com/reel/DZy_z04PS-T/",
-            "problem": "broken",
-            "explanation": "The Instagram reel URL is malformed or points to a non-existent post. It should be a valid, accessible link."
+            "url": "https://www.instagram.com/reel/DZ9RPSLtDC4/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel URL is malformed and points to a non-existent or private reel. Even if it were valid, the 'DZ9RPSLtDC4' part suggests a very old or random reel ID, unlikely to be relevant to a current movie release or the Mohra couple reunion."
           }
         ],
         "image_match": {
@@ -41,21 +50,19 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The diaspora angle is well-integrated and feels natural, especially in the concluding section. It highlights the athlete's significance to NRIs without being forced."
+          "quality": 7,
+          "note": "The article discusses a major Bollywood film release and the reunion of iconic stars, which is highly relevant and of interest to the Indian diaspora. The 'worldwide' release mention also connects to NRIs."
         },
-        "factual_flags": [
-          "The article states Chopra had not competed since the '2025 World Athletics Championships in Tokyo last September'. This seems to be a typo, as 2025 is in the future. It should likely be 2024 or a different year/event.",
-          "The article mentions Chopra finished second in Doha in '2024, and second again in 2025 with that 90.23m national record'. This contradicts the earlier statement that he set the 90.23m record 'a year ago' (from June 19, which would be 2023) and that he hadn't competed since September. The years for his Doha performances seem inconsistent and potentially incorrect."
-        ],
+        "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Verify and correct the years mentioned for Neeraj Chopra's past competitions and national record setting to ensure factual accuracy and consistency.",
-          "Replace the broken Instagram embed with a valid and relevant social media post from Neeraj Chopra or a reputable athletics news source about his comeback or the Doha event."
+          "Replace the irrelevant/broken Instagram embed with a relevant social media post (e.g., official trailer, cast announcement, or a post about the reunion) or remove it entirely.",
+          "Consider adding a brief explanation of 'masala' for readers less familiar with Bollywood terminology, or rephrase to avoid jargon."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DZ9RPSLtDC4/",
         "promoted to published"
       ],
       "revised": false,
@@ -63,18 +70,23 @@
       "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "2bd3d3ef-7bdd-4a76-8fa7-5d7b6172d33d",
-      "headline": "Canada Is About to Spend Half a Trillion on Defence. It Wants India to Build a Lot of It.",
-      "slug": "canada-india-defence-aerospace-partnership-cooter-hockey-stick-5-percent-gdp-gsoia-diaspora-20260624",
+      "id": "6317d2ca-d43b-4695-96a9-fbb57489fdd9",
+      "headline": "He Took His Own Show Off the Internet to Survive. Now Samay Raina's 'India's Got Latent' Is a Netflix Original.",
+      "slug": "india-got-latent-season-2-samay-raina-netflix-youtube-simulcast-alia-bhatt-sharvari-alpha-comeback-controversy-where-to-watch-diaspora-nri-20260624",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "1d8e4dca-50a2-4edf-ad14-18105a319a90",
+            "headline": "India Tried to Cancel 'India's Got Latent'. It Came Back on "
+          }
+        ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A Royal Canadian Air Force CF-18 Hornet fighter jet.",
-          "reason": "The photo shows a Canadian military aircraft, which is directly relevant to a story about Canada's defence spending and military budget."
+          "what_photo_shows": "Comedian Samay Raina, creator and host of India's Got Latent",
+          "reason": "The photo shows the named person, Samay Raina, who is the subject of the story."
         },
         "inline_image_mismatches": []
       },
@@ -88,94 +100,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The 'Why It Matters for the Diaspora' section is well-integrated and explains the relevance clearly, connecting it to jobs and community sentiment."
+          "note": "The article explicitly connects the Netflix distribution to NRI/diaspora accessibility, which is a strong and natural angle."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a quote from an Indo-Canadian business leader or community member to further ground the diaspora angle.",
-          "The article ends abruptly with 'Indian t'. Ensure the full text is included."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "f5d2d2e5-602a-4a66-a0e7-f3d3c5d94580",
-      "headline": "The Supreme Court Just Made the Green Card a Little Less Secure at the Border",
-      "slug": "supreme-court-blanche-lau-green-card-reentry-moral-turpitude-thomas-6-3-diaspora-20260624",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "The United States Supreme Court building with an American flag.",
-          "reason": "The photo clearly shows the Supreme Court, which is the subject of the story's ruling."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The 'Why It Matters for the Diaspora' section directly and effectively connects the legal ruling to Indian green-card holders, making it highly relevant."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a brief explanation of what constitutes a 'crime involving moral turpitude' for readers unfamiliar with the legal term.",
-          "Ensure the article concludes with a strong summary or call to action, as it currently ends mid-sentence."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "ae9fd053-774f-490d-a53a-9537d6cd8989",
-      "headline": "Three Years of Diet and Exercise Paid Off for Two Decades \u2014 Far Beyond Diabetes, a New Study Finds",
-      "slug": "lifestyle-program-multimorbidity-21-percent-lower-risk-dpp-prediabetes-20-year-jama-study-diaspora-20260624-2200",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The 'Why It Matters for the Diaspora' section directly addresses the relevance to South Asians and their specific health risks, making it a natural and strong connection."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a specific call to action or resource for NRIs related to diabetes prevention programs or healthy lifestyle guidance.",
-          "Ensure the hero image (if one were provided) visually represents 'diet and exercise' or 'preventive health' in a way that resonates with the diaspora audience."
+          "Expand on the specific nature of the controversy that led to the show being pulled, as it's central to the redemption arc.",
+          "The article ends abruptly. Ensure a proper conclusion is added."
         ],
         "verdict": "pass"
       },
