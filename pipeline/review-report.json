@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-24T14:15:44.728476+00:00",
+  "timestamp": "2026-06-24T14:45:22.880257+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 5,
+    "pass": 1,
     "flag": 1,
     "fail": 0,
     "error": 0
@@ -11,9 +11,54 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "9e6de235-69aa-4e81-b233-4d32b7057774",
-      "headline": "Vietnam Is Weighing Visa-Free Entry for Indians \u2014 but the Phu Quoc Loophole Just Got Smaller",
-      "slug": "vietnam-visa-free-indians-phu-quoc-evisa-southeast-asia-nri-20260624",
+      "id": "a3cc2dcf-c825-4ec5-9ff3-79316da5d8db",
+      "headline": "India Is Quietly Telling the Gulf to Pay Its 5 Million Workers More. It's a Billion-Dollar Bet With a Catch.",
+      "slug": "india-pushes-gulf-states-higher-minimum-wages-indian-workers-gcc-remittances-20260624",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MISMATCH",
+          "what_photo_shows": "A world map with various countries colored with stripes and a legend",
+          "reason": "The photo shows a world map with a legend of economic events, which does not depict construction in the Gulf or Indian workers."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "No image URL or entities provided, so cannot fully assess. Assuming a relevant image would depict Gulf region, Indian workers, or currency/remittances."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article directly addresses a policy impacting millions of Indian nationals in the Gulf, a core segment of the diaspora, and explicitly connects it to NRI/diaspora readers in the 'Why It Matters for the Diaspora' section."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a small sidebar or infographic to visually represent the flow of remittances from the Gulf to India over time, or the breakdown of Indian workers by GCC country.",
+          "If possible, include a direct quote from an Indian worker in the Gulf to personalize the impact of these wage changes."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "Cleared mismatched image (A world map with various countries colored with stripes and a legend)",
+        "held: image mismatch"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "image_mismatch": true,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "45e97c0c-fdac-4f16-94e8-cfee8c07ef5c",
+      "headline": "On July 15, an Indian Professional Posted to Britain Stops Paying Twice for the Same Pension",
+      "slug": "india-uk-fta-ceta-july-15-double-contribution-convention-diaspora-professionals-20260624",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +66,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Cruise ships in Ha Long Bay, Vietnam",
-          "reason": "The photo shows a popular tourist destination in Vietnam, which is relevant to a story about Vietnam's tourism and visa policies for Indian travelers."
+          "what_photo_shows": "London skyline with trees and buildings in foreground",
+          "reason": "The photo shows the City of London, which is relevant to a story about an India-UK trade pact and professional mobility."
         },
         "inline_image_mismatches": []
       },
@@ -36,232 +81,17 @@
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article explicitly addresses NRI/diaspora travel patterns and implications, particularly regarding connecting flights and mixed-citizenship families."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a small 'key takeaways' or 'what to do now' section for NRIs at the end, summarizing the current best practice (e-visa) and what to watch for.",
-          "While the article is well-structured, a brief mention of the specific 'tourism minister' or 'prime minister' by name, if easily available, could add a touch more journalistic detail."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "bb0cb979-eb91-46f6-9209-ae8d4ade6d00",
-      "headline": "Hilton's Budget Brand Just Landed in India \u2014 and It Solves the NRI's Most Annoying Travel Problem",
-      "slug": "spark-by-hilton-india-budget-hotels-bengaluru-goa-nri-honors-20260624",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A scenic view of a beach and coastline in Goa.",
-          "reason": "The photo shows a beach in Goa, which is explicitly mentioned in the subheadline as a location where Spark by Hilton hotels are opening."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 8,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively and naturally connects the new hotel brand to the specific travel needs and pain points of the Indian diaspora, making it highly relevant for NRI readers."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a small section or a call-out box with estimated price ranges for Spark by Hilton rooms in India, if available, to give readers a more concrete idea of the 'budget' aspect.",
-          "While the article mentions Bengaluru and Goa, briefly touching upon other potential target cities for the 150 hotels (e.g., tier-2 cities often visited by NRIs) could add further value."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "dcc62b9c-c547-4ee4-8563-296a2c4bceb8",
-      "headline": "Marriott Made Its 10,000th Hotel a Tiger Resort in Rajasthan \u2014 and Fixed the Weakest Link in the Diaspora's India Trip",
-      "slug": "jw-marriott-ranthambore-tiger-luxury-wildlife-rajasthan-nri-20260624",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A Bengal tiger in a rocky, grassy environment",
-          "reason": "The story is about a tiger resort in Ranthambore, and the photo shows a Bengal tiger, which is directly relevant."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the new hotel opening to the specific travel patterns and needs of the Indian diaspora, particularly regarding multi-generational trips and bridging the gap in luxury wildlife lodging."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a small section or a call-out box with practical booking tips or a link to the hotel's official site for readers interested in planning a trip.",
-          "While the article mentions other chains, a brief comparison of pricing or unique offerings from competitors in the 'wildlife luxury' space could add further value."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "775e1b34-40dd-49a1-9a55-407ce15d9bb1",
-      "headline": "Jio Files for India's Biggest-Ever IPO \u2014 but This Time, the Marquee Backers Don't Get to Cash Out",
-      "slug": "jio-platforms-drhp-india-biggest-ipo-fresh-issue-no-offer-for-sale-debt-5g-ai-nri-investor-20260624-1400",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Jio Digital Life building with logo and 'LYF <3 Jio' sign",
-          "reason": "The photo clearly shows the headquarters of Jio, which is the subject of the story about its IPO."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article mentions 'NRI investor' in the image URL, suggesting an intended diaspora angle, though it's not explicitly developed in the text. The topic of a major Indian IPO is inherently relevant to NRIs interested in investing in India."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a paragraph or two explicitly discussing the implications or opportunities for NRI investors, given the 'NRI investor' tag in the image URL.",
-          "Ensure the image entities are populated for better SEO and context."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "d3db1642-7855-4c73-b659-b1051bff69f5",
-      "headline": "It May Not Be How Much Fat You Eat, but Which Kind \u2014 a Diabetes Review Shifts the Blame",
-      "slug": "dietary-fat-quality-palmitic-oleic-acid-insulin-resistance-type-2-diabetes-review-trends-endocrinology-diaspora-20260624-1400",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A book titled 'The Olive' by Marvin",
-          "reason": "The story discusses olive oil's oleic acid, making a book about 'The Olive' a relevant generic image."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The diaspora angle is directly addressed and relevant, focusing on palm oil's prevalence in South Asian cuisine and its implications for health within the community."
+          "note": "The article directly addresses the impact of the trade deal on Indian professionals and NRIs, particularly regarding pension contributions and temporary work routes. The 'diaspora weary of shifting visa goalposts' line is a strong, natural connection."
         },
         "factual_flags": [
-          "The article ends abruptly mid-sentence in the 'Why It Matters for the Diaspora' section, making the conclusion incomplete."
+          "The article states 'The Comprehensive Economic and Trade Agreement \u2014 CETA, the formal name for the free-trade agreement the two countries signed in July 2025 \u2014 comes into force on Wednesday, July 15'. However, the headline states 'On July 15, an Indian Professional Posted to Britain Stops Paying Twice for the Same Pension', implying July 15, 2024. If the agreement was signed in July 2025, it cannot come into force on July 15, 2024. This is a significant date discrepancy."
         ],
         "duplicate_embeds": [],
         "suggestions": [
-          "Complete the 'Why It Matters for the Diaspora' section to provide a full conclusion and actionable insights for the NRI audience.",
-          "Consider adding a call to action or further resources for readers interested in healthier fat choices relevant to Indian cooking."
+          "Clarify the exact year for the CETA signing and implementation dates to resolve the factual contradiction.",
+          "Consider adding a brief quote from an Indian professional or an expert on diaspora affairs to further humanize the impact of the DCC."
         ],
         "verdict": "flag"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "99beb70b-f1b3-47d1-8b0a-255c3600e809",
-      "headline": "Lifting Weights, Not Just Walking, May Be the Missing Piece in Holding Off Diabetes",
-      "slug": "resistance-training-aerobic-exercise-type-2-diabetes-risk-jama-network-open-143715-adults-diaspora-20260624-1400",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "a rack of dumbbells in a gym",
-          "reason": "The photo shows strength training equipment, which is directly relevant to the story about lifting weights and diabetes prevention."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The diaspora angle is clearly present and relevant, addressing the high burden of type 2 diabetes in the Indian and South Asian community."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a specific call to action or practical tips tailored for NRIs, perhaps linking to resources for finding fitness groups or trainers in their local diaspora communities.",
-          "Expand slightly on the 'phenomenon doctors lin' sentence, as it seems cut off."
-        ],
-        "verdict": "pass"
       },
       "actions_taken": [
         "promoted to published"
