@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-24T10:15:50.307958+00:00",
+  "timestamp": "2026-06-24T10:45:26.008841+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
-    "flag": 3,
+    "pass": 2,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "ad38eaab-82bb-437e-863a-f7517a76a1fe",
-      "headline": "India Wants to Grow at 10%. First It Has to Explain Why Foreign Investment Has Dried Up.",
-      "slug": "india-weak-net-fdi-7-billion-cii-arbitration-dispute-resolution-reform-growth-nri-investor-20260624-1000",
+      "id": "0d53a940-77ce-4cd5-9b80-63c2c423c3a7",
+      "headline": "India Has Never Had a Sprinter Like Animesh Kujur. Now He's Heading to the Commonwealth Games.",
+      "slug": "animesh-kujur-india-fastest-man-sprinter-100m-200m-national-record-commonwealth-games-glasgow-2026-diaspora",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,13 +21,13 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "The Bombay Stock Exchange building in Mumbai",
-          "reason": "The photo shows a financial landmark in India's financial capital, which is relevant to a story about India's economy and foreign investment."
+          "what_photo_shows": "Animesh Kujur, an Indian sprinter, in an athletic uniform.",
+          "reason": "The photo clearly shows Animesh Kujur, who is the subject of the headline and story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 7,
+        "overall_score": 8,
         "embed_issues": [],
         "image_match": {
           "score": 9,
@@ -35,57 +35,16 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article directly addresses foreign investment in India, which is highly relevant to NRIs who are often investors or have family/business ties to India's economy. The mention of 'NRI investor' in the image entities also reinforces this angle."
+          "quality": 8,
+          "note": "The diaspora angle is explicitly stated and well-justified in the 'Why It Resonates Beyond India' section, connecting Kujur's achievements to the pride and representation for NRIs."
         },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a short concluding paragraph that reiterates the importance of these reforms for India's global economic standing and potential opportunities for NRI engagement.",
-          "While the article is strong, a brief mention of specific sectors where FDI is particularly struggling or thriving could add more granular detail."
+        "factual_flags": [
+          "The article mentions '2025 Asian Athletics Championships in Gumi, South Korea' and '2026 Commonwealth Games in Glasgow'. It also mentions '2025 he had already become the first Indian male sprinter to qualify for a World Athletics Championships in a short-sprint event, lining up in Tokyo'. The dates seem inconsistent, implying events in the future (2025, 2026) have already happened or are being discussed as past events. This needs clarification or correction."
         ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "17a6217d-d473-446d-8de1-e605191b6f62",
-      "headline": "A Mother's Heart Health Before Birth May Shape Her Child's Development, a Study of 8,000 Finds",
-      "slug": "maternal-cardiovascular-health-child-developmental-delay-62-percent-lifes-essential-8-study-diaspora-20260624-1000",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "World map showing share of pregnant women receiving prenatal care",
-          "reason": "The photo's subject, prenatal care, is directly relevant to maternal health and pregnancy, which are central to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": false,
-          "quality": 1,
-          "note": "The article does not connect to NRI/diaspora readers. The image URL includes 'diaspora-20260624-1000.jpg' but this is not reflected in the content."
-        },
-        "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Integrate a diaspora angle by discussing how these findings might specifically impact NRI mothers, perhaps touching on lifestyle changes, access to healthcare in different countries, or cultural considerations around maternal health.",
-          "Consider adding a quote or perspective from an Indian medical professional or an NRI mother to personalize the content for the target audience."
+          "Clarify the timeline of events (2025, 2026) to ensure consistency and accuracy, as some future events are discussed as if they have already occurred.",
+          "Consider adding a quote from Animesh Kujur or his coach to provide a more personal touch and insight into his journey and aspirations."
         ],
         "verdict": "flag"
       },
@@ -97,9 +56,9 @@
       "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "95fc6f9c-0bf4-41e7-a47d-efd4b5b1c461",
-      "headline": "The Hardest Part of Losing Weight Is Keeping It Off \u2014 a New Review Says Exercise Is the Glue",
-      "slug": "exercise-prevents-weight-regain-meta-analysis-scientific-reports-11-trials-maintenance-phase-diaspora-20260624-1000",
+      "id": "1ec3e859-1b13-4d71-8e55-6d1efcfb618b",
+      "headline": "India Will Now Let Its Banks Lend NRIs Money to Buy More Indian Deposits. The Returns Could Touch 15%.",
+      "slug": "rbi-banks-lend-nris-against-dollar-fcnr-deposits-leverage-gift-city-rupee-20260624",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -107,51 +66,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A woman exercising outdoors with resistance bands.",
-          "reason": "The photo depicts a person engaged in exercise, which is directly relevant to a story about fitness and maintaining weight loss through activity."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": false,
-          "quality": 1,
-          "note": "No specific diaspora angle is present in the article. The image description mentions 'diaspora' but the article body does not connect to NRI/diaspora readers."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Integrate a diaspora angle by discussing how these findings might be particularly relevant to NRIs, perhaps touching on lifestyle changes, access to fitness resources in different countries, or cultural aspects of health and weight management.",
-          "Consider adding a concluding paragraph that offers actionable advice or a call to action for readers, perhaps linking to resources or suggesting ways to incorporate exercise into busy NRI lifestyles."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "8bc02ca4-3489-41d7-aaf1-38500446dbda",
-      "headline": "Germany Just Dropped the Airport Transit Visa for Indians \u2014 One Less Form Between You and the Connection",
-      "slug": "germany-airport-transit-visa-removed-indians-frankfurt-munich-nri-20260624",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "An airplane landing at an airport with runways and ground vehicles.",
-          "reason": "The photo depicts an airport, which is directly relevant to a story about airport transit visas and connections."
+          "what_photo_shows": "The Reserve Bank of India building in Mumbai.",
+          "reason": "The photo shows the building of the Reserve Bank of India, which is directly mentioned in the headline and caption as the entity clearing the new lending scheme."
         },
         "inline_image_mismatches": []
       },
@@ -165,13 +81,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article clearly explains why this policy change is significant for NRIs, particularly those traveling between India and North America via German hubs."
+          "note": "The article directly addresses NRIs and their financial opportunities, making it highly relevant."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a small 'Key Takeaways' box for quick reader consumption.",
-          "Perhaps include a quote from an NRI traveler or a travel agent to add a personal touch and reinforce the impact."
+          "Consider adding a small 'What are FCNR deposits?' explainer box for readers less familiar with financial jargon.",
+          "Perhaps include a brief disclaimer about the risks associated with leverage, even if mentioned briefly at the end."
         ],
         "verdict": "pass"
       },
@@ -183,9 +99,9 @@
       "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "478765d1-5d05-4b35-a1c5-e367ba172890",
-      "headline": "Sri Lanka's Tourist Visa Is Free for Indians Again \u2014 and the Catch Is Smaller Than the Saving",
-      "slug": "sri-lanka-free-eta-tourist-visa-indians-2026-nri-beach-heritage-20260624",
+      "id": "437e18b3-d695-4174-9b37-5b450d57c8d2",
+      "headline": "Their Lawmakers Have a Message for 5 Million Indian-Americans: Stop Being on the Menu, Get a Seat at the Table.",
+      "slug": "indian-american-lawmakers-urge-diaspora-run-for-office-anti-india-hate-20260624",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -193,8 +109,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "The Colombo Lotus Tower under construction",
-          "reason": "The photo shows a landmark in Sri Lanka's capital, which is relevant to a story about Sri Lanka's tourist visa policy."
+          "what_photo_shows": "Congressman Raja Krishnamoorthi in a suit with an American flag background.",
+          "reason": "The photo clearly shows Congressman Raja Krishnamoorthi, who is explicitly named in the headline and caption as a key figure in the story."
         },
         "inline_image_mismatches": []
       },
@@ -207,70 +123,16 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The diaspora angle is well-integrated and explains the specific benefits for NRIs, particularly the convenience and multi-stop itinerary flexibility."
+          "quality": 9,
+          "note": "The entire article is centered on the Indian-American diaspora, their political representation, and challenges."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a direct link to the official Sri Lankan immigration portal for ETA applications, as the article strongly advises against third-party sites.",
-          "Perhaps include a small section on current travel advisories or safety tips for Sri Lanka, given its recent history of 'operational wobbles'."
+          "Consider adding a concluding sentence or paragraph to 'What Comes Next' to provide a sense of closure or future outlook, as the article currently ends abruptly.",
+          "While the article mentions 'attacks and vandalism targeting Hindu temples,' it could briefly elaborate on one or two specific, well-known incidents to add concrete examples to the 'Why the Alarm' section."
         ],
         "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "92274a41-22c1-4703-b470-b1b57c4137d1",
-      "headline": "Navi Mumbai's First International Flight Is a Gulf Run \u2014 and a Preview of Where Your Relatives Will Land",
-      "slug": "navi-mumbai-airport-first-international-flight-abu-dhabi-air-india-exp-20260624",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "ba8e0b8d-5197-46d6-a0fe-3f40209eacd0",
-            "headline": "Navi Mumbai's New Airport Goes International July 15 \u2014 and t"
-          },
-          {
-            "article_id": "058610dd-852c-4a32-b493-022e458f24c7",
-            "headline": "Two Indian Airports Just Made the World's Most Beautiful Lis"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "The interior of Navi Mumbai International Airport terminal.",
-          "reason": "The photo clearly shows the Navi Mumbai International Airport, which is the central subject of the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article explicitly addresses NRIs and explains the significance of the new airport for diaspora travel, particularly for those connecting from the Gulf, Europe, or North America."
-        },
-        "factual_flags": [
-          "Navi Mumbai opened for domestic traffic only in December 2025 - This date is in the future, implying a typo. It should likely be December 2023 or 2024."
-        ],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Correct the opening date of Navi Mumbai International Airport for domestic traffic (December 2025 seems to be a typo).",
-          "Consider adding a small map or infographic showing the location of Navi Mumbai airport relative to Mumbai and key diaspora regions for better reader understanding."
-        ],
-        "verdict": "flag"
       },
       "actions_taken": [
         "promoted to published"
