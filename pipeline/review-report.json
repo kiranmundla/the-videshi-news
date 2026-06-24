@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-24T20:15:23.491408+00:00",
+  "timestamp": "2026-06-24T20:45:16.661655+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
+    "pass": 2,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "c0f9de26-6a26-4372-9305-fe2b44190901",
-      "headline": "World Cup Fever Meets a 14-Month Visa Wait. India Gets a Fast Lane \u2014 With Strings",
-      "slug": "fifa-pass-world-cup-visa-india-14-month-wait-750-fast-track-b1-b2-20260624",
+      "id": "5619c567-f041-47c3-b8a5-9a114c1a8aa4",
+      "headline": "India Isn't at the World Cup. But Three Players of Indian Descent Are.",
+      "slug": "indian-origin-players-2026-fifa-world-cup-sarpreet-singh-tahsin-jamshid-nishan-velupillay-diaspora-20260624",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,28 +21,28 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "An open passport displaying travel stamps.",
-          "reason": "The photo of a passport with travel stamps is highly relevant to a story about visa waits and immigration."
+          "what_photo_shows": "Sarpreet Singh in a red shirt on a football field.",
+          "reason": "The photo shows Sarpreet Singh, who is explicitly named in the headline and caption as a subject of the story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 7,
+        "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 8,
+          "score": 9,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "Strong and natural connection to NRI/diaspora readers, addressing a common pain point (family visas) and offering practical advice."
+          "note": "The entire article is centered around the diaspora angle, making it highly relevant and well-executed for the target audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a small section on alternative visa options or general tips for strengthening a B1/B2 application, beyond just the fast lanes.",
-          "If possible, include a quote from an NRI or an immigration expert to add a human element or further authority to the analysis."
+          "Consider adding a brief concluding sentence to the article, as it currently ends mid-sentence.",
+          "If possible, include a quote or social media embed from one of the players or their families to further personalize the story."
         ],
         "verdict": "pass"
       },
@@ -54,9 +54,9 @@
       "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "5a42001f-d008-4c91-a5a3-d75f949aed67",
-      "headline": "Hundreds of Doctors Are Stuck at the Border of a July 30 Deadline. Many Are Indian",
-      "slug": "j1-waiver-physician-cliff-july-30-h1b-fee-indian-doctors-rural-20260624",
+      "id": "70029ded-e2da-4e77-8340-4c843c80de25",
+      "headline": "Kohli's Name Is on India's England Squad. Whether He Boards the Plane Is Another Question.",
+      "slug": "india-odi-squad-england-tour-kohli-fitness-gill-captain-bumrah-returns-diaspora-20260624",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,8 +64,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Doctors and nurses interacting in a hospital hallway",
-          "reason": "The photo depicts medical professionals, which is relevant to a story about doctors."
+          "what_photo_shows": "Virat Kohli in an India cricket jersey",
+          "reason": "The photo clearly shows Virat Kohli, who is the main subject of the headline and subheadline."
         },
         "inline_image_mismatches": []
       },
@@ -73,62 +73,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 8,
+          "score": 9,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article explicitly connects the issue to Indian doctors and the Indian diaspora, highlighting their significant role in the US healthcare system and the personal impact of the policy."
+          "note": "The diaspora angle is well-integrated and explained, particularly in the dedicated section 'Why It Matters for the Diaspora'."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a quote from an affected Indian doctor to personalize the story further.",
-          "If possible, include a link to the AAPI statement or relevant legal documents for readers who want to delve deeper into the legal seesaw."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "61224350-cecf-450f-be66-3d989ace3986",
-      "headline": "Washington Just Opened a New Front in the Asylum Crackdown: Fining the Lawyers",
-      "slug": "ice-dhs-fine-immigration-attorney-asylum-indian-nationals-doddamani-20260624",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A judge signing documents with a gavel on the desk.",
-          "reason": "The photo depicts a legal setting with a judge and documents, which is relevant to a story about fining immigration lawyers and asylum claims."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 8,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article explicitly connects the issue to Indian nationals and the broader Indian diaspora, explaining the implications for NRIs."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a quote from an immigration lawyer (not involved in the case) to provide an independent legal perspective on the 'chilling effect' or the 'blurred line' argument.",
-          "If possible, include a brief update on the status of the Percival memo or any subsequent actions taken by DHS/ICE related to fining attorneys."
+          "Consider adding a brief mention of the specific dates/venues for the T20I series for completeness, similar to the ODI series.",
+          "Ensure the image entities are populated for future reviews, as they were missing in this request."
         ],
         "verdict": "pass"
       },
