@@ -1,5 +1,14 @@
 [
   {
+    "id": "student-visa-fixed-stay-omb-cleared",
+    "date": "2026-06-22",
+    "label": "Jun 22, 2026",
+    "headline": "White House clears rule to end 'Duration of Status' \u2014 US student visas to get fixed expiry dates, 4-year cap",
+    "summary": "The White House's Office of Management and Budget has completed its review of a DHS proposal that would scrap the decades-old 'Duration of Status' (D/S) framework for F-1 students, J-1 exchange visitors and certain I (foreign media) visa holders, replacing it with fixed admission periods capped at four years. Under D/S, students could stay as long as they remained enrolled and compliant, with no fixed end date; the new rule sets a hard expiry and requires applicants to file an extension of stay with USCIS to continue beyond it. With OMB clearance done, the rule is expected to be published in the Federal Register and move toward implementation later this year. Indian students \u2014 the largest international cohort in the US at ~363,000 in 2024-25 \u2014 are among the most affected, especially those in PhD, research-heavy or other multi-year programs that run past four years, who will now face extension filings, added documentation and biometrics, shorter post-completion grace periods (proposed cut from 60 to 30 days), and stricter rules on transferring schools or changing programs.",
+    "severity": "high",
+    "source": "DHS / OMB / Times of India / India Today"
+  },
+  {
     "id": "h1b-domestic-renewal-pilot-december-2026",
     "date": "2026-06-19",
     "label": "Jun 19, 2026",
@@ -165,15 +174,6 @@
     "severity": "high",
     "source": "US State Department",
     "url": "/immigration"
-  },
-  {
-    "id": "ice-day1-cpt-crackdown",
-    "date": "2026-05-12",
-    "label": "May 12, 2026",
-    "headline": "ICE launches nationwide crackdown on Day 1 CPT and OPT fraud",
-    "summary": "ICE announced coordinated enforcement targeting schools, students, and employers involved in fraudulent CPT/OPT programs. Thousands of Indian professionals who used Day 1 CPT to maintain F-1 status between H-1B lottery attempts now face scrutiny \u2014 prior CPT use may affect pending H-1B petitions.",
-    "severity": "high",
-    "source": "ICE / DHS"
   },
   {
     "id": "interview-waiver-eliminated",
