@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-25T19:15:28.479321+00:00",
+  "timestamp": "2026-06-25T19:45:18.845738+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 0,
-    "flag": 2,
+    "pass": 1,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "ff0aee45-47dc-4114-bd1a-c3bfd4892313",
-      "headline": "A Star's Son, a Fresh Face, and a Paresh Rawal Wildcard: 'Tera Yaar Hoon Main' Jumps the Queue to July 24",
-      "slug": "tera-yaar-hoon-main-july-24-2026-release-advanced-aman-indra-kumar-debut-akanksha-sharma-paresh-rawal-milap-zaveri-title-track-where-to-watch-diaspora-nri",
+      "id": "5ea035d0-37fe-498c-b949-136f11bb1b01",
+      "headline": "Shafali Verma Drags India Out of the Danger Zone \u2014 and Into a Sunday Showdown With Australia",
+      "slug": "india-women-beat-bangladesh-5-wickets-t20-world-cup-2026-old-trafford-shafali-verma-53-must-win-semifinal-scramble-australia-lords-diaspora-nri",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,94 +21,32 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Veteran actor Paresh Rawal in a denim shirt.",
-          "reason": "The photo clearly shows Paresh Rawal, who is mentioned in the headline and caption as a key figure in the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/reel/DZ6sMO3TRvP/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram reel URL is malformed or points to a non-existent/private post. It does not show the 'Tera Yaar Hoon Main' title track teaser as implied by the article. The 'DZ6sMO3TRvP' reel ID does not correspond to a valid public Instagram reel related to the film."
-          }
-        ],
-        "image_match": {
-          "score": 8,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The diaspora angle is well-integrated and naturally explains the film's potential appeal to NRI audiences, citing specific locations and reasons."
-        },
-        "factual_flags": [
-          "The article mentions 'July 24, 2026' for the release date, which seems unusually far in the future for a film being actively promoted and discussed in the present tense. This might be a typo for 2024.",
-          "The Instagram embed URL appears to be broken or incorrect, as it does not lead to the expected content."
-        ],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Verify and correct the release year (2026 vs. 2024) for 'Tera Yaar Hoon Main' to ensure factual accuracy.",
-          "Update the Instagram embed URL to a valid and relevant post for the 'Tera Yaar Hoon Main' title track teaser or full song."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/reel/DZ6sMO3TRvP/",
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "8db5a0ce-8cd3-451c-96b8-897a023d3db2",
-      "headline": "Riteish Deshmukh Spent Ten Years Becoming a King. This Friday, 'Raja Shivaji' Storms Netflix Worldwide.",
-      "slug": "raja-shivaji-netflix-ott-release-june-26-2026-riteish-deshmukh-salman-khan-cameo-marathi-blockbuster-100-crore-sanjay-dutt-where-to-watch-diaspora-nri",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Riteish Deshmukh in a suit with a red tie.",
-          "reason": "The photo clearly shows Riteish Deshmukh, who is the subject of the story."
+          "what_photo_shows": "A young woman smiling in front of an Indian flag.",
+          "reason": "The photo shows Shafali Verma, the named person in the headline and caption."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/reel/DYPLG7UozER/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram reel is from 2021 and features a dance performance, not related to the 'Raja Shivaji' film or its cast. It appears to be a random embed."
-          }
-        ],
+        "embed_issues": [],
         "image_match": {
-          "score": 6,
-          "issue": "The image is of Riteish Deshmukh, which matches the headline, but it's a promotional photo from 2012 for 'Kyaa Super Kool Hain Hum', not a recent or relevant image for a historical epic like 'Raja Shivaji'. It doesn't convey the gravitas of the role or film."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The diaspora angle is very strong and naturally integrated, specifically mentioning NRIs in New Jersey, Maharashtrian families in the Bay Area, London, and Toronto, and the film's global Netflix release catering to them. It highlights the 'comfort cinema' aspect for this audience."
+          "quality": 8,
+          "note": "The 'Why the diaspora should care' section is well-integrated and provides a clear, natural connection for NRI readers, especially given the UK setting of the tournament."
         },
-        "factual_flags": [
-          "The article states 'This Friday, June 26' for the Netflix release, but June 26, 2024, is a Wednesday. This is a minor factual error regarding the day of the week."
-        ],
+        "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant Instagram embed with a relevant trailer, cast interview, or behind-the-scenes clip for 'Raja Shivaji'.",
-          "Update the hero image to a more recent and thematically appropriate picture of Riteish Deshmukh, ideally in character as Shivaji, or a promotional poster for the film."
+          "Consider adding a small infographic or table for the Group A standings to visually represent the 'logjam' and NRR differences.",
+          "While the article is well-written, a quote from Harmanpreet Kaur or another team member about the upcoming Australia match could add more immediate anticipation."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/reel/DYPLG7UozER/",
         "promoted to published"
       ],
       "revised": false,
