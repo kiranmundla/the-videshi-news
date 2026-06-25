@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-25T04:15:19.365462+00:00",
+  "timestamp": "2026-06-25T04:45:25.972133+00:00",
   "mode": "fix",
   "stats": {
     "pass": 2,
-    "flag": 0,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "6b3407a2-56f0-40ff-b103-0b543eb5e78d",
-      "headline": "Your H-1B Was Approved. So Why Might You Still Have to Leave the Country?",
-      "slug": "h1b-approved-change-of-status-denied-f1-students-consular-stamping-tra-20260625",
+      "id": "d4c25748-dbaa-4d8b-9245-cd3f07770fff",
+      "headline": "From Times Square to the Bund, the World Rolled Out Its Mat Again. India's Quietest Export Just Had Its Biggest Day.",
+      "slug": "international-day-of-yoga-2026-kolkata-modi-global-diaspora-times-square-healthy-ageing-20260625",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A person holding a passport next to a travel bag.",
-          "reason": "The photo depicts a passport and luggage, which are generic but on-topic elements for a story about immigration and international travel for H-1B workers."
+          "what_photo_shows": "people participating in a large outdoor yoga event",
+          "reason": "The photo clearly depicts a large group of people engaged in yoga, which directly aligns with the story about International Day of Yoga."
         },
         "inline_image_mismatches": []
       },
@@ -30,19 +30,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image shows a person looking out a window, which could vaguely represent contemplation or looking towards a future, but it's not directly illustrative of immigration documents, legal processes, or the specific H-1B topic. It's generic."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article explicitly states, 'Indians are the largest international-student population in the United States... and the F-1-to-H-1B pipeline is the spine of the diaspora's professional class.' It also mentions 'Mumbai, Hyderabad or Chennai' as potential consular stamping locations, directly connecting to the Indian diaspora."
+          "note": "The article explicitly addresses the diaspora angle, dedicating a section to 'The Diaspora as Stage' and 'Why It Matters for the Diaspora', making a strong and natural connection."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a specific example or a brief anecdote (even anonymized) of an Indian student who faced this issue to make the problem more tangible and relatable.",
-          "If possible, include a quote from an immigration attorney or an affected student to add more authority or personal impact."
+          "Consider adding a quote from a diaspora member participating in one of the events to personalize the 'Why It Matters for the Diaspora' section.",
+          "If possible, include a link to a relevant official source (e.g., MEA, WHO) for the statistics mentioned, enhancing credibility."
         ],
         "verdict": "pass"
       },
@@ -54,9 +54,9 @@
       "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "cf85c1e1-27cf-407f-8db1-b3299505c3fb",
-      "headline": "The EB-5 Deadline Indian Investors Keep Missing Isn't When the Program Ends",
-      "slug": "eb5-grandfathering-deadline-sept-2026-investment-hike-jan-2027-indians-20260625",
+      "id": "35812757-f73c-4890-897c-643dfc0018b4",
+      "headline": "Washington Has a New Target in Its Immigration Crackdown: the Lawyers. The First Big Fine Involves Indian Asylum Claims.",
+      "slug": "dhs-ice-fines-immigration-attorneys-fraudulent-asylum-claims-indian-nationals-doddamani-20260625",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,8 +64,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A passport, US dollars, and a financial app on a phone.",
-          "reason": "The photo depicts elements directly related to financial investment and international travel, which are central to an investor visa story."
+          "what_photo_shows": "Two women signing documents at a desk, with DHS logo visible.",
+          "reason": "The photo shows a scene related to official documents and the DHS, which is relevant to a story about immigration crackdown and fines by DHS."
         },
         "inline_image_mismatches": []
       },
@@ -73,21 +73,66 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image shows a person looking at a document, which generally fits the theme of immigration paperwork, but it's not specific to the EB-5 program or Indian investors. It's a generic stock photo."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article explicitly addresses 'Why this matters to Indian families' and connects it to the challenges faced by the Indian diaspora with other visa categories like EB-2 and H-1B, making it highly relevant for NRI readers."
+          "note": "The article explicitly connects the crackdown to Indian asylum claims and dedicates a section to 'Why It Matters for the Diaspora'."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a call-out box or infographic to visually summarize the 'triple deadline' for easier reader comprehension.",
-          "If possible, include a quote from an Indian investor who has navigated or is considering the EB-5 process to add a personal touch."
+          "Consider adding a quote from an immigration lawyer's perspective (not Doddamani) to balance the government's narrative and highlight the concerns for honest practitioners.",
+          "If possible, include a link to the Fox News Digital article mentioned, or the DHS statement, for readers who want to verify the source."
         ],
         "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "305d34cd-5ef2-4cd0-87fe-0162602d91cb",
+      "headline": "India's 15-Year-Old Prodigy Will Change in a Room of His Own \u2014 the Safeguarding Rule Behind It",
+      "slug": "vaibhav-sooryavanshi-15-separate-dressing-room-safeguarding-icc-ecb-rules-india-ireland-england-t20i-2026-youngest-debut-tendulkar-record-diaspora-nri",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "A young man, identified as Vaibhav Sooryavanshi, next to an older man.",
+          "reason": "The photo caption explicitly identifies the subject as Vaibhav Sooryavanshi, who is the central figure of the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The 'Why the diaspora should care' section directly addresses NRI readers and their connection to the event."
+        },
+        "factual_flags": [
+          "IPL 2026 is in the future, but the article states 'Vaibhav Sooryavanshi, 15 years old and already the highest run-scorer of an entire IPL season' and 'Sooryavanshi scored 776 runs in IPL 2026, the most of any batter'. This is an internal contradiction as a future event cannot have already happened and have a highest run-scorer."
+        ],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Correct the factual inconsistency regarding 'IPL 2026' having already occurred and having a highest run-scorer. This is a significant error.",
+          "Consider adding a quote from an NRI fan or community leader to further strengthen the diaspora angle, making it more personal."
+        ],
+        "verdict": "flag"
       },
       "actions_taken": [
         "promoted to published"
