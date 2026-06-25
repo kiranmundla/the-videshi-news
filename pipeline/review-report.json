@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-25T01:15:22.674780+00:00",
+  "timestamp": "2026-06-25T01:45:10.917917+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 0,
+    "pass": 0,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,37 +11,35 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "bd5cffee-28be-473c-8262-3d6f87ed3d68",
-      "headline": "Akshay Kumar Returns to the Jungle on Friday \u2014 and the Whole 2007 Gang Came With Him",
-      "slug": "welcome-to-the-jungle-release-june-26-2026-box-office-opening-akshay-kumar-suniel-shetty-paresh-rawal-ahmed-khan-where-to-watch-diaspora-nri-20260624",
+      "id": "0130e85a-7a4f-45bd-9b36-1830c1ba9829",
+      "headline": "Eighteen, and a National Record Twice in Forty Minutes: Anushka Yadav Announces Herself",
+      "slug": "anushka-yadav-18-hammer-throw-national-record-twice-67-02m-inter-state-athletics-bhubaneswar-2026-dev-meena-pole-vault-jyothi-yarraji-asian-games-qualify-diaspora-nri",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "0d0e095d-24bc-44fd-ad62-9d0185a27881",
-            "headline": "Akshay Kumar Opens the Jungle. After 19 Years, 'Welcome' Ret"
-          },
-          {
-            "article_id": "0d67b566-c831-4c27-9734-18d8465fb619",
-            "headline": "The Censor Board Took Its Scissors to Welcome To The Jungle."
-          },
-          {
-            "article_id": "cfe25a00-83cf-4d0d-b73f-ac9da6f980f4",
-            "headline": "Twenty-Two Years Later, the 'Mohra' Couple Is Back. The Whol"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Official poster for the movie 'Welcome To The Jungle'",
-          "reason": "The photo shows the poster for the movie 'Welcome To The Jungle', which is the subject of the headline."
+          "what_photo_shows": "Kalinga Stadium at night, an athletics venue.",
+          "reason": "The photo shows the venue mentioned in the caption and subheadline, which is relevant to the athletics story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
+        "overall_score": 8,
+        "embed_issues": [
+          {
+            "url": "https://x.com/afiindia/status/2069792533849444578",
+            "problem": "broken",
+            "explanation": "The X (formerly Twitter) URL is malformed and leads to an error page. The status ID is too long."
+          },
+          {
+            "url": "https://x.com/afiindia/status/2069788586887741847",
+            "problem": "broken",
+            "explanation": "The X (formerly Twitter) URL is malformed and leads to an error page. The status ID is too long."
+          }
+        ],
         "image_match": {
           "score": 9,
           "issue": null
@@ -49,63 +47,15 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The diaspora angle is well-integrated, discussing overseas market performance and viewing habits."
+          "note": "The 'Why the Diaspora Should Look Beyond the Boundary' section explicitly connects the achievements to NRI readers, encouraging them to follow Olympic sports beyond cricket. It feels natural and well-integrated."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a brief mention of the original 'Welcome' film's release year for context, as 'nineteen years after the original' might be slightly off if the original was 2007 and the new one is 2024.",
-          "The article ends abruptly. Ensure the conclusion is complete and provides a satisfying wrap-up."
+          "Correct the malformed X (formerly Twitter) embed URLs to ensure they link to valid posts.",
+          "Consider adding a brief explanation of what the Asian Games and Commonwealth Games mean for these athletes' careers, especially for a diaspora audience less familiar with Indian domestic athletics."
         ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "c93a7d59-2581-4c48-8908-bc11c6c9a8da",
-      "headline": "Emraan Hashmi Walks Back Into the Dark. 'Rooh' Is the Horror Comeback His Fans Have Begged For \u2014 This Time, It Sings.",
-      "slug": "rooh-emraan-hashmi-horror-musical-return-mayank-sharma-vicked-films-2027-hindi-tamil-telugu-where-to-watch-diaspora-nri-20260624",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "9c206bc8-2ad6-4fb3-b199-ffba4d1fd84f",
-            "headline": "Emraan Hashmi Walks Back Into the Dark. After Five Years, th"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Emraan Hashmi, a man with a beard, in a pink shirt.",
-          "reason": "The photo clearly shows Emraan Hashmi, who is the subject of the headline."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 8,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article explicitly connects the film's theatrical release and genre to NRI/diaspora viewing habits and locations, making it relevant."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a sentence or two about the significance of Emraan Hashmi's 'musical-horror' legacy for diaspora audiences, perhaps mentioning how the songs resonated globally.",
-          "While the article mentions the 2027 release, a brief acknowledgment of the long wait might add a touch of relatable humor for readers."
-        ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
         "promoted to published"
