@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-06-25T03:59:10Z",
-  "stage": "Group Stage — 54 of 72 matches played",
+  "last_updated": "2026-06-25T21:59:30Z",
+  "stage": "Group Stage — 55 of 72 matches played",
   "hosts": "USA, Mexico & Canada",
   "dates": {
     "start": "2026-06-11",
@@ -251,13 +251,13 @@
         "code": "CIV",
         "flag": "🇨🇮",
         "rank": 33,
-        "p": 2,
-        "w": 1,
+        "p": 3,
+        "w": 2,
         "d": 0,
         "l": 1,
-        "gf": 2,
+        "gf": 4,
         "ga": 2,
-        "pts": 3
+        "pts": 6
       },
       {
         "name": "Ecuador",
@@ -277,12 +277,12 @@
         "code": "CUW",
         "flag": "🇨🇼",
         "rank": 82,
-        "p": 2,
+        "p": 3,
         "w": 0,
         "d": 1,
-        "l": 1,
+        "l": 2,
         "gf": 1,
-        "ga": 7,
+        "ga": 9,
         "pts": 1
       }
     ],
@@ -1510,8 +1510,8 @@
       "away": "Ivory Coast",
       "venue": "Lincoln Financial Field",
       "city": "Philadelphia",
-      "status": "scheduled",
-      "score": null,
+      "status": "FT",
+      "score": "0-2",
       "home_code": "CUW",
       "away_code": "CIV"
     },
