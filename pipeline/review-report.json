@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-25T18:16:52.419807+00:00",
+  "timestamp": "2026-06-25T18:45:23.151961+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 12,
-    "flag": 0,
+    "pass": 1,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "7b733069-fe88-4c33-8a24-0075c40df41b",
-      "headline": "Every Summer, 10,000 Telugu-Americans Fill a Convention Center. It's Not Really About the Concert.",
-      "slug": "telugu-american-convention-circuit-tana-ata-diaspora-language-second-g-20260625",
+      "id": "fb1d4b77-7337-4d64-a1ff-bb84f2a80f33",
+      "headline": "After a Decade of Waiting, India's Biggest Stock Exchange Is Finally Going Public. The Owner of the Market Is About to Join It.",
+      "slug": "nse-national-stock-exchange-files-drhp-sebi-largest-ipo-india-30000-crore-offer-for-sale-2026-20260625",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,137 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A Bharatanatyam dancer in traditional attire performing on stage.",
-          "reason": "The photo depicts a classical performance, which the caption explicitly states anchors diaspora cultural conventions, aligning with the story's theme of Telugu-American conventions and cultural preservation."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 8,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 10,
-          "note": "The entire article is centered on the Telugu-American diaspora experience, its challenges, and its efforts to preserve culture."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a quote from a second-generation Telugu-American attendee to provide a direct youth perspective.",
-          "If possible, include a small infographic or map showing the distribution of Telugu-Americans in the US or the locations of major conventions."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "66367190-2a9d-4996-83fa-0127df311a54",
-      "headline": "A 23-Year-Old and His Mother Just Became Mayors a Week Apart. Both Still Teach Hindi on Weekends.",
-      "slug": "tushar-kumar-parveen-rani-uk-mayors-hertfordshire-diaspora-council-pol-20260625",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A modern civic building in London",
-          "reason": "The photo shows a civic building in London, which is relevant to a story about mayoral roles in the UK."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image is a generic photo of a diverse group of people in a professional setting, which doesn't specifically represent the article's subjects (mother and son mayors) or their Indian heritage. While not entirely mismatched, it lacks specificity."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article explicitly focuses on the Indian diaspora's political ascent in Britain, using the mother and son's story as a parable. It naturally integrates themes of dual loyalty, cultural preservation (teaching Hindi), and the community's evolving role in British public life."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider sourcing a more specific image that either features the individuals mentioned or more directly represents the 'Indian diaspora in British politics' theme, perhaps with a subtle nod to local governance.",
-          "Ensure the article's conclusion feels complete; the current ending 'It is a small s' seems abruptly cut off."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "d4cc1c0a-2785-4583-827d-8aed049a4aaf",
-      "headline": "The Diaspora's Money Is Pouring Home at Record Levels. It's Also Quietly Changing Shape.",
-      "slug": "india-remittances-record-140-billion-gulf-west-corridor-shift-rbi-nri-20260625",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Hands exchanging US dollars and another currency at a counter.",
-          "reason": "The photo depicts currency exchange, which is directly relevant to the story about remittances and the changing shape of money flowing into India."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 8,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article directly addresses the financial relationship between the Indian diaspora and India, focusing on remittances and investment trends."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a short concluding paragraph to summarize the implications of these shifts for the future relationship between India and its diaspora.",
-          "If possible, include a quote from an NRI or an expert on diaspora finance to add a human element or further analytical depth."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "12ce96b3-fff8-415b-90f1-eb83094f5d6e",
-      "headline": "India Turns to Its Diaspora to Steady the Rupee \u2014 and Dangles an Unusually Sweet Deposit Deal",
-      "slug": "rbi-fcnr-b-hedging-cost-subsidy-nri-dollar-deposits-rupee-support-gift-city-leverage-nomura-55-billion-20260625-1800",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Exterior of the Reserve Bank of India building",
-          "reason": "The photo shows the Reserve Bank of India, which is directly mentioned in the headline and caption as central to the story."
+          "what_photo_shows": "The National Stock Exchange (NSE) building in Mumbai.",
+          "reason": "The photo clearly shows the building of the National Stock Exchange, which is the main subject of the story."
         },
         "inline_image_mismatches": []
       },
@@ -164,18 +35,18 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article directly addresses how the policy targets NRIs and explains the benefits for them, making the diaspora angle central and natural."
+          "quality": 8,
+          "note": "The 'Why It Matters for the Diaspora' section directly addresses NRIs and their investment interests, making a clear and relevant connection."
         },
         "factual_flags": [
-          "The article mentions the rupee weakening by 'more than 6 percent in 2026', which seems like a typo given the current year is 2024. It should likely be 2024."
+          "The article states 'For the year ended March 2026, NSE reported total income of Rs 18,713 crore and net profit of Rs 10,302 crore'. This is a future date, implying a projection rather than a reported past figure. This should be clarified as a projection or estimate."
         ],
         "duplicate_embeds": [],
         "suggestions": [
-          "Correct the year '2026' to '2024' in the 'Why the Rupee Needs the Help' section.",
-          "Consider adding a brief concluding paragraph that summarizes the long-term implications or potential risks for NRI investors beyond the temporary scheme, if applicable."
+          "Clarify that the financial figures for 'March 2026' are projections or estimates, not historical reports.",
+          "Consider adding a brief explanation of what 'co-location controversy' entailed for readers unfamiliar with the specific scandal."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
         "promoted to published"
@@ -185,9 +56,9 @@
       "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "47f2d0a4-e195-46ae-ac5d-58ba7433aa68",
-      "headline": "Even 'Safe' Air May Be Hardening the Heart's Arteries, a Large Imaging Study Finds",
-      "slug": "air-pollution-coronary-artery-disease-toronto-radiology-11000-adults-even-safe-levels-women-heart-diaspora-20260625-1800",
+      "id": "ffe952e7-cedd-4b5b-9314-d12e1c48a622",
+      "headline": "America Will Soon Let You Pay $750 to Skip the Visa Line. India's Travellers Are the Obvious Customer.",
+      "slug": "us-premium-visa-appointment-pilot-750-dollars-faster-interview-b1-b2-indian-travellers-july-december-2026-20260625",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -195,180 +66,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Satellite image of air pollution over India, including Delhi and Kolkata.",
-          "reason": "The photo clearly depicts air pollution, which is the central subject of the story about air quality and heart health."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The diaspora angle is well-integrated and relevant, connecting the study's findings to the lived experience of NRIs in both India and Western countries."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a specific call to action or resource for NRI readers regarding air quality monitoring or mitigation strategies.",
-          "Perhaps include a quote from an Indian-origin health expert or community leader to further strengthen the diaspora connection."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "e4c630ba-f476-48c8-995d-0b5adfe91a53",
-      "headline": "Three Everyday Sleep Habits May Be Quietly Aging the Brain, a 23,000-Person Study Finds",
-      "slug": "sleep-habits-brain-aging-white-matter-lesions-arizona-usc-23000-adults-alzheimers-dementia-study-diaspora-20260625-1800",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "An older person sleeping in bed.",
-          "reason": "The photo directly illustrates the topic of sleep and aging, which is central to the headline and subheadline."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The diaspora angle is present and well-integrated, connecting the study's findings to common lifestyle patterns within the Indian diaspora without being forced."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a call to action or resources for improving sleep habits, perhaps tailored to the diaspora context.",
-          "While the article mentions 'culture that has long made room for the afternoon nap,' it could briefly elaborate on the cultural context of napping in India if space allows, to further enrich the diaspora angle."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "e5fe7324-9edf-4468-b0a8-c45964b470e5",
-      "headline": "Booking Your Diwali Flight Home? In a Year of Shrinking Nonstops, the Cheap Seat Is the One You Buy Now",
-      "slug": "diwali-2026-flight-booking-strategy-india-nri-fares-festive-season-20260625",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A busy airport departure hall with many travelers.",
-          "reason": "The photo of a busy airport departure hall is a generic but on-topic image for a story about booking flights and airport crowds."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image shows a person looking at a phone, which doesn't directly convey 'Diwali flight booking' or 'travel'. While not entirely mismatched, it could be more specific."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article is explicitly targeted at NRIs, specifically Indian-Americans, and addresses their unique travel patterns and concerns for Diwali."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a small section on loyalty programs or credit card points strategies for NRIs, as this is a common way to offset high travel costs.",
-          "If possible, include a small graphic or chart illustrating the fare fluctuations mentioned (e.g., October-December vs. September)."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "c819a699-9f19-451c-88ea-8c7fc15b020d",
-      "headline": "Europe's New ETIAS Permit Lands in Late 2026 \u2014 and It Treats Your US Passport and Your Indian One Completely Differently",
-      "slug": "etias-europe-launch-2026-us-indian-passport-split-schengen-nri-20260625",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A passport and a travel document.",
-          "reason": "The photo shows a passport and travel documents, which are directly relevant to a story about travel permits and visas."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image shows a person looking at a map, which is generally related to travel, but it doesn't specifically convey the 'passport' or 'immigration' aspect strongly. It's a bit generic for the specific topic of ETIAS and passport differentiation."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article directly addresses the dual-passport reality of the Indian diaspora, explaining how ETIAS affects Indian-Americans differently based on their passport. This is highly relevant and well-explained."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a small section or a call-out box with a quick comparison table of ETIAS vs. Schengen visa requirements for clarity.",
-          "While the article mentions 'Apply before you book', it cuts off. Ensure the full advice is present, perhaps elaborating on the recommended application timeline."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "efd72e03-55f7-4871-af3e-a5e02f518908",
-      "headline": "Global Entry Is Now Open to Indian Citizens \u2014 and Google Just Made the TSA Line Disappear Too",
-      "slug": "global-entry-indian-citizens-tsa-precheck-touchless-google-wallet-nri-20260625",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Travelers undergoing security screening at an airport checkpoint.",
-          "reason": "The photo depicts airport security screening, which is directly relevant to the story about Global Entry and TSA lines."
+          "what_photo_shows": "The U.S. Embassy in New Delhi with fountains",
+          "reason": "The photo shows the U.S. Embassy in New Delhi, which is directly relevant to a story about U.S. visa processing for Indian travelers."
         },
         "inline_image_mismatches": []
       },
@@ -382,147 +81,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article clearly and effectively connects the policy changes to the experiences and needs of the Indian diaspora, particularly NRIs and their visiting relatives."
+          "note": "The article explicitly connects the pilot program to the needs and experiences of the Indian diaspora, particularly NRIs and their families."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a small 'how-to' infographic or a bulleted checklist for the Global Entry application process, as it involves steps in both the U.S. and India.",
-          "Perhaps include a brief mention of other digital wallets (e.g., Apple Wallet) and whether they have similar TSA PreCheck integrations, to provide a more complete picture of the digital ID landscape."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "e38cbb03-e5b7-48e9-84e0-e3eca904bd97",
-      "headline": "The Firm That Spotted Zomato Early Just Put Half Its Money Into AI and Deeptech",
-      "slug": "info-edge-ai-deeptech-1003-crore-54-startups-bikhchandani-nri-investor-20260625",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A person presenting next to a whiteboard with 'START UP' written on it.",
-          "reason": "The photo depicts a startup scene, which is relevant to a story about a firm investing in AI and deeptech startups."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image shows a person working with a holographic interface, which generally aligns with 'AI and Deeptech' but is a generic representation rather than specific to Info Edge or Indian tech. It's acceptable but not highly specific."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The 'Why NRIs should care' section is well-integrated and provides clear, relevant reasons for the diaspora to be interested, covering both investment and career opportunities."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a small infographic or table to visually represent Info Edge's investment split between AI and deeptech, and their respective IRRs, to make the 'numbers behind the pivot' section more digestible.",
-          "Ensure the concluding sentence is complete and impactful, as it currently cuts off abruptly."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "abc72d7b-f97c-4e6e-acfc-064cf2fcb639",
-      "headline": "Everyone's Chasing AI Chips. An Indian-American Duo Just Raised $190 Million Building the Wires Between Them.",
-      "slug": "upscale-ai-190-million-2-billion-networking-barun-kar-khemani-premji-n-20260625",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Networking cables and ports in a data center",
-          "reason": "The photo depicts networking infrastructure, which is directly relevant to a story about building 'wires between' AI chips and solving data center bottlenecks."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image shows abstract circuit board lines, which generally fits 'tech' and 'AI chips' but isn't specific to 'wires between them' or the company Upscale AI. It's generic but not misleading."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The diaspora angle is strong and well-integrated, highlighting Indian-American founders, Indian-rooted investment, and the relevance to NRI engineers and investors. It feels natural and insightful."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a quote from one of the founders about the significance of their Indian heritage or the role of the Indian diaspora in tech, if available, to further enrich the diaspora angle.",
-          "While the article mentions 'open standards such as UALink and Ultra Ethernet,' a brief, high-level explanation of why these are important (e.g., 'to avoid vendor lock-in') could benefit readers less familiar with networking specifics."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "319d7dbe-be6d-46a7-8444-abaff681145f",
-      "headline": "Microsoft Bankrolled the AI Giants. Now Satya Nadella Is Picking a Fight With Them.",
-      "slug": "satya-nadella-ai-reset-warning-copilot-model-agnostic-openai-anthropic-20260625",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "0a87a59c-d825-419b-95fb-e8ff2ef8b3a8",
-            "headline": "Satya Nadella Spent a Decade Cheering AI On. Now He Wants th"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Microsoft CEO Satya Nadella smiling in glasses",
-          "reason": "The photo clearly shows Satya Nadella, who is the central figure of the headline and subheadline."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The diaspora angle is well-integrated and provides a unique, relevant perspective for NRI readers, especially regarding job security and the Indian IT industry."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a brief explanation of what 'frontier models' are for readers less familiar with AI terminology.",
-          "Ensure the conclusion of the article is not cut off, as it seems to end mid-sentence."
+          "Consider adding a small section on potential alternatives or existing expedited options (even if less effective) for those who cannot afford the premium fee.",
+          "If possible, include a quote from an expert or an individual from the diaspora expressing their view on this new system to add more human interest."
         ],
         "verdict": "pass"
       },
