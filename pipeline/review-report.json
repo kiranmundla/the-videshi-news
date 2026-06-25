@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-25T10:15:52.039363+00:00",
+  "timestamp": "2026-06-25T10:45:36.420612+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 5,
-    "flag": 1,
+    "pass": 4,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "42f7d280-4bb3-42a2-bc43-b720dc5c6f1b",
-      "headline": "India's Market Engine Has Quietly Switched Drivers \u2014 From Foreign Money to the Monthly SIP",
-      "slug": "india-sip-led-financialisation-retail-flows-fpi-selling-jp-morgan-demand-anchor-markets-nri-investor-20260625-0300",
+      "id": "75169e85-30dc-4d2f-aa96-b833b2bb5226",
+      "headline": "Canada Has a Message for Indian Students: This Is the 'Best Time Ever' to Apply.",
+      "slug": "canada-best-time-ever-indian-students-cooter-caps-not-full-us-australia-visa-crunch-diaspora-20260625",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Mumbai's financial district building with 'BSE' displayed",
-          "reason": "The photo shows a financial district building, which is a generic but on-topic image for an economy story about Indian equities."
+          "what_photo_shows": "A Canadian university campus with the CN Tower in the background.",
+          "reason": "The photo depicts a Canadian university campus, which is directly relevant to a story about Indian students applying to Canada."
         },
         "inline_image_mismatches": []
       },
@@ -35,14 +35,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article implicitly connects to NRI readers by discussing investment opportunities and trends in India, which is a common interest for the diaspora. The mention of 'foreign money' and 'foreign portfolio investors' also positions NRIs as part of the broader 'foreign' investment landscape, even if the focus is on domestic SIPs."
+          "quality": 9,
+          "note": "The article explicitly connects to NRI/diaspora readers in the 'Why It Matters for the Diaspora' section, explaining the significance of study abroad for Indian families and its role in establishing new diaspora branches. This is a natural and strong connection."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a small section or a concluding sentence explicitly addressing how this shift impacts NRI investment strategies or perceptions of the Indian market.",
-          "Ensure all financial figures are consistently presented (e.g., all in trillions or billions, or clearly specify when switching)."
+          "Consider adding a quote from an Indian student or education consultant to provide a ground-level perspective on the current application climate and visa process challenges.",
+          "If possible, include a small infographic or table comparing key student visa policies (fees, post-study work permits, duration of status) across the 'Big Four' countries mentioned to visually reinforce Canada's comparative advantage."
         ],
         "verdict": "pass"
       },
@@ -54,9 +54,9 @@
       "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "30f73c0f-f0f5-4584-a116-b3aa34ca0c61",
-      "headline": "Cholesterol Pills May Touch More Than the Heart \u2014 a Genetic Study Maps Effects on Weight, Hormones and the Brain",
-      "slug": "cholesterol-drugs-statins-pcsk9-mendelian-randomization-weight-testosterone-lung-brain-unisa-bjcp-diaspora-20260625-0300",
+      "id": "d99b9e13-d12f-4cfd-b0e4-ad5fd73d358f",
+      "headline": "Gold Just Broke Below $4,000 for the First Time Since November. It's Down a Quarter From Its Peak.",
+      "slug": "gold-silver-crash-below-4000-dollar-fed-rate-hike-iran-india-rupee-import-curbs-diaspora-20260625",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,30 +64,73 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Four pills, two white and two blue-green, on a white surface.",
-          "reason": "The photo shows various pills, which is a generic but on-topic image for a story about cholesterol pills and their effects."
+          "what_photo_shows": "A gold bullion bar with markings.",
+          "reason": "The photo clearly shows a gold bullion bar, which is directly relevant to a story about gold prices."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 7,
+        "overall_score": 8,
         "embed_issues": [],
         "image_match": {
           "score": 9,
           "issue": null
         },
         "diaspora_angle": {
-          "present": false,
-          "quality": 1,
-          "note": "No direct or indirect connection to NRI/diaspora readers. This is a general health article."
+          "present": true,
+          "quality": 8,
+          "note": "The 'Why It Matters for the Diaspora' section directly addresses NRI readers, explaining the cultural and financial implications of gold price changes."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Integrate a diaspora angle by discussing the prevalence of cholesterol issues in the Indian diaspora, or how these findings might specifically impact health recommendations for NRIs.",
-          "Consider adding a quote from an Indian-origin medical professional or researcher if available, to subtly connect to the platform's audience."
+          "Consider adding a small section on the long-term outlook for gold, perhaps quoting an analyst on recovery potential or further downside risks, to provide a more complete picture for readers looking to buy.",
+          "Ensure all future dates (e.g., 'November 2025', 'January 29') are consistent with the publication date of the article to avoid confusion."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "44ab4c19-e721-4246-83b2-431fc83a72f6",
+      "headline": "India's Women Won a Trophy and a Promotion in One Night in Auckland",
+      "slug": "india-women-hockey-nations-cup-2026-champions-beat-new-zealand-2-0-auckland-salima-tete-navneet-kaur-toppo-pro-league-promotion-diaspora-nri",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Salima Tete wearing a medal and Indian Olympic Association logo",
+          "reason": "The photo shows the named person, Salima Tete, who is the subject of the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The 'Why the diaspora should care' section is well-integrated and provides a clear, natural connection for NRI readers, especially regarding future viewing opportunities."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a quote from a diaspora fan or an anecdote about NRI viewership to further strengthen the diaspora angle, if possible.",
+          "Ensure all names are consistently spelled (e.g., 'Sunelita Toppo' vs. 'Toppo' in later mentions, though this is minor)."
+        ],
+        "verdict": "pass"
       },
       "actions_taken": [
         "promoted to published"
@@ -106,9 +149,9 @@
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
-          "verdict": "MISMATCH",
-          "what_photo_shows": "A book cover titled 'Lonely O'Malley'",
-          "reason": "The photo shows a book cover, which is unrelated to a study on loneliness and cognitive decline."
+          "verdict": "MATCH",
+          "what_photo_shows": "An older woman looking out a window, appearing contemplative or lonely.",
+          "reason": "The photo of an older woman looking out a window evokes feelings of solitude or loneliness, which aligns well with the story's topic about loneliness and cognitive decline in aging."
         },
         "inline_image_mismatches": []
       },
@@ -116,150 +159,19 @@
         "overall_score": 7,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "No image URL or entities provided, so cannot fully assess. Assuming a relevant image would depict an older person or a concept of connection/isolation."
+          "score": 8,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 6,
-          "note": "The article touches on universal themes of loneliness and social connection, which are highly relevant to NRIs who may experience unique forms of isolation due to migration, distance from family, and cultural shifts. While not explicitly mentioned, the 'crowded dinner table, surrounded by family, and still feel unseen' resonates with potential intergenerational or cultural gaps within diaspora families. The platform's audience would likely find this relevant without a forced angle."
+          "note": "The article touches on universal themes of loneliness and family, which resonate with NRIs who may experience social isolation or feel disconnected despite being surrounded by family, especially when living abroad or having family back in India. The mention of 'crowded dinner table, surrounded by family, and still feel unseen' is particularly relevant to the Indian cultural context where family is central."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a short introductory or concluding paragraph that explicitly frames the article's relevance to the NRI experience, perhaps by mentioning challenges of maintaining social ties across continents or the unique pressures faced by diaspora communities regarding family and belonging.",
-          "If possible, include an image that subtly hints at the diaspora experience or a diverse older population to enhance relevance for The Videshi's audience."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "Cleared mismatched image (A book cover titled 'Lonely O'Malley')",
-        "held: image mismatch"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "image_mismatch": true,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "7a666adf-181f-4b9e-b3ed-05a582cfd5e1",
-      "headline": "The Diaspora's Off-Season Secret: Why an India Trip in the Monsoon Beats the Winter Crush",
-      "slug": "india-monsoon-travel-2026-cheaper-greener-diaspora-summer-break-20260625",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Lush green tea plantations in the hills of Munnar, Kerala.",
-          "reason": "The photo depicts tea plantations in the hills of Munnar, Kerala, which aligns with the story's theme of India travel during monsoon and the subheadline mentioning 'hills turn electric green'."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The diaspora angle is well-integrated and provides practical reasons (school breaks, cost) and emotional connections (nostalgia, authentic experience)."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a small section on specific monsoon festivals or cultural events that might appeal to diaspora readers, if any are prominent during this period.",
-          "Perhaps include a brief mention of any specific health precautions beyond mosquito protection, given the monsoon season (e.g., water-borne illnesses, food safety)."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "aa6b4b59-a7a4-493e-b52e-7f3aec1a46df",
-      "headline": "Europe Just Got Easier and Stricter for Indians at Once \u2014 How the Schengen Cascade and the New Border System Work Together",
-      "slug": "schengen-cascade-visa-ees-border-indians-multiple-entry-nri-2026-20260625",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Night view of Paris with the Eiffel Tower.",
-          "reason": "Paris is a major city within the Schengen Area, making a photo of it relevant to a story about Schengen visas."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image of Paris at night is generic and doesn't specifically represent the 'easier and stricter' aspect of the new visa/border system. While Europe-related, it's not highly specific to the article's core topic."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article clearly and naturally connects to NRI/diaspora readers, especially those on Indian passports in the US, explaining how the changes impact their specific travel patterns and offering practical advice tailored to them."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider a more illustrative hero image that visually hints at both the 'easier' (e.g., multi-year visa) and 'stricter' (e.g., digital tracking) aspects, perhaps a graphic or a more conceptual image.",
-          "While the sources are listed, for a news platform, linking directly to the EEAS or European Commission pages where these rules are detailed would add further credibility and allow readers to explore official information."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "3227658f-2f01-4a78-9206-483862cb829c",
-      "headline": "Air India's First International Flights From Guwahati Open the Northeast's Door to the Gulf \u2014 and the World Beyond",
-      "slug": "air-india-guwahati-dubai-abu-dhabi-first-international-northeast-nri-20260625",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "The terminal of Lokpriya Gopinath Bordoloi International Airport in Guwahati.",
-          "reason": "The photo shows the specific airport mentioned in the caption and headline, which is directly relevant to the story about new international flights from Guwahati."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The diaspora angle is well-integrated and directly addresses a common pain point for NRIs with family in the Northeast."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a small map graphic showing Guwahati's location relative to the Gulf and other major Indian cities to visually reinforce the 'decentralization' and 'gateway' concepts.",
-          "If possible, include a quote from an Air India representative or a local official to add more authority and human interest to the announcement."
+          "Consider adding a specific anecdote or quote from an NRI experiencing loneliness to strengthen the diaspora angle, perhaps in a sidebar or a short introductory paragraph.",
+          "Explore potential cultural nuances of loneliness within the Indian diaspora, e.g., expectations of family support vs. reality, or challenges of forming new connections in a foreign land."
         ],
         "verdict": "pass"
       },
