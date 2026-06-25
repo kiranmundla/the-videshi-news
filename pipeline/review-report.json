@@ -1,19 +1,125 @@
 {
-  "timestamp": "2026-06-25T20:45:14.141390+00:00",
+  "timestamp": "2026-06-25T21:16:04.194873+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
-    "flag": 0,
+    "pass": 4,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
-  "revisions": 0,
+  "revisions": 1,
   "unpublished": 0,
   "articles": [
     {
-      "id": "099910da-2795-42c2-8d5a-17670a81284e",
-      "headline": "U.N. Halts Strait of Hormuz Evacuation After Cargo Ship Is Attacked, Stranding Thousands of Sailors Again",
-      "slug": "un-pauses-strait-of-hormuz-seafarer-evacuation-after-ship-attacked-20260625",
+      "id": "c2a3732d-a6a6-472b-984d-68f36ea51c07",
+      "headline": "Zendaya Walked the Paris Spider-Man Carpet in a $35 eBay T-Shirt \u2014 and Broke the Internet Doing It",
+      "slug": "zendaya-35-dollar-vintage-spider-man-tshirt-paris-premiere-brand-new-day-tom-holland-law-roach-versace-louis-vuitton-july-31-where-to-watch-diaspora-nri",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "98b666e4-afb2-4dd9-9a22-39835fdee479",
+            "headline": "Zendaya Is Wearing Spider-Man's Colours Now \u2014 and the 'Brand"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Zendaya in a red sequined top",
+          "reason": "The photo clearly shows Zendaya, who is the subject of the headline."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 6,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image is a general portrait of Zendaya from 2019, not specifically related to the Spider-Man premiere or the $35 t-shirt outfit described in the article. While it is Zendaya, it doesn't match the specific event or context."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 6,
+          "note": "The diaspora angle feels a bit tacked on at the end, primarily focusing on the Indian release date and dubbing options. It's relevant but doesn't deeply integrate into the main narrative of the article."
+        },
+        "factual_flags": [
+          "The article states Zendaya is 29 and Tom Holland is 30. Given the article's publication date (June 24, implying 2024), Zendaya, born September 1, 1996, would be 27, turning 28. Tom Holland, born June 1, 1996, would be 28, turning 29. The ages seem slightly off.",
+          "The YouTube embed URL is for a 'Spider-Man: Homecoming' trailer, not 'Spider-Man: Brand New Day' or a relevant fashion clip. This is a topical mismatch."
+        ],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the YouTube embed with a video directly relevant to Zendaya's Paris outfit or the 'Spider-Man: Brand New Day' film, if available. The current embed is for a different movie.",
+          "Verify and correct the ages of Zendaya and Tom Holland to ensure factual accuracy."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Revised by gemini-2.5-flash (730\u2192822 words)"
+      ],
+      "revised": true,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "ffe4c7d2-7af0-4c12-bd15-8ebb7424c87b",
+      "headline": "Ten Years After Kattappa Killed Baahubali, Netflix Opens the Gates of Mahishmati Again \u2014 This Time There's No Script",
+      "slug": "baahubali-the-torchbearer-netflix-docuseries-june-26-2026-prabhas-rajamouli-10-year-anniversary-eternal-war-annecy-where-to-watch-diaspora-nri",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "fd1fceac-721a-48fd-96a6-dbdb63de6ef6",
+            "headline": "Prabhas and Ranbir Kapoor Are Circling the Same Weekend. Ind"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Prabhas, the actor who plays Baahubali, at an event.",
+          "reason": "The photo clearly shows Prabhas, who is directly relevant to the Baahubali story mentioned in the headline."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [
+          {
+            "url": "https://youtube.com/watch?v=3MhKd0puYyw",
+            "problem": "irrelevant",
+            "explanation": "This YouTube link is for the trailer of 'Baahubali 2: The Conclusion', not for the new documentary series 'Baahubali: The Torchbearer' which is the main subject of the article. It should be a trailer or promotional material for the documentary."
+          }
+        ],
+        "image_match": {
+          "score": 7,
+          "issue": "The image is of Prabhas, who is a key figure in the Baahubali franchise. However, the headline focuses on Netflix and the documentary, so a more direct image related to the documentary or the franchise's 10-year anniversary might be stronger. The current image is acceptable but not perfect."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article explicitly addresses the diaspora angle in the penultimate paragraph, highlighting worldwide availability and its utility for NRI parents explaining the phenomenon to their children. It feels natural and well-integrated."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the current YouTube embed with a trailer or promotional video for 'Baahubali: The Torchbearer' to directly support the article's main topic.",
+          "Consider adding a sentence or two about the potential impact or reception of 'The Torchbearer' among the diaspora, perhaps referencing social media buzz or early reviews if available."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://youtube.com/watch?v=3MhKd0puYyw",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "67c5ed91-21c2-4def-a0d3-4e3ebf77fa0d",
+      "headline": "India Wants Its AI to Run on Indian Soil. A Navi Mumbai Company Is Stacking 80,000 GPUs to Make That Real.",
+      "slug": "yotta-sovereign-ai-data-center-india-gpu-blackwell-nvidia-nri-20260625",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,34 +127,116 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A tanker and another ship at sea under a cloudy sky.",
-          "reason": "The photo shows a tanker, which is directly relevant to a story about a cargo ship attack and shipping in the Strait of Hormuz."
+          "what_photo_shows": "Tower servers in a data center",
+          "reason": "The photo shows data center infrastructure, which is directly relevant to a story about stacking GPUs for AI and sovereign data centers."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [
-          {
-            "url": "https://twitter.com/IMO_News/status/1799010101010101010",
-            "problem": "broken",
-            "explanation": "The provided X_EMBED URL is a placeholder and does not resolve to a real tweet. It needs to be replaced with a valid, relevant tweet from the IMO or a related official source."
-          }
-        ],
+        "overall_score": 8,
+        "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image is a generic abstract representation of technology/AI, which broadly fits the topic of AI infrastructure. However, it doesn't specifically depict data centers, GPUs, or India, which would make it a perfect match. It's acceptable but not ideal."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article explicitly connects the issue to Indian seafarers and their families, which is highly relevant for an NRI audience. The 'Why this lands hard on Indian families' section is well-placed and effective."
+          "note": "The 'diaspora's stake' section clearly and naturally connects the topic to NRI investment opportunities and potential returnee talent, making it highly relevant for the target audience without feeling forced."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the placeholder X_EMBED with a real, relevant tweet from the IMO or a credible news source to enhance credibility and provide additional context.",
-          "Consider adding a brief explanation of what the 'Strait of Hormuz' is and its global significance for readers who might not be familiar with the geography, even if it's a geopolitics vertical."
+          "Consider adding a small section or a call-out box explaining what 'Blackwell B200 and B300' or 'GB300/Vera Rubin GPUs' are for readers less familiar with specific NVIDIA hardware, as these are key to the scale being discussed.",
+          "If possible, include a quote from an NRI investor or a returning engineer to further strengthen the 'diaspora's stake' section and add a human element."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "41267df1-2b93-49d1-87c4-d2cb024a067c",
+      "headline": "IndiaMART Connects 600 Buyers a Minute. Now It's Doubling Its AI Spend Every Six Months to Stop the Fakes.",
+      "slug": "indiamart-ai-spend-fake-listings-counterfeit-b2b-marketplace-nri-20260625",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "A worker sorting parcels in a logistics office.",
+          "reason": "The photo depicts B2B trade logistics, which is relevant to IndiaMART's marketplace operations."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image is a generic business meeting photo. While not entirely mismatched, it doesn't specifically evoke 'online marketplace' or 'AI combating fakes'. A more thematic image could be chosen."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article explicitly connects IndiaMART's issues and AI solutions to diaspora entrepreneurs sourcing goods and to NRI tech workers and investors, making the angle natural and relevant."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a specific example of a 'fake' product or a 'malicious listing' that IndiaMART is trying to combat to make the problem more tangible for readers.",
+          "If possible, include a quote from a diaspora entrepreneur who uses IndiaMART to further strengthen the NRI connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "c7eb6240-4b6f-4a4b-aa6d-10f4c977e738",
+      "headline": "An Indian Air Force Pilot Just Became the First ISRO Astronaut on the Space Station. The Next Stop Is India's Own.",
+      "slug": "shubhanshu-shukla-axiom-4-iss-isro-first-gaganyaan-nri-space-20260625",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Shubhanshu Shukla in an Indian Air Force uniform",
+          "reason": "The photo shows the named person from the headline, Shubhanshu Shukla, in an appropriate uniform for the story's topic."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image is of Wing Commander Shubhanshu Shukla, which matches the article's subject. However, the article states he is a Group Captain, which is a higher rank. The image caption should reflect the current rank mentioned in the article for accuracy."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The diaspora angle is explicitly and thoughtfully addressed in a dedicated section, connecting the space ambitions to NRI funding, STEM scholarships, and the 'brain drain' narrative, making it highly relevant and well-integrated."
+        },
+        "factual_flags": [
+          "The article refers to Shubhanshu Shukla as 'Group Captain' in the body, but the image description (if it were provided in the prompt) would likely show 'Wing Commander'. This is a potential rank discrepancy that needs to be verified for accuracy."
+        ],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Verify and update Shubhanshu Shukla's rank in the image caption to match the 'Group Captain' mentioned in the article body for consistency.",
+          "Consider adding a brief explanation or context for the 'Harmony module' for readers less familiar with ISS architecture."
         ],
         "verdict": "pass"
       },
