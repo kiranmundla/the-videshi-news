@@ -1,6 +1,6 @@
 {
  "_description": "Media library mirror — high-quality, attribution-clean images+videos for article/reel fallback. Source of truth is the Supabase media_library table; this mirror lets the pipeline read without a DB round-trip.",
- "_updated": "2026-06-25T10:38:23Z",
+ "_updated": "2026-06-25T17:57:18Z",
  "assets": [
   {
    "id": "person--narendra-modi--bfe42b",
@@ -1143,28 +1143,6 @@
    "duration": null,
    "quality_score": 82.4,
    "added_date": "2026-06-21T10:31:17Z",
-   "last_used": null,
-   "times_used": 0
-  },
-  {
-   "id": "place--singapore--6b471e",
-   "media_type": "image",
-   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/place/singapore-6b471e.jpg",
-   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/place/singapore-6b471e.jpg",
-   "subject": "Singapore",
-   "subject_type": "place",
-   "caption": "Singapore National Day Parade 2011 fireworks preview marina bay sands floating platform",
-   "attribution": "Wikimedia Commons / chensiyuan, CC BY-SA 4.0",
-   "license": "CC BY-SA 4.0",
-   "source_url": "https://commons.wikimedia.org/wiki/File:1_singapore_national_day_parade_2011_fireworks.jpg",
-   "tags": [
-    "singapore"
-   ],
-   "width": 4256,
-   "height": 2832,
-   "duration": null,
-   "quality_score": 92.0,
-   "added_date": "2026-06-21T10:31:27Z",
    "last_used": null,
    "times_used": 0
   },
@@ -3235,6 +3213,28 @@
    "added_date": "2026-06-25T10:38:23Z",
    "last_used": null,
    "times_used": 0
+  },
+  {
+   "id": "place--singapore--6b471e",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/place/singapore-6b471e.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/place/singapore-6b471e.jpg",
+   "subject": "Singapore",
+   "subject_type": "place",
+   "caption": "Singapore National Day Parade 2011 fireworks preview marina bay sands floating platform",
+   "attribution": "Wikimedia Commons / chensiyuan, CC BY-SA 4.0",
+   "license": "CC BY-SA 4.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:1_singapore_national_day_parade_2011_fireworks.jpg",
+   "tags": [
+    "singapore"
+   ],
+   "width": 4256,
+   "height": 2832,
+   "duration": null,
+   "quality_score": 92.0,
+   "added_date": "2026-06-21T10:31:27Z",
+   "last_used": "2026-06-25T17:57:18Z",
+   "times_used": 1
   }
  ]
 }
