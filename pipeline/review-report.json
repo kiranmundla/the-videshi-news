@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-25T18:45:23.151961+00:00",
+  "timestamp": "2026-06-25T19:15:28.479321+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
-    "flag": 1,
+    "pass": 0,
+    "flag": 2,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "fb1d4b77-7337-4d64-a1ff-bb84f2a80f33",
-      "headline": "After a Decade of Waiting, India's Biggest Stock Exchange Is Finally Going Public. The Owner of the Market Is About to Join It.",
-      "slug": "nse-national-stock-exchange-files-drhp-sebi-largest-ipo-india-30000-crore-offer-for-sale-2026-20260625",
+      "id": "ff0aee45-47dc-4114-bd1a-c3bfd4892313",
+      "headline": "A Star's Son, a Fresh Face, and a Paresh Rawal Wildcard: 'Tera Yaar Hoon Main' Jumps the Queue to July 24",
+      "slug": "tera-yaar-hoon-main-july-24-2026-release-advanced-aman-indra-kumar-debut-akanksha-sharma-paresh-rawal-milap-zaveri-title-track-where-to-watch-diaspora-nri",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,34 +21,42 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "The National Stock Exchange (NSE) building in Mumbai.",
-          "reason": "The photo clearly shows the building of the National Stock Exchange, which is the main subject of the story."
+          "what_photo_shows": "Veteran actor Paresh Rawal in a denim shirt.",
+          "reason": "The photo clearly shows Paresh Rawal, who is mentioned in the headline and caption as a key figure in the story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
+        "overall_score": 7,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DZ6sMO3TRvP/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel URL is malformed or points to a non-existent/private post. It does not show the 'Tera Yaar Hoon Main' title track teaser as implied by the article. The 'DZ6sMO3TRvP' reel ID does not correspond to a valid public Instagram reel related to the film."
+          }
+        ],
         "image_match": {
-          "score": 9,
+          "score": 8,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The 'Why It Matters for the Diaspora' section directly addresses NRIs and their investment interests, making a clear and relevant connection."
+          "quality": 9,
+          "note": "The diaspora angle is well-integrated and naturally explains the film's potential appeal to NRI audiences, citing specific locations and reasons."
         },
         "factual_flags": [
-          "The article states 'For the year ended March 2026, NSE reported total income of Rs 18,713 crore and net profit of Rs 10,302 crore'. This is a future date, implying a projection rather than a reported past figure. This should be clarified as a projection or estimate."
+          "The article mentions 'July 24, 2026' for the release date, which seems unusually far in the future for a film being actively promoted and discussed in the present tense. This might be a typo for 2024.",
+          "The Instagram embed URL appears to be broken or incorrect, as it does not lead to the expected content."
         ],
         "duplicate_embeds": [],
         "suggestions": [
-          "Clarify that the financial figures for 'March 2026' are projections or estimates, not historical reports.",
-          "Consider adding a brief explanation of what 'co-location controversy' entailed for readers unfamiliar with the specific scandal."
+          "Verify and correct the release year (2026 vs. 2024) for 'Tera Yaar Hoon Main' to ensure factual accuracy.",
+          "Update the Instagram embed URL to a valid and relevant post for the 'Tera Yaar Hoon Main' title track teaser or full song."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DZ6sMO3TRvP/",
         "promoted to published"
       ],
       "revised": false,
@@ -56,9 +64,9 @@
       "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "ffe952e7-cedd-4b5b-9314-d12e1c48a622",
-      "headline": "America Will Soon Let You Pay $750 to Skip the Visa Line. India's Travellers Are the Obvious Customer.",
-      "slug": "us-premium-visa-appointment-pilot-750-dollars-faster-interview-b1-b2-indian-travellers-july-december-2026-20260625",
+      "id": "8db5a0ce-8cd3-451c-96b8-897a023d3db2",
+      "headline": "Riteish Deshmukh Spent Ten Years Becoming a King. This Friday, 'Raja Shivaji' Storms Netflix Worldwide.",
+      "slug": "raja-shivaji-netflix-ott-release-june-26-2026-riteish-deshmukh-salman-khan-cameo-marathi-blockbuster-100-crore-sanjay-dutt-where-to-watch-diaspora-nri",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -66,32 +74,41 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "The U.S. Embassy in New Delhi with fountains",
-          "reason": "The photo shows the U.S. Embassy in New Delhi, which is directly relevant to a story about U.S. visa processing for Indian travelers."
+          "what_photo_shows": "Riteish Deshmukh in a suit with a red tie.",
+          "reason": "The photo clearly shows Riteish Deshmukh, who is the subject of the story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DYPLG7UozER/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel is from 2021 and features a dance performance, not related to the 'Raja Shivaji' film or its cast. It appears to be a random embed."
+          }
+        ],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 6,
+          "issue": "The image is of Riteish Deshmukh, which matches the headline, but it's a promotional photo from 2012 for 'Kyaa Super Kool Hain Hum', not a recent or relevant image for a historical epic like 'Raja Shivaji'. It doesn't convey the gravitas of the role or film."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article explicitly connects the pilot program to the needs and experiences of the Indian diaspora, particularly NRIs and their families."
+          "note": "The diaspora angle is very strong and naturally integrated, specifically mentioning NRIs in New Jersey, Maharashtrian families in the Bay Area, London, and Toronto, and the film's global Netflix release catering to them. It highlights the 'comfort cinema' aspect for this audience."
         },
-        "factual_flags": [],
+        "factual_flags": [
+          "The article states 'This Friday, June 26' for the Netflix release, but June 26, 2024, is a Wednesday. This is a minor factual error regarding the day of the week."
+        ],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a small section on potential alternatives or existing expedited options (even if less effective) for those who cannot afford the premium fee.",
-          "If possible, include a quote from an expert or an individual from the diaspora expressing their view on this new system to add more human interest."
+          "Replace the irrelevant Instagram embed with a relevant trailer, cast interview, or behind-the-scenes clip for 'Raja Shivaji'.",
+          "Update the hero image to a more recent and thematically appropriate picture of Riteish Deshmukh, ideally in character as Shivaji, or a promotional poster for the film."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DYPLG7UozER/",
         "promoted to published"
       ],
       "revised": false,
