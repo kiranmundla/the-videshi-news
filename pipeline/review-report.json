@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-25T20:15:21.605407+00:00",
+  "timestamp": "2026-06-25T20:45:14.141390+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 1,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "c64db081-d084-45a9-9579-9265bb347d02",
-      "headline": "Five Days Left: The June 30 H-1B Deadline That Decides Who Starts Work on October 1",
-      "slug": "h1b-fy2027-june-30-filing-deadline-form-i129-wage-level-indians-20260625",
+      "id": "099910da-2795-42c2-8d5a-17670a81284e",
+      "headline": "U.N. Halts Strait of Hormuz Evacuation After Cargo Ship Is Attacked, Stranding Thousands of Sailors Again",
+      "slug": "un-pauses-strait-of-hormuz-seafarer-evacuation-after-ship-attacked-20260625",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,71 +21,34 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "An open passport with visa and entry stamps.",
-          "reason": "The photo of a passport with visa stamps is a generic but relevant image for a story about immigration and H-1B visas."
+          "what_photo_shows": "A tanker and another ship at sea under a cloudy sky.",
+          "reason": "The photo shows a tanker, which is directly relevant to a story about a cargo ship attack and shipping in the Strait of Hormuz."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
+        "overall_score": 7,
+        "embed_issues": [
+          {
+            "url": "https://twitter.com/IMO_News/status/1799010101010101010",
+            "problem": "broken",
+            "explanation": "The provided X_EMBED URL is a placeholder and does not resolve to a real tweet. It needs to be replaced with a valid, relevant tweet from the IMO or a related official source."
+          }
+        ],
         "image_match": {
-          "score": 8,
+          "score": 9,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article explicitly addresses Indian professionals and their disproportionate impact, making the diaspora angle very strong and natural."
+          "quality": 8,
+          "note": "The article explicitly connects the issue to Indian seafarers and their families, which is highly relevant for an NRI audience. The 'Why this lands hard on Indian families' section is well-placed and effective."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a small 'What to do if you miss the deadline' section, even if brief, to manage reader expectations.",
-          "Perhaps include a link to the USCIS official page for H-1B updates for readers who want to dive deeper."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "b38b5776-f313-420b-b139-829100936d13",
-      "headline": "The Age-Out Clock Just Got Reset for 200,000 'Documented Dreamers' \u2014 Most of Them Indian",
-      "slug": "documented-dreamers-cspa-age-out-reversal-uscis-h4-children-indians-20260625",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Three international graduates in caps and gowns holding their mortarboards.",
-          "reason": "The photo depicts international graduates, which is relevant to a story about 'Documented Dreamers' and their immigration status, many of whom are students or recent graduates."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image shows a person looking at a phone, which doesn't directly convey the 'documented dreamers' or immigration policy change. While not entirely irrelevant, it's generic."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article directly addresses a critical issue for the Indian diaspora, specifically NRIs and their children, explaining why this policy disproportionately affects them."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a quote from an affected 'documented dreamer' or parent to personalize the impact of the policy change.",
-          "If possible, include a link to Improve the Dream or a similar advocacy group for readers who want to learn more or get involved."
+          "Replace the placeholder X_EMBED with a real, relevant tweet from the IMO or a credible news source to enhance credibility and provide additional context.",
+          "Consider adding a brief explanation of what the 'Strait of Hormuz' is and its global significance for readers who might not be familiar with the geography, even if it's a geopolitics vertical."
         ],
         "verdict": "pass"
       },
