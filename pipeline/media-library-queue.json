@@ -262,16 +262,6 @@
    "priority": 4
   },
   {
-   "subject": "sovereign ai",
-   "subject_type": "thing",
-   "tags": [
-    "sovereign ai"
-   ],
-   "first_seen": "2026-06-19T05:36:15Z",
-   "article_id": "5ae1c1b8-6d47-4164-9d0f-96e3d34034d5",
-   "priority": 5
-  },
-  {
    "subject": "iit",
    "subject_type": "thing",
    "tags": [
@@ -500,16 +490,6 @@
    "first_seen": "2026-06-19T10:29:23Z",
    "article_id": "f5429f90-ba85-47a2-b69a-e49efe19e9f4",
    "priority": 2
-  },
-  {
-   "subject": "startups",
-   "subject_type": "thing",
-   "tags": [
-    "startups"
-   ],
-   "first_seen": "2026-06-19T10:29:23Z",
-   "article_id": "f5429f90-ba85-47a2-b69a-e49efe19e9f4",
-   "priority": 5
   },
   {
    "subject": "Sourav Ganguly",
@@ -762,16 +742,6 @@
    "priority": 3
   },
   {
-   "subject": "Uttar Pradesh",
-   "subject_type": "place",
-   "tags": [
-    "uttar pradesh"
-   ],
-   "first_seen": "2026-06-20T10:29:23Z",
-   "article_id": "50b7230f-9dd8-4312-bbfb-63b6ba79ce97",
-   "priority": 6
-  },
-  {
    "subject": "infrastructure",
    "subject_type": "thing",
    "tags": [
@@ -872,16 +842,6 @@
    "priority": 2
   },
   {
-   "subject": "dhs",
-   "subject_type": "thing",
-   "tags": [
-    "dhs"
-   ],
-   "first_seen": "2026-06-20T10:29:23Z",
-   "article_id": "556d9d0e-5a4b-4038-8825-c2834340ff17",
-   "priority": 5
-  },
-  {
    "subject": "wage weighted selection",
    "subject_type": "thing",
    "tags": [
@@ -940,46 +900,6 @@
    "first_seen": "2026-06-20T10:29:23Z",
    "article_id": "a5d32a10-221c-4852-bf65-0bea3a350ebc",
    "priority": 3
-  },
-  {
-   "subject": "sports",
-   "subject_type": "thing",
-   "tags": [
-    "sports"
-   ],
-   "first_seen": "2026-06-20T10:29:23Z",
-   "article_id": "a5d32a10-221c-4852-bf65-0bea3a350ebc",
-   "priority": 5
-  },
-  {
-   "subject": "world cup 2026",
-   "subject_type": "thing",
-   "tags": [
-    "world cup 2026"
-   ],
-   "first_seen": "2026-06-20T10:29:23Z",
-   "article_id": "a5d32a10-221c-4852-bf65-0bea3a350ebc",
-   "priority": 5
-  },
-  {
-   "subject": "fifa",
-   "subject_type": "thing",
-   "tags": [
-    "fifa"
-   ],
-   "first_seen": "2026-06-20T10:29:23Z",
-   "article_id": "a5d32a10-221c-4852-bf65-0bea3a350ebc",
-   "priority": 5
-  },
-  {
-   "subject": "world cup",
-   "subject_type": "thing",
-   "tags": [
-    "world cup"
-   ],
-   "first_seen": "2026-06-20T10:29:23Z",
-   "article_id": "a5d32a10-221c-4852-bf65-0bea3a350ebc",
-   "priority": 5
   },
   {
    "subject": "san francisco bay area",
@@ -1082,16 +1002,6 @@
    "priority": 2
   },
   {
-   "subject": "Surat",
-   "subject_type": "place",
-   "tags": [
-    "surat"
-   ],
-   "first_seen": "2026-06-20T10:29:23Z",
-   "article_id": "2abb23bf-4072-4208-87a9-62e2d43a660c",
-   "priority": 5
-  },
-  {
    "subject": "hoteliers",
    "subject_type": "thing",
    "tags": [
@@ -1182,16 +1092,6 @@
    "priority": 4
   },
   {
-   "subject": "Melbourne",
-   "subject_type": "place",
-   "tags": [
-    "melbourne"
-   ],
-   "first_seen": "2026-06-20T10:29:23Z",
-   "article_id": "a58fd82d-fc33-4caa-9f78-623b9baead73",
-   "priority": 5
-  },
-  {
    "subject": "media",
    "subject_type": "thing",
    "tags": [
@@ -1250,36 +1150,6 @@
    "first_seen": "2026-06-20T10:29:23Z",
    "article_id": "f16ea512-ebf9-4dfd-96af-5a1fa2fc0e68",
    "priority": 2
-  },
-  {
-   "subject": "Jasprit Bumrah",
-   "subject_type": "person",
-   "tags": [
-    "jasprit bumrah"
-   ],
-   "first_seen": "2026-06-20T10:29:23Z",
-   "article_id": "8c374059-9115-45ec-b44c-eba6ee5fac09",
-   "priority": 6
-  },
-  {
-   "subject": "Hardik Pandya",
-   "subject_type": "person",
-   "tags": [
-    "hardik pandya"
-   ],
-   "first_seen": "2026-06-20T10:29:23Z",
-   "article_id": "8c374059-9115-45ec-b44c-eba6ee5fac09",
-   "priority": 5
-  },
-  {
-   "subject": "Sachin Tendulkar",
-   "subject_type": "person",
-   "tags": [
-    "sachin tendulkar"
-   ],
-   "first_seen": "2026-06-20T10:29:23Z",
-   "article_id": "8c374059-9115-45ec-b44c-eba6ee5fac09",
-   "priority": 6
   },
   {
    "subject": "BCCI",
@@ -1442,16 +1312,6 @@
    "priority": 2
   },
   {
-   "subject": "japan",
-   "subject_type": "thing",
-   "tags": [
-    "japan"
-   ],
-   "first_seen": "2026-06-21T10:29:30Z",
-   "article_id": "42ae6c41-d133-4d21-b107-c60ff91c1e7e",
-   "priority": 5
-  },
-  {
    "subject": "etihad",
    "subject_type": "thing",
    "tags": [
@@ -1522,16 +1382,6 @@
    "priority": 2
   },
   {
-   "subject": "Nayanthara",
-   "subject_type": "person",
-   "tags": [
-    "nayanthara"
-   ],
-   "first_seen": "2026-06-21T10:29:30Z",
-   "article_id": "83834d48-0854-45e4-8a91-b5485a11128e",
-   "priority": 5
-  },
-  {
    "subject": "passport",
    "subject_type": "thing",
    "tags": [
@@ -1550,16 +1400,6 @@
    "first_seen": "2026-06-21T10:29:30Z",
    "article_id": "0458cb92-f744-4a73-9f78-b3f857c065a3",
    "priority": 2
-  },
-  {
-   "subject": "Usha Vance",
-   "subject_type": "person",
-   "tags": [
-    "usha vance"
-   ],
-   "first_seen": "2026-06-21T10:29:30Z",
-   "article_id": "6ad79a68-763c-4876-8784-09a5f2234e03",
-   "priority": 5
   },
   {
    "subject": "eb5",
@@ -1660,16 +1500,6 @@
    "first_seen": "2026-06-21T10:29:30Z",
    "article_id": "542c10ab-27e0-4e99-a08d-c93f6652a751",
    "priority": 2
-  },
-  {
-   "subject": "Yogi Adityanath",
-   "subject_type": "person",
-   "tags": [
-    "yogi adityanath"
-   ],
-   "first_seen": "2026-06-21T10:29:30Z",
-   "article_id": "b817618d-8ed2-4a01-a6c0-283a30e2b0ef",
-   "priority": 5
   },
   {
    "subject": "doordash",
@@ -1880,26 +1710,6 @@
    "first_seen": "2026-06-21T10:29:30Z",
    "article_id": "14b1f4ac-109d-42cf-9999-ee66548fa494",
    "priority": 7
-  },
-  {
-   "subject": "KL Rahul",
-   "subject_type": "person",
-   "tags": [
-    "kl rahul"
-   ],
-   "first_seen": "2026-06-21T10:29:30Z",
-   "article_id": "14b1f4ac-109d-42cf-9999-ee66548fa494",
-   "priority": 5
-  },
-  {
-   "subject": "students",
-   "subject_type": "thing",
-   "tags": [
-    "students"
-   ],
-   "first_seen": "2026-06-22T10:29:23Z",
-   "article_id": "8e84313e-4fea-4175-bbb8-efa61f959b49",
-   "priority": 6
   },
   {
    "subject": "F 1",
@@ -3390,16 +3200,6 @@
    "first_seen": "2026-06-25T10:29:22Z",
    "article_id": "3401300b-a4a7-4742-890d-aa7d86fbc367",
    "priority": 2
-  },
-  {
-   "subject": "Nandan Nilekani",
-   "subject_type": "person",
-   "tags": [
-    "nandan nilekani"
-   ],
-   "first_seen": "2026-06-25T10:29:22Z",
-   "article_id": "576b6c48-9c61-4446-a728-ab231d30c39b",
-   "priority": 7
   },
   {
    "subject": "automation",
