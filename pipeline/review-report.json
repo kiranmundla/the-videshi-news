@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-25T00:16:05.958044+00:00",
+  "timestamp": "2026-06-25T00:45:50.832571+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 7,
+    "pass": 4,
     "flag": 1,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "307821a5-26c5-465c-b047-c6634bbc3d88",
-      "headline": "GOPIO Connecticut Marks 20 Years, Honours Five Leaders and Gives $50,000 to Charity",
-      "slug": "gopio-connecticut-20th-anniversary-diaspora-20260625",
+      "id": "39e02770-0c9b-4c6f-9e51-0aa63b4e0490",
+      "headline": "Two Indian-American Doctors Just Got One of India's Highest Honours. Both Spent Their Careers Fighting Cancer.",
+      "slug": "padma-awards-2026-indian-american-doctors-dattatreyudu-nori-prateek-sharma-medicine-diaspora-20260625",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,51 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A speaker at a podium with the GOPIO logo.",
-          "reason": "The photo clearly shows the GOPIO logo on the podium, which directly relates to the headline about GOPIO Connecticut."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 8,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article directly addresses the growth, challenges, and strategies of an Indian diaspora organization in the US, making it highly relevant for NRI readers."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a quote from one of the honorees to personalize the 'Five honourees' section.",
-          "The article ends abruptly. Ensure the conclusion provides a stronger wrap-up or a forward-looking statement."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "9bd6a25b-b49b-424e-8064-0855274e0e85",
-      "headline": "President Murmu Courts Indian Communities in Portugal and Slovakia on Europe Tour",
-      "slug": "president-murmu-portugal-slovakia-diaspora-tour-20260625",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A headshot of President Droupadi Murmu.",
-          "reason": "The photo clearly shows President Droupadi Murmu, who is the subject of the headline and caption."
+          "what_photo_shows": "Dr Dattatreyudu Nori receiving an award from an official.",
+          "reason": "The photo shows one of the named doctors from the headline receiving an honour, which directly matches the story's topic."
         },
         "inline_image_mismatches": []
       },
@@ -79,15 +36,17 @@
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The entire article is centered around the diaspora angle, detailing the President's engagement with Indian communities and the strategic importance of these interactions for India's foreign policy."
+          "note": "Explicitly addresses the diaspora angle and connects it to broader themes of Indian-American success."
         },
-        "factual_flags": [],
+        "factual_flags": [
+          "The article states the Padma Awards are announced each year on Republic Day, but then refers to 'The 2026 list'. The current year is 2024, and the article mentions President Murmu conferred awards on June 23. This creates a temporal inconsistency. It should clarify if these are 2024 awards or if the '2026 list' is a typo or refers to something else."
+        ],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a quote from a member of the Indian diaspora in Portugal or Slovakia to personalize the impact of the presidential visit.",
-          "Briefly mention the specific cities in Slovakia where the President engaged with the community, if available, to add more detail."
+          "Clarify the year of the Padma Awards mentioned (2026 vs. current year 2024) to avoid confusion.",
+          "Consider adding a concluding paragraph that summarizes the broader impact of these awards on the Indian diaspora's perception and aspirations, beyond just the 'familiar shorthand'."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
         "promoted to published"
@@ -97,18 +56,18 @@
       "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "6fa801ff-efad-4dee-b457-4bf31c3804f8",
-      "headline": "Indian-Australians Mark 12th International Day of Yoga From Canberra to the Gold Coast",
-      "slug": "australia-international-day-of-yoga-2026-diaspora-20260625",
+      "id": "792c1ae7-22c6-472e-8744-7db6228d24e7",
+      "headline": "Two Firms Shut, 300 Workers Unpaid: Indians and Bangladeshis Turn Up at Singapore's Manpower Ministry",
+      "slug": "singapore-migrant-workers-unpaid-kpa-engineering-sk-industries-mom-tadm-india-bangladesh-20260625",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Three people doing yoga outdoors on mats.",
-          "reason": "The photo depicts an outdoor group yoga session, which aligns perfectly with the story about marking International Day of Yoga."
+          "verdict": "MISMATCH",
+          "what_photo_shows": "Historical drawings of Chinese stone cutters",
+          "reason": "The photo depicts historical drawings of Chinese stone cutters, which is unrelated to a modern story about unpaid Indian and Bangladeshi migrant workers in Singapore."
         },
         "inline_image_mismatches": []
       },
@@ -116,33 +75,35 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "No image URL or entities provided, so cannot fully assess. Assuming a relevant image would depict migrant workers or the Ministry of Manpower in Singapore."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article explicitly focuses on Indian-Australian communities and their role in the events, connecting it directly to the diaspora experience."
+          "note": "The article explicitly connects the issue to the Indian and Bangladeshi diaspora, highlighting the vulnerability of certain migrant worker segments and contrasting it with other diaspora experiences. The 'Why It Matters for the Diaspora' section is well-integrated."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a quote from a participant (Indian-Australian or non-Indian) to add a personal touch and further illustrate the 'shared tradition' aspect.",
-          "If possible, include a small detail about the specific types of yoga practiced or any unique cultural elements incorporated into the Australian events."
+          "If possible, include a quote from one of the workers about their hopes for resolution or their family's situation back home to add more emotional depth.",
+          "Consider adding a small sidebar or link to resources for NRIs facing similar issues in other countries, if applicable to The Videshi's broader scope."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "promoted to published"
+        "Cleared mismatched image (Historical drawings of Chinese stone cutters)",
+        "held: image mismatch"
       ],
       "revised": false,
       "unpublished": false,
+      "image_mismatch": true,
       "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "c4f76369-6f31-47a6-b43d-9c06f473fb01",
-      "headline": "India Just Set Its Chip Budget for the Year: Rs 7,100 Crore, and a Quiet Bet on Design Over Fabs",
-      "slug": "india-semiconductor-incentive-7100-crore-fy27-chip-design-fabs-nri-eng-20260625",
+      "id": "68602f6c-919b-4866-9741-4323b6038b10",
+      "headline": "Cardamom's Western Moment: India's Queen of Spices Crosses Into Wellness Aisles",
+      "slug": "cardamoms-western-moment-indias-queen-of-spices-crosses-into-wellness-aisles",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -150,51 +111,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A modern industrial building, possibly a manufacturing unit or fab.",
-          "reason": "The photo depicts a generic industrial building which could plausibly represent a manufacturing unit or fab, aligning with the story's topic of semiconductor manufacturing and fabs."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The 'Why this matters to the diaspora' section is well-integrated and provides a clear, relevant angle for NRI readers, addressing both engineers and investors."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a small infographic or chart to visualize the budget allocation (Rs 7,100 crore breakdown) for better reader comprehension.",
-          "Perhaps a brief mention of specific Indian companies or startups already making strides in chip design could add more concrete examples."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "ccf7fd92-e136-47a6-a61c-3a4347d24caf",
-      "headline": "India's First Private Rocket-to-Orbit Is on the Pad. The Company Behind It Isn't ISRO.",
-      "slug": "skyroot-vikram-1-private-orbital-launch-sriharikota-space-unicorn-nri-20260625",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Skyroot Aerospace's Vikram-S rocket lifting off",
-          "reason": "The photo shows a rocket from Skyroot Aerospace, which is the company mentioned in the headline and subheadline."
+          "what_photo_shows": "Green cardamom pods on a white background.",
+          "reason": "The photo clearly shows cardamom pods, which is the central subject of the headline and story."
         },
         "inline_image_mismatches": []
       },
@@ -208,13 +126,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The 'Why an NRI should care' section directly addresses the diaspora angle, covering investment and talent opportunities, and national pride."
+          "note": "The diaspora angle is well-integrated and thoughtfully explores both the pride and frustration, as well as the opportunities for NRIs."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a quote from an NRI investor or engineer to further strengthen the 'diaspora angle' section.",
-          "While the article is well-written, a brief explanation of what 'suborbital demonstrator' means for a general audience could be helpful."
+          "Consider adding a specific example of a diaspora chef or brand that is successfully bridging the gap between Indian and Western markets with cardamom products.",
+          "Perhaps include a brief mention of the economic impact on cardamom growers in India due to this increased Western demand."
         ],
         "verdict": "pass"
       },
@@ -226,9 +144,9 @@
       "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "cbd1c77c-991a-4847-a46a-d28860853d8b",
-      "headline": "With the H-1B Door Jammed, Indians Are Quietly Reaching for the 'Extraordinary Ability' Side Entrance",
-      "slug": "eb1a-o1-extraordinary-ability-pivot-indians-h1b-alternative-20260625",
+      "id": "a536ab63-a21b-459b-8143-b5d7bd1e0076",
+      "headline": "India Gate Goes Beyond Basmati: KRBL Bets on Poha to Win the NRI Pantry",
+      "slug": "india-gate-goes-beyond-basmati-krbl-bets-on-poha-to-win-the-nri-pantry",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -236,99 +154,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A scientist working in a research laboratory.",
-          "reason": "The photo depicts a scientist in a lab, which is directly relevant to the 'extraordinary ability' visa category for professionals like scientists mentioned in the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 8,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article directly addresses a critical issue for Indian professionals in the US, explaining how changes in immigration policy impact their lives and career paths, and explicitly connects to 'Indian Americans' in the final section."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a brief case study or anonymized quote from an Indian professional who successfully navigated the EB-1A/O-1 path to make the article more relatable.",
-          "Expand slightly on the 'sorting mechanism' aspect to elaborate on the potential implications for the broader Indian diaspora community."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "7d3aef77-1465-4e0a-a675-e951cdefe71a",
-      "headline": "Forget the Citizenship Fee. The Cost of Appealing a Deportation Is About to Jump 800%",
-      "slug": "eoir-immigration-court-appeal-fees-triple-800-percent-indians-20260625",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A judge's gavel on US currency and an American flag.",
-          "reason": "The photo's subject directly symbolizes the legal and financial aspects of immigration in the US, which aligns with the story about rising deportation appeal fees."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 8,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article explicitly connects the issue to Indian families and the diaspora, explaining how it impacts them beyond typical assumptions."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a specific example or short anecdote of an Indian family or individual impacted by deportation appeals to make the 'Where Indians fit in' section even more relatable.",
-          "Perhaps include a brief mention of any advocacy groups or legal aid organizations that are actively fighting these fee increases, offering readers a potential avenue for further information or action."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "5d531f5f-752b-4f3f-b14f-740ebe82eccc",
-      "headline": "200 Delegates, Five Asks, One Old Problem: Inside the Diaspora's Biggest Capitol Hill Push",
-      "slug": "fiids-capitol-hill-day-200-delegates-green-card-backlog-cap-20260625",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "cf63f138-bab9-4520-abec-83006db8e69b",
-            "headline": "\u2018On the Menu\u2019: Indian-American Lawmakers Tell the Diaspora t"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Congressman Raja Krishnamoorthi in a suit with an American flag background.",
-          "reason": "The photo shows the named individual, Congressman Raja Krishnamoorthi, who is directly relevant to the story about green card backlog legislation and Capitol Hill advocacy."
+          "what_photo_shows": "A plate of poha with sev and green chilies.",
+          "reason": "The photo clearly shows poha, which is a key subject of the story about KRBL expanding into ready-to-cook staples like poha."
         },
         "inline_image_mismatches": []
       },
@@ -341,18 +168,59 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 10,
-          "note": "The entire article is centered on the Indian diaspora's lobbying efforts and challenges in the US."
+          "quality": 9,
+          "note": "The article explicitly targets the NRI pantry and discusses diaspora pain points and shopping habits, making the angle very strong and natural."
         },
-        "factual_flags": [
-          "The article mentions 'April 2025 advocacy day' and 'June 2026 outing' which seem to be typos given the article's context of events happening on 'Tuesday, June 23' and referring to 'fourth annual Capitol Hill Day'. These dates should likely be in the past or current year, not future."
-        ],
+        "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Correct the dates 'April 2025' and 'June 2026' to reflect actual past or current events.",
-          "Consider adding a concluding sentence or two to fully wrap up the article, as it currently ends abruptly."
+          "Consider adding a quote from an NRI consumer or a food blogger to personalize the 'diaspora pain point' section.",
+          "If possible, include a small graphic or chart showing the growth of the Indian food market in the US to visually support the claim."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "c2ca18fe-181d-47a2-b298-f00f856744ab",
+      "headline": "Beat the Heat the Ayurvedic Way: India's Cooling-Food Wisdom Goes Global",
+      "slug": "beat-the-heat-the-ayurvedic-way-indias-cooling-food-wisdom-goes-global",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Two glasses of a green drink with mint leaves",
+          "reason": "The photo shows aam panna, which is explicitly mentioned in the headline and subheadline as a cooling food."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The diaspora angle is well-integrated and feels natural, connecting nostalgia with modern trends and practical applications for NRIs."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a specific example of an Indian food brand that is successfully marketing these cooling foods in Western markets to strengthen the 'marketing opportunity' point.",
+          "While the article mentions 'wellness social media,' including a hypothetical or real (if appropriate) example of a social media post or trend could make this section more vivid."
+        ],
+        "verdict": "pass"
       },
       "actions_taken": [
         "promoted to published"
