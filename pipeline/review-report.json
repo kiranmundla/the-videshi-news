@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-25T02:15:53.706587+00:00",
+  "timestamp": "2026-06-25T02:45:34.079090+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 4,
+    "pass": 1,
+    "flag": 2,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "f4cd35d0-4a57-4f07-aab2-0183e99e093a",
-      "headline": "Indian Markets Roar Back as Oil Crashes and the Central Bank Calms Rate Fears",
-      "slug": "india-markets-rebound-sensex-790-nifty-24000-oil-crash-hormuz-rbi-rate-fears-rupee-nri-investor-20260625-0200",
+      "id": "34d7763c-56c9-4cb7-acbf-7ae1c71a21dd",
+      "headline": "She Was Born a Parsi and Never Left Her Faith. Because She Married a Hindu, Her Son Can't Set Foot in the Temple.",
+      "slug": "parsi-women-interfaith-marriage-supreme-court-1908-petit-jeejeebhoy-nagpur-panchayat-discrimination-20260624",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "The Bombay Stock Exchange building with 'BSE' displayed.",
-          "reason": "The photo clearly shows the Bombay Stock Exchange, which is directly relevant to a story about Indian markets and the Sensex."
+          "what_photo_shows": "Interior of a Parsi fire temple with an inscription",
+          "reason": "The photo depicts a Parsi fire temple, which is directly relevant to a story about Parsi faith and temple access."
         },
         "inline_image_mismatches": []
       },
@@ -35,14 +35,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The mention of NRI loans against foreign-currency deposits directly addresses a diaspora-relevant financial mechanism, making the connection natural and relevant for NRI investors."
+          "quality": 8,
+          "note": "The article explicitly addresses the diaspora angle in a dedicated section, connecting the Parsi community's issues to global relevance."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a small section or a quote from an NRI investor or financial advisor specifically on how these market movements and RBI policies might impact NRI investment strategies or remittances, to further strengthen the diaspora angle.",
-          "Ensure all acronyms (like BSE, NSE, RBI) are either fully spelled out on first use or are commonly understood by the target audience."
+          "Expand on the 'Why It Matters for the Diaspora' section, perhaps with quotes from Parsi diaspora members or examples of how this rule impacts them abroad.",
+          "Consider adding a brief historical context of Parsi migration to provide a fuller picture for a diaspora audience."
         ],
         "verdict": "pass"
       },
@@ -54,9 +54,9 @@
       "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "eb72df98-cbb4-4e67-b7ea-882e0f5357e0",
-      "headline": "A Strict Low-Carb Diet Eased Hard-to-Treat Depression in a New Trial \u2014 but Doctors Urge Caution",
-      "slug": "ketogenic-diet-treatment-resistant-depression-oxford-uk-randomized-trial-phq9-mental-health-diaspora-20260625-0200",
+      "id": "7030822a-9ca7-44c3-a781-60e7739fd131",
+      "headline": "America Wants to Put an Expiry Date on the Student Visa. India's 363,000 Students Are First in Line.",
+      "slug": "us-student-visa-duration-of-status-fixed-term-f1-opt-indian-students-dhs-rule-20260624",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,13 +64,13 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A plate of scrambled eggs, bacon, and steak with sauce.",
-          "reason": "The photo depicts a meal that is typically low-carb and high-fat, which aligns with the ketogenic diet mentioned in the story."
+          "what_photo_shows": "Cornell University campus scene and logo",
+          "reason": "The photo shows a US university, which is relevant to a story about US student visas."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 7,
+        "overall_score": 8,
         "embed_issues": [],
         "image_match": {
           "score": 9,
@@ -78,16 +78,18 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The diaspora angle is well-integrated and relevant, addressing the stigma of mental health in Indian and South Asian communities and how diet-related interventions might be perceived differently."
+          "quality": 9,
+          "note": "The article explicitly highlights the impact on Indian students and families, connecting directly to NRI concerns about education and career paths."
         },
-        "factual_flags": [],
+        "factual_flags": [
+          "The article mentions 'DHS first floated the idea in August 2025 and formally proposed eliminating Duration of Status for F-1 visas in May 2026'. These dates are in the future, which is likely a typo and should be corrected to past dates (e.g., 2020, 2021) to reflect the timeline of a proposal that is now at OMB review."
+        ],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a quote from an NRI mental health professional or community leader to strengthen the diaspora angle further.",
-          "Ensure the image description (IMAGE ENTITIES) is populated for better SEO and accessibility."
+          "Correct the future dates (August 2025, May 2026) mentioned in the 'What's Still Uncertain' section to reflect the actual historical timeline of the proposal.",
+          "Consider adding a brief quote or perspective from an Indian student or parent currently navigating the US education system to personalize the impact of these changes."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
         "promoted to published"
@@ -104,11 +106,17 @@
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [],
-        "broken_embeds": [],
+        "broken_embeds": [
+          {
+            "url": "https://x.com/DrJennaMacciochi/status/1798363385764042898",
+            "problem": "broken",
+            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
+          }
+        ],
         "vision_image_match": {
           "verdict": "MATCH",
           "what_photo_shows": "a plate of healthy food with eggs, avocado, and spinach",
-          "reason": "The photo shows a healthy meal, which is relevant to a story about nutrition, dieting, and weight loss."
+          "reason": "The photo depicts a healthy meal, which is relevant to a story about nutrition, dieting, and weight loss."
         },
         "inline_image_mismatches": []
       },
@@ -120,157 +128,23 @@
           "issue": null
         },
         "diaspora_angle": {
-          "present": false,
-          "quality": 1,
-          "note": "The article abruptly ends mid-sentence in the 'Why It Matters for the Diaspora' section, making the diaspora angle completely absent and unaddressed."
+          "present": true,
+          "quality": 3,
+          "note": "The article abruptly cuts off at the start of the diaspora angle section, making it impossible to assess its quality fully. Based on the headline and body, the connection seems forced rather than naturally integrated throughout."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Complete the 'Why It Matters for the Diaspora' section to properly connect the article's findings to NRI/diaspora readers.",
-          "Consider adding a relevant social media embed (e.g., an expert discussing intermittent fasting or diet sustainability) to enhance engagement."
+          "Complete the 'Why It Matters for the Diaspora' section to properly integrate the NRI angle.",
+          "Consider weaving the diaspora relevance throughout the article rather than confining it to a separate, tacked-on section."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
-        "Revised by gemini-2.5-flash (868\u2192899 words)"
+        "Removed 1 broken/hallucinated embed(s)",
+        "Revised by gemini-2.5-flash (898\u21921021 words)"
       ],
       "revised": true,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "5b45fd4e-db80-48dd-99af-8038ba46ba8f",
-      "headline": "Coastal Andhra Finally Gets Its Own International Airport \u2014 Bhogapuram Opens This July",
-      "slug": "bhogapuram-alluri-sitarama-raju-airport-vizag-opening-july-2026-telugu-20260625",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A coastal road with traffic and a city skyline in the background.",
-          "reason": "The photo shows a road in Visakhapatnam, the metropolitan region the new airport will serve, which is relevant to the story about a new airport and its connectivity."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 6,
-          "issue": "The image shows Visakhapatnam beach road, which is related to the region but not directly to the new Bhogapuram airport or its construction. It's a generic regional shot rather than an airport-specific one."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article clearly and naturally connects the new airport to the convenience and travel experience of the Telugu diaspora, explaining the 'why it matters' effectively."
-        },
-        "factual_flags": [
-          "The article states 'Alluri Sitarama Raju International Airport at Bhogapuram \u2014 widely known simply as Bhogapuram Airport \u2014 is scheduled to open in early July 2026'. However, the headline states 'Bhogapuram Opens This July' (implying 2024). This is a significant internal contradiction regarding the opening year."
-        ],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Clarify and correct the opening year of the airport, as there's a contradiction between the headline and the body text (2024 vs. 2026).",
-          "Consider sourcing a more relevant image, perhaps a rendering of the airport or a map showing its location relative to Visakhapatnam, to better match the article's focus."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "5e47cb6a-756f-4b00-8662-8d657621d537",
-      "headline": "Canada's Envoy Says It's the 'Best Time Ever' for Indian Students \u2014 Here's What He Left Out",
-      "slug": "canada-best-time-ever-indian-students-study-permit-cooter-cap-fine-pri-20260625",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "University of Toronto Scarborough campus with students",
-          "reason": "The photo shows a Canadian university campus, which is directly relevant to a story about Indian students in Canada."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 8,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article directly addresses the concerns and strategies of Indian families and students, which is highly relevant to the NRI diaspora."
-        },
-        "factual_flags": [
-          "The article mentions 'Prime Minister Mark Carney' which is incorrect. Mark Carney is a former Governor of the Bank of Canada, not a Prime Minister. The current Prime Minister of Canada is Justin Trudeau."
-        ],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Correct the factual error regarding 'Prime Minister Mark Carney' to the correct Prime Minister of Canada.",
-          "Consider adding a concluding sentence or two to fully wrap up the article, as it currently ends mid-sentence."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "7cbb8fbb-0ef8-4785-8a95-f590982cda68",
-      "headline": "Japan Just Made Its Tourist Visa Five Times Costlier \u2014 and the Indian Passport Pays Full Price While the US One Pays Nothing",
-      "slug": "japan-visa-fee-5x-hike-july-2026-indian-passport-us-citizen-split-nri-20260625",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Torii gates of Fushimi Inari Taisha shrine in Kyoto, Japan",
-          "reason": "The photo shows a famous Japanese landmark, which is relevant to a story about Japanese tourist visas."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article directly addresses the impact on Indian passport holders, mixed-passport families, and NRIs, making the diaspora angle central and well-integrated."
-        },
-        "factual_flags": [
-          "The article states 'record 42.7 million visitors in 2025' which is a future date. This should be '2024' or 'projected 2025'."
-        ],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Correct the factual error regarding the '42.7 million visitors in 2025' to reflect a past or projected figure accurately.",
-          "Consider adding a small section on how other major diaspora countries (e.g., UK, Canada) are affected, if relevant, to provide broader context."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
       "unpublished": false,
       "llm_source": "gemini-2.5-flash"
     }
