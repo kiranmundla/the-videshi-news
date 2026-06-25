@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-25T08:45:22.807046+00:00",
+  "timestamp": "2026-06-25T09:15:40.113311+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 0,
+    "pass": 3,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "2eca4308-1360-4d46-9a3a-63be3b7959ad",
-      "headline": "America Has Run Out of EB-2 Green Cards for Indians This Year. The Wait Now Stretches to October.",
-      "slug": "us-eb2-green-card-category-india-exhausted-fy2026-state-department-october-reset-diaspora-20260625",
+      "id": "576b6c48-9c61-4446-a728-ab231d30c39b",
+      "headline": "India's IT Giants Used to Run on H-1B Visas. New Data Shows They've Quietly Stopped Needing Them.",
+      "slug": "indian-it-h1b-approvals-collapse-localization-ai-tcs-infosys-nri-20260625",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,56 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "The U.S. Department of State building and sign.",
-          "reason": "The story is about green cards, and the Department of State is relevant to immigration and visa processing."
+          "what_photo_shows": "Software engineers working at computers in an office",
+          "reason": "The photo depicts software engineers at work, which is directly relevant to a story about India's IT giants and their workforce."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 8,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article explicitly addresses the diaspora angle in a dedicated section and throughout, making it highly relevant for NRI readers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a quote from an NRI tech worker or recent graduate to personalize the impact of these changes.",
+          "Perhaps include a brief mention of alternative visa categories or pathways that might be gaining traction, if any."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "3401300b-a4a7-4742-890d-aa7d86fbc367",
+      "headline": "Sundar Pichai's Gemini Can Now Run Your Browser, Phone, and Desktop. The Race Just Moved From Chatbots to Agents.",
+      "slug": "google-gemini-3-5-flash-agents-pichai-cross-platform-nri-engineers-20260625",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "ea0de8e8-9458-4cb2-b87a-42246462641b",
+            "headline": "Sundar Pichai Spent Three Years Being Called Late to AI. Goo"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Sundar Pichai, CEO of Alphabet and Google",
+          "reason": "The photo clearly shows Sundar Pichai, who is directly named in the headline and is relevant to the story about Google's Gemini AI."
         },
         "inline_image_mismatches": []
       },
@@ -36,13 +84,15 @@
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article directly addresses the impact on Indian professionals and the diaspora, explaining why it matters to them."
+          "note": "The diaspora angle is well-integrated and thoughtfully explores both the opportunities and challenges for Indian developers and the IT services industry."
         },
-        "factual_flags": [],
+        "factual_flags": [
+          "June 2026 is mentioned as a 'blur of releases' which seems like a typo, likely meant to be June 2024 given the context of recent releases."
+        ],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a small 'What is EB-2?' explainer box for readers less familiar with immigration jargon.",
-          "Perhaps include a quote from an affected individual or an immigration lawyer to add a human element to the 'Backlog Measured in Decades' section."
+          "Correct the typo 'June 2026' to 'June 2024' in the 'From a model avalanche to an agent war' section.",
+          "Consider adding a brief, high-level explanation of what an 'agent' is for readers less familiar with AI terminology, perhaps early in the article."
         ],
         "verdict": "pass"
       },
@@ -54,9 +104,9 @@
       "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "701d7001-a413-4ff1-a23a-85a5cab620d9",
-      "headline": "Amazon Just Doubled Down on India. It's Putting Another $13 Billion Into AI and the Cloud.",
-      "slug": "amazon-additional-13-billion-india-ai-cloud-investment-2030-aws-data-centres-diaspora-20260625",
+      "id": "5e2238e4-e719-4f18-8e9f-dd4c0b2c57ac",
+      "headline": "Amazon Just Added $13 Billion to Its India Bet. The Money Is Going Where the H-1B Jobs Used to Go.",
+      "slug": "amazon-13-billion-india-aws-ai-cloud-investment-nri-engineers-20260625",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,8 +114,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "An aerial view of a large data center facility.",
-          "reason": "The photo shows an Amazon Web Services data center, which is directly relevant to Amazon's investment in AI and cloud infrastructure."
+          "what_photo_shows": "A data center server hall with rows of servers",
+          "reason": "The photo depicts a data center, which is directly relevant to the story about Amazon's investment in cloud capacity and data centers in India."
         },
         "inline_image_mismatches": []
       },
@@ -73,23 +123,73 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image shows a person working on a laptop in a modern office setting, which generally aligns with a tech article. However, it doesn't specifically depict data centers, cloud infrastructure, or India, which are key elements of the article's focus. It's a generic tech image."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The 'Why It Matters for the Diaspora' section directly addresses the NRI connection, focusing on career opportunities and reverse migration."
+          "quality": 9,
+          "note": "The article explicitly addresses the diaspora angle in a dedicated section, discussing the implications for NRIs regarding career paths, immigration, and investment opportunities. It's well-integrated and insightful."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a quote from an NRI tech professional or an expert on reverse migration to strengthen the diaspora angle.",
-          "Briefly mention the potential impact on Indian startups founded by NRIs, if applicable."
+          "Consider adding a more specific image that visually represents data centers, cloud infrastructure, or the scale of investment in India, if available.",
+          "While the article is strong, a brief concluding paragraph summarizing the long-term implications for India's tech sovereignty or global tech landscape could add further impact."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "9d1775f9-dd0e-4fa5-b4dd-44546fca1a11",
+      "headline": "The Throne Is Empty and Munna Bhaiya Is Somehow Alive: 'Mirzapur' Storms the Big Screen on September 4",
+      "slug": "mirzapur-the-movie-teaser-september-4-2026-pankaj-tripathi-ali-fazal-divyenndu-munna-bhaiya-return-excel-amazon-mgm-where-to-watch-diaspora-nri",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Pankaj Tripathi at a film premiere with two other actors.",
+          "reason": "The photo shows Pankaj Tripathi, who is explicitly named in the caption and is a key actor in the story's subject matter."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DZ_71_sNGXm/",
+            "problem": "irrelevant",
+            "explanation": "This Instagram reel is from 2017 and features a random person, not related to Mirzapur or any of the actors mentioned in the article. It seems like a placeholder or an error."
+          }
+        ],
+        "image_match": {
+          "score": 6,
+          "issue": "The image features Pankaj Tripathi, which is relevant, but also Anjali Patil and Rajkummar Rao, who are not mentioned in the article. The image is from a 2017 film premiere (Newton), not directly related to Mirzapur or its upcoming movie release. A more specific Mirzapur-related image would be better."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article explicitly mentions 'every diaspora WhatsApp group on fire' and 'good news for fans in the US, UK, and Canada: this is a worldwide theatrical release, releasing in both Hindi and Telugu,' directly addressing the NRI audience and their viewing habits."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the irrelevant Instagram embed with a relevant social media post (e.g., an official Mirzapur movie announcement, a cast member's post about the film, or a fan reaction post that is actually about Mirzapur).",
+          "Update the hero image to one that is directly related to 'Mirzapur: The Movie' or features only the relevant cast members in a Mirzapur context."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DZ_71_sNGXm/",
         "promoted to published"
       ],
       "revised": false,
