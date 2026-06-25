@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-25T00:45:50.832571+00:00",
+  "timestamp": "2026-06-25T01:15:22.674780+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 4,
-    "flag": 1,
+    "pass": 2,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,113 +11,36 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "39e02770-0c9b-4c6f-9e51-0aa63b4e0490",
-      "headline": "Two Indian-American Doctors Just Got One of India's Highest Honours. Both Spent Their Careers Fighting Cancer.",
-      "slug": "padma-awards-2026-indian-american-doctors-dattatreyudu-nori-prateek-sharma-medicine-diaspora-20260625",
+      "id": "bd5cffee-28be-473c-8262-3d6f87ed3d68",
+      "headline": "Akshay Kumar Returns to the Jungle on Friday \u2014 and the Whole 2007 Gang Came With Him",
+      "slug": "welcome-to-the-jungle-release-june-26-2026-box-office-opening-akshay-kumar-suniel-shetty-paresh-rawal-ahmed-khan-where-to-watch-diaspora-nri-20260624",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "0d0e095d-24bc-44fd-ad62-9d0185a27881",
+            "headline": "Akshay Kumar Opens the Jungle. After 19 Years, 'Welcome' Ret"
+          },
+          {
+            "article_id": "0d67b566-c831-4c27-9734-18d8465fb619",
+            "headline": "The Censor Board Took Its Scissors to Welcome To The Jungle."
+          },
+          {
+            "article_id": "cfe25a00-83cf-4d0d-b73f-ac9da6f980f4",
+            "headline": "Twenty-Two Years Later, the 'Mohra' Couple Is Back. The Whol"
+          }
+        ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Dr Dattatreyudu Nori receiving an award from an official.",
-          "reason": "The photo shows one of the named doctors from the headline receiving an honour, which directly matches the story's topic."
+          "what_photo_shows": "Official poster for the movie 'Welcome To The Jungle'",
+          "reason": "The photo shows the poster for the movie 'Welcome To The Jungle', which is the subject of the headline."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "Explicitly addresses the diaspora angle and connects it to broader themes of Indian-American success."
-        },
-        "factual_flags": [
-          "The article states the Padma Awards are announced each year on Republic Day, but then refers to 'The 2026 list'. The current year is 2024, and the article mentions President Murmu conferred awards on June 23. This creates a temporal inconsistency. It should clarify if these are 2024 awards or if the '2026 list' is a typo or refers to something else."
-        ],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Clarify the year of the Padma Awards mentioned (2026 vs. current year 2024) to avoid confusion.",
-          "Consider adding a concluding paragraph that summarizes the broader impact of these awards on the Indian diaspora's perception and aspirations, beyond just the 'familiar shorthand'."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "792c1ae7-22c6-472e-8744-7db6228d24e7",
-      "headline": "Two Firms Shut, 300 Workers Unpaid: Indians and Bangladeshis Turn Up at Singapore's Manpower Ministry",
-      "slug": "singapore-migrant-workers-unpaid-kpa-engineering-sk-industries-mom-tadm-india-bangladesh-20260625",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MISMATCH",
-          "what_photo_shows": "Historical drawings of Chinese stone cutters",
-          "reason": "The photo depicts historical drawings of Chinese stone cutters, which is unrelated to a modern story about unpaid Indian and Bangladeshi migrant workers in Singapore."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "No image URL or entities provided, so cannot fully assess. Assuming a relevant image would depict migrant workers or the Ministry of Manpower in Singapore."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article explicitly connects the issue to the Indian and Bangladeshi diaspora, highlighting the vulnerability of certain migrant worker segments and contrasting it with other diaspora experiences. The 'Why It Matters for the Diaspora' section is well-integrated."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "If possible, include a quote from one of the workers about their hopes for resolution or their family's situation back home to add more emotional depth.",
-          "Consider adding a small sidebar or link to resources for NRIs facing similar issues in other countries, if applicable to The Videshi's broader scope."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "Cleared mismatched image (Historical drawings of Chinese stone cutters)",
-        "held: image mismatch"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "image_mismatch": true,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "68602f6c-919b-4866-9741-4323b6038b10",
-      "headline": "Cardamom's Western Moment: India's Queen of Spices Crosses Into Wellness Aisles",
-      "slug": "cardamoms-western-moment-indias-queen-of-spices-crosses-into-wellness-aisles",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Green cardamom pods on a white background.",
-          "reason": "The photo clearly shows cardamom pods, which is the central subject of the headline and story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
+        "overall_score": 7,
         "embed_issues": [],
         "image_match": {
           "score": 9,
@@ -126,13 +49,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The diaspora angle is well-integrated and thoughtfully explores both the pride and frustration, as well as the opportunities for NRIs."
+          "note": "The diaspora angle is well-integrated, discussing overseas market performance and viewing habits."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a specific example of a diaspora chef or brand that is successfully bridging the gap between Indian and Western markets with cardamom products.",
-          "Perhaps include a brief mention of the economic impact on cardamom growers in India due to this increased Western demand."
+          "Consider adding a brief mention of the original 'Welcome' film's release year for context, as 'nineteen years after the original' might be slightly off if the original was 2007 and the new one is 2024.",
+          "The article ends abruptly. Ensure the conclusion is complete and provides a satisfying wrap-up."
         ],
         "verdict": "pass"
       },
@@ -144,61 +67,23 @@
       "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "a536ab63-a21b-459b-8143-b5d7bd1e0076",
-      "headline": "India Gate Goes Beyond Basmati: KRBL Bets on Poha to Win the NRI Pantry",
-      "slug": "india-gate-goes-beyond-basmati-krbl-bets-on-poha-to-win-the-nri-pantry",
+      "id": "c93a7d59-2581-4c48-8908-bc11c6c9a8da",
+      "headline": "Emraan Hashmi Walks Back Into the Dark. 'Rooh' Is the Horror Comeback His Fans Have Begged For \u2014 This Time, It Sings.",
+      "slug": "rooh-emraan-hashmi-horror-musical-return-mayank-sharma-vicked-films-2027-hindi-tamil-telugu-where-to-watch-diaspora-nri-20260624",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A plate of poha with sev and green chilies.",
-          "reason": "The photo clearly shows poha, which is a key subject of the story about KRBL expanding into ready-to-cook staples like poha."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article explicitly targets the NRI pantry and discusses diaspora pain points and shopping habits, making the angle very strong and natural."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a quote from an NRI consumer or a food blogger to personalize the 'diaspora pain point' section.",
-          "If possible, include a small graphic or chart showing the growth of the Indian food market in the US to visually support the claim."
+        "duplicate_images": [
+          {
+            "article_id": "9c206bc8-2ad6-4fb3-b199-ffba4d1fd84f",
+            "headline": "Emraan Hashmi Walks Back Into the Dark. After Five Years, th"
+          }
         ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "c2ca18fe-181d-47a2-b298-f00f856744ab",
-      "headline": "Beat the Heat the Ayurvedic Way: India's Cooling-Food Wisdom Goes Global",
-      "slug": "beat-the-heat-the-ayurvedic-way-indias-cooling-food-wisdom-goes-global",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Two glasses of a green drink with mint leaves",
-          "reason": "The photo shows aam panna, which is explicitly mentioned in the headline and subheadline as a cooling food."
+          "what_photo_shows": "Emraan Hashmi, a man with a beard, in a pink shirt.",
+          "reason": "The photo clearly shows Emraan Hashmi, who is the subject of the headline."
         },
         "inline_image_mismatches": []
       },
@@ -206,19 +91,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
+          "score": 8,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The diaspora angle is well-integrated and feels natural, connecting nostalgia with modern trends and practical applications for NRIs."
+          "quality": 8,
+          "note": "The article explicitly connects the film's theatrical release and genre to NRI/diaspora viewing habits and locations, making it relevant."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a specific example of an Indian food brand that is successfully marketing these cooling foods in Western markets to strengthen the 'marketing opportunity' point.",
-          "While the article mentions 'wellness social media,' including a hypothetical or real (if appropriate) example of a social media post or trend could make this section more vivid."
+          "Consider adding a sentence or two about the significance of Emraan Hashmi's 'musical-horror' legacy for diaspora audiences, perhaps mentioning how the songs resonated globally.",
+          "While the article mentions the 2027 release, a brief acknowledgment of the long wait might add a touch of relatable humor for readers."
         ],
         "verdict": "pass"
       },
