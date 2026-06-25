@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-25T19:45:18.845738+00:00",
+  "timestamp": "2026-06-25T20:15:21.605407+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
+    "pass": 2,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "5ea035d0-37fe-498c-b949-136f11bb1b01",
-      "headline": "Shafali Verma Drags India Out of the Danger Zone \u2014 and Into a Sunday Showdown With Australia",
-      "slug": "india-women-beat-bangladesh-5-wickets-t20-world-cup-2026-old-trafford-shafali-verma-53-must-win-semifinal-scramble-australia-lords-diaspora-nri",
+      "id": "c64db081-d084-45a9-9579-9265bb347d02",
+      "headline": "Five Days Left: The June 30 H-1B Deadline That Decides Who Starts Work on October 1",
+      "slug": "h1b-fy2027-june-30-filing-deadline-form-i129-wage-level-indians-20260625",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A young woman smiling in front of an Indian flag.",
-          "reason": "The photo shows Shafali Verma, the named person in the headline and caption."
+          "what_photo_shows": "An open passport with visa and entry stamps.",
+          "reason": "The photo of a passport with visa stamps is a generic but relevant image for a story about immigration and H-1B visas."
         },
         "inline_image_mismatches": []
       },
@@ -30,19 +30,62 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
+          "score": 8,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The 'Why the diaspora should care' section is well-integrated and provides a clear, natural connection for NRI readers, especially given the UK setting of the tournament."
+          "quality": 9,
+          "note": "The article explicitly addresses Indian professionals and their disproportionate impact, making the diaspora angle very strong and natural."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a small infographic or table for the Group A standings to visually represent the 'logjam' and NRR differences.",
-          "While the article is well-written, a quote from Harmanpreet Kaur or another team member about the upcoming Australia match could add more immediate anticipation."
+          "Consider adding a small 'What to do if you miss the deadline' section, even if brief, to manage reader expectations.",
+          "Perhaps include a link to the USCIS official page for H-1B updates for readers who want to dive deeper."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "b38b5776-f313-420b-b139-829100936d13",
+      "headline": "The Age-Out Clock Just Got Reset for 200,000 'Documented Dreamers' \u2014 Most of Them Indian",
+      "slug": "documented-dreamers-cspa-age-out-reversal-uscis-h4-children-indians-20260625",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Three international graduates in caps and gowns holding their mortarboards.",
+          "reason": "The photo depicts international graduates, which is relevant to a story about 'Documented Dreamers' and their immigration status, many of whom are students or recent graduates."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image shows a person looking at a phone, which doesn't directly convey the 'documented dreamers' or immigration policy change. While not entirely irrelevant, it's generic."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article directly addresses a critical issue for the Indian diaspora, specifically NRIs and their children, explaining why this policy disproportionately affects them."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a quote from an affected 'documented dreamer' or parent to personalize the impact of the policy change.",
+          "If possible, include a link to Improve the Dream or a similar advocacy group for readers who want to learn more or get involved."
         ],
         "verdict": "pass"
       },
