@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-25T14:15:48.939544+00:00",
+  "timestamp": "2026-06-25T14:45:34.743262+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 4,
-    "flag": 1,
+    "pass": 2,
+    "flag": 2,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "839bf7e2-c093-483b-8af9-3fceaaee348b",
-      "headline": "Akasa Air Bets on Southeast Asia and 30% Growth Even as the Same Airspace Crisis Freezes Its Gulf Plans",
-      "slug": "akasa-air-hanoi-southeast-asia-pivot-gulf-freeze-nri-2026-20260625",
+      "id": "77d526a0-0428-4725-9e05-fb3eee5f3b3e",
+      "headline": "Twin Earthquakes Devastate Venezuela Near Caracas, Killing Scores \u2014 and the Shock Reaches India's Oil Bill",
+      "slug": "venezuela-twin-earthquakes-caracas-thousands-feared-dead-oil-markets-indian-diaspora-20260625",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,13 +21,13 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "An Akasa Air Boeing 737 MAX on an airport tarmac.",
-          "reason": "The photo clearly shows an Akasa Air plane, which is the subject of the headline and story."
+          "what_photo_shows": "A cityscape of Caracas, Venezuela, with mountains in the background.",
+          "reason": "The photo shows the city of Caracas, which is directly mentioned in the headline and caption as the location of the earthquakes."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 8,
+        "overall_score": 7,
         "embed_issues": [],
         "image_match": {
           "score": 9,
@@ -35,16 +35,16 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The diaspora angle is well-integrated and explains the relevance of Akasa's strategy for NRIs, particularly regarding connecting flights and competition."
+          "quality": 6,
+          "note": "The article explicitly states 'Why It Matters for the Diaspora' but the body cuts off before elaborating. The connection to India's oil bill is a good indirect link, but the direct diaspora angle is missing from the provided text."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a small map graphic showing Akasa's current and planned routes to visually represent the 'pivot east' strategy.",
-          "Perhaps a brief quote from an NRI traveler or travel agent on the impact of such routes could add a human element to the diaspora angle."
+          "Complete the 'Why It Matters for the Diaspora' section to fully develop the angle for NRI readers.",
+          "Consider adding a human interest element or a quote from an NRI about the impact of global oil prices or humanitarian concerns."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
         "promoted to published"
@@ -54,9 +54,9 @@
       "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "e1ef038b-62b3-47b6-bb14-46ebcf1a0283",
-      "headline": "IndiGo Pulls Out of Six International Routes This Summer as the Airspace Crisis Forces India's Biggest Airline to Shrink",
-      "slug": "indigo-international-route-suspensions-airspace-southeast-asia-nri-202-20260625",
+      "id": "694c6f1c-be11-406d-a9c3-6c6952577fd7",
+      "headline": "After Three Years of Talks, the India-UK Trade Deal Finally Goes Live July 15 \u2014 and It Quietly Rewrites the Rules for Indian Workers Abroad",
+      "slug": "india-uk-free-trade-agreement-ceta-goes-live-july-15-goyal-london-scotch-cars-double-contribution-20260625",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,8 +64,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "An IndiGo Airbus A320neo on the tarmac.",
-          "reason": "The photo clearly shows an IndiGo aircraft, which is the subject of the story."
+          "what_photo_shows": "India's commerce minister Piyush Goyal",
+          "reason": "The photo shows the named individual, who is directly relevant to the story about the India-UK trade deal."
         },
         "inline_image_mismatches": []
       },
@@ -78,14 +78,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The diaspora angle is well-integrated and provides specific impacts for NRIs, particularly regarding leisure travel and long-haul ambitions."
+          "quality": 9,
+          "note": "The article explicitly connects the trade deal to NRIs, particularly regarding the Double Contribution Convention and skilled worker visas, and even has a dedicated 'Why It Matters for the Diaspora' section."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a small map graphic showing the affected routes and the airspace closures to visually aid reader understanding.",
-          "Perhaps a brief mention of alternative carriers for the affected routes could be helpful for readers."
+          "Consider adding a brief quote from an Indian professional or company benefiting from the 'Double Contribution Convention' to add a human element.",
+          "Expand slightly on the 'NRIs who ru' sentence at the end, as it seems cut off and could provide further context on the diaspora's role."
         ],
         "verdict": "pass"
       },
@@ -105,75 +105,25 @@
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MISMATCH",
-          "what_photo_shows": "A yellow train with 'Indian Pacific' logo",
-          "reason": "The 'Indian Pacific' is an Australian train, not related to Indian Railway Finance Corporation (IRFC)."
-        },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 7,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "No image URL or entities provided, so cannot fully assess. Assuming a relevant image would be used."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 6,
-          "note": "The article discusses Indian economic policy and investment opportunities, which is relevant to NRIs interested in India's financial landscape and potential investments. However, it doesn't explicitly connect to the diaspora experience beyond this general interest."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a small section or a concluding paragraph that explicitly addresses how these disinvestment trends might impact or interest NRIs, perhaps in terms of investment opportunities or the broader economic stability of India.",
-          "Ensure the hero image clearly depicts elements related to Indian railways, finance, or the broader Indian economy to enhance relevance."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "Cleared mismatched image (A yellow train with 'Indian Pacific' logo)",
-        "held: image mismatch"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "image_mismatch": true,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "318287ee-1dde-46ad-90f4-fdd4b7ad0ad4",
-      "headline": "A Plant-Forward Mediterranean Diet Was Tied to a 26% Lower Heart-Disease Risk Over 20 Years, a Study Finds",
-      "slug": "plant-based-mediterranean-diet-26-percent-lower-cvd-attica-20-year-study-european-journal-nutrition-diaspora-20260625-1400",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "An illustration of peppers, a type of vegetable.",
-          "reason": "The story is about a plant-forward diet, and peppers are a relevant vegetable."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
+          "score": 8,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The 'Why It Matters for the Diaspora' section effectively connects the Mediterranean diet principles to traditional Indian eating patterns, making it relevant for NRI readers."
+          "quality": 6,
+          "note": "The article discusses Indian economic policy and market activity, which is relevant to NRIs with investments in India or an interest in the Indian economy. However, it doesn't explicitly connect to diaspora-specific concerns or opportunities."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a specific example of an Indian dish or meal plan that aligns with the 'plant-forward' Mediterranean principles to make the diaspora angle even more tangible.",
-          "While the article is well-written, a brief mention of potential challenges or adaptations for NRIs in different countries (e.g., availability of specific ingredients) could add another layer of relevance."
+          "Consider adding a paragraph or two that explicitly addresses how these disinvestment trends might impact NRI investments, remittances, or the overall economic outlook for those with ties to India.",
+          "Ensure the image URL and entities are populated for future reviews to accurately assess image match."
         ],
         "verdict": "pass"
       },
@@ -192,41 +142,46 @@
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MISMATCH",
-          "what_photo_shows": "A large group of people posing for a formal portrait outdoors.",
-          "reason": "The photo shows a formal group portrait, which is unrelated to the story about exercise variety and longevity."
-        },
+        "broken_embeds": [
+          {
+            "url": "https://x.com/bmj_latest/status/1745700760431448510",
+            "problem": "broken",
+            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
+          },
+          {
+            "url": "https://instagram.com/p/C2o2R2tN_75/",
+            "problem": "broken",
+            "detail": "Instagram embed shows removed/broken placeholder"
+          }
+        ],
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 6,
         "embed_issues": [],
         "image_match": {
-          "score": 5,
-          "issue": "No image URL or entities provided, making it impossible to assess the match. This is a critical missing piece for a news article."
+          "score": 1,
+          "issue": "No image URL or entities provided, making it impossible to assess the match."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 7,
-          "note": "The diaspora angle is present and relevant, connecting the general wellness advice to specific habits observed within the Indian diaspora. It feels natural rather than forced."
+          "note": "The diaspora angle is present and directly addresses the community's exercise habits, making it relevant. It could be slightly expanded with more specific examples or cultural nuances."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Ensure a hero image URL and its entities are provided for review, as this is a crucial element for any news article.",
-          "Expand the 'Why It Matters for the Diaspora' section slightly to offer more concrete, actionable examples of varied activities that might appeal to the community, beyond just identifying existing single-groove habits."
+          "Add specific examples of varied exercises that might appeal to or be accessible within the Indian diaspora community (e.g., yoga, dance forms, community sports beyond cricket/badminton).",
+          "Expand on the 'outsized burden of heart disease' for the community, perhaps with a statistic or a brief explanation, to strengthen the 'why it matters' section."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
-        "Cleared mismatched image (A large group of people posing for a formal portrait outdoors.)",
-        "Revised by gemini-2.5-flash (767\u2192806 words)"
+        "Removed 2 broken/hallucinated embed(s)",
+        "Revised by gemini-2.5-flash (804\u2192838 words)"
       ],
       "revised": true,
       "unpublished": false,
-      "image_mismatch": true,
       "llm_source": "gemini-2.5-flash"
     }
   ]
