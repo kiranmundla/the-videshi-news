@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-25T06:16:52.483632+00:00",
+  "timestamp": "2026-06-25T06:45:35.846259+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 10,
-    "flag": 2,
+    "pass": 3,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "498dce01-41f2-4cb2-b268-690655f37c8a",
-      "headline": "India's First Overnight Vande Bharat Is Coming \u2014 and It Fixes the Worst Leg of the Diaspora's India Trip",
-      "slug": "vande-bharat-sleeper-overnight-train-nri-metro-hometown-connector-20260625",
+      "id": "e20ca454-249d-4980-b415-03c9e7bd4080",
+      "headline": "India Is Offering Its Scientists Abroad Up to Rs 60 Lakh a Year to Come Home. The Real Question Is Whether Money Is Enough.",
+      "slug": "india-pm-research-chair-pmrc-scheme-2026-bring-indian-origin-researchers-home-60-lakh-fellowship-20260625",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A Vande Bharat Sleeper Express trainset on tracks.",
-          "reason": "The photo clearly shows the Vande Bharat Sleeper Express, which is the central subject of the headline and story."
+          "what_photo_shows": "Indian university campus with solar panels on rooftops",
+          "reason": "The photo depicts an Indian educational institution, which is relevant to a story about bringing Indian-origin researchers back to India's IITs and IISc."
         },
         "inline_image_mismatches": []
       },
@@ -36,13 +36,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article directly addresses NRI concerns and travel patterns, making a strong connection."
+          "note": "The article directly addresses a government scheme targeting Indian-origin researchers abroad, making the diaspora angle central and natural."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a small section on potential pricing comparisons (e.g., 'likely cheaper than a last-minute flight + baggage') to reinforce the value proposition.",
-          "Perhaps include a sentence about how to book tickets (e.g., IRCTC website, apps) for first-time or infrequent travelers."
+          "Consider adding a quote from an NRI scientist who has either returned or considered returning, to provide a personal perspective on the 'harder question'.",
+          "Expand slightly on the 'frictions' mentioned, perhaps with a brief example or two, to give more weight to the challenges beyond just money."
         ],
         "verdict": "pass"
       },
@@ -54,9 +54,9 @@
       "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "cba77fde-f1be-47fa-94a6-c951e54a75a2",
-      "headline": "India Wants to Train Pilots on Simulators to Fix Its Crew Shortage \u2014 Here's What It Means for Your Flight Home",
-      "slug": "india-multi-crew-pilot-licence-simulator-training-shortage-nri-20260625",
+      "id": "73e92557-61a9-48a2-82fa-c05d03f750b2",
+      "headline": "An Indian-Origin Mayor Just Became the Most Powerful Kingmaker in Democratic Politics. All Three of His Picks Won.",
+      "slug": "zohran-mamdani-slate-sweeps-new-york-congressional-primaries-kingmaker-lander-espaillat-20260625",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,8 +64,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "The flight deck of a Boeing 777-200LR.",
-          "reason": "The photo shows an aircraft cockpit, which is directly relevant to a story about pilot training and crew shortages in aviation."
+          "what_photo_shows": "A man in a suit and tie smiling at the camera.",
+          "reason": "The photo shows Zohran Mamdani, who is the subject of the story."
         },
         "inline_image_mismatches": []
       },
@@ -79,60 +79,15 @@
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article clearly and naturally connects the pilot shortage and proposed training changes to NRIs' travel experiences and concerns."
+          "note": "The article explicitly connects Mamdani's rise to the Indian diaspora experience and its implications."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a quote from an NRI traveler or an aviation expert on the diaspora's perspective to enhance relatability.",
-          "If possible, include a small graphic or chart illustrating the scale of aircraft orders versus current pilot output."
+          "Consider adding a brief explanation of what 'NRI' stands for, as the platform targets NRIs but some readers might benefit from clarification.",
+          "Ensure the article concludes with a strong summary or forward-looking statement, as it currently cuts off mid-sentence."
         ],
         "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "672dc6ef-4b62-4ee0-978a-4e71bcc79b4f",
-      "headline": "Etihad Is Selling Business Class to the US From India at a Third of the Usual Price \u2014 but the Window Shuts June 25",
-      "slug": "etihad-business-class-flash-sale-india-origin-us-nri-autumn-20260625",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Etihad Airways business class cabin interior",
-          "reason": "The photo shows an Etihad Airways business class cabin, which is directly relevant to a story about Etihad business class airfare sales."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article explicitly targets NRI readers and explains the value proposition for diaspora families, especially regarding travel for older parents."
-        },
-        "factual_flags": [
-          "Booking is open only from June 23 to June 25, 2026, for travel between July 1 and October 31 \u2014 this seems like a typo, as the current date is 2024. It should likely be June 23-25, 2024."
-        ],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Correct the year for the booking window (2026 should be 2024).",
-          "Consider adding a direct link to Etihad's sale page if available, or a general link to Etihad's booking portal for reader convenience."
-        ],
-        "verdict": "flag"
       },
       "actions_taken": [
         "promoted to published"
@@ -150,11 +105,6 @@
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MISMATCH",
-          "what_photo_shows": "People in traditional Indian attire celebrating outdoors",
-          "reason": "The photo shows people in traditional Indian attire, not students in graduation gowns at a commencement as described in the caption."
-        },
         "inline_image_mismatches": []
       },
       "llm_review": {
@@ -172,140 +122,8 @@
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a specific example of a European country's post-study work pathway to illustrate the 'pragmatic hedge' point.",
+          "Consider adding a specific example of a European country's post-study work pathway to strengthen the 'pragmatic hedge' argument.",
           "If possible, include a quote from an Indian student currently studying in Europe via Erasmus Mundus to add a personal touch."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "Cleared mismatched image (People in traditional Indian attire celebrating outdoors)",
-        "held: image mismatch"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "image_mismatch": true,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "2a90a9ff-a603-433c-ad7a-cfbca37f2078",
-      "headline": "A Sunday Panel in Manhattan Showed What the Indian-American Community Actually Worries About Now",
-      "slug": "gopio-manhattan-college-beyond-panel-indian-american-mentorship-diaspo-20260625",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A speaker addresses an audience at a community panel discussion.",
-          "reason": "The photo depicts a speaker addressing an audience, which aligns with the story about a community panel discussion."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image shows a generic group of people in a meeting, which broadly fits 'panel' or 'community event', but lacks specific Indian-American or Manhattan context. It's not a strong match for the headline's specificity."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The entire article is centered on the Indian-American diaspora's specific anxieties and community support mechanisms, making it highly relevant and naturally integrated."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a quote from one of the attendees (teenager or parent) to personalize the impact of the panel.",
-          "If possible, include a small, relevant image or graphic of the actual panel or venue to enhance authenticity, even if it 'doesn't photograph as well'."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "833c92a7-aeec-4b25-8cad-0d4a956c6da2",
-      "headline": "Prince William Just Gave Two Young Indians the Diana Award's Top Honour. Neither Lives Abroad.",
-      "slug": "diana-legacy-awards-2026-uday-bhatia-manasi-gupta-prince-william-londo-20260625",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Prince William in formal attire with medals",
-          "reason": "The photo clearly shows Prince William, who is mentioned in the headline as presenting the Diana Award."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article explicitly connects the award to NRI/diaspora readers, explaining why it matters to them and how it flips a familiar script."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a very brief, high-level description of what the Diana Award is for readers unfamiliar with it, beyond just 'charity set up in memory of his mother'."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "d1c23c53-2d5b-4450-834a-136ccebf48fc",
-      "headline": "India Is Quietly Talking Itself Out of Gold \u2014 and the World's Bullion Market Is Feeling It",
-      "slug": "india-gold-demand-slump-domestic-price-discount-etf-outflow-rupee-defence-import-curbs-nri-investor-20260625-0600",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A hand holding several gold bangles.",
-          "reason": "The photo directly depicts gold, which is the central subject of the story about India's gold market."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article explicitly connects to the diaspora in the final section, explaining the cultural and investment significance of gold for NRIs."
-        },
-        "factual_flags": [
-          "The article mentions 'much of 2026' and 'This year' in the same context, implying 2026 is the current year, but then refers to events like 'late January' and 'late February' without specifying the year, which could be confusing if 2026 is not the current year. The date '20260625-0600.jpg' in the image URL also suggests 2026."
-        ],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Clarify the year for all events mentioned to avoid confusion, especially if the article is being published in a year other than 2026.",
-          "Expand slightly on the 'Why It Matters for the Diaspora' section, as it cuts off abruptly. This is a key angle for The Videshi."
         ],
         "verdict": "pass"
       },
@@ -342,197 +160,20 @@
         "diaspora_angle": {
           "present": true,
           "quality": 6,
-          "note": "The diaspora angle is present and relevant, but the article cuts off abruptly right after introducing it, leaving the connection underdeveloped."
+          "note": "The diaspora angle is present but feels a bit tacked on and incomplete. It introduces the cultural context but doesn't fully integrate it into the study's implications or offer solutions/further discussion relevant to NRIs."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Complete the 'Why It Matters for the Diaspora' section to fully develop the connection between the study's findings and the experiences of Indian/South Asian families.",
-          "Consider adding a call to action or practical advice for NRI parents/teenagers based on the study's implications."
+          "Expand the 'Why It Matters for the Diaspora' section. Instead of just stating the problem, discuss potential strategies for NRI families to balance academic pressure with healthy sleep, or include quotes from experts/parents in the diaspora.",
+          "Consider adding a call to action or resources for NRI parents/teens struggling with sleep issues, perhaps linking to relevant health organizations or community initiatives."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
-        "Revised by gemini-2.5-flash (769\u2192882 words)"
+        "Revised by gemini-2.5-flash (882\u2192983 words)"
       ],
       "revised": true,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "b1558848-5d66-4582-bc12-1740684e4ce1",
-      "headline": "Cutting Out Sugar Entirely May Backfire, a New Study Warns \u2014 Balance Beats Elimination",
-      "slug": "sugar-free-diet-gut-microbiome-insulin-resistance-fatty-liver-dasman-endo-2026-balanced-carbs-diaspora-20260625-0600",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A bowl of white and brown sugar cubes",
-          "reason": "The photo directly illustrates the topic of sugar, which is central to the headline and story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The diaspora angle is introduced naturally at the end, connecting the study's findings to common dietary trends within the NRI community. It feels relevant and not forced."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Expand on the 'Why It Matters for the Diaspora' section with more specific examples or implications for NRI readers, perhaps touching on traditional Indian sweets or dietary habits.",
-          "Consider adding a quote from an Indian diaspora nutritionist or health expert to further ground the diaspora angle."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "e9450f57-ef7f-42f4-9a3c-b9d9357a87f0",
-      "headline": "Ola Electric Once Owned Half of India's Electric Scooter Market. The Companies That Took It Are the Boring Ones.",
-      "slug": "india-ev-two-wheeler-race-ola-electric-ather-tvs-bajaj-nri-investors-20260625",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "An electric vehicle charging station with power lines in the background.",
-          "reason": "The photo depicts an electric vehicle charging station, which is relevant to a story about India's electric scooter market."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image shows a generic electric scooter charging, which is relevant to the topic, but doesn't specifically represent Ola Electric or its competitors mentioned in the article. It's a good stock photo, but not highly specific."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The 'Why NRIs should care' section directly addresses NRI investors and their potential exposure to the Indian EV market, making a clear and relevant connection."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a small chart or infographic to visually represent the market share shifts and financial metrics mentioned, as this is a data-heavy article.",
-          "While the image is acceptable, a more specific image (e.g., a composite of the different scooter brands or a graphic representing market share) could enhance the article."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "fc913a73-c040-4ea0-86a5-e2c32478ebcb",
-      "headline": "Apple Spent 15 Years Escaping Intel. Now It's Quietly Going Back \u2014 and the Reason Sits in a Memory-Chip Shortage.",
-      "slug": "apple-intel-foundry-deal-18a-tsmc-chip-supply-nri-investors-20260625",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A silicon chip on a circuit board.",
-          "reason": "The photo shows a computer chip, which is directly relevant to a story about chip supply chains and manufacturing deals between tech companies."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image is a generic tech photo (circuit board) and doesn't specifically represent Apple, Intel, or the chip shortage. It's broadly relevant but not highly specific."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The diaspora angle is well-integrated and provides a relevant perspective for NRI readers, connecting the global tech story to Indian engineers' careers and India's semiconductor ambitions."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a more specific image that visually represents the core companies (Apple, Intel) or the concept of chip manufacturing/shortage, if possible.",
-          "While the article is strong, a brief mention of the geopolitical implications (US-China tech rivalry, Taiwan's role) could further enrich the context for a global audience, though it's not strictly necessary for the current focus."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "6b08d9f7-81e4-477c-bb6c-c3abdf9ce0f2",
-      "headline": "Adobe's Indian-Born CEO Bet the Company on Selling Software. On His Way Out, He's Giving It Away.",
-      "slug": "adobe-shantanu-narayen-freemium-firefly-ai-pivot-nri-creative-20260625",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "dd315d47-16ab-4b53-8026-32d5bb3b57cb",
-            "headline": "Adobe's Indian-Born CEO Spent 18 Years Building a Subscripti"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Adobe CEO Shantanu Narayen",
-          "reason": "The photo clearly shows the named individual who is the subject of the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 10,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The diaspora angle is well-integrated and relevant, focusing on leadership succession and its impact on Indian-origin professionals."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a quote from an Indian-American Adobe employee or industry expert to further strengthen the diaspora perspective.",
-          "Briefly mention other prominent Indian-origin CEOs in tech to contextualize Narayen's legacy within the broader trend."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
       "unpublished": false,
       "llm_source": "gemini-2.5-flash"
     }
