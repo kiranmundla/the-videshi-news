@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-25T11:15:22.208042+00:00",
+  "timestamp": "2026-06-25T12:16:03.009518+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 8,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "6fb3cf60-eaa5-4ee0-aa0a-3c6094a59d9b",
-      "headline": "TVF Stopped Apologizing for Not Being 'Panchayat.' 'Gram Chikitsalay' Season 2 Finally Found Its Own Heartbeat \u2014 in a Crumbling Village Clinic.",
-      "slug": "gram-chikitsalay-season-2-prime-video-amol-parashar-tvf-panchayat-comparison-vinay-pathak-dinesh-lal-yadav-nirahua-akansha-ranjan-kapoor-june-23-2026-where-to-watch-diaspora-nri-20260625",
+      "id": "e4693b6b-89d0-44e7-b579-4ee93b393735",
+      "headline": "Indian-Australians Give Generously. A New Study Wants to Know Why So Little of It Is Counted.",
+      "slug": "indian-australian-diaspora-philanthropy-study-myriad-per-capita-giving-20260625",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,63 +21,13 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Poster for 'Gram Chikitsalay' featuring the main cast",
-          "reason": "The photo is the official poster for the TV show 'Gram Chikitsalay', which is the subject of the story."
+          "what_photo_shows": "Performers playing traditional Indian drums at a cultural festival.",
+          "reason": "The photo depicts an Indian community cultural festival, which is relevant to a story about Indian-Australians."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/reel/DZ4ODwmNveO/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram reel is a generic motivational post from 2022, not related to the show 'Gram Chikitsalay' or its cast/crew."
-          }
-        ],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article explicitly mentions Prime Video's global availability for NRIs, which is a direct and relevant connection."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the irrelevant Instagram embed with a relevant one, perhaps a trailer or a cast interview related to 'Gram Chikitsalay' Season 2.",
-          "Expand slightly on the 'Here's why this matters for the diaspora specifically' section to elaborate on the cultural connection or nostalgia aspect beyond just global availability."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/reel/DZ4ODwmNveO/",
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "15331a13-d7f6-4a0b-bfcb-2bdd206db7af",
-      "headline": "\"Pathaanon Se Kehna, Chauhaan Aa Raha Hai\": Ajay Devgn Drops a Balaclava, a Bachchan Anthem, and a Not-So-Subtle Dig at Shah Rukh",
-      "slug": "chauhaan-ajay-devgn-announcement-teaser-jio-studios-aanand-l-rai-pathaan-dig-veeru-devgan-october-1-2027-where-to-watch-diaspora-nri-20260625",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Ajay Devgn, an Indian actor, wearing glasses and a brown shirt.",
-          "reason": "The photo clearly shows Ajay Devgn, who is the central subject of the headline and subheadline."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
+        "overall_score": 8,
         "embed_issues": [],
         "image_match": {
           "score": 8,
@@ -85,14 +35,323 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The diaspora angle is present and feels naturally integrated, discussing expected theatrical releases in key NRI markets."
+          "quality": 9,
+          "note": "The article directly addresses the giving habits of Indian-Australians, a core diaspora topic."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a small section on the cultural significance of the 'Pathaan' reference beyond just the SRK film, if applicable, to enrich the context.",
-          "Ensure all release dates mentioned are double-checked for accuracy closer to publication, as they can shift."
+          "Consider adding a concluding paragraph that summarizes the potential impact of this research for both Australian civil society and the Indian-Australian community.",
+          "Ensure the article ends cleanly, as it currently cuts off mid-sentence."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "10c0a8e5-0061-4370-8b5f-912479ac8b14",
+      "headline": "Forty-One Years On, the Diaspora Still Gathers for Air India 182. The State Mostly Doesn't.",
+      "slug": "air-india-182-flight-41st-anniversary-memorial-kanishka-bombing-diaspo-20260625",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Air India Flight 182 memorial at Humber Bay Park East",
+          "reason": "The photo shows the memorial for Air India Flight 182, which is the central subject of the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 9,
+        "embed_issues": [],
+        "image_match": {
+          "score": 10,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 10,
+          "note": "The entire article is centered on the diaspora's experience and perspective regarding the Air India 182 tragedy, making it highly relevant for NRI readers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a concluding sentence to the last paragraph to provide a stronger sense of closure, as it currently ends mid-sentence.",
+          "While not strictly necessary, a small embed of a historical news clip or a photo from one of the memorial services (if available and relevant) could enhance reader engagement."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "ec8f8657-7d25-4d67-8d8f-7d55b70d977b",
+      "headline": "The Dropbox Is Dead for H-1B Indians. Even Toddlers Now Need an Interview",
+      "slug": "us-visa-interview-waiver-dropbox-shut-h1b-h4-age-waivers-removed-india-20260625",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "A world map, camera, compass, and a 'VISA' stamped item",
+          "reason": "The photo depicts travel-related items, including a 'VISA' stamp, which is directly relevant to a story about visa applications and immigration."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image of a person looking at a map is somewhat generic. While it could symbolize travel or planning, it doesn't directly evoke the specific challenges of visa interviews or the H-1B process. A more direct image related to consulates, visa documents, or even a family facing travel decisions might be stronger."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article is entirely focused on the impact of US visa policy changes on Indian H-1B holders and their families, directly addressing the concerns and experiences of the NRI diaspora. The angle is natural and highly relevant."
+        },
+        "factual_flags": [
+          "The article mentions 'mandatory social-media vetting for H-1B and H-4 applicants, introduced in late 2025'. While social media checks are part of the visa process, the specific 'mandatory' introduction date of 'late 2025' for H-1B/H-4 and its direct link to 'widespread interview rescheduling, pushing dates into the middle of 2026' needs a source or clarification. Social media checks have been in place for some time, and attributing specific rescheduling to a future 'introduction' might be an oversimplification or misdating."
+        ],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Add a specific quote from an affected H-1B holder or immigration lawyer to personalize the impact and add expert commentary.",
+          "Include a 'What to do now?' section with actionable advice for NRIs planning trips or renewals, even if it's just to consult an attorney or check official State Department websites frequently."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "48f9c2b3-b974-4dd4-840c-09b07ce66971",
+      "headline": "The H-1B Move That Quietly Voids Your Status: Working Remotely From the Wrong City",
+      "slug": "h1b-remote-work-lca-amendment-fdns-home-office-site-visit-indians-20260625",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "A person working from a home office with a laptop and documents.",
+          "reason": "The photo depicts a generic scene of remote work, which is directly relevant to the story about H-1B workers relocating to work from home."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image shows a person working on a laptop in a home setting, which aligns with the remote work theme. However, the entities provided are empty, making a precise match difficult. Assuming the image itself is relevant."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article explicitly connects the issue to Indian professionals, who make up a significant portion of the H-1B workforce, and highlights how the green card backlog uniquely impacts them, making the diaspora angle very strong and natural."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a small 'What to do if you've already moved' section with advice for those who might be out of compliance.",
+          "Perhaps include a quote from an immigration attorney to add more authority and practical advice."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "c757437c-61bd-4e3b-9998-1f77d371cc6d",
+      "headline": "The Work-Permit Safety Net Is About to Vanish. 90,000 Indian Spouses Are First in Line",
+      "slug": "ead-automatic-extension-final-rule-omb-h4-spouses-indians-work-permit-20260625",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MISMATCH",
+          "what_photo_shows": "Health passport on phone, calendar, and travel stamps",
+          "reason": "The photo's subject is primarily about travel and COVID-19 health passports, which is not directly relevant to work-permit renewals or immigration paperwork for EAD extensions."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "No image URL or entities provided, so cannot fully assess. Assuming a relevant image would depict immigration documents, a family, or a legal/government setting."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article directly addresses the impact on the Indian diaspora, specifically H-4 EAD holders and those in the green card backlog, making it highly relevant for NRI readers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a specific call to action or resources for affected individuals, beyond just 'file early'.",
+          "If possible, include a quote from an affected H-4 EAD holder to personalize the impact."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "Cleared mismatched image (Health passport on phone, calendar, and travel stamps)",
+        "held: image mismatch"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "image_mismatch": true,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "4bca5192-337c-4510-b446-997687d69d34",
+      "headline": "A Wall Street Bank Just Told India Its AI Is a 'Fighter Jet' It Doesn't Own. The Warning Is a Gift to the Diaspora's Startups.",
+      "slug": "bernstein-india-foreign-llm-dependence-sovereign-ai-fighter-jet-warnin-20260625",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Rows of servers in an AI data center",
+          "reason": "The photo depicts AI data center servers, which are directly relevant to a story about AI and sovereign AI infrastructure."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 8,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article explicitly connects the topic to NRI/diaspora readers, highlighting practical and financial reasons for their engagement, and mentions diaspora technologists returning to build."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a quote from an NRI technologist who has returned to India to build in the sovereign AI space, to further personalize the diaspora angle.",
+          "Perhaps include a brief mention of potential challenges or counterarguments to the 'sovereign AI' push, to provide a more balanced perspective, even if briefly."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "5cc8e26a-0b12-4005-805c-1372737d2fb4",
+      "headline": "Meta Just Made AI Glasses Cheap Enough to Go Mass-Market. The First Test Will Be the Indian Diaspora's Wishlist.",
+      "slug": "meta-ai-glasses-299-muse-spark-superintelligence-nri-wearables-20260625",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Ray-Ban smart glasses with charging case",
+          "reason": "The photo shows Meta's Ray-Ban smart glasses, which are directly relevant to the story about Meta's AI glasses."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article makes a strong and well-reasoned case for the Indian diaspora as a key market, connecting product features to specific NRI needs and cultural aspects. It also highlights the Indian presence within Meta's leadership and reporting."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a small section or a call-out box about potential privacy concerns specific to the Indian context or diaspora, given the 'catch' section.",
+          "If possible, include a quote from an NRI or an expert on diaspora tech adoption to further strengthen the 'Why the diaspora is the obvious first market' section."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "5cd12a61-da39-4894-949c-b78b414235b9",
+      "headline": "Accenture Beat on Profit and Still Fell 7%. The Reason Is the One Job Indians Do Most for It.",
+      "slug": "accenture-q3-earnings-ai-consulting-cannibalization-india-workforce-nr-20260625",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "025a371f-643e-49a9-af75-a49136760310",
+            "headline": "Accenture Just Had Its Worst Week on Record. The Fear Drivin"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Accenture's office building in Hyderabad, India",
+          "reason": "The photo shows an Accenture office in India, which is directly relevant to a story about Accenture's India operations."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article explicitly connects the impact of Accenture's shift to Indian employees, both in India and among NRIs/visa holders in the US, and extends the implications to other major Indian IT firms."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a brief concluding sentence that offers a forward-looking perspective or a call to action for NRI readers, beyond just 'what's next'."
         ],
         "verdict": "pass"
       },
