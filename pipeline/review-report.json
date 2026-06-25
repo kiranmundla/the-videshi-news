@@ -1,19 +1,19 @@
 {
-  "timestamp": "2026-06-25T02:45:34.079090+00:00",
+  "timestamp": "2026-06-25T03:15:56.883586+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
-    "flag": 2,
+    "pass": 6,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
-  "revisions": 1,
+  "revisions": 0,
   "unpublished": 0,
   "articles": [
     {
-      "id": "34d7763c-56c9-4cb7-acbf-7ae1c71a21dd",
-      "headline": "She Was Born a Parsi and Never Left Her Faith. Because She Married a Hindu, Her Son Can't Set Foot in the Temple.",
-      "slug": "parsi-women-interfaith-marriage-supreme-court-1908-petit-jeejeebhoy-nagpur-panchayat-discrimination-20260624",
+      "id": "ea8f3bed-b565-48b7-b0e7-23c869991386",
+      "headline": "Bollywood's Stars Are Vanishing for Years at a Time \u2014 and It's the Smartest Thing They've Done in Decades",
+      "slug": "bollywood-stars-blocking-years-mega-epics-vicky-kaushal-mahavatar-18-months-ranveer-singh-pralay-300-crore-salman-khan-karna-south-cinema-influence-diaspora-nri-20260624",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Interior of a Parsi fire temple with an inscription",
-          "reason": "The photo depicts a Parsi fire temple, which is directly relevant to a story about Parsi faith and temple access."
+          "what_photo_shows": "Vicky Kaushal, a Bollywood actor, wearing a letterman jacket.",
+          "reason": "The photo clearly shows Vicky Kaushal, who is explicitly mentioned in both the headline and subheadline as a key example in the story."
         },
         "inline_image_mismatches": []
       },
@@ -36,13 +36,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article explicitly addresses the diaspora angle in a dedicated section, connecting the Parsi community's issues to global relevance."
+          "note": "The 'What It Means for the Diaspora' section directly addresses NRI readers and connects the trend to their viewing habits and global appeal."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Expand on the 'Why It Matters for the Diaspora' section, perhaps with quotes from Parsi diaspora members or examples of how this rule impacts them abroad.",
-          "Consider adding a brief historical context of Parsi migration to provide a fuller picture for a diaspora audience."
+          "Consider adding a quote from a film critic or industry analyst to further validate the trend.",
+          "Briefly mention the financial implications for stars (e.g., higher upfront pay for longer commitments, or backend deals) to add another layer to 'The \u20b9300-Crore Gamble' section."
         ],
         "verdict": "pass"
       },
@@ -54,9 +54,9 @@
       "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "7030822a-9ca7-44c3-a781-60e7739fd131",
-      "headline": "America Wants to Put an Expiry Date on the Student Visa. India's 363,000 Students Are First in Line.",
-      "slug": "us-student-visa-duration-of-status-fixed-term-f1-opt-indian-students-dhs-rule-20260624",
+      "id": "8b6d21cf-20ab-4753-8a69-63d7b6e01e86",
+      "headline": "What to Watch This Week: The Dragons Are Back, Pandora Comes Home, and a Jail Full of Celebrities Opens for Business",
+      "slug": "what-to-watch-this-week-june-24-2026-house-of-the-dragon-avatar-fire-and-ash-alliance-welcome-to-the-jungle-streaming-guide-diaspora-nri",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,8 +64,137 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Cornell University campus scene and logo",
-          "reason": "The photo shows a US university, which is relevant to a story about US student visas."
+          "what_photo_shows": "Emma D'Arcy, an actor, in a headshot.",
+          "reason": "The photo shows Emma D'Arcy, who is mentioned in the caption as returning in House of the Dragon, which is a topic of the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article explicitly mentions streaming availability for diaspora locations and connects content to NRI family viewing habits."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Ensure all listed titles have a brief, consistent description length.",
+          "Consider adding one more embed (e.g., a trailer for 'Welcome To The Jungle' or 'Alliance') to break up text."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "b2377ce3-f94e-471d-8f51-f0e833a07d24",
+      "headline": "India's IT Giants Just Lost \u20b98.5 Lakh Crore in Five Years. The Companies Replacing Them on the Value Charts Are AI Startups.",
+      "slug": "indian-it-tcs-infosys-wipro-value-decline-ai-startups-nri-investors-20260625",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "A financial trading screen displaying market charts and data.",
+          "reason": "The photo of a financial trading screen is a generic but on-topic image for a story about economic shifts and company valuations."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 8,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article explicitly addresses NRI investors and their portfolio considerations, making the diaspora angle very strong and natural."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a small section on specific AI startups mentioned (Sarvam AI) and their potential impact or funding rounds to give more concrete examples of the 'replacing' companies.",
+          "Ensure the article concludes with a strong summary statement rather than an abrupt ending."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "be4fce49-3655-457c-b969-7d4f110b8e82",
+      "headline": "Washington Just Cut Off Foreign Nationals From Anthropic's Best AI. India's 'Sovereign AI' Startups Got the Gift of the Year.",
+      "slug": "anthropic-foreign-nationals-ban-sovereign-ai-india-sarvam-nri-engineer-20260625",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "server rack in a data center",
+          "reason": "The photo of a server rack is a generic but on-topic image for a story about AI and data infrastructure."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image is a generic tech/AI-related photo, but doesn't specifically depict 'Anthropic' or 'Sovereign AI' in a way that adds unique value. It's acceptable but not highly specific."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article directly addresses the impact on Indian citizens on H-1B, green card holders, and founders in Bengaluru, making the diaspora angle very strong and relevant. It also highlights the irony for Indian-origin researchers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a quote from an Indian AI startup founder or an NRI tech professional to further personalize the impact of the US restrictions.",
+          "While the article mentions 'What's next', it abruptly ends. A concluding sentence or two summarizing the potential long-term implications for India's AI landscape would improve flow."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "9d7ab8c4-ac47-4a2d-99bb-4b979f590df4",
+      "headline": "Vishal Sikka Ran Infosys. Now He's Built an AI Startup Aimed at Killing the Business He Came From.",
+      "slug": "vishal-sikka-hang-ten-systems-ai-it-services-infosys-nri-engineers-20260625",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Vishal Sikka speaking at a conference.",
+          "reason": "The photo clearly shows Vishal Sikka, who is the subject of the headline."
         },
         "inline_image_mismatches": []
       },
@@ -79,17 +208,15 @@
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article explicitly highlights the impact on Indian students and families, connecting directly to NRI concerns about education and career paths."
+          "note": "The article directly addresses the impact on NRIs and their career paths, making the diaspora angle very strong and relevant."
         },
-        "factual_flags": [
-          "The article mentions 'DHS first floated the idea in August 2025 and formally proposed eliminating Duration of Status for F-1 visas in May 2026'. These dates are in the future, which is likely a typo and should be corrected to past dates (e.g., 2020, 2021) to reflect the timeline of a proposal that is now at OMB review."
-        ],
+        "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Correct the future dates (August 2025, May 2026) mentioned in the 'What's Still Uncertain' section to reflect the actual historical timeline of the proposal.",
-          "Consider adding a brief quote or perspective from an Indian student or parent currently navigating the US education system to personalize the impact of these changes."
+          "Consider adding a quote from an NRI engineer or an expert on immigration/H-1B visas to further ground the 'What it means for an Indian engineer abroad' section.",
+          "The article ends abruptly. A concluding paragraph summarizing the implications or looking ahead would improve flow."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
         "promoted to published"
@@ -108,20 +235,25 @@
         "duplicate_images": [],
         "broken_embeds": [
           {
-            "url": "https://x.com/DrJennaMacciochi/status/1798363385764042898",
+            "url": "https://x.com/thevideshi/status/1753940251125219790",
             "problem": "broken",
             "detail": "react-tweet returned null (deleted/protected/nonexistent)"
+          },
+          {
+            "url": "https://instagram.com/p/C21_i-zS50k/",
+            "problem": "broken",
+            "detail": "Instagram embed shows removed/broken placeholder"
           }
         ],
         "vision_image_match": {
           "verdict": "MATCH",
           "what_photo_shows": "a plate of healthy food with eggs, avocado, and spinach",
-          "reason": "The photo depicts a healthy meal, which is relevant to a story about nutrition, dieting, and weight loss."
+          "reason": "The photo shows a healthy meal, which is relevant to a story about nutrition, dieting, and weight loss."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 6,
+        "overall_score": 8,
         "embed_issues": [],
         "image_match": {
           "score": 9,
@@ -129,22 +261,22 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 3,
-          "note": "The article abruptly cuts off at the start of the diaspora angle section, making it impossible to assess its quality fully. Based on the headline and body, the connection seems forced rather than naturally integrated throughout."
+          "quality": 7,
+          "note": "The diaspora angle is present and relevant, particularly highlighting the cultural significance of food for NRIs and how constant calorie counting can be challenging. It feels naturally integrated rather than forced."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Complete the 'Why It Matters for the Diaspora' section to properly integrate the NRI angle.",
-          "Consider weaving the diaspora relevance throughout the article rather than confining it to a separate, tacked-on section."
+          "Consider adding a quote from an NRI or an expert on Indian dietary practices to further strengthen the diaspora angle.",
+          "Expand slightly on the 'limits' mentioned at the end of the article, even if briefly, to provide a more complete picture of the study's scope."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
-        "Removed 1 broken/hallucinated embed(s)",
-        "Revised by gemini-2.5-flash (898\u21921021 words)"
+        "Removed 2 broken/hallucinated embed(s)",
+        "promoted to published"
       ],
-      "revised": true,
+      "revised": false,
       "unpublished": false,
       "llm_source": "gemini-2.5-flash"
     }
