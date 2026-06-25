@@ -1,19 +1,19 @@
 {
-  "timestamp": "2026-06-25T12:45:58.257097+00:00",
+  "timestamp": "2026-06-25T13:15:19.659257+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 5,
+    "pass": 1,
     "flag": 1,
     "fail": 0,
     "error": 0
   },
-  "revisions": 1,
+  "revisions": 0,
   "unpublished": 0,
   "articles": [
     {
-      "id": "ac95d767-b599-46be-8d37-48593974b7ab",
-      "headline": "The Chutney Awakening: How America Discovered the Sauce India Never Lost",
-      "slug": "the-chutney-awakening-how-america-discovered-the-sauce-india-never-lost",
+      "id": "9af825fb-96f7-4583-bcaf-4d1df66475b4",
+      "headline": "Ranveer Singh Picked Up the Phone Himself. Now South Cinema's Quiet Star Is Walking Into a Zombie Apocalypse \u2014 and Bollywood.",
+      "slug": "pralay-kalyani-priyadarshan-bollywood-debut-ranveer-singh-zombie-thriller-jai-mehta-lokah-maa-kasam-films-august-2026-shoot-where-to-watch-diaspora-nri-20260625",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,142 +21,13 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A bowl of coconut chutney with a spoon on a plate.",
-          "reason": "The photo clearly shows chutney, which is the central topic of the headline and subheadline."
+          "what_photo_shows": "Kalyani Priyadarshan smiling on a swing",
+          "reason": "The photo clearly shows Kalyani Priyadarshan, who is the main subject of the story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The 'Diaspora Impact' section directly addresses the NRI experience, making it highly relevant and well-integrated."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a specific example of a diaspora-founded brand that has successfully brought chutneys to the mainstream, if appropriate and available.",
-          "Perhaps a brief mention of the etymology of 'chutney' and its global journey (e.g., British influence) could add another layer of historical depth, if space permits."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "2300fa4b-cdca-4317-9511-d77984ca2c2b",
-      "headline": "Paneer's American Moment: How India's Cottage Cheese Became a Protein Darling",
-      "slug": "paneers-american-moment-how-indias-cottage-cheese-became-a-protein-darling",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "a bowl of paneer butter masala",
-          "reason": "The photo shows paneer butter masala, which is directly relevant to a story about paneer."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The 'Diaspora Impact' section directly addresses the NRI experience and perspective, making the connection natural and relevant."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a specific example or quote from an Indian-American chef or food blogger about their experience with paneer's mainstreaming to further personalize the 'Diaspora Impact' section.",
-          "The article ends abruptly. Ensure the 'What's Next' section is completed with a concluding thought or prediction."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "e6313fd4-12d6-4322-aa23-9e788789a5a0",
-      "headline": "The Celebrity Chef Lands: Sanjeev Kapoor's Yellow Chilli Stakes a Claim in Silicon Valley",
-      "slug": "the-celebrity-chef-lands-sanjeev-kapoors-yellow-chilli-stakes-a-claim-in-silicon",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Celebrity chef Sanjeev Kapoor with a woman",
-          "reason": "The photo clearly shows Sanjeev Kapoor, who is the subject of the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The diaspora angle is central and well-articulated, especially in the 'Diaspora Impact' section."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a quote from a Bay Area NRI diner about their experience or connection to Sanjeev Kapoor.",
-          "Briefly mention the price point or general cost expectation for a meal at The Yellow Chilli to give readers a better sense of the 'premium-priced' concept."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "211ee865-cb72-49a3-9eec-c1c5ef94db78",
-      "headline": "India's Financial-Crime Agency Raided the World's Biggest Gold Processor. The Books Allegedly Didn't Match the Vault.",
-      "slug": "ed-searches-rajesh-exports-fema-gold-mismatch-sebi-15-lakh-crore-valcambi-revenue-inflation-20260625",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "a pile of refined gold bars",
-          "reason": "The photo of gold bars is directly relevant to a story about a gold processor and discrepancies in gold stock."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 6,
+        "overall_score": 7,
         "embed_issues": [],
         "image_match": {
           "score": 9,
@@ -165,58 +36,18 @@
         "diaspora_angle": {
           "present": true,
           "quality": 7,
-          "note": "The diaspora angle is present and relevant, connecting the gold trade to NRI purchasing habits. It feels a bit tacked on at the end, but the connection is valid."
+          "note": "Explicitly mentions 'unfamiliar diaspora viewer' and provides context for South Indian actors, which is relevant for NRIs."
         },
-        "factual_flags": [],
+        "factual_flags": [
+          "Ranveer Singh's 'Dhurandhar' is mentioned as a \u20b91,200-crore tsunami, but no such film exists under that name with that box office collection. This needs to be fact-checked and corrected.",
+          "Kalyani Priyadarshan's 'Lokah Chapter 1: Chandra' is described as a '\u20b9300-crore Malayalam blockbuster' and a 'nationwide phenomenon', but there is no widely known film by this title with such a collection or impact. This also needs verification."
+        ],
         "duplicate_embeds": [],
         "suggestions": [
-          "Integrate the 'Why It Matters for the Diaspora' section more organically throughout the article, perhaps with a brief mention in the introduction or by weaving in the NRI connection earlier.",
-          "Clarify the 'Rs 15.15 lakh crore \u2014 roughly $159 billion' conversion. While 'lakh crore' is an Indian unit, explicitly stating the conversion to billions of dollars earlier would improve readability for a global audience."
+          "Fact-check the film titles and box office figures attributed to Ranveer Singh and Kalyani Priyadarshan, as they appear to be incorrect or fabricated.",
+          "Consider adding a sentence or two about the growing trend of South Indian actors crossing over to Bollywood and its significance for pan-Indian cinema, further strengthening the 'diaspora angle' by highlighting cultural exchange."
         ],
         "verdict": "flag"
-      },
-      "actions_taken": [
-        "Revised by gemini-2.5-flash (746\u2192823 words)"
-      ],
-      "revised": true,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "2f876fb2-2c4a-4398-8c3e-a2299fc2ff75",
-      "headline": "A Fire at a Tata Data Centre in Delhi May Have Erased 20 Years of One Company's Data. Google Cloud Was Hit Too.",
-      "slug": "stt-tata-delhi-data-centre-fire-extensive-damage-matrix-cellular-google-cloud-data-loss-20260625",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Server racks with blue lights in a data center",
-          "reason": "The photo depicts server racks in a data center, which is directly relevant to a story about a data center fire."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The 'Why It Matters for the Diaspora' section explicitly connects the incident to NRI concerns, making it relevant and well-integrated."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a quote from an NRI or an expert on digital security for NRIs to further strengthen the diaspora angle.",
-          "If possible, include a small graphic or map showing the location of the data center in Delhi to provide more context."
-        ],
-        "verdict": "pass"
       },
       "actions_taken": [
         "promoted to published"
@@ -226,33 +57,38 @@
       "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "c757437c-61bd-4e3b-9998-1f77d371cc6d",
-      "headline": "The Work-Permit Safety Net Is About to Vanish. 90,000 Indian Spouses Are First in Line",
-      "slug": "ead-automatic-extension-final-rule-omb-h4-spouses-indians-work-permit-20260625",
+      "id": "514c9820-5d10-4fe8-b6f2-10317d81a7ad",
+      "headline": "\"His Mother? Are You Mad?\" Mouni Roy Heard the Whole Internet Laugh \u2014 and Decided She Didn't Care",
+      "slug": "mouni-roy-varun-dhawan-fake-mother-backlash-hai-jawani-toh-ishq-hona-hai-david-dhawan-naagin-age-gap-where-to-watch-diaspora-nri-20260625",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Mouni Roy in a black dress",
+          "reason": "The photo clearly shows Mouni Roy, who is the central subject of the story."
+        },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 8,
+        "overall_score": 7,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "No image URL or entities provided, so cannot fully assess. Assuming a relevant image would depict immigration documents, a family, or a legal/government setting."
+          "score": 8,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article directly addresses the impact on the Indian diaspora, specifically H-4 EAD holders and those in the green card backlog, making it highly relevant for NRI readers."
+          "quality": 6,
+          "note": "The article discusses a popular Bollywood actress and film, which is generally relevant to NRI readers. The humor and cultural context of 'Nirupa Roy' vs 'Mouni Roy' would resonate well."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a specific call to action or resources for affected individuals, such as links to immigration attorney associations or government advisories.",
-          "If possible, include a quote from an affected H-4 EAD holder to personalize the impact of the policy change."
+          "Consider adding a sentence or two explicitly connecting the film's reception or Mouni Roy's career trajectory to the broader Indian entertainment landscape, which NRIs often follow closely.",
+          "While the article is engaging, a stronger concluding thought on Mouni Roy's career choices or the evolving nature of Bollywood comedy could elevate it further."
         ],
         "verdict": "pass"
       },
