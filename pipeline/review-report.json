@@ -1,19 +1,19 @@
 {
-  "timestamp": "2026-06-25T13:45:13.487947+00:00",
+  "timestamp": "2026-06-25T14:15:48.939544+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 0,
+    "pass": 4,
     "flag": 1,
     "fail": 0,
     "error": 0
   },
-  "revisions": 0,
+  "revisions": 1,
   "unpublished": 0,
   "articles": [
     {
-      "id": "ce18a4ee-b923-4bf2-a329-8b8c2e98e0d7",
-      "headline": "One Centimetre, and the Record Is His Alone: Dev Meena Vaults to 5.46m",
-      "slug": "dev-meena-pole-vault-national-record-5-46m-inter-state-athletics-bhubaneswar-asian-games-qualification-2026-diaspora-nri",
+      "id": "839bf7e2-c093-483b-8af9-3fceaaee348b",
+      "headline": "Akasa Air Bets on Southeast Asia and 30% Growth Even as the Same Airspace Crisis Freezes Its Gulf Plans",
+      "slug": "akasa-air-hanoi-southeast-asia-pivot-gulf-freeze-nri-2026-20260625",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,13 +21,13 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A young man in a blue and white athletic jacket.",
-          "reason": "The photo shows Dev Meena, the named subject of the story."
+          "what_photo_shows": "An Akasa Air Boeing 737 MAX on an airport tarmac.",
+          "reason": "The photo clearly shows an Akasa Air plane, which is the subject of the headline and story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 7,
+        "overall_score": 8,
         "embed_issues": [],
         "image_match": {
           "score": 9,
@@ -35,25 +35,198 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The 'Why the diaspora should care' section explicitly connects the story to NRI readers, explaining why this particular athlete's rise is significant for them."
+          "quality": 8,
+          "note": "The diaspora angle is well-integrated and explains the relevance of Akasa's strategy for NRIs, particularly regarding connecting flights and competition."
         },
-        "factual_flags": [
-          "M. Gowtham's meet record of 5.20m in 2025 is mentioned, but the article is dated as if it's currently 2024 or earlier, making a 2025 record an anachronism.",
-          "The article mentions the 'Glasgow Commonwealth Games' which were held in 2014. The upcoming Commonwealth Games are in 2026 in Victoria, Australia (though their status is currently uncertain). This is a significant factual error regarding the event location and timing."
-        ],
+        "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Correct the factual errors regarding the year of M. Gowtham's record and the location/timing of the Commonwealth Games.",
-          "Consider adding a quote from a coach or an expert on the significance of the pole vault record progression to further emphasize the 'speed of his climb' and the growing depth."
+          "Consider adding a small map graphic showing Akasa's current and planned routes to visually represent the 'pivot east' strategy.",
+          "Perhaps a brief quote from an NRI traveler or travel agent on the impact of such routes could add a human element to the diaspora angle."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
         "promoted to published"
       ],
       "revised": false,
       "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "e1ef038b-62b3-47b6-bb14-46ebcf1a0283",
+      "headline": "IndiGo Pulls Out of Six International Routes This Summer as the Airspace Crisis Forces India's Biggest Airline to Shrink",
+      "slug": "indigo-international-route-suspensions-airspace-southeast-asia-nri-202-20260625",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "An IndiGo Airbus A320neo on the tarmac.",
+          "reason": "The photo clearly shows an IndiGo aircraft, which is the subject of the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The diaspora angle is well-integrated and provides specific impacts for NRIs, particularly regarding leisure travel and long-haul ambitions."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a small map graphic showing the affected routes and the airspace closures to visually aid reader understanding.",
+          "Perhaps a brief mention of alternative carriers for the affected routes could be helpful for readers."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "0d937bfb-3654-45e6-a37f-fa9ccca8c053",
+      "headline": "India Quietly Sells Down Its Crown Jewels \u2014 the IRFC Stake Sale Shows the Disinvestment Machine Is Back",
+      "slug": "india-disinvestment-drive-irfc-ofs-2-percent-stake-rs91-floor-oversubscribed-dipam-fy27-target-nri-investor-20260625-1400",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MISMATCH",
+          "what_photo_shows": "A yellow train with 'Indian Pacific' logo",
+          "reason": "The 'Indian Pacific' is an Australian train, not related to Indian Railway Finance Corporation (IRFC)."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "No image URL or entities provided, so cannot fully assess. Assuming a relevant image would be used."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 6,
+          "note": "The article discusses Indian economic policy and investment opportunities, which is relevant to NRIs interested in India's financial landscape and potential investments. However, it doesn't explicitly connect to the diaspora experience beyond this general interest."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a small section or a concluding paragraph that explicitly addresses how these disinvestment trends might impact or interest NRIs, perhaps in terms of investment opportunities or the broader economic stability of India.",
+          "Ensure the hero image clearly depicts elements related to Indian railways, finance, or the broader Indian economy to enhance relevance."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "Cleared mismatched image (A yellow train with 'Indian Pacific' logo)",
+        "held: image mismatch"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "image_mismatch": true,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "318287ee-1dde-46ad-90f4-fdd4b7ad0ad4",
+      "headline": "A Plant-Forward Mediterranean Diet Was Tied to a 26% Lower Heart-Disease Risk Over 20 Years, a Study Finds",
+      "slug": "plant-based-mediterranean-diet-26-percent-lower-cvd-attica-20-year-study-european-journal-nutrition-diaspora-20260625-1400",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "An illustration of peppers, a type of vegetable.",
+          "reason": "The story is about a plant-forward diet, and peppers are a relevant vegetable."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The 'Why It Matters for the Diaspora' section effectively connects the Mediterranean diet principles to traditional Indian eating patterns, making it relevant for NRI readers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a specific example of an Indian dish or meal plan that aligns with the 'plant-forward' Mediterranean principles to make the diaspora angle even more tangible.",
+          "While the article is well-written, a brief mention of potential challenges or adaptations for NRIs in different countries (e.g., availability of specific ingredients) could add another layer of relevance."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "73bf64e1-41f2-49ab-b9b9-4df124f2bd91",
+      "headline": "It May Not Be How Much You Move, but How Many Ways \u2014 Exercise Variety Is Linked to a Longer Life",
+      "slug": "exercise-activity-variety-lower-mortality-bmj-medicine-study-mixing-walking-strength-cardio-diaspora-20260625-1400",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MISMATCH",
+          "what_photo_shows": "A large group of people posing for a formal portrait outdoors.",
+          "reason": "The photo shows a formal group portrait, which is unrelated to the story about exercise variety and longevity."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 6,
+        "embed_issues": [],
+        "image_match": {
+          "score": 5,
+          "issue": "No image URL or entities provided, making it impossible to assess the match. This is a critical missing piece for a news article."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The diaspora angle is present and relevant, connecting the general wellness advice to specific habits observed within the Indian diaspora. It feels natural rather than forced."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Ensure a hero image URL and its entities are provided for review, as this is a crucial element for any news article.",
+          "Expand the 'Why It Matters for the Diaspora' section slightly to offer more concrete, actionable examples of varied activities that might appeal to the community, beyond just identifying existing single-groove habits."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Cleared mismatched image (A large group of people posing for a formal portrait outdoors.)",
+        "Revised by gemini-2.5-flash (767\u2192806 words)"
+      ],
+      "revised": true,
+      "unpublished": false,
+      "image_mismatch": true,
       "llm_source": "gemini-2.5-flash"
     }
   ]
