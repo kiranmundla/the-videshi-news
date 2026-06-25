@@ -4940,7 +4940,8 @@ def source_reel_media_clean(article, storyboard, count=8):
                 print(f"  ⚠️ Scene {i+1}: card upload failed — leaving empty")
                 continue
             meta = {"type": "image", "duration": 0, "is_card": True,
-                    "curated": True, "generic_pexels": False}
+                    "curated": True, "generic_pexels": False,
+                    "card_has_bg": bool(_bg_url)}
             n_card += 1
             _ctxt = _card_pick_text(scene, article)
             print(f"  🎨 Scene {i+1}: key-point card — \"{_ctxt[:48]}\"")
@@ -6640,6 +6641,44 @@ def run_anchor_reel(article, dry_run=False, use_production=False, no_publish=Fal
         print("  ❌ Timeline failed validation — skipping render to save credits")
         return False
     print("  ✅ Timeline structure valid")
+
+    # 6c. PRE-RENDER GATE: bail out of the doomed all-text-card case.
+    # When OpenAI image-gen is billing-blocked AND the media library can't back
+    # the cards, every scene falls to a flat text card with no background image.
+    # Stacking always-on burned-in captions over text-only cards is text-on-text,
+    # which the QA gate scores 0 ("OVERLAPPING TEXT") every time — so rendering it
+    # just burns Shotstack credits on a reel that cannot pass. Abort BEFORE render.
+    # Conservative by design: any real visual (photo, social embed, generated
+    # illustration, animated data card, or even a text card WITH a real background
+    # image) keeps the reel eligible. Only a reel that is essentially nothing but
+    # bare navy text cards is skipped.
+    try:
+        _metas = [media_meta.get(u, {}) for u in image_urls]
+        _n = len(_metas) or 1
+        def _is_real_visual(m):
+            if m.get("is_anim_card"):          # animated MP4 data card = real motion
+                return True
+            if m.get("type") == "video":       # social video / library video
+                return True
+            if m.get("is_social_card"):        # real social post card
+                return True
+            if m.get("is_generated"):          # gpt-image illustration
+                return True
+            if m.get("is_card"):               # text card — real only if it has a bg image
+                return bool(m.get("card_has_bg"))
+            # plain photo (hero, media library, related) — real visual
+            return True
+        _real = sum(1 for m in _metas if _is_real_visual(m))
+        # Doomed only if NO scene carries a real visual (all bare text cards).
+        if _real == 0:
+            print(f"  ❌ All {_n} scenes are bare text cards (no real imagery) — "
+                  f"this fails 'overlapping text' QA every time. Skipping render to "
+                  f"save Shotstack credits (image-gen likely billing-blocked).")
+            return False
+        print(f"  ✅ Visual variety OK: {_real}/{_n} scenes have real imagery")
+    except Exception as _e:
+        # Never block a render on a guard bug — fall through to render.
+        print(f"  ⚠️ visual-variety preflight skipped ({_e})")
 
     if dry_run:
         print("\n🏁 DRY RUN — JSON built, not rendering")

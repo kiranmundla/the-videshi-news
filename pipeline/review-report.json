@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-25T09:15:40.113311+00:00",
+  "timestamp": "2026-06-25T10:15:52.039363+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
+    "pass": 5,
     "flag": 1,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "576b6c48-9c61-4446-a728-ab231d30c39b",
-      "headline": "India's IT Giants Used to Run on H-1B Visas. New Data Shows They've Quietly Stopped Needing Them.",
-      "slug": "indian-it-h1b-approvals-collapse-localization-ai-tcs-infosys-nri-20260625",
+      "id": "42f7d280-4bb3-42a2-bc43-b720dc5c6f1b",
+      "headline": "India's Market Engine Has Quietly Switched Drivers \u2014 From Foreign Money to the Monthly SIP",
+      "slug": "india-sip-led-financialisation-retail-flows-fpi-selling-jp-morgan-demand-anchor-markets-nri-investor-20260625-0300",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Software engineers working at computers in an office",
-          "reason": "The photo depicts software engineers at work, which is directly relevant to a story about India's IT giants and their workforce."
+          "what_photo_shows": "Mumbai's financial district building with 'BSE' displayed",
+          "reason": "The photo shows a financial district building, which is a generic but on-topic image for an economy story about Indian equities."
         },
         "inline_image_mismatches": []
       },
@@ -30,19 +30,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 8,
+          "score": 9,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article explicitly addresses the diaspora angle in a dedicated section and throughout, making it highly relevant for NRI readers."
+          "quality": 7,
+          "note": "The article implicitly connects to NRI readers by discussing investment opportunities and trends in India, which is a common interest for the diaspora. The mention of 'foreign money' and 'foreign portfolio investors' also positions NRIs as part of the broader 'foreign' investment landscape, even if the focus is on domestic SIPs."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a quote from an NRI tech worker or recent graduate to personalize the impact of these changes.",
-          "Perhaps include a brief mention of alternative visa categories or pathways that might be gaining traction, if any."
+          "Consider adding a small section or a concluding sentence explicitly addressing how this shift impacts NRI investment strategies or perceptions of the Indian market.",
+          "Ensure all financial figures are consistently presented (e.g., all in trillions or billions, or clearly specify when switching)."
         ],
         "verdict": "pass"
       },
@@ -54,23 +54,106 @@
       "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "3401300b-a4a7-4742-890d-aa7d86fbc367",
-      "headline": "Sundar Pichai's Gemini Can Now Run Your Browser, Phone, and Desktop. The Race Just Moved From Chatbots to Agents.",
-      "slug": "google-gemini-3-5-flash-agents-pichai-cross-platform-nri-engineers-20260625",
+      "id": "30f73c0f-f0f5-4584-a116-b3aa34ca0c61",
+      "headline": "Cholesterol Pills May Touch More Than the Heart \u2014 a Genetic Study Maps Effects on Weight, Hormones and the Brain",
+      "slug": "cholesterol-drugs-statins-pcsk9-mendelian-randomization-weight-testosterone-lung-brain-unisa-bjcp-diaspora-20260625-0300",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "ea0de8e8-9458-4cb2-b87a-42246462641b",
-            "headline": "Sundar Pichai Spent Three Years Being Called Late to AI. Goo"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Sundar Pichai, CEO of Alphabet and Google",
-          "reason": "The photo clearly shows Sundar Pichai, who is directly named in the headline and is relevant to the story about Google's Gemini AI."
+          "what_photo_shows": "Four pills, two white and two blue-green, on a white surface.",
+          "reason": "The photo shows various pills, which is a generic but on-topic image for a story about cholesterol pills and their effects."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": false,
+          "quality": 1,
+          "note": "No direct or indirect connection to NRI/diaspora readers. This is a general health article."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Integrate a diaspora angle by discussing the prevalence of cholesterol issues in the Indian diaspora, or how these findings might specifically impact health recommendations for NRIs.",
+          "Consider adding a quote from an Indian-origin medical professional or researcher if available, to subtly connect to the platform's audience."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "62809a52-4961-43e9-8c5b-a9bddf73b543",
+      "headline": "It Isn't Being Alone That Ages the Mind \u2014 It's Feeling Lonely, a 175,000-Person Study Finds",
+      "slug": "loneliness-not-isolation-cognitive-decline-shorter-life-uc-davis-175000-18-countries-jpsp-study-diaspora-20260625-0300",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MISMATCH",
+          "what_photo_shows": "A book cover titled 'Lonely O'Malley'",
+          "reason": "The photo shows a book cover, which is unrelated to a study on loneliness and cognitive decline."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "No image URL or entities provided, so cannot fully assess. Assuming a relevant image would depict an older person or a concept of connection/isolation."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 6,
+          "note": "The article touches on universal themes of loneliness and social connection, which are highly relevant to NRIs who may experience unique forms of isolation due to migration, distance from family, and cultural shifts. While not explicitly mentioned, the 'crowded dinner table, surrounded by family, and still feel unseen' resonates with potential intergenerational or cultural gaps within diaspora families. The platform's audience would likely find this relevant without a forced angle."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a short introductory or concluding paragraph that explicitly frames the article's relevance to the NRI experience, perhaps by mentioning challenges of maintaining social ties across continents or the unique pressures faced by diaspora communities regarding family and belonging.",
+          "If possible, include an image that subtly hints at the diaspora experience or a diverse older population to enhance relevance for The Videshi's audience."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "Cleared mismatched image (A book cover titled 'Lonely O'Malley')",
+        "held: image mismatch"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "image_mismatch": true,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "7a666adf-181f-4b9e-b3ed-05a582cfd5e1",
+      "headline": "The Diaspora's Off-Season Secret: Why an India Trip in the Monsoon Beats the Winter Crush",
+      "slug": "india-monsoon-travel-2026-cheaper-greener-diaspora-summer-break-20260625",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Lush green tea plantations in the hills of Munnar, Kerala.",
+          "reason": "The photo depicts tea plantations in the hills of Munnar, Kerala, which aligns with the story's theme of India travel during monsoon and the subheadline mentioning 'hills turn electric green'."
         },
         "inline_image_mismatches": []
       },
@@ -84,15 +167,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The diaspora angle is well-integrated and thoughtfully explores both the opportunities and challenges for Indian developers and the IT services industry."
+          "note": "The diaspora angle is well-integrated and provides practical reasons (school breaks, cost) and emotional connections (nostalgia, authentic experience)."
         },
-        "factual_flags": [
-          "June 2026 is mentioned as a 'blur of releases' which seems like a typo, likely meant to be June 2024 given the context of recent releases."
-        ],
+        "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Correct the typo 'June 2026' to 'June 2024' in the 'From a model avalanche to an agent war' section.",
-          "Consider adding a brief, high-level explanation of what an 'agent' is for readers less familiar with AI terminology, perhaps early in the article."
+          "Consider adding a small section on specific monsoon festivals or cultural events that might appeal to diaspora readers, if any are prominent during this period.",
+          "Perhaps include a brief mention of any specific health precautions beyond mosquito protection, given the monsoon season (e.g., water-borne illnesses, food safety)."
         ],
         "verdict": "pass"
       },
@@ -104,9 +185,9 @@
       "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "5e2238e4-e719-4f18-8e9f-dd4c0b2c57ac",
-      "headline": "Amazon Just Added $13 Billion to Its India Bet. The Money Is Going Where the H-1B Jobs Used to Go.",
-      "slug": "amazon-13-billion-india-aws-ai-cloud-investment-nri-engineers-20260625",
+      "id": "aa6b4b59-a7a4-493e-b52e-7f3aec1a46df",
+      "headline": "Europe Just Got Easier and Stricter for Indians at Once \u2014 How the Schengen Cascade and the New Border System Work Together",
+      "slug": "schengen-cascade-visa-ees-border-indians-multiple-entry-nri-2026-20260625",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -114,8 +195,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A data center server hall with rows of servers",
-          "reason": "The photo depicts a data center, which is directly relevant to the story about Amazon's investment in cloud capacity and data centers in India."
+          "what_photo_shows": "Night view of Paris with the Eiffel Tower.",
+          "reason": "Paris is a major city within the Schengen Area, making a photo of it relevant to a story about Schengen visas."
         },
         "inline_image_mismatches": []
       },
@@ -124,18 +205,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image shows a person working on a laptop in a modern office setting, which generally aligns with a tech article. However, it doesn't specifically depict data centers, cloud infrastructure, or India, which are key elements of the article's focus. It's a generic tech image."
+          "issue": "The image of Paris at night is generic and doesn't specifically represent the 'easier and stricter' aspect of the new visa/border system. While Europe-related, it's not highly specific to the article's core topic."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article explicitly addresses the diaspora angle in a dedicated section, discussing the implications for NRIs regarding career paths, immigration, and investment opportunities. It's well-integrated and insightful."
+          "note": "The article clearly and naturally connects to NRI/diaspora readers, especially those on Indian passports in the US, explaining how the changes impact their specific travel patterns and offering practical advice tailored to them."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a more specific image that visually represents data centers, cloud infrastructure, or the scale of investment in India, if available.",
-          "While the article is strong, a brief concluding paragraph summarizing the long-term implications for India's tech sovereignty or global tech landscape could add further impact."
+          "Consider a more illustrative hero image that visually hints at both the 'easier' (e.g., multi-year visa) and 'stricter' (e.g., digital tracking) aspects, perhaps a graphic or a more conceptual image.",
+          "While the sources are listed, for a news platform, linking directly to the EEAS or European Commission pages where these rules are detailed would add further credibility and allow readers to explore official information."
         ],
         "verdict": "pass"
       },
@@ -147,9 +228,9 @@
       "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "9d1775f9-dd0e-4fa5-b4dd-44546fca1a11",
-      "headline": "The Throne Is Empty and Munna Bhaiya Is Somehow Alive: 'Mirzapur' Storms the Big Screen on September 4",
-      "slug": "mirzapur-the-movie-teaser-september-4-2026-pankaj-tripathi-ali-fazal-divyenndu-munna-bhaiya-return-excel-amazon-mgm-where-to-watch-diaspora-nri",
+      "id": "3227658f-2f01-4a78-9206-483862cb829c",
+      "headline": "Air India's First International Flights From Guwahati Open the Northeast's Door to the Gulf \u2014 and the World Beyond",
+      "slug": "air-india-guwahati-dubai-abu-dhabi-first-international-northeast-nri-20260625",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -157,39 +238,32 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Pankaj Tripathi at a film premiere with two other actors.",
-          "reason": "The photo shows Pankaj Tripathi, who is explicitly named in the caption and is a key actor in the story's subject matter."
+          "what_photo_shows": "The terminal of Lokpriya Gopinath Bordoloi International Airport in Guwahati.",
+          "reason": "The photo shows the specific airport mentioned in the caption and headline, which is directly relevant to the story about new international flights from Guwahati."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/reel/DZ_71_sNGXm/",
-            "problem": "irrelevant",
-            "explanation": "This Instagram reel is from 2017 and features a random person, not related to Mirzapur or any of the actors mentioned in the article. It seems like a placeholder or an error."
-          }
-        ],
+        "overall_score": 8,
+        "embed_issues": [],
         "image_match": {
-          "score": 6,
-          "issue": "The image features Pankaj Tripathi, which is relevant, but also Anjali Patil and Rajkummar Rao, who are not mentioned in the article. The image is from a 2017 film premiere (Newton), not directly related to Mirzapur or its upcoming movie release. A more specific Mirzapur-related image would be better."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article explicitly mentions 'every diaspora WhatsApp group on fire' and 'good news for fans in the US, UK, and Canada: this is a worldwide theatrical release, releasing in both Hindi and Telugu,' directly addressing the NRI audience and their viewing habits."
+          "note": "The diaspora angle is well-integrated and directly addresses a common pain point for NRIs with family in the Northeast."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant Instagram embed with a relevant social media post (e.g., an official Mirzapur movie announcement, a cast member's post about the film, or a fan reaction post that is actually about Mirzapur).",
-          "Update the hero image to one that is directly related to 'Mirzapur: The Movie' or features only the relevant cast members in a Mirzapur context."
+          "Consider adding a small map graphic showing Guwahati's location relative to the Gulf and other major Indian cities to visually reinforce the 'decentralization' and 'gateway' concepts.",
+          "If possible, include a quote from an Air India representative or a local official to add more authority and human interest to the announcement."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/reel/DZ_71_sNGXm/",
         "promoted to published"
       ],
       "revised": false,
