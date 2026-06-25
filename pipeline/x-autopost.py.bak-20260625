@@ -164,10 +164,10 @@ Key Takeaways:
 
 ━━━━━━━━━━━━━━━━━━━━━━━━
 
-📰 Read the full story on The Videshi
+📰 Full story: thevideshi.com/articles/{slug}
 
-Your daily source for Indian diaspora news
-Follow @thevideshi for more"""
+The Videshi — Your daily source for Indian diaspora news
+🌐 thevideshi.com"""
 
     # Trim if over 4000 chars
     if len(post) > 3900:
@@ -190,10 +190,10 @@ Key Takeaways:
 
 ━━━━━━━━━━━━━━━━━━━━━━━━
 
-📰 Read the full story on The Videshi
+📰 Full story: thevideshi.com/articles/{slug}
 
-Your daily source for Indian diaspora news
-Follow @thevideshi for more"""
+The Videshi — Your daily source for Indian diaspora news
+🌐 thevideshi.com"""
 
     return post
 
