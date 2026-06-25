@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-25T22:16:01.173311+00:00",
+  "timestamp": "2026-06-25T22:45:54.744058+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 5,
-    "flag": 2,
+    "pass": 3,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "6c728014-5088-45d3-9efd-05230771c783",
-      "headline": "Air India's 'New Plane' Roulette Ends This Summer on the Routes the Diaspora Actually Flies",
-      "slug": "air-india-summer-2026-new-retrofit-cabins-london-toronto-premium-econo-20260625",
+      "id": "e92d80a5-bd73-4f67-90b5-b36a84db6f82",
+      "headline": "Big-League Cricket Has Moved Into the Oakland Coliseum \u2014 and the Bay Area's Team Lost the First Round",
+      "slug": "major-league-cricket-2026-oakland-coliseum-debut-san-francisco-unicorns-lose-texas-super-kings-22-runs-bay-area-diaspora-nri",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "An empty airplane cabin aisle with rows of seats",
-          "reason": "The photo depicts an airplane interior, which is directly relevant to a story about Air India's new planes and routes."
+          "what_photo_shows": "An aerial view of the Oakland Coliseum baseball stadium.",
+          "reason": "The photo shows the Oakland Coliseum, which is explicitly mentioned in the headline and subheadline as the venue for the cricket matches."
         },
         "inline_image_mismatches": []
       },
@@ -30,19 +30,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 8,
+          "score": 9,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article explicitly connects the flight route upgrades to diaspora travel patterns and needs, particularly for VFR traffic and value-conscious families."
+          "note": "Explicitly addresses the diaspora's interest and location, particularly in the Bay Area."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a small section on how readers can check aircraft types when booking or before departure, as mentioned in the 'honest caveats' section.",
-          "Perhaps include a quote from an NRI traveler expressing their anticipation or past frustrations to add a human element."
+          "Consider adding a quote from a fan or an organizer to enhance the human interest aspect of the event.",
+          "A small section on the historical significance of the Coliseum for the Bay Area's South Asian community, if any, could add depth."
         ],
         "verdict": "pass"
       },
@@ -54,9 +54,9 @@
       "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "7c52f009-dc84-4a75-a777-94b6fea37e49",
-      "headline": "America's Most Famous National Parks Just Dropped Reservations for Summer \u2014 but Not All of Them",
-      "slug": "us-national-parks-2026-reservations-dropped-yosemite-glacier-nri-famil-20260625",
+      "id": "037069c6-780c-4676-82af-79d1bd7cb7f5",
+      "headline": "A Judge Killed Trump's $100,000 H-1B Fee. Two Weeks Later, It's Quietly Back.",
+      "slug": "h1b-100000-dollar-fee-back-in-effect-stay-first-circuit-appeal-indian-workers-2026-20260625",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,8 +64,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Yosemite Valley with El Capitan and Half Dome in the background",
-          "reason": "The photo clearly depicts Yosemite National Park, which is a central topic of the story."
+          "what_photo_shows": "A US visa in a passport",
+          "reason": "The photo of a visa in a passport is directly relevant to a story about H-1B visa fees and immigration."
         },
         "inline_image_mismatches": []
       },
@@ -75,62 +75,17 @@
         "image_match": {
           "score": 9,
           "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively integrates the NRI/Indian American family perspective, making it relevant without feeling forced. The mention of 'theplas' is a nice touch."
-        },
-        "factual_flags": [
-          "The article repeatedly mentions '2026' for changes that are happening in '2024'. This is a significant factual error that needs correction throughout."
-        ],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Correct all instances of '2026' to '2024' as the changes described are current.",
-          "Consider adding a small section on alternative, less-crowded national parks or state parks that might appeal to families looking to avoid the reservation hassle entirely."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "4c53d42e-f6eb-4a63-a362-dc8d130763da",
-      "headline": "IndiGo Is Adding Six New International Routes \u2014 and Two Whole Continents \u2014 Just as Its Rivals Retreat",
-      "slug": "indigo-six-new-international-routes-africa-central-asia-nairobi-jakart-20260625",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A widebody jet docked at an international terminal gate.",
-          "reason": "The photo depicts a generic but on-topic scene of an international airport and a widebody jet, which aligns with a story about an airline expanding international routes."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image is a generic airplane shot. While relevant to aviation, it doesn't specifically represent IndiGo or any of the new routes/continents mentioned, which could be more impactful."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The diaspora angle is well-integrated and thoughtfully explained, connecting the new routes to NRI travel patterns, family roots, and India's strategic hub ambitions."
+          "note": "The article explicitly highlights the impact on Indian workers and the NRI community, making the diaspora angle central and well-integrated."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a map graphic showing the new routes to visually enhance the 'Two new continents on the map' section.",
-          "If possible, include a quote from an IndiGo representative or an aviation analyst to add more authority and perspective to the expansion strategy."
+          "Consider adding a brief explanation of what H-1B visas are for readers less familiar with the program.",
+          "The article ends abruptly. Ensure the full text is provided for a complete review."
         ],
         "verdict": "pass"
       },
@@ -142,9 +97,9 @@
       "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "33bb5f39-768e-43fd-8ad6-d15ad83665f1",
-      "headline": "America Runs Short of a Cancer Drug \u2014 and Sends an SOS to India's Generic Makers",
-      "slug": "us-fda-sos-indian-pharma-ifosfamide-cancer-drug-shortage-cipla-zydus-alkem-pharma-stocks-nri-investor-20260625-2200",
+      "id": "c59cf85c-285c-41e8-83c7-1853e9542be0",
+      "headline": "America Has Run Short of a Cancer Drug. It Just Sent an SOS to India's Drugmakers.",
+      "slug": "us-fda-sos-indian-drugmakers-ifosfamide-cancer-drug-shortage-cipla-zydus-alkem-2026-20260625",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -152,8 +107,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Entrance to Bengal Chemicals & Pharmaceuticals Ltd.",
-          "reason": "The photo shows an Indian pharmaceutical company, which is directly relevant to a story about India's drug industry supplying cancer drugs."
+          "what_photo_shows": "a prescription bottle and biohazard bag in a box",
+          "reason": "The photo shows a prescription drug, which is relevant to a story about cancer drug shortages."
         },
         "inline_image_mismatches": []
       },
@@ -166,100 +121,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The 'Why It Matters for the Diaspora' section directly addresses NRI investors and their portfolios, making a clear and relevant connection."
+          "quality": 7,
+          "note": "The diaspora angle is explicitly stated and relevant, connecting the drug shortage to NRI families with relatives undergoing treatment in the US."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a small infographic or chart illustrating India's share in the global generic drug market to visually reinforce the 'pharmacy of the world' point.",
-          "Perhaps include a quote from an NRI investor or financial advisor on the implications for diaspora portfolios to strengthen the 'diaspora angle' further."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "15bed56b-b89a-4b4b-96a5-e7ab32b5c77c",
-      "headline": "A Single Habit \u2014 Regular Exercise \u2014 May Head Off Nearly Half of Dementia Cases, Researchers Say",
-      "slug": "exercise-prevent-delay-dementia-six-of-fourteen-risk-factors-university-minnesota-telehealth-rural-diaspora-20260625-2200",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Seniors exercising in a group, raising their arms",
-          "reason": "The photo depicts older adults engaging in exercise, which directly relates to the story about regular exercise and dementia prevention."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The diaspora angle is well-integrated and relevant, addressing specific health vulnerabilities and practical caregiving challenges faced by Indian-origin families."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a specific quote from an NRI or an expert on South Asian health to further strengthen the diaspora angle.",
-          "Ensure the article concludes with a strong call to action or a summary of key takeaways for the diaspora audience, as the current ending is abrupt."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "8bb9b4c8-5246-4e3e-b3a0-3a8f0024afed",
-      "headline": "It May Not Be How Much Protein You Eat, but One Amino Acid Inside It, a Longevity Study Suggests",
-      "slug": "methionine-low-modified-mediterranean-diet-longevity-usc-longo-cell-metabolism-protein-amino-acid-diaspora-20260625-2200",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Anchovy toasts with olives, representing a Mediterranean diet.",
-          "reason": "The photo depicts food consistent with a Mediterranean diet, which is directly mentioned in the story's subheadline and caption."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The diaspora angle is clearly present and well-integrated, connecting the research to relevant health concerns and dietary patterns within the Indian community."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a brief mention of specific Indian plant-based protein sources that are naturally lower in methionine, to make the 'traditional Indian eating' point even stronger and more actionable.",
-          "Ensure the article concludes with a strong summary statement or a call to action for readers to stay tuned for future research, reinforcing the 'promising mechanism, not yet a prescription' idea."
+          "Consider adding a quote from an NRI or a medical professional in the US to strengthen the 'Why It Matters for the Diaspora' section.",
+          "Ensure the article concludes with a strong summary or forward-looking statement, as it currently ends mid-sentence."
         ],
         "verdict": "pass"
       },
@@ -296,25 +165,26 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image is a good quality photo of Zendaya, but it's from 2019 and doesn't depict the specific outfit or event described in the article (the Spider-Man premiere in the $35 T-shirt)."
+          "issue": "The image is a good quality photo of Zendaya, but it's from 2019. The article discusses a recent event (June 24) and specific outfits. A more current image, ideally related to the Spider-Man premiere or the specific outfit, would be better."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 4,
-          "note": "The diaspora angle feels tacked on and generic. It attempts to connect Zendaya's fashion choice to NRIs appreciating 'aspirational luxury and accessible, smart style' and 'authenticity and personal expression.' While not entirely irrelevant, it lacks specific examples or deeper analysis of how this particular event uniquely resonates with the Indian diaspora beyond a general observation about fashion trends."
+          "note": "The diaspora angle feels tacked on at the end. While the idea of balancing luxury and accessible style might resonate, the connection to 'Indian cultural values' and 'Western influences' feels generic and not specifically tied to the article's content about Zendaya's fashion choice. It could be strengthened by providing more specific examples or a deeper analysis of how this particular event connects to NRI fashion sensibilities beyond a general statement."
         },
         "factual_flags": [
-          "The article states Zendaya is 27 (turning 28 in September) and Tom Holland is 28 (turning 29 in June). This implies Holland is older, but the ages given would make him younger if his birthday is in June and hers in September of the same year. If Zendaya is 27 and turns 28 in September, and Holland is 28 and turns 29 in June, then Holland is indeed older. However, the phrasing 'Zendaya, 27 (turning 28 in September), reprises her role as MJ opposite her real-life partner Tom Holland, 28 (turning 29 in June)' could be clearer about their relative ages at the time of the event or article writing."
+          "The article states the event was on 'Wednesday, June 24'. June 24, 2024, was a Monday. This needs to be fact-checked for the correct day and date.",
+          "The article mentions Tom Holland is 'currently 28 (turning 29 in June)'. If the event was June 24, 2024, and he turns 29 in June, he would already be 29. This needs to be fact-checked for his current age and birth month relative to the event date."
         ],
         "duplicate_embeds": [],
         "suggestions": [
-          "Strengthen the diaspora angle with more specific examples or a deeper exploration of how this particular fashion statement might be interpreted or discussed within NRI communities, perhaps by referencing specific cultural nuances or fashion trends observed among NRIs.",
-          "Update the hero image to one that more closely reflects the article's central theme \u2013 Zendaya in the $35 Spider-Man T-shirt at the Paris premiere, or at least a more recent image relevant to the Spider-Man press tour."
+          "Strengthen the diaspora angle by providing more concrete examples or a deeper, more nuanced connection to NRI fashion trends or cultural perspectives, rather than a general statement.",
+          "Fact-check the dates and ages mentioned in the article, especially the day of the week for June 24 and Tom Holland's current age relative to the event."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
-        "Revised by gemini-2.5-flash (851\u2192889 words)"
+        "Revised by gemini-2.5-flash (889\u2192929 words)"
       ],
       "revised": true,
       "unpublished": false,
