@@ -1,201 +1,15 @@
 {
-  "timestamp": "2026-06-25T15:15:48.939743+00:00",
+  "timestamp": "2026-06-25T15:45:14.907517+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
-    "flag": 2,
+    "pass": 0,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
   "revisions": 1,
   "unpublished": 0,
   "articles": [
-    {
-      "id": "7aed0f41-2faf-4367-a491-ef6739ea6161",
-      "headline": "King Khan Picks Christmas \u2014 and Walks Straight Into a Hollywood Ambush With Avengers, Dune and The Rock",
-      "slug": "king-shah-rukh-khan-christmas-december-24-2026-release-siddharth-anand-avengers-doomsday-dune-3-jumanji-clash-suhana-khan-deepika-padukone-where-to-watch-diaspora-nri",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "b5f47084-a383-44a6-8df1-dffad52f8184",
-            "headline": "Shah Rukh Khan Takes Back Christmas \u2014 and Brings Suhana With"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Shah Rukh Khan in a movie poster for 'King'",
-          "reason": "The photo clearly shows Shah Rukh Khan, who is the main subject of the headline and subheadline."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/reel/DT5BfenCKKb/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram reel is from 2017 and features a generic 'King' post, not related to the specific SRK film 'King' or its 2026 release. It does not contain the quoted text."
-          }
-        ],
-        "image_match": {
-          "score": 1,
-          "issue": "The image URL points to a poster for a 1999 Hindi film 'King' starring Mithun Chakraborty, not the Shah Rukh Khan film discussed in the article. This is completely mismatched."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively integrates the diaspora angle, highlighting the importance of holiday moviegoing for NRIs and the impact of the box office clash on overseas screens and distribution."
-        },
-        "factual_flags": [
-          "The article quotes a tweet from Shah Rukh Khan (@iamsrk) saying \"#KING is Ready to ROAR on 24.12.2026 in Cinemas\", but the provided Instagram embed (which is irrelevant) does not contain this quote. The actual source of this quote is not provided, making it difficult to verify."
-        ],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the hero image with an appropriate placeholder or a relevant image of Shah Rukh Khan, clearly indicating it's for the upcoming film 'King' if an official poster isn't available. The current image is misleading.",
-          "Verify the source of the Shah Rukh Khan quote regarding the release date and embed the correct tweet or official announcement. The current Instagram embed is incorrect and irrelevant."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/reel/DT5BfenCKKb/",
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "5dea3619-5795-472f-836c-757d60bb71cf",
-      "headline": "Anthropic and Amazon Just Picked 40 Indian Startups to Build the Next Wave of AI Agents. The Catch: No Equity, Big Strings.",
-      "slug": "anthropic-aws-agentic-ai-accelerator-bengaluru-40-startups-nri-founder-20260625",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "developers working on computers in an office setting",
-          "reason": "The photo depicts developers at work, which is directly relevant to a story about AI agents and startups."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image of a person working on a laptop is generic and doesn't specifically represent AI agents, startups, or the India context. While not entirely mismatched, it could be more thematic."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The 'Why the diaspora is watching closely' section directly and effectively connects the article's topic to NRI/diaspora readers, discussing capital flow and talent gravity shifts."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a quote from an Indian startup founder or an NRI investor to further humanize the impact of this accelerator.",
-          "Explore if there's any public sentiment or debate within India regarding the 'sovereign AI' vs. foreign platform reliance, which could add another layer to the 'competitive wrinkle' section."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "f7e83d51-1095-4cf2-ba90-33b56d4fbbda",
-      "headline": "Qualcomm Spent 25 Years Selling Phone Chips. It Just Told Wall Street Two-Thirds of Its Future Isn't Phones.",
-      "slug": "qualcomm-investor-day-data-center-meta-azure-modular-nri-engineers-20260625",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A microprocessor on a motherboard.",
-          "reason": "The photo shows a microprocessor, which is directly relevant to a story about Qualcomm's shift towards AI infrastructure and chips."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 6,
-          "issue": "The image shows a generic circuit board, which is broadly related to tech but doesn't specifically represent Qualcomm, phone chips, or data centers. It's not a strong match for the headline's specific focus."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The diaspora angle is well-integrated and provides a relevant, non-forced connection to Indian-origin talent in the tech industry, H-1B workers, and Qualcomm's presence in India. It directly addresses how Qualcomm's pivot impacts this demographic."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider replacing the hero image with one that more directly relates to Qualcomm, data centers, or the shift from phone chips, if possible, to enhance visual relevance.",
-          "While the article is strong, a brief mention of any specific Indian-origin leaders or key engineers within Qualcomm driving this pivot, if publicly available, could further strengthen the diaspora connection."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "8e483063-d001-493d-8259-0f4f9b2d526d",
-      "headline": "India Won't Ban Crypto. It Just Made Sure It Can See Every Trade Over $10,000.",
-      "slug": "india-crypto-aml-otc-10000-binance-travel-rule-nri-investors-20260625",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A stack of Bitcoin tokens",
-          "reason": "The photo clearly shows Bitcoin tokens, which are directly relevant to a story about crypto regulation."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 8,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The diaspora angle is well-integrated and provides specific, actionable insights for NRI readers regarding crypto transactions and tax implications."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a brief explanation of what 'TDS' means for readers who might not be familiar with Indian tax terminology.",
-          "The article ends abruptly. Ensure the conclusion is complete and provides a final thought or summary."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
     {
       "id": "73bf64e1-41f2-49ab-b9b9-4df124f2bd91",
       "headline": "It May Not Be How Much You Move, but How Many Ways \u2014 Exercise Variety Is Linked to a Longer Life",
@@ -206,12 +20,12 @@
         "duplicate_images": [],
         "broken_embeds": [
           {
-            "url": "https://x.com/bmj_latest/status/1745487661073832049",
+            "url": "https://x.com/bmj_latest/status/1765452331575826861",
             "problem": "broken",
             "detail": "react-tweet returned null (deleted/protected/nonexistent)"
           },
           {
-            "url": "https://instagram.com/p/C03p52-uY9Q",
+            "url": "https://instagram.com/p/C4b2149rJmU",
             "problem": "broken",
             "detail": "Instagram embed shows removed/broken placeholder"
           }
@@ -234,13 +48,13 @@
         "duplicate_embeds": [],
         "suggestions": [
           "Ensure a hero image URL and its entities are provided for review, as this is a crucial element for any news article.",
-          "Expand the 'Why It Matters for the Diaspora' section slightly to offer more concrete examples or perhaps a brief quote from an expert on diaspora health, if possible, to strengthen the connection."
+          "Expand on the 'outsized burden of heart disease' for the Indian diaspora in the concluding paragraph to provide more context and strengthen the relevance."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
         "Removed 2 broken/hallucinated embed(s)",
-        "Revised by gemini-2.5-flash (836\u2192838 words)"
+        "Revised by gemini-2.5-flash (836\u2192866 words)"
       ],
       "revised": true,
       "unpublished": false,
