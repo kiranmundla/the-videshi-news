@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-25T16:45:32.774071+00:00",
+  "timestamp": "2026-06-25T17:15:25.664585+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
+    "pass": 1,
     "flag": 1,
     "fail": 0,
     "error": 0
@@ -11,128 +11,54 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "2bf88af5-cd05-4171-b9ec-249f19aac5ae",
-      "headline": "A New Captain, and a 15-Year-Old Knocking: India Begin the Iyer Era in Belfast",
-      "slug": "india-ireland-1st-t20i-belfast-2026-preview-shreyas-iyer-captaincy-debut-vaibhav-sooryavanshi-selection-dilemma-new-t20-era-diaspora-nri",
+      "id": "f6cb1bb6-ebec-4266-915a-7400e0ec0095",
+      "headline": "Shraddha Kapoor Gives Birth Backstage, Then Walks Out to Dance: The 'Eetha' Teaser Is a Knockout",
+      "slug": "eetha-teaser-shraddha-kapoor-vithabai-narayangaonkar-lavani-laxman-utekar-randeep-hooda-maddock-films-august-28-2026-where-to-watch-diaspora-nri-20260625",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "59ed9b08-2c5f-4447-b667-b7575fc9e08b",
+            "headline": "Shraddha Kapoor Dances Through Labour Pain. The 'Eetha' Teas"
+          }
+        ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Shreyas Iyer, a male cricketer, giving a thumbs up.",
-          "reason": "The photo clearly shows Shreyas Iyer, who is the main subject of the headline and caption."
+          "what_photo_shows": "Shraddha Kapoor in a patterned top",
+          "reason": "The photo clearly shows Shraddha Kapoor, who is the subject of the headline."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/DZ6yzfLiODj/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post is from 2018 and features a generic photo of Shraddha Kapoor, not related to the 'Eetha' teaser or film."
+          }
+        ],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image shows Shraddha Kapoor promoting 'Street Dancer 3D', which is a different film and genre than 'Eetha'. While it's Shraddha Kapoor, it doesn't match the specific 'Eetha' context."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The 'Why the diaspora should care' section is well-integrated and provides a clear, natural connection for NRI readers."
+          "quality": 7,
+          "note": "The article explicitly mentions 'For the diaspora, expect Eetha to roll out in North American and UK theatres day-and-date... with a streaming life on Netflix'. This directly addresses NRI readers."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a small section on Ireland's diaspora connection to cricket, if any, to further enrich the 'diaspora angle' for readers in the British Isles.",
-          "Ensure all player names are consistently spelled throughout the article (e.g., 'Suryansh Shedge' vs. 'Suryansh Shedge')."
+          "Replace the irrelevant Instagram embed with a relevant one, perhaps a recent post from Shraddha Kapoor or Maddock Films about 'Eetha', or remove it if no relevant embed exists.",
+          "Update the hero image to one that specifically relates to 'Eetha' or Shraddha Kapoor's look in the film, to better match the article's focus."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "d467fcbb-0489-4af8-8cb3-d8ca6cfb3ea7",
-      "headline": "Adani Is Betting $2 Billion That the Next City Grows Around the Airport, Not the Other Way Around",
-      "slug": "adani-airports-2-billion-airport-cities-six-airports-mumbai-navi-mumbai-ahmedabad-lucknow-jaipur-guwahati-20260625",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "An aerial view of an airport terminal and surrounding city.",
-          "reason": "The photo shows an airport and surrounding urban area, which is directly relevant to a story about 'airport cities' and airport development."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The 'Why It Matters for the Diaspora' section directly addresses NRI relevance, making a clear and natural connection."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a small infographic or map showing the six airport locations for better visual context.",
-          "Briefly mention the current status or timeline for the Navi Mumbai International Airport's completion to give readers a sense of immediacy."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "caa7cfd4-e62d-4ed0-a871-f481088b08e0",
-      "headline": "India Has Quietly Rewritten the Rulebook for Its 4.5 Million OCI Holders. Here's What Changed.",
-      "slug": "oci-card-new-rules-2026-e-oci-digital-fee-275-passport-update-three-month-deadline-pio-cards-expire-20260625",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "An Indian passport on a wooden surface.",
-          "reason": "The story is about OCI holders and their passports, making an Indian passport a relevant visual."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The entire article is directly relevant to the Indian diaspora, explaining critical changes to OCI rules."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a small FAQ section to address common immediate concerns.",
-          "Perhaps include a link to the official government portal for OCI services for readers to verify information directly."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/DZ6yzfLiODj/",
         "promoted to published"
       ],
       "revised": false,
@@ -149,12 +75,12 @@
         "duplicate_images": [],
         "broken_embeds": [
           {
-            "url": "https://x.com/bmj_latest/status/1714571167909015949",
+            "url": "https://x.com/bmj_latest/status/1714578964893348007",
             "problem": "broken",
             "detail": "react-tweet returned null (deleted/protected/nonexistent)"
           },
           {
-            "url": "https://instagram.com/p/C0f90_9uB_D/",
+            "url": "https://instagram.com/p/C0j3660O-hO",
             "problem": "broken",
             "detail": "Instagram embed shows removed/broken placeholder"
           }
@@ -165,25 +91,25 @@
         "overall_score": 6,
         "embed_issues": [],
         "image_match": {
-          "score": 1,
-          "issue": "No image URL or entities provided, making it impossible to assess image match."
+          "score": 5,
+          "issue": "No image URL or entities provided, making it impossible to assess the match. This is a critical missing piece for a news article."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 7,
-          "note": "The 'Why It Matters for the Diaspora' section directly addresses NRIs and their common exercise habits, making a relevant connection."
+          "note": "The diaspora angle is present and relevant, connecting the general wellness advice to specific habits observed within the Indian diaspora. It feels natural rather than forced."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Ensure a relevant hero image with description/entities is provided for proper review.",
-          "Expand on the 'outsized burden of heart d' (likely 'disease') in the diaspora angle to fully articulate the relevance."
+          "Ensure a hero image URL and its entities are provided for review, as this is a crucial element for any news article.",
+          "Expand the 'Why It Matters for the Diaspora' section slightly to offer more concrete, actionable examples of varied exercises that might appeal to or be accessible within the community, beyond just identifying existing habits."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
         "Removed 2 broken/hallucinated embed(s)",
-        "Revised by gemini-2.5-flash (864\u2192866 words)"
+        "Revised by gemini-2.5-flash (864\u2192894 words)"
       ],
       "revised": true,
       "unpublished": false,
