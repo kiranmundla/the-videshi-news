@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-25T07:45:12.546983+00:00",
+  "timestamp": "2026-06-25T08:15:26.450583+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
+    "pass": 3,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "676cf885-64d0-4889-916d-be6a9427a0d3",
-      "headline": "India Have Never Won at Edgbaston. Now They Must \u2014 and Decide Whether to Risk Bumrah to Do It",
-      "slug": "india-england-2nd-test-edgbaston-2026-preview-bumrah-question-workload-winless-record-shubman-gill-0-1-down-diaspora-nri",
+      "id": "db04bb27-e3fa-4bab-ac51-6f4914bcc722",
+      "headline": "The Doctors' Carve-Out: Why Indian Physicians Won a Quieter Battle Over the $100,000 H-1B Fee",
+      "slug": "aapi-physicians-h1b-100k-fee-blocked-img-indian-doctors-rural-20260625",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Jasprit Bumrah in an India cricket jersey",
-          "reason": "The photo shows Jasprit Bumrah, who is explicitly mentioned in the headline and caption as central to the story."
+          "what_photo_shows": "A physician in a hospital setting.",
+          "reason": "The photo depicts a physician, which is directly relevant to a story about Indian physicians and H-1B fees."
         },
         "inline_image_mismatches": []
       },
@@ -30,19 +30,105 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
+          "score": 8,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The 'Why the diaspora should care' section directly addresses the NRI audience, explaining the significance of Edgbaston for the South Asian community in Britain."
+          "quality": 9,
+          "note": "The article explicitly connects the H-1B fee issue to Indian-origin physicians and their families, highlighting both professional impact and patient experience within the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Expand on the 'Why the diaspora should care' section with more specific details or anecdotes about the community's connection to Edgbaston.",
-          "Consider adding a quote from an NRI fan or community leader about the atmosphere at Edgbaston during India matches."
+          "Consider adding a small sidebar or infographic to visually represent the '25% of practicing American doctors' statistic and the concentration of international medical graduates in underserved areas.",
+          "While the article is strong, a brief quote from an individual Indian-origin physician (not an AAPI leader) describing their personal experience with the H-1B process or the potential impact of the fee could add a human element."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "4cf234aa-6820-41b9-9d08-e0fec286410b",
+      "headline": "A Judge Just Pulled the Plug on a Database That Was Flagging Naturalized Citizens as Non-Voters",
+      "slug": "save-database-voter-purge-blocked-naturalized-citizens-indians-20260625",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "A person casting a ballot with a 'VOTE' sticker.",
+          "reason": "The photo depicts voting, which is directly relevant to a story about voter databases and eligible voters."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image shows a person looking at a document, which generally fits the theme of legal documents or official processes. However, it's not specifically indicative of voting, citizenship, or databases. It's a bit generic but not entirely mismatched."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article explicitly connects the issue to Indian Americans as a fast-growing naturalized population, explaining why they are particularly vulnerable to the system's flaws. The angle feels natural and well-integrated."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a quote from an affected naturalized citizen or a voting rights advocate to personalize the impact of the ruling.",
+          "If possible, include a link to a resource where readers can check their voter registration status, tailored for different states if feasible."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "e5036431-9fc5-4177-b2a6-4ab6e55d19bb",
+      "headline": "Citizenship Was Supposed to Be the Finish Line. The Government Is Reopening 250 Cases",
+      "slug": "doj-denaturalization-surge-250-cases-naturalized-citizens-indians-20260625",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "A man holding an American flag",
+          "reason": "The photo's subject, an American flag, is relevant to a story about US citizenship and denaturalization."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image shows a person's hands holding a passport, which generally matches the topic of citizenship. However, the specific entities or description for the image were not provided, making a precise match difficult to assess. It's a generic but acceptable image for the topic."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article explicitly addresses Indian Americans and the Indian diaspora, explaining why this policy change is particularly relevant to them. The connection feels natural and well-integrated into the narrative."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a quote from an Indian American legal expert or community leader to further emphasize the diaspora's perspective and concerns.",
+          "If possible, include a small sidebar or link to resources for naturalized citizens who might be concerned, such as legal aid organizations or immigration advocacy groups."
         ],
         "verdict": "pass"
       },
