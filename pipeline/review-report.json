@@ -1,179 +1,122 @@
 {
-  "timestamp": "2026-06-25T06:45:35.846259+00:00",
+  "timestamp": "2026-06-25T07:15:29.822996+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
-    "flag": 1,
+    "pass": 0,
+    "flag": 2,
     "fail": 0,
     "error": 0
   },
-  "revisions": 1,
+  "revisions": 0,
   "unpublished": 0,
   "articles": [
     {
-      "id": "e20ca454-249d-4980-b415-03c9e7bd4080",
-      "headline": "India Is Offering Its Scientists Abroad Up to Rs 60 Lakh a Year to Come Home. The Real Question Is Whether Money Is Enough.",
-      "slug": "india-pm-research-chair-pmrc-scheme-2026-bring-indian-origin-researchers-home-60-lakh-fellowship-20260625",
+      "id": "87b3b3f8-f8bb-418c-b8b5-5253c66cc2c2",
+      "headline": "Emraan Hashmi Is Going Back to the Dark. 'Rooh' Drops Him Into a Musical-Horror Spectacle Built for the Big Screen.",
+      "slug": "rooh-emraan-hashmi-musical-horror-mayank-sharma-breathe-vishal-kapoor-vicked-films-2027-hindi-tamil-telugu-where-to-watch-diaspora-nri",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "9c206bc8-2ad6-4fb3-b199-ffba4d1fd84f",
+            "headline": "Emraan Hashmi Walks Back Into the Dark. After Five Years, th"
+          }
+        ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Indian university campus with solar panels on rooftops",
-          "reason": "The photo depicts an Indian educational institution, which is relevant to a story about bringing Indian-origin researchers back to India's IITs and IISc."
+          "what_photo_shows": "Emraan Hashmi in a pink shirt",
+          "reason": "The photo clearly shows Emraan Hashmi, who is the subject of the headline and story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DZ6qZAmJw6I/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel is a generic motivational post from 2021, completely unrelated to Emraan Hashmi or the film 'Rooh'."
+          }
+        ],
         "image_match": {
           "score": 9,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article directly addresses a government scheme targeting Indian-origin researchers abroad, making the diaspora angle central and natural."
+          "quality": 8,
+          "note": "The article explicitly addresses the diaspora angle with the multi-language release and overseas market potential, which is well-integrated."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a quote from an NRI scientist who has either returned or considered returning, to provide a personal perspective on the 'harder question'.",
-          "Expand slightly on the 'frictions' mentioned, perhaps with a brief example or two, to give more weight to the challenges beyond just money."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "73e92557-61a9-48a2-82fa-c05d03f750b2",
-      "headline": "An Indian-Origin Mayor Just Became the Most Powerful Kingmaker in Democratic Politics. All Three of His Picks Won.",
-      "slug": "zohran-mamdani-slate-sweeps-new-york-congressional-primaries-kingmaker-lander-espaillat-20260625",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A man in a suit and tie smiling at the camera.",
-          "reason": "The photo shows Zohran Mamdani, who is the subject of the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article explicitly connects Mamdani's rise to the Indian diaspora experience and its implications."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a brief explanation of what 'NRI' stands for, as the platform targets NRIs but some readers might benefit from clarification.",
-          "Ensure the article concludes with a strong summary or forward-looking statement, as it currently cuts off mid-sentence."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "1f72748a-95fb-474c-a961-ef780b92f851",
-      "headline": "Europe Is Quietly Courting Indian Students \u2014 and Seeding the Diaspora's Next Chapter",
-      "slug": "eu-erasmus-mundus-scholarships-india-student-ambassadors-network-europ-20260625",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 8,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article directly addresses the formation and shifting geography of the Indian diaspora, making it highly relevant for NRI readers."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a specific example of a European country's post-study work pathway to strengthen the 'pragmatic hedge' argument.",
-          "If possible, include a quote from an Indian student currently studying in Europe via Erasmus Mundus to add a personal touch."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "5ff9611e-4f92-4bf7-836c-d6e7b27e9b50",
-      "headline": "Poor Sleep in the Teenage Years Casts a Long Shadow Into Adulthood, a New Study Finds",
-      "slug": "adolescent-sleep-insomnia-irregularity-predicts-young-adult-health-hospitalization-stony-brook-sleep-2026-diaspora-20260625-0600",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A cat lying on a bed with a person reading in the background.",
-          "reason": "The photo depicts a bedroom scene with a person, which is generically on-topic for a story about sleep in teenagers."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 6,
-        "embed_issues": [],
-        "image_match": {
-          "score": 8,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 6,
-          "note": "The diaspora angle is present but feels a bit tacked on and incomplete. It introduces the cultural context but doesn't fully integrate it into the study's implications or offer solutions/further discussion relevant to NRIs."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Expand the 'Why It Matters for the Diaspora' section. Instead of just stating the problem, discuss potential strategies for NRI families to balance academic pressure with healthy sleep, or include quotes from experts/parents in the diaspora.",
-          "Consider adding a call to action or resources for NRI parents/teens struggling with sleep issues, perhaps linking to relevant health organizations or community initiatives."
+          "Replace the irrelevant Instagram embed with a relevant social media post about 'Rooh' or Emraan Hashmi's horror films.",
+          "Consider adding a sentence or two about the potential impact of 'Rooh's' musical aspect on diaspora audiences, given the popularity of Bollywood music abroad."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
-        "Revised by gemini-2.5-flash (882\u2192983 words)"
+        "Removed irrelevant embed: https://www.instagram.com/reel/DZ6qZAmJw6I/",
+        "promoted to published"
       ],
-      "revised": true,
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "cc4f8d46-4e55-40bb-8ec8-aff504df8ed3",
+      "headline": "She Gave Birth Backstage, Then Walked Out to Dance. Shraddha Kapoor's 'Eetha' Teaser Is the Transformation Nobody Saw Coming.",
+      "slug": "eetha-teaser-shraddha-kapoor-vithabai-narayangaonkar-lavani-biopic-laxman-utekar-dinesh-vijan-randeep-hooda-ajay-atul-august-28-2026-where-to-watch-diaspora-nri",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "59ed9b08-2c5f-4447-b667-b7575fc9e08b",
+            "headline": "Shraddha Kapoor Dances Through Labour Pain. The 'Eetha' Teas"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Shraddha Kapoor in a patterned top",
+          "reason": "The photo shows the named person, Shraddha Kapoor, who is the subject of the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/DZ6yzfLiODj/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post is from 2017 and features a random person, not Shraddha Kapoor or anything related to the article's topic."
+          }
+        ],
+        "image_match": {
+          "score": 8,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The diaspora angle is well-integrated, discussing release dates for NRIs and the film's potential to introduce regional folk traditions to a diaspora audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the irrelevant Instagram embed with a relevant social media post about the 'Eetha' teaser or Shraddha Kapoor's role.",
+          "Ensure the article ends cleanly; it currently cuts off mid-sentence."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/DZ6yzfLiODj/",
+        "promoted to published"
+      ],
+      "revised": false,
       "unpublished": false,
       "llm_source": "gemini-2.5-flash"
     }
