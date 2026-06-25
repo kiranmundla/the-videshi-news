@@ -1,19 +1,19 @@
 {
-  "timestamp": "2026-06-25T12:16:03.009518+00:00",
+  "timestamp": "2026-06-25T12:45:58.257097+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 8,
-    "flag": 0,
+    "pass": 5,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
-  "revisions": 0,
+  "revisions": 1,
   "unpublished": 0,
   "articles": [
     {
-      "id": "e4693b6b-89d0-44e7-b579-4ee93b393735",
-      "headline": "Indian-Australians Give Generously. A New Study Wants to Know Why So Little of It Is Counted.",
-      "slug": "indian-australian-diaspora-philanthropy-study-myriad-per-capita-giving-20260625",
+      "id": "ac95d767-b599-46be-8d37-48593974b7ab",
+      "headline": "The Chutney Awakening: How America Discovered the Sauce India Never Lost",
+      "slug": "the-chutney-awakening-how-america-discovered-the-sauce-india-never-lost",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Performers playing traditional Indian drums at a cultural festival.",
-          "reason": "The photo depicts an Indian community cultural festival, which is relevant to a story about Indian-Australians."
+          "what_photo_shows": "A bowl of coconut chutney with a spoon on a plate.",
+          "reason": "The photo clearly shows chutney, which is the central topic of the headline and subheadline."
         },
         "inline_image_mismatches": []
       },
@@ -30,19 +30,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 8,
+          "score": 9,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article directly addresses the giving habits of Indian-Australians, a core diaspora topic."
+          "note": "The 'Diaspora Impact' section directly addresses the NRI experience, making it highly relevant and well-integrated."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a concluding paragraph that summarizes the potential impact of this research for both Australian civil society and the Indian-Australian community.",
-          "Ensure the article ends cleanly, as it currently cuts off mid-sentence."
+          "Consider adding a specific example of a diaspora-founded brand that has successfully brought chutneys to the mainstream, if appropriate and available.",
+          "Perhaps a brief mention of the etymology of 'chutney' and its global journey (e.g., British influence) could add another layer of historical depth, if space permits."
         ],
         "verdict": "pass"
       },
@@ -54,9 +54,9 @@
       "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "10c0a8e5-0061-4370-8b5f-912479ac8b14",
-      "headline": "Forty-One Years On, the Diaspora Still Gathers for Air India 182. The State Mostly Doesn't.",
-      "slug": "air-india-182-flight-41st-anniversary-memorial-kanishka-bombing-diaspo-20260625",
+      "id": "2300fa4b-cdca-4317-9511-d77984ca2c2b",
+      "headline": "Paneer's American Moment: How India's Cottage Cheese Became a Protein Darling",
+      "slug": "paneers-american-moment-how-indias-cottage-cheese-became-a-protein-darling",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,28 +64,28 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Air India Flight 182 memorial at Humber Bay Park East",
-          "reason": "The photo shows the memorial for Air India Flight 182, which is the central subject of the story."
+          "what_photo_shows": "a bowl of paneer butter masala",
+          "reason": "The photo shows paneer butter masala, which is directly relevant to a story about paneer."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 9,
+        "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 10,
+          "score": 9,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 10,
-          "note": "The entire article is centered on the diaspora's experience and perspective regarding the Air India 182 tragedy, making it highly relevant for NRI readers."
+          "quality": 8,
+          "note": "The 'Diaspora Impact' section directly addresses the NRI experience and perspective, making the connection natural and relevant."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a concluding sentence to the last paragraph to provide a stronger sense of closure, as it currently ends mid-sentence.",
-          "While not strictly necessary, a small embed of a historical news clip or a photo from one of the memorial services (if available and relevant) could enhance reader engagement."
+          "Consider adding a specific example or quote from an Indian-American chef or food blogger about their experience with paneer's mainstreaming to further personalize the 'Diaspora Impact' section.",
+          "The article ends abruptly. Ensure the 'What's Next' section is completed with a concluding thought or prediction."
         ],
         "verdict": "pass"
       },
@@ -97,9 +97,9 @@
       "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "ec8f8657-7d25-4d67-8d8f-7d55b70d977b",
-      "headline": "The Dropbox Is Dead for H-1B Indians. Even Toddlers Now Need an Interview",
-      "slug": "us-visa-interview-waiver-dropbox-shut-h1b-h4-age-waivers-removed-india-20260625",
+      "id": "e6313fd4-12d6-4322-aa23-9e788789a5a0",
+      "headline": "The Celebrity Chef Lands: Sanjeev Kapoor's Yellow Chilli Stakes a Claim in Silicon Valley",
+      "slug": "the-celebrity-chef-lands-sanjeev-kapoors-yellow-chilli-stakes-a-claim-in-silicon",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -107,8 +107,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A world map, camera, compass, and a 'VISA' stamped item",
-          "reason": "The photo depicts travel-related items, including a 'VISA' stamp, which is directly relevant to a story about visa applications and immigration."
+          "what_photo_shows": "Celebrity chef Sanjeev Kapoor with a woman",
+          "reason": "The photo clearly shows Sanjeev Kapoor, who is the subject of the story."
         },
         "inline_image_mismatches": []
       },
@@ -116,21 +116,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image of a person looking at a map is somewhat generic. While it could symbolize travel or planning, it doesn't directly evoke the specific challenges of visa interviews or the H-1B process. A more direct image related to consulates, visa documents, or even a family facing travel decisions might be stronger."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article is entirely focused on the impact of US visa policy changes on Indian H-1B holders and their families, directly addressing the concerns and experiences of the NRI diaspora. The angle is natural and highly relevant."
+          "note": "The diaspora angle is central and well-articulated, especially in the 'Diaspora Impact' section."
         },
-        "factual_flags": [
-          "The article mentions 'mandatory social-media vetting for H-1B and H-4 applicants, introduced in late 2025'. While social media checks are part of the visa process, the specific 'mandatory' introduction date of 'late 2025' for H-1B/H-4 and its direct link to 'widespread interview rescheduling, pushing dates into the middle of 2026' needs a source or clarification. Social media checks have been in place for some time, and attributing specific rescheduling to a future 'introduction' might be an oversimplification or misdating."
-        ],
+        "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Add a specific quote from an affected H-1B holder or immigration lawyer to personalize the impact and add expert commentary.",
-          "Include a 'What to do now?' section with actionable advice for NRIs planning trips or renewals, even if it's just to consult an attorney or check official State Department websites frequently."
+          "Consider adding a quote from a Bay Area NRI diner about their experience or connection to Sanjeev Kapoor.",
+          "Briefly mention the price point or general cost expectation for a meal at The Yellow Chilli to give readers a better sense of the 'premium-priced' concept."
         ],
         "verdict": "pass"
       },
@@ -142,9 +140,9 @@
       "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "48f9c2b3-b974-4dd4-840c-09b07ce66971",
-      "headline": "The H-1B Move That Quietly Voids Your Status: Working Remotely From the Wrong City",
-      "slug": "h1b-remote-work-lca-amendment-fdns-home-office-site-visit-indians-20260625",
+      "id": "211ee865-cb72-49a3-9eec-c1c5ef94db78",
+      "headline": "India's Financial-Crime Agency Raided the World's Biggest Gold Processor. The Books Allegedly Didn't Match the Vault.",
+      "slug": "ed-searches-rajesh-exports-fema-gold-mismatch-sebi-15-lakh-crore-valcambi-revenue-inflation-20260625",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -152,8 +150,51 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A person working from a home office with a laptop and documents.",
-          "reason": "The photo depicts a generic scene of remote work, which is directly relevant to the story about H-1B workers relocating to work from home."
+          "what_photo_shows": "a pile of refined gold bars",
+          "reason": "The photo of gold bars is directly relevant to a story about a gold processor and discrepancies in gold stock."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 6,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The diaspora angle is present and relevant, connecting the gold trade to NRI purchasing habits. It feels a bit tacked on at the end, but the connection is valid."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Integrate the 'Why It Matters for the Diaspora' section more organically throughout the article, perhaps with a brief mention in the introduction or by weaving in the NRI connection earlier.",
+          "Clarify the 'Rs 15.15 lakh crore \u2014 roughly $159 billion' conversion. While 'lakh crore' is an Indian unit, explicitly stating the conversion to billions of dollars earlier would improve readability for a global audience."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Revised by gemini-2.5-flash (746\u2192823 words)"
+      ],
+      "revised": true,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "2f876fb2-2c4a-4398-8c3e-a2299fc2ff75",
+      "headline": "A Fire at a Tata Data Centre in Delhi May Have Erased 20 Years of One Company's Data. Google Cloud Was Hit Too.",
+      "slug": "stt-tata-delhi-data-centre-fire-extensive-damage-matrix-cellular-google-cloud-data-loss-20260625",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Server racks with blue lights in a data center",
+          "reason": "The photo depicts server racks in a data center, which is directly relevant to a story about a data center fire."
         },
         "inline_image_mismatches": []
       },
@@ -161,19 +202,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image shows a person working on a laptop in a home setting, which aligns with the remote work theme. However, the entities provided are empty, making a precise match difficult. Assuming the image itself is relevant."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article explicitly connects the issue to Indian professionals, who make up a significant portion of the H-1B workforce, and highlights how the green card backlog uniquely impacts them, making the diaspora angle very strong and natural."
+          "quality": 8,
+          "note": "The 'Why It Matters for the Diaspora' section explicitly connects the incident to NRI concerns, making it relevant and well-integrated."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a small 'What to do if you've already moved' section with advice for those who might be out of compliance.",
-          "Perhaps include a quote from an immigration attorney to add more authority and practical advice."
+          "Consider adding a quote from an NRI or an expert on digital security for NRIs to further strengthen the diaspora angle.",
+          "If possible, include a small graphic or map showing the location of the data center in Delhi to provide more context."
         ],
         "verdict": "pass"
       },
@@ -193,11 +234,6 @@
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MISMATCH",
-          "what_photo_shows": "Health passport on phone, calendar, and travel stamps",
-          "reason": "The photo's subject is primarily about travel and COVID-19 health passports, which is not directly relevant to work-permit renewals or immigration paperwork for EAD extensions."
-        },
         "inline_image_mismatches": []
       },
       "llm_review": {
@@ -215,143 +251,8 @@
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a specific call to action or resources for affected individuals, beyond just 'file early'.",
-          "If possible, include a quote from an affected H-4 EAD holder to personalize the impact."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "Cleared mismatched image (Health passport on phone, calendar, and travel stamps)",
-        "held: image mismatch"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "image_mismatch": true,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "4bca5192-337c-4510-b446-997687d69d34",
-      "headline": "A Wall Street Bank Just Told India Its AI Is a 'Fighter Jet' It Doesn't Own. The Warning Is a Gift to the Diaspora's Startups.",
-      "slug": "bernstein-india-foreign-llm-dependence-sovereign-ai-fighter-jet-warnin-20260625",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Rows of servers in an AI data center",
-          "reason": "The photo depicts AI data center servers, which are directly relevant to a story about AI and sovereign AI infrastructure."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 8,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article explicitly connects the topic to NRI/diaspora readers, highlighting practical and financial reasons for their engagement, and mentions diaspora technologists returning to build."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a quote from an NRI technologist who has returned to India to build in the sovereign AI space, to further personalize the diaspora angle.",
-          "Perhaps include a brief mention of potential challenges or counterarguments to the 'sovereign AI' push, to provide a more balanced perspective, even if briefly."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "5cc8e26a-0b12-4005-805c-1372737d2fb4",
-      "headline": "Meta Just Made AI Glasses Cheap Enough to Go Mass-Market. The First Test Will Be the Indian Diaspora's Wishlist.",
-      "slug": "meta-ai-glasses-299-muse-spark-superintelligence-nri-wearables-20260625",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Ray-Ban smart glasses with charging case",
-          "reason": "The photo shows Meta's Ray-Ban smart glasses, which are directly relevant to the story about Meta's AI glasses."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article makes a strong and well-reasoned case for the Indian diaspora as a key market, connecting product features to specific NRI needs and cultural aspects. It also highlights the Indian presence within Meta's leadership and reporting."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a small section or a call-out box about potential privacy concerns specific to the Indian context or diaspora, given the 'catch' section.",
-          "If possible, include a quote from an NRI or an expert on diaspora tech adoption to further strengthen the 'Why the diaspora is the obvious first market' section."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "5cd12a61-da39-4894-949c-b78b414235b9",
-      "headline": "Accenture Beat on Profit and Still Fell 7%. The Reason Is the One Job Indians Do Most for It.",
-      "slug": "accenture-q3-earnings-ai-consulting-cannibalization-india-workforce-nr-20260625",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "025a371f-643e-49a9-af75-a49136760310",
-            "headline": "Accenture Just Had Its Worst Week on Record. The Fear Drivin"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Accenture's office building in Hyderabad, India",
-          "reason": "The photo shows an Accenture office in India, which is directly relevant to a story about Accenture's India operations."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article explicitly connects the impact of Accenture's shift to Indian employees, both in India and among NRIs/visa holders in the US, and extends the implications to other major Indian IT firms."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a brief concluding sentence that offers a forward-looking perspective or a call to action for NRI readers, beyond just 'what's next'."
+          "Consider adding a specific call to action or resources for affected individuals, such as links to immigration attorney associations or government advisories.",
+          "If possible, include a quote from an affected H-4 EAD holder to personalize the impact of the policy change."
         ],
         "verdict": "pass"
       },
