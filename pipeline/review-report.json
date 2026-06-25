@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-25T16:15:34.360167+00:00",
+  "timestamp": "2026-06-25T16:45:32.774071+00:00",
   "mode": "fix",
   "stats": {
     "pass": 3,
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "2fa0a8f9-2049-4f5f-88d4-51a62aecf1c4",
-      "headline": "The October 1 Pay Cut Nobody Warned You About: F-1 to H-1B and the FICA Surprise",
-      "slug": "f1-to-h1b-october-fica-tax-payroll-indian-students-2026-20260625",
+      "id": "2bf88af5-cd05-4171-b9ec-249f19aac5ae",
+      "headline": "A New Captain, and a 15-Year-Old Knocking: India Begin the Iyer Era in Belfast",
+      "slug": "india-ireland-1st-t20i-belfast-2026-preview-shreyas-iyer-captaincy-debut-vaibhav-sooryavanshi-selection-dilemma-new-t20-era-diaspora-nri",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A person filling out a U.S. tax form for nonresident aliens.",
-          "reason": "The photo directly depicts a U.S. tax form relevant to nonresident aliens, which aligns with the story about F-1 to H-1B visa holders and tax changes."
+          "what_photo_shows": "Shreyas Iyer, a male cricketer, giving a thumbs up.",
+          "reason": "The photo clearly shows Shreyas Iyer, who is the main subject of the headline and caption."
         },
         "inline_image_mismatches": []
       },
@@ -30,19 +30,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image shows a person looking at a laptop, which is generally related to work/finances, but doesn't specifically convey 'pay cut' or 'tax surprise'. It's acceptable but not perfect."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article explicitly highlights how this issue disproportionately affects Indian students due to their large representation in the F-1 to H-1B pipeline, making it highly relevant to NRI readers."
+          "quality": 8,
+          "note": "The 'Why the diaspora should care' section is well-integrated and provides a clear, natural connection for NRI readers."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a small 'What is FICA?' explainer box for readers less familiar with US tax terms.",
-          "Perhaps include a very brief, high-level mention of why FICA is exempt for F-1 students (e.g., 'non-resident alien' status) to add a touch more context, though the current explanation is sufficient for the target audience."
+          "Consider adding a small section on Ireland's diaspora connection to cricket, if any, to further enrich the 'diaspora angle' for readers in the British Isles.",
+          "Ensure all player names are consistently spelled throughout the article (e.g., 'Suryansh Shedge' vs. 'Suryansh Shedge')."
         ],
         "verdict": "pass"
       },
@@ -54,9 +54,9 @@
       "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "e5c9b590-7016-44d9-b567-f51cf8ad86a0",
-      "headline": "With the U.S. Door Sticking, H-1B Indians Are Quietly Reaching for a Canadian One",
-      "slug": "h1b-indians-canada-express-entry-pr-backlog-alternative-2026-20260625",
+      "id": "d467fcbb-0489-4af8-8cb3-d8ca6cfb3ea7",
+      "headline": "Adani Is Betting $2 Billion That the Next City Grows Around the Airport, Not the Other Way Around",
+      "slug": "adani-airports-2-billion-airport-cities-six-airports-mumbai-navi-mumbai-ahmedabad-lucknow-jaipur-guwahati-20260625",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,8 +64,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Toronto skyline at dusk with CN Tower",
-          "reason": "The photo shows Toronto, a key destination for Indian skilled migrants, which directly relates to the story about H-1B Indians looking to Canada."
+          "what_photo_shows": "An aerial view of an airport terminal and surrounding city.",
+          "reason": "The photo shows an airport and surrounding urban area, which is directly relevant to a story about 'airport cities' and airport development."
         },
         "inline_image_mismatches": []
       },
@@ -73,62 +73,62 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 8,
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The 'Why It Matters for the Diaspora' section directly addresses NRI relevance, making a clear and natural connection."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a small infographic or map showing the six airport locations for better visual context.",
+          "Briefly mention the current status or timeline for the Navi Mumbai International Airport's completion to give readers a sense of immediacy."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "caa7cfd4-e62d-4ed0-a871-f481088b08e0",
+      "headline": "India Has Quietly Rewritten the Rulebook for Its 4.5 Million OCI Holders. Here's What Changed.",
+      "slug": "oci-card-new-rules-2026-e-oci-digital-fee-275-passport-update-three-month-deadline-pio-cards-expire-20260625",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "An Indian passport on a wooden surface.",
+          "reason": "The story is about OCI holders and their passports, making an Indian passport a relevant visual."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "Directly addresses the challenges faced by Indian professionals (NRIs) in the U.S. and offers a relevant alternative."
+          "note": "The entire article is directly relevant to the Indian diaspora, explaining critical changes to OCI rules."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a brief quote from an Indian professional currently navigating this decision to personalize the narrative.",
-          "Perhaps include a very high-level comparison of average tech salaries or cost of living indices between major U.S. and Canadian cities to quantify the 'lower salaries' and 'punishing housing costs' mentioned."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "a9d3200c-ac68-4e7f-a589-341999b8ff05",
-      "headline": "EB-2 India Just Went Dark. The July Bulletin Says 'Unavailable' \u2014 and Means It",
-      "slug": "july-2026-visa-bulletin-eb2-india-unavailable-final-action-dates-20260625",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A hand holding an open passport with visa stamps",
-          "reason": "A passport is directly relevant to immigration and green card stories."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image of a person looking at a city skyline is generally relevant to immigration/new beginnings, but not specifically tied to the technical 'unavailable' status of a visa bulletin. It's a bit generic."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article directly addresses the impact on 'one million Indians waiting in employment-based green card lines' and 'many with U.S.-born children racing the clock,' making the diaspora angle very strong and natural."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a small graphic or chart to visually represent the retrogression dates for EB-1, EB-2, and EB-3 India, as this data is central to the article.",
-          "Perhaps include a quote from an immigration lawyer or an affected applicant to add a human element to the 'unavailable' designation."
+          "Consider adding a small FAQ section to address common immediate concerns.",
+          "Perhaps include a link to the official government portal for OCI services for readers to verify information directly."
         ],
         "verdict": "pass"
       },
@@ -149,12 +149,12 @@
         "duplicate_images": [],
         "broken_embeds": [
           {
-            "url": "https://x.com/bmj_latest/status/1727218671607572718",
+            "url": "https://x.com/bmj_latest/status/1714571167909015949",
             "problem": "broken",
             "detail": "react-tweet returned null (deleted/protected/nonexistent)"
           },
           {
-            "url": "https://instagram.com/p/C0E32zQy60g",
+            "url": "https://instagram.com/p/C0f90_9uB_D/",
             "problem": "broken",
             "detail": "Instagram embed shows removed/broken placeholder"
           }
@@ -165,19 +165,19 @@
         "overall_score": 6,
         "embed_issues": [],
         "image_match": {
-          "score": 5,
-          "issue": "No image URL or entities provided, making it impossible to assess the match. This is a critical missing piece for a news article."
+          "score": 1,
+          "issue": "No image URL or entities provided, making it impossible to assess image match."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 7,
-          "note": "The diaspora angle is present and relevant, connecting the general wellness advice to specific habits observed within the Indian diaspora. It feels natural rather than forced."
+          "note": "The 'Why It Matters for the Diaspora' section directly addresses NRIs and their common exercise habits, making a relevant connection."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Ensure a hero image URL and its entities are provided for review, as this is a crucial element for any news article.",
-          "Expand the 'Why It Matters for the Diaspora' section slightly to offer more concrete examples or perhaps a brief quote from an expert on diaspora health, if possible, to strengthen the connection."
+          "Ensure a relevant hero image with description/entities is provided for proper review.",
+          "Expand on the 'outsized burden of heart d' (likely 'disease') in the diaspora angle to fully articulate the relevance."
         ],
         "verdict": "flag"
       },
