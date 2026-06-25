@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-24T23:15:16.956051+00:00",
+  "timestamp": "2026-06-25T00:16:05.958044+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 0,
+    "pass": 7,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,58 +11,42 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "cfe25a00-83cf-4d0d-b73f-ac9da6f980f4",
-      "headline": "Twenty-Two Years Later, the 'Mohra' Couple Is Back. The Whole 'Welcome To The Jungle' Set Stood Up and Clapped.",
-      "slug": "welcome-to-the-jungle-akshay-kumar-raveena-tandon-reunion-22-years-mohra-ahmed-khan-suniel-shetty-june-26-2026-box-office-where-to-watch-diaspora-nri-20260624",
+      "id": "307821a5-26c5-465c-b047-c6634bbc3d88",
+      "headline": "GOPIO Connecticut Marks 20 Years, Honours Five Leaders and Gives $50,000 to Charity",
+      "slug": "gopio-connecticut-20th-anniversary-diaspora-20260625",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "0d0e095d-24bc-44fd-ad62-9d0185a27881",
-            "headline": "Akshay Kumar Opens the Jungle. After 19 Years, 'Welcome' Ret"
-          },
-          {
-            "article_id": "0d67b566-c831-4c27-9734-18d8465fb619",
-            "headline": "The Censor Board Took Its Scissors to Welcome To The Jungle."
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Official poster for the movie 'Welcome To The Jungle'",
-          "reason": "The photo shows the poster for 'Welcome To The Jungle', which is the movie discussed in the headline and subheadline."
+          "what_photo_shows": "A speaker at a podium with the GOPIO logo.",
+          "reason": "The photo clearly shows the GOPIO logo on the podium, which directly relates to the headline about GOPIO Connecticut."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/reel/DZ9RPSLtDC4/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram reel URL is malformed and points to a non-existent or private reel. Even if it were valid, the 'DZ9RPSLtDC4' part suggests a very old or random reel ID, unlikely to be relevant to a current movie release or the Mohra couple reunion."
-          }
-        ],
+        "overall_score": 8,
+        "embed_issues": [],
         "image_match": {
-          "score": 9,
+          "score": 8,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article discusses a major Bollywood film release and the reunion of iconic stars, which is highly relevant and of interest to the Indian diaspora. The 'worldwide' release mention also connects to NRIs."
+          "quality": 9,
+          "note": "The article directly addresses the growth, challenges, and strategies of an Indian diaspora organization in the US, making it highly relevant for NRI readers."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant/broken Instagram embed with a relevant social media post (e.g., official trailer, cast announcement, or a post about the reunion) or remove it entirely.",
-          "Consider adding a brief explanation of 'masala' for readers less familiar with Bollywood terminology, or rephrase to avoid jargon."
+          "Consider adding a quote from one of the honorees to personalize the 'Five honourees' section.",
+          "The article ends abruptly. Ensure the conclusion provides a stronger wrap-up or a forward-looking statement."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/reel/DZ9RPSLtDC4/",
         "promoted to published"
       ],
       "revised": false,
@@ -70,23 +54,147 @@
       "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "6317d2ca-d43b-4695-96a9-fbb57489fdd9",
-      "headline": "He Took His Own Show Off the Internet to Survive. Now Samay Raina's 'India's Got Latent' Is a Netflix Original.",
-      "slug": "india-got-latent-season-2-samay-raina-netflix-youtube-simulcast-alia-bhatt-sharvari-alpha-comeback-controversy-where-to-watch-diaspora-nri-20260624",
+      "id": "9bd6a25b-b49b-424e-8064-0855274e0e85",
+      "headline": "President Murmu Courts Indian Communities in Portugal and Slovakia on Europe Tour",
+      "slug": "president-murmu-portugal-slovakia-diaspora-tour-20260625",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "1d8e4dca-50a2-4edf-ad14-18105a319a90",
-            "headline": "India Tried to Cancel 'India's Got Latent'. It Came Back on "
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Comedian Samay Raina, creator and host of India's Got Latent",
-          "reason": "The photo shows the named person, Samay Raina, who is the subject of the story."
+          "what_photo_shows": "A headshot of President Droupadi Murmu.",
+          "reason": "The photo clearly shows President Droupadi Murmu, who is the subject of the headline and caption."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The entire article is centered around the diaspora angle, detailing the President's engagement with Indian communities and the strategic importance of these interactions for India's foreign policy."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a quote from a member of the Indian diaspora in Portugal or Slovakia to personalize the impact of the presidential visit.",
+          "Briefly mention the specific cities in Slovakia where the President engaged with the community, if available, to add more detail."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "6fa801ff-efad-4dee-b457-4bf31c3804f8",
+      "headline": "Indian-Australians Mark 12th International Day of Yoga From Canberra to the Gold Coast",
+      "slug": "australia-international-day-of-yoga-2026-diaspora-20260625",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Three people doing yoga outdoors on mats.",
+          "reason": "The photo depicts an outdoor group yoga session, which aligns perfectly with the story about marking International Day of Yoga."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article explicitly focuses on Indian-Australian communities and their role in the events, connecting it directly to the diaspora experience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a quote from a participant (Indian-Australian or non-Indian) to add a personal touch and further illustrate the 'shared tradition' aspect.",
+          "If possible, include a small detail about the specific types of yoga practiced or any unique cultural elements incorporated into the Australian events."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "c4f76369-6f31-47a6-b43d-9c06f473fb01",
+      "headline": "India Just Set Its Chip Budget for the Year: Rs 7,100 Crore, and a Quiet Bet on Design Over Fabs",
+      "slug": "india-semiconductor-incentive-7100-crore-fy27-chip-design-fabs-nri-eng-20260625",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "A modern industrial building, possibly a manufacturing unit or fab.",
+          "reason": "The photo depicts a generic industrial building which could plausibly represent a manufacturing unit or fab, aligning with the story's topic of semiconductor manufacturing and fabs."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The 'Why this matters to the diaspora' section is well-integrated and provides a clear, relevant angle for NRI readers, addressing both engineers and investors."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a small infographic or chart to visualize the budget allocation (Rs 7,100 crore breakdown) for better reader comprehension.",
+          "Perhaps a brief mention of specific Indian companies or startups already making strides in chip design could add more concrete examples."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "ccf7fd92-e136-47a6-a61c-3a4347d24caf",
+      "headline": "India's First Private Rocket-to-Orbit Is on the Pad. The Company Behind It Isn't ISRO.",
+      "slug": "skyroot-vikram-1-private-orbital-launch-sriharikota-space-unicorn-nri-20260625",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Skyroot Aerospace's Vikram-S rocket lifting off",
+          "reason": "The photo shows a rocket from Skyroot Aerospace, which is the company mentioned in the headline and subheadline."
         },
         "inline_image_mismatches": []
       },
@@ -100,15 +208,151 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article explicitly connects the Netflix distribution to NRI/diaspora accessibility, which is a strong and natural angle."
+          "note": "The 'Why an NRI should care' section directly addresses the diaspora angle, covering investment and talent opportunities, and national pride."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Expand on the specific nature of the controversy that led to the show being pulled, as it's central to the redemption arc.",
-          "The article ends abruptly. Ensure a proper conclusion is added."
+          "Consider adding a quote from an NRI investor or engineer to further strengthen the 'diaspora angle' section.",
+          "While the article is well-written, a brief explanation of what 'suborbital demonstrator' means for a general audience could be helpful."
         ],
         "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "cbd1c77c-991a-4847-a46a-d28860853d8b",
+      "headline": "With the H-1B Door Jammed, Indians Are Quietly Reaching for the 'Extraordinary Ability' Side Entrance",
+      "slug": "eb1a-o1-extraordinary-ability-pivot-indians-h1b-alternative-20260625",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "A scientist working in a research laboratory.",
+          "reason": "The photo depicts a scientist in a lab, which is directly relevant to the 'extraordinary ability' visa category for professionals like scientists mentioned in the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 8,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article directly addresses a critical issue for Indian professionals in the US, explaining how changes in immigration policy impact their lives and career paths, and explicitly connects to 'Indian Americans' in the final section."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a brief case study or anonymized quote from an Indian professional who successfully navigated the EB-1A/O-1 path to make the article more relatable.",
+          "Expand slightly on the 'sorting mechanism' aspect to elaborate on the potential implications for the broader Indian diaspora community."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "7d3aef77-1465-4e0a-a675-e951cdefe71a",
+      "headline": "Forget the Citizenship Fee. The Cost of Appealing a Deportation Is About to Jump 800%",
+      "slug": "eoir-immigration-court-appeal-fees-triple-800-percent-indians-20260625",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "A judge's gavel on US currency and an American flag.",
+          "reason": "The photo's subject directly symbolizes the legal and financial aspects of immigration in the US, which aligns with the story about rising deportation appeal fees."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 8,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article explicitly connects the issue to Indian families and the diaspora, explaining how it impacts them beyond typical assumptions."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a specific example or short anecdote of an Indian family or individual impacted by deportation appeals to make the 'Where Indians fit in' section even more relatable.",
+          "Perhaps include a brief mention of any advocacy groups or legal aid organizations that are actively fighting these fee increases, offering readers a potential avenue for further information or action."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "5d531f5f-752b-4f3f-b14f-740ebe82eccc",
+      "headline": "200 Delegates, Five Asks, One Old Problem: Inside the Diaspora's Biggest Capitol Hill Push",
+      "slug": "fiids-capitol-hill-day-200-delegates-green-card-backlog-cap-20260625",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "cf63f138-bab9-4520-abec-83006db8e69b",
+            "headline": "\u2018On the Menu\u2019: Indian-American Lawmakers Tell the Diaspora t"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Congressman Raja Krishnamoorthi in a suit with an American flag background.",
+          "reason": "The photo shows the named individual, Congressman Raja Krishnamoorthi, who is directly relevant to the story about green card backlog legislation and Capitol Hill advocacy."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 10,
+          "note": "The entire article is centered on the Indian diaspora's lobbying efforts and challenges in the US."
+        },
+        "factual_flags": [
+          "The article mentions 'April 2025 advocacy day' and 'June 2026 outing' which seem to be typos given the article's context of events happening on 'Tuesday, June 23' and referring to 'fourth annual Capitol Hill Day'. These dates should likely be in the past or current year, not future."
+        ],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Correct the dates 'April 2025' and 'June 2026' to reflect actual past or current events.",
+          "Consider adding a concluding sentence or two to fully wrap up the article, as it currently ends abruptly."
+        ],
+        "verdict": "flag"
       },
       "actions_taken": [
         "promoted to published"
