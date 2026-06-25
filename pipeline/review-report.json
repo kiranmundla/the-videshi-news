@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-25T07:15:29.822996+00:00",
+  "timestamp": "2026-06-25T07:45:12.546983+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 0,
-    "flag": 2,
+    "pass": 1,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,35 +11,24 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "87b3b3f8-f8bb-418c-b8b5-5253c66cc2c2",
-      "headline": "Emraan Hashmi Is Going Back to the Dark. 'Rooh' Drops Him Into a Musical-Horror Spectacle Built for the Big Screen.",
-      "slug": "rooh-emraan-hashmi-musical-horror-mayank-sharma-breathe-vishal-kapoor-vicked-films-2027-hindi-tamil-telugu-where-to-watch-diaspora-nri",
+      "id": "676cf885-64d0-4889-916d-be6a9427a0d3",
+      "headline": "India Have Never Won at Edgbaston. Now They Must \u2014 and Decide Whether to Risk Bumrah to Do It",
+      "slug": "india-england-2nd-test-edgbaston-2026-preview-bumrah-question-workload-winless-record-shubman-gill-0-1-down-diaspora-nri",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "9c206bc8-2ad6-4fb3-b199-ffba4d1fd84f",
-            "headline": "Emraan Hashmi Walks Back Into the Dark. After Five Years, th"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Emraan Hashmi in a pink shirt",
-          "reason": "The photo clearly shows Emraan Hashmi, who is the subject of the headline and story."
+          "what_photo_shows": "Jasprit Bumrah in an India cricket jersey",
+          "reason": "The photo shows Jasprit Bumrah, who is explicitly mentioned in the headline and caption as central to the story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/reel/DZ6qZAmJw6I/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram reel is a generic motivational post from 2021, completely unrelated to Emraan Hashmi or the film 'Rooh'."
-          }
-        ],
+        "embed_issues": [],
         "image_match": {
           "score": 9,
           "issue": null
@@ -47,73 +36,17 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article explicitly addresses the diaspora angle with the multi-language release and overseas market potential, which is well-integrated."
+          "note": "The 'Why the diaspora should care' section directly addresses the NRI audience, explaining the significance of Edgbaston for the South Asian community in Britain."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant Instagram embed with a relevant social media post about 'Rooh' or Emraan Hashmi's horror films.",
-          "Consider adding a sentence or two about the potential impact of 'Rooh's' musical aspect on diaspora audiences, given the popularity of Bollywood music abroad."
+          "Expand on the 'Why the diaspora should care' section with more specific details or anecdotes about the community's connection to Edgbaston.",
+          "Consider adding a quote from an NRI fan or community leader about the atmosphere at Edgbaston during India matches."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/reel/DZ6qZAmJw6I/",
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "cc4f8d46-4e55-40bb-8ec8-aff504df8ed3",
-      "headline": "She Gave Birth Backstage, Then Walked Out to Dance. Shraddha Kapoor's 'Eetha' Teaser Is the Transformation Nobody Saw Coming.",
-      "slug": "eetha-teaser-shraddha-kapoor-vithabai-narayangaonkar-lavani-biopic-laxman-utekar-dinesh-vijan-randeep-hooda-ajay-atul-august-28-2026-where-to-watch-diaspora-nri",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "59ed9b08-2c5f-4447-b667-b7575fc9e08b",
-            "headline": "Shraddha Kapoor Dances Through Labour Pain. The 'Eetha' Teas"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Shraddha Kapoor in a patterned top",
-          "reason": "The photo shows the named person, Shraddha Kapoor, who is the subject of the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/p/DZ6yzfLiODj/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post is from 2017 and features a random person, not Shraddha Kapoor or anything related to the article's topic."
-          }
-        ],
-        "image_match": {
-          "score": 8,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The diaspora angle is well-integrated, discussing release dates for NRIs and the film's potential to introduce regional folk traditions to a diaspora audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the irrelevant Instagram embed with a relevant social media post about the 'Eetha' teaser or Shraddha Kapoor's role.",
-          "Ensure the article ends cleanly; it currently cuts off mid-sentence."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DZ6yzfLiODj/",
         "promoted to published"
       ],
       "revised": false,
