@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-25T10:45:36.420612+00:00",
+  "timestamp": "2026-06-25T11:15:22.208042+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 4,
+    "pass": 2,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "75169e85-30dc-4d2f-aa96-b833b2bb5226",
-      "headline": "Canada Has a Message for Indian Students: This Is the 'Best Time Ever' to Apply.",
-      "slug": "canada-best-time-ever-indian-students-cooter-caps-not-full-us-australia-visa-crunch-diaspora-20260625",
+      "id": "6fb3cf60-eaa5-4ee0-aa0a-3c6094a59d9b",
+      "headline": "TVF Stopped Apologizing for Not Being 'Panchayat.' 'Gram Chikitsalay' Season 2 Finally Found Its Own Heartbeat \u2014 in a Crumbling Village Clinic.",
+      "slug": "gram-chikitsalay-season-2-prime-video-amol-parashar-tvf-panchayat-comparison-vinay-pathak-dinesh-lal-yadav-nirahua-akansha-ranjan-kapoor-june-23-2026-where-to-watch-diaspora-nri-20260625",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,32 +21,39 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A Canadian university campus with the CN Tower in the background.",
-          "reason": "The photo depicts a Canadian university campus, which is directly relevant to a story about Indian students applying to Canada."
+          "what_photo_shows": "Poster for 'Gram Chikitsalay' featuring the main cast",
+          "reason": "The photo is the official poster for the TV show 'Gram Chikitsalay', which is the subject of the story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
+        "overall_score": 7,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DZ4ODwmNveO/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel is a generic motivational post from 2022, not related to the show 'Gram Chikitsalay' or its cast/crew."
+          }
+        ],
         "image_match": {
           "score": 9,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article explicitly connects to NRI/diaspora readers in the 'Why It Matters for the Diaspora' section, explaining the significance of study abroad for Indian families and its role in establishing new diaspora branches. This is a natural and strong connection."
+          "quality": 7,
+          "note": "The article explicitly mentions Prime Video's global availability for NRIs, which is a direct and relevant connection."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a quote from an Indian student or education consultant to provide a ground-level perspective on the current application climate and visa process challenges.",
-          "If possible, include a small infographic or table comparing key student visa policies (fees, post-study work permits, duration of status) across the 'Big Four' countries mentioned to visually reinforce Canada's comparative advantage."
+          "Replace the irrelevant Instagram embed with a relevant one, perhaps a trailer or a cast interview related to 'Gram Chikitsalay' Season 2.",
+          "Expand slightly on the 'Here's why this matters for the diaspora specifically' section to elaborate on the cultural connection or nostalgia aspect beyond just global availability."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DZ4ODwmNveO/",
         "promoted to published"
       ],
       "revised": false,
@@ -54,9 +61,9 @@
       "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "d99b9e13-d12f-4cfd-b0e4-ad5fd73d358f",
-      "headline": "Gold Just Broke Below $4,000 for the First Time Since November. It's Down a Quarter From Its Peak.",
-      "slug": "gold-silver-crash-below-4000-dollar-fed-rate-hike-iran-india-rupee-import-curbs-diaspora-20260625",
+      "id": "15331a13-d7f6-4a0b-bfcb-2bdd206db7af",
+      "headline": "\"Pathaanon Se Kehna, Chauhaan Aa Raha Hai\": Ajay Devgn Drops a Balaclava, a Bachchan Anthem, and a Not-So-Subtle Dig at Shah Rukh",
+      "slug": "chauhaan-ajay-devgn-announcement-teaser-jio-studios-aanand-l-rai-pathaan-dig-veeru-devgan-october-1-2027-where-to-watch-diaspora-nri-20260625",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,94 +71,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A gold bullion bar with markings.",
-          "reason": "The photo clearly shows a gold bullion bar, which is directly relevant to a story about gold prices."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The 'Why It Matters for the Diaspora' section directly addresses NRI readers, explaining the cultural and financial implications of gold price changes."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a small section on the long-term outlook for gold, perhaps quoting an analyst on recovery potential or further downside risks, to provide a more complete picture for readers looking to buy.",
-          "Ensure all future dates (e.g., 'November 2025', 'January 29') are consistent with the publication date of the article to avoid confusion."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "44ab4c19-e721-4246-83b2-431fc83a72f6",
-      "headline": "India's Women Won a Trophy and a Promotion in One Night in Auckland",
-      "slug": "india-women-hockey-nations-cup-2026-champions-beat-new-zealand-2-0-auckland-salima-tete-navneet-kaur-toppo-pro-league-promotion-diaspora-nri",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Salima Tete wearing a medal and Indian Olympic Association logo",
-          "reason": "The photo shows the named person, Salima Tete, who is the subject of the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The 'Why the diaspora should care' section is well-integrated and provides a clear, natural connection for NRI readers, especially regarding future viewing opportunities."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a quote from a diaspora fan or an anecdote about NRI viewership to further strengthen the diaspora angle, if possible.",
-          "Ensure all names are consistently spelled (e.g., 'Sunelita Toppo' vs. 'Toppo' in later mentions, though this is minor)."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "62809a52-4961-43e9-8c5b-a9bddf73b543",
-      "headline": "It Isn't Being Alone That Ages the Mind \u2014 It's Feeling Lonely, a 175,000-Person Study Finds",
-      "slug": "loneliness-not-isolation-cognitive-decline-shorter-life-uc-davis-175000-18-countries-jpsp-study-diaspora-20260625-0300",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "An older woman looking out a window, appearing contemplative or lonely.",
-          "reason": "The photo of an older woman looking out a window evokes feelings of solitude or loneliness, which aligns well with the story's topic about loneliness and cognitive decline in aging."
+          "what_photo_shows": "Ajay Devgn, an Indian actor, wearing glasses and a brown shirt.",
+          "reason": "The photo clearly shows Ajay Devgn, who is the central subject of the headline and subheadline."
         },
         "inline_image_mismatches": []
       },
@@ -164,14 +85,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 6,
-          "note": "The article touches on universal themes of loneliness and family, which resonate with NRIs who may experience social isolation or feel disconnected despite being surrounded by family, especially when living abroad or having family back in India. The mention of 'crowded dinner table, surrounded by family, and still feel unseen' is particularly relevant to the Indian cultural context where family is central."
+          "quality": 7,
+          "note": "The diaspora angle is present and feels naturally integrated, discussing expected theatrical releases in key NRI markets."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a specific anecdote or quote from an NRI experiencing loneliness to strengthen the diaspora angle, perhaps in a sidebar or a short introductory paragraph.",
-          "Explore potential cultural nuances of loneliness within the Indian diaspora, e.g., expectations of family support vs. reality, or challenges of forming new connections in a foreign land."
+          "Consider adding a small section on the cultural significance of the 'Pathaan' reference beyond just the SRK film, if applicable, to enrich the context.",
+          "Ensure all release dates mentioned are double-checked for accuracy closer to publication, as they can shift."
         ],
         "verdict": "pass"
       },
