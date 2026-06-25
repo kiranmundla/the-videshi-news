@@ -13,10 +13,6 @@ Env: ~/.env.twitter (TWITTER_CONSUMER_KEY, TWITTER_CONSUMER_SECRET)
 """
 
 import os
-try:
-    import x_spend  # spend meter
-except Exception:
-    x_spend=None
 import sys
 import json
 import re
@@ -99,7 +95,6 @@ def get_user_id(handle):
         timeout=15,
     )
     if resp.status_code == 200:
-        if x_spend: x_spend.add(users=1)
         uid = resp.json().get("data", {}).get("id")
         if uid:
             cache[handle_lower] = uid
@@ -143,7 +138,6 @@ def fetch_recent_tweets(handle, hours=48, max_results=10):
 
     data = resp.json()
     tweets_raw = data.get("data", [])
-    if x_spend and tweets_raw: x_spend.add(reads=len(tweets_raw))
 
     # Build media lookup
     media_map = {}
@@ -256,7 +250,6 @@ def search_topic_posts(query, hours=72, max_results=10, verified_only=True, min_
 
     data = resp.json()
     tweets_raw = data.get("data", [])
-    if x_spend and tweets_raw: x_spend.add(reads=len(tweets_raw))
     media_map = {m["media_key"]: m for m in data.get("includes", {}).get("media", [])}
     users_map = {u["id"]: u for u in data.get("includes", {}).get("users", [])}
 

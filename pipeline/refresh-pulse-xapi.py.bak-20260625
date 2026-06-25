@@ -25,10 +25,6 @@ Schema (frontend reads leader.posts[0].text — do not change shape):
    "lastUpdated":ISO,"last_updated":ISO}
 """
 import json, os, sys, time
-try:
-    import x_spend
-except Exception:
-    x_spend = None
 from datetime import datetime, timezone
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -85,12 +81,9 @@ def fetch_latest_original(handle, max_results=10):
         print(f"  X API {r.status_code} for {handle}: {r.text[:120]}", file=sys.stderr)
         return []
     data = r.json()
-    raw = data.get("data", [])
-    if x_spend and raw:
-        x_spend.add(reads=len(raw))
     media_map = {m["media_key"]: m for m in data.get("includes", {}).get("media", [])}
     out = []
-    for t in raw:
+    for t in data.get("data", []):
         photos = []
         for mk in t.get("attachments", {}).get("media_keys", []):
             m = media_map.get(mk)
@@ -134,47 +127,25 @@ def main():
     # pulse-leaders.json in a few cases).
     existing = {}
     existing_handle = {}
-    last_ref = {}
     try:
         cur = json.load(open(OUT))
         for x in cur.get("leaders", []):
             existing[x["name"]] = x.get("posts", [{}])[0] if x.get("posts") else {}
             existing_handle[x["name"]] = x.get("handle", "")
-            last_ref[x["name"]] = x.get("last_refreshed", "")
     except Exception:
         cur = {"leaders": []}
-
-    # --- ROTATION: only refresh the N most-stale leaders per run (budget cap) ---
-    # All 52 tiles stay live; each refreshes ~every ceil(52/N) runs.
-    REFRESH_PER_RUN = int(os.environ.get("PULSE_REFRESH_PER_RUN", "13"))
-    leaders_sorted = sorted(leaders, key=lambda L: last_ref.get(L["name"], ""))
-    due = set(id(L) for L in leaders_sorted[:REFRESH_PER_RUN])
-    now_iso = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
     out_leaders = []
     fresh = kept = placeheld = 0
 
-    if x_spend and x_spend.over_budget():
-        print(f"X-BUDGET ceiling reached ({x_spend.status_line()}); skipping pulse refresh (keeping existing tiles).")
-        return
-
     for ld in leaders:
-        name0 = ld["name"]; h0 = HANDLE_OVERRIDE.get(name0) or existing_handle.get(name0) or ld["handle"]
-        # Not in this run's rotation OR over budget -> keep existing tile untouched.
-        if id(ld) not in due or (x_spend and x_spend.over_budget()):
-            prev = existing.get(name0)
-            out_leaders.append({"name": name0, "handle": h0, "category": ld["category"],
-                                "platform": "x", "posts": [prev] if prev else [],
-                                "last_refreshed": last_ref.get(name0, "")})
-            kept += 1
-            continue
         name = ld["name"]
         handle = HANDLE_OVERRIDE.get(name) or existing_handle.get(name) or ld["handle"]
         category = ld["category"]
 
         post = None
         try:
-            tweets = fetch_latest_original(handle, max_results=5)
+            tweets = fetch_latest_original(handle, max_results=10)
             best = pick_best(tweets) if tweets else None
             if best:
                 ts = (best.get("created_at") or "")[:10] or datetime.now(timezone.utc).strftime("%Y-%m-%d")
@@ -214,7 +185,6 @@ def main():
             "category": category,
             "platform": "x",
             "posts": [post],
-            "last_refreshed": now_iso,
         })
         time.sleep(0.4)  # gentle pacing
 

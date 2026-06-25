@@ -2,6 +2,10 @@
 """Post recently published Videshi articles to X as long-form posts."""
 
 import json, os, sys, time, tempfile, requests, tweepy
+try:
+    import x_spend
+except Exception:
+    x_spend=None
 from datetime import datetime, timezone
 
 # --- Config ---
@@ -204,6 +208,10 @@ tweet_log = json.load(open(log_path)) if os.path.exists(log_path) else {}
 
 results = []
 
+if x_spend and x_spend.over_budget():
+    print(f"X-BUDGET ceiling reached ({x_spend.status_line()}); skipping autopost run.")
+    sys.exit(0)
+
 for i, article in enumerate(articles):
     print(f"\n--- Article {i+1}/{len(articles)} ---")
     print(f"  Headline: {article['headline'][:80]}...")
@@ -252,6 +260,7 @@ for i, article in enumerate(articles):
 
         tweet_resp = client.create_tweet(**kwargs)
         tweet_id = str(tweet_resp.data['id'])
+        if x_spend: x_spend.add(writes=1)
         tweet_url = f"https://x.com/thevideshi/status/{tweet_id}"
         print(f"  ✅ Posted: {tweet_url}")
 

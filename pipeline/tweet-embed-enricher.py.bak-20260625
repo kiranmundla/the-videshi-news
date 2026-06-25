@@ -13,10 +13,6 @@ Categories skipped: travel, food, lifestyle (rarely tweet-worthy)
 """
 
 import json, os, sys, re, time, subprocess
-try:
-    import x_spend
-except Exception:
-    x_spend=None
 from datetime import datetime, timezone, timedelta
 import requests
 
@@ -79,7 +75,7 @@ def _fetch_tweets():
 EMBED_CATEGORIES = ['news', 'sports', 'entertainment', 'technology', 'nri-world']
 
 # Max embeds to add per run (rate-limit friendly)
-MAX_ENRICHMENTS_PER_RUN = 2  # budget cap (X reads); was 5
+MAX_ENRICHMENTS_PER_RUN = 5
 
 # --- Load handle registry ---
 def load_registry():
@@ -493,16 +489,9 @@ def main():
     if not articles:
         print("   Nothing to enrich. Done.")
         return
-
-    if x_spend and x_spend.over_budget():
-        print(f"   X-BUDGET ceiling reached ({x_spend.status_line()}); skipping enrichment run.")
-        return
-
+    
     enriched = 0
     for article in articles:
-        if x_spend and x_spend.over_budget():
-            print("   X-BUDGET reached mid-run; stopping.")
-            break
         if enriched >= MAX_ENRICHMENTS_PER_RUN:
             print(f"   Hit max enrichments ({MAX_ENRICHMENTS_PER_RUN}) for this run")
             break
