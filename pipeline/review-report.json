@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-25T04:45:25.972133+00:00",
+  "timestamp": "2026-06-25T05:15:16.419781+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 0,
     "flag": 1,
     "fail": 0,
     "error": 0
@@ -11,130 +11,54 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "d4c25748-dbaa-4d8b-9245-cd3f07770fff",
-      "headline": "From Times Square to the Bund, the World Rolled Out Its Mat Again. India's Quietest Export Just Had Its Biggest Day.",
-      "slug": "international-day-of-yoga-2026-kolkata-modi-global-diaspora-times-square-healthy-ageing-20260625",
+      "id": "9b6ceea0-4427-4430-ab75-6effb7e89f08",
+      "headline": "Shraddha Kapoor Gives Birth Backstage, Then Walks Out to Dance. The 'Eetha' Teaser Is the Boldest She's Ever Been.",
+      "slug": "eetha-teaser-shraddha-kapoor-vithabai-narayangaonkar-lavani-biopic-laxman-utekar-dinesh-vijan-maddock-randeep-hooda-august-28-2026-where-to-watch-diaspora-nri-20260624",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "59ed9b08-2c5f-4447-b667-b7575fc9e08b",
+            "headline": "Shraddha Kapoor Dances Through Labour Pain. The 'Eetha' Teas"
+          }
+        ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "people participating in a large outdoor yoga event",
-          "reason": "The photo clearly depicts a large group of people engaged in yoga, which directly aligns with the story about International Day of Yoga."
+          "what_photo_shows": "a headshot of Shraddha Kapoor",
+          "reason": "The photo clearly shows Shraddha Kapoor, who is the named subject of the story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article explicitly addresses the diaspora angle, dedicating a section to 'The Diaspora as Stage' and 'Why It Matters for the Diaspora', making a strong and natural connection."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a quote from a diaspora member participating in one of the events to personalize the 'Why It Matters for the Diaspora' section.",
-          "If possible, include a link to a relevant official source (e.g., MEA, WHO) for the statistics mentioned, enhancing credibility."
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/DZ6yzfLiODj/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel is from 2017 and features a different actress (Disha Patani) in a promotional video for a different film. It has no connection to Shraddha Kapoor or the 'Eetha' film."
+          }
         ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "35812757-f73c-4890-897c-643dfc0018b4",
-      "headline": "Washington Has a New Target in Its Immigration Crackdown: the Lawyers. The First Big Fine Involves Indian Asylum Claims.",
-      "slug": "dhs-ice-fines-immigration-attorneys-fraudulent-asylum-claims-indian-nationals-doddamani-20260625",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Two women signing documents at a desk, with DHS logo visible.",
-          "reason": "The photo shows a scene related to official documents and the DHS, which is relevant to a story about immigration crackdown and fines by DHS."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article explicitly connects the crackdown to Indian asylum claims and dedicates a section to 'Why It Matters for the Diaspora'."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a quote from an immigration lawyer's perspective (not Doddamani) to balance the government's narrative and highlight the concerns for honest practitioners.",
-          "If possible, include a link to the Fox News Digital article mentioned, or the DHS statement, for readers who want to verify the source."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "305d34cd-5ef2-4cd0-87fe-0162602d91cb",
-      "headline": "India's 15-Year-Old Prodigy Will Change in a Room of His Own \u2014 the Safeguarding Rule Behind It",
-      "slug": "vaibhav-sooryavanshi-15-separate-dressing-room-safeguarding-icc-ecb-rules-india-ireland-england-t20i-2026-youngest-debut-tendulkar-record-diaspora-nri",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A young man, identified as Vaibhav Sooryavanshi, next to an older man.",
-          "reason": "The photo caption explicitly identifies the subject as Vaibhav Sooryavanshi, who is the central figure of the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image shows Shraddha Kapoor promoting 'Street Dancer 3D', which is a different film and genre than 'Eetha'. While it's Shraddha Kapoor, it doesn't align with the 'kohl and grit' description of her character in 'Eetha'."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The 'Why the diaspora should care' section directly addresses NRI readers and their connection to the event."
+          "note": "The article explicitly mentions the international theatrical footprint and streaming home (Netflix) for the diaspora, and how the Marathi-flavoured Hindi soundtrack will travel well for audiences abroad. This is a natural and well-integrated angle."
         },
-        "factual_flags": [
-          "IPL 2026 is in the future, but the article states 'Vaibhav Sooryavanshi, 15 years old and already the highest run-scorer of an entire IPL season' and 'Sooryavanshi scored 776 runs in IPL 2026, the most of any batter'. This is an internal contradiction as a future event cannot have already happened and have a highest run-scorer."
-        ],
+        "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Correct the factual inconsistency regarding 'IPL 2026' having already occurred and having a highest run-scorer. This is a significant error.",
-          "Consider adding a quote from an NRI fan or community leader to further strengthen the diaspora angle, making it more personal."
+          "Replace the irrelevant Instagram embed with a relevant one, perhaps a fan reaction to the 'Eetha' teaser if an official one isn't available, or remove it entirely.",
+          "Update the hero image to one that better reflects Shraddha Kapoor's look or the theme of 'Eetha', if available, to enhance visual consistency."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/DZ6yzfLiODj/",
         "promoted to published"
       ],
       "revised": false,
