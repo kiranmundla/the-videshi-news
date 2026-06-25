@@ -203,7 +203,7 @@ def best_photo_tweet(handle, hours=48, topic_keywords=None):
     return tweets[0] if tweets else None
 
 
-def search_topic_posts(query, hours=72, max_results=30, verified_only=True, min_likes=50, require_media=True):
+def search_topic_posts(query, hours=72, max_results=10, verified_only=True, min_likes=50, require_media=True):
     """
     Topic search across ALL of X (not a single timeline) via the recent-search
     endpoint. Returns posts that have usable still media — either a photo OR a

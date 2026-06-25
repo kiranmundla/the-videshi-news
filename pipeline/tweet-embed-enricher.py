@@ -363,11 +363,11 @@ def search_tweet(query, handle=None, category=None):
         if handle:
             candidates = ft.search_topic_posts(
                 f"from:{handle} ({query})", hours=48,
-                max_results=20, verified_only=False, min_likes=0,
+                max_results=10, verified_only=False, min_likes=0,
                 require_media=False)
         if not candidates:
             candidates = ft.search_topic_posts(
-                query, hours=48, max_results=30,
+                query, hours=48, max_results=10,
                 verified_only=True, min_likes=50,
                 require_media=False)
     except Exception as e:

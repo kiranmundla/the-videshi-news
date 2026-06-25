@@ -971,6 +971,11 @@ BODY:
                     # rather than publish an unchecked photo (fail-closed).
                     print(f"  🔒 Held in review — hero image unverifiable, awaiting recheck")
                     result["actions_taken"].append("held: image unverified")
+                elif not (article.get("sources") or []):
+                    # No sources attached → hold rather than publish unsourced.
+                    # Zero-cost field check (no LLM). Writer's next pass re-fills sources.
+                    print(f"  🔒 Held in review — no sources attached, awaiting re-source")
+                    result["actions_taken"].append("held: no sources")
                 else:
                     now_ts = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
                     status = sb_patch(article["id"], {"status": "published", "published_at": now_ts})
@@ -1031,7 +1036,7 @@ def main():
             article_id = sys.argv[i + 1]
     
     # Fetch articles
-    select = "id,headline,subheadline,slug,body,image_url,image_caption,image_entities,vertical,category,published_at,status"
+    select = "id,headline,subheadline,slug,body,image_url,image_caption,image_entities,vertical,category,published_at,status,sources"
     
     if article_id:
         articles = sb_get(f"p2_articles?select={select}&id=eq.{article_id}")

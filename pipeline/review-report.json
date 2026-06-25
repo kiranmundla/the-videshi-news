@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-25T14:45:34.743262+00:00",
+  "timestamp": "2026-06-25T15:15:48.939743+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 3,
     "flag": 2,
     "fail": 0,
     "error": 0
@@ -11,42 +11,56 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "77d526a0-0428-4725-9e05-fb3eee5f3b3e",
-      "headline": "Twin Earthquakes Devastate Venezuela Near Caracas, Killing Scores \u2014 and the Shock Reaches India's Oil Bill",
-      "slug": "venezuela-twin-earthquakes-caracas-thousands-feared-dead-oil-markets-indian-diaspora-20260625",
+      "id": "7aed0f41-2faf-4367-a491-ef6739ea6161",
+      "headline": "King Khan Picks Christmas \u2014 and Walks Straight Into a Hollywood Ambush With Avengers, Dune and The Rock",
+      "slug": "king-shah-rukh-khan-christmas-december-24-2026-release-siddharth-anand-avengers-doomsday-dune-3-jumanji-clash-suhana-khan-deepika-padukone-where-to-watch-diaspora-nri",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "b5f47084-a383-44a6-8df1-dffad52f8184",
+            "headline": "Shah Rukh Khan Takes Back Christmas \u2014 and Brings Suhana With"
+          }
+        ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A cityscape of Caracas, Venezuela, with mountains in the background.",
-          "reason": "The photo shows the city of Caracas, which is directly mentioned in the headline and caption as the location of the earthquakes."
+          "what_photo_shows": "Shah Rukh Khan in a movie poster for 'King'",
+          "reason": "The photo clearly shows Shah Rukh Khan, who is the main subject of the headline and subheadline."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 7,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DT5BfenCKKb/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel is from 2017 and features a generic 'King' post, not related to the specific SRK film 'King' or its 2026 release. It does not contain the quoted text."
+          }
+        ],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 1,
+          "issue": "The image URL points to a poster for a 1999 Hindi film 'King' starring Mithun Chakraborty, not the Shah Rukh Khan film discussed in the article. This is completely mismatched."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 6,
-          "note": "The article explicitly states 'Why It Matters for the Diaspora' but the body cuts off before elaborating. The connection to India's oil bill is a good indirect link, but the direct diaspora angle is missing from the provided text."
+          "quality": 8,
+          "note": "The article effectively integrates the diaspora angle, highlighting the importance of holiday moviegoing for NRIs and the impact of the box office clash on overseas screens and distribution."
         },
-        "factual_flags": [],
+        "factual_flags": [
+          "The article quotes a tweet from Shah Rukh Khan (@iamsrk) saying \"#KING is Ready to ROAR on 24.12.2026 in Cinemas\", but the provided Instagram embed (which is irrelevant) does not contain this quote. The actual source of this quote is not provided, making it difficult to verify."
+        ],
         "duplicate_embeds": [],
         "suggestions": [
-          "Complete the 'Why It Matters for the Diaspora' section to fully develop the angle for NRI readers.",
-          "Consider adding a human interest element or a quote from an NRI about the impact of global oil prices or humanitarian concerns."
+          "Replace the hero image with an appropriate placeholder or a relevant image of Shah Rukh Khan, clearly indicating it's for the upcoming film 'King' if an official poster isn't available. The current image is misleading.",
+          "Verify the source of the Shah Rukh Khan quote regarding the release date and embed the correct tweet or official announcement. The current Instagram embed is incorrect and irrelevant."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DT5BfenCKKb/",
         "promoted to published"
       ],
       "revised": false,
@@ -54,9 +68,9 @@
       "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "694c6f1c-be11-406d-a9c3-6c6952577fd7",
-      "headline": "After Three Years of Talks, the India-UK Trade Deal Finally Goes Live July 15 \u2014 and It Quietly Rewrites the Rules for Indian Workers Abroad",
-      "slug": "india-uk-free-trade-agreement-ceta-goes-live-july-15-goyal-london-scotch-cars-double-contribution-20260625",
+      "id": "5dea3619-5795-472f-836c-757d60bb71cf",
+      "headline": "Anthropic and Amazon Just Picked 40 Indian Startups to Build the Next Wave of AI Agents. The Catch: No Equity, Big Strings.",
+      "slug": "anthropic-aws-agentic-ai-accelerator-bengaluru-40-startups-nri-founder-20260625",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,8 +78,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "India's commerce minister Piyush Goyal",
-          "reason": "The photo shows the named individual, who is directly relevant to the story about the India-UK trade deal."
+          "what_photo_shows": "developers working on computers in an office setting",
+          "reason": "The photo depicts developers at work, which is directly relevant to a story about AI agents and startups."
         },
         "inline_image_mismatches": []
       },
@@ -73,19 +87,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image of a person working on a laptop is generic and doesn't specifically represent AI agents, startups, or the India context. While not entirely mismatched, it could be more thematic."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article explicitly connects the trade deal to NRIs, particularly regarding the Double Contribution Convention and skilled worker visas, and even has a dedicated 'Why It Matters for the Diaspora' section."
+          "note": "The 'Why the diaspora is watching closely' section directly and effectively connects the article's topic to NRI/diaspora readers, discussing capital flow and talent gravity shifts."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a brief quote from an Indian professional or company benefiting from the 'Double Contribution Convention' to add a human element.",
-          "Expand slightly on the 'NRIs who ru' sentence at the end, as it seems cut off and could provide further context on the diaspora's role."
+          "Consider adding a quote from an Indian startup founder or an NRI investor to further humanize the impact of this accelerator.",
+          "Explore if there's any public sentiment or debate within India regarding the 'sovereign AI' vs. foreign platform reliance, which could add another layer to the 'competitive wrinkle' section."
         ],
         "verdict": "pass"
       },
@@ -97,18 +111,66 @@
       "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "0d937bfb-3654-45e6-a37f-fa9ccca8c053",
-      "headline": "India Quietly Sells Down Its Crown Jewels \u2014 the IRFC Stake Sale Shows the Disinvestment Machine Is Back",
-      "slug": "india-disinvestment-drive-irfc-ofs-2-percent-stake-rs91-floor-oversubscribed-dipam-fy27-target-nri-investor-20260625-1400",
+      "id": "f7e83d51-1095-4cf2-ba90-33b56d4fbbda",
+      "headline": "Qualcomm Spent 25 Years Selling Phone Chips. It Just Told Wall Street Two-Thirds of Its Future Isn't Phones.",
+      "slug": "qualcomm-investor-day-data-center-meta-azure-modular-nri-engineers-20260625",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "A microprocessor on a motherboard.",
+          "reason": "The photo shows a microprocessor, which is directly relevant to a story about Qualcomm's shift towards AI infrastructure and chips."
+        },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 6,
+          "issue": "The image shows a generic circuit board, which is broadly related to tech but doesn't specifically represent Qualcomm, phone chips, or data centers. It's not a strong match for the headline's specific focus."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The diaspora angle is well-integrated and provides a relevant, non-forced connection to Indian-origin talent in the tech industry, H-1B workers, and Qualcomm's presence in India. It directly addresses how Qualcomm's pivot impacts this demographic."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider replacing the hero image with one that more directly relates to Qualcomm, data centers, or the shift from phone chips, if possible, to enhance visual relevance.",
+          "While the article is strong, a brief mention of any specific Indian-origin leaders or key engineers within Qualcomm driving this pivot, if publicly available, could further strengthen the diaspora connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "8e483063-d001-493d-8259-0f4f9b2d526d",
+      "headline": "India Won't Ban Crypto. It Just Made Sure It Can See Every Trade Over $10,000.",
+      "slug": "india-crypto-aml-otc-10000-binance-travel-rule-nri-investors-20260625",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "A stack of Bitcoin tokens",
+          "reason": "The photo clearly shows Bitcoin tokens, which are directly relevant to a story about crypto regulation."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
         "embed_issues": [],
         "image_match": {
           "score": 8,
@@ -116,14 +178,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 6,
-          "note": "The article discusses Indian economic policy and market activity, which is relevant to NRIs with investments in India or an interest in the Indian economy. However, it doesn't explicitly connect to diaspora-specific concerns or opportunities."
+          "quality": 9,
+          "note": "The diaspora angle is well-integrated and provides specific, actionable insights for NRI readers regarding crypto transactions and tax implications."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a paragraph or two that explicitly addresses how these disinvestment trends might impact NRI investments, remittances, or the overall economic outlook for those with ties to India.",
-          "Ensure the image URL and entities are populated for future reviews to accurately assess image match."
+          "Consider adding a brief explanation of what 'TDS' means for readers who might not be familiar with Indian tax terminology.",
+          "The article ends abruptly. Ensure the conclusion is complete and provides a final thought or summary."
         ],
         "verdict": "pass"
       },
@@ -144,12 +206,12 @@
         "duplicate_images": [],
         "broken_embeds": [
           {
-            "url": "https://x.com/bmj_latest/status/1745700760431448510",
+            "url": "https://x.com/bmj_latest/status/1745487661073832049",
             "problem": "broken",
             "detail": "react-tweet returned null (deleted/protected/nonexistent)"
           },
           {
-            "url": "https://instagram.com/p/C2o2R2tN_75/",
+            "url": "https://instagram.com/p/C03p52-uY9Q",
             "problem": "broken",
             "detail": "Instagram embed shows removed/broken placeholder"
           }
@@ -160,25 +222,25 @@
         "overall_score": 6,
         "embed_issues": [],
         "image_match": {
-          "score": 1,
-          "issue": "No image URL or entities provided, making it impossible to assess the match."
+          "score": 5,
+          "issue": "No image URL or entities provided, making it impossible to assess the match. This is a critical missing piece for a news article."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 7,
-          "note": "The diaspora angle is present and directly addresses the community's exercise habits, making it relevant. It could be slightly expanded with more specific examples or cultural nuances."
+          "note": "The diaspora angle is present and relevant, connecting the general wellness advice to specific habits observed within the Indian diaspora. It feels natural rather than forced."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Add specific examples of varied exercises that might appeal to or be accessible within the Indian diaspora community (e.g., yoga, dance forms, community sports beyond cricket/badminton).",
-          "Expand on the 'outsized burden of heart disease' for the community, perhaps with a statistic or a brief explanation, to strengthen the 'why it matters' section."
+          "Ensure a hero image URL and its entities are provided for review, as this is a crucial element for any news article.",
+          "Expand the 'Why It Matters for the Diaspora' section slightly to offer more concrete examples or perhaps a brief quote from an expert on diaspora health, if possible, to strengthen the connection."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
         "Removed 2 broken/hallucinated embed(s)",
-        "Revised by gemini-2.5-flash (804\u2192838 words)"
+        "Revised by gemini-2.5-flash (836\u2192838 words)"
       ],
       "revised": true,
       "unpublished": false,
