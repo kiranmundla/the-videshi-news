@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-06-19T13:00:00Z",
-  "week_of": "Jun 19 – Jun 25, 2026",
-  "editorial_intro": "Pixar brings the toys back after a decade, Bollywood floods the box office with Cocktail 2's four-star opening, and Spielberg's Disclosure Day still rules the multiplex. Add a stone-cold critics' favorite in The Furious and you've got the most loaded weekend of the summer so far.",
+  "generated_at": "2026-06-26T13:00:00Z",
+  "week_of": "Jun 26 – Jul 2, 2026",
+  "editorial_intro": "Pixar's Toy Story 5 still owns the multiplex, but the diaspora's spoiled for choice this weekend: Akshay Kumar's 25-star Welcome to the Jungle and the Gippy Grewal Punjabi juggernaut Carry on Jatta 4 both land wide, while Ram Charan's Peddi and Samantha's Maa Inti Bangaaram keep South cinema packing overseas houses. Add Supergirl's DC swing and Spielberg's Disclosure Day, and there's no excuse to stay home.",
   "movies": [
     {
       "title": "Toy Story 5",
@@ -9,8 +9,8 @@
       "genre": "Animation",
       "year": 2026,
       "poster_url": "https://upload.wikimedia.org/wikipedia/en/0/08/Toy_Story_5_poster.jpg",
-      "rating": "",
-      "rating_source": "",
+      "rating": "#1 Box Office ($214M+)",
+      "rating_source": "box_office",
       "release_date": "2026-06-19",
       "status": "now_playing",
       "cast": [
@@ -20,31 +20,124 @@
         "Tony Hale"
       ],
       "director": "Andrew Stanton",
-      "why_watch": "Woody, Buzz, and the gang are back after more than a decade — and this time the enemy is a screen, not a villain. Pixar's most loaded nostalgia bomb of the year is tracking for one of the biggest animated openings ever. You'll cry harder than the kids.",
+      "why_watch": "Woody, Buzz and the gang are back after more than a decade, and this time the enemy is a screen, not a villain. It crushed its opening weekend at $214M and is still the undisputed king of the multiplex. You'll cry harder than the kids.",
       "is_indian": false,
       "ticket_url": "https://www.google.com/search?q=Toy+Story+5+showtimes+near+me",
       "language": "English"
     },
     {
-      "title": "Cocktail 2",
-      "slug": "cocktail-2",
-      "genre": "Romance",
+      "title": "Welcome To The Jungle",
+      "slug": "welcome-to-the-jungle",
+      "genre": "Comedy",
       "year": 2026,
-      "poster_url": "https://upload.wikimedia.org/wikipedia/en/2/23/Cocktail_2_poster.jpg",
-      "rating": "4/5 (Taran Adarsh)",
+      "poster_url": "https://upload.wikimedia.org/wikipedia/en/d/d6/Welcometothejungle.jpg",
+      "rating": "3.5/5 (Taran Adarsh)",
+      "rating_source": "critics",
+      "release_date": "2026-06-26",
+      "status": "now_playing",
+      "cast": [
+        "Akshay Kumar",
+        "Suniel Shetty",
+        "Arshad Warsi",
+        "Paresh Rawal",
+        "Jacqueline Fernandez",
+        "Disha Patani"
+      ],
+      "director": "Ahmed Khan",
+      "why_watch": "The third Welcome film is a 25-plus star circus, and the verdict is in: leave logic at home and let the chaos win. Taran Adarsh calls it 'entertaining,' fans say they couldn't stop laughing, and there's no better place to see it than a packed diaspora theater on opening weekend.",
+      "is_indian": true,
+      "ticket_url": "https://www.google.com/search?q=Welcome+To+The+Jungle+2026+showtimes+near+me",
+      "language": "Hindi"
+    },
+    {
+      "title": "Carry On Jatta 4",
+      "slug": "carry-on-jatta-4",
+      "genre": "Comedy",
+      "year": 2026,
+      "poster_url": "",
+      "rating": "",
+      "rating_source": "",
+      "release_date": "2026-06-26",
+      "status": "now_playing",
+      "cast": [
+        "Gippy Grewal",
+        "Binnu Dhillon",
+        "Sargun Mehta",
+        "Gurpreet Ghuggi",
+        "Karamjit Anmol"
+      ],
+      "director": "Smeep Kang",
+      "why_watch": "The fourth chapter of Pollywood's funniest franchise, and a tearjerker behind the camera: late comedy legend Jaswinder Bhalla returns as Advocate Dhillon via a six-month VFX recreation made with his family's blessing. Goosebump nostalgia plus the trademark misunderstanding-driven mayhem. A Punjabi-cinema event, not just a movie.",
+      "is_indian": true,
+      "ticket_url": "https://www.google.com/search?q=Carry+On+Jatta+4+showtimes+near+me",
+      "language": "Punjabi"
+    },
+    {
+      "title": "Supergirl",
+      "slug": "supergirl",
+      "genre": "Superhero Action",
+      "year": 2026,
+      "poster_url": "https://upload.wikimedia.org/wikipedia/en/e/e1/The_Supergirls.jpg",
+      "rating": "",
+      "rating_source": "",
+      "release_date": "2026-06-26",
+      "status": "now_playing",
+      "cast": [
+        "Milly Alcock",
+        "Jason Momoa",
+        "Matthias Schoenaerts",
+        "Eve Ridley"
+      ],
+      "director": "Craig Gillespie",
+      "why_watch": "Milly Alcock's hard-living, foul-mouthed Kara Zor-El takes a cosmic road trip alongside Jason Momoa's bounty hunter Lobo, with a David Corenswet Superman cameo. Critics call it 'fine' rather than great, but Gillespie (I, Tonya; Cruella) swings for a grittier, weirder DC than Superman. Worth a look if you want the big-screen spectacle.",
+      "is_indian": false,
+      "ticket_url": "https://www.google.com/search?q=Supergirl+2026+movie+showtimes+near+me",
+      "language": "English"
+    },
+    {
+      "title": "Peddi",
+      "slug": "peddi",
+      "genre": "Sports Action Drama",
+      "year": 2026,
+      "poster_url": "https://upload.wikimedia.org/wikipedia/en/2/26/Peddi_Poster.jpg",
+      "rating": "$3M+ North America",
+      "rating_source": "box_office",
+      "release_date": "2026-06-04",
+      "status": "now_playing",
+      "cast": [
+        "Ram Charan",
+        "Janhvi Kapoor",
+        "Shiva Rajkumar",
+        "Jagapathi Babu",
+        "Divyenndu"
+      ],
+      "director": "Buchi Babu Sana",
+      "why_watch": "Ram Charan's rugged comeback as a lower-caste village cricketer-turned-wrestler fighting for his people's dignity, scored by A.R. Rahman. The writing is uneven, but the highest-grossing Telugu film of the year has already crossed $3M in North America. Go for the scale, the Rahman soundtrack, and a fired-up Charan.",
+      "is_indian": true,
+      "ticket_url": "https://www.google.com/search?q=Peddi+Ram+Charan+showtimes+near+me",
+      "language": "Telugu"
+    },
+    {
+      "title": "Maa Inti Bangaaram",
+      "slug": "maa-inti-bangaaram",
+      "genre": "Action Family Drama",
+      "year": 2026,
+      "poster_url": "https://upload.wikimedia.org/wikipedia/en/2/2a/Maa_Inti_Bangaaram_poster.jpg",
+      "rating": "3/5 (123telugu)",
       "rating_source": "critics",
       "release_date": "2026-06-19",
       "status": "now_playing",
       "cast": [
-        "Shahid Kapoor",
-        "Kriti Sanon",
-        "Rashmika Mandanna"
+        "Samantha Ruth Prabhu",
+        "Gulshan Devaiah",
+        "Diganth Manchale",
+        "Gautami"
       ],
-      "director": "Homi Adajania",
-      "why_watch": "Fourteen years on, Homi Adajania revives Bollywood's defining urban rom-com — this time with Shahid, Kriti and Rashmika in a messy modern love triangle, and a Pritam soundtrack already on repeat. Critics are calling it a 'WINNER,' and it topped IMDb's most-anticipated list of the year. The diaspora date-night pick of the summer.",
+      "director": "B.V. Nandini Reddy",
+      "why_watch": "Samantha flips the 'perfect housewife' trope on its head as a homemaker with a deadly secret past, in a 90s-set thriller producer Raj Nidimoru says resonated harder than Stree or The Family Man. The second half wobbles, but Samantha carries the whole film, and it's already past ₹50 crore worldwide. Her show, start to finish.",
       "is_indian": true,
-      "ticket_url": "https://www.google.com/search?q=Cocktail+2+showtimes+near+me",
-      "language": "Hindi"
+      "ticket_url": "https://www.google.com/search?q=Maa+Inti+Bangaaram+showtimes+near+me",
+      "language": "Telugu"
     },
     {
       "title": "Disclosure Day",
@@ -64,29 +157,31 @@
         "Eve Hewson"
       ],
       "director": "Steven Spielberg",
-      "why_watch": "Spielberg's first alien movie since War of the Worlds is a government-conspiracy thriller critics are calling his best sci-fi since Close Encounters. It topped the box office on debut and Emily Blunt is already drawing Oscar buzz. Pure big-screen Spielberg.",
+      "why_watch": "Spielberg's first alien movie since War of the Worlds is a government-conspiracy thriller critics are calling his best sci-fi since Close Encounters. It opened at #1 and Emily Blunt is already drawing Oscar buzz. Pure big-screen Spielberg.",
       "is_indian": false,
       "ticket_url": "https://www.google.com/search?q=Disclosure+Day+showtimes+near+me",
       "language": "English"
     },
     {
-      "title": "The Furious",
-      "slug": "the-furious",
-      "genre": "Action",
+      "title": "Cocktail 2",
+      "slug": "cocktail-2",
+      "genre": "Romance",
       "year": 2026,
-      "poster_url": "https://upload.wikimedia.org/wikipedia/en/e/eb/The_Furious_poster.jpg",
-      "rating": "Critics' 'Best of the Year' action pick",
+      "poster_url": "https://upload.wikimedia.org/wikipedia/en/2/23/Cocktail_2_poster.jpg",
+      "rating": "4/5 (Taran Adarsh)",
       "rating_source": "critics",
       "release_date": "2026-06-19",
       "status": "now_playing",
       "cast": [
-        "Tse Miu"
+        "Shahid Kapoor",
+        "Kriti Sanon",
+        "Rashmika Mandanna"
       ],
-      "director": "Kenji Tanigaki",
-      "why_watch": "The action film that united critics and fans this year. Choreographer-turned-director Kenji Tanigaki delivers bone-crunching, wall-to-wall combat in the tradition of The Raid. Limited US screens, so hunt it down — it's destined to be a martial-arts cult classic.",
-      "is_indian": false,
-      "ticket_url": "https://www.google.com/search?q=The+Furious+2026+showtimes+near+me",
-      "language": "Cantonese"
+      "director": "Homi Adajania",
+      "why_watch": "Fourteen years on, Homi Adajania revives Bollywood's defining urban rom-com with Shahid, Kriti and Rashmika in a messy modern love triangle, and a Pritam soundtrack already on repeat. Critics are calling it a winner. The diaspora date-night pick of the summer.",
+      "is_indian": true,
+      "ticket_url": "https://www.google.com/search?q=Cocktail+2+showtimes+near+me",
+      "language": "Hindi"
     },
     {
       "title": "Main Vaapas Aaunga",
@@ -105,75 +200,10 @@
         "Naseeruddin Shah"
       ],
       "director": "Imtiaz Ali",
-      "why_watch": "Imtiaz Ali + A.R. Rahman + Diljit + Naseeruddin Shah in a Partition-era love story spanning 78 years. Naseer's turn as a dementia-stricken patriarch is being called career-defining. Bring tissues — this one lingers.",
+      "why_watch": "Imtiaz Ali + A.R. Rahman + Diljit + Naseeruddin Shah in a Partition-era love story spanning 78 years. Naseer's turn as a dementia-stricken patriarch is being called career-defining. Bring tissues; this one lingers.",
       "is_indian": true,
       "ticket_url": "https://www.google.com/search?q=Main+Vaapas+Aaunga+showtimes+near+me",
       "language": "Hindi"
-    },
-    {
-      "title": "Scary Movie",
-      "slug": "scary-movie-6",
-      "genre": "Horror Comedy",
-      "year": 2026,
-      "poster_url": "https://upload.wikimedia.org/wikipedia/en/2/29/Movie_poster_for_%22Scary_Movie%22.jpg",
-      "rating": "$105M+ worldwide",
-      "rating_source": "box_office",
-      "release_date": "2026-06-05",
-      "status": "now_playing",
-      "cast": [
-        "Anna Faris",
-        "Regina Hall",
-        "Marlon Wayans",
-        "Shawn Wayans",
-        "Kenan Thompson"
-      ],
-      "director": "Michael Tiddes",
-      "why_watch": "The Wayans brothers reunite the original cast for the first time since 2001 and shattered every franchise record with a $55M domestic opening. It's dumb, it's raunchy, audiences can't get enough. Leave your brain at the door.",
-      "is_indian": false,
-      "ticket_url": "https://www.google.com/search?q=Scary+Movie+2026+showtimes+near+me",
-      "language": "English"
-    },
-    {
-      "title": "Backrooms",
-      "slug": "backrooms",
-      "genre": "Sci-Fi Horror",
-      "year": 2026,
-      "poster_url": "https://upload.wikimedia.org/wikipedia/en/3/3d/Backrooms_%28film%29_poster.jpg",
-      "rating": "$212M+ worldwide",
-      "rating_source": "box_office",
-      "release_date": "2026-05-27",
-      "status": "now_playing",
-      "cast": [
-        "Chiwetel Ejiofor",
-        "Renate Reinsve",
-        "Finn Bennett",
-        "Lukita Maxwell"
-      ],
-      "director": "Kane Parsons",
-      "why_watch": "A24's highest-grossing film ever, directed by a 20-year-old YouTube creator. A creepypasta turned liminal nightmare that makes empty hallways and fluorescent lights genuinely terrifying. The internet's horror canon goes mainstream.",
-      "is_indian": false,
-      "ticket_url": "https://www.google.com/search?q=Backrooms+A24+movie+showtimes+near+me",
-      "language": "English"
-    },
-    {
-      "title": "Obsession",
-      "slug": "obsession",
-      "genre": "Horror",
-      "year": 2026,
-      "poster_url": "https://upload.wikimedia.org/wikipedia/en/0/05/Obsession_theatrical_poster.jpeg",
-      "rating": "$230M+ worldwide",
-      "rating_source": "box_office",
-      "release_date": "2026-05-01",
-      "status": "now_playing",
-      "cast": [
-        "Michael Johnston",
-        "Inde Navarrette"
-      ],
-      "director": "Curry Barker",
-      "why_watch": "Made for under $1M, now past $230M worldwide. A deranged monkey's-paw horror with a star-making turn from Inde Navarrette. The year's biggest box-office Cinderella story is still packing seats.",
-      "is_indian": false,
-      "ticket_url": "https://www.google.com/search?q=Obsession+2026+movie+showtimes+near+me",
-      "language": "English"
     },
     {
       "title": "Pressure",
@@ -198,71 +228,44 @@
       "language": "English"
     },
     {
-      "title": "Bandar",
-      "slug": "bandar",
-      "genre": "Crime Drama",
+      "title": "The Furious",
+      "slug": "the-furious",
+      "genre": "Action",
       "year": 2026,
-      "poster_url": "https://upload.wikimedia.org/wikipedia/en/5/56/Bandar_film_poster.jpg",
-      "rating": "3/5 avg",
+      "poster_url": "https://upload.wikimedia.org/wikipedia/en/e/eb/The_Furious_poster.jpg",
+      "rating": "Critics' 'Best of the Year' action pick",
       "rating_source": "critics",
-      "release_date": "2026-06-05",
+      "release_date": "2026-06-12",
       "status": "now_playing",
       "cast": [
-        "Bobby Deol",
-        "Sanya Malhotra",
-        "Sapna Pabbi",
-        "Saba Azad"
+        "Tse Miu"
       ],
-      "director": "Anurag Kashyap",
-      "why_watch": "Anurag Kashyap's grittiest film in years — Bobby Deol strips away all vanity as a fading star caught in India's legal labyrinth. Premiered at TIFF. Not an easy watch, but a powerful one.",
-      "is_indian": true,
-      "ticket_url": "https://www.google.com/search?q=Bandar+Anurag+Kashyap+showtimes+near+me",
-      "language": "Hindi"
-    },
-    {
-      "title": "Welcome To The Jungle",
-      "slug": "welcome-to-the-jungle",
-      "genre": "Comedy",
-      "year": 2026,
-      "poster_url": "https://upload.wikimedia.org/wikipedia/en/d/d6/Welcometothejungle.jpg",
-      "rating": "",
-      "rating_source": "",
-      "release_date": "2026-06-26",
-      "status": "coming_soon",
-      "cast": [
-        "Akshay Kumar",
-        "Suniel Shetty",
-        "Arshad Warsi",
-        "Disha Patani",
-        "Jacqueline Fernandez",
-        "Paresh Rawal"
-      ],
-      "director": "Ahmed Khan",
-      "why_watch": "The third Welcome film is a full-blown ensemble circus — 25-plus stars, Akshay Kumar back with Ahmed Khan after 19 years, and the kind of loud, all-out comedy that plays best in a packed diaspora theater. Switch your brain off and laugh.",
-      "is_indian": true,
-      "ticket_url": "https://www.google.com/search?q=Welcome+To+The+Jungle+2026+showtimes+near+me",
-      "language": "Hindi"
-    },
-    {
-      "title": "Supergirl",
-      "slug": "supergirl",
-      "genre": "Superhero Action",
-      "year": 2026,
-      "poster_url": "https://upload.wikimedia.org/wikipedia/en/e/e1/The_Supergirls.jpg",
-      "rating": "",
-      "rating_source": "",
-      "release_date": "2026-06-26",
-      "status": "coming_soon",
-      "cast": [
-        "Milly Alcock",
-        "Jason Momoa",
-        "Matthias Schoenaerts",
-        "Eve Ridley"
-      ],
-      "director": "Craig Gillespie",
-      "why_watch": "The DC universe rolls on after Superman. Milly Alcock's hard-living, foul-mouthed Kara Zor-El squares off against Jason Momoa's intergalactic bounty hunter Lobo. Looks wilder and weirder than its predecessor.",
+      "director": "Kenji Tanigaki",
+      "why_watch": "The action film that united critics and fans this year. Choreographer-turned-director Kenji Tanigaki delivers bone-crunching, wall-to-wall combat in the tradition of The Raid. Limited US screens, so hunt it down; it's destined to be a martial-arts cult classic.",
       "is_indian": false,
-      "ticket_url": "https://www.google.com/search?q=Supergirl+2026+movie+showtimes+near+me",
+      "ticket_url": "https://www.google.com/search?q=The+Furious+2026+showtimes+near+me",
+      "language": "Cantonese"
+    },
+    {
+      "title": "Backrooms",
+      "slug": "backrooms",
+      "genre": "Sci-Fi Horror",
+      "year": 2026,
+      "poster_url": "https://upload.wikimedia.org/wikipedia/en/3/3d/Backrooms_%28film%29_poster.jpg",
+      "rating": "88% RT",
+      "rating_source": "Rotten Tomatoes",
+      "release_date": "2026-05-27",
+      "status": "now_playing",
+      "cast": [
+        "Chiwetel Ejiofor",
+        "Renate Reinsve",
+        "Finn Bennett",
+        "Lukita Maxwell"
+      ],
+      "director": "Kane Parsons",
+      "why_watch": "A24's highest-grossing film ever, directed by a 20-year-old YouTube creator. A creepypasta turned liminal nightmare that makes empty hallways and fluorescent lights genuinely terrifying. The internet's horror canon goes mainstream.",
+      "is_indian": false,
+      "ticket_url": "https://www.google.com/search?q=Backrooms+A24+movie+showtimes+near+me",
       "language": "English"
     }
   ]
