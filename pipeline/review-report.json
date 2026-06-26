@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-26T10:45:39.138767+00:00",
+  "timestamp": "2026-06-26T11:15:51.604916+00:00",
   "mode": "fix",
   "stats": {
     "pass": 3,
@@ -7,13 +7,13 @@
     "fail": 0,
     "error": 0
   },
-  "revisions": 1,
+  "revisions": 0,
   "unpublished": 0,
   "articles": [
     {
-      "id": "99fd630e-8e2c-48a7-a8b5-6a21bde1876f",
-      "headline": "Europe Is Living Through Its Worst Heatwave on Record. Millions of Indians Live Right In It.",
-      "slug": "europe-record-heatwave-june-2026-uk-france-code-red-deaths-indian-diaspora-climate-change-20260626",
+      "id": "08ca90ed-eb79-4afd-8fbe-538dbfce7726",
+      "headline": "Samantha Ruth Prabhu Stood Up at a Success Party and Announced She's Pregnant \u2014 No Caption Needed",
+      "slug": "samantha-ruth-prabhu-pregnancy-announcement-raj-nidimoru-first-child-maa-inti-bangaaram-maternity-break-december-2026-where-to-watch-diaspora-nri-20260626",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,61 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Satellite image of southern Europe, specifically Greece and its islands.",
-          "reason": "The photo shows a satellite image of southern Europe during a heatwave, which directly relates to the story about a European heatwave."
+          "what_photo_shows": "Samantha Ruth Prabhu in a red dress and sunglasses",
+          "reason": "The photo clearly shows the named person, Samantha Ruth Prabhu, matching the story's subject."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DZ9aajCBbAr/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel is from 2017 and features a dog, completely unrelated to Samantha Ruth Prabhu's pregnancy announcement or her career."
+          }
+        ],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article explicitly connects Samantha's global appeal to NRI households and her influence on diaspora audiences, making the angle natural and well-integrated."
+        },
+        "factual_flags": [
+          "The article states Samantha and Raj Nidimoru married on December 1, 2025, which is a future date and contradicts the timeline of her current pregnancy announcement and previous collaborations. This is likely a typo.",
+          "The article mentions 'Maa Inti Bangaaram' as a Telugu hit, but this film title does not appear to exist in Samantha Ruth Prabhu's filmography. Her recent hit is 'Kushi'."
+        ],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Correct the factual errors regarding the film title ('Maa Inti Bangaaram' to 'Kushi') and the marriage date of Samantha and Raj Nidimoru.",
+          "Replace the irrelevant Instagram embed with a relevant social media post about Samantha's pregnancy, her recent work, or fan reactions."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DZ9aajCBbAr/",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "b2d5d81c-5c08-4183-a788-98c9a8e7c309",
+      "headline": "Emraan Hashmi Wipes the Frost Off the Glass \u2014 and Bollywood Horror Has Its King Back",
+      "slug": "rooh-emraan-hashmi-musical-horror-return-mayank-sharma-breathe-vicked-films-2027-hindi-tamil-telugu-where-to-watch-diaspora-nri-20260626",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Emraan Hashmi in a pink shirt at an event",
+          "reason": "The photo clearly shows Emraan Hashmi, who is the named subject of the story."
         },
         "inline_image_mismatches": []
       },
@@ -35,14 +88,57 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article explicitly addresses the diaspora angle in a dedicated section and integrates it well throughout."
+          "quality": 8,
+          "note": "The article explicitly connects the film's multi-language release and theatrical event status to NRI audiences and their access to such content abroad, making the diaspora angle natural and relevant."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a small section on resources or advice for diaspora members in Europe to cope with heatwaves, if appropriate for the platform's editorial guidelines.",
-          "Perhaps include a quote from an Indian diaspora member experiencing the heatwave to add a personal touch."
+          "Consider adding a link to the 'Rooh' motion poster if available on a public platform (e.g., YouTube, Instagram) to enhance reader engagement.",
+          "Briefly mention the original 'Awarapan' to provide context for 'Awarapan 2' for readers who might not be familiar with the first film."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "0b1160a9-d5e4-412a-9770-279f9e711751",
+      "headline": "India's Teenage Shooters Are Topping a World Championship in Germany \u2014 and Rewriting the Record Book",
+      "slug": "issf-junior-world-championship-2026-suhl-germany-india-top-medal-standings-abhinav-shaw-shambhavi-kshirsagar-junior-world-record-shiva-narwal-shooting-diaspora-nri",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Two junior shooters, one Indian, in an air rifle competition.",
+          "reason": "The photo depicts an Indian junior shooter in an air rifle event, which directly aligns with the story about India's teenage shooters topping a world championship in Germany in 10m air rifle."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article explicitly mentions 'diaspora' and 'NRI' in the image URL, and the platform's target audience is NRIs, making the connection natural for the platform."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a quote from one of the young athletes or a coach to add a personal touch and emotional depth to the story.",
+          "While the diaspora angle is present in the platform's context, a brief sentence in the body text explicitly linking the success to pride for NRIs could strengthen it further without being forced."
         ],
         "verdict": "pass"
       },
@@ -70,85 +166,6 @@
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 6,
-        "embed_issues": [],
-        "image_match": {
-          "score": 8,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The 'Why It Matters for the Diaspora' section directly addresses the NRI/diaspora angle, making it relevant."
-        },
-        "factual_flags": [
-          "The article mentions 'summer of 2024' for visa counters going dark, then 'August 5, 2024' for the suspension start, and later 'nearly two years' of suspension. However, the announcement date is June 25, 2026, and the resumption date is June 28, 2026. If the suspension started in August 2024 and ended in June 2026, that's less than two years (approx. 1 year 10 months). This creates a slight inconsistency in the 'nearly two years' claim.",
-          "The article states 'India's tourist visa counters in Dhaka had gone dark in the summer of 2024, casualties of a political rupture that sent relations between the two neighbours into a deep freeze.' and then 'The reopening is the most concrete step yet in a careful diplomatic thaw. Ties had soured badly during the 18-month interim administration of Muhammad Yunus, strained by India's hosting of the deposed Hasina and by rhetoric from Dhaka about India's northeast that New Delhi viewed as provocative.' This implies the political rupture and souring of ties happened *before* the interim administration of Yunus, or at least coincided with the ouster of Hasina. However, it then says 'The situation began to stabilise after Tarique Rahman of the Bangladesh Nationalist Party was sworn in as Prime Prime Minister in February 2026, replacing the interim setup with an elected government that has pursued a more pragmatic, trade-focused engagement with India.' This timeline is confusing. If Hasina was ousted in 2024, and Yunus's interim administration followed, and then Rahman was sworn in in Feb 2026, the '18-month interim administration' doesn't quite align with the 'nearly two years' of suspension. The dates and sequence of political events need careful verification for accuracy and clarity."
-        ],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Clarify the exact timeline of political events and visa suspension dates to ensure consistency and accuracy, especially regarding the 'nearly two years' claim.",
-          "Expand on the 'A normalised visa regime also' sentence, as it cuts off abruptly, leaving the reader hanging."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Revised by gemini-2.5-flash (728\u2192791 words)"
-      ],
-      "revised": true,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "f79f1306-331b-4586-9133-a36ffcd40949",
-      "headline": "Meta Bets $900 Million on an Indian Fintech \u2014 and Hands an Indian Founder the Keys to WhatsApp",
-      "slug": "meta-900-million-cred-investment-kunal-shah-whatsapp-head-4-5-billion-valuation-india-payments-superapp-nri-investor-20260626-1000",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "No image URL or entities provided, so cannot fully assess. Assuming a relevant image of Kunal Shah or Meta/WhatsApp would be used."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The 'Why It Matters for the Diaspora' section is well-integrated and clearly articulates the relevance of WhatsApp to NRI life and the symbolism of an Indian founder leading it."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Ensure the hero image clearly features Kunal Shah or a relevant visual representing Meta/WhatsApp and CRED to enhance immediate reader understanding.",
-          "Consider adding a brief mention of the specific challenges WhatsApp Payments faced in India (e.g., UPI competition, regulatory hurdles) to provide more context for its past struggles."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "6cddd6b9-86c4-4e9b-ab34-e1d36bc517db",
-      "headline": "Five Minutes Every Hour: A Simple Movement Habit Lifted Mood and Cut Fatigue, a Study Finds",
-      "slug": "five-minute-movement-breaks-hourly-mood-fatigue-columbia-keith-diaz-bjsm-11500-adults-sitting-diaspora-20260626-1000",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
         "overall_score": 7,
         "embed_issues": [],
         "image_match": {
@@ -157,14 +174,16 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The diaspora angle is explicitly addressed and well-justified, connecting the study's findings to the specific health vulnerabilities and work patterns of NRIs."
+          "quality": 7,
+          "note": "The article explicitly connects the reopening to families straddling the border and Bangladeshi-origin communities abroad, making the diaspora angle natural and relevant."
         },
-        "factual_flags": [],
+        "factual_flags": [
+          "The article mentions 'August 2024' for the initial closure and 'June 28, 2026' for reopening, which is a 22-month suspension. However, the headline states 'After Nearly Two Years', which is slightly inconsistent with 22 months. While 'nearly two years' is acceptable, it's worth noting."
+        ],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a specific example of a 'movement snack' relevant to an office setting, perhaps a quick stretch routine or a walk to a different floor.",
-          "While the article is strong, a quote from an NRI professional or health expert on the topic could further strengthen the diaspora angle."
+          "Ensure consistent phrasing for the duration of the suspension (e.g., 'nearly two years' vs. '22 months').",
+          "Consider adding a quote from a Bangladeshi citizen or a member of the diaspora expressing their relief or perspective on the reopening to enhance the human element."
         ],
         "verdict": "pass"
       },
