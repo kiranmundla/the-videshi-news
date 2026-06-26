@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-06-25T22:01:44Z",
-  "stage": "Group Stage — 56 of 72 matches played",
+  "last_updated": "2026-06-26T01:57:26Z",
+  "stage": "Group Stage — 57 of 72 matches played",
   "hosts": "USA, Mexico & Canada",
   "dates": {
     "start": "2026-06-11",
@@ -292,13 +292,13 @@
         "code": "NED",
         "flag": "🇳🇱",
         "rank": 8,
-        "p": 2,
-        "w": 1,
+        "p": 3,
+        "w": 2,
         "d": 1,
         "l": 0,
-        "gf": 7,
-        "ga": 3,
-        "pts": 4
+        "gf": 10,
+        "ga": 4,
+        "pts": 7
       },
       {
         "name": "Japan",
@@ -331,12 +331,12 @@
         "code": "TUN",
         "flag": "🇹🇳",
         "rank": 46,
-        "p": 2,
+        "p": 3,
         "w": 0,
         "d": 0,
-        "l": 2,
-        "gf": 1,
-        "ga": 9,
+        "l": 3,
+        "gf": 2,
+        "ga": 12,
         "pts": 0
       }
     ],
@@ -1540,8 +1540,8 @@
       "away": "Netherlands",
       "venue": "Arrowhead Stadium",
       "city": "Kansas City",
-      "status": "scheduled",
-      "score": null,
+      "status": "FT",
+      "score": "1-3",
       "home_code": "TUN",
       "away_code": "NED"
     },
