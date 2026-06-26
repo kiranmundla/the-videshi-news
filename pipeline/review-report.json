@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-26T16:15:26.387702+00:00",
+  "timestamp": "2026-06-26T16:45:30.095644+00:00",
   "mode": "fix",
   "stats": {
     "pass": 2,
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "a2d7c948-98a3-4489-bb9c-b5af098c28f1",
-      "headline": "Texas Found a Way to Police H-1B Visas Without Touching the Program",
-      "slug": "texas-h1b-ghost-office-enforcement-consumer-protection-indian-it-20260626",
+      "id": "a0b884b6-7422-4740-8428-a41812c97733",
+      "headline": "India Is the World's Cheapest Place to Work Remotely. It Still Won't Give Digital Nomads a Visa.",
+      "slug": "india-digital-nomads-workation-yakten-village-most-affordable-no-nomad-visa-countries-court-remote-workers-20260626",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "An empty open-plan office floor with vacant cubicles.",
-          "reason": "The photo depicts a 'ghost office' setup, which is directly relevant to the story's topic of H-1B sponsorship fraud investigations."
+          "what_photo_shows": "A man working on a laptop outdoors.",
+          "reason": "The photo depicts a remote worker, which is directly relevant to the story about digital nomads and remote work."
         },
         "inline_image_mismatches": []
       },
@@ -30,19 +30,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image shows a person working on a laptop in a modern office setting, which generally aligns with the topic of H-1B visas and employment. However, it doesn't specifically evoke 'Texas' or 'policing' or 'immigration' in a direct way. It's a generic business image."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article directly addresses the impact on the Indian-American IT-services ecosystem and Indian engineers, making the diaspora angle very strong and relevant. The 'Indian exposure' section is particularly effective."
+          "quality": 8,
+          "note": "The article explicitly connects the digital nomad trend to NRIs and the diaspora, framing it as a 'new species of NRI' and discussing its implications for Indians seeking to live abroad."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a specific example or anecdote of an NRI affected by these 'ghost office' investigations to personalize the impact.",
-          "If possible, include a quote from an immigration lawyer or an affected H-1B worker to add more depth and perspective."
+          "Consider adding a short concluding paragraph to summarize the 'unanswered question' and perhaps speculate briefly on India's potential future stance.",
+          "If possible, include a quote from an Indian digital nomad or an expert on Indian immigration/tourism to add more human interest or authoritative insight."
         ],
         "verdict": "pass"
       },
@@ -54,9 +54,9 @@
       "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "08d04597-dc19-4c76-b654-69aa66aaaaf2",
-      "headline": "The $100K H-1B Fee Is Dead in Court. USCIS Keeps Demanding It Anyway",
-      "slug": "h1b-100k-fee-rfe-limbo-uscis-demands-exempt-workers-indians-20260626",
+      "id": "950305e5-6207-480a-88e1-af15c62ea816",
+      "headline": "India Says Your Passport Doesn't Prove You're a Citizen. The Diaspora Should Read the Fine Print.",
+      "slug": "india-passport-not-proof-of-citizenship-mea-clarification-tharoor-oci-dual-citizenship-nrc-fears-20260626",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,8 +64,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A passport page with the word 'Visas' and the number '26'.",
-          "reason": "The photo shows a passport visa page, which is directly relevant to a story about H-1B visas and immigration."
+          "what_photo_shows": "Congress MP Shashi Tharoor",
+          "reason": "The photo clearly shows Shashi Tharoor, who is explicitly mentioned in the headline and caption as central to the story."
         },
         "inline_image_mismatches": []
       },
@@ -73,19 +73,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 8,
+          "score": 9,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article explicitly details how the H-1B issues disproportionately affect Indian nationals and NRIs, making the diaspora angle very strong and natural."
+          "note": "The article directly addresses the implications for NRIs and OCI holders, making it highly relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a quote from an affected individual (an NRI H-1B holder) to personalize the impact of these bureaucratic issues.",
-          "If possible, include a link to the court ruling or a relevant legal resource for readers who want to delve deeper into the legal specifics."
+          "Consider adding a brief explanation of what OCI stands for (Overseas Citizenship of India) on its first mention for readers less familiar with the term.",
+          "Perhaps include a link to the relevant sections of the Citizenship Act of 1955 or Passports Act of 1967 for readers who wish to delve deeper into the legal specifics."
         ],
         "verdict": "pass"
       },
