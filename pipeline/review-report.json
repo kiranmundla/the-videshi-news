@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-26T11:15:51.604916+00:00",
+  "timestamp": "2026-06-26T12:15:53.547457+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
-    "flag": 1,
+    "pass": 8,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "08ca90ed-eb79-4afd-8fbe-538dbfce7726",
-      "headline": "Samantha Ruth Prabhu Stood Up at a Success Party and Announced She's Pregnant \u2014 No Caption Needed",
-      "slug": "samantha-ruth-prabhu-pregnancy-announcement-raj-nidimoru-first-child-maa-inti-bangaaram-maternity-break-december-2026-where-to-watch-diaspora-nri-20260626",
+      "id": "cc0a5e2f-b4eb-4bb3-ad7d-24f59063ecd1",
+      "headline": "America Keeps Raising the Drawbridge. The Rest of the World Is Lowering Theirs",
+      "slug": "global-talent-competition-china-k-visa-canada-indians-h1b-alternatives-20260626",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,152 +21,13 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Samantha Ruth Prabhu in a red dress and sunglasses",
-          "reason": "The photo clearly shows the named person, Samantha Ruth Prabhu, matching the story's subject."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/reel/DZ9aajCBbAr/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram reel is from 2017 and features a dog, completely unrelated to Samantha Ruth Prabhu's pregnancy announcement or her career."
-          }
-        ],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article explicitly connects Samantha's global appeal to NRI households and her influence on diaspora audiences, making the angle natural and well-integrated."
-        },
-        "factual_flags": [
-          "The article states Samantha and Raj Nidimoru married on December 1, 2025, which is a future date and contradicts the timeline of her current pregnancy announcement and previous collaborations. This is likely a typo.",
-          "The article mentions 'Maa Inti Bangaaram' as a Telugu hit, but this film title does not appear to exist in Samantha Ruth Prabhu's filmography. Her recent hit is 'Kushi'."
-        ],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Correct the factual errors regarding the film title ('Maa Inti Bangaaram' to 'Kushi') and the marriage date of Samantha and Raj Nidimoru.",
-          "Replace the irrelevant Instagram embed with a relevant social media post about Samantha's pregnancy, her recent work, or fan reactions."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/reel/DZ9aajCBbAr/",
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "b2d5d81c-5c08-4183-a788-98c9a8e7c309",
-      "headline": "Emraan Hashmi Wipes the Frost Off the Glass \u2014 and Bollywood Horror Has Its King Back",
-      "slug": "rooh-emraan-hashmi-musical-horror-return-mayank-sharma-breathe-vicked-films-2027-hindi-tamil-telugu-where-to-watch-diaspora-nri-20260626",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Emraan Hashmi in a pink shirt at an event",
-          "reason": "The photo clearly shows Emraan Hashmi, who is the named subject of the story."
+          "what_photo_shows": "A traveler with a passport, boarding pass, and luggage at an airport.",
+          "reason": "The photo depicts a traveler at an airport with travel documents and luggage, which is highly relevant to a story about international migration and visa issues."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article explicitly connects the film's multi-language release and theatrical event status to NRI audiences and their access to such content abroad, making the diaspora angle natural and relevant."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a link to the 'Rooh' motion poster if available on a public platform (e.g., YouTube, Instagram) to enhance reader engagement.",
-          "Briefly mention the original 'Awarapan' to provide context for 'Awarapan 2' for readers who might not be familiar with the first film."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "0b1160a9-d5e4-412a-9770-279f9e711751",
-      "headline": "India's Teenage Shooters Are Topping a World Championship in Germany \u2014 and Rewriting the Record Book",
-      "slug": "issf-junior-world-championship-2026-suhl-germany-india-top-medal-standings-abhinav-shaw-shambhavi-kshirsagar-junior-world-record-shiva-narwal-shooting-diaspora-nri",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Two junior shooters, one Indian, in an air rifle competition.",
-          "reason": "The photo depicts an Indian junior shooter in an air rifle event, which directly aligns with the story about India's teenage shooters topping a world championship in Germany in 10m air rifle."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article explicitly mentions 'diaspora' and 'NRI' in the image URL, and the platform's target audience is NRIs, making the connection natural for the platform."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a quote from one of the young athletes or a coach to add a personal touch and emotional depth to the story.",
-          "While the diaspora angle is present in the platform's context, a brief sentence in the body text explicitly linking the success to pride for NRIs could strengthen it further without being forced."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "a317f3e7-6b17-42c2-9b51-f6a23cdd05cd",
-      "headline": "After Nearly Two Years, India Reopens Its Doors to Bangladeshi Tourists",
-      "slug": "india-resume-tourist-visa-bangladesh-june-28-2026-dinesh-trivedi-dhaka-ivac-two-year-suspension-20260626",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Tourists at the Taj Mahal in India.",
-          "reason": "The photo shows tourists at a major Indian landmark, which is highly relevant to a story about India reopening its doors to international tourists."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
         "embed_issues": [],
         "image_match": {
           "score": 8,
@@ -174,16 +35,322 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article explicitly connects the reopening to families straddling the border and Bangladeshi-origin communities abroad, making the diaspora angle natural and relevant."
+          "quality": 9,
+          "note": "The article directly addresses the impact on the Indian diaspora and NRIs, making it highly relevant."
         },
         "factual_flags": [
-          "The article mentions 'August 2024' for the initial closure and 'June 28, 2026' for reopening, which is a 22-month suspension. However, the headline states 'After Nearly Two Years', which is slightly inconsistent with 22 months. While 'nearly two years' is acceptable, it's worth noting."
+          "The article mentions 'F-1 visa issuances to Indians collapsed more than 60% in 2025' and 'Indian student enrolment in the U.S. fell 6.9% year-on-year'. While the trend might be accurate, the year '2025' seems to be a future date, which could be a typo for a past year or a projection stated as a fact."
         ],
         "duplicate_embeds": [],
         "suggestions": [
-          "Ensure consistent phrasing for the duration of the suspension (e.g., 'nearly two years' vs. '22 months').",
-          "Consider adding a quote from a Bangladeshi citizen or a member of the diaspora expressing their relief or perspective on the reopening to enhance the human element."
+          "Clarify or correct the year '2025' regarding F-1 visa issuances and student enrollment data to ensure factual accuracy.",
+          "Expand on the 'What to watch' section, as it seems to be cut off prematurely at the end of the article."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "14c671b5-4769-4c55-ab90-fd9e212d8f29",
+      "headline": "A New Bill Would Kill OPT, End Dual Intent, and Auction Off the H-1B by Salary",
+      "slug": "hr-9157-chip-roy-h1b-opt-abolished-dual-intent-wage-ranked-indians-20260626",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "A headshot of Representative Chip Roy.",
+          "reason": "The photo shows the named person, Representative Chip Roy, who is central to the story about the H.R. 9157 bill."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 10,
+          "note": "The article explicitly details how the proposed bill would disproportionately affect Indian professionals and students, directly addressing the NRI audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a 'What to do now' section with actionable advice for NRIs, as the article body cuts off at that point.",
+          "If possible, include a quote from an affected Indian professional or student to add a human element to the policy discussion."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "8e23739c-c2a9-47a7-891b-8abd727a77a9",
+      "headline": "Becoming American Just Got 75% Pricier \u2014 and the Discount for the Poor Is Gone",
+      "slug": "dhs-citizenship-n400-fee-hike-1330-waivers-eliminated-indians-20260626",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "New citizens taking the Oath of Allegiance",
+          "reason": "The photo depicts a naturalization ceremony, which is directly relevant to the story about the cost of becoming an American citizen."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "Excellent section on 'What it means for Indian Americans' directly addresses the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a quote from an immigration lawyer or an affected Indian American family to personalize the impact.",
+          "Briefly mention the current timeline for N-400 processing to give readers a sense of the urgency for 'file now' advice."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "5cd68f59-0aa0-49d8-a9fb-0936d697fde1",
+      "headline": "Australia Just Honoured Ten Indian-Origin Citizens. None of Them Are Famous.",
+      "slug": "indian-australians-2026-kings-birthday-honours-list-diaspora-oam-victo-20260626",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Sydney skyline with Opera House",
+          "reason": "The photo shows a generic but on-topic landmark for a story about Indian-origin citizens in Australia."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image is a generic cityscape, which doesn't directly represent the 'honours' or 'Indian-origin citizens' theme. While not entirely mismatched, a more thematic image (e.g., a diverse group, a symbolic representation of community, or even a subtle nod to Australia/India) would be stronger. The current image doesn't add much specific value."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article directly addresses the significance of these honours for the Indian diaspora in Australia, explaining why state recognition matters more than community-led awards and how it signals belonging. It also highlights the 'hidden infrastructure' built by early migrants, which is highly relevant to NRI readers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a quote from one of the honourees or a community leader to personalize the narrative and provide a direct voice from the diaspora.",
+          "If possible, include a small, relevant image or graphic (e.g., a map showing Indian population growth in Australia, or a collage of the honourees if publicly available) to break up the text and enhance visual engagement."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "cad3bedd-47cb-48a1-838f-37840f7c3731",
+      "headline": "America's Oldest Indian Association Just Honoured Seven of Its Own. Four Were Doctors.",
+      "slug": "aia-ny-benefit-gala-2026-ratnas-indian-american-honorees-diaspora-flus-20260626",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "7b733069-fe88-4c33-8a24-0075c40df41b",
+            "headline": "Every Summer, 10,000 Telugu-Americans Fill a Convention Cent"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "A Bharatanatyam dancer performing on stage.",
+          "reason": "The photo depicts a cultural showcase, which the caption states anchors diaspora community galas, aligning with the story about an Indian association's gala."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image is a generic photo of a group of people in formal attire, which generally matches the 'gala' theme. However, without specific entities or a more direct visual link to an 'Indian Association' or 'honorees', it's not a perfect match, but acceptable."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The entire article is centered on the Indian diaspora experience in the US, specifically through the lens of an NRI association, its honorees, and generational shifts within the community. It's highly relevant and well-executed."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a quote from one of the younger honorees, like Pulkita Kini, to further emphasize the 'generational handover' and provide a fresh perspective.",
+          "If possible, include a small detail about the 'diamond-trade entrepreneur' or 'attorney' honorees to slightly broaden the narrative beyond the medical profession, even though the article acknowledges its dominance."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "43466296-0248-4a5d-920e-ffc97ac51273",
+      "headline": "India's IT Titans Lost \u20b98.5 Lakh Crore in Five Years. The Money Walked Into AI Startups That Didn't Exist Then.",
+      "slug": "india-it-giants-value-decline-ai-startups-hurun-sarvam-nri-investors-20260626",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "The Bombay Stock Exchange building in Mumbai.",
+          "reason": "The story discusses wealth migration and investment, making a photo of India's oldest equity market relevant."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 8,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article explicitly addresses NRIs and their investment portfolios, making a strong and natural connection."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a small 'What is an NRI?' explainer or link for new readers, though the context is clear.",
+          "Perhaps include a quote from an NRI investor or financial advisor to add a personal touch to the 'NRI portfolio problem' section."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "db3912c7-278e-4f16-9202-6e55a3a6c6b7",
+      "headline": "Wipro Just Posted $10.5 Billion in Revenue and Spun Up an 'AI-Native' Unit. The Subtext Is About Who It Stops Hiring.",
+      "slug": "wipro-fy26-results-ai-native-business-unit-it-services-nri-engineers-20260626",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Wipro's Electronic City campus entrance in Bengaluru",
+          "reason": "The photo clearly shows the Wipro logo and a campus entrance, which is directly relevant to a story about Wipro's financial results and business strategy."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article directly addresses the impact on Indian diaspora engineers, H-1B visas, and career paths in the US, making it highly relevant and well-integrated."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a quote from an NRI engineer or an expert on immigration/visa trends to further ground the diaspora impact.",
+          "Perhaps include a brief comparison of Wipro's 'AI-Native' unit with similar initiatives from other major Indian IT firms, if public information allows, to provide more context on industry trends."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "24951212-b629-4981-9632-47e467a8d128",
+      "headline": "OpenAI Built Its Own AI Chip and Called It Jalape\u00f1o. The Real Target Is Nvidia's Fattest Margin.",
+      "slug": "openai-broadcom-jalapeno-custom-ai-chip-nvidia-inference-nri-20260626",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "A close-up of a semiconductor chip on a circuit board.",
+          "reason": "The photo shows a semiconductor chip, which is directly relevant to a story about AI chips and silicon."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image is a generic tech/circuit board photo. While relevant to the topic of AI chips, it doesn't specifically represent 'Jalape\u00f1o' or OpenAI's specific hardware. A more tailored image would improve the match."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article explicitly connects the topic to the Indian diaspora's career paths in Silicon Valley, semiconductor manufacturing, and the economic implications for salaries. It feels natural and well-integrated."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a visual representation or a mock-up of the 'Jalape\u00f1o' chip if available, even if conceptual, to enhance reader engagement.",
+          "Explore if there are any quotes or perspectives from Indian-origin engineers or leaders in the semiconductor/AI space that could be woven in to further strengthen the diaspora angle."
         ],
         "verdict": "pass"
       },
