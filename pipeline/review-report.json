@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-26T00:46:44.927604+00:00",
+  "timestamp": "2026-06-26T01:15:24.546249+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 8,
+    "pass": 2,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "ddbcd06a-42f0-4ee9-9b3d-2b46bc52b239",
-      "headline": "Aam, Sago and the Summer of the Viral Desi Dessert",
-      "slug": "aam-sago-and-the-summer-of-the-viral-desi-dessert",
+      "id": "4cf22c0b-97fb-406b-82f9-1c9b013c1d33",
+      "headline": "Phulera Is Coming Back, and This Time the Bad Guy Is in Charge: 'Panchayat' Season 5 Promises Something \"Alag, Hatke\"",
+      "slug": "panchayat-season-5-prime-video-tease-durgesh-kumar-banrakas-ashok-pathak-binod-sunita-rajwar-tvf-jitendra-kumar-2026-where-to-watch-diaspora-nri-20260625",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,28 +21,28 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A glass of mango lassi with a straw and decorative swirl.",
-          "reason": "The photo shows a mango lassi, which is a relevant subject for a story about mango-based desserts and drinks, especially in the context of 'viral desi dessert' and 'peak mango season'."
+          "what_photo_shows": "Jitendra Kumar, actor, giving thumbs up",
+          "reason": "The photo shows Jitendra Kumar, who is explicitly mentioned in the caption and is a key figure in the story's subject, 'Panchayat' Season 5."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 8,
+        "overall_score": 7,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 5,
+          "issue": "The image is of Jitendra Kumar, the lead actor of Panchayat, but the headline and article focus on the upcoming Season 5 and the 'bad guy' characters. While related, it's not the most direct match for the specific angle of the headline."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The diaspora angle is well-integrated and feels natural, addressing both nostalgia and practicalities for NRIs."
+          "quality": 8,
+          "note": "The article explicitly addresses the diaspora angle, explaining why the show resonates with NRIs and how it's accessible globally. It feels natural and well-integrated."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a specific example of a viral recipe debate or side-by-side reel from social media to enhance the 'community dimension' section.",
-          "Perhaps include a quote from an NRI about their experience making these viral desserts to add a personal touch."
+          "Consider a hero image that more directly reflects the 'bad guy in charge' theme or the ensemble cast mentioned in the article, rather than just the lead actor.",
+          "Ensure the YouTube embed is relevant to the article's content. While it's a general YouTube link, it should ideally be a trailer or interview related to Panchayat Season 5."
         ],
         "verdict": "pass"
       },
@@ -54,110 +54,35 @@
       "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "0f33cd14-4acb-49c0-b31a-b52f2b2781f9",
-      "headline": "Makhana's American Moment: The Lotus Seed Taking On Popcorn",
-      "slug": "makhanas-american-moment-the-lotus-seed-taking-on-popcorn",
+      "id": "aa20f6b8-6cb6-48f6-81c6-c7a6682cfe3c",
+      "headline": "Tamannaah Bhatia Just Said Out Loud What South Cinema's Actresses Whisper: \"It's a Gaze That's Not Very Complimenting\"",
+      "slug": "tamannaah-bhatia-south-cinema-patriarchal-gaze-forbes-india-interview-item-songs-bollywood-comparison-where-to-watch-diaspora-nri-20260625",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "a bowl of roasted makhana (fox nuts)",
-          "reason": "The photo clearly shows makhana, which is the main subject of the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The 'Diaspora Impact' section directly addresses the NRI experience, making it highly relevant and well-integrated."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a small section on potential challenges or criticisms of the makhana boom, beyond just price volatility and supply concentration, to provide a more balanced view.",
-          "While the article mentions 'Indian-founded brands,' it would be beneficial to name one or two prominent examples to give readers a concrete reference."
+        "duplicate_images": [
+          {
+            "article_id": "c804fcd3-b4e6-4a6a-8516-2e0f516f64c4",
+            "headline": "Tamannaah Bhatia Names the 'Gaze' Nobody in South Cinema Say"
+          }
         ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "f7e6edb9-6ac0-43ac-8c2b-caf7df8ff840",
-      "headline": "The British Are Coming, Bearing Black Dal",
-      "slug": "the-british-are-coming-bearing-black-dal",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A plate of dal makhani with rice and cucumber salad.",
-          "reason": "The photo shows dal makhani, which is explicitly mentioned in the headline and caption as relevant to the story about British-Indian cuisine."
+          "what_photo_shows": "Tamannaah Bhatia smiling in a white saree and pearl necklace.",
+          "reason": "The photo clearly shows Tamannaah Bhatia, who is the subject of the headline and story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "Strong and natural connection to NRI/diaspora readers, particularly in the 'Diaspora Impact' section."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a quote from an Indian-American diner expressing their excitement or perspective on these new restaurant openings.",
-          "Perhaps include a small sidebar or link to a previous Videshi article about the growth of Indian fine dining in the US, if available, to provide further context."
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DaArJvqhJ9a/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel is a promotional video for a song featuring Tamannaah Bhatia, but it doesn't directly relate to her statements about the 'gaze' in South Indian cinema or the specific interview discussed in the article. It feels like a generic embed rather than one supporting a specific point."
+          }
         ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "2e69ff3b-bcc0-4f53-92c6-38b2eecd06bb",
-      "headline": "AI's Hunger for Memory Just Made Your Next Phone More Expensive. India Will Feel It Hardest.",
-      "slug": "ramageddon-memory-chip-price-surge-apple-hikes-india-smartphone-laptop-prices-micron-2026-20260625",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Two memory modules, front and back.",
-          "reason": "The photo clearly shows memory modules, which are the central subject of the story about memory-chip prices and AI's impact."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
         "image_match": {
           "score": 9,
           "issue": null
@@ -165,198 +90,18 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The 'What the Diaspora Should Watch' section directly addresses NRI readers, making the connection natural and relevant."
+          "note": "The diaspora angle is well-integrated and explained, connecting the consumption of South Indian cinema by NRIs to the relevance of Tamannaah's comments. It feels natural and not forced."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a small graphic or chart to visualize the memory price increases mentioned (e.g., 98% in Q1 2026).",
-          "While the article mentions Micron's plant in India, a brief sentence on the broader 'Make in India' semiconductor push could add context for some readers."
+          "Replace the current Instagram embed with one that directly supports a point made in the article, perhaps a clip from the Forbes interview if available, or a post where she discusses similar themes.",
+          "Consider adding a brief concluding sentence that reiterates the potential impact of Tamannaah's statements on the industry or audience perception."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "c5601c1f-775a-49bd-9a07-98bd1969cd6a",
-      "headline": "Canada Issued Millions of Work Permits. Now They're Expiring \u2014 and Indians Are Half the Wave.",
-      "slug": "canada-work-permit-expiry-wave-2026-indians-out-of-status-pgwp-pr-shortage-20260625",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "An Air Canada aircraft at a gate.",
-          "reason": "The photo shows an Air Canada plane, which is relevant to a story about immigration to Canada."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article explicitly highlights the disproportionate impact on Indians, making it highly relevant to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a call to action or resources for affected individuals, if appropriate for the platform's editorial guidelines.",
-          "Explore the possibility of including a quote from an affected Indian individual or family to personalize the impact."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "8203c144-a402-4d4e-b457-ad27d1003e2c",
-      "headline": "The Quiet Clause in the India-UK Trade Deal That Puts Money Back in Diaspora Payslips",
-      "slug": "india-uk-ceta-double-contribution-convention-diaspora-professionals-go-20260626",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Indian Commerce Minister Piyush Goyal smiling",
-          "reason": "The photo shows the named person, Piyush Goyal, who is relevant to the India-UK trade deal mentioned in the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The entire article is centered on a specific benefit for the Indian diaspora in the UK, making it highly relevant and well-executed."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a small 'explainer' box or graphic to visually break down the financial savings for a typical professional.",
-          "Perhaps a quote from an actual NRI professional impacted by this change could add a personal touch."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "32452c11-7a55-435e-a18a-01d91af23f4e",
-      "headline": "Forbes Named America's 250 Most Successful Immigrants. Twenty-Six Are Indian.",
-      "slug": "forbes-250-immigrants-26-indian-origin-leaders-diaspora-nadella-pichai-20260626",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "0a87a59c-d825-419b-95fb-e8ff2ef8b3a8",
-            "headline": "Satya Nadella Spent a Decade Cheering AI On. Now He Wants th"
-          },
-          {
-            "article_id": "319d7dbe-be6d-46a7-8444-abaff681145f",
-            "headline": "Microsoft Bankrolled the AI Giants. Now Satya Nadella Is Pic"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A headshot of Satya Nadella, Microsoft CEO.",
-          "reason": "The photo clearly shows Satya Nadella, who is explicitly named in the caption as relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article explicitly connects to NRI/diaspora readers, discussing the 'diaspora's foundational story' and how the list resonates within the community as a 'scoreboard with personal stakes'."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a brief concluding sentence to the article, as it currently ends mid-sentence.",
-          "Perhaps include a link to the Forbes article itself for readers who want to see the full list."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "361956b4-42df-4c81-b989-d3b40974953f",
-      "headline": "Delhi Spent Years Wanting the Diaspora's Remittances. Now It Wants Its Portfolio.",
-      "slug": "rbi-fcnr-deposit-scheme-gift-city-nri-investment-shift-diaspora-20260626",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A modern skyscraper, representing GIFT City.",
-          "reason": "The photo depicts GIFT City, which is explicitly mentioned in the subheadline as central to the story's topic of NRI investment in India."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The entire article is centered on the financial relationship between India and its diaspora, making the angle very strong and natural."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a small section on potential risks or downsides for NRIs investing in these schemes, beyond the 'caveats are real' line, to provide a more balanced view.",
-          "Perhaps include a quote from an NRI investor (anonymized if necessary) to add a personal perspective to the financial analysis."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DaArJvqhJ9a/",
         "promoted to published"
       ],
       "revised": false,
