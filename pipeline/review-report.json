@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-26T04:45:26.528798+00:00",
+  "timestamp": "2026-06-26T05:15:28.763427+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 4,
+    "pass": 2,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "9ac3aeb8-8c38-4dfc-bc93-2a232f330092",
-      "headline": "One Year After the Injury That Cost Her a Season, Jyothi Yarraji Is Back Under 13 Seconds",
-      "slug": "jyothi-yarraji-100m-hurdles-12-99-comeback-injury-65th-national-inter-state-athletics-bhubaneswar-2026-gulveer-singh-5000m-lasha-ilango-asian-games-qualify-diaspora-nri",
+      "id": "26cd4491-2073-48d3-b925-a3451fa8f27f",
+      "headline": "Akshay Kumar Walks Back Into the 'Welcome' Jungle Tonight \u2014 but the Advance Booking Is Whispering, Not Roaring",
+      "slug": "welcome-to-the-jungle-advance-booking-paid-previews-akshay-kumar-ensemble-bhooth-bangla-comparison-muharram-ahmed-khan-june-26-2026-where-to-watch-diaspora-nri-20260625",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,57 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "An aerial view of the Kalinga Stadium athletics track.",
-          "reason": "The photo shows the stadium mentioned in the caption as the location of the event in the story."
+          "what_photo_shows": "Akshay Kumar in a suit and tie",
+          "reason": "The photo clearly shows Akshay Kumar, who is the subject of the headline and caption."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DZ_6FzYNo3/",
+            "problem": "broken",
+            "explanation": "The Instagram reel URL is malformed or does not exist. It returns a 'Page Not Found' error."
+          }
+        ],
+        "image_match": {
+          "score": 8,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The diaspora angle is naturally integrated, discussing overseas release and audience behavior in specific NRI hubs."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Verify and correct the broken Instagram embed URL. If it's meant to be a nostalgic post, find a relevant, working one.",
+          "Consider adding a sentence or two about Akshay Kumar's recent box office performance leading up to this film, beyond just 'Bhooth Bangla', to provide more context for his 'hot streak' claim."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "d5213019-feae-47fb-aef4-e5c76231ad18",
+      "headline": "Rajkummar Rao Vanishes Into Ujjwal Nikam \u2014 and the 'Prahaar' Teaser Walks Straight Into the Kasab Trial",
+      "slug": "prahaar-ujjwal-nikam-story-teaser-rajkummar-rao-cocktail-2-attached-kasab-26-11-trial-avinash-arun-maddock-august-7-2026-where-to-watch-diaspora-nri-20260625",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Rajkummar Rao, a man with dark hair and beard, wearing a white shirt.",
+          "reason": "The photo shows Rajkummar Rao, who is explicitly named in the headline and caption as the subject of the story."
         },
         "inline_image_mismatches": []
       },
@@ -35,138 +84,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The diaspora angle is present and attempts to connect readers through Neeraj Chopra, then introduces Yarraji as 'the athlete to learn next'. It feels a little forced in its placement but is relevant."
+          "quality": 8,
+          "note": "The article explicitly connects the 26/11 tragedy's global impact and the film's potential appeal to NRI audiences seeking serious-minded cinema, including details about international streaming."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider integrating the diaspora angle more smoothly, perhaps by weaving it into Yarraji's background or future aspirations rather than a separate 'Why this name matters' section.",
-          "Ensure all dates are consistent (e.g., '2025' for injury vs. '2024' for Paris Olympics, which should be 2024)."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "d3f7a004-b509-44b0-9a80-40c62fbe4125",
-      "headline": "India's UAE Embassy Is Hitting Pause on Passports and Visas for Five Days. Here's What 4 Million Indians Need to Know.",
-      "slug": "indian-embassy-uae-pauses-passport-visa-consular-services-june-26-30-bls-sgivs-al-hind-provider-switch-20260625",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Abu Dhabi skyline with water and boats in the foreground",
-          "reason": "The photo shows the Abu Dhabi skyline, which is relevant to a story about India's UAE Embassy."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article directly addresses a critical service for NRIs in the UAE and explains its impact on their daily lives and plans."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a small 'What to do if you're affected' box with the key dates and new provider name for quick reference.",
-          "Ensure the published emergency contact details (toll-free number, WhatsApp, email) are clearly visible and accurate in the final article."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "d9c2f6f5-e582-4fac-b480-30809be9d118",
-      "headline": "India Is Quietly Offering Its Diaspora a Rare Deal: Park Dollars Home, Earn Almost Like Stocks",
-      "slug": "rbi-fcnr-b-deposit-scheme-hedging-cost-nri-banks-6-7-percent-gift-city-loans-55-billion-rupee-20260625",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Reserve Bank of India headquarters in Mumbai",
-          "reason": "The photo shows the RBI headquarters, which is directly relevant to a story about RBI policies and diaspora deposits."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article directly addresses NRIs and their financial decisions, making the diaspora angle central and well-integrated."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a small 'how-to' section or a link to an RBI explainer for NRIs interested in the scheme.",
-          "Perhaps include a quote from an NRI financial advisor to add an external perspective on the scheme's attractiveness."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "b4d47f06-8fb7-41e1-a889-02c52aa285b1",
-      "headline": "Laid Off on H-1B? USCIS Says You Can Job-Hunt on a Tourist Visa. Lawyers Say Don't Bet On It",
-      "slug": "h1b-layoff-60-day-grace-b2-job-search-scrutiny-indians-tech-cuts-20260626",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "No image URL or entities provided, so cannot fully assess. Assuming a relevant image would depict H-1B workers, immigration documents, or a 'laid off' scenario."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article directly addresses the specific challenges faced by Indian H-1B holders, who are disproportionately affected by layoffs and green card backlogs, making it highly relevant to NRI readers."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a short 'What to do if you're laid off' checklist or infographic for quick reader reference.",
-          "If possible, include a quote from an immigration lawyer or affected individual to add more human interest and expert perspective."
+          "Consider adding a brief sentence about the significance of Ujjwal Nikam beyond the Kasab trial, if relevant to the film's scope, to provide more context for readers less familiar with Indian legal figures.",
+          "Ensure 'Cocktail 2' is a real, upcoming film or clarify it as a hypothetical example, as its existence isn't immediately verifiable and could cause confusion."
         ],
         "verdict": "pass"
       },
