@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-26T21:15:18.708223+00:00",
+  "timestamp": "2026-06-26T21:45:31.304719+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
-    "flag": 1,
+    "pass": 3,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,78 +11,63 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "3627e9cf-43e4-4a5e-ba22-21af8fc77e7a",
-      "headline": "'Ramayana' Wants to Throw Its Grand Premiere in Dubai \u2014 and the Diaspora Is the Whole Point",
-      "slug": "ramayana-grand-dubai-premiere-revived-ranbir-kapoor-sai-pallavi-yash-nitesh-tiwari-diwali-2026-where-to-watch-diaspora-nri-20260626",
+      "id": "e5084b5d-430a-4bf7-b4a6-c5bdc1038031",
+      "headline": "Qualcomm Spent $4 Billion on Software That Speaks Every Chip's Language. The Target Is Nvidia's Walled Garden.",
+      "slug": "qualcomm-modular-4-billion-ai-software-nvidia-data-center-amon-20260626",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "41fb7170-2028-4af9-963e-e669374e24d1",
-            "headline": "Ramayana Walks Into Hall H: Ranbir and Yash Eye a San Diego "
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A headshot of actor Ranbir Kapoor.",
-          "reason": "The headline and subheadline explicitly mention Ranbir Kapoor as a key figure in the 'Ramayana' project."
+          "verdict": "MISMATCH",
+          "what_photo_shows": "A man with glasses and a beard speaking into a microphone.",
+          "reason": "The photo shows a man who is not Cristiano Amon, the named person in the headline and caption."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://youtube.com/watch?v=3-wSEehDBVk",
-            "problem": "irrelevant",
-            "explanation": "The YouTube embed is a trailer for 'Animal', a different film starring Ranbir Kapoor, not 'Ramayana'. This is topically irrelevant to the article's subject."
-          }
-        ],
+        "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image shows Ranbir Kapoor, who is a key actor in the 'Ramayana' film discussed. However, the image itself is a generic airport paparazzi shot and doesn't directly relate to the 'Ramayana' film or its Dubai premiere, which is the core of the headline."
+          "score": 8,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article explicitly states the diaspora is 'the whole point' of the Dubai premiere and consistently connects the film's rollout to NRI audiences, making it highly relevant and naturally integrated."
+          "note": "The 'Why this lands in India' section is well-integrated and provides a clear, relevant connection for NRI/diaspora readers, focusing on career implications and industry shifts."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant YouTube embed with a relevant trailer or promotional content for 'Ramayana' if available, or remove it entirely.",
-          "Consider a more thematic hero image that evokes the 'Ramayana' or a grand premiere, even if it's conceptual art, to better match the headline's ambition."
+          "Ensure the hero image accurately reflects the article's focus on Qualcomm, AI, and the data center shift, perhaps showing a server rack or abstract AI representation.",
+          "Consider adding a concluding sentence to the 'What's next' section, as it currently ends abruptly."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://youtube.com/watch?v=3-wSEehDBVk",
-        "promoted to published"
+        "Cleared mismatched image (A man with glasses and a beard speaking into a microphone.)",
+        "held: image mismatch"
       ],
       "revised": false,
       "unpublished": false,
+      "image_mismatch": true,
       "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "a4d314bf-205e-42f1-9077-66c7b2489d97",
-      "headline": "Twenty-Five Years After 'Dil Chahta Hai', Saif Ali Khan and Farhan Akhtar Are Reuniting \u2014 and It's a Thriller",
-      "slug": "saif-ali-khan-farhan-akhtar-reunite-thriller-25-years-dil-chahta-hai-excel-entertainment-ritesh-sidhwani-where-to-watch-diaspora-nri-20260626",
+      "id": "53cccca2-93e0-4a43-b1c0-21f0554a9c3e",
+      "headline": "Amazon Just Promised India Another $13 Billion. The Real Story Is Who Gets to Own the Cloud Underneath the AI Boom.",
+      "slug": "amazon-aws-13-billion-india-ai-cloud-jassy-modi-48-billion-20260626",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "070d3f50-3dda-4d15-8d9c-cb4146c5cf9f",
-            "headline": "Ranbir Said No. Imran Said No. Saif Ali Khan Said 'Okay, Cha"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Saif Ali Khan, an actor mentioned in the headline",
-          "reason": "The photo clearly shows Saif Ali Khan, who is a central figure in the story about his reunion with Farhan Akhtar."
+          "what_photo_shows": "A headshot of Amazon CEO Andy Jassy.",
+          "reason": "The photo clearly shows Andy Jassy, who is directly mentioned in the caption and is central to the story's topic."
         },
         "inline_image_mismatches": []
       },
@@ -96,15 +81,56 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article explicitly connects Dil Chahta Hai's overseas success and its resonance with urban, globally-minded Indians who became NRIs, making the reunion relevant to the diaspora."
+          "note": "The 'Why the diaspora should care' section directly addresses NRIs and their career opportunities, making a strong and relevant connection."
         },
-        "factual_flags": [
-          "The article states 'Production is expected to begin by the end of 2026' and later 'No shoot date beyond \"end of the year\"' which could be interpreted as conflicting if 'end of the year' refers to 2024 or 2025, not specifically 2026. Clarification needed."
-        ],
+        "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Clarify the 'end of the year' shoot date to explicitly state 'end of 2026' for consistency.",
-          "Consider adding a sentence about Farhan Akhtar's current directorial projects or acting roles to balance the focus on Saif Ali Khan's career trajectory."
+          "Consider adding a small section on potential challenges or competition for Indian-origin professionals in India, beyond just the opportunities, to provide a more balanced view.",
+          "While the image is relevant, a more dynamic image related to data centers or AI infrastructure in India could enhance visual appeal."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "0fc7af48-74c8-4231-84dd-a4a37ee44b9e",
+      "headline": "OpenAI Just Hired Uber's India Boss to Run the Country. The Job Is Less About Code Than Conquest.",
+      "slug": "openai-prabhjeet-singh-india-managing-director-uber-chatgpt-20260626",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "A smartphone running the ChatGPT app",
+          "reason": "The photo shows the ChatGPT app, which is directly related to OpenAI and its expansion in India, as discussed in the headline."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 8,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The 'diaspora read' section is well-integrated and directly addresses NRI concerns, making it highly relevant."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Ensure the article concludes properly; it seems to cut off mid-sentence at the end.",
+          "Consider adding a quote from Prabhjeet Singh or an OpenAI representative if available, to add more direct voice."
         ],
         "verdict": "pass"
       },
