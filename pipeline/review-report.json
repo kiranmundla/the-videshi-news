@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-26T04:15:22.922502+00:00",
+  "timestamp": "2026-06-26T04:45:26.528798+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
+    "pass": 4,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "6bae5e8a-4a48-481a-8897-fca1f543866b",
-      "headline": "The Diaspora's Quiet Backstop Was the Courts. The Supreme Court Just Showed Its Limits",
-      "slug": "supreme-court-june-25-immigration-deference-diaspora-courts-backstop-i-20260626",
+      "id": "9ac3aeb8-8c38-4dfc-bc93-2a232f330092",
+      "headline": "One Year After the Injury That Cost Her a Season, Jyothi Yarraji Is Back Under 13 Seconds",
+      "slug": "jyothi-yarraji-100m-hurdles-12-99-comeback-injury-65th-national-inter-state-athletics-bhubaneswar-2026-gulveer-singh-5000m-lasha-ilango-asian-games-qualify-diaspora-nri",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,51 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "The United States Supreme Court building.",
-          "reason": "The photo clearly shows the Supreme Court, which is the central subject of the story."
+          "what_photo_shows": "An aerial view of the Kalinga Stadium athletics track.",
+          "reason": "The photo shows the stadium mentioned in the caption as the location of the event in the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The diaspora angle is present and attempts to connect readers through Neeraj Chopra, then introduces Yarraji as 'the athlete to learn next'. It feels a little forced in its placement but is relevant."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider integrating the diaspora angle more smoothly, perhaps by weaving it into Yarraji's background or future aspirations rather than a separate 'Why this name matters' section.",
+          "Ensure all dates are consistent (e.g., '2025' for injury vs. '2024' for Paris Olympics, which should be 2024)."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "d3f7a004-b509-44b0-9a80-40c62fbe4125",
+      "headline": "India's UAE Embassy Is Hitting Pause on Passports and Visas for Five Days. Here's What 4 Million Indians Need to Know.",
+      "slug": "indian-embassy-uae-pauses-passport-visa-consular-services-june-26-30-bls-sgivs-al-hind-provider-switch-20260625",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Abu Dhabi skyline with water and boats in the foreground",
+          "reason": "The photo shows the Abu Dhabi skyline, which is relevant to a story about India's UAE Embassy."
         },
         "inline_image_mismatches": []
       },
@@ -36,13 +79,56 @@
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article directly addresses the Indian diaspora's reliance on courts for immigration issues and explains how Supreme Court rulings, while not directly about Indians, impact them."
+          "note": "The article directly addresses a critical service for NRIs in the UAE and explains its impact on their daily lives and plans."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a specific example of an Indian national's experience with the legal system (anonymized if necessary) to further ground the abstract legal concepts for readers.",
-          "Perhaps include a brief mention of legislative efforts or advocacy groups as alternative 'backstops' to the courts, offering a more holistic view of avenues for change."
+          "Consider adding a small 'What to do if you're affected' box with the key dates and new provider name for quick reference.",
+          "Ensure the published emergency contact details (toll-free number, WhatsApp, email) are clearly visible and accurate in the final article."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "d9c2f6f5-e582-4fac-b480-30809be9d118",
+      "headline": "India Is Quietly Offering Its Diaspora a Rare Deal: Park Dollars Home, Earn Almost Like Stocks",
+      "slug": "rbi-fcnr-b-deposit-scheme-hedging-cost-nri-banks-6-7-percent-gift-city-loans-55-billion-rupee-20260625",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Reserve Bank of India headquarters in Mumbai",
+          "reason": "The photo shows the RBI headquarters, which is directly relevant to a story about RBI policies and diaspora deposits."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article directly addresses NRIs and their financial decisions, making the diaspora angle central and well-integrated."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a small 'how-to' section or a link to an RBI explainer for NRIs interested in the scheme.",
+          "Perhaps include a quote from an NRI financial advisor to add an external perspective on the scheme's attractiveness."
         ],
         "verdict": "pass"
       },
@@ -62,11 +148,6 @@
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MISMATCH",
-          "what_photo_shows": "Two Ukrainian passports on a white surface.",
-          "reason": "The photo shows Ukrainian passports, but the story is about US H-1B and tourist visas, making the specific country's passport irrelevant and potentially misleading."
-        },
         "inline_image_mismatches": []
       },
       "llm_review": {
@@ -86,60 +167,6 @@
         "suggestions": [
           "Consider adding a short 'What to do if you're laid off' checklist or infographic for quick reader reference.",
           "If possible, include a quote from an immigration lawyer or affected individual to add more human interest and expert perspective."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "Cleared mismatched image (Two Ukrainian passports on a white surface.)",
-        "held: image mismatch"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "image_mismatch": true,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "aa5c9f38-ce1e-4d57-b60c-cfaa6efa48b9",
-      "headline": "Skip the Visa Line for $750: Washington Puts a Price Tag on the Appointment Itself",
-      "slug": "us-expedited-visa-interview-750-fee-pilot-b1-b2-india-appointment-20260626",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "bdc8d80a-8733-463b-b329-4e28e4655845",
-            "headline": "The Last Cheap Visa Slot in India Just Vanished. Now Every H"
-          },
-          {
-            "article_id": "55e64b49-c5e8-439d-aa3a-e7269b12baff",
-            "headline": "The US Work-Visa Queue in India Just Got Longer \u2014 and It's t"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A hand holding an open passport with visa stamps.",
-          "reason": "The photo of a passport is generic but on-topic for a story about US visa appointments and immigration."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 8,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article directly addresses the impact on Indians and NRIs, specifically mentioning 'A few practical notes for the diaspora' and the unique challenges faced by Indian applicants."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a small section on potential advocacy efforts by diaspora organizations regarding this new fee structure.",
-          "If possible, include a quote from an immigration expert or a representative of an Indian diaspora group to add more perspective."
         ],
         "verdict": "pass"
       },
