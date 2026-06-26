@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-26T01:15:24.546249+00:00",
+  "timestamp": "2026-06-26T01:45:17.452084+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 0,
+    "pass": 1,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "4cf22c0b-97fb-406b-82f9-1c9b013c1d33",
-      "headline": "Phulera Is Coming Back, and This Time the Bad Guy Is in Charge: 'Panchayat' Season 5 Promises Something \"Alag, Hatke\"",
-      "slug": "panchayat-season-5-prime-video-tease-durgesh-kumar-banrakas-ashok-pathak-binod-sunita-rajwar-tvf-jitendra-kumar-2026-where-to-watch-diaspora-nri-20260625",
+      "id": "8aea05f8-1bd5-4300-80b4-3fde5557b383",
+      "headline": "India's Shuttlers Have Brought Their Season to California \u2014 and Opened the US Open With a Near-Clean Sweep",
+      "slug": "india-badminton-us-open-2026-super-300-fullerton-california-srikanth-tanvi-sharma-treesa-gayatri-diaspora-nri",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,30 +21,32 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Jitendra Kumar, actor, giving thumbs up",
-          "reason": "The photo shows Jitendra Kumar, who is explicitly mentioned in the caption and is a key figure in the story's subject, 'Panchayat' Season 5."
+          "what_photo_shows": "Kidambi Srikanth, an Indian badminton player, on court.",
+          "reason": "The photo shows Kidambi Srikanth, who is explicitly mentioned in the headline and caption as a key figure in the story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 7,
+        "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 5,
-          "issue": "The image is of Jitendra Kumar, the lead actor of Panchayat, but the headline and article focus on the upcoming Season 5 and the 'bad guy' characters. While related, it's not the most direct match for the specific angle of the headline."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article explicitly addresses the diaspora angle, explaining why the show resonates with NRIs and how it's accessible globally. It feels natural and well-integrated."
+          "note": "The 'Why the diaspora should care' section explicitly connects the event to NRI readers in California, making a strong and natural case."
         },
-        "factual_flags": [],
+        "factual_flags": [
+          "The article states 'The 2026 US Open' but the context implies it's the current year's event. This is likely a typo and should be 'The 2024 US Open'."
+        ],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider a hero image that more directly reflects the 'bad guy in charge' theme or the ensemble cast mentioned in the article, rather than just the lead actor.",
-          "Ensure the YouTube embed is relevant to the article's content. While it's a general YouTube link, it should ideally be a trailer or interview related to Panchayat Season 5."
+          "Correct the year of the US Open from '2026' to '2024' in the first paragraph.",
+          "Consider adding a quote from an Indian-American fan or organizer to further strengthen the diaspora connection."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
         "promoted to published"
@@ -54,54 +56,42 @@
       "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "aa20f6b8-6cb6-48f6-81c6-c7a6682cfe3c",
-      "headline": "Tamannaah Bhatia Just Said Out Loud What South Cinema's Actresses Whisper: \"It's a Gaze That's Not Very Complimenting\"",
-      "slug": "tamannaah-bhatia-south-cinema-patriarchal-gaze-forbes-india-interview-item-songs-bollywood-comparison-where-to-watch-diaspora-nri-20260625",
+      "id": "c2e48780-4d16-4e9d-9c5b-17693409ef37",
+      "headline": "An 18-Year-Old With an Indian Flag on His Helmet Is the Closest Thing F1 Has Had to India in 15 Years",
+      "slug": "arvid-lindblad-f1-indian-heritage-racing-bulls-rookie-austrian-grand-prix-2026-red-bull-ring-karthikeyan-chandhok-diaspora-nri",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "c804fcd3-b4e6-4a6a-8516-2e0f516f64c4",
-            "headline": "Tamannaah Bhatia Names the 'Gaze' Nobody in South Cinema Say"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Tamannaah Bhatia smiling in a white saree and pearl necklace.",
-          "reason": "The photo clearly shows Tamannaah Bhatia, who is the subject of the headline and story."
+          "what_photo_shows": "Arvid Lindblad, the Racing Bulls rookie",
+          "reason": "The photo shows the named person, Arvid Lindblad, who is the subject of the story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/reel/DaArJvqhJ9a/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram reel is a promotional video for a song featuring Tamannaah Bhatia, but it doesn't directly relate to her statements about the 'gaze' in South Indian cinema or the specific interview discussed in the article. It feels like a generic embed rather than one supporting a specific point."
-          }
-        ],
+        "embed_issues": [],
         "image_match": {
           "score": 9,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The diaspora angle is well-integrated and explained, connecting the consumption of South Indian cinema by NRIs to the relevance of Tamannaah's comments. It feels natural and not forced."
+          "quality": 9,
+          "note": "The article clearly and naturally connects Lindblad's Indian heritage to the diaspora, explaining why it matters to NRI readers without being forced."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the current Instagram embed with one that directly supports a point made in the article, perhaps a clip from the Forbes interview if available, or a post where she discusses similar themes.",
-          "Consider adding a brief concluding sentence that reiterates the potential impact of Tamannaah's statements on the industry or audience perception."
+          "Consider adding a quote from an Indian motorsport expert or fan to further emphasize the 'why this matters to India' section.",
+          "Ensure the article concludes cleanly; the last sentence seems cut off. It ends with 'India has waited 15 years for a reas'."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/reel/DaArJvqhJ9a/",
         "promoted to published"
       ],
       "revised": false,
