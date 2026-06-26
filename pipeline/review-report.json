@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-26T05:15:28.763427+00:00",
+  "timestamp": "2026-06-26T06:16:01.079399+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 0,
+    "pass": 8,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "26cd4491-2073-48d3-b925-a3451fa8f27f",
-      "headline": "Akshay Kumar Walks Back Into the 'Welcome' Jungle Tonight \u2014 but the Advance Booking Is Whispering, Not Roaring",
-      "slug": "welcome-to-the-jungle-advance-booking-paid-previews-akshay-kumar-ensemble-bhooth-bangla-comparison-muharram-ahmed-khan-june-26-2026-where-to-watch-diaspora-nri-20260625",
+      "id": "5040a872-f870-4f5d-9de2-57bc0b0dde5a",
+      "headline": "OpenAI May Wait Until 2027 to Go Public \u2014 Because Sam Altman Wants a $1 Trillion Price Tag.",
+      "slug": "openai-ipo-delay-2027-trillion-valuation-sam-altman-nri-20260626",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,57 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Akshay Kumar in a suit and tie",
-          "reason": "The photo clearly shows Akshay Kumar, who is the subject of the headline and caption."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/reel/DZ_6FzYNo3/",
-            "problem": "broken",
-            "explanation": "The Instagram reel URL is malformed or does not exist. It returns a 'Page Not Found' error."
-          }
-        ],
-        "image_match": {
-          "score": 8,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The diaspora angle is naturally integrated, discussing overseas release and audience behavior in specific NRI hubs."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Verify and correct the broken Instagram embed URL. If it's meant to be a nostalgic post, find a relevant, working one.",
-          "Consider adding a sentence or two about Akshay Kumar's recent box office performance leading up to this film, beyond just 'Bhooth Bangla', to provide more context for his 'hot streak' claim."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "d5213019-feae-47fb-aef4-e5c76231ad18",
-      "headline": "Rajkummar Rao Vanishes Into Ujjwal Nikam \u2014 and the 'Prahaar' Teaser Walks Straight Into the Kasab Trial",
-      "slug": "prahaar-ujjwal-nikam-story-teaser-rajkummar-rao-cocktail-2-attached-kasab-26-11-trial-avinash-arun-maddock-august-7-2026-where-to-watch-diaspora-nri-20260625",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Rajkummar Rao, a man with dark hair and beard, wearing a white shirt.",
-          "reason": "The photo shows Rajkummar Rao, who is explicitly named in the headline and caption as the subject of the story."
+          "what_photo_shows": "A headshot of Sam Altman in a suit and tie.",
+          "reason": "The photo clearly shows Sam Altman, who is the central subject of the headline and story."
         },
         "inline_image_mismatches": []
       },
@@ -85,13 +36,361 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article explicitly connects the 26/11 tragedy's global impact and the film's potential appeal to NRI audiences seeking serious-minded cinema, including details about international streaming."
+          "note": "The diaspora angle is well-integrated and explained, connecting professional and investment impacts, and even policy influence."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a brief sentence about the significance of Ujjwal Nikam beyond the Kasab trial, if relevant to the film's scope, to provide more context for readers less familiar with Indian legal figures.",
-          "Ensure 'Cocktail 2' is a real, upcoming film or clarify it as a hypothetical example, as its existence isn't immediately verifiable and could cause confusion."
+          "Consider adding a quote from an Indian-origin professional or investor to further personalize the diaspora impact.",
+          "Briefly mention the current valuation of OpenAI (e.g., 'around $80 billion' from recent tender offers) to contrast with the $852 billion private financing mentioned, as the latter seems unusually high for a private round and might be a typo or misinterpretation of a future projection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "a545ff7b-da86-48e5-a1b5-68562a45d7de",
+      "headline": "Satya Nadella's Xbox Just Got $150 Pricier and Game Pass Jumped 50%. Blame the Same Chip Crunch Hitting Everyone.",
+      "slug": "microsoft-xbox-game-pass-price-hike-memory-shortage-nadella-nri-20260626",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Xbox Series X and Series S consoles on display",
+          "reason": "The photo clearly shows Xbox consoles, which are the subject of the headline and subheadline."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The diaspora angle is well-integrated and explained, connecting the price hikes to NRI families and even highlighting Indian-origin CEOs on both sides of the economic shift."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a small section on potential alternatives or strategies for NRI families to mitigate these rising costs, if applicable.",
+          "Perhaps a brief mention of how this might impact the gaming market in India itself, beyond just NRI families, could add another layer of depth."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "5fe815e4-7446-4234-8d48-d8771c07ef16",
+      "headline": "Akash Ambani Wants to Put 1,600 Satellites Over India. He's Picking a Fight With Starlink in Orbit.",
+      "slug": "reliance-jio-leo-satellite-constellation-akash-ambani-starlink-nri-20260626",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Starlink satellites in low-earth orbit",
+          "reason": "The photo shows Starlink satellites, which are directly relevant to the story about competition in the satellite broadband market."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The diaspora angle is explicitly addressed and well-integrated, connecting the infrastructure story to personal and financial interests of NRIs."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a small infographic or visual representation of the satellite constellation plan to enhance reader engagement.",
+          "Perhaps include a brief mention of the environmental impact or space debris concerns related to large satellite constellations, as this is a growing global discussion."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "341a6071-c8a0-4c58-b7f8-5a744bf97053",
+      "headline": "Bali's Entry Rules Quietly Tightened \u2014 Here's the 2026 Checklist for Indian Travelers",
+      "slug": "bali-entry-rules-2026-indians-evoa-tourist-levy-arrival-card-nri-20260626",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Pura Luhur Uluwatu temple on Bali's cliffs",
+          "reason": "The photo shows a famous landmark in Bali, which is the subject of the story about entry rules for Indian travelers to Bali."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 8,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The diaspora angle is well-integrated and provides practical reasons for NRIs to consider Bali as an add-on to trips home, focusing on convenience and cultural familiarity."
+        },
+        "factual_flags": [
+          "The headline mentions '2026 Checklist' but the body of the article does not provide any specific information or changes that are unique to 2026. All information seems current or generally applicable, not specifically for 2026. This could be misleading."
+        ],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Clarify why the checklist is specifically for '2026' or remove the year from the headline if the information is not unique to that year.",
+          "Consider adding a small section on common scams or cultural etiquette tips relevant to Indian travelers, as these are often overlooked in travel guides."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "23de9d27-453e-4b15-a061-7ccbd341b2f5",
+      "headline": "The Goa Almost No NRI Sees: Why a Monsoon Trip Beats the December Crush",
+      "slug": "goa-monsoon-travel-dudhsagar-old-goa-offbeat-nri-summer-20260626",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Dudhsagar Falls and a bridge during monsoon.",
+          "reason": "The photo explicitly shows Dudhsagar Falls, which is mentioned in both the subheadline and the caption as a key feature of monsoon Goa."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article directly addresses NRI families and their travel patterns, offering a relevant alternative to typical Goa trips."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a small section on local monsoon-specific cuisine or unique culinary experiences available during this time.",
+          "Perhaps include a brief mention of any specific challenges or tips for navigating local transport during heavy rains."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "4a9ca817-c65b-4c93-b54b-12c27abd583e",
+      "headline": "Air India Just Opened Its First US Lounge at SFO \u2014 the Bay Area's Gateway Home",
+      "slug": "air-india-sfo-maharaja-lounge-first-us-bay-area-diaspora-nri-20260626",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "An Air India Boeing 787-8 Dreamliner on a tarmac.",
+          "reason": "The photo shows an Air India plane, which is directly relevant to a story about Air India opening a new lounge."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article explicitly connects the lounge opening to the Bay Area's Indian community and NRI travel patterns, making it highly relevant."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a small section on future lounge plans for Air India in other US cities, if available, to provide a forward-looking perspective.",
+          "Ensure the article concludes with a strong summary statement, as it currently cuts off mid-sentence."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "3ec1a306-1bc7-47c8-8e3a-484ca48d3c79",
+      "headline": "India's Biggest Stock Exchange Files to Go Public \u2014 in What Would Be the Country's Largest IPO Ever",
+      "slug": "nse-files-drhp-india-largest-ipo-30000-crore-offer-for-sale-sbi-cppib-temasek-5-lakh-crore-nri-investor-20260626-0600",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MISMATCH",
+          "what_photo_shows": "The Bombay Stock Exchange building with 'BSE' visible",
+          "reason": "The photo shows the Bombay Stock Exchange (BSE), but the story is about the National Stock Exchange (NSE)."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "No image URL or entities provided, so cannot fully assess match. Assuming a generic stock market image would be used."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The 'Why It Matters for the Diaspora' section is well-integrated and provides a clear, relevant connection for NRI readers, explaining both the symbolic and financial implications."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Ensure a relevant hero image is selected and its description/entities are provided for a complete review.",
+          "Consider adding a small 'What is an IPO?' or 'What is an Offer for Sale?' explainer box for readers less familiar with financial jargon, especially given the diaspora audience."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "Cleared mismatched image (The Bombay Stock Exchange building with 'BSE' visible)",
+        "held: image mismatch"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "image_mismatch": true,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "f65e8ef9-fd74-4629-948d-101acbfafe75",
+      "headline": "A Weight-Loss Pill, Taken Any Time of Day, Shed Up to 12% in a Year in an Early Trial",
+      "slug": "aleniglipron-oral-glp1-weight-loss-pill-phase-2-trial-nature-12-percent-anytime-dosing-diaspora-20260626-0600",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "A hand holding various pills and capsules.",
+          "reason": "The photo shows pills, which is directly relevant to a story about a weight-loss pill."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The diaspora angle is well-integrated and relevant, highlighting specific health challenges and potential benefits for the South Asian community."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a quote from an NRI medical professional or community leader to further strengthen the diaspora angle.",
+          "Ensure the article concludes with a strong summary or call to action, as it currently ends abruptly."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "4ea8d6df-f44a-4cd6-a94f-77b08e39ed39",
+      "headline": "It May Not Be How Many Fruits You Eat, but Which Ones \u2014 a 30,000-Person Study Points to the Heart",
+      "slug": "flavanols-fruit-choice-heart-health-reading-harvard-uc-davis-30000-adults-food-function-five-a-day-diaspora-20260626-0600",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "A bowl of apples and pears.",
+          "reason": "The photo shows fruits, which are the subject of the story about heart-friendly compounds in fruits."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The diaspora angle is present and relevant, connecting the findings to the elevated heart disease risk in South Asian communities. It also addresses common fruit choices in diaspora kitchens."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a sentence or two about specific Indian-origin fruits/vegetables that *are* high in flavanols, if any, to provide more actionable advice tailored to the diaspora.",
+          "Ensure the article concludes with a strong call to action or summary, as it currently cuts off mid-sentence."
         ],
         "verdict": "pass"
       },
