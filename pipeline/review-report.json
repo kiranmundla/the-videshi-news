@@ -1,19 +1,19 @@
 {
-  "timestamp": "2026-06-26T18:45:38.925277+00:00",
+  "timestamp": "2026-06-26T19:15:13.251892+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 1,
+    "pass": 1,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
-  "revisions": 1,
+  "revisions": 0,
   "unpublished": 0,
   "articles": [
     {
-      "id": "dc8103c1-eee0-4b63-9c05-d3aec329006c",
-      "headline": "For a Generation, 'Study Abroad' Meant America, Canada, Britain or Australia. That Era Is Quietly Ending.",
-      "slug": "indian-students-abroad-big-four-decline-us-canada-uk-australia-destination-shift-germany-uae-ireland-mea-data-20260626",
+      "id": "3f185ef0-a7f8-40ca-a1ac-a61d48fde1cd",
+      "headline": "Madhavan Folds His Hands, Mammootty Walks Tall, and an Empty Chair for Satish Shah: Cinema's Padma Roll Call",
+      "slug": "padma-awards-2026-cinema-r-madhavan-mammootty-alka-yagnik-satish-shah-posthumous-dulquer-salmaan-droupadi-murmu-where-to-watch-diaspora-nri-20260626",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,14 +21,20 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A person in graduation attire, likely a student.",
-          "reason": "The photo of a student in graduation attire is a generic but on-topic image for a story about international student education."
+          "what_photo_shows": "R. Madhavan, an Indian actor",
+          "reason": "The photo clearly shows R. Madhavan, who is a central figure in the headline and subheadline."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/DZ739wMILAe/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel is from January 2022 and features a child dancing, completely unrelated to the Padma Awards or the celebrities mentioned in the article. It should be replaced with a relevant post from one of the honorees or about the awards."
+          }
+        ],
         "image_match": {
           "score": 9,
           "issue": null
@@ -36,122 +42,21 @@
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The 'Why It Matters for the Diaspora' section directly addresses the NRI/diaspora reader, explaining the long-term implications of the shift in study-abroad destinations for family planning and community renewal."
-        },
-        "factual_flags": [
-          "The article states 'The total number of Indians going abroad to study fell from 9.08 lakh in 2023 to 7.7 lakh in 2024 and 6.26 lakh in 2025, a roughly 31 percent decline in two years'. However, 9.08 lakh to 6.26 lakh is a 31% decline over two years, but the individual year-on-year drops are 15% (2023-2024) and 18.6% (2024-2025). The phrasing 'a roughly 31 percent decline in two years' is accurate for the overall period, but the individual year figures might be misinterpreted without clearer context."
-        ],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a small graphic or chart to visualize the decline in the 'Big Four' and the rise of 'the rest of the world' to make the data more digestible.",
-          "While the article mentions 'The Videshi' as the platform, it could subtly reinforce the NRI connection earlier in the article, perhaps in the introduction, to immediately hook the target audience."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "392d00f6-d56b-4d4f-8b9f-d4d00a764a01",
-      "headline": "The Diaspora Used to Send Money Home. Now It's Investing in India \u2014 and GIFT City Is the New Address.",
-      "slug": "nri-investment-shift-gift-city-wealth-hub-belong-doubles-inflows-portfolio-allocation-india-mutual-funds-aif-20260626",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Aerial view of a city with tall buildings and an airplane wing",
-          "reason": "The photo shows an aerial view of a city with modern buildings, which plausibly represents GIFT City as described in the caption and story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The entire article is centered on the financial relationship between NRIs and India, specifically their investment patterns and the role of GIFT City. It directly addresses the NRI audience."
+          "note": "The article consistently and naturally weaves in the diaspora perspective, explaining why these awards resonate with NRIs and how specific cultural touchstones (like Sarabhai vs Sarabhai) connect with them."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a small section or a quote from an NRI investor sharing their personal experience or motivation for this shift, to add a human element.",
-          "Briefly explain what 'GIFT Nifty derivatives trading' entails for readers who may not be familiar with financial jargon."
+          "Replace the irrelevant Instagram embed with a current and relevant social media post from one of the honorees or about the Padma Awards ceremony.",
+          "Consider adding a concluding sentence or two that encourages engagement, perhaps asking readers to share their favorite work by the honorees."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/DZ739wMILAe/",
         "promoted to published"
       ],
       "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "edeb4821-2002-41a8-bb0b-6e4ce68624c0",
-      "headline": "Your Genes May Decide Whether Your Sleep Protects Your Brain \u2014 or Harms It",
-      "slug": "aqp4-gene-sleep-interaction-alzheimers-risk-edith-cowan-university-glymphatic-personalized-prevention-diaspora-20260626-1800",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [
-          {
-            "url": "https://x.com/VideshiMedia/status/1759089947997931818",
-            "problem": "broken",
-            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
-          },
-          {
-            "url": "https://instagram.com/p/C3fL7t8P1k7/",
-            "problem": "broken",
-            "detail": "Instagram embed shows removed/broken placeholder"
-          }
-        ],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "An older woman sleeping in bed.",
-          "reason": "The photo of an older woman sleeping is a generic but on-topic image for a story about sleep and brain health in older Australians."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 6,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 5,
-          "note": "The image URL includes 'diaspora-20260626-1800.jpg' which suggests an attempt to connect, but the article body itself doesn't explicitly mention NRIs or the diaspora. The connection feels forced rather than natural within the text."
-        },
-        "factual_flags": [
-          "The article states 'The sample was modest at 351 people, sleep was self-reported rather than measured in a lab, and an observational study cannot prove that sleep changes brain outcomes rather than merely trackin'. This is a good disclaimer, but the headline and initial framing might overstate the certainty of the findings given these limitations."
-        ],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Strengthen the diaspora angle within the article's body. Perhaps discuss how this research might be particularly relevant to NRIs, given potential differences in lifestyle, access to healthcare, or genetic predispositions within the Indian diaspora.",
-          "Consider adding a quote or perspective from an expert who can speak to the implications of personalized health advice for diverse populations, including the diaspora."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Removed 2 broken/hallucinated embed(s)",
-        "Revised by gemini-2.5-flash (961\u21921006 words)"
-      ],
-      "revised": true,
       "unpublished": false,
       "llm_source": "gemini-2.5-flash"
     }
