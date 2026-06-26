@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-26T15:15:39.658298+00:00",
+  "timestamp": "2026-06-26T16:15:26.387702+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
-    "flag": 2,
+    "pass": 2,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "7b102ff9-3ec8-47df-b33e-958f0a15cce1",
-      "headline": "A Port-Town King and the Daughter Who Won't Bow: Prime Video's 'Isakapatnam' Drops July 2",
-      "slug": "isakapatnam-prime-video-july-2-2026-samuthirakani-aishwarya-rajesh-garry-bh-telugu-crime-thriller-father-daughter-tamada-media-where-to-watch-diaspora-nri-20260626",
+      "id": "a2d7c948-98a3-4489-bb9c-b5af098c28f1",
+      "headline": "Texas Found a Way to Police H-1B Visas Without Touching the Program",
+      "slug": "texas-h1b-ghost-office-enforcement-consumer-protection-indian-it-20260626",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,146 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Samuthirakani, a man with a mustache, wearing a white shirt",
-          "reason": "The photo shows Samuthirakani, who is named in the headline and caption as leading the series."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 6,
-          "issue": "The image shows Samuthirakani, who is a key actor in the series, but the image itself is from an audio launch for a different film ('Sandamarudham'). While it features a relevant person, it's not directly related to 'Isakapatnam' or its promotional material, which might be misleading for a hero image."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article explicitly addresses the diaspora angle, highlighting how Prime Video's global release strategy for regional content benefits NRIs, making it a natural and strong connection."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the hero image with one directly related to 'Isakapatnam' (e.g., a promotional still, poster, or a screenshot from the trailer) to improve relevance.",
-          "Consider adding a sentence or two about the significance of 'Isakapatnam' being a Telugu original, given The Videshi's audience, perhaps touching on the growth of regional content globally."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "f35cc417-6ed7-4b57-9564-7d91b3968194",
-      "headline": "A French Crowd Just Lost It Over a Telugu Film: Rajamouli's 'Varanasi' Storms Annecy",
-      "slug": "varanasi-first-glimpse-annecy-film-festival-roaring-response-ss-rajamouli-mahesh-babu-priyanka-chopra-prithviraj-1300-crore-april-2027-where-to-watch-diaspora-nri-20260626",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Movie poster for 'Varanasi' with a meteor striking Earth.",
-          "reason": "The photo is a movie poster for 'Varanasi', which is the subject of the headline."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The diaspora angle is naturally woven throughout the article, especially in the casting of Priyanka Chopra Jonas and the discussion of global rollout strategy targeting NRIs."
-        },
-        "factual_flags": [
-          "The article states 'Varanasi: To the World' had finished playing at Annecy, but then later says 'While the film is yet to arrive in cinemas, it is already making waves across the globe.' This implies a screening of some kind, but the headline and body suggest a full film screening, which might be misleading if it was only a preview or presentation. Clarification needed on what 'finished playing' means.",
-          "The film title is inconsistently referred to as 'Varanasi: To the World' and simply 'Varanasi'. While common for short forms, consistency or clarification would be good.",
-          "The article mentions 'Varanasi' is 'second only to the upcoming Ramayana' in budget, but 'Ramayana' is also an upcoming film. This comparison might be speculative or based on unconfirmed budgets for both."
-        ],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Clarify whether 'Varanasi' was fully screened at Annecy or if it was a presentation/preview, to avoid potential misinterpretation.",
-          "Ensure consistent use of the film's full title or clearly state the shortened version is being used."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "8d76407e-db96-4a77-9c05-3fb99fcab8db",
-      "headline": "Adobe's Outgoing Indian-Born CEO Is Spending His Last Act Buying AI",
-      "slug": "adobe-topaz-labs-acquisition-firefly-foundry-shantanu-narayen-nri-20260626",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A man identified as Shantanu Narayen, CEO of Adobe.",
-          "reason": "The photo clearly shows the named individual, Shantanu Narayen, who is the subject of the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The diaspora angle is well-integrated and provides relevant reasons for NRI interest, both from a leadership perspective and as target users of the technology."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a brief mention of potential candidates or the profile the board might be looking for in Narayen's successor, if any public speculation exists.",
-          "Expand slightly on the 'flip side is cost' point, perhaps with a hypothetical scenario or a quote from a creative if available, to emphasize the concern."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "d57408ee-e759-4bc3-aff9-e8ba8409f02a",
-      "headline": "India's Government Is About to Become a Shareholder in Its Favorite AI Startup. The Bill Comes in GPUs.",
-      "slug": "indiaai-mission-government-equity-stake-sarvam-sovereign-ai-nri-20260626",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "61f8eaa4-924a-46a4-9d48-e26a476944e7",
-            "headline": "India Can't Out-Build Taiwan's Chip Fabs. So It's Betting It"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Ashwini Vaishnaw, India's electronics and IT minister",
-          "reason": "The photo shows the named individual who oversees the IndiaAI Mission, which is central to the story."
+          "what_photo_shows": "An empty open-plan office floor with vacant cubicles.",
+          "reason": "The photo depicts a 'ghost office' setup, which is directly relevant to the story's topic of H-1B sponsorship fraud investigations."
         },
         "inline_image_mismatches": []
       },
@@ -169,18 +31,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image is of Ashwini Vaishnaw, a relevant figure, but the headline focuses on the government becoming a shareholder in an AI startup, not specifically on him. A more direct image related to Sarvam AI or GPUs might be slightly better, but this is acceptable."
+          "issue": "The image shows a person working on a laptop in a modern office setting, which generally aligns with the topic of H-1B visas and employment. However, it doesn't specifically evoke 'Texas' or 'policing' or 'immigration' in a direct way. It's a generic business image."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The 'Diaspora impact' section is well-integrated and directly addresses both investment implications and career opportunities for NRIs, making a strong and natural connection."
+          "note": "The article directly addresses the impact on the Indian-American IT-services ecosystem and Indian engineers, making the diaspora angle very strong and relevant. The 'Indian exposure' section is particularly effective."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a brief explanation of what 'compulsorily convertible debentures' are for a broader audience, perhaps in a parenthetical or a short sentence.",
-          "While the article mentions the IndiaAI Mission's funding for other companies, a very brief sentence on their current status or a notable achievement could add more context."
+          "Consider adding a specific example or anecdote of an NRI affected by these 'ghost office' investigations to personalize the impact.",
+          "If possible, include a quote from an immigration lawyer or an affected H-1B worker to add more depth and perspective."
         ],
         "verdict": "pass"
       },
@@ -192,9 +54,9 @@
       "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "1f4ffcaf-705b-4141-bce2-6c1c0b16e856",
-      "headline": "The Man Who Ran Infosys Now Wants AI to Replace the Work That Built It",
-      "slug": "vishal-sikka-hang-ten-systems-ai-it-services-infosys-h1b-nri-20260626",
+      "id": "08d04597-dc19-4c76-b654-69aa66aaaaf2",
+      "headline": "The $100K H-1B Fee Is Dead in Court. USCIS Keeps Demanding It Anyway",
+      "slug": "h1b-100k-fee-rfe-limbo-uscis-demands-exempt-workers-indians-20260626",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -202,8 +64,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Vishal Sikka speaking at an event",
-          "reason": "The photo clearly shows Vishal Sikka, who is the central subject of the headline and story."
+          "what_photo_shows": "A passport page with the word 'Visas' and the number '26'.",
+          "reason": "The photo shows a passport visa page, which is directly relevant to a story about H-1B visas and immigration."
         },
         "inline_image_mismatches": []
       },
@@ -211,23 +73,21 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
+          "score": 8,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The diaspora angle is well-integrated and explores both the potential negative impact and the opportunities for the Indian diaspora in the tech industry."
+          "note": "The article explicitly details how the H-1B issues disproportionately affect Indian nationals and NRIs, making the diaspora angle very strong and natural."
         },
-        "factual_flags": [
-          "Sikka led Vianai Systems until April 2026 - this date seems to be a typo, as it's in the future. Should likely be 2023 or 2024."
-        ],
+        "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Correct the typo regarding Vishal Sikka's tenure at Vianai Systems (April 2026).",
-          "Consider adding a brief explanation of what 'agentic code generation' entails for a broader audience."
+          "Consider adding a quote from an affected individual (an NRI H-1B holder) to personalize the impact of these bureaucratic issues.",
+          "If possible, include a link to the court ruling or a relevant legal resource for readers who want to delve deeper into the legal specifics."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
         "promoted to published"
