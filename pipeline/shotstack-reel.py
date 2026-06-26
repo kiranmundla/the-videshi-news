@@ -6669,13 +6669,26 @@ def run_anchor_reel(article, dry_run=False, use_production=False, no_publish=Fal
             # plain photo (hero, media library, related) — real visual
             return True
         _real = sum(1 for m in _metas if _is_real_visual(m))
-        # Doomed only if NO scene carries a real visual (all bare text cards).
-        if _real == 0:
-            print(f"  ❌ All {_n} scenes are bare text cards (no real imagery) — "
-                  f"this fails 'overlapping text' QA every time. Skipping render to "
-                  f"save Shotstack credits (image-gen likely billing-blocked).")
+        # Doomed when too FEW scenes carry a real visual — not only the all-zero
+        # case. When image-gen is billing-blocked, a typical reel renders with just
+        # the hero photo real (1 of ~6) and the rest defective bare text cards
+        # (black-box / overlapping-text), which QA scores 6 or below every time.
+        # A healthy reel is majority-real (photos/social/animated cards, with text
+        # cards a minority), so require at least half the scenes to be real imagery.
+        # Conservative: ties round up via (_n + 1)//2, and the all-zero message is
+        # preserved for the fully-degraded case.
+        _min_real = (_n + 1) // 2
+        if _real < _min_real:
+            if _real == 0:
+                print(f"  ❌ All {_n} scenes are bare text cards (no real imagery) — "
+                      f"this fails 'overlapping text' QA every time. Skipping render to "
+                      f"save Shotstack credits (image-gen likely billing-blocked).")
+            else:
+                print(f"  ❌ Only {_real}/{_n} scenes have real imagery (need ≥{_min_real}) — "
+                      f"text-card-heavy reels fail the QA visual-variety gate. Skipping "
+                      f"render to save Shotstack credits (image-gen likely billing-blocked).")
             return False
-        print(f"  ✅ Visual variety OK: {_real}/{_n} scenes have real imagery")
+        print(f"  ✅ Visual variety OK: {_real}/{_n} scenes have real imagery (need ≥{_min_real})")
     except Exception as _e:
         # Never block a render on a guard bug — fall through to render.
         print(f"  ⚠️ visual-variety preflight skipped ({_e})")
