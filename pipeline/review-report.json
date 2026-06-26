@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-26T07:15:19.115997+00:00",
+  "timestamp": "2026-06-26T07:45:09.506941+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 1,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,32 +11,23 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "930d16dc-a5e4-4015-9904-0e4c378bf2b8",
-      "headline": "Akshay Kumar Stops the Movie at Intermission, Walks Out With Popcorn, and Plays You a Bonus Song",
-      "slug": "welcome-to-the-jungle-release-day-post-intermission-akshay-kumar-stunt-paid-previews-ahmed-khan-raveena-tandon-reunion-june-26-2026-where-to-watch-diaspora-nri-20260626",
+      "id": "0c026b33-3603-4dbb-8a07-2a0ddc4c2d79",
+      "headline": "Down 0-4 to a Bullet Specialist, Arjun Erigaisi Won the Next 16 \u2014 and a Shot at the World's Fastest Chess Title",
+      "slug": "arjun-erigaisi-2026-bullet-chess-championship-winners-final-beat-andrew-tang-16-6-nihal-sarin-firouzja-chess-com-fastest-india-diaspora-nri",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "0d0e095d-24bc-44fd-ad62-9d0185a27881",
-            "headline": "Akshay Kumar Opens the Jungle. After 19 Years, 'Welcome' Ret"
-          },
-          {
-            "article_id": "cfe25a00-83cf-4d0d-b73f-ac9da6f980f4",
-            "headline": "Twenty-Two Years Later, the 'Mohra' Couple Is Back. The Whol"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Movie poster for 'Welcome To The Jungle' featuring Akshay Kumar",
-          "reason": "The photo shows the official poster for the movie 'Welcome To The Jungle', which is the subject of the headline and story."
+          "what_photo_shows": "A man in a suit holding an ID card.",
+          "reason": "The photo shows Arjun Erigaisi, who is the subject of the story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 7,
+        "overall_score": 8,
         "embed_issues": [],
         "image_match": {
           "score": 9,
@@ -45,67 +36,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The diaspora angle is explicitly addressed and well-integrated, discussing the film's international release and appeal to NRI families."
-        },
-        "factual_flags": [
-          "The article mentions '1980s-masala throwback in 2026' but the film was released in 2024. This is a potential typo or factual error."
-        ],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Correct the year '2026' to '2024' when referring to the film's release context.",
-          "Consider adding a brief explanation of what 'U/A comedy' means for a global audience, as not all readers may be familiar with Indian film certification."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "3545fed3-ea16-48cb-8a30-248994e394ba",
-      "headline": "Cocktail 2 Has Crossed \u20b960 Crore. So Why Is the Whole Trade Whispering About an Asterisk?",
-      "slug": "cocktail-2-box-office-60-crore-asterisk-external-push-shahid-kapoor-kriti-sanon-rashmika-mandanna-homi-adajania-where-to-watch-diaspora-nri-20260626",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "04ab66bc-5373-4112-8651-d1d8e3d7af52",
-            "headline": "Arijit Sings, the Internet Swoons: \u201cLeher,\u201d Cocktail 2\u2019s Fir"
-          },
-          {
-            "article_id": "81b262d9-09ed-4b15-9d71-64ad57008ebe",
-            "headline": "\u20b971 Crore and a Lifeline: Cocktail 2 Hands Shahid Kapoor the"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Official poster for the movie Cocktail 2 with three actors.",
-          "reason": "The photo is an official movie poster for 'Cocktail 2', which is the main subject of the headline and subheadline."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 10,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The diaspora angle is explicitly addressed and well-integrated, discussing overseas performance and accessibility."
+          "note": "The article effectively highlights the success of Indian players and connects it to a 'golden generation,' which resonates well with diaspora readers interested in national achievements."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a link to the Pinkvilla box office analysis mentioned, if publicly available, to support the claim.",
-          "Ensure the YouTube embed is the official trailer or a relevant song from the movie, as the current URL is generic."
+          "Consider adding a sentence or two about how NRIs can watch the event or follow the players, perhaps mentioning specific platforms or social media accounts.",
+          "While the diaspora angle is present, a direct quote from an NRI fan or a brief mention of the global Indian community's reaction could further strengthen it."
         ],
         "verdict": "pass"
       },
