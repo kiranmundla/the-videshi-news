@@ -556,5 +556,15 @@
     "errors": 0,
     "hero_slug": "stt-tata-delhi-data-centre-fire-extensive-damage-matrix-cellular-google-cloud-data-loss-20260625",
     "story_count": 5
+  },
+  {
+    "type": "daily",
+    "sent_at": "2026-06-26T13:55:52.862423+00:00Z",
+    "subject": "The Videshi Daily \u2014 June 26, 2026",
+    "subscribers": 3,
+    "sent": 3,
+    "errors": 0,
+    "hero_slug": "tata-electronics-ransomware-breach-apple-tesla-world-leaks-nri-20260626",
+    "story_count": 5
   }
 ]
