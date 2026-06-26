@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-26T20:16:38.370488+00:00",
+  "timestamp": "2026-06-26T20:45:18.767653+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
+    "pass": 2,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "75dec796-365f-4a9f-afc4-aa7eee5d8e89",
-      "headline": "Indians Built Escape Routes Around the Green-Card Backlog. The July Bulletin Closed Them All at Once",
-      "slug": "eb1-retrogression-eb5-unreserved-india-unavailable-july-2026-fast-lane-20260626",
+      "id": "bd34ad62-7ded-4998-9361-ae783dfac7fa",
+      "headline": "Hyderabad Just Named a Road After Donald Trump. The Backlash Came From an Unexpected Direction.",
+      "slug": "hyderabad-donald-trump-avenue-road-renamed-us-consulate-telangana-congress-bjp-hypocrisy-row-20260626",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,13 +21,13 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A USCIS Application Support Center building entrance",
-          "reason": "The photo shows a USCIS Application Support Center, which is directly relevant to immigration and green card processes discussed in the story."
+          "what_photo_shows": "A modern high-rise building in a city landscape",
+          "reason": "The photo shows a city skyline with modern buildings, which is consistent with a story about Hyderabad's Financial District."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 8,
+        "overall_score": 7,
         "embed_issues": [],
         "image_match": {
           "score": 8,
@@ -35,14 +35,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article directly addresses the impact on Indians and Indian Americans, explaining how the changes affect their specific strategies and hopes for green cards."
+          "quality": 8,
+          "note": "The article explicitly connects the road naming to the diaspora's interests and anxieties, particularly those in tech and with ties to Hyderabad."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a brief explanation of what 'EB-2 wall' refers to for readers less familiar with the jargon.",
-          "Perhaps include a quote from an affected individual or an immigration lawyer to add a human element to the policy changes."
+          "Consider adding a brief explanation of the 'Howdy Modi' event for readers who might not be familiar with it.",
+          "Ensure the image entities are populated for a more thorough review of image relevance."
         ],
         "verdict": "pass"
       },
@@ -54,9 +54,9 @@
       "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "b35c20b8-44a9-4dc6-95eb-c6d26aeecf46",
-      "headline": "EB-2 India Is Dark. The Only Green-Card Lane Still Moving Is the One Everyone Was Told to Leave",
-      "slug": "eb3-downgrade-india-july-2026-visa-bulletin-eb2-unavailable-green-card-20260626",
+      "id": "319dfc61-fd28-4605-aaf9-2ffcb2d73fa8",
+      "headline": "India Says a Trade Deal With America Is 'Done.' It Just Won't Switch It On Until the Tariffs Favour India.",
+      "slug": "india-us-trade-deal-very-close-goyal-greer-tariff-advantage-july-24-deadline-bilateral-bta-20260626",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,8 +64,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A United States permanent resident card (green card)",
-          "reason": "The story discusses green card lanes and immigration, making a photo of a green card highly relevant."
+          "what_photo_shows": "Indian Commerce and Industry Minister Piyush Goyal",
+          "reason": "The photo shows the named individual who is central to the story's topic."
         },
         "inline_image_mismatches": []
       },
@@ -78,57 +78,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article directly addresses the impact on Indians in the green-card queue and explicitly mentions 'What It Means for the Diaspora' and 'Indian-shaped way' the system is broken."
+          "quality": 8,
+          "note": "The 'Why It Matters for the Diaspora' section directly addresses the NRI connection, making it relevant and well-integrated."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a small 'explainer' box for key terms like 'priority date' or 'final action date' for readers less familiar with immigration jargon.",
-          "While the article is strong, a brief quote from an affected individual (even anonymized) could add a human element to the 'cruel arithmetic' described."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "b1937a58-706a-4966-98b2-d4d325c6c3b9",
-      "headline": "A Bad Signature Used to Mean a Delay. After July 10, It Can Mean a Denial",
-      "slug": "uscis-signature-rule-july-10-deficient-denial-h1b-green-card-indians-20260626",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Hands signing documents at a desk",
-          "reason": "The photo depicts the act of signing documents, which is directly relevant to a story about signature requirements for immigration filings."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 8,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "Explicitly addresses the impact on Indian professionals, who are the largest bloc in H-1B and green card pipelines."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a small 'What to do' section for individuals, even if the primary responsibility lies with employers, to empower readers with actionable advice.",
-          "Perhaps include a quote from an immigration attorney specifically advising Indian professionals or large employers on best practices."
+          "Consider adding a quote from an Indian-American business leader to further strengthen the diaspora angle and provide a 'boots on the ground' perspective.",
+          "Ensure all future dates (e.g., '2025-26') are accurate and consistent with the article's publication context."
         ],
         "verdict": "pass"
       },
