@@ -1,19 +1,19 @@
 {
-  "timestamp": "2026-06-26T22:45:20.885782+00:00",
+  "timestamp": "2026-06-26T23:15:35.623053+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
+    "pass": 3,
     "flag": 1,
     "fail": 0,
     "error": 0
   },
-  "revisions": 1,
+  "revisions": 0,
   "unpublished": 0,
   "articles": [
     {
-      "id": "c9bff75a-cdb8-4567-a7a9-c70420a4849e",
-      "headline": "Wimbledon 2026: India's Hopes Ride on Yuki Bhambri and the Doubles Brigade",
-      "slug": "wimbledon-2026-india-yuki-bhambri-doubles-grass-court-preview-nri",
+      "id": "87546f9b-fc20-4f20-8b5a-ebace1f78a1f",
+      "headline": "The Oscar Voting Body Just Got a Lot More Indian \u2014 and It's About Time",
+      "slug": "oscar-academy-2026-class-indian-invitees-vishal-bhardwaj-sreekar-prasad-eka-lakhani-avneet-kaur-disney-dilip-shankar-deepa-bhatia-where-to-watch-diaspora-nri-20260626",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,53 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Yuki Bhambri playing tennis on a clay court.",
-          "reason": "The photo clearly shows Yuki Bhambri, who is the main subject of the headline and caption."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 6,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The diaspora angle is explicitly stated and reasonably well-integrated, connecting Wimbledon's accessibility and the pride in Indian representation to NRI readers."
-        },
-        "factual_flags": [
-          "The article mentions 'Wimbledon 2026' and 'Monday, 29 June' as the start date. June 29, 2026, is a Monday, which aligns. However, the article also states 'In February 2026 he climbed to a career-high doubles ranking of world No. 18 \u2014 comfortably the highest of any Indian man \u2014 and he comes to Wimbledon riding the momentum of a breakthrough 2025 season.' This implies the article is written in 2026, but then it talks about 'Wimbledon 2026' as if it's in the future. This creates a slight temporal inconsistency, as if it's a preview written in 2026 for an event in 2026, but also references past events from 2025 and early 2026. It's a minor point but could be clearer."
-        ],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Clarify the temporal framing of the article to avoid minor inconsistencies (e.g., 'As Wimbledon 2026 approaches...' or 'Looking ahead to Wimbledon 2026...').",
-          "Consider adding a quote from Yuki Bhambri or another Indian doubles player about their expectations or the significance of playing at Wimbledon for the diaspora, if available, to enhance reader engagement."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Revised by gemini-2.5-flash (680\u2192722 words)"
-      ],
-      "revised": true,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "dcf01d9c-d766-408d-b4f3-e0f83e5f294c",
-      "headline": "America Just Bombed Iran Again. The Trigger Was a Drone Hitting a Ship in the World's Most Important Oil Lane.",
-      "slug": "us-strikes-iran-hormuz-cargo-ship-drone-attack-ceasefire-violation-indian-seafarers-oil-20260626",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A satellite view of the Strait of Hormuz",
-          "reason": "The photo clearly depicts the Strait of Hormuz, which is central to the story's topic about oil lanes and attacks."
+          "what_photo_shows": "A man identified as Vishal Bhardwaj",
+          "reason": "The photo shows Vishal Bhardwaj, who is explicitly named in the headline and subheadline as joining the Academy's 2026 class."
         },
         "inline_image_mismatches": []
       },
@@ -81,17 +36,176 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects to the diaspora through the plight of Indian seafarers and the economic impact on India, which affects NRIs."
+          "note": "The article explicitly addresses the diaspora angle with Avneet Kaur and explains its significance."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a specific quote from an Indian seafarer or their family to personalize the 'Indians Caught in the Middle' section.",
-          "Expand slightly on the economic impact for the diaspora in the Gulf, perhaps with a statistic on remittances or trade."
+          "Consider adding a sentence or two about the historical underrepresentation of Indian cinema at the Oscars to further contextualize the 'about time' in the headline.",
+          "Perhaps include a brief quote from one of the new Indian invitees, if available, to add a personal touch."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "d9010ded-8841-46ec-b967-183b3d1fb8f0",
+      "headline": "\"Tell the Pathaans, Chauhaan Is Coming\": Ajay Devgn Storms Back Into Action \u2014 and Bollywood Twitter Can't Stop Arguing",
+      "slug": "chauhaan-ajay-devgn-title-announcement-jio-studios-aanand-l-rai-neeraj-yadav-kashmir-pulwama-action-october-2027-pathaan-line-where-to-watch-diaspora-nri-20260626",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Ajay Devgn, who headlines the action thriller Chauhaan",
+          "reason": "The photo clearly shows Ajay Devgn, who is the subject of the headline and story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses a major Bollywood star and a highly anticipated film, which is inherently relevant to the Indian diaspora. The 'Bollywood Twitter at war with itself' aspect also resonates with global Indian social media engagement."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a social media embed (Twitter/X or Instagram) showing some of the 'Bollywood Twitter at war' mentioned in the article to enhance engagement and provide direct evidence of the discussion.",
+          "Expand on the 'G' movie mentioned at the end of the article, as it seems to be cut off abruptly. Ensure all film titles and details are complete."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "a15618bb-5ff4-4a4e-96ce-18204e085a02",
+      "headline": "Munna Bhaiya Walks Back From the Dead: 'Mirzapur' Storms the Big Screen This September",
+      "slug": "mirzapur-the-movie-teaser-pankaj-tripathi-ali-fazal-divyenndu-munna-bhaiya-return-excel-amazon-september-4-2026-where-to-watch-diaspora-nri-20260626",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Pankaj Tripathi, an actor, wearing a black and red scarf",
+          "reason": "The photo shows Pankaj Tripathi, who is explicitly named in the caption as returning for 'Mirzapur: The Movie', which is the subject of the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DaAA-zIzbAL/",
+            "problem": "irrelevant",
+            "explanation": "This Instagram reel is from November 2022 and features a generic motivational quote, not related to Mirzapur or the movie announcement."
+          }
+        ],
+        "image_match": {
+          "score": 8,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article explicitly addresses the diaspora audience regarding the theatrical release and its implications for NRIs, mentioning specific regions and cinema chains."
+        },
+        "factual_flags": [
+          "The article states the worldwide theatrical release is set for 'September 4, 2026' but then repeatedly refers to 'this September' and 'September 4' without the year, creating a contradiction. The teaser release date of June 25, 2024, suggests the movie would be released in September 2024, not 2026."
+        ],
+        "duplicate_embeds": [
+          "https://youtube.com/watch?v=uBotyv_TSZg"
+        ],
+        "suggestions": [
+          "Clarify the release year for Mirzapur: The Movie. The article mentions 'September 4, 2026' but then 'this September' and 'September 4' without the year, which is confusing and likely a factual error.",
+          "Replace the irrelevant Instagram embed with a relevant social media post about Mirzapur: The Movie, perhaps from an official cast or production account."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DaAA-zIzbAL/",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "c9bff75a-cdb8-4567-a7a9-c70420a4849e",
+      "headline": "Wimbledon 2026: India's Hopes Ride on Yuki Bhambri and the Doubles Brigade",
+      "slug": "wimbledon-2026-india-yuki-bhambri-doubles-grass-court-preview-nri",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [
+          {
+            "url": "https://x.com/atptour/status/1798361280963033501",
+            "problem": "broken",
+            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
+          },
+          {
+            "url": "https://x.com/wimbledon/status/1798358120000854400",
+            "problem": "broken",
+            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
+          },
+          {
+            "url": "https://instagram.com/p/C71g-21y_bS/",
+            "problem": "broken",
+            "detail": "Instagram embed shows removed/broken placeholder"
+          }
+        ],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Yuki Bhambri playing tennis on a clay court.",
+          "reason": "The photo clearly shows Yuki Bhambri, who is the main subject of the headline and caption."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The diaspora angle is well-integrated and feels natural, connecting the event to NRI pride and inspiration."
+        },
+        "factual_flags": [
+          "The article mentions 'Wimbledon 2026' and 'set to begin on Monday, 29 June'. June 29, 2026, is a Monday, which is correct. However, the article also states 'The draw, released this week, will determine the opening assignments, with first-round matches beginning Monday.' This implies the article is being published in the week leading up to Wimbledon 2026, which is a future date. This is a common issue with future-dated articles that try to sound current."
+        ],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Clarify the publication date context for a future event like Wimbledon 2026 to avoid sounding like it's happening 'this week' when it's still two years away. Perhaps frame it as a 'preview' or 'look ahead'.",
+          "Consider adding a quote from Yuki Bhambri or another Indian doubles player about their expectations for Wimbledon 2026 to add more personal insight."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "Removed 3 broken/hallucinated embed(s)",
         "promoted to published"
       ],
       "revised": false,
