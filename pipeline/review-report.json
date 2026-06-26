@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-26T20:45:18.767653+00:00",
+  "timestamp": "2026-06-26T21:15:18.708223+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 0,
+    "pass": 1,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,42 +11,54 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "bd34ad62-7ded-4998-9361-ae783dfac7fa",
-      "headline": "Hyderabad Just Named a Road After Donald Trump. The Backlash Came From an Unexpected Direction.",
-      "slug": "hyderabad-donald-trump-avenue-road-renamed-us-consulate-telangana-congress-bjp-hypocrisy-row-20260626",
+      "id": "3627e9cf-43e4-4a5e-ba22-21af8fc77e7a",
+      "headline": "'Ramayana' Wants to Throw Its Grand Premiere in Dubai \u2014 and the Diaspora Is the Whole Point",
+      "slug": "ramayana-grand-dubai-premiere-revived-ranbir-kapoor-sai-pallavi-yash-nitesh-tiwari-diwali-2026-where-to-watch-diaspora-nri-20260626",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "41fb7170-2028-4af9-963e-e669374e24d1",
+            "headline": "Ramayana Walks Into Hall H: Ranbir and Yash Eye a San Diego "
+          }
+        ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A modern high-rise building in a city landscape",
-          "reason": "The photo shows a city skyline with modern buildings, which is consistent with a story about Hyderabad's Financial District."
+          "what_photo_shows": "A headshot of actor Ranbir Kapoor.",
+          "reason": "The headline and subheadline explicitly mention Ranbir Kapoor as a key figure in the 'Ramayana' project."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
+        "overall_score": 8,
+        "embed_issues": [
+          {
+            "url": "https://youtube.com/watch?v=3-wSEehDBVk",
+            "problem": "irrelevant",
+            "explanation": "The YouTube embed is a trailer for 'Animal', a different film starring Ranbir Kapoor, not 'Ramayana'. This is topically irrelevant to the article's subject."
+          }
+        ],
         "image_match": {
-          "score": 8,
-          "issue": null
+          "score": 7,
+          "issue": "The image shows Ranbir Kapoor, who is a key actor in the 'Ramayana' film discussed. However, the image itself is a generic airport paparazzi shot and doesn't directly relate to the 'Ramayana' film or its Dubai premiere, which is the core of the headline."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article explicitly connects the road naming to the diaspora's interests and anxieties, particularly those in tech and with ties to Hyderabad."
+          "quality": 9,
+          "note": "The article explicitly states the diaspora is 'the whole point' of the Dubai premiere and consistently connects the film's rollout to NRI audiences, making it highly relevant and naturally integrated."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a brief explanation of the 'Howdy Modi' event for readers who might not be familiar with it.",
-          "Ensure the image entities are populated for a more thorough review of image relevance."
+          "Replace the irrelevant YouTube embed with a relevant trailer or promotional content for 'Ramayana' if available, or remove it entirely.",
+          "Consider a more thematic hero image that evokes the 'Ramayana' or a grand premiere, even if it's conceptual art, to better match the headline's ambition."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
+        "Removed irrelevant embed: https://youtube.com/watch?v=3-wSEehDBVk",
         "promoted to published"
       ],
       "revised": false,
@@ -54,18 +66,23 @@
       "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "319dfc61-fd28-4605-aaf9-2ffcb2d73fa8",
-      "headline": "India Says a Trade Deal With America Is 'Done.' It Just Won't Switch It On Until the Tariffs Favour India.",
-      "slug": "india-us-trade-deal-very-close-goyal-greer-tariff-advantage-july-24-deadline-bilateral-bta-20260626",
+      "id": "a4d314bf-205e-42f1-9077-66c7b2489d97",
+      "headline": "Twenty-Five Years After 'Dil Chahta Hai', Saif Ali Khan and Farhan Akhtar Are Reuniting \u2014 and It's a Thriller",
+      "slug": "saif-ali-khan-farhan-akhtar-reunite-thriller-25-years-dil-chahta-hai-excel-entertainment-ritesh-sidhwani-where-to-watch-diaspora-nri-20260626",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "070d3f50-3dda-4d15-8d9c-cb4146c5cf9f",
+            "headline": "Ranbir Said No. Imran Said No. Saif Ali Khan Said 'Okay, Cha"
+          }
+        ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Indian Commerce and Industry Minister Piyush Goyal",
-          "reason": "The photo shows the named individual who is central to the story's topic."
+          "what_photo_shows": "Saif Ali Khan, an actor mentioned in the headline",
+          "reason": "The photo clearly shows Saif Ali Khan, who is a central figure in the story about his reunion with Farhan Akhtar."
         },
         "inline_image_mismatches": []
       },
@@ -79,13 +96,15 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The 'Why It Matters for the Diaspora' section directly addresses the NRI connection, making it relevant and well-integrated."
+          "note": "The article explicitly connects Dil Chahta Hai's overseas success and its resonance with urban, globally-minded Indians who became NRIs, making the reunion relevant to the diaspora."
         },
-        "factual_flags": [],
+        "factual_flags": [
+          "The article states 'Production is expected to begin by the end of 2026' and later 'No shoot date beyond \"end of the year\"' which could be interpreted as conflicting if 'end of the year' refers to 2024 or 2025, not specifically 2026. Clarification needed."
+        ],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a quote from an Indian-American business leader to further strengthen the diaspora angle and provide a 'boots on the ground' perspective.",
-          "Ensure all future dates (e.g., '2025-26') are accurate and consistent with the article's publication context."
+          "Clarify the 'end of the year' shoot date to explicitly state 'end of 2026' for consistency.",
+          "Consider adding a sentence about Farhan Akhtar's current directorial projects or acting roles to balance the focus on Saif Ali Khan's career trajectory."
         ],
         "verdict": "pass"
       },
