@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-26T02:15:38.776274+00:00",
+  "timestamp": "2026-06-26T02:45:18.659561+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 6,
+    "pass": 2,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "4f69587b-bade-426c-86f1-cb3c847713b5",
-      "headline": "India and America Say a Trade Deal Is 'Very Close' \u2014 but It Hinges on One Word: Advantage",
-      "slug": "india-us-trade-deal-very-close-goyal-tariff-advantage-july-deadline-section-301-nri-investor-20260625-1900",
+      "id": "0326d7e5-8c35-444e-bd72-1d0597158fbf",
+      "headline": "'If You Don't Have a Seat at the Table, You're on the Menu': The Diaspora's Loudest Year in Washington",
+      "slug": "indian-american-diaspora-capitol-hill-fiids-lawmakers-run-for-office-anti-india-hate-20260625",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,94 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "India's commerce minister Piyush Goyal",
-          "reason": "The photo shows the named person who is central to the story's topic."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article explicitly includes a 'Why It Matters for the Diaspora' section, which is good. However, the content of this section is cut off, so its full quality cannot be assessed."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Complete the 'Why It Matters for the Diaspora' section to fully elaborate on the impact for NRIs.",
-          "Consider adding a quote from an NRI business owner or investor to personalize the diaspora angle further."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "7a6c8a56-3ea5-45d0-9a48-5314d7566a77",
-      "headline": "For Those With Alzheimer's in the Family, One Eating Pattern Stood Out, a New Analysis Finds",
-      "slug": "anti-inflammatory-diet-genetic-alzheimers-risk-redii-amed-ahei-inflammation-foods-diaspora-20260625-1900",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "a buffet tray of leafy greens with serving tongs",
-          "reason": "The photo depicts leafy greens, which are mentioned in the caption as part of an anti-inflammatory diet tied to lower Alzheimer's risk."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The diaspora angle is well-integrated and relevant, connecting the research findings to specific health vulnerabilities and dietary patterns within the Indian community."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a specific example of a traditional Indian dish that exemplifies the anti-inflammatory diet principles mentioned.",
-          "Perhaps include a brief mention of common inflammatory foods in the Indian diet (e.g., excessive fried foods, sugary sweets) to balance the positive examples."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "4fbd9a9b-3e27-4c51-a95b-efcffc34382a",
-      "headline": "The 'Sunshine Vitamin' Many Are Missing \u2014 Even in Summer, and Most of All Those With Darker Skin",
-      "slug": "vitamin-d-deficiency-hidden-year-round-darker-skin-newcastle-ejcn-target-d-heart-attack-diaspora-20260625-1900",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A vintage bottle of 'Super-D Oil' containing vitamin D capsules.",
-          "reason": "The photo clearly shows a product containing vitamin D, which is the central topic of the story."
+          "what_photo_shows": "The US Capitol building on a clear day.",
+          "reason": "The photo shows the US Capitol, which is directly relevant to a story about Indian-American delegates lobbying on Capitol Hill."
         },
         "inline_image_mismatches": []
       },
@@ -122,13 +36,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article explicitly connects the research findings to the Indian diaspora, explaining why they are particularly affected due to skin pigmentation and geographic location."
+          "note": "The entire article is centered on the Indian-American diaspora's political engagement and challenges, directly relevant to NRIs."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a call to action or a link to resources for readers to learn more about vitamin D testing or reputable supplement information.",
-          "The last sentence of the body text seems to be cut off. Ensure it is completed for a smooth reading experience."
+          "Consider adding a quote from a delegate or a 'boots on the ground' perspective to humanize the advocacy effort.",
+          "If possible, include a specific example of anti-Hindu/anti-India hate mentioned, perhaps a link to a previous Videshi article or a news report, to substantiate the claim."
         ],
         "verdict": "pass"
       },
@@ -140,9 +54,9 @@
       "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "843a8e37-8a36-449c-bd11-a70cda9ed3df",
-      "headline": "Kerala Spends the Monsoon Selling the One Thing the Diaspora Is Short On: Time to Heal",
-      "slug": "kerala-monsoon-ayurveda-wellness-season-nri-cheaper-2026-20260626",
+      "id": "999584b9-10fe-4575-bcb7-a3cfd37d9065",
+      "headline": "Shafali Verma Lights Up Old Trafford as India Keep Their World Cup Alive",
+      "slug": "india-women-beat-bangladesh-five-wickets-t20-world-cup-old-trafford-shafali-verma-australia-lords-20260625",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -150,8 +64,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A houseboat on the Kerala backwaters with palm trees.",
-          "reason": "The photo depicts a houseboat in Kerala, which is directly relevant to a story about tourism in Kerala, especially regarding its monsoon season and Ayurveda."
+          "what_photo_shows": "A map of Old Trafford cricket ground in Manchester.",
+          "reason": "The photo shows a map of Old Trafford, which is explicitly mentioned in the headline and caption as the location of the cricket match."
         },
         "inline_image_mismatches": []
       },
@@ -165,104 +79,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article explicitly connects the monsoon tourism to the NRI diaspora's specific needs and constraints, making it highly relevant."
+          "note": "The 'Why It Matters for the Diaspora' section is well-integrated and clearly explains the relevance to NRIs, both in the UK and North America."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a small section on visa requirements or travel advisories relevant to NRIs during the monsoon season.",
-          "Perhaps include a quote from an NRI who has experienced a monsoon wellness trip in Kerala to add a personal touch."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "d09269bc-e546-476a-be11-561bf46e1b83",
-      "headline": "The Western Ghats' Best Travel Season Lasts Only a Few Weeks \u2014 and It's the One Most Diaspora Visitors Skip",
-      "slug": "western-ghats-monsoon-frog-walks-biodiversity-trails-nri-2026-20260626",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Misty hills and lush green rainforest in the Western Ghats.",
-          "reason": "The photo directly depicts the location and atmosphere described in the headline and subheadline about the Western Ghats monsoon season."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article directly addresses the NRI audience and their typical travel patterns, offering an alternative."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a small section on recommended gear for monsoon travel (e.g., waterproofs, sturdy shoes, insect repellent).",
-          "Perhaps include a call to action or a link to a reputable guide booking platform if available."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "55e64b49-c5e8-439d-aa3a-e7269b12baff",
-      "headline": "The US Work-Visa Queue in India Just Got Longer \u2014 and It's the H and L Lines, Not the Tourist One, That Are Jammed",
-      "slug": "us-work-visa-h1b-l-backlog-india-75-125-days-consulate-nri-20260626",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "bdc8d80a-8733-463b-b329-4e28e4655845",
-            "headline": "The Last Cheap Visa Slot in India Just Vanished. Now Every H"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A hand holding an open passport with visa stamps.",
-          "reason": "The photo of a passport and visa documents is generic but on-topic for a story about work-visa queues and immigration."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article directly addresses a critical issue for NRIs, explaining its impact and offering actionable advice."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a quote from an affected NRI or an immigration lawyer to add a human element and expert perspective.",
-          "If possible, include a small graphic or chart illustrating the wait time differences between visa categories or across consulates."
+          "Consider adding a quote from an Indian fan at Old Trafford to further enhance the diaspora angle and bring a personal touch.",
+          "Perhaps include a brief mention of the historical significance of Indian cricket in England for the diaspora, beyond just this tournament."
         ],
         "verdict": "pass"
       },
