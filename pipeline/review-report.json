@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-26T07:45:09.506941+00:00",
+  "timestamp": "2026-06-26T08:15:26.040463+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
-    "flag": 0,
+    "pass": 2,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "0c026b33-3603-4dbb-8a07-2a0ddc4c2d79",
-      "headline": "Down 0-4 to a Bullet Specialist, Arjun Erigaisi Won the Next 16 \u2014 and a Shot at the World's Fastest Chess Title",
-      "slug": "arjun-erigaisi-2026-bullet-chess-championship-winners-final-beat-andrew-tang-16-6-nihal-sarin-firouzja-chess-com-fastest-india-diaspora-nri",
+      "id": "f106f635-0148-4902-8aa7-b6e5de92802c",
+      "headline": "America Now Rejects 61% of Indian Student Visas. Families Are Doing the Math and Walking",
+      "slug": "us-f1-visa-rejection-61-percent-indian-students-uk-germany-pivot-20260626",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,55 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A man in a suit holding an ID card.",
-          "reason": "The photo shows Arjun Erigaisi, who is the subject of the story."
+          "what_photo_shows": "A student waiting in an airport terminal holding a passport",
+          "reason": "The photo depicts a student in an airport with a passport, which is highly relevant to a story about student visas and international travel."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 8,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "Directly addresses a critical issue for Indian diaspora and NRIs, focusing on student visas and education choices."
+        },
+        "factual_flags": [
+          "The article states 'The US rejection rate for Indian student-visa applicants has climbed from 36% in 2023 to 61% in 2025'. This implies a future projection for 2025, which is unusual for a 'rejection rate' unless it's based on a specific dataset or forecast. If 2025 data is not yet complete, this needs clarification.",
+          "The article mentions 'a suspension of visa interviews in May 2025'. This also refers to a future event, which is odd for a past-tense 'disruption'. Needs to be rephrased if it's a proposed or anticipated suspension, or if the article was written in late 2024/early 2025 and is now outdated.",
+          "The article mentions 'F-1 issuances to Indian students already fell roughly 69-78% in the peak months of 2025'. Similar to the above, '2025' data being presented as 'already fell' suggests either a future projection or an outdated article if published later in 2025 or 2026."
+        ],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Clarify the timeline and sourcing for the 2025 data points (rejection rates, visa suspensions, F-1 issuances) to ensure they are current and accurately represented as either historical fact, projection, or policy proposal.",
+          "Consider adding a quote or perspective from an Indian student or family directly impacted by these changes to add a human element to the statistics."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "56eec239-afb0-4445-9d38-fdaae9910241",
+      "headline": "India's IT Giants Just Took a 40% H-1B Haircut. The Bill Is Landing on Subcontractors",
+      "slug": "indian-it-firms-h1b-approvals-down-40-percent-tcs-subcontractor-costs-20260626",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Software developers working at computers in a modern office",
+          "reason": "The photo depicts software developers in an office, which is relevant to a story about IT giants and H-1B visas."
         },
         "inline_image_mismatches": []
       },
@@ -30,19 +77,62 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
+          "score": 8,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively highlights the success of Indian players and connects it to a 'golden generation,' which resonates well with diaspora readers interested in national achievements."
+          "quality": 9,
+          "note": "The article directly addresses the implications for individual Indian engineers and the 'classic path' for the next cohort, making it highly relevant to NRI/diaspora readers."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a sentence or two about how NRIs can watch the event or follow the players, perhaps mentioning specific platforms or social media accounts.",
-          "While the diaspora angle is present, a direct quote from an NRI fan or a brief mention of the global Indian community's reaction could further strengthen it."
+          "Consider adding a small section or a quote from an affected individual (either an engineer or a subcontractor) to personalize the impact of these policy changes.",
+          "While the article mentions nearshore centers in Mexico and Canada, a brief elaboration on how these alternatives are being utilized by Indian IT firms could add depth."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "d395152d-f446-40fd-9d10-34454fa8a6ce",
+      "headline": "The Clock Is Coming to the Student Visa. A Four-Year Cap Just Cleared Its Last Hurdle",
+      "slug": "dhs-duration-of-status-four-year-cap-f1-students-omb-cleared-indians-20260626",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Graduates in academic gowns celebrating outside a university building",
+          "reason": "The photo of graduates is relevant to a story about student visas and their impact on international students."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 8,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "Strong and natural connection to NRI/diaspora readers, specifically Indian students and their families."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a call to action for readers to contact their representatives or relevant organizations, if appropriate.",
+          "Expand on the 'Don't sit on OPT' point with more specific advice."
         ],
         "verdict": "pass"
       },
