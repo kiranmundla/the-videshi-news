@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-26T06:45:19.486028+00:00",
+  "timestamp": "2026-06-26T07:15:19.115997+00:00",
   "mode": "fix",
   "stats": {
     "pass": 2,
-    "flag": 1,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,23 +11,32 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "358f0d49-ddfe-422e-b779-14c4b73b81a6",
-      "headline": "You Can Now Clear Immigration in Varanasi and Fly to the World Through Delhi Without Touching Your Bags",
-      "slug": "air-india-easy-connect-hub-spoke-flights-varanasi-tier-2-3-immigration-origin-airport-baggage-checkin-20260625",
+      "id": "930d16dc-a5e4-4015-9904-0e4c378bf2b8",
+      "headline": "Akshay Kumar Stops the Movie at Intermission, Walks Out With Popcorn, and Plays You a Bonus Song",
+      "slug": "welcome-to-the-jungle-release-day-post-intermission-akshay-kumar-stunt-paid-previews-ahmed-khan-raveena-tandon-reunion-june-26-2026-where-to-watch-diaspora-nri-20260626",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "0d0e095d-24bc-44fd-ad62-9d0185a27881",
+            "headline": "Akshay Kumar Opens the Jungle. After 19 Years, 'Welcome' Ret"
+          },
+          {
+            "article_id": "cfe25a00-83cf-4d0d-b73f-ac9da6f980f4",
+            "headline": "Twenty-Two Years Later, the 'Mohra' Couple Is Back. The Whol"
+          }
+        ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "An Air India aircraft on a tarmac.",
-          "reason": "The photo shows an Air India aircraft, which is directly relevant to the story about Air India's new 'Easy Connect' flights."
+          "what_photo_shows": "Movie poster for 'Welcome To The Jungle' featuring Akshay Kumar",
+          "reason": "The photo shows the official poster for the movie 'Welcome To The Jungle', which is the subject of the headline and story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 8,
+        "overall_score": 7,
         "embed_issues": [],
         "image_match": {
           "score": 9,
@@ -35,14 +44,16 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article explicitly addresses the diaspora angle and explains its significance naturally."
+          "quality": 8,
+          "note": "The diaspora angle is explicitly addressed and well-integrated, discussing the film's international release and appeal to NRI families."
         },
-        "factual_flags": [],
+        "factual_flags": [
+          "The article mentions '1980s-masala throwback in 2026' but the film was released in 2024. This is a potential typo or factual error."
+        ],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a quote from an actual traveler who has experienced the old system to emphasize the 'pain point' more vividly.",
-          "If possible, include a small graphic or map illustrating the hub-and-spoke model for better visual understanding."
+          "Correct the year '2026' to '2024' when referring to the film's release context.",
+          "Consider adding a brief explanation of what 'U/A comedy' means for a global audience, as not all readers may be familiar with Indian film certification."
         ],
         "verdict": "pass"
       },
@@ -54,78 +65,47 @@
       "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "729a7bff-98cc-42c4-9198-fb054fa57b68",
-      "headline": "India Just Raised Passport Fees for the First Time in Years. Here's the New Price List.",
-      "slug": "india-passport-fee-hike-july-1-2026-normal-tatkal-minor-lost-damaged-mea-amendment-rules-20260625",
+      "id": "3545fed3-ea16-48cb-8a30-248994e394ba",
+      "headline": "Cocktail 2 Has Crossed \u20b960 Crore. So Why Is the Whole Trade Whispering About an Asterisk?",
+      "slug": "cocktail-2-box-office-60-crore-asterisk-external-push-shahid-kapoor-kriti-sanon-rashmika-mandanna-homi-adajania-where-to-watch-diaspora-nri-20260626",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "04ab66bc-5373-4112-8651-d1d8e3d7af52",
+            "headline": "Arijit Sings, the Internet Swoons: \u201cLeher,\u201d Cocktail 2\u2019s Fir"
+          },
+          {
+            "article_id": "81b262d9-09ed-4b15-9d71-64ad57008ebe",
+            "headline": "\u20b971 Crore and a Lifeline: Cocktail 2 Hands Shahid Kapoor the"
+          }
+        ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "An Indian passport on a wooden surface.",
-          "reason": "The photo subject, an Indian passport, directly relates to the story about Indian passport fees."
+          "what_photo_shows": "Official poster for the movie Cocktail 2 with three actors.",
+          "reason": "The photo is an official movie poster for 'Cocktail 2', which is the main subject of the headline and subheadline."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 8,
+        "overall_score": 7,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
+          "score": 10,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article explicitly addresses the diaspora angle in a dedicated section and throughout the text, explaining the impact on NRIs and consular fees abroad."
-        },
-        "factual_flags": [
-          "The article states the new rates take effect 'at the start of next month' (June 25 publication, July 1 effective date), but the headline and body consistently refer to 'July 1, 2026' as the effective date. This is a significant discrepancy that needs correction."
-        ],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Immediately correct the discrepancy regarding the effective date of the fee hike (July 1, 2026 vs. 'start of next month'). This is a critical factual error.",
-          "Consider adding a small table summarizing the old vs. new fees for quick comparison, especially for the most common categories."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "3ec1a306-1bc7-47c8-8e3a-484ca48d3c79",
-      "headline": "India's Biggest Stock Exchange Files to Go Public \u2014 in What Would Be the Country's Largest IPO Ever",
-      "slug": "nse-files-drhp-india-largest-ipo-30000-crore-offer-for-sale-sbi-cppib-temasek-5-lakh-crore-nri-investor-20260626-0600",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "No image URL or entities provided, so cannot fully assess match. Assuming a generic stock market image would be used."
-        },
-        "diaspora_angle": {
-          "present": true,
           "quality": 8,
-          "note": "The 'Why It Matters for the Diaspora' section is well-integrated and provides a clear, relevant connection for NRI readers, explaining both the symbolic and practical implications."
+          "note": "The diaspora angle is explicitly addressed and well-integrated, discussing overseas performance and accessibility."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Ensure a relevant hero image is selected and its description/entities are provided for a complete review.",
-          "Consider adding a small 'What is an IPO?' or 'What is an Offer for Sale?' explainer box for readers less familiar with financial jargon, especially given the diaspora audience."
+          "Consider adding a link to the Pinkvilla box office analysis mentioned, if publicly available, to support the claim.",
+          "Ensure the YouTube embed is the official trailer or a relevant song from the movie, as the current URL is generic."
         ],
         "verdict": "pass"
       },
