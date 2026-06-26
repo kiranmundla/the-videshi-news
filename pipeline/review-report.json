@@ -1,19 +1,19 @@
 {
-  "timestamp": "2026-06-26T22:15:40.083749+00:00",
+  "timestamp": "2026-06-26T22:45:20.885782+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 6,
-    "flag": 0,
+    "pass": 1,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
-  "revisions": 0,
+  "revisions": 1,
   "unpublished": 0,
   "articles": [
     {
-      "id": "fe746c92-a0d9-46a7-8699-e2e9e7bfc2b8",
-      "headline": "Amazon Pledges Another $13 Billion to India, Betting the Country Becomes a Global AI Hub",
-      "slug": "amazon-13-billion-india-ai-cloud-investment-jassy-modi-aws-mumbai-hyderabad-48-billion-hyperscaler-nri-investor-20260626-2200",
+      "id": "c9bff75a-cdb8-4567-a7a9-c70420a4849e",
+      "headline": "Wimbledon 2026: India's Hopes Ride on Yuki Bhambri and the Doubles Brigade",
+      "slug": "wimbledon-2026-india-yuki-bhambri-doubles-grass-court-preview-nri",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,53 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "An aerial view of a large data center facility.",
-          "reason": "The photo shows a data center, which is directly relevant to the story about Amazon's investment in data-centre capacity for AI in India."
+          "what_photo_shows": "Yuki Bhambri playing tennis on a clay court.",
+          "reason": "The photo clearly shows Yuki Bhambri, who is the main subject of the headline and caption."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 6,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The diaspora angle is explicitly stated and reasonably well-integrated, connecting Wimbledon's accessibility and the pride in Indian representation to NRI readers."
+        },
+        "factual_flags": [
+          "The article mentions 'Wimbledon 2026' and 'Monday, 29 June' as the start date. June 29, 2026, is a Monday, which aligns. However, the article also states 'In February 2026 he climbed to a career-high doubles ranking of world No. 18 \u2014 comfortably the highest of any Indian man \u2014 and he comes to Wimbledon riding the momentum of a breakthrough 2025 season.' This implies the article is written in 2026, but then it talks about 'Wimbledon 2026' as if it's in the future. This creates a slight temporal inconsistency, as if it's a preview written in 2026 for an event in 2026, but also references past events from 2025 and early 2026. It's a minor point but could be clearer."
+        ],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Clarify the temporal framing of the article to avoid minor inconsistencies (e.g., 'As Wimbledon 2026 approaches...' or 'Looking ahead to Wimbledon 2026...').",
+          "Consider adding a quote from Yuki Bhambri or another Indian doubles player about their expectations or the significance of playing at Wimbledon for the diaspora, if available, to enhance reader engagement."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Revised by gemini-2.5-flash (680\u2192722 words)"
+      ],
+      "revised": true,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "dcf01d9c-d766-408d-b4f3-e0f83e5f294c",
+      "headline": "America Just Bombed Iran Again. The Trigger Was a Drone Hitting a Ship in the World's Most Important Oil Lane.",
+      "slug": "us-strikes-iran-hormuz-cargo-ship-drone-attack-ceasefire-violation-indian-seafarers-oil-20260626",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "A satellite view of the Strait of Hormuz",
+          "reason": "The photo clearly depicts the Strait of Hormuz, which is central to the story's topic about oil lanes and attacks."
         },
         "inline_image_mismatches": []
       },
@@ -36,223 +81,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The 'Why It Matters for the Diaspora' section directly addresses NRIs and their connection to the tech industry, making the angle natural and relevant."
+          "note": "The article effectively connects to the diaspora through the plight of Indian seafarers and the economic impact on India, which affects NRIs."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a quote from an NRI tech professional or investor to further personalize the diaspora angle.",
-          "Ensure all future dates (e.g., 'December 2025') are consistent with the publication date or clearly marked as projections."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "bea28510-28c8-42ae-a8f5-49d8f9e18875",
-      "headline": "A Joint-Pain Supplement Millions Take Daily Is Now Linked to Faster Dementia and Higher Death Risk",
-      "slug": "glucosamine-joint-supplement-faster-dementia-progression-higher-death-risk-nature-metabolism-university-florida-hyperglycosylation-diaspora-20260626-2200",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Various pills and capsules on a white marble surface.",
-          "reason": "The photo shows generic pills, which is appropriate for a story about a joint-pain supplement and its health risks."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The diaspora angle is well-integrated and relevant, connecting the supplement's use to common practices within Indian households globally."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a quote from an Indian-origin medical professional or an NRI patient to further strengthen the diaspora connection and provide a relatable perspective.",
-          "While the article mentions 'sandwich generation,' elaborating slightly on the specific challenges faced by NRIs in this context could add depth."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "581b3a2d-1630-4121-9152-9f907d32f386",
-      "headline": "After Major Weight Loss, the Drug Wasn\u2019t Enough \u2014 It Was Exercise That Healed the Arteries",
-      "slug": "exercise-not-glp1-liraglutide-alone-vascular-health-s-lite-trial-nature-metabolism-carotid-inflammation-diaspora-20260626-2200",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "People exercising on treadmills in a gym.",
-          "reason": "The photo depicts exercise, which is the central theme of the story about artery health and weight loss."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 8,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The diaspora angle is well-integrated and relevant, addressing a specific health vulnerability within the South Asian community."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a call to action or practical tips for incorporating exercise, especially for NRI readers who might have busy lifestyles.",
-          "Explore if there are any relevant quotes from South Asian health experts or community leaders on this topic to further strengthen the diaspora connection."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "a9cdbfce-eeb7-480d-a66e-a0be54dcbef8",
-      "headline": "Indian Consular Services in the UAE Go Dark for Five Days \u2014 Here's the June 26\u201330 Survival Guide Before Al Hind Takes Over",
-      "slug": "uae-indian-consular-services-suspended-june-al-hind-bls-nri-20260626",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "An Indian passport on a wooden surface.",
-          "reason": "The story is about Indian consular services, and a passport is directly relevant to such services."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "Excellent explanation of why a UAE story matters to the wider diaspora, connecting it to family networks and potential future changes in other regions."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a direct link to the official Indian Embassy in Abu Dhabi or Consulate General of India in Dubai websites for readers to verify information directly.",
-          "While the article mentions 'official handles,' specifying which social media platforms (e.g., X, Facebook) the embassy uses for official announcements could be helpful."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "77d4f8e8-1e81-4d60-b05d-046d20a3ce13",
-      "headline": "Air India's New 'Easy Connect' Lets You Clear Immigration in Your Hometown \u2014 and It's Built for the Diaspora's Tier-2 Roots",
-      "slug": "air-india-easy-connect-hub-spoke-tier2-cities-diaspora-nri-20260626",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "An Air India aircraft on an airport apron.",
-          "reason": "The photo clearly shows an Air India aircraft, which is the subject of the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article explicitly connects the service to NRI/diaspora families and their specific travel pain points, particularly for elderly parents and those from Tier-2/3 cities."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a small 'how-to' section or a visual (if possible) explaining the booking process for Easy Connect, as NRIs might be booking for others.",
-          "Perhaps a brief mention of potential airline partners or codeshares if Air India plans to expand this beyond its own network, as this could further benefit diaspora travelers."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "e5084b5d-430a-4bf7-b4a6-c5bdc1038031",
-      "headline": "Qualcomm Spent $4 Billion on Software That Speaks Every Chip's Language. The Target Is Nvidia's Walled Garden.",
-      "slug": "qualcomm-modular-4-billion-ai-software-nvidia-data-center-amon-20260626",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "No image URL or entities provided, so cannot fully assess match. Assuming a generic tech/chip image would be used."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The 'Why this lands in India' section is well-integrated and directly addresses the impact on Indian engineers and the broader diaspora, making it highly relevant for NRIs."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a quote from an Indian engineer or industry expert to further strengthen the 'Why this lands in India' section.",
-          "Ensure the hero image clearly reflects the tech/chip industry and ideally, AI or data centers, to align with the article's focus."
+          "Consider adding a specific quote from an Indian seafarer or their family to personalize the 'Indians Caught in the Middle' section.",
+          "Expand slightly on the economic impact for the diaspora in the Gulf, perhaps with a statistic on remittances or trade."
         ],
         "verdict": "pass"
       },
