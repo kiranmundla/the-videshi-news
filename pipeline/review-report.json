@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-26T12:15:53.547457+00:00",
+  "timestamp": "2026-06-26T12:45:30.033140+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 8,
-    "flag": 0,
+    "pass": 3,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "cc0a5e2f-b4eb-4bb3-ad7d-24f59063ecd1",
-      "headline": "America Keeps Raising the Drawbridge. The Rest of the World Is Lowering Theirs",
-      "slug": "global-talent-competition-china-k-visa-canada-indians-h1b-alternatives-20260626",
+      "id": "cdc550e3-67c6-4c75-b2a6-e94943090908",
+      "headline": "Ambani's Jio Just Filed for What Could Be India's Biggest IPO Ever. The Regulator Is Already Asking Questions.",
+      "slug": "jio-platforms-ipo-sebi-clarification-drhp-35000-crore-largest-india-listing-ambani-reliance-20260626",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A traveler with a passport, boarding pass, and luggage at an airport.",
-          "reason": "The photo depicts a traveler at an airport with travel documents and luggage, which is highly relevant to a story about international migration and visa issues."
+          "what_photo_shows": "A headshot of Mukesh Ambani",
+          "reason": "The photo shows Mukesh Ambani, who is directly named in the headline and caption as central to the story."
         },
         "inline_image_mismatches": []
       },
@@ -30,23 +30,23 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 8,
+          "score": 9,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article directly addresses the impact on the Indian diaspora and NRIs, making it highly relevant."
+          "quality": 8,
+          "note": "The 'Why It Matters for the Diaspora' section is well-integrated and provides a clear, relevant connection for NRI readers, both financially and personally."
         },
         "factual_flags": [
-          "The article mentions 'F-1 visa issuances to Indians collapsed more than 60% in 2025' and 'Indian student enrolment in the U.S. fell 6.9% year-on-year'. While the trend might be accurate, the year '2025' seems to be a future date, which could be a typo for a past year or a projection stated as a fact."
+          "The article mentions 'May, the lowest monthly figure so far in 2026' and 'Reliance shares down nearly 15% in 2026'. Given the current year is 2024, these dates seem to be a typo and should likely be 2024 or a different year."
         ],
         "duplicate_embeds": [],
         "suggestions": [
-          "Clarify or correct the year '2025' regarding F-1 visa issuances and student enrollment data to ensure factual accuracy.",
-          "Expand on the 'What to watch' section, as it seems to be cut off prematurely at the end of the article."
+          "Correct the year '2026' to the appropriate year (likely 2024) in the sections discussing monthly figures and stock performance.",
+          "Consider adding a brief explanation of what 'GIFT City vehicles' are for readers who might not be familiar with the term."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
         "promoted to published"
@@ -56,9 +56,9 @@
       "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "14c671b5-4769-4c55-ab90-fd9e212d8f29",
-      "headline": "A New Bill Would Kill OPT, End Dual Intent, and Auction Off the H-1B by Salary",
-      "slug": "hr-9157-chip-roy-h1b-opt-abolished-dual-intent-wage-ranked-indians-20260626",
+      "id": "f9660738-41f3-43c1-b9fc-720d9c5c0383",
+      "headline": "India's Monsoon Is Running 43% Short, and 315 Districts Are Now on a Government Watch List",
+      "slug": "india-weak-monsoon-315-districts-contingency-plan-el-nino-lowest-rainfall-11-years-food-inflation-20260626",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -66,8 +66,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A headshot of Representative Chip Roy.",
-          "reason": "The photo shows the named person, Representative Chip Roy, who is central to the story about the H.R. 9157 bill."
+          "what_photo_shows": "Farmland with green crops and trees under a cloudy sky.",
+          "reason": "The photo depicts farmland, which is directly relevant to a story about monsoon rains and their impact on India's farm belt."
         },
         "inline_image_mismatches": []
       },
@@ -80,14 +80,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 10,
-          "note": "The article explicitly details how the proposed bill would disproportionately affect Indian professionals and students, directly addressing the NRI audience."
+          "quality": 8,
+          "note": "The 'Why It Matters for the Diaspora' section explicitly connects the topic to NRI readers, covering remittances, family livelihoods, and financial implications like the rupee's value and investment."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a 'What to do now' section with actionable advice for NRIs, as the article body cuts off at that point.",
-          "If possible, include a quote from an affected Indian professional or student to add a human element to the policy discussion."
+          "Consider adding a small infographic or map showing the 315 districts on the watch list, perhaps color-coded by priority, to enhance visual understanding.",
+          "Expand slightly on the RBI's new diaspora deposit scheme mentioned at the end, as it directly relates to the NRI audience and the financial impact."
         ],
         "verdict": "pass"
       },
@@ -99,9 +99,9 @@
       "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "8e23739c-c2a9-47a7-891b-8abd727a77a9",
-      "headline": "Becoming American Just Got 75% Pricier \u2014 and the Discount for the Poor Is Gone",
-      "slug": "dhs-citizenship-n400-fee-hike-1330-waivers-eliminated-indians-20260626",
+      "id": "0ed1b217-b521-4b62-b2d3-3aef37042d42",
+      "headline": "The Patel Brothers Effect: America's Largest Indian Grocer Bets on the Suburbs",
+      "slug": "patel-brothers-effect-americas-largest-indian-grocer-bets-suburbs",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -109,51 +109,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "New citizens taking the Oath of Allegiance",
-          "reason": "The photo depicts a naturalization ceremony, which is directly relevant to the story about the cost of becoming an American citizen."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "Excellent section on 'What it means for Indian Americans' directly addresses the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a quote from an immigration lawyer or an affected Indian American family to personalize the impact.",
-          "Briefly mention the current timeline for N-400 processing to give readers a sense of the urgency for 'file now' advice."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "5cd68f59-0aa0-49d8-a9fb-0936d697fde1",
-      "headline": "Australia Just Honoured Ten Indian-Origin Citizens. None of Them Are Famous.",
-      "slug": "indian-australians-2026-kings-birthday-honours-list-diaspora-oam-victo-20260626",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Sydney skyline with Opera House",
-          "reason": "The photo shows a generic but on-topic landmark for a story about Indian-origin citizens in Australia."
+          "what_photo_shows": "An open market stall with various Indian spices and dried fruits.",
+          "reason": "The photo depicts Indian spices and goods, which are relevant to a story about an Indian grocer and NRI grocery demand."
         },
         "inline_image_mismatches": []
       },
@@ -162,18 +119,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image is a generic cityscape, which doesn't directly represent the 'honours' or 'Indian-origin citizens' theme. While not entirely mismatched, a more thematic image (e.g., a diverse group, a symbolic representation of community, or even a subtle nod to Australia/India) would be stronger. The current image doesn't add much specific value."
+          "issue": "The image shows a generic grocery store aisle, not specifically an Indian grocery store or Patel Brothers. While relevant to the 'grocery' aspect, it doesn't strongly represent the 'Indian grocer' or 'Patel Brothers' theme."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article directly addresses the significance of these honours for the Indian diaspora in Australia, explaining why state recognition matters more than community-led awards and how it signals belonging. It also highlights the 'hidden infrastructure' built by early migrants, which is highly relevant to NRI readers."
+          "note": "The article is entirely centered on the Indian diaspora's settlement patterns, changing tastes, and the significance of Patel Brothers to NRI communities. It's a natural and strong connection."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a quote from one of the honourees or a community leader to personalize the narrative and provide a direct voice from the diaspora.",
-          "If possible, include a small, relevant image or graphic (e.g., a map showing Indian population growth in Australia, or a collage of the honourees if publicly available) to break up the text and enhance visual engagement."
+          "Consider finding a hero image that more directly depicts an Indian grocery store or even a Patel Brothers storefront/interior if possible, to strengthen the visual match.",
+          "While the article mentions 'The Better India' as a source, it would be stronger to include a direct link to the specific article referenced for reader verification and further reading."
         ],
         "verdict": "pass"
       },
@@ -185,57 +142,9 @@
       "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "cad3bedd-47cb-48a1-838f-37840f7c3731",
-      "headline": "America's Oldest Indian Association Just Honoured Seven of Its Own. Four Were Doctors.",
-      "slug": "aia-ny-benefit-gala-2026-ratnas-indian-american-honorees-diaspora-flus-20260626",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "7b733069-fe88-4c33-8a24-0075c40df41b",
-            "headline": "Every Summer, 10,000 Telugu-Americans Fill a Convention Cent"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A Bharatanatyam dancer performing on stage.",
-          "reason": "The photo depicts a cultural showcase, which the caption states anchors diaspora community galas, aligning with the story about an Indian association's gala."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image is a generic photo of a group of people in formal attire, which generally matches the 'gala' theme. However, without specific entities or a more direct visual link to an 'Indian Association' or 'honorees', it's not a perfect match, but acceptable."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The entire article is centered on the Indian diaspora experience in the US, specifically through the lens of an NRI association, its honorees, and generational shifts within the community. It's highly relevant and well-executed."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a quote from one of the younger honorees, like Pulkita Kini, to further emphasize the 'generational handover' and provide a fresh perspective.",
-          "If possible, include a small detail about the 'diamond-trade entrepreneur' or 'attorney' honorees to slightly broaden the narrative beyond the medical profession, even though the article acknowledges its dominance."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "43466296-0248-4a5d-920e-ffc97ac51273",
-      "headline": "India's IT Titans Lost \u20b98.5 Lakh Crore in Five Years. The Money Walked Into AI Startups That Didn't Exist Then.",
-      "slug": "india-it-giants-value-decline-ai-startups-hurun-sarvam-nri-investors-20260626",
+      "id": "54a42fa6-d9ca-4467-a848-e73372e9ecee",
+      "headline": "Beyond Tikka Masala: Kerala's Coconut-and-Curry-Leaf Cuisine Stakes Its Claim in America",
+      "slug": "beyond-tikka-masala-keralas-coconut-cuisine-stakes-claim-america",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -243,51 +152,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "The Bombay Stock Exchange building in Mumbai.",
-          "reason": "The story discusses wealth migration and investment, making a photo of India's oldest equity market relevant."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 8,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article explicitly addresses NRIs and their investment portfolios, making a strong and natural connection."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a small 'What is an NRI?' explainer or link for new readers, though the context is clear.",
-          "Perhaps include a quote from an NRI investor or financial advisor to add a personal touch to the 'NRI portfolio problem' section."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "db3912c7-278e-4f16-9202-6e55a3a6c6b7",
-      "headline": "Wipro Just Posted $10.5 Billion in Revenue and Spun Up an 'AI-Native' Unit. The Subtext Is About Who It Stops Hiring.",
-      "slug": "wipro-fy26-results-ai-native-business-unit-it-services-nri-engineers-20260626",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Wipro's Electronic City campus entrance in Bengaluru",
-          "reason": "The photo clearly shows the Wipro logo and a campus entrance, which is directly relevant to a story about Wipro's financial results and business strategy."
+          "what_photo_shows": "Appam and vegetable stew, a classic Kerala breakfast.",
+          "reason": "The photo depicts Keralan cuisine, which is the central topic of the headline and story."
         },
         "inline_image_mismatches": []
       },
@@ -301,56 +167,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article directly addresses the impact on Indian diaspora engineers, H-1B visas, and career paths in the US, making it highly relevant and well-integrated."
+          "note": "The article effectively connects the rise of Keralan cuisine to the experiences and pride of Malayali families and second-generation NRIs, making it highly relevant for the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a quote from an NRI engineer or an expert on immigration/visa trends to further ground the diaspora impact.",
-          "Perhaps include a brief comparison of Wipro's 'AI-Native' unit with similar initiatives from other major Indian IT firms, if public information allows, to provide more context on industry trends."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "24951212-b629-4981-9632-47e467a8d128",
-      "headline": "OpenAI Built Its Own AI Chip and Called It Jalape\u00f1o. The Real Target Is Nvidia's Fattest Margin.",
-      "slug": "openai-broadcom-jalapeno-custom-ai-chip-nvidia-inference-nri-20260626",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A close-up of a semiconductor chip on a circuit board.",
-          "reason": "The photo shows a semiconductor chip, which is directly relevant to a story about AI chips and silicon."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image is a generic tech/circuit board photo. While relevant to the topic of AI chips, it doesn't specifically represent 'Jalape\u00f1o' or OpenAI's specific hardware. A more tailored image would improve the match."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article explicitly connects the topic to the Indian diaspora's career paths in Silicon Valley, semiconductor manufacturing, and the economic implications for salaries. It feels natural and well-integrated."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a visual representation or a mock-up of the 'Jalape\u00f1o' chip if available, even if conceptual, to enhance reader engagement.",
-          "Explore if there are any quotes or perspectives from Indian-origin engineers or leaders in the semiconductor/AI space that could be woven in to further strengthen the diaspora angle."
+          "Consider adding a quote from a Malayali NRI living in the US about their personal experience with this culinary shift to further strengthen the diaspora angle.",
+          "If possible, include a small sidebar or link to a recipe for a simple Keralan dish for readers interested in trying it at home."
         ],
         "verdict": "pass"
       },
