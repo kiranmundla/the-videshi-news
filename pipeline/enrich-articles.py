@@ -495,12 +495,28 @@ def extract_entities(headline, body):
     return entities[:6]  # limit to top 6 candidates
 
 
+def _wikimedia_filename(url):
+    """Extract the Wikimedia filename portion from a URL, lowercased.
+    E.g. 'upload.wikimedia.org/.../File:Nikesh_Arora.jpg' → 'nikesh_arora.jpg'"""
+    from urllib.parse import unquote
+    path = unquote(url.split("?")[0])
+    fname = path.rsplit("/", 1)[-1].lower()
+    # Strip common prefixes like 'thumb/' residual or size suffixes
+    # e.g. '800px-nikesh_arora.jpg' → 'nikesh_arora.jpg'
+    fname = re.sub(r'^\d+px-', '', fname)
+    return fname
+
+
 def find_inline_images(headline, body, hero_url=""):
     """Find up to 3 inline Wikipedia images for entities in the article.
     Returns list of (entity, image_url, caption) tuples."""
     entities = extract_entities(headline, body)
     results = []
     hero_norm = (hero_url or "").split("?")[0].lower()
+    # Extract hero filename for cross-host comparison (Supabase vs Wikimedia)
+    hero_fname = _wikimedia_filename(hero_url) if hero_url else ""
+    # Build a slugified version of hero URL path for entity-name matching
+    hero_slug = re.sub(r'[^a-z0-9]', '', hero_norm)
 
     for entity in entities:
         if len(results) >= 3:
@@ -510,8 +526,22 @@ def find_inline_images(headline, body, hero_url=""):
         if not img_url:
             continue
 
-        # Skip if same as hero image
+        # Skip if same as hero image (exact URL match)
         if hero_norm and img_url.split("?")[0].lower() == hero_norm:
+            continue
+
+        # Skip if Wikimedia filename matches hero filename (cross-host dedup)
+        candidate_fname = _wikimedia_filename(img_url)
+        if hero_fname and candidate_fname and candidate_fname == hero_fname:
+            print(f"    ⊘ Skipping inline for '{entity}' — same image file as hero")
+            continue
+
+        # Skip if entity name appears in the hero URL slug (hero was sourced
+        # from Wikipedia for this same person, then re-uploaded to Supabase
+        # with the entity name in the storage path)
+        entity_slug = re.sub(r'[^a-z0-9]', '', entity.lower())
+        if hero_slug and len(entity_slug) >= 6 and entity_slug in hero_slug:
+            print(f"    ⊘ Skipping inline for '{entity}' — entity name found in hero URL")
             continue
 
         # Skip SVGs and tiny images
