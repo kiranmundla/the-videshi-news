@@ -113,6 +113,78 @@ def fetch_wikimedia_commons_images(search_query, limit=5):
 
 **Date-relevant searches**: For recent events, add the year or specific event name to improve relevance.
 
+**⚠️ MANDATORY relevance gate on every Commons result.** Commons search ranks by text match, NOT by subject — it WILL return a wrong-subject file that happens to share a word (a Pennsylvania *State* Capitol photo for a US Capitol story; a kayaking photo for a "social media" story; a band/album cover for a title-cased headline phrase). **Never trust Commons rank.** Run every candidate through `commons_relevance_ok()` and drop anything that fails. A failed gate means *no Commons image* (fall through to the next source or to no-image) — it does NOT mean "use it anyway".
+
+```python
+import re
+
+# Confusables: if the headline implies the LEFT concept, a Commons title containing
+# any RIGHT token is almost always the wrong subject → reject outright.
+_COMMONS_NEGATIVE = {
+    "us capitol":      ["state capitol", "pennsylvania", "texas capitol", "california state",
+                        "harrisburg", "albany", "sacramento", "austin capitol"],
+    "white house":     ["whitehouse station", "white house tennessee", "white house, tennessee"],
+    "supreme court":   ["state supreme court", "uk supreme court"],
+}
+# Generic words that don't prove subject match — never count these as a "hit".
+_COMMONS_STOP = {
+    "the","a","an","of","in","on","at","to","for","and","or","with","as","by","from","is",
+    "are","was","were","be","new","says","after","over","amid","how","why","what","2024",
+    "2025","2026","india","indian","us","usa","american","uk","first","more","than",
+    "people","man","woman","group","day","year","top","big","set","get","make","makes",
+    "made","you","your","they","them","this","that","social","media","using","use",
+}
+
+def _keywords(text):
+    """Distinctive lowercase tokens from a headline (proper-noun-ish, length>=4, not stopwords)."""
+    toks = re.findall(r"[A-Za-z][A-Za-z'-]+", text or "")
+    out = []
+    for t in toks:
+        tl = t.lower()
+        if len(tl) >= 4 and tl not in _COMMONS_STOP:
+            out.append(tl)
+    return out
+
+def commons_relevance_ok(commons_title, headline, topic=""):
+    """True only if the Commons file title plausibly matches the article subject.
+
+    - REJECT if the title hits any negative-confusable token for an implied concept.
+    - Otherwise REQUIRE at least one distinctive headline/topic keyword in the title.
+    Conservative by design: a false reject just means we try another source; a false
+    accept means a wrong photo ships. Prefer rejecting."""
+    title_l = (commons_title or "").lower()
+    head_l  = (headline or "").lower()
+    if not title_l:
+        return False
+
+    # 1) Negative confusables — reject the wrong federal/state etc. building outright.
+    for concept, bad_tokens in _COMMONS_NEGATIVE.items():
+        if concept in head_l:
+            for bad in bad_tokens:
+                if bad in title_l:
+                    return False
+
+    # 2) Require a distinctive keyword overlap.
+    kws = set(_keywords(headline)) | set(_keywords(topic))
+    if not kws:
+        return True  # nothing distinctive to match on; don't over-filter
+    return any(kw in title_l for kw in kws)
+```
+
+Wire it into the Commons step — filter candidates BEFORE adding them:
+```python
+commons_results = fetch_wikimedia_commons_images(f"{person_name} {article_topic}")
+if not commons_results:
+    commons_results = fetch_wikimedia_commons_images(article_topic)
+# RELEVANCE GATE — drop wrong-subject files Commons ranked highly
+commons_results = [
+    r for r in commons_results
+    if commons_relevance_ok(r.get("title", ""), article["headline"], article_topic)
+]
+for r in commons_results[:2]:
+    candidates.append({"url": r["url"], "source": "wikimedia_commons", "relevance": "medium"})
+```
+
 ### Source 3: Media Library — curated backup pool (before Pexels)
 The Videshi maintains a quality-gated, attribution-clean media library (`pipeline/media-library.json`, optionally mirrored to the `media_library` Supabase table). Every asset is ≥1600px, carries a ready-to-use caption + attribution + license, and is already Supabase-hosted (links never rot). Check it AFTER Wikipedia/Commons and BEFORE Pexels: a curated, attributed library photo of the actual subject beats generic stock.
 
@@ -220,6 +292,12 @@ commons_results = fetch_wikimedia_commons_images(f"{person_name} {article_topic}
 if not commons_results:
     # Try broader search
     commons_results = fetch_wikimedia_commons_images(article_topic)
+# RELEVANCE GATE (see Source 2) — drop wrong-subject files Commons ranked highly.
+# No gate = Pennsylvania capitol on a US Capitol story, kayaking on a social-media story.
+commons_results = [
+    r for r in commons_results
+    if commons_relevance_ok(r.get("title", ""), article["headline"], article_topic)
+]
 for r in commons_results[:2]:
     candidates.append({"url": r["url"], "source": "wikimedia_commons", "relevance": "medium"})
 
