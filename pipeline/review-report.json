@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-26T19:15:13.251892+00:00",
+  "timestamp": "2026-06-26T19:45:11.632987+00:00",
   "mode": "fix",
   "stats": {
     "pass": 1,
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "3f185ef0-a7f8-40ca-a1ac-a61d48fde1cd",
-      "headline": "Madhavan Folds His Hands, Mammootty Walks Tall, and an Empty Chair for Satish Shah: Cinema's Padma Roll Call",
-      "slug": "padma-awards-2026-cinema-r-madhavan-mammootty-alka-yagnik-satish-shah-posthumous-dulquer-salmaan-droupadi-murmu-where-to-watch-diaspora-nri-20260626",
+      "id": "223f104a-38a3-447d-910f-1481ffdff863",
+      "headline": "San Francisco Get Their Revenge on Texas \u2014 by the Width of a Single Run",
+      "slug": "san-francisco-unicorns-beat-texas-super-kings-1-run-mlc-2026-lauderhill-thriller-matthew-short-80-revenge-top-two-diaspora-nri",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,39 +21,32 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "R. Madhavan, an Indian actor",
-          "reason": "The photo clearly shows R. Madhavan, who is a central figure in the headline and subheadline."
+          "what_photo_shows": "Marcus Stoinis in a cricket uniform, holding a towel.",
+          "reason": "The photo shows the named person, Marcus Stoinis, who is mentioned in the caption as a player in the story's cricket match."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/p/DZ739wMILAe/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram reel is from January 2022 and features a child dancing, completely unrelated to the Padma Awards or the celebrities mentioned in the article. It should be replaced with a relevant post from one of the honorees or about the awards."
-          }
-        ],
+        "embed_issues": [],
         "image_match": {
           "score": 9,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article consistently and naturally weaves in the diaspora perspective, explaining why these awards resonate with NRIs and how specific cultural touchstones (like Sarabhai vs Sarabhai) connect with them."
+          "quality": 8,
+          "note": "The diaspora angle is well-integrated, especially in the final section, explaining why the Indian diaspora would be interested in MLC and the Unicorns."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant Instagram embed with a current and relevant social media post from one of the honorees or about the Padma Awards ceremony.",
-          "Consider adding a concluding sentence or two that encourages engagement, perhaps asking readers to share their favorite work by the honorees."
+          "Ensure the last sentence of the article is complete and not cut off.",
+          "Consider adding a quote from a fan or player to further enhance the 'diaspora angle' section."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DZ739wMILAe/",
         "promoted to published"
       ],
       "revised": false,
