@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-26T03:15:43.414258+00:00",
+  "timestamp": "2026-06-26T04:15:22.922502+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 4,
-    "flag": 1,
+    "pass": 3,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,111 +11,115 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "0e34d359-085c-448f-8fae-dced12275ea2",
-      "headline": "Allu Arjun and Lokesh Kanagaraj Are About to Make It Official \u2014 and Tollywood Can Barely Breathe",
-      "slug": "aa23-allu-arjun-lokesh-kanagaraj-mumbai-trial-shoot-june-26-2026-anirudh-ravichander-pooja-hegde-pan-india-where-to-watch-diaspora-nri-20260625",
+      "id": "6bae5e8a-4a48-481a-8897-fca1f543866b",
+      "headline": "The Diaspora's Quiet Backstop Was the Courts. The Supreme Court Just Showed Its Limits",
+      "slug": "supreme-court-june-25-immigration-deference-diaspora-courts-backstop-i-20260626",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "The United States Supreme Court building.",
+          "reason": "The photo clearly shows the Supreme Court, which is the central subject of the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article directly addresses the Indian diaspora's reliance on courts for immigration issues and explains how Supreme Court rulings, while not directly about Indians, impact them."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a specific example of an Indian national's experience with the legal system (anonymized if necessary) to further ground the abstract legal concepts for readers.",
+          "Perhaps include a brief mention of legislative efforts or advocacy groups as alternative 'backstops' to the courts, offering a more holistic view of avenues for change."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "b4d47f06-8fb7-41e1-a889-02c52aa285b1",
+      "headline": "Laid Off on H-1B? USCIS Says You Can Job-Hunt on a Tourist Visa. Lawyers Say Don't Bet On It",
+      "slug": "h1b-layoff-60-day-grace-b2-job-search-scrutiny-indians-tech-cuts-20260626",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MISMATCH",
+          "what_photo_shows": "Two Ukrainian passports on a white surface.",
+          "reason": "The photo shows Ukrainian passports, but the story is about US H-1B and tourist visas, making the specific country's passport irrelevant and potentially misleading."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "No image URL or entities provided, so cannot fully assess. Assuming a relevant image would depict H-1B workers, immigration documents, or a 'laid off' scenario."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article directly addresses the specific challenges faced by Indian H-1B holders, who are disproportionately affected by layoffs and green card backlogs, making it highly relevant to NRI readers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a short 'What to do if you're laid off' checklist or infographic for quick reader reference.",
+          "If possible, include a quote from an immigration lawyer or affected individual to add more human interest and expert perspective."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "Cleared mismatched image (Two Ukrainian passports on a white surface.)",
+        "held: image mismatch"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "image_mismatch": true,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "aa5c9f38-ce1e-4d57-b60c-cfaa6efa48b9",
+      "headline": "Skip the Visa Line for $750: Washington Puts a Price Tag on the Appointment Itself",
+      "slug": "us-expedited-visa-interview-750-fee-pilot-b1-b2-india-appointment-20260626",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [
           {
-            "article_id": "8cee3d22-0dcd-4344-9165-291dedadec60",
-            "headline": "Allu Arjun Flies to a Mirror, Not a Set. The AA23 Look Test "
+            "article_id": "bdc8d80a-8733-463b-b329-4e28e4655845",
+            "headline": "The Last Cheap Visa Slot in India Just Vanished. Now Every H"
+          },
+          {
+            "article_id": "55e64b49-c5e8-439d-aa3a-e7269b12baff",
+            "headline": "The US Work-Visa Queue in India Just Got Longer \u2014 and It's t"
           }
         ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Allu Arjun speaking into a microphone",
-          "reason": "The photo clearly shows Allu Arjun, who is the main subject of the headline and story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The diaspora angle is well-integrated, explaining how Lokesh's films travel well and how this pairing will impact NRI box office and streaming."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a sentence or two about the significance of a 'pan-Indian film' for the diaspora audience.",
-          "Perhaps include a brief mention of the specific platforms where Lokesh's previous films have streamed overseas, if relevant and available."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "0a034f29-a7e8-4152-b6bd-15c7487b9706",
-      "headline": "Netflix Just Bought Tollywood's Entire 2026 \u2014 and the Diaspora Is the Real Winner",
-      "slug": "netflix-south-telugu-slate-2026-pawan-kalyan-ustaad-bhagat-singh-ram-charan-peddi-nani-paradise-vijay-deverakonda-vd14-where-to-watch-diaspora-nri-20260625",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Ram Charan, a prominent actor in Telugu cinema",
-          "reason": "The photo shows Ram Charan, who is explicitly named in the caption as headlining a Netflix film relevant to the story about Tollywood and Netflix."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article explicitly connects the Netflix slate to NRI readers and their viewing habits, making the diaspora angle natural and strong."
-        },
-        "factual_flags": [
-          "The article mentions 'Tollywood's Entire 2026' in the headline, but the body only lists 13 films, which may not be the 'entire' slate. This could be an overstatement."
-        ],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Clarify if the 13 films mentioned truly represent 'Tollywood's Entire 2026' slate on Netflix, or if it's a significant portion. Adjust headline if needed.",
-          "Consider adding a sentence or two about how these films cater to the diverse tastes within the diaspora, perhaps mentioning specific genres or star appeal for different age groups."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "de387b32-6ace-4f6a-8512-122e503abc8e",
-      "headline": "India Just Processed 23 Billion Digital Payments in a Single Month. The Number Should Worry Visa and Mastercard.",
-      "slug": "upi-23-billion-transactions-may-2026-phonepe-npci-nri-payments-20260626",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A contactless mobile payment being made with a smartphone.",
-          "reason": "The photo depicts a digital payment, which is directly relevant to a story about digital payments and their growth."
+          "what_photo_shows": "A hand holding an open passport with visa stamps.",
+          "reason": "The photo of a passport is generic but on-topic for a story about US visa appointments and immigration."
         },
         "inline_image_mismatches": []
       },
@@ -129,105 +133,15 @@
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The diaspora angle is well-integrated and explained, connecting UPI to remittances and its export as a template."
-        },
-        "factual_flags": [
-          "May 2026 date seems like a typo, likely meant May 2024 or a past month."
-        ],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Correct the 'May 2026' date to reflect a past or current month for the statistics.",
-          "Consider adding a sentence or two about the security implications or data privacy concerns for NRIs using UPI, given its growing international footprint."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "8e6626b4-f84e-41c0-9bed-bffe1fb84b59",
-      "headline": "Apple Just Raised MacBook Prices and Blamed a Memory Shortage. The Diaspora's Next India Trip Just Got More Useful.",
-      "slug": "apple-macbook-ipad-price-hike-memory-shortage-ramageddon-nri-20260626",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A MacBook laptop with the Apple logo on a wooden desk.",
-          "reason": "The photo clearly shows an Apple MacBook, which is directly relevant to the headline about Apple raising MacBook prices."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The diaspora angle is well-integrated, connecting price changes to NRI purchasing habits and the impact of an Indian-led company."
+          "note": "The article directly addresses the impact on Indians and NRIs, specifically mentioning 'A few practical notes for the diaspora' and the unique challenges faced by Indian applicants."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a specific example of the price difference for a MacBook model between the US and India, perhaps with current exchange rates, to further illustrate the 'arbitrage' point.",
-          "While the article mentions 'Indian-led company', explicitly stating Sanjay Mehrotra's role as CEO of Micron Technology earlier in the article could strengthen the connection."
+          "Consider adding a small section on potential advocacy efforts by diaspora organizations regarding this new fee structure.",
+          "If possible, include a quote from an immigration expert or a representative of an Indian diaspora group to add more perspective."
         ],
         "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "e717b0fd-d8e5-40e7-aa59-689b28d9c8ac",
-      "headline": "Nikesh Arora Held 800 Sales Meetings in 12 Weeks. The AI Cyberthreat He's Selling Against Is Bigger Than His Stock.",
-      "slug": "nikesh-arora-palo-alto-networks-ai-cybersecurity-demand-surge-nri-20260626",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Nikesh Arora speaking at an event",
-          "reason": "The photo clearly shows the named person, Nikesh Arora, who is the subject of the headline."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The diaspora angle is well-integrated and provides valuable insights for NRI readers, particularly regarding career implications and leadership representation."
-        },
-        "factual_flags": [
-          "The article states 'up more than 60% in 2026' for the stock, which is a future date. This should likely be '2023' or '2024' depending on the publication date."
-        ],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Correct the factual error regarding the stock performance year (2026 should be current year).",
-          "Consider adding a brief quote or anecdote from an Indian-origin cybersecurity professional to further personalize the diaspora angle."
-        ],
-        "verdict": "flag"
       },
       "actions_taken": [
         "promoted to published"
