@@ -1,19 +1,19 @@
 {
-  "timestamp": "2026-06-26T10:15:42.771880+00:00",
+  "timestamp": "2026-06-26T10:45:39.138767+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 4,
-    "flag": 2,
+    "pass": 3,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
-  "revisions": 0,
+  "revisions": 1,
   "unpublished": 0,
   "articles": [
     {
-      "id": "f687191f-e66c-4b68-9e2f-c4f5af6a8502",
-      "headline": "Thailand Just Dropped Indians From Its Visa-Free List \u2014 Here's Why Your Bangkok Holiday Is Probably Still Fine",
-      "slug": "thailand-ends-60-day-visa-free-indians-visa-on-arrival-15-days-nri-20260626",
+      "id": "99fd630e-8e2c-48a7-a8b5-6a21bde1876f",
+      "headline": "Europe Is Living Through Its Worst Heatwave on Record. Millions of Indians Live Right In It.",
+      "slug": "europe-record-heatwave-june-2026-uk-france-code-red-deaths-indian-diaspora-climate-change-20260626",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,58 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Arrivals hall at Bangkok's Suvarnabhumi Airport",
-          "reason": "The photo depicts the arrivals hall of Bangkok's airport, which is directly relevant to a story about visa changes for Indian travelers to Thailand."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the visa changes to NRI travel patterns, including long-weekend escapes, stopovers during India trips, and digital nomad segments. It also addresses the 'Thailand-plus-India combo' travel pattern."
-        },
-        "factual_flags": [
-          "The article states the immigration overhaul was approved on May 19, 2026, and that Indians had enjoyed 60-day visa-free entry since July 2024. This implies future dates for past events, which is a contradiction. It should be 'May 19, 2024' or a similar past date for the overhaul, and 'July 2023' or earlier for the visa-free entry to make sense in a current news context."
-        ],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Correct the dates for the immigration overhaul and the start of the 60-day visa-free entry to reflect past events, not future ones.",
-          "Consider adding a small 'Pro Tip' box for NRIs on how to best manage the VoA process or alternative destinations."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "3a89dfff-22e5-476b-aa25-07a693f440f3",
-      "headline": "The US Will Sell You a Faster Visa Interview for $750 Starting July 1 \u2014 but Indian Applicants Don't Know Yet If Their Consulate Qualifies",
-      "slug": "us-750-expedited-visa-interview-fee-b1-b2-india-consulate-july-nri-20260626",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "c0f9de26-6a26-4372-9305-fe2b44190901",
-            "headline": "World Cup Fever Meets a 14-Month Visa Wait. India Gets a Fas"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "The U.S. Embassy in New Delhi",
-          "reason": "The photo shows the U.S. Embassy in New Delhi, which is directly relevant to a story about U.S. visa interviews for Indian applicants."
+          "what_photo_shows": "Satellite image of southern Europe, specifically Greece and its islands.",
+          "reason": "The photo shows a satellite image of southern Europe during a heatwave, which directly relates to the story about a European heatwave."
         },
         "inline_image_mismatches": []
       },
@@ -86,13 +36,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article directly addresses the impact on Indian applicants and NRIs, making it highly relevant to the diaspora."
+          "note": "The article explicitly addresses the diaspora angle in a dedicated section and integrates it well throughout."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a small section on potential advocacy efforts by diaspora organizations to ensure Indian consulates are included in the premium processing program.",
-          "If possible, include a quote from an NRI or an immigration expert on their initial reaction to this policy."
+          "Consider adding a small section on resources or advice for diaspora members in Europe to cope with heatwaves, if appropriate for the platform's editorial guidelines.",
+          "Perhaps include a quote from an Indian diaspora member experiencing the heatwave to add a personal touch."
         ],
         "verdict": "pass"
       },
@@ -104,59 +54,48 @@
       "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "a709bea5-22a6-4a26-80a8-3c28198da4d6",
-      "headline": "Germany Just Scrapped the Airport Transit Visa for Indians \u2014 and It Quietly Shortens the Diaspora's Flight Home",
-      "slug": "germany-scraps-airport-transit-visa-indians-frankfurt-munich-nri-20260626",
+      "id": "a317f3e7-6b17-42c2-9b51-f6a23cdd05cd",
+      "headline": "After Nearly Two Years, India Reopens Its Doors to Bangladeshi Tourists",
+      "slug": "india-resume-tourist-visa-bangladesh-june-28-2026-dinesh-trivedi-dhaka-ivac-two-year-suspension-20260626",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "8bc02ca4-3489-41d7-aaf1-38500446dbda",
-            "headline": "Germany Just Dropped the Airport Transit Visa for Indians \u2014 "
-          }
-        ],
-        "broken_embeds": [
-          {
-            "url": "https://x.com/MEAIndia/status/1929565540000000000",
-            "problem": "broken",
-            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
-          }
-        ],
+        "duplicate_images": [],
+        "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "An airplane landing at an airport with ground vehicles.",
-          "reason": "The photo depicts an airport scene, which is directly relevant to a story about airport transit visas and flights."
+          "what_photo_shows": "Tourists at the Taj Mahal in India.",
+          "reason": "The photo shows tourists at a major Indian landmark, which is highly relevant to a story about India reopening its doors to international tourists."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 8,
+        "overall_score": 6,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
+          "score": 8,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article explicitly connects the policy change to its impact on NRIs, Indian Americans, and students, making the diaspora angle central and well-integrated."
+          "quality": 7,
+          "note": "The 'Why It Matters for the Diaspora' section directly addresses the NRI/diaspora angle, making it relevant."
         },
         "factual_flags": [
-          "The article states 'As of June 3, 2026' for the change, but then later says 'The change was published in Germany's Federal Law Gazette (the Bundesgesetzblatt) on June 2 and took effect the next day.' This is a contradiction in the year of implementation. It also mentions France lifting its requirement 'earlier in 2026', which further suggests a future date, but the overall tone implies it's a current change."
+          "The article mentions 'summer of 2024' for visa counters going dark, then 'August 5, 2024' for the suspension start, and later 'nearly two years' of suspension. However, the announcement date is June 25, 2026, and the resumption date is June 28, 2026. If the suspension started in August 2024 and ended in June 2026, that's less than two years (approx. 1 year 10 months). This creates a slight inconsistency in the 'nearly two years' claim.",
+          "The article states 'India's tourist visa counters in Dhaka had gone dark in the summer of 2024, casualties of a political rupture that sent relations between the two neighbours into a deep freeze.' and then 'The reopening is the most concrete step yet in a careful diplomatic thaw. Ties had soured badly during the 18-month interim administration of Muhammad Yunus, strained by India's hosting of the deposed Hasina and by rhetoric from Dhaka about India's northeast that New Delhi viewed as provocative.' This implies the political rupture and souring of ties happened *before* the interim administration of Yunus, or at least coincided with the ouster of Hasina. However, it then says 'The situation began to stabilise after Tarique Rahman of the Bangladesh Nationalist Party was sworn in as Prime Prime Minister in February 2026, replacing the interim setup with an elected government that has pursued a more pragmatic, trade-focused engagement with India.' This timeline is confusing. If Hasina was ousted in 2024, and Yunus's interim administration followed, and then Rahman was sworn in in Feb 2026, the '18-month interim administration' doesn't quite align with the 'nearly two years' of suspension. The dates and sequence of political events need careful verification for accuracy and clarity."
         ],
         "duplicate_embeds": [],
         "suggestions": [
-          "Clarify the effective date of the policy change, as there's a contradiction between 'June 3, 2026' and 'June 2... took effect the next day' (implying 2024).",
-          "Consider adding a small section on how readers can verify their specific itinerary's eligibility for the waiver, perhaps linking to an official source if available."
+          "Clarify the exact timeline of political events and visa suspension dates to ensure consistency and accuracy, especially regarding the 'nearly two years' claim.",
+          "Expand on the 'A normalised visa regime also' sentence, as it cuts off abruptly, leaving the reader hanging."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
-        "Removed 1 broken/hallucinated embed(s)",
-        "promoted to published"
+        "Revised by gemini-2.5-flash (728\u2192791 words)"
       ],
-      "revised": false,
+      "revised": true,
       "unpublished": false,
       "llm_source": "gemini-2.5-flash"
     },
@@ -169,11 +108,6 @@
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MISMATCH",
-          "what_photo_shows": "A man wearing a Freecharge branded polo shirt.",
-          "reason": "The photo shows a person associated with Freecharge, not Kunal Shah or CRED, which is the subject of the story."
-        },
         "inline_image_mismatches": []
       },
       "llm_review": {
@@ -181,28 +115,26 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "No image URL or entities provided, so cannot fully assess. Assuming a relevant image would depict Kunal Shah or Meta/WhatsApp logos."
+          "issue": "No image URL or entities provided, so cannot fully assess. Assuming a relevant image of Kunal Shah or Meta/WhatsApp would be used."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The 'Why It Matters for the Diaspora' section is well-integrated and clearly articulates the relevance of WhatsApp to NRIs and the symbolic importance of an Indian founder."
+          "note": "The 'Why It Matters for the Diaspora' section is well-integrated and clearly articulates the relevance of WhatsApp to NRI life and the symbolism of an Indian founder leading it."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Ensure a strong, relevant hero image is selected and its description/entities are provided for a complete review.",
-          "Consider adding a brief quote from Kunal Shah or Meta/WhatsApp leadership if available, to add more direct voice to the narrative."
+          "Ensure the hero image clearly features Kunal Shah or a relevant visual representing Meta/WhatsApp and CRED to enhance immediate reader understanding.",
+          "Consider adding a brief mention of the specific challenges WhatsApp Payments faced in India (e.g., UPI competition, regulatory hurdles) to provide more context for its past struggles."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "Cleared mismatched image (A man wearing a Freecharge branded polo shirt.)",
-        "held: image mismatch"
+        "promoted to published"
       ],
       "revised": false,
       "unpublished": false,
-      "image_mismatch": true,
       "llm_source": "gemini-2.5-flash"
     },
     {
@@ -214,11 +146,6 @@
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MISMATCH",
-          "what_photo_shows": "A book cover titled 'Fairy Tales for Workers Children'",
-          "reason": "The photo shows a book cover about fairy tales, which is unrelated to a story about walking breaks for mood and fatigue."
-        },
         "inline_image_mismatches": []
       },
       "llm_review": {
@@ -231,58 +158,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The diaspora angle is well-integrated and relevant, connecting the study's findings to the specific health vulnerabilities and work patterns of NRIs."
+          "note": "The diaspora angle is explicitly addressed and well-justified, connecting the study's findings to the specific health vulnerabilities and work patterns of NRIs."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a specific example of how an NRI might implement this in their daily routine, perhaps a quote from a fictional or real NRI.",
-          "While the article is strong, a concluding sentence that reinforces the 'Videshi' platform's value proposition for NRIs could be a nice touch."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "Cleared mismatched image (A book cover titled 'Fairy Tales for Workers Children')",
-        "held: image mismatch"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "image_mismatch": true,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "edf56312-cee1-449d-9b2b-ba545d3d99d0",
-      "headline": "It May Not Be How Much Protein You Eat, but One Amino Acid \u2014 a New Longevity-Diet Study Finds",
-      "slug": "usc-longevity-diet-methionine-low-protein-plant-fish-valter-longo-cell-metabolism-frailty-healthspan-diaspora-20260626-1000",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A salmon fillet with mashed vegetables and a lemon slice.",
-          "reason": "The photo depicts a plant-and-fish based meal, which aligns with the story's focus on a longevity diet."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The diaspora angle is well-integrated and relevant, connecting the study's findings to common dietary practices and health challenges within the South Asian community."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a brief, accessible explanation of what methionine is and its common sources for readers less familiar with amino acids.",
-          "Perhaps include a call to action for readers to consult healthcare professionals before making significant dietary changes, reinforcing the 'not a prescription' message."
+          "Consider adding a specific example of a 'movement snack' relevant to an office setting, perhaps a quick stretch routine or a walk to a different floor.",
+          "While the article is strong, a quote from an NRI professional or health expert on the topic could further strengthen the diaspora angle."
         ],
         "verdict": "pass"
       },
