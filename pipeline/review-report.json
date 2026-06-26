@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-26T00:15:45.196934+00:00",
+  "timestamp": "2026-06-26T00:46:44.927604+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 6,
+    "pass": 8,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "ff7cdd29-50a5-41f9-b2d3-ee5480a7fa1c",
-      "headline": "A Judge Killed the $100,000 H-1B Fee. The Government Is Bringing It Back to Life",
-      "slug": "h1b-100000-fee-struck-down-appeal-dhs-indians-limbo-sorokin-20260626",
+      "id": "ddbcd06a-42f0-4ee9-9b3d-2b46bc52b239",
+      "headline": "Aam, Sago and the Summer of the Viral Desi Dessert",
+      "slug": "aam-sago-and-the-summer-of-the-viral-desi-dessert",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "The facade of a U.S. courthouse with neoclassical columns.",
-          "reason": "The photo of a courthouse is a generic but on-topic image for a story about a judge's ruling and legal appeals."
+          "what_photo_shows": "A glass of mango lassi with a straw and decorative swirl.",
+          "reason": "The photo shows a mango lassi, which is a relevant subject for a story about mango-based desserts and drinks, especially in the context of 'viral desi dessert' and 'peak mango season'."
         },
         "inline_image_mismatches": []
       },
@@ -30,62 +30,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image shows a person looking at a document, which is generally relevant to immigration paperwork, but it's a generic stock photo. No specific entities are provided to confirm a stronger match."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article explicitly connects the H-1B fee's impact to Indian professionals and the Indian diaspora, detailing how different segments (students vs. overseas hires) are affected and discussing the broader implications for skilled Indians considering other countries."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a brief 'What is an H-1B visa?' explainer for readers less familiar with the specifics, perhaps as a sidebar or a short introductory paragraph.",
-          "If possible, include a quote from an affected Indian professional or an immigration lawyer specializing in Indian cases to add a personal dimension to the 'limbo' section."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "e62722c2-bbd3-404f-af5f-518b37de832a",
-      "headline": "The H-1B Lottery Is No Longer a Lottery. For Indians, Your Salary Is Now Your Ticket",
-      "slug": "h1b-wage-weighted-selection-fy2027-lottery-indians-wage-levels-20260626",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A person reviewing an application form at a desk.",
-          "reason": "The photo of someone reviewing an application form is generic but on-topic for a story about visa applications and immigration."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 8,
+          "score": 9,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article directly addresses the impact on Indian professionals and students, clearly segmenting the diaspora experience."
+          "note": "The diaspora angle is well-integrated and feels natural, addressing both nostalgia and practicalities for NRIs."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a small 'What this means for you' section with bullet points for quick takeaways for different reader segments (e.g., recent grads, senior professionals).",
-          "If possible, include a quote from an immigration lawyer or an affected individual to add a human element to the policy change."
+          "Consider adding a specific example of a viral recipe debate or side-by-side reel from social media to enhance the 'community dimension' section.",
+          "Perhaps include a quote from an NRI about their experience making these viral desserts to add a personal touch."
         ],
         "verdict": "pass"
       },
@@ -97,9 +54,9 @@
       "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "bdc8d80a-8733-463b-b329-4e28e4655845",
-      "headline": "The Last Cheap Visa Slot in India Just Vanished. Now Every H-1B Line Is Months Long",
-      "slug": "us-consulate-india-visa-appointment-backlog-h1b-h4-kolkata-stamping-20260626",
+      "id": "0f33cd14-4acb-49c0-b31a-b52f2b2781f9",
+      "headline": "Makhana's American Moment: The Lotus Seed Taking On Popcorn",
+      "slug": "makhanas-american-moment-the-lotus-seed-taking-on-popcorn",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -107,8 +64,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "An open passport with visa and travel stamps",
-          "reason": "The photo of a passport with visa and travel stamps is directly relevant to a story about visa backlogs and immigration."
+          "what_photo_shows": "a bowl of roasted makhana (fox nuts)",
+          "reason": "The photo clearly shows makhana, which is the main subject of the story."
         },
         "inline_image_mismatches": []
       },
@@ -116,19 +73,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 8,
+          "score": 9,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "Directly addresses a critical issue for NRIs, particularly those on H-1B visas, and offers practical advice."
+          "note": "The 'Diaspora Impact' section directly addresses the NRI experience, making it highly relevant and well-integrated."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a small infographic or chart to visualize the increasing wait times across different consulates, if data allows.",
-          "Perhaps include a quote from an affected individual to personalize the impact of these delays."
+          "Consider adding a small section on potential challenges or criticisms of the makhana boom, beyond just price volatility and supply concentration, to provide a more balanced view.",
+          "While the article mentions 'Indian-founded brands,' it would be beneficial to name one or two prominent examples to give readers a concrete reference."
         ],
         "verdict": "pass"
       },
@@ -140,9 +97,9 @@
       "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "43161ad4-c5c6-439f-8d5a-50872c7646fb",
-      "headline": "A $7 Billion Chip Deal Just Bet That AI's Next Battleground Isn't the Data Center. It's the Light Switch.",
-      "slug": "onsemi-synaptics-7-billion-edge-physical-ai-chip-deal-nri-20260626",
+      "id": "f7e6edb9-6ac0-43ac-8c2b-caf7df8ff840",
+      "headline": "The British Are Coming, Bearing Black Dal",
+      "slug": "the-british-are-coming-bearing-black-dal",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -150,8 +107,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Close-up of a semiconductor chip on a circuit board",
-          "reason": "The photo directly depicts a semiconductor chip, which is the core subject of the headline about a chip deal and the chip industry."
+          "what_photo_shows": "A plate of dal makhani with rice and cucumber salad.",
+          "reason": "The photo shows dal makhani, which is explicitly mentioned in the headline and caption as relevant to the story about British-Indian cuisine."
         },
         "inline_image_mismatches": []
       },
@@ -159,19 +116,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image of a light switch is relevant to the headline's 'light switch' metaphor, but the entities provided (which are empty) don't help confirm this. Assuming the image is indeed a light switch, it's a good match for the metaphorical aspect of the headline."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The diaspora angle is well-integrated and provides specific, actionable insights for both Indian/Indian-American engineers and NRI investors, connecting directly to India's semiconductor strategy and talent base."
+          "note": "Strong and natural connection to NRI/diaspora readers, particularly in the 'Diaspora Impact' section."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a small section or call-out box explaining what 'edge AI' is in simpler terms for readers less familiar with tech jargon.",
-          "If possible, include a quote from an Indian or Indian-American engineer or investor to further personalize the diaspora angle."
+          "Consider adding a quote from an Indian-American diner expressing their excitement or perspective on these new restaurant openings.",
+          "Perhaps include a small sidebar or link to a previous Videshi article about the growth of Indian fine dining in the US, if available, to provide further context."
         ],
         "verdict": "pass"
       },
@@ -183,23 +140,18 @@
       "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "bb184235-5e15-4049-b810-e705e5804273",
-      "headline": "Micron Just Told Wall Street the Memory Shortage Runs Past 2027. For the Diaspora, That's a Bill Coming Due.",
-      "slug": "micron-earnings-memory-shortage-2027-mehrotra-nri-20260626",
+      "id": "2e69ff3b-bcc0-4f53-92c6-38b2eecd06bb",
+      "headline": "AI's Hunger for Memory Just Made Your Next Phone More Expensive. India Will Feel It Hardest.",
+      "slug": "ramageddon-memory-chip-price-surge-apple-hikes-india-smartphone-laptop-prices-micron-2026-20260625",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "6325769d-1e90-4880-9ef3-ce89417cd7a1",
-            "headline": "Micron Is About to Post a 1,000% Profit Jump. The Indian-Bor"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A smiling man in a suit and tie.",
-          "reason": "The photo shows Sanjay Mehrotra, who is named in the headline and subheadline as the CEO of Micron Technology, the subject of the story."
+          "what_photo_shows": "Two memory modules, front and back.",
+          "reason": "The photo clearly shows memory modules, which are the central subject of the story about memory-chip prices and AI's impact."
         },
         "inline_image_mismatches": []
       },
@@ -213,13 +165,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the memory shortage to NRIs through consumer electronics costs and investment dilemmas, and also highlights India's semiconductor ambitions."
+          "note": "The 'What the Diaspora Should Watch' section directly addresses NRI readers, making the connection natural and relevant."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a small section or call-out box with practical tips for consumers on navigating potential price increases for electronics.",
-          "Perhaps include a quote from an NRI consumer or investor to add a personal touch to the 'household' and 'investor's dilemma' sections."
+          "Consider adding a small graphic or chart to visualize the memory price increases mentioned (e.g., 98% in Q1 2026).",
+          "While the article mentions Micron's plant in India, a brief sentence on the broader 'Make in India' semiconductor push could add context for some readers."
         ],
         "verdict": "pass"
       },
@@ -231,23 +183,18 @@
       "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "c4080f56-bb3f-4613-9dd6-19021ceac8e0",
-      "headline": "Trump Called IBM's Indian-Born CEO a 'Legend.' Now He's Handed Arvind Krishna's Quantum Bet a Federal Tailwind.",
-      "slug": "arvind-krishna-ibm-quantum-trump-executive-orders-nri-20260626",
+      "id": "c5601c1f-775a-49bd-9a07-98bd1969cd6a",
+      "headline": "Canada Issued Millions of Work Permits. Now They're Expiring \u2014 and Indians Are Half the Wave.",
+      "slug": "canada-work-permit-expiry-wave-2026-indians-out-of-status-pgwp-pr-shortage-20260625",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "c91bad88-3db2-4461-a6c1-879b51bffa47",
-            "headline": "Arvind Krishna Spent Years Calling IBM an AI Company. Now He"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Arvind Krishna speaking at an event",
-          "reason": "The photo shows the correct named person, Arvind Krishna, who is the subject of the story."
+          "what_photo_shows": "An Air Canada aircraft at a gate.",
+          "reason": "The photo shows an Air Canada plane, which is relevant to a story about immigration to Canada."
         },
         "inline_image_mismatches": []
       },
@@ -261,13 +208,151 @@
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The diaspora angle is well-integrated and provides both symbolic and practical connections for NRI readers."
+          "note": "The article explicitly highlights the disproportionate impact on Indians, making it highly relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a brief explanation of what 'fault-tolerant quantum supercomputer' means for a general audience.",
-          "Perhaps include a quote from an Indian-American researcher or engineer working in quantum computing to personalize the 'diaspora talent' aspect."
+          "Consider adding a call to action or resources for affected individuals, if appropriate for the platform's editorial guidelines.",
+          "Explore the possibility of including a quote from an affected Indian individual or family to personalize the impact."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "8203c144-a402-4d4e-b457-ad27d1003e2c",
+      "headline": "The Quiet Clause in the India-UK Trade Deal That Puts Money Back in Diaspora Payslips",
+      "slug": "india-uk-ceta-double-contribution-convention-diaspora-professionals-go-20260626",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Indian Commerce Minister Piyush Goyal smiling",
+          "reason": "The photo shows the named person, Piyush Goyal, who is relevant to the India-UK trade deal mentioned in the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The entire article is centered on a specific benefit for the Indian diaspora in the UK, making it highly relevant and well-executed."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a small 'explainer' box or graphic to visually break down the financial savings for a typical professional.",
+          "Perhaps a quote from an actual NRI professional impacted by this change could add a personal touch."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "32452c11-7a55-435e-a18a-01d91af23f4e",
+      "headline": "Forbes Named America's 250 Most Successful Immigrants. Twenty-Six Are Indian.",
+      "slug": "forbes-250-immigrants-26-indian-origin-leaders-diaspora-nadella-pichai-20260626",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "0a87a59c-d825-419b-95fb-e8ff2ef8b3a8",
+            "headline": "Satya Nadella Spent a Decade Cheering AI On. Now He Wants th"
+          },
+          {
+            "article_id": "319d7dbe-be6d-46a7-8444-abaff681145f",
+            "headline": "Microsoft Bankrolled the AI Giants. Now Satya Nadella Is Pic"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "A headshot of Satya Nadella, Microsoft CEO.",
+          "reason": "The photo clearly shows Satya Nadella, who is explicitly named in the caption as relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article explicitly connects to NRI/diaspora readers, discussing the 'diaspora's foundational story' and how the list resonates within the community as a 'scoreboard with personal stakes'."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a brief concluding sentence to the article, as it currently ends mid-sentence.",
+          "Perhaps include a link to the Forbes article itself for readers who want to see the full list."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "361956b4-42df-4c81-b989-d3b40974953f",
+      "headline": "Delhi Spent Years Wanting the Diaspora's Remittances. Now It Wants Its Portfolio.",
+      "slug": "rbi-fcnr-deposit-scheme-gift-city-nri-investment-shift-diaspora-20260626",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "A modern skyscraper, representing GIFT City.",
+          "reason": "The photo depicts GIFT City, which is explicitly mentioned in the subheadline as central to the story's topic of NRI investment in India."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The entire article is centered on the financial relationship between India and its diaspora, making the angle very strong and natural."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a small section on potential risks or downsides for NRIs investing in these schemes, beyond the 'caveats are real' line, to provide a more balanced view.",
+          "Perhaps include a quote from an NRI investor (anonymized if necessary) to add a personal perspective to the financial analysis."
         ],
         "verdict": "pass"
       },
