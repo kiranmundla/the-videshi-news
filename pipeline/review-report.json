@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-26T08:45:16.812524+00:00",
+  "timestamp": "2026-06-26T09:15:39.969067+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 0,
+    "pass": 3,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,66 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "1b6bc049-cf4d-4277-8d99-7366251340de",
-      "headline": "Australia's Under-16 Social Media Ban Isn't Working Yet \u2014 and Indian-Australian Families Have a Big Stake in What Happens Next",
-      "slug": "australia-under-16-social-media-ban-six-months-albanese-toughen-bmj-study-indian-australian-families-20260626",
+      "id": "2654b42a-0322-430a-8347-8269ff00f27e",
+      "headline": "The Jail Goes Global: 'Lock Upp' Trades MX Player for Netflix, and Now the Diaspora Gets a Cell Too",
+      "slug": "lock-upp-season-2-netflix-june-27-2026-farah-khan-riteish-deshmukh-jailers-ektaa-kapoor-ram-kapoor-shivangi-joshi-where-to-watch-diaspora-nri-20260626",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "8db5a0ce-8cd3-451c-96b8-897a023d3db2",
+            "headline": "Riteish Deshmukh Spent Ten Years Becoming a King. This Frida"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Riteish Deshmukh, a co-jailer for Lock Upp Season 2",
+          "reason": "The photo shows Riteish Deshmukh, who is explicitly mentioned in the subheadline as a jailer for the show."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DZ7E31gKSnQ/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel is a generic, non-topical video of a dog, not related to the Lock Upp show or its cast."
+          }
+        ],
+        "image_match": {
+          "score": 6,
+          "issue": "The image shows Riteish Deshmukh, who is mentioned as a host, but the image itself is from a movie promotion in 2012, not directly related to 'Lock Upp' or its current context. It's not a strong hero image for the article's headline."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article explicitly and effectively highlights the benefit of 'Lock Upp' moving to Netflix for NRI/diaspora readers, addressing past access issues and the luxury of real-time viewing."
+        },
+        "factual_flags": [
+          "The article states 'June 27, 2026' as the reopening date, which seems unusually far in the future for a news piece about a show that has already had a season and is being heavily promoted. This might be a typo for 2024."
+        ],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Verify the launch date (June 27, 2026) as it seems like a potential typo and could confuse readers.",
+          "Replace the irrelevant Instagram embed with a relevant promo or cast announcement for 'Lock Upp' on Netflix, if available."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DZ7E31gKSnQ/",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "194269fc-cc56-4cc1-8d73-27c335bcb910",
+      "headline": "India's First Big Chip Plant Promises 48 Million Units Out of Assam by November. The Map Just Moved East.",
+      "slug": "tata-semiconductor-guwahati-chip-exports-india-mission-nri-20260626",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +78,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "a smartphone displaying various social media app icons",
-          "reason": "The photo directly illustrates the topic of social media use and bans, which is central to the story."
+          "what_photo_shows": "A close-up of a patterned silicon wafer",
+          "reason": "The photo depicts a silicon wafer, which is directly relevant to the semiconductor industry discussed in the headline and subheadline."
         },
         "inline_image_mismatches": []
       },
@@ -35,14 +92,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The diaspora angle is well-integrated and directly relevant to the article's core topic, explaining why Indian-Australian families have a significant stake."
+          "quality": 8,
+          "note": "The diaspora angle is well-integrated and provides concrete reasons why this development matters to NRIs, particularly engineers in the semiconductor industry."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a quote from an Indian-Australian parent to personalize the diaspora angle further.",
-          "Briefly mention the specific age-assurance technologies platforms are using, if known, to add more technical detail."
+          "Consider adding a small map graphic to visually represent the 'east' shift and the 'Gujarat-Bengaluru-Hyderabad triangle' for better reader comprehension.",
+          "The article ends abruptly. Ensure the conclusion provides a summary or a forward-looking statement to give a sense of completeness."
         ],
         "verdict": "pass"
       },
@@ -54,9 +111,9 @@
       "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "c87b6417-abea-4d08-819b-c47f64b4e7e1",
-      "headline": "200 Indian Americans Just Walked Into 125 Congressional Offices in a Single Day",
-      "slug": "fiids-capitol-hill-day-2026-200-indian-american-delegates-125-congressional-offices-us-india-immigration-20260623",
+      "id": "c8a7a6ee-5442-4e06-8bb0-fb146a5fb21e",
+      "headline": "Hackers Dumped 630GB From the Factory That Builds a Third of India's iPhones. Apple and Tesla's Secrets Were Inside.",
+      "slug": "tata-electronics-ransomware-breach-apple-tesla-world-leaks-nri-20260626",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,28 +121,30 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "The United States Capitol building.",
-          "reason": "The photo shows the US Capitol, which is directly relevant to a story about Indian Americans visiting Congressional offices on Capitol Hill."
+          "what_photo_shows": "A cursor hovering over the word \"Security\" on a screen.",
+          "reason": "The photo's subject of digital security directly relates to the story about a ransomware breach and data leak."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 8,
+        "overall_score": 7,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image is a generic cybersecurity stock photo. While relevant to the topic, it doesn't specifically depict iPhones, factories, or the Tata brand mentioned in the headline."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article directly addresses the Indian American diaspora's political efforts and explicitly connects to NRI/diaspora readers in the final section."
+          "quality": 8,
+          "note": "The 'The diaspora stake' section directly and effectively connects the breach to Indian Americans and NRIs, explaining its impact on their professional lives and the broader perception of India's manufacturing capabilities."
         },
-        "factual_flags": [],
+        "factual_flags": [
+          "The article states 'Reuters could not independently verify the documents' authenticity' but then proceeds to detail the contents as if they are verified. While it's important to report the claims, the phrasing could be more consistently cautious about the unverified nature of the data."
+        ],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a quote from a delegate (not an organizer or lawmaker) to provide a grassroots perspective on the experience.",
-          "Expand on the 'Why It Matters for the Diaspora' section, perhaps with a specific example or a more detailed explanation of the implications for NRIs."
+          "Consider adding a quote from an Indian cybersecurity expert or a representative from an NRI tech organization to further strengthen the diaspora angle and provide additional context on the implications.",
+          "If possible, include a visual element (e.g., a map of Tata's plant locations or a graphic illustrating India's share of iPhone production) to enhance reader engagement and understanding of the scale."
         ],
         "verdict": "pass"
       },
@@ -94,6 +153,56 @@
       ],
       "revised": false,
       "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "7d257c68-c661-404d-a612-66f7c0ba7563",
+      "headline": "Meta Just Made a CRED Founder the Boss of WhatsApp. The Real Prize Is the 500 Million Indians Who Already Live There.",
+      "slug": "kunal-shah-whatsapp-meta-cred-900-million-payments-nri-20260626",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "fadeae4f-f910-435a-9e7b-1682f9d5b193",
+            "headline": "A Credit-Card Rewards Founder From Bengaluru Just Got Handed"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MISMATCH",
+          "what_photo_shows": "a man wearing a Freecharge shirt",
+          "reason": "The photo shows a man wearing a 'Freecharge' shirt, but the story is about Kunal Shah, founder of CRED, and WhatsApp."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 8,
+          "issue": "No image URL or entities provided, so cannot fully assess. Assuming a relevant image of Kunal Shah or WhatsApp/Meta would be used."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The 'Why the diaspora should pay attention' section is excellent, directly connecting the news to NRI readers' experiences with remittances and family communication."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a small sidebar or infographic explaining UPI for readers less familiar with the Indian payments landscape.",
+          "Perhaps a brief mention of other Meta investments in India (e.g., Jio Platforms) to provide broader context, if relevant."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "Cleared mismatched image (a man wearing a Freecharge shirt)",
+        "held: image mismatch"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "image_mismatch": true,
       "llm_source": "gemini-2.5-flash"
     }
   ]
