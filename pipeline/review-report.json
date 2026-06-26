@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-26T16:45:30.095644+00:00",
+  "timestamp": "2026-06-26T17:15:22.822984+00:00",
   "mode": "fix",
   "stats": {
     "pass": 2,
-    "flag": 0,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "a0b884b6-7422-4740-8428-a41812c97733",
-      "headline": "India Is the World's Cheapest Place to Work Remotely. It Still Won't Give Digital Nomads a Visa.",
-      "slug": "india-digital-nomads-workation-yakten-village-most-affordable-no-nomad-visa-countries-court-remote-workers-20260626",
+      "id": "bf786652-bb39-4b45-941d-0a39fce5c71f",
+      "headline": "Therapy, Panic Attacks and the Pahwas: 'Perfect Family' Lands on SonyLIV and Holds Up a Mirror",
+      "slug": "perfect-family-sonyliv-june-26-2026-pankaj-tripathi-producer-debut-neha-dhupia-gulshan-devaiah-manoj-seema-pahwa-therapy-family-drama-where-to-watch-diaspora-nri-20260626",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,58 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A man working on a laptop outdoors.",
-          "reason": "The photo depicts a remote worker, which is directly relevant to the story about digital nomads and remote work."
+          "what_photo_shows": "Neha Dhupia, an Indian actress, at an event.",
+          "reason": "The photo shows Neha Dhupia, who is explicitly mentioned in the headline and caption as part of the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 6,
+          "issue": "The image is of Neha Dhupia, who is mentioned in the article, but the headline and primary topic are about the show 'Perfect Family' and the Pahwas. A show poster or an image featuring the Pahwas would be a better match for the headline."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The diaspora angle is explicitly and naturally integrated, connecting the show's themes of therapy and generational silence to NRI experiences. It also provides practical information on how diaspora viewers can access the show."
+        },
+        "factual_flags": [
+          "The article states the series premiered on YouTube in 'late 2025' which is a future date, implying a factual error. It should likely be 'late 2022' or 'late 2023' if it's now arriving on SonyLIV."
+        ],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Correct the factual error regarding the YouTube premiere date of the series.",
+          "Consider replacing the hero image with one that more directly represents the show 'Perfect Family' or features the Pahwas, aligning better with the headline."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "a9c0b327-401a-414b-87e9-42ab8e2db6f2",
+      "headline": "Alia Bhatt Picks Up the Rifle: 'Alpha' Storms In as the Spy Universe's First Female-Led War",
+      "slug": "alpha-alia-bhatt-sharvari-yrf-spy-universe-female-led-july-3-2026-teaser-75-million-views-hrithik-roshan-cameo-where-to-watch-diaspora-nri-20260626",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "b237cad2-fac5-40b2-a2de-da3fd2b70fd9",
+            "headline": "\"Sita Aaj Lanka Khud Jalane Aayi Hai\": The Alpha Trailer Han"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Theatrical release poster for the film 'Alpha'",
+          "reason": "The photo shows the movie poster for 'Alpha', which is the subject of the headline and subheadline."
         },
         "inline_image_mismatches": []
       },
@@ -36,13 +86,15 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article explicitly connects the digital nomad trend to NRIs and the diaspora, framing it as a 'new species of NRI' and discussing its implications for Indians seeking to live abroad."
+          "note": "The diaspora angle is clearly stated and relevant, focusing on the worldwide release and accessibility for NRIs."
         },
-        "factual_flags": [],
+        "factual_flags": [
+          "The article mentions 'The Odyssey' by Christopher Nolan, which is not a known film title for him. It might be a typo or a speculative title."
+        ],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a short concluding paragraph to summarize the 'unanswered question' and perhaps speculate briefly on India's potential future stance.",
-          "If possible, include a quote from an Indian digital nomad or an expert on Indian immigration/tourism to add more human interest or authoritative insight."
+          "Verify the title of Christopher Nolan's film mentioned in the last paragraph.",
+          "Consider adding a sentence about the potential cultural impact or discussion points for the diaspora, beyond just release logistics."
         ],
         "verdict": "pass"
       },
@@ -54,9 +106,9 @@
       "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "950305e5-6207-480a-88e1-af15c62ea816",
-      "headline": "India Says Your Passport Doesn't Prove You're a Citizen. The Diaspora Should Read the Fine Print.",
-      "slug": "india-passport-not-proof-of-citizenship-mea-clarification-tharoor-oci-dual-citizenship-nrc-fears-20260626",
+      "id": "db0456ef-6185-4e5a-8cac-03dd8ab414fe",
+      "headline": "Ireland Beat India for the First Time \u2014 and They Picked the Perfect Day to Do It",
+      "slug": "ireland-beat-india-first-time-ever-1st-t20i-belfast-2026-34-runs-shreyas-iyer-captaincy-debut-defeat-lorcan-tucker-stormont-diaspora-nri",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,13 +116,13 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Congress MP Shashi Tharoor",
-          "reason": "The photo clearly shows Shashi Tharoor, who is explicitly mentioned in the headline and caption as central to the story."
+          "what_photo_shows": "A man identified as Shreyas Iyer at an airport.",
+          "reason": "The photo shows the named person mentioned in the headline and caption, Shreyas Iyer."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 8,
+        "overall_score": 7,
         "embed_issues": [],
         "image_match": {
           "score": 9,
@@ -78,14 +130,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article directly addresses the implications for NRIs and OCI holders, making it highly relevant to the diaspora."
+          "quality": 8,
+          "note": "The 'Why the diaspora is watching' section explicitly connects the event to NRI/diaspora readers, explaining its relevance to their discussions and proximity to Irish cricket."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a brief explanation of what OCI stands for (Overseas Citizenship of India) on its first mention for readers less familiar with the term.",
-          "Perhaps include a link to the relevant sections of the Citizenship Act of 1955 or Passports Act of 1967 for readers who wish to delve deeper into the legal specifics."
+          "Consider adding a quote from an Irish player or coach to balance the narrative, as the article is heavily focused on the Indian perspective.",
+          "While the diaspora angle is present, perhaps a brief mention of the Irish diaspora's connection to cricket could add another layer, given the context of the upset."
         ],
         "verdict": "pass"
       },
