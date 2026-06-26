@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-26T08:15:26.040463+00:00",
+  "timestamp": "2026-06-26T08:45:16.812524+00:00",
   "mode": "fix",
   "stats": {
     "pass": 2,
-    "flag": 1,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "f106f635-0148-4902-8aa7-b6e5de92802c",
-      "headline": "America Now Rejects 61% of Indian Student Visas. Families Are Doing the Math and Walking",
-      "slug": "us-f1-visa-rejection-61-percent-indian-students-uk-germany-pivot-20260626",
+      "id": "1b6bc049-cf4d-4277-8d99-7366251340de",
+      "headline": "Australia's Under-16 Social Media Ban Isn't Working Yet \u2014 and Indian-Australian Families Have a Big Stake in What Happens Next",
+      "slug": "australia-under-16-social-media-ban-six-months-albanese-toughen-bmj-study-indian-australian-families-20260626",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,55 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A student waiting in an airport terminal holding a passport",
-          "reason": "The photo depicts a student in an airport with a passport, which is highly relevant to a story about student visas and international travel."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 8,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "Directly addresses a critical issue for Indian diaspora and NRIs, focusing on student visas and education choices."
-        },
-        "factual_flags": [
-          "The article states 'The US rejection rate for Indian student-visa applicants has climbed from 36% in 2023 to 61% in 2025'. This implies a future projection for 2025, which is unusual for a 'rejection rate' unless it's based on a specific dataset or forecast. If 2025 data is not yet complete, this needs clarification.",
-          "The article mentions 'a suspension of visa interviews in May 2025'. This also refers to a future event, which is odd for a past-tense 'disruption'. Needs to be rephrased if it's a proposed or anticipated suspension, or if the article was written in late 2024/early 2025 and is now outdated.",
-          "The article mentions 'F-1 issuances to Indian students already fell roughly 69-78% in the peak months of 2025'. Similar to the above, '2025' data being presented as 'already fell' suggests either a future projection or an outdated article if published later in 2025 or 2026."
-        ],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Clarify the timeline and sourcing for the 2025 data points (rejection rates, visa suspensions, F-1 issuances) to ensure they are current and accurately represented as either historical fact, projection, or policy proposal.",
-          "Consider adding a quote or perspective from an Indian student or family directly impacted by these changes to add a human element to the statistics."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "56eec239-afb0-4445-9d38-fdaae9910241",
-      "headline": "India's IT Giants Just Took a 40% H-1B Haircut. The Bill Is Landing on Subcontractors",
-      "slug": "indian-it-firms-h1b-approvals-down-40-percent-tcs-subcontractor-costs-20260626",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Software developers working at computers in a modern office",
-          "reason": "The photo depicts software developers in an office, which is relevant to a story about IT giants and H-1B visas."
+          "what_photo_shows": "a smartphone displaying various social media app icons",
+          "reason": "The photo directly illustrates the topic of social media use and bans, which is central to the story."
         },
         "inline_image_mismatches": []
       },
@@ -77,19 +30,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 8,
+          "score": 9,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article directly addresses the implications for individual Indian engineers and the 'classic path' for the next cohort, making it highly relevant to NRI/diaspora readers."
+          "note": "The diaspora angle is well-integrated and directly relevant to the article's core topic, explaining why Indian-Australian families have a significant stake."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a small section or a quote from an affected individual (either an engineer or a subcontractor) to personalize the impact of these policy changes.",
-          "While the article mentions nearshore centers in Mexico and Canada, a brief elaboration on how these alternatives are being utilized by Indian IT firms could add depth."
+          "Consider adding a quote from an Indian-Australian parent to personalize the diaspora angle further.",
+          "Briefly mention the specific age-assurance technologies platforms are using, if known, to add more technical detail."
         ],
         "verdict": "pass"
       },
@@ -101,9 +54,9 @@
       "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "d395152d-f446-40fd-9d10-34454fa8a6ce",
-      "headline": "The Clock Is Coming to the Student Visa. A Four-Year Cap Just Cleared Its Last Hurdle",
-      "slug": "dhs-duration-of-status-four-year-cap-f1-students-omb-cleared-indians-20260626",
+      "id": "c87b6417-abea-4d08-819b-c47f64b4e7e1",
+      "headline": "200 Indian Americans Just Walked Into 125 Congressional Offices in a Single Day",
+      "slug": "fiids-capitol-hill-day-2026-200-indian-american-delegates-125-congressional-offices-us-india-immigration-20260623",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -111,8 +64,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Graduates in academic gowns celebrating outside a university building",
-          "reason": "The photo of graduates is relevant to a story about student visas and their impact on international students."
+          "what_photo_shows": "The United States Capitol building.",
+          "reason": "The photo shows the US Capitol, which is directly relevant to a story about Indian Americans visiting Congressional offices on Capitol Hill."
         },
         "inline_image_mismatches": []
       },
@@ -120,19 +73,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 8,
+          "score": 9,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "Strong and natural connection to NRI/diaspora readers, specifically Indian students and their families."
+          "note": "The article directly addresses the Indian American diaspora's political efforts and explicitly connects to NRI/diaspora readers in the final section."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a call to action for readers to contact their representatives or relevant organizations, if appropriate.",
-          "Expand on the 'Don't sit on OPT' point with more specific advice."
+          "Consider adding a quote from a delegate (not an organizer or lawmaker) to provide a grassroots perspective on the experience.",
+          "Expand on the 'Why It Matters for the Diaspora' section, perhaps with a specific example or a more detailed explanation of the implications for NRIs."
         ],
         "verdict": "pass"
       },
