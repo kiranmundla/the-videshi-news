@@ -1,19 +1,19 @@
 {
-  "timestamp": "2026-06-26T17:15:22.822984+00:00",
+  "timestamp": "2026-06-26T18:16:00.852272+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 7,
     "flag": 1,
     "fail": 0,
     "error": 0
   },
-  "revisions": 0,
+  "revisions": 1,
   "unpublished": 0,
   "articles": [
     {
-      "id": "bf786652-bb39-4b45-941d-0a39fce5c71f",
-      "headline": "Therapy, Panic Attacks and the Pahwas: 'Perfect Family' Lands on SonyLIV and Holds Up a Mirror",
-      "slug": "perfect-family-sonyliv-june-26-2026-pankaj-tripathi-producer-debut-neha-dhupia-gulshan-devaiah-manoj-seema-pahwa-therapy-family-drama-where-to-watch-diaspora-nri-20260626",
+      "id": "f059761b-2982-4ee6-af51-7a215e3ca0fa",
+      "headline": "A Failing Monsoon Becomes India\u2019s Biggest Economic Wildcard as S&P Trims Growth Forecast",
+      "slug": "india-weak-monsoon-macro-risk-sp-global-cuts-fy27-growth-6-6-percent-food-inflation-rural-diaspora-portfolios-20260626-1800",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,58 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Neha Dhupia, an Indian actress, at an event.",
-          "reason": "The photo shows Neha Dhupia, who is explicitly mentioned in the headline and caption as part of the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 6,
-          "issue": "The image is of Neha Dhupia, who is mentioned in the article, but the headline and primary topic are about the show 'Perfect Family' and the Pahwas. A show poster or an image featuring the Pahwas would be a better match for the headline."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The diaspora angle is explicitly and naturally integrated, connecting the show's themes of therapy and generational silence to NRI experiences. It also provides practical information on how diaspora viewers can access the show."
-        },
-        "factual_flags": [
-          "The article states the series premiered on YouTube in 'late 2025' which is a future date, implying a factual error. It should likely be 'late 2022' or 'late 2023' if it's now arriving on SonyLIV."
-        ],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Correct the factual error regarding the YouTube premiere date of the series.",
-          "Consider replacing the hero image with one that more directly represents the show 'Perfect Family' or features the Pahwas, aligning better with the headline."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "a9c0b327-401a-414b-87e9-42ab8e2db6f2",
-      "headline": "Alia Bhatt Picks Up the Rifle: 'Alpha' Storms In as the Spy Universe's First Female-Led War",
-      "slug": "alpha-alia-bhatt-sharvari-yrf-spy-universe-female-led-july-3-2026-teaser-75-million-views-hrithik-roshan-cameo-where-to-watch-diaspora-nri-20260626",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "b237cad2-fac5-40b2-a2de-da3fd2b70fd9",
-            "headline": "\"Sita Aaj Lanka Khud Jalane Aayi Hai\": The Alpha Trailer Han"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Theatrical release poster for the film 'Alpha'",
-          "reason": "The photo shows the movie poster for 'Alpha', which is the subject of the headline and subheadline."
+          "what_photo_shows": "Flooded agricultural fields under a cloudy sky in India.",
+          "reason": "The photo depicts agricultural fields, which are directly impacted by monsoon rainfall, making it relevant to a story about India's monsoon and its economic effects."
         },
         "inline_image_mismatches": []
       },
@@ -86,15 +36,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The diaspora angle is clearly stated and relevant, focusing on the worldwide release and accessibility for NRIs."
+          "note": "The 'Why It Matters for the Diaspora' section is well-integrated and clearly explains the impact on NRIs, covering remittances, family support, and investments."
         },
-        "factual_flags": [
-          "The article mentions 'The Odyssey' by Christopher Nolan, which is not a known film title for him. It might be a typo or a speculative title."
-        ],
+        "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Verify the title of Christopher Nolan's film mentioned in the last paragraph.",
-          "Consider adding a sentence about the potential cultural impact or discussion points for the diaspora, beyond just release logistics."
+          "Consider adding a small infographic or chart to visualize the monsoon deficit or S&P's growth forecast changes, as this is an economy-focused piece.",
+          "Expand slightly on the investment implications for the diaspora, perhaps with a sentence or two about specific sectors or types of investments that might be more or less affected."
         ],
         "verdict": "pass"
       },
@@ -106,9 +54,9 @@
       "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "db0456ef-6185-4e5a-8cac-03dd8ab414fe",
-      "headline": "Ireland Beat India for the First Time \u2014 and They Picked the Perfect Day to Do It",
-      "slug": "ireland-beat-india-first-time-ever-1st-t20i-belfast-2026-34-runs-shreyas-iyer-captaincy-debut-defeat-lorcan-tucker-stormont-diaspora-nri",
+      "id": "31ced33d-c0c1-4c79-bd0e-d00f2442c160",
+      "headline": "Lifting Weights Through Midlife Sharply Cut the Risk of Type 2 Diabetes \u2014 Especially Paired With Walking",
+      "slug": "resistance-training-aerobic-exercise-lower-type-2-diabetes-risk-jama-network-open-143715-adults-diaspora-20260626-1800",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -116,13 +64,13 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A man identified as Shreyas Iyer at an airport.",
-          "reason": "The photo shows the named person mentioned in the headline and caption, Shreyas Iyer."
+          "what_photo_shows": "A middle-aged man lifting weights with dumbbells.",
+          "reason": "The photo directly illustrates the story's topic of lifting weights through midlife."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 7,
+        "overall_score": 8,
         "embed_issues": [],
         "image_match": {
           "score": 9,
@@ -130,14 +78,286 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The 'Why the diaspora is watching' section explicitly connects the event to NRI/diaspora readers, explaining its relevance to their discussions and proximity to Irish cricket."
+          "quality": 9,
+          "note": "The diaspora angle is well-integrated and highly relevant, addressing a significant health concern within the community."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a quote from an Irish player or coach to balance the narrative, as the article is heavily focused on the Indian perspective.",
-          "While the diaspora angle is present, perhaps a brief mention of the Irish diaspora's connection to cricket could add another layer, given the context of the upset."
+          "Consider adding a brief, actionable tip or two for NRIs on how to incorporate resistance training, perhaps linking to a simple guide or suggesting common household items.",
+          "Expand slightly on the 'not for bodybuilders' perception within the diaspora, perhaps with a quote or a more detailed explanation of why this perception exists and how to overcome it."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "edeb4821-2002-41a8-bb0b-6e4ce68624c0",
+      "headline": "Your Genes May Decide Whether Your Sleep Protects Your Brain \u2014 or Harms It",
+      "slug": "aqp4-gene-sleep-interaction-alzheimers-risk-edith-cowan-university-glymphatic-personalized-prevention-diaspora-20260626-1800",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "An older woman sleeping in bed.",
+          "reason": "The photo of a sleeping older woman is a generic but on-topic image for a story about sleep and the aging brain."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 6,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 5,
+          "note": "The image URL includes 'diaspora' but the article body itself doesn't explicitly connect to NRI/diaspora readers. The mention of 'personalized prevention' could be a subtle nod, but it's not strongly developed."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Strengthen the diaspora angle by adding a paragraph or two on how these findings might specifically impact NRIs, perhaps discussing genetic predispositions common in certain Indian populations or access to personalized health information abroad.",
+          "Consider adding a quote from an Indian-origin expert in the field, if available, to further connect with the target audience."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Revised by gemini-2.5-flash (885\u2192963 words)"
+      ],
+      "revised": true,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "737903b1-aefd-4230-adb6-e63d409e8351",
+      "headline": "SAS Just Reopened the Scandinavia\u2013India Air Bridge After 17 Years \u2014 and Timed It for New York, Boston and Toronto",
+      "slug": "sas-copenhagen-mumbai-route-india-return-nyc-boston-toronto-diaspora-n-20260626",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "A Scandinavian Airlines (SAS) Airbus A330-343 aircraft.",
+          "reason": "The photo clearly shows an SAS aircraft, which is the subject of the story about their new route."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article explicitly targets the NRI/diaspora audience, highlighting the benefits and considerations for them."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a small section on potential loyalty program benefits or partnerships for diaspora travelers, given SAS's pivot towards SkyTeam.",
+          "Perhaps include a brief mention of visa requirements for transit through Copenhagen for Indian passport holders, as this can be a significant factor for some travelers."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "0b6af86d-19c3-450b-8b4b-c0cdcf9bb0d0",
+      "headline": "Your US Visa Just Unlocked Argentina \u2014 and 40 Other Countries Most NRIs Forget They Can Enter",
+      "slug": "us-visa-unlocks-40-countries-argentina-mexico-caribbean-indians-nri-20260626",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "A world map, compass, camera, and passport stamps including Buenos Aires.",
+          "reason": "The photo's subject directly relates to international travel, visas, and specific locations mentioned in the headline."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image shows a person looking at a map, which generally fits the travel theme. However, it's a generic stock photo and doesn't specifically evoke 'US Visa' or 'Argentina' or 'Indian diaspora travel'. It's acceptable but not perfect."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article is explicitly targeted at NRIs, particularly Indian Americans with US visas or green cards, and directly addresses their travel challenges and opportunities. The angle is natural and highly relevant."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a small, easily digestible table or infographic listing the countries by category (visa-free, visa-on-arrival, e-visa) for quick reference.",
+          "While the article mentions 'Bay Area or tri-state family,' expanding on other major NRI hubs in the US could broaden its appeal slightly."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "bc33dd6e-aeca-45ab-8327-bd8ea9baa6e9",
+      "headline": "An Indian Brand Wants to Sell You a \u20b913,000 Phone Built on Its Own Software. The Pitch Is Privacy, Not Specs.",
+      "slug": "ai-plus-nova-2-indian-smartphone-madhav-sheth-indigenous-os-nri-20260626",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Three smartphones displaying app interfaces on a wooden surface.",
+          "reason": "The photo shows smartphones, which is directly relevant to a story about a new smartphone brand and its products."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 8,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article explicitly addresses the diaspora angle with dedicated sections, making it highly relevant and well-integrated."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a small section on the specific privacy features or claims made by Ai+ to give readers a clearer picture of what 'privacy-forward' entails.",
+          "Perhaps include a quote or perspective from an NRI on their experience with gifting tech to relatives in India, to further ground the 'practical reason' for NRI interest."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "941794f2-940f-4257-9ca2-6eb36408b9fc",
+      "headline": "Infosys Says AI Is a $400 Billion Prize, Not a Pink Slip. It's Still Hiring Freshers to Prove It.",
+      "slug": "infosys-400-billion-ai-opportunity-fresher-hiring-parekh-nri-20260626",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "cd27c2a9-bdf1-42ed-8e2a-1b4ee9ba4390",
+            "headline": "India Isn't Just the World's Biggest Source of Skilled Migra"
+          },
+          {
+            "article_id": "576b6c48-9c61-4446-a728-ab231d30c39b",
+            "headline": "India's IT Giants Used to Run on H-1B Visas. New Data Shows "
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Infosys campus pyramid in Mysuru",
+          "reason": "The photo shows a landmark building of Infosys, which is the subject of the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article explicitly connects the hiring trends to NRI parents and investors, making the diaspora angle very strong and natural."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a quote from an NRI parent or student to personalize the diaspora angle further.",
+          "Perhaps include a small sidebar or link to resources for students looking to gain AI fluency."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "dd35e417-e3c8-47ce-b7a7-855eb0e14883",
+      "headline": "Washington Just Got First Dibs on OpenAI's Newest Brain. The Indian Engineer Building on It Has to Wait in Line.",
+      "slug": "openai-gpt-5-6-government-gated-release-altman-developers-nri-20260626",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "24951212-b629-4981-9632-47e467a8d128",
+            "headline": "OpenAI Built Its Own AI Chip and Called It Jalape\u00f1o. The Rea"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "A man in a suit and tie, identified as Sam Altman.",
+          "reason": "The photo shows Sam Altman, who is explicitly named in the caption as the CEO of OpenAI, the company central to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article explicitly and effectively connects the OpenAI release schedule to Indian-origin engineers and founders, and the impact on Indian startups."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a quote from an Indian-origin engineer or founder to personalize the impact described.",
+          "Briefly mention the specific 'export-control order' or executive order number for added journalistic rigor."
         ],
         "verdict": "pass"
       },
