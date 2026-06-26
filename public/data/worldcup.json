@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-06-26T02:00:10Z",
-  "stage": "Group Stage — 58 of 72 matches played",
+  "last_updated": "2026-06-26T04:04:58Z",
+  "stage": "Group Stage — 60 of 72 matches played",
   "hosts": "USA, Mexico & Canada",
   "dates": {
     "start": "2026-06-11",
@@ -184,12 +184,12 @@
         "code": "USA",
         "flag": "🇺🇸",
         "rank": 17,
-        "p": 2,
+        "p": 3,
         "w": 2,
         "d": 0,
-        "l": 0,
-        "gf": 6,
-        "ga": 1,
+        "l": 1,
+        "gf": 8,
+        "ga": 4,
         "pts": 6
       },
       {
@@ -197,39 +197,39 @@
         "code": "AUS",
         "flag": "🇦🇺",
         "rank": 27,
-        "p": 2,
+        "p": 3,
         "w": 1,
-        "d": 0,
+        "d": 1,
         "l": 1,
         "gf": 2,
         "ga": 2,
-        "pts": 3
+        "pts": 4
       },
       {
         "name": "Paraguay",
         "code": "PAR",
         "flag": "🇵🇾",
         "rank": 40,
-        "p": 2,
+        "p": 3,
         "w": 1,
-        "d": 0,
+        "d": 1,
         "l": 1,
         "gf": 2,
         "ga": 4,
-        "pts": 3
+        "pts": 4
       },
       {
         "name": "Turkey",
         "code": "TUR",
         "flag": "🇹🇷",
         "rank": 22,
-        "p": 2,
-        "w": 0,
+        "p": 3,
+        "w": 1,
         "d": 0,
         "l": 2,
-        "gf": 0,
-        "ga": 3,
-        "pts": 0
+        "gf": 3,
+        "ga": 5,
+        "pts": 3
       }
     ],
     "E": [
@@ -1555,8 +1555,8 @@
       "away": "USA",
       "venue": "SoFi Stadium",
       "city": "Los Angeles",
-      "status": "scheduled",
-      "score": null,
+      "status": "FT",
+      "score": "3-2",
       "home_code": "TUR",
       "away_code": "USA"
     },
@@ -1570,8 +1570,8 @@
       "away": "Australia",
       "venue": "Levi's Stadium",
       "city": "San Francisco Bay Area",
-      "status": "scheduled",
-      "score": null,
+      "status": "FT",
+      "score": "0-0",
       "home_code": "PAR",
       "away_code": "AUS"
     },
@@ -1785,6 +1785,13 @@
     }
   },
   "highlights": [
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DaCCm6Jihkb",
+      "account": "@fifaworldcup",
+      "caption": "🇹🇷 Güler with the equaliser — Turkey come from behind to beat USA 3-2 in Group D",
+      "date": "2026-06-25"
+    },
     {
       "platform": "instagram",
       "url": "https://www.instagram.com/p/DaBlHQkCkzy/",
