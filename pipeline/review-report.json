@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-26T14:15:41.986719+00:00",
+  "timestamp": "2026-06-26T14:45:15.178640+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 6,
+    "pass": 2,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "f3c87c43-84fe-46a1-b2af-0ee11e24b075",
-      "headline": "From Sending Money Home to Investing in India: The Quiet Shift in How NRIs Treat the Motherland",
-      "slug": "nri-investment-shift-gift-city-belong-inflows-double-portfolio-allocation-not-remittances-ifsca-diaspora-nri-investor-20260626-1400",
+      "id": "7833518d-39e9-4e69-8cb5-3d2196b2b727",
+      "headline": "India Joins 34 Nations in Washington to Pick a Side in the Coming AI Order",
+      "slug": "india-pax-silica-summit-washington-ai-opportunity-statement-35-nations-semiconductor-supply-chain-20260626",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,94 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Indian currency notes and coins",
-          "reason": "The photo shows Indian currency, which is directly relevant to a story about NRIs investing in India and routing capital into Indian funds."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article directly addresses the financial relationship of NRIs with India and how it's evolving, making it highly relevant."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a quote from an actual NRI investor (even if anonymized) to provide a personal perspective on this shift.",
-          "If possible, include a small graphic or chart illustrating the growth of investment inflows mentioned by Belong."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "796051ce-717b-4eaa-9cb8-0c0466566f03",
-      "headline": "The Weight Comes Back. Exercise May Be the Quiet Reason It Comes Back Less",
-      "slug": "exercise-maintenance-phase-cuts-weight-regain-meta-analysis-11-trials-scientific-reports-keep-it-off-glp1-diaspora-20260626-1400",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A man lifting weights, exercising in a gym.",
-          "reason": "The photo depicts exercise, which is directly relevant to the story about exercise and weight maintenance."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The diaspora angle is present and relevant, connecting the general health topic to specific health challenges faced by the Indian diaspora, particularly regarding diabetes and heart disease."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Expand on the 'Why It Matters for the Diaspora' section with more specific examples or statistics if available, to strengthen the connection for NRI readers.",
-          "Consider adding a call to action or practical tips for NRIs on incorporating exercise into their routines, given the article's findings."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "9e6ef0e9-ec1f-47eb-aedd-41c00d322702",
-      "headline": "Four Minutes a Day: A Tiny Strength Routine Sharply Improved Balance and Leg Power in Older Adults",
-      "slug": "penn-state-fast-2-four-minute-daily-strength-routine-older-adults-balance-falls-plos-one-sciamanna-diaspora-20260626-1400",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "An older man exercising at home with small weights.",
-          "reason": "The photo depicts an older adult engaged in a home workout, which directly aligns with the story's topic of a strength routine for older adults."
+          "what_photo_shows": "A semiconductor wafer or chip component.",
+          "reason": "The story discusses AI, chips, compute, and critical minerals, making a semiconductor photo highly relevant."
         },
         "inline_image_mismatches": []
       },
@@ -122,13 +36,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The diaspora angle is well-integrated and relevant, addressing a common concern for NRIs regarding aging parents."
+          "note": "The 'Why It Matters for the Diaspora' section directly addresses the NRI connection, making it relevant and well-integrated."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a quote from an NRI or an expert on elder care in the diaspora context to strengthen the 'Why It Matters for the Diaspora' section.",
-          "Perhaps include a very brief mention of how this routine could be shared with parents in India, considering potential language barriers or access to resistance bands."
+          "Consider adding a quote from an Indian official or industry leader present at the summit to strengthen the 'India's Hand' section.",
+          "Perhaps include a brief mention of specific Indian companies or startups that could benefit from or contribute to the Pax Silica initiative, if publicly available."
         ],
         "verdict": "pass"
       },
@@ -140,9 +54,9 @@
       "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "b58f7023-7eb9-45b0-98bf-7aa846d4409e",
-      "headline": "The Cheapest Window to Fly India\u2013US Is Hiding in Plain Sight \u2014 and It's Not the One You're Booking",
-      "slug": "india-us-shoulder-season-fares-september-october-cheapest-nri-2026-20260626",
+      "id": "47385828-0aa8-4ba5-a521-1943da9ec130",
+      "headline": "Texas Is Building Its Own H-1B Crackdown \u2014 and Indian Workers Are Caught in the Middle",
+      "slug": "texas-h1b-enforcement-ghost-offices-paxton-investigation-abbott-freeze-indian-workers-20260626",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -150,94 +64,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "An airplane wing over clouds at sunset.",
-          "reason": "The photo of an airplane wing is a generic but on-topic image for a story about international flights."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 8,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article is explicitly targeted at NRIs and directly addresses their travel patterns and concerns."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a small graphic or chart to visually represent the fare differences between peak and shoulder seasons, as this is a data-driven article.",
-          "Perhaps include a very brief mention of how visa processing times might factor into planning for the shoulder season, as this can be a practical concern for some NRIs."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "f3d7044c-e910-4996-8a22-7bd935ed0be6",
-      "headline": "Delhi-NCR Finally Has a Second Airport \u2014 Here's What Noida's New Hub Means Before the International Flights Arrive",
-      "slug": "noida-international-airport-jewar-dxn-operational-delhi-ncr-nri-20260626",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Prime Minister Modi at Noida International Airport",
-          "reason": "The photo clearly shows the Noida International Airport and Prime Minister Modi, directly matching the story's subject."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article explicitly addresses the NRI audience and explains the relevance of the new airport to their travel patterns and family roots in the region. It feels natural, not forced."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a small map graphic showing the location of Jewar relative to Delhi and key NCR towns to visually reinforce the 'closer airport' benefit for NRIs.",
-          "If possible, include a quote from an NRI or a travel agent specializing in NRI travel to add a personal touch or expert perspective on the airport's impact."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "27814f00-8e95-4c0b-a4b0-92fda88aa129",
-      "headline": "Your Japan Visa Is Quietly a Passport to Seven More Countries \u2014 and India's Diaspora Should Read the Fine Print",
-      "slug": "japan-visa-unlocks-seven-countries-indians-mexico-taiwan-georgia-nri-20260626",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A Japanese immigration stamp and visa in a passport.",
-          "reason": "The photo directly depicts a Japan visa and immigration stamps, which is central to a story about Japan visas and international travel."
+          "what_photo_shows": "Texas Governor Greg Abbott in a blue suit and red tie",
+          "reason": "The photo shows the named individual, Texas Governor Greg Abbott, who is central to the story's topic about Texas's H-1B crackdown."
         },
         "inline_image_mismatches": []
       },
@@ -251,13 +79,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article clearly and effectively targets NRIs, explaining why this information is particularly relevant to them and distinguishing it from naturalized citizens."
+          "note": "Explicitly addresses the impact on Indian professionals and the growing Indian community in Texas, making a strong connection."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a small table or infographic summarizing the conditions for each country (e.g., 'Mexico: Multiple-entry Japan visa, 180 days').",
-          "Clarify if the 'valid Japan visa' needs to be *used* to enter Japan first, or if simply possessing it is sufficient for the other countries. This is a common point of confusion."
+          "Consider adding a quote from an affected Indian worker or an immigration lawyer specializing in the Indian diaspora to personalize the impact.",
+          "Briefly mention the typical fields H-1B workers from India are employed in within Texas to further contextualize the 'tech corridors' reference."
         ],
         "verdict": "pass"
       },
