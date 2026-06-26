@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-26T13:15:24.310695+00:00",
+  "timestamp": "2026-06-26T13:45:11.666412+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 1,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "053beb4c-1c8c-4aed-acc6-dcf096ce6ade",
-      "headline": "Kajal Aggarwal and Shreyas Talpade Pour You a Glass of Something Toxic in 'The India Story' Teaser",
-      "slug": "the-india-story-teaser-kajal-aggarwal-shreyas-talpade-slow-poison-food-adulteration-chettan-dk-zee-studios-july-24-2026-hindi-tamil-telugu-where-to-watch-diaspora-nri-20260626",
+      "id": "ce41a281-4925-48a2-8a52-448fb39b55ec",
+      "headline": "India Must Beat the Unbeaten: A Lord's Date With Australia Will Decide Their World Cup",
+      "slug": "india-australia-women-t20-world-cup-2026-semifinal-decider-lords-virtual-quarterfinal-harmanpreet-shafali-diaspora-nri",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Kajal Aggarwal in a black embroidered outfit and jewelry",
-          "reason": "The photo clearly shows Kajal Aggarwal, who is mentioned in the headline and caption as starring in the film."
+          "what_photo_shows": "Harmanpreet Kaur with a cricket World Cup trophy",
+          "reason": "The photo shows a prominent Indian cricket figure with a World Cup trophy, which is relevant to a story about India's World Cup cricket match."
         },
         "inline_image_mismatches": []
       },
@@ -30,77 +30,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image is of Kajal Aggarwal, who is a lead in the film, but it's a generic promotional shot from a different film ('Bhagavanth Kesari') and doesn't specifically relate to 'The India Story' or its 'toxic' theme. It's not misleading, but not perfectly matched to the specific article angle."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article explicitly connects the film's theme of food adulteration to NRI parents' anxieties and highlights the tri-lingual global release strategy as a smart play for the diaspora, making the connection natural and strong."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider finding an image that is either a still from 'The India Story' or a promotional image that better reflects the film's specific tone and subject matter, if available.",
-          "While the article mentions the film's eventual streaming home, a brief mention of how diaspora audiences typically access such films (e.g., specific platforms or release windows) could further enhance the NRI connection."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "cfe3ea73-24ec-4b47-9b01-f95d13a5c2fd",
-      "headline": "Akshay Kumar's 'Welcome' Jungle Opens to a Polite Roar \u2014 and the Weekend Will Decide Everything",
-      "slug": "welcome-to-the-jungle-day-1-box-office-akshay-kumar-raveena-tandon-mohra-reunion-ensemble-muharram-opening-where-to-watch-diaspora-nri-20260626",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "cfe25a00-83cf-4d0d-b73f-ac9da6f980f4",
-            "headline": "Twenty-Two Years Later, the 'Mohra' Couple Is Back. The Whol"
-          },
-          {
-            "article_id": "930d16dc-a5e4-4015-9904-0e4c378bf2b8",
-            "headline": "Akshay Kumar Stops the Movie at Intermission, Walks Out With"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Official movie poster for 'Welcome To The Jungle'",
-          "reason": "The photo is the official poster for the movie 'Welcome To The Jungle', which is the subject of the headline."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/reel/DZ_6FzYNoZ3/",
-            "problem": "broken",
-            "explanation": "The Instagram reel URL is malformed or points to a non-existent post. 'DZ_6FzYNoZ3' is not a valid Instagram reel ID format."
-          }
-        ],
-        "image_match": {
           "score": 9,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The diaspora angle is clearly present and well-integrated at the end, discussing the global release and NRI audience access."
+          "quality": 7,
+          "note": "The article explicitly includes a 'Why the Diaspora Should Watch' section, which directly addresses the NRI audience. While the content for this section is cut off, its mere presence indicates a conscious effort to connect with the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Fix the broken Instagram embed URL to ensure all multimedia content is accessible.",
-          "Consider adding a brief mention of the film's critical reception from international outlets, if available, to further enhance the diaspora angle."
+          "Complete the 'Why the Diaspora Should Watch' section with compelling reasons for NRIs to tune in, perhaps highlighting community viewing events or the emotional connection to the team.",
+          "Consider adding a quote from an Indian diaspora fan or community leader to further strengthen the NRI connection."
         ],
         "verdict": "pass"
       },
