@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-25T23:15:28.564090+00:00",
+  "timestamp": "2026-06-26T00:15:45.196934+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
+    "pass": 6,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "69a12539-9e4e-41d7-90b5-984ecd226aa5",
-      "headline": "CBFC Takes a Red Pen to 'Supergirl': Muted Cusswords, a Deleted Middle Finger, and the Same Old Diaspora Question",
-      "slug": "supergirl-cbfc-cuts-india-muted-profanity-middle-finger-milly-alcock-jason-momoa-june-26-2026-superman-censorship-where-to-watch-diaspora-nri-20260625",
+      "id": "ff7cdd29-50a5-41f9-b2d3-ee5480a7fa1c",
+      "headline": "A Judge Killed the $100,000 H-1B Fee. The Government Is Bringing It Back to Life",
+      "slug": "h1b-100000-fee-struck-down-appeal-dhs-indians-limbo-sorokin-20260626",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,28 +21,28 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Movie poster for Supergirl featuring Milly Alcock",
-          "reason": "The photo clearly shows the subject of the headline, 'Supergirl' and its star Milly Alcock."
+          "what_photo_shows": "The facade of a U.S. courthouse with neoclassical columns.",
+          "reason": "The photo of a courthouse is a generic but on-topic image for a story about a judge's ruling and legal appeals."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 7,
+        "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image shows a person looking at a document, which is generally relevant to immigration paperwork, but it's a generic stock photo. No specific entities are provided to confirm a stronger match."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The diaspora angle is clearly articulated and relevant, highlighting the difference in viewing experience for NRIs versus those in India."
+          "quality": 9,
+          "note": "The article explicitly connects the H-1B fee's impact to Indian professionals and the Indian diaspora, detailing how different segments (students vs. overseas hires) are affected and discussing the broader implications for skilled Indians considering other countries."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a specific example of an 'item number' that sailed through untouched in Bollywood to strengthen the double standard argument.",
-          "Ensure the 'Welco' at the end of the article is completed or removed, as it appears to be a truncated sentence."
+          "Consider adding a brief 'What is an H-1B visa?' explainer for readers less familiar with the specifics, perhaps as a sidebar or a short introductory paragraph.",
+          "If possible, include a quote from an affected Indian professional or an immigration lawyer specializing in Indian cases to add a personal dimension to the 'limbo' section."
         ],
         "verdict": "pass"
       },
@@ -54,23 +54,152 @@
       "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "9ad6cd7b-4859-4900-9358-816217efdfcd",
-      "headline": "Salman Khan Is Reportedly Becoming Karna \u2014 and Bollywood Just Got Its Most Ambitious Epic in Years",
-      "slug": "salman-khan-karna-mahabharata-epic-rakeysh-omprakash-mehra-excel-entertainment-farhan-akhtar-two-part-summer-2027-body-transformation-where-to-watch-diaspora-nri-20260625",
+      "id": "e62722c2-bbd3-404f-af5f-518b37de832a",
+      "headline": "The H-1B Lottery Is No Longer a Lottery. For Indians, Your Salary Is Now Your Ticket",
+      "slug": "h1b-wage-weighted-selection-fy2027-lottery-indians-wage-levels-20260626",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "A person reviewing an application form at a desk.",
+          "reason": "The photo of someone reviewing an application form is generic but on-topic for a story about visa applications and immigration."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 8,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article directly addresses the impact on Indian professionals and students, clearly segmenting the diaspora experience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a small 'What this means for you' section with bullet points for quick takeaways for different reader segments (e.g., recent grads, senior professionals).",
+          "If possible, include a quote from an immigration lawyer or an affected individual to add a human element to the policy change."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "bdc8d80a-8733-463b-b329-4e28e4655845",
+      "headline": "The Last Cheap Visa Slot in India Just Vanished. Now Every H-1B Line Is Months Long",
+      "slug": "us-consulate-india-visa-appointment-backlog-h1b-h4-kolkata-stamping-20260626",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "An open passport with visa and travel stamps",
+          "reason": "The photo of a passport with visa and travel stamps is directly relevant to a story about visa backlogs and immigration."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 8,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "Directly addresses a critical issue for NRIs, particularly those on H-1B visas, and offers practical advice."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a small infographic or chart to visualize the increasing wait times across different consulates, if data allows.",
+          "Perhaps include a quote from an affected individual to personalize the impact of these delays."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "43161ad4-c5c6-439f-8d5a-50872c7646fb",
+      "headline": "A $7 Billion Chip Deal Just Bet That AI's Next Battleground Isn't the Data Center. It's the Light Switch.",
+      "slug": "onsemi-synaptics-7-billion-edge-physical-ai-chip-deal-nri-20260626",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Close-up of a semiconductor chip on a circuit board",
+          "reason": "The photo directly depicts a semiconductor chip, which is the core subject of the headline about a chip deal and the chip industry."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image of a light switch is relevant to the headline's 'light switch' metaphor, but the entities provided (which are empty) don't help confirm this. Assuming the image is indeed a light switch, it's a good match for the metaphorical aspect of the headline."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The diaspora angle is well-integrated and provides specific, actionable insights for both Indian/Indian-American engineers and NRI investors, connecting directly to India's semiconductor strategy and talent base."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a small section or call-out box explaining what 'edge AI' is in simpler terms for readers less familiar with tech jargon.",
+          "If possible, include a quote from an Indian or Indian-American engineer or investor to further personalize the diaspora angle."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "bb184235-5e15-4049-b810-e705e5804273",
+      "headline": "Micron Just Told Wall Street the Memory Shortage Runs Past 2027. For the Diaspora, That's a Bill Coming Due.",
+      "slug": "micron-earnings-memory-shortage-2027-mehrotra-nri-20260626",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [
           {
-            "article_id": "c77648c4-6bff-4cf2-892e-936cc06d2004",
-            "headline": "Salman Khan Wants to Play a Warrior King \u2014 and He's Picked R"
+            "article_id": "6325769d-1e90-4880-9ef3-ce89417cd7a1",
+            "headline": "Micron Is About to Post a 1,000% Profit Jump. The Indian-Bor"
           }
         ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Salman Khan with a beard, wearing a black shirt.",
-          "reason": "The photo clearly shows Salman Khan, who is the main subject of the headline and story."
+          "what_photo_shows": "A smiling man in a suit and tie.",
+          "reason": "The photo shows Sanjay Mehrotra, who is named in the headline and subheadline as the CEO of Micron Technology, the subject of the story."
         },
         "inline_image_mismatches": []
       },
@@ -84,13 +213,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The diaspora angle is explicitly addressed and well-justified, connecting the film's potential impact to NRI communities and their cultural consumption habits."
+          "note": "The article effectively connects the memory shortage to NRIs through consumer electronics costs and investment dilemmas, and also highlights India's semiconductor ambitions."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a sentence or two about the historical significance of Karna in the Mahabharata for readers who might be less familiar with the epic.",
-          "Ensure the article concludes properly, as it currently ends mid-sentence."
+          "Consider adding a small section or call-out box with practical tips for consumers on navigating potential price increases for electronics.",
+          "Perhaps include a quote from an NRI consumer or investor to add a personal touch to the 'household' and 'investor's dilemma' sections."
         ],
         "verdict": "pass"
       },
@@ -102,43 +231,43 @@
       "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "c2a3732d-a6a6-472b-984d-68f36ea51c07",
-      "headline": "Zendaya Walked the Paris Spider-Man Carpet in a $35 eBay T-Shirt \u2014 and Broke the Internet Doing It",
-      "slug": "zendaya-35-dollar-vintage-spider-man-tshirt-paris-premiere-brand-new-day-tom-holland-law-roach-versace-louis-vuitton-july-31-where-to-watch-diaspora-nri",
+      "id": "c4080f56-bb3f-4613-9dd6-19021ceac8e0",
+      "headline": "Trump Called IBM's Indian-Born CEO a 'Legend.' Now He's Handed Arvind Krishna's Quantum Bet a Federal Tailwind.",
+      "slug": "arvind-krishna-ibm-quantum-trump-executive-orders-nri-20260626",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [
           {
-            "article_id": "98b666e4-afb2-4dd9-9a22-39835fdee479",
-            "headline": "Zendaya Is Wearing Spider-Man's Colours Now \u2014 and the 'Brand"
+            "article_id": "c91bad88-3db2-4461-a6c1-879b51bffa47",
+            "headline": "Arvind Krishna Spent Years Calling IBM an AI Company. Now He"
           }
         ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Zendaya in a red sequined top",
-          "reason": "The photo clearly shows Zendaya, who is the subject of the headline."
+          "what_photo_shows": "Arvind Krishna speaking at an event",
+          "reason": "The photo shows the correct named person, Arvind Krishna, who is the subject of the story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 7,
+        "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 8,
+          "score": 9,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 6,
-          "note": "The diaspora angle feels a bit tacked on at the end and could be integrated more naturally throughout the article or expanded upon with more specific examples relevant to NRIs."
+          "quality": 9,
+          "note": "The diaspora angle is well-integrated and provides both symbolic and practical connections for NRI readers."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Integrate the diaspora angle more organically throughout the article or provide more concrete examples of how this specific fashion moment resonates with NRIs.",
-          "Consider adding a social media embed (e.g., Law Roach's Instagram story or a fan reaction tweet) to visually support the 'broke the internet' claim and the 'split reaction' description."
+          "Consider adding a brief explanation of what 'fault-tolerant quantum supercomputer' means for a general audience.",
+          "Perhaps include a quote from an Indian-American researcher or engineer working in quantum computing to personalize the 'diaspora talent' aspect."
         ],
         "verdict": "pass"
       },
