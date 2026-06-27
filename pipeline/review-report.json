@@ -1,117 +1,33 @@
 {
-  "timestamp": "2026-06-27T17:15:33.065164+00:00",
+  "timestamp": "2026-06-27T17:45:17.048666+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
-    "flag": 2,
+    "pass": 0,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
-  "revisions": 1,
+  "revisions": 0,
   "unpublished": 0,
   "articles": [
-    {
-      "id": "3a56cbc1-e827-46f3-a02f-b21b764e471f",
-      "headline": "A Karate Family, an \u20b918-Crore Budget, and \u20b969 Crore Later \u2014 'Blast' Just Landed on Netflix",
-      "slug": "blast-tamil-martial-arts-netflix-streaming-arjun-preity-mukhundhan-family-action-blockbuster-where-to-watch-diaspora-nri-20260627",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "poster of 'Blast' film",
-          "reason": "The photo shows a poster for the film 'Blast', matching the story about the film."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article connects well with the diaspora by highlighting the film's availability on Netflix in multiple languages, making it accessible to a global audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more context about the significance of martial arts in Indian culture to enhance the diaspora connection.",
-          "Include quotes or reactions from diaspora viewers who have watched the film to provide a personal touch."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "27668618-fca0-4d33-82ba-b1da9bcca517",
-      "headline": "Black Gowns, a \u20b92.3-Crore Watch, and the Night Bollywood Dressed to Kill: Inside the Style Icons Awards 2026",
-      "slug": "bollywood-hungama-style-icons-awards-2026-red-carpet-winners-akshay-shahid-sharvari-vaani-kapoor-fashion-night-jw-marriott-june-2026",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A man in a suit at an event",
-          "reason": "The photo plausibly shows Shahid Kapoor, relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 5,
-          "issue": "The image does not match the article's focus on the Style Icons Awards; it features Shahid Kapoor at a different event."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article connects to the Indian diaspora by discussing Bollywood, which has a significant following among NRIs."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the hero image with one that is directly related to the Style Icons Awards.",
-          "Include more quotes or insights from the panel discussions to enhance the depth of the article."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
     {
       "id": "23edf7a8-4c60-40ac-b537-8f95bb5fdcf9",
       "headline": "The Trade Deal Is in Its 'Last Inches.' For H-1B Workers, That Could Be the Point",
       "slug": "india-us-trade-deal-bta-h1b-gor-greer-mission-500-tech-talent-20260627",
       "pre_checks": {
         "fiction_admission": null,
-        "duplicate_embeds": [],
+        "duplicate_embeds": [
+          "https://instagram.com/p/C0f_2KjS7iG/"
+        ],
         "duplicate_images": [],
         "broken_embeds": [
           {
-            "url": "https://x.com/USAmbIndia/status/1748234567890123456",
+            "url": "https://x.com/USAndIndia/status/1707019208000678239",
             "problem": "broken",
             "detail": "react-tweet returned null (deleted/protected/nonexistent)"
           },
           {
-            "url": "https://instagram.com/p/C1234567890/",
+            "url": "https://instagram.com/p/C0f_2KjS7iG/",
             "problem": "broken",
             "detail": "Instagram embed shows removed/broken placeholder"
           }
@@ -124,7 +40,7 @@
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 6,
+        "overall_score": 8,
         "embed_issues": [],
         "image_match": {
           "score": 2,
@@ -132,22 +48,23 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the trade deal and immigration issues to the concerns of the Indian diaspora, particularly in the tech sector."
+          "quality": 9,
+          "note": "The article effectively connects the trade deal and immigration issues to the concerns of the Indian diaspora, particularly H-1B workers."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the hero image with one that is more relevant to the topic of H-1B visas or the trade deal.",
-          "Clarify the timeline mentioned in the article, as it references events in 2026 which may confuse readers."
+          "Replace the hero image with one that is more relevant to the topic of H-1B visas or trade agreements.",
+          "Consider adding quotes or perspectives from H-1B visa holders to enhance the personal connection to the diaspora."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
+        "Removed duplicate embed(s)",
         "Removed 2 broken/hallucinated embed(s)",
-        "Revised by gemini-2.5-flash (874\u2192877 words)"
+        "promoted to published"
       ],
-      "revised": true,
+      "revised": false,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
     }
