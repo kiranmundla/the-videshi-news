@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-27T03:15:37.025037+00:00",
+  "timestamp": "2026-06-27T04:15:19.595309+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
+    "pass": 0,
     "flag": 2,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "6b7327d5-f7db-48a2-a9ed-d21af5d0045e",
-      "headline": "The Film That Opened to \u20b91 Crore and Refused to Die: 'Main Vaapas Aaunga' Is 2026's Most Beautiful Sleeper Hit",
-      "slug": "main-vaapas-aaunga-sleeper-hit-diljit-dosanjh-imtiaz-ali-ar-rahman-partition-60-crore-word-of-mouth-where-to-watch-diaspora-nri-20260626",
+      "id": "a030dda8-503b-4d87-90b6-120ce5a37580",
+      "headline": "Oracle Made $67 Billion. Then It Cut 21,000 Workers and Blamed the Machine",
+      "slug": "oracle-21000-layoffs-ai-sec-filing-indian-h1b-workers-20260627",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Theatrical release poster for 'Main Vaapas Aaunga'",
-          "reason": "The photo directly shows the movie poster for the film discussed in the headline and subheadline."
+          "what_photo_shows": "Oracle headquarters campus in Foster City, California",
+          "reason": "The photo shows the headquarters of Oracle, which is the subject of the news story."
         },
         "inline_image_mismatches": []
       },
@@ -35,16 +35,16 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The diaspora angle is well-integrated and explained, connecting the film's themes of uprooting and belonging to the NRI experience."
+          "quality": 9,
+          "note": "The article effectively integrates the Indian diaspora angle, detailing impacts on Indian operations, offer letter rescissions in India, and the precarious situation for H-1B visa holders in the US."
         },
         "factual_flags": [
-          "The headline states '2026's Most Beautiful Sleeper Hit' but the article body refers to the film's release and current box office performance as if it's happening now, implying it's 2024. This is an internal contradiction regarding the year."
+          "The article states 'fiscal year ending May 2026' and 'over 40,480 tech jobs cut across more than 70 companies in 2026 alone'. Given the current year is 2024, these dates seem to be future-dated or typos. This needs correction to reflect past or current fiscal years/data."
         ],
         "duplicate_embeds": [],
         "suggestions": [
-          "Correct the year in the headline to match the implied current year of the article (2024) or clarify the future projection.",
-          "Consider adding a specific social media embed (e.g., an Instagram reel or tweet about the film's music or audience reaction) to enhance the 'word-of-mouth' section."
+          "Correct the future-dated fiscal year and layoff statistics to reflect accurate past or current data.",
+          "Consider adding a quote from an affected H-1B worker or an immigration expert to further humanize the 'H-1B Paradox' section."
         ],
         "verdict": "flag"
       },
@@ -56,18 +56,27 @@
       "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "953f98ae-5c29-4d0c-8215-dcf1c87036c0",
-      "headline": "Ranveer Singh Has \u20b91,800 Crore, a Lawsuit, and a Zombie Apocalypse \u2014 All at the Same Time",
-      "slug": "ranveer-singh-dhurandhar-2-100-days-1800-crore-don-3-fwice-pralay-zombie-thriller-where-to-watch-diaspora-nri-20260626",
+      "id": "cd4c6f8e-79f5-47e7-8212-4c494babe13a",
+      "headline": "The Self-Petition Escape Hatch Is Closing. NIW Approvals Just Hit Their Lowest Rate on Record",
+      "slug": "niw-eb1a-approval-rate-record-low-indian-tech-self-petition-20260627",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "3c7b41bb-3d91-43af-b42a-55e7956fd9f4",
+            "headline": "The Numbers Are In. Legal Immigration Just Had Its Worst Yea"
+          },
+          {
+            "article_id": "75dec796-365f-4a9f-afc4-aa7eee5d8e89",
+            "headline": "Indians Built Escape Routes Around the Green-Card Backlog. T"
+          }
+        ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Ranveer Singh in traditional attire",
-          "reason": "The photo clearly shows Ranveer Singh, who is the main subject of the headline."
+          "what_photo_shows": "A USCIS Application Support Center building entrance",
+          "reason": "The photo depicts a USCIS Application Support Center, which is directly relevant to immigration and green card applications discussed in the story."
         },
         "inline_image_mismatches": []
       },
@@ -75,153 +84,23 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
+          "score": 8,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article explicitly mentions the diaspora's contribution to box office success and provides a call to action for NRIs to watch the film on JioHotstar."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a quote from an industry analyst or film critic regarding Ranveer Singh's career trajectory amidst these events to add another layer of perspective.",
-          "If possible, include a small sidebar or link to previous coverage of the 'Don 3' controversy for readers who might be unfamiliar with the background."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "a084138e-6a82-4695-b3f3-1104a46f4ff0",
-      "headline": "An Indian-Origin Engineer Built Anthropic's Self-Improving AI. Now His Startup Is Worth $1 Billion.",
-      "slug": "mirendil-harsh-mehta-ai-startup-billion-anthropic-nvidia-20260627",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Scientists collaborating in a modern laboratory with computers and research equipment",
-          "reason": "The photo depicts scientists in a lab with computers, which is a generic but on-topic image for a story about an engineer building AI and a startup focused on accelerating research."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image shows a person working on a laptop, which is generic for a technology article. While not mismatched, it doesn't specifically evoke AI or a startup, but rather general office work."
-        },
-        "diaspora_angle": {
-          "present": true,
           "quality": 9,
-          "note": "The article explicitly highlights the 'Indian thread' and connects Harsh Mehta's trajectory to other prominent Indian-origin figures in Silicon Valley AI, making it highly relevant and naturally integrated for NRI readers."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a quote from Harsh Mehta himself, if available, to give a more direct voice to the Indian-origin founder.",
-          "Explore if there's any specific cultural or educational background from Mehta's Indian origin that might have influenced his path, if relevant and verifiable."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "26c660d7-f0bb-4c18-8aa7-230e74e5c50c",
-      "headline": "Anthropic and AWS Just Launched an AI Accelerator in Bengaluru. The Bet Is That India Builds, Not Just Codes.",
-      "slug": "anthropic-aws-agentic-ai-accelerator-bengaluru-india-startups-20260627",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Developers working on computers in a modern tech office",
-          "reason": "The photo depicts developers in a tech office, which is a generic but on-topic image for a story about an AI accelerator and tech startups."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image shows a generic tech/office setting. While not mismatched, it doesn't specifically evoke AI or Bengaluru. A more specific image related to AI development or the accelerator launch would be better."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article directly addresses NRIs and their perspective on India's evolving role in AI, making the diaspora angle very strong and natural."
+          "note": "Directly addresses implications for Indian applicants and the common profile among them."
         },
         "factual_flags": [
-          "OpenAI's formal registration in India in 2025: This date seems to be in the future, which is unusual for a 'formal registration'. It might be a typo and should be 2023 or 2024, or it refers to a future planned registration. This needs clarification.",
-          "India's deeptech funding hit $1.23 billion in the first half of 2026: Similar to the OpenAI date, '2026' is in the future. This is likely a typo and should be 2023 or 2024."
+          "USCIS adjudication data through Q4 of fiscal year 2025 - FY2025 is in the future, current fiscal year is 2024. This is a significant factual error."
         ],
         "duplicate_embeds": [],
         "suggestions": [
-          "Verify and correct the years mentioned for OpenAI's registration and India's deeptech funding to ensure factual accuracy.",
-          "Consider adding a quote from an NRI or a diaspora professional to further strengthen the 'diaspora calculus' section and provide a direct voice."
+          "Correct the fiscal year reference (FY2025) to reflect current or past data.",
+          "Expand on the 'What This Means for Indian Applicants' section with more actionable advice or detailed implications."
         ],
         "verdict": "flag"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "adaf6aec-fab6-45e1-9a6d-0fc1a2249026",
-      "headline": "The AI Trade Just Had Its Worst Week in Months. For Indian Tech Workers, the Pain Is Personal.",
-      "slug": "ai-trade-worst-week-nasdaq-mag-seven-indian-tech-workers-20260627",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Stock market trading screen with financial data",
-          "reason": "The photo of a stock market screen directly relates to the story about stock market losses and shrinking pay packets."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article explicitly connects the tech market downturn to Indian tech workers in the US and NRI investors, detailing the personal financial impact and visa implications."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a quote from an affected Indian tech worker or an expert on NRI finances to personalize the 'diaspora angle' further.",
-          "Ensure the image used is more directly representative of 'AI trade' or 'tech workers' rather than a generic office setting, if possible."
-        ],
-        "verdict": "pass"
       },
       "actions_taken": [
         "promoted to published"
