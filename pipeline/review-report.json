@@ -1,19 +1,19 @@
 {
-  "timestamp": "2026-06-27T00:16:12.313527+00:00",
+  "timestamp": "2026-06-27T00:45:50.504622+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 5,
+    "pass": 3,
+    "flag": 4,
     "fail": 0,
     "error": 0
   },
-  "revisions": 2,
+  "revisions": 0,
   "unpublished": 0,
   "articles": [
     {
-      "id": "53d0d1df-3d03-4d21-85bf-e61d2359359d",
-      "headline": "Your Green Card Won't Protect You at the Border. Lawyers Say Think Twice Before Flying to India",
-      "slug": "green-card-holders-travel-risk-supreme-court-india-reentry-cbp-20260627",
+      "id": "afad5402-abd3-4740-87d1-f83c4738dbc7",
+      "headline": "Washington Just Fined an Indian Immigration Lawyer $255,000 for Filing Cookie-Cutter Asylum Claims. That's Only Half the Story.",
+      "slug": "dhs-fines-indian-attorney-doddamani-asylum-fraud-patel-staged-robbery-u-visa-crackdown-20260626",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,147 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A U.S. Customs and Border Protection officer inspecting an airplane.",
-          "reason": "The photo shows a Customs and Border Protection officer at an airport, which is directly relevant to a story about border protection and international travel."
+          "what_photo_shows": "The John Joseph Moakley United States Courthouse in Boston.",
+          "reason": "The photo shows the courthouse where one of the story's cases was heard, making it directly relevant to the subject matter."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 8,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article directly addresses issues involving Indian nationals and an Indian-American lawyer, making it highly relevant to the NRI diaspora."
+        },
+        "factual_flags": [
+          "Mitul Patel pleaded guilty on June 24 to conspiracy to commit visa fraud. He was one of 11 Indian nationals charged in March 2026. This date (March 2026) is in the future and likely a typo.",
+          "Rambhai Patel earned approximately $850,000 from the operation, all of which he was ordered to forfeit after his conviction in 2025. This date (2025) is in the future and likely a typo."
+        ],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Correct the future dates (March 2026 and 2025) in the 'Staged Robberies' section to reflect past events.",
+          "Consider adding a concluding paragraph that summarizes the implications for Indian immigrants or offers a forward-looking statement on how these cases might impact future immigration policies or perceptions within the diaspora."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "53a54c16-1207-497d-8b0d-9816330399e8",
+      "headline": "Amazon Just Raised Its India Bet to $48 Billion. Most of the New Money Is Going to AI.",
+      "slug": "amazon-48-billion-india-investment-jassy-modi-ai-data-centres-aws-mumbai-hyderabad-20260626",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "53cccca2-93e0-4a43-b1c0-21f0554a9c3e",
+            "headline": "Amazon Just Promised India Another $13 Billion. The Real Sto"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "A headshot of Amazon CEO Andy Jassy.",
+          "reason": "The photo clearly shows Andy Jassy, who is named in the headline and caption as the subject of the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The diaspora angle is explicitly addressed and well-integrated, connecting investment to job creation, tech careers for NRIs, and H-1B visas."
+        },
+        "factual_flags": [
+          "The article states 'The $48 billion figure is cumulative, covering 2026 to 2030. It follows an initial $15 billion commitment made in 2023 and a $35 billion pledge last December.' This adds up to $50 billion, not $48 billion. This needs clarification or correction."
+        ],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Clarify the discrepancy in the cumulative investment figures ($48 billion vs. $15B + $35B = $50B).",
+          "Consider adding a quote from an NRI tech professional or an expert on the impact of these investments on the diaspora for added depth."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "65eea654-66d9-4af9-8fe8-b46dbff63a8d",
+      "headline": "Doubles, Bunny Chow, and Idli Shrimp: Dr\u0101vida Maps the Diaspora's Forgotten Food Routes",
+      "slug": "doubles-bunny-chow-idli-shrimp-dravida-maps-diasporas-forgotten-food-routes",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "A masala dosa with chutney and sambar",
+          "reason": "The photo shows Indian food, which is the subject of the story about Indian diaspora food routes."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image is a Masala Dosa, which is a South Indian dish. While the restaurant is named Dr\u0101vida (South India) and features some South Indian influences, the article's core focus is on diaspora dishes like Doubles and Bunny Chow, which are not represented by the image. It's not entirely mismatched, but could be more representative of the article's unique angle."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 10,
+          "note": "The entire article is built around the concept of Indian diaspora food routes and the evolution of cuisine in different diaspora communities. It's central to the piece."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a sentence or two about the visual aesthetic of the dishes mentioned (Doubles, Bunny Chow) to help readers unfamiliar with them visualize the food.",
+          "Perhaps include a quote from a diner or food critic about their experience at Dr\u0101vida to add another layer of perspective."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "d7ec00a3-8620-40df-8d53-cdc1ee3a57ab",
+      "headline": "Grandma's Haldi, America's 'Herb of the Year': Turmeric's Golden Coronation",
+      "slug": "grandmas-haldi-americas-herb-of-the-year-turmerics-golden-coronation",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Turmeric powder spelling out 'TURMERIC' and in a heart-shaped bowl.",
+          "reason": "The photo directly depicts turmeric, which is the central subject of the headline and subheadline."
         },
         "inline_image_mismatches": []
       },
@@ -36,15 +175,60 @@
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "Strong and natural connection to Indian diaspora, specifically green card holders traveling to India."
+          "note": "The diaspora angle is strong and woven throughout the article, particularly in the introduction and conclusion, making it highly relevant for NRI readers."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Add a concluding sentence or two to the 'What Lawyers Recommend' section to fully close the article.",
-          "Consider adding a link to a reputable immigration law resource or a 'find a lawyer' tool, if appropriate for the platform."
+          "Consider adding a small section or a call-out box about specific Indian regions known for turmeric cultivation or unique traditional uses.",
+          "Perhaps include a quote from an NRI chef or food entrepreneur on how they've seen turmeric's perception change in the West."
         ],
         "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "bb6840d4-1308-4282-9cde-8dcb676224d7",
+      "headline": "From Michelin Stars to Street Rolls: Indian Restaurants Claim New American Ground",
+      "slug": "from-michelin-stars-to-street-rolls-indian-restaurants-claim-new-american-ground",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "An array of Indian dishes including dosa, curry, and chutney.",
+          "reason": "The photo clearly depicts Indian cuisine, which is the central topic of the headline and subheadline."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article explicitly connects the restaurant expansion to the NRI experience, especially in 'second-tier cities and college towns'."
+        },
+        "factual_flags": [
+          "NADU's Chicago debut in 2025 is a future date, but the article states it 'earned a Michelin Bib Gourmand and a James Beard Award semifinalist nod... within months of its Chicago debut in 2025'. This implies it has already happened, which is a contradiction."
+        ],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Clarify the timeline for NADU's Chicago debut and awards to avoid chronological confusion.",
+          "Consider adding a quote from an NRI customer in a 'second-tier city' to further personalize the diaspora angle."
+        ],
+        "verdict": "flag"
       },
       "actions_taken": [
         "promoted to published"
@@ -66,7 +250,13 @@
             "headline": "Indians Built Escape Routes Around the Green-Card Backlog. T"
           }
         ],
-        "broken_embeds": [],
+        "broken_embeds": [
+          {
+            "url": "https://x.com/USCIS/status/1798345678901234567",
+            "problem": "broken",
+            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
+          }
+        ],
         "vision_image_match": {
           "verdict": "MATCH",
           "what_photo_shows": "A USCIS Application Support Center building exterior.",
@@ -75,51 +265,6 @@
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 6,
-        "embed_issues": [],
-        "image_match": {
-          "score": 8,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article explicitly connects the immigration data to Indian nationals and NRIs, detailing the specific impact on them."
-        },
-        "factual_flags": [
-          "The article states 'USCIS approved 8.3 million immigration applications in 2025' and then later refers to 'the same window in 2024' and 'January 2024 to February 2026' for studies. This suggests the article is set in 2025/2026, but the headline says 'Legal Immigration Just Had Its Worst Year in a Decade', implying a past event. This creates a temporal inconsistency. If the data is from 2025, it's future-dated relative to current publication, which is a significant factual issue for a news article."
-        ],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Clarify and correct the timeline of the data presented. If the article is meant to be published now, the 2025/2026 dates for approvals and studies are problematic and need to be updated to reflect actual past data.",
-          "Expand on the 'What This Means for the Diaspora' section with more concrete examples or quotes from affected individuals or community leaders to further personalize the impact."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Revised by gemini-2.5-flash (670\u2192885 words)"
-      ],
-      "revised": true,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "65d48c24-2461-4e11-b84e-df461950b97e",
-      "headline": "The Diaspora Built an American Dream. It Forgot to Plan for Getting Old in It.",
-      "slug": "indian-diaspora-aging-seniors-india-home-gopio-elder-care-20260627",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "An elderly woman participating in a community yoga session",
-          "reason": "The photo shows an elderly woman doing yoga, which aligns with the story's theme of aging with dignity and community support for seniors."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
@@ -128,110 +273,19 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 10,
-          "note": "The entire article is centered on the NRI/diaspora experience of aging in America, making it highly relevant and naturally integrated."
-        },
-        "factual_flags": [
-          "The article mentions a '2026 study published in Health Affairs'. This is a future date, implying a typo. It should likely be 2016 or 2022/2023 if it's a recent study."
-        ],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Correct the publication year for the 'Health Affairs' study to reflect an actual past or present publication date.",
-          "Consider adding a concluding paragraph that summarizes the key takeaway or offers a forward-looking statement on the future of elder care in the diaspora."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "9ce20bf2-ab7b-4c07-b086-c14ab04ee97c",
-      "headline": "Paris Is About to Get Europe's First Traditional Hindu Temple. Thousands of Diaspora Devotees Are Already Packing.",
-      "slug": "baps-paris-mandir-hindu-temple-europe-festival-culture-diaspora-20260627",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Swaminarayan Akshardham temple in Delhi with street scene",
-          "reason": "The photo shows a temple built in the same tradition as the one mentioned in the headline, making it relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image is of Akshardham Temple in Delhi, not the new temple in Paris. While it's a BAPS temple and relevant to the organization, it's not the specific subject of the article. A placeholder or conceptual image would be better if the actual temple isn't available."
-        },
-        "diaspora_angle": {
-          "present": true,
           "quality": 9,
-          "note": "The article strongly connects to the NRI/diaspora experience, highlighting their funding, mobilization for the opening, and the significance of the temple's recognition in a secular European city. The mention of travel packages for NRIs is a particularly strong angle."
+          "note": "The article effectively integrates the impact on Indian nationals and NRIs throughout, making it highly relevant for the Videshi audience."
         },
-        "factual_flags": [
-          "Construction finally broke ground in June 2024 - this seems contradictory with the temple 'nearing completion' and opening in September. If groundbreaking was June 2024, it's impossible for it to be nearing completion for a September opening. This needs clarification."
-        ],
+        "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Clarify the timeline discrepancy regarding the construction groundbreaking date. If it broke ground in June 2024, it cannot be nearing completion for a September opening. This is a significant factual error.",
-          "Consider adding a quote from a diaspora member expressing their feelings about the temple's opening and its significance for their community in Europe."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "ff7e34ff-da42-4ee9-960e-f5bb6f21a378",
-      "headline": "India's $315 Billion IT Industry Built Its Empire on Labour. AI Is Dissolving the Foundation.",
-      "slug": "india-it-services-ai-crisis-tcs-layoffs-entry-level-hiring-20260627",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Wipro campus in Bengaluru, an Indian IT company",
-          "reason": "The photo shows an Indian IT campus, which is directly relevant to a story about the Indian IT industry."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The 'NRI Dilemma' section effectively connects the industry trend to diaspora readers, covering employment, investment, and return-to-India considerations."
-        },
-        "factual_flags": [
-          "The article mentions 'fiscal year 2026, which closed in March' and then later 'fiscal 2027'. This implies the current year is 2026 or 2027. However, it also mentions 'June 2026' and 'worst-performing sectoral index of 2026'. This suggests the article is set in the future (2026/2027) relative to the current year (2024). This needs to be clarified or adjusted to reflect current events if it's meant to be a contemporary news piece."
-        ],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Clarify the timeline of the article (e.g., if it's a forward-looking analysis or a report on past events) to avoid confusion with fiscal years and current dates.",
-          "Consider adding a quote from an NRI professional or investor to further personalize the 'NRI Dilemma' section."
+          "Consider adding a specific quote from an NRI or an immigration lawyer specializing in Indian cases to personalize the impact of these statistics.",
+          "If possible, include a small section on potential policy changes or advocacy efforts that could address these declines, offering a forward-looking perspective."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
+        "Removed 1 broken/hallucinated embed(s)",
         "promoted to published"
       ],
       "revised": false,
@@ -251,7 +305,13 @@
             "headline": "Sundar Pichai's Gemini Can Now Run Your Browser, Phone, and "
           }
         ],
-        "broken_embeds": [],
+        "broken_embeds": [
+          {
+            "url": "https://x.com/SPDJIndices/status/1804868962649069637",
+            "problem": "broken",
+            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
+          }
+        ],
         "vision_image_match": {
           "verdict": "MATCH",
           "what_photo_shows": "A headshot of Sundar Pichai, CEO of Alphabet.",
@@ -260,7 +320,7 @@
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 6,
+        "overall_score": 7,
         "embed_issues": [],
         "image_match": {
           "score": 9,
@@ -269,67 +329,23 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The diaspora angle is well-integrated, focusing on Pichai's background, Indian-origin executives, and the impact on NRI investors and engineers."
+          "note": "The article effectively integrates the diaspora angle, highlighting Sundar Pichai's background, other Indian-origin leaders, and the impact on NRI investors and engineers. It feels natural and relevant."
         },
         "factual_flags": [
-          "Google Cloud revenue surpassing $20 billion in Q1 2026 is a future date, implying a projection rather than a past fact. The article states 'for the first time in Q1 2026', which is inconsistent with a current news report.",
-          "Alphabet's AI backlog nearly doubling to over $460 billion is a very large number and should be verified for accuracy and source.",
-          "The article states Alphabet's capital expenditure plan for 2026 is $180 billion to $190 billion, 'more than double the $91 billion it spent last year'. This implies 'last year' was 2025, which is also a future date. This needs clarification.",
-          "The article mentions John Jumper winning a 2024 Nobel Prize. Nobel Prizes are typically announced in October of the award year. If the article is published in June, this would be a future event or a projection, not a past fact."
+          "Google Cloud revenue projection for Q1 2026 surpassing $20 billion, growing 63% YoY. This seems like a very high growth rate for a single quarter and might be a typo for a full year or a different metric. Needs verification.",
+          "Alphabet's AI backlog estimated to nearly double to over $460 billion. This figure seems exceptionally high and should be cross-referenced with official company reports or reputable financial analysts.",
+          "Alphabet shares fell 5% on June 22, their steepest single-day decline since May 2025. This implies a future date (May 2025) which is incorrect given the article's context of June 2024 events. Likely a typo for May 2024 or an earlier year.",
+          "John Jumper, a projected 2024 Nobel Prize winner in Chemistry. While his work is significant, 'projected' Nobel winner is a strong claim and should be attributed to a specific source or rephrased to avoid presenting it as a certainty."
         ],
         "duplicate_embeds": [],
         "suggestions": [
-          "Clarify all future-dated financial figures (Q1 2026, 2026 capex, 2024 Nobel Prize) to ensure they are presented as projections or estimates, not as past or current facts. Provide sources for these projections.",
-          "Add at least one relevant social media embed (e.g., a tweet from S&P Dow Jones Indices about the inclusion, or a relevant post from Sundar Pichai) to enhance engagement."
+          "Verify and correct the factual discrepancies regarding financial projections (Google Cloud revenue, AI backlog, stock decline date) and the Nobel Prize projection for John Jumper.",
+          "Consider adding a quote from an NRI investor or tech professional to further personalize the diaspora angle and provide a direct perspective on the 'prestige vs. stability' dilemma."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
-        "Revised by gemini-2.5-flash (621\u2192731 words)"
-      ],
-      "revised": true,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "46ac3321-e661-4b5e-a03e-728f761c4110",
-      "headline": "Oracle Posted Record Profits and Then Fired 21,000 People. It Blamed AI.",
-      "slug": "oracle-21000-layoffs-ai-record-revenue-indian-engineers-h1b-20260627",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Larry Ellison speaking at a podium",
-          "reason": "The photo shows Larry Ellison, co-founder of Oracle, which is the subject of the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article explicitly connects Oracle's layoffs to Indian tech workers, H-1B visa holders, and operations in India, making the diaspora angle very strong and relevant."
-        },
-        "factual_flags": [
-          "The article states 'Oracle's headcount fell from 162,000 to 141,000 as of May 31, 2026.' and 'With 119,800 tech workers laid off globally so far in 2026'. The year '2026' seems to be a typo, as current events would refer to 2024 or 2023. This needs correction."
-        ],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Correct the year '2026' to the appropriate current or past year (likely 2024 or 2023) throughout the article for factual accuracy.",
-          "Consider adding a quote from an affected Indian tech worker or an expert on H-1B visas to further humanize the impact of the layoffs."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
+        "Removed 1 broken/hallucinated embed(s)",
         "promoted to published"
       ],
       "revised": false,
