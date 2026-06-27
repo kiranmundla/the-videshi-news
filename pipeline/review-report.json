@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-27T19:45:10.803029+00:00",
+  "timestamp": "2026-06-27T20:15:19.167679+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
+    "pass": 2,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,65 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "8a2ee039-ee30-4ea0-b8ad-ddf5ca30102f",
-      "headline": "Three Indians Storm US Open Badminton Semifinals as Srikanth, Teen Prodigy Rounak, and Devika Sihag Shine in California",
-      "slug": "india-us-open-badminton-semifinals-srikanth-rounak-devika-20260627",
+      "id": "6be85e6d-fc39-4011-ba26-54b94583d20f",
+      "headline": "DHS Says It Will Process Your Visa With AI in 30 Days. Immigration Lawyers Have Questions",
+      "slug": "dhs-ai-visa-processing-overhaul-mobile-app-uscis-backlog-20260627",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "3bfccf08-94f2-4e2f-bf43-2cfdc4773f28",
+            "headline": "The Green Card You Could Get Without Leaving America? USCIS "
+          },
+          {
+            "article_id": "cd4c6f8e-79f5-47e7-8212-4c494babe13a",
+            "headline": "The Self-Petition Escape Hatch Is Closing. NIW Approvals Jus"
+          },
+          {
+            "article_id": "75dec796-365f-4a9f-afc4-aa7eee5d8e89",
+            "headline": "Indians Built Escape Routes Around the Green-Card Backlog. T"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "USCIS Application Support Center",
+          "reason": "The photo shows a USCIS center, relevant to immigration processing."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image is relevant to immigration but does not directly depict AI or the specific context of the article."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses visa processing delays that particularly affect Indian nationals, making it relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more direct quotes from immigration lawyers to enhance the perspective on the implications of AI in immigration processing.",
+          "Add a section discussing potential impacts on the Indian diaspora specifically, such as personal stories or statistics."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "278f9a29-d7f4-42bf-92b2-d725d661f108",
+      "headline": "Australia Became the Surprise Winner of America's H-1B Crackdown",
+      "slug": "australia-724-percent-indian-tech-talent-surge-h1b-spillover-20260627",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +77,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Badminton player in action",
-          "reason": "The photo shows a badminton player, matching the story's topic."
+          "what_photo_shows": "Sydney CBD skyline and Harbour Bridge",
+          "reason": "The photo shows a relevant city skyline for the story about Australia."
         },
         "inline_image_mismatches": []
       },
@@ -36,13 +92,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the achievements of Indian players to the Indian-American community, highlighting cultural ties and community engagement."
+          "note": "The article discusses the implications of Australia's immigration policies on Indian professionals, making it relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from the players or coaches to enhance the narrative.",
-          "Include more context about the significance of the US Open for Indian badminton."
+          "Include quotes or testimonials from Indian professionals who have made the move to Australia to add a personal touch.",
+          "Provide a comparison of the immigration processes between Australia and the US to enhance clarity."
         ],
         "verdict": "pass"
       },
