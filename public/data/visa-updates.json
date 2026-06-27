@@ -18,6 +18,15 @@
     "source": "US State Department (Julie Stufft) / The Indian Eye / EY"
   },
   {
+    "id": "july-2026-visa-bulletin-india",
+    "date": "2026-06-18",
+    "label": "Jun 18, 2026",
+    "headline": "July 2026 Visa Bulletin: EB-2 India now fully unavailable, EB-1 retrogresses further \u2014 green card squeeze deepens",
+    "summary": "The State Department\u2019s July 2026 Visa Bulletin delivers another blow to Indian employment-based green card applicants. EB-2 India is now marked \u201cUnavailable\u201d \u2014 no visas will be issued in this category for the rest of FY2026 (the quota was exhausted in May). EB-1 India retrogressed two more months to October 15, 2022, from December 15, 2022 in June. EB-5 unreserved India is also \u201cUnavailable\u201d after the cap was reached June 5. The only bright spot: EB-3 India inched forward half a month to January 1, 2014. USCIS confirmed that employment-based applicants must use Final Action Dates (not Dates for Filing) to determine I-485 eligibility, further limiting who can file. The State Department warned that additional retrogressions \u2014 or more categories going \u201cUnavailable\u201d \u2014 are possible before the fiscal year ends September 30. Visa numbers reset October 1 with FY2027.",
+    "severity": "high",
+    "source": "US State Department / July 2026 Visa Bulletin"
+  },
+  {
     "id": "student-visa-slots-jul-aug-2026",
     "date": "2026-06-15",
     "label": "Jun 15, 2026",
@@ -34,6 +43,15 @@
     "summary": "The US State Department confirmed that all EB-5 unreserved immigrant visas for Indian nationals have been fully allocated for FY2026 as of June 5. US embassies and consulates will not issue any more EB-5 unreserved visas to Indians until the new fiscal year begins October 1, 2026. The EB-5 program lets foreign investors apply for permanent residency by investing in US businesses that create 10+ jobs. Set-aside categories (Rural, High Unemployment Area, Infrastructure) remain current for Indian applicants. This comes weeks after the EB-2 professional category also hit its India cap in May.",
     "severity": "high",
     "source": "US State Department / June 2026 Visa Bulletin"
+  },
+  {
+    "id": "h1b-100k-fee-stayed-pending-appeal",
+    "date": "2026-06-12",
+    "label": "Jun 12, 2026",
+    "headline": "Court stays $100K H-1B fee ruling \u2014 fee remains in effect while First Circuit reviews appeal",
+    "summary": "Four days after striking down the $100,000 H-1B fee as an unlawful tax, Judge Sorokin granted the government\u2019s request to stay his own order while the Trump administration appeals to the First Circuit Court of Appeals. The stay means USCIS can continue collecting the fee on all new H-1B petitions requiring consular processing. Employers must plan as if the fee is fully enforceable. The DOJ argued that every day without the fee, more workers would \u201crush to seek H-1B classification,\u201d undermining the policy\u2019s purpose. Parallel challenges to the fee are pending in California and D.C. federal courts; legal experts expect the Supreme Court will ultimately weigh in. The fee\u2019s fate remains deeply uncertain, but for now, it\u2019s back in force.",
+    "severity": "high",
+    "source": "US District Court (D. Mass.) / Bloomberg Law / WR Immigration"
   },
   {
     "id": "modi-trump-g7-h1b-talks",
@@ -154,26 +172,6 @@
     "severity": "high",
     "source": "US State Department",
     "url": "/articles/rubio-freezes-student-visa-appointments-india-fall-enrollment-20260526"
-  },
-  {
-    "id": "appus-launch",
-    "date": "2026-05-24",
-    "label": "May 24, 2026",
-    "headline": "Rubio launches \"AppUS\" \u2014 new America First visa scheduling tool",
-    "summary": "Prioritises business professionals who strengthen US-India commercial ties. Announced during Rubio's first India visit as Secretary of State.",
-    "severity": "high",
-    "source": "US State Department",
-    "url": "/articles/rubio-america-first-visa-scheduling-india-business-travel-20260525"
-  },
-  {
-    "id": "gc-return-home",
-    "date": "2026-05-23",
-    "label": "May 23, 2026",
-    "headline": "Green Card applicants must return to home country to apply",
-    "summary": "US government announces that those seeking a Green Card must now return to their home countries to file \u2014 a major shift affecting thousands of Indian applicants. (Update: DHS partially walked this back on May 30.)",
-    "severity": "high",
-    "source": "US State Department",
-    "url": "/immigration"
   },
   {
     "id": "interview-waiver-eliminated",
