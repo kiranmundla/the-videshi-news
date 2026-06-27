@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-27T22:45:34.234272+00:00",
+  "timestamp": "2026-06-27T23:16:04.017687+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
-    "flag": 0,
+    "pass": 0,
+    "flag": 2,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "435342ac-d969-4003-9408-c6ec0cd2e754",
-      "headline": "She Cleared 4.25 Metres and Broke a Record That Was Only Days Old. Indian Women's Pole Vault Has Arrived.",
-      "slug": "sindhushree-g-pole-vault-national-record-4-25m-inter-state-athletics-bhubaneswar-asian-games-2026-diaspora-nri",
+      "id": "598e4384-983c-45d0-86c0-d5fc0b5bfe1b",
+      "headline": "One Lakh Tickets Sold, One Month to Go: India Is Already Losing Its Mind Over Spider-Man",
+      "slug": "spider-man-brand-new-day-india-advance-booking-1-lakh-tickets-tom-holland-zendaya-july-2026",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,32 +21,46 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Kalinga Stadium in Bhubaneswar",
-          "reason": "The stadium is the venue for the athletics event in the story."
+          "what_photo_shows": "Tom Holland, the actor, looking at the camera",
+          "reason": "The photo clearly shows Tom Holland, who is the subject of the headline about Spider-Man."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://youtube.com/watch?v=62bIsvRcPv0",
+            "problem": "duplicate",
+            "explanation": "The YouTube link is relevant but appears to be a duplicate of the content already discussed in the article."
+          },
+          {
+            "url": "https://www.instagram.com/p/DZ9v6muEby7/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not seem to directly relate to the article's focus on ticket sales and audience anticipation for the film."
+          }
+        ],
         "image_match": {
-          "score": 7,
-          "issue": "The image of Kalinga Stadium is relevant as it is the venue for the championships, but it does not directly depict the pole vault event or the athletes mentioned."
+          "score": 6,
+          "issue": "The image of Tom Holland is relevant to the article, but it does not specifically represent the film 'Spider-Man: Brand New Day' as it is from a golf event."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the achievements of Indian athletes to the interests of the diaspora, particularly regarding upcoming international competitions."
+          "quality": 9,
+          "note": "The article effectively connects with NRI audiences by highlighting the early release in India and the implications for spoilers."
         },
         "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider including quotes or reactions from other athletes or coaches to provide a broader perspective on the event.",
-          "Add more context about the significance of the Asian Games for Indian athletics to enhance the diaspora connection."
+        "duplicate_embeds": [
+          "https://youtube.com/watch?v=62bIsvRcPv0"
         ],
-        "verdict": "pass"
+        "suggestions": [
+          "Replace the Instagram link with a more relevant embed that directly relates to the film or its marketing.",
+          "Consider using a more appropriate hero image that directly represents 'Spider-Man: Brand New Day' rather than a golf event."
+        ],
+        "verdict": "flag"
       },
       "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/DZ9v6muEby7/",
         "promoted to published"
       ],
       "revised": false,
@@ -54,85 +68,64 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "4ba20fe4-a628-4c54-b1ae-42b0256ece2b",
-      "headline": "Washington Is Quietly Closing Every Door That Indian Professionals Use to Stay in America",
-      "slug": "us-immigration-pathways-closing-h1b-fee-f1-duration-status-green-card-adjustment-indian-workers-20260627",
+      "id": "d097e345-7662-411f-a083-6378137071c4",
+      "headline": "\u20b936 Crore and Counting: 'Welcome To The Jungle' Is the Big, Loud, Glorious Stress-Buster Bollywood Needed",
+      "slug": "welcome-to-the-jungle-box-office-opening-weekend-akshay-kumar-36-crore-two-days-comedy-comeback-june-2026",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "742111a1-9d68-4c81-83fe-3638c9b1cbe0",
+            "headline": "Akshay Kumar Turns Villain, Saif Ali Khan Plays the Hero \u2014 a"
+          },
+          {
+            "article_id": "26cd4491-2073-48d3-b925-a3451fa8f27f",
+            "headline": "Akshay Kumar Walks Back Into the 'Welcome' Jungle Tonight \u2014 "
+          }
+        ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "H1-B Visa Labor Condition Applications chart",
-          "reason": "The chart is relevant to the topic of H-1B visa policies."
+          "what_photo_shows": "Akshay Kumar at a film event",
+          "reason": "The photo shows Akshay Kumar, relevant to the Bollywood film story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DZ_6FzYNoZ3/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel does not appear to be directly related to the article's subject matter about the film's box office performance and audience reception."
+          },
+          {
+            "url": "https://youtube.com/watch?v=R704yP3dlXw",
+            "problem": "irrelevant",
+            "explanation": "The YouTube link does not provide relevant content that enhances the article's discussion about the film's performance."
+          }
+        ],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 3,
+          "issue": "The image of Akshay Kumar does not match the article's focus on the film 'Welcome To The Jungle' specifically."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article discusses immigration policies that directly affect Indian professionals, making it highly relevant to the diaspora."
+          "quality": 9,
+          "note": "The article effectively connects the film's appeal to the diaspora, highlighting its status as a family-reunion staple."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes or perspectives from Indian professionals affected by these changes to enhance relatability.",
-          "Add a section on potential responses or actions that the Indian diaspora can take regarding these immigration changes."
+          "Replace the irrelevant Instagram and YouTube links with embeds that provide insights or reviews related to 'Welcome To The Jungle'.",
+          "Consider using an image that directly represents the film or its promotional material to better align with the article's content."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "6502e7cf-131b-42f9-8c3f-5fdd1005cbc2",
-      "headline": "India Won't Export Sugar for Years. El Ni\u00f1o, Ethanol and a Weak Monsoon Are All Squeezing at Once.",
-      "slug": "india-sugar-export-ban-el-nino-ethanol-cane-acreage-30-year-low-monsoon-20260627",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "sugarcane field in Maharashtra",
-          "reason": "The photo shows a sugarcane field, relevant to the sugar export story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the sugar export ban to the diaspora's cultural practices and economic implications."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more specific examples of how the diaspora is affected by rising sugar prices.",
-          "Add quotes or insights from diaspora community members to enhance relatability."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DZ_6FzYNoZ3/",
+        "Removed irrelevant embed: https://youtube.com/watch?v=R704yP3dlXw",
         "promoted to published"
       ],
       "revised": false,
