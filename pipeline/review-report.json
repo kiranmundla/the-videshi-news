@@ -1,19 +1,19 @@
 {
-  "timestamp": "2026-06-27T02:15:56.801431+00:00",
+  "timestamp": "2026-06-27T02:45:29.235096+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
-    "flag": 4,
+    "pass": 2,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
-  "revisions": 1,
+  "revisions": 0,
   "unpublished": 0,
   "articles": [
     {
-      "id": "063aff7b-d8c6-4c98-856d-9e7bb7b9d8a5",
-      "headline": "Oil Crashes to Pre-War Levels as Saudi Exports Resume \u2014 and India Gets a $40-a-Barrel Windfall",
-      "slug": "brent-crude-oil-crash-72-pre-war-hormuz-tankers-saudi-aramco-india-windfall-nri-investor-20260626",
+      "id": "3e756902-6a13-43f4-b437-e08704143156",
+      "headline": "He Left Hyderabad With $8. His Company Just Put $1 Billion Back Into India \u2014 and Wants to Buy a Whole Bank.",
+      "slug": "prem-watsa-fairfax-1-billion-india-bonds-idbi-bank-privatisation-hyderabad-iit-madras-diaspora-20260626",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "An oil tanker near the Gulf shipping lanes.",
-          "reason": "The photo shows an oil tanker in the Gulf shipping lanes, which is directly relevant to a story about oil exports and prices."
+          "what_photo_shows": "Prem Watsa speaking at a microphone",
+          "reason": "The photo shows the named person, Prem Watsa, who is the subject of the story."
         },
         "inline_image_mismatches": []
       },
@@ -35,59 +35,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The 'What NRIs Should Watch' section directly addresses diaspora investors, making a clear and relevant connection."
-        },
-        "factual_flags": [
-          "The article states 'Iran war began on February 28' and later 'Strait of Hormuz crisis began'. These seem to refer to the same event but are phrased differently, which could be confusing. Also, the 'Iran war' is not a widely recognized term for a conflict that started on Feb 28 and ended with a 60-day ceasefire with the US. This needs clarification or correction."
-        ],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Clarify the 'Iran war' reference and ensure consistent terminology for the geopolitical event described. Verify the exact nature and timeline of the conflict/crisis mentioned.",
-          "Expand on the 'oil stocks and refinery margins' caveat in the NRI section to provide more actionable insight for investors."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "5390f9d5-efa6-4578-85bb-c5c858c3896c",
-      "headline": "The Plastic in Your Blood: How Microplastics Are Emerging as a Threat to the Heart, Brain and Gut",
-      "slug": "microplastics-nanoplastics-multiorgan-health-threat-nejm-cardiovascular-blood-brain-barrier-gut-diaspora-20260626",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Plastic bottles floating in polluted water",
-          "reason": "The photo directly illustrates plastic pollution, which is the source of microplastics discussed in the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 8,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The 'Why NRIs Should Pay Attention' section directly addresses the diaspora, linking the issue to practices in India and common NRI habits. It feels natural and relevant."
+          "quality": 9,
+          "note": "The article effectively weaves Prem Watsa's personal journey as an NRI back into the narrative of his company's investment in India, making the diaspora angle natural and compelling."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a specific call to action or resource for NRIs, perhaps a link to an organization working on plastic reduction in India or a guide for safer practices when visiting.",
-          "The image entities are missing, which makes it harder to fully assess the image match. Ensure this is populated for future reviews."
+          "Consider adding a small infographic or chart to visualize the scale of the bond purchase compared to Fairfax India's previous holdings, as well as the proposed IDBI Bank acquisition value.",
+          "Briefly explain what 'reserve price' means in the context of government divestment for readers who may not be familiar with financial jargon."
         ],
         "verdict": "pass"
       },
@@ -99,9 +54,9 @@
       "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "4d6f7ec5-bfca-4526-9d19-c314acf11ec4",
-      "headline": "The Weight-Loss Drugs Millions Take May Be Quietly Dulling Their Sense of Smell and Taste",
-      "slug": "glp1-ozempic-mounjaro-smell-taste-disturbance-jama-study-900000-patients-south-asian-diabetes-diaspora-20260626",
+      "id": "87fb5bb9-6b43-46db-b3ff-f115aae1030c",
+      "headline": "Russia Now Supplies More Than Half of India's Oil. Washington Says the Waiver That Made It Possible Is Over.",
+      "slug": "russia-half-india-oil-imports-record-2-66-million-bpd-waiver-expired-rubio-iran-brics-20260626",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -109,30 +64,30 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "An Ozempic injection pen",
-          "reason": "The photo shows an Ozempic pen, which is directly relevant to the story about weight-loss drugs and GLP-1 users."
+          "what_photo_shows": "An oil refinery with smoke stacks and mountains in background",
+          "reason": "The photo shows an oil refinery, which is directly relevant to a story about oil supply and imports."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 8,
+        "overall_score": 7,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 6,
+          "issue": "The image shows an oil refinery in Anacortes, Washington, which is not directly relevant to India's oil imports from Russia or the geopolitical context. While it's an oil refinery, it doesn't specifically represent the Indian context or the source of the oil."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The 'What This Means for Indian-Origin Populations' section directly addresses NRIs and the cultural significance of food, making a strong and natural connection."
+          "quality": 7,
+          "note": "The article directly impacts India's energy security and economic stability, which is of significant interest to NRIs concerned about their home country's well-being and geopolitical standing."
         },
         "factual_flags": [
-          "The study's collection period '2017-2026' includes future dates, which is suspicious. This needs to be verified or corrected."
+          "The article states 'Before the US-Iran war erupted in late February, Russia accounted for about 23 per cent of India's crude purchases.' This implies a US-Iran war, which is not a widely recognized event in late February. It might be a typo for the Russia-Ukraine war or a different geopolitical event that impacted oil markets."
         ],
         "duplicate_embeds": [],
         "suggestions": [
-          "Verify and correct the study's data collection end date (2026 seems incorrect for a study published this week).",
-          "Consider adding a quote from an Indian-origin medical professional or patient to further strengthen the diaspora angle, if possible."
+          "Clarify or correct the reference to the 'US-Iran war erupted in late February' as it seems factually incorrect or misleading.",
+          "Consider finding a more relevant hero image that depicts Indian oil infrastructure, a map of oil routes, or a visual that better represents the India-Russia oil trade."
         ],
         "verdict": "flag"
       },
@@ -160,76 +115,24 @@
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 6,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article explicitly connects the visa thaw to Bengali diaspora families in the US, explaining how it impacts their ability to visit relatives in both Kolkata and Dhaka."
-        },
-        "factual_flags": [
-          "The article states Sheikh Hasina's government fell in August 2024, but then mentions Tarique Rahman's government was inaugurated in February (implying 2025 if Hasina fell in 2024). This creates a timeline inconsistency. Also, Sheikh Hasina is still the Prime Minister of Bangladesh as of late 2023/early 2024, and Tarique Rahman is a leader of an opposition party, not a current Prime Minister. This suggests the entire premise of the article regarding a change in government and new PM is fictional or based on a future hypothetical scenario presented as fact."
-        ],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Verify all dates and political figures mentioned, as the current factual basis appears to be incorrect regarding Bangladesh's political leadership and timeline.",
-          "Ensure the article clearly distinguishes between established facts and potential future scenarios or hypotheticals, especially concerning government changes."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Revised by gemini-2.5-flash (667\u2192687 words)"
-      ],
-      "revised": true,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "fed592db-ffca-4723-8459-4d6505490066",
-      "headline": "Mumbai's Second Airport Is About to Go International \u2014 and the Gulf Routes Land First",
-      "slug": "navi-mumbai-airport-international-flights-july-gulf-nri-20260627",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "92274a41-22c1-4703-b470-b1b57c4137d1",
-            "headline": "Navi Mumbai's First International Flight Is a Gulf Run \u2014 and"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "The interior of Navi Mumbai International Airport with a 'Welcome' sign.",
-          "reason": "The photo clearly shows the interior of Navi Mumbai International Airport, which is the subject of the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image is of Howrah Bridge, which is in Kolkata. While Kolkata is a key city in the article, the image doesn't explicitly represent the 'Kolkata\u2013Dhaka Corridor' or the visa reopening itself. It's relevant but not perfectly specific to the core news."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The 'Why This Matters for the Diaspora' section directly addresses NRI readers and explains the impact, particularly for those in the Gulf."
+          "quality": 9,
+          "note": "The diaspora angle is well-integrated and explained, particularly for Bengali Americans with family ties spanning Kolkata and Dhaka. It feels natural and relevant to The Videshi's audience."
         },
-        "factual_flags": [
-          "The article states 'Navi Mumbai International Airport \u2014 the Zaha Hadid-designed greenfield hub that opened its domestic terminal last Christmas'. Given the current date, 'last Christmas' would imply December 2023. However, later it says 'The airport has scaled remarkably since its December 2025 launch.' This is a clear contradiction in the launch date. Assuming 'December 2025' is a typo and should be 'December 2023' or similar, or 'last Christmas' is a typo and should be 'December 2025'."
-        ],
+        "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Clarify the exact domestic launch date of Navi Mumbai International Airport to resolve the contradiction between 'last Christmas' and 'December 2025 launch'.",
-          "Consider adding a quote from an NRI or a travel expert on the potential impact of NMIA on travel convenience or costs for the diaspora, to further strengthen the 'diaspora angle'."
+          "Consider adding a quote from an NRI or a Bangladeshi national affected by the visa restrictions to personalize the impact.",
+          "If possible, include a small graphic or map illustrating the Kolkata-Dhaka corridor and key border crossings mentioned."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
         "promoted to published"
