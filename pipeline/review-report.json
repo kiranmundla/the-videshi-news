@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-27T02:45:29.235096+00:00",
+  "timestamp": "2026-06-27T03:15:37.025037+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 1,
+    "pass": 3,
+    "flag": 2,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "3e756902-6a13-43f4-b437-e08704143156",
-      "headline": "He Left Hyderabad With $8. His Company Just Put $1 Billion Back Into India \u2014 and Wants to Buy a Whole Bank.",
-      "slug": "prem-watsa-fairfax-1-billion-india-bonds-idbi-bank-privatisation-hyderabad-iit-madras-diaspora-20260626",
+      "id": "6b7327d5-f7db-48a2-a9ed-d21af5d0045e",
+      "headline": "The Film That Opened to \u20b91 Crore and Refused to Die: 'Main Vaapas Aaunga' Is 2026's Most Beautiful Sleeper Hit",
+      "slug": "main-vaapas-aaunga-sleeper-hit-diljit-dosanjh-imtiaz-ali-ar-rahman-partition-60-crore-word-of-mouth-where-to-watch-diaspora-nri-20260626",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Prem Watsa speaking at a microphone",
-          "reason": "The photo shows the named person, Prem Watsa, who is the subject of the story."
+          "what_photo_shows": "Theatrical release poster for 'Main Vaapas Aaunga'",
+          "reason": "The photo directly shows the movie poster for the film discussed in the headline and subheadline."
         },
         "inline_image_mismatches": []
       },
@@ -35,59 +35,16 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively weaves Prem Watsa's personal journey as an NRI back into the narrative of his company's investment in India, making the diaspora angle natural and compelling."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a small infographic or chart to visualize the scale of the bond purchase compared to Fairfax India's previous holdings, as well as the proposed IDBI Bank acquisition value.",
-          "Briefly explain what 'reserve price' means in the context of government divestment for readers who may not be familiar with financial jargon."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "87fb5bb9-6b43-46db-b3ff-f115aae1030c",
-      "headline": "Russia Now Supplies More Than Half of India's Oil. Washington Says the Waiver That Made It Possible Is Over.",
-      "slug": "russia-half-india-oil-imports-record-2-66-million-bpd-waiver-expired-rubio-iran-brics-20260626",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "An oil refinery with smoke stacks and mountains in background",
-          "reason": "The photo shows an oil refinery, which is directly relevant to a story about oil supply and imports."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 6,
-          "issue": "The image shows an oil refinery in Anacortes, Washington, which is not directly relevant to India's oil imports from Russia or the geopolitical context. While it's an oil refinery, it doesn't specifically represent the Indian context or the source of the oil."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article directly impacts India's energy security and economic stability, which is of significant interest to NRIs concerned about their home country's well-being and geopolitical standing."
+          "quality": 8,
+          "note": "The diaspora angle is well-integrated and explained, connecting the film's themes of uprooting and belonging to the NRI experience."
         },
         "factual_flags": [
-          "The article states 'Before the US-Iran war erupted in late February, Russia accounted for about 23 per cent of India's crude purchases.' This implies a US-Iran war, which is not a widely recognized event in late February. It might be a typo for the Russia-Ukraine war or a different geopolitical event that impacted oil markets."
+          "The headline states '2026's Most Beautiful Sleeper Hit' but the article body refers to the film's release and current box office performance as if it's happening now, implying it's 2024. This is an internal contradiction regarding the year."
         ],
         "duplicate_embeds": [],
         "suggestions": [
-          "Clarify or correct the reference to the 'US-Iran war erupted in late February' as it seems factually incorrect or misleading.",
-          "Consider finding a more relevant hero image that depicts Indian oil infrastructure, a map of oil routes, or a visual that better represents the India-Russia oil trade."
+          "Correct the year in the headline to match the implied current year of the article (2024) or clarify the future projection.",
+          "Consider adding a specific social media embed (e.g., an Instagram reel or tweet about the film's music or audience reaction) to enhance the 'word-of-mouth' section."
         ],
         "verdict": "flag"
       },
@@ -99,9 +56,9 @@
       "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "1cfabf22-84e2-492b-a293-3eb7d27a6a9c",
-      "headline": "India Reopens Tourist Visas for Bangladesh After a Two-Year Freeze \u2014 and the Kolkata\u2013Dhaka Corridor Exhales",
-      "slug": "india-resumes-bangladesh-tourist-visas-kolkata-dhaka-nri-20260627",
+      "id": "953f98ae-5c29-4d0c-8215-dcf1c87036c0",
+      "headline": "Ranveer Singh Has \u20b91,800 Crore, a Lawsuit, and a Zombie Apocalypse \u2014 All at the Same Time",
+      "slug": "ranveer-singh-dhurandhar-2-100-days-1800-crore-don-3-fwice-pralay-zombie-thriller-where-to-watch-diaspora-nri-20260626",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -109,8 +66,51 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Howrah Bridge in Kolkata at night",
-          "reason": "The photo shows a landmark in Kolkata, which is directly relevant to the story about India reopening tourist visas for Bangladesh and the Kolkata-Dhaka corridor."
+          "what_photo_shows": "Ranveer Singh in traditional attire",
+          "reason": "The photo clearly shows Ranveer Singh, who is the main subject of the headline."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article explicitly mentions the diaspora's contribution to box office success and provides a call to action for NRIs to watch the film on JioHotstar."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a quote from an industry analyst or film critic regarding Ranveer Singh's career trajectory amidst these events to add another layer of perspective.",
+          "If possible, include a small sidebar or link to previous coverage of the 'Don 3' controversy for readers who might be unfamiliar with the background."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "a084138e-6a82-4695-b3f3-1104a46f4ff0",
+      "headline": "An Indian-Origin Engineer Built Anthropic's Self-Improving AI. Now His Startup Is Worth $1 Billion.",
+      "slug": "mirendil-harsh-mehta-ai-startup-billion-anthropic-nvidia-20260627",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Scientists collaborating in a modern laboratory with computers and research equipment",
+          "reason": "The photo depicts scientists in a lab with computers, which is a generic but on-topic image for a story about an engineer building AI and a startup focused on accelerating research."
         },
         "inline_image_mismatches": []
       },
@@ -119,18 +119,107 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image is of Howrah Bridge, which is in Kolkata. While Kolkata is a key city in the article, the image doesn't explicitly represent the 'Kolkata\u2013Dhaka Corridor' or the visa reopening itself. It's relevant but not perfectly specific to the core news."
+          "issue": "The image shows a person working on a laptop, which is generic for a technology article. While not mismatched, it doesn't specifically evoke AI or a startup, but rather general office work."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The diaspora angle is well-integrated and explained, particularly for Bengali Americans with family ties spanning Kolkata and Dhaka. It feels natural and relevant to The Videshi's audience."
+          "note": "The article explicitly highlights the 'Indian thread' and connects Harsh Mehta's trajectory to other prominent Indian-origin figures in Silicon Valley AI, making it highly relevant and naturally integrated for NRI readers."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a quote from an NRI or a Bangladeshi national affected by the visa restrictions to personalize the impact.",
-          "If possible, include a small graphic or map illustrating the Kolkata-Dhaka corridor and key border crossings mentioned."
+          "Consider adding a quote from Harsh Mehta himself, if available, to give a more direct voice to the Indian-origin founder.",
+          "Explore if there's any specific cultural or educational background from Mehta's Indian origin that might have influenced his path, if relevant and verifiable."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "26c660d7-f0bb-4c18-8aa7-230e74e5c50c",
+      "headline": "Anthropic and AWS Just Launched an AI Accelerator in Bengaluru. The Bet Is That India Builds, Not Just Codes.",
+      "slug": "anthropic-aws-agentic-ai-accelerator-bengaluru-india-startups-20260627",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Developers working on computers in a modern tech office",
+          "reason": "The photo depicts developers in a tech office, which is a generic but on-topic image for a story about an AI accelerator and tech startups."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image shows a generic tech/office setting. While not mismatched, it doesn't specifically evoke AI or Bengaluru. A more specific image related to AI development or the accelerator launch would be better."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article directly addresses NRIs and their perspective on India's evolving role in AI, making the diaspora angle very strong and natural."
+        },
+        "factual_flags": [
+          "OpenAI's formal registration in India in 2025: This date seems to be in the future, which is unusual for a 'formal registration'. It might be a typo and should be 2023 or 2024, or it refers to a future planned registration. This needs clarification.",
+          "India's deeptech funding hit $1.23 billion in the first half of 2026: Similar to the OpenAI date, '2026' is in the future. This is likely a typo and should be 2023 or 2024."
+        ],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Verify and correct the years mentioned for OpenAI's registration and India's deeptech funding to ensure factual accuracy.",
+          "Consider adding a quote from an NRI or a diaspora professional to further strengthen the 'diaspora calculus' section and provide a direct voice."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "adaf6aec-fab6-45e1-9a6d-0fc1a2249026",
+      "headline": "The AI Trade Just Had Its Worst Week in Months. For Indian Tech Workers, the Pain Is Personal.",
+      "slug": "ai-trade-worst-week-nasdaq-mag-seven-indian-tech-workers-20260627",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Stock market trading screen with financial data",
+          "reason": "The photo of a stock market screen directly relates to the story about stock market losses and shrinking pay packets."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article explicitly connects the tech market downturn to Indian tech workers in the US and NRI investors, detailing the personal financial impact and visa implications."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a quote from an affected Indian tech worker or an expert on NRI finances to personalize the 'diaspora angle' further.",
+          "Ensure the image used is more directly representative of 'AI trade' or 'tech workers' rather than a generic office setting, if possible."
         ],
         "verdict": "pass"
       },
