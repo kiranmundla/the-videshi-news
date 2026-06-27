@@ -1,6 +1,6 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-06-27T12:00:36Z",
+  "last_updated": "2026-06-27T15:59:42Z",
   "stage": "Group Stage — 66 of 72 matches played",
   "hosts": "USA, Mexico & Canada",
   "dates": {
@@ -3351,6 +3351,41 @@
       "url": "https://www.facebook.com/reel/1687465365737746/",
       "account": "@fifaworldcup",
       "caption": "Matchday 16 highlights ⚽ #FIFAWorldCup",
+      "date": "2026-06-27"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/reel/DaCR4lAi-Vh/",
+      "account": "@fifaworldcup",
+      "caption": "Aiden O'Neill — Superior Player of the Match 🇦🇺 #FIFAWorldCup",
+      "date": "2026-06-26"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DaB1pJ6lmXH",
+      "account": "@fifaworldcup",
+      "caption": "Daizen Maeda gives Japan the lead 🇯🇵",
+      "date": "2026-06-26"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DaEAL5Zj2om",
+      "account": "@fifaworldcup",
+      "caption": "Two goals in quick succession for Senegal 😮‍💨",
+      "date": "2026-06-26"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DaE7O79lueO",
+      "account": "@fifaworldcup",
+      "caption": "The points are shared between Egypt and IR Iran 🤝",
+      "date": "2026-06-27"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DaFAPgZlpOz",
+      "account": "@fifaworldcup",
+      "caption": "Matchday 16 results recap ⚽ #FIFAWorldCup",
       "date": "2026-06-27"
     }
   ],
