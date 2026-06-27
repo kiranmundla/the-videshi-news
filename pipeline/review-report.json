@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-27T07:15:20.690537+00:00",
+  "timestamp": "2026-06-27T07:45:23.340752+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
-    "flag": 1,
+    "pass": 2,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,78 +11,18 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "bb82a921-8246-4c0f-8a1b-6050d5a9bf48",
-      "headline": "Ivory Sarees, Chiranjeevi in a Mundu, and Anil Kapoor Dancing: Inside South Cinema's Dreamiest Wedding of the Year",
-      "slug": "avantika-sundar-goa-wedding-tamannaah-trisha-bridesmaids-chiranjeevi-anil-kapoor-jackie-shroff-khushbu-sundar-south-cinema-where-to-watch-diaspora-nri-20260627",
+      "id": "1664746a-1dfc-4b31-ac2b-a78f90eac7c2",
+      "headline": "Thirteen Athletes Qualified in a Single Day. The Triple Jumpers Were the Story India Didn't See Coming.",
+      "slug": "inter-state-athletics-day-3-thirteen-athletes-asian-games-qualifying-praveen-chithravel-triple-jump-bhubaneswar-2026-diaspora-nri",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "aa20f6b8-6cb6-48f6-81c6-c7a6682cfe3c",
-            "headline": "Tamannaah Bhatia Just Said Out Loud What South Cinema's Actr"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Tamannaah Bhatia at a film event",
-          "reason": "Tamannaah is mentioned as a bridesmaid in the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/p/DaDNSfBCAml/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post does not seem to directly relate to the wedding or the key figures mentioned in the article."
-          }
-        ],
-        "image_match": {
-          "score": 6,
-          "issue": "The image does not depict the wedding or any of the key figures mentioned in the article."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the wedding to the diaspora by highlighting the cultural significance and differences between South Indian cinema and Bollywood, appealing to NRI readers."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the irrelevant Instagram embed with a more relevant one that showcases the wedding or key attendees.",
-          "Consider using an image that directly relates to the wedding or the main subjects discussed in the article."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DaDNSfBCAml/",
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "742111a1-9d68-4c81-83fe-3638c9b1cbe0",
-      "headline": "Akshay Kumar Turns Villain, Saif Ali Khan Plays the Hero \u2014 and Priyadarshan Has Reunited Them After 18 Years",
-      "slug": "haiwaan-akshay-kumar-villain-saif-ali-khan-priyadarshan-september-11-2026-mohanlal-cameo-oppam-remake-where-to-watch-diaspora-nri-20260627",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "26cd4491-2073-48d3-b925-a3451fa8f27f",
-            "headline": "Akshay Kumar Walks Back Into the 'Welcome' Jungle Tonight \u2014 "
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Akshay Kumar at an event",
-          "reason": "The photo shows Akshay Kumar, who is relevant to the story."
+          "what_photo_shows": "athlete performing triple jump",
+          "reason": "The photo shows an athlete in a triple jump event, matching the story topic."
         },
         "inline_image_mismatches": []
       },
@@ -90,19 +30,62 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image features Akshay Kumar but does not directly relate to the film 'Haiwaan' or the article's focus on the reunion of Akshay and Saif."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article connects well with the diaspora by referencing the excitement around Bollywood films in international markets."
+          "note": "The article connects well with diaspora readers by highlighting the progress of Indian athletics, which is a point of interest for sports fans abroad."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that directly relates to the film 'Haiwaan' for better visual relevance.",
-          "Expand on the diaspora angle by including quotes or reactions from NRI audiences regarding the film's release."
+          "Include quotes from athletes or coaches to add depth and personal perspectives.",
+          "Provide more context on the significance of the Asian Games for Indian athletes."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "d030a0b8-3b2e-4e18-84ae-8164fd7a5e2b",
+      "headline": "He Came Through Qualifying and Saved Four Match Points. Then the Top Seed Was Out.",
+      "slug": "rounak-chouhan-18-stuns-world-no-6-chou-tien-chen-us-open-badminton-2026-fullerton-california-india-srikanth-tanvi-sharma-diaspora-nri",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "badminton player in action",
+          "reason": "The photo shows a badminton player, which is relevant to the badminton story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article connects well with the Indian-American community by highlighting the significance of the tournament in an area with a large Indian population."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include quotes from Rounak Chouhan or coaches to add a personal touch.",
+          "Provide more context on the significance of the US Open for Indian players."
         ],
         "verdict": "pass"
       },
