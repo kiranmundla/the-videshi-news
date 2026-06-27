@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-27T13:45:22.069688+00:00",
+  "timestamp": "2026-06-27T14:15:52.117406+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 6,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "e98fea53-2ea2-413a-a9ec-ab5ec90d7e8d",
-      "headline": "'Sadly, Cricket Wasn\u2019t Part of It Then': Harmanpreet Kaur Sets Her Sights on LA 2028",
-      "slug": "harmanpreet-kaur-eyes-olympic-glory-cricket-la-2028-india-women-t20-world-cup-milkha-singh-diaspora-nri",
+      "id": "64fd5b92-00af-48c9-b2e2-f8a9b50924f0",
+      "headline": "Foreign Investors Just Poured a Record $4.2 Billion into Indian Government Bonds \u2014 and a Bigger Prize May Be Coming",
+      "slug": "fpi-record-4-billion-indian-government-bonds-bloomberg-index-inclusion-tax-exemption-far-nri-investor-20260627",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Harmanpreet Kaur with a trophy",
-          "reason": "The photo shows Harmanpreet Kaur, relevant to the story."
+          "what_photo_shows": "Reserve Bank of India building",
+          "reason": "The photo shows the Reserve Bank of India, relevant to the bond market story."
         },
         "inline_image_mismatches": []
       },
@@ -35,14 +35,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the significance of the Olympics to the Indian diaspora in Los Angeles, highlighting the community's passion for cricket."
+          "quality": 7,
+          "note": "The article discusses foreign investment in Indian bonds, which is relevant to NRIs interested in India's economic landscape."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from other players or coaches to provide a broader perspective on the significance of cricket's return to the Olympics.",
-          "Include more statistics or historical context about cricket's previous Olympic participation to enrich the narrative."
+          "Include quotes or perspectives from NRI investors to strengthen the diaspora connection.",
+          "Add a brief section on how these changes might impact NRIs directly, such as investment opportunities."
         ],
         "verdict": "pass"
       },
@@ -54,9 +54,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "b5ff4499-2185-4558-982c-6032354c7efa",
-      "headline": "The World Cup Arrives in Santa Clara on Wednesday. It May Never Be This Close Again.",
-      "slug": "world-cup-comes-to-silicon-valley-levis-stadium-santa-clara-usa-bosnia-round-of-32-2026-bay-area-indian-diaspora-nri",
+      "id": "3bcb1177-11cb-4442-a38d-74c2948b5c7e",
+      "headline": "Meditators' Brains Age Up to Seven Years Slower, Multiple Studies Now Confirm \u2014 and the Practice Originated in India",
+      "slug": "meditation-brain-aging-slower-seven-years-harvard-ucla-sadhguru-center-alzheimers-amyloid-beta-diaspora-20260627",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,8 +64,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Levi\u2019s Stadium in Santa Clara",
-          "reason": "The photo shows Levi\u2019s Stadium, which is relevant to the story about the World Cup match there."
+          "what_photo_shows": "woman meditating in a studio",
+          "reason": "The photo shows meditation, relevant to the story on meditators' brains."
         },
         "inline_image_mismatches": []
       },
@@ -79,13 +79,187 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the World Cup event to the Indian-American community, highlighting their engagement and significance in the context of the tournament."
+          "note": "The article connects the scientific findings on meditation to its Indian origins and cultural significance, making it relevant for the NRI audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from local Indian-American community members or leaders to enhance the personal connection to the event.",
-          "Include more statistics or data on viewership among the Indian diaspora to strengthen the argument about their engagement with the World Cup."
+          "Consider adding more direct quotes from researchers to enhance credibility.",
+          "Include a section on how NRIs can incorporate meditation into their daily lives."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "ec94934e-a4f1-4160-ad9f-d7f40d927b67",
+      "headline": "Your Grandmother's Haldi Was Ahead of the Science \u2014 Curcumin Now Shows It Can Ease Gut Trouble and Trim the Waistline",
+      "slug": "curcumin-turmeric-gut-health-obesity-clinical-trial-nutrients-journal-haldi-doodh-diaspora-20260627",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Fresh turmeric root and powder",
+          "reason": "The photo shows turmeric, which is relevant to the curcumin story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article connects well with the diaspora by discussing turmeric's cultural significance and its scientific validation, appealing to both traditional and modern perspectives."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Expand on the diaspora angle by including personal anecdotes or quotes from NRIs about their use of turmeric.",
+          "Provide more context on how these findings can be practically applied in the daily lives of diaspora readers."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "1fb31b25-e39d-4e8e-9b14-2377fce5b084",
+      "headline": "Vizag's New Greenfield Airport Opens on July 8 \u2014 and the Telugu Diaspora Finally Gets a Shorter Route Home",
+      "slug": "bhogapuram-airport-vizag-july-opening-telugu-diaspora-nri-20260627",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MISMATCH",
+          "what_photo_shows": "residential buildings and greenery",
+          "reason": "The photo does not show Visakhapatnam's skyline or airport-related imagery."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 10,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the new airport's significance to the Telugu diaspora, highlighting improved travel options for Telugu-speaking Americans."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include quotes from local officials or diaspora members to add personal perspectives.",
+          "Add a section on potential economic impacts for the region due to the new airport."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "Cleared mismatched image (residential buildings and greenery)",
+        "held: image mismatch"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "image_mismatch": true,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "931330f6-f571-4f17-bc3e-58487496999b",
+      "headline": "From Jaisalmer's Desert to Odisha's Lagoon, India's Hotel Builders Are Chasing the Diaspora Dollar",
+      "slug": "india-luxury-hotel-boom-sheraton-jaipur-leela-jaisalmer-ihcl-chilika-n-20260627",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Sandstone courtyard of a heritage hotel",
+          "reason": "The photo shows a heritage hotel in Jaisalmer, relevant to the story about hotel developments in India."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not specifically represent the hotels or locations mentioned in the article."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the hospitality developments to the needs and preferences of the diaspora, particularly NRIs traveling for weddings and family visits."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that directly represents one of the new hotel properties or locations discussed in the article.",
+          "Include quotes or insights from industry experts or diaspora travelers to enhance the narrative."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "81e4d891-9b5d-413d-8750-864fb60b9977",
+      "headline": "Nagpur Airport Gets a New Owner \u2014 and Central India Gets a Shot at the World",
+      "slug": "nagpur-airport-gmr-takeover-central-india-vidarbha-nri-20260627",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "interior of an airport terminal",
+          "reason": "The photo shows an airport, relevant to the story about Nagpur Airport."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the airport's upgrade to the diaspora's travel needs, highlighting the potential for improved international connectivity."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from diaspora members or travel experts to enhance the personal connection.",
+          "Include more details on how the airport upgrade will specifically benefit the diaspora community beyond travel."
         ],
         "verdict": "pass"
       },
