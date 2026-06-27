@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-27T01:15:17.528950+00:00",
+  "timestamp": "2026-06-27T01:45:16.288614+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
-    "flag": 1,
+    "pass": 2,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "d5ca0e82-839d-41dd-b8c1-326c6e2d0f8a",
-      "headline": "Golden Sequins, Red Boots, and 200 Dancers: The Last Great Bhansali Song Is Being Shot Right Now",
-      "slug": "love-and-war-set-photos-alia-bhatt-golden-sequins-vicky-kaushal-200-dancers-bhansali-final-song-royal-palms-january-2027-where-to-watch-diaspora-nri-20260626",
+      "id": "5aceab1d-6e05-4b38-8686-5b3ca14e084f",
+      "headline": "John Abraham Bets on European Cricket \u2014 and Joins Jonty Rhodes and Faf du Plessis at the Rotterdam Dockers",
+      "slug": "john-abraham-co-owner-rotterdam-dockers-etpl-european-t20-premier-league-2026-jonty-rhodes-faf-du-plessis-klaasen-bollywood-cricket-diaspora-nri",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,28 +21,28 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Alia Bhatt in a strapless dress and necklace",
-          "reason": "The photo clearly shows Alia Bhatt, who is mentioned in the caption and is relevant to the story about a Bollywood film."
+          "what_photo_shows": "Bollywood actor John Abraham in a suit",
+          "reason": "The photo clearly shows John Abraham, who is the main subject of the headline."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 7,
+        "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image is of Alia Bhatt, who is a key figure in the article, but the specific image is from the 2026 Cannes Film Festival, which is not directly related to the article's focus on the 'Love & War' song shoot. It's not a set image."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article explicitly mentions Bhansali's films playing beautifully with NRI audiences and cites examples like 'Padmaavat' and 'Gangubai' pulling massive overseas numbers, directly connecting to the diaspora readership."
+          "quality": 8,
+          "note": "The article explicitly addresses the diaspora dimension, connecting the ETPL to Indian fans in Europe and mentioning specific communities."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider replacing the hero image with a more relevant 'Love & War' set image if available, or a promotional image that better reflects the article's content.",
-          "While the diaspora angle is present, it could be slightly expanded beyond just mentioning past success, perhaps by hinting at *why* this particular film or song might resonate with NRIs."
+          "Consider adding a quote from an Indian diaspora member in Europe about their excitement for the league to strengthen the 'diaspora dimension' further.",
+          "Ensure the article concludes with a strong summary or forward-looking statement, as it currently cuts off mid-sentence."
         ],
         "verdict": "pass"
       },
@@ -54,9 +54,9 @@
       "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "6dc5c13c-067f-418c-98a1-ca6dc28a90f0",
-      "headline": "Christopher Nolan Chose Mumbai for His First-Ever India Premiere \u2014 and \u20b93,300 IMAX Tickets Are Already Gone",
-      "slug": "christopher-nolan-the-odyssey-mumbai-india-premiere-matt-damon-tom-holland-imax-pxr-phoenix-palladium-july-17-2026-where-to-watch-diaspora-nri-20260626",
+      "id": "83922591-6653-427a-b43b-a244dcba908d",
+      "headline": "Five Sixes in an Over: Marcus Stoinis Rips Washington Freedom Apart as Seattle Orcas Cruise to an 88-Run MLC Victory",
+      "slug": "marcus-stoinis-five-sixes-one-over-seattle-orcas-88-run-win-washington-freedom-mlc-2026-hetmyer-jasdeep-singh-oakland-coliseum-diaspora-nri",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,43 +64,32 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A headshot of Christopher Nolan.",
-          "reason": "The photo clearly shows Christopher Nolan, who is the subject of the headline."
+          "what_photo_shows": "Marcus Stoinis in an Australian cricket uniform",
+          "reason": "The headline explicitly mentions Marcus Stoinis as a key player in the cricket story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [
-          {
-            "url": "https://youtube.com/watch?v=Mzw2ttJD2qQ",
-            "problem": "irrelevant",
-            "explanation": "The YouTube link is for 'Oppenheimer' trailer, but the article is about 'The Odyssey'. This is a factual error and irrelevant to the current article's subject."
-          }
-        ],
+        "overall_score": 8,
+        "embed_issues": [],
         "image_match": {
-          "score": 8,
+          "score": 9,
           "issue": null
         },
         "diaspora_angle": {
-          "present": false,
-          "quality": 1,
-          "note": "The article explicitly mentions 'For the diaspora' at the end but provides no content or connection for NRI/diaspora readers. This feels like an incomplete thought or a placeholder that was never filled."
+          "present": true,
+          "quality": 8,
+          "note": "The diaspora angle is naturally integrated, especially with the mention of Jasdeep Singh and the significance of cricket at Oakland Coliseum for the South Asian community."
         },
-        "factual_flags": [
-          "The article states 'The Odyssey' is Nolan's adaptation of Homer's ancient epic, which is a fictional film. However, the YouTube embed is for 'Oppenheimer', a real film. This creates a contradiction regarding the film being discussed.",
-          "The claim that 'The Odyssey' is the 'first feature film ever shot entirely on IMAX cameras' is suspicious, as 'Oppenheimer' was widely marketed for its extensive use of IMAX cameras, and other films have also used IMAX extensively. This needs verification.",
-          "The article mentions 'Supergirl' as a recent cautionary tale for influencer screenings, which seems out of place as 'Supergirl' is not a recent film release that would typically be subject to influencer screenings in the context of a major Hollywood studio film."
-        ],
+        "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Address the 'For the diaspora' section. Either integrate a relevant diaspora angle into the article's body or remove the placeholder if no such angle exists.",
-          "Verify the factual claims about 'The Odyssey' being the first film shot entirely on IMAX and the 'Supergirl' reference. Correct the YouTube embed to match the article's subject."
+          "Consider adding a quote from Jasdeep Singh or another Indian-origin player to further strengthen the diaspora connection.",
+          "Ensure all player names and team names are consistently capitalized throughout the article."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://youtube.com/watch?v=Mzw2ttJD2qQ",
         "promoted to published"
       ],
       "revised": false,
