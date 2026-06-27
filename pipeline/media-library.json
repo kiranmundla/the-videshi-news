@@ -1,6 +1,6 @@
 {
  "_description": "Media library mirror — high-quality, attribution-clean images+videos for article/reel fallback. Source of truth is the Supabase media_library table; this mirror lets the pipeline read without a DB round-trip.",
- "_updated": "2026-06-27T10:32:47Z",
+ "_updated": "2026-06-27T17:57:33Z",
  "assets": [
   {
    "id": "person--narendra-modi--bfe42b",
@@ -21,28 +21,6 @@
    "duration": null,
    "quality_score": 86.7,
    "added_date": "2026-06-19T05:23:21Z",
-   "last_used": null,
-   "times_used": 0
-  },
-  {
-   "id": "place--mumbai--ced2e4",
-   "media_type": "image",
-   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/place/mumbai-ced2e4.jpg",
-   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/place/mumbai-ced2e4.jpg",
-   "subject": "Mumbai",
-   "subject_type": "place",
-   "caption": "Interior of Keneseth Eliyahoo Synagogue, Mumbai",
-   "attribution": "Wikimedia Commons / Rangan Datta Wiki, CC BY-SA 4.0",
-   "license": "CC BY-SA 4.0",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Keneseth_Eliyahoo_Synagogue,_Interior_4.jpg",
-   "tags": [
-    "mumbai"
-   ],
-   "width": 4565,
-   "height": 3023,
-   "duration": null,
-   "quality_score": 92.0,
-   "added_date": "2026-06-19T05:23:35Z",
    "last_used": null,
    "times_used": 0
   },
@@ -4115,6 +4093,28 @@
    "added_date": "2026-06-27T10:32:47Z",
    "last_used": null,
    "times_used": 0
+  },
+  {
+   "id": "place--mumbai--ced2e4",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/place/mumbai-ced2e4.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/place/mumbai-ced2e4.jpg",
+   "subject": "Mumbai",
+   "subject_type": "place",
+   "caption": "Interior of Keneseth Eliyahoo Synagogue, Mumbai",
+   "attribution": "Wikimedia Commons / Rangan Datta Wiki, CC BY-SA 4.0",
+   "license": "CC BY-SA 4.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Keneseth_Eliyahoo_Synagogue,_Interior_4.jpg",
+   "tags": [
+    "mumbai"
+   ],
+   "width": 4565,
+   "height": 3023,
+   "duration": null,
+   "quality_score": 92.0,
+   "added_date": "2026-06-19T05:23:35Z",
+   "last_used": "2026-06-27T17:57:33Z",
+   "times_used": 1
   }
  ]
 }
