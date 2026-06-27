@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-27T18:45:25.420094+00:00",
+  "timestamp": "2026-06-27T19:15:13.302674+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
-    "flag": 0,
+    "pass": 0,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,123 +11,54 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "dfbfebc3-a84f-4ff1-8f2d-1e67a91ce99f",
-      "headline": "India Just Launched a Trade Probe That Could Sabotage Its Own \u20b99-Lakh-Crore Power Grid.",
-      "slug": "india-crgo-steel-anti-dumping-probe-china-japan-transformer-power-grid-jsw-jfe-dgtr-20260627",
+      "id": "d44835ff-5068-4793-86cc-545e5e0edc67",
+      "headline": "Shivam Pandit Is Two Days Away: The 'Awarapan 2' Teaser Drops on the Original's 19th Anniversary",
+      "slug": "awarapan-2-teaser-june-29-emraan-hashmi-shivam-pandit-disha-patani-shabana-azmi-independence-day-2026-where-to-watch-diaspora-nri-20260627",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "b2d5d81c-5c08-4183-a788-98c9a8e7c309",
+            "headline": "Emraan Hashmi Wipes the Frost Off the Glass \u2014 and Bollywood "
+          }
+        ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "power distribution transformers on a pole",
-          "reason": "The photo shows transformers relevant to the story about electrical steel and power grids."
+          "what_photo_shows": "Emraan Hashmi at an event",
+          "reason": "The photo shows Emraan Hashmi, relevant to the story about 'Awarapan 2'."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 7,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DaFqjy2sNM6/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel does not appear to be directly related to the teaser or the film 'Awarapan 2', making it irrelevant to the article's subject."
+          }
+        ],
         "image_match": {
-          "score": 8,
-          "issue": "The image of power distribution lines is relevant to the topic of the power grid but lacks specific connection to the trade probe."
+          "score": 5,
+          "issue": "The image does not match the article's topic about 'Awarapan 2' as it features Emraan Hashmi at a magazine launch, not related to the film's teaser."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 6,
-          "note": "The article discusses India's trade policies and their implications, which may interest NRIs involved in energy sectors or trade."
+          "note": "The article discusses a Bollywood film that may resonate with the Indian diaspora, particularly those who have an affinity for cult films, but the connection could be stronger."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct implications for NRIs or the diaspora community regarding the trade probe.",
-          "Add a concluding section summarizing the potential long-term impacts on India's energy sector and its global trade relationships."
+          "Replace the irrelevant Instagram embed with a more relevant link or remove it entirely.",
+          "Consider adding a section that discusses the impact of 'Awarapan' on the Indian diaspora or its reception among NRI audiences."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "1a30bd23-3380-427b-9890-a7b7cdefdeec",
-      "headline": "India Sent an Entire Field Hospital to Venezuela. It Got There Before Most of the World's Aid Did.",
-      "slug": "india-operation-amistad-venezuela-earthquake-iaf-c17-field-hospital-bhishm-jaishankar-relief-diaspora-20260627",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Indian Air Force C-17 Globemaster III",
-          "reason": "The photo shows the aircraft type used in the aid mission."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the Indian diaspora in Venezuela to the humanitarian efforts, highlighting the significance of the operation for them."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes or reactions from members of the Indian diaspora in Venezuela to enhance the personal connection.",
-          "Include more context on how India's disaster diplomacy has evolved over the years to provide a richer background."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "1b50107b-b7db-4cdd-a7eb-97ee1aa4d97c",
-      "headline": "El Ni\u00f1o Has Turned India's Monsoon Into a Drizzle \u2014 and NRI Summer Plans Should Adjust",
-      "slug": "el-nino-weak-monsoon-india-nri-summer-travel-heat-20260627",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 5,
-          "issue": "description missing"
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively addresses the concerns and adjustments needed for NRI travelers during the monsoon."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include a relevant hero image description to enhance visual context.",
-          "Consider adding more specific examples of how NRI travelers can adjust their plans beyond hydration and timing."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DaFqjy2sNM6/",
         "promoted to published"
       ],
       "revised": false,
