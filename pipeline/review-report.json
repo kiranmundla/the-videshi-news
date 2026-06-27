@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-27T22:15:59.333674+00:00",
+  "timestamp": "2026-06-27T22:45:34.234272+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 6,
+    "pass": 3,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "a12093b4-e0dd-4ce4-a7af-b7390e293631",
-      "headline": "The US Just Asked India to Rescue Its Cancer Patients \u2014 and Indian Pharma Stocks Rallied on the News",
-      "slug": "us-fda-sos-indian-pharma-ifosfamide-cancer-drug-shortage-cipla-zydus-nifty-pharma-rally-nri-investor-20260627",
+      "id": "435342ac-d969-4003-9408-c6ec0cd2e754",
+      "headline": "She Cleared 4.25 Metres and Broke a Record That Was Only Days Old. Indian Women's Pole Vault Has Arrived.",
+      "slug": "sindhushree-g-pole-vault-national-record-4-25m-inter-state-athletics-bhubaneswar-asian-games-2026-diaspora-nri",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "man with pills and stethoscope",
-          "reason": "The photo plausibly shows a pharmaceutical representative, relevant to the story."
+          "what_photo_shows": "Kalinga Stadium in Bhubaneswar",
+          "reason": "The stadium is the venue for the athletics event in the story."
         },
         "inline_image_mismatches": []
       },
@@ -31,18 +31,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image of Dr. Arun Maseeh holding Polycap does not directly relate to the article's focus on ifosfamide and cancer treatment shortages."
+          "issue": "The image of Kalinga Stadium is relevant as it is the venue for the championships, but it does not directly depict the pole vault event or the athletes mentioned."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the FDA's request to NRI investors, highlighting the implications for Indian pharma stocks."
+          "note": "The article effectively connects the achievements of Indian athletes to the interests of the diaspora, particularly regarding upcoming international competitions."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that directly relates to cancer treatment or ifosfamide.",
-          "Provide more context on how NRI investors can specifically capitalize on the situation."
+          "Consider including quotes or reactions from other athletes or coaches to provide a broader perspective on the event.",
+          "Add more context about the significance of the Asian Games for Indian athletics to enhance the diaspora connection."
         ],
         "verdict": "pass"
       },
@@ -54,23 +54,18 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "f88c8f76-a20e-421f-9b5e-defa58d693bb",
-      "headline": "The Snacks Your Children Eat May Be Feeding Their Anxiety \u2014 and Multiple Studies Now Show a Dose-Dependent Link",
-      "slug": "ultra-processed-food-depression-anxiety-adolescents-dose-dependent-multiple-studies-nova-diaspora-20260627",
+      "id": "4ba20fe4-a628-4c54-b1ae-42b0256ece2b",
+      "headline": "Washington Is Quietly Closing Every Door That Indian Professionals Use to Stay in America",
+      "slug": "us-immigration-pathways-closing-h1b-fee-f1-duration-status-green-card-adjustment-indian-workers-20260627",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "7c276803-ba2d-48e9-afef-e7661a79fa3c",
-            "headline": "The Packaged Breads and Cereals in Your Pantry May Be Quietl"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "shelves of ultra-processed packaged foods",
-          "reason": "The photo shows ultra-processed foods, relevant to the story on diet and mental health."
+          "what_photo_shows": "H1-B Visa Labor Condition Applications chart",
+          "reason": "The chart is relevant to the topic of H-1B visa policies."
         },
         "inline_image_mismatches": []
       },
@@ -84,13 +79,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the findings to the experiences of Indian-origin families abroad, making it relevant to the diaspora."
+          "note": "The article discusses immigration policies that directly affect Indian professionals, making it highly relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more specific examples of ultra-processed foods commonly consumed by Indian-origin families to enhance relatability.",
-          "Include a brief section on practical tips for healthier snack alternatives for families."
+          "Include quotes or perspectives from Indian professionals affected by these changes to enhance relatability.",
+          "Add a section on potential responses or actions that the Indian diaspora can take regarding these immigration changes."
         ],
         "verdict": "pass"
       },
@@ -102,9 +97,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "b83567af-61eb-49fc-aa09-d0a3a6e7ba29",
-      "headline": "Vaping While You Smoke May Nearly Triple Your Risk of Early-Onset Lung Cancer, Study Finds",
-      "slug": "vaping-smoking-combined-triple-early-onset-lung-cancer-risk-ohio-state-frontiers-oncology-diaspora-20260627",
+      "id": "6502e7cf-131b-42f9-8c3f-5fdd1005cbc2",
+      "headline": "India Won't Export Sugar for Years. El Ni\u00f1o, Ethanol and a Weak Monsoon Are All Squeezing at Once.",
+      "slug": "india-sugar-export-ban-el-nino-ethanol-cane-acreage-30-year-low-monsoon-20260627",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -112,8 +107,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "various e-cigarette devices",
-          "reason": "The photo shows e-cigarette devices, relevant to the vaping and smoking study."
+          "what_photo_shows": "sugarcane field in Maharashtra",
+          "reason": "The photo shows a sugarcane field, relevant to the sugar export story."
         },
         "inline_image_mismatches": []
       },
@@ -127,153 +122,17 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the research findings to the Indian diaspora, highlighting the differences in vaping regulations and cultural practices."
+          "note": "The article effectively connects the sugar export ban to the diaspora's cultural practices and economic implications."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more statistics or quotes from experts to strengthen the argument.",
-          "Include a brief section on potential policy implications for the Indian diaspora regarding vaping."
+          "Include more specific examples of how the diaspora is affected by rising sugar prices.",
+          "Add quotes or insights from diaspora community members to enhance relatability."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "eca68cf5-91b6-482a-8839-e954a703f3a7",
-      "headline": "The Supreme Court Just Made Your Green Card a Little Less Green \u2014 and Every NRI Planning an India Trip Should Read the Fine Print",
-      "slug": "supreme-court-green-card-re-entry-blanche-lau-india-nri-20260627",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "United States Supreme Court building",
-          "reason": "The photo shows the Supreme Court, relevant to the court ruling story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively addresses the implications of the Supreme Court ruling on Indian green card holders, making it relevant for the NRI audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include quotes or reactions from immigration experts or affected individuals to enhance the article's depth.",
-          "Add a section on potential legal recourse or advice for green card holders concerned about the ruling."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "18dba049-7a0f-4675-9248-2e5b40f4d575",
-      "headline": "Google Wallet Just Made TSA PreCheck Touchless \u2014 Here's Why Every NRI Flyer Should Set It Up Before Their Next Trip",
-      "slug": "google-wallet-tsa-precheck-touchless-id-nri-global-entry-20260627",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "traveller at airport security checkpoint",
-          "reason": "The photo shows a traveller at an airport security checkpoint, which is relevant to the TSA PreCheck story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the TSA PreCheck Touchless ID feature to the needs of NRI travelers, particularly Indian Americans, highlighting its relevance."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a brief section on how to set up Google Wallet for TSA PreCheck to provide practical guidance.",
-          "Include a comparison with other digital wallet options available for travelers to enhance the article's depth."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "1626081c-96ac-44a5-be6b-1857602b7674",
-      "headline": "India's Tech Job Market Hit a 28-Month Low. Thousands of Returning H-1B Workers Are Walking Into It.",
-      "slug": "india-tech-hiring-28-month-low-h1b-returnees-job-market-20260627",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [
-          {
-            "url": "https://x.com/VideshiPlatform/status/1798765432109876543",
-            "problem": "broken",
-            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
-          }
-        ],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "software developer at workstation",
-          "reason": "The photo shows a software developer, relevant to the tech job market story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 5,
-          "issue": "The image does not directly relate to the article's focus on tech jobs and migration."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively discusses the impact of the job market on returning NRIs and their families."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that reflects the tech job market or migration theme.",
-          "Add more statistics or quotes from industry experts to strengthen the analysis."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "Removed 1 broken/hallucinated embed(s)",
         "promoted to published"
       ],
       "revised": false,
