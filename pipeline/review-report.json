@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-27T07:45:23.340752+00:00",
+  "timestamp": "2026-06-27T08:15:42.142571+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 5,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "1664746a-1dfc-4b31-ac2b-a78f90eac7c2",
-      "headline": "Thirteen Athletes Qualified in a Single Day. The Triple Jumpers Were the Story India Didn't See Coming.",
-      "slug": "inter-state-athletics-day-3-thirteen-athletes-asian-games-qualifying-praveen-chithravel-triple-jump-bhubaneswar-2026-diaspora-nri",
+      "id": "e163c0f8-de11-4600-8ff6-a03732c3a6cf",
+      "headline": "Day-1 CPT Was the H-1B Lottery's Backup Plan. The Proposed Rules Would Kill It",
+      "slug": "day-1-cpt-crackdown-dhs-student-visa-h1b-indians-backup-plan-20260627",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "athlete performing triple jump",
-          "reason": "The photo shows an athlete in a triple jump event, matching the story topic."
+          "what_photo_shows": "graduate student on campus",
+          "reason": "The photo shows a graduate student, relevant to the student visa story."
         },
         "inline_image_mismatches": []
       },
@@ -30,19 +30,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image does not directly relate to the topic of immigration or the H-1B lottery."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article connects well with diaspora readers by highlighting the progress of Indian athletics, which is a point of interest for sports fans abroad."
+          "quality": 9,
+          "note": "The article effectively addresses the concerns of Indian tech professionals in the U.S. regarding immigration policies."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes from athletes or coaches to add depth and personal perspectives.",
-          "Provide more context on the significance of the Asian Games for Indian athletes."
+          "Consider using an image that directly represents the theme of immigration or the H-1B lottery for better visual alignment.",
+          "Add more statistics or quotes from affected individuals to enhance the emotional impact and relatability of the article."
         ],
         "verdict": "pass"
       },
@@ -54,9 +54,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "d030a0b8-3b2e-4e18-84ae-8164fd7a5e2b",
-      "headline": "He Came Through Qualifying and Saved Four Match Points. Then the Top Seed Was Out.",
-      "slug": "rounak-chouhan-18-stuns-world-no-6-chou-tien-chen-us-open-badminton-2026-fullerton-california-india-srikanth-tanvi-sharma-diaspora-nri",
+      "id": "7cadb345-b06b-4463-95df-ae32f7794a99",
+      "headline": "The H-4 Work Permit Was Never Guaranteed. Now DHS Is Drafting the Rule to End It",
+      "slug": "h4-ead-rescission-dhs-final-stages-indian-spouses-work-permit-20260627",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,8 +64,51 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "badminton player in action",
-          "reason": "The photo shows a badminton player, which is relevant to the badminton story."
+          "what_photo_shows": "woman working on a laptop",
+          "reason": "The photo shows a professional at work, relevant to the story about H-4 visa holders."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the topic of immigration or work permits."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively highlights the impact of the H-4 work permit changes on Indian families, making it highly relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that directly represents the theme of immigration or work permits to enhance relevance.",
+          "Include quotes or testimonials from affected individuals to add a personal touch and deepen the connection with the diaspora."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "6b2f702f-6dbb-4882-9d75-02b5a9ee1005",
+      "headline": "Mirabai Chanu Will Lead India's Weightlifting Charge at the Glasgow Commonwealth Games",
+      "slug": "mirabai-chanu-headlines-india-weightlifting-squad-commonwealth-games-2026-glasgow-bindyarani-lovepreet-diaspora-nri",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "woman holding a medal",
+          "reason": "The photo plausibly shows Mirabai Chanu, relevant to the weightlifting story."
         },
         "inline_image_mismatches": []
       },
@@ -79,13 +122,101 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article connects well with the Indian-American community by highlighting the significance of the tournament in an area with a large Indian population."
+          "note": "The article effectively connects the event to the Indian diaspora in the UK, particularly highlighting the significance of the Commonwealth Games for NRIs."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes from Rounak Chouhan or coaches to add a personal touch.",
-          "Provide more context on the significance of the US Open for Indian players."
+          "Consider adding quotes from Mirabai Chanu or coaches to enhance the personal connection.",
+          "Include more details on how the Indian diaspora can engage with the event, such as ticketing information or community events."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "93ae7d0f-5cd6-4216-a3fe-8ee60796f619",
+      "headline": "Seven Goals, Seven Scorers: India Tear Pakistan Apart in London",
+      "slug": "india-hammer-pakistan-7-1-fih-pro-league-hockey-london-seven-scorers-harmanpreet-sukhjeet-2026-diaspora-nri",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MISMATCH",
+          "what_photo_shows": "FIH Pro League trophy display",
+          "reason": "The photo shows a trophy display, not the India men's hockey team in action."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image description is missing, making it difficult to assess relevance."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article connects well with the NRI audience by highlighting the significance of the match in the UK."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include a relevant image description to enhance the image match score.",
+          "Consider adding quotes from players or coaches to provide more depth and personal insight into the match."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "Cleared mismatched image (FIH Pro League trophy display)",
+        "held: image mismatch"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "image_mismatch": true,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "c0271998-b2fc-453e-8d4a-59816ada1292",
+      "headline": "The Rajasthan Royals Star Hit 87 off 39 Balls in Texas. The MLC\u2019s Match of the Season Was Only Getting Started.",
+      "slug": "pretorius-87-san-francisco-unicorns-beat-seattle-orcas-2-wickets-mlc-2026-grand-prairie-diaspora-nri",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Grand Prairie Stadium in Texas",
+          "reason": "The photo shows the stadium where the cricket match took place."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the match to Indian-American cricket fans through references to IPL and the involvement of an Indian-American player."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from players or coaches to enhance the narrative.",
+          "Include more context about the significance of the match for the MLC and its growth in the U.S."
         ],
         "verdict": "pass"
       },
