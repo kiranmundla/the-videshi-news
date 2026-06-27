@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-06-27T02:05:00Z",
-  "stage": "Group Stage — 64 of 72 matches played",
+  "last_updated": "2026-06-27T05:57:00Z",
+  "stage": "Group Stage — 66 of 72 matches played",
   "hosts": "USA, Mexico & Canada",
   "dates": {
     "start": "2026-06-11",
@@ -342,55 +342,55 @@
     ],
     "G": [
       {
+        "name": "Belgium",
+        "code": "BEL",
+        "flag": "🇧🇪",
+        "rank": 9,
+        "p": 3,
+        "w": 1,
+        "d": 2,
+        "l": 0,
+        "gf": 6,
+        "ga": 2,
+        "pts": 5
+      },
+      {
         "name": "Egypt",
         "code": "EGY",
         "flag": "🇪🇬",
         "rank": 29,
-        "p": 2,
+        "p": 3,
         "w": 1,
-        "d": 1,
+        "d": 2,
         "l": 0,
-        "gf": 4,
-        "ga": 2,
-        "pts": 4
+        "gf": 5,
+        "ga": 3,
+        "pts": 5
       },
       {
         "name": "Iran",
         "code": "IRN",
         "flag": "🇮🇷",
         "rank": 21,
-        "p": 2,
+        "p": 3,
         "w": 0,
-        "d": 2,
+        "d": 3,
         "l": 0,
-        "gf": 2,
-        "ga": 2,
-        "pts": 2
-      },
-      {
-        "name": "Belgium",
-        "code": "BEL",
-        "flag": "🇧🇪",
-        "rank": 9,
-        "p": 2,
-        "w": 0,
-        "d": 2,
-        "l": 0,
-        "gf": 1,
-        "ga": 1,
-        "pts": 2
+        "gf": 3,
+        "ga": 3,
+        "pts": 3
       },
       {
         "name": "New Zealand",
         "code": "NZL",
         "flag": "🇳🇿",
         "rank": 85,
-        "p": 2,
+        "p": 3,
         "w": 0,
         "d": 1,
-        "l": 1,
-        "gf": 3,
-        "ga": 5,
+        "l": 2,
+        "gf": 4,
+        "ga": 10,
         "pts": 1
       }
     ],
@@ -1645,8 +1645,8 @@
       "away": "Iran",
       "venue": "Lumen Field",
       "city": "Seattle",
-      "status": "scheduled",
-      "score": null,
+      "status": "FT",
+      "score": "1-1",
       "home_code": "EGY",
       "away_code": "IRN"
     },
@@ -1660,8 +1660,8 @@
       "away": "Belgium",
       "venue": "BC Place",
       "city": "Vancouver",
-      "status": "scheduled",
-      "score": null,
+      "status": "FT",
+      "score": "1-5",
       "home_code": "NZL",
       "away_code": "BEL"
     },
@@ -1785,6 +1785,41 @@
     }
   },
   "highlights": [
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DaE8RzDivEY/",
+      "account": "@fifaworldcup",
+      "caption": "🇧🇪 Belgium earn their spot in the knockouts! 💥 — Belgium 5-1 New Zealand #FIFAWorldCup",
+      "date": "2026-06-26"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DaE89rfFrDu",
+      "account": "@fifaworldcup",
+      "caption": "🇧🇪 Belgium earn their spot in the knockouts! 💥 — Belgium 5-1 New Zealand",
+      "date": "2026-06-26"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DaEmKsuitkL/",
+      "account": "@fifaworldcup",
+      "caption": "🇪🇸 Spain's victory secures their place in the knockouts! 💪 — Uruguay 0-1 Spain #FIFAWorldCup",
+      "date": "2026-06-26"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DaEp6sNi3jU/",
+      "account": "@fifaworldcup",
+      "caption": "🇪🇸 Spain finish as Group H winners! 🔝 #FIFAWorldCup",
+      "date": "2026-06-26"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DaErB3wlsXA",
+      "account": "@fifaworldcup",
+      "caption": "Group H Standings: 1. 🇪🇸 Spain 2. 🇨🇻 Cabo Verde 3. 🇺🇾 Uruguay 4. 🇸🇦 Saudi Arabia",
+      "date": "2026-06-26"
+    },
     {
       "platform": "instagram",
       "url": "https://www.instagram.com/p/DaERtTJCAj-/",
