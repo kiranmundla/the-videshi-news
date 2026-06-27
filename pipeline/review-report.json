@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-27T10:15:51.162502+00:00",
+  "timestamp": "2026-06-27T10:45:25.719212+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 5,
+    "pass": 3,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "035fe3ed-9ac1-4d43-9c08-46357b438e19",
-      "headline": "India's Pharma Industry Is Betting Its Future on Biosimilars \u2014 and the Numbers Suggest the Gamble May Pay Off",
-      "slug": "india-pharma-biosimilars-biologics-pivot-30-billion-exports-usfda-biocon-pli-shakti-nri-investor-20260627",
+      "id": "58cf0fde-55e1-4aa8-b212-95f328189a6e",
+      "headline": "India Isn't Playing at the World Cup. It Might Be the Tournament's Biggest Audience Anyway.",
+      "slug": "india-biggest-football-audience-world-cup-2026-no-team-diaspora-nri",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "pharmaceutical manufacturing line",
-          "reason": "The photo shows a pharmaceutical manufacturing process, relevant to the pharma industry story."
+          "what_photo_shows": "fans celebrating at a World Cup match",
+          "reason": "The photo shows fans at a World Cup match, which is relevant to the story about India's interest in the tournament."
         },
         "inline_image_mismatches": []
       },
@@ -32,17 +32,60 @@
         "image_match": {
           "score": 9,
           "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the diaspora aspect of the World Cup, highlighting players with dual nationalities and the broader implications for global football."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more direct quotes from Indian football fans or experts to enhance the personal connection.",
+          "Add a section discussing how the Indian audience's engagement with football might influence future World Cup participation."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "4825c3bb-ebc0-4bae-be87-fd9f1784ccbf",
+      "headline": "Every Forecaster Is Saying the Same Thing: India Is Slowing Down. Here Is Why.",
+      "slug": "india-gdp-growth-forecast-fy27-sp-rbi-ubs-slowdown-monsoon-el-nino-oil-energy-inflation-20260627",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Bombay Stock Exchange building",
+          "reason": "The photo shows a key financial hub relevant to India's economic story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 8,
+          "issue": "The image of the Bombay Stock Exchange is relevant to the economic topic but could be more directly related to the specific content of the article."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 7,
-          "note": "The article discusses investment opportunities in India's pharma sector, which is relevant to NRI investors."
+          "note": "The article discusses implications for NRI investors, which connects well with the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more specific examples of NRI investors or companies that are currently investing in biosimilars.",
-          "Add a section on potential risks or challenges that could affect the growth of the biosimilars market in India."
+          "Include more specific examples of how the economic slowdown impacts NRI investors directly.",
+          "Consider adding a section on potential opportunities for NRIs in the current economic climate."
         ],
         "verdict": "pass"
       },
@@ -54,9 +97,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "7c276803-ba2d-48e9-afef-e7661a79fa3c",
-      "headline": "The Packaged Breads and Cereals in Your Pantry May Be Quietly Raising Your Risk of Inflammatory Bowel Disease",
-      "slug": "ultra-processed-grains-quadruple-inflammatory-bowel-disease-risk-pure-study-124000-adults-21-countries-diaspora-20260627",
+      "id": "f5baee78-cabe-4e64-9eb0-0ea6e3ada84f",
+      "headline": "A Year Ago, India and Canada Were Expelling Each Other's Diplomats. Now Modi Has Been Invited to Ottawa.",
+      "slug": "india-canada-diplomatic-reset-modi-carney-evian-g7-defence-cepa-trade-50-billion-khalistan-20260627",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,157 +107,28 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "shelves of packaged snack foods",
-          "reason": "The photo shows packaged foods relevant to the story on processed foods and IBD risk."
+          "what_photo_shows": "Two leaders in a formal meeting",
+          "reason": "The photo shows Narendra Modi and a Canadian leader, relevant to the story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 8,
+        "overall_score": 7,
         "embed_issues": [],
         "image_match": {
-          "score": 6,
-          "issue": "The image depicts junk food, which is relevant but does not directly represent packaged breads and cereals."
+          "score": 8,
+          "issue": "The image features Modi meeting a Canadian Prime Minister, which is relevant to the article's topic on India-Canada relations."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the dietary shifts of the Indian diaspora to the research findings, making it relevant to NRI readers."
+          "note": "The article discusses the implications of diplomatic relations on the 1.8 million Indians living in Canada, making it relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that more directly represents packaged breads and cereals to enhance visual relevance.",
-          "Add a brief section on practical dietary recommendations for the diaspora based on the study's findings."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "2c2a521b-a43c-42d1-934f-cf6c78a6f43e",
-      "headline": "Cordelia Cruises Is Sailing from Chennai to Singapore This Summer \u2014 and NRIs Should Take Note",
-      "slug": "cordelia-cruises-chennai-southeast-asia-singapore-nri-20260627",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A cruise ship on the ocean",
-          "reason": "The photo of a cruise ship is relevant to the cruise travel story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively highlights the appeal of the cruise options for NRIs visiting family in India, making it relevant to the diaspora audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more specific details about the onboard experiences to enhance appeal for potential travelers.",
-          "Consider adding testimonials or quotes from previous passengers to provide a personal touch."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "5bf41235-6d5e-47b4-a5f7-212222a9fcf8",
-      "headline": "IRCTC Just Launched an 11-Day Train Pilgrimage Across Eastern India's Holiest Sites",
-      "slug": "irctc-divine-east-temple-tour-bharat-gaurav-train-nri-20260627",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Konark Sun Temple in Odisha",
-          "reason": "The photo shows a site on the Divine East itinerary."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the pilgrimage tour to the interests of NRIs and diaspora families, highlighting the convenience and spiritual significance."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding testimonials or quotes from previous participants to enhance credibility.",
-          "Include a brief section on the cultural significance of the sites visited to enrich the reader's understanding."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "5d15a642-85f8-4060-8d81-c1791c7a8b30",
-      "headline": "Amarnath Yatra 2026 Starts July 3 \u2014 No Helicopters, RFID Tracking, and 30% Off Jammu Hotels",
-      "slug": "amarnath-yatra-2026-nri-guide-no-helicopters-rfid-jammu-20260627",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Amarnath Cave entrance",
-          "reason": "The photo shows the Amarnath Cave, relevant to the pilgrimage story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively addresses NRIs by discussing travel logistics and accommodations relevant to their needs."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more personal anecdotes or testimonials from NRIs who have completed the Yatra to enhance relatability.",
-          "Add a section on cultural significance or historical context of the Amarnath Yatra to enrich the content."
+          "Clarify the timeline of events to avoid confusion, especially regarding the dates mentioned.",
+          "Include more direct quotes from officials or experts to enhance credibility and engagement."
         ],
         "verdict": "pass"
       },
