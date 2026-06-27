@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-27T18:16:09.089248+00:00",
+  "timestamp": "2026-06-27T18:45:25.420094+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 7,
+    "pass": 3,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "749cfbed-6929-41e7-a0e6-3b44831fe427",
-      "headline": "Nikesh Arora's Palo Alto Networks Hit an All-Time High. His Bet: AI Makes Hackers Worse, Not Cybersecurity Obsolete.",
-      "slug": "nikesh-arora-palo-alto-networks-ai-cybersecurity-record-20260627",
+      "id": "dfbfebc3-a84f-4ff1-8f2d-1e67a91ce99f",
+      "headline": "India Just Launched a Trade Probe That Could Sabotage Its Own \u20b99-Lakh-Crore Power Grid.",
+      "slug": "india-crgo-steel-anti-dumping-probe-china-japan-transformer-power-grid-jsw-jfe-dgtr-20260627",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,28 +21,28 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A man speaking at an event",
-          "reason": "The photo plausibly shows Nikesh Arora, relevant to the story."
+          "what_photo_shows": "power distribution transformers on a pole",
+          "reason": "The photo shows transformers relevant to the story about electrical steel and power grids."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 8,
+        "overall_score": 7,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 8,
+          "issue": "The image of power distribution lines is relevant to the topic of the power grid but lacks specific connection to the trade probe."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects Nikesh Arora's background and career trajectory to the Indian diaspora, highlighting his significance to Indian tech professionals in the US."
+          "quality": 6,
+          "note": "The article discusses India's trade policies and their implications, which may interest NRIs involved in energy sectors or trade."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more direct quotes from Nikesh Arora to enhance the article's depth.",
-          "Include a brief section on the implications of AI in cybersecurity for NRI readers to strengthen the diaspora connection."
+          "Include more direct implications for NRIs or the diaspora community regarding the trade probe.",
+          "Add a concluding section summarizing the potential long-term impacts on India's energy sector and its global trade relationships."
         ],
         "verdict": "pass"
       },
@@ -54,9 +54,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "7a19b8a5-d208-4cc0-aaaf-11b5380e0b74",
-      "headline": "India's First Private Orbital Rocket Is on the Launchpad. A Billion-Dollar Bet Rides on It.",
-      "slug": "skyroot-vikram-1-orbital-launch-india-space-unicorn-20260627",
+      "id": "1a30bd23-3380-427b-9890-a7b7cdefdeec",
+      "headline": "India Sent an Entire Field Hospital to Venezuela. It Got There Before Most of the World's Aid Did.",
+      "slug": "india-operation-amistad-venezuela-earthquake-iaf-c17-field-hospital-bhishm-jaishankar-relief-diaspora-20260627",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,8 +64,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "rocket launching into sky",
-          "reason": "The photo shows a rocket launch, relevant to the space-tech story."
+          "what_photo_shows": "Indian Air Force C-17 Globemaster III",
+          "reason": "The photo shows the aircraft type used in the aid mission."
         },
         "inline_image_mismatches": []
       },
@@ -79,104 +79,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the story of Skyroot Aerospace to NRI investors and professionals, highlighting the involvement of IIT graduates and the potential for diaspora capital."
+          "note": "The article effectively connects the Indian diaspora in Venezuela to the humanitarian efforts, highlighting the significance of the operation for them."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from industry experts or stakeholders to enhance credibility.",
-          "Include more details on the implications of the rocket's success or failure for the Indian space industry."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "d3f645d6-a026-4170-96c8-0c34b5a867ec",
-      "headline": "India's Central Bank Just Ordered a Kill Switch on Every AI System in Banking",
-      "slug": "rbi-ai-kill-switch-banking-regulation-nri-20260627",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Reserve Bank of India building",
-          "reason": "The photo shows the RBI headquarters, relevant to the story about RBI regulations."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the RBI's AI regulations to the interests of NRIs, highlighting potential impacts on their banking interactions."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from industry experts or stakeholders to enhance credibility.",
-          "Include more specific examples of how these regulations could directly affect NRI banking experiences."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "29cfedbe-aa44-4f0b-8990-35b2f3332909",
-      "headline": "India's Vande Bharat Sleeper Is Quietly Replacing the Rajdhani \u2014 and It Costs Less Than a Domestic Flight",
-      "slug": "vande-bharat-sleeper-trains-nri-travel-india-overnight-20260627",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "498dce01-41f2-4cb2-b268-690655f37c8a",
-            "headline": "India's First Overnight Vande Bharat Is Coming \u2014 and It Fixe"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Vande Bharat Sleeper Express train",
-          "reason": "The photo shows a Vande Bharat Sleeper Express, which matches the story topic."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the Vande Bharat Sleeper service to the needs and experiences of the NRI community, particularly in terms of travel convenience and cost savings."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more specific examples of how the Vande Bharat Sleeper service has improved the travel experience for NRIs.",
-          "Include quotes or testimonials from passengers to enhance the narrative and provide personal insights."
+          "Consider adding quotes or reactions from members of the Indian diaspora in Venezuela to enhance the personal connection.",
+          "Include more context on how India's disaster diplomacy has evolved over the years to provide a richer background."
         ],
         "verdict": "pass"
       },
@@ -196,118 +105,25 @@
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MISMATCH",
-          "what_photo_shows": "man walking in rain with umbrella",
-          "reason": "The photo shows rain, contradicting the story about reduced monsoon rainfall."
-        },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image description is missing, making it difficult to assess relevance."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively addresses the concerns and travel plans of NRIs visiting India during the monsoon."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include a relevant image description to enhance the image match score.",
-          "Consider adding a section on how NRIs can prepare for the heat and water stress while traveling."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "Cleared mismatched image (man walking in rain with umbrella)",
-        "held: image mismatch"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "image_mismatch": true,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "b8489319-2b6e-410c-bcdb-82ac3ebf1a83",
-      "headline": "The RBI Just Made Dollar Deposits in India More Rewarding Than They've Been in a Decade \u2014 Here's What NRIs Need to Know",
-      "slug": "rbi-fcnr-nri-dollar-deposits-scheme-55-billion-inflows-6-7-percent-rates-leveraged-returns-rupee-banks-diaspora-20260627",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Reserve Bank of India building",
-          "reason": "The photo shows the RBI building, relevant to the story about RBI policies."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 5,
+          "issue": "description missing"
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively addresses NRIs by discussing the benefits of the RBI's new scheme for dollar deposits, making it relevant for the diaspora audience."
+          "note": "The article effectively addresses the concerns and adjustments needed for NRI travelers during the monsoon."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a section on potential risks associated with leveraging deposits for a more balanced view.",
-          "Include testimonials or quotes from NRIs who have benefited from similar schemes to enhance relatability."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "fe887569-da46-4df3-aff6-749acc3e79ee",
-      "headline": "Nearly Half of Adults Over 65 Actually Got Sharper or Stronger \u2014 and Their Mindset Made the Difference",
-      "slug": "yale-study-45-percent-adults-65-improved-cognition-physical-function-positive-aging-attitudes-levy-geriatrics-diaspora-20260627",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "older couple walking outdoors",
-          "reason": "The photo aligns with the story about older adults and walking speed."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the study's findings to the experiences of Indian families in the diaspora, highlighting cultural perspectives on aging."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a quote from a diaspora expert or a personal story to enhance relatability.",
-          "Include more statistics or data on aging in the Indian diaspora to strengthen the argument."
+          "Include a relevant hero image description to enhance visual context.",
+          "Consider adding more specific examples of how NRI travelers can adjust their plans beyond hydration and timing."
         ],
         "verdict": "pass"
       },
