@@ -1,6 +1,6 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-06-27T05:57:00Z",
+  "last_updated": "2026-06-27T07:59:38Z",
   "stage": "Group Stage — 66 of 72 matches played",
   "hosts": "USA, Mexico & Canada",
   "dates": {
@@ -3275,6 +3275,20 @@
       "account": "@fifaworldcup",
       "caption": "World Cup 2026 highlights ⚽",
       "date": "2026-06-26"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/reel/DaAWqQGvg2z/",
+      "account": "@fifaworldcup",
+      "caption": "Côte d'Ivoire at the #FIFAWorldCup 🇨🇮",
+      "date": "2026-06-25"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/reel/DZ_aImYinbJ/",
+      "account": "@fifaworldcup",
+      "caption": "Celebration: samba style 🇧🇷 😎 #FIFAWorldCup",
+      "date": "2026-06-24"
     }
   ],
   "tv": {
