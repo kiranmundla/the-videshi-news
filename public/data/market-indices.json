@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-06-27T21:55:30.350254+00:00",
+  "last_updated": "2026-06-27T22:56:16.439045+00:00",
   "indices": [
     {
       "symbol": "SENSEX",
@@ -30,7 +30,7 @@
       "name": "Nasdaq",
       "flag": "\ud83c\uddfa\ud83c\uddf8",
       "value": 25297.62,
-      "change": -60.99,
+      "change": -60.98,
       "change_pct": -0.24
     },
     {
