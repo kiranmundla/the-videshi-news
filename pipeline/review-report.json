@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-27T08:45:21.889772+00:00",
+  "timestamp": "2026-06-27T09:15:45.643386+00:00",
   "mode": "fix",
   "stats": {
     "pass": 3,
-    "flag": 0,
+    "flag": 2,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "cad50b2a-0ef1-4503-85e5-a6d1108bbc87",
-      "headline": "India's Most Ambitious Trade Deal Goes Live on July 15. If You Work in the UK, Read This.",
-      "slug": "india-uk-ceta-trade-deal-july-15-social-security-relief-75000-professionals-tariff-cuts-20260627",
+      "id": "00ca6a09-9054-4b73-a964-7d2414777f8c",
+      "headline": "Karan Johar Just Walked Into Malayalam Cinema \u2014 and He Brought a Shape-Shifter With Him",
+      "slug": "odiyan-dharma-productions-malayalam-debut-karan-johar-prithviraj-manju-warrier-rahul-sadasivan-folklore-horror-where-to-watch-diaspora-nri-20260627",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Piyush Goyal smiling",
-          "reason": "The photo shows Piyush Goyal, relevant to the trade story."
+          "what_photo_shows": "Prithviraj Sukumaran at public event",
+          "reason": "Prithviraj Sukumaran is mentioned in the story."
         },
         "inline_image_mismatches": []
       },
@@ -30,21 +30,21 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 6,
+          "issue": "The image does not directly relate to Karan Johar or the film 'Odiyan', which may confuse readers."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively addresses the implications of the trade deal for Indian professionals in the UK, making it relevant for the diaspora."
+          "quality": 7,
+          "note": "The article connects to the diaspora by discussing the crossover of Bollywood into Malayalam cinema, which may interest NRIs familiar with both industries."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from experts or stakeholders to enhance credibility.",
-          "Include a brief section on potential challenges or criticisms of the trade deal."
+          "Consider using a more relevant image that features Karan Johar or the film's promotional material.",
+          "Add a brief section on how this collaboration might impact the perception of Indian cinema among the diaspora."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
         "promoted to published"
@@ -54,42 +54,60 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "76414796-c26d-4f9c-8b53-fbcde00e3d2b",
-      "headline": "He Built a Credit-Card App With $1 Million of His Own Money. Now He Runs WhatsApp for 3 Billion People.",
-      "slug": "kunal-shah-cred-founder-whatsapp-global-ceo-meta-900-million-india-super-app-20260627",
+      "id": "668795e1-7da8-4810-a807-116303aac70e",
+      "headline": "Shraddha Kapoor Danced Through Labour Pains, and Two Million People Hit Like Before They Could Breathe",
+      "slug": "eetha-shraddha-kapoor-vithabai-narayangaonkar-lavani-queen-teaser-maddock-films-august-28-2026-where-to-watch-diaspora-nri",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "f6cb1bb6-ebec-4266-915a-7400e0ec0095",
+            "headline": "Shraddha Kapoor Gives Birth Backstage, Then Walks Out to Dan"
+          }
+        ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "man in Freecharge polo shirt",
-          "reason": "The photo plausibly shows Kunal Shah, relevant to the story."
+          "what_photo_shows": "Shraddha Kapoor at an event",
+          "reason": "The photo shows Shraddha Kapoor, matching the story's subject."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
+        "overall_score": 7,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/DZ6yzfLiODj/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post is not directly related to the article's main topic of Shraddha Kapoor's performance in *Eetha*."
+          },
+          {
+            "url": "https://youtube.com/watch?v=zfopTfY3lBU",
+            "problem": "irrelevant",
+            "explanation": "The YouTube link does not provide relevant content related to the article's focus on Shraddha Kapoor's performance."
+          }
+        ],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 6,
+          "issue": "The image of Shraddha Kapoor does not directly relate to the article's focus on her character in *Eetha*."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article discusses Kunal Shah's appointment and its significance for the Indian diaspora, highlighting the growing influence of Indian-origin leaders in global tech."
+          "quality": 6,
+          "note": "The article touches on Bollywood and cultural elements that may resonate with the diaspora, but lacks a strong connection to NRI experiences."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes from Kunal Shah to provide personal insights.",
-          "Add a section on how Shah's leadership might specifically impact Indian users of WhatsApp."
+          "Replace the irrelevant embeds with content that directly relates to Shraddha Kapoor's role in *Eetha*.",
+          "Consider adding quotes or perspectives from diaspora audiences regarding the film's themes or Shraddha's impact."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/DZ6yzfLiODj/",
+        "Removed irrelevant embed: https://youtube.com/watch?v=zfopTfY3lBU",
         "promoted to published"
       ],
       "revised": false,
@@ -97,14 +115,19 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "93ae7d0f-5cd6-4216-a3fe-8ee60796f619",
-      "headline": "Seven Goals, Seven Scorers: India Tear Pakistan Apart in London",
-      "slug": "india-hammer-pakistan-7-1-fih-pro-league-hockey-london-seven-scorers-harmanpreet-sukhjeet-2026-diaspora-nri",
+      "id": "1116528b-9890-4be7-adec-621e21e67cd8",
+      "headline": "India's AI Startups Just Raised Over $1 Billion in Back-to-Back Rounds. The Bet Is Sovereignty.",
+      "slug": "india-ai-startups-billion-dollar-rounds-sovereign-neysa-sarvam-20260627",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "server racks in a data centre",
+          "reason": "The photo of server racks is relevant to a story about AI infrastructure."
+        },
         "inline_image_mismatches": []
       },
       "llm_review": {
@@ -112,18 +135,104 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image description is missing, making it difficult to assess its relevance to the article."
+          "issue": "The image is relevant to the topic of AI startups but does not specifically depict AI or technology."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the match to the Indian diaspora in the UK, highlighting the significance of watching the game live."
+          "note": "The article effectively connects the AI developments in India to NRI investors and professionals, highlighting opportunities for diaspora engagement."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include a relevant image description to enhance the image match score.",
-          "Consider adding quotes from players or coaches to provide more depth and personal insight into the match."
+          "Consider including more specific examples of how NRI professionals can engage with or invest in these AI startups.",
+          "Add a section discussing potential challenges or risks for NRI investors in the Indian AI landscape."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "90c93f0b-2196-431b-81da-36714a6d361c",
+      "headline": "Jensen Huang Says Nvidia's China Revenue Has Dropped to Zero. The $20 Billion Vera CPU Is His Answer.",
+      "slug": "nvidia-jensen-huang-china-zero-vera-cpu-20-billion-agentic-ai-20260627",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "man in suit and glasses",
+          "reason": "The photo plausibly shows Nvidia CEO Jensen Huang."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects Nvidia's developments to the Indian diaspora, highlighting the employment of Indian-origin engineers and the implications for Indian tech professionals."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of how Indian engineers are contributing to Nvidia's new initiatives.",
+          "Include quotes or insights from Indian tech professionals to enhance the diaspora connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "6714a29f-e33c-4be3-9715-8a0487438fb5",
+      "headline": "Apple Is Lobbying the White House to Buy Chips From a Blacklisted Chinese Firm. The Memory Crisis Left It No Choice.",
+      "slug": "apple-cxmt-blacklisted-chinese-memory-chip-lobbying-cook-20260627",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "electronic microchips on circuit board",
+          "reason": "The photo subject is relevant to the semiconductor-geopolitics story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 6,
+          "issue": "The image does not directly relate to the article's focus on semiconductor geopolitics and Apple\u2019s lobbying efforts."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the semiconductor crisis and Apple's actions to the Indian American community, particularly through the mention of Micron and its CEO."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that reflects the semiconductor industry or Apple's lobbying efforts.",
+          "Expand on the implications for the Indian semiconductor industry to strengthen the diaspora connection."
         ],
         "verdict": "pass"
       },
