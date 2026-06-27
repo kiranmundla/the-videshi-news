@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-27T16:45:45.144321+00:00",
+  "timestamp": "2026-06-27T17:15:33.065164+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 3,
+    "pass": 1,
+    "flag": 2,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "f3761bbb-760a-4b1e-90c0-e6bd661300c8",
-      "headline": "The Sound of His Bat Was Like a Gunshot': Sangakkara Recalls the Day He Discovered Sooryavanshi",
-      "slug": "sangakkara-recalls-sooryavanshi-gunshot-bat-archer-laughed-rajasthan-royals-guwahati-training-nets-ipl-2026-diaspora-nri",
+      "id": "3a56cbc1-e827-46f3-a02f-b21b764e471f",
+      "headline": "A Karate Family, an \u20b918-Crore Budget, and \u20b969 Crore Later \u2014 'Blast' Just Landed on Netflix",
+      "slug": "blast-tamil-martial-arts-netflix-streaming-arjun-preity-mukhundhan-family-action-blockbuster-where-to-watch-diaspora-nri-20260627",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,56 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Vaibhav Sooryavanshi with Prime Minister Modi",
-          "reason": "The photo shows Vaibhav Sooryavanshi, relevant to the cricket story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 5,
-          "issue": "The image does not directly relate to the article's focus on Vaibhav Sooryavanshi's cricketing achievements."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects Sooryavanshi's story to the Indian diaspora, highlighting his rise from Bihar to international cricket."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that showcases Vaibhav Sooryavanshi in action or at a cricket event.",
-          "Add more context about the significance of Sooryavanshi's achievements for the Indian diaspora."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "8fd17464-6432-4916-a14d-a02a0b455406",
-      "headline": "Adani Just Committed $2.1 Billion to Turn Six Indian Airports Into Small Cities. Mumbai Gets the Biggest Share.",
-      "slug": "adani-airport-city-2-billion-mumbai-ahmedabad-changi-model-integrated-urban-districts-20260627",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "f0ab0db2-123b-4021-b68a-4efc97bf763f",
-            "headline": "Adani Bets \u20b920,000 Crore on Turning Six Indian Airports Into"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "interior of Mumbai airport terminal",
-          "reason": "The photo shows Mumbai's international terminal, relevant to the airport city investment story."
+          "what_photo_shows": "poster of 'Blast' film",
+          "reason": "The photo shows a poster for the film 'Blast', matching the story about the film."
         },
         "inline_image_mismatches": []
       },
@@ -84,13 +36,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the airport developments to the diaspora experience, highlighting the importance of airports as the first and last impression of India."
+          "note": "The article connects well with the diaspora by highlighting the film's availability on Netflix in multiple languages, making it accessible to a global audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more specific examples of how these developments will directly benefit the diaspora.",
-          "Add quotes or insights from diaspora members to enhance the personal connection."
+          "Consider adding more context about the significance of martial arts in Indian culture to enhance the diaspora connection.",
+          "Include quotes or reactions from diaspora viewers who have watched the film to provide a personal touch."
         ],
         "verdict": "pass"
       },
@@ -102,9 +54,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "655c6166-4099-4978-9196-388b3377d586",
-      "headline": "OpenAI Just Hired Uber India's Boss to Run Its Second-Biggest Market. It's Not Messing Around.",
-      "slug": "openai-prabhjeet-singh-india-md-uber-iit-kharagpur-chatgpt-second-largest-market-20260627",
+      "id": "27668618-fca0-4d33-82ba-b1da9bcca517",
+      "headline": "Black Gowns, a \u20b92.3-Crore Watch, and the Night Bollywood Dressed to Kill: Inside the Style Icons Awards 2026",
+      "slug": "bollywood-hungama-style-icons-awards-2026-red-carpet-winners-akshay-shahid-sharvari-vaani-kapoor-fashion-night-jw-marriott-june-2026",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -112,8 +64,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "AI summit plenary session",
-          "reason": "The photo shows an AI summit, relevant to the tech and AI leadership story."
+          "what_photo_shows": "A man in a suit at an event",
+          "reason": "The photo plausibly shows Shahid Kapoor, relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -121,62 +73,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image is relevant to the topic of AI but does not specifically relate to OpenAI or the appointment of Prabhjeet Singh."
+          "score": 5,
+          "issue": "The image does not match the article's focus on the Style Icons Awards; it features Shahid Kapoor at a different event."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the appointment to the global Indian diaspora, highlighting the significance of Indian talent in the tech industry."
+          "quality": 7,
+          "note": "The article connects to the Indian diaspora by discussing Bollywood, which has a significant following among NRIs."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more specific examples of how OpenAI's presence in India could impact the diaspora community.",
-          "Consider using an image that directly relates to OpenAI or Prabhjeet Singh to enhance relevance."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "6b96acff-4a1c-454a-b775-562a3ed68e04",
-      "headline": "Trump Is Coming to India. Rubio Says So. The Diaspora Has Questions",
-      "slug": "trump-india-visit-2027-rubio-diaspora-immigration-wish-list-20260627",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A man in a suit with a US flag pin",
-          "reason": "The photo plausibly shows Marco Rubio, relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 2,
-          "issue": "irrelevant"
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses the concerns and expectations of the Indian American diaspora regarding Trump's upcoming visit."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the hero image with one that is more relevant to the topic of Trump's visit to India.",
-          "Include more direct quotes or perspectives from diaspora members to enhance engagement."
+          "Replace the hero image with one that is directly related to the Style Icons Awards.",
+          "Include more quotes or insights from the panel discussions to enhance the depth of the article."
         ],
         "verdict": "flag"
       },
@@ -195,7 +104,18 @@
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [],
-        "broken_embeds": [],
+        "broken_embeds": [
+          {
+            "url": "https://x.com/USAmbIndia/status/1748234567890123456",
+            "problem": "broken",
+            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
+          },
+          {
+            "url": "https://instagram.com/p/C1234567890/",
+            "problem": "broken",
+            "detail": "Instagram embed shows removed/broken placeholder"
+          }
+        ],
         "vision_image_match": {
           "verdict": "MATCH",
           "what_photo_shows": "US Ambassador Sergio Gor portrait",
@@ -212,19 +132,20 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article discusses the implications of the trade deal on H-1B workers, which is relevant to the Indian diaspora."
+          "quality": 8,
+          "note": "The article effectively connects the trade deal and immigration issues to the concerns of the Indian diaspora, particularly in the tech sector."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the hero image with one that is more relevant to the topic of immigration or trade.",
-          "Provide more context on how the trade deal specifically impacts H-1B workers to enhance clarity."
+          "Replace the hero image with one that is more relevant to the topic of H-1B visas or the trade deal.",
+          "Clarify the timeline mentioned in the article, as it references events in 2026 which may confuse readers."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
-        "Revised by gemini-2.5-flash (715\u2192876 words)"
+        "Removed 2 broken/hallucinated embed(s)",
+        "Revised by gemini-2.5-flash (874\u2192877 words)"
       ],
       "revised": true,
       "unpublished": false,
