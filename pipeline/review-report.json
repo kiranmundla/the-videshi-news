@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-27T04:45:19.373679+00:00",
+  "timestamp": "2026-06-27T05:15:12.947016+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
+    "pass": 0,
     "flag": 1,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "16e38389-4974-46fa-8233-d85596abbc99",
-      "headline": "Kohli Is Back, Jaiswal Is Out, and India Have Named Their ODI Squad for England",
-      "slug": "india-odi-squad-england-2026-virat-kohli-returns-jaiswal-dropped-bumrah-shubman-gill-captain-diaspora-nri",
+      "id": "c39c1b42-96b3-4123-8819-fba29d88eaa2",
+      "headline": "Prabhas Held Up Three Fingers and the Internet Lost Its Mind: Inside Netflix's 'Baahubali: The Torchbearer'",
+      "slug": "baahubali-the-torchbearer-netflix-documentary-prabhas-three-fingers-baahubali-3-tease-rajamouli-rana-daggubati-where-to-watch-diaspora-nri-20260626",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,79 +21,39 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Virat Kohli playing cricket in India whites",
-          "reason": "The photo clearly shows Virat Kohli, who is a central figure in the headline."
+          "what_photo_shows": "Prabhas in character from the Baahubali movie poster",
+          "reason": "The photo shows Prabhas, the named subject of the story, in a context directly related to the Baahubali franchise."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
+        "overall_score": 8,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/DaCRAvwq6SJ/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post is from 2022 and features a promotional image for 'Kantara', not 'Baahubali' or the Netflix documentary. It is not topically relevant to the article's subject."
+          }
+        ],
         "image_match": {
           "score": 9,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The image entities explicitly mention 'diaspora' and 'nri', indicating an intentional connection. The article itself is a standard cricket update, but the platform's context makes the diaspora angle relevant."
-        },
-        "factual_flags": [
-          "IPL 2026 final mentioned, but current year is 2024. This is a significant discrepancy.",
-          "Virat Kohli's IPL strike rate of 237.31 seems extremely high and potentially incorrect for a full season.",
-          "15-year-old Vaibhav Sooryavanshi in T20I squad seems like a very unusual and potentially incorrect claim without further verification."
-        ],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Verify the year of the IPL final (2026 vs. 2024) and the accuracy of Virat Kohli's IPL strike rate.",
-          "Confirm the age and inclusion of Vaibhav Sooryavanshi in the T20I squad, as it's a highly unusual detail."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "84af8f2e-e06c-4d9c-90cd-3f190ea399e0",
-      "headline": "Iran Is Offering India $4-a-Barrel Discounts on Crude. So Far, India Isn't Biting.",
-      "slug": "iran-middlemen-offer-discounted-crude-oil-indian-refiners-sanctions-waiver-nioc-20260627",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A crude oil tanker at sea",
-          "reason": "The photo shows a crude oil tanker, which is directly relevant to a story about crude oil trade and shipping."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 6,
-          "note": "The article focuses on India's energy security and economic decisions, which indirectly affects NRIs through the Indian economy. However, a direct link to how this impacts NRIs (e.g., remittances, investment, or specific community concerns) is not explicitly made. The 'Videshi' platform could benefit from a more direct connection."
+          "quality": 8,
+          "note": "The article effectively connects the Baahubali franchise to NRI/diaspora readers, highlighting its cultural impact and how it resonated with families abroad. It feels natural and well-integrated."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a sentence or two in the conclusion or introduction to explicitly connect the implications of India's energy decisions (e.g., inflation, economic stability) to the NRI audience.",
-          "Ensure all social media embeds are present and relevant. The article mentions a post on X but doesn't include an embed."
+          "Replace the irrelevant Instagram embed with a relevant one, perhaps a clip or promotional material for the Netflix documentary or the Baahubali franchise itself.",
+          "Expand on 'The Rajamouli Problem' section, as the article abruptly ends there, leaving the reader hanging."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/DaCRAvwq6SJ/",
         "promoted to published"
       ],
       "revised": false,
