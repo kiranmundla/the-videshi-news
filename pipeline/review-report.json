@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-27T06:45:18.224337+00:00",
+  "timestamp": "2026-06-27T07:15:20.690537+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 0,
+    "pass": 1,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,47 +11,54 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "bca044d9-16e7-41af-bd59-feda9d75ff84",
-      "headline": "America Just Decided Who Gets to Use the World's Most Powerful AI. India Had to Ask Not to Be Left Out.",
-      "slug": "us-ai-model-restrictions-anthropic-fable-openai-gpt-india-meity-pax-silica-trusted-partner-access-20260627",
+      "id": "bb82a921-8246-4c0f-8a1b-6050d5a9bf48",
+      "headline": "Ivory Sarees, Chiranjeevi in a Mundu, and Anil Kapoor Dancing: Inside South Cinema's Dreamiest Wedding of the Year",
+      "slug": "avantika-sundar-goa-wedding-tamannaah-trisha-bridesmaids-chiranjeevi-anil-kapoor-jackie-shroff-khushbu-sundar-south-cinema-where-to-watch-diaspora-nri-20260627",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [
           {
-            "article_id": "4bca5192-337c-4510-b446-997687d69d34",
-            "headline": "A Wall Street Bank Just Told India Its AI Is a 'Fighter Jet'"
+            "article_id": "aa20f6b8-6cb6-48f6-81c6-c7a6682cfe3c",
+            "headline": "Tamannaah Bhatia Just Said Out Loud What South Cinema's Actr"
           }
         ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "server racks in a data centre",
-          "reason": "The photo shows server racks, relevant to AI infrastructure."
+          "what_photo_shows": "Tamannaah Bhatia at a film event",
+          "reason": "Tamannaah is mentioned as a bridesmaid in the story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/DaDNSfBCAml/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not seem to directly relate to the wedding or the key figures mentioned in the article."
+          }
+        ],
         "image_match": {
-          "score": 5,
-          "issue": "The image of a data center does not directly relate to the article's focus on AI negotiations and India's involvement."
+          "score": 6,
+          "issue": "The image does not depict the wedding or any of the key figures mentioned in the article."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article discusses India's position in the global AI landscape, which is relevant to the Indian diaspora interested in technology and international relations."
+          "quality": 8,
+          "note": "The article effectively connects the wedding to the diaspora by highlighting the cultural significance and differences between South Indian cinema and Bollywood, appealing to NRI readers."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that depicts AI technology or India-U.S. relations in tech.",
-          "Add quotes or perspectives from Indian tech leaders or diaspora members to enhance the connection to the NRI audience."
+          "Replace the irrelevant Instagram embed with a more relevant one that showcases the wedding or key attendees.",
+          "Consider using an image that directly relates to the wedding or the main subjects discussed in the article."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/DaDNSfBCAml/",
         "promoted to published"
       ],
       "revised": false,
@@ -59,43 +66,43 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "d38bae08-4e80-4cf0-8e99-ef229a271289",
-      "headline": "Oil Just Had Its Worst Week Since the War Began. India \u2014 the World's Third-Largest Importer \u2014 Hasn't Cut Fuel Prices by a Single Rupee.",
-      "slug": "oil-crash-brent-72-india-fuel-prices-unchanged-saudi-aramco-ras-tanura-rbi-7-percent-growth-20260627",
+      "id": "742111a1-9d68-4c81-83fe-3638c9b1cbe0",
+      "headline": "Akshay Kumar Turns Villain, Saif Ali Khan Plays the Hero \u2014 and Priyadarshan Has Reunited Them After 18 Years",
+      "slug": "haiwaan-akshay-kumar-villain-saif-ali-khan-priyadarshan-september-11-2026-mohanlal-cameo-oppam-remake-where-to-watch-diaspora-nri-20260627",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [
           {
-            "article_id": "063aff7b-d8c6-4c98-856d-9e7bb7b9d8a5",
-            "headline": "Oil Crashes to Pre-War Levels as Saudi Exports Resume \u2014 and "
+            "article_id": "26cd4491-2073-48d3-b925-a3451fa8f27f",
+            "headline": "Akshay Kumar Walks Back Into the 'Welcome' Jungle Tonight \u2014 "
           }
         ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "an oil tanker at sea",
-          "reason": "The photo of an oil tanker is relevant to the story about oil prices and imports."
+          "what_photo_shows": "Akshay Kumar at an event",
+          "reason": "The photo shows Akshay Kumar, who is relevant to the story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 7,
+        "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 8,
-          "issue": "The image of an oil tanker is relevant to the article's topic on oil prices and imports."
+          "score": 7,
+          "issue": "The image features Akshay Kumar but does not directly relate to the film 'Haiwaan' or the article's focus on the reunion of Akshay and Saif."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article discusses India's oil import situation, which is relevant to the Indian diaspora concerned about economic impacts."
+          "quality": 8,
+          "note": "The article connects well with the diaspora by referencing the excitement around Bollywood films in international markets."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes from Indian officials or analysts to strengthen the connection to the Indian context.",
-          "Add a brief section on how the diaspora can engage with or respond to the fuel price situation in India."
+          "Consider using an image that directly relates to the film 'Haiwaan' for better visual relevance.",
+          "Expand on the diaspora angle by including quotes or reactions from NRI audiences regarding the film's release."
         ],
         "verdict": "pass"
       },
