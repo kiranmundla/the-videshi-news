@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-27T12:45:32.987859+00:00",
+  "timestamp": "2026-06-27T13:15:17.830684+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 4,
+    "pass": 2,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "ed68843d-27ac-4d82-8633-1203f08f48b9",
-      "headline": "The Quiet Rise of the Biryani Belt: How One Franchise Built 50 Outposts Across America",
-      "slug": "the-quiet-rise-of-the-biryani-belt-how-one-franchise-built-50-outposts-across",
+      "id": "890167cd-d188-4e0b-9311-c9b95f8d3f87",
+      "headline": "Rancho Has Kids Now: Rajkumar Hirani Confirms the '3 Idiots' Sequel Nobody Expected",
+      "slug": "3-idiots-sequel-rajkumar-hirani-aamir-khan-mid-life-crisis-married-kids-r-madhavan-sharman-joshi-where-to-watch-diaspora-nri-20260627",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,56 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A plate of mutton biryani",
-          "reason": "The photo shows biryani, which is relevant to the story about a biryani franchise."
+          "what_photo_shows": "3 Idiots movie poster",
+          "reason": "The photo is related to the film '3 Idiots', which is the subject of the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the sequel's themes to the experiences of the diaspora audience, making it relatable."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes or reactions from diaspora audiences to enhance the connection.",
+          "Include more details about the potential release timeline or production updates to keep readers informed."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "f6648ab6-e873-4635-bb4d-db8741e66e8d",
+      "headline": "Priyanka Chopra Just Dropped the Jolie Bombshell \u2014 and Her 2027 Slate Is Obscene",
+      "slug": "priyanka-chopra-angelina-jolie-collaboration-varanasi-rajamouli-amri-mira-nair-judgment-day-2027-slate-where-to-watch-diaspora-nri-20260627",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "37699234-43dd-48b1-886b-8609e86ecd4e",
+            "headline": "At 20, Priyanka Chopra Turned Down the Bigger Cheque. Twenty"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Priyanka Chopra Jonas at an event",
+          "reason": "The photo shows Priyanka Chopra Jonas, who is the subject of the story."
         },
         "inline_image_mismatches": []
       },
@@ -36,142 +84,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively highlights the connection between the franchise and the Telugu diaspora, showcasing community involvement and cultural significance."
+          "note": "The article effectively connects Priyanka Chopra's projects to the interests of NRI audiences, highlighting global releases and accessibility."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more quotes or anecdotes from customers to enhance the community aspect.",
-          "Provide more context on the significance of biryani in Indian culture to engage readers further."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "1dfbc7c6-499b-4fac-ace4-ca798374e916",
-      "headline": "Mango Diplomacy: How India's Embassies Are Making America Fall for the King of Fruits",
-      "slug": "mango-diplomacy-how-indias-embassies-are-making-america-fall-for-the-king-of",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Ripe mangoes, whole and halved",
-          "reason": "The photo shows mangoes, which are relevant to the story about mango diplomacy."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 10,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the mango festivals to the emotional ties of the Indian diaspora, highlighting nostalgia and cultural significance."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include quotes or anecdotes from more attendees to enhance the emotional connection.",
-          "Add a brief section on the historical significance of mangoes in Indian culture to provide more context."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "a12e1893-3def-4ca2-b356-d859500d8a9a",
-      "headline": "The Man Who Inspired '3 Idiots' Is About to Join India's Gen Z Revolt. He Says He'll Stop Eating Until the Government Listens.",
-      "slug": "sonam-wangchuk-hunger-strike-cockroach-janta-party-neet-ladakh-jantar-mantar-20260628",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Sonam Wangchuk speaking at an event",
-          "reason": "The photo shows Sonam Wangchuk, who is the subject of the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article connects the diaspora to the ongoing protests and issues in India, but could elaborate more on how these events impact NRIs specifically."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Expand on the diaspora's role or perspective regarding the protests and issues raised by Wangchuk.",
-          "Include more context on how the NEET scandal affects Indian students abroad or the diaspora community."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "0e3b6b5f-8d61-41c8-95ed-04fc9ba70386",
-      "headline": "Iran Just Claimed Ownership of the World's Most Important Shipping Lane. India Has 200,000 Reasons to Worry.",
-      "slug": "iran-hormuz-strait-control-tanker-hit-india-seafarers-oil-supply-ceasefire-collapse-20260627",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "US Navy ships in a waterway",
-          "reason": "The photo shows US Navy ships, relevant to the Strait of Hormuz story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 8,
-          "issue": "The image depicts naval ships in the Strait of Hormuz, which is relevant to the article's topic."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses the implications for India and its seafarers, connecting well with the Indian diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more direct quotes or perspectives from Indian officials or experts to strengthen the diaspora connection.",
-          "Provide additional context on how the situation affects global oil prices and Indian consumers."
+          "Consider adding more direct quotes from Priyanka Chopra to enhance the article's engagement.",
+          "Include a brief background on the significance of the projects mentioned for further context."
         ],
         "verdict": "pass"
       },
