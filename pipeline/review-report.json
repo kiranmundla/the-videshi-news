@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-27T15:15:46.971250+00:00",
+  "timestamp": "2026-06-27T16:15:20.707935+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 4,
+    "pass": 2,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,177 +11,86 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "144576e5-f718-426c-aaab-d3dd0493ddea",
-      "headline": "Vicky Kaushal Just Blocked 18 Months of His Life for One Role \u2014 and It Starts Now",
-      "slug": "vicky-kaushal-mahavatar-parashurama-18-months-amar-kaushik-maddock-physical-transformation-love-and-war-wrap-2027-20260627",
+      "id": "7982b167-050a-4f07-ac05-a0e7d851df70",
+      "headline": "The Supreme Court Could Decide Monday Whether Your American-Born Child Is American",
+      "slug": "birthright-citizenship-supreme-court-h1b-families-monday-ruling-20260627",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [
           {
-            "article_id": "ea8f3bed-b565-48b7-b0e7-23c869991386",
-            "headline": "Bollywood's Stars Are Vanishing for Years at a Time \u2014 and It"
+            "article_id": "a67a6b6b-6b58-4798-b04c-82dbb44c2303",
+            "headline": "A Charge Is Now Enough: The Supreme Court Just Made Every In"
           }
         ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Vicky Kaushal at a film event",
-          "reason": "The photo shows Vicky Kaushal, matching the story about him."
+          "what_photo_shows": "The United States Supreme Court building",
+          "reason": "The photo is relevant to a Supreme Court-related story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 8,
+        "overall_score": 7,
         "embed_issues": [],
         "image_match": {
           "score": 9,
           "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the implications of the Supreme Court ruling on American-born children of Indian visa holders, directly relevant to the Indian diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include quotes or perspectives from Indian diaspora members affected by the ruling to enhance relatability.",
+          "Add a brief explanation of the implications for Indian families specifically, to strengthen the diaspora connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "13099875-36a1-4ec1-a4ef-01faa6d3b1e0",
+      "headline": "They Left America. India Isn't Hiring Them Back",
+      "slug": "h1b-returnees-india-tech-job-market-28-month-low-salary-mismatch-20260627",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Bengaluru skyline with buildings",
+          "reason": "The photo shows Bengaluru, relevant to the story about tech jobs in India."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 8,
+          "issue": "The image is relevant to the topic of immigration and tech professionals, but it could be more directly related to the theme of returning to India."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 7,
-          "note": "The article discusses a prominent Bollywood actor's commitment to a culturally significant role, which may resonate with the Indian diaspora interested in Bollywood and cultural narratives."
+          "note": "The article discusses the challenges faced by Indian tech professionals returning from the US, which is relevant to the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more context about the significance of the character Parashurama in Hindu mythology to engage readers unfamiliar with the subject.",
-          "Add quotes or insights from Vicky Kaushal or Amar Kaushik to provide a more personal touch to the narrative."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "69f8e1e1-cd21-4aa2-ae7e-979c009ba7ae",
-      "headline": "Salman Khan Is About to Play a Warrior King \u2014 and Rakeysh Omprakash Mehra Will Direct Him",
-      "slug": "salman-khan-rakeysh-omprakash-mehra-two-part-period-epic-warrior-king-farhan-akhtar-excel-entertainment-summer-2027-20260627",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "9ad6cd7b-4859-4900-9358-816217efdfcd",
-            "headline": "Salman Khan Is Reportedly Becoming Karna \u2014 and Bollywood Jus"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Salman Khan at a public appearance",
-          "reason": "The photo shows Salman Khan, who is the subject of the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the film's potential global appeal to NRI audiences, highlighting the significance of the collaboration."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more details about the historical figure being portrayed to enhance reader interest.",
-          "Include quotes or insights from Salman Khan or Rakeysh Omprakash Mehra to provide a more personal touch."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "80f4c38f-afa5-40a6-9e97-8631ab829d50",
-      "headline": "Apple Just Killed the M6 Pro and Max. The AI Chip It's Racing Toward Will Reshape What NRIs Pay for Macs.",
-      "slug": "apple-m6-skip-m7-ai-chip-strategy-mac-price-hike-nri-20260627",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Apple silicon processor",
-          "reason": "The photo shows an Apple silicon processor, relevant to the story about Apple's chip roadmap."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the implications of Apple's chip decisions to Indian buyers and software professionals, making it relevant for the NRI audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more specific examples of how the price increases will impact Indian software engineers and designers.",
-          "Include quotes or insights from industry experts to enhance credibility and depth."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "685ccdcd-883c-405d-bf28-156acc29fd20",
-      "headline": "Big Tech's AI Glasses War Just Went Mass-Market. The Race for Your Face Has a Hindi-Speaking Contender.",
-      "slug": "meta-ai-glasses-muse-spark-hindi-google-apple-snap-20260627",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "person wearing augmented reality glasses",
-          "reason": "The photo shows a person wearing smart glasses, which aligns with the story about AI glasses."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the technology to the needs of the Indian diaspora, particularly through the real-time translation feature."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more statistics or data points related to the adoption of AI glasses among the diaspora to strengthen the argument.",
-          "Include quotes or insights from Indian diaspora members regarding their views on the new technology."
+          "Include quotes or anecdotes from returning professionals to add a personal touch.",
+          "Provide more context on the implications of the job market decline for the Indian economy."
         ],
         "verdict": "pass"
       },
