@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-27T06:15:50.226601+00:00",
+  "timestamp": "2026-06-27T06:45:18.224337+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 7,
+    "pass": 2,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,152 +11,23 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "c6103023-e8db-4ba3-9ca5-06650845df1a",
-      "headline": "Fewer Indians Are Flying West This Summer \u2014 and the Diaspora Should Notice",
-      "slug": "india-outbound-tourism-pivot-west-asia-us-visits-fewer-nri-20260627",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Airplanes on tarmac at airport",
-          "reason": "The photo of airplanes at an airport is relevant to a travel trends story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively addresses the impact of changing travel trends on the Indian diaspora, making it relevant and engaging for NRI readers."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more specific examples or anecdotes from NRIs to enhance relatability.",
-          "Include potential future trends or predictions to provide a forward-looking perspective."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "91435e2d-0f8d-4915-967d-e75835a1c718",
-      "headline": "Indian Airlines Are Rebuilding Gulf Routes \u2014 but Seat Counts Still Lag Last Year by 30 to 40 Per Cent",
-      "slug": "indian-airlines-gulf-west-asia-flights-capacity-recovery-nri-20260627",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Air India Express aircraft",
-          "reason": "The photo shows an Air India Express aircraft, relevant to the story about Indian airlines."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the airline capacity issues to the travel needs of NRIs, particularly for significant travel periods like summer and Diwali."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more data or quotes from industry experts to enhance credibility.",
-          "Include a brief overview of how the situation compares to other regions or airlines for broader context."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "f0ab0db2-123b-4021-b68a-4efc97bf763f",
-      "headline": "Adani Bets \u20b920,000 Crore on Turning Six Indian Airports Into Mini-Cities \u2014 and Mumbai Gets the Lion's Share",
-      "slug": "adani-airport-cities-mumbai-navi-mumbai-ihg-hotels-nri-20260627",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Mumbai airport terminal interior",
-          "reason": "The photo shows Mumbai's airport, relevant to the story about airport development."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the airport developments to the experiences of NRIs, highlighting improvements in quality of life during transit."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more specific examples of how these developments will directly benefit NRIs beyond improved amenities.",
-          "Consider adding quotes or insights from diaspora members to enhance the personal connection."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "f865b541-ec7b-41fe-98eb-5735b9724405",
-      "headline": "A Hyderabad-Born Billionaire Bets $1 Billion on India \u2014 and May Finally Buy IDBI Bank",
-      "slug": "prem-watsa-fairfax-1-billion-india-bonds-idbi-bank-privatisation-bid-revised-nri-investor-20260626-2300",
+      "id": "bca044d9-16e7-41af-bd59-feda9d75ff84",
+      "headline": "America Just Decided Who Gets to Use the World's Most Powerful AI. India Had to Ask Not to Be Left Out.",
+      "slug": "us-ai-model-restrictions-anthropic-fable-openai-gpt-india-meity-pax-silica-trusted-partner-access-20260627",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [
           {
-            "article_id": "3e756902-6a13-43f4-b437-e08704143156",
-            "headline": "He Left Hyderabad With $8. His Company Just Put $1 Billion B"
+            "article_id": "4bca5192-337c-4510-b446-997687d69d34",
+            "headline": "A Wall Street Bank Just Told India Its AI Is a 'Fighter Jet'"
           }
         ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "man speaking at a podium",
-          "reason": "The photo plausibly shows Prem Watsa, relevant to the story."
+          "what_photo_shows": "server racks in a data centre",
+          "reason": "The photo shows server racks, relevant to AI infrastructure."
         },
         "inline_image_mismatches": []
       },
@@ -164,19 +35,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 5,
+          "issue": "The image of a data center does not directly relate to the article's focus on AI negotiations and India's involvement."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article discusses the implications of the IDBI Bank deal for NRI investors, making it relevant to the diaspora."
+          "quality": 7,
+          "note": "The article discusses India's position in the global AI landscape, which is relevant to the Indian diaspora interested in technology and international relations."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more direct quotes from Prem Watsa or financial analysts to enhance credibility.",
-          "Include a brief overview of the historical context of IDBI Bank's performance to provide readers with a clearer understanding."
+          "Consider using a more relevant image that depicts AI technology or India-U.S. relations in tech.",
+          "Add quotes or perspectives from Indian tech leaders or diaspora members to enhance the connection to the NRI audience."
         ],
         "verdict": "pass"
       },
@@ -188,124 +59,43 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "f63642fb-5fc6-4fec-99d5-edfbf5d37766",
-      "headline": "Your BMI Says You're Healthy \u2014 a Landmark Study Says Millions Aren't, and South Asians Are Most at Risk",
-      "slug": "bmi-underestimates-obesity-keck-usc-annals-waist-ratio-south-asian-thin-fat-masala-diaspora-20260626-2300",
+      "id": "d38bae08-4e80-4cf0-8e99-ef229a271289",
+      "headline": "Oil Just Had Its Worst Week Since the War Began. India \u2014 the World's Third-Largest Importer \u2014 Hasn't Cut Fuel Prices by a Single Rupee.",
+      "slug": "oil-crash-brent-72-india-fuel-prices-unchanged-saudi-aramco-ras-tanura-rbi-7-percent-growth-20260627",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "person measuring waist with tape",
-          "reason": "The photo subject aligns with the health and BMI topic."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the findings of the study to the health risks faced by the South Asian diaspora, making it highly relevant."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more specific statistics or quotes from South Asian health experts to strengthen the diaspora angle.",
-          "Add a section on practical steps NRIs can take to address the health risks discussed."
+        "duplicate_images": [
+          {
+            "article_id": "063aff7b-d8c6-4c98-856d-9e7bb7b9d8a5",
+            "headline": "Oil Crashes to Pre-War Levels as Saudi Exports Resume \u2014 and "
+          }
         ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "f9fb1899-b5ff-4dd9-9ec6-0cb891b2b241",
-      "headline": "Sundar Pichai Promised Gemini 3.5 Pro in June. Google Just Pushed It to July.",
-      "slug": "google-gemini-35-pro-delayed-july-flash-computer-use-pichai-20260627",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Sundar Pichai smiling in a suit",
-          "reason": "The photo shows Sundar Pichai, relevant to the story."
+          "what_photo_shows": "an oil tanker at sea",
+          "reason": "The photo of an oil tanker is relevant to the story about oil prices and imports."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 8,
+        "overall_score": 7,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 8,
+          "issue": "The image of an oil tanker is relevant to the article's topic on oil prices and imports."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively highlights the significance of Google's developments for Indian-origin engineers and the broader Indian diaspora, linking professional stakes to the company's performance."
+          "quality": 7,
+          "note": "The article discusses India's oil import situation, which is relevant to the Indian diaspora concerned about economic impacts."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more direct quotes from Sundar Pichai or other Google representatives to enhance credibility.",
-          "Include a brief overview of how the delay might impact Google's market position or user trust."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "6ea6b94e-22a9-435d-9db2-b1b35e350a74",
-      "headline": "Nadella Says a Few AI Labs Are Eating the World. He Just Signed a 20-Year Deal to Build His Own.",
-      "slug": "nadella-ai-ecosystem-warning-project-kilby-copilot-cowork-20260627",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Satya Nadella, Microsoft CEO",
-          "reason": "The photo shows Satya Nadella, relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article connects the implications of Nadella's statements to Indian tech workers, making it relevant for the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more direct quotes from Nadella to enhance the article's authority.",
-          "Include a brief overview of the potential impact of AI on the job market specifically for Indian professionals."
+          "Include more direct quotes from Indian officials or analysts to strengthen the connection to the Indian context.",
+          "Add a brief section on how the diaspora can engage with or respond to the fuel price situation in India."
         ],
         "verdict": "pass"
       },
