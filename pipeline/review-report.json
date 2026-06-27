@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-27T14:45:33.581509+00:00",
+  "timestamp": "2026-06-27T15:15:46.971250+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
+    "pass": 4,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,18 +11,23 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "c4b8600f-560a-434b-9b5d-1f5f80782e5b",
-      "headline": "India Is Selling Its Deadliest Weapons to the Gulf. The UAE Is First in Line.",
-      "slug": "india-brahmos-akashteer-uae-defence-deal-gulf-war-exports-operation-sindoor-20260627",
+      "id": "144576e5-f718-426c-aaab-d3dd0493ddea",
+      "headline": "Vicky Kaushal Just Blocked 18 Months of His Life for One Role \u2014 and It Starts Now",
+      "slug": "vicky-kaushal-mahavatar-parashurama-18-months-amar-kaushik-maddock-physical-transformation-love-and-war-wrap-2027-20260627",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "ea8f3bed-b565-48b7-b0e7-23c869991386",
+            "headline": "Bollywood's Stars Are Vanishing for Years at a Time \u2014 and It"
+          }
+        ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "BrahMos missile on display",
-          "reason": "The photo shows a BrahMos missile, relevant to the story about India's weapons sale."
+          "what_photo_shows": "Vicky Kaushal at a film event",
+          "reason": "The photo shows Vicky Kaushal, matching the story about him."
         },
         "inline_image_mismatches": []
       },
@@ -36,13 +41,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 7,
-          "note": "The article discusses India's defense exports and geopolitical strategies, which are relevant to the Indian diaspora interested in international relations and defense."
+          "note": "The article discusses a prominent Bollywood actor's commitment to a culturally significant role, which may resonate with the Indian diaspora interested in Bollywood and cultural narratives."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes from experts or officials to enhance credibility.",
-          "Add a section on potential implications for the Indian diaspora in the Gulf region."
+          "Include more context about the significance of the character Parashurama in Hindu mythology to engage readers unfamiliar with the subject.",
+          "Add quotes or insights from Vicky Kaushal or Amar Kaushik to provide a more personal touch to the narrative."
         ],
         "verdict": "pass"
       },
@@ -54,23 +59,28 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "d6ace092-978c-4725-aa11-6cb90ca5747f",
-      "headline": "Rubio Says Trump Is Coming to India. The Trade Deal, He Says, Is 'on the Last Inches.'",
-      "slug": "trump-india-visit-early-2027-rubio-gor-trade-deal-h1b-quad-modi-20260627",
+      "id": "69f8e1e1-cd21-4aa2-ae7e-979c009ba7ae",
+      "headline": "Salman Khan Is About to Play a Warrior King \u2014 and Rakeysh Omprakash Mehra Will Direct Him",
+      "slug": "salman-khan-rakeysh-omprakash-mehra-two-part-period-epic-warrior-king-farhan-akhtar-excel-entertainment-summer-2027-20260627",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "9ad6cd7b-4859-4900-9358-816217efdfcd",
+            "headline": "Salman Khan Is Reportedly Becoming Karna \u2014 and Bollywood Jus"
+          }
+        ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Modi and Trump meeting",
-          "reason": "The photo shows Modi and Trump, relevant to the story about their meeting."
+          "what_photo_shows": "Salman Khan at a public appearance",
+          "reason": "The photo shows Salman Khan, who is the subject of the story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 7,
+        "overall_score": 8,
         "embed_issues": [],
         "image_match": {
           "score": 9,
@@ -79,13 +89,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses the implications of US-India relations and H-1B visa policies, which are highly relevant to the Indian diaspora."
+          "note": "The article effectively connects the film's potential global appeal to NRI audiences, highlighting the significance of the collaboration."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes from Indian officials or experts to enhance credibility.",
-          "Provide a brief background on the significance of the H-1B visa program for the Indian diaspora."
+          "Consider adding more details about the historical figure being portrayed to enhance reader interest.",
+          "Include quotes or insights from Salman Khan or Rakeysh Omprakash Mehra to provide a more personal touch."
         ],
         "verdict": "pass"
       },
@@ -97,33 +107,81 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "1fb31b25-e39d-4e8e-9b14-2377fce5b084",
-      "headline": "Vizag's New Greenfield Airport Opens on July 8 \u2014 and the Telugu Diaspora Finally Gets a Shorter Route Home",
-      "slug": "bhogapuram-airport-vizag-july-opening-telugu-diaspora-nri-20260627",
+      "id": "80f4c38f-afa5-40a6-9e97-8631ab829d50",
+      "headline": "Apple Just Killed the M6 Pro and Max. The AI Chip It's Racing Toward Will Reshape What NRIs Pay for Macs.",
+      "slug": "apple-m6-skip-m7-ai-chip-strategy-mac-price-hike-nri-20260627",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Apple silicon processor",
+          "reason": "The photo shows an Apple silicon processor, relevant to the story about Apple's chip roadmap."
+        },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image description is missing, making it difficult to assess relevance."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the new airport to the needs of the Telugu diaspora, highlighting improved travel options."
+          "quality": 8,
+          "note": "The article effectively connects the implications of Apple's chip decisions to Indian buyers and software professionals, making it relevant for the NRI audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include a relevant image description to enhance the image match score.",
-          "Consider adding quotes or testimonials from Telugu Americans to strengthen the diaspora connection."
+          "Consider adding more specific examples of how the price increases will impact Indian software engineers and designers.",
+          "Include quotes or insights from industry experts to enhance credibility and depth."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "685ccdcd-883c-405d-bf28-156acc29fd20",
+      "headline": "Big Tech's AI Glasses War Just Went Mass-Market. The Race for Your Face Has a Hindi-Speaking Contender.",
+      "slug": "meta-ai-glasses-muse-spark-hindi-google-apple-snap-20260627",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "person wearing augmented reality glasses",
+          "reason": "The photo shows a person wearing smart glasses, which aligns with the story about AI glasses."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the technology to the needs of the Indian diaspora, particularly through the real-time translation feature."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more statistics or data points related to the adoption of AI glasses among the diaspora to strengthen the argument.",
+          "Include quotes or insights from Indian diaspora members regarding their views on the new technology."
         ],
         "verdict": "pass"
       },
