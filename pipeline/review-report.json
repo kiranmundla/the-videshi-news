@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-27T11:15:22.500739+00:00",
+  "timestamp": "2026-06-27T12:16:10.072667+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 7,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,73 +11,27 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "e30afae7-af09-4c87-ab05-38209b467d80",
-      "headline": "800 Women in Pink Sarees, a 60-Foot Waterfall Poster, and the Gang Is Back: Dhamaal 4 Is Coming for July",
-      "slug": "dhamaal-4-saree-song-launch-pink-sarees-imagicaa-trailer-ajay-devgn-riteish-deshmukh-july-10-2026-where-to-watch-diaspora-nri-20260627",
+      "id": "3bfccf08-94f2-4e2f-bf43-2cfdc4773f28",
+      "headline": "The Green Card You Could Get Without Leaving America? USCIS Just Made It 'Extraordinary'",
+      "slug": "uscis-adjustment-of-status-extraordinary-consular-processing-india-h1b-20260627",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [
           {
-            "article_id": "44b98be6-9e3f-40c8-b482-09e210ec6306",
-            "headline": "Dhamaal 4 Blinks First: Ajay Devgn's Gang Sprints to July 10"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Dhamaal 4 movie poster with cast",
-          "reason": "The photo shows the cast of Dhamaal 4, matching the story about the film's release."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [
+            "article_id": "cd4c6f8e-79f5-47e7-8212-4c494babe13a",
+            "headline": "The Self-Petition Escape Hatch Is Closing. NIW Approvals Jus"
+          },
           {
-            "url": "https://www.instagram.com/p/DZxFScjjgkA/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post does not appear to be directly related to the promotional activities or content discussed in the article."
+            "article_id": "75dec796-365f-4a9f-afc4-aa7eee5d8e89",
+            "headline": "Indians Built Escape Routes Around the Green-Card Backlog. T"
           }
         ],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article connects to the Indian diaspora through its focus on Bollywood culture, which is significant for many NRIs."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the irrelevant Instagram embed with a more relevant social media post related to the film's promotion.",
-          "Consider adding quotes or reactions from diaspora audiences regarding the film to enhance the connection."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DZxFScjjgkA/",
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "08a480f4-6d6b-4c56-9af9-32385aea62ee",
-      "headline": "Marathi Cinema's \u20b9130-Crore King Just Arrived on Netflix \u2014 and the Diaspora Finally Gets a Seat",
-      "slug": "raja-shivaji-netflix-riteish-deshmukh-marathi-blockbuster-highest-grossing-streaming-hindi-global-diaspora-nri-20260627",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Riteish Deshmukh as Chhatrapati Shivaji Maharaj",
-          "reason": "The photo shows the correct named person related to the story."
+          "what_photo_shows": "USCIS Application Support Center",
+          "reason": "The photo shows a USCIS center relevant to the immigration story."
         },
         "inline_image_mismatches": []
       },
@@ -91,13 +45,290 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively highlights the film's availability on Netflix for the diaspora, making it relevant to NRI readers."
+          "note": "The article discusses changes in immigration policy that directly affect Indian nationals, making it relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from Riteish Deshmukh or other cast members to enhance the article's depth.",
-          "Include viewer reactions or reviews from the diaspora to provide a broader perspective on the film's impact."
+          "Include more direct quotes from affected individuals or immigration experts to enhance relatability.",
+          "Add a section on potential future implications or advice for Indian nationals navigating these changes."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "1c144597-db37-40f6-bd66-ec2984b4e378",
+      "headline": "They Staged Armed Robberies to Get U-Visas. An Indian National Just Pleaded Guilty",
+      "slug": "staged-robbery-u-visa-fraud-indian-nationals-guilty-plea-boston-20260627",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "afad5402-abd3-4740-87d1-f83c4738dbc7",
+            "headline": "Washington Just Fined an Indian Immigration Lawyer $255,000 "
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "John Joseph Moakley Courthouse",
+          "reason": "The courthouse is relevant to the visa fraud case story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 6,
+          "issue": "The image of a courthouse is relevant but does not directly depict the crime or the individuals involved."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the case to the broader implications for the Indian immigrant community in the U.S."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including quotes from immigration experts or community leaders to enhance the diaspora perspective.",
+          "Add more context about the U-visa process and its importance to the immigrant community."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "404f339b-3223-40bf-a53b-f8e6a4b15b4b",
+      "headline": "The Son of Indian and Ukrainian Immigrants Is About to Board the ISS. He Brought His Stethoscope.",
+      "slug": "anil-menon-nasa-astronaut-iss-soyuz-ms29-indian-diaspora-space-20260627",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "NASA astronaut in flight suit",
+          "reason": "The photo shows an astronaut, fitting the story about Anil Menon."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 10,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively highlights the significance of Anil Menon's achievements for the Indian diaspora, connecting his story to broader themes of aspiration and representation."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from Anil Menon or other relevant figures to enhance the personal connection to the story.",
+          "Include more context about the significance of the ISS missions for the Indian diaspora to deepen the narrative."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "d449a427-7a2e-4ede-8958-27a0cfb0ee54",
+      "headline": "Haldiram's at Leicester Square, Dr\u0101vida in the East Village: Indian Restaurants Are Finally Playing Offence Abroad",
+      "slug": "haldirams-dravida-bulbul-indian-restaurants-london-nyc-diaspora-20260627",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Indian restaurant interior with warm lighting",
+          "reason": "The photo shows an Indian restaurant setting, which aligns with the story about Indian restaurants abroad."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the experiences of the Indian diaspora with the evolution of Indian cuisine abroad."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes or testimonials from patrons of the restaurants to enhance the narrative.",
+          "Include more statistics or data on the growth of Indian restaurants abroad to provide context."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "d7c28553-cfa9-4c9d-91f8-1b219bae669a",
+      "headline": "Five Eyes Says AI Cyberattacks Are Months Away. India's IT Sector Is Already Selling the Shield.",
+      "slug": "five-eyes-ai-cyberattack-warning-india-it-cybersecurity-20260627",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "hacker working at computer terminal",
+          "reason": "The photo illustrates the AI-accelerated cyber threat landscape relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image is relevant to cybersecurity but lacks specific elements that directly connect to AI or the Five Eyes."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the implications of AI cybersecurity threats to Indian-American professionals and the Indian IT sector."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including more specific examples of how Indian IT firms are addressing AI cybersecurity threats.",
+          "Add a quote or perspective from an Indian cybersecurity expert to enhance local relevance."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "46a89368-bbb6-407c-bb82-4a26695f5261",
+      "headline": "ChatGPT Just Lost Its Majority. Pichai's Gemini and an Anthropic Revolt Are Why.",
+      "slug": "chatgpt-market-share-below-50-gemini-claude-pichai-20260627",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "3401300b-a4a7-4742-890d-aa7d86fbc367",
+            "headline": "Sundar Pichai's Gemini Can Now Run Your Browser, Phone, and "
+          },
+          {
+            "article_id": "50ba40b2-cb1f-46be-b1bf-5b4964226c3a",
+            "headline": "Sundar Pichai's Alphabet Just Joined the Dow. It's Losing No"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Sundar Pichai smiling in a suit",
+          "reason": "The photo shows Sundar Pichai, relevant to the story about Gemini AI."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the impact of AI developments on Indian engineers in Silicon Valley, making it relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more direct quotes or insights from Indian engineers to enhance the diaspora connection.",
+          "Include a brief overview of how these AI developments might affect the Indian market specifically."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "781541c6-5914-4804-be53-6c9b29bceee5",
+      "headline": "SK Hynix Dethroned Samsung After 25 Years. Now It Wants $29 Billion From Wall Street.",
+      "slug": "sk-hynix-samsung-dethroned-nasdaq-adr-hbm-ai-memory-20260627",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "3c56d7de-c502-45fa-b682-95ebeaba388d",
+            "headline": "Qualcomm Spent Two Decades Selling Phone Chips. In a Single "
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "tower servers in a data center",
+          "reason": "The photo of servers is relevant to a semiconductors story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to SK Hynix or semiconductors, but it is a generic tech-related image."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the semiconductor industry's developments to NRI investors and Indian professionals, making it relevant for the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that directly represents semiconductors or SK Hynix.",
+          "Add more specific examples of how the semiconductor developments impact the Indian diaspora beyond investment opportunities."
         ],
         "verdict": "pass"
       },
