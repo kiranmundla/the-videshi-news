@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-27T04:15:19.595309+00:00",
+  "timestamp": "2026-06-27T04:45:19.373679+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 0,
-    "flag": 2,
+    "pass": 1,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "a030dda8-503b-4d87-90b6-120ce5a37580",
-      "headline": "Oracle Made $67 Billion. Then It Cut 21,000 Workers and Blamed the Machine",
-      "slug": "oracle-21000-layoffs-ai-sec-filing-indian-h1b-workers-20260627",
+      "id": "16e38389-4974-46fa-8233-d85596abbc99",
+      "headline": "Kohli Is Back, Jaiswal Is Out, and India Have Named Their ODI Squad for England",
+      "slug": "india-odi-squad-england-2026-virat-kohli-returns-jaiswal-dropped-bumrah-shubman-gill-captain-diaspora-nri",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,13 +21,13 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Oracle headquarters campus in Foster City, California",
-          "reason": "The photo shows the headquarters of Oracle, which is the subject of the news story."
+          "what_photo_shows": "Virat Kohli playing cricket in India whites",
+          "reason": "The photo clearly shows Virat Kohli, who is a central figure in the headline."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 8,
+        "overall_score": 7,
         "embed_issues": [],
         "image_match": {
           "score": 9,
@@ -35,16 +35,18 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively integrates the Indian diaspora angle, detailing impacts on Indian operations, offer letter rescissions in India, and the precarious situation for H-1B visa holders in the US."
+          "quality": 7,
+          "note": "The image entities explicitly mention 'diaspora' and 'nri', indicating an intentional connection. The article itself is a standard cricket update, but the platform's context makes the diaspora angle relevant."
         },
         "factual_flags": [
-          "The article states 'fiscal year ending May 2026' and 'over 40,480 tech jobs cut across more than 70 companies in 2026 alone'. Given the current year is 2024, these dates seem to be future-dated or typos. This needs correction to reflect past or current fiscal years/data."
+          "IPL 2026 final mentioned, but current year is 2024. This is a significant discrepancy.",
+          "Virat Kohli's IPL strike rate of 237.31 seems extremely high and potentially incorrect for a full season.",
+          "15-year-old Vaibhav Sooryavanshi in T20I squad seems like a very unusual and potentially incorrect claim without further verification."
         ],
         "duplicate_embeds": [],
         "suggestions": [
-          "Correct the future-dated fiscal year and layoff statistics to reflect accurate past or current data.",
-          "Consider adding a quote from an affected H-1B worker or an immigration expert to further humanize the 'H-1B Paradox' section."
+          "Verify the year of the IPL final (2026 vs. 2024) and the accuracy of Virat Kohli's IPL strike rate.",
+          "Confirm the age and inclusion of Vaibhav Sooryavanshi in the T20I squad, as it's a highly unusual detail."
         ],
         "verdict": "flag"
       },
@@ -56,51 +58,40 @@
       "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "cd4c6f8e-79f5-47e7-8212-4c494babe13a",
-      "headline": "The Self-Petition Escape Hatch Is Closing. NIW Approvals Just Hit Their Lowest Rate on Record",
-      "slug": "niw-eb1a-approval-rate-record-low-indian-tech-self-petition-20260627",
+      "id": "84af8f2e-e06c-4d9c-90cd-3f190ea399e0",
+      "headline": "Iran Is Offering India $4-a-Barrel Discounts on Crude. So Far, India Isn't Biting.",
+      "slug": "iran-middlemen-offer-discounted-crude-oil-indian-refiners-sanctions-waiver-nioc-20260627",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "3c7b41bb-3d91-43af-b42a-55e7956fd9f4",
-            "headline": "The Numbers Are In. Legal Immigration Just Had Its Worst Yea"
-          },
-          {
-            "article_id": "75dec796-365f-4a9f-afc4-aa7eee5d8e89",
-            "headline": "Indians Built Escape Routes Around the Green-Card Backlog. T"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A USCIS Application Support Center building entrance",
-          "reason": "The photo depicts a USCIS Application Support Center, which is directly relevant to immigration and green card applications discussed in the story."
+          "what_photo_shows": "A crude oil tanker at sea",
+          "reason": "The photo shows a crude oil tanker, which is directly relevant to a story about crude oil trade and shipping."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 8,
+        "overall_score": 7,
         "embed_issues": [],
         "image_match": {
-          "score": 8,
+          "score": 9,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "Directly addresses implications for Indian applicants and the common profile among them."
+          "quality": 6,
+          "note": "The article focuses on India's energy security and economic decisions, which indirectly affects NRIs through the Indian economy. However, a direct link to how this impacts NRIs (e.g., remittances, investment, or specific community concerns) is not explicitly made. The 'Videshi' platform could benefit from a more direct connection."
         },
-        "factual_flags": [
-          "USCIS adjudication data through Q4 of fiscal year 2025 - FY2025 is in the future, current fiscal year is 2024. This is a significant factual error."
-        ],
+        "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Correct the fiscal year reference (FY2025) to reflect current or past data.",
-          "Expand on the 'What This Means for Indian Applicants' section with more actionable advice or detailed implications."
+          "Consider adding a sentence or two in the conclusion or introduction to explicitly connect the implications of India's energy decisions (e.g., inflation, economic stability) to the NRI audience.",
+          "Ensure all social media embeds are present and relevant. The article mentions a post on X but doesn't include an embed."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
         "promoted to published"
