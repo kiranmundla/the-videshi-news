@@ -1,38 +1,81 @@
 {
-  "timestamp": "2026-06-27T16:15:20.707935+00:00",
+  "timestamp": "2026-06-27T16:45:45.144321+00:00",
   "mode": "fix",
   "stats": {
     "pass": 2,
-    "flag": 0,
+    "flag": 3,
     "fail": 0,
     "error": 0
   },
-  "revisions": 0,
+  "revisions": 1,
   "unpublished": 0,
   "articles": [
     {
-      "id": "7982b167-050a-4f07-ac05-a0e7d851df70",
-      "headline": "The Supreme Court Could Decide Monday Whether Your American-Born Child Is American",
-      "slug": "birthright-citizenship-supreme-court-h1b-families-monday-ruling-20260627",
+      "id": "f3761bbb-760a-4b1e-90c0-e6bd661300c8",
+      "headline": "The Sound of His Bat Was Like a Gunshot': Sangakkara Recalls the Day He Discovered Sooryavanshi",
+      "slug": "sangakkara-recalls-sooryavanshi-gunshot-bat-archer-laughed-rajasthan-royals-guwahati-training-nets-ipl-2026-diaspora-nri",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Vaibhav Sooryavanshi with Prime Minister Modi",
+          "reason": "The photo shows Vaibhav Sooryavanshi, relevant to the cricket story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 5,
+          "issue": "The image does not directly relate to the article's focus on Vaibhav Sooryavanshi's cricketing achievements."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects Sooryavanshi's story to the Indian diaspora, highlighting his rise from Bihar to international cricket."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that showcases Vaibhav Sooryavanshi in action or at a cricket event.",
+          "Add more context about the significance of Sooryavanshi's achievements for the Indian diaspora."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "8fd17464-6432-4916-a14d-a02a0b455406",
+      "headline": "Adani Just Committed $2.1 Billion to Turn Six Indian Airports Into Small Cities. Mumbai Gets the Biggest Share.",
+      "slug": "adani-airport-city-2-billion-mumbai-ahmedabad-changi-model-integrated-urban-districts-20260627",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [
           {
-            "article_id": "a67a6b6b-6b58-4798-b04c-82dbb44c2303",
-            "headline": "A Charge Is Now Enough: The Supreme Court Just Made Every In"
+            "article_id": "f0ab0db2-123b-4021-b68a-4efc97bf763f",
+            "headline": "Adani Bets \u20b920,000 Crore on Turning Six Indian Airports Into"
           }
         ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "The United States Supreme Court building",
-          "reason": "The photo is relevant to a Supreme Court-related story."
+          "what_photo_shows": "interior of Mumbai airport terminal",
+          "reason": "The photo shows Mumbai's international terminal, relevant to the airport city investment story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 7,
+        "overall_score": 8,
         "embed_issues": [],
         "image_match": {
           "score": 9,
@@ -41,13 +84,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses the implications of the Supreme Court ruling on American-born children of Indian visa holders, directly relevant to the Indian diaspora."
+          "note": "The article effectively connects the airport developments to the diaspora experience, highlighting the importance of airports as the first and last impression of India."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes or perspectives from Indian diaspora members affected by the ruling to enhance relatability.",
-          "Add a brief explanation of the implications for Indian families specifically, to strengthen the diaspora connection."
+          "Include more specific examples of how these developments will directly benefit the diaspora.",
+          "Add quotes or insights from diaspora members to enhance the personal connection."
         ],
         "verdict": "pass"
       },
@@ -59,9 +102,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "13099875-36a1-4ec1-a4ef-01faa6d3b1e0",
-      "headline": "They Left America. India Isn't Hiring Them Back",
-      "slug": "h1b-returnees-india-tech-job-market-28-month-low-salary-mismatch-20260627",
+      "id": "655c6166-4099-4978-9196-388b3377d586",
+      "headline": "OpenAI Just Hired Uber India's Boss to Run Its Second-Biggest Market. It's Not Messing Around.",
+      "slug": "openai-prabhjeet-singh-india-md-uber-iit-kharagpur-chatgpt-second-largest-market-20260627",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -69,28 +112,28 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Bengaluru skyline with buildings",
-          "reason": "The photo shows Bengaluru, relevant to the story about tech jobs in India."
+          "what_photo_shows": "AI summit plenary session",
+          "reason": "The photo shows an AI summit, relevant to the tech and AI leadership story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 7,
+        "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 8,
-          "issue": "The image is relevant to the topic of immigration and tech professionals, but it could be more directly related to the theme of returning to India."
+          "score": 7,
+          "issue": "The image is relevant to the topic of AI but does not specifically relate to OpenAI or the appointment of Prabhjeet Singh."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article discusses the challenges faced by Indian tech professionals returning from the US, which is relevant to the diaspora audience."
+          "quality": 8,
+          "note": "The article effectively connects the appointment to the global Indian diaspora, highlighting the significance of Indian talent in the tech industry."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes or anecdotes from returning professionals to add a personal touch.",
-          "Provide more context on the implications of the job market decline for the Indian economy."
+          "Include more specific examples of how OpenAI's presence in India could impact the diaspora community.",
+          "Consider using an image that directly relates to OpenAI or Prabhjeet Singh to enhance relevance."
         ],
         "verdict": "pass"
       },
@@ -98,6 +141,92 @@
         "promoted to published"
       ],
       "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "6b96acff-4a1c-454a-b775-562a3ed68e04",
+      "headline": "Trump Is Coming to India. Rubio Says So. The Diaspora Has Questions",
+      "slug": "trump-india-visit-2027-rubio-diaspora-immigration-wish-list-20260627",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "A man in a suit with a US flag pin",
+          "reason": "The photo plausibly shows Marco Rubio, relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 2,
+          "issue": "irrelevant"
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the concerns and expectations of the Indian American diaspora regarding Trump's upcoming visit."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the hero image with one that is more relevant to the topic of Trump's visit to India.",
+          "Include more direct quotes or perspectives from diaspora members to enhance engagement."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "23edf7a8-4c60-40ac-b537-8f95bb5fdcf9",
+      "headline": "The Trade Deal Is in Its 'Last Inches.' For H-1B Workers, That Could Be the Point",
+      "slug": "india-us-trade-deal-bta-h1b-gor-greer-mission-500-tech-talent-20260627",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "US Ambassador Sergio Gor portrait",
+          "reason": "The photo shows the correct named person relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 6,
+        "embed_issues": [],
+        "image_match": {
+          "score": 2,
+          "issue": "irrelevant"
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses the implications of the trade deal on H-1B workers, which is relevant to the Indian diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the hero image with one that is more relevant to the topic of immigration or trade.",
+          "Provide more context on how the trade deal specifically impacts H-1B workers to enhance clarity."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Revised by gemini-2.5-flash (715\u2192876 words)"
+      ],
+      "revised": true,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
     }
