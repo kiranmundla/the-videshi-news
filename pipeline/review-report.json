@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-27T09:15:45.643386+00:00",
+  "timestamp": "2026-06-27T10:15:51.162502+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
-    "flag": 2,
+    "pass": 5,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "00ca6a09-9054-4b73-a964-7d2414777f8c",
-      "headline": "Karan Johar Just Walked Into Malayalam Cinema \u2014 and He Brought a Shape-Shifter With Him",
-      "slug": "odiyan-dharma-productions-malayalam-debut-karan-johar-prithviraj-manju-warrier-rahul-sadasivan-folklore-horror-where-to-watch-diaspora-nri-20260627",
+      "id": "035fe3ed-9ac1-4d43-9c08-46357b438e19",
+      "headline": "India's Pharma Industry Is Betting Its Future on Biosimilars \u2014 and the Numbers Suggest the Gamble May Pay Off",
+      "slug": "india-pharma-biosimilars-biologics-pivot-30-billion-exports-usfda-biocon-pli-shakti-nri-investor-20260627",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Prithviraj Sukumaran at public event",
-          "reason": "Prithviraj Sukumaran is mentioned in the story."
+          "what_photo_shows": "pharmaceutical manufacturing line",
+          "reason": "The photo shows a pharmaceutical manufacturing process, relevant to the pharma industry story."
         },
         "inline_image_mismatches": []
       },
@@ -30,123 +30,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 6,
-          "issue": "The image does not directly relate to Karan Johar or the film 'Odiyan', which may confuse readers."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 7,
-          "note": "The article connects to the diaspora by discussing the crossover of Bollywood into Malayalam cinema, which may interest NRIs familiar with both industries."
+          "note": "The article discusses investment opportunities in India's pharma sector, which is relevant to NRI investors."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that features Karan Johar or the film's promotional material.",
-          "Add a brief section on how this collaboration might impact the perception of Indian cinema among the diaspora."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "668795e1-7da8-4810-a807-116303aac70e",
-      "headline": "Shraddha Kapoor Danced Through Labour Pains, and Two Million People Hit Like Before They Could Breathe",
-      "slug": "eetha-shraddha-kapoor-vithabai-narayangaonkar-lavani-queen-teaser-maddock-films-august-28-2026-where-to-watch-diaspora-nri",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "f6cb1bb6-ebec-4266-915a-7400e0ec0095",
-            "headline": "Shraddha Kapoor Gives Birth Backstage, Then Walks Out to Dan"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Shraddha Kapoor at an event",
-          "reason": "The photo shows Shraddha Kapoor, matching the story's subject."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/p/DZ6yzfLiODj/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post is not directly related to the article's main topic of Shraddha Kapoor's performance in *Eetha*."
-          },
-          {
-            "url": "https://youtube.com/watch?v=zfopTfY3lBU",
-            "problem": "irrelevant",
-            "explanation": "The YouTube link does not provide relevant content related to the article's focus on Shraddha Kapoor's performance."
-          }
-        ],
-        "image_match": {
-          "score": 6,
-          "issue": "The image of Shraddha Kapoor does not directly relate to the article's focus on her character in *Eetha*."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 6,
-          "note": "The article touches on Bollywood and cultural elements that may resonate with the diaspora, but lacks a strong connection to NRI experiences."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the irrelevant embeds with content that directly relates to Shraddha Kapoor's role in *Eetha*.",
-          "Consider adding quotes or perspectives from diaspora audiences regarding the film's themes or Shraddha's impact."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DZ6yzfLiODj/",
-        "Removed irrelevant embed: https://youtube.com/watch?v=zfopTfY3lBU",
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "1116528b-9890-4be7-adec-621e21e67cd8",
-      "headline": "India's AI Startups Just Raised Over $1 Billion in Back-to-Back Rounds. The Bet Is Sovereignty.",
-      "slug": "india-ai-startups-billion-dollar-rounds-sovereign-neysa-sarvam-20260627",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "server racks in a data centre",
-          "reason": "The photo of server racks is relevant to a story about AI infrastructure."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image is relevant to the topic of AI startups but does not specifically depict AI or technology."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the AI developments in India to NRI investors and professionals, highlighting opportunities for diaspora engagement."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider including more specific examples of how NRI professionals can engage with or invest in these AI startups.",
-          "Add a section discussing potential challenges or risks for NRI investors in the Indian AI landscape."
+          "Include more specific examples of NRI investors or companies that are currently investing in biosimilars.",
+          "Add a section on potential risks or challenges that could affect the growth of the biosimilars market in India."
         ],
         "verdict": "pass"
       },
@@ -158,9 +54,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "90c93f0b-2196-431b-81da-36714a6d361c",
-      "headline": "Jensen Huang Says Nvidia's China Revenue Has Dropped to Zero. The $20 Billion Vera CPU Is His Answer.",
-      "slug": "nvidia-jensen-huang-china-zero-vera-cpu-20-billion-agentic-ai-20260627",
+      "id": "7c276803-ba2d-48e9-afef-e7661a79fa3c",
+      "headline": "The Packaged Breads and Cereals in Your Pantry May Be Quietly Raising Your Risk of Inflammatory Bowel Disease",
+      "slug": "ultra-processed-grains-quadruple-inflammatory-bowel-disease-risk-pure-study-124000-adults-21-countries-diaspora-20260627",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -168,8 +64,51 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "man in suit and glasses",
-          "reason": "The photo plausibly shows Nvidia CEO Jensen Huang."
+          "what_photo_shows": "shelves of packaged snack foods",
+          "reason": "The photo shows packaged foods relevant to the story on processed foods and IBD risk."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 6,
+          "issue": "The image depicts junk food, which is relevant but does not directly represent packaged breads and cereals."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the dietary shifts of the Indian diaspora to the research findings, making it relevant to NRI readers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that more directly represents packaged breads and cereals to enhance visual relevance.",
+          "Add a brief section on practical dietary recommendations for the diaspora based on the study's findings."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "2c2a521b-a43c-42d1-934f-cf6c78a6f43e",
+      "headline": "Cordelia Cruises Is Sailing from Chennai to Singapore This Summer \u2014 and NRIs Should Take Note",
+      "slug": "cordelia-cruises-chennai-southeast-asia-singapore-nri-20260627",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "A cruise ship on the ocean",
+          "reason": "The photo of a cruise ship is relevant to the cruise travel story."
         },
         "inline_image_mismatches": []
       },
@@ -183,13 +122,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects Nvidia's developments to the Indian diaspora, highlighting the employment of Indian-origin engineers and the implications for Indian tech professionals."
+          "note": "The article effectively highlights the appeal of the cruise options for NRIs visiting family in India, making it relevant to the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more specific examples of how Indian engineers are contributing to Nvidia's new initiatives.",
-          "Include quotes or insights from Indian tech professionals to enhance the diaspora connection."
+          "Include more specific details about the onboard experiences to enhance appeal for potential travelers.",
+          "Consider adding testimonials or quotes from previous passengers to provide a personal touch."
         ],
         "verdict": "pass"
       },
@@ -201,9 +140,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "6714a29f-e33c-4be3-9715-8a0487438fb5",
-      "headline": "Apple Is Lobbying the White House to Buy Chips From a Blacklisted Chinese Firm. The Memory Crisis Left It No Choice.",
-      "slug": "apple-cxmt-blacklisted-chinese-memory-chip-lobbying-cook-20260627",
+      "id": "5bf41235-6d5e-47b4-a5f7-212222a9fcf8",
+      "headline": "IRCTC Just Launched an 11-Day Train Pilgrimage Across Eastern India's Holiest Sites",
+      "slug": "irctc-divine-east-temple-tour-bharat-gaurav-train-nri-20260627",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -211,8 +150,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "electronic microchips on circuit board",
-          "reason": "The photo subject is relevant to the semiconductor-geopolitics story."
+          "what_photo_shows": "Konark Sun Temple in Odisha",
+          "reason": "The photo shows a site on the Divine East itinerary."
         },
         "inline_image_mismatches": []
       },
@@ -220,19 +159,62 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 6,
-          "issue": "The image does not directly relate to the article's focus on semiconductor geopolitics and Apple\u2019s lobbying efforts."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the semiconductor crisis and Apple's actions to the Indian American community, particularly through the mention of Micron and its CEO."
+          "note": "The article effectively connects the pilgrimage tour to the interests of NRIs and diaspora families, highlighting the convenience and spiritual significance."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that reflects the semiconductor industry or Apple's lobbying efforts.",
-          "Expand on the implications for the Indian semiconductor industry to strengthen the diaspora connection."
+          "Consider adding testimonials or quotes from previous participants to enhance credibility.",
+          "Include a brief section on the cultural significance of the sites visited to enrich the reader's understanding."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "5d15a642-85f8-4060-8d81-c1791c7a8b30",
+      "headline": "Amarnath Yatra 2026 Starts July 3 \u2014 No Helicopters, RFID Tracking, and 30% Off Jammu Hotels",
+      "slug": "amarnath-yatra-2026-nri-guide-no-helicopters-rfid-jammu-20260627",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Amarnath Cave entrance",
+          "reason": "The photo shows the Amarnath Cave, relevant to the pilgrimage story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses NRIs by discussing travel logistics and accommodations relevant to their needs."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more personal anecdotes or testimonials from NRIs who have completed the Yatra to enhance relatability.",
+          "Add a section on cultural significance or historical context of the Amarnath Yatra to enrich the content."
         ],
         "verdict": "pass"
       },
