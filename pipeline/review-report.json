@@ -1,19 +1,19 @@
 {
-  "timestamp": "2026-06-26T23:15:35.623053+00:00",
+  "timestamp": "2026-06-27T00:16:12.313527+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
-    "flag": 1,
+    "pass": 2,
+    "flag": 5,
     "fail": 0,
     "error": 0
   },
-  "revisions": 0,
+  "revisions": 2,
   "unpublished": 0,
   "articles": [
     {
-      "id": "87546f9b-fc20-4f20-8b5a-ebace1f78a1f",
-      "headline": "The Oscar Voting Body Just Got a Lot More Indian \u2014 and It's About Time",
-      "slug": "oscar-academy-2026-class-indian-invitees-vishal-bhardwaj-sreekar-prasad-eka-lakhani-avneet-kaur-disney-dilip-shankar-deepa-bhatia-where-to-watch-diaspora-nri-20260626",
+      "id": "53d0d1df-3d03-4d21-85bf-e61d2359359d",
+      "headline": "Your Green Card Won't Protect You at the Border. Lawyers Say Think Twice Before Flying to India",
+      "slug": "green-card-holders-travel-risk-supreme-court-india-reentry-cbp-20260627",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A man identified as Vishal Bhardwaj",
-          "reason": "The photo shows Vishal Bhardwaj, who is explicitly named in the headline and subheadline as joining the Academy's 2026 class."
+          "what_photo_shows": "A U.S. Customs and Border Protection officer inspecting an airplane.",
+          "reason": "The photo shows a Customs and Border Protection officer at an airport, which is directly relevant to a story about border protection and international travel."
         },
         "inline_image_mismatches": []
       },
@@ -35,14 +35,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article explicitly addresses the diaspora angle with Avneet Kaur and explains its significance."
+          "quality": 9,
+          "note": "Strong and natural connection to Indian diaspora, specifically green card holders traveling to India."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a sentence or two about the historical underrepresentation of Indian cinema at the Oscars to further contextualize the 'about time' in the headline.",
-          "Perhaps include a brief quote from one of the new Indian invitees, if available, to add a personal touch."
+          "Add a concluding sentence or two to the 'What Lawyers Recommend' section to fully close the article.",
+          "Consider adding a link to a reputable immigration law resource or a 'find a lawyer' tool, if appropriate for the platform."
         ],
         "verdict": "pass"
       },
@@ -54,131 +54,68 @@
       "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "d9010ded-8841-46ec-b967-183b3d1fb8f0",
-      "headline": "\"Tell the Pathaans, Chauhaan Is Coming\": Ajay Devgn Storms Back Into Action \u2014 and Bollywood Twitter Can't Stop Arguing",
-      "slug": "chauhaan-ajay-devgn-title-announcement-jio-studios-aanand-l-rai-neeraj-yadav-kashmir-pulwama-action-october-2027-pathaan-line-where-to-watch-diaspora-nri-20260626",
+      "id": "3c7b41bb-3d91-43af-b42a-55e7956fd9f4",
+      "headline": "The Numbers Are In. Legal Immigration Just Had Its Worst Year in a Decade",
+      "slug": "uscis-27-percent-decline-legal-immigration-employment-students-indians-20260627",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Ajay Devgn, who headlines the action thriller Chauhaan",
-          "reason": "The photo clearly shows Ajay Devgn, who is the subject of the headline and story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses a major Bollywood star and a highly anticipated film, which is inherently relevant to the Indian diaspora. The 'Bollywood Twitter at war with itself' aspect also resonates with global Indian social media engagement."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a social media embed (Twitter/X or Instagram) showing some of the 'Bollywood Twitter at war' mentioned in the article to enhance engagement and provide direct evidence of the discussion.",
-          "Expand on the 'G' movie mentioned at the end of the article, as it seems to be cut off abruptly. Ensure all film titles and details are complete."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "a15618bb-5ff4-4a4e-96ce-18204e085a02",
-      "headline": "Munna Bhaiya Walks Back From the Dead: 'Mirzapur' Storms the Big Screen This September",
-      "slug": "mirzapur-the-movie-teaser-pankaj-tripathi-ali-fazal-divyenndu-munna-bhaiya-return-excel-amazon-september-4-2026-where-to-watch-diaspora-nri-20260626",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Pankaj Tripathi, an actor, wearing a black and red scarf",
-          "reason": "The photo shows Pankaj Tripathi, who is explicitly named in the caption as returning for 'Mirzapur: The Movie', which is the subject of the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [
+        "duplicate_images": [
           {
-            "url": "https://www.instagram.com/reel/DaAA-zIzbAL/",
-            "problem": "irrelevant",
-            "explanation": "This Instagram reel is from November 2022 and features a generic motivational quote, not related to Mirzapur or the movie announcement."
+            "article_id": "75dec796-365f-4a9f-afc4-aa7eee5d8e89",
+            "headline": "Indians Built Escape Routes Around the Green-Card Backlog. T"
           }
         ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "A USCIS Application Support Center building exterior.",
+          "reason": "The photo shows a USCIS Application Support Center, which is directly relevant to a story about legal immigration and USCIS application approvals."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 6,
+        "embed_issues": [],
         "image_match": {
           "score": 8,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article explicitly addresses the diaspora audience regarding the theatrical release and its implications for NRIs, mentioning specific regions and cinema chains."
+          "quality": 9,
+          "note": "The article explicitly connects the immigration data to Indian nationals and NRIs, detailing the specific impact on them."
         },
         "factual_flags": [
-          "The article states the worldwide theatrical release is set for 'September 4, 2026' but then repeatedly refers to 'this September' and 'September 4' without the year, creating a contradiction. The teaser release date of June 25, 2024, suggests the movie would be released in September 2024, not 2026."
+          "The article states 'USCIS approved 8.3 million immigration applications in 2025' and then later refers to 'the same window in 2024' and 'January 2024 to February 2026' for studies. This suggests the article is set in 2025/2026, but the headline says 'Legal Immigration Just Had Its Worst Year in a Decade', implying a past event. This creates a temporal inconsistency. If the data is from 2025, it's future-dated relative to current publication, which is a significant factual issue for a news article."
         ],
-        "duplicate_embeds": [
-          "https://youtube.com/watch?v=uBotyv_TSZg"
-        ],
+        "duplicate_embeds": [],
         "suggestions": [
-          "Clarify the release year for Mirzapur: The Movie. The article mentions 'September 4, 2026' but then 'this September' and 'September 4' without the year, which is confusing and likely a factual error.",
-          "Replace the irrelevant Instagram embed with a relevant social media post about Mirzapur: The Movie, perhaps from an official cast or production account."
+          "Clarify and correct the timeline of the data presented. If the article is meant to be published now, the 2025/2026 dates for approvals and studies are problematic and need to be updated to reflect actual past data.",
+          "Expand on the 'What This Means for the Diaspora' section with more concrete examples or quotes from affected individuals or community leaders to further personalize the impact."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/reel/DaAA-zIzbAL/",
-        "promoted to published"
+        "Revised by gemini-2.5-flash (670\u2192885 words)"
       ],
-      "revised": false,
+      "revised": true,
       "unpublished": false,
       "llm_source": "gemini-2.5-flash"
     },
     {
-      "id": "c9bff75a-cdb8-4567-a7a9-c70420a4849e",
-      "headline": "Wimbledon 2026: India's Hopes Ride on Yuki Bhambri and the Doubles Brigade",
-      "slug": "wimbledon-2026-india-yuki-bhambri-doubles-grass-court-preview-nri",
+      "id": "65d48c24-2461-4e11-b84e-df461950b97e",
+      "headline": "The Diaspora Built an American Dream. It Forgot to Plan for Getting Old in It.",
+      "slug": "indian-diaspora-aging-seniors-india-home-gopio-elder-care-20260627",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [],
-        "broken_embeds": [
-          {
-            "url": "https://x.com/atptour/status/1798361280963033501",
-            "problem": "broken",
-            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
-          },
-          {
-            "url": "https://x.com/wimbledon/status/1798358120000854400",
-            "problem": "broken",
-            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
-          },
-          {
-            "url": "https://instagram.com/p/C71g-21y_bS/",
-            "problem": "broken",
-            "detail": "Instagram embed shows removed/broken placeholder"
-          }
-        ],
+        "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Yuki Bhambri playing tennis on a clay court.",
-          "reason": "The photo clearly shows Yuki Bhambri, who is the main subject of the headline and caption."
+          "what_photo_shows": "An elderly woman participating in a community yoga session",
+          "reason": "The photo shows an elderly woman doing yoga, which aligns with the story's theme of aging with dignity and community support for seniors."
         },
         "inline_image_mismatches": []
       },
@@ -191,21 +128,208 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The diaspora angle is well-integrated and feels natural, connecting the event to NRI pride and inspiration."
+          "quality": 10,
+          "note": "The entire article is centered on the NRI/diaspora experience of aging in America, making it highly relevant and naturally integrated."
         },
         "factual_flags": [
-          "The article mentions 'Wimbledon 2026' and 'set to begin on Monday, 29 June'. June 29, 2026, is a Monday, which is correct. However, the article also states 'The draw, released this week, will determine the opening assignments, with first-round matches beginning Monday.' This implies the article is being published in the week leading up to Wimbledon 2026, which is a future date. This is a common issue with future-dated articles that try to sound current."
+          "The article mentions a '2026 study published in Health Affairs'. This is a future date, implying a typo. It should likely be 2016 or 2022/2023 if it's a recent study."
         ],
         "duplicate_embeds": [],
         "suggestions": [
-          "Clarify the publication date context for a future event like Wimbledon 2026 to avoid sounding like it's happening 'this week' when it's still two years away. Perhaps frame it as a 'preview' or 'look ahead'.",
-          "Consider adding a quote from Yuki Bhambri or another Indian doubles player about their expectations for Wimbledon 2026 to add more personal insight."
+          "Correct the publication year for the 'Health Affairs' study to reflect an actual past or present publication date.",
+          "Consider adding a concluding paragraph that summarizes the key takeaway or offers a forward-looking statement on the future of elder care in the diaspora."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "9ce20bf2-ab7b-4c07-b086-c14ab04ee97c",
+      "headline": "Paris Is About to Get Europe's First Traditional Hindu Temple. Thousands of Diaspora Devotees Are Already Packing.",
+      "slug": "baps-paris-mandir-hindu-temple-europe-festival-culture-diaspora-20260627",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Swaminarayan Akshardham temple in Delhi with street scene",
+          "reason": "The photo shows a temple built in the same tradition as the one mentioned in the headline, making it relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image is of Akshardham Temple in Delhi, not the new temple in Paris. While it's a BAPS temple and relevant to the organization, it's not the specific subject of the article. A placeholder or conceptual image would be better if the actual temple isn't available."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article strongly connects to the NRI/diaspora experience, highlighting their funding, mobilization for the opening, and the significance of the temple's recognition in a secular European city. The mention of travel packages for NRIs is a particularly strong angle."
+        },
+        "factual_flags": [
+          "Construction finally broke ground in June 2024 - this seems contradictory with the temple 'nearing completion' and opening in September. If groundbreaking was June 2024, it's impossible for it to be nearing completion for a September opening. This needs clarification."
+        ],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Clarify the timeline discrepancy regarding the construction groundbreaking date. If it broke ground in June 2024, it cannot be nearing completion for a September opening. This is a significant factual error.",
+          "Consider adding a quote from a diaspora member expressing their feelings about the temple's opening and its significance for their community in Europe."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "ff7e34ff-da42-4ee9-960e-f5bb6f21a378",
+      "headline": "India's $315 Billion IT Industry Built Its Empire on Labour. AI Is Dissolving the Foundation.",
+      "slug": "india-it-services-ai-crisis-tcs-layoffs-entry-level-hiring-20260627",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Wipro campus in Bengaluru, an Indian IT company",
+          "reason": "The photo shows an Indian IT campus, which is directly relevant to a story about the Indian IT industry."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The 'NRI Dilemma' section effectively connects the industry trend to diaspora readers, covering employment, investment, and return-to-India considerations."
+        },
+        "factual_flags": [
+          "The article mentions 'fiscal year 2026, which closed in March' and then later 'fiscal 2027'. This implies the current year is 2026 or 2027. However, it also mentions 'June 2026' and 'worst-performing sectoral index of 2026'. This suggests the article is set in the future (2026/2027) relative to the current year (2024). This needs to be clarified or adjusted to reflect current events if it's meant to be a contemporary news piece."
+        ],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Clarify the timeline of the article (e.g., if it's a forward-looking analysis or a report on past events) to avoid confusion with fiscal years and current dates.",
+          "Consider adding a quote from an NRI professional or investor to further personalize the 'NRI Dilemma' section."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "Removed 3 broken/hallucinated embed(s)",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "50ba40b2-cb1f-46be-b1bf-5b4964226c3a",
+      "headline": "Sundar Pichai's Alphabet Just Joined the Dow. It's Losing Nobel-Winning Researchers to Rivals.",
+      "slug": "alphabet-dow-jones-pichai-brain-drain-deepmind-openai-nri-20260627",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "3401300b-a4a7-4742-890d-aa7d86fbc367",
+            "headline": "Sundar Pichai's Gemini Can Now Run Your Browser, Phone, and "
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "A headshot of Sundar Pichai, CEO of Alphabet.",
+          "reason": "The photo clearly shows Sundar Pichai, who is directly named in the headline and caption as the CEO of Alphabet, the company central to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 6,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The diaspora angle is well-integrated, focusing on Pichai's background, Indian-origin executives, and the impact on NRI investors and engineers."
+        },
+        "factual_flags": [
+          "Google Cloud revenue surpassing $20 billion in Q1 2026 is a future date, implying a projection rather than a past fact. The article states 'for the first time in Q1 2026', which is inconsistent with a current news report.",
+          "Alphabet's AI backlog nearly doubling to over $460 billion is a very large number and should be verified for accuracy and source.",
+          "The article states Alphabet's capital expenditure plan for 2026 is $180 billion to $190 billion, 'more than double the $91 billion it spent last year'. This implies 'last year' was 2025, which is also a future date. This needs clarification.",
+          "The article mentions John Jumper winning a 2024 Nobel Prize. Nobel Prizes are typically announced in October of the award year. If the article is published in June, this would be a future event or a projection, not a past fact."
+        ],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Clarify all future-dated financial figures (Q1 2026, 2026 capex, 2024 Nobel Prize) to ensure they are presented as projections or estimates, not as past or current facts. Provide sources for these projections.",
+          "Add at least one relevant social media embed (e.g., a tweet from S&P Dow Jones Indices about the inclusion, or a relevant post from Sundar Pichai) to enhance engagement."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Revised by gemini-2.5-flash (621\u2192731 words)"
+      ],
+      "revised": true,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "46ac3321-e661-4b5e-a03e-728f761c4110",
+      "headline": "Oracle Posted Record Profits and Then Fired 21,000 People. It Blamed AI.",
+      "slug": "oracle-21000-layoffs-ai-record-revenue-indian-engineers-h1b-20260627",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Larry Ellison speaking at a podium",
+          "reason": "The photo shows Larry Ellison, co-founder of Oracle, which is the subject of the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article explicitly connects Oracle's layoffs to Indian tech workers, H-1B visa holders, and operations in India, making the diaspora angle very strong and relevant."
+        },
+        "factual_flags": [
+          "The article states 'Oracle's headcount fell from 162,000 to 141,000 as of May 31, 2026.' and 'With 119,800 tech workers laid off globally so far in 2026'. The year '2026' seems to be a typo, as current events would refer to 2024 or 2023. This needs correction."
+        ],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Correct the year '2026' to the appropriate current or past year (likely 2024 or 2023) throughout the article for factual accuracy.",
+          "Consider adding a quote from an affected Indian tech worker or an expert on H-1B visas to further humanize the impact of the layoffs."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
         "promoted to published"
       ],
       "revised": false,
