@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-27T13:15:17.830684+00:00",
+  "timestamp": "2026-06-27T13:45:22.069688+00:00",
   "mode": "fix",
   "stats": {
     "pass": 2,
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "890167cd-d188-4e0b-9311-c9b95f8d3f87",
-      "headline": "Rancho Has Kids Now: Rajkumar Hirani Confirms the '3 Idiots' Sequel Nobody Expected",
-      "slug": "3-idiots-sequel-rajkumar-hirani-aamir-khan-mid-life-crisis-married-kids-r-madhavan-sharman-joshi-where-to-watch-diaspora-nri-20260627",
+      "id": "e98fea53-2ea2-413a-a9ec-ab5ec90d7e8d",
+      "headline": "'Sadly, Cricket Wasn\u2019t Part of It Then': Harmanpreet Kaur Sets Her Sights on LA 2028",
+      "slug": "harmanpreet-kaur-eyes-olympic-glory-cricket-la-2028-india-women-t20-world-cup-milkha-singh-diaspora-nri",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "3 Idiots movie poster",
-          "reason": "The photo is related to the film '3 Idiots', which is the subject of the story."
+          "what_photo_shows": "Harmanpreet Kaur with a trophy",
+          "reason": "The photo shows Harmanpreet Kaur, relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -36,13 +36,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects the sequel's themes to the experiences of the diaspora audience, making it relatable."
+          "note": "The article effectively connects the significance of the Olympics to the Indian diaspora in Los Angeles, highlighting the community's passion for cricket."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes or reactions from diaspora audiences to enhance the connection.",
-          "Include more details about the potential release timeline or production updates to keep readers informed."
+          "Consider adding quotes from other players or coaches to provide a broader perspective on the significance of cricket's return to the Olympics.",
+          "Include more statistics or historical context about cricket's previous Olympic participation to enrich the narrative."
         ],
         "verdict": "pass"
       },
@@ -54,23 +54,18 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "f6648ab6-e873-4635-bb4d-db8741e66e8d",
-      "headline": "Priyanka Chopra Just Dropped the Jolie Bombshell \u2014 and Her 2027 Slate Is Obscene",
-      "slug": "priyanka-chopra-angelina-jolie-collaboration-varanasi-rajamouli-amri-mira-nair-judgment-day-2027-slate-where-to-watch-diaspora-nri-20260627",
+      "id": "b5ff4499-2185-4558-982c-6032354c7efa",
+      "headline": "The World Cup Arrives in Santa Clara on Wednesday. It May Never Be This Close Again.",
+      "slug": "world-cup-comes-to-silicon-valley-levis-stadium-santa-clara-usa-bosnia-round-of-32-2026-bay-area-indian-diaspora-nri",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "37699234-43dd-48b1-886b-8609e86ecd4e",
-            "headline": "At 20, Priyanka Chopra Turned Down the Bigger Cheque. Twenty"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Priyanka Chopra Jonas at an event",
-          "reason": "The photo shows Priyanka Chopra Jonas, who is the subject of the story."
+          "what_photo_shows": "Levi\u2019s Stadium in Santa Clara",
+          "reason": "The photo shows Levi\u2019s Stadium, which is relevant to the story about the World Cup match there."
         },
         "inline_image_mismatches": []
       },
@@ -84,13 +79,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects Priyanka Chopra's projects to the interests of NRI audiences, highlighting global releases and accessibility."
+          "note": "The article effectively connects the World Cup event to the Indian-American community, highlighting their engagement and significance in the context of the tournament."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more direct quotes from Priyanka Chopra to enhance the article's engagement.",
-          "Include a brief background on the significance of the projects mentioned for further context."
+          "Consider adding quotes from local Indian-American community members or leaders to enhance the personal connection to the event.",
+          "Include more statistics or data on viewership among the Indian diaspora to strengthen the argument about their engagement with the World Cup."
         ],
         "verdict": "pass"
       },
