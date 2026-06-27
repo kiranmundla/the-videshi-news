@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-27T19:15:13.302674+00:00",
+  "timestamp": "2026-06-27T19:45:10.803029+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 0,
-    "flag": 1,
+    "pass": 1,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,54 +11,42 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "d44835ff-5068-4793-86cc-545e5e0edc67",
-      "headline": "Shivam Pandit Is Two Days Away: The 'Awarapan 2' Teaser Drops on the Original's 19th Anniversary",
-      "slug": "awarapan-2-teaser-june-29-emraan-hashmi-shivam-pandit-disha-patani-shabana-azmi-independence-day-2026-where-to-watch-diaspora-nri-20260627",
+      "id": "8a2ee039-ee30-4ea0-b8ad-ddf5ca30102f",
+      "headline": "Three Indians Storm US Open Badminton Semifinals as Srikanth, Teen Prodigy Rounak, and Devika Sihag Shine in California",
+      "slug": "india-us-open-badminton-semifinals-srikanth-rounak-devika-20260627",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "b2d5d81c-5c08-4183-a788-98c9a8e7c309",
-            "headline": "Emraan Hashmi Wipes the Frost Off the Glass \u2014 and Bollywood "
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Emraan Hashmi at an event",
-          "reason": "The photo shows Emraan Hashmi, relevant to the story about 'Awarapan 2'."
+          "what_photo_shows": "Badminton player in action",
+          "reason": "The photo shows a badminton player, matching the story's topic."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/reel/DaFqjy2sNM6/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram reel does not appear to be directly related to the teaser or the film 'Awarapan 2', making it irrelevant to the article's subject."
-          }
-        ],
+        "overall_score": 8,
+        "embed_issues": [],
         "image_match": {
-          "score": 5,
-          "issue": "The image does not match the article's topic about 'Awarapan 2' as it features Emraan Hashmi at a magazine launch, not related to the film's teaser."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 6,
-          "note": "The article discusses a Bollywood film that may resonate with the Indian diaspora, particularly those who have an affinity for cult films, but the connection could be stronger."
+          "quality": 8,
+          "note": "The article effectively connects the achievements of Indian players to the Indian-American community, highlighting cultural ties and community engagement."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant Instagram embed with a more relevant link or remove it entirely.",
-          "Consider adding a section that discusses the impact of 'Awarapan' on the Indian diaspora or its reception among NRI audiences."
+          "Consider adding quotes from the players or coaches to enhance the narrative.",
+          "Include more context about the significance of the US Open for Indian badminton."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/reel/DaFqjy2sNM6/",
         "promoted to published"
       ],
       "revised": false,
