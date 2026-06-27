@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-27T21:15:52.864896+00:00",
+  "timestamp": "2026-06-27T21:45:26.335706+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 4,
+    "pass": 0,
     "flag": 1,
     "fail": 0,
     "error": 0
@@ -10,140 +10,6 @@
   "revisions": 1,
   "unpublished": 0,
   "articles": [
-    {
-      "id": "30368f41-523d-4979-8fbf-2da8dd29fe98",
-      "headline": "Allu Arjun and Lokesh Kanagaraj Just Shot Something in Mumbai \u2014 and Indian Cinema Might Never Be the Same",
-      "slug": "allu-arjun-lokesh-kanagaraj-aa23-trial-shoot-mumbai-lcu-anirudh-pooja-hegde-pan-india-pushpa-where-to-watch-diaspora-nri-20260627",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "0e34d359-085c-448f-8fae-dced12275ea2",
-            "headline": "Allu Arjun and Lokesh Kanagaraj Are About to Make It Officia"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A man holding a microphone",
-          "reason": "The photo plausibly shows Allu Arjun, relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the film's potential international success to diaspora audiences, highlighting its relevance."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more direct quotes from industry experts or insiders to enhance credibility.",
-          "Add a brief section on how the film's themes may resonate with the diaspora."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "82eb6b8a-b4f1-4344-b022-a8cc588a20ea",
-      "headline": "Tamil Cinema's 'Screenplay King' K Bhagyaraj Dies at 73 \u2014 and an Entire Industry Falls Silent",
-      "slug": "k-bhagyaraj-dies-73-tamil-cinema-screenplay-king-rajinikanth-kamal-haasan-tribute-state-honours-bollywood-remakes-diaspora-nri-20260627",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "K Bhagyaraj",
-          "reason": "The photo shows the correct named person for the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects Bhagyaraj's influence to the NRI community, highlighting how his work permeated their cultural experiences."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more quotes from industry peers or fans to enhance emotional depth.",
-          "Include a brief section on Bhagyaraj's legacy and impact on future filmmakers."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "f5aa2233-84c5-4e26-880d-8ed41622ded5",
-      "headline": "The Indian-Origin CEO You've Never Heard Of Is Powering Every AI Data Centre on Earth",
-      "slug": "sitime-rajesh-vashist-timing-chip-ai-data-centre-renesas-20260627",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "microprocessor circuit board",
-          "reason": "The photo is relevant to a semiconductor technology story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the specific topic of AI data centers or semiconductor technology."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article highlights the achievements of an Indian-origin CEO, connecting well with the diaspora audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that depicts AI data centers or semiconductor technology.",
-          "Add a brief section on the impact of Indian-origin leaders in the tech industry to strengthen the diaspora angle."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
     {
       "id": "1626081c-96ac-44a5-be6b-1857602b7674",
       "headline": "India's Tech Job Market Hit a 28-Month Low. Thousands of Returning H-1B Workers Are Walking Into It.",
@@ -156,7 +22,7 @@
         "vision_image_match": {
           "verdict": "MATCH",
           "what_photo_shows": "software developer at workstation",
-          "reason": "The photo shows a software developer, which is relevant to the tech job market story."
+          "reason": "The photo shows a software developer, relevant to the tech job market story."
         },
         "inline_image_mismatches": []
       },
@@ -164,78 +30,26 @@
         "overall_score": 6,
         "embed_issues": [],
         "image_match": {
-          "score": 5,
-          "issue": "The image does not directly relate to the tech job market or the theme of migration."
+          "score": 4,
+          "issue": "The image does not directly relate to the tech job market or returning H-1B workers."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 7,
-          "note": "The article discusses the return of Indian tech professionals from the US, which is relevant to the diaspora audience."
+          "note": "The article discusses the impact of the job market on returning NRIs, making it relevant for the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more specific examples or quotes from returning H-1B workers to enhance the personal connection.",
-          "Consider using a more relevant image that reflects the tech job market or the theme of migration."
+          "Consider using a more relevant image that depicts the tech job market or returning professionals.",
+          "Add more statistics or quotes from industry experts to strengthen the article's arguments."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
-        "Revised by gemini-2.5-flash (780\u2192892 words)"
+        "Revised by gemini-2.5-flash (892\u21921043 words)"
       ],
       "revised": true,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "4988648b-d781-4950-85dc-66e323afab97",
-      "headline": "Meta Just Handed WhatsApp to a Mumbai Founder Who Never Wrote a Line of Code",
-      "slug": "kunal-shah-whatsapp-head-meta-cred-900m-super-app-20260627",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "7d257c68-c661-404d-a612-66f7c0ba7563",
-            "headline": "Meta Just Made a CRED Founder the Boss of WhatsApp. The Real"
-          },
-          {
-            "article_id": "f79f1306-331b-4586-9133-a36ffcd40949",
-            "headline": "Meta Bets $900 Million on an Indian Fintech \u2014 and Hands an I"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "man in Freecharge shirt",
-          "reason": "The photo plausibly shows Kunal Shah, relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 6,
-          "issue": "The image does not directly relate to WhatsApp or Kunal Shah's new role."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article connects well with the Indian American tech community, highlighting the significance of Kunal Shah's appointment."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that directly relates to WhatsApp or Kunal Shah's leadership role.",
-          "Expand on the implications of Shah's appointment for the Indian diaspora, perhaps including quotes or reactions from Indian American leaders."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
     }
