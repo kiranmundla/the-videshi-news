@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-27T00:45:50.504622+00:00",
+  "timestamp": "2026-06-27T01:15:17.528950+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
-    "flag": 4,
+    "pass": 1,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "afad5402-abd3-4740-87d1-f83c4738dbc7",
-      "headline": "Washington Just Fined an Indian Immigration Lawyer $255,000 for Filing Cookie-Cutter Asylum Claims. That's Only Half the Story.",
-      "slug": "dhs-fines-indian-attorney-doddamani-asylum-fraud-patel-staged-robbery-u-visa-crackdown-20260626",
+      "id": "d5ca0e82-839d-41dd-b8c1-326c6e2d0f8a",
+      "headline": "Golden Sequins, Red Boots, and 200 Dancers: The Last Great Bhansali Song Is Being Shot Right Now",
+      "slug": "love-and-war-set-photos-alia-bhatt-golden-sequins-vicky-kaushal-200-dancers-bhansali-final-song-royal-palms-january-2027-where-to-watch-diaspora-nri-20260626",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,331 +21,86 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "The John Joseph Moakley United States Courthouse in Boston.",
-          "reason": "The photo shows the courthouse where one of the story's cases was heard, making it directly relevant to the subject matter."
+          "what_photo_shows": "Alia Bhatt in a strapless dress and necklace",
+          "reason": "The photo clearly shows Alia Bhatt, who is mentioned in the caption and is relevant to the story about a Bollywood film."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 7,
         "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image is of Alia Bhatt, who is a key figure in the article, but the specific image is from the 2026 Cannes Film Festival, which is not directly related to the article's focus on the 'Love & War' song shoot. It's not a set image."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article explicitly mentions Bhansali's films playing beautifully with NRI audiences and cites examples like 'Padmaavat' and 'Gangubai' pulling massive overseas numbers, directly connecting to the diaspora readership."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider replacing the hero image with a more relevant 'Love & War' set image if available, or a promotional image that better reflects the article's content.",
+          "While the diaspora angle is present, it could be slightly expanded beyond just mentioning past success, perhaps by hinting at *why* this particular film or song might resonate with NRIs."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gemini-2.5-flash"
+    },
+    {
+      "id": "6dc5c13c-067f-418c-98a1-ca6dc28a90f0",
+      "headline": "Christopher Nolan Chose Mumbai for His First-Ever India Premiere \u2014 and \u20b93,300 IMAX Tickets Are Already Gone",
+      "slug": "christopher-nolan-the-odyssey-mumbai-india-premiere-matt-damon-tom-holland-imax-pxr-phoenix-palladium-july-17-2026-where-to-watch-diaspora-nri-20260626",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "A headshot of Christopher Nolan.",
+          "reason": "The photo clearly shows Christopher Nolan, who is the subject of the headline."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [
+          {
+            "url": "https://youtube.com/watch?v=Mzw2ttJD2qQ",
+            "problem": "irrelevant",
+            "explanation": "The YouTube link is for 'Oppenheimer' trailer, but the article is about 'The Odyssey'. This is a factual error and irrelevant to the current article's subject."
+          }
+        ],
         "image_match": {
           "score": 8,
           "issue": null
         },
         "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article directly addresses issues involving Indian nationals and an Indian-American lawyer, making it highly relevant to the NRI diaspora."
+          "present": false,
+          "quality": 1,
+          "note": "The article explicitly mentions 'For the diaspora' at the end but provides no content or connection for NRI/diaspora readers. This feels like an incomplete thought or a placeholder that was never filled."
         },
         "factual_flags": [
-          "Mitul Patel pleaded guilty on June 24 to conspiracy to commit visa fraud. He was one of 11 Indian nationals charged in March 2026. This date (March 2026) is in the future and likely a typo.",
-          "Rambhai Patel earned approximately $850,000 from the operation, all of which he was ordered to forfeit after his conviction in 2025. This date (2025) is in the future and likely a typo."
+          "The article states 'The Odyssey' is Nolan's adaptation of Homer's ancient epic, which is a fictional film. However, the YouTube embed is for 'Oppenheimer', a real film. This creates a contradiction regarding the film being discussed.",
+          "The claim that 'The Odyssey' is the 'first feature film ever shot entirely on IMAX cameras' is suspicious, as 'Oppenheimer' was widely marketed for its extensive use of IMAX cameras, and other films have also used IMAX extensively. This needs verification.",
+          "The article mentions 'Supergirl' as a recent cautionary tale for influencer screenings, which seems out of place as 'Supergirl' is not a recent film release that would typically be subject to influencer screenings in the context of a major Hollywood studio film."
         ],
         "duplicate_embeds": [],
         "suggestions": [
-          "Correct the future dates (March 2026 and 2025) in the 'Staged Robberies' section to reflect past events.",
-          "Consider adding a concluding paragraph that summarizes the implications for Indian immigrants or offers a forward-looking statement on how these cases might impact future immigration policies or perceptions within the diaspora."
+          "Address the 'For the diaspora' section. Either integrate a relevant diaspora angle into the article's body or remove the placeholder if no such angle exists.",
+          "Verify the factual claims about 'The Odyssey' being the first film shot entirely on IMAX and the 'Supergirl' reference. Correct the YouTube embed to match the article's subject."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "53a54c16-1207-497d-8b0d-9816330399e8",
-      "headline": "Amazon Just Raised Its India Bet to $48 Billion. Most of the New Money Is Going to AI.",
-      "slug": "amazon-48-billion-india-investment-jassy-modi-ai-data-centres-aws-mumbai-hyderabad-20260626",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "53cccca2-93e0-4a43-b1c0-21f0554a9c3e",
-            "headline": "Amazon Just Promised India Another $13 Billion. The Real Sto"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A headshot of Amazon CEO Andy Jassy.",
-          "reason": "The photo clearly shows Andy Jassy, who is named in the headline and caption as the subject of the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The diaspora angle is explicitly addressed and well-integrated, connecting investment to job creation, tech careers for NRIs, and H-1B visas."
-        },
-        "factual_flags": [
-          "The article states 'The $48 billion figure is cumulative, covering 2026 to 2030. It follows an initial $15 billion commitment made in 2023 and a $35 billion pledge last December.' This adds up to $50 billion, not $48 billion. This needs clarification or correction."
-        ],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Clarify the discrepancy in the cumulative investment figures ($48 billion vs. $15B + $35B = $50B).",
-          "Consider adding a quote from an NRI tech professional or an expert on the impact of these investments on the diaspora for added depth."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "65eea654-66d9-4af9-8fe8-b46dbff63a8d",
-      "headline": "Doubles, Bunny Chow, and Idli Shrimp: Dr\u0101vida Maps the Diaspora's Forgotten Food Routes",
-      "slug": "doubles-bunny-chow-idli-shrimp-dravida-maps-diasporas-forgotten-food-routes",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A masala dosa with chutney and sambar",
-          "reason": "The photo shows Indian food, which is the subject of the story about Indian diaspora food routes."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image is a Masala Dosa, which is a South Indian dish. While the restaurant is named Dr\u0101vida (South India) and features some South Indian influences, the article's core focus is on diaspora dishes like Doubles and Bunny Chow, which are not represented by the image. It's not entirely mismatched, but could be more representative of the article's unique angle."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 10,
-          "note": "The entire article is built around the concept of Indian diaspora food routes and the evolution of cuisine in different diaspora communities. It's central to the piece."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a sentence or two about the visual aesthetic of the dishes mentioned (Doubles, Bunny Chow) to help readers unfamiliar with them visualize the food.",
-          "Perhaps include a quote from a diner or food critic about their experience at Dr\u0101vida to add another layer of perspective."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "d7ec00a3-8620-40df-8d53-cdc1ee3a57ab",
-      "headline": "Grandma's Haldi, America's 'Herb of the Year': Turmeric's Golden Coronation",
-      "slug": "grandmas-haldi-americas-herb-of-the-year-turmerics-golden-coronation",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Turmeric powder spelling out 'TURMERIC' and in a heart-shaped bowl.",
-          "reason": "The photo directly depicts turmeric, which is the central subject of the headline and subheadline."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The diaspora angle is strong and woven throughout the article, particularly in the introduction and conclusion, making it highly relevant for NRI readers."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a small section or a call-out box about specific Indian regions known for turmeric cultivation or unique traditional uses.",
-          "Perhaps include a quote from an NRI chef or food entrepreneur on how they've seen turmeric's perception change in the West."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "bb6840d4-1308-4282-9cde-8dcb676224d7",
-      "headline": "From Michelin Stars to Street Rolls: Indian Restaurants Claim New American Ground",
-      "slug": "from-michelin-stars-to-street-rolls-indian-restaurants-claim-new-american-ground",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "An array of Indian dishes including dosa, curry, and chutney.",
-          "reason": "The photo clearly depicts Indian cuisine, which is the central topic of the headline and subheadline."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article explicitly connects the restaurant expansion to the NRI experience, especially in 'second-tier cities and college towns'."
-        },
-        "factual_flags": [
-          "NADU's Chicago debut in 2025 is a future date, but the article states it 'earned a Michelin Bib Gourmand and a James Beard Award semifinalist nod... within months of its Chicago debut in 2025'. This implies it has already happened, which is a contradiction."
-        ],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Clarify the timeline for NADU's Chicago debut and awards to avoid chronological confusion.",
-          "Consider adding a quote from an NRI customer in a 'second-tier city' to further personalize the diaspora angle."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "3c7b41bb-3d91-43af-b42a-55e7956fd9f4",
-      "headline": "The Numbers Are In. Legal Immigration Just Had Its Worst Year in a Decade",
-      "slug": "uscis-27-percent-decline-legal-immigration-employment-students-indians-20260627",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "75dec796-365f-4a9f-afc4-aa7eee5d8e89",
-            "headline": "Indians Built Escape Routes Around the Green-Card Backlog. T"
-          }
-        ],
-        "broken_embeds": [
-          {
-            "url": "https://x.com/USCIS/status/1798345678901234567",
-            "problem": "broken",
-            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
-          }
-        ],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A USCIS Application Support Center building exterior.",
-          "reason": "The photo shows a USCIS Application Support Center, which is directly relevant to a story about legal immigration and USCIS application approvals."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively integrates the impact on Indian nationals and NRIs throughout, making it highly relevant for the Videshi audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a specific quote from an NRI or an immigration lawyer specializing in Indian cases to personalize the impact of these statistics.",
-          "If possible, include a small section on potential policy changes or advocacy efforts that could address these declines, offering a forward-looking perspective."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "Removed 1 broken/hallucinated embed(s)",
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gemini-2.5-flash"
-    },
-    {
-      "id": "50ba40b2-cb1f-46be-b1bf-5b4964226c3a",
-      "headline": "Sundar Pichai's Alphabet Just Joined the Dow. It's Losing Nobel-Winning Researchers to Rivals.",
-      "slug": "alphabet-dow-jones-pichai-brain-drain-deepmind-openai-nri-20260627",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "3401300b-a4a7-4742-890d-aa7d86fbc367",
-            "headline": "Sundar Pichai's Gemini Can Now Run Your Browser, Phone, and "
-          }
-        ],
-        "broken_embeds": [
-          {
-            "url": "https://x.com/SPDJIndices/status/1804868962649069637",
-            "problem": "broken",
-            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
-          }
-        ],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A headshot of Sundar Pichai, CEO of Alphabet.",
-          "reason": "The photo clearly shows Sundar Pichai, who is directly named in the headline and caption as the CEO of Alphabet, the company central to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively integrates the diaspora angle, highlighting Sundar Pichai's background, other Indian-origin leaders, and the impact on NRI investors and engineers. It feels natural and relevant."
-        },
-        "factual_flags": [
-          "Google Cloud revenue projection for Q1 2026 surpassing $20 billion, growing 63% YoY. This seems like a very high growth rate for a single quarter and might be a typo for a full year or a different metric. Needs verification.",
-          "Alphabet's AI backlog estimated to nearly double to over $460 billion. This figure seems exceptionally high and should be cross-referenced with official company reports or reputable financial analysts.",
-          "Alphabet shares fell 5% on June 22, their steepest single-day decline since May 2025. This implies a future date (May 2025) which is incorrect given the article's context of June 2024 events. Likely a typo for May 2024 or an earlier year.",
-          "John Jumper, a projected 2024 Nobel Prize winner in Chemistry. While his work is significant, 'projected' Nobel winner is a strong claim and should be attributed to a specific source or rephrased to avoid presenting it as a certainty."
-        ],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Verify and correct the factual discrepancies regarding financial projections (Google Cloud revenue, AI backlog, stock decline date) and the Nobel Prize projection for John Jumper.",
-          "Consider adding a quote from an NRI investor or tech professional to further personalize the diaspora angle and provide a direct perspective on the 'prestige vs. stability' dilemma."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Removed 1 broken/hallucinated embed(s)",
+        "Removed irrelevant embed: https://youtube.com/watch?v=Mzw2ttJD2qQ",
         "promoted to published"
       ],
       "revised": false,
