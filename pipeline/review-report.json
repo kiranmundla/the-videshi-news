@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-28T13:15:36.837621+00:00",
+  "timestamp": "2026-06-28T13:45:19.340836+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 0,
-    "flag": 2,
+    "pass": 2,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "6c9c6a51-3205-4a63-a87c-4f9106c26a5f",
-      "headline": "The Border Boys Are Back: Sunny Deol and Akshaye Khanna Reunite After 28 Years \u2014 and This Time, the War Is in a Courtroom",
-      "slug": "ikka-sunny-deol-akshaye-khanna-netflix-border-reunion-legal-thriller-courtroom-july-2026-where-to-watch-diaspora-nri",
+      "id": "f432df0a-d9e8-45c5-903b-da244848152e",
+      "headline": "Chopra Returns Rusty, a Sri Lankan Prodigy Soars, and India's Javelin Empire Faces Its Biggest Test",
+      "slug": "neeraj-chopra-comeback-pathirage-sri-lanka-javelin-diamond-league-2026-jena-paris-india-diaspora",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,45 +21,32 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Sunny Deol at an event",
-          "reason": "The photo shows Sunny Deol, who is mentioned in the story."
+          "what_photo_shows": "athlete with Olympic medal",
+          "reason": "The photo shows an athlete, relevant to the athletics story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/reel/DZzGcy9sZfJ/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram reel does not appear to be directly related to the article's subject matter regarding the film 'Ikka' or the reunion of Sunny Deol and Akshaye Khanna."
-          },
-          {
-            "url": "https://youtube.com/watch?v=FuD70ji-myY",
-            "problem": "irrelevant",
-            "explanation": "The YouTube link does not provide relevant content related to the film 'Ikka' or the actors' reunion."
-          }
-        ],
+        "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image of Sunny Deol does match the article's topic, but it lacks a direct connection to the courtroom theme discussed."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the film's significance to the NRI audience, highlighting nostalgia and cultural relevance."
+          "quality": 8,
+          "note": "The article discusses Indian athletes and their performances, which resonates with the Indian diaspora's interest in athletics and national pride."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace or remove the irrelevant embeds to enhance the article's focus.",
-          "Consider adding more context about the film's themes and how they resonate with the diaspora audience."
+          "Include more direct quotes from Neeraj Chopra or Rumesh Tharanga Pathirage to enhance the narrative.",
+          "Add a brief section on how the performances of these athletes impact the perception of Indian athletics in the global arena."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/reel/DZzGcy9sZfJ/",
-        "Removed irrelevant embed: https://youtube.com/watch?v=FuD70ji-myY",
         "promoted to published"
       ],
       "revised": false,
@@ -67,54 +54,42 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "c2cba592-16de-48f0-ba4c-349a066395c7",
-      "headline": "What to Watch This Week: Alia Bhatt Picks Up a Gun, Rajkumar Hirani Finally Comes to Streaming, and Enola Holmes Gets Married",
-      "slug": "what-to-watch-this-week-june-29-2026-alpha-pritam-pedro-enola-holmes-elle-silo-streaming-guide-diaspora-nri",
+      "id": "d78b6210-f926-4114-8c51-964f10979198",
+      "headline": "Carlsen Returns, Divya Deshmukh Debuts: The Global Chess League Draft Arrives in Mumbai Tomorrow",
+      "slug": "global-chess-league-season-4-draft-mumbai-carlsen-divya-deshmukh-anand-bengaluru-2026-diaspora-nri",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "d5ca0e82-839d-41dd-b8c1-326c6e2d0f8a",
-            "headline": "Golden Sequins, Red Boots, and 200 Dancers: The Last Great B"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Alia Bhatt at an event",
-          "reason": "The photo shows Alia Bhatt, who is mentioned in the headline."
+          "what_photo_shows": "Magnus Carlsen at a chess event",
+          "reason": "The photo shows Magnus Carlsen, relevant to the chess story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/p/DaDNJS6jMWP/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post does not appear to be directly related to the content of the article, which focuses on upcoming film and series releases."
-          }
-        ],
+        "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image of Alia Bhatt is relevant to the article's content, but it does not specifically match the context of her character in the film mentioned."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the content to NRI audiences by mentioning availability on streaming platforms in the US, UK, and Canada."
+          "note": "The article effectively connects the Global Chess League to the Indian diaspora, highlighting its significance and appeal to NRIs."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant Instagram embed with a more relevant one that highlights the films or series discussed.",
-          "Consider adding more context about the significance of these releases for the Indian diaspora."
+          "Consider adding quotes from players or organizers to enhance engagement.",
+          "Include more details on how NRIs can participate or follow the league."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DaDNJS6jMWP/",
         "promoted to published"
       ],
       "revised": false,
