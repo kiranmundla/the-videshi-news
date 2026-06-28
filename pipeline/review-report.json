@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-28T22:45:27.979491+00:00",
+  "timestamp": "2026-06-28T23:15:21.766398+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
-    "flag": 0,
+    "pass": 1,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,18 +11,27 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "2dafa5be-04c1-4677-8458-f19af83a8fe1",
-      "headline": "He's 15, He Has His Own Dressing Room, and England Is Already Trying to Tire Him Out",
-      "slug": "vaibhav-sooryavanshi-england-tour-2026-separate-dressing-room-safeguarding-vaughan-weakness-ireland-sweep-t20i-diaspora-nri",
+      "id": "92e30ebe-55c8-4a02-8f8b-cf75ace3a048",
+      "headline": "Welcome To The Jungle Roars to \u20b995 Crore Worldwide in Three Days \u2014 Akshay Kumar's Best Opening Since Bhooth Bangla",
+      "slug": "welcome-to-the-jungle-opening-weekend-verdict-95-crore-worldwide-akshay-kumar-day-3-sunday-box-office-june-2026",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "cfe3ea73-24ec-4b47-9b01-f95d13a5c2fd",
+            "headline": "Akshay Kumar's 'Welcome' Jungle Opens to a Polite Roar \u2014 and"
+          },
+          {
+            "article_id": "930d16dc-a5e4-4015-9904-0e4c378bf2b8",
+            "headline": "Akshay Kumar Stops the Movie at Intermission, Walks Out With"
+          }
+        ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "young man meeting a dignitary",
-          "reason": "The photo shows Vaibhav Sooryavanshi, relevant to the story."
+          "what_photo_shows": "movie poster with Akshay Kumar",
+          "reason": "The photo shows Akshay Kumar, relevant to the story about his film."
         },
         "inline_image_mismatches": []
       },
@@ -35,14 +44,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article connects well with NRI readers by highlighting the significance of the cricket series in the UK and the excitement surrounding a young Indian talent."
+          "quality": 7,
+          "note": "The article discusses a popular Bollywood film, which resonates with the Indian diaspora, especially those interested in Bollywood entertainment."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes or reactions from NRI fans to enhance the diaspora connection.",
-          "Add more context about the significance of the T20I series for Indian cricket and its impact on the diaspora."
+          "Include more quotes or reactions from diaspora audiences to strengthen the connection.",
+          "Add a brief section on how the film's success might impact the Indian film industry abroad."
         ],
         "verdict": "pass"
       },
@@ -54,85 +63,54 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "cf8e9bb5-2a96-452a-b2b7-bcf68891656c",
-      "headline": "The US Banned Its Most Powerful AI From Leaving the Country. India Decided It Was Time to Build Its Own.",
-      "slug": "india-sovereign-ai-anthropic-ban-bharatgen-param-openai-model-access-20260628",
+      "id": "f1125960-6adc-4e2d-937c-0741c2918fef",
+      "headline": "800 Women in Pink Sarees, a 60-Foot Waterfall Poster, and the Dhamaal Boys Are Coming for July",
+      "slug": "dhamaal-4-saree-song-launch-800-pink-sarees-ajay-devgn-riteish-deshmukh-july-10-2026-treasure-hunt-franchise-returns",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "2654b42a-0322-430a-8347-8269ff00f27e",
+            "headline": "The Jail Goes Global: 'Lock Upp' Trades MX Player for Netfli"
+          }
+        ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "server racks in data center",
-          "reason": "The photo is relevant to a tech story about AI and computing."
+          "what_photo_shows": "Riteish Deshmukh at an event",
+          "reason": "The photo shows the correct named person related to the story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
+        "overall_score": 7,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DaFzb03ITIn/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel does not seem to be directly related to the article's main focus on the Dhamaal 4 promotional events."
+          }
+        ],
         "image_match": {
-          "score": 7,
-          "issue": "The image depicts a data center, which is relevant to the topic of AI and technology, but does not directly illustrate the specific focus on India's AI development."
+          "score": 5,
+          "issue": "The image of Riteish Deshmukh does not directly relate to the article's focus on the promotional events for Dhamaal 4."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article discusses India's response to US AI policies, which is relevant to the Indian diaspora interested in technological advancements and geopolitical implications."
+          "quality": 6,
+          "note": "The article connects to the diaspora through the Bollywood context, but it could further emphasize the appeal of the film to NRI audiences."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes or perspectives from Indian tech leaders to enhance the diaspora connection.",
-          "Consider adding a section on how these developments might impact Indian NRIs in the tech industry."
+          "Include more direct references to how the film and its promotions resonate with the NRI audience.",
+          "Consider using a more relevant image that showcases the promotional events or the film's theme."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "84b3995f-04ad-4761-8f73-aafb77ba0a99",
-      "headline": "OpenAI Just Hired the Man Who Ran Uber India to Lead Its Biggest Bet Outside America",
-      "slug": "openai-prabhjeet-singh-uber-india-managing-director-chatgpt-ai-market-20260628",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "OpenAI brain network visualization",
-          "reason": "The image is relevant to a story about OpenAI."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 6,
-          "issue": "The image does not directly relate to the article's focus on OpenAI and its new leadership in India."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects Singh's appointment to the broader narrative of Indian professionals succeeding in global tech roles."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that reflects OpenAI or its operations in India.",
-          "Add a quote from Prabhjeet Singh or a relevant stakeholder to enhance the article's depth."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DaFzb03ITIn/",
         "promoted to published"
       ],
       "revised": false,
