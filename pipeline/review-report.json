@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-28T19:45:16.701276+00:00",
+  "timestamp": "2026-06-28T20:15:17.917066+00:00",
   "mode": "fix",
   "stats": {
     "pass": 2,
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "d60b2c68-cdef-4936-a715-cd49e96a225c",
-      "headline": "356 and Counting. Deepti Sharma Is Now the Greatest Wicket-Taker in Women's International Cricket History.",
-      "slug": "deepti-sharma-356-wickets-highest-wicket-taker-women-international-cricket-jhulan-goswami-record-lords-t20-world-cup-2026-nri",
+      "id": "41c5a76b-c7cf-4f73-991e-b573a487107a",
+      "headline": "America Made H-1B Workers Too Expensive. India Built a $100 Billion Industry to Absorb Them",
+      "slug": "india-gcc-boom-100-billion-h1b-crackdown-talent-shift-20260628",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Deepti Sharma with a medal",
-          "reason": "The photo shows Deepti Sharma, relevant to the cricket story."
+          "what_photo_shows": "Manyata Embassy Business Park skyline",
+          "reason": "The photo shows a tech corridor relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -30,19 +30,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image of Manyata Embassy Business Park is relevant to the topic of Indian tech hubs but lacks a direct connection to the H-1B visa discussion."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article connects well with NRI readers by highlighting the significance of Deepti's achievement in the context of Indian women's cricket and its growth, particularly for those watching from abroad."
+          "note": "The article discusses the impact of H-1B visa changes on Indian Americans and the Indian job market, making it relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from Deepti Sharma or her teammates to enhance the emotional impact of the article.",
-          "Include more statistics or comparisons to other players to provide deeper context about her achievement."
+          "Include more specific examples of how the H-1B visa changes have directly impacted Indian Americans in the tech industry.",
+          "Consider adding quotes or perspectives from Indian Americans who have experienced these changes firsthand."
         ],
         "verdict": "pass"
       },
@@ -54,18 +54,18 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "b28c48f1-7c4b-44c5-bf62-7f929ccbeb58",
-      "headline": "Ben Stokes Retires. The Man Who Defined a Generation of England Cricket \u2014 and Haunted India Along the Way.",
-      "slug": "ben-stokes-retires-international-cricket-trent-bridge-2026-england-india-bazball-headingley-world-cup-diaspora-nri",
+      "id": "d55d35de-a29d-48a3-92cb-739f5a915b0e",
+      "headline": "Becoming American Just Got More Expensive. For Indian Green-Card Holders, the Clock Is Ticking",
+      "slug": "uscis-n400-citizenship-fee-hike-indian-green-card-holders-20260628",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Ben Stokes in sports attire",
-          "reason": "The photo shows Ben Stokes, relevant to the cricket story."
+          "verdict": "MISMATCH",
+          "what_photo_shows": "woman speaking at podium outdoors",
+          "reason": "The photo does not show a naturalization ceremony or new citizens taking an oath."
         },
         "inline_image_mismatches": []
       },
@@ -73,27 +73,29 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image entities are missing, making it difficult to assess relevance."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects Stokes' career to Indian cricket fans and NRIs, highlighting key moments that resonate with this audience."
+          "quality": 9,
+          "note": "The article effectively addresses the concerns of Indian green-card holders and their path to citizenship."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from Indian players or fans to enhance the diaspora connection.",
-          "Include a brief section on Stokes' impact on cricket beyond just the England-India rivalry."
+          "Include relevant image entities to enhance the visual connection to the article's topic.",
+          "Consider adding quotes or perspectives from Indian diaspora members to further enrich the narrative."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "promoted to published"
+        "Cleared mismatched image (woman speaking at podium outdoors)",
+        "held: image mismatch"
       ],
       "revised": false,
       "unpublished": false,
+      "image_mismatch": true,
       "llm_source": "gpt-4o-mini"
     }
   ]
