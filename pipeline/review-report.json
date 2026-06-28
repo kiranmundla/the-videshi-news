@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-28T17:45:12.458516+00:00",
+  "timestamp": "2026-06-28T18:16:05.144052+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
+    "pass": 9,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -10,6 +10,361 @@
   "revisions": 0,
   "unpublished": 0,
   "articles": [
+    {
+      "id": "36060088-b185-4c23-9b3e-b9254087be29",
+      "headline": "Varanasi's \u20b92,870 Crore Airport Terminal Will Mirror the Temple It's Named After \u2014 and the Minister Wants It Done in Six Months",
+      "slug": "varanasi-airport-terminal-kashi-vishwanath-expansion-nri-20260628",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Kashi Vishwanath Temple exterior",
+          "reason": "The photo shows the Kashi Vishwanath Temple, which is relevant to the story about the airport terminal inspired by it."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the new airport terminal to the needs and experiences of the NRI community, particularly highlighting the emotional significance of Varanasi."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from local officials or community members to enhance the narrative.",
+          "Include more details on the expected economic impact of the new terminal on the local community."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "98c3bc02-fd42-4889-9865-ff14a36def96",
+      "headline": "Noida's New Airport Triples Its Flights on July 1 \u2014 and International Routes Could Follow by Christmas",
+      "slug": "noida-airport-dxn-triples-flights-july-international-terminal-20260628",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Airport runway at sunrise",
+          "reason": "The photo shows an airport runway, which is relevant to the airport story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively discusses the impact of the new airport on NRIs, particularly in terms of accessibility and convenience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more specific examples of how the new airport will benefit NRIs, such as potential cost savings or time efficiency.",
+          "Add quotes from airport officials or NRI travelers to provide personal insights and enhance the narrative."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "a87c50c9-3ab2-4879-ac63-f8f03b79284e",
+      "headline": "India Is About to Launch the Biggest IPO Wave in Its History \u2014 and NRI Investors Are Watching Closely",
+      "slug": "india-ipo-mega-wave-jio-nse-zepto-sbi-mf-h2-2026-sebi-nri-investor-20260628",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Bombay Stock Exchange building",
+          "reason": "The photo shows the Bombay Stock Exchange, relevant to the capital markets story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the implications of the IPO wave for NRI investors, making it relevant to the diaspora audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more direct quotes or insights from NRI investors to enhance the diaspora perspective.",
+          "Add a section on how NRIs can participate in these IPOs, providing practical advice."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "9b0aef06-9df6-491d-9e26-bb0cd2860a45",
+      "headline": "Any Amount of Alcohol Raises Dementia Risk, a Massive New Study Confirms \u2014 and the \"One Drink Is Fine\" Belief Was an Illusion",
+      "slug": "any-alcohol-increases-dementia-risk-oxford-yale-cambridge-brain-volume-nature-health-diaspora-20260628",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "glasses of alcoholic beverages",
+          "reason": "The photo of alcoholic drinks is relevant to the story about alcohol and health risks."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the findings to the Indian diaspora, discussing changing drinking patterns and health implications."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific statistics or studies related to the Indian diaspora's alcohol consumption patterns.",
+          "Include quotes or insights from Indian health experts to strengthen the diaspora connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "37eca482-390e-4e80-81a4-7390647b7089",
+      "headline": "The HPV Vaccine Has Reduced Cervical Cancer Deaths to Zero in Young Women \u2014 and India Is Finally Racing to Catch Up",
+      "slug": "hpv-vaccine-zero-cervical-cancer-deaths-england-lancet-india-nationwide-campaign-diaspora-20260628",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MISMATCH",
+          "what_photo_shows": "global HPV vaccination chart",
+          "reason": "The photo shows a chart, not a healthcare worker administering a vaccine."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 5,
+          "issue": "hero image not provided"
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the HPV vaccine's implications for diaspora families, particularly regarding vaccination availability and misconceptions."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include a relevant hero image that reflects the article's topic.",
+          "Provide more specific statistics or anecdotes about the impact of the HPV vaccine in the diaspora community."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "Cleared mismatched image (global HPV vaccination chart)",
+        "held: image mismatch"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "image_mismatch": true,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "d65178aa-f347-4b1e-86a0-26447eba9460",
+      "headline": "India's Government Built Its Own GPT. It Speaks 22 Languages. The Talent to Scale It Lives Abroad.",
+      "slug": "bharatgen-param-2-india-sovereign-ai-iit-bombay-diaspora-20260628",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "IIT Bombay campus at night",
+          "reason": "The photo shows IIT Bombay, relevant to the BharatGen consortium story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 6,
+          "issue": "The image of IIT Bombay is relevant but does not directly illustrate the AI initiative discussed."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively highlights the role of the Indian diaspora in contributing to AI development and the potential for collaboration."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a more relevant image that directly relates to AI or technology to enhance visual impact.",
+          "Include quotes or insights from diaspora members involved in AI to strengthen the connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "135359a5-5afc-4dd5-b613-0b0204856fb1",
+      "headline": "The $11 Billion AI Lawyer Just Opened a Bengaluru Office. India Has 50 Million Reasons It Needs One.",
+      "slug": "harvey-ai-legal-tech-bengaluru-india-flipkart-reliance-20260628",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Man interacting with a robot",
+          "reason": "The photo depicts AI technology, relevant to the AI lawyer story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the topic of legal AI to the needs and interests of NRIs, particularly in relation to legal disputes in India."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of how legal AI has already impacted NRIs or case studies to strengthen the diaspora angle.",
+          "Include quotes or insights from Indian lawyers or NRIs who have experienced the legal system to provide a personal touch."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "6120b9d9-359f-4a0f-b172-2641c3337f3f",
+      "headline": "Pichai's Google Just Told Meta to Get in Line. The AI Compute War Has a Waitlist.",
+      "slug": "pichai-google-meta-gemini-ai-compute-rationing-20260628",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "46a89368-bbb6-407c-bb82-4a26695f5261",
+            "headline": "ChatGPT Just Lost Its Majority. Pichai's Gemini and an Anthr"
+          },
+          {
+            "article_id": "50ba40b2-cb1f-46be-b1bf-5b4964226c3a",
+            "headline": "Sundar Pichai's Alphabet Just Joined the Dow. It's Losing No"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Sundar Pichai in 2023",
+          "reason": "The photo shows Sundar Pichai, relevant to the story about Google and Meta."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the topic to the Indian diaspora by discussing the impact on Indian engineers and the significance of Sundar Pichai's role."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more direct quotes from industry experts or stakeholders to enhance credibility.",
+          "Include a brief overview of the implications for the global tech landscape to provide broader context."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
     {
       "id": "32f3a446-e55c-479d-9c7d-11610aeb2676",
       "headline": "Two Runs Short at Lord's. Harmanpreet's Heroics Weren't Enough to Save India's World Cup.",
