@@ -1,6 +1,6 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-06-28T17:59:58Z",
+  "last_updated": "2026-06-28T20:00:05Z",
   "stage": "Knockout Stage",
   "hosts": "USA, Mexico & Canada",
   "dates": {
@@ -3911,6 +3911,20 @@
       "account": "@fifaworldcup",
       "caption": "The Round of 32 is set. 🔐",
       "date": "2026-06-28"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DaHahprinrl/",
+      "account": "@fifaworldcup",
+      "caption": "Argentina finish on 🔝 of Group J! #FIFAWorldCup",
+      "date": "2026-06-27"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DaHY-IACotK/",
+      "account": "@fifaworldcup",
+      "caption": "The Round of 32 is set. 🔐 #FIFAWorldCup",
+      "date": "2026-06-27"
     }
   ],
   "tv": {
