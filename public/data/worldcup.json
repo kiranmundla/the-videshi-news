@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-06-27T23:59:39Z",
-  "stage": "Group Stage — 68 of 72 matches played",
+  "last_updated": "2026-06-28T02:00:14Z",
+  "stage": "Group Stage — 70 of 72 matches played",
   "hosts": "USA, Mexico & Canada",
   "dates": {
     "start": "2026-06-11",
@@ -562,51 +562,51 @@
         "code": "COL",
         "flag": "🇨🇴",
         "rank": 13,
-        "p": 2,
+        "p": 3,
         "w": 2,
-        "d": 0,
+        "d": 1,
         "l": 0,
         "gf": 4,
         "ga": 1,
-        "pts": 6
+        "pts": 7
       },
       {
         "name": "Portugal",
         "code": "POR",
         "flag": "🇵🇹",
         "rank": 5,
-        "p": 2,
+        "p": 3,
         "w": 1,
-        "d": 1,
+        "d": 2,
         "l": 0,
         "gf": 6,
         "ga": 1,
-        "pts": 4
+        "pts": 5
       },
       {
         "name": "DR Congo",
         "code": "COD",
         "flag": "🇨🇩",
         "rank": 45,
-        "p": 2,
-        "w": 0,
+        "p": 3,
+        "w": 1,
         "d": 1,
         "l": 1,
-        "gf": 1,
-        "ga": 2,
-        "pts": 1
+        "gf": 4,
+        "ga": 3,
+        "pts": 4
       },
       {
         "name": "Uzbekistan",
         "code": "UZB",
         "flag": "🇺🇿",
         "rank": 50,
-        "p": 2,
+        "p": 3,
         "w": 0,
         "d": 0,
-        "l": 2,
-        "gf": 1,
-        "ga": 8,
+        "l": 3,
+        "gf": 2,
+        "ga": 11,
         "pts": 0
       }
     ],
@@ -1735,8 +1735,8 @@
       "away": "Portugal",
       "venue": "Hard Rock Stadium",
       "city": "Miami",
-      "status": "scheduled",
-      "score": null,
+      "status": "FT",
+      "score": "0-0",
       "home_code": "COL",
       "away_code": "POR"
     },
@@ -1750,8 +1750,8 @@
       "away": "Uzbekistan",
       "venue": "Mercedes-Benz Stadium",
       "city": "Atlanta",
-      "status": "scheduled",
-      "score": null,
+      "status": "FT",
+      "score": "3-1",
       "home_code": "COD",
       "away_code": "UZB"
     }
@@ -1785,6 +1785,69 @@
     }
   },
   "highlights": [
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DaHJIO4idRx/",
+      "account": "@fifaworldcup",
+      "caption": "Group K standings are set 🔒 #FIFAWorldCup",
+      "date": "2026-06-27"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/reel/DaG1yFvCLAy/",
+      "account": "@fifaworldcup",
+      "caption": "Salute the crowd. Lock in. 🔒🇵🇹 — Portugal arrive at Hard Rock Stadium #FIFAWorldCup",
+      "date": "2026-06-27"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/reel/DaG7XZniaCT/",
+      "account": "@fifaworldcup",
+      "caption": "Game on! 👊 🇨🇩 🆚 🇺🇿 📍Atlanta, USA #FIFAWorldCup",
+      "date": "2026-06-27"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/reel/DaG6Bi1Chkv/",
+      "account": "@fifaworldcup",
+      "caption": "Chosen by the fans: Jude Bellingham, your Superior Player of the Match 👑 — Panama vs England #FIFAWorldCup",
+      "date": "2026-06-27"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/reel/DaG5NjAisoQ/",
+      "account": "@fifaworldcup",
+      "caption": "Your votes are in – Petar Sučić is the Superior Player of the Match! 👏 — Croatia vs Ghana #FIFAWorldCup",
+      "date": "2026-06-27"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/reel/DaHIkJCiTq2/",
+      "account": "@fifaworldcup",
+      "caption": "Right place. Right time 🇬🇭⚽ — Ghana's goal vs Croatia #FIFAWorldCup",
+      "date": "2026-06-27"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DaHHqVTlk52",
+      "account": "@fifaworldcup",
+      "caption": "🇨🇴 0-0 🇵🇹 · 🇨🇩 3-1 🇺🇿 — Group K results",
+      "date": "2026-06-27"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DaG53jQjEum",
+      "account": "@fifaworldcup",
+      "caption": "🇭🇷 Croatia seal their spot in the Round of 32 with a 2-1 win over Ghana",
+      "date": "2026-06-27"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DaHIlCGljYS",
+      "account": "@fifaworldcup",
+      "caption": "Group K final standings: 1. 🇨🇴 Colombia 2. 🇵🇹 Portugal 3. 🇨🇩 DR Congo 4. 🇺🇿 Uzbekistan",
+      "date": "2026-06-27"
+    },
     {
       "platform": "threads",
       "url": "https://www.threads.com/@fifaworldcup/post/DaG7CM4mS2O",
