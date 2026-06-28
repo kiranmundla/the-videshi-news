@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-28T12:45:48.730269+00:00",
+  "timestamp": "2026-06-28T13:15:36.837621+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 6,
-    "flag": 0,
+    "pass": 0,
+    "flag": 2,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "1bdb546f-bf6f-4450-a0be-61fcb94d5241",
-      "headline": "Copper and Courage: How a Punjabi Family Rebuilt Their Las Vegas Restaurant and Earned a James Beard Nod",
-      "slug": "copper-and-courage-how-a-punjabi-family-rebuilt-their-las-vegas-restaurant-and-e",
+      "id": "6c9c6a51-3205-4a63-a87c-4f9106c26a5f",
+      "headline": "The Border Boys Are Back: Sunny Deol and Akshaye Khanna Reunite After 28 Years \u2014 and This Time, the War Is in a Courtroom",
+      "slug": "ikka-sunny-deol-akshaye-khanna-netflix-border-reunion-legal-thriller-courtroom-july-2026-where-to-watch-diaspora-nri",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,32 +21,45 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Indian dinner spread at a restaurant",
-          "reason": "The photo shows Indian food, which aligns with the restaurant story."
+          "what_photo_shows": "Sunny Deol at an event",
+          "reason": "The photo shows Sunny Deol, who is mentioned in the story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DZzGcy9sZfJ/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel does not appear to be directly related to the article's subject matter regarding the film 'Ikka' or the reunion of Sunny Deol and Akshaye Khanna."
+          },
+          {
+            "url": "https://youtube.com/watch?v=FuD70ji-myY",
+            "problem": "irrelevant",
+            "explanation": "The YouTube link does not provide relevant content related to the film 'Ikka' or the actors' reunion."
+          }
+        ],
         "image_match": {
           "score": 7,
-          "issue": "The image depicts an Indian dinner but does not specifically represent Tamba or its unique offerings."
+          "issue": "The image of Sunny Deol does match the article's topic, but it lacks a direct connection to the courtroom theme discussed."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article highlights the immigrant experience of the Dhillon family and their contributions to Indian cuisine in America, which resonates with the diaspora."
+          "quality": 9,
+          "note": "The article effectively connects the film's significance to the NRI audience, highlighting nostalgia and cultural relevance."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include a quote from the Dhillon family or Chef Anand Singh to add a personal touch.",
-          "Consider adding more details about the challenges faced during the restaurant's reopening to enhance the narrative."
+          "Replace or remove the irrelevant embeds to enhance the article's focus.",
+          "Consider adding more context about the film's themes and how they resonate with the diaspora audience."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DZzGcy9sZfJ/",
+        "Removed irrelevant embed: https://youtube.com/watch?v=FuD70ji-myY",
         "promoted to published"
       ],
       "revised": false,
@@ -54,214 +67,54 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "99bff56e-bf68-46b7-9578-187310910a3e",
-      "headline": "Butter Chicken at Costco: How Indian Food Brands Are Storming America's Grocery Aisles",
-      "slug": "butter-chicken-at-costco-how-indian-food-brands-are-storming-americas-grocery-ai",
+      "id": "c2cba592-16de-48f0-ba4c-349a066395c7",
+      "headline": "What to Watch This Week: Alia Bhatt Picks Up a Gun, Rajkumar Hirani Finally Comes to Streaming, and Enola Holmes Gets Married",
+      "slug": "what-to-watch-this-week-june-29-2026-alpha-pritam-pedro-enola-holmes-elle-silo-streaming-guide-diaspora-nri",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "d5ca0e82-839d-41dd-b8c1-326c6e2d0f8a",
+            "headline": "Golden Sequins, Red Boots, and 200 Dancers: The Last Great B"
+          }
+        ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Butter chicken with naan on plate",
-          "reason": "The photo shows butter chicken, which is relevant to the story about Indian food in American grocery stores."
+          "what_photo_shows": "Alia Bhatt at an event",
+          "reason": "The photo shows Alia Bhatt, who is mentioned in the headline."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/DaDNJS6jMWP/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not appear to be directly related to the content of the article, which focuses on upcoming film and series releases."
+          }
+        ],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image of Alia Bhatt is relevant to the article's content, but it does not specifically match the context of her character in the film mentioned."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the availability of Indian food in mainstream grocery stores to the cultural significance for the Indian diaspora in the U.S."
+          "note": "The article effectively connects the content to NRI audiences by mentioning availability on streaming platforms in the US, UK, and Canada."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes or testimonials from Indian Americans about their experiences with these products to enhance the diaspora connection.",
-          "Include more statistics or data on the growth of Indian food brands in the U.S. to strengthen the article's argument."
+          "Replace the irrelevant Instagram embed with a more relevant one that highlights the films or series discussed.",
+          "Consider adding more context about the significance of these releases for the Indian diaspora."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "8b41abc0-a985-401e-81bb-2ab709cd4178",
-      "headline": "From Udupi to the Pacific Northwest: Hari Nayak Plots Indian Cuisine's Next Frontier",
-      "slug": "from-udupi-to-the-pacific-northwest-hari-nayak-plots-indian-cuisines-next-fronti",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Chef presenting tandoori chicken dish",
-          "reason": "The photo shows a chef with a modern Indian dish, relevant to the story about Indian cuisine."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the significance of Nayak's restaurant to the Indian American community in the Pacific Northwest."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from Hari Nayak or local community members to enhance the personal connection.",
-          "Include more details about the expected menu or specific dishes to engage readers further."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "e261568d-bdff-42c0-bb0f-635fd626f6cd",
-      "headline": "The Supreme Court Is About to Rule on Whether Babies Born to H-1B Parents Are American Citizens",
-      "slug": "supreme-court-birthright-citizenship-h1b-indian-parents-14th-amendment-ruling-20260628",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "US Supreme Court interior",
-          "reason": "The photo shows the US Supreme Court, relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively highlights the implications of the Supreme Court ruling on Indian families in the US, making it relevant to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include quotes or perspectives from Indian diaspora organizations to enhance the community angle.",
-          "Add a brief explanation of the potential long-term implications of the ruling on immigration policy."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "fb243574-eca2-4628-b1da-627925327d15",
-      "headline": "Hyderabad Named a Road After Trump. His Own Allies in India Called It Hypocrisy.",
-      "slug": "hyderabad-donald-trump-avenue-telangana-congress-bjp-us-india-20260628",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "US President Donald Trump",
-          "reason": "The photo shows Donald Trump, relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 8,
-          "issue": "The image of the plaque is relevant to the article's topic but lacks a direct visual connection to the political implications discussed."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the road renaming to the experiences of NRIs in the tech industry, highlighting the irony of the situation."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more direct quotes from NRI perspectives to enhance the diaspora angle.",
-          "Add a brief historical context about similar instances of road naming in India to enrich the article."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "4f45029e-d21f-46bf-aa4d-6ea6a3b64ded",
-      "headline": "Amazon Just Committed $48 Billion to India. Most of It Will Be Spent Building the AI Infrastructure Indians Haven't Seen Yet.",
-      "slug": "amazon-48-billion-india-investment-jassy-modi-ai-cloud-data-centers-mumbai-hyderabad-20260628",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "a man in a suit",
-          "reason": "The photo plausibly shows Amazon CEO Andy Jassy, relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses opportunities for Indian tech professionals in the US, linking the investment to potential job growth and market expansion."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more direct quotes from Indian tech professionals or diaspora members to enhance the personal connection.",
-          "Add a section on how this investment might impact the Indian diaspora's perception of opportunities back home."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/DaDNJS6jMWP/",
         "promoted to published"
       ],
       "revised": false,
