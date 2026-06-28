@@ -1,5 +1,14 @@
 [
   {
+    "id": "b1b2-wait-times-surge-jun-2026",
+    "date": "2026-06-27",
+    "label": "Jun 27, 2026",
+    "headline": "US tourist visa wait times surge up to 36% at Indian consulates \u2014 Hyderabad and Mumbai now at 9.5 months",
+    "summary": "The State Department's June 18 global wait time update reveals a sharp spike in B1/B2 visitor visa interview waits at Indian posts. Hyderabad and Mumbai now average 9.5 months (next available: 9.5 and 10 months respectively), up from ~7 months a month earlier \u2014 among the longest globally. New Delhi climbed to 7.5 months avg (8.5 next available), up from 5.5 months. Chennai held at 5.5 months. Kolkata is the lone bright spot, improving to 4 months. The surge is attributed to expanded social media and digital footprint screening protocols in effect since December 15, 2025, which have slashed daily interview capacity and triggered mass appointment rescheduling \u2014 often pushing slots 90 to 120 days later. Work visa (H/L/O/P/Q) waits remain far shorter at 1.5\u20133.5 months, and student visa (F/M/J) waits are 1.5\u20132 months. With the $750 premium interview pilot launching July 1, India's consulates are among the most likely participating posts given the severity of their backlogs.",
+    "severity": "high",
+    "source": "US State Department / travel.state.gov / Bhasha Times"
+  },
+  {
     "id": "student-visa-fixed-stay-omb-cleared",
     "date": "2026-06-22",
     "label": "Jun 22, 2026",
@@ -162,16 +171,6 @@
     "summary": "All EB-2 immigrant visa numbers for India used up. Final Action Date retrogressed to Sep 2013. No new EB-2 green cards for Indians until FY2027 begins Oct 2026.",
     "severity": "high",
     "source": "US State Department"
-  },
-  {
-    "id": "rubio-freezes-student-visas",
-    "date": "2026-05-26",
-    "label": "May 26, 2026",
-    "headline": "Rubio freezes student visa appointments worldwide",
-    "summary": "US State Department halts all new F-1 visa appointments. Indian fall enrollments already in freefall.",
-    "severity": "high",
-    "source": "US State Department",
-    "url": "/articles/rubio-freezes-student-visa-appointments-india-fall-enrollment-20260526"
   },
   {
     "id": "interview-waiver-eliminated",
