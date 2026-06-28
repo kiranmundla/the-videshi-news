@@ -82,16 +82,6 @@
    "priority": 34
   },
   {
-   "subject": "swiss",
-   "subject_type": "thing",
-   "tags": [
-    "swiss"
-   ],
-   "first_seen": "2026-06-19T05:23:04Z",
-   "article_id": "8d1b12e4-60e3-456d-8f40-dbf170910325",
-   "priority": 5
-  },
-  {
    "subject": "a321xlr",
    "subject_type": "thing",
    "tags": [
@@ -362,16 +352,6 @@
    "priority": 2
   },
   {
-   "subject": "intel",
-   "subject_type": "thing",
-   "tags": [
-    "intel"
-   ],
-   "first_seen": "2026-06-19T10:29:23Z",
-   "article_id": "980355a1-017a-4244-92ff-8d13074e69a6",
-   "priority": 6
-  },
-  {
    "subject": "india semiconductor mission",
    "subject_type": "thing",
    "tags": [
@@ -462,16 +442,6 @@
    "priority": 2
   },
   {
-   "subject": "consulate",
-   "subject_type": "thing",
-   "tags": [
-    "consulate"
-   ],
-   "first_seen": "2026-06-20T10:29:23Z",
-   "article_id": "6a8a4abf-8b4d-403a-a19b-6af8b7a1a1f5",
-   "priority": 5
-  },
-  {
    "subject": "e visa",
    "subject_type": "thing",
    "tags": [
@@ -542,16 +512,6 @@
    "priority": 10
   },
   {
-   "subject": "Filmfare",
-   "subject_type": "thing",
-   "tags": [
-    "filmfare"
-   ],
-   "first_seen": "2026-06-20T10:29:23Z",
-   "article_id": "fb1a264d-41d9-4475-ba96-e1fb72c91534",
-   "priority": 5
-  },
-  {
    "subject": "wage weighted selection",
    "subject_type": "thing",
    "tags": [
@@ -570,26 +530,6 @@
    "first_seen": "2026-06-20T10:29:23Z",
    "article_id": "556d9d0e-5a4b-4038-8825-c2834340ff17",
    "priority": 2
-  },
-  {
-   "subject": "NASSCOM",
-   "subject_type": "thing",
-   "tags": [
-    "nasscom"
-   ],
-   "first_seen": "2026-06-20T10:29:23Z",
-   "article_id": "288af0ec-6b10-49ad-bda4-86ca4ef6c9bc",
-   "priority": 6
-  },
-  {
-   "subject": "gcc",
-   "subject_type": "thing",
-   "tags": [
-    "gcc"
-   ],
-   "first_seen": "2026-06-20T10:29:23Z",
-   "article_id": "288af0ec-6b10-49ad-bda4-86ca4ef6c9bc",
-   "priority": 5
   },
   {
    "subject": "tcs infosys wipro",
@@ -932,16 +872,6 @@
    "priority": 4
   },
   {
-   "subject": "india manufacturing",
-   "subject_type": "thing",
-   "tags": [
-    "india manufacturing"
-   ],
-   "first_seen": "2026-06-20T10:29:23Z",
-   "article_id": "fcba1d6d-f315-49e9-a36b-4decdf9d0188",
-   "priority": 6
-  },
-  {
    "subject": "foxconn",
    "subject_type": "thing",
    "tags": [
@@ -950,26 +880,6 @@
    "first_seen": "2026-06-20T10:29:23Z",
    "article_id": "fcba1d6d-f315-49e9-a36b-4decdf9d0188",
    "priority": 2
-  },
-  {
-   "subject": "etihad",
-   "subject_type": "thing",
-   "tags": [
-    "etihad"
-   ],
-   "first_seen": "2026-06-21T10:29:30Z",
-   "article_id": "a5195b58-bb9d-422c-b72b-af2dc4f017af",
-   "priority": 6
-  },
-  {
-   "subject": "business class",
-   "subject_type": "thing",
-   "tags": [
-    "business class"
-   ],
-   "first_seen": "2026-06-21T10:29:30Z",
-   "article_id": "a5195b58-bb9d-422c-b72b-af2dc4f017af",
-   "priority": 5
   },
   {
    "subject": "miles",
@@ -1050,16 +960,6 @@
    "first_seen": "2026-06-21T10:29:30Z",
    "article_id": "e0bfe836-767e-45aa-b275-393cb3e2e2ef",
    "priority": 3
-  },
-  {
-   "subject": "visa bulletin",
-   "subject_type": "thing",
-   "tags": [
-    "visa bulletin"
-   ],
-   "first_seen": "2026-06-21T10:29:30Z",
-   "article_id": "e0bfe836-767e-45aa-b275-393cb3e2e2ef",
-   "priority": 6
   },
   {
    "subject": "investor visa",
@@ -1602,16 +1502,6 @@
    "priority": 3
   },
   {
-   "subject": "india ai",
-   "subject_type": "thing",
-   "tags": [
-    "india ai"
-   ],
-   "first_seen": "2026-06-22T10:29:23Z",
-   "article_id": "d353977c-9e20-48a0-b87c-6ca3046409bf",
-   "priority": 7
-  },
-  {
    "subject": "ai education",
    "subject_type": "thing",
    "tags": [
@@ -1720,16 +1610,6 @@
    "first_seen": "2026-06-22T10:29:23Z",
    "article_id": "1d24a43b-fd18-4ae4-8224-152d38decf1a",
    "priority": 2
-  },
-  {
-   "subject": "indian founders",
-   "subject_type": "thing",
-   "tags": [
-    "indian founders"
-   ],
-   "first_seen": "2026-06-22T10:29:23Z",
-   "article_id": "1d24a43b-fd18-4ae4-8224-152d38decf1a",
-   "priority": 6
   },
   {
    "subject": "navi mumbai",
@@ -2302,16 +2182,6 @@
    "priority": 2
   },
   {
-   "subject": "germany",
-   "subject_type": "thing",
-   "tags": [
-    "germany"
-   ],
-   "first_seen": "2026-06-24T10:29:22Z",
-   "article_id": "8bc02ca4-3489-41d7-aaf1-38500446dbda",
-   "priority": 5
-  },
-  {
    "subject": "kunal shah",
    "subject_type": "thing",
    "tags": [
@@ -2350,16 +2220,6 @@
    "first_seen": "2026-06-24T10:29:22Z",
    "article_id": "0a9f7d10-26bd-459c-ad84-fa0d1f05d6e8",
    "priority": 2
-  },
-  {
-   "subject": "premji invest",
-   "subject_type": "thing",
-   "tags": [
-    "premji invest"
-   ],
-   "first_seen": "2026-06-24T10:29:22Z",
-   "article_id": "0a9f7d10-26bd-459c-ad84-fa0d1f05d6e8",
-   "priority": 5
   },
   {
    "subject": "indian american founders",
@@ -2602,16 +2462,6 @@
    "priority": 3
   },
   {
-   "subject": "social media vetting",
-   "subject_type": "thing",
-   "tags": [
-    "social media vetting"
-   ],
-   "first_seen": "2026-06-24T10:29:22Z",
-   "article_id": "3e200153-a7bd-4651-8038-58f5cf82302a",
-   "priority": 5
-  },
-  {
    "subject": "ds 160",
    "subject_type": "thing",
    "tags": [
@@ -2812,16 +2662,6 @@
    "priority": 2
   },
   {
-   "subject": "tsmc",
-   "subject_type": "thing",
-   "tags": [
-    "tsmc"
-   ],
-   "first_seen": "2026-06-25T10:29:22Z",
-   "article_id": "fc913a73-c040-4ea0-86a5-e2c32478ebcb",
-   "priority": 6
-  },
-  {
    "subject": "chips",
    "subject_type": "thing",
    "tags": [
@@ -3010,16 +2850,6 @@
    "first_seen": "2026-06-25T10:29:22Z",
    "article_id": "6b3407a2-56f0-40ff-b103-0b543eb5e78d",
    "priority": 2
-  },
-  {
-   "subject": "geopolitics",
-   "subject_type": "thing",
-   "tags": [
-    "geopolitics"
-   ],
-   "first_seen": "2026-06-25T10:29:22Z",
-   "article_id": "be4fce49-3655-457c-b969-7d4f110b8e82",
-   "priority": 6
   },
   {
    "subject": "investing",
@@ -3802,40 +3632,10 @@
    "priority": 2
   },
   {
-   "subject": "startup",
-   "subject_type": "thing",
-   "tags": [
-    "startup"
-   ],
-   "first_seen": "2026-06-27T10:29:26Z",
-   "article_id": "a084138e-6a82-4695-b3f3-1104a46f4ff0",
-   "priority": 5
-  },
-  {
-   "subject": "Jr NTR",
-   "subject_type": "person",
-   "tags": [
-    "jr ntr"
-   ],
-   "first_seen": "2026-06-28T05:35:23Z",
-   "article_id": "25dd0c60-a827-47ad-8a78-8aa411374ef2",
-   "priority": 7
-  },
-  {
    "subject": "Vicky Kaushal",
    "subject_type": "person",
    "tags": [
     "vicky kaushal"
-   ],
-   "first_seen": "2026-06-28T05:35:23Z",
-   "article_id": "25dd0c60-a827-47ad-8a78-8aa411374ef2",
-   "priority": 7
-  },
-  {
-   "subject": "Katrina Kaif",
-   "subject_type": "person",
-   "tags": [
-    "katrina kaif"
    ],
    "first_seen": "2026-06-28T05:35:23Z",
    "article_id": "25dd0c60-a827-47ad-8a78-8aa411374ef2",
