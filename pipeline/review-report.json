@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-28T21:15:36.847711+00:00",
+  "timestamp": "2026-06-28T22:15:38.628609+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 2,
+    "pass": 5,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "75454d9e-9a95-4883-9abb-303a5a6fcb9b",
-      "headline": "Prabhas Raised Three Fingers. Rana Tried to Stop Him. The Internet Did the Math.",
-      "slug": "baahubali-the-torchbearer-netflix-documentary-prabhas-three-fingers-baahubali-3-tease-rajamouli-ten-years-where-to-watch-diaspora-nri",
+      "id": "d0967b83-d5ea-496c-bc86-d18b35be5d88",
+      "headline": "Riyadh Air Launches This Week \u2014 and Its India Play Could Reshape How NRIs Fly to the Gulf",
+      "slug": "riyadh-air-launch-air-india-mou-nri-gulf-corridor-20260628",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,69 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "SS Rajamouli, director",
-          "reason": "The photo shows SS Rajamouli, relevant to the Baahubali franchise story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/p/DaCRAvwq6SJ/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post does not seem to relate directly to the content of the article, which focuses on the docuseries and the Baahubali franchise."
-          },
-          {
-            "url": "https://youtube.com/watch?v=HBfot1W6EXc",
-            "problem": "irrelevant",
-            "explanation": "The YouTube link is not directly relevant to the article's main focus on the docuseries and the context of the three-finger moment."
-          }
-        ],
-        "image_match": {
-          "score": 3,
-          "issue": "The image of SS Rajamouli does not match the article's focus on Prabhas and the Baahubali franchise."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 6,
-          "note": "The article connects to the Indian diaspora through the global impact of the Baahubali franchise, but it could further emphasize its relevance to NRIs."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the irrelevant Instagram and YouTube links with embeds that directly relate to the Baahubali docuseries.",
-          "Use an image that features Prabhas or a scene from the Baahubali series to better match the article's content."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DaCRAvwq6SJ/",
-        "Removed irrelevant embed: https://youtube.com/watch?v=HBfot1W6EXc",
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "589d8ab3-146e-47c3-8214-fe717f0d1a91",
-      "headline": "Ambani's $180 Billion Jio IPO Is Finally Happening. NRIs Have a Seat Problem.",
-      "slug": "jio-platforms-ipo-h2-2026-nri-investors-20260628",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "08e4f471-2f7d-47d0-b194-67655f906056",
-            "headline": "Jio, NSE and Zepto Are All Going Public at Once. India's Mar"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Mukesh Ambani in a suit",
-          "reason": "The photo shows Mukesh Ambani, relevant to the story."
+          "what_photo_shows": "Riyadh Air Boeing 787 Dreamliner",
+          "reason": "The photo shows a Riyadh Air plane, relevant to the airline launch story."
         },
         "inline_image_mismatches": []
       },
@@ -97,13 +36,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively addresses the implications of Jio's IPO for NRI investors, making it relevant to the diaspora audience."
+          "note": "The article effectively connects the new airline's services to the needs of the Indian diaspora, highlighting benefits for NRIs."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from industry experts or analysts to enhance credibility.",
-          "Include more details on how NRIs can navigate the investment process to provide practical guidance."
+          "Consider adding quotes from industry experts or NRI travelers to enhance the article's depth.",
+          "Include more statistics or data on the Indian diaspora's travel patterns to strengthen the argument."
         ],
         "verdict": "pass"
       },
@@ -115,9 +54,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "3ce4d1ea-ef8e-460b-8692-27567d5003af",
-      "headline": "Accenture's Growth Warning Just Wiped Billions Off Indian IT. The Real Threat Is Deeper.",
-      "slug": "accenture-guidance-cut-indian-it-stocks-ai-threat-20260628",
+      "id": "9b48e24b-fa9a-4a1c-9c58-4098532043e2",
+      "headline": "Thailand Just Kicked India Off Its Visa-Free List \u2014 Here's What Every NRI Traveller Needs to Know",
+      "slug": "thailand-visa-downgrade-india-voa-nri-travel-20260628",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -125,51 +64,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "stock market trading screens",
-          "reason": "The photo shows stock market data, relevant to the story about IT companies' market impact."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 5,
-          "issue": "The image does not directly relate to the article's focus on Accenture and Indian IT."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the impact of Accenture's growth warning on Indian IT professionals in the US, making it relevant for the NRI audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that reflects the themes of technology and Indian IT.",
-          "Add more data or quotes from industry experts to strengthen the analysis of the impact on Indian IT."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "2f01e8b1-e85d-42fe-baaa-64b858e246a4",
-      "headline": "The Man Who Ran Infosys Just Raised $32 Million to Make It Obsolete",
-      "slug": "vishal-sikka-hang-ten-ai-infosys-it-services-20260628",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A man speaking at an event",
-          "reason": "The photo plausibly shows Vishal Sikka, relevant to the story."
+          "what_photo_shows": "Suvarnabhumi Airport terminal interior",
+          "reason": "The photo shows the airport terminal relevant to the visa story."
         },
         "inline_image_mismatches": []
       },
@@ -183,13 +79,142 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses the implications of AI disruption in the IT sector, which directly affects NRI engineers and investors."
+          "note": "The article effectively addresses the implications of the visa changes specifically for NRIs, making it relevant and engaging for the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes or insights from NRI engineers to strengthen the diaspora connection.",
-          "Add a section on how this shift might impact the Indian tech ecosystem in the long term."
+          "Include more specific examples or anecdotes from NRIs who have been affected by the visa changes to enhance relatability.",
+          "Consider adding a section on how NRIs can navigate the new visa process or tips for travel planning under the new regulations."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "3cff62aa-07e3-4286-b672-54257a1df95b",
+      "headline": "India and the US Are 'Very, Very Close' to a Historic Trade Deal \u2014 but One Number Stands in the Way",
+      "slug": "india-us-trade-deal-very-close-tariff-pakistan-greer-goyal-mission-500-nri-investor-20260628",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Indian Commerce Minister Piyush Goyal",
+          "reason": "The photo shows the correct named person involved in the trade negotiations."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively discusses the implications of the trade deal for NRI investors and professionals, making it relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more specific examples of how the trade deal could directly impact NRI investors.",
+          "Add quotes or insights from NRI stakeholders to enhance the diaspora perspective."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "00b34c92-285d-409d-b6c3-8c8a818cdffd",
+      "headline": "Your Blood Pressure and Blood Sugar May Be Aging Your Brain \u2014 Even If You're Under 40",
+      "slug": "poor-metabolic-health-ages-brain-young-adults-plos-biology-blood-flow-cognition-south-asian-diaspora-20260628",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "medical brain scan image",
+          "reason": "The photo shows a brain scan, which is relevant to the study of brain aging and metabolic health."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively highlights the significance of metabolic health for the South Asian diaspora, making it relevant and engaging for NRI readers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific statistics or data points related to the South Asian diaspora's health to strengthen the argument.",
+          "Include quotes or insights from health experts to enhance credibility and provide a more rounded perspective."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "91c76409-aa76-4db8-a74a-b31d4af1dc09",
+      "headline": "Two Hours of Strength Training a Week May Be the Sweet Spot for Living Longer \u2014 and the Evidence Is Now Hard to Ignore",
+      "slug": "strength-training-90-120-minutes-sweet-spot-longevity-harvard-bjsm-jacc-cardiovascular-diaspora-20260628",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "dumbbells in a gym",
+          "reason": "The photo of dumbbells is relevant to a strength training story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the findings to the health concerns prevalent in the South Asian diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of strength training exercises that are culturally relevant to the South Asian diaspora.",
+          "Include quotes or insights from South Asian fitness experts to enhance relatability."
         ],
         "verdict": "pass"
       },
