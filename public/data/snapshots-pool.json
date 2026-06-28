@@ -120,13 +120,6 @@
     "added_date": "2026-05-01"
   },
   {
-    "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/snapshots/indian-community-celebration-10892569.jpg",
-    "label": "A group of musicians celebrating a traditional Indian festival with vibrant attire and instruments. · 📷 Swastik Arora",
-    "source": "pexels",
-    "added_date": "2026-05-27",
-    "pexels_id": 10892569
-  },
-  {
     "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/snapshots/indian-temple-festival-36849624.jpg",
     "label": "Vibrant traditional Indian festival with performers in elaborate costumes and makeup, showcasing cultural heritage. · 📷 Pavan Prasad",
     "source": "pexels",
@@ -258,5 +251,12 @@
     "source": "pexels",
     "added_date": "2026-06-21",
     "pexels_id": 32518360
+  },
+  {
+    "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/snapshots/indian-harvest-festival-pongal-35763760.jpg",
+    "label": "Close-up of a Pongal pot with coconut and incense, Sri Lanka. · 📷 Dinuka Gunawardana",
+    "source": "pexels",
+    "added_date": "2026-06-28",
+    "pexels_id": 35763760
   }
 ]
