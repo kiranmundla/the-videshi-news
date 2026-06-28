@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-28T02:15:34.243645+00:00",
+  "timestamp": "2026-06-28T02:45:23.736298+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 5,
+    "pass": 3,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "c01ddf9e-bdd0-4384-928d-76665d21f56c",
-      "headline": "India's Bullet Train Map Just Got Seven New Lines \u2014 and the Diaspora's Commute Home Is in the Blueprint",
-      "slug": "india-bullet-train-seven-corridors-nhsrcl-indigenous-nri-20260628",
+      "id": "d0a4f643-3289-4352-9653-a3641d700923",
+      "headline": "They Went to America for Better Jobs. Now They\u2019re Coming Home to Fewer Ones.",
+      "slug": "h1b-returnees-india-tech-hiring-28-month-low-reverse-brain-drain-job-crisis-20260628",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "modern high-speed train in greenery",
-          "reason": "The photo shows a high-speed train, relevant to the infrastructure story."
+          "what_photo_shows": "Employees at Infosys campus",
+          "reason": "The photo shows a tech company campus relevant to the story on tech jobs."
         },
         "inline_image_mismatches": []
       },
@@ -30,153 +30,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the bullet train developments to the diaspora's travel experiences and needs."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from experts or stakeholders to enhance credibility.",
-          "Include more statistics or data on how these new lines will impact travel times for specific diaspora communities."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "941ce545-94c1-4ebc-a50a-53d7d79060b1",
-      "headline": "Flying to India This Summer? There's a New Health Form You Can't Skip",
-      "slug": "air-suvidha-2-health-declaration-india-ebola-nri-20260628",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Indira Gandhi International Airport Terminal 3",
-          "reason": "The photo shows the airport terminal where Air Suvidha declarations are processed."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively addresses the Indian diaspora by discussing the implications of the new health form for NRIs traveling to India."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a brief section on how to access the Air Suvidha portal for those unfamiliar with it.",
-          "Include a quote from a health official or travel expert to enhance credibility and provide additional insights."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "8cce49b7-78ea-44cf-926e-744c7b7f4863",
-      "headline": "India's Passport Fees Jump on July 1 \u2014 Here's the New Math for Every NRI Family",
-      "slug": "india-passport-fee-hike-july-1-oci-update-nri-20260628",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "bdc8d80a-8733-463b-b329-4e28e4655845",
-            "headline": "The Last Cheap Visa Slot in India Just Vanished. Now Every H"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "open passport with travel stamps",
-          "reason": "The photo subject is relevant to a story about passport fees."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively addresses the implications of passport fee changes for NRIs, making it relevant and informative for the diaspora audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a brief section on how these changes compare to previous fees for better context.",
-          "Include a quote or testimonial from an NRI to enhance relatability and personal connection."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "01526a6c-725b-4300-88ad-8adedf69cd3d",
-      "headline": "India's Textile Stocks Just Surged \u2014 and Brokerages Say the Sector's Best Years Are Ahead",
-      "slug": "india-textile-stocks-motilal-oswal-buy-gokaldas-welspun-pearl-global-china-plus-one-nri-investor-20260627",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Workers in a textile factory",
-          "reason": "The photo shows a textile factory, relevant to the textile industry story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 6,
+          "issue": "The image depicts a lunch scene at Infosys, which is relevant to the tech industry but does not directly relate to the article's focus on returning Indian tech professionals and job scarcity."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 7,
-          "note": "The article discusses investment opportunities in India's textile sector, which may interest NRIs looking to invest back home."
+          "note": "The article discusses the challenges faced by Indian tech professionals returning from the US, which is relevant to the NRI community, though it could further emphasize the diaspora's perspective."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more specific examples of how NRIs can invest in the textile sector.",
-          "Add quotes or insights from NRI investors or experts to strengthen the diaspora connection."
+          "Include more direct quotes or anecdotes from returning professionals to enhance the personal connection for diaspora readers.",
+          "Consider adding a section that discusses potential solutions or advice for returnees navigating the job market in India."
         ],
         "verdict": "pass"
       },
@@ -188,9 +54,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "51addff7-5aff-4f33-8ded-52480ce0d522",
-      "headline": "Your Desk Job May Need 13,000 Steps to Undo \u2014 but Even 1,700 Can Start to Fight Back",
-      "slug": "desk-job-sedentary-steps-offset-chronic-disease-nature-vanderbilt-duke-nri-tech-workers-20260627",
+      "id": "b9cf6e99-4020-4588-bee3-98530ea3f991",
+      "headline": "The Ceasefire Was Twelve Days Old. Then Two More Ships Were Hit and Trump Threatened to Erase Iran.",
+      "slug": "us-iran-hormuz-ceasefire-cracking-second-tanker-attack-trump-india-oil-20260628",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -198,13 +64,13 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "person walking outside office building",
-          "reason": "The photo shows walking, which relates to the story about steps and health."
+          "what_photo_shows": "satellite view of Strait of Hormuz",
+          "reason": "The photo shows the Strait of Hormuz, relevant to the story about tanker attacks there."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 8,
+        "overall_score": 7,
         "embed_issues": [],
         "image_match": {
           "score": 9,
@@ -212,14 +78,57 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the health findings to the Indian diaspora, particularly highlighting the increased health risks faced by South Asians."
+          "quality": 8,
+          "note": "The article discusses India's reliance on oil imports from the Strait of Hormuz, which is relevant to the Indian diaspora concerned about geopolitical impacts on energy security."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more personal anecdotes or testimonials from members of the Indian diaspora to enhance relatability.",
-          "Include a section on practical tips for incorporating more steps into a daily routine, specifically tailored for tech workers."
+          "Include more direct quotes from Indian officials or experts to strengthen the diaspora connection.",
+          "Add a brief overview of how the geopolitical situation affects Indian expatriates or businesses abroad."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "08e4f471-2f7d-47d0-b194-67655f906056",
+      "headline": "Jio, NSE and Zepto Are All Going Public at Once. India's Market Has Never Absorbed \u20b970,000 Crore in a Single Window.",
+      "slug": "jio-nse-zepto-ipo-70000-crore-india-largest-listing-pipeline-sebi-ambani-20260628",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "A man in a suit and tie",
+          "reason": "The photo plausibly shows Mukesh Ambani, relevant to the Jio IPO story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 5,
+          "issue": "The image of Mukesh Ambani does not directly relate to the broader topic of multiple IPOs."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the IPOs to the Indian diaspora's investment opportunities."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that represents the IPO market or the three companies involved for better relevance.",
+          "Add more context on how these IPOs might impact the Indian economy or the global market to enhance depth."
         ],
         "verdict": "pass"
       },
