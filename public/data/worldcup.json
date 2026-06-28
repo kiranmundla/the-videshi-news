@@ -1,6 +1,6 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-06-28T11:59:16Z",
+  "last_updated": "2026-06-28T15:59:32Z",
   "stage": "Knockout Stage",
   "hosts": "USA, Mexico & Canada",
   "dates": {
@@ -3848,6 +3848,20 @@
       "account": "@fifaworldcup",
       "caption": "The Round of 32 is ready to begin 🇿🇦🇨🇦 #FIFAWorldCup",
       "type": "carousel"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DaHYnnEFm8j",
+      "account": "@fifaworldcup",
+      "caption": "Argentina end the group stage unbeaten 🔒",
+      "date": "2026-06-27"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DaHYjTRnJT5",
+      "account": "@fifaworldcup",
+      "caption": "Every team in the Round of 32! 🏆",
+      "date": "2026-06-28"
     }
   ],
   "tv": {
