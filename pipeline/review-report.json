@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-28T01:15:18.701569+00:00",
+  "timestamp": "2026-06-28T01:45:12.370539+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 1,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,57 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "ee233835-c867-4389-96cb-42265e759d92",
-      "headline": "Cocktail 2 Just Crossed \u20b9128 Crore Worldwide \u2014 and Shahid Kapoor Finally Has His Comeback",
-      "slug": "cocktail-2-box-office-128-crore-worldwide-shahid-kapoor-kriti-sanon-rashmika-mandanna-100-crore-club-where-to-watch-diaspora-nri-20260627",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "27668618-fca0-4d33-82ba-b1da9bcca517",
-            "headline": "Black Gowns, a \u20b92.3-Crore Watch, and the Night Bollywood Dre"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A man in a green jacket",
-          "reason": "The photo plausibly shows Shahid Kapoor, relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses the film's reception and its cultural impact, particularly in the diaspora, making it relevant to NRI audiences."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more direct quotes from Shahid Kapoor or the director to enhance the article's depth.",
-          "Include more context about the original Cocktail's impact on Bollywood to strengthen the comparison."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "985e6838-e944-402c-a805-e2344d9826d4",
-      "headline": "Lock Upp Just Moved to Netflix \u2014 and 15 Celebrities Just Lost Their Phone Privileges",
-      "slug": "lock-upp-season-2-netflix-premiere-farah-khan-riteish-deshmukh-ram-kapoor-shreshta-iyer-reality-show-diaspora-nri-20260627",
+      "id": "f1630d5c-33a3-447c-8730-3cd8f874e53c",
+      "headline": "Pooran's Unbeaten 70 and Kenjige's Three-For Demolish the Knight Riders in Oakland",
+      "slug": "pooran-70-kenjige-3-21-mi-new-york-demolish-la-knight-riders-mlc-2026-oakland-coliseum-diaspora-nri",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -69,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Farah Khan in a pink outfit",
-          "reason": "The photo shows Farah Khan, who is mentioned in the headline."
+          "what_photo_shows": "Oakland Coliseum aerial view",
+          "reason": "The photo shows Oakland Coliseum, relevant to the cricket match location."
         },
         "inline_image_mismatches": []
       },
@@ -78,19 +30,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 5,
-          "issue": "irrelevant"
+          "score": 7,
+          "issue": "The image of the Oakland Coliseum is relevant but does not directly depict cricket or the match discussed."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the show's global accessibility to the Indian diaspora, highlighting its relevance."
+          "note": "The article connects well with the desi community in the Bay Area, highlighting the significance of cricket in their local culture."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the hero image with one that directly relates to the show or its contestants to enhance relevance.",
-          "Consider adding quotes or reactions from diaspora viewers to strengthen the connection with the audience."
+          "Consider including quotes from players or coaches to enhance the narrative.",
+          "Add more context about the significance of the match for the MLC standings."
         ],
         "verdict": "pass"
       },
