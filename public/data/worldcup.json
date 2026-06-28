@@ -1,6 +1,6 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-06-28T07:59:18Z",
+  "last_updated": "2026-06-28T10:02:04Z",
   "stage": "Knockout Stage",
   "hosts": "USA, Mexico & Canada",
   "dates": {
@@ -3799,6 +3799,41 @@
       "account": "@fifaworldcup",
       "caption": "From today, it's knockout football all the way! #FIFAWorldCup",
       "date": "2026-06-28"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/reel/DaHMEngivry/",
+      "account": "@fifaworldcup",
+      "caption": "Yoane Wissa earns the Superior Player of the Match trophy. ✨ #FIFAWorldCup #SuperiorPOTM",
+      "date": "2026-06-27"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DaHZ4jqCbnw/",
+      "account": "@fifaworldcup",
+      "caption": "The points are shared as Algeria and Austria advance to the knockouts! ⏭️ #FIFAWorldCup",
+      "date": "2026-06-27"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/reel/DaHcKnyCTBG/",
+      "account": "@fifaworldcup",
+      "caption": "Your Superior Player of the Match is Riyad Mahrez. ⚽ #FIFAWorldCup #SuperiorPOTM",
+      "date": "2026-06-27"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DaH0P3fEa4z/",
+      "account": "@fifaworldcup",
+      "caption": "Super-sub Kalajdžić sends Austria to the knockouts 🇦🇹⌚️ #FIFAWorldCup",
+      "date": "2026-06-28"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/reel/DaIAFqvxBjz/",
+      "account": "@fifaworldcup",
+      "caption": "Lionel Messi scoring his sixth #FIFAWorldCup 2026 goal in style ✨",
+      "date": "2026-06-28"
     }
   ],
   "tv": {
@@ -3846,5 +3881,199 @@
         "note": "Strong desi presence in Greater Boston area."
       }
     ]
-  }
+  },
+  "third_place_ranking": [
+    {
+      "group": "K",
+      "name": "DR Congo",
+      "code": "COD",
+      "flag": "🇨🇩",
+      "p": 3,
+      "w": 1,
+      "d": 1,
+      "l": 1,
+      "gf": 4,
+      "ga": 3,
+      "gd": 1,
+      "pts": 4,
+      "qualified": true,
+      "rank": 1
+    },
+    {
+      "group": "F",
+      "name": "Sweden",
+      "code": "SWE",
+      "flag": "🇸🇪",
+      "p": 3,
+      "w": 1,
+      "d": 1,
+      "l": 1,
+      "gf": 7,
+      "ga": 7,
+      "gd": 0,
+      "pts": 4,
+      "qualified": true,
+      "rank": 2
+    },
+    {
+      "group": "E",
+      "name": "Ecuador",
+      "code": "ECU",
+      "flag": "🇪🇨",
+      "p": 3,
+      "w": 1,
+      "d": 1,
+      "l": 1,
+      "gf": 2,
+      "ga": 2,
+      "gd": 0,
+      "pts": 4,
+      "qualified": true,
+      "rank": 3
+    },
+    {
+      "group": "L",
+      "name": "Ghana",
+      "code": "GHA",
+      "flag": "🇬🇭",
+      "p": 3,
+      "w": 1,
+      "d": 1,
+      "l": 1,
+      "gf": 2,
+      "ga": 2,
+      "gd": 0,
+      "pts": 4,
+      "qualified": true,
+      "rank": 4
+    },
+    {
+      "group": "B",
+      "name": "Bosnia & Herzegovina",
+      "code": "BIH",
+      "flag": "🇧🇦",
+      "p": 3,
+      "w": 1,
+      "d": 1,
+      "l": 1,
+      "gf": 5,
+      "ga": 6,
+      "gd": -1,
+      "pts": 4,
+      "qualified": true,
+      "rank": 5
+    },
+    {
+      "group": "J",
+      "name": "Algeria",
+      "code": "ALG",
+      "flag": "🇩🇿",
+      "p": 3,
+      "w": 1,
+      "d": 1,
+      "l": 1,
+      "gf": 5,
+      "ga": 7,
+      "gd": -2,
+      "pts": 4,
+      "qualified": true,
+      "rank": 6
+    },
+    {
+      "group": "D",
+      "name": "Paraguay",
+      "code": "PAR",
+      "flag": "🇵🇾",
+      "p": 3,
+      "w": 1,
+      "d": 1,
+      "l": 1,
+      "gf": 2,
+      "ga": 4,
+      "gd": -2,
+      "pts": 4,
+      "qualified": true,
+      "rank": 7
+    },
+    {
+      "group": "I",
+      "name": "Senegal",
+      "code": "SEN",
+      "flag": "🇸🇳",
+      "p": 3,
+      "w": 1,
+      "d": 0,
+      "l": 2,
+      "gf": 8,
+      "ga": 6,
+      "gd": 2,
+      "pts": 3,
+      "qualified": true,
+      "rank": 8
+    },
+    {
+      "group": "G",
+      "name": "Iran",
+      "code": "IRN",
+      "flag": "🇮🇷",
+      "p": 3,
+      "w": 0,
+      "d": 3,
+      "l": 0,
+      "gf": 3,
+      "ga": 3,
+      "gd": 0,
+      "pts": 3,
+      "qualified": false,
+      "rank": 9
+    },
+    {
+      "group": "A",
+      "name": "South Korea",
+      "code": "KOR",
+      "flag": "🇰🇷",
+      "p": 3,
+      "w": 1,
+      "d": 0,
+      "l": 2,
+      "gf": 2,
+      "ga": 3,
+      "gd": -1,
+      "pts": 3,
+      "qualified": false,
+      "rank": 10
+    },
+    {
+      "group": "C",
+      "name": "Scotland",
+      "code": "SCO",
+      "flag": "🏴󠁧󠁢󠁳󠁣󠁴󠁿",
+      "p": 3,
+      "w": 1,
+      "d": 0,
+      "l": 2,
+      "gf": 1,
+      "ga": 4,
+      "gd": -3,
+      "pts": 3,
+      "qualified": false,
+      "rank": 11
+    },
+    {
+      "group": "H",
+      "name": "Uruguay",
+      "code": "URU",
+      "flag": "🇺🇾",
+      "p": 3,
+      "w": 0,
+      "d": 2,
+      "l": 1,
+      "gf": 3,
+      "ga": 4,
+      "gd": -1,
+      "pts": 2,
+      "qualified": false,
+      "rank": 12
+    }
+  ]
 }
