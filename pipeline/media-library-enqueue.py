@@ -53,6 +53,80 @@ PLACES = {
 STOP_CAPS = {"the", "a", "an", "after", "why", "how", "this", "that", "india's",
              "america's", "just", "its", "for", "and", "but", "with", "from"}
 
+# ── Subject quality guard (ported from enrich-articles.py _is_safe_entity) ──
+# Rejects junk fragments that would fetch mismatched generic Wikimedia images.
+_SUBJECT_BANNED_WORDS = {
+    # pronouns / determiners
+    'they', 'them', 'their', 'it', 'its', 'this', 'that', 'these', 'those',
+    'he', 'she', 'we', 'you', 'us', 'his', 'her', 'him', 'my', 'our', 'your',
+    # verbs / adverbs that slip in from headline fragments
+    'tried', 'got', 'get', 'told', 'made', 'make', 'makes', 'tries', 'trying',
+    'keeps', 'kept', 'finally', 'out', 'again', 'now', 'then', 'here', 'there',
+    'just', 'still', 'will', 'would', 'could', 'should', 'can', 'may', 'might',
+    'must', 'shall', 'has', 'have', 'had', 'was', 'were', 'been', 'being',
+    # numbers as words
+    'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'two', 'one',
+    # question / conjunction / particle
+    'who', 'what', 'when', 'where', 'why', 'how', 'a', 'an', 'and', 'but', 'or', 'so',
+    # abstract/procedural nouns useless for image search
+    'fee', 'fees', 'registration', 'litigation', 'case', 'cases', 'ruling',
+    'report', 'reports', 'update', 'updates', 'latest', 'analysis',
+    'issue', 'issues', 'review', 'trend', 'trends', 'move', 'moves', 'push',
+    'plan', 'plans', 'threat', 'risk', 'ban', 'penalty', 'warning', 'alert',
+    'order', 'demand', 'supply', 'cost', 'costs', 'price', 'prices',
+    'rise', 'fall', 'drop', 'growth', 'loss', 'impact',
+}
+
+# Single words that are too generic to source a meaningful image for.
+# Multi-word tags containing these are fine ("stock market", "food safety").
+_GENERIC_SINGLES = {
+    'news', 'trade', 'deal', 'market', 'digital', 'social', 'media', 'video',
+    'photo', 'image', 'show', 'event', 'program', 'policy', 'bill', 'act',
+    'law', 'talks', 'crisis', 'budget', 'economy', 'funding', 'regulation',
+    'enforcement', 'property', 'insurance', 'infrastructure', 'luxury',
+    'heritage', 'aging', 'fraud', 'fares', 'wearables', 'modular', 'deeptech',
+    'children', 'seniors', 'data', 'security', 'partnership', 'acquisition',
+    'investment', 'hiring', 'backlog', 'processing',
+}
+
+# Very short words (3-4 chars) that are common-word fragments, not acronyms.
+# Real short entities (NRI, IPL, ICE, DHS, h1b) are all-caps or specific;
+# lowercase 3-4 char fragments are almost always junk.
+_SHORT_JUNK = {
+    'fro', 'pro', 'con', 'run', 'win', 'hit', 'top', 'new', 'old', 'big',
+    'set', 'cut', 'put', 'let', 'bit', 'lot', 'way', 'key', 'end', 'use',
+    'try', 'add', 'ask', 'aid', 'due', 'ago', 'own', 'raw', 'net', 'pay',
+    'tax', 'war', 'era', 'row', 'gap', 'low', 'via', 'per', 'yet', 'mix',
+}
+
+_CURRENCY_NUM_RE = re.compile(r'[\$₹€£]\d|\b\d+[kmb]\b', re.IGNORECASE)
+
+
+def _is_valid_subject(subj):
+    """Guard against junk fragments that would fetch mismatched images.
+    Ported from enrich-articles.py _is_safe_entity, adapted for the media
+    library context where body text isn't always available for confirmation."""
+    s = subj.strip()
+    if len(s) < 3:
+        return False
+    # Pure numbers / whitespace / punctuation
+    if re.match(r'^[\d\s.,\-%+/]+$', s):
+        return False
+    # Currency-amount patterns ("100k fee", "$500 penalty")
+    if _CURRENCY_NUM_RE.search(s):
+        return False
+    words = [w.lower() for w in s.split()]
+    # Any word in banned list → reject the whole subject
+    if any(w in _SUBJECT_BANNED_WORDS for w in words):
+        return False
+    # Single generic word → reject (but multi-word phrases pass)
+    if len(words) == 1 and words[0] in _GENERIC_SINGLES:
+        return False
+    # Short lowercase junk fragments
+    if len(words) == 1 and words[0] in _SHORT_JUNK:
+        return False
+    return True
+
 
 def load_registry_names():
     names = []
@@ -112,6 +186,8 @@ def extract_subjects(article, registry_names):
     def add(subj, st):
         k = subj.lower().strip()
         if len(k) < 3:
+            return
+        if not _is_valid_subject(subj):
             return
         if k not in found:
             found[k] = (subj.strip(), st)
