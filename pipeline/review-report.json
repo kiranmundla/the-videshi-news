@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-28T20:45:20.479943+00:00",
+  "timestamp": "2026-06-28T21:15:36.847711+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
-    "flag": 0,
+    "pass": 2,
+    "flag": 2,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "b055edb1-570a-436d-93b8-2c644725f294",
-      "headline": "India and the US Say a Trade Deal Is Days Away. Here's What's Actually Holding It Up.",
-      "slug": "india-us-trade-deal-very-close-greer-goyal-mission-500-july-deadline-20260628",
+      "id": "75454d9e-9a95-4883-9abb-303a5a6fcb9b",
+      "headline": "Prabhas Raised Three Fingers. Rana Tried to Stop Him. The Internet Did the Math.",
+      "slug": "baahubali-the-torchbearer-netflix-documentary-prabhas-three-fingers-baahubali-3-tease-rajamouli-ten-years-where-to-watch-diaspora-nri",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,32 +21,45 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Piyush Goyal smiling",
-          "reason": "The photo shows India's Commerce Minister Piyush Goyal, relevant to the trade story."
+          "what_photo_shows": "SS Rajamouli, director",
+          "reason": "The photo shows SS Rajamouli, relevant to the Baahubali franchise story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 7,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/DaCRAvwq6SJ/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not seem to relate directly to the content of the article, which focuses on the docuseries and the Baahubali franchise."
+          },
+          {
+            "url": "https://youtube.com/watch?v=HBfot1W6EXc",
+            "problem": "irrelevant",
+            "explanation": "The YouTube link is not directly relevant to the article's main focus on the docuseries and the context of the three-finger moment."
+          }
+        ],
         "image_match": {
-          "score": 8,
-          "issue": "The image is relevant to the article's topic of the India-US trade deal."
+          "score": 3,
+          "issue": "The image of SS Rajamouli does not match the article's focus on Prabhas and the Baahubali franchise."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article discusses implications for the Indian diaspora, particularly regarding trade and tariffs."
+          "quality": 6,
+          "note": "The article connects to the Indian diaspora through the global impact of the Baahubali franchise, but it could further emphasize its relevance to NRIs."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Expand on the implications for NRIs to strengthen the diaspora angle.",
-          "Include more recent statistics or quotes to enhance the timeliness of the article."
+          "Replace the irrelevant Instagram and YouTube links with embeds that directly relate to the Baahubali docuseries.",
+          "Use an image that features Prabhas or a scene from the Baahubali series to better match the article's content."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/DaCRAvwq6SJ/",
+        "Removed irrelevant embed: https://youtube.com/watch?v=HBfot1W6EXc",
         "promoted to published"
       ],
       "revised": false,
@@ -54,18 +67,23 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "a42f0670-3f6a-459c-919e-44de236d088e",
-      "headline": "India Is Negotiating to Sell Its Fastest Missile to the UAE. The Iran War Made It Possible.",
-      "slug": "india-brahmos-missile-uae-akashteer-defence-export-gulf-iran-war-20260628",
+      "id": "589d8ab3-146e-47c3-8214-fe717f0d1a91",
+      "headline": "Ambani's $180 Billion Jio IPO Is Finally Happening. NRIs Have a Seat Problem.",
+      "slug": "jio-platforms-ipo-h2-2026-nri-investors-20260628",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "08e4f471-2f7d-47d0-b194-67655f906056",
+            "headline": "Jio, NSE and Zepto Are All Going Public at Once. India's Mar"
+          }
+        ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "BrahMos missile launcher on parade",
-          "reason": "The photo shows a BrahMos missile, relevant to the defence story."
+          "what_photo_shows": "Mukesh Ambani in a suit",
+          "reason": "The photo shows Mukesh Ambani, relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -79,13 +97,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the defense relationship to the Indian diaspora in the UAE, highlighting the implications for their security and legal protections."
+          "note": "The article effectively addresses the implications of Jio's IPO for NRI investors, making it relevant to the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes from Indian officials or analysts to enhance credibility.",
-          "Expand on the implications for the Indian diaspora in terms of economic or social impacts."
+          "Consider adding quotes from industry experts or analysts to enhance credibility.",
+          "Include more details on how NRIs can navigate the investment process to provide practical guidance."
         ],
         "verdict": "pass"
       },
@@ -97,33 +115,81 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "d55d35de-a29d-48a3-92cb-739f5a915b0e",
-      "headline": "Becoming American Just Got More Expensive. For Indian Green-Card Holders, the Clock Is Ticking",
-      "slug": "uscis-n400-citizenship-fee-hike-indian-green-card-holders-20260628",
+      "id": "3ce4d1ea-ef8e-460b-8692-27567d5003af",
+      "headline": "Accenture's Growth Warning Just Wiped Billions Off Indian IT. The Real Threat Is Deeper.",
+      "slug": "accenture-guidance-cut-indian-it-stocks-ai-threat-20260628",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "stock market trading screens",
+          "reason": "The photo shows stock market data, relevant to the story about IT companies' market impact."
+        },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image entities are missing, making it difficult to assess relevance."
+          "score": 5,
+          "issue": "The image does not directly relate to the article's focus on Accenture and Indian IT."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively addresses the concerns of Indian green-card holders, making it relevant to the diaspora."
+          "quality": 9,
+          "note": "The article effectively connects the impact of Accenture's growth warning on Indian IT professionals in the US, making it relevant for the NRI audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include relevant image entities to enhance the article's visual appeal and context.",
-          "Consider adding quotes or testimonials from Indian green-card holders to provide a personal touch."
+          "Consider using a more relevant image that reflects the themes of technology and Indian IT.",
+          "Add more data or quotes from industry experts to strengthen the analysis of the impact on Indian IT."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "2f01e8b1-e85d-42fe-baaa-64b858e246a4",
+      "headline": "The Man Who Ran Infosys Just Raised $32 Million to Make It Obsolete",
+      "slug": "vishal-sikka-hang-ten-ai-infosys-it-services-20260628",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "A man speaking at an event",
+          "reason": "The photo plausibly shows Vishal Sikka, relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the implications of AI disruption in the IT sector, which directly affects NRI engineers and investors."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include quotes or insights from NRI engineers to strengthen the diaspora connection.",
+          "Add a section on how this shift might impact the Indian tech ecosystem in the long term."
         ],
         "verdict": "pass"
       },
