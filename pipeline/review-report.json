@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-28T16:45:46.938076+00:00",
+  "timestamp": "2026-06-28T17:15:17.140998+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
-    "flag": 1,
+    "pass": 2,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,61 +11,23 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "e477a07e-891d-4b22-be61-5061104d66fe",
-      "headline": "Swept in Belfast. Ireland Inflict India's First Bilateral T20I Series Loss in Over Two Years.",
-      "slug": "ireland-sweep-india-2-0-t20i-series-belfast-2026-historic-bilateral-series-win-prince-yadav-moondra-sooryavanshi-diaspora-nri",
+      "id": "1bffde53-41a3-44f0-9366-a7bd15bd8e8b",
+      "headline": "\u20b9300 Crore, Zombies, and a Phone Call: Inside Ranveer Singh's Wildest Bet Yet",
+      "slug": "ranveer-singh-pralay-300-crore-zombie-thriller-kalyani-priyadarshan-bollywood-debut-jai-mehta-august-2026-where-to-watch-diaspora-nri",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Shreyas Iyer at an airport",
-          "reason": "Shreyas Iyer is a relevant cricket player for the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 8,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses Jai Moondra's background and the experience of Indian diaspora fans, making it relevant to NRI readers."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more quotes or reactions from players or coaches to enhance engagement.",
-          "Add a brief analysis of what this series loss means for India's future in T20 cricket."
+        "duplicate_images": [
+          {
+            "article_id": "953f98ae-5c29-4d0c-8215-dcf1c87036c0",
+            "headline": "Ranveer Singh Has \u20b91,800 Crore, a Lawsuit, and a Zombie Apoc"
+          }
         ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "1b931298-55aa-4537-865d-d8d0ad8a77c2",
-      "headline": "Lindblad Finishes P10 in Austria. India's Closest Thing to an F1 Driver Just Keeps Collecting Points.",
-      "slug": "arvid-lindblad-p10-austrian-grand-prix-red-bull-ring-racing-bulls-indian-heritage-punjab-f1-2026-diaspora-nri",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Arvid Lindblad in racing attire",
-          "reason": "The photo shows Arvid Lindblad, relevant to the motorsport story."
+          "what_photo_shows": "Ranveer Singh at an event",
+          "reason": "The photo shows Ranveer Singh, who is relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -79,13 +41,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects Lindblad's Indian heritage to his achievements in F1, appealing to the Indian diaspora."
+          "note": "The article connects well with NRI audiences by relating the film's themes to popular Western series and emphasizing its unique Indian perspective."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes from Lindblad or his team to add a personal touch.",
-          "Provide more context on the significance of Lindblad's performance for Indian motorsport."
+          "Consider adding quotes or reactions from Ranveer Singh or Kalyani Priyadarshan to enhance the personal connection to the story.",
+          "Include more context on the significance of the \u20b9300 crore budget in relation to other Indian films for better reader understanding."
         ],
         "verdict": "pass"
       },
@@ -97,23 +59,18 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "28eb0fff-5288-49b3-95d8-cd1d3e8be0df",
-      "headline": "India's Biggest Trade Deal Goes Live in 17 Days. It Has Deployed 1,000 People to Make Sure Nobody Misses It.",
-      "slug": "india-uk-ceta-trade-deal-july-15-goyal-1000-advisors-whisky-tariffs-diaspora-20260628",
+      "id": "32f3a446-e55c-479d-9c7d-11610aeb2676",
+      "headline": "Two Runs Short at Lord's. Harmanpreet's Heroics Weren't Enough to Save India's World Cup.",
+      "slug": "india-women-eliminated-t20-world-cup-2026-australia-lords-harmanpreet-kaur-56-south-africa-qualify-diaspora-nri",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "8203c144-a402-4d4e-b457-ad27d1003e2c",
-            "headline": "The Quiet Clause in the India-UK Trade Deal That Puts Money "
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "smiling man in blue suit",
-          "reason": "The photo plausibly shows India's Commerce Minister Piyush Goyal, relevant to the trade deal story."
+          "what_photo_shows": "Harmanpreet Kaur with a trophy",
+          "reason": "The photo shows Harmanpreet Kaur, relevant to the cricket story."
         },
         "inline_image_mismatches": []
       },
@@ -121,87 +78,24 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image of Piyush Goyal is relevant as he is a key figure in the announcement of the trade deal, but it does not directly illustrate the trade deal itself."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively highlights the benefits of the trade deal for the Indian diaspora, particularly regarding social security contributions."
+          "quality": 8,
+          "note": "The article effectively connects the match to the Indian diaspora, highlighting their presence and enthusiasm at Lord's."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a quote from a diaspora member or expert to enhance the personal connection to the Indian community.",
-          "Include more details on how the trade deal will impact specific sectors relevant to the diaspora."
+          "Consider adding quotes from players or fans to enhance the emotional connection.",
+          "Include more context about the significance of the match for the Indian team and its fans."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "0ce6d903-3713-43d6-a860-69146188f259",
-      "headline": "Meta Just Paid $900 Million for an Indian Fintech. Its Founder Will Now Run WhatsApp.",
-      "slug": "meta-900-million-cred-kunal-shah-whatsapp-ceo-india-fintech-superapp-20260628",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "7d257c68-c661-404d-a612-66f7c0ba7563",
-            "headline": "Meta Just Made a CRED Founder the Boss of WhatsApp. The Real"
-          },
-          {
-            "article_id": "4988648b-d781-4950-85dc-66e323afab97",
-            "headline": "Meta Just Handed WhatsApp to a Mumbai Founder Who Never Wrot"
-          },
-          {
-            "article_id": "f79f1306-331b-4586-9133-a36ffcd40949",
-            "headline": "Meta Bets $900 Million on an Indian Fintech \u2014 and Hands an I"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "man in Freecharge shirt",
-          "reason": "The photo plausibly shows Kunal Shah, relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.threads.com/@kunalb11/post/DZ46ce6kg1B",
-            "problem": "irrelevant",
-            "explanation": "The post does not provide relevant context or additional information related to the article's subject matter."
-          }
-        ],
-        "image_match": {
-          "score": 7,
-          "issue": "The image features Kunal Shah, which is relevant to the article, but it lacks a direct connection to the specific events discussed."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses the significance of Indian entrepreneurs on a global stage, which resonates with the diaspora audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the irrelevant embed with a more relevant social media post or remove it altogether.",
-          "Enhance the diaspora angle by including quotes or perspectives from Indian entrepreneurs in the diaspora about the significance of this deal."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Removed irrelevant embed: https://www.threads.com/@kunalb11/post/DZ46ce6kg1B",
-        "promoted to published"
+        "held: no sources"
       ],
       "revised": false,
       "unpublished": false,
