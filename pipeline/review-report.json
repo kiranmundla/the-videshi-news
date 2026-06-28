@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-28T15:15:36.334460+00:00",
+  "timestamp": "2026-06-28T16:15:18.999607+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 4,
+    "pass": 2,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,57 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "c85c4563-7e92-4f68-a5a4-511c1ef52e50",
-      "headline": "\u20b92,507 Crore and Not a Single Hindi Release Since 2019: The Priyanka Chopra Empire Explained",
-      "slug": "priyanka-chopra-fortune-india-most-valuable-celebrity-2507-crore-brand-bentley-anomaly-reliance-varanasi-diaspora-nri-20260628",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "f6648ab6-e873-4635-bb4d-db8741e66e8d",
-            "headline": "Priyanka Chopra Just Dropped the Jolie Bombshell \u2014 and Her 2"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "woman in elegant attire",
-          "reason": "The photo plausibly shows Priyanka Chopra Jonas, matching the story topic."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article connects Priyanka Chopra's business ventures to the immigrant experience, which resonates with the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more direct quotes or insights from Priyanka Chopra to enhance the narrative.",
-          "Add a section discussing the impact of her brand on the Indian diaspora specifically."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "c2a4de08-0e75-4507-ac11-70ba7370ce7f",
-      "headline": "The Month Bollywood Went to War With Itself \u2014 and Everyone Won",
-      "slug": "june-2026-bollywood-biggest-month-four-fridays-box-office-cocktail-2-welcome-jungle-main-vaapas-aaunga-diaspora-nri-20260628",
+      "id": "7fbe3f3a-38aa-49f4-97d4-2776f32ec505",
+      "headline": "Indian Workers Pay $4 Billion a Year Into Social Security. They Will Never See a Dime",
+      "slug": "india-us-social-security-totalization-h1b-fica-4-billion-20260628",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -69,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "PVR cinema entrance",
-          "reason": "The photo shows a cinema, relevant to a Bollywood film story."
+          "what_photo_shows": "financial documents and forms",
+          "reason": "The photo shows documents related to financial contributions, relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -79,18 +31,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 6,
-          "issue": "The image of a mall does not directly relate to the article's focus on Bollywood films."
+          "issue": "The image does not directly relate to the topic of Indian workers and Social Security."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses a film that resonates with themes of return and belonging, which is relevant to the diaspora."
+          "note": "The article effectively addresses the concerns of Indian workers in the US regarding Social Security, making it relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant hero image that reflects the Bollywood theme.",
-          "Add more direct quotes or insights from industry experts to enhance credibility."
+          "Consider using a more relevant image that depicts Indian workers or the concept of Social Security.",
+          "Add a concluding section that summarizes the implications for Indian workers and potential future developments."
         ],
         "verdict": "pass"
       },
@@ -102,73 +54,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "d276a8b7-a31d-454e-944f-1d95ef0e1ad8",
-      "headline": "A $100,000 Price Tag on Every H-1B Hire. A Judge Said No. The Government Said Wait.",
-      "slug": "h1b-100k-fee-court-battle-tech-industry-legal-limbo-20260628",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "3bfccf08-94f2-4e2f-bf43-2cfdc4773f28",
-            "headline": "The Green Card You Could Get Without Leaving America? USCIS "
-          },
-          {
-            "article_id": "cd4c6f8e-79f5-47e7-8212-4c494babe13a",
-            "headline": "The Self-Petition Escape Hatch Is Closing. NIW Approvals Jus"
-          },
-          {
-            "article_id": "75dec796-365f-4a9f-afc4-aa7eee5d8e89",
-            "headline": "Indians Built Escape Routes Around the Green-Card Backlog. T"
-          },
-          {
-            "article_id": "6be85e6d-fc39-4011-ba26-54b94583d20f",
-            "headline": "DHS Says It Will Process Your Visa With AI in 30 Days. Immig"
-          },
-          {
-            "article_id": "faac8aeb-8246-40b8-81c3-1daaa48ee892",
-            "headline": "EB-5 Becomes India's Fastest Green Card Route. The Window Cl"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "USCIS Application Support Center",
-          "reason": "The photo shows a location where H-1B visa petitions are processed, relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses the implications of H-1B visa fees on Indian professionals, making it relevant to the NRI audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more direct quotes from affected individuals or organizations to enhance the narrative.",
-          "Add a section on potential future developments regarding H-1B visa policies to provide readers with a forward-looking perspective."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "d06cdc05-0ce5-400d-aa57-71d195b5a467",
-      "headline": "The Man Who Ran Infosys Now Wants to Make It Obsolete",
-      "slug": "vishal-sikka-hang-ten-ai-startup-infosys-threat-20260628",
+      "id": "f7574bf7-ac9d-411b-b584-78ffd99e5660",
+      "headline": "The Rule That Let Indian Students Stay Indefinitely Just Cleared Its Final Review",
+      "slug": "f1-duration-of-status-elimination-indian-students-dhs-20260628",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -176,8 +64,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "man speaking at a conference",
-          "reason": "The photo shows a man at a technology conference, matching the story's subject."
+          "what_photo_shows": "students on a university campus",
+          "reason": "The photo shows students on a university campus, which is relevant to the story about international student visas."
         },
         "inline_image_mismatches": []
       },
@@ -185,19 +73,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image does not directly relate to the topic of immigration or Indian students."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the implications of AI on Indian tech workers, particularly NRIs, making it relevant to the diaspora audience."
+          "quality": 9,
+          "note": "The article discusses changes in immigration policy that directly affect Indian students in the U.S., making it highly relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more quotes or insights from industry experts to enhance credibility.",
-          "Include a brief section on potential challenges or criticisms of Hang Ten's model to provide a balanced view."
+          "Consider using an image that directly represents Indian students or immigration to enhance relevance.",
+          "Add quotes or perspectives from Indian students or diaspora members to deepen the connection."
         ],
         "verdict": "pass"
       },
