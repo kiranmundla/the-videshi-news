@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-28T14:34:04.023755+00:00",
-  "mode": "review",
+  "timestamp": "2026-06-28T14:45:17.087649+00:00",
+  "mode": "fix",
   "stats": {
-    "pass": 20,
+    "pass": 1,
     "flag": 1,
     "fail": 0,
     "error": 0
@@ -11,750 +11,87 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "c2be7305-eacb-4c6a-a4c3-0a7ccd1d328b",
-      "headline": "America Turns 250 This Weekend \u2014 Here's the NRI Family's Guide to a National Park Road Trip",
-      "slug": "july-4-national-parks-road-trip-nri-family-guide-20260628",
+      "id": "9712d3c8-0638-4ac3-bf1b-b8e5e6547ac5",
+      "headline": "Ireland Beat India for the First Time in Thirty Years of Trying. The World Champions Lost by 34 Runs.",
+      "slug": "ireland-beat-india-first-time-t20i-belfast-shreyas-iyer-tucker-delany-20260628",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image of Delicate Arch is relevant to the article's content about national parks, but it does not directly relate to the July 4th celebration."
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "man in casual attire at airport",
+          "reason": "The photo plausibly shows Shreyas Iyer, relevant to the story."
         },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the July 4th holiday to the experiences of NRI families, discussing how they can enjoy the national parks while incorporating their cultural elements."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider including more specific tips for NRI families, such as cultural events or gatherings that may be happening in national parks during the holiday.",
-          "Add a section on how to celebrate July 4th in a way that resonates with Indian traditions, perhaps suggesting fusion recipes for picnic meals."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "00bbacdc-fc7b-4924-a215-023ccf631020",
-      "headline": "Colombo Is Now a Three-Hour Hop from Ahmedabad \u2014 Why NRIs Should Add Sri Lanka to Their India Trip",
-      "slug": "colombo-ahmedabad-fitsair-direct-flight-nri-sri-lanka-20260628",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image of Colombo's skyline is relevant but does not specifically depict the attractions mentioned in the article."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the travel opportunity to NRIs, particularly those visiting family in Gujarat."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more specific cultural or historical references that might resonate with NRIs.",
-          "Add a section on travel tips or experiences from NRIs who have visited Sri Lanka."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "88e1a75a-29e1-4d06-b353-1b9e487c4f41",
-      "headline": "Women Who Took the Pill in Their Twenties Had Larger, Healthier Brains Decades Later",
-      "slug": "hormonal-birth-control-brain-aging-gray-matter-ignite-mri-neuroimage-estrogen-women-diaspora-20260628",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the findings to South Asian women, highlighting cultural factors that influence contraceptive use."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more statistics or data specific to the South Asian diaspora to strengthen the connection.",
-          "Include quotes or insights from South Asian women or experts to provide a personal touch and enhance relatability."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "2d6acd65-2295-47a1-aaa7-f27a3a788773",
-      "headline": "Eating Only Between 8 AM and 2 PM for Two Weeks Reduced Heart Inflammation in Heart Attack Survivors",
-      "slug": "time-restricted-eating-heart-attack-survivors-inflammation-jaha-neutrophils-monocytes-cardiovascular-diaspora-20260628",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses heart health, which is relevant to the Indian diaspora, particularly given the prevalence of heart disease in the community."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include a section on how these findings could specifically impact dietary recommendations for the Indian diaspora, considering traditional eating habits.",
-          "Add quotes or insights from Indian health experts to enhance local relevance."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "d1a30af2-9c57-491a-928a-2feb64c2c0a8",
-      "headline": "Tata Motors Is Ramping EV Production by 50% \u2014 and Turning to China's Chery to Build Its Premium Electric Future",
-      "slug": "tata-motors-ev-production-50-percent-ramp-chery-avinya-platform-fuel-prices-india-nri-investor-20260628",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses Tata Motors' strategic moves in the EV market, which may interest NRIs with ties to the Indian automotive industry."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more direct quotes from industry experts or analysts to enhance credibility.",
-          "Add a section on how these developments might impact Indian consumers or the diaspora community."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "d78b6210-f926-4114-8c51-964f10979198",
-      "headline": "Carlsen Returns, Divya Deshmukh Debuts: The Global Chess League Draft Arrives in Mumbai Tomorrow",
-      "slug": "global-chess-league-season-4-draft-mumbai-carlsen-divya-deshmukh-anand-bengaluru-2026-diaspora-nri",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the Global Chess League to the Indian diaspora by highlighting its significance and appeal to NRIs."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from players or organizers to enhance engagement.",
-          "Include more details about how the league impacts the global chess community."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "f432df0a-d9e8-45c5-903b-da244848152e",
-      "headline": "Chopra Returns Rusty, a Sri Lankan Prodigy Soars, and India's Javelin Empire Faces Its Biggest Test",
-      "slug": "neeraj-chopra-comeback-pathirage-sri-lanka-javelin-diamond-league-2026-jena-paris-india-diaspora",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses Indian athletes and their performances, which is relevant to the Indian diaspora interested in athletics."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more direct quotes from Neeraj Chopra or Rumesh Tharanga Pathirage to enhance the narrative.",
-          "Add a brief section on the historical context of javelin throwing in India and Sri Lanka to provide depth."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "c2cba592-16de-48f0-ba4c-349a066395c7",
-      "headline": "What to Watch This Week: Alia Bhatt Picks Up a Gun, Rajkumar Hirani Finally Comes to Streaming, and Enola Holmes Gets Married",
-      "slug": "what-to-watch-this-week-june-29-2026-alpha-pritam-pedro-enola-holmes-elle-silo-streaming-guide-diaspora-nri",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "d5ca0e82-839d-41dd-b8c1-326c6e2d0f8a",
-            "headline": "Golden Sequins, Red Boots, and 200 Dancers: The Last Great B"
-          }
-        ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article connects well with diaspora readers by mentioning availability on streaming platforms in the US, UK, and Canada."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more details about the cultural significance of the films or series for the diaspora audience.",
-          "Include a brief summary or context for readers unfamiliar with the directors or actors mentioned."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "6c9c6a51-3205-4a63-a87c-4f9106c26a5f",
-      "headline": "The Border Boys Are Back: Sunny Deol and Akshaye Khanna Reunite After 28 Years \u2014 and This Time, the War Is in a Courtroom",
-      "slug": "ikka-sunny-deol-akshaye-khanna-netflix-border-reunion-legal-thriller-courtroom-july-2026-where-to-watch-diaspora-nri",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the film's significance to the NRI audience, referencing cultural touchpoints and emotional resonance."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more quotes from the cast or crew to enhance the article's depth.",
-          "Include a brief mention of the film's reception or expectations to provide context for the audience."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "4f45029e-d21f-46bf-aa4d-6ea6a3b64ded",
-      "headline": "Amazon Just Committed $48 Billion to India. Most of It Will Be Spent Building the AI Infrastructure Indians Haven't Seen Yet.",
-      "slug": "amazon-48-billion-india-investment-jassy-modi-ai-cloud-data-centers-mumbai-hyderabad-20260628",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses opportunities for Indian tech professionals abroad, linking the investment to potential job growth and education in India."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more direct quotes from Indian tech professionals or diaspora members to enhance the personal connection.",
-          "Expand on how this investment might specifically impact the diaspora community in terms of job opportunities or collaborations."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "fb243574-eca2-4628-b1da-627925327d15",
-      "headline": "Hyderabad Named a Road After Trump. His Own Allies in India Called It Hypocrisy.",
-      "slug": "hyderabad-donald-trump-avenue-telangana-congress-bjp-us-india-20260628",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses the implications of the road renaming for NRIs, particularly in the tech industry, making it relevant to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more direct quotes from NRI perspectives to enhance the diaspora angle.",
-          "Add a brief historical context about previous instances of road naming in India to enrich the article."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "e261568d-bdff-42c0-bb0f-635fd626f6cd",
-      "headline": "The Supreme Court Is About to Rule on Whether Babies Born to H-1B Parents Are American Citizens",
-      "slug": "supreme-court-birthright-citizenship-h1b-indian-parents-14th-amendment-ruling-20260628",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively highlights the implications of the Supreme Court ruling on Indian families in the US, making it relevant to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include quotes or perspectives from Indian diaspora organizations to enhance the community angle.",
-          "Add a brief explanation of the implications for children born after the ruling to clarify potential outcomes."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "8b41abc0-a985-401e-81bb-2ab709cd4178",
-      "headline": "From Udupi to the Pacific Northwest: Hari Nayak Plots Indian Cuisine's Next Frontier",
-      "slug": "from-udupi-to-the-pacific-northwest-hari-nayak-plots-indian-cuisines-next-fronti",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the significance of Nayak's restaurant to the Indian American community in the Pacific Northwest."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from Hari Nayak or local community members to enhance the personal connection.",
-          "Include more details about the expected menu or specific dishes to engage readers further."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "99bff56e-bf68-46b7-9578-187310910a3e",
-      "headline": "Butter Chicken at Costco: How Indian Food Brands Are Storming America's Grocery Aisles",
-      "slug": "butter-chicken-at-costco-how-indian-food-brands-are-storming-americas-grocery-ai",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the availability of Indian food in mainstream grocery stores to the cultural significance for the Indian diaspora in the U.S."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes or testimonials from Indian Americans about their experiences with these products to enhance the diaspora connection.",
-          "Include more statistics or data on the growth of Indian food brands in the U.S. to strengthen the article's argument."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "1bdb546f-bf6f-4450-a0be-61fcb94d5241",
-      "headline": "Copper and Courage: How a Punjabi Family Rebuilt Their Las Vegas Restaurant and Earned a James Beard Nod",
-      "slug": "copper-and-courage-how-a-punjabi-family-rebuilt-their-las-vegas-restaurant-and-e",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image depicts Indian cuisine but does not specifically represent Tamba or its unique offerings."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article highlights the immigrant experience of the Dhillon family and their contributions to Indian cuisine in America, which resonates with the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include a specific image of Tamba or its dishes to enhance visual relevance.",
-          "Add quotes or anecdotes from the Dhillon family to deepen the personal connection for readers."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "14f944bf-a7a6-4075-a160-79b35f1bbc71",
-      "headline": "Amazon Just Dropped Another $13 Billion on India. The Hyperscaler Land Grab Is Getting Serious.",
-      "slug": "amazon-jassy-13-billion-india-ai-aws-data-centre-20260628",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "53a54c16-1207-497d-8b0d-9816330399e8",
-            "headline": "Amazon Just Raised Its India Bet to $48 Billion. Most of the"
-          },
-          {
-            "article_id": "53cccca2-93e0-4a43-b1c0-21f0554a9c3e",
-            "headline": "Amazon Just Promised India Another $13 Billion. The Real Sto"
-          }
-        ],
-        "broken_embeds": []
+        "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
           "score": 3,
-          "issue": "image does not match the article's topic about Amazon's investment in India"
+          "issue": "irrelevant"
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article discusses job security and opportunities for NRIs considering a return to India, making it relevant for the diaspora."
+          "quality": 7,
+          "note": "The article connects to the Indian diaspora by mentioning their fervent support for India's cricket matches, but could elaborate more on their reactions or sentiments."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the hero image with one that is more relevant to Amazon's investment in India or cloud infrastructure.",
-          "Consider adding quotes or perspectives from Indian tech workers or NRIs to enhance the diaspora angle."
+          "Replace the hero image with one that is more relevant to the match or the players involved.",
+          "Expand on the diaspora angle by including quotes or reactions from Indian fans in the UK and Ireland."
         ],
         "verdict": "flag"
       },
-      "actions_taken": [],
+      "actions_taken": [
+        "promoted to published"
+      ],
       "revised": false,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "9d25a905-cafb-4781-b578-a46dbb55ff4d",
-      "headline": "A War Far From Gujarat Is Threatening India's Chip Ambitions",
-      "slug": "west-asia-conflict-india-semiconductor-dholera-delays-20260628",
+      "id": "decdfb91-ebc7-42c2-9694-f3775db2c747",
+      "headline": "A Brooklyn Judge Just Told the Trump DOJ It Can't Walk Away From the Adani Case Without Explaining Itself",
+      "slug": "adani-bribery-indictment-us-judge-refuses-dismiss-doj-garaufis-brooklyn-july-2026-20260628",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [],
-        "broken_embeds": []
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Gautam Adani in a suit",
+          "reason": "The photo shows Gautam Adani, who is relevant to the story."
+        },
+        "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 8,
+        "overall_score": 7,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 8,
+          "issue": "The image of Gautam Adani is relevant to the article's topic."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the semiconductor industry developments in India to NRI investors and professionals, highlighting their potential concerns and interests."
+          "quality": 7,
+          "note": "The article discusses the implications of the Adani case for Indian investors, which connects to the diaspora's financial interests."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes or insights from industry experts to enhance credibility.",
-          "Include more specific examples of how the supply chain disruptions are impacting NRI investors' decisions."
+          "Include more context on how the case impacts the Indian diaspora specifically.",
+          "Add quotes from legal experts or stakeholders to enhance the article's depth."
         ],
         "verdict": "pass"
       },
-      "actions_taken": [],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "d9bc1675-d370-4436-85ae-a0a422db9a89",
-      "headline": "The July 31 Deadline Is Coming. Here's What Every NRI Filing an Indian Tax Return Needs to Know.",
-      "slug": "nri-india-itr-july-deadline-schedule-fa-dtaa-fbar-guide-20260628",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively addresses the tax obligations of NRIs, making it relevant and informative for the diaspora audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a section on common mistakes NRIs make when filing taxes to enhance practical guidance.",
-          "Include links to official resources or tools for NRIs to help them navigate the tax filing process."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "6b8690c8-75de-44de-b064-3645e9907a3f",
-      "headline": "Fifty Years Ago, a Handful of Hare Krishnas Pulled a Chariot Down Fifth Avenue. Now 25,000 Show Up.",
-      "slug": "iskcon-ratha-yatra-50th-anniversary-nyc-diaspora-chariot-festival-20260628",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the Ratha Yatra to the Indian diaspora's cultural identity and community engagement."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include quotes from more attendees or organizers to enhance the personal connection.",
-          "Add a brief historical context about the significance of Ratha Yatra in India for readers unfamiliar with the tradition."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "06836937-5fac-42aa-8817-8649d61ca6d3",
-      "headline": "30,000 Indian Students Left America in One Year. Germany Doubled Its Intake.",
-      "slug": "indian-students-exodus-us-germany-europe-enrollment-20260628",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the topic of Indian students leaving America for Germany."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses the challenges faced by Indian students in the US and their migration to Germany, which is relevant to the Indian diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that directly represents Indian students or the concept of studying abroad.",
-          "Add quotes or testimonials from Indian students to enhance the personal connection to the diaspora experience."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "ee2d420b-5250-41d8-9354-fad1d7347b83",
-      "headline": "America's Nursing Homes Are About to Lose 115,000 Workers. A Bill to Help Indian Doctors Gathers Dust.",
-      "slug": "tps-ruling-healthcare-crisis-indian-doctors-hwra-bill-20260628",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the article's focus on nursing homes and Indian doctors."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the challenges faced by Indian doctors in the U.S. to the broader immigration issues affecting the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that depicts nursing homes or healthcare professionals.",
-          "Add more statistics or quotes from Indian doctors to strengthen the diaspora connection."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [],
+      "actions_taken": [
+        "promoted to published"
+      ],
       "revised": false,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
