@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-28T08:45:18.331935+00:00",
+  "timestamp": "2026-06-28T09:15:49.675766+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 0,
+    "pass": 3,
+    "flag": 2,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "d7946a8f-44ef-4ad5-bdcc-c873edc84742",
-      "headline": "India's Housing Market Just Had Its Best Quarter in Years. NRI Buyers Are Leading the Luxury Charge.",
-      "slug": "india-housing-sales-surge-19-percent-q2-2026-bengaluru-hyderabad-nri-luxury-real-estate-20260628",
+      "id": "4d713ecd-5f35-4ab5-a935-7f1ac65b7bb7",
+      "headline": "Nasscom Says AI Will Create a $400 Billion Market for Indian IT. Its Old Model Won't Get It There.",
+      "slug": "nasscom-400-billion-ai-opportunity-indian-it-services-20260628",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Residential towers in Hyderabad",
-          "reason": "The photo shows residential towers in Hyderabad, relevant to the housing market story."
+          "what_photo_shows": "software professionals working in an office",
+          "reason": "The photo shows software professionals, relevant to the IT industry story."
         },
         "inline_image_mismatches": []
       },
@@ -30,19 +30,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 5,
-          "issue": "The image of Hyderabad does not directly relate to the luxury housing market discussed in the article."
+          "score": 7,
+          "issue": "The image is relevant to technology but lacks a direct connection to AI or Indian IT specifically."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively highlights the role of NRI buyers in the luxury housing market, making it relevant for diaspora readers."
+          "quality": 8,
+          "note": "The article discusses the implications of AI on Indian IT professionals, including those working abroad, which is relevant to the NRI audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that better represents the luxury housing market or NRI investment.",
-          "Add more quotes or insights from NRI buyers to enhance the diaspora perspective."
+          "Include specific examples of how AI is impacting Indian IT professionals in the diaspora.",
+          "Consider adding quotes or insights from NRI professionals to enhance the diaspora connection."
         ],
         "verdict": "pass"
       },
@@ -54,9 +54,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "0a5602e0-1f62-4247-b1b1-bac904618575",
-      "headline": "America Is Rationing Cancer Drugs. The FDA Just Called India for Help.",
-      "slug": "us-fda-india-pharma-cancer-drug-ifosfamide-shortage-cipla-zydus-chemotherapy-rationing-20260628",
+      "id": "76640d04-b0e6-498e-b145-fc6230c1bc47",
+      "headline": "Qualcomm's Indian-Origin CFO Just Unveiled a $15 Billion Data Centre Bet. Meta and Microsoft Signed Up.",
+      "slug": "qualcomm-palkhiwala-15-billion-data-centre-meta-microsoft-20260628",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,8 +64,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "IV bags and infusion setup",
-          "reason": "The photo shows chemotherapy drug infusion components relevant to the story."
+          "what_photo_shows": "Qualcomm headquarters building",
+          "reason": "The photo shows Qualcomm headquarters, relevant to the company's data centre announcement."
         },
         "inline_image_mismatches": []
       },
@@ -78,18 +78,161 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article discusses India's role in supplying cancer drugs to the US, which is relevant to the Indian diaspora interested in healthcare and pharmaceutical developments."
+          "quality": 8,
+          "note": "The article highlights the achievements of an Indian-origin executive and discusses implications for Indian American engineers and investors, making it relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes or perspectives from Indian diaspora members involved in the pharmaceutical industry to strengthen the diaspora connection.",
-          "Add a section discussing the implications of this drug shortage on Indian patients or the Indian healthcare system."
+          "Consider adding quotes from Akash Palkhiwala or other executives to enhance the article's depth.",
+          "Include more context on how Qualcomm's strategy impacts the broader tech landscape, particularly for Indian engineers."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "37f8a1dc-f016-4dae-9b5a-e3cd94e11838",
+      "headline": "OpenAI Poaches Uber India's President to Run Its Second-Largest Market",
+      "slug": "openai-prabhjeet-singh-uber-india-md-chatgpt-20260628",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "smartphone displaying ChatGPT app",
+          "reason": "The photo shows the ChatGPT app, relevant to OpenAI's market story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to OpenAI or the appointment of Prabhjeet Singh."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the implications of Singh's appointment for NRIs, emphasizing India's growing importance in the tech landscape."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that reflects OpenAI or AI technology.",
+          "Add a quote from Prabhjeet Singh or a relevant industry expert to enhance the article's depth."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "28c58674-c2b8-4108-ad88-f47a8f2a2c5c",
+      "headline": "Woody and Buzz Just Broke Every Record Pixar Had Left: Toy Story 5 Crosses $300 Million in 10 Days",
+      "slug": "toy-story-5-300-million-10-days-pixar-record-opening-weekend-312-million-india-box-office-where-to-watch-diaspora-nri-june-2026",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Toy Story 5 theatrical release poster",
+          "reason": "The photo matches the story about Toy Story 5's success."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DaA9BLIFL3m/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel does not appear to be directly related to the content of Toy Story 5 or its box office performance."
+          }
+        ],
+        "image_match": {
+          "score": 10,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the film's performance in India and its appeal to diaspora audiences, making the connection relevant and natural."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the irrelevant Instagram embed with a more relevant social media post related to Toy Story 5.",
+          "Consider adding more details about the film's reception among diaspora audiences to enhance the diaspora angle."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DaA9BLIFL3m/",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "d596b988-dd39-4229-8717-f1b31ff7c31e",
+      "headline": "21 Million Viewers and a Sky Full of Fire: House of the Dragon Season 3 Is Here \u2014 and India Is Watching in Real Time",
+      "slug": "house-of-the-dragon-season-3-premiere-21-million-viewers-jiohotstar-india-battle-of-gullet-episode-2-june-2026",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "House of the Dragon promotional artwork",
+          "reason": "The photo is promotional artwork for House of the Dragon, matching the story topic."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DaDTrarhgBa/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel does not appear to be directly related to the content of the article, which focuses on the premiere of House of the Dragon Season 3."
+          }
+        ],
+        "image_match": {
+          "score": 10,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively highlights the simultaneous streaming availability in India, making it relevant for NRI audiences."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the irrelevant Instagram embed with a more relevant social media post or remove it altogether.",
+          "Consider adding more direct quotes or reactions from Indian viewers to enhance the diaspora connection."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DaDTrarhgBa/",
         "promoted to published"
       ],
       "revised": false,
