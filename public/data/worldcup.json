@@ -1,6 +1,6 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-06-28T06:01:14Z",
+  "last_updated": "2026-06-28T07:59:18Z",
   "stage": "Knockout Stage",
   "hosts": "USA, Mexico & Canada",
   "dates": {
@@ -1759,7 +1759,216 @@
   "knockout": {
     "round_of_32": {
       "dates": "June 28 – July 3",
-      "matches": 16
+      "matches": [
+        {
+          "id": 73,
+          "date": "2026-06-28",
+          "time": "15:00",
+          "tz": "ET",
+          "home": "South Africa",
+          "away": "Canada",
+          "home_code": "RSA",
+          "away_code": "CAN",
+          "venue": "SoFi Stadium",
+          "city": "Inglewood",
+          "status": "scheduled"
+        },
+        {
+          "id": 74,
+          "date": "2026-06-29",
+          "time": "15:00",
+          "tz": "ET",
+          "home": "Brazil",
+          "away": "Japan",
+          "home_code": "BRA",
+          "away_code": "JPN",
+          "venue": "NRG Stadium",
+          "city": "Houston",
+          "status": "scheduled"
+        },
+        {
+          "id": 75,
+          "date": "2026-06-29",
+          "time": "18:00",
+          "tz": "ET",
+          "home": "Germany",
+          "away": "Paraguay",
+          "home_code": "GER",
+          "away_code": "PAR",
+          "venue": "Gillette Stadium",
+          "city": "Foxborough",
+          "status": "scheduled"
+        },
+        {
+          "id": 76,
+          "date": "2026-06-29",
+          "time": "21:00",
+          "tz": "ET",
+          "home": "Netherlands",
+          "away": "Morocco",
+          "home_code": "NED",
+          "away_code": "MAR",
+          "venue": "Estadio BBVA",
+          "city": "Monterrey",
+          "status": "scheduled"
+        },
+        {
+          "id": 77,
+          "date": "2026-06-30",
+          "time": "15:00",
+          "tz": "ET",
+          "home": "Ivory Coast",
+          "away": "Norway",
+          "home_code": "CIV",
+          "away_code": "NOR",
+          "venue": "AT&T Stadium",
+          "city": "Arlington",
+          "status": "scheduled"
+        },
+        {
+          "id": 78,
+          "date": "2026-06-30",
+          "time": "18:00",
+          "tz": "ET",
+          "home": "France",
+          "away": "Sweden",
+          "home_code": "FRA",
+          "away_code": "SWE",
+          "venue": "MetLife Stadium",
+          "city": "East Rutherford",
+          "status": "scheduled"
+        },
+        {
+          "id": 79,
+          "date": "2026-06-30",
+          "time": "21:00",
+          "tz": "ET",
+          "home": "Mexico",
+          "away": "Ecuador",
+          "home_code": "MEX",
+          "away_code": "ECU",
+          "venue": "Estadio Azteca",
+          "city": "Mexico City",
+          "status": "scheduled"
+        },
+        {
+          "id": 80,
+          "date": "2026-07-01",
+          "time": "15:00",
+          "tz": "ET",
+          "home": "England",
+          "away": "DR Congo",
+          "home_code": "ENG",
+          "away_code": "COD",
+          "venue": "Mercedes-Benz Stadium",
+          "city": "Atlanta",
+          "status": "scheduled"
+        },
+        {
+          "id": 81,
+          "date": "2026-07-01",
+          "time": "18:00",
+          "tz": "ET",
+          "home": "USA",
+          "away": "Bosnia & Herzegovina",
+          "home_code": "USA",
+          "away_code": "BIH",
+          "venue": "Levi's Stadium",
+          "city": "Santa Clara",
+          "status": "scheduled"
+        },
+        {
+          "id": 82,
+          "date": "2026-07-01",
+          "time": "21:00",
+          "tz": "ET",
+          "home": "Belgium",
+          "away": "Senegal",
+          "home_code": "BEL",
+          "away_code": "SEN",
+          "venue": "Lumen Field",
+          "city": "Seattle",
+          "status": "scheduled"
+        },
+        {
+          "id": 83,
+          "date": "2026-07-02",
+          "time": "15:00",
+          "tz": "ET",
+          "home": "Portugal",
+          "away": "Croatia",
+          "home_code": "POR",
+          "away_code": "CRO",
+          "venue": "BMO Field",
+          "city": "Toronto",
+          "status": "scheduled"
+        },
+        {
+          "id": 84,
+          "date": "2026-07-02",
+          "time": "18:00",
+          "tz": "ET",
+          "home": "Spain",
+          "away": "Austria",
+          "home_code": "ESP",
+          "away_code": "AUT",
+          "venue": "SoFi Stadium",
+          "city": "Inglewood",
+          "status": "scheduled"
+        },
+        {
+          "id": 85,
+          "date": "2026-07-02",
+          "time": "21:00",
+          "tz": "ET",
+          "home": "Switzerland",
+          "away": "Algeria",
+          "home_code": "SUI",
+          "away_code": "ALG",
+          "venue": "BC Place",
+          "city": "Vancouver",
+          "status": "scheduled"
+        },
+        {
+          "id": 86,
+          "date": "2026-07-03",
+          "time": "15:00",
+          "tz": "ET",
+          "home": "Argentina",
+          "away": "Cape Verde",
+          "home_code": "ARG",
+          "away_code": "CPV",
+          "venue": "Hard Rock Stadium",
+          "city": "Miami",
+          "status": "scheduled"
+        },
+        {
+          "id": 87,
+          "date": "2026-07-03",
+          "time": "18:00",
+          "tz": "ET",
+          "home": "Colombia",
+          "away": "Ghana",
+          "home_code": "COL",
+          "away_code": "GHA",
+          "venue": "Arrowhead Stadium",
+          "city": "Kansas City",
+          "status": "scheduled"
+        },
+        {
+          "id": 88,
+          "date": "2026-07-03",
+          "time": "21:00",
+          "tz": "ET",
+          "home": "Australia",
+          "away": "Egypt",
+          "home_code": "AUS",
+          "away_code": "EGY",
+          "venue": "AT&T Stadium",
+          "city": "Arlington",
+          "status": "scheduled"
+        }
+      ]
     },
     "round_of_16": {
       "dates": "July 4–7",
@@ -3569,6 +3778,27 @@
       "account": "@fifaworldcup",
       "caption": "Lionel Messi becomes the first player to score in seven consecutive #FIFAWorldCup games 🌟",
       "date": "2026-06-27"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/reel/DaHmBCpxQRV/",
+      "account": "@fifaworldcup",
+      "caption": "The group stage delivered. Long-range screamers and towering headers ⚽✈️ #FIFAWorldCup",
+      "date": "2026-06-27"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DaHqR_XkcK-/",
+      "account": "@fifaworldcup",
+      "caption": "Recently at the #FIFAWorldCup 📸",
+      "date": "2026-06-27"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DaHwjLLRQbO/",
+      "account": "@fifaworldcup",
+      "caption": "From today, it's knockout football all the way! #FIFAWorldCup",
+      "date": "2026-06-28"
     }
   ],
   "tv": {
