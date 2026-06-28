@@ -1,15 +1,63 @@
 {
-  "timestamp": "2026-06-28T10:45:57.866311+00:00",
+  "timestamp": "2026-06-28T11:15:17.991978+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 5,
-    "flag": 1,
+    "pass": 2,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
   "revisions": 0,
   "unpublished": 0,
   "articles": [
+    {
+      "id": "52a23e7e-f172-471b-91e1-5ba05503ee87",
+      "headline": "Vishal Bhardwaj Just Got an Oscar Vote \u2014 and Five More Indians Walked In With Him",
+      "slug": "vishal-bhardwaj-academy-oscar-voting-2026-six-indians-sreekar-prasad-deepa-bhatia-eka-lakhani-dilip-shankar-diaspora-nri-20260628",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "87546f9b-fc20-4f20-8b5a-ebace1f78a1f",
+            "headline": "The Oscar Voting Body Just Got a Lot More Indian \u2014 and It's "
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "man in white shirt at event",
+          "reason": "The photo plausibly shows Vishal Bhardwaj, relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article highlights the achievements of Indian filmmakers in a global context, appealing to the diaspora's pride in Indian representation in international cinema."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Expand on the significance of Indian representation in the Academy for the diaspora audience.",
+          "Include quotes or reactions from the Indian film community regarding this achievement."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
     {
       "id": "07929984-969c-4464-9fac-f965db6781ce",
       "headline": "Nine Wickets Down, One Ball Left. Chaudhary Chose to Swing.",
@@ -19,11 +67,6 @@
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MISMATCH",
-          "what_photo_shows": "Steve Smith in cricket attire",
-          "reason": "The photo shows Steve Smith, not related to the story's named players."
-        },
         "inline_image_mismatches": []
       },
       "llm_review": {
@@ -31,260 +74,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 5,
-          "issue": "The image description is missing, making it difficult to assess its relevance to the article."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article connects to the Indian diaspora by highlighting the significance of the match in a region with a large Indian American population."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Add a relevant image description to improve the image match score.",
-          "Include quotes from players or coaches to enhance the narrative and provide more depth."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "Cleared mismatched image (Steve Smith in cricket attire)",
-        "held: image mismatch"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "image_mismatch": true,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "e4f211ec-206b-482d-a476-ac4f29226ac8",
-      "headline": "He Left Hyderabad With Nothing. Now He's Buying One of India's Biggest Banks for $5 Billion.",
-      "slug": "prem-watsa-fairfax-idbi-bank-1-billion-bonds-privatisation-indian-canadian-20260628",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "3e756902-6a13-43f4-b437-e08704143156",
-            "headline": "He Left Hyderabad With $8. His Company Just Put $1 Billion B"
-          },
-          {
-            "article_id": "f865b541-ec7b-41fe-98eb-5735b9724405",
-            "headline": "A Hyderabad-Born Billionaire Bets $1 Billion on India \u2014 and "
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "man speaking at a podium",
-          "reason": "The photo plausibly shows Prem Watsa, relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
+          "issue": "missing image description"
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects Prem Watsa's journey as an immigrant to his significant investment in India, highlighting the diaspora's role in the economy."
+          "note": "The article connects well with the Indian diaspora by highlighting the significance of the match in a region with a large Indian American population."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more context about the implications of the IDBI Bank acquisition for the Indian economy.",
-          "Include quotes or reactions from financial analysts or experts to enhance credibility and depth."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "f9a00ea4-d29e-4f18-b140-07afc50415b8",
-      "headline": "India's Quiet Energy Revolution: Domestic Coal Replaces Imports While Renewables Hit Record 17.9% of Generation",
-      "slug": "india-coal-import-substitution-renewable-energy-record-generation-20260628",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "thermal power plant in Uttar Pradesh",
-          "reason": "The photo shows a thermal power plant, relevant to the energy story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses India's energy transition, which is relevant to NRIs interested in India's economic and environmental developments."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more specific examples of how these energy changes impact the Indian diaspora, such as investment opportunities or environmental implications.",
-          "Add quotes or insights from experts in the energy sector to enhance credibility and depth."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "8b0efdd0-b941-4773-9652-9bddb271b474",
-      "headline": "Amazon Just Raised Its India Bet to $48 Billion. The AI Data Centres Come First.",
-      "slug": "amazon-jassy-modi-48-billion-india-ai-data-centre-aws-mumbai-hyderabad-20260628",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "53a54c16-1207-497d-8b0d-9816330399e8",
-            "headline": "Amazon Just Raised Its India Bet to $48 Billion. Most of the"
-          },
-          {
-            "article_id": "53cccca2-93e0-4a43-b1c0-21f0554a9c3e",
-            "headline": "Amazon Just Promised India Another $13 Billion. The Real Sto"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "a man in a suit outdoors",
-          "reason": "The photo plausibly shows Amazon CEO Andy Jassy, relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/p/DaAVzUoz3yW/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post does not appear to be related to Amazon's investment in India or the AI data centers discussed in the article."
-          }
-        ],
-        "image_match": {
-          "score": 7,
-          "issue": "The image of Andy Jassy is relevant as he is the CEO of Amazon and is mentioned in the article, but it does not directly illustrate the topic of AI data centers."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the investment to the Indian diaspora, highlighting the implications for Indian-origin professionals in tech and startups."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the irrelevant Instagram embed with a more relevant source or data point related to Amazon's investment.",
-          "Consider using an image that directly relates to AI data centers or cloud infrastructure to enhance visual relevance."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DaAVzUoz3yW/",
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "7df745d1-5bb3-4500-9d25-ed66d6d0df4c",
-      "headline": "India's Supreme Court Signs Landmark MOU with Russia on AI in Courts, Drawing Constitutional Scrutiny",
-      "slug": "india-russia-supreme-court-mou-cji-surya-kant-ai-judicial-cooperation-20260628",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A man in judicial attire",
-          "reason": "The photo plausibly shows a judicial figure relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses India's judicial advancements and international collaborations, which may interest the diaspora, but the connection could be more explicit."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Enhance the diaspora angle by including quotes or perspectives from Indian expatriates or legal experts abroad.",
-          "Provide more context on how this MOU might impact NRIs or the Indian diaspora's engagement with the Indian legal system."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "021acb40-fe22-44ac-82e3-591bf4766ad0",
-      "headline": "India Directs ONGC to Build $1.6 Billion Strategic Oil Reserve as Iran War Exposes Eight-Day Vulnerability",
-      "slug": "india-ongc-strategic-petroleum-reserve-mangaluru-expansion-iran-war-20260628",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "industrial site with large pipes",
-          "reason": "The photo shows industrial equipment relevant to energy infrastructure."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 5,
-          "issue": "The image is relevant to oil reserves but depicts the US Strategic Petroleum Reserve, which may not directly relate to India's context."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses India's strategic oil reserves, which may interest the diaspora concerned about India's energy security and geopolitical issues."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that directly represents India's strategic oil reserves for better relevance.",
-          "Expand on the diaspora angle by including how these developments may impact NRIs or their investments in India."
+          "Include a relevant hero image that captures the excitement of the match.",
+          "Provide more context on the significance of the Major League Cricket season for the Indian diaspora."
         ],
         "verdict": "pass"
       },
