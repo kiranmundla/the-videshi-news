@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-28T00:15:44.557934+00:00",
+  "timestamp": "2026-06-28T00:45:21.857699+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 5,
-    "flag": 1,
+    "pass": 3,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "37ff19af-5892-49a7-af1b-132a7ab6504a",
-      "headline": "One in Four American Doctors Is Foreign-Trained. The $100K Fee Nearly Broke That Pipeline",
-      "slug": "indian-doctors-100k-h1b-fee-rural-healthcare-aapi-img-pipeline-20260628",
+      "id": "af420fcc-9817-4c4d-bcbd-e746a5dc3d60",
+      "headline": "Your Chai Just Got Cheaper: India Wins Zero-Duty Tea Access to America",
+      "slug": "your-chai-just-got-cheaper-india-wins-zero-duty-tea-access-to-america",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,94 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "doctor consulting with a patient",
-          "reason": "The photo shows a physician in a medical setting, relevant to the story about foreign-trained doctors."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the article's focus on American doctors and immigration."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses the impact of immigration policies on Indian-trained doctors, which is relevant to the Indian diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that directly represents the theme of foreign-trained doctors or healthcare in the U.S.",
-          "Include more personal stories or quotes from Indian doctors to enhance the diaspora connection."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "4e2985ce-1b58-4a4b-b7f9-6e63fcb07e0f",
-      "headline": "An Indian-Origin Attorney Filed 64 Identical Asylum Claims. DHS Just Made Him the First Lawyer to Pay for It",
-      "slug": "dhs-fines-indian-attorney-doddamani-255k-asylum-fraud-ice-first-20260628",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "U.S. Immigration and Customs Enforcement building",
-          "reason": "The photo shows the ICE building, relevant to the immigration story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 5,
-          "issue": "The image does not directly relate to the article's focus on immigration law and asylum claims."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively discusses the implications of the case for the Indian diaspora, particularly in the context of asylum claims."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that reflects the themes of immigration law or asylum claims.",
-          "Expand on the implications for the Indian diaspora to further engage NRI readers."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "226f79d6-cf39-4ade-9b48-001fe2962111",
-      "headline": "Saudi Arabia Just Told 2.4 Million Indians They Can Stop Renting. Few Know What That Actually Means.",
-      "slug": "saudi-arabia-property-portal-nri-indian-workers-gulf-ownership-20260628",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Riyadh skyline at dusk",
-          "reason": "The photo shows the Riyadh skyline, relevant to the story about real estate in Saudi Arabia."
+          "what_photo_shows": "masala chai in traditional cup",
+          "reason": "The photo shows masala chai, which is relevant to the story about Indian tea."
         },
         "inline_image_mismatches": []
       },
@@ -122,13 +36,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively discusses the implications of the new property ownership laws for the Indian diaspora in Saudi Arabia, highlighting the shift in their relationship with the Gulf."
+          "note": "The article effectively connects the zero-duty tea access to the identity and economic interests of the Indian diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes or perspectives from Indian expatriates in Saudi Arabia to enhance relatability.",
-          "Provide more context on how this change compares to property ownership laws in other Gulf countries."
+          "Consider adding quotes or perspectives from NRI tea drinkers to enhance the diaspora connection.",
+          "Include more details on how the zero-duty access will impact prices for consumers in the US."
         ],
         "verdict": "pass"
       },
@@ -140,9 +54,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "e15fb776-c3a6-4386-a424-9f44bc553cf9",
-      "headline": "Modi Wrote in Creole to a Diaspora That Has Been in Seychelles Since Before America Was a Country",
-      "slug": "modi-seychelles-diaspora-creole-golden-jubilee-indian-ocean-20260628",
+      "id": "ff53a82c-9a53-483d-90eb-9cf803c085c3",
+      "headline": "From Chicago's Michelin Star to Phoenix and Hudson Yards: The Sujan Sarkar Playbook",
+      "slug": "from-chicagos-michelin-star-to-phoenix-and-hudson-yards-the-sujan-sarkar-playboo",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -150,51 +64,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Clock tower in Victoria, Seychelles",
-          "reason": "The photo shows a landmark in Seychelles, relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 3,
-          "issue": "The image of Big Ben in Seychelles does not match the article's topic."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses the historical and cultural significance of the Indian diaspora in Seychelles, connecting it to the broader NRI narrative."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the hero image with one that represents the Indian community or culture in Seychelles.",
-          "Include more recent statistics or quotes from diaspora members to enhance the connection with the NRI audience."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "ac2ab609-bb49-43d2-872d-191ff3bd928e",
-      "headline": "An Indian SaaS Company Just Bought a San Francisco AI Startup. The Direction of That Deal Says Everything.",
-      "slug": "moengage-acquires-aampe-india-saas-ai-acquisition-reverse-merger-20260627",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "developers in a tech office",
-          "reason": "The photo shows a tech office, relevant to a SaaS company story."
+          "what_photo_shows": "Indian curries and accompaniments",
+          "reason": "The photo shows Indian cuisine, relevant to the chef's restaurant story."
         },
         "inline_image_mismatches": []
       },
@@ -203,61 +74,61 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image is relevant to the tech industry but does not specifically represent the SaaS or AI focus of the article."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses the implications of MoEngage's acquisition for Indian-origin professionals in the Bay Area, providing a relevant perspective for the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more specific image that represents SaaS or AI to enhance visual relevance.",
-          "Expand on the implications for the Indian diaspora in the tech industry to strengthen the connection."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "462b06f2-29e3-491a-89cd-bbf04840e2ae",
-      "headline": "India's Biggest Insurtech IPO Lists on Monday. The Real Test Is Whether Anyone Buys Insurance Differently.",
-      "slug": "turtlemint-insurtech-ipo-listing-bse-nse-india-insurance-20260627",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "stock market trading screen",
-          "reason": "The photo is relevant to a story about an IPO listing."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the topic of insurtech or insurance."
+          "issue": "The image does not specifically depict Sujan Sarkar or his restaurants, which could enhance relevance."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects the insurtech IPO to NRI investors and their unique relationship with insurance in India."
+          "note": "The article effectively connects Sarkar's work to the Indian diaspora's experience and expectations of Indian cuisine in America."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that reflects the insurtech theme.",
-          "Add more data or examples of how Turtlemint's model specifically benefits NRI investors."
+          "Consider including quotes or testimonials from patrons of Sarkar's restaurants to add a personal touch.",
+          "Add more details about the specific dishes offered at the new locations to entice readers."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "e6403150-9548-4727-96ef-60095b73ce13",
+      "headline": "India Banned Telegram for 150 Million Users to Protect One Exam. A Court Just Said That Was Fine.",
+      "slug": "india-telegram-ban-150-million-users-neet-exam-delhi-high-court-section-69a-durov-20260628",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "A man in a black jacket",
+          "reason": "The photo plausibly shows Telegram CEO Pavel Durov, relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 5,
+          "issue": "The image of Pavel Durov is relevant as he is the CEO of Telegram, but it does not directly illustrate the article's focus on the ban and its implications."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses a significant event in India that may interest the diaspora, particularly those concerned with tech governance and digital rights."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more context on how this ban affects Indian diaspora, particularly students or professionals who rely on Telegram for communication.",
+          "Consider adding quotes or reactions from diaspora members regarding the implications of such a ban on digital freedom."
         ],
         "verdict": "pass"
       },
