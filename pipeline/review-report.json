@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-28T19:15:32.952462+00:00",
+  "timestamp": "2026-06-28T19:45:16.701276+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 4,
+    "pass": 2,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,79 +11,18 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "dea77820-bb20-4f0f-adc1-14f1ecac8871",
-      "headline": "\u20b91 Crore Opening, \u20b965 Crore and Climbing: The Most Beautiful Box Office Surprise of 2026 Belongs to Imtiaz Ali",
-      "slug": "main-vaapas-aaunga-box-office-miracle-imtiaz-ali-diljit-dosanjh-word-of-mouth-65-crore-diaspora-nri-20260628",
+      "id": "d60b2c68-cdef-4936-a715-cd49e96a225c",
+      "headline": "356 and Counting. Deepti Sharma Is Now the Greatest Wicket-Taker in Women's International Cricket History.",
+      "slug": "deepti-sharma-356-wickets-highest-wicket-taker-women-international-cricket-jhulan-goswami-record-lords-t20-world-cup-2026-nri",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "6b7327d5-f7db-48a2-a9ed-d21af5d0045e",
-            "headline": "The Film That Opened to \u20b91 Crore and Refused to Die: 'Main V"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Main Vaapas Aaunga theatrical release poster",
-          "reason": "The poster is relevant to the film mentioned in the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the film's themes to the diaspora experience, making it relatable for NRI readers."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more quotes from the cast or crew to enhance the article's depth.",
-          "Include a brief comparison with other recent films to contextualize its success further."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "1c143dcb-7d70-4a25-b4e8-d6551c1acd21",
-      "headline": "He Was the Hero for 30 Years \u2014 Now Akshay Kumar Plays the Monster in Priyadarshan's 'Haiwaan'",
-      "slug": "akshay-kumar-villain-haiwaan-priyadarshan-saif-ali-khan-september-11-2026-where-to-watch-diaspora-nri-20260628",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "742111a1-9d68-4c81-83fe-3638c9b1cbe0",
-            "headline": "Akshay Kumar Turns Villain, Saif Ali Khan Plays the Hero \u2014 a"
-          },
-          {
-            "article_id": "d097e345-7662-411f-a083-6378137071c4",
-            "headline": "\u20b936 Crore and Counting: 'Welcome To The Jungle' Is the Big, "
-          },
-          {
-            "article_id": "26cd4491-2073-48d3-b925-a3451fa8f27f",
-            "headline": "Akshay Kumar Walks Back Into the 'Welcome' Jungle Tonight \u2014 "
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Akshay Kumar in a suit",
-          "reason": "The photo shows Akshay Kumar, who is relevant to the story."
+          "what_photo_shows": "Deepti Sharma with a medal",
+          "reason": "The photo shows Deepti Sharma, relevant to the cricket story."
         },
         "inline_image_mismatches": []
       },
@@ -97,13 +36,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article connects well with diaspora audiences by mentioning the wide theatrical release in the US, UK, and Canada."
+          "note": "The article connects well with NRI readers by highlighting the significance of Deepti's achievement in the context of Indian women's cricket and its growth, particularly for those watching from abroad."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes or reactions from Akshay Kumar or Saif Ali Khan regarding their roles to enhance engagement.",
-          "Include more context about the original Malayalam film 'Oppam' for readers unfamiliar with it."
+          "Consider adding quotes from Deepti Sharma or her teammates to enhance the emotional impact of the article.",
+          "Include more statistics or comparisons to other players to provide deeper context about her achievement."
         ],
         "verdict": "pass"
       },
@@ -115,71 +54,38 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "15b5a8a6-3545-4915-a25d-db6ed0e0764c",
-      "headline": "After 52 Years, Salman Khan Is Finally Leaving Galaxy Apartments \u2014 and Bollywood's Most Famous Balcony Goes Dark",
-      "slug": "salman-khan-leaving-galaxy-apartments-bandra-bungalow-bishnoi-gang-security-52-years-khan-family-diaspora-nri-20260628",
+      "id": "b28c48f1-7c4b-44c5-bf62-7f929ccbeb58",
+      "headline": "Ben Stokes Retires. The Man Who Defined a Generation of England Cricket \u2014 and Haunted India Along the Way.",
+      "slug": "ben-stokes-retires-international-cricket-trent-bridge-2026-england-india-bazball-headingley-world-cup-diaspora-nri",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Ben Stokes in sports attire",
+          "reason": "The photo shows Ben Stokes, relevant to the cricket story."
+        },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "hero image not provided"
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article connects well with NRIs by highlighting the significance of Galaxy Apartments as a pilgrimage site for fans."
+          "note": "The article effectively connects Stokes' career to Indian cricket fans and NRIs, highlighting key moments that resonate with this audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include a relevant hero image that captures the essence of Galaxy Apartments or Salman Khan.",
-          "Add quotes or reactions from fans or industry insiders to enhance engagement."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "148ae7e2-959b-42b4-9659-5a7849f60287",
-      "headline": "\u20b920 Crore, a 90-Second Audio Clip, and the Voice That Haunts Bollywood's Biggest Director",
-      "slug": "rohit-shetty-20-crore-extortion-threat-lawrence-bishnoi-gang-audio-clip-juhu-firing-bollywood-security-diaspora-nri-20260628",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image description is missing, making it difficult to assess relevance."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the situation in Bollywood to the Indian diaspora's interest in the film industry."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include a relevant image description to improve the image match score.",
-          "Consider adding quotes or reactions from diaspora members to enhance the connection."
+          "Consider adding quotes from Indian players or fans to enhance the diaspora connection.",
+          "Include a brief section on Stokes' impact on cricket beyond just the England-India rivalry."
         ],
         "verdict": "pass"
       },
