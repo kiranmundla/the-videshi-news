@@ -360,6 +360,60 @@ def article_has_social_embed(body, platform):
     return False
 
 
+def verify_ig_embeds(body):
+    """Verify Instagram embed URLs in article body are real (not hallucinated).
+
+    Checks each IG /p/, /reel/, /tv/ URL by fetching the embed page and
+    looking for Instagram's "may be broken" / "post may have been removed"
+    markers. Returns (cleaned_body, removed_count).
+
+    Writer LLMs fabricate /reel/ shortcode URLs that look valid but point to
+    nothing. IG returns HTTP 200 for all embed pages (even broken ones), so
+    we must inspect the HTML body for removal markers.
+    """
+    ig_pattern = re.compile(
+        r'https?://(?:www\.)?instagram\.com/(?:p|reel|tv)/([A-Za-z0-9_-]+)/?[^\s]*'
+    )
+    matches = list(ig_pattern.finditer(body))
+    if not matches:
+        return body, 0
+
+    removed = 0
+    for m in matches:
+        shortcode = m.group(1)
+        full_url = m.group(0)
+        try:
+            r = subprocess.run(
+                ["curl", "-s", "--connect-timeout", "5", "--max-time", "10",
+                 "-A", "Mozilla/5.0",
+                 f"https://www.instagram.com/p/{shortcode}/embed/"],
+                capture_output=True, text=True, timeout=15
+            )
+            html = (r.stdout or "").lower()
+            is_broken = (
+                "may be broken" in html
+                or "post may have been removed" in html
+                or "embedisbroken" in html.replace(" ", "")
+            )
+            # Tiny page with no embed scaffold = also broken
+            if not is_broken and len(r.stdout or "") < 2000 and 'class="Embed' not in (r.stdout or ""):
+                is_broken = True
+
+            if is_broken:
+                print(f"     💀 Fake/dead IG embed: {full_url[:60]} — stripping")
+                # Remove the URL line and surrounding blank lines
+                body = re.sub(r'\n?\n?' + re.escape(full_url) + r'\n?\n?', '\n\n', body)
+                removed += 1
+            else:
+                print(f"     ✅ IG embed verified: {full_url[:60]}")
+        except Exception as e:
+            print(f"     ⚠️  Could not verify IG {shortcode}: {e}")
+
+    if removed:
+        body = re.sub(r'\n{3,}', '\n\n', body)
+    return body, removed
+
+
 # ═══════════════════════════════════════════
 # INLINE IMAGE ENRICHMENT — Wikipedia entities
 # ═══════════════════════════════════════════
@@ -849,9 +903,30 @@ def main():
         print(f"Found {len(ent_articles)} entertainment articles")
 
         ig_enriched = 0
+        ig_stripped = 0
         for article in ent_articles[:args.max]:
-            if article_has_social_embed(article.get("body", ""), "instagram"):
-                continue
+            # ── Verify existing IG embeds before deciding to skip ──
+            body = article.get("body", "")
+            if article_has_social_embed(body, "instagram"):
+                cleaned_body, n_removed = verify_ig_embeds(body)
+                if n_removed > 0:
+                    ig_stripped += n_removed
+                    if apply:
+                        if update_article(article["id"], {"body": cleaned_body}):
+                            print(f"  ✅ Stripped {n_removed} fake IG embed(s) from: {article['headline'][:60]}")
+                            article["body"] = cleaned_body
+                        else:
+                            print(f"  ❌ Failed to strip fake IG embed(s) from: {article['headline'][:60]}")
+                    else:
+                        print(f"  [DRY RUN] Would strip {n_removed} fake IG embed(s) from: {article['headline'][:60]}")
+                    # If all IG embeds were stripped, fall through to add a real one
+                    if not article_has_social_embed(cleaned_body, "instagram"):
+                        body = cleaned_body
+                        # Fall through — don't continue
+                    else:
+                        continue
+                else:
+                    continue
 
             matches = find_matching_handles(article["headline"], registry, platform="instagram")
             if not matches:
@@ -890,6 +965,32 @@ def main():
                     print(f"     — No relevant posts found")
 
         print(f"\n  Instagram enrichment: {ig_enriched} articles {'updated' if apply else 'would update'}")
+        if ig_stripped:
+            print(f"  Instagram verification: stripped {ig_stripped} fake/dead embed(s)")
+
+        # ── Verify IG embeds in ALL categories (not just entertainment) ──
+        # Writer LLMs can hallucinate /reel/ URLs in any article category.
+        print("\n══ Instagram Embed Verification (all categories) ══")
+        all_for_ig_verify = get_recent_articles(hours=args.hours)
+        # Exclude entertainment articles we already checked above
+        ent_ids = {a["id"] for a in ent_articles[:args.max]} if run_embeds else set()
+        non_ent = [a for a in all_for_ig_verify if a["id"] not in ent_ids]
+        ig_verify_stripped = 0
+        for article in non_ent:
+            body = article.get("body", "")
+            if not article_has_social_embed(body, "instagram"):
+                continue
+            cleaned_body, n_removed = verify_ig_embeds(body)
+            if n_removed > 0:
+                ig_verify_stripped += n_removed
+                if apply:
+                    if update_article(article["id"], {"body": cleaned_body}):
+                        print(f"  ✅ Stripped {n_removed} fake IG embed(s) from: {article['headline'][:60]}")
+                    else:
+                        print(f"  ❌ Failed to strip from: {article['headline'][:60]}")
+                else:
+                    print(f"  [DRY RUN] Would strip {n_removed} fake IG embed(s) from: {article['headline'][:60]}")
+        print(f"  Verification: checked {len(non_ent)} non-entertainment articles, stripped {ig_verify_stripped} fake embed(s)")
 
     # ── 4. INLINE IMAGE + PULL QUOTE ENRICHMENT ──
     if run_inline:
