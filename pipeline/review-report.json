@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-28T07:45:23.349546+00:00",
+  "timestamp": "2026-06-28T08:15:25.563563+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 0,
+    "pass": 1,
+    "flag": 2,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "4e6da807-3479-44b8-a15e-455152fb4451",
-      "headline": "He Grew Up Playing Cricket in Rajasthan. On Friday, He Bowled India Out for Ireland.",
-      "slug": "jai-moondra-rajasthan-ireland-cricket-debut-india-belfast-first-ball-wicket-samson-diaspora-nri",
+      "id": "8a32d7ff-6653-4a34-960f-3e02ea9a2af3",
+      "headline": "India and America Are About to Sign a Trade Deal. It Says Nothing About Immigration",
+      "slug": "india-us-trade-deal-immigration-provisions-missing-20260628",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,30 +21,30 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "cricket match in progress",
-          "reason": "The photo shows a cricket match, which is relevant to the story about cricket."
+          "what_photo_shows": "Prime Minister Modi and President Trump",
+          "reason": "The photo shows leaders relevant to India-US relations, fitting the trade deal topic."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 8,
+        "overall_score": 7,
         "embed_issues": [],
         "image_match": {
-          "score": 5,
-          "issue": "The image does not depict Jai Moondra or the specific match mentioned in the article."
+          "score": 6,
+          "issue": "image not directly related to the trade deal topic"
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively highlights Jai Moondra's journey from Rajasthan to representing Ireland, connecting well with the Indian diaspora."
+          "note": "The article discusses the implications of the trade deal on Indian Americans and Indian nationals on work visas, making it relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider including a relevant image of Jai Moondra or the match to enhance visual connection.",
-          "Add a quote or perspective from Moondra's family in India to deepen the diaspora connection."
+          "Consider including more recent statistics or quotes from experts to enhance credibility.",
+          "Add a section discussing potential impacts on the Indian diaspora to strengthen the connection."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
         "promoted to published"
@@ -54,9 +54,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "00d9d22d-7369-4010-9a2a-ff40c05587d3",
-      "headline": "She Leapt 6.88 Metres and Ended a 22-Year Wait. Then the High Jumper Made History Too.",
-      "slug": "ancy-sojan-sarvesh-kushare-national-records-long-jump-high-jump-inter-state-athletics-bhubaneswar-2026-diaspora-nri",
+      "id": "faac8aeb-8246-40b8-81c3-1daaa48ee892",
+      "headline": "EB-5 Becomes India's Fastest Green Card Route. The Window Closes September 30",
+      "slug": "eb5-india-green-card-september-30-grandfathering-deadline-20260628",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,8 +64,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "athlete celebrating with Indian flag",
-          "reason": "The photo shows an athlete celebrating, which aligns with the athletics story."
+          "what_photo_shows": "hourglass on a calendar",
+          "reason": "The photo symbolizes urgency and deadlines relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -74,18 +74,66 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image is relevant to athletics but depicts a high jumper, while the article primarily focuses on long jump."
+          "issue": "The image does not directly relate to the topic of immigration or the EB-5 visa program."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article connects well with the Indian diaspora by highlighting achievements in athletics and the significance of these records."
+          "note": "The article effectively addresses the concerns and opportunities for Indian nationals regarding the EB-5 visa, making it relevant for the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more context about the significance of these records for the Indian diaspora.",
-          "Include quotes or reactions from diaspora athletes or sports commentators to enhance the connection."
+          "Consider using an image that directly represents immigration or the EB-5 visa program to enhance relevance.",
+          "Include a brief summary or conclusion to reinforce the urgency of the September 30 deadline for readers."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "90e03639-3bb2-41bd-a870-de67ccaceedf",
+      "headline": "Three Rulings, Four Days, One Direction: The Supreme Court Just Rewrote Immigration Law",
+      "slug": "scotus-immigration-blitz-week-green-card-tps-asylum-20260628",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "7982b167-050a-4f07-ac05-a0e7d851df70",
+            "headline": "The Supreme Court Could Decide Monday Whether Your American-"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "The U.S. Supreme Court building",
+          "reason": "The photo subject is relevant to the Supreme Court story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses implications for Indian Americans, making it relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more direct quotes from the dissenting opinions to provide a balanced view.",
+          "Add a section summarizing the potential long-term impacts of these rulings on Indian Americans."
         ],
         "verdict": "pass"
       },
