@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-28T16:15:18.999607+00:00",
+  "timestamp": "2026-06-28T16:45:46.938076+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 0,
+    "pass": 3,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "7fbe3f3a-38aa-49f4-97d4-2776f32ec505",
-      "headline": "Indian Workers Pay $4 Billion a Year Into Social Security. They Will Never See a Dime",
-      "slug": "india-us-social-security-totalization-h1b-fica-4-billion-20260628",
+      "id": "e477a07e-891d-4b22-be61-5061104d66fe",
+      "headline": "Swept in Belfast. Ireland Inflict India's First Bilateral T20I Series Loss in Over Two Years.",
+      "slug": "ireland-sweep-india-2-0-t20i-series-belfast-2026-historic-bilateral-series-win-prince-yadav-moondra-sooryavanshi-diaspora-nri",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,28 +21,28 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "financial documents and forms",
-          "reason": "The photo shows documents related to financial contributions, relevant to the story."
+          "what_photo_shows": "Shreyas Iyer at an airport",
+          "reason": "Shreyas Iyer is a relevant cricket player for the story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 8,
+        "overall_score": 7,
         "embed_issues": [],
         "image_match": {
-          "score": 6,
-          "issue": "The image does not directly relate to the topic of Indian workers and Social Security."
+          "score": 8,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively addresses the concerns of Indian workers in the US regarding Social Security, making it relevant to the diaspora."
+          "note": "The article discusses Jai Moondra's background and the experience of Indian diaspora fans, making it relevant to NRI readers."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that depicts Indian workers or the concept of Social Security.",
-          "Add a concluding section that summarizes the implications for Indian workers and potential future developments."
+          "Include more quotes or reactions from players or coaches to enhance engagement.",
+          "Add a brief analysis of what this series loss means for India's future in T20 cricket."
         ],
         "verdict": "pass"
       },
@@ -54,9 +54,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "f7574bf7-ac9d-411b-b584-78ffd99e5660",
-      "headline": "The Rule That Let Indian Students Stay Indefinitely Just Cleared Its Final Review",
-      "slug": "f1-duration-of-status-elimination-indian-students-dhs-20260628",
+      "id": "1b931298-55aa-4537-865d-d8d0ad8a77c2",
+      "headline": "Lindblad Finishes P10 in Austria. India's Closest Thing to an F1 Driver Just Keeps Collecting Points.",
+      "slug": "arvid-lindblad-p10-austrian-grand-prix-red-bull-ring-racing-bulls-indian-heritage-punjab-f1-2026-diaspora-nri",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,8 +64,56 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "students on a university campus",
-          "reason": "The photo shows students on a university campus, which is relevant to the story about international student visas."
+          "what_photo_shows": "Arvid Lindblad in racing attire",
+          "reason": "The photo shows Arvid Lindblad, relevant to the motorsport story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects Lindblad's Indian heritage to his achievements in F1, appealing to the Indian diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include quotes from Lindblad or his team to add a personal touch.",
+          "Provide more context on the significance of Lindblad's performance for Indian motorsport."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "28eb0fff-5288-49b3-95d8-cd1d3e8be0df",
+      "headline": "India's Biggest Trade Deal Goes Live in 17 Days. It Has Deployed 1,000 People to Make Sure Nobody Misses It.",
+      "slug": "india-uk-ceta-trade-deal-july-15-goyal-1000-advisors-whisky-tariffs-diaspora-20260628",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "8203c144-a402-4d4e-b457-ad27d1003e2c",
+            "headline": "The Quiet Clause in the India-UK Trade Deal That Puts Money "
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "smiling man in blue suit",
+          "reason": "The photo plausibly shows India's Commerce Minister Piyush Goyal, relevant to the trade deal story."
         },
         "inline_image_mismatches": []
       },
@@ -74,22 +122,85 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image does not directly relate to the topic of immigration or Indian students."
+          "issue": "The image of Piyush Goyal is relevant as he is a key figure in the announcement of the trade deal, but it does not directly illustrate the trade deal itself."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article discusses changes in immigration policy that directly affect Indian students in the U.S., making it highly relevant to the diaspora."
+          "note": "The article effectively highlights the benefits of the trade deal for the Indian diaspora, particularly regarding social security contributions."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that directly represents Indian students or immigration to enhance relevance.",
-          "Add quotes or perspectives from Indian students or diaspora members to deepen the connection."
+          "Consider adding a quote from a diaspora member or expert to enhance the personal connection to the Indian community.",
+          "Include more details on how the trade deal will impact specific sectors relevant to the diaspora."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "0ce6d903-3713-43d6-a860-69146188f259",
+      "headline": "Meta Just Paid $900 Million for an Indian Fintech. Its Founder Will Now Run WhatsApp.",
+      "slug": "meta-900-million-cred-kunal-shah-whatsapp-ceo-india-fintech-superapp-20260628",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "7d257c68-c661-404d-a612-66f7c0ba7563",
+            "headline": "Meta Just Made a CRED Founder the Boss of WhatsApp. The Real"
+          },
+          {
+            "article_id": "4988648b-d781-4950-85dc-66e323afab97",
+            "headline": "Meta Just Handed WhatsApp to a Mumbai Founder Who Never Wrot"
+          },
+          {
+            "article_id": "f79f1306-331b-4586-9133-a36ffcd40949",
+            "headline": "Meta Bets $900 Million on an Indian Fintech \u2014 and Hands an I"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "man in Freecharge shirt",
+          "reason": "The photo plausibly shows Kunal Shah, relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [
+          {
+            "url": "https://www.threads.com/@kunalb11/post/DZ46ce6kg1B",
+            "problem": "irrelevant",
+            "explanation": "The post does not provide relevant context or additional information related to the article's subject matter."
+          }
+        ],
+        "image_match": {
+          "score": 7,
+          "issue": "The image features Kunal Shah, which is relevant to the article, but it lacks a direct connection to the specific events discussed."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses the significance of Indian entrepreneurs on a global stage, which resonates with the diaspora audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the irrelevant embed with a more relevant social media post or remove it altogether.",
+          "Enhance the diaspora angle by including quotes or perspectives from Indian entrepreneurs in the diaspora about the significance of this deal."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://www.threads.com/@kunalb11/post/DZ46ce6kg1B",
         "promoted to published"
       ],
       "revised": false,
