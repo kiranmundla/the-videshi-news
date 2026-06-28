@@ -1,19 +1,19 @@
 {
-  "timestamp": "2026-06-28T06:45:58.458787+00:00",
+  "timestamp": "2026-06-28T07:15:19.322919+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
+    "pass": 1,
     "flag": 1,
     "fail": 0,
     "error": 0
   },
-  "revisions": 1,
+  "revisions": 0,
   "unpublished": 0,
   "articles": [
     {
-      "id": "fc57b7c4-00a6-4323-9e39-0626e96400b9",
-      "headline": "India's Monsoon Is 43% Below Normal. The Government Just Drew Up Emergency Plans for 315 Districts.",
-      "slug": "india-monsoon-43-percent-below-normal-el-nino-315-districts-contingency-food-inflation-20260628",
+      "id": "4b44024b-c8fd-413a-8d25-2fbb66eed0cd",
+      "headline": "Mirzapur: The Movie Teaser Drops \u2014 Guddu, Kaleen Bhaiya and Munna Are Coming to the Big Screen This September",
+      "slug": "mirzapur-the-movie-teaser-ali-fazal-pankaj-tripathi-september-2026-theatrical-release",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "rice paddy field in rural India",
-          "reason": "The photo shows a rice paddy field, relevant to the monsoon and agriculture topic."
+          "what_photo_shows": "Ali Fazal at an event",
+          "reason": "Ali Fazal is relevant to the Mirzapur movie story."
         },
         "inline_image_mismatches": []
       },
@@ -30,21 +30,21 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 5,
+          "issue": "The image does not match the article's headline and topic."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article discusses the impact of monsoon failure on agriculture and inflation, which are relevant to the Indian diaspora concerned about economic conditions in India."
+          "quality": 8,
+          "note": "The article effectively connects the film's release to the diaspora audience, highlighting its global appeal."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes or perspectives from diaspora members or experts to strengthen the connection to NRI readers.",
-          "Add a section discussing how the situation might affect Indian communities abroad, particularly in terms of remittances or food prices."
+          "Replace the hero image with one that features the cast or scenes from the *Mirzapur* series to better match the article's content.",
+          "Consider adding more details about the film's potential impact on the diaspora audience's cultural connection."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
         "promoted to published"
@@ -54,153 +54,50 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "a3e7be47-7e67-4aea-848d-466cbc8e4c7b",
-      "headline": "A Boston Grad, a Dead Cockroach and a 40-Day March. India's Exam Revolt Just Went Mainstream.",
-      "slug": "cockroach-janta-party-congress-neet-40-day-campaign-cnn-india-gen-z-exam-revolt-20260628",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Jantar Mantar in New Delhi",
-          "reason": "The photo shows the protest site mentioned in the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article connects the exam crisis to NRI families, indicating a broader concern for the Indian education system that diaspora readers may relate to."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Expand on the diaspora angle to include specific concerns or perspectives from NRI families regarding the education system in India.",
-          "Include more direct quotes or anecdotes from diaspora members to enhance relatability."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "bcde6117-2cf2-426f-a949-f422fa37edfb",
-      "headline": "Iran Just Hit US Bases in Kuwait and Bahrain. Millions of Indians in the Gulf Woke Up to Air-Raid Sirens.",
-      "slug": "iran-attacks-us-bases-kuwait-bahrain-ceasefire-collapses-indian-workers-gulf-oil-hormuz-20260628",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "UNVERIFIED",
-          "what_photo_shows": "(image unreadable)",
-          "reason": "could not download image: not-an-image"
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image depicts an oil tanker in the Persian Gulf, which is relevant to the article's discussion on oil and geopolitical tensions, but it does not directly relate to the air raid sirens experienced by Indians in Kuwait and Bahrain."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively highlights the impact of geopolitical events on the large Indian diaspora in the Gulf, making it relevant and engaging for NRI readers."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider including more direct quotes or reactions from Indian expatriates in the Gulf to enhance the personal connection to the diaspora.",
-          "Add a brief section on how the Indian government is preparing to assist its citizens in the Gulf amidst the escalating tensions."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "held: image unverified"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "image_unverified": true,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "5337f8db-16e6-4172-a090-d806c1d40481",
-      "headline": "'H-1B Isn't Targeting India,' Says America's Envoy. The Numbers Disagree",
-      "slug": "ambassador-gor-h1b-not-targeting-india-data-disagrees-20260628",
+      "id": "d1991e2d-dc75-4133-aea5-d372a43a48a0",
+      "headline": "Supergirl Stumbles With $38M Opening Weekend as DCU Faces Its First Box Office Misfire",
+      "slug": "supergirl-2026-dcu-box-office-milly-alcock-38-million-opening-weekend",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [
           {
-            "article_id": "23edf7a8-4c60-40ac-b537-8f95bb5fdcf9",
-            "headline": "The Trade Deal Is in Its 'Last Inches.' For H-1B Workers, Th"
+            "article_id": "69a12539-9e4e-41d7-90b5-984ecd226aa5",
+            "headline": "CBFC Takes a Red Pen to 'Supergirl': Muted Cusswords, a Dele"
           }
         ],
-        "broken_embeds": [
-          {
-            "url": "https://x.com/thevideshi/status/1798765432109876543",
-            "problem": "broken",
-            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
-          }
-        ],
+        "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "U.S. Ambassador to India",
-          "reason": "The photo shows the correct named person relevant to the story."
+          "what_photo_shows": "Supergirl movie poster with Milly Alcock",
+          "reason": "The photo shows Milly Alcock as Supergirl, matching the story topic."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 6,
-        "embed_issues": [
-          {
-            "url": "https://instagram.com/thevideshi/p/C7654321098/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post does not appear to relate to the topic of H-1B visas or immigration, making it irrelevant to the article."
-          }
-        ],
+        "overall_score": 7,
+        "embed_issues": [],
         "image_match": {
-          "score": 2,
-          "issue": "The hero image does not match the article's topic about H-1B visas and immigration."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article discusses the impact of H-1B visa policies on Indian professionals and NRIs, making it relevant to the diaspora audience."
+          "quality": 8,
+          "note": "The article discusses the performance of *Supergirl* in the Indian market, which is relevant to NRI readers interested in Bollywood and Hollywood crossover."
         },
-        "factual_flags": [
-          "The article claims that the weighted lottery system disadvantages mid-tier salary placements, but does not provide specific data to support this assertion."
-        ],
+        "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the hero image with one that is more relevant to H-1B visas or immigration.",
-          "Provide more specific data or sources to support claims about the impact of the weighted lottery system on Indian professionals."
+          "Include more direct quotes from Indian audiences or critics to enhance the diaspora connection.",
+          "Add a brief comparison of how other recent Hollywood films performed in India to provide context."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
-        "Removed 1 broken/hallucinated embed(s)",
-        "Removed irrelevant embed: https://instagram.com/thevideshi/p/C7654321098/",
-        "Revised by gemini-2.5-flash (969\u21921001 words)"
+        "promoted to published"
       ],
-      "revised": true,
+      "revised": false,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
     }
