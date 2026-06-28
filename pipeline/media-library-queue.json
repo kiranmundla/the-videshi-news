@@ -9,7 +9,7 @@
    ],
    "first_seen": "2026-06-19T05:23:04Z",
    "article_id": "8098893b-7842-4915-8058-bd4bf64602ee",
-   "priority": 8
+   "priority": 10
   },
   {
    "subject": "YRF",
@@ -79,7 +79,7 @@
    ],
    "first_seen": "2026-06-19T05:23:04Z",
    "article_id": "8d1b12e4-60e3-456d-8f40-dbf170910325",
-   "priority": 28
+   "priority": 34
   },
   {
    "subject": "swiss",
@@ -89,7 +89,7 @@
    ],
    "first_seen": "2026-06-19T05:23:04Z",
    "article_id": "8d1b12e4-60e3-456d-8f40-dbf170910325",
-   "priority": 3
+   "priority": 5
   },
   {
    "subject": "a321xlr",
@@ -119,7 +119,7 @@
    ],
    "first_seen": "2026-06-19T05:23:04Z",
    "article_id": "735ab1c5-f47c-401c-95c2-015ff88c59cc",
-   "priority": 22
+   "priority": 28
   },
   {
    "subject": "iit",
@@ -369,7 +369,7 @@
    ],
    "first_seen": "2026-06-19T10:29:23Z",
    "article_id": "980355a1-017a-4244-92ff-8d13074e69a6",
-   "priority": 4
+   "priority": 6
   },
   {
    "subject": "india semiconductor mission",
@@ -469,7 +469,7 @@
    ],
    "first_seen": "2026-06-20T10:29:23Z",
    "article_id": "6a8a4abf-8b4d-403a-a19b-6af8b7a1a1f5",
-   "priority": 3
+   "priority": 5
   },
   {
    "subject": "e visa",
@@ -519,7 +519,7 @@
    ],
    "first_seen": "2026-06-20T10:29:23Z",
    "article_id": "a68fac35-5191-468c-b60a-35c7395a46d0",
-   "priority": 2
+   "priority": 4
   },
   {
    "subject": "tata",
@@ -549,7 +549,7 @@
    ],
    "first_seen": "2026-06-20T10:29:23Z",
    "article_id": "fb1a264d-41d9-4475-ba96-e1fb72c91534",
-   "priority": 3
+   "priority": 5
   },
   {
    "subject": "wage weighted selection",
@@ -579,7 +579,7 @@
    ],
    "first_seen": "2026-06-20T10:29:23Z",
    "article_id": "288af0ec-6b10-49ad-bda4-86ca4ef6c9bc",
-   "priority": 4
+   "priority": 6
   },
   {
    "subject": "gcc",
@@ -939,7 +939,7 @@
    ],
    "first_seen": "2026-06-20T10:29:23Z",
    "article_id": "fcba1d6d-f315-49e9-a36b-4decdf9d0188",
-   "priority": 4
+   "priority": 6
   },
   {
    "subject": "foxconn",
@@ -952,16 +952,6 @@
    "priority": 2
   },
   {
-   "subject": "tata electronics",
-   "subject_type": "thing",
-   "tags": [
-    "tata electronics"
-   ],
-   "first_seen": "2026-06-20T10:29:23Z",
-   "article_id": "fcba1d6d-f315-49e9-a36b-4decdf9d0188",
-   "priority": 5
-  },
-  {
    "subject": "etihad",
    "subject_type": "thing",
    "tags": [
@@ -969,7 +959,7 @@
    ],
    "first_seen": "2026-06-21T10:29:30Z",
    "article_id": "a5195b58-bb9d-422c-b72b-af2dc4f017af",
-   "priority": 4
+   "priority": 6
   },
   {
    "subject": "business class",
@@ -979,7 +969,7 @@
    ],
    "first_seen": "2026-06-21T10:29:30Z",
    "article_id": "a5195b58-bb9d-422c-b72b-af2dc4f017af",
-   "priority": 3
+   "priority": 5
   },
   {
    "subject": "miles",
@@ -1069,7 +1059,7 @@
    ],
    "first_seen": "2026-06-21T10:29:30Z",
    "article_id": "e0bfe836-767e-45aa-b275-393cb3e2e2ef",
-   "priority": 4
+   "priority": 6
   },
   {
    "subject": "investor visa",
@@ -1379,7 +1369,7 @@
    ],
    "first_seen": "2026-06-22T10:29:23Z",
    "article_id": "3dc08e97-0352-46d9-ba78-d8d1ad989eec",
-   "priority": 2
+   "priority": 4
   },
   {
    "subject": "Google TPU",
@@ -1499,7 +1489,7 @@
    ],
    "first_seen": "2026-06-22T10:29:23Z",
    "article_id": "892dd702-17fc-4afe-bf32-391c046b36de",
-   "priority": 2
+   "priority": 4
   },
   {
    "subject": "cloud computing",
@@ -1619,7 +1609,7 @@
    ],
    "first_seen": "2026-06-22T10:29:23Z",
    "article_id": "d353977c-9e20-48a0-b87c-6ca3046409bf",
-   "priority": 3
+   "priority": 7
   },
   {
    "subject": "ai education",
@@ -1739,7 +1729,7 @@
    ],
    "first_seen": "2026-06-22T10:29:23Z",
    "article_id": "1d24a43b-fd18-4ae4-8224-152d38decf1a",
-   "priority": 4
+   "priority": 6
   },
   {
    "subject": "navi mumbai",
@@ -2319,7 +2309,7 @@
    ],
    "first_seen": "2026-06-24T10:29:22Z",
    "article_id": "8bc02ca4-3489-41d7-aaf1-38500446dbda",
-   "priority": 3
+   "priority": 5
   },
   {
    "subject": "kunal shah",
@@ -2362,16 +2352,6 @@
    "priority": 2
   },
   {
-   "subject": "ai infrastructure",
-   "subject_type": "thing",
-   "tags": [
-    "ai infrastructure"
-   ],
-   "first_seen": "2026-06-24T10:29:22Z",
-   "article_id": "0a9f7d10-26bd-459c-ad84-fa0d1f05d6e8",
-   "priority": 4
-  },
-  {
    "subject": "premji invest",
    "subject_type": "thing",
    "tags": [
@@ -2379,7 +2359,7 @@
    ],
    "first_seen": "2026-06-24T10:29:22Z",
    "article_id": "0a9f7d10-26bd-459c-ad84-fa0d1f05d6e8",
-   "priority": 3
+   "priority": 5
   },
   {
    "subject": "indian american founders",
@@ -2479,7 +2459,7 @@
    ],
    "first_seen": "2026-06-24T10:29:22Z",
    "article_id": "6325769d-1e90-4880-9ef3-ce89417cd7a1",
-   "priority": 2
+   "priority": 4
   },
   {
    "subject": "hbm",
@@ -2489,7 +2469,7 @@
    ],
    "first_seen": "2026-06-24T10:29:22Z",
    "article_id": "6325769d-1e90-4880-9ef3-ce89417cd7a1",
-   "priority": 2
+   "priority": 4
   },
   {
    "subject": "india fab",
@@ -2629,7 +2609,7 @@
    ],
    "first_seen": "2026-06-24T10:29:22Z",
    "article_id": "3e200153-a7bd-4651-8038-58f5cf82302a",
-   "priority": 3
+   "priority": 5
   },
   {
    "subject": "ds 160",
@@ -2839,7 +2819,7 @@
    ],
    "first_seen": "2026-06-25T10:29:22Z",
    "article_id": "fc913a73-c040-4ea0-86a5-e2c32478ebcb",
-   "priority": 4
+   "priority": 6
   },
   {
    "subject": "chips",
@@ -3039,7 +3019,7 @@
    ],
    "first_seen": "2026-06-25T10:29:22Z",
    "article_id": "be4fce49-3655-457c-b969-7d4f110b8e82",
-   "priority": 4
+   "priority": 6
   },
   {
    "subject": "investing",
@@ -3419,7 +3399,7 @@
    ],
    "first_seen": "2026-06-27T10:29:26Z",
    "article_id": "1116528b-9890-4be7-adec-621e21e67cd8",
-   "priority": 2
+   "priority": 4
   },
   {
    "subject": "neysa",
@@ -3702,16 +3682,6 @@
    "priority": 2
   },
   {
-   "subject": "indian tech leaders",
-   "subject_type": "thing",
-   "tags": [
-    "indian tech leaders"
-   ],
-   "first_seen": "2026-06-27T10:29:26Z",
-   "article_id": "6ea6b94e-22a9-435d-9db2-b1b35e350a74",
-   "priority": 5
-  },
-  {
    "subject": "deepmind",
    "subject_type": "thing",
    "tags": [
@@ -3839,7 +3809,7 @@
    ],
    "first_seen": "2026-06-27T10:29:26Z",
    "article_id": "a084138e-6a82-4695-b3f3-1104a46f4ff0",
-   "priority": 3
+   "priority": 5
   },
   {
    "subject": "Jr NTR",
@@ -3849,7 +3819,7 @@
    ],
    "first_seen": "2026-06-28T05:35:23Z",
    "article_id": "25dd0c60-a827-47ad-8a78-8aa411374ef2",
-   "priority": 5
+   "priority": 7
   },
   {
    "subject": "Vicky Kaushal",
@@ -3859,7 +3829,7 @@
    ],
    "first_seen": "2026-06-28T05:35:23Z",
    "article_id": "25dd0c60-a827-47ad-8a78-8aa411374ef2",
-   "priority": 5
+   "priority": 7
   },
   {
    "subject": "Katrina Kaif",
@@ -3869,7 +3839,7 @@
    ],
    "first_seen": "2026-06-28T05:35:23Z",
    "article_id": "25dd0c60-a827-47ad-8a78-8aa411374ef2",
-   "priority": 5
+   "priority": 7
   },
   {
    "subject": "visa stamping",
@@ -3879,7 +3849,7 @@
    ],
    "first_seen": "2026-06-28T05:35:23Z",
    "article_id": "ae72fa7f-1354-4a86-abc6-12bf5c919248",
-   "priority": 2
+   "priority": 4
   },
   {
    "subject": "data breach",
@@ -3889,7 +3859,7 @@
    ],
    "first_seen": "2026-06-28T05:35:23Z",
    "article_id": "0bbc2ac6-7bd5-4053-993c-cfde5a71a2de",
-   "priority": 2
+   "priority": 4
   },
   {
    "subject": "samsung",
@@ -3899,7 +3869,7 @@
    ],
    "first_seen": "2026-06-28T05:35:23Z",
    "article_id": "a95e0a98-6c08-4717-8d9e-b96f9556ffbf",
-   "priority": 2
+   "priority": 4
   },
   {
    "subject": "foundry",
@@ -3909,7 +3879,7 @@
    ],
    "first_seen": "2026-06-28T05:35:23Z",
    "article_id": "a95e0a98-6c08-4717-8d9e-b96f9556ffbf",
-   "priority": 2
+   "priority": 4
   },
   {
    "subject": "chip manufacturing",
@@ -3919,7 +3889,7 @@
    ],
    "first_seen": "2026-06-28T05:35:23Z",
    "article_id": "a95e0a98-6c08-4717-8d9e-b96f9556ffbf",
-   "priority": 2
+   "priority": 4
   },
   {
    "subject": "air suvidha",
@@ -4189,7 +4159,7 @@
    ],
    "first_seen": "2026-06-28T05:35:23Z",
    "article_id": "4e2985ce-1b58-4a4b-b7f9-6e63fcb07e0f",
-   "priority": 2
+   "priority": 4
   },
   {
    "subject": "ICE",
@@ -4410,7 +4380,267 @@
    "first_seen": "2026-06-28T05:35:23Z",
    "article_id": "6be85e6d-fc39-4011-ba26-54b94583d20f",
    "priority": 2
+  },
+  {
+   "subject": "zurich",
+   "subject_type": "thing",
+   "tags": [
+    "zurich"
+   ],
+   "first_seen": "2026-06-28T10:29:23Z",
+   "article_id": "aea1737b-9e0a-46e5-a552-e08d402ccf24",
+   "priority": 3
+  },
+  {
+   "subject": "uber",
+   "subject_type": "thing",
+   "tags": [
+    "uber"
+   ],
+   "first_seen": "2026-06-28T10:29:23Z",
+   "article_id": "37f8a1dc-f016-4dae-9b5a-e3cd94e11838",
+   "priority": 3
+  },
+  {
+   "subject": "qualcomm",
+   "subject_type": "thing",
+   "tags": [
+    "qualcomm"
+   ],
+   "first_seen": "2026-06-28T10:29:23Z",
+   "article_id": "76640d04-b0e6-498e-b145-fc6230c1bc47",
+   "priority": 3
+  },
+  {
+   "subject": "ai transformation",
+   "subject_type": "thing",
+   "tags": [
+    "ai transformation"
+   ],
+   "first_seen": "2026-06-28T10:29:23Z",
+   "article_id": "4d713ecd-5f35-4ab5-a935-7f1ac65b7bb7",
+   "priority": 3
+  },
+  {
+   "subject": "tps",
+   "subject_type": "thing",
+   "tags": [
+    "tps"
+   ],
+   "first_seen": "2026-06-28T10:29:23Z",
+   "article_id": "90e03639-3bb2-41bd-a870-de67ccaceedf",
+   "priority": 3
+  },
+  {
+   "subject": "birthright citizenship",
+   "subject_type": "thing",
+   "tags": [
+    "birthright citizenship"
+   ],
+   "first_seen": "2026-06-28T10:29:23Z",
+   "article_id": "90e03639-3bb2-41bd-a870-de67ccaceedf",
+   "priority": 3
+  },
+  {
+   "subject": "blanche v lau",
+   "subject_type": "thing",
+   "tags": [
+    "blanche v lau"
+   ],
+   "first_seen": "2026-06-28T10:29:23Z",
+   "article_id": "90e03639-3bb2-41bd-a870-de67ccaceedf",
+   "priority": 3
+  },
+  {
+   "subject": "scotus",
+   "subject_type": "thing",
+   "tags": [
+    "scotus"
+   ],
+   "first_seen": "2026-06-28T10:29:23Z",
+   "article_id": "90e03639-3bb2-41bd-a870-de67ccaceedf",
+   "priority": 3
+  },
+  {
+   "subject": "eb 5",
+   "subject_type": "thing",
+   "tags": [
+    "eb 5"
+   ],
+   "first_seen": "2026-06-28T10:29:23Z",
+   "article_id": "faac8aeb-8246-40b8-81c3-1daaa48ee892",
+   "priority": 3
+  },
+  {
+   "subject": "eb 2 backlog",
+   "subject_type": "thing",
+   "tags": [
+    "eb 2 backlog"
+   ],
+   "first_seen": "2026-06-28T10:29:23Z",
+   "article_id": "faac8aeb-8246-40b8-81c3-1daaa48ee892",
+   "priority": 3
+  },
+  {
+   "subject": "regional center",
+   "subject_type": "thing",
+   "tags": [
+    "regional center"
+   ],
+   "first_seen": "2026-06-28T10:29:23Z",
+   "article_id": "faac8aeb-8246-40b8-81c3-1daaa48ee892",
+   "priority": 3
+  },
+  {
+   "subject": "investment visa",
+   "subject_type": "thing",
+   "tags": [
+    "investment visa"
+   ],
+   "first_seen": "2026-06-28T10:29:23Z",
+   "article_id": "faac8aeb-8246-40b8-81c3-1daaa48ee892",
+   "priority": 3
+  },
+  {
+   "subject": "visa mobility",
+   "subject_type": "thing",
+   "tags": [
+    "visa mobility"
+   ],
+   "first_seen": "2026-06-28T10:29:23Z",
+   "article_id": "8a32d7ff-6653-4a34-960f-3e02ea9a2af3",
+   "priority": 3
+  },
+  {
+   "subject": "mission 500",
+   "subject_type": "thing",
+   "tags": [
+    "mission 500"
+   ],
+   "first_seen": "2026-06-28T10:29:23Z",
+   "article_id": "8a32d7ff-6653-4a34-960f-3e02ea9a2af3",
+   "priority": 3
+  },
+  {
+   "subject": "piyush goyal",
+   "subject_type": "thing",
+   "tags": [
+    "piyush goyal"
+   ],
+   "first_seen": "2026-06-28T10:29:23Z",
+   "article_id": "8a32d7ff-6653-4a34-960f-3e02ea9a2af3",
+   "priority": 3
+  },
+  {
+   "subject": "ambassador gor",
+   "subject_type": "thing",
+   "tags": [
+    "ambassador gor"
+   ],
+   "first_seen": "2026-06-28T10:29:23Z",
+   "article_id": "8a32d7ff-6653-4a34-960f-3e02ea9a2af3",
+   "priority": 3
+  },
+  {
+   "subject": "ustr",
+   "subject_type": "thing",
+   "tags": [
+    "ustr"
+   ],
+   "first_seen": "2026-06-28T10:29:23Z",
+   "article_id": "8a32d7ff-6653-4a34-960f-3e02ea9a2af3",
+   "priority": 3
+  },
+  {
+   "subject": "sergio gor",
+   "subject_type": "thing",
+   "tags": [
+    "sergio gor"
+   ],
+   "first_seen": "2026-06-28T10:29:23Z",
+   "article_id": "5337f8db-16e6-4172-a090-d806c1d40481",
+   "priority": 3
+  },
+  {
+   "subject": "immigration policy",
+   "subject_type": "thing",
+   "tags": [
+    "immigration policy"
+   ],
+   "first_seen": "2026-06-28T10:29:23Z",
+   "article_id": "5337f8db-16e6-4172-a090-d806c1d40481",
+   "priority": 3
+  },
+  {
+   "subject": "indian ceo",
+   "subject_type": "thing",
+   "tags": [
+    "indian ceo"
+   ],
+   "first_seen": "2026-06-28T10:29:23Z",
+   "article_id": "068dbdd3-cb34-4936-9fd7-f277cf658b2a",
+   "priority": 3
+  },
+  {
+   "subject": "gpt 5.6",
+   "subject_type": "thing",
+   "tags": [
+    "gpt 5.6"
+   ],
+   "first_seen": "2026-06-28T10:29:23Z",
+   "article_id": "aa43ea63-c660-455e-895d-2d5c8f9843ec",
+   "priority": 3
+  },
+  {
+   "subject": "ai regulation",
+   "subject_type": "thing",
+   "tags": [
+    "ai regulation"
+   ],
+   "first_seen": "2026-06-28T10:29:23Z",
+   "article_id": "aa43ea63-c660-455e-895d-2d5c8f9843ec",
+   "priority": 3
+  },
+  {
+   "subject": "national security",
+   "subject_type": "thing",
+   "tags": [
+    "national security"
+   ],
+   "first_seen": "2026-06-28T10:29:23Z",
+   "article_id": "aa43ea63-c660-455e-895d-2d5c8f9843ec",
+   "priority": 3
+  },
+  {
+   "subject": "fleet",
+   "subject_type": "thing",
+   "tags": [
+    "fleet"
+   ],
+   "first_seen": "2026-06-28T10:29:23Z",
+   "article_id": "e551e80e-9cca-4731-a41b-d0c395064528",
+   "priority": 3
+  },
+  {
+   "subject": "boeing 787",
+   "subject_type": "thing",
+   "tags": [
+    "boeing 787"
+   ],
+   "first_seen": "2026-06-28T10:29:23Z",
+   "article_id": "e551e80e-9cca-4731-a41b-d0c395064528",
+   "priority": 3
+  },
+  {
+   "subject": "ayurveda",
+   "subject_type": "thing",
+   "tags": [
+    "ayurveda"
+   ],
+   "first_seen": "2026-06-28T10:29:23Z",
+   "article_id": "b9b471b8-b04b-4261-a19c-a62e60a2e17b",
+   "priority": 3
   }
  ],
- "_updated": "2026-06-28T05:35:23Z"
+ "_updated": "2026-06-28T10:31:32Z"
 }

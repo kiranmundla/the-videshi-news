@@ -1,6 +1,6 @@
 {
  "_description": "Media library mirror — high-quality, attribution-clean images+videos for article/reel fallback. Source of truth is the Supabase media_library table; this mirror lets the pipeline read without a DB round-trip.",
- "_updated": "2026-06-27T17:57:33Z",
+ "_updated": "2026-06-28T10:30:40Z",
  "assets": [
   {
    "id": "person--narendra-modi--bfe42b",
@@ -4115,6 +4115,72 @@
    "added_date": "2026-06-19T05:23:35Z",
    "last_used": "2026-06-27T17:57:33Z",
    "times_used": 1
+  },
+  {
+   "id": "thing--indian-tech-leaders--17b241",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/indian-tech-leaders-17b241.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/indian-tech-leaders-17b241.jpg",
+   "subject": "indian tech leaders",
+   "subject_type": "thing",
+   "caption": "U.S. Air Force Gen. Kevin Schneider, Pacific Air Force commander, and Command Chief Master Sgt. Kaite McCool, Pacific Air Forces senior enlisted leader, interact with Indian Army Gen. Anil Chauhan, Chief of Defense, during the Aero India 2025 air show at Yelahanka Air Force Stati",
+   "attribution": "Wikimedia Commons / U.S. Air Force photo by Tech. Sgt. Tarelle Walker, Public domain",
+   "license": "Public domain",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Aero_India_2025_(8871382).jpg",
+   "tags": [
+    "indian tech leaders"
+   ],
+   "width": 4907,
+   "height": 3686,
+   "duration": null,
+   "quality_score": 92.0,
+   "added_date": "2026-06-28T10:30:17Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--tata-electronics--b1c7ae",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/tata-electronics-b1c7ae.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/tata-electronics-b1c7ae.jpg",
+   "subject": "tata electronics",
+   "subject_type": "thing",
+   "caption": "Prof. Dr. Ajoy Kumar Ray, B.E, M. Tech, PhD on Electronics and Electrical Communication Engineering, Vice Chancellor, Bengal Engineering and Science University, Shibpur, India. He was Professor of Electronics and Electrical Communication Engineering and Head, School of Medical Sc",
+   "attribution": "Wikimedia Commons / Biswarup Ganguly, CC BY 3.0",
+   "license": "CC BY 3.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Ajoy_Kumar_Ray_-_Howrah_2013-06-07_8685.JPG",
+   "tags": [
+    "tata electronics"
+   ],
+   "width": 6016,
+   "height": 4000,
+   "duration": null,
+   "quality_score": 92.0,
+   "added_date": "2026-06-28T10:30:30Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--ai-infrastructure--2f256f",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/ai-infrastructure-2f256f.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/ai-infrastructure-2f256f.jpg",
+   "subject": "ai infrastructure",
+   "subject_type": "thing",
+   "caption": "130 Seater Classroom at Universal Ai University Infrastructure and Facility in Karjat",
+   "attribution": "Wikimedia Commons / ManoBV16, CC0",
+   "license": "CC0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:130_Seater_Classroom_at_Universal_Ai_University.jpg",
+   "tags": [
+    "ai infrastructure"
+   ],
+   "width": 6960,
+   "height": 3915,
+   "duration": null,
+   "quality_score": 92.0,
+   "added_date": "2026-06-28T10:30:40Z",
+   "last_used": null,
+   "times_used": 0
   }
  ]
 }
