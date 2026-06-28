@@ -1,96 +1,106 @@
 {
-  "timestamp": "2026-06-28T03:45:15.728626+00:00",
+  "timestamp": "2026-06-28T04:15:29.035644+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 0,
+    "pass": 1,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
-  "revisions": 0,
+  "revisions": 1,
   "unpublished": 0,
   "articles": [
     {
-      "id": "7577ce5f-985d-42bf-a5fc-40c2bcf65d11",
-      "headline": "Pankaj Tripathi Just Produced His First Show \u2014 and It Puts Your Family on the Therapist's Couch",
-      "slug": "perfect-family-sonyliv-review-gulshan-devaiah-neha-dhupia-manoj-pahwa-therapy-family-drama-pankaj-tripathi-producer-june-2026",
+      "id": "5337f8db-16e6-4172-a090-d806c1d40481",
+      "headline": "'H-1B Isn't Targeting India,' Says America's Envoy. The Numbers Disagree",
+      "slug": "ambassador-gor-h1b-not-targeting-india-data-disagrees-20260628",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "23edf7a8-4c60-40ac-b537-8f95bb5fdcf9",
+            "headline": "The Trade Deal Is in Its 'Last Inches.' For H-1B Workers, Th"
+          }
+        ],
         "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "U.S. Ambassador Sergio Gor",
+          "reason": "The photo shows the correct named person related to the story."
+        },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://youtube.com/watch?v=2UbTyjv01ro",
-            "problem": "irrelevant",
-            "explanation": "The YouTube link is not directly related to the article's subject matter, which focuses on the show 'Perfect Family' rather than a specific video that may not pertain to the show's content."
-          }
-        ],
+        "overall_score": 6,
+        "embed_issues": [],
         "image_match": {
-          "score": 5,
-          "issue": "missing image description"
+          "score": 2,
+          "issue": "irrelevant"
         },
         "diaspora_angle": {
           "present": true,
           "quality": 7,
-          "note": "The article discusses themes of family dynamics and mental health, which resonate with the Indian diaspora, though it could further emphasize the NRI perspective."
+          "note": "The article discusses H-1B visa policies that directly affect the Indian diaspora, particularly professionals in the U.S."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include a relevant image that reflects the show's themes or characters to enhance visual engagement.",
-          "Add a quote or perspective from an NRI viewer or critic to strengthen the diaspora connection."
+          "Replace the hero image with one that is more relevant to the topic of H-1B visas or immigration.",
+          "Include more direct quotes or perspectives from Indian professionals affected by the H-1B policies to enhance relatability."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://youtube.com/watch?v=2UbTyjv01ro",
-        "promoted to published"
+        "Revised by gemini-2.5-flash (731\u2192845 words)"
       ],
-      "revised": false,
+      "revised": true,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "733ef5c0-a130-4030-973d-2019cb0f83c2",
-      "headline": "The Bear Just Served Its Final Course \u2014 and the Critics Are Calling It a Masterpiece",
-      "slug": "the-bear-season-5-final-season-review-jeremy-allen-white-jiohotstar-hulu-98-rotten-tomatoes-masterpiece-june-2026",
+      "id": "ae72fa7f-1354-4a86-abc6-12bf5c919248",
+      "headline": "Your Instagram Is Now Part of Your Visa Application. Indian Consulates Are Buckling Under the Load",
+      "slug": "social-media-vetting-h1b-india-consulate-wait-times-backlog-20260628",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MISMATCH",
+          "what_photo_shows": "two people shaking hands indoors",
+          "reason": "The photo does not show visa applicants or a consulate scene."
+        },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image description is missing, making it difficult to assess relevance."
+          "score": 5,
+          "issue": "missing image description"
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article connects well with Indian viewers by mentioning streaming availability on JioHotstar."
+          "note": "The article discusses the impact of U.S. visa policies on Indian professionals, which is highly relevant to the Indian diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Add a description for the hero image to enhance relevance.",
-          "Include more direct quotes from Indian critics or viewers to strengthen the diaspora connection."
+          "Include a relevant hero image that visually represents the topic of visa applications and social media.",
+          "Add more statistics or quotes from immigration experts to strengthen the article's authority."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "promoted to published"
+        "Cleared mismatched image (two people shaking hands indoors)",
+        "held: image mismatch"
       ],
       "revised": false,
       "unpublished": false,
+      "image_mismatch": true,
       "llm_source": "gpt-4o-mini"
     }
   ]
