@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-28T01:45:12.370539+00:00",
+  "timestamp": "2026-06-28T02:15:34.243645+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
+    "pass": 5,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "f1630d5c-33a3-447c-8730-3cd8f874e53c",
-      "headline": "Pooran's Unbeaten 70 and Kenjige's Three-For Demolish the Knight Riders in Oakland",
-      "slug": "pooran-70-kenjige-3-21-mi-new-york-demolish-la-knight-riders-mlc-2026-oakland-coliseum-diaspora-nri",
+      "id": "c01ddf9e-bdd0-4384-928d-76665d21f56c",
+      "headline": "India's Bullet Train Map Just Got Seven New Lines \u2014 and the Diaspora's Commute Home Is in the Blueprint",
+      "slug": "india-bullet-train-seven-corridors-nhsrcl-indigenous-nri-20260628",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Oakland Coliseum aerial view",
-          "reason": "The photo shows Oakland Coliseum, relevant to the cricket match location."
+          "what_photo_shows": "modern high-speed train in greenery",
+          "reason": "The photo shows a high-speed train, relevant to the infrastructure story."
         },
         "inline_image_mismatches": []
       },
@@ -30,19 +30,196 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image of the Oakland Coliseum is relevant but does not directly depict cricket or the match discussed."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article connects well with the desi community in the Bay Area, highlighting the significance of cricket in their local culture."
+          "note": "The article effectively connects the bullet train developments to the diaspora's travel experiences and needs."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider including quotes from players or coaches to enhance the narrative.",
-          "Add more context about the significance of the match for the MLC standings."
+          "Consider adding quotes from experts or stakeholders to enhance credibility.",
+          "Include more statistics or data on how these new lines will impact travel times for specific diaspora communities."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "941ce545-94c1-4ebc-a50a-53d7d79060b1",
+      "headline": "Flying to India This Summer? There's a New Health Form You Can't Skip",
+      "slug": "air-suvidha-2-health-declaration-india-ebola-nri-20260628",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Indira Gandhi International Airport Terminal 3",
+          "reason": "The photo shows the airport terminal where Air Suvidha declarations are processed."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses the Indian diaspora by discussing the implications of the new health form for NRIs traveling to India."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a brief section on how to access the Air Suvidha portal for those unfamiliar with it.",
+          "Include a quote from a health official or travel expert to enhance credibility and provide additional insights."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "8cce49b7-78ea-44cf-926e-744c7b7f4863",
+      "headline": "India's Passport Fees Jump on July 1 \u2014 Here's the New Math for Every NRI Family",
+      "slug": "india-passport-fee-hike-july-1-oci-update-nri-20260628",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "bdc8d80a-8733-463b-b329-4e28e4655845",
+            "headline": "The Last Cheap Visa Slot in India Just Vanished. Now Every H"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "open passport with travel stamps",
+          "reason": "The photo subject is relevant to a story about passport fees."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses the implications of passport fee changes for NRIs, making it relevant and informative for the diaspora audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a brief section on how these changes compare to previous fees for better context.",
+          "Include a quote or testimonial from an NRI to enhance relatability and personal connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "01526a6c-725b-4300-88ad-8adedf69cd3d",
+      "headline": "India's Textile Stocks Just Surged \u2014 and Brokerages Say the Sector's Best Years Are Ahead",
+      "slug": "india-textile-stocks-motilal-oswal-buy-gokaldas-welspun-pearl-global-china-plus-one-nri-investor-20260627",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Workers in a textile factory",
+          "reason": "The photo shows a textile factory, relevant to the textile industry story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses investment opportunities in India's textile sector, which may interest NRIs looking to invest back home."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more specific examples of how NRIs can invest in the textile sector.",
+          "Add quotes or insights from NRI investors or experts to strengthen the diaspora connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "51addff7-5aff-4f33-8ded-52480ce0d522",
+      "headline": "Your Desk Job May Need 13,000 Steps to Undo \u2014 but Even 1,700 Can Start to Fight Back",
+      "slug": "desk-job-sedentary-steps-offset-chronic-disease-nature-vanderbilt-duke-nri-tech-workers-20260627",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "person walking outside office building",
+          "reason": "The photo shows walking, which relates to the story about steps and health."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the health findings to the Indian diaspora, particularly highlighting the increased health risks faced by South Asians."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more personal anecdotes or testimonials from members of the Indian diaspora to enhance relatability.",
+          "Include a section on practical tips for incorporating more steps into a daily routine, specifically tailored for tech workers."
         ],
         "verdict": "pass"
       },
