@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-28T03:15:40.624599+00:00",
+  "timestamp": "2026-06-28T03:45:15.728626+00:00",
   "mode": "fix",
   "stats": {
     "pass": 2,
-    "flag": 3,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -19,47 +19,40 @@
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MISMATCH",
-          "what_photo_shows": "man at a ZEE5 event",
-          "reason": "The photo shows a ZEE5 event, not related to SonyLIV or the show."
-        },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
         "embed_issues": [
           {
-            "url": "https://www.instagram.com/reel/DaCt2F1qn6F/",
+            "url": "https://youtube.com/watch?v=2UbTyjv01ro",
             "problem": "irrelevant",
-            "explanation": "The Instagram reel does not appear to be directly related to the show's themes or content discussed in the article."
+            "explanation": "The YouTube link is not directly related to the article's subject matter, which focuses on the show 'Perfect Family' rather than a specific video that may not pertain to the show's content."
           }
         ],
         "image_match": {
-          "score": 7,
-          "issue": "The image description is missing, making it difficult to assess its relevance to the article."
+          "score": 5,
+          "issue": "missing image description"
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article discusses family dynamics and mental health, which resonate with the Indian diaspora's experiences."
+          "quality": 7,
+          "note": "The article discusses themes of family dynamics and mental health, which resonate with the Indian diaspora, though it could further emphasize the NRI perspective."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Add a description for the hero image to ensure it aligns with the article's content.",
-          "Consider replacing the irrelevant Instagram embed with a more relevant social media post or quote related to the show."
+          "Include a relevant image that reflects the show's themes or characters to enhance visual engagement.",
+          "Add a quote or perspective from an NRI viewer or critic to strengthen the diaspora connection."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
-        "Cleared mismatched image (man at a ZEE5 event)",
-        "Removed irrelevant embed: https://www.instagram.com/reel/DaCt2F1qn6F/",
-        "held: image mismatch"
+        "Removed irrelevant embed: https://youtube.com/watch?v=2UbTyjv01ro",
+        "promoted to published"
       ],
       "revised": false,
       "unpublished": false,
-      "image_mismatch": true,
       "llm_source": "gpt-4o-mini"
     },
     {
@@ -71,68 +64,6 @@
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MISMATCH",
-          "what_photo_shows": "The Bear title screen",
-          "reason": "The photo shows a title screen, not Jeremy Allen White."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/p/DaA4q1vFEBh/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post does not appear to be directly related to the article's subject matter, which focuses on the final season of 'The Bear'."
-          },
-          {
-            "url": "https://youtube.com/watch?v=ojjCvICC86c",
-            "problem": "relevant",
-            "explanation": "The YouTube link is relevant as it likely pertains to the show being discussed."
-          }
-        ],
-        "image_match": {
-          "score": 5,
-          "issue": "null"
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article mentions streaming availability on JioHotstar, which is relevant for Indian viewers, connecting the content to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the irrelevant Instagram link with a more relevant one that connects to the show's themes or cast.",
-          "Consider adding more context about the show's impact on the Indian audience or diaspora to strengthen the connection."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Cleared mismatched image (The Bear title screen)",
-        "Removed irrelevant embed: https://www.instagram.com/p/DaA4q1vFEBh/",
-        "held: image mismatch"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "image_mismatch": true,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "a95e0a98-6c08-4717-8d9e-b96f9556ffbf",
-      "headline": "Apple Is Quietly Shopping for a Second Chipmaker. Intel and Samsung Are Auditioning.",
-      "slug": "apple-intel-samsung-foundry-tsmc-backup-chip-manufacturing-20260628",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Apple CEO Tim Cook smiling",
-          "reason": "The photo shows Tim Cook, relevant to the Apple story."
-        },
         "inline_image_mismatches": []
       },
       "llm_review": {
@@ -140,115 +71,20 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image of Tim Cook is relevant as he is the CEO of Apple, but it does not directly depict the semiconductor topic."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively highlights the role of Indian engineers in the semiconductor industry and connects it to the diaspora's interests."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider including a more relevant image that directly relates to semiconductor manufacturing.",
-          "Add more statistics or quotes from Indian engineers to strengthen the diaspora connection."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "0bbc2ac6-7bd5-4053-993c-cfde5a71a2de",
-      "headline": "Hackers Just Published 630 GB of Apple's Manufacturing Secrets. They Got Them From Tata.",
-      "slug": "tata-electronics-data-breach-apple-tsmc-qualcomm-world-leaks-20260628",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "cybersecurity monitoring interface",
-          "reason": "The photo subject is relevant to the cybersecurity topic of the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 6,
-          "issue": "The image does not directly relate to the article's focus on cybersecurity and manufacturing secrets."
+          "issue": "The image description is missing, making it difficult to assess relevance."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the breach to the interests of the Indian diaspora, particularly those invested in Tata Group and India's manufacturing potential."
+          "note": "The article connects well with Indian viewers by mentioning streaming availability on JioHotstar."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that reflects cybersecurity or data breaches.",
-          "Expand on the implications for the Indian diaspora in terms of investment and trust in Indian manufacturing."
+          "Add a description for the hero image to enhance relevance.",
+          "Include more direct quotes from Indian critics or viewers to strengthen the diaspora connection."
         ],
         "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "6955617d-9af3-47b1-921e-4ff7b5f4e503",
-      "headline": "Two Indian-Origin Founders Just Built a $2 Billion Chip Startup. Nvidia Invested Anyway.",
-      "slug": "upscale-ai-2-billion-indian-founders-premji-nvidia-skyhammer-20260628",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "4bca5192-337c-4510-b446-997687d69d34",
-            "headline": "A Wall Street Bank Just Told India Its AI Is a 'Fighter Jet'"
-          },
-          {
-            "article_id": "bca044d9-16e7-41af-bd59-feda9d75ff84",
-            "headline": "America Just Decided Who Gets to Use the World's Most Powerf"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "server racks in a data centre",
-          "reason": "The photo shows server racks relevant to the semiconductor story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 3,
-          "issue": "irrelevant"
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article connects well with NRIs by highlighting the achievements of Indian-origin founders and the implications for Indian engineers in the tech industry."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the hero image with one that is more relevant to the semiconductor or AI infrastructure theme.",
-          "Consider adding quotes or insights from the founders to enhance the personal connection to the diaspora audience."
-        ],
-        "verdict": "flag"
       },
       "actions_taken": [
         "promoted to published"
