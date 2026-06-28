@@ -1,6 +1,6 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-06-28T20:00:05Z",
+  "last_updated": "2026-06-28T22:00:01Z",
   "stage": "Knockout Stage",
   "hosts": "USA, Mexico & Canada",
   "dates": {
@@ -1771,7 +1771,8 @@
           "away_code": "CAN",
           "venue": "SoFi Stadium",
           "city": "Inglewood",
-          "status": "scheduled"
+          "status": "FT",
+          "score": "0-1"
         },
         {
           "id": 74,
@@ -3925,6 +3926,48 @@
       "account": "@fifaworldcup",
       "caption": "The Round of 32 is set. 🔐 #FIFAWorldCup",
       "date": "2026-06-27"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/reel/DaI4wJQCgfs/",
+      "account": "@fifaworldcup",
+      "caption": "The Group Stage gave us plenty of unforgettable goals. 🤩⚽ Vote for your favourite!",
+      "date": "2026-06-28"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DaI9sEDCLml",
+      "account": "@fifaworldcup",
+      "caption": "🇿🇦🆚🇨🇦",
+      "date": "2026-06-28"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DaI9uGbCI7T",
+      "account": "@fifaworldcup",
+      "caption": "The Round of 32 is here! 🤩",
+      "date": "2026-06-28"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DaJNql8D8dr",
+      "account": "@fifaworldcup",
+      "caption": "A last-minute winner sends Canada to the Round of 16! 👊",
+      "date": "2026-06-28"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DaJNTj7loBg",
+      "account": "@fifaworldcup",
+      "caption": "🇨🇦 in the Round of 16 for the first time ever!",
+      "date": "2026-06-28"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DaJOPZoCl05",
+      "account": "@fifaworldcup",
+      "caption": "🇨🇦",
+      "date": "2026-06-28"
     }
   ],
   "tv": {
