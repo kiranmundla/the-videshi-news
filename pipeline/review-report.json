@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-28T22:15:38.628609+00:00",
+  "timestamp": "2026-06-28T22:45:27.979491+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 5,
+    "pass": 3,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "d0967b83-d5ea-496c-bc86-d18b35be5d88",
-      "headline": "Riyadh Air Launches This Week \u2014 and Its India Play Could Reshape How NRIs Fly to the Gulf",
-      "slug": "riyadh-air-launch-air-india-mou-nri-gulf-corridor-20260628",
+      "id": "2dafa5be-04c1-4677-8458-f19af83a8fe1",
+      "headline": "He's 15, He Has His Own Dressing Room, and England Is Already Trying to Tire Him Out",
+      "slug": "vaibhav-sooryavanshi-england-tour-2026-separate-dressing-room-safeguarding-vaughan-weakness-ireland-sweep-t20i-diaspora-nri",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Riyadh Air Boeing 787 Dreamliner",
-          "reason": "The photo shows a Riyadh Air plane, relevant to the airline launch story."
+          "what_photo_shows": "young man meeting a dignitary",
+          "reason": "The photo shows Vaibhav Sooryavanshi, relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -36,13 +36,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the new airline's services to the needs of the Indian diaspora, highlighting benefits for NRIs."
+          "note": "The article connects well with NRI readers by highlighting the significance of the cricket series in the UK and the excitement surrounding a young Indian talent."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from industry experts or NRI travelers to enhance the article's depth.",
-          "Include more statistics or data on the Indian diaspora's travel patterns to strengthen the argument."
+          "Include quotes or reactions from NRI fans to enhance the diaspora connection.",
+          "Add more context about the significance of the T20I series for Indian cricket and its impact on the diaspora."
         ],
         "verdict": "pass"
       },
@@ -54,9 +54,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "9b48e24b-fa9a-4a1c-9c58-4098532043e2",
-      "headline": "Thailand Just Kicked India Off Its Visa-Free List \u2014 Here's What Every NRI Traveller Needs to Know",
-      "slug": "thailand-visa-downgrade-india-voa-nri-travel-20260628",
+      "id": "cf8e9bb5-2a96-452a-b2b7-bcf68891656c",
+      "headline": "The US Banned Its Most Powerful AI From Leaving the Country. India Decided It Was Time to Build Its Own.",
+      "slug": "india-sovereign-ai-anthropic-ban-bharatgen-param-openai-model-access-20260628",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,8 +64,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Suvarnabhumi Airport terminal interior",
-          "reason": "The photo shows the airport terminal relevant to the visa story."
+          "what_photo_shows": "server racks in data center",
+          "reason": "The photo is relevant to a tech story about AI and computing."
         },
         "inline_image_mismatches": []
       },
@@ -73,19 +73,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image depicts a data center, which is relevant to the topic of AI and technology, but does not directly illustrate the specific focus on India's AI development."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively addresses the implications of the visa changes specifically for NRIs, making it relevant and engaging for the diaspora audience."
+          "note": "The article discusses India's response to US AI policies, which is relevant to the Indian diaspora interested in technological advancements and geopolitical implications."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more specific examples or anecdotes from NRIs who have been affected by the visa changes to enhance relatability.",
-          "Consider adding a section on how NRIs can navigate the new visa process or tips for travel planning under the new regulations."
+          "Include more direct quotes or perspectives from Indian tech leaders to enhance the diaspora connection.",
+          "Consider adding a section on how these developments might impact Indian NRIs in the tech industry."
         ],
         "verdict": "pass"
       },
@@ -97,9 +97,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "3cff62aa-07e3-4286-b672-54257a1df95b",
-      "headline": "India and the US Are 'Very, Very Close' to a Historic Trade Deal \u2014 but One Number Stands in the Way",
-      "slug": "india-us-trade-deal-very-close-tariff-pakistan-greer-goyal-mission-500-nri-investor-20260628",
+      "id": "84b3995f-04ad-4761-8f73-aafb77ba0a99",
+      "headline": "OpenAI Just Hired the Man Who Ran Uber India to Lead Its Biggest Bet Outside America",
+      "slug": "openai-prabhjeet-singh-uber-india-managing-director-chatgpt-ai-market-20260628",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -107,8 +107,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Indian Commerce Minister Piyush Goyal",
-          "reason": "The photo shows the correct named person involved in the trade negotiations."
+          "what_photo_shows": "OpenAI brain network visualization",
+          "reason": "The image is relevant to a story about OpenAI."
         },
         "inline_image_mismatches": []
       },
@@ -116,105 +116,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 6,
+          "issue": "The image does not directly relate to the article's focus on OpenAI and its new leadership in India."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively discusses the implications of the trade deal for NRI investors and professionals, making it relevant to the diaspora."
+          "note": "The article effectively connects Singh's appointment to the broader narrative of Indian professionals succeeding in global tech roles."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more specific examples of how the trade deal could directly impact NRI investors.",
-          "Add quotes or insights from NRI stakeholders to enhance the diaspora perspective."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "00b34c92-285d-409d-b6c3-8c8a818cdffd",
-      "headline": "Your Blood Pressure and Blood Sugar May Be Aging Your Brain \u2014 Even If You're Under 40",
-      "slug": "poor-metabolic-health-ages-brain-young-adults-plos-biology-blood-flow-cognition-south-asian-diaspora-20260628",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "medical brain scan image",
-          "reason": "The photo shows a brain scan, which is relevant to the study of brain aging and metabolic health."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively highlights the significance of metabolic health for the South Asian diaspora, making it relevant and engaging for NRI readers."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more specific statistics or data points related to the South Asian diaspora's health to strengthen the argument.",
-          "Include quotes or insights from health experts to enhance credibility and provide a more rounded perspective."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "91c76409-aa76-4db8-a74a-b31d4af1dc09",
-      "headline": "Two Hours of Strength Training a Week May Be the Sweet Spot for Living Longer \u2014 and the Evidence Is Now Hard to Ignore",
-      "slug": "strength-training-90-120-minutes-sweet-spot-longevity-harvard-bjsm-jacc-cardiovascular-diaspora-20260628",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "dumbbells in a gym",
-          "reason": "The photo of dumbbells is relevant to a strength training story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the findings to the health concerns prevalent in the South Asian diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more specific examples of strength training exercises that are culturally relevant to the South Asian diaspora.",
-          "Include quotes or insights from South Asian fitness experts to enhance relatability."
+          "Consider using a more relevant image that reflects OpenAI or its operations in India.",
+          "Add a quote from Prabhjeet Singh or a relevant stakeholder to enhance the article's depth."
         ],
         "verdict": "pass"
       },
