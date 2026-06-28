@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-28T14:45:17.087649+00:00",
+  "timestamp": "2026-06-28T15:15:36.334460+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
-    "flag": 1,
+    "pass": 4,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,18 +11,23 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "9712d3c8-0638-4ac3-bf1b-b8e5e6547ac5",
-      "headline": "Ireland Beat India for the First Time in Thirty Years of Trying. The World Champions Lost by 34 Runs.",
-      "slug": "ireland-beat-india-first-time-t20i-belfast-shreyas-iyer-tucker-delany-20260628",
+      "id": "c85c4563-7e92-4f68-a5a4-511c1ef52e50",
+      "headline": "\u20b92,507 Crore and Not a Single Hindi Release Since 2019: The Priyanka Chopra Empire Explained",
+      "slug": "priyanka-chopra-fortune-india-most-valuable-celebrity-2507-crore-brand-bentley-anomaly-reliance-varanasi-diaspora-nri-20260628",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "f6648ab6-e873-4635-bb4d-db8741e66e8d",
+            "headline": "Priyanka Chopra Just Dropped the Jolie Bombshell \u2014 and Her 2"
+          }
+        ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "man in casual attire at airport",
-          "reason": "The photo plausibly shows Shreyas Iyer, relevant to the story."
+          "what_photo_shows": "woman in elegant attire",
+          "reason": "The photo plausibly shows Priyanka Chopra Jonas, matching the story topic."
         },
         "inline_image_mismatches": []
       },
@@ -30,21 +35,21 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 3,
-          "issue": "irrelevant"
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article connects to the Indian diaspora by mentioning their fervent support for India's cricket matches, but could elaborate more on their reactions or sentiments."
+          "quality": 8,
+          "note": "The article connects Priyanka Chopra's business ventures to the immigrant experience, which resonates with the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the hero image with one that is more relevant to the match or the players involved.",
-          "Expand on the diaspora angle by including quotes or reactions from Indian fans in the UK and Ireland."
+          "Include more direct quotes or insights from Priyanka Chopra to enhance the narrative.",
+          "Add a section discussing the impact of her brand on the Indian diaspora specifically."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
         "promoted to published"
@@ -54,9 +59,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "decdfb91-ebc7-42c2-9694-f3775db2c747",
-      "headline": "A Brooklyn Judge Just Told the Trump DOJ It Can't Walk Away From the Adani Case Without Explaining Itself",
-      "slug": "adani-bribery-indictment-us-judge-refuses-dismiss-doj-garaufis-brooklyn-july-2026-20260628",
+      "id": "c2a4de08-0e75-4507-ac11-70ba7370ce7f",
+      "headline": "The Month Bollywood Went to War With Itself \u2014 and Everyone Won",
+      "slug": "june-2026-bollywood-biggest-month-four-fridays-box-office-cocktail-2-welcome-jungle-main-vaapas-aaunga-diaspora-nri-20260628",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,28 +69,135 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Gautam Adani in a suit",
-          "reason": "The photo shows Gautam Adani, who is relevant to the story."
+          "what_photo_shows": "PVR cinema entrance",
+          "reason": "The photo shows a cinema, relevant to a Bollywood film story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 7,
+        "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 8,
-          "issue": "The image of Gautam Adani is relevant to the article's topic."
+          "score": 6,
+          "issue": "The image of a mall does not directly relate to the article's focus on Bollywood films."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article discusses the implications of the Adani case for Indian investors, which connects to the diaspora's financial interests."
+          "quality": 8,
+          "note": "The article discusses a film that resonates with themes of return and belonging, which is relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more context on how the case impacts the Indian diaspora specifically.",
-          "Add quotes from legal experts or stakeholders to enhance the article's depth."
+          "Consider using a more relevant hero image that reflects the Bollywood theme.",
+          "Add more direct quotes or insights from industry experts to enhance credibility."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "d276a8b7-a31d-454e-944f-1d95ef0e1ad8",
+      "headline": "A $100,000 Price Tag on Every H-1B Hire. A Judge Said No. The Government Said Wait.",
+      "slug": "h1b-100k-fee-court-battle-tech-industry-legal-limbo-20260628",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "3bfccf08-94f2-4e2f-bf43-2cfdc4773f28",
+            "headline": "The Green Card You Could Get Without Leaving America? USCIS "
+          },
+          {
+            "article_id": "cd4c6f8e-79f5-47e7-8212-4c494babe13a",
+            "headline": "The Self-Petition Escape Hatch Is Closing. NIW Approvals Jus"
+          },
+          {
+            "article_id": "75dec796-365f-4a9f-afc4-aa7eee5d8e89",
+            "headline": "Indians Built Escape Routes Around the Green-Card Backlog. T"
+          },
+          {
+            "article_id": "6be85e6d-fc39-4011-ba26-54b94583d20f",
+            "headline": "DHS Says It Will Process Your Visa With AI in 30 Days. Immig"
+          },
+          {
+            "article_id": "faac8aeb-8246-40b8-81c3-1daaa48ee892",
+            "headline": "EB-5 Becomes India's Fastest Green Card Route. The Window Cl"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "USCIS Application Support Center",
+          "reason": "The photo shows a location where H-1B visa petitions are processed, relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the implications of H-1B visa fees on Indian professionals, making it relevant to the NRI audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more direct quotes from affected individuals or organizations to enhance the narrative.",
+          "Add a section on potential future developments regarding H-1B visa policies to provide readers with a forward-looking perspective."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "d06cdc05-0ce5-400d-aa57-71d195b5a467",
+      "headline": "The Man Who Ran Infosys Now Wants to Make It Obsolete",
+      "slug": "vishal-sikka-hang-ten-ai-startup-infosys-threat-20260628",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "man speaking at a conference",
+          "reason": "The photo shows a man at a technology conference, matching the story's subject."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the implications of AI on Indian tech workers, particularly NRIs, making it relevant to the diaspora audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more quotes or insights from industry experts to enhance credibility.",
+          "Include a brief section on potential challenges or criticisms of Hang Ten's model to provide a balanced view."
         ],
         "verdict": "pass"
       },
