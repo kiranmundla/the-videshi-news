@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-28T04:15:29.035644+00:00",
+  "timestamp": "2026-06-28T04:46:02.514222+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
+    "pass": 5,
     "flag": 1,
     "fail": 0,
     "error": 0
@@ -10,6 +10,179 @@
   "revisions": 1,
   "unpublished": 0,
   "articles": [
+    {
+      "id": "09e8d1d7-9297-444d-8ca0-0d1a2da50968",
+      "headline": "The Last Innings? Inside the Growing Debate Over Rohit Sharma's Place in India's 2027 World Cup Plans",
+      "slug": "rohit-sharma-2027-odi-world-cup-future-selectors-manjrekar-agarkar-gambhir-india-cricket-nri",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Rohit Sharma smiling in a suit",
+          "reason": "The photo shows Rohit Sharma, relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 10,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses a prominent Indian cricketer's future, which resonates with the Indian diaspora's interest in cricket and national representation."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include quotes or reactions from diaspora fans or cricket analysts to enhance the connection with NRI readers.",
+          "Add a brief section on how Rohit's performance impacts the perception of Indian cricket in the diaspora."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "804ed026-6de0-46e7-b30d-6799b97f666e",
+      "headline": "Srikanth Saves Three Match Points and Outlasts Okimoto to Reach the US Open Final",
+      "slug": "srikanth-kidambi-us-open-badminton-final-okimoto-semifinal-fullerton-california-2026-rounak-devika-diaspora-nri",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "badminton player in action",
+          "reason": "The photo shows a badminton player, which aligns with the story about a badminton match."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively highlights the significance of the event's location in relation to the Indian diaspora, making it relevant to NRI readers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from Srikanth or other players to enhance the narrative.",
+          "Include more context about the significance of the US Open for Indian badminton."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "bcde6117-2cf2-426f-a949-f422fa37edfb",
+      "headline": "Iran Just Hit US Bases in Kuwait and Bahrain. Millions of Indians in the Gulf Woke Up to Air-Raid Sirens.",
+      "slug": "iran-attacks-us-bases-kuwait-bahrain-ceasefire-collapses-indian-workers-gulf-oil-hormuz-20260628",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "UNVERIFIED",
+          "what_photo_shows": "(image unreadable)",
+          "reason": "could not download image: not-an-image"
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image depicts an oil tanker in the Persian Gulf, which is relevant to the article's discussion of oil and geopolitical tensions, but it does not directly relate to the air raid sirens experienced by Indians in the Gulf."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively highlights the impact of geopolitical events on the large Indian diaspora in the Gulf, making it highly relevant to NRI readers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including more direct quotes or reactions from Indian expatriates in the Gulf to enhance the personal connection to the diaspora.",
+          "Add a brief section on how the Indian government is preparing for potential evacuations or support for its citizens in the Gulf."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "held: image unverified"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "image_unverified": true,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "affaa059-6bcf-4445-889c-5cc1da1adbf2",
+      "headline": "India's Central Bank Just Made Dollar Deposits Ridiculously Attractive for NRIs. Here's the Math.",
+      "slug": "rbi-fcnr-nri-dollar-deposit-scheme-banks-6-percent-yield-leverage-returns-55-billion-20260628",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Reserve Bank of India currency note",
+          "reason": "The photo is relevant to the topic of India's Central Bank and currency."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image of the Indian Rupee note is relevant but does not directly illustrate the topic of dollar deposits."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively addresses NRIs and their potential benefits from the RBI's new scheme."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that directly relates to dollar deposits or the RBI announcement for better visual alignment.",
+          "Add a brief section summarizing the implications for NRIs in different regions to enhance the diaspora connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
     {
       "id": "5337f8db-16e6-4172-a090-d806c1d40481",
       "headline": "'H-1B Isn't Targeting India,' Says America's Envoy. The Numbers Disagree",
@@ -23,36 +196,52 @@
             "headline": "The Trade Deal Is in Its 'Last Inches.' For H-1B Workers, Th"
           }
         ],
-        "broken_embeds": [],
+        "broken_embeds": [
+          {
+            "url": "https://x.com/thevideshi/status/1798765432109876543",
+            "problem": "broken",
+            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
+          }
+        ],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "U.S. Ambassador Sergio Gor",
+          "what_photo_shows": "U.S. Ambassador to India Sergio Gor",
           "reason": "The photo shows the correct named person related to the story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 6,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://instagram.com/thevideshi/p/C7xY_zRJuVz/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not appear to be relevant to the topic of H-1B visas or the statements made by the U.S. Ambassador."
+          }
+        ],
         "image_match": {
           "score": 2,
-          "issue": "irrelevant"
+          "issue": "The hero image does not match the article's topic about H-1B visas and immigration."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 7,
-          "note": "The article discusses H-1B visa policies that directly affect the Indian diaspora, particularly professionals in the U.S."
+          "note": "The article discusses the impact of U.S. immigration policies on Indian professionals, which is relevant to the NRI community."
         },
-        "factual_flags": [],
+        "factual_flags": [
+          "The article claims that the weighted lottery system disadvantages mid-tier salary placements, but does not provide specific data to support this assertion."
+        ],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the hero image with one that is more relevant to the topic of H-1B visas or immigration.",
-          "Include more direct quotes or perspectives from Indian professionals affected by the H-1B policies to enhance relatability."
+          "Replace the hero image with one that is more relevant to the topic of immigration or H-1B visas.",
+          "Provide more data or sources to support claims about the impact of the weighted lottery system on Indian professionals."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
-        "Revised by gemini-2.5-flash (731\u2192845 words)"
+        "Removed 1 broken/hallucinated embed(s)",
+        "Removed irrelevant embed: https://instagram.com/thevideshi/p/C7xY_zRJuVz/",
+        "Revised by gemini-2.5-flash (843\u2192924 words)"
       ],
       "revised": true,
       "unpublished": false,
@@ -67,11 +256,6 @@
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MISMATCH",
-          "what_photo_shows": "two people shaking hands indoors",
-          "reason": "The photo does not show visa applicants or a consulate scene."
-        },
         "inline_image_mismatches": []
       },
       "llm_review": {
@@ -79,28 +263,26 @@
         "embed_issues": [],
         "image_match": {
           "score": 5,
-          "issue": "missing image description"
+          "issue": "hero image not provided"
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses the impact of U.S. visa policies on Indian professionals, which is highly relevant to the Indian diaspora."
+          "note": "The article discusses the impact of U.S. visa policies on Indian professionals, which is highly relevant to the NRI community."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include a relevant hero image that visually represents the topic of visa applications and social media.",
-          "Add more statistics or quotes from immigration experts to strengthen the article's authority."
+          "Include a relevant hero image that reflects the article's theme.",
+          "Add quotes or anecdotes from affected individuals to enhance the human interest angle."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "Cleared mismatched image (two people shaking hands indoors)",
-        "held: image mismatch"
+        "promoted to published"
       ],
       "revised": false,
       "unpublished": false,
-      "image_mismatch": true,
       "llm_source": "gpt-4o-mini"
     }
   ]
