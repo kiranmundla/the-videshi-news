@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-28T08:15:25.563563+00:00",
+  "timestamp": "2026-06-28T08:45:18.331935+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
-    "flag": 2,
+    "pass": 2,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "8a32d7ff-6653-4a34-960f-3e02ea9a2af3",
-      "headline": "India and America Are About to Sign a Trade Deal. It Says Nothing About Immigration",
-      "slug": "india-us-trade-deal-immigration-provisions-missing-20260628",
+      "id": "d7946a8f-44ef-4ad5-bdcc-c873edc84742",
+      "headline": "India's Housing Market Just Had Its Best Quarter in Years. NRI Buyers Are Leading the Luxury Charge.",
+      "slug": "india-housing-sales-surge-19-percent-q2-2026-bengaluru-hyderabad-nri-luxury-real-estate-20260628",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,51 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Prime Minister Modi and President Trump",
-          "reason": "The photo shows leaders relevant to India-US relations, fitting the trade deal topic."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 6,
-          "issue": "image not directly related to the trade deal topic"
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses the implications of the trade deal on Indian Americans and Indian nationals on work visas, making it relevant to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider including more recent statistics or quotes from experts to enhance credibility.",
-          "Add a section discussing potential impacts on the Indian diaspora to strengthen the connection."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "faac8aeb-8246-40b8-81c3-1daaa48ee892",
-      "headline": "EB-5 Becomes India's Fastest Green Card Route. The Window Closes September 30",
-      "slug": "eb5-india-green-card-september-30-grandfathering-deadline-20260628",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "hourglass on a calendar",
-          "reason": "The photo symbolizes urgency and deadlines relevant to the story."
+          "what_photo_shows": "Residential towers in Hyderabad",
+          "reason": "The photo shows residential towers in Hyderabad, relevant to the housing market story."
         },
         "inline_image_mismatches": []
       },
@@ -73,21 +30,21 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the topic of immigration or the EB-5 visa program."
+          "score": 5,
+          "issue": "The image of Hyderabad does not directly relate to the luxury housing market discussed in the article."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively addresses the concerns and opportunities for Indian nationals regarding the EB-5 visa, making it relevant for the diaspora."
+          "quality": 9,
+          "note": "The article effectively highlights the role of NRI buyers in the luxury housing market, making it relevant for diaspora readers."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that directly represents immigration or the EB-5 visa program to enhance relevance.",
-          "Include a brief summary or conclusion to reinforce the urgency of the September 30 deadline for readers."
+          "Consider using an image that better represents the luxury housing market or NRI investment.",
+          "Add more quotes or insights from NRI buyers to enhance the diaspora perspective."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
         "promoted to published"
@@ -97,23 +54,18 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "90e03639-3bb2-41bd-a870-de67ccaceedf",
-      "headline": "Three Rulings, Four Days, One Direction: The Supreme Court Just Rewrote Immigration Law",
-      "slug": "scotus-immigration-blitz-week-green-card-tps-asylum-20260628",
+      "id": "0a5602e0-1f62-4247-b1b1-bac904618575",
+      "headline": "America Is Rationing Cancer Drugs. The FDA Just Called India for Help.",
+      "slug": "us-fda-india-pharma-cancer-drug-ifosfamide-shortage-cipla-zydus-chemotherapy-rationing-20260628",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "7982b167-050a-4f07-ac05-a0e7d851df70",
-            "headline": "The Supreme Court Could Decide Monday Whether Your American-"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "The U.S. Supreme Court building",
-          "reason": "The photo subject is relevant to the Supreme Court story."
+          "what_photo_shows": "IV bags and infusion setup",
+          "reason": "The photo shows chemotherapy drug infusion components relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -126,14 +78,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article discusses implications for Indian Americans, making it relevant to the diaspora."
+          "quality": 7,
+          "note": "The article discusses India's role in supplying cancer drugs to the US, which is relevant to the Indian diaspora interested in healthcare and pharmaceutical developments."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes from the dissenting opinions to provide a balanced view.",
-          "Add a section summarizing the potential long-term impacts of these rulings on Indian Americans."
+          "Include quotes or perspectives from Indian diaspora members involved in the pharmaceutical industry to strengthen the diaspora connection.",
+          "Add a section discussing the implications of this drug shortage on Indian patients or the Indian healthcare system."
         ],
         "verdict": "pass"
       },
