@@ -1,76 +1,15 @@
 {
-  "timestamp": "2026-06-28T05:15:50.873573+00:00",
+  "timestamp": "2026-06-28T05:45:39.706503+00:00",
   "mode": "fix",
   "stats": {
     "pass": 1,
-    "flag": 2,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
   "revisions": 1,
   "unpublished": 0,
   "articles": [
-    {
-      "id": "25dd0c60-a827-47ad-8a78-8aa411374ef2",
-      "headline": "She Was Named Sita and Raised to Kill: Alpha Is About to Blow the Spy Universe Wide Open",
-      "slug": "alpha-alia-bhatt-sharvari-yrf-spy-universe-bobby-deol-villain-hrithik-roshan-cameo-july-3-2026-where-to-watch-diaspora-nri",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "a9c0b327-401a-414b-87e9-42ab8e2db6f2",
-            "headline": "Alia Bhatt Picks Up the Rifle: 'Alpha' Storms In as the Spy "
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "movie poster with actors",
-          "reason": "The photo shows a movie poster related to the film mentioned in the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/reel/DZrXE9fB1sc/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram reel does not appear to be directly related to the film or its promotion."
-          },
-          {
-            "url": "https://www.instagram.com/p/DaF7ikvDNuT/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post does not seem to provide relevant content related to the film's themes or promotion."
-          }
-        ],
-        "image_match": {
-          "score": 8,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article connects the film's release to the July 4 long weekend, which is relevant for the diaspora audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the irrelevant Instagram embeds with more relevant content that directly relates to the film or its promotion.",
-          "Expand on the diaspora angle by discussing how the film's themes resonate with NRI audiences."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/reel/DZrXE9fB1sc/",
-        "Removed irrelevant embed: https://www.instagram.com/p/DaF7ikvDNuT/",
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
     {
       "id": "bcde6117-2cf2-426f-a949-f422fa37edfb",
       "headline": "Iran Just Hit US Bases in Kuwait and Bahrain. Millions of Indians in the Gulf Woke Up to Air-Raid Sirens.",
@@ -97,12 +36,12 @@
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects the geopolitical situation to the Indian diaspora in the Gulf, highlighting the impact on Indian workers and their families."
+          "note": "The article effectively highlights the impact of geopolitical events on the large Indian diaspora in the Gulf, making it relevant and engaging for NRI readers."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider including more direct quotes or reactions from Indian expatriates to enhance the personal connection to the diaspora.",
+          "Consider including more direct quotes or reactions from Indian expatriates in the Gulf to enhance the personal connection to the diaspora.",
           "Add a brief section on how the Indian government is preparing for potential evacuations or support for its citizens in the Gulf."
         ],
         "verdict": "pass"
@@ -128,36 +67,50 @@
             "headline": "The Trade Deal Is in Its 'Last Inches.' For H-1B Workers, Th"
           }
         ],
-        "broken_embeds": [],
+        "broken_embeds": [
+          {
+            "url": "https://x.com/thevideshi/status/1798765432109876543",
+            "problem": "broken",
+            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
+          }
+        ],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "U.S. Ambassador to India Sergio Gor",
+          "what_photo_shows": "U.S. Ambassador Sergio Gor portrait",
           "reason": "The photo shows the correct named person related to the story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 6,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://instagram.com/thevideshi/p/C765432109876543210",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not appear to be relevant to the topic of H-1B visas or the article's focus on immigration policy."
+          }
+        ],
         "image_match": {
           "score": 2,
-          "issue": "irrelevant"
+          "issue": "The hero image does not match the article's topic about H-1B visas and immigration."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 7,
-          "note": "The article discusses H-1B visa policies and their impact on Indian professionals, which is relevant to the NRI community."
+          "note": "The article discusses the impact of U.S. immigration policies on Indian professionals, which is relevant to the NRI community."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the hero image with one that is more relevant to the topic of H-1B visas or immigration.",
-          "Provide more context or quotes from Indian professionals affected by the H-1B policies to enhance the diaspora angle."
+          "Replace the hero image with one that is more relevant to H-1B visas or immigration.",
+          "Provide a more relevant social media embed that connects directly to the article's content."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
-        "Revised by gemini-2.5-flash (924\u2192971 words)"
+        "Removed 1 broken/hallucinated embed(s)",
+        "Removed irrelevant embed: https://instagram.com/thevideshi/p/C765432109876543210",
+        "Revised by gemini-2.5-flash (969\u2192970 words)"
       ],
       "revised": true,
       "unpublished": false,
