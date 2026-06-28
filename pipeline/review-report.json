@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-28T05:45:39.706503+00:00",
+  "timestamp": "2026-06-28T06:16:32.818732+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
+    "pass": 8,
     "flag": 1,
     "fail": 0,
     "error": 0
@@ -10,6 +10,321 @@
   "revisions": 1,
   "unpublished": 0,
   "articles": [
+    {
+      "id": "b9b471b8-b04b-4261-a19c-a62e60a2e17b",
+      "headline": "The Season Most NRIs Never See: Why Kerala in Monsoon Is India's Best-Kept Travel Secret",
+      "slug": "kerala-monsoon-tourism-ayurveda-nri-summer-travel-guide-20260628",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "houseboats on Kerala backwaters",
+          "reason": "The photo shows houseboats on Kerala backwaters, relevant to the monsoon travel story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects with NRIs by highlighting travel opportunities and cost benefits during the monsoon season in Kerala."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding personal anecdotes or testimonials from NRIs who have experienced Kerala during the monsoon to enhance relatability.",
+          "Include more specific travel tips or itineraries for NRIs planning a trip to Kerala during the monsoon."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "e551e80e-9cca-4731-a41b-d0c395064528",
+      "headline": "Air India's Retrofitted Dreamliners Are Winning Over Passengers \u2014 and the CEO Wants to Restore the Routes He Cut",
+      "slug": "air-india-787-retrofit-nps-turnaround-wilson-routes-nri-20260628",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Air India Boeing 787-9 Dreamliner",
+          "reason": "The photo shows an Air India Dreamliner, relevant to the story about retrofitted Dreamliners."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively highlights routes and improvements that are particularly relevant to the Indian diaspora, making it relatable for NRI readers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from passengers or industry experts to enhance credibility and engagement.",
+          "Include more specific examples of passenger feedback on the new interiors to provide a personal touch."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "163f52ed-84bc-447f-807a-8a5bd02290f9",
+      "headline": "Germany Drops Transit Visa for Indians \u2014 and Lufthansa Is Already Betting Big on What Happens Next",
+      "slug": "germany-transit-visa-waiver-indians-lufthansa-swiss-india-20260628",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Lufthansa Airbus A350-900 in flight",
+          "reason": "The photo shows a Lufthansa aircraft, relevant to the airline and travel story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the visa change to the Indian diaspora, particularly highlighting benefits for NRIs traveling to and from Europe."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more direct quotes from Lufthansa representatives to enhance credibility.",
+          "Add a section on potential impacts on travel costs for NRIs to provide a more comprehensive view."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "75c8a75c-7e49-40cd-a0d2-3c5b317e7a54",
+      "headline": "South Korea's KOSPI Crashed Twice in a Week \u2014 India's Markets Logged a Third Straight Weekly Gain",
+      "slug": "kospi-crash-circuit-breaker-ai-selloff-india-nifty-sensex-weekly-gain-oil-rbi-nri-investor-20260628",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Bombay Stock Exchange building",
+          "reason": "The photo shows the Bombay Stock Exchange, relevant to India's market performance."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses market trends relevant to NRI investors, particularly in the context of India's resilience compared to South Korea."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more direct quotes from NRI investors or financial experts to enhance the diaspora connection.",
+          "Add a brief section on how these market trends might specifically impact NRI investments."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "c6232f10-998a-4813-a5e6-2e9f6875a826",
+      "headline": "Exercise Alone Can Tackle Six of the 14 Known Dementia Risk Factors \u2014 and South Asians Stand to Gain the Most",
+      "slug": "exercise-six-dementia-risk-factors-university-minnesota-south-asian-diaspora-vascular-alzheimers-prevention-20260628",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "older adult running on track",
+          "reason": "The photo aligns with the story about exercise reducing dementia risk."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the findings to the South Asian diaspora, emphasizing the urgency of exercise for this demographic."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of exercises that can be easily incorporated into daily routines for the diaspora audience.",
+          "Include quotes or testimonials from South Asians who have successfully integrated exercise into their lives to enhance relatability."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "aa43ea63-c660-455e-895d-2d5c8f9843ec",
+      "headline": "Washington Just Put a Padlock on GPT-5.6. Indian Developers Are on the Outside.",
+      "slug": "gpt-56-restricted-launch-india-developers-sovereign-ai-20260628",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "24951212-b629-4981-9632-47e467a8d128",
+            "headline": "OpenAI Built Its Own AI Chip and Called It Jalape\u00f1o. The Rea"
+          },
+          {
+            "article_id": "dd35e417-e3c8-47ce-b7a7-855eb0e14883",
+            "headline": "Washington Just Got First Dibs on OpenAI's Newest Brain. The"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Sam Altman, CEO of OpenAI",
+          "reason": "The photo shows Sam Altman, relevant to the OpenAI story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 6,
+          "issue": "The image features Sam Altman, which is relevant, but it does not directly relate to the specific topic of GPT-5.6's restricted launch."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the implications of the GPT-5.6 rollout on Indian developers, making it relevant to the Indian diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more specific examples of how Indian developers are impacted by the restricted access to GPT-5.6.",
+          "Consider using a more directly relevant image that illustrates the theme of AI development or the impact on Indian developers."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "068dbdd3-cb34-4936-9fd7-f277cf658b2a",
+      "headline": "Sanjay Mehrotra's Micron Just Passed Meta in Market Value. His Secret Weapon: $22 Billion in Contracts Nobody Can Cancel.",
+      "slug": "sanjay-mehrotra-micron-meta-market-cap-take-or-pay-20260628",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "bb184235-5e15-4049-b810-e705e5804273",
+            "headline": "Micron Just Told Wall Street the Memory Shortage Runs Past 2"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "man in suit smiling",
+          "reason": "The photo plausibly shows Sanjay Mehrotra, relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects Sanjay Mehrotra's achievements and Micron's developments to the Indian diaspora, highlighting Mehrotra's background and the significance of Micron's facility in Gujarat."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more quotes or insights from industry experts to enhance credibility.",
+          "Include a brief overview of the implications of Micron's success on the global semiconductor market."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
     {
       "id": "bcde6117-2cf2-426f-a949-f422fa37edfb",
       "headline": "Iran Just Hit US Bases in Kuwait and Bahrain. Millions of Indians in the Gulf Woke Up to Air-Raid Sirens.",
@@ -30,19 +345,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image depicts an oil tanker in the Persian Gulf, which is relevant to the article's discussion about oil and the Strait of Hormuz, but it does not directly relate to the air raid sirens experienced by Indians in the Gulf."
+          "score": 6,
+          "issue": "The image of an oil tanker does not directly relate to the air raid sirens or the geopolitical tensions discussed in the article."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively highlights the impact of geopolitical events on the large Indian diaspora in the Gulf, making it relevant and engaging for NRI readers."
+          "note": "The article effectively highlights the impact of the geopolitical situation on the large Indian diaspora in the Gulf, making it relevant and engaging for NRI readers."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider including more direct quotes or reactions from Indian expatriates in the Gulf to enhance the personal connection to the diaspora.",
-          "Add a brief section on how the Indian government is preparing for potential evacuations or support for its citizens in the Gulf."
+          "Consider using a more relevant image that depicts the air raid sirens or the geopolitical tensions in the Gulf.",
+          "Add a brief update or quote from the Indian Ministry of External Affairs regarding the situation to enhance the article's timeliness."
         ],
         "verdict": "pass"
       },
@@ -69,48 +384,41 @@
         ],
         "broken_embeds": [
           {
-            "url": "https://x.com/thevideshi/status/1798765432109876543",
+            "url": "https://x.com/USCIS/status/1707234567890123456",
             "problem": "broken",
             "detail": "react-tweet returned null (deleted/protected/nonexistent)"
           }
         ],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "U.S. Ambassador Sergio Gor portrait",
+          "what_photo_shows": "U.S. Ambassador Sergio Gor",
           "reason": "The photo shows the correct named person related to the story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 6,
-        "embed_issues": [
-          {
-            "url": "https://instagram.com/thevideshi/p/C765432109876543210",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post does not appear to be relevant to the topic of H-1B visas or the article's focus on immigration policy."
-          }
-        ],
+        "embed_issues": [],
         "image_match": {
           "score": 2,
-          "issue": "The hero image does not match the article's topic about H-1B visas and immigration."
+          "issue": "irrelevant"
         },
         "diaspora_angle": {
           "present": true,
           "quality": 7,
-          "note": "The article discusses the impact of U.S. immigration policies on Indian professionals, which is relevant to the NRI community."
+          "note": "The article discusses H-1B visa policies and their impact on Indian professionals, which is relevant to the NRI community."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the hero image with one that is more relevant to H-1B visas or immigration.",
-          "Provide a more relevant social media embed that connects directly to the article's content."
+          "Replace the hero image with one that is more relevant to the topic of H-1B visas or immigration.",
+          "Provide more context or quotes from Indian professionals affected by these visa changes to enhance the human angle."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
         "Removed 1 broken/hallucinated embed(s)",
-        "Removed irrelevant embed: https://instagram.com/thevideshi/p/C765432109876543210",
-        "Revised by gemini-2.5-flash (969\u2192970 words)"
+        "Revised by gemini-2.5-flash (969\u2192971 words)"
       ],
       "revised": true,
       "unpublished": false,
