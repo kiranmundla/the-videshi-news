@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-28T07:15:19.322919+00:00",
+  "timestamp": "2026-06-28T07:45:23.349546+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
-    "flag": 1,
+    "pass": 2,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "4b44024b-c8fd-413a-8d25-2fbb66eed0cd",
-      "headline": "Mirzapur: The Movie Teaser Drops \u2014 Guddu, Kaleen Bhaiya and Munna Are Coming to the Big Screen This September",
-      "slug": "mirzapur-the-movie-teaser-ali-fazal-pankaj-tripathi-september-2026-theatrical-release",
+      "id": "4e6da807-3479-44b8-a15e-455152fb4451",
+      "headline": "He Grew Up Playing Cricket in Rajasthan. On Friday, He Bowled India Out for Ireland.",
+      "slug": "jai-moondra-rajasthan-ireland-cricket-debut-india-belfast-first-ball-wicket-samson-diaspora-nri",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Ali Fazal at an event",
-          "reason": "Ali Fazal is relevant to the Mirzapur movie story."
+          "what_photo_shows": "cricket match in progress",
+          "reason": "The photo shows a cricket match, which is relevant to the story about cricket."
         },
         "inline_image_mismatches": []
       },
@@ -31,20 +31,20 @@
         "embed_issues": [],
         "image_match": {
           "score": 5,
-          "issue": "The image does not match the article's headline and topic."
+          "issue": "The image does not depict Jai Moondra or the specific match mentioned in the article."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the film's release to the diaspora audience, highlighting its global appeal."
+          "note": "The article effectively highlights Jai Moondra's journey from Rajasthan to representing Ireland, connecting well with the Indian diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the hero image with one that features the cast or scenes from the *Mirzapur* series to better match the article's content.",
-          "Consider adding more details about the film's potential impact on the diaspora audience's cultural connection."
+          "Consider including a relevant image of Jai Moondra or the match to enhance visual connection.",
+          "Add a quote or perspective from Moondra's family in India to deepen the diaspora connection."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
         "promoted to published"
@@ -54,43 +54,38 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "d1991e2d-dc75-4133-aea5-d372a43a48a0",
-      "headline": "Supergirl Stumbles With $38M Opening Weekend as DCU Faces Its First Box Office Misfire",
-      "slug": "supergirl-2026-dcu-box-office-milly-alcock-38-million-opening-weekend",
+      "id": "00d9d22d-7369-4010-9a2a-ff40c05587d3",
+      "headline": "She Leapt 6.88 Metres and Ended a 22-Year Wait. Then the High Jumper Made History Too.",
+      "slug": "ancy-sojan-sarvesh-kushare-national-records-long-jump-high-jump-inter-state-athletics-bhubaneswar-2026-diaspora-nri",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "69a12539-9e4e-41d7-90b5-984ecd226aa5",
-            "headline": "CBFC Takes a Red Pen to 'Supergirl': Muted Cusswords, a Dele"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Supergirl movie poster with Milly Alcock",
-          "reason": "The photo shows Milly Alcock as Supergirl, matching the story topic."
+          "what_photo_shows": "athlete celebrating with Indian flag",
+          "reason": "The photo shows an athlete celebrating, which aligns with the athletics story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 7,
+        "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image is relevant to athletics but depicts a high jumper, while the article primarily focuses on long jump."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses the performance of *Supergirl* in the Indian market, which is relevant to NRI readers interested in Bollywood and Hollywood crossover."
+          "note": "The article connects well with the Indian diaspora by highlighting achievements in athletics and the significance of these records."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes from Indian audiences or critics to enhance the diaspora connection.",
-          "Add a brief comparison of how other recent Hollywood films performed in India to provide context."
+          "Consider adding more context about the significance of these records for the Indian diaspora.",
+          "Include quotes or reactions from diaspora athletes or sports commentators to enhance the connection."
         ],
         "verdict": "pass"
       },
