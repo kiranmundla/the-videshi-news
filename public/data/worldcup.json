@@ -1,6 +1,6 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-06-28T10:02:04Z",
+  "last_updated": "2026-06-28T11:59:16Z",
   "stage": "Knockout Stage",
   "hosts": "USA, Mexico & Canada",
   "dates": {
@@ -3834,6 +3834,20 @@
       "account": "@fifaworldcup",
       "caption": "Lionel Messi scoring his sixth #FIFAWorldCup 2026 goal in style ✨",
       "date": "2026-06-28"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DaHYjsjl00A/",
+      "account": "@fifaworldcup",
+      "caption": "Every team in the Round of 32! #FIFAWorldCup #Qualified",
+      "type": "image"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DaIIovkDaLg/",
+      "account": "@fifaworldcup",
+      "caption": "The Round of 32 is ready to begin 🇿🇦🇨🇦 #FIFAWorldCup",
+      "type": "carousel"
     }
   ],
   "tv": {
