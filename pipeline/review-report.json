@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-28T12:15:48.366811+00:00",
+  "timestamp": "2026-06-28T12:45:48.730269+00:00",
   "mode": "fix",
   "stats": {
     "pass": 6,
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "ee2d420b-5250-41d8-9354-fad1d7347b83",
-      "headline": "America's Nursing Homes Are About to Lose 115,000 Workers. A Bill to Help Indian Doctors Gathers Dust.",
-      "slug": "tps-ruling-healthcare-crisis-indian-doctors-hwra-bill-20260628",
+      "id": "1bdb546f-bf6f-4450-a0be-61fcb94d5241",
+      "headline": "Copper and Courage: How a Punjabi Family Rebuilt Their Las Vegas Restaurant and Earned a James Beard Nod",
+      "slug": "copper-and-courage-how-a-punjabi-family-rebuilt-their-las-vegas-restaurant-and-e",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,51 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "nurse providing care to a patient",
-          "reason": "The photo aligns with the healthcare and nursing theme of the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 6,
-          "issue": "The image does not directly relate to the article's focus on nursing homes and Indian doctors."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the challenges faced by Indian doctors in the U.S. to the broader immigration issues affecting the Indian diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that depicts nursing homes or healthcare professionals.",
-          "Expand on the implications of the bill for Indian doctors to provide more context for diaspora readers."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "06836937-5fac-42aa-8817-8649d61ca6d3",
-      "headline": "30,000 Indian Students Left America in One Year. Germany Doubled Its Intake.",
-      "slug": "indian-students-exodus-us-germany-europe-enrollment-20260628",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "students studying on campus",
-          "reason": "The photo shows students studying, which aligns with the topic of international student enrollment."
+          "what_photo_shows": "Indian dinner spread at a restaurant",
+          "reason": "The photo shows Indian food, which aligns with the restaurant story."
         },
         "inline_image_mismatches": []
       },
@@ -74,18 +31,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image does not directly relate to the topic of Indian students leaving America for Germany."
+          "issue": "The image depicts an Indian dinner but does not specifically represent Tamba or its unique offerings."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses the challenges faced by Indian students in the US and their migration to Germany, which is relevant to the Indian diaspora."
+          "note": "The article highlights the immigrant experience of the Dhillon family and their contributions to Indian cuisine in America, which resonates with the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that directly represents Indian students or the concept of studying abroad to enhance relevance.",
-          "Add quotes or testimonials from Indian students who have made the transition to Germany to provide a personal touch."
+          "Include a quote from the Dhillon family or Chef Anand Singh to add a personal touch.",
+          "Consider adding more details about the challenges faced during the restaurant's reopening to enhance the narrative."
         ],
         "verdict": "pass"
       },
@@ -97,9 +54,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "6b8690c8-75de-44de-b064-3645e9907a3f",
-      "headline": "Fifty Years Ago, a Handful of Hare Krishnas Pulled a Chariot Down Fifth Avenue. Now 25,000 Show Up.",
-      "slug": "iskcon-ratha-yatra-50th-anniversary-nyc-diaspora-chariot-festival-20260628",
+      "id": "99bff56e-bf68-46b7-9578-187310910a3e",
+      "headline": "Butter Chicken at Costco: How Indian Food Brands Are Storming America's Grocery Aisles",
+      "slug": "butter-chicken-at-costco-how-indian-food-brands-are-storming-americas-grocery-ai",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -107,8 +64,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Devotees pulling a Ratha Yatra chariot",
-          "reason": "The photo shows a Ratha Yatra chariot, matching the story about ISKCON's festival."
+          "what_photo_shows": "Butter chicken with naan on plate",
+          "reason": "The photo shows butter chicken, which is relevant to the story about Indian food in American grocery stores."
         },
         "inline_image_mismatches": []
       },
@@ -122,13 +79,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the Ratha Yatra to the Indian diaspora's cultural identity and community engagement."
+          "note": "The article effectively connects the availability of Indian food in mainstream grocery stores to the cultural significance for the Indian diaspora in the U.S."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from more attendees or organizers to enhance the personal connection to the event.",
-          "Include a brief section on the significance of the Ratha Yatra in the context of Indian festivals globally."
+          "Consider adding quotes or testimonials from Indian Americans about their experiences with these products to enhance the diaspora connection.",
+          "Include more statistics or data on the growth of Indian food brands in the U.S. to strengthen the article's argument."
         ],
         "verdict": "pass"
       },
@@ -140,9 +97,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "d9bc1675-d370-4436-85ae-a0a422db9a89",
-      "headline": "The July 31 Deadline Is Coming. Here's What Every NRI Filing an Indian Tax Return Needs to Know.",
-      "slug": "nri-india-itr-july-deadline-schedule-fa-dtaa-fbar-guide-20260628",
+      "id": "8b41abc0-a985-401e-81bb-2ab709cd4178",
+      "headline": "From Udupi to the Pacific Northwest: Hari Nayak Plots Indian Cuisine's Next Frontier",
+      "slug": "from-udupi-to-the-pacific-northwest-hari-nayak-plots-indian-cuisines-next-fronti",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -150,8 +107,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "tax documents and currency on desk",
-          "reason": "The photo subject aligns with the tax filing theme of the story."
+          "what_photo_shows": "Chef presenting tandoori chicken dish",
+          "reason": "The photo shows a chef with a modern Indian dish, relevant to the story about Indian cuisine."
         },
         "inline_image_mismatches": []
       },
@@ -165,13 +122,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively addresses the tax obligations of NRIs, making it relevant and informative for the diaspora audience."
+          "note": "The article effectively connects the significance of Nayak's restaurant to the Indian American community in the Pacific Northwest."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a section on common mistakes NRIs make when filing taxes to enhance practical guidance.",
-          "Include links to official resources or tools for NRIs to check their tax status or file returns."
+          "Consider adding quotes from Hari Nayak or local community members to enhance the personal connection.",
+          "Include more details about the expected menu or specific dishes to engage readers further."
         ],
         "verdict": "pass"
       },
@@ -183,9 +140,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "9d25a905-cafb-4781-b578-a46dbb55ff4d",
-      "headline": "A War Far From Gujarat Is Threatening India's Chip Ambitions",
-      "slug": "west-asia-conflict-india-semiconductor-dholera-delays-20260628",
+      "id": "e261568d-bdff-42c0-bb0f-635fd626f6cd",
+      "headline": "The Supreme Court Is About to Rule on Whether Babies Born to H-1B Parents Are American Citizens",
+      "slug": "supreme-court-birthright-citizenship-h1b-indian-parents-14th-amendment-ruling-20260628",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -193,8 +150,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "researcher in semiconductor cleanroom",
-          "reason": "The photo shows a semiconductor fabrication setting, relevant to the story."
+          "what_photo_shows": "US Supreme Court interior",
+          "reason": "The photo shows the US Supreme Court, relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -208,13 +165,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the semiconductor industry developments in India to NRI investors and professionals, highlighting their potential concerns and interests."
+          "note": "The article effectively highlights the implications of the Supreme Court ruling on Indian families in the US, making it relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes or insights from industry experts to enhance credibility.",
-          "Include more data or examples of how the semiconductor delays specifically impact NRI investors."
+          "Include quotes or perspectives from Indian diaspora organizations to enhance the community angle.",
+          "Add a brief explanation of the potential long-term implications of the ruling on immigration policy."
         ],
         "verdict": "pass"
       },
@@ -226,26 +183,60 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "14f944bf-a7a6-4075-a160-79b35f1bbc71",
-      "headline": "Amazon Just Dropped Another $13 Billion on India. The Hyperscaler Land Grab Is Getting Serious.",
-      "slug": "amazon-jassy-13-billion-india-ai-aws-data-centre-20260628",
+      "id": "fb243574-eca2-4628-b1da-627925327d15",
+      "headline": "Hyderabad Named a Road After Trump. His Own Allies in India Called It Hypocrisy.",
+      "slug": "hyderabad-donald-trump-avenue-telangana-congress-bjp-us-india-20260628",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "53a54c16-1207-497d-8b0d-9816330399e8",
-            "headline": "Amazon Just Raised Its India Bet to $48 Billion. Most of the"
-          },
-          {
-            "article_id": "53cccca2-93e0-4a43-b1c0-21f0554a9c3e",
-            "headline": "Amazon Just Promised India Another $13 Billion. The Real Sto"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "a man in a suit outdoors",
+          "what_photo_shows": "US President Donald Trump",
+          "reason": "The photo shows Donald Trump, relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 8,
+          "issue": "The image of the plaque is relevant to the article's topic but lacks a direct visual connection to the political implications discussed."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the road renaming to the experiences of NRIs in the tech industry, highlighting the irony of the situation."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more direct quotes from NRI perspectives to enhance the diaspora angle.",
+          "Add a brief historical context about similar instances of road naming in India to enrich the article."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "4f45029e-d21f-46bf-aa4d-6ea6a3b64ded",
+      "headline": "Amazon Just Committed $48 Billion to India. Most of It Will Be Spent Building the AI Infrastructure Indians Haven't Seen Yet.",
+      "slug": "amazon-48-billion-india-investment-jassy-modi-ai-cloud-data-centers-mumbai-hyderabad-20260628",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "a man in a suit",
           "reason": "The photo plausibly shows Amazon CEO Andy Jassy, relevant to the story."
         },
         "inline_image_mismatches": []
@@ -254,19 +245,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 5,
-          "issue": "image does not match the article's topic"
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article discusses job security and opportunities for NRIs, making it relevant to the diaspora."
+          "quality": 8,
+          "note": "The article discusses opportunities for Indian tech professionals in the US, linking the investment to potential job growth and market expansion."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that directly relates to Amazon's investment in India or cloud infrastructure.",
-          "Expand on the implications for NRIs in terms of job opportunities and the tech landscape in India."
+          "Include more direct quotes from Indian tech professionals or diaspora members to enhance the personal connection.",
+          "Add a section on how this investment might impact the Indian diaspora's perception of opportunities back home."
         ],
         "verdict": "pass"
       },
