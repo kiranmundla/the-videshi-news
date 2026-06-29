@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-29T08:15:23.239893+00:00",
+  "timestamp": "2026-06-29T08:45:20.252068+00:00",
   "mode": "fix",
   "stats": {
     "pass": 2,
@@ -11,18 +11,23 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "b3bbe810-6c54-4dfd-bf17-e84d863525d0",
-      "headline": "You Have 60 Days. USCIS Automation May Give You Zero",
-      "slug": "h1b-60-day-grace-period-uscis-denial-automation-20260629",
+      "id": "cac7ea7e-91bc-4f8e-a9c5-aa84d30517ba",
+      "headline": "Jio Is Filing for India's Biggest IPO Ever. None of Its Major Investors Plan to Sell.",
+      "slug": "jio-platforms-biggest-indian-ipo-170-billion-meta-google-kkr-not-selling-20260629",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "4825c3bb-ebc0-4bae-be87-fd9f1784ccbf",
+            "headline": "Every Forecaster Is Saying the Same Thing: India Is Slowing "
+          }
+        ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "professional stressed at laptop",
-          "reason": "The image aligns with the story about immigration uncertainty."
+          "what_photo_shows": "Bombay Stock Exchange building",
+          "reason": "The photo of the Bombay Stock Exchange is relevant to a story about an IPO in India."
         },
         "inline_image_mismatches": []
       },
@@ -30,19 +35,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 6,
-          "issue": "The image does not directly relate to the topic of immigration or the specific challenges faced by H-1B workers."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article discusses the challenges faced by H-1B workers, which is relevant to the Indian diaspora, particularly those in the tech industry."
+          "quality": 8,
+          "note": "The article effectively discusses the implications of Jio's IPO for NRI investors, making it relevant to the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that more directly represents the theme of immigration or the struggles of H-1B workers.",
-          "Add a brief conclusion summarizing the implications of the changes in USCIS processing for H-1B workers."
+          "Consider adding more specific examples of how NRIs can participate in the IPO process.",
+          "Include a brief overview of the regulatory changes that may affect NRI investors."
         ],
         "verdict": "pass"
       },
@@ -54,43 +59,18 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "aa18166c-663c-45a8-b24e-f5f8ce229faa",
-      "headline": "The Receipt That Never Ends. Every Fee Washington Has Added to Your Immigration File",
-      "slug": "obbba-immigration-fee-map-indian-family-cost-20260629",
+      "id": "39963d7f-9557-47fb-802f-dc7b20ae0df8",
+      "headline": "Rubio Says Washington Is Planning a Trump Visit to India Early Next Year. He'll Fly Out First to Set It Up.",
+      "slug": "rubio-trump-india-visit-early-2027-trade-deal-quad-diplomacy-20260629",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "3bfccf08-94f2-4e2f-bf43-2cfdc4773f28",
-            "headline": "The Green Card You Could Get Without Leaving America? USCIS "
-          },
-          {
-            "article_id": "cd4c6f8e-79f5-47e7-8212-4c494babe13a",
-            "headline": "The Self-Petition Escape Hatch Is Closing. NIW Approvals Jus"
-          },
-          {
-            "article_id": "75dec796-365f-4a9f-afc4-aa7eee5d8e89",
-            "headline": "Indians Built Escape Routes Around the Green-Card Backlog. T"
-          },
-          {
-            "article_id": "6be85e6d-fc39-4011-ba26-54b94583d20f",
-            "headline": "DHS Says It Will Process Your Visa With AI in 30 Days. Immig"
-          },
-          {
-            "article_id": "faac8aeb-8246-40b8-81c3-1daaa48ee892",
-            "headline": "EB-5 Becomes India's Fastest Green Card Route. The Window Cl"
-          },
-          {
-            "article_id": "d276a8b7-a31d-454e-944f-1d95ef0e1ad8",
-            "headline": "A $100,000 Price Tag on Every H-1B Hire. A Judge Said No. Th"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "USCIS Application Support Center",
-          "reason": "The photo shows a USCIS center, relevant to the immigration story."
+          "what_photo_shows": "Trump meeting Modi in a summit",
+          "reason": "The photo shows Trump and Modi, relevant to the story about US-India relations."
         },
         "inline_image_mismatches": []
       },
@@ -99,18 +79,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 8,
-          "issue": "The image depicts a USCIS Application Support Center, which is relevant to the topic of immigration fees."
+          "issue": "The image of Trump and Modi is relevant but does not directly depict the current context of Rubio's statements."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses immigration fees that directly impact Indian immigrants, making it relevant to the diaspora."
+          "note": "The article effectively connects the potential presidential visit to the interests of the Indian diaspora, discussing implications for visa processing and bilateral relations."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more personal stories or testimonials from individuals affected by the fee increases to enhance relatability.",
-          "Add a section discussing potential future implications of these fees on the Indian diaspora and their immigration plans."
+          "Include more recent quotes or data to enhance the timeliness of the article.",
+          "Consider adding a brief background on the significance of the Quad leaders' summit for further context."
         ],
         "verdict": "pass"
       },
