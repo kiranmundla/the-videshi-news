@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-29T18:15:55.398408+00:00",
+  "timestamp": "2026-06-29T18:45:24.737877+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 7,
+    "pass": 3,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,66 +11,31 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "4e856efb-f90e-4dfd-887e-2e9afa21eb9b",
-      "headline": "Getting Your Parents a US Visa Now Means a 10-Month Wait in Mumbai \u2014 and It's Getting Worse",
-      "slug": "us-visa-wait-times-india-mumbai-hyderabad-nri-parents-20260629",
+      "id": "d15c5bbd-2a8e-472a-ad15-38dd6d2ef814",
+      "headline": "An Indian-Born Billionaire in Canada Just Parked $1 Billion in Indian Bonds. It's Not About the Bonds.",
+      "slug": "fairfax-prem-watsa-1-billion-indian-bonds-idbi-bank-privatisation-diaspora-20260629",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [
           {
-            "article_id": "ae72fa7f-1354-4a86-abc6-12bf5c919248",
-            "headline": "Your Instagram Is Now Part of Your Visa Application. Indian "
+            "article_id": "3e756902-6a13-43f4-b437-e08704143156",
+            "headline": "He Left Hyderabad With $8. His Company Just Put $1 Billion B"
+          },
+          {
+            "article_id": "e4f211ec-206b-482d-a476-ac4f29226ac8",
+            "headline": "He Left Hyderabad With Nothing. Now He's Buying One of India"
+          },
+          {
+            "article_id": "f865b541-ec7b-41fe-98eb-5735b9724405",
+            "headline": "A Hyderabad-Born Billionaire Bets $1 Billion on India \u2014 and "
           }
         ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "US Embassy in New Delhi",
-          "reason": "The photo shows the US Embassy, relevant to the visa wait time story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 5,
-          "issue": "The image of the US Embassy in New Delhi is relevant but does not directly illustrate the specific wait times or experiences discussed in the article."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects with NRIs by discussing the impact of visa delays on family visits, which is a significant concern for the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that directly relates to the visa application process or families waiting for visas to enhance visual relevance.",
-          "Include a brief section on potential changes in visa policies or upcoming reforms that could affect wait times, to provide readers with a forward-looking perspective."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "ca881b24-2932-40da-9d1e-39a4fca9cdae",
-      "headline": "52 Pilgrims Stranded in Nepal Expose the Risks of the Kailash Mansarovar Yatra's Private-Operator Route",
-      "slug": "kailash-mansarovar-yatra-pilgrims-stranded-nepal-mea-advisory-nri-20260629",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Mount Kailash north face",
-          "reason": "Mount Kailash is relevant to the Kailash Mansarovar Yatra story."
+          "what_photo_shows": "man speaking at a microphone",
+          "reason": "The photo plausibly shows Prem Watsa, relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -84,13 +49,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively addresses the concerns of the Indian American diaspora regarding the pilgrimage."
+          "note": "The article discusses an Indian-born billionaire's investment in India, which is relevant to the diaspora's interests in economic developments in India."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from affected pilgrims or experts to enhance the narrative.",
-          "Include more details on the historical significance of the Kailash Mansarovar Yatra for the diaspora."
+          "Include more context on the implications of the bond purchase for Indian economic policy.",
+          "Add quotes or insights from experts on the potential impact of the IDBI Bank acquisition on the Indian banking sector."
         ],
         "verdict": "pass"
       },
@@ -102,23 +67,18 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "083511e8-bab3-43cb-86ae-c44812722a27",
-      "headline": "A Ransomware Gang Just Published 630 GB of Apple and Tesla Secrets. They Got Them from Tata.",
-      "slug": "tata-electronics-data-breach-apple-tesla-tsmc-ransomware-20260629",
+      "id": "f601a6d7-90b5-417a-8934-cddc919cadc8",
+      "headline": "Kotak Mahindra's CEO Is Leaving After Less Than Three Years. The Bank Has Now Lost Two Leaders Since Its Founder Stepped Down.",
+      "slug": "kotak-mahindra-bank-ceo-ashok-vaswani-steps-down-succession-uday-kotak-20260629",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "d7c28553-cfa9-4c9d-91f8-1b219bae669a",
-            "headline": "Five Eyes Says AI Cyberattacks Are Months Away. India's IT S"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "computer monitors with code",
-          "reason": "The photo's subject is relevant to a cybersecurity story."
+          "what_photo_shows": "Kotak Mahindra Bank ATM",
+          "reason": "The photo shows Kotak Mahindra Bank, relevant to the banking story."
         },
         "inline_image_mismatches": []
       },
@@ -126,148 +86,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 5,
-          "issue": "The image does not directly relate to the article's topic of cybersecurity and the specific incident involving Tata Electronics."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 7,
-          "note": "The article discusses Tata Electronics, a major Indian company, and its implications for India's role in global manufacturing, which is relevant to the Indian diaspora."
+          "note": "The article discusses the leadership changes in a major Indian bank, which may interest NRIs involved in finance or investment."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that reflects the themes of cybersecurity or the specific companies involved.",
-          "Add a brief section discussing the implications of this incident for the Indian diaspora, particularly those involved in technology and manufacturing sectors."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "6ad6da63-6bcb-43a0-9701-1f5986c98d51",
-      "headline": "Apple Calls India's Antitrust Case a Copy-Paste Job. A Potential $38 Billion Fine Says Otherwise.",
-      "slug": "apple-india-cci-antitrust-copy-paste-38-billion-20260629",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Apple Park headquarters in Cupertino",
-          "reason": "The photo shows Apple's headquarters, relevant to a story about Apple."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses the implications of Apple's legal challenges in India, which directly affects Indian-American engineers and developers in the tech industry."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include quotes or insights from Indian app developers to enhance the diaspora connection.",
-          "Add a brief section on how this case compares to similar antitrust cases in other countries to provide broader context."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "b3592166-8b33-4656-ba35-02d8dcd8d624",
-      "headline": "India's Central Bank Is Offering NRIs a Rare Deal \u2014 Dollar Deposits at Up to 7.5% With Zero Currency Risk",
-      "slug": "rbi-fcnr-deposit-nri-dollar-7-percent-zero-currency-risk-hdfc-sbi-window-september-2026-20260629",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Reserve Bank of India building",
-          "reason": "The photo shows the Reserve Bank of India, relevant to the story about RBI's financial offer."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively addresses NRIs and their financial interests, making it relevant to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a section on potential risks or downsides of the new RBI scheme for NRIs.",
-          "Include testimonials or quotes from NRIs who have benefited from similar schemes in the past to enhance relatability."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "4a3dd8d5-4ebe-4e37-89d2-6f57fd0a1ff4",
-      "headline": "Remote Work Is Making People Lonelier \u2014 and the Effects Are Worst for Those Living Alone",
-      "slug": "remote-work-loneliness-mental-health-science-study-588000-workers-nri-tech-diaspora-20260629",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "person working alone on laptop",
-          "reason": "The photo aligns with the story about remote work and loneliness."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the findings of the study to the Indian diaspora, particularly tech workers, highlighting their unique challenges."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more specific examples or anecdotes from the Indian diaspora to enhance relatability.",
-          "Include potential solutions or coping strategies for loneliness in remote work settings."
+          "Include quotes from diaspora investors or analysts to strengthen the connection to NRI readers.",
+          "Add a brief section on how these leadership changes might impact NRIs who have investments in Kotak Mahindra Bank."
         ],
         "verdict": "pass"
       },
@@ -287,11 +118,6 @@
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MISMATCH",
-          "what_photo_shows": "woman drinking coffee outdoors",
-          "reason": "The photo does not relate to bone density scans or hormone therapy."
-        },
         "inline_image_mismatches": []
       },
       "llm_review": {
@@ -304,23 +130,21 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively addresses the specific health concerns of South Asian women, including NRIs."
+          "note": "The article effectively addresses the specific health concerns of South Asian women, particularly NRIs, making the content relevant and engaging for the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
           "Include a relevant hero image that visually represents the topic of hormone therapy and osteoporosis.",
-          "Provide more specific recommendations for NRI women regarding hormone therapy based on the findings."
+          "Add more specific recommendations or resources for NRI women considering hormone therapy."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "Cleared mismatched image (woman drinking coffee outdoors)",
-        "held: image mismatch"
+        "promoted to published"
       ],
       "revised": false,
       "unpublished": false,
-      "image_mismatch": true,
       "llm_source": "gpt-4o-mini"
     }
   ]
