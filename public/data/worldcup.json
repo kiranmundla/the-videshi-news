@@ -1,6 +1,6 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-06-29T15:59:38Z",
+  "last_updated": "2026-06-29T20:01:26Z",
   "stage": "Knockout Stage",
   "hosts": "USA, Mexico & Canada",
   "dates": {
@@ -1785,7 +1785,8 @@
           "away_code": "JPN",
           "venue": "NRG Stadium",
           "city": "Houston",
-          "status": "scheduled"
+          "status": "FT",
+          "score": "2-1"
         },
         {
           "id": 75,
@@ -4129,6 +4130,21 @@
       "account": "@fifaworldcup",
       "caption": "The Round of 32 is ready to begin 🇿🇦🇨🇦 #FIFAWorldCup",
       "type": "carousel"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DaLlJMfCkXp/",
+      "account": "@fifaworldcup",
+      "caption": "A late goal sees Brazil into the next round! 🇧🇷 #FIFAWorldCup",
+      "date": "2026-06-29",
+      "type": "image"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DaLlP4jDy6K",
+      "account": "@fifaworldcup",
+      "caption": "A late goal sees Brazil into the next round! 🇧🇷",
+      "date": "2026-06-29"
     }
   ],
   "tv": {
