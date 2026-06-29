@@ -586,5 +586,15 @@
     "hero_slug": "india-coal-import-substitution-renewable-energy-record-generation-20260628",
     "story_count": 8,
     "event_count": 4
+  },
+  {
+    "type": "daily",
+    "sent_at": "2026-06-29T13:55:55.809947+00:00Z",
+    "subject": "The Videshi Daily \u2014 June 29, 2026",
+    "subscribers": 3,
+    "sent": 3,
+    "errors": 0,
+    "hero_slug": "vicky-kaushal-mahavatar-parashurama-18-months-amar-kaushik-maddock-transformation-love-and-war-diaspora-nri-20260629",
+    "story_count": 5
   }
 ]
