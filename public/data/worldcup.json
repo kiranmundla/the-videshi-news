@@ -1,6 +1,6 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-06-29T22:00:43Z",
+  "last_updated": "2026-06-29T23:59:21Z",
   "stage": "Knockout Stage",
   "hosts": "USA, Mexico & Canada",
   "dates": {
@@ -1799,7 +1799,8 @@
           "away_code": "PAR",
           "venue": "Gillette Stadium",
           "city": "Foxborough",
-          "status": "scheduled"
+          "status": "FT (Pen.)",
+          "score": "1-1 (3-4 pen.)"
         },
         {
           "id": 76,
