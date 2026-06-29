@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-29T00:45:40.005031+00:00",
+  "timestamp": "2026-06-29T01:15:11.401173+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 6,
+    "pass": 1,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,190 +11,23 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "0729dacf-aad8-499f-a4a2-fcfb73249e7e",
-      "headline": "The Chatpata Comeback: India Rediscovers Its Bold, Unapologetic Flavors",
-      "slug": "the-chatpata-comeback-india-rediscovers-its-bold-unapologetic-flavors",
+      "id": "e1f789d2-b307-463c-ba0d-0019e5258b53",
+      "headline": "\u20b9130 Crore and Half of Bollywood: Riteish Deshmukh's Raja Shivaji Just Landed on Netflix",
+      "slug": "raja-shivaji-netflix-ott-riteish-deshmukh-marathi-highest-grossing-130-crore-hindi-streaming-diaspora-nri-20260628",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "plate of papri chaat",
-          "reason": "The photo shows a bold, flavorful Indian dish relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article connects with the diaspora by discussing traditional Indian flavors and their evolution, which may resonate with NRIs interested in cultural heritage."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include quotes or anecdotes from diaspora members to strengthen the connection.",
-          "Add a section on how these trends are being received or adapted by Indian communities abroad."
+        "duplicate_images": [
+          {
+            "article_id": "08a480f4-6d6b-4c56-9af9-32385aea62ee",
+            "headline": "Marathi Cinema's \u20b9130-Crore King Just Arrived on Netflix \u2014 a"
+          }
         ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "771b4e69-5dae-4d1f-abca-7615f319d763",
-      "headline": "Gymkhana's Kitchen Goes Retail: Michelin-Starred Indian Sauces Land at Whole Foods",
-      "slug": "gymkhanas-kitchen-goes-retail-michelin-starred-indian-sauces-land-at-whole-foods",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Vibrant Indian curries in bowls",
-          "reason": "The photo shows Indian curries, which aligns with the story about Indian sauces."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not specifically depict Gymkhana's products or the context of Indian sauces."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article connects well with the NRI audience by discussing the evolution of Indian cuisine in the US and its premium positioning."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include a relevant image of Gymkhana's sauces to enhance visual connection.",
-          "Add quotes or testimonials from NRI consumers to strengthen the diaspora angle."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "16182a03-cfa3-4beb-bb71-11a2803ef416",
-      "headline": "Modi Signed 19 Agreements in Seychelles Today. Here's What India Got \u2014 and What It Gave.",
-      "slug": "modi-seychelles-19-agreements-upi-fast-patrol-vessel-space-defence-indian-ocean-20260628",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Prime Minister Narendra Modi",
-          "reason": "The photo shows the correct named person for the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses India's strategic partnerships in the Indian Ocean, which is relevant to the Indian diaspora interested in geopolitical developments."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include quotes from Modi or Seychellois officials to enhance the article's depth.",
-          "Add a brief section on how these agreements might impact the Indian diaspora in Seychelles or the broader Indian Ocean region."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "0e93e0ed-543e-49ed-ae46-b5e2ed454ff5",
-      "headline": "India Just Built Its First Military Aircraft. A Private Company Did It Months Ahead of Schedule.",
-      "slug": "india-first-made-in-india-military-aircraft-c295-tata-airbus-vadodara-maiden-flight-20260628",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "C-295 aircraft in flight",
-          "reason": "The photo shows a C-295 aircraft, matching the story about India's first military aircraft."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses India's advancements in defense manufacturing, which may resonate with the diaspora interested in India's global standing and technological progress."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include quotes or reactions from diaspora communities regarding India's defense advancements to enhance the diaspora angle.",
-          "Add more context on how this development impacts India's position in the global defense market."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "99aa4126-8268-413f-8ea5-005f425bb0c9",
-      "headline": "India Just Flew a Field Hospital Halfway Around the World to Help Venezuela Dig Out",
-      "slug": "india-operation-amistad-venezuela-earthquake-c17-field-hospital-bhishm-20260628",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Indian Air Force C-17 aircraft",
-          "reason": "The photo shows an Indian Air Force C-17, relevant to the airlift mission story."
+          "what_photo_shows": "Riteish Deshmukh as Chhatrapati Shivaji Maharaj",
+          "reason": "The photo shows the correct named person related to the story."
         },
         "inline_image_mismatches": []
       },
@@ -208,51 +41,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article connects India's humanitarian efforts to the diaspora's perception of India's growing global role."
+          "note": "The article effectively connects the film's release to the diaspora audience by mentioning locations like New Jersey, Leicester, and Brampton, making it relevant for NRIs."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes or reactions from members of the Indian diaspora regarding the operation to enhance the diaspora angle.",
-          "Add more context on how this operation compares to previous humanitarian missions by India to engage readers further."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "7f5bffa9-24ce-4109-826c-4df016b47afb",
-      "headline": "Nine Months to See Your Parents. Indian Consulates Are the Slowest They Have Ever Been",
-      "slug": "india-us-tourist-visa-wait-times-consulate-record-high-20260629",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 5,
-          "issue": "description missing"
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively addresses the concerns of Indian Americans regarding visa delays, making it highly relevant to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include a relevant image description to enhance the visual context of the article.",
-          "Consider adding quotes from affected individuals or immigration experts to provide personal perspectives on the issue."
+          "Include more direct quotes from diaspora audiences or critics to enhance the connection.",
+          "Add a brief section on how the film has been received by the diaspora community specifically."
         ],
         "verdict": "pass"
       },
