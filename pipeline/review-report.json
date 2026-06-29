@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-29T12:45:38.453446+00:00",
+  "timestamp": "2026-06-29T13:15:23.764147+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 5,
+    "pass": 3,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,57 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "ccae3394-1fc9-4a94-a998-44911b21240e",
-      "headline": "Curry Ketchup and Tandoori Naanwiches: India Storms America's Biggest Food Trade Show",
-      "slug": "curry-ketchup-and-tandoori-naanwiches-india-storms-america-s-biggest-food-trade",
+      "id": "d842eef0-5ecc-438e-b144-b32cd9b3a148",
+      "headline": "Vicky Kaushal Has Disappeared \u2014 and He Won't Be Back for 18 Months",
+      "slug": "vicky-kaushal-mahavatar-parashurama-18-months-amar-kaushik-maddock-transformation-love-and-war-diaspora-nri-20260629",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "144576e5-f718-426c-aaab-d3dd0493ddea",
+            "headline": "Vicky Kaushal Just Blocked 18 Months of His Life for One Rol"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Vicky Kaushal at a film premiere",
+          "reason": "The photo shows Vicky Kaushal, who is the subject of the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses a prominent Bollywood actor's commitment to a significant role, which may resonate with the Indian diaspora interested in Bollywood and cultural narratives."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include quotes or insights from Vicky Kaushal or the director to enhance the article's depth.",
+          "Add a brief section on the significance of Parashurama in Hindu mythology for readers unfamiliar with the character."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "9a8975da-3606-45df-8587-c8f480477105",
+      "headline": "He Sang to Her Every Day for Two Years \u2014 Now Aamir Khan Is Getting Married Again",
+      "slug": "aamir-khan-gauri-spratt-wedding-july-5-third-marriage-25-years-love-story-diaspora-nri-20260629",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,9 +69,47 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Colorful Indian spices in bags",
-          "reason": "The photo shows Indian spices, relevant to the story about Indian flavors at a food show."
+          "what_photo_shows": "Aamir Khan at a public event",
+          "reason": "The photo shows Aamir Khan, who is the subject of the story."
         },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects Aamir Khan's personal life to the cultural significance he holds for the NRI community."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more quotes from Aamir Khan or Gauri Spratt to enhance the personal touch.",
+          "Include a brief mention of how this marriage might be perceived in the context of changing societal norms in India."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "908bde5e-6fc4-44d3-b3d3-24097c3495f1",
+      "headline": "He Sang to Her Every Day for Two Years \u2014 Now Aamir Khan Is Getting Married Again",
+      "slug": "aamir-khan-gauri-spratt-wedding-july-5-third-marriage-25-year-love-story-mumbai-private-ceremony-2026",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
         "inline_image_mismatches": []
       },
       "llm_review": {
@@ -31,190 +117,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image of spices is relevant but does not directly depict the specific food products mentioned in the article."
+          "issue": "hero image not provided"
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses the impact of Indian food trends on the diaspora, highlighting both pride and concerns about authenticity."
+          "note": "The article connects Aamir Khan's personal life to the emotional resonance he holds for the NRI community."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider including images of the specific products mentioned to enhance visual relevance.",
-          "Add quotes from exhibitors or attendees to provide personal insights and enhance engagement."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "e50a117e-ea80-4ef3-bd9c-dac7a1a73915",
-      "headline": "The Chai Wars Come to New York: How Two Bengali Brothers and a Comedian Are Taking On Starbucks",
-      "slug": "the-chai-wars-come-to-new-york-how-two-bengali-brothers-and-a-comedian-are",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Masala chai being poured into a cup",
-          "reason": "The photo shows masala chai, which is relevant to the story about Kolkata Chai Co."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the cultural significance of chai to the NRI experience, making it relatable for diaspora readers."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes or anecdotes from NRI customers to enhance the personal connection.",
-          "Include more details about the impact of Kolkata Chai on the local community or its reception among non-Indian customers."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "80e053bc-e6bf-44a2-baeb-7bc87a4bbd8e",
-      "headline": "Vikas Khanna's Unstoppable Year: From TIME 100 to Harvard's Stage to a Chai Empire",
-      "slug": "vikas-khanna-s-unstoppable-year-from-time-100-to-harvard-s-stage-to-a-chai",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "smiling man in a dark jacket",
-          "reason": "The photo plausibly shows Vikas Khanna, matching the story topic."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects Vikas Khanna's achievements to the Indian diaspora, highlighting his influence and the pride he brings to NRIs."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from diaspora members or chefs to enhance the personal connection.",
-          "Include more details about the impact of Khanna's initiatives on the diaspora community."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "603729f3-c1ea-4de7-a1af-cd409cb21033",
-      "headline": "India Just Signed a Trade Deal With Europe. Now It's Begging Brussels Not to Cut Off Its Metal Scrap.",
-      "slug": "india-eu-scrap-metal-export-curbs-aluminium-steel-trade-deal-cbam-20260629",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Aluminium swarf in a container",
-          "reason": "The photo shows aluminium scrap, relevant to the metal scrap trade topic."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 8,
-          "issue": "The image of aluminium scrap is relevant to the article's topic on metal scrap trade."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses trade implications that affect Indian industries, which is relevant to the NRI community involved in trade and business."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include quotes or perspectives from Indian industry leaders or government officials to enhance the diaspora connection.",
-          "Add a brief section on how these trade dynamics might affect Indian expatriates working in related industries abroad."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "2a919ac0-3d5e-49f4-946b-748f759794d6",
-      "headline": "India Just Launched Two Anti-Dumping Probes in One Week. One Could Make Its Own Power Grid More Expensive.",
-      "slug": "india-dual-steel-anti-dumping-probe-crgo-hot-rolled-china-japan-russia-power-grid-20260629",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "a stainless steel production plant",
-          "reason": "The photo of a steel plant is relevant to a story about steel trade and industry."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 8,
-          "issue": "The image of a stainless steel plant is relevant to the topic of steel imports and production."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 6,
-          "note": "The article discusses India's trade policies which may interest NRIs involved in trade or investment, but the connection could be made stronger."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include quotes or perspectives from NRI stakeholders in the trade industry to strengthen the diaspora angle.",
-          "Add a brief explanation of how these trade policies might impact NRIs or the global market."
+          "Include a relevant hero image to enhance visual appeal.",
+          "Add more context on how Aamir Khan's marriage impacts the diaspora's perception of relationships."
         ],
         "verdict": "pass"
       },
