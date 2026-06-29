@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-29T13:15:23.764147+00:00",
+  "timestamp": "2026-06-29T13:45:12.626734+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
+    "pass": 1,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,57 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "d842eef0-5ecc-438e-b144-b32cd9b3a148",
-      "headline": "Vicky Kaushal Has Disappeared \u2014 and He Won't Be Back for 18 Months",
-      "slug": "vicky-kaushal-mahavatar-parashurama-18-months-amar-kaushik-maddock-transformation-love-and-war-diaspora-nri-20260629",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "144576e5-f718-426c-aaab-d3dd0493ddea",
-            "headline": "Vicky Kaushal Just Blocked 18 Months of His Life for One Rol"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Vicky Kaushal at a film premiere",
-          "reason": "The photo shows Vicky Kaushal, who is the subject of the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses a prominent Bollywood actor's commitment to a significant role, which may resonate with the Indian diaspora interested in Bollywood and cultural narratives."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include quotes or insights from Vicky Kaushal or the director to enhance the article's depth.",
-          "Add a brief section on the significance of Parashurama in Hindu mythology for readers unfamiliar with the character."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "9a8975da-3606-45df-8587-c8f480477105",
-      "headline": "He Sang to Her Every Day for Two Years \u2014 Now Aamir Khan Is Getting Married Again",
-      "slug": "aamir-khan-gauri-spratt-wedding-july-5-third-marriage-25-years-love-story-diaspora-nri-20260629",
+      "id": "7adb1c7d-1c7c-4ace-b852-d637403ecefe",
+      "headline": "Fifty Days Out. India Is About to Host the Biggest Badminton Tournament on Earth.",
+      "slug": "bwf-world-championships-2026-new-delhi-india-sindhu-lakshya-sen-satwik-chirag-srikanth-tickets-bookmyshow-diaspora-nri",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -69,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Aamir Khan at a public event",
-          "reason": "The photo shows Aamir Khan, who is the subject of the story."
+          "what_photo_shows": "BWF World Championships banners",
+          "reason": "The photo shows BWF World Championships banners, relevant to the badminton tournament story."
         },
         "inline_image_mismatches": []
       },
@@ -84,51 +36,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects Aamir Khan's personal life to the cultural significance he holds for the NRI community."
+          "note": "The article effectively highlights the significance of the event for the Indian diaspora, particularly in relation to affordable tickets and the presence of medal contenders."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more quotes from Aamir Khan or Gauri Spratt to enhance the personal touch.",
-          "Include a brief mention of how this marriage might be perceived in the context of changing societal norms in India."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "908bde5e-6fc4-44d3-b3d3-24097c3495f1",
-      "headline": "He Sang to Her Every Day for Two Years \u2014 Now Aamir Khan Is Getting Married Again",
-      "slug": "aamir-khan-gauri-spratt-wedding-july-5-third-marriage-25-year-love-story-mumbai-private-ceremony-2026",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "hero image not provided"
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article connects Aamir Khan's personal life to the emotional resonance he holds for the NRI community."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include a relevant hero image to enhance visual appeal.",
-          "Add more context on how Aamir Khan's marriage impacts the diaspora's perception of relationships."
+          "Consider adding more quotes or insights from players or officials to enhance the narrative.",
+          "Include a brief history of India's performance in past World Championships to provide context."
         ],
         "verdict": "pass"
       },
