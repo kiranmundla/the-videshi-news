@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-29T18:45:24.737877+00:00",
+  "timestamp": "2026-06-29T19:15:24.053670+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
+    "pass": 2,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,74 +11,27 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "d15c5bbd-2a8e-472a-ad15-38dd6d2ef814",
-      "headline": "An Indian-Born Billionaire in Canada Just Parked $1 Billion in Indian Bonds. It's Not About the Bonds.",
-      "slug": "fairfax-prem-watsa-1-billion-indian-bonds-idbi-bank-privatisation-diaspora-20260629",
+      "id": "ef552802-ba25-41d2-a26e-6eafa960d313",
+      "headline": "Akshay in All Black, Shahid Looking Like a Painting, and Ananya Birla's \u20b92.3 Crore Watch: The Night Bollywood Dressed Up",
+      "slug": "bollywood-hungama-style-icons-awards-2026-akshay-shahid-ayushmann-ananya-winners-fashion-red-carpet",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [
           {
-            "article_id": "3e756902-6a13-43f4-b437-e08704143156",
-            "headline": "He Left Hyderabad With $8. His Company Just Put $1 Billion B"
+            "article_id": "27668618-fca0-4d33-82ba-b1da9bcca517",
+            "headline": "Black Gowns, a \u20b92.3-Crore Watch, and the Night Bollywood Dre"
           },
           {
-            "article_id": "e4f211ec-206b-482d-a476-ac4f29226ac8",
-            "headline": "He Left Hyderabad With Nothing. Now He's Buying One of India"
-          },
-          {
-            "article_id": "f865b541-ec7b-41fe-98eb-5735b9724405",
-            "headline": "A Hyderabad-Born Billionaire Bets $1 Billion on India \u2014 and "
+            "article_id": "ee233835-c867-4389-96cb-42265e759d92",
+            "headline": "Cocktail 2 Just Crossed \u20b9128 Crore Worldwide \u2014 and Shahid Ka"
           }
         ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "man speaking at a microphone",
-          "reason": "The photo plausibly shows Prem Watsa, relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses an Indian-born billionaire's investment in India, which is relevant to the diaspora's interests in economic developments in India."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more context on the implications of the bond purchase for Indian economic policy.",
-          "Add quotes or insights from experts on the potential impact of the IDBI Bank acquisition on the Indian banking sector."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "f601a6d7-90b5-417a-8934-cddc919cadc8",
-      "headline": "Kotak Mahindra's CEO Is Leaving After Less Than Three Years. The Bank Has Now Lost Two Leaders Since Its Founder Stepped Down.",
-      "slug": "kotak-mahindra-bank-ceo-ashok-vaswani-steps-down-succession-uday-kotak-20260629",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Kotak Mahindra Bank ATM",
-          "reason": "The photo shows Kotak Mahindra Bank, relevant to the banking story."
+          "what_photo_shows": "Shahid Kapoor at an event",
+          "reason": "The photo shows Shahid Kapoor, who is mentioned in the headline."
         },
         "inline_image_mismatches": []
       },
@@ -92,13 +45,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 7,
-          "note": "The article discusses the leadership changes in a major Indian bank, which may interest NRIs involved in finance or investment."
+          "note": "The article discusses Bollywood fashion, which resonates with the Indian diaspora's interest in Indian cinema and culture."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes from diaspora investors or analysts to strengthen the connection to NRI readers.",
-          "Add a brief section on how these leadership changes might impact NRIs who have investments in Kotak Mahindra Bank."
+          "Include more quotes or insights from the event to enhance engagement.",
+          "Add a brief section on the significance of the awards in the context of Bollywood's global influence."
         ],
         "verdict": "pass"
       },
@@ -110,33 +63,43 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "9d03cf6b-b669-4745-96ff-09b6f1dcb4b7",
-      "headline": "Hormone Therapy Slashes Osteoporosis Risk by 69% \u2014 and South Asian Women May Have the Most to Gain",
-      "slug": "hrt-menopause-bone-density-69-percent-endo-2026-south-asian-women-osteoporosis-diaspora-20260629",
+      "id": "62c535ce-447e-481f-a6fa-b068212403c2",
+      "headline": "19 Years Later, Shivam Is Back \u2014 and the Awarapan 2 Teaser Is Pure Emraan Hashmi Devastation",
+      "slug": "awarapan-2-teaser-emraan-hashmi-shivam-pandit-disha-patani-shabana-azmi-toh-phir-aao-august-2026",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "d44835ff-5068-4793-86cc-545e5e0edc67",
+            "headline": "Shivam Pandit Is Two Days Away: The 'Awarapan 2' Teaser Drop"
+          }
+        ],
         "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Emraan Hashmi at a film event",
+          "reason": "The photo shows Emraan Hashmi, relevant to the story about 'Awarapan 2'."
+        },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 5,
-          "issue": "missing image description"
+          "score": 7,
+          "issue": "The image of Emraan Hashmi at a magazine launch is somewhat relevant but does not directly relate to the teaser or the film's theme."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively addresses the specific health concerns of South Asian women, particularly NRIs, making the content relevant and engaging for the diaspora."
+          "note": "The article connects well with diaspora audiences by mentioning international distribution and the cultural significance of the film."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include a relevant hero image that visually represents the topic of hormone therapy and osteoporosis.",
-          "Add more specific recommendations or resources for NRI women considering hormone therapy."
+          "Consider using a more relevant image that directly relates to the film or teaser.",
+          "Add more context about the film's significance to the diaspora audience, perhaps by including quotes or reactions from NRI fans."
         ],
         "verdict": "pass"
       },
