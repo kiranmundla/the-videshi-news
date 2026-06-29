@@ -1,6 +1,6 @@
 {
  "_description": "Media library mirror — high-quality, attribution-clean images+videos for article/reel fallback. Source of truth is the Supabase media_library table; this mirror lets the pipeline read without a DB round-trip.",
- "_updated": "2026-06-28T10:34:37Z",
+ "_updated": "2026-06-29T10:05:34Z",
  "assets": [
   {
    "id": "person--narendra-modi--bfe42b",
@@ -21,28 +21,6 @@
    "duration": null,
    "quality_score": 86.7,
    "added_date": "2026-06-19T05:23:21Z",
-   "last_used": null,
-   "times_used": 0
-  },
-  {
-   "id": "place--mumbai--28b6ae",
-   "media_type": "image",
-   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/place/mumbai-28b6ae.jpg",
-   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/place/mumbai-28b6ae.jpg",
-   "subject": "Mumbai",
-   "subject_type": "place",
-   "caption": "Scenic view of Middle Ground Coastal Battery, an island in the Arabian Sea near Mumbai's Gateway of India, showcasing historical maritime architecture and strategic coastal defense",
-   "attribution": "Wikimedia Commons / iMahesh, CC BY-SA 4.0",
-   "license": "CC BY-SA 4.0",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Middle_Ground_Coastal_Battery,_Arabian_Sea,_Mumbai,_India.jpg",
-   "tags": [
-    "mumbai"
-   ],
-   "width": 6000,
-   "height": 4000,
-   "duration": null,
-   "quality_score": 92.0,
-   "added_date": "2026-06-19T05:23:48Z",
    "last_used": null,
    "times_used": 0
   },
@@ -4621,6 +4599,28 @@
    "added_date": "2026-06-28T10:34:37Z",
    "last_used": null,
    "times_used": 0
+  },
+  {
+   "id": "place--mumbai--28b6ae",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/place/mumbai-28b6ae.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/place/mumbai-28b6ae.jpg",
+   "subject": "Mumbai",
+   "subject_type": "place",
+   "caption": "Scenic view of Middle Ground Coastal Battery, an island in the Arabian Sea near Mumbai's Gateway of India, showcasing historical maritime architecture and strategic coastal defense",
+   "attribution": "Wikimedia Commons / iMahesh, CC BY-SA 4.0",
+   "license": "CC BY-SA 4.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Middle_Ground_Coastal_Battery,_Arabian_Sea,_Mumbai,_India.jpg",
+   "tags": [
+    "mumbai"
+   ],
+   "width": 6000,
+   "height": 4000,
+   "duration": null,
+   "quality_score": 92.0,
+   "added_date": "2026-06-19T05:23:48Z",
+   "last_used": "2026-06-29T10:05:34Z",
+   "times_used": 1
   }
  ]
 }
