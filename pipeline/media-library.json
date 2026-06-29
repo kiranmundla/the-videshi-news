@@ -1,6 +1,6 @@
 {
  "_description": "Media library mirror — high-quality, attribution-clean images+videos for article/reel fallback. Source of truth is the Supabase media_library table; this mirror lets the pipeline read without a DB round-trip.",
- "_updated": "2026-06-29T10:32:03Z",
+ "_updated": "2026-06-29T17:58:59Z",
  "assets": [
   {
    "id": "person--narendra-modi--bfe42b",
@@ -1783,28 +1783,6 @@
    "added_date": "2026-06-22T10:32:09Z",
    "last_used": "2026-06-22T16:41:13Z",
    "times_used": 2
-  },
-  {
-   "id": "concept--indian-rupee--ad2e36",
-   "media_type": "image",
-   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/concept/indian-rupee-ad2e36.jpg",
-   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/concept/indian-rupee-ad2e36.jpg",
-   "subject": "Indian rupee",
-   "subject_type": "concept",
-   "caption": "2018 (₹1) Indian 1 Rupee Note in Jamshedpur, Jharkhand. The Indian 1-rupee note (₹1) (₹1 = 100 paise) is the smallest Indian banknote in circulation and the only one being issued by the Government of India, as all other banknotes in circulation are issued by the Reserve Bank of I",
-   "attribution": "Wikimedia Commons / Ank Kumar, CC BY-SA 4.0",
-   "license": "CC BY-SA 4.0",
-   "source_url": "https://commons.wikimedia.org/wiki/File:2018_(₹1)_Indian_1_Rupee_Note,_Jamshedpur,_Jharkhand_(_Ank_Kumar,_Infosys_Limited_)_01.jpg",
-   "tags": [
-    "indian rupee"
-   ],
-   "width": 2347,
-   "height": 1501,
-   "duration": null,
-   "quality_score": 66.4,
-   "added_date": "2026-06-19T05:24:00Z",
-   "last_used": "2026-06-23T02:21:05Z",
-   "times_used": 4
   },
   {
    "id": "thing--uscis--cb27b0",
@@ -5061,6 +5039,28 @@
    "added_date": "2026-06-29T10:32:03Z",
    "last_used": null,
    "times_used": 0
+  },
+  {
+   "id": "concept--indian-rupee--ad2e36",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/concept/indian-rupee-ad2e36.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/concept/indian-rupee-ad2e36.jpg",
+   "subject": "Indian rupee",
+   "subject_type": "concept",
+   "caption": "2018 (₹1) Indian 1 Rupee Note in Jamshedpur, Jharkhand. The Indian 1-rupee note (₹1) (₹1 = 100 paise) is the smallest Indian banknote in circulation and the only one being issued by the Government of India, as all other banknotes in circulation are issued by the Reserve Bank of I",
+   "attribution": "Wikimedia Commons / Ank Kumar, CC BY-SA 4.0",
+   "license": "CC BY-SA 4.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:2018_(₹1)_Indian_1_Rupee_Note,_Jamshedpur,_Jharkhand_(_Ank_Kumar,_Infosys_Limited_)_01.jpg",
+   "tags": [
+    "indian rupee"
+   ],
+   "width": 2347,
+   "height": 1501,
+   "duration": null,
+   "quality_score": 66.4,
+   "added_date": "2026-06-19T05:24:00Z",
+   "last_used": "2026-06-29T17:58:59Z",
+   "times_used": 5
   }
  ]
 }
