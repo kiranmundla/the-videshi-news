@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-29T10:15:38.479886+00:00",
-  "mode": "fix",
+  "timestamp": "2026-06-29T10:33:59.240985+00:00",
+  "mode": "review",
   "stats": {
-    "pass": 5,
+    "pass": 4,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "ad670d8d-f1b4-4491-9aa9-4949f3a33451",
-      "headline": "UAE-India Airfares Are Finally Easing \u2014 But Gulf NRIs Have a Narrow Window Before Prices Climb Again",
-      "slug": "uae-india-airfares-ease-july-kerala-gulf-nri-20260629",
+      "id": "574b8ab5-7060-4acf-892f-08d09ec52116",
+      "headline": "Eust\u00e1quio's 92nd-Minute Strike Sends Canada Into the World Cup Round of 16 for the First Time",
+      "slug": "canada-eustaquio-92nd-minute-world-cup-round-of-32-south-africa-inglewood-indian-diaspora-brampton-2026-nri",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Dubai International Airport Terminal 3",
-          "reason": "The photo shows a relevant location for UAE-India flights."
+          "what_photo_shows": "Canadian football player in team kit",
+          "reason": "The photo shows a football player in a Canadian kit, relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -36,36 +36,39 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively addresses the concerns of Gulf NRIs, particularly the Malayali diaspora, regarding airfare changes."
+          "note": "The article effectively connects the Canadian team's success to the Indian diaspora in Canada, highlighting their support and celebrations."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more specific examples of how the fare changes impact different segments of the NRI community.",
-          "Add a section on tips for booking flights or navigating travel during peak seasons."
+          "Consider adding more quotes from players or coaches to enhance the emotional impact of the article.",
+          "Include statistics or historical context about the Indian diaspora's involvement in sports in Canada for a deeper connection."
         ],
         "verdict": "pass"
       },
-      "actions_taken": [
-        "promoted to published"
-      ],
+      "actions_taken": [],
       "revised": false,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "7b5dc04b-c3aa-4710-8be9-038ee1a7373c",
-      "headline": "Air India Has Suspended Chicago, Newark and Two Other NRI Corridors Through August \u2014 Here's What's Left",
-      "slug": "air-india-summer-route-cuts-chicago-sfo-newark-nri-20260629",
+      "id": "29bfe3a2-8f2b-4bf9-aea7-ee6c4edccf84",
+      "headline": "Srikanth Falls in the Final. India's Best US Open in Years Still Ends One Match Short.",
+      "slug": "srikanth-loses-us-open-final-su-li-yang-fullerton-rounak-chouhan-devika-sihag-indian-badminton-california-2026-diaspora-nri",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "804ed026-6de0-46e7-b30d-6799b97f666e",
+            "headline": "Srikanth Saves Three Match Points and Outlasts Okimoto to Re"
+          }
+        ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Air India Airbus A350-900",
-          "reason": "The photo shows an Air India aircraft, relevant to the airline story."
+          "what_photo_shows": "badminton player in action",
+          "reason": "The photo shows a badminton player, relevant to the story about Srikanth in a badminton tournament."
         },
         "inline_image_mismatches": []
       },
@@ -79,27 +82,25 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively addresses the impact of route cuts on the Indian diaspora, particularly in major US cities."
+          "note": "The article effectively connects the tournament's significance to the Indian diaspora in Southern California, highlighting community support and the relevance of Indian players in the US."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more specific statistics or quotes from affected passengers to enhance the emotional connection.",
-          "Add a section on potential future developments or responses from Air India regarding these route changes."
+          "Consider adding quotes from Srikanth or other players to enhance the narrative.",
+          "Include more context about the significance of the US Open for Indian badminton historically."
         ],
         "verdict": "pass"
       },
-      "actions_taken": [
-        "promoted to published"
-      ],
+      "actions_taken": [],
       "revised": false,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "ad77a308-9d0b-46f5-9a44-61b27db5a899",
-      "headline": "India's Defence Stocks Have Crushed the Market in 2026 \u2014 and the Order Books Suggest They're Just Getting Started",
-      "slug": "india-defence-stocks-hal-bel-data-patterns-nifty-defence-index-2026-order-book-export-nri-investor-20260629",
+      "id": "7ed4c0cf-4be1-4c2f-b589-d888ffd8f0a9",
+      "headline": "A Pune IT Firm Just Made One of India's Biggest-Ever Overseas Tech Acquisitions. The Company It Bought Was Founded by Indians in Germany.",
+      "slug": "persistent-systems-nagarro-acquisition-1-3-billion-ai-engineering-indian-it-overseas-20260629",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -107,8 +108,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Two HAL Tejas aircraft in flight",
-          "reason": "The photo shows HAL Tejas aircraft, relevant to India's defence sector story."
+          "what_photo_shows": "skyline of western Pune",
+          "reason": "The photo shows the skyline of Pune, relevant to the story about a Pune-based IT firm."
         },
         "inline_image_mismatches": []
       },
@@ -116,42 +117,40 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image of Pune's skyline is relevant but does not directly represent the acquisition or the companies involved."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively addresses NRI investors by highlighting opportunities in the Indian defence sector."
+          "note": "The article effectively connects the acquisition to the Indian diaspora, highlighting the founders' Indian roots and the implications for Indian tech workers."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from industry experts or analysts to enhance credibility.",
-          "Include a brief overview of how these developments may impact NRI investors specifically."
+          "Consider using an image that directly relates to the acquisition or the companies involved for better visual relevance.",
+          "Add quotes or insights from industry experts or analysts to provide a broader perspective on the acquisition's impact."
         ],
         "verdict": "pass"
       },
-      "actions_taken": [
-        "promoted to published"
-      ],
+      "actions_taken": [],
       "revised": false,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "3bbbe984-23cc-4492-91a1-8b4eec7de954",
-      "headline": "Your Gut Bacteria May Explain Why Coffee Wrecks Your Sleep \u2014 and a 7,000-Person Study Just Mapped the Connection",
-      "slug": "gut-microbiome-coffee-sleep-social-jet-lag-nature-communications-lifelines-dutch-clostridia-diaspora-20260629",
+      "id": "428ce601-950b-4a06-8ef2-5b1f471ae1ad",
+      "headline": "India's Monsoon Is Running 43% Below Normal. The Last Time It Was This Bad, It Set Off a Food-Price Spiral.",
+      "slug": "india-monsoon-43-percent-deficit-weakest-11-years-el-nino-agriculture-kharif-crisis-20260629",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A cup of coffee on a table",
-          "reason": "The photo of coffee is relevant to the story about coffee's effect on sleep."
+          "verdict": "MISMATCH",
+          "what_photo_shows": "flooded paddy field",
+          "reason": "The photo shows flooding, not drought conditions related to weak monsoon."
         },
         "inline_image_mismatches": []
       },
@@ -165,64 +164,20 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the research findings to the coffee consumption habits of the Indian diaspora, making it relevant."
+          "note": "The article effectively connects the impact of the monsoon on farming and food prices to the NRI community, particularly those with family in rural India."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more specific examples of how the findings could impact the daily lives of NRI readers.",
-          "Include quotes or insights from experts in the field to enhance credibility."
+          "Consider adding more specific examples of how the monsoon deficit has historically affected food prices to strengthen the argument.",
+          "Include quotes or insights from diaspora members to enhance the personal connection to the topic."
         ],
         "verdict": "pass"
       },
-      "actions_taken": [
-        "promoted to published"
-      ],
+      "actions_taken": [],
       "revised": false,
       "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "c3f3e867-2623-4443-ab00-c134685d49c3",
-      "headline": "The Type of Fat in Your Kitchen May Matter More Than How Much You Use \u2014 and a New Review Shows Why",
-      "slug": "palmitic-acid-oleic-acid-fat-quality-diabetes-insulin-resistance-barcelona-review-diaspora-20260629",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Olive oil being poured into a bowl",
-          "reason": "The photo shows olive oil, relevant to the story about fats and insulin resistance."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the topic of dietary fats to the South Asian diaspora, highlighting specific cultural practices and health implications."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more specific examples of how to implement the suggested dietary changes in daily cooking for the diaspora audience.",
-          "Include quotes or insights from diaspora health experts to enhance credibility and relatability."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
+      "image_mismatch": true,
       "llm_source": "gpt-4o-mini"
     }
   ]
