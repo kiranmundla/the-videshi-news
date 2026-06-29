@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-29T09:15:34.892258+00:00",
+  "timestamp": "2026-06-29T10:15:38.479886+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 4,
+    "pass": 5,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,57 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "ef4e27a6-0146-44d9-874a-c7272bbff698",
-      "headline": "Ramayana Is Heading to Comic-Con \u2014 and Ranbir Kapoor Just Became India's Biggest Global Bet",
-      "slug": "ramayana-ranbir-kapoor-comic-con-trailer-hans-zimmer-ar-rahman-sai-pallavi-yash-diwali-2026-diaspora-nri-20260629",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "3627e9cf-43e4-4a5e-ba22-21af8fc77e7a",
-            "headline": "'Ramayana' Wants to Throw Its Grand Premiere in Dubai \u2014 and "
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A man in a black shirt",
-          "reason": "The photo plausibly shows Ranbir Kapoor, relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 5,
-          "issue": "The image of Ranbir Kapoor at the airport does not directly relate to the Ramayana film or Comic-Con."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the significance of the Ramayana film's presentation at Comic-Con to the NRI audience, emphasizing its cultural importance."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that directly relates to the Ramayana film or Comic-Con.",
-          "Add more context about the significance of Comic-Con for Indian cinema to enhance the diaspora angle."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "a4f2db0c-2bab-4285-a122-47b2f8d2f983",
-      "headline": "America Banned Its Best AI Models. Japan and China Built Replacements in Two Weeks.",
-      "slug": "asian-ai-alternatives-anthropic-ban-sakana-zhipu-india-20260629",
+      "id": "ad670d8d-f1b4-4491-9aa9-4949f3a33451",
+      "headline": "UAE-India Airfares Are Finally Easing \u2014 But Gulf NRIs Have a Narrow Window Before Prices Climb Again",
+      "slug": "uae-india-airfares-ease-july-kerala-gulf-nri-20260629",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -69,51 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "server racks in a data centre",
-          "reason": "The photo shows server racks, relevant to AI and technology infrastructure."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image is relevant to technology but lacks a direct connection to the specific topic of AI models."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses the implications for NRI engineers and the geopolitical landscape, making it relevant for the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more specific examples of how NRI engineers are impacted by the AI export controls.",
-          "Consider adding a quote from an NRI engineer or expert to enhance the diaspora connection."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "c27b83f2-eaef-478e-9540-4e32ed82d982",
-      "headline": "India Just Dropped the Rule That Was Keeping Starlink Out. The Satellite Race Is On.",
-      "slug": "india-drops-satcom-local-sourcing-starlink-oneweb-kuiper-20260629",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "SpaceX rocket launch",
-          "reason": "The photo shows a SpaceX rocket launch, relevant to the satellite broadband topic."
+          "what_photo_shows": "Dubai International Airport Terminal 3",
+          "reason": "The photo shows a relevant location for UAE-India flights."
         },
         "inline_image_mismatches": []
       },
@@ -127,13 +36,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the topic of satellite broadband to NRIs with family in rural India, highlighting the potential impact on connectivity."
+          "note": "The article effectively addresses the concerns of Gulf NRIs, particularly the Malayali diaspora, regarding airfare changes."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more statistics or examples of how satellite broadband has transformed other regions to strengthen the argument.",
-          "Include quotes from more industry experts to provide a broader perspective on the implications of the new rules."
+          "Include more specific examples of how the fare changes impact different segments of the NRI community.",
+          "Add a section on tips for booking flights or navigating travel during peak seasons."
         ],
         "verdict": "pass"
       },
@@ -145,9 +54,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "9d7f0284-e8cc-497a-813f-c98c9b9d3ad4",
-      "headline": "Persistent Systems Just Bet $1.1 Billion That Indian IT Can Buy Its Way Into Europe",
-      "slug": "persistent-systems-nagarro-acquisition-billion-indian-it-20260629",
+      "id": "7b5dc04b-c3aa-4710-8be9-038ee1a7373c",
+      "headline": "Air India Has Suspended Chicago, Newark and Two Other NRI Corridors Through August \u2014 Here's What's Left",
+      "slug": "air-india-summer-route-cuts-chicago-sfo-newark-nri-20260629",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -155,8 +64,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "business deal over laptops",
-          "reason": "The photo shows a business deal, relevant to the story about a corporate acquisition."
+          "what_photo_shows": "Air India Airbus A350-900",
+          "reason": "The photo shows an Air India aircraft, relevant to the airline story."
         },
         "inline_image_mismatches": []
       },
@@ -164,19 +73,148 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the article's focus on IT acquisitions."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses implications for NRIs in the tech sector, making it relevant to the diaspora."
+          "note": "The article effectively addresses the impact of route cuts on the Indian diaspora, particularly in major US cities."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that reflects the themes of technology and acquisitions.",
-          "Expand on the implications for NRIs in the tech industry to strengthen the diaspora angle."
+          "Include more specific statistics or quotes from affected passengers to enhance the emotional connection.",
+          "Add a section on potential future developments or responses from Air India regarding these route changes."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "ad77a308-9d0b-46f5-9a44-61b27db5a899",
+      "headline": "India's Defence Stocks Have Crushed the Market in 2026 \u2014 and the Order Books Suggest They're Just Getting Started",
+      "slug": "india-defence-stocks-hal-bel-data-patterns-nifty-defence-index-2026-order-book-export-nri-investor-20260629",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Two HAL Tejas aircraft in flight",
+          "reason": "The photo shows HAL Tejas aircraft, relevant to India's defence sector story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses NRI investors by highlighting opportunities in the Indian defence sector."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from industry experts or analysts to enhance credibility.",
+          "Include a brief overview of how these developments may impact NRI investors specifically."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "3bbbe984-23cc-4492-91a1-8b4eec7de954",
+      "headline": "Your Gut Bacteria May Explain Why Coffee Wrecks Your Sleep \u2014 and a 7,000-Person Study Just Mapped the Connection",
+      "slug": "gut-microbiome-coffee-sleep-social-jet-lag-nature-communications-lifelines-dutch-clostridia-diaspora-20260629",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "A cup of coffee on a table",
+          "reason": "The photo of coffee is relevant to the story about coffee's effect on sleep."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the research findings to the coffee consumption habits of the Indian diaspora, making it relevant."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of how the findings could impact the daily lives of NRI readers.",
+          "Include quotes or insights from experts in the field to enhance credibility."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "c3f3e867-2623-4443-ab00-c134685d49c3",
+      "headline": "The Type of Fat in Your Kitchen May Matter More Than How Much You Use \u2014 and a New Review Shows Why",
+      "slug": "palmitic-acid-oleic-acid-fat-quality-diabetes-insulin-resistance-barcelona-review-diaspora-20260629",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Olive oil being poured into a bowl",
+          "reason": "The photo shows olive oil, relevant to the story about fats and insulin resistance."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the topic of dietary fats to the South Asian diaspora, highlighting specific cultural practices and health implications."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of how to implement the suggested dietary changes in daily cooking for the diaspora audience.",
+          "Include quotes or insights from diaspora health experts to enhance credibility and relatability."
         ],
         "verdict": "pass"
       },
