@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-29T07:15:27.856383+00:00",
+  "timestamp": "2026-06-29T07:45:12.459112+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
+    "pass": 0,
     "flag": 1,
     "fail": 0,
     "error": 0
@@ -11,57 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "45bda39d-ac99-4b4f-b20d-ade4dd97d75e",
-      "headline": "50,000 Vanars, 3,500 Extras, and the Man Who Made Baahubali Look Small: Inside Rajamouli's Varanasi",
-      "slug": "ss-rajamouli-varanasi-50000-vanar-army-mahesh-babu-priyanka-chopra-battle-sequence-vfx-paris-premiere-april-2027-diaspora-nri-20260629",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "75454d9e-9a95-4883-9abb-303a5a6fcb9b",
-            "headline": "Prabhas Raised Three Fingers. Rana Tried to Stop Him. The In"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "SS Rajamouli in yellow shirt",
-          "reason": "The photo shows SS Rajamouli, relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article connects well with the Indian diaspora by discussing the global impact of Rajamouli's films and their significance to NRI audiences."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more quotes or insights from Rajamouli or cast members to enhance the article's depth.",
-          "Include a brief section on the cultural significance of the Vanar army in Indian mythology to engage readers further."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "82411df1-7c5e-4099-b741-04e34a461c05",
-      "headline": "He Was Guddu for a Decade \u2014 Now Ali Fazal Has Prime Video's Biggest Indian Hit in Two Years",
-      "slug": "raakh-ali-fazal-prime-video-number-1-non-english-worldwide-sonali-bendre-ranga-billa-case-indian-ott-diaspora-nri-20260629",
+      "id": "993eaa89-f9af-4cc9-9200-e3829d9d25e2",
+      "headline": "Pretorius Blasts 66 off 26 Balls as San Francisco Unicorns Demolish Washington Freedom by Eight Wickets to Go Top of the MLC Table",
+      "slug": "pretorius-66-off-26-allen-45-sf-unicorns-demolish-washington-freedom-8-wickets-mlc-2026-grand-prairie-diaspora-nri",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -69,45 +21,32 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A man in a checkered suit",
-          "reason": "The photo shows Ali Fazal, matching the story about him."
+          "what_photo_shows": "Haris Rauf in cricket attire",
+          "reason": "Haris Rauf is mentioned as part of the San Francisco Unicorns in the story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/p/DZX759Jipz6/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post does not seem to relate directly to the article's focus on the series 'Raakh' and its themes."
-          },
-          {
-            "url": "https://www.instagram.com/p/DZuY3bHzNxy/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post does not provide relevant content that enhances the article's discussion about 'Raakh'."
-          }
-        ],
+        "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image of Ali Fazal is relevant to the article, but it does not directly depict the series 'Raakh' or its themes."
+          "score": 2,
+          "issue": "irrelevant"
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article connects well with the diaspora by discussing universal themes within an Indian context, making it relatable for NRI readers."
+          "note": "The article effectively connects the MLC to the Indian diaspora, highlighting the significance of the league for South Asian fans in the US."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant Instagram embeds with content that directly relates to 'Raakh' or its themes.",
-          "Consider adding quotes or reactions from diaspora viewers to strengthen the connection with NRI audiences."
+          "Replace the hero image with one that features players from the San Francisco Unicorns or the match itself to better match the article's content.",
+          "Consider adding quotes from players or coaches to enhance the narrative and provide more depth."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DZX759Jipz6/",
-        "Removed irrelevant embed: https://www.instagram.com/p/DZuY3bHzNxy/",
         "promoted to published"
       ],
       "revised": false,
