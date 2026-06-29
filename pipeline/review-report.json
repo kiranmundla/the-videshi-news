@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-29T21:45:18.535028+00:00",
+  "timestamp": "2026-06-29T22:15:49.286964+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 0,
+    "pass": 5,
     "flag": 1,
     "fail": 0,
     "error": 0
@@ -10,6 +10,221 @@
   "revisions": 1,
   "unpublished": 0,
   "articles": [
+    {
+      "id": "00bd9282-2310-46ff-85f5-e293f8419f7f",
+      "headline": "The US FDA Just Sent an SOS to Indian Drugmakers for a Cancer Drug It Can't Source Anywhere Else",
+      "slug": "us-fda-sos-indian-pharma-ifosfamide-cancer-drug-shortage-cipla-zydus-nri-investor-20260629",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "pharmaceutical capsules being manufactured",
+          "reason": "The photo shows drug manufacturing, relevant to the pharma story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses Indian drug manufacturers and their relevance to NRI investors, making it pertinent to the diaspora audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include quotes or insights from industry experts to enhance credibility.",
+          "Add a section on potential impacts on Indian drug exports to the US market."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "e3cf524f-e92d-4dc1-947f-2e10b185aa22",
+      "headline": "Nearly Half of Adults Over 65 Actually Got Sharper With Age \u2014 and Their Mindset Was the Key",
+      "slug": "yale-positive-aging-beliefs-45-percent-improve-cognition-walking-speed-geriatrics-diaspora-20260629",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "elderly couple walking in park",
+          "reason": "The photo aligns with the story about aging and physical improvement."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the study's findings to the Indian diaspora experience, discussing cultural narratives around aging."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of how NRIs can apply the study's findings in their interactions with aging parents.",
+          "Include quotes or insights from diaspora community members to enhance relatability."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "1c7f5f9b-0096-4621-bcd9-94b98ead9aa9",
+      "headline": "Your Brain Starts Calming Down in Just Two Minutes of Meditation \u2014 and Peak Zen Arrives at Seven",
+      "slug": "meditation-brain-calms-two-minutes-peaks-seven-nimhans-harvard-mindfulness-study-diaspora-20260629",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "person meditating outdoors",
+          "reason": "The photo shows a person meditating, which matches the story about meditation."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the findings of the study to the busy lives of diaspora professionals, making it relevant to the NRI audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a quote from a diaspora professional about their experience with meditation to enhance relatability.",
+          "Include practical tips for busy professionals on how to incorporate meditation into their daily routines."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "23426d45-ba0f-44f8-b73f-1695b5446c01",
+      "headline": "India's Revamped OCI Portal Is Live \u2014 and There's a $25 Fine Every NRI Should Know About",
+      "slug": "india-oci-portal-revamp-fine-eoci-nri-rules-20260629",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Indian passport in a wallet",
+          "reason": "The photo shows an Indian passport, relevant to the OCI program story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article directly addresses NRIs and their concerns regarding the OCI portal and related regulations."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include a brief FAQ section addressing common questions NRIs might have about the new OCI rules.",
+          "Add a quote from an official or an expert to enhance credibility and provide additional insights."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "e55b0318-8f66-486a-8113-2d60a4b57897",
+      "headline": "Northeast India Finally Gets a Direct Gulf Link \u2014 Air India Express to Fly Guwahati to Dubai and Abu Dhabi from August",
+      "slug": "guwahati-dubai-abu-dhabi-air-india-express-northeast-gulf-nri-20260629",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Lokpriya Gopinath Bordoloi International Airport",
+          "reason": "The photo shows the airport mentioned in the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively highlights the significance of the new flights for the NRI community, particularly those from Northeast India."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include quotes or testimonials from NRIs who will benefit from the new flights to add a personal touch.",
+          "Provide more context on the economic impact of these flights on the Northeast region."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
     {
       "id": "04d1b8de-7e07-44fc-82d6-f41f3cb8fd6f",
       "headline": "Pakistan Just Bombed Afghanistan for the Second Time This Month. India Told Islamabad to Stop Blaming Everyone Else.",
@@ -20,12 +235,17 @@
         "duplicate_images": [],
         "broken_embeds": [
           {
-            "url": "https://x.com/AttaullahTarar/status/1794578505510926715",
+            "url": "https://x.com/TararAttaullah/status/1794474738598695039",
             "problem": "broken",
             "detail": "react-tweet returned null (deleted/protected/nonexistent)"
           },
           {
-            "url": "https://x.com/MEAIndia/status/1794622119047248011",
+            "url": "https://x.com/moj_afg/status/1794503714909890988",
+            "problem": "broken",
+            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
+          },
+          {
+            "url": "https://x.com/MEAIndia/status/1794508930983141757",
             "problem": "broken",
             "detail": "react-tweet returned null (deleted/protected/nonexistent)"
           }
@@ -33,7 +253,7 @@
         "vision_image_match": {
           "verdict": "MATCH",
           "what_photo_shows": "Sindh Rangers paramilitary personnel",
-          "reason": "The photo shows Sindh Rangers, relevant to the geopolitical story involving Pakistan."
+          "reason": "The photo shows Sindh Rangers, relevant to the Pakistan-Afghanistan conflict story."
         },
         "inline_image_mismatches": []
       },
@@ -42,24 +262,24 @@
         "embed_issues": [],
         "image_match": {
           "score": 3,
-          "issue": "The image of the Sindh Rangers does not directly relate to the article's focus on the geopolitical tensions between Pakistan and Afghanistan."
+          "issue": "The image does not match the article's focus on the recent military actions and geopolitical tensions."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 7,
-          "note": "The article connects to the Indian diaspora by discussing India's diplomatic stance and its implications for regional stability, which is relevant to NRIs with ties to the region."
+          "note": "The article connects to the Indian diaspora by discussing India's diplomatic stance and its implications for regional stability."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that reflects the geopolitical tensions discussed in the article.",
-          "Expand on the implications for the Indian diaspora to enhance the connection to NRI readers."
+          "Replace the hero image with one that better represents the military actions or geopolitical context discussed in the article.",
+          "Provide more context on how these events specifically impact the Indian diaspora, perhaps through quotes or perspectives from diaspora members."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
-        "Removed 2 broken/hallucinated embed(s)",
-        "Revised by gemini-2.5-flash (786\u2192789 words)"
+        "Removed 3 broken/hallucinated embed(s)",
+        "Revised by gemini-2.5-flash (786\u2192814 words)"
       ],
       "revised": true,
       "unpublished": false,
