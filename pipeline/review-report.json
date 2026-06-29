@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-29T00:15:56.194849+00:00",
+  "timestamp": "2026-06-29T00:45:40.005031+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 5,
-    "flag": 1,
+    "pass": 6,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "a72364fd-a8e9-4cbc-a52e-e37d0fec93a5",
-      "headline": "India's Tall Ship Has Sailed 13,000 Miles to Help America Celebrate Its Birthday. The Diaspora Turned Out to Watch.",
-      "slug": "ins-sudarshini-sail250-baltimore-indian-navy-diaspora-20260629",
+      "id": "0729dacf-aad8-499f-a4a2-fcfb73249e7e",
+      "headline": "The Chatpata Comeback: India Rediscovers Its Bold, Unapologetic Flavors",
+      "slug": "the-chatpata-comeback-india-rediscovers-its-bold-unapologetic-flavors",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,180 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "INS Sudarshini under sail",
-          "reason": "The photo shows the INS Sudarshini, relevant to the story."
+          "what_photo_shows": "plate of papri chaat",
+          "reason": "The photo shows a bold, flavorful Indian dish relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article connects with the diaspora by discussing traditional Indian flavors and their evolution, which may resonate with NRIs interested in cultural heritage."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include quotes or anecdotes from diaspora members to strengthen the connection.",
+          "Add a section on how these trends are being received or adapted by Indian communities abroad."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "771b4e69-5dae-4d1f-abca-7615f319d763",
+      "headline": "Gymkhana's Kitchen Goes Retail: Michelin-Starred Indian Sauces Land at Whole Foods",
+      "slug": "gymkhanas-kitchen-goes-retail-michelin-starred-indian-sauces-land-at-whole-foods",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Vibrant Indian curries in bowls",
+          "reason": "The photo shows Indian curries, which aligns with the story about Indian sauces."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not specifically depict Gymkhana's products or the context of Indian sauces."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article connects well with the NRI audience by discussing the evolution of Indian cuisine in the US and its premium positioning."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include a relevant image of Gymkhana's sauces to enhance visual connection.",
+          "Add quotes or testimonials from NRI consumers to strengthen the diaspora angle."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "16182a03-cfa3-4beb-bb71-11a2803ef416",
+      "headline": "Modi Signed 19 Agreements in Seychelles Today. Here's What India Got \u2014 and What It Gave.",
+      "slug": "modi-seychelles-19-agreements-upi-fast-patrol-vessel-space-defence-indian-ocean-20260628",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Prime Minister Narendra Modi",
+          "reason": "The photo shows the correct named person for the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses India's strategic partnerships in the Indian Ocean, which is relevant to the Indian diaspora interested in geopolitical developments."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include quotes from Modi or Seychellois officials to enhance the article's depth.",
+          "Add a brief section on how these agreements might impact the Indian diaspora in Seychelles or the broader Indian Ocean region."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "0e93e0ed-543e-49ed-ae46-b5e2ed454ff5",
+      "headline": "India Just Built Its First Military Aircraft. A Private Company Did It Months Ahead of Schedule.",
+      "slug": "india-first-made-in-india-military-aircraft-c295-tata-airbus-vadodara-maiden-flight-20260628",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "C-295 aircraft in flight",
+          "reason": "The photo shows a C-295 aircraft, matching the story about India's first military aircraft."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses India's advancements in defense manufacturing, which may resonate with the diaspora interested in India's global standing and technological progress."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include quotes or reactions from diaspora communities regarding India's defense advancements to enhance the diaspora angle.",
+          "Add more context on how this development impacts India's position in the global defense market."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "99aa4126-8268-413f-8ea5-005f425bb0c9",
+      "headline": "India Just Flew a Field Hospital Halfway Around the World to Help Venezuela Dig Out",
+      "slug": "india-operation-amistad-venezuela-earthquake-c17-field-hospital-bhishm-20260628",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Indian Air Force C-17 aircraft",
+          "reason": "The photo shows an Indian Air Force C-17, relevant to the airlift mission story."
         },
         "inline_image_mismatches": []
       },
@@ -36,204 +208,15 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively highlights the significance of the Indian Navy's presence in the U.S. and its connection to the Indian diaspora, particularly in the mid-Atlantic region."
+          "note": "The article connects India's humanitarian efforts to the diaspora's perception of India's growing global role."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes from Indian diaspora members who attended the events to add personal perspectives.",
-          "Provide more details on the specific activities planned for the Indian community in Baltimore."
+          "Include quotes or reactions from members of the Indian diaspora regarding the operation to enhance the diaspora angle.",
+          "Add more context on how this operation compares to previous humanitarian missions by India to engage readers further."
         ],
         "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "294acf24-69a6-478c-9ba2-e72c656ac7e5",
-      "headline": "The App the Diaspora Lives On Just Got an Indian Boss",
-      "slug": "kunal-shah-whatsapp-ceo-cred-meta-indian-diaspora-fintech-20260629",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "7d257c68-c661-404d-a612-66f7c0ba7563",
-            "headline": "Meta Just Made a CRED Founder the Boss of WhatsApp. The Real"
-          },
-          {
-            "article_id": "0ce6d903-3713-43d6-a860-69146188f259",
-            "headline": "Meta Just Paid $900 Million for an Indian Fintech. Its Found"
-          },
-          {
-            "article_id": "4988648b-d781-4950-85dc-66e323afab97",
-            "headline": "Meta Just Handed WhatsApp to a Mumbai Founder Who Never Wrot"
-          },
-          {
-            "article_id": "f79f1306-331b-4586-9133-a36ffcd40949",
-            "headline": "Meta Bets $900 Million on an Indian Fintech \u2014 and Hands an I"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "man in a black polo shirt",
-          "reason": "The photo plausibly shows Kunal Shah, relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image of Kunal Shah is relevant to the article but does not directly depict WhatsApp or its features."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the appointment of Kunal Shah to the interests and needs of the Indian diaspora, particularly in relation to WhatsApp's role in their lives."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider including a quote from Kunal Shah about his vision for WhatsApp to add a personal touch.",
-          "Add more context on how WhatsApp's features specifically benefit the diaspora to strengthen the connection."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "82b0369d-1b2d-47a2-91fd-36c049201b0f",
-      "headline": "India's VCs Just Poured $1.2 Billion into Deep Tech in Six Months. They're Not Funding Apps.",
-      "slug": "india-deep-tech-vc-funding-boom-defence-hardware-20260629",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "microchip on a circuit board",
-          "reason": "The photo aligns with the story about funding for hardware and tech."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image depicts technology but lacks a direct connection to deep tech or venture capital."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses Indian-origin entrepreneurs and the impact of Indian startups on the global tech landscape, which resonates with the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more specific examples of how these deep tech investments are impacting the Indian economy or global tech landscape.",
-          "Consider adding quotes or insights from diaspora investors or entrepreneurs to strengthen the connection to the NRI audience."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "06f0f6b6-8218-425b-8833-8598940c1b7c",
-      "headline": "Washington Is About to Unlock Anthropic's Fable 5. India's Quiet Diplomacy Helped.",
-      "slug": "india-pax-silica-anthropic-fable-5-restore-diplomacy-20260629",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "server infrastructure in data center",
-          "reason": "The photo shows server infrastructure relevant to the AI model story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the specific topic of AI or the summit."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses India's role in global AI discussions, which is relevant to the Indian diaspora interested in technology and international relations."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that reflects AI technology or the summit.",
-          "Add a quote or perspective from an Indian NRI involved in the tech industry to strengthen the diaspora connection."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "388d9c54-9f2a-40c0-9b39-79c298cafe0a",
-      "headline": "A Republican Senator Calls the Green-Card Backlog 'Fundamentally Unjust.' 700,000 Indians Are Still Waiting",
-      "slug": "roger-marshall-green-card-per-country-cap-india-700k-backlog-20260629",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Senator Roger Marshall portrait",
-          "reason": "The photo shows the correct named person for the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 4,
-          "issue": "irrelevant"
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the green-card backlog issue to the experiences of Indian Americans, making it highly relevant to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that depicts Indian Americans or the immigration theme to enhance visual connection.",
-          "Add quotes or testimonials from Indian Americans affected by the green-card backlog to provide a personal touch."
-        ],
-        "verdict": "flag"
       },
       "actions_taken": [
         "promoted to published"
@@ -251,11 +234,6 @@
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MISMATCH",
-          "what_photo_shows": "group of people posing indoors",
-          "reason": "The photo does not show a consulate or visa queue."
-        },
         "inline_image_mismatches": []
       },
       "llm_review": {
@@ -279,12 +257,10 @@
         "verdict": "pass"
       },
       "actions_taken": [
-        "Cleared mismatched image (group of people posing indoors)",
-        "held: image mismatch"
+        "promoted to published"
       ],
       "revised": false,
       "unpublished": false,
-      "image_mismatch": true,
       "llm_source": "gpt-4o-mini"
     }
   ]
