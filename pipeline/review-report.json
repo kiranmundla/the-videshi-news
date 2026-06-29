@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-29T16:45:42.863567+00:00",
+  "timestamp": "2026-06-29T17:15:21.344875+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
+    "pass": 1,
     "flag": 1,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "08fb7e99-e159-4b55-9393-566cbcf500f2",
-      "headline": "Kohli and Bumrah Return as India Name Squad for England ODIs. Jaiswal Pays the Price.",
-      "slug": "kohli-bumrah-return-india-odi-squad-england-gill-captain-jaiswal-dropped-hardik-out-2027-world-cup-diaspora-nri",
+      "id": "60c77ac8-9be6-4e07-be4b-54f81bf8f542",
+      "headline": "Cocktail 2 Just Outgrossed the Original in 8 Days \u2014 and Shahid Kapoor Hasn't Looked This Bankable in Years",
+      "slug": "cocktail-2-box-office-127-crore-worldwide-shahid-kapoor-kriti-sanon-rashmika-beats-original-diaspora-nri-20260629",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Virat Kohli at a public event",
-          "reason": "The photo shows Virat Kohli, who is relevant to the story."
+          "what_photo_shows": "Cocktail 2 movie poster",
+          "reason": "The photo is related to the film mentioned in the story."
         },
         "inline_image_mismatches": []
       },
@@ -35,14 +35,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the cricket series to the Indian diaspora in the UK, highlighting their engagement and the significance of the matches."
+          "quality": 7,
+          "note": "The article discusses the film's overseas earnings and its availability in major North American and British cities, which connects well with the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from players or coaches to enhance the article's depth.",
-          "Include statistics or historical context about previous India-England ODI series to enrich the narrative."
+          "Include more direct quotes or reactions from Shahid Kapoor or other cast members to enhance engagement.",
+          "Add a brief section on how the film's themes resonate with the diaspora audience."
         ],
         "verdict": "pass"
       },
@@ -54,140 +54,58 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "97cc3d1e-fb7f-4367-9e9b-1f541ead87f4",
-      "headline": "The Supreme Court Just Saved the Fed From Trump. Here's Why India Should Pay Attention.",
-      "slug": "us-supreme-court-fed-lisa-cook-trump-independence-india-rupee-nri-markets-20260629",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "woman in professional attire",
-          "reason": "The photo plausibly shows Federal Reserve Governor Lisa Cook, relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the Supreme Court ruling to the financial implications for NRIs and the Indian economy."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Add more specific examples of how the Fed's independence impacts the Indian economy.",
-          "Include quotes or perspectives from Indian economists or diaspora members to enhance the connection."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "033d9e47-f713-4e91-8bc7-bb3939b29a48",
-      "headline": "Harmanpreet Hit Three Sixes in One Over at Lord's. India's Women Still Went Home.",
-      "slug": "india-women-t20-world-cup-knocked-out-australia-lords-harmanpreet-perry-gardner-deepti-record-20260629",
+      "id": "1fe72ed7-9626-4dc4-9f54-859bc72ad384",
+      "headline": "She Was Trained to Kill by Her Own Father \u2014 and on Thursday, Alia Bhatt Rewrites the YRF Spy Universe",
+      "slug": "alpha-alia-bhatt-sharvari-yrf-spy-universe-bobby-deol-hrithik-cameo-july-3-release-where-to-watch-diaspora-nri-20260629",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [
           {
-            "article_id": "32f3a446-e55c-479d-9c7d-11610aeb2676",
-            "headline": "Two Runs Short at Lord's. Harmanpreet's Heroics Weren't Enou"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "woman holding cricket trophy",
-          "reason": "The photo shows a cricket-related scene relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [
+            "article_id": "a9c0b327-401a-414b-87e9-42ab8e2db6f2",
+            "headline": "Alia Bhatt Picks Up the Rifle: 'Alpha' Storms In as the Spy "
+          },
           {
-            "url": "https://www.instagram.com/p/DaIY13lDWEe/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post does not appear to be directly related to the match or the performance of Harmanpreet Kaur."
+            "article_id": "25dd0c60-a827-47ad-8a78-8aa411374ef2",
+            "headline": "She Was Named Sita and Raised to Kill: Alpha Is About to Blo"
           }
         ],
-        "image_match": {
-          "score": 8,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects with diaspora readers by highlighting their presence at the match and their emotional investment in the outcome."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the irrelevant Instagram embed with a more relevant one that highlights the match or Harmanpreet's performance.",
-          "Consider adding quotes from players or coaches to enhance the narrative and provide more depth."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DaIY13lDWEe/",
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "3b777998-77bb-4fc1-81c1-28297a70b9c1",
-      "headline": "They Donated From Abroad to Build the Ram Temple. Eight Men Were Stealing the Money.",
-      "slug": "ayodhya-ram-temple-donation-embezzlement-eight-arrested-sbi-nri-donors-trust-scandal-20260629",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "The Ram Mandir in Ayodhya",
-          "reason": "The photo shows the Ram Mandir, which is relevant to the story about donations and embezzlement related to the temple."
+          "what_photo_shows": "movie poster with Alia Bhatt",
+          "reason": "The poster features Alia Bhatt, relevant to the story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/DaF7ikvDNuT/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not seem to directly relate to the article's focus on Alia Bhatt's role in the YRF Spy Universe."
+          }
+        ],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image is relevant to the article's topic but does not feature Alia Bhatt, which could mislead readers."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively highlights the involvement of NRIs in funding the Ram Mandir, making it relevant to the diaspora audience."
+          "quality": 7,
+          "note": "The article connects to the diaspora through the global appeal of Bollywood and the significance of Alia Bhatt's role in a major franchise."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes from diaspora contributors to enhance personal connection.",
-          "Provide additional context on the significance of the Ram Mandir to the diaspora community."
+          "Replace the irrelevant Instagram embed with a more relevant social media post that highlights Alia Bhatt's role or the film's themes.",
+          "Consider using an image that features Alia Bhatt prominently to better match the article's focus."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/DaF7ikvDNuT/",
         "promoted to published"
       ],
       "revised": false,
