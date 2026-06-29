@@ -180,7 +180,7 @@ def post_youtube_short(reel, video_path, headline, caption):
         return f"YT token error: {token_r.status_code} {token_r.text}"
     access_token = token_r.json()['access_token']
     
-    slug = reel.get('article_slug', '')
+    slug = reel.get('article_slug') or ''
     
     # Check youtube-log.json for slug dedup
     yt_log = {}
@@ -426,8 +426,8 @@ for i, reel in enumerate(work_queue):
     print(f"  Needs: {reel['_needs']}")
     
     video_url = reel['video_url']
-    caption = reel.get('caption', '')
-    headline = reel.get('headline', '')
+    caption = reel.get('caption') or ''
+    headline = reel.get('headline') or ''
     slug = reel.get('article_slug', '')
     
     # Download video once for platforms that need local file
