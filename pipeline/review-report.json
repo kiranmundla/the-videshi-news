@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-29T07:45:12.459112+00:00",
+  "timestamp": "2026-06-29T08:15:23.239893+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 0,
-    "flag": 1,
+    "pass": 2,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "993eaa89-f9af-4cc9-9200-e3829d9d25e2",
-      "headline": "Pretorius Blasts 66 off 26 Balls as San Francisco Unicorns Demolish Washington Freedom by Eight Wickets to Go Top of the MLC Table",
-      "slug": "pretorius-66-off-26-allen-45-sf-unicorns-demolish-washington-freedom-8-wickets-mlc-2026-grand-prairie-diaspora-nri",
+      "id": "b3bbe810-6c54-4dfd-bf17-e84d863525d0",
+      "headline": "You Have 60 Days. USCIS Automation May Give You Zero",
+      "slug": "h1b-60-day-grace-period-uscis-denial-automation-20260629",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Haris Rauf in cricket attire",
-          "reason": "Haris Rauf is mentioned as part of the San Francisco Unicorns in the story."
+          "what_photo_shows": "professional stressed at laptop",
+          "reason": "The image aligns with the story about immigration uncertainty."
         },
         "inline_image_mismatches": []
       },
@@ -30,21 +30,89 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 2,
-          "issue": "irrelevant"
+          "score": 6,
+          "issue": "The image does not directly relate to the topic of immigration or the specific challenges faced by H-1B workers."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the MLC to the Indian diaspora, highlighting the significance of the league for South Asian fans in the US."
+          "quality": 7,
+          "note": "The article discusses the challenges faced by H-1B workers, which is relevant to the Indian diaspora, particularly those in the tech industry."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the hero image with one that features players from the San Francisco Unicorns or the match itself to better match the article's content.",
-          "Consider adding quotes from players or coaches to enhance the narrative and provide more depth."
+          "Consider using an image that more directly represents the theme of immigration or the struggles of H-1B workers.",
+          "Add a brief conclusion summarizing the implications of the changes in USCIS processing for H-1B workers."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "aa18166c-663c-45a8-b24e-f5f8ce229faa",
+      "headline": "The Receipt That Never Ends. Every Fee Washington Has Added to Your Immigration File",
+      "slug": "obbba-immigration-fee-map-indian-family-cost-20260629",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "3bfccf08-94f2-4e2f-bf43-2cfdc4773f28",
+            "headline": "The Green Card You Could Get Without Leaving America? USCIS "
+          },
+          {
+            "article_id": "cd4c6f8e-79f5-47e7-8212-4c494babe13a",
+            "headline": "The Self-Petition Escape Hatch Is Closing. NIW Approvals Jus"
+          },
+          {
+            "article_id": "75dec796-365f-4a9f-afc4-aa7eee5d8e89",
+            "headline": "Indians Built Escape Routes Around the Green-Card Backlog. T"
+          },
+          {
+            "article_id": "6be85e6d-fc39-4011-ba26-54b94583d20f",
+            "headline": "DHS Says It Will Process Your Visa With AI in 30 Days. Immig"
+          },
+          {
+            "article_id": "faac8aeb-8246-40b8-81c3-1daaa48ee892",
+            "headline": "EB-5 Becomes India's Fastest Green Card Route. The Window Cl"
+          },
+          {
+            "article_id": "d276a8b7-a31d-454e-944f-1d95ef0e1ad8",
+            "headline": "A $100,000 Price Tag on Every H-1B Hire. A Judge Said No. Th"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "USCIS Application Support Center",
+          "reason": "The photo shows a USCIS center, relevant to the immigration story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 8,
+          "issue": "The image depicts a USCIS Application Support Center, which is relevant to the topic of immigration fees."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses immigration fees that directly impact Indian immigrants, making it relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more personal stories or testimonials from individuals affected by the fee increases to enhance relatability.",
+          "Add a section discussing potential future implications of these fees on the Indian diaspora and their immigration plans."
+        ],
+        "verdict": "pass"
       },
       "actions_taken": [
         "promoted to published"
