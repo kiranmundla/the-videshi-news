@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-29T02:15:37.572862+00:00",
+  "timestamp": "2026-06-29T02:45:31.141223+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 5,
+    "pass": 3,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -10,6 +10,102 @@
   "revisions": 0,
   "unpublished": 0,
   "articles": [
+    {
+      "id": "35a213f6-69ac-4ceb-8ca0-088ef7ea6e2f",
+      "headline": "Canada's $500 Billion Defence Spending Surge Just Opened the Door to India. Here's What's Actually on the Table.",
+      "slug": "canada-india-defence-partnership-500-billion-cooter-modi-carney-hockey-stick-20260628",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "f5baee78-cabe-4e64-9eb0-0ea6e3ada84f",
+            "headline": "A Year Ago, India and Canada Were Expelling Each Other's Dip"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Two leaders in formal meeting",
+          "reason": "The photo shows a meeting between two leaders, relevant to the diplomatic story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image features a meeting between Indian and Canadian leaders, which is relevant to the article's topic on defense relations."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the defense partnership to the Indian diaspora in Canada, highlighting its significance for the community."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of how the defense partnership will directly impact the Indian diaspora in Canada.",
+          "Include quotes or perspectives from Indian defense firms to provide a more balanced view of the partnership."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "89271322-250e-4f9c-b1d5-6d95bcee9146",
+      "headline": "Iran and the US Agreed to Stand Down. India's 9 Million Gulf Workers \u2014 and Its Oil Lifeline \u2014 Are Watching.",
+      "slug": "iran-us-stand-down-hormuz-ceasefire-renewed-india-gulf-workers-oil-qatar-talks-20260628",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "b9cf6e99-4020-4588-bee3-98530ea3f991",
+            "headline": "The Ceasefire Was Twelve Days Old. Then Two More Ships Were "
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Satellite view of the Strait of Hormuz",
+          "reason": "The photo shows the Strait of Hormuz, relevant to the geopolitical story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively highlights the impact of geopolitical tensions on the Indian diaspora in the Gulf, making it relevant for NRI readers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes or perspectives from Indian workers in the Gulf to enhance the human angle.",
+          "Include more data or statistics on how previous conflicts have affected Indian workers in the region."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
     {
       "id": "8cfd2cb7-a359-4be4-86e2-a182e6cf0d04",
       "headline": "India's Weakest Monsoon in 11 Years Is Threatening to Derail the Post-Oil Rally \u2014 and a Super El Ni\u00f1o Could Make It Worse",
@@ -19,11 +115,6 @@
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MISMATCH",
-          "what_photo_shows": "flooded paddy field in Karnataka",
-          "reason": "The photo shows flooding, not drought conditions related to weak monsoon."
-        },
         "inline_image_mismatches": []
       },
       "llm_review": {
@@ -36,187 +127,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 7,
-          "note": "The article discusses economic implications of the monsoon, which is relevant to NRIs with interests in India's economy."
+          "note": "The article discusses economic implications of the monsoon on agriculture, which is relevant to the Indian diaspora concerned about economic conditions in India."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include a relevant hero image that visually represents the topic of the monsoon and its economic impact.",
-          "Expand on how the economic implications of the monsoon directly affect the Indian diaspora, such as remittances or investments."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "Cleared mismatched image (flooded paddy field in Karnataka)",
-        "held: image mismatch"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "image_mismatch": true,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "f10654e5-af9c-499d-9bcd-ab1a7dab2497",
-      "headline": "South Asians in America Have the Highest Heart Risk by Age 45 \u2014 Despite Doing Almost Everything Right",
-      "slug": "south-asian-heart-risk-paradox-masala-study-northwestern-diabetes-prediabetes-hypertension-earlier-screening-nri-20260628",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "healthcare worker checking blood pressure",
-          "reason": "The photo aligns with the health-focused story about heart risk."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article addresses health risks specifically for South Asians in America, making it relevant to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include quotes or anecdotes from South Asian Americans to enhance relatability.",
-          "Add a section on actionable steps for readers to mitigate their heart risk."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "0ce991b9-fafd-4d7f-95c9-3a1a60ec81d5",
-      "headline": "When You Eat May Matter More Than What You Eat \u2014 and a Major New Study Just Showed Why",
-      "slug": "meal-timing-time-restricted-eating-healthspan-nature-aging-ut-southwestern-longo-circadian-diaspora-20260628",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "breakfast spread with eggs and fruit",
-          "reason": "The photo shows a meal, relevant to the eating timing study."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses health and longevity, which are relevant to the NRI community, particularly in the context of maintaining health across generations."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include a brief mention of how these findings could be applied in daily life for NRIs, perhaps with cultural considerations.",
-          "Add a section discussing potential implications for diet trends in the Indian diaspora."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "43604217-d4a0-4cb5-9f04-aa3b27532e75",
-      "headline": "Marriott Just Opened Its 10,000th Hotel \u2014 and It Is a Tiger Lodge in Rajasthan",
-      "slug": "jw-marriott-ranthambore-10000th-hotel-tiger-safari-nri-20260629",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A Bengal tiger in the wild",
-          "reason": "The photo of a Bengal tiger is relevant to the story about a tiger lodge in Rajasthan."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the luxury hotel opening to the interests of NRI travelers, particularly in terms of loyalty programs and travel planning."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include a quote or perspective from an NRI traveler or expert to enhance the diaspora connection.",
-          "Add more details about the environmental impact or conservation efforts related to the new hotel and the tiger reserve."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "f3dc4bbb-854a-4b5f-ac1d-d985c2c11024",
-      "headline": "IndiGo Is Planting Flags in Africa and Central Asia \u2014 and Budget-Minded NRIs Should Pay Attention",
-      "slug": "indigo-africa-central-asia-expansion-nairobi-tbilisi-nri-20260629",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "IndiGo Airbus aircraft on tarmac",
-          "reason": "The photo shows an IndiGo aircraft, relevant to the airline's expansion story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects IndiGo's expansion to the needs and interests of NRIs, particularly those with ties to East Africa."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from industry experts or airline representatives to enhance credibility.",
-          "Include more specific examples of how NRIs can benefit from these new routes, such as potential travel itineraries."
+          "Include a relevant hero image with a description that matches the article's content.",
+          "Expand on how the economic impacts of the monsoon may affect NRIs or Indian businesses abroad."
         ],
         "verdict": "pass"
       },
