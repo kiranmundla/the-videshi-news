@@ -1,248 +1,15 @@
 {
-  "timestamp": "2026-06-29T21:16:32.669497+00:00",
+  "timestamp": "2026-06-29T21:45:18.535028+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
-    "flag": 3,
+    "pass": 0,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
   "revisions": 1,
   "unpublished": 0,
   "articles": [
-    {
-      "id": "85fb8cc2-b4ea-43a3-bee4-a1c17d6491ef",
-      "headline": "800 Women in Pink Sarees, a 60-Foot Waterfall Poster, and Bollywood's Maddest Franchise Returns",
-      "slug": "dhamaal-4-ajay-devgn-saree-song-launch-imagicaa-trailer-july-10-riteish-arshad-diaspora-nri",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "1ec46a7a-50b7-4ff7-b49c-63a0e9b24b15",
-            "headline": "Jumma Chumma, a Kashmir Standoff, and Five Words That Broke "
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Ajay Devgn at an event",
-          "reason": "Ajay Devgn is relevant to the Dhamaal 4 story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/reel/DaAjq8vOtBV/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram reel does not seem to directly relate to the article's main focus on the promotional events for Dhamaal 4."
-          },
-          {
-            "url": "https://youtube.com/watch?v=IG-eByZdz6Y",
-            "problem": "irrelevant",
-            "explanation": "The YouTube link does not provide relevant content that enhances the article's narrative about the film's promotion."
-          }
-        ],
-        "image_match": {
-          "score": 3,
-          "issue": "The hero image does not match the article's topic about Dhamaal 4 and its promotional events."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article connects well with the diaspora by discussing the simultaneous release in multiple countries, appealing to NRI audiences."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the hero image with one that directly relates to Dhamaal 4 or its promotional events.",
-          "Ensure that embedded links are relevant to the content discussed in the article."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/reel/DaAjq8vOtBV/",
-        "Removed irrelevant embed: https://youtube.com/watch?v=IG-eByZdz6Y",
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "e3aab03b-be34-4791-87db-9abfe5366efe",
-      "headline": "He Played Circuit's Son at Six \u2014 Now Vir Hirani Leads Rajkumar Hirani's OTT Debut",
-      "slug": "pritam-pedro-rajkumar-hirani-ott-debut-vir-hirani-arshad-warsi-jiohotstar-july-3-sanjay-dutt-cameo-diaspora-nri",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Arshad Warsi smiling outdoors",
-          "reason": "The photo shows Arshad Warsi, who is mentioned in the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 3,
-          "issue": "The image does not match the article's headline and topic, as it features Arshad Warsi rather than Vir Hirani."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article connects to the Indian diaspora through the mention of a prominent filmmaker and actor, appealing to NRI readers interested in Bollywood and streaming content."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the hero image with one featuring Vir Hirani to better match the article's focus.",
-          "Consider adding a quote or perspective from Vir Hirani to enhance the personal connection to the subject."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "51570fba-f605-44c8-9681-4c08bb050402",
-      "headline": "Delhi Just Told 4 Million Motorcycle Owners to Go Electric. The Deadline Is 2028.",
-      "slug": "delhi-ev-policy-1-59-billion-tata-ola-electric-20260629",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "electric vehicle charging station",
-          "reason": "The photo shows an electric vehicle charging station, relevant to the EV policy story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the policy changes to potential impacts on NRI investors and those considering a return to India."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more specific examples of how the policy might affect NRI investments in the EV sector.",
-          "Add quotes from industry experts or stakeholders to enhance credibility and depth."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "91c6e03e-1638-456f-82a2-495a3c185e5b",
-      "headline": "Nadella's Microsoft Is Being Sued for Overhyping AI. Indian Investors Have the Most to Lose.",
-      "slug": "microsoft-copilot-class-action-nadella-nri-investors-20260629",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Microsoft CEO Satya Nadella",
-          "reason": "The photo shows the correct named person related to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the lawsuit's implications to Indian American investors, highlighting their stakes in Microsoft."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from industry experts or analysts to enhance credibility.",
-          "Include more context on the implications of the lawsuit for the tech industry as a whole."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "b437deec-3da1-478d-a189-ea7451315ff6",
-      "headline": "Qualcomm Is Spending $14 Billion to Break NVIDIA's Grip on AI. Its Indian-Origin CFO Is the Architect.",
-      "slug": "qualcomm-14-billion-ai-modular-tenstorrent-palkhiwala-20260629",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Qualcomm headquarters building",
-          "reason": "The photo shows Qualcomm headquarters, relevant to the story about Qualcomm's AI strategy."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively highlights the role of Indian engineers and the Indian-origin CFO in Qualcomm's strategic shift, making it relevant to the NRI audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more direct quotes from Akash Palkhiwala to enhance the personal connection to the Indian diaspora.",
-          "Add a brief section on how these acquisitions might impact the job market for Indian engineers in the semiconductor industry."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
     {
       "id": "04d1b8de-7e07-44fc-82d6-f41f3cb8fd6f",
       "headline": "Pakistan Just Bombed Afghanistan for the Second Time This Month. India Told Islamabad to Stop Blaming Everyone Else.",
@@ -253,12 +20,12 @@
         "duplicate_images": [],
         "broken_embeds": [
           {
-            "url": "https://x.com/attatarar/status/1792015383562625292",
+            "url": "https://x.com/AttaullahTarar/status/1794578505510926715",
             "problem": "broken",
             "detail": "react-tweet returned null (deleted/protected/nonexistent)"
           },
           {
-            "url": "https://x.com/MEAIndia/status/1792067160751935627",
+            "url": "https://x.com/MEAIndia/status/1794622119047248011",
             "problem": "broken",
             "detail": "react-tweet returned null (deleted/protected/nonexistent)"
           }
@@ -275,7 +42,7 @@
         "embed_issues": [],
         "image_match": {
           "score": 3,
-          "issue": "The image of the Sindh Rangers does not directly relate to the article's focus on the bombing and subsequent geopolitical tensions."
+          "issue": "The image of the Sindh Rangers does not directly relate to the article's focus on the geopolitical tensions between Pakistan and Afghanistan."
         },
         "diaspora_angle": {
           "present": true,
@@ -285,14 +52,14 @@
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that depicts the geopolitical tensions or the aftermath of the bombing.",
-          "Expand on the implications for the Indian diaspora, perhaps by including quotes or perspectives from diaspora members regarding the situation."
+          "Consider using a more relevant image that reflects the geopolitical tensions discussed in the article.",
+          "Expand on the implications for the Indian diaspora to enhance the connection to NRI readers."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
         "Removed 2 broken/hallucinated embed(s)",
-        "Revised by gemini-2.5-flash (731\u2192788 words)"
+        "Revised by gemini-2.5-flash (786\u2192789 words)"
       ],
       "revised": true,
       "unpublished": false,
