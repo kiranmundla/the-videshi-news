@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-29T02:45:31.141223+00:00",
+  "timestamp": "2026-06-29T03:15:36.929172+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
-    "flag": 0,
+    "pass": 4,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,23 +11,18 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "35a213f6-69ac-4ceb-8ca0-088ef7ea6e2f",
-      "headline": "Canada's $500 Billion Defence Spending Surge Just Opened the Door to India. Here's What's Actually on the Table.",
-      "slug": "canada-india-defence-partnership-500-billion-cooter-modi-carney-hockey-stick-20260628",
+      "id": "1ec46a7a-50b7-4ff7-b49c-63a0e9b24b15",
+      "headline": "Jumma Chumma, a Kashmir Standoff, and Five Words That Broke the Internet: Ajay Devgn Just Dropped 'Chauhaan'",
+      "slug": "ajay-devgn-chauhaan-kashmir-action-thriller-jumma-chumma-amitabh-bachchan-pathaan-controversy-veeru-devgan-2027-where-to-watch-diaspora-nri",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "f5baee78-cabe-4e64-9eb0-0ea6e3ada84f",
-            "headline": "A Year Ago, India and Canada Were Expelling Each Other's Dip"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Two leaders in formal meeting",
-          "reason": "The photo shows a meeting between two leaders, relevant to the diplomatic story."
+          "what_photo_shows": "Ajay Devgn at a film event",
+          "reason": "The photo shows Ajay Devgn, relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -36,18 +31,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image features a meeting between Indian and Canadian leaders, which is relevant to the article's topic on defense relations."
+          "issue": "The image of Ajay Devgn at a trailer launch is relevant but does not directly depict the film 'Chauhaan' or its themes."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the defense partnership to the Indian diaspora in Canada, highlighting its significance for the community."
+          "note": "The article effectively connects the film's themes of Kashmir and national security to the interests of the NRI audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more specific examples of how the defense partnership will directly impact the Indian diaspora in Canada.",
-          "Include quotes or perspectives from Indian defense firms to provide a more balanced view of the partnership."
+          "Consider including a direct quote from Ajay Devgn or the director about the film to enhance engagement.",
+          "Add more context about the significance of the Kashmir setting for diaspora audiences."
         ],
         "verdict": "pass"
       },
@@ -59,23 +54,74 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "89271322-250e-4f9c-b1d5-6d95bcee9146",
-      "headline": "Iran and the US Agreed to Stand Down. India's 9 Million Gulf Workers \u2014 and Its Oil Lifeline \u2014 Are Watching.",
-      "slug": "iran-us-stand-down-hormuz-ceasefire-renewed-india-gulf-workers-oil-qatar-talks-20260628",
+      "id": "82ce88b6-e970-4b54-b7d0-5203d5ff54ed",
+      "headline": "She Was Srivalli for 500 Million Fans \u2014 Now Rashmika Mandanna Is Playing the Monster",
+      "slug": "rashmika-mandanna-villain-raaka-allu-arjun-atlee-pushpa-reunion-deepika-padukone-sci-fi-2027-where-to-watch-diaspora-nri",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "b9cf6e99-4020-4588-bee3-98530ea3f991",
-            "headline": "The Ceasefire Was Twelve Days Old. Then Two More Ships Were "
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Satellite view of the Strait of Hormuz",
-          "reason": "The photo shows the Strait of Hormuz, relevant to the geopolitical story."
+          "what_photo_shows": "Rashmika Mandanna at an event",
+          "reason": "The photo shows Rashmika Mandanna, who is relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [
+          {
+            "url": "https://youtube.com/watch?v=vl4Rfa01Ma4",
+            "problem": "irrelevant",
+            "explanation": "The YouTube link does not appear to be directly related to the article's subject about Rashmika Mandanna's role in Raaka."
+          },
+          {
+            "url": "https://www.instagram.com/p/DZ5GM5zk8kV/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not seem to connect to the main topic of Rashmika Mandanna's new role as a villain."
+          }
+        ],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the film's potential impact on NRI audiences, particularly in major markets like the US, UK, and Canada."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the irrelevant YouTube and Instagram links with embeds that are directly related to Rashmika Mandanna or the film Raaka.",
+          "Expand on the diaspora angle by including quotes or insights from NRI fans or industry experts about the film's significance."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://youtube.com/watch?v=vl4Rfa01Ma4",
+        "Removed irrelevant embed: https://www.instagram.com/p/DZ5GM5zk8kV/",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "22749b78-d7bd-4fff-b490-7838933bed45",
+      "headline": "India's Payment Network Just Built Its Own AI. It Already Serves a Million Users.",
+      "slug": "npci-upi-fimi-ai-agentic-payments-dilip-asbe-india-fintech-20260629",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "contactless mobile payment at terminal",
+          "reason": "The photo shows a relevant payment method related to the story's technology topic."
         },
         "inline_image_mismatches": []
       },
@@ -89,13 +135,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively highlights the impact of geopolitical tensions on the Indian diaspora in the Gulf, making it relevant for NRI readers."
+          "note": "The article discusses UPI's relevance to NRIs, particularly in remittances and payments during visits to India."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes or perspectives from Indian workers in the Gulf to enhance the human angle.",
-          "Include more data or statistics on how previous conflicts have affected Indian workers in the region."
+          "Include more specific examples of how NRIs are using UPI for remittances.",
+          "Add a section on potential challenges or criticisms of UPI's AI integration."
         ],
         "verdict": "pass"
       },
@@ -107,33 +153,94 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "8cfd2cb7-a359-4be4-86e2-a182e6cf0d04",
-      "headline": "India's Weakest Monsoon in 11 Years Is Threatening to Derail the Post-Oil Rally \u2014 and a Super El Ni\u00f1o Could Make It Worse",
-      "slug": "india-weak-monsoon-el-nino-super-threat-food-inflation-sugar-economy-nri-investor-portfolio-20260628",
+      "id": "ab161d96-ec6e-4375-b721-3cf85ad87b26",
+      "headline": "Pichai's Worst Week: Google Lost a Nobel Laureate, a Transformer Co-Author, and $225 Billion",
+      "slug": "google-brain-drain-pichai-shazeer-jumper-alphabet-225-billion-20260629",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "46a89368-bbb6-407c-bb82-4a26695f5261",
+            "headline": "ChatGPT Just Lost Its Majority. Pichai's Gemini and an Anthr"
+          },
+          {
+            "article_id": "50ba40b2-cb1f-46be-b1bf-5b4964226c3a",
+            "headline": "Sundar Pichai's Alphabet Just Joined the Dow. It's Losing No"
+          },
+          {
+            "article_id": "6120b9d9-359f-4a0f-b172-2641c3337f3f",
+            "headline": "Pichai's Google Just Told Meta to Get in Line. The AI Comput"
+          }
+        ],
         "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Sundar Pichai at an event",
+          "reason": "The photo shows Sundar Pichai, relevant to the story about Google."
+        },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 5,
-          "issue": "missing image description"
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article discusses economic implications of the monsoon on agriculture, which is relevant to the Indian diaspora concerned about economic conditions in India."
+          "quality": 8,
+          "note": "The article connects well with the Indian diaspora by discussing Sundar Pichai's leadership and its implications for Indian tech professionals."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include a relevant hero image with a description that matches the article's content.",
-          "Expand on how the economic impacts of the monsoon may affect NRIs or Indian businesses abroad."
+          "Consider adding more direct quotes from industry experts to enhance credibility.",
+          "Include a brief overview of the significance of the departures for the tech industry as a whole."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "04fa3ee6-e785-4343-aa41-88d68ff23ebb",
+      "headline": "OpenAI Built Its Own Chip in Nine Months. Nvidia Should Pay Attention.",
+      "slug": "openai-jalapeno-chip-broadcom-nvidia-inference-indian-engineers-20260629",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "closeup of a processor chip's pins",
+          "reason": "The photo shows a processor chip, relevant to the story about AI hardware."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively highlights the role of Indian engineers in the semiconductor industry, making it relevant for NRI readers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of Indian companies or initiatives in the semiconductor space to strengthen the diaspora angle.",
+          "Include quotes or insights from Indian engineers or industry experts to provide a more personal touch."
         ],
         "verdict": "pass"
       },
