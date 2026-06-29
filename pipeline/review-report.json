@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-29T17:15:21.344875+00:00",
+  "timestamp": "2026-06-29T18:15:55.398408+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
-    "flag": 1,
+    "pass": 7,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,57 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "60c77ac8-9be6-4e07-be4b-54f81bf8f542",
-      "headline": "Cocktail 2 Just Outgrossed the Original in 8 Days \u2014 and Shahid Kapoor Hasn't Looked This Bankable in Years",
-      "slug": "cocktail-2-box-office-127-crore-worldwide-shahid-kapoor-kriti-sanon-rashmika-beats-original-diaspora-nri-20260629",
+      "id": "4e856efb-f90e-4dfd-887e-2e9afa21eb9b",
+      "headline": "Getting Your Parents a US Visa Now Means a 10-Month Wait in Mumbai \u2014 and It's Getting Worse",
+      "slug": "us-visa-wait-times-india-mumbai-hyderabad-nri-parents-20260629",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "ae72fa7f-1354-4a86-abc6-12bf5c919248",
+            "headline": "Your Instagram Is Now Part of Your Visa Application. Indian "
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "US Embassy in New Delhi",
+          "reason": "The photo shows the US Embassy, relevant to the visa wait time story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 5,
+          "issue": "The image of the US Embassy in New Delhi is relevant but does not directly illustrate the specific wait times or experiences discussed in the article."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects with NRIs by discussing the impact of visa delays on family visits, which is a significant concern for the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that directly relates to the visa application process or families waiting for visas to enhance visual relevance.",
+          "Include a brief section on potential changes in visa policies or upcoming reforms that could affect wait times, to provide readers with a forward-looking perspective."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "ca881b24-2932-40da-9d1e-39a4fca9cdae",
+      "headline": "52 Pilgrims Stranded in Nepal Expose the Risks of the Kailash Mansarovar Yatra's Private-Operator Route",
+      "slug": "kailash-mansarovar-yatra-pilgrims-stranded-nepal-mea-advisory-nri-20260629",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +69,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Cocktail 2 movie poster",
-          "reason": "The photo is related to the film mentioned in the story."
+          "what_photo_shows": "Mount Kailash north face",
+          "reason": "Mount Kailash is relevant to the Kailash Mansarovar Yatra story."
         },
         "inline_image_mismatches": []
       },
@@ -35,14 +83,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article discusses the film's overseas earnings and its availability in major North American and British cities, which connects well with the diaspora audience."
+          "quality": 8,
+          "note": "The article effectively addresses the concerns of the Indian American diaspora regarding the pilgrimage."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes or reactions from Shahid Kapoor or other cast members to enhance engagement.",
-          "Add a brief section on how the film's themes resonate with the diaspora audience."
+          "Consider adding quotes from affected pilgrims or experts to enhance the narrative.",
+          "Include more details on the historical significance of the Kailash Mansarovar Yatra for the diaspora."
         ],
         "verdict": "pass"
       },
@@ -54,62 +102,225 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "1fe72ed7-9626-4dc4-9f54-859bc72ad384",
-      "headline": "She Was Trained to Kill by Her Own Father \u2014 and on Thursday, Alia Bhatt Rewrites the YRF Spy Universe",
-      "slug": "alpha-alia-bhatt-sharvari-yrf-spy-universe-bobby-deol-hrithik-cameo-july-3-release-where-to-watch-diaspora-nri-20260629",
+      "id": "083511e8-bab3-43cb-86ae-c44812722a27",
+      "headline": "A Ransomware Gang Just Published 630 GB of Apple and Tesla Secrets. They Got Them from Tata.",
+      "slug": "tata-electronics-data-breach-apple-tesla-tsmc-ransomware-20260629",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [
           {
-            "article_id": "a9c0b327-401a-414b-87e9-42ab8e2db6f2",
-            "headline": "Alia Bhatt Picks Up the Rifle: 'Alpha' Storms In as the Spy "
-          },
-          {
-            "article_id": "25dd0c60-a827-47ad-8a78-8aa411374ef2",
-            "headline": "She Was Named Sita and Raised to Kill: Alpha Is About to Blo"
+            "article_id": "d7c28553-cfa9-4c9d-91f8-1b219bae669a",
+            "headline": "Five Eyes Says AI Cyberattacks Are Months Away. India's IT S"
           }
         ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "movie poster with Alia Bhatt",
-          "reason": "The poster features Alia Bhatt, relevant to the story."
+          "what_photo_shows": "computer monitors with code",
+          "reason": "The photo's subject is relevant to a cybersecurity story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/p/DaF7ikvDNuT/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post does not seem to directly relate to the article's focus on Alia Bhatt's role in the YRF Spy Universe."
-          }
-        ],
+        "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image is relevant to the article's topic but does not feature Alia Bhatt, which could mislead readers."
+          "score": 5,
+          "issue": "The image does not directly relate to the article's topic of cybersecurity and the specific incident involving Tata Electronics."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 7,
-          "note": "The article connects to the diaspora through the global appeal of Bollywood and the significance of Alia Bhatt's role in a major franchise."
+          "note": "The article discusses Tata Electronics, a major Indian company, and its implications for India's role in global manufacturing, which is relevant to the Indian diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant Instagram embed with a more relevant social media post that highlights Alia Bhatt's role or the film's themes.",
-          "Consider using an image that features Alia Bhatt prominently to better match the article's focus."
+          "Consider using a more relevant image that reflects the themes of cybersecurity or the specific companies involved.",
+          "Add a brief section discussing the implications of this incident for the Indian diaspora, particularly those involved in technology and manufacturing sectors."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DaF7ikvDNuT/",
         "promoted to published"
       ],
       "revised": false,
       "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "6ad6da63-6bcb-43a0-9701-1f5986c98d51",
+      "headline": "Apple Calls India's Antitrust Case a Copy-Paste Job. A Potential $38 Billion Fine Says Otherwise.",
+      "slug": "apple-india-cci-antitrust-copy-paste-38-billion-20260629",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Apple Park headquarters in Cupertino",
+          "reason": "The photo shows Apple's headquarters, relevant to a story about Apple."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the implications of Apple's legal challenges in India, which directly affects Indian-American engineers and developers in the tech industry."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include quotes or insights from Indian app developers to enhance the diaspora connection.",
+          "Add a brief section on how this case compares to similar antitrust cases in other countries to provide broader context."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "b3592166-8b33-4656-ba35-02d8dcd8d624",
+      "headline": "India's Central Bank Is Offering NRIs a Rare Deal \u2014 Dollar Deposits at Up to 7.5% With Zero Currency Risk",
+      "slug": "rbi-fcnr-deposit-nri-dollar-7-percent-zero-currency-risk-hdfc-sbi-window-september-2026-20260629",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Reserve Bank of India building",
+          "reason": "The photo shows the Reserve Bank of India, relevant to the story about RBI's financial offer."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses NRIs and their financial interests, making it relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a section on potential risks or downsides of the new RBI scheme for NRIs.",
+          "Include testimonials or quotes from NRIs who have benefited from similar schemes in the past to enhance relatability."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "4a3dd8d5-4ebe-4e37-89d2-6f57fd0a1ff4",
+      "headline": "Remote Work Is Making People Lonelier \u2014 and the Effects Are Worst for Those Living Alone",
+      "slug": "remote-work-loneliness-mental-health-science-study-588000-workers-nri-tech-diaspora-20260629",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "person working alone on laptop",
+          "reason": "The photo aligns with the story about remote work and loneliness."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the findings of the study to the Indian diaspora, particularly tech workers, highlighting their unique challenges."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples or anecdotes from the Indian diaspora to enhance relatability.",
+          "Include potential solutions or coping strategies for loneliness in remote work settings."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "9d03cf6b-b669-4745-96ff-09b6f1dcb4b7",
+      "headline": "Hormone Therapy Slashes Osteoporosis Risk by 69% \u2014 and South Asian Women May Have the Most to Gain",
+      "slug": "hrt-menopause-bone-density-69-percent-endo-2026-south-asian-women-osteoporosis-diaspora-20260629",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MISMATCH",
+          "what_photo_shows": "woman drinking coffee outdoors",
+          "reason": "The photo does not relate to bone density scans or hormone therapy."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 5,
+          "issue": "missing image description"
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses the specific health concerns of South Asian women, including NRIs."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include a relevant hero image that visually represents the topic of hormone therapy and osteoporosis.",
+          "Provide more specific recommendations for NRI women regarding hormone therapy based on the findings."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "Cleared mismatched image (woman drinking coffee outdoors)",
+        "held: image mismatch"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "image_mismatch": true,
       "llm_source": "gpt-4o-mini"
     }
   ]
