@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-29T05:15:12.637261+00:00",
+  "timestamp": "2026-06-29T06:15:59.408353+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
+    "pass": 8,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "969b6457-371e-49b7-bfb5-de29a372c8f2",
-      "headline": "Shah Rukh Khan's 'King' Locks Christmas 2026 \u2014 and Suhana Khan Is Walking Into a \u20b9350-Crore War Zone",
-      "slug": "shah-rukh-khan-king-christmas-2026-release-suhana-khan-debut-abhishek-bachchan-villain-siddharth-anand-anirudh-deepika-padukone-cameo-diaspora-nri",
+      "id": "f037a3de-4ae6-4b1f-a191-a9c0831202b6",
+      "headline": "India's Retail Investors Just Absorbed the Biggest Foreign Selloff in History \u2014 and JP Morgan Says They Won't Stop",
+      "slug": "india-sip-juggernaut-absorbs-record-fpi-outflows-jp-morgan-retail-investor-structural-shift-nri-20260628",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,51 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Official poster of King movie",
-          "reason": "The photo shows the official poster of the movie 'King', which matches the story topic."
+          "what_photo_shows": "Bombay Stock Exchange building",
+          "reason": "The photo shows the Bombay Stock Exchange, relevant to the story about Indian equities."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses the implications of foreign selloffs and domestic investment trends, which are relevant to NRI investors."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more direct quotes or insights from JP Morgan to enhance credibility.",
+          "Add a section discussing how these trends specifically impact NRI investors' strategies."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "59e504a5-e229-486e-a974-2d8c09c21915",
+      "headline": "One in Four Depression Cases May Be Driven by Inflammation \u2014 and Standard Antidepressants Often Don't Work for Them",
+      "slug": "inflamed-depression-inflammation-drives-1-in-4-cases-ssri-resistance-south-asian-metabolic-risk-diaspora-20260628",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "person holding head in distress",
+          "reason": "The image depicts a person in distress, which aligns with the topic of depression."
         },
         "inline_image_mismatches": []
       },
@@ -36,13 +79,276 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the film's release timing with the diaspora's holiday schedule, making it relevant for NRI readers."
+          "note": "The article effectively connects the topic of inflammation-driven depression to the South Asian diaspora, highlighting specific health risks and cultural stigma."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from industry experts or actors to enhance credibility.",
-          "Include more details about the film's themes or potential impact on the industry."
+          "Consider adding more statistics or studies specifically related to the South Asian diaspora to strengthen the argument.",
+          "Include quotes or insights from South Asian mental health professionals to provide a more localized perspective."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "b16ee66f-eb5e-47ee-971b-b1753091d127",
+      "headline": "The Leafy Greens in Your Thali May Be Quietly Protecting Your Lungs \u2014 and a Major New Study Shows How",
+      "slug": "vitamin-k1-leafy-greens-lower-copd-risk-16-percent-edith-cowan-uk-biobank-lung-health-diaspora-20260628",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "variety of fresh leafy greens",
+          "reason": "The photo shows leafy greens relevant to the story about vitamin K1-rich vegetables."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the study's findings to the dietary habits of the Indian diaspora, emphasizing the importance of traditional leafy greens."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a quote from a diaspora health expert to strengthen the connection to the NRI audience.",
+          "Include a brief section on how to incorporate more leafy greens into a busy lifestyle for NRIs."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "41386b79-47db-4388-9c2e-ed2ecb17b555",
+      "headline": "New Delhi Wants a Piece of India's AI Unicorn. It's Paying in GPUs.",
+      "slug": "india-government-equity-stake-sarvam-ai-indiaai-mission-20260629",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "microchip with heatmap colors",
+          "reason": "The image of a microchip aligns with the tech and AI theme of the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image is relevant to the tech theme but does not specifically depict AI or GPUs."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the developments in India's AI sector to the interests of the diaspora, particularly in terms of talent and investment opportunities."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including more specific examples of how the diaspora can engage with or benefit from India's AI developments.",
+          "Add a visual or infographic that illustrates the relationship between the Indian government and AI startups for better engagement."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "cc999a27-003e-4fb6-b047-94b8fd92823a",
+      "headline": "Musk's Real AI Business: Renting Idle GPUs to Anthropic and Google for $2 Billion a Month",
+      "slug": "spacex-xai-gpu-rental-anthropic-google-76-billion-20260629",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "server racks in a data centre",
+          "reason": "The photo shows server racks, relevant to the data centre topic."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the specific topic of AI or GPUs."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the GPU rental situation to the Indian diaspora, highlighting the involvement of Indian-origin engineers in major tech companies."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that depicts AI technology or GPUs.",
+          "Add more context or examples of how the GPU shortage specifically impacts the Indian tech industry."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "246493af-01b4-4d20-83b1-a4ebc822b7f5",
+      "headline": "NVIDIA Just Dethroned Jayshree Ullal's Arista in the Market She Built",
+      "slug": "nvidia-dethroned-jayshree-ullal-arista-ethernet-switch-20260629",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "woman in green sari smiling",
+          "reason": "The photo plausibly shows Jayshree Ullal, relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively highlights the achievements of Jayshree Ullal and connects them to the Indian diaspora, making it relevant for NRI readers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from industry experts or analysts to enhance credibility.",
+          "Include more data or insights on how this market shift specifically impacts NRI investors."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "cd71cbda-917d-48aa-87fe-89e5e7697f4f",
+      "headline": "Navi Mumbai's Airport Goes International on July 15 \u2014 and the Route Is Abu Dhabi",
+      "slug": "navi-mumbai-airport-international-abu-dhabi-air-india-express-20260629",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "fed592db-ffca-4723-8459-4d6505490066",
+            "headline": "Mumbai's Second Airport Is About to Go International \u2014 and t"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Navi Mumbai International Airport terminal",
+          "reason": "The photo shows the airport terminal relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively highlights the benefits of the new airport for NRIs, particularly in terms of improved travel routes and reduced transit times."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more details on future international routes that may be added to attract diaspora interest.",
+          "Consider adding quotes from airport officials or travelers to enhance the narrative."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "ef64bdca-cf7d-445c-b8df-5249271b931e",
+      "headline": "Air India's 'Easy Connect' Lets Your Parents Fly Abroad from Varanasi Without Touching Delhi Immigration",
+      "slug": "air-india-easy-connect-hub-spoke-varanasi-nri-20260629",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Lal Bahadur Shastri International Airport facade",
+          "reason": "The photo shows the airport mentioned in the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the Easy Connect service to the needs of the Indian diaspora, particularly in facilitating travel for elderly family members."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from passengers or Air India representatives to enhance the article's depth.",
+          "Include more specific examples of how this service has already impacted families or travel patterns."
         ],
         "verdict": "pass"
       },
