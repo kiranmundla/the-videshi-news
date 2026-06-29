@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-29T12:15:54.192857+00:00",
+  "timestamp": "2026-06-29T12:45:38.453446+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 6,
-    "flag": 1,
+    "pass": 5,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "a8a324e4-a007-456c-accc-1b3f579db9eb",
-      "headline": "A Bill in Congress Would End the H-1B-to-Green-Card Pipeline. Indian Tech Workers Are the Target",
-      "slug": "chip-roy-h1b-bill-dual-intent-stem-opt-indian-tech-20260629",
+      "id": "ccae3394-1fc9-4a94-a998-44911b21240e",
+      "headline": "Curry Ketchup and Tandoori Naanwiches: India Storms America's Biggest Food Trade Show",
+      "slug": "curry-ketchup-and-tandoori-naanwiches-india-storms-america-s-biggest-food-trade",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,94 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "United States Capitol Building",
-          "reason": "The Capitol Building is relevant to a story about a bill in Congress."
+          "what_photo_shows": "Colorful Indian spices in bags",
+          "reason": "The photo shows Indian spices, relevant to the story about Indian flavors at a food show."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image of spices is relevant but does not directly depict the specific food products mentioned in the article."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the impact of Indian food trends on the diaspora, highlighting both pride and concerns about authenticity."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including images of the specific products mentioned to enhance visual relevance.",
+          "Add quotes from exhibitors or attendees to provide personal insights and enhance engagement."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "e50a117e-ea80-4ef3-bd9c-dac7a1a73915",
+      "headline": "The Chai Wars Come to New York: How Two Bengali Brothers and a Comedian Are Taking On Starbucks",
+      "slug": "the-chai-wars-come-to-new-york-how-two-bengali-brothers-and-a-comedian-are",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Masala chai being poured into a cup",
+          "reason": "The photo shows masala chai, which is relevant to the story about Kolkata Chai Co."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the cultural significance of chai to the NRI experience, making it relatable for diaspora readers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes or anecdotes from NRI customers to enhance the personal connection.",
+          "Include more details about the impact of Kolkata Chai on the local community or its reception among non-Indian customers."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "80e053bc-e6bf-44a2-baeb-7bc87a4bbd8e",
+      "headline": "Vikas Khanna's Unstoppable Year: From TIME 100 to Harvard's Stage to a Chai Empire",
+      "slug": "vikas-khanna-s-unstoppable-year-from-time-100-to-harvard-s-stage-to-a-chai",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "smiling man in a dark jacket",
+          "reason": "The photo plausibly shows Vikas Khanna, matching the story topic."
         },
         "inline_image_mismatches": []
       },
@@ -36,13 +122,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses the implications of the bill specifically on Indian tech workers, making it relevant to the NRI community."
+          "note": "The article effectively connects Vikas Khanna's achievements to the Indian diaspora, highlighting his influence and the pride he brings to NRIs."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes from Indian tech workers or experts to provide personal perspectives.",
-          "Add a section on potential responses or actions from the Indian government or diaspora organizations."
+          "Consider adding quotes from diaspora members or chefs to enhance the personal connection.",
+          "Include more details about the impact of Khanna's initiatives on the diaspora community."
         ],
         "verdict": "pass"
       },
@@ -54,9 +140,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "de94a5e6-de82-46a7-a75b-d472cc3a82e9",
-      "headline": "He Filed 11 Fake H-1B Petitions. Now the Government Wants His Citizenship Back",
-      "slug": "doj-denaturalization-h1b-fraud-magnavision-sharma-indian-20260629",
+      "id": "603729f3-c1ea-4de7-a1af-cd409cb21033",
+      "headline": "India Just Signed a Trade Deal With Europe. Now It's Begging Brussels Not to Cut Off Its Metal Scrap.",
+      "slug": "india-eu-scrap-metal-export-curbs-aluminium-steel-trade-deal-cbam-20260629",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,71 +150,28 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Department of Justice building",
-          "reason": "The DOJ building is relevant to a story about a DOJ campaign."
+          "what_photo_shows": "Aluminium swarf in a container",
+          "reason": "The photo shows aluminium scrap, relevant to the metal scrap trade topic."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 8,
+        "overall_score": 7,
         "embed_issues": [],
         "image_match": {
-          "score": 3,
-          "issue": "irrelevant"
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses the implications of denaturalization for the Indian diaspora, particularly those involved in the H-1B visa process."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the hero image with one that is more relevant to immigration or the H-1B visa topic.",
-          "Include quotes or perspectives from members of the Indian diaspora to enhance the connection to the audience."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "28831442-4986-4733-9891-e426ce202d2b",
-      "headline": "Foxconn's New Bengaluru Factory Just Shipped Its First iPhones. Apple Wants a Quarter of All Production in India.",
-      "slug": "foxconn-bengaluru-iphone-factory-apple-25-percent-india-20260629",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "smartphone circuit boards in production",
-          "reason": "The photo shows electronics manufacturing, relevant to the factory story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the specific topic of iPhone production or Foxconn's factory."
+          "score": 8,
+          "issue": "The image of aluminium scrap is relevant to the article's topic on metal scrap trade."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 7,
-          "note": "The article discusses Apple's investment in India, which is relevant to the Indian diaspora, particularly in terms of economic opportunities and technological advancements."
+          "note": "The article discusses trade implications that affect Indian industries, which is relevant to the NRI community involved in trade and business."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes or perspectives from Indian diaspora members regarding Apple's investment in India.",
-          "Consider using an image that directly relates to the iPhone production or the Foxconn factory to enhance relevance."
+          "Include quotes or perspectives from Indian industry leaders or government officials to enhance the diaspora connection.",
+          "Add a brief section on how these trade dynamics might affect Indian expatriates working in related industries abroad."
         ],
         "verdict": "pass"
       },
@@ -140,117 +183,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "6180239a-bdc0-4a29-b45d-c31862efa8c2",
-      "headline": "India's Central Bank Just Gave Every Bank an AI Kill Switch. Here's What It Means for Your Money.",
-      "slug": "rbi-ai-kill-switch-banking-guidelines-model-risk-20260629",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "d3f645d6-a026-4170-96c8-0c34b5a867ec",
-            "headline": "India's Central Bank Just Ordered a Kill Switch on Every AI "
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Reserve Bank of India headquarters",
-          "reason": "The photo shows the RBI headquarters, relevant to the story about RBI's AI framework."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the RBI's AI regulations to the financial interests of NRIs, making it relevant for the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more examples of how these regulations might directly impact NRI financial activities.",
-          "Include quotes from more experts or stakeholders to enhance credibility and depth."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "376d36ae-f9ea-49fd-acb5-0b805245f1b0",
-      "headline": "Google Launched Its Best AI Model the Same Week It Lost Two of Its Best Researchers. Then It Went to India.",
-      "slug": "google-gemini-3-india-ai-safety-summit-pichai-20260629",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "46a89368-bbb6-407c-bb82-4a26695f5261",
-            "headline": "ChatGPT Just Lost Its Majority. Pichai's Gemini and an Anthr"
-          },
-          {
-            "article_id": "50ba40b2-cb1f-46be-b1bf-5b4964226c3a",
-            "headline": "Sundar Pichai's Alphabet Just Joined the Dow. It's Losing No"
-          },
-          {
-            "article_id": "6120b9d9-359f-4a0f-b172-2641c3337f3f",
-            "headline": "Pichai's Google Just Told Meta to Get in Line. The AI Comput"
-          },
-          {
-            "article_id": "ab161d96-ec6e-4375-b721-3cf85ad87b26",
-            "headline": "Pichai's Worst Week: Google Lost a Nobel Laureate, a Transfo"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Sundar Pichai at an event",
-          "reason": "The photo shows Sundar Pichai, relevant to the Google story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the AI developments to the Indian diaspora, highlighting both professional and personal implications."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more direct quotes from experts or stakeholders to enhance credibility.",
-          "Include a brief overview of how Gemini 3 compares to its competitors in the AI space."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "c5fbd194-d35b-4fff-bee4-37373e1496e7",
-      "headline": "An Indian Law Graduate Just Became CFO of America's Biggest Gym Chain. He Also Runs Its Global Expansion.",
-      "slug": "sudhanshu-priyadarshi-planet-fitness-cfo-indian-american-diaspora-20260629",
+      "id": "2a919ac0-3d5e-49f4-946b-748f759794d6",
+      "headline": "India Just Launched Two Anti-Dumping Probes in One Week. One Could Make Its Own Power Grid More Expensive.",
+      "slug": "india-dual-steel-anti-dumping-probe-crgo-hot-rolled-china-japan-russia-power-grid-20260629",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -258,71 +193,28 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Planet Fitness location exterior",
-          "reason": "The photo shows a Planet Fitness location, relevant to the story about its CFO."
+          "what_photo_shows": "a stainless steel production plant",
+          "reason": "The photo of a steel plant is relevant to a story about steel trade and industry."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 8,
+        "overall_score": 7,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 8,
+          "issue": "The image of a stainless steel plant is relevant to the topic of steel imports and production."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively highlights the significance of an Indian-origin executive in a major American company, appealing to the aspirations of the diaspora."
+          "quality": 6,
+          "note": "The article discusses India's trade policies which may interest NRIs involved in trade or investment, but the connection could be made stronger."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes or insights from Sudhanshu Priyadarshi to provide a personal touch.",
-          "Include more context on the impact of Indian executives in the American corporate landscape."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "334e7371-6746-4b45-9dca-bffe001db34b",
-      "headline": "She Built the Middleware That Moves Indian Brands Across Borders. EY Just Noticed.",
-      "slug": "somdutta-singh-ey-entrepreneur-year-southeast-assiduus-diaspora-20260629",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Shipping containers at a port",
-          "reason": "The photo symbolically represents cross-border commerce infrastructure relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the article's focus on Somdutta Singh and her company, Assiduus Global."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the topic of cross-border commerce to the diaspora's relationship with India."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that features Somdutta Singh or represents her company, Assiduus Global.",
-          "Expand on the implications of Singh's achievement for the Indian diaspora to enhance the connection."
+          "Include quotes or perspectives from NRI stakeholders in the trade industry to strengthen the diaspora angle.",
+          "Add a brief explanation of how these trade policies might impact NRIs or the global market."
         ],
         "verdict": "pass"
       },
