@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-29T04:45:29.320621+00:00",
+  "timestamp": "2026-06-29T05:15:12.637261+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 2,
+    "pass": 1,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "224f197a-7c44-4d52-9e58-7ec0deb58c2d",
-      "headline": "Shanaka's Stunning 23-Ball 58 Rescues Seattle Orcas from 72/6. India-Born Harmeet Singh Stars with Bat and Ball in MLC Win Over LA Knight Riders",
-      "slug": "shanaka-58-off-23-rescue-seattle-orcas-72-for-6-harmeet-singh-ali-sheikh-mlc-la-knight-riders-oakland-2026",
+      "id": "969b6457-371e-49b7-bfb5-de29a372c8f2",
+      "headline": "Shah Rukh Khan's 'King' Locks Christmas 2026 \u2014 and Suhana Khan Is Walking Into a \u20b9350-Crore War Zone",
+      "slug": "shah-rukh-khan-king-christmas-2026-release-suhana-khan-debut-abhishek-bachchan-villain-siddharth-anand-anirudh-deepika-padukone-cameo-diaspora-nri",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Oakland Coliseum aerial view",
-          "reason": "The photo shows the Oakland Coliseum, which is relevant to the cricket match location in the story."
+          "what_photo_shows": "Official poster of King movie",
+          "reason": "The photo shows the official poster of the movie 'King', which matches the story topic."
         },
         "inline_image_mismatches": []
       },
@@ -30,150 +30,21 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 3,
-          "issue": "irrelevant"
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article highlights the contributions of Harmeet Singh, an India-born player, which connects well with the diaspora audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the hero image with one that is more relevant to the cricket match or players mentioned.",
-          "Consider adding quotes from players or coaches to enhance the narrative and provide more depth."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "9b494204-de05-45d5-a6f5-60a10538a7e6",
-      "headline": "Shootout Revenge at Lee Valley. India Edge England 3-2 to End Their Pro League Tour on a High.",
-      "slug": "india-beat-england-3-2-shootout-fih-pro-league-london-lee-valley-hardik-abhishek-mohith-hockey-world-cup-2026-diaspora-nri",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Indian field hockey team group photo",
-          "reason": "The photo shows the Indian field hockey team, relevant to the hockey story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 5,
-          "issue": "The image does not directly relate to the specific match discussed in the article."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article connects to the Indian diaspora by highlighting a significant achievement of the Indian men's hockey team, which is of interest to NRIs."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that depicts the specific match or players involved.",
-          "Add a brief section discussing the implications of this victory for the Indian team in the context of the upcoming Hockey World Cup."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "0df52ed7-fff6-4e5d-a4d7-09743df903bd",
-      "headline": "Washington Is Quietly Dismantling Every Path Indians Used to Stay in America",
-      "slug": "us-immigration-crackdown-indians-uscis-adjustment-status-f1-visa-green-card-exodus-20260628",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "US Capitol building at dusk",
-          "reason": "The photo shows the US Capitol, relevant to US immigration policy."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 5,
-          "issue": "The image of the Capitol does not directly relate to the topic of Indian immigration pathways."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article discusses immigration policies that directly affect the Indian diaspora, making it highly relevant."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that reflects the topic of immigration or Indian students.",
-          "Add quotes or perspectives from Indian immigrants or experts to enhance the personal connection."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "5670592e-d854-4bc9-9411-7ba851d2c0b3",
-      "headline": "Modi's Biggest Cabinet Shake-Up in a Decade Could Replace His Finance and Education Ministers This Week",
-      "slug": "modi-cabinet-reshuffle-sitharaman-pradhan-finance-education-2027-elections-20260628",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Nirmala Sitharaman smiling",
-          "reason": "The photo shows Nirmala Sitharaman, relevant to the story about her potential removal."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 3,
-          "issue": "irrelevant"
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the cabinet reshuffle to potential impacts on NRI financial interests."
+          "note": "The article effectively connects the film's release timing with the diaspora's holiday schedule, making it relevant for NRI readers."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the hero image with one that is more relevant to the topic of cabinet reshuffles or Indian politics.",
-          "Consider adding more context on how previous cabinet reshuffles have impacted NRI policies."
+          "Consider adding quotes from industry experts or actors to enhance credibility.",
+          "Include more details about the film's themes or potential impact on the industry."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
         "promoted to published"
