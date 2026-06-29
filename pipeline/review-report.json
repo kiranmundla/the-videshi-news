@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-29T13:45:12.626734+00:00",
+  "timestamp": "2026-06-29T14:15:44.920447+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
-    "flag": 0,
+    "pass": 4,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,68 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "7adb1c7d-1c7c-4ace-b852-d637403ecefe",
-      "headline": "Fifty Days Out. India Is About to Host the Biggest Badminton Tournament on Earth.",
-      "slug": "bwf-world-championships-2026-new-delhi-india-sindhu-lakshya-sen-satwik-chirag-srikanth-tickets-bookmyshow-diaspora-nri",
+      "id": "c8f9d429-78c3-44e0-86db-17d3973ee0a6",
+      "headline": "Persistent Systems Just Made India's Biggest Mid-Cap IT Bet \u2014 a \u20ac1 Billion Bid for Germany's Nagarro That Crashed Its Own Stock 11%",
+      "slug": "persistent-systems-nagarro-1-billion-euro-acquisition-india-mid-cap-it-stock-crash-ai-services-nri-investor-20260629",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "4825c3bb-ebc0-4bae-be87-fd9f1784ccbf",
+            "headline": "Every Forecaster Is Saying the Same Thing: India Is Slowing "
+          },
+          {
+            "article_id": "cac7ea7e-91bc-4f8e-a9c5-aa84d30517ba",
+            "headline": "Jio Is Filing for India's Biggest IPO Ever. None of Its Majo"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Bombay Stock Exchange building",
+          "reason": "The photo shows the Bombay Stock Exchange, relevant to the stock impact mentioned in the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/DaFrdPCoCgw/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not relate to the financial or corporate context of the article."
+          }
+        ],
+        "image_match": {
+          "score": 6,
+          "issue": "The image of the Bombay Stock Exchange is somewhat relevant but does not directly relate to the specific companies or the acquisition discussed."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses an Indian company's significant acquisition, which is relevant to the Indian diaspora interested in business developments."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the irrelevant Instagram embed with a more relevant financial news source or analysis related to the acquisition.",
+          "Consider using an image that directly represents Persistent Systems or Nagarro to enhance relevance."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/DaFrdPCoCgw/",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "303e6e00-bbdd-458b-bf6c-0daf9a64a1ba",
+      "headline": "A New Blood Test Catches 90% of Aggressive Prostate Cancers That the Standard PSA Misses \u2014 and Only 6% of Men Are Even Being Screened",
+      "slug": "stockholm3-blood-test-90-percent-aggressive-prostate-cancer-psa-screening-gap-south-asian-men-diaspora-20260629",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +80,56 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "BWF World Championships banners",
-          "reason": "The photo shows BWF World Championships banners, relevant to the badminton tournament story."
+          "what_photo_shows": "blood test tubes in a laboratory",
+          "reason": "The photo shows blood test tubes, which is relevant to the blood test topic."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image of laboratory test tubes is relevant but does not directly depict prostate cancer or the specific blood test discussed."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively addresses the cultural barriers faced by South Asian men regarding prostate cancer screening, making it highly relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including a more specific image related to prostate cancer or the Stockholm3 test for better visual alignment.",
+          "Add a section on how NRIs can advocate for prostate cancer awareness in their communities."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "2fd066b1-fc49-4f49-9e41-b2f0f4f85384",
+      "headline": "GLP-1 Poison Control Calls Have Surged Fivefold \u2014 and a New Pill That Doesn't Require Fasting Could Change Everything",
+      "slug": "glp1-poison-control-calls-surge-fivefold-aleniglipron-oral-pill-nature-south-asian-diabetes-diaspora-20260629",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "4d6f7ec5-bfca-4526-9d19-c314acf11ec4",
+            "headline": "The Weight-Loss Drugs Millions Take May Be Quietly Dulling T"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Ozempic injection pen",
+          "reason": "The photo shows a GLP-1 drug relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -36,13 +143,99 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively highlights the significance of the event for the Indian diaspora, particularly in relation to affordable tickets and the presence of medal contenders."
+          "note": "The article effectively connects the topic of GLP-1 drugs and their implications for the Indian diaspora, particularly regarding diabetes and weight management."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more quotes or insights from players or officials to enhance the narrative.",
-          "Include a brief history of India's performance in past World Championships to provide context."
+          "Consider adding more statistics or studies specifically related to the Indian diaspora's health outcomes with GLP-1 drugs to strengthen the diaspora angle.",
+          "Include quotes or insights from healthcare professionals within the Indian community to provide a more personal touch and enhance relatability."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "fef106db-2146-4525-8322-e793784696a3",
+      "headline": "Japan Triples Its Exit Tax Tomorrow \u2014 but the Weak Yen and New Nonstops Give NRI Travellers a Reason to Go Anyway",
+      "slug": "japan-sayonara-tax-triples-visa-fees-nri-travel-guide-20260629",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Tokyo Tower and Zojoji Temple",
+          "reason": "The photo shows a Tokyo landmark relevant to a Japan travel story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses NRI travelers and their specific concerns regarding travel to Japan."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more specific examples or anecdotes from NRI travelers to enhance relatability.",
+          "Add a section on how the changes might affect travel plans for NRIs specifically."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "09cfbb4a-3923-41e8-9d7a-8d9c1135accc",
+      "headline": "Europe's New Border System Is Causing Six-Hour Queues \u2014 and NRIs Are Caught in the Middle",
+      "slug": "europe-ees-border-system-queues-nri-summer-travel-20260629",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "crowded airport terminal with queues",
+          "reason": "The photo shows a crowded airport terminal, which aligns with the story about long queues at border control."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the new border system to the experiences of NRIs, particularly those traveling through European hubs."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more personal anecdotes or quotes from NRIs affected by the new system to enhance relatability.",
+          "Include a brief overview of the EES system's intended benefits to provide context for the challenges faced."
         ],
         "verdict": "pass"
       },
