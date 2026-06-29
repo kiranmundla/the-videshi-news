@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-29T22:45:30.376603+00:00",
+  "timestamp": "2026-06-29T23:15:12.186375+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
-    "flag": 1,
+    "pass": 1,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "5ed1aa2e-a39d-4274-87c5-a8bf4298a35d",
-      "headline": "Cricket Is Going to the Olympics. India Women Are Already In.",
-      "slug": "cricket-olympics-la-2028-india-women-qualify-men-rankings-ioc-icc-pathway-diaspora-nri",
+      "id": "8dadecc1-d1d3-48e3-9b94-6945006123c1",
+      "headline": "She's Carrying a Shotgun in Her Wedding Dress \u2014 and Sherlock Has Been Kidnapped",
+      "slug": "enola-holmes-3-millie-bobby-brown-shotgun-wedding-malta-netflix-july-1-where-to-watch-diaspora-nri",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Harmanpreet Kaur with a trophy",
-          "reason": "The photo shows Harmanpreet Kaur, relevant to the story."
+          "what_photo_shows": "Enola Holmes 3 movie poster",
+          "reason": "The photo is an official release poster for Enola Holmes 3, matching the story topic."
         },
         "inline_image_mismatches": []
       },
@@ -35,169 +35,18 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the Olympic cricket event to the Indian diaspora in Southern California, highlighting the significance of the location and the potential impact on the community."
+          "quality": 7,
+          "note": "The article mentions Himesh Patel, a British-Indian actor, which connects to the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more quotes from players or officials to enhance the narrative.",
-          "Include a brief history of cricket's Olympic participation for context."
+          "Include more direct references to how the film's themes resonate with the Indian diaspora.",
+          "Add quotes or insights from the cast or crew that specifically address the film's appeal to international audiences."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "3b54419a-6380-4967-ae74-9dde4cb17aea",
-      "headline": "Hyderabad Named a Road After Trump. His Party's Rivals Did It. His Party Is Furious.",
-      "slug": "hyderabad-donald-trump-avenue-congress-bjp-us-india-tech-corridor-20260629",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "buildings in Hyderabad's HITEC City",
-          "reason": "The photo shows a location in Hyderabad relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image depicts a tech corridor in Hyderabad, which is relevant to the article's subject but does not specifically show the newly named road."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article connects to the diaspora by discussing the significance of the Hyderabad tech corridor for Indian Americans."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include a direct quote from a diaspora member to enhance the personal connection.",
-          "Add more context about the significance of the road naming for the Indian American community."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "97076b3f-5faf-4877-acc9-468b1b716195",
-      "headline": "India's Biggest Trade Deal Ever Takes Effect in 16 Days. Here's What Changes for the Diaspora.",
-      "slug": "india-uk-fta-enters-force-july-15-whisky-tariffs-pension-diaspora-20260629",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "two officials signing documents",
-          "reason": "The photo shows officials at a signing ceremony, matching the trade agreement story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the trade deal to the Indian diaspora, particularly regarding pension contributions for professionals."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more specific examples of how the trade deal will impact everyday life for NRIs.",
-          "Add quotes or insights from diaspora members or experts to enhance relatability."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "04d1b8de-7e07-44fc-82d6-f41f3cb8fd6f",
-      "headline": "Pakistan Just Bombed Afghanistan for the Second Time This Month. India Told Islamabad to Stop Blaming Everyone Else.",
-      "slug": "pakistan-airstrikes-afghanistan-karachi-rangers-india-baseless-allegations-20260629",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [
-          {
-            "url": "https://x.com/OfficialDGISPR/status/1794406158223696009",
-            "problem": "broken",
-            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
-          },
-          {
-            "url": "https://x.com/AttaullahTarar/status/1794407137074747514",
-            "problem": "broken",
-            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
-          },
-          {
-            "url": "https://x.com/mohajer_farahi/status/1794420076241285272",
-            "problem": "broken",
-            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
-          },
-          {
-            "url": "https://x.com/MEAIndia/status/1794458997232204043",
-            "problem": "broken",
-            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
-          }
-        ],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Sindh Rangers paramilitary personnel",
-          "reason": "The photo shows Sindh Rangers, relevant to the Pakistan military context."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 5,
-          "issue": "The image of the Sindh Rangers does not directly relate to the broader geopolitical context of the article."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the geopolitical tensions to the concerns of the Indian diaspora, particularly regarding family ties and business interests in the region."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that reflects the geopolitical context of the article.",
-          "Add more direct quotes or perspectives from diaspora members to enhance the connection."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Removed 4 broken/hallucinated embed(s)",
         "promoted to published"
       ],
       "revised": false,
