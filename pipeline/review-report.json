@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-29T10:45:31.878458+00:00",
+  "timestamp": "2026-06-29T11:15:22.802383+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
-    "flag": 1,
+    "pass": 2,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,30 +11,81 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "574b8ab5-7060-4acf-892f-08d09ec52116",
-      "headline": "Eust\u00e1quio's 92nd-Minute Strike Sends Canada Into the World Cup Round of 16 for the First Time",
-      "slug": "canada-eustaquio-92nd-minute-world-cup-round-of-32-south-africa-inglewood-indian-diaspora-brampton-2026-nri",
+      "id": "5548ed2a-55f9-4392-b784-8fc048e49c6e",
+      "headline": "She Danced Through Morning Sickness and Told No One: Samantha Ruth Prabhu Is Having a Baby",
+      "slug": "samantha-ruth-prabhu-pregnancy-raj-nidimoru-maa-inti-bangaaram-morning-sickness-maternity-leave-december-2026-diaspora-nri",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "08ca90ed-eb79-4afd-8fbe-538dbfce7726",
+            "headline": "Samantha Ruth Prabhu Stood Up at a Success Party and Announc"
+          }
+        ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Canadian football player in team kit",
-          "reason": "The photo shows a football player in a Canadian kit, relevant to the story."
+          "what_photo_shows": "woman in red saree at event",
+          "reason": "The photo plausibly shows Samantha Ruth Prabhu."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article connects to diaspora audiences by mentioning Samantha's filmography and her appeal to NRI viewers, but could elaborate more on how her story resonates with them."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Expand on the diaspora angle by including specific references to how Samantha's work has impacted NRI communities or how they can engage with her upcoming projects.",
+          "Consider adding quotes or reactions from NRI fans regarding Samantha's announcement to enhance the connection with the diaspora audience."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "23a57bc5-5e31-4dce-8afb-0c9fcbe55d20",
+      "headline": "Shivam Is Back: Awarapan 2 Teaser Drops 19 Years to the Day \u2014 and Emraan Hashmi Has Never Looked More Dangerous",
+      "slug": "awarapan-2-teaser-emraan-hashmi-shivam-returns-disha-patani-shabana-azmi-august-14-independence-day-2026",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
           {
-            "url": "https://www.instagram.com/reel/DaJO8p1PCkL/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram reel does not appear to be directly related to the article's subject of Canada's World Cup performance."
+            "article_id": "b2d5d81c-5c08-4183-a788-98c9a8e7c309",
+            "headline": "Emraan Hashmi Wipes the Frost Off the Glass \u2014 and Bollywood "
+          },
+          {
+            "article_id": "d44835ff-5068-4793-86cc-545e5e0edc67",
+            "headline": "Shivam Pandit Is Two Days Away: The 'Awarapan 2' Teaser Drop"
           }
         ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Emraan Hashmi at an event",
+          "reason": "The photo shows Emraan Hashmi, relevant to the story about Awarapan 2."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
         "image_match": {
           "score": 9,
           "issue": null
@@ -42,155 +93,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects Canada's World Cup success to the Indian diaspora, highlighting community celebrations and support."
+          "note": "The article effectively connects the film's legacy to the NRI community, highlighting its cultural significance."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant Instagram embed with a more relevant social media post related to Canada's World Cup performance.",
-          "Consider adding more quotes or reactions from the Indian diaspora to enhance the connection."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/reel/DaJO8p1PCkL/",
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "29bfe3a2-8f2b-4bf9-aea7-ee6c4edccf84",
-      "headline": "Srikanth Falls in the Final. India's Best US Open in Years Still Ends One Match Short.",
-      "slug": "srikanth-loses-us-open-final-su-li-yang-fullerton-rounak-chouhan-devika-sihag-indian-badminton-california-2026-diaspora-nri",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "804ed026-6de0-46e7-b30d-6799b97f666e",
-            "headline": "Srikanth Saves Three Match Points and Outlasts Okimoto to Re"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "badminton player Kidambi Srikanth",
-          "reason": "The photo shows Kidambi Srikanth, relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/p/DaJ9yPZFALF/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post does not appear to be directly related to the US Open or the players mentioned in the article."
-          }
-        ],
-        "image_match": {
-          "score": 7,
-          "issue": "The image depicts a badminton match but does not feature Srikanth or the specific event discussed."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the significance of the tournament to the Indian diaspora in Southern California."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the irrelevant Instagram embed with a more relevant social media post related to Srikanth's performance.",
-          "Consider including a quote from Srikanth or a coach to add depth to the narrative."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DaJ9yPZFALF/",
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "7ed4c0cf-4be1-4c2f-b589-d888ffd8f0a9",
-      "headline": "A Pune IT Firm Just Made One of India's Biggest-Ever Overseas Tech Acquisitions. The Company It Bought Was Founded by Indians in Germany.",
-      "slug": "persistent-systems-nagarro-acquisition-1-3-billion-ai-engineering-indian-it-overseas-20260629",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "skyline of western Pune",
-          "reason": "The photo shows the skyline of Pune, relevant to the story about a Pune-based IT firm."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image of Pune's skyline is relevant but does not directly depict the tech acquisition or the companies involved."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively highlights the connection between Indian founders and the diaspora, emphasizing cross-border mobility."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a relevant image that directly relates to the acquisition or the companies involved.",
-          "Include quotes or insights from industry experts to enhance the depth of analysis."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "428ce601-950b-4a06-8ef2-5b1f471ae1ad",
-      "headline": "India's Monsoon Is Running 43% Below Normal. The Last Time It Was This Bad, It Set Off a Food-Price Spiral.",
-      "slug": "india-monsoon-43-percent-deficit-weakest-11-years-el-nino-agriculture-kharif-crisis-20260629",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "farmer in rice paddy during rain",
-          "reason": "The photo shows a farmer during monsoon rains, relevant to the monsoon story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image depicts a landscape that could relate to agriculture, but it lacks a direct connection to the monsoon theme."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the impact of the monsoon on farming and food prices to the personal stakes for NRIs with family in rural India."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that directly represents the monsoon or its effects on agriculture.",
-          "Add a quote or perspective from an NRI to further enhance the diaspora connection."
+          "Consider adding more quotes from the cast or crew to enhance the article's depth.",
+          "Include a brief overview of the original film's plot for readers unfamiliar with it."
         ],
         "verdict": "pass"
       },
