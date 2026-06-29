@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useTweet } from "react-tweet";
 
 interface SocialEmbedProps {
@@ -249,16 +249,47 @@ function InstagramEmbed({ url, caption }: { url: string; caption?: string }) {
   const shortcode = extractInstaShortcode(url);
   if (!shortcode) return null;
 
+  // Determine the correct permalink path based on the original URL
+  const isReel = /\/reel\//.test(url);
+  const isTv = /\/tv\//.test(url);
+  const pathType = isReel ? "reel" : isTv ? "tv" : "p";
+  const permalink = `https://www.instagram.com/${pathType}/${shortcode}/`;
+
+  // Use Instagram's official embed method (blockquote + embed.js)
+  // which auto-sizes the embed correctly — same approach as CelebrityBuzz/HeroMedia
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const w = window as unknown as { instgrm?: { Embeds: { process: (el?: HTMLElement) => void } } };
+    if (w.instgrm?.Embeds) {
+      w.instgrm.Embeds.process(ref.current || undefined);
+    } else if (!document.querySelector('script[src="https://www.instagram.com/embed.js"]')) {
+      const script = document.createElement("script");
+      script.src = "https://www.instagram.com/embed.js";
+      script.async = true;
+      script.onload = () => {
+        (window as any).instgrm?.Embeds?.process(ref.current || undefined);
+      };
+      document.body.appendChild(script);
+    }
+  }, [shortcode]);
+
   return (
-    <figure className="my-6 flex flex-col items-center">
-      <iframe
-        src={`https://www.instagram.com/p/${shortcode}/embed/`}
-        className="w-full max-w-[540px] rounded border-0"
-        style={{ minHeight: 500 }}
-        loading="lazy"
-        allowTransparency
-        scrolling="no"
-        title="Instagram embed"
+    <figure className="my-6 flex flex-col items-center" ref={ref}>
+      <blockquote
+        className="instagram-media"
+        data-instgrm-permalink={permalink}
+        data-instgrm-version="14"
+        style={{
+          background: "#FFF",
+          border: 0,
+          borderRadius: 3,
+          margin: "0 auto",
+          maxWidth: 540,
+          width: "100%",
+          minWidth: 326,
+          padding: 0,
+        }}
       />
       {caption && (
         <figcaption className="mt-2 text-sm text-muted-foreground text-center">
