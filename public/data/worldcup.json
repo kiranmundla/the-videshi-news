@@ -1,6 +1,6 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-06-29T01:59:19Z",
+  "last_updated": "2026-06-29T04:00:00Z",
   "stage": "Knockout Stage",
   "hosts": "USA, Mexico & Canada",
   "dates": {
@@ -3982,6 +3982,20 @@
       "account": "@fifaworldcup",
       "caption": "🇨🇦",
       "date": "2026-06-28"
+    },
+    {
+      "title": "DR Congo goal celebration vs Uzbekistan",
+      "url": "https://www.threads.com/@fifaworldcup/post/DaHFPZkltzz",
+      "platform": "threads",
+      "date": "2026-06-27",
+      "match": "DR Congo vs Uzbekistan"
+    },
+    {
+      "title": "Algeria and Austria both advance to knockouts after 3-3 draw",
+      "url": "https://www.threads.com/@fifaworldcup/post/DaHZ_WGFlft",
+      "platform": "threads",
+      "date": "2026-06-27",
+      "match": "Algeria vs Austria"
     }
   ],
   "tv": {
