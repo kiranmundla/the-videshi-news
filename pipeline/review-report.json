@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-29T15:45:26.328518+00:00",
+  "timestamp": "2026-06-29T16:15:22.777414+00:00",
   "mode": "fix",
   "stats": {
     "pass": 1,
-    "flag": 0,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,31 +11,18 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "b570a243-6064-4ea0-8d96-18169c82fa4b",
-      "headline": "Meta Handed WhatsApp to an Indian Founder. It Paid $900 Million for the Privilege.",
-      "slug": "kunal-shah-whatsapp-ceo-meta-900-million-cred-20260629",
+      "id": "68943038-05c3-4686-9959-65c1e60dd9c9",
+      "headline": "EB-2 India Is Shut Until October. The July Visa Bulletin Is a Wall",
+      "slug": "july-2026-visa-bulletin-eb2-india-unavailable-eb1-retrogress-20260629",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "0ce6d903-3713-43d6-a860-69146188f259",
-            "headline": "Meta Just Paid $900 Million for an Indian Fintech. Its Found"
-          },
-          {
-            "article_id": "4988648b-d781-4950-85dc-66e323afab97",
-            "headline": "Meta Just Handed WhatsApp to a Mumbai Founder Who Never Wrot"
-          },
-          {
-            "article_id": "294acf24-69a6-478c-9ba2-e72c656ac7e5",
-            "headline": "The App the Diaspora Lives On Just Got an Indian Boss"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "man in Freecharge shirt",
-          "reason": "The photo plausibly shows Kunal Shah, relevant to the story."
+          "what_photo_shows": "hand holding passport with visa stamps",
+          "reason": "The photo is relevant to a story about visas and immigration."
         },
         "inline_image_mismatches": []
       },
@@ -43,21 +30,93 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image features Kunal Shah, which is relevant to the article, but it does not directly depict WhatsApp or Meta."
+          "score": 5,
+          "issue": "The image does not directly relate to the topic of immigration or visas."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the appointment of Kunal Shah to the Indian diaspora, highlighting the significance of Indian leadership in global tech."
+          "note": "The article discusses visa categories and their implications for Indian professionals, which is highly relevant to the NRI community."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider including a more relevant image that directly relates to WhatsApp or Meta to enhance visual impact.",
-          "Add quotes or insights from diaspora members or experts to further strengthen the diaspora angle."
+          "Consider using an image that directly relates to immigration or the visa process to enhance relevance.",
+          "Add a brief summary or conclusion that emphasizes the impact of these visa changes on the Indian diaspora."
         ],
         "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "7cd205b9-fefe-4bb3-8095-09600ad42101",
+      "headline": "You Used Day 1 CPT in 2019. USCIS Just Found Out",
+      "slug": "day-1-cpt-green-card-denials-uscis-sevis-cross-check-20260629",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "aa18166c-663c-45a8-b24e-f5f8ce229faa",
+            "headline": "The Receipt That Never Ends. Every Fee Washington Has Added "
+          },
+          {
+            "article_id": "3bfccf08-94f2-4e2f-bf43-2cfdc4773f28",
+            "headline": "The Green Card You Could Get Without Leaving America? USCIS "
+          },
+          {
+            "article_id": "cd4c6f8e-79f5-47e7-8212-4c494babe13a",
+            "headline": "The Self-Petition Escape Hatch Is Closing. NIW Approvals Jus"
+          },
+          {
+            "article_id": "75dec796-365f-4a9f-afc4-aa7eee5d8e89",
+            "headline": "Indians Built Escape Routes Around the Green-Card Backlog. T"
+          },
+          {
+            "article_id": "6be85e6d-fc39-4011-ba26-54b94583d20f",
+            "headline": "DHS Says It Will Process Your Visa With AI in 30 Days. Immig"
+          },
+          {
+            "article_id": "faac8aeb-8246-40b8-81c3-1daaa48ee892",
+            "headline": "EB-5 Becomes India's Fastest Green Card Route. The Window Cl"
+          },
+          {
+            "article_id": "d276a8b7-a31d-454e-944f-1d95ef0e1ad8",
+            "headline": "A $100,000 Price Tag on Every H-1B Hire. A Judge Said No. Th"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "USCIS Application Support Center",
+          "reason": "The photo shows a USCIS center, relevant to the immigration story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 5,
+          "issue": "The image is relevant to USCIS but does not directly relate to Day 1 CPT or the specific topic of the article."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article addresses issues specifically affecting Indian students and professionals in the U.S., making it relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that directly relates to Day 1 CPT or the experiences of international students.",
+          "Add a section with practical advice for affected individuals, such as steps to take if they find themselves in a similar situation."
+        ],
+        "verdict": "flag"
       },
       "actions_taken": [
         "promoted to published"
