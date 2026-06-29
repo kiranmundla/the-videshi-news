@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-29T14:45:16.486123+00:00",
+  "timestamp": "2026-06-29T15:18:26.226695+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 0,
+    "pass": 3,
+    "flag": 2,
     "fail": 0,
     "error": 0
   },
@@ -11,18 +11,23 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "2e3dfd6d-2512-48c7-92a6-f648221605bb",
-      "headline": "He Made Ireland Beat India Twice in Three Days. Then He Quit.",
-      "slug": "ireland-coach-heinrich-malan-steps-down-india-t20-whitewash-gary-wilson-20260629",
+      "id": "dbda6870-cc79-4428-ae8d-a2c6e5d62332",
+      "headline": "Shraddha Kapoor Is Unrecognisable \u2014 and Now a Political Party Wants to Rename Her Movie",
+      "slug": "shraddha-kapoor-eetha-vithabai-narayangaonkar-title-controversy-ncp-lavani-queen-maddock-august-2026-diaspora-nri",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "668795e1-7da8-4810-a807-116303aac70e",
+            "headline": "Shraddha Kapoor Danced Through Labour Pains, and Two Million"
+          }
+        ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "cricket match in a stadium",
-          "reason": "The photo shows a cricket match, which is relevant to the story about Ireland's cricket team."
+          "what_photo_shows": "woman in embroidered dress",
+          "reason": "The photo plausibly shows Shraddha Kapoor, relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -36,13 +41,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 7,
-          "note": "The article discusses cricket, a sport with significant interest among the Indian diaspora, particularly in relation to India's performance."
+          "note": "The article discusses a significant cultural figure and the implications of her representation, which may resonate with the diaspora interested in Indian culture."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes or reactions from Indian fans or diaspora to enhance the connection.",
-          "Add a brief section on the significance of cricket in the Indian diaspora to strengthen the diaspora angle."
+          "Include more context about the significance of Lavani and its cultural impact to enhance the diaspora connection.",
+          "Add quotes or reactions from diaspora members regarding the film's title controversy to further engage the audience."
         ],
         "verdict": "pass"
       },
@@ -54,9 +59,116 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "756bbeab-beea-4c57-9d8f-fe170828fc17",
-      "headline": "India's Central Bank Just Gave NRIs a Reason to Move Their Dollars Home. Banks Are in a Frenzy to Cash In.",
-      "slug": "rbi-nri-fcnr-deposit-scheme-banks-7-percent-diaspora-dollar-inflows-20260629",
+      "id": "5f2b7073-7d87-41cc-b5bf-ff47c17dc955",
+      "headline": "Farah Khan Just Locked 15 Celebrities in a Prison \u2014 and Govinda's Wife Isn't Even the Wildest Part",
+      "slug": "lock-upp-season-2-netflix-farah-khan-riteish-deshmukh-akanksha-chamola-divorce-govinda-wife-diaspora-nri-20260629",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "985e6838-e944-402c-a805-e2344d9826d4",
+            "headline": "Lock Upp Just Moved to Netflix \u2014 and 15 Celebrities Just Los"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "woman in pink with glasses",
+          "reason": "The photo plausibly shows Farah Khan, relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DaDl7tAy00z/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel does not appear to be directly related to the content of the article, which focuses on the reality show and its contestants."
+          }
+        ],
+        "image_match": {
+          "score": 7,
+          "issue": "The image of Farah Khan does match the article's topic, but it lacks a direct connection to the specific events discussed in the article."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses a popular Indian reality show, which may resonate with the Indian diaspora interested in Bollywood and Indian entertainment."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the irrelevant Instagram embed with a more relevant social media post related to the show or its contestants.",
+          "Consider adding quotes or reactions from diaspora viewers to enhance the connection with NRI readers."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DaDl7tAy00z/",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "71b886fd-0d28-4bf5-928d-fc9fbd42b87d",
+      "headline": "Uber Blew Its AI Budget in Four Months. Now the Whole Industry Is Pulling Back.",
+      "slug": "tokenmaxxing-backlash-ai-costs-enterprise-indian-it-20260629",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "6955617d-9af3-47b1-921e-4ff7b5f4e503",
+            "headline": "Two Indian-Origin Founders Just Built a $2 Billion Chip Star"
+          },
+          {
+            "article_id": "bca044d9-16e7-41af-bd59-feda9d75ff84",
+            "headline": "America Just Decided Who Gets to Use the World's Most Powerf"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "data centre server room",
+          "reason": "The photo shows a data centre, relevant to AI infrastructure costs."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 5,
+          "issue": "The image of a data center is somewhat relevant but does not directly relate to the specific topic of Uber's AI budget and corporate AI spending."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the implications for Indian IT companies and engineers, making it relevant for the Indian diaspora involved in tech."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that directly relates to AI or Uber's financial strategies.",
+          "Add more context or examples of how Indian engineers are specifically affected by the AI spending cuts."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "c8095ef2-0332-4f82-9d3b-8319111fe6f3",
+      "headline": "Oracle Quietly Cut 21,000 Jobs Last Year. It Blamed AI.",
+      "slug": "oracle-21000-layoffs-ai-h1b-indian-workers-20260629",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,8 +176,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Reserve Bank of India headquarters",
-          "reason": "The photo shows the RBI headquarters, relevant to the story about RBI policies."
+          "what_photo_shows": "Oracle's former Redwood City headquarters",
+          "reason": "The photo shows Oracle's headquarters, relevant to the story about Oracle's job cuts."
         },
         "inline_image_mismatches": []
       },
@@ -73,19 +185,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image of Oracle's headquarters is relevant but does not directly illustrate the job cuts or AI impact discussed in the article."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively addresses NRIs and their potential financial benefits from the RBI scheme."
+          "quality": 9,
+          "note": "The article effectively highlights the impact of layoffs on Indian professionals, particularly those on H-1B visas, making it highly relevant for the NRI audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include a brief section on potential risks associated with the new scheme for NRIs.",
-          "Add quotes from financial experts or NRI customers to enhance credibility and relatability."
+          "Consider adding a more relevant image that illustrates the impact of AI on jobs or a visual representation of the layoffs.",
+          "Include quotes or testimonials from affected workers to provide a personal perspective on the layoffs."
         ],
         "verdict": "pass"
       },
@@ -94,6 +206,63 @@
       ],
       "revised": false,
       "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "b570a243-6064-4ea0-8d96-18169c82fa4b",
+      "headline": "Meta Handed WhatsApp to an Indian Founder. It Paid $900 Million for the Privilege.",
+      "slug": "kunal-shah-whatsapp-ceo-meta-900-million-cred-20260629",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "0ce6d903-3713-43d6-a860-69146188f259",
+            "headline": "Meta Just Paid $900 Million for an Indian Fintech. Its Found"
+          },
+          {
+            "article_id": "4988648b-d781-4950-85dc-66e323afab97",
+            "headline": "Meta Just Handed WhatsApp to a Mumbai Founder Who Never Wrot"
+          },
+          {
+            "article_id": "294acf24-69a6-478c-9ba2-e72c656ac7e5",
+            "headline": "The App the Diaspora Lives On Just Got an Indian Boss"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "UNVERIFIED",
+          "what_photo_shows": "(image unreadable)",
+          "reason": "could not download image: curl-exception"
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 5,
+          "issue": "image does not match the article's topic"
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the appointment of an Indian founder to the global tech landscape, appealing to NRI readers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a hero image that directly relates to Kunal Shah or WhatsApp to enhance visual relevance.",
+          "Expand on the implications of Shah's appointment for the Indian tech ecosystem to provide deeper insights for diaspora readers."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "held: image unverified"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "image_unverified": true,
       "llm_source": "gpt-4o-mini"
     }
   ]
