@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-29T01:45:15.533550+00:00",
+  "timestamp": "2026-06-29T02:15:37.572862+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 0,
-    "flag": 1,
+    "pass": 5,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,54 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "f19a8102-13be-4cb1-a1c2-d97029af2a0c",
-      "headline": "The Day Indian Cricket Hit Rock Bottom \u2014 Twice",
-      "slug": "india-cricket-darkest-day-ireland-sweep-women-t20-world-cup-australia-june-28-2026-diaspora-nri",
+      "id": "8cfd2cb7-a359-4be4-86e2-a182e6cf0d04",
+      "headline": "India's Weakest Monsoon in 11 Years Is Threatening to Derail the Post-Oil Rally \u2014 and a Super El Ni\u00f1o Could Make It Worse",
+      "slug": "india-weak-monsoon-el-nino-super-threat-food-inflation-sugar-economy-nri-investor-portfolio-20260628",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MISMATCH",
+          "what_photo_shows": "flooded paddy field in Karnataka",
+          "reason": "The photo shows flooding, not drought conditions related to weak monsoon."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 5,
+          "issue": "missing image description"
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses economic implications of the monsoon, which is relevant to NRIs with interests in India's economy."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include a relevant hero image that visually represents the topic of the monsoon and its economic impact.",
+          "Expand on how the economic implications of the monsoon directly affect the Indian diaspora, such as remittances or investments."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "Cleared mismatched image (flooded paddy field in Karnataka)",
+        "held: image mismatch"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "image_mismatch": true,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "f10654e5-af9c-499d-9bcd-ab1a7dab2497",
+      "headline": "South Asians in America Have the Highest Heart Risk by Age 45 \u2014 Despite Doing Almost Everything Right",
+      "slug": "south-asian-heart-risk-paradox-masala-study-northwestern-diabetes-prediabetes-hypertension-earlier-screening-nri-20260628",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,39 +66,161 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Lord's Cricket Ground pavilion",
-          "reason": "The photo shows Lord's Cricket Ground, relevant to the story."
+          "what_photo_shows": "healthcare worker checking blood pressure",
+          "reason": "The photo aligns with the health-focused story about heart risk."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/p/DaI0B1luorC/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post does not appear to be directly related to the specific matches discussed in the article."
-          }
-        ],
+        "embed_issues": [],
         "image_match": {
-          "score": 5,
-          "issue": "The image of Lord's Cricket Ground does not directly relate to the specific events discussed in the article, which includes matches in Belfast and Lord's."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the events to the Indian diaspora's emotional response, making it relevant and engaging for NRI readers."
+          "quality": 8,
+          "note": "The article addresses health risks specifically for South Asians in America, making it relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant Instagram embed with a more relevant social media post that discusses the matches or reactions from players.",
-          "Consider using an image that directly relates to the matches discussed, such as a still from the games or a relevant player."
+          "Include quotes or anecdotes from South Asian Americans to enhance relatability.",
+          "Add a section on actionable steps for readers to mitigate their heart risk."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DaI0B1luorC/",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "0ce991b9-fafd-4d7f-95c9-3a1a60ec81d5",
+      "headline": "When You Eat May Matter More Than What You Eat \u2014 and a Major New Study Just Showed Why",
+      "slug": "meal-timing-time-restricted-eating-healthspan-nature-aging-ut-southwestern-longo-circadian-diaspora-20260628",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "breakfast spread with eggs and fruit",
+          "reason": "The photo shows a meal, relevant to the eating timing study."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses health and longevity, which are relevant to the NRI community, particularly in the context of maintaining health across generations."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include a brief mention of how these findings could be applied in daily life for NRIs, perhaps with cultural considerations.",
+          "Add a section discussing potential implications for diet trends in the Indian diaspora."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "43604217-d4a0-4cb5-9f04-aa3b27532e75",
+      "headline": "Marriott Just Opened Its 10,000th Hotel \u2014 and It Is a Tiger Lodge in Rajasthan",
+      "slug": "jw-marriott-ranthambore-10000th-hotel-tiger-safari-nri-20260629",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "A Bengal tiger in the wild",
+          "reason": "The photo of a Bengal tiger is relevant to the story about a tiger lodge in Rajasthan."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the luxury hotel opening to the interests of NRI travelers, particularly in terms of loyalty programs and travel planning."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include a quote or perspective from an NRI traveler or expert to enhance the diaspora connection.",
+          "Add more details about the environmental impact or conservation efforts related to the new hotel and the tiger reserve."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "f3dc4bbb-854a-4b5f-ac1d-d985c2c11024",
+      "headline": "IndiGo Is Planting Flags in Africa and Central Asia \u2014 and Budget-Minded NRIs Should Pay Attention",
+      "slug": "indigo-africa-central-asia-expansion-nairobi-tbilisi-nri-20260629",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "IndiGo Airbus aircraft on tarmac",
+          "reason": "The photo shows an IndiGo aircraft, relevant to the airline's expansion story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects IndiGo's expansion to the needs and interests of NRIs, particularly those with ties to East Africa."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from industry experts or airline representatives to enhance credibility.",
+          "Include more specific examples of how NRIs can benefit from these new routes, such as potential travel itineraries."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
         "promoted to published"
       ],
       "revised": false,
