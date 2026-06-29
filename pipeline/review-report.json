@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-29T08:45:20.252068+00:00",
+  "timestamp": "2026-06-29T09:15:34.892258+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 4,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,23 +11,109 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "cac7ea7e-91bc-4f8e-a9c5-aa84d30517ba",
-      "headline": "Jio Is Filing for India's Biggest IPO Ever. None of Its Major Investors Plan to Sell.",
-      "slug": "jio-platforms-biggest-indian-ipo-170-billion-meta-google-kkr-not-selling-20260629",
+      "id": "ef4e27a6-0146-44d9-874a-c7272bbff698",
+      "headline": "Ramayana Is Heading to Comic-Con \u2014 and Ranbir Kapoor Just Became India's Biggest Global Bet",
+      "slug": "ramayana-ranbir-kapoor-comic-con-trailer-hans-zimmer-ar-rahman-sai-pallavi-yash-diwali-2026-diaspora-nri-20260629",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [
           {
-            "article_id": "4825c3bb-ebc0-4bae-be87-fd9f1784ccbf",
-            "headline": "Every Forecaster Is Saying the Same Thing: India Is Slowing "
+            "article_id": "3627e9cf-43e4-4a5e-ba22-21af8fc77e7a",
+            "headline": "'Ramayana' Wants to Throw Its Grand Premiere in Dubai \u2014 and "
           }
         ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Bombay Stock Exchange building",
-          "reason": "The photo of the Bombay Stock Exchange is relevant to a story about an IPO in India."
+          "what_photo_shows": "A man in a black shirt",
+          "reason": "The photo plausibly shows Ranbir Kapoor, relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 5,
+          "issue": "The image of Ranbir Kapoor at the airport does not directly relate to the Ramayana film or Comic-Con."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the significance of the Ramayana film's presentation at Comic-Con to the NRI audience, emphasizing its cultural importance."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that directly relates to the Ramayana film or Comic-Con.",
+          "Add more context about the significance of Comic-Con for Indian cinema to enhance the diaspora angle."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "a4f2db0c-2bab-4285-a122-47b2f8d2f983",
+      "headline": "America Banned Its Best AI Models. Japan and China Built Replacements in Two Weeks.",
+      "slug": "asian-ai-alternatives-anthropic-ban-sakana-zhipu-india-20260629",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "server racks in a data centre",
+          "reason": "The photo shows server racks, relevant to AI and technology infrastructure."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image is relevant to technology but lacks a direct connection to the specific topic of AI models."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the implications for NRI engineers and the geopolitical landscape, making it relevant for the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more specific examples of how NRI engineers are impacted by the AI export controls.",
+          "Consider adding a quote from an NRI engineer or expert to enhance the diaspora connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "c27b83f2-eaef-478e-9540-4e32ed82d982",
+      "headline": "India Just Dropped the Rule That Was Keeping Starlink Out. The Satellite Race Is On.",
+      "slug": "india-drops-satcom-local-sourcing-starlink-oneweb-kuiper-20260629",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "SpaceX rocket launch",
+          "reason": "The photo shows a SpaceX rocket launch, relevant to the satellite broadband topic."
         },
         "inline_image_mismatches": []
       },
@@ -41,13 +127,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively discusses the implications of Jio's IPO for NRI investors, making it relevant to the diaspora audience."
+          "note": "The article effectively connects the topic of satellite broadband to NRIs with family in rural India, highlighting the potential impact on connectivity."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more specific examples of how NRIs can participate in the IPO process.",
-          "Include a brief overview of the regulatory changes that may affect NRI investors."
+          "Consider adding more statistics or examples of how satellite broadband has transformed other regions to strengthen the argument.",
+          "Include quotes from more industry experts to provide a broader perspective on the implications of the new rules."
         ],
         "verdict": "pass"
       },
@@ -59,9 +145,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "39963d7f-9557-47fb-802f-dc7b20ae0df8",
-      "headline": "Rubio Says Washington Is Planning a Trump Visit to India Early Next Year. He'll Fly Out First to Set It Up.",
-      "slug": "rubio-trump-india-visit-early-2027-trade-deal-quad-diplomacy-20260629",
+      "id": "9d7f0284-e8cc-497a-813f-c98c9b9d3ad4",
+      "headline": "Persistent Systems Just Bet $1.1 Billion That Indian IT Can Buy Its Way Into Europe",
+      "slug": "persistent-systems-nagarro-acquisition-billion-indian-it-20260629",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -69,28 +155,28 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Trump meeting Modi in a summit",
-          "reason": "The photo shows Trump and Modi, relevant to the story about US-India relations."
+          "what_photo_shows": "business deal over laptops",
+          "reason": "The photo shows a business deal, relevant to the story about a corporate acquisition."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 7,
+        "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 8,
-          "issue": "The image of Trump and Modi is relevant but does not directly depict the current context of Rubio's statements."
+          "score": 7,
+          "issue": "The image does not directly relate to the article's focus on IT acquisitions."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the potential presidential visit to the interests of the Indian diaspora, discussing implications for visa processing and bilateral relations."
+          "note": "The article discusses implications for NRIs in the tech sector, making it relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more recent quotes or data to enhance the timeliness of the article.",
-          "Consider adding a brief background on the significance of the Quad leaders' summit for further context."
+          "Consider using a more relevant image that reflects the themes of technology and acquisitions.",
+          "Expand on the implications for NRIs in the tech industry to strengthen the diaspora angle."
         ],
         "verdict": "pass"
       },
