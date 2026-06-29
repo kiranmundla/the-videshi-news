@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-29T01:15:11.401173+00:00",
+  "timestamp": "2026-06-29T01:45:15.533550+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
-    "flag": 0,
+    "pass": 0,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,47 +11,49 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "e1f789d2-b307-463c-ba0d-0019e5258b53",
-      "headline": "\u20b9130 Crore and Half of Bollywood: Riteish Deshmukh's Raja Shivaji Just Landed on Netflix",
-      "slug": "raja-shivaji-netflix-ott-riteish-deshmukh-marathi-highest-grossing-130-crore-hindi-streaming-diaspora-nri-20260628",
+      "id": "f19a8102-13be-4cb1-a1c2-d97029af2a0c",
+      "headline": "The Day Indian Cricket Hit Rock Bottom \u2014 Twice",
+      "slug": "india-cricket-darkest-day-ireland-sweep-women-t20-world-cup-australia-june-28-2026-diaspora-nri",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "08a480f4-6d6b-4c56-9af9-32385aea62ee",
-            "headline": "Marathi Cinema's \u20b9130-Crore King Just Arrived on Netflix \u2014 a"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Riteish Deshmukh as Chhatrapati Shivaji Maharaj",
-          "reason": "The photo shows the correct named person related to the story."
+          "what_photo_shows": "Lord's Cricket Ground pavilion",
+          "reason": "The photo shows Lord's Cricket Ground, relevant to the story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/DaI0B1luorC/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not appear to be directly related to the specific matches discussed in the article."
+          }
+        ],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 5,
+          "issue": "The image of Lord's Cricket Ground does not directly relate to the specific events discussed in the article, which includes matches in Belfast and Lord's."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the film's release to the diaspora audience by mentioning locations like New Jersey, Leicester, and Brampton, making it relevant for NRIs."
+          "quality": 9,
+          "note": "The article effectively connects the events to the Indian diaspora's emotional response, making it relevant and engaging for NRI readers."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes from diaspora audiences or critics to enhance the connection.",
-          "Add a brief section on how the film has been received by the diaspora community specifically."
+          "Replace the irrelevant Instagram embed with a more relevant social media post that discusses the matches or reactions from players.",
+          "Consider using an image that directly relates to the matches discussed, such as a still from the games or a relevant player."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/DaI0B1luorC/",
         "promoted to published"
       ],
       "revised": false,
