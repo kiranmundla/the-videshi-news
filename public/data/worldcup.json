@@ -1,6 +1,6 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-06-29T06:00:00Z",
+  "last_updated": "2026-06-29T09:59:55Z",
   "stage": "Knockout Stage",
   "hosts": "USA, Mexico & Canada",
   "dates": {
@@ -1777,7 +1777,7 @@
         {
           "id": 74,
           "date": "2026-06-29",
-          "time": "15:00",
+          "time": "13:00",
           "tz": "ET",
           "home": "Brazil",
           "away": "Japan",
@@ -1790,7 +1790,7 @@
         {
           "id": 75,
           "date": "2026-06-29",
-          "time": "18:00",
+          "time": "16:30",
           "tz": "ET",
           "home": "Germany",
           "away": "Paraguay",
@@ -1816,7 +1816,7 @@
         {
           "id": 77,
           "date": "2026-06-30",
-          "time": "15:00",
+          "time": "13:00",
           "tz": "ET",
           "home": "Ivory Coast",
           "away": "Norway",
@@ -1829,7 +1829,7 @@
         {
           "id": 78,
           "date": "2026-06-30",
-          "time": "18:00",
+          "time": "17:00",
           "tz": "ET",
           "home": "France",
           "away": "Sweden",
@@ -1855,7 +1855,7 @@
         {
           "id": 80,
           "date": "2026-07-01",
-          "time": "15:00",
+          "time": "12:00",
           "tz": "ET",
           "home": "England",
           "away": "DR Congo",
@@ -1868,7 +1868,7 @@
         {
           "id": 81,
           "date": "2026-07-01",
-          "time": "18:00",
+          "time": "20:00",
           "tz": "ET",
           "home": "USA",
           "away": "Bosnia & Herzegovina",
@@ -1881,7 +1881,7 @@
         {
           "id": 82,
           "date": "2026-07-01",
-          "time": "21:00",
+          "time": "16:00",
           "tz": "ET",
           "home": "Belgium",
           "away": "Senegal",
@@ -1894,7 +1894,7 @@
         {
           "id": 83,
           "date": "2026-07-02",
-          "time": "15:00",
+          "time": "19:00",
           "tz": "ET",
           "home": "Portugal",
           "away": "Croatia",
@@ -1907,7 +1907,7 @@
         {
           "id": 84,
           "date": "2026-07-02",
-          "time": "18:00",
+          "time": "15:00",
           "tz": "ET",
           "home": "Spain",
           "away": "Austria",
@@ -1920,7 +1920,7 @@
         {
           "id": 85,
           "date": "2026-07-02",
-          "time": "21:00",
+          "time": "23:00",
           "tz": "ET",
           "home": "Switzerland",
           "away": "Algeria",
@@ -1933,7 +1933,7 @@
         {
           "id": 86,
           "date": "2026-07-03",
-          "time": "15:00",
+          "time": "18:00",
           "tz": "ET",
           "home": "Argentina",
           "away": "Cape Verde",
@@ -1946,7 +1946,7 @@
         {
           "id": 87,
           "date": "2026-07-03",
-          "time": "18:00",
+          "time": "21:30",
           "tz": "ET",
           "home": "Colombia",
           "away": "Ghana",
@@ -1959,7 +1959,7 @@
         {
           "id": 88,
           "date": "2026-07-03",
-          "time": "21:00",
+          "time": "14:00",
           "tz": "ET",
           "home": "Australia",
           "away": "Egypt",
