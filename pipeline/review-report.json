@@ -1,33 +1,28 @@
 {
-  "timestamp": "2026-06-30T13:45:12.180323+00:00",
+  "timestamp": "2026-06-30T14:15:55.753348+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
-    "flag": 0,
+    "pass": 5,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
-  "revisions": 0,
+  "revisions": 1,
   "unpublished": 0,
   "articles": [
     {
-      "id": "78a39ab4-e818-42f7-a8d9-f6a5aa077ce0",
-      "headline": "Seven Goals. One Statement. India Demolish Pakistan in London to Send a Message Before the Hockey World Cup.",
-      "slug": "india-demolish-pakistan-7-1-fih-pro-league-london-harmanpreet-hardik-hockey-world-cup-2026-diaspora-nri",
+      "id": "295884ba-e4ce-447a-ad50-d6cba5db108c",
+      "headline": "Indian IT Stocks Just Had Their Worst Month in Years \u2014 and the Threat Isn't Just Cyclical, It's Existential",
+      "slug": "india-nifty-it-stocks-worst-month-accenture-ai-disruption-tcs-infosys-nri-tech-20260630",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "9b494204-de05-45d5-a6f5-60a10538a7e6",
-            "headline": "Shootout Revenge at Lee Valley. India Edge England 3-2 to En"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Indian men's national field hockey team",
-          "reason": "The photo shows the Indian men's national field hockey team, relevant to the story."
+          "what_photo_shows": "stock exchange trading board",
+          "reason": "The photo shows a trading board, relevant to the IT stocks story."
         },
         "inline_image_mismatches": []
       },
@@ -35,19 +30,234 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 5,
-          "issue": "The image does not directly relate to the specific match discussed in the article."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the match to the Indian diaspora in the UK, highlighting their presence and significance."
+          "note": "The article effectively connects the performance of Indian IT stocks to the interests and concerns of NRIs, particularly those working in the sector."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider including a more relevant image that depicts the specific match or players involved.",
-          "Add quotes from players or coaches to enhance the narrative and provide personal insights."
+          "Consider adding more direct quotes or insights from industry experts to enhance credibility.",
+          "Include a section on potential strategies for NRIs to navigate the current market conditions."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "a98d3cbf-89a7-4c19-bc88-6c68c54fbfff",
+      "headline": "The FDA Just Said There's 'Little Evidence' Behind the Peptides Millions of Americans Are Injecting",
+      "slug": "fda-peptides-bpc157-safety-risks-wellness-craze-science-evidence-diaspora-health-20260630",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Peptide compounds in a lab",
+          "reason": "The photo subject aligns with the story about peptides in wellness."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 6,
+        "embed_issues": [],
+        "image_match": {
+          "score": 8,
+          "issue": "The image is relevant to the topic of peptides and wellness, but lacks specific connection to the FDA review."
+        },
+        "diaspora_angle": {
+          "present": false,
+          "quality": 3,
+          "note": "The article does not connect to NRI or diaspora readers, lacking a specific angle that would engage this audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Incorporate a section that discusses how the FDA's findings may impact the health and wellness trends among the Indian diaspora.",
+          "Add quotes or insights from experts in the field of wellness or peptides that could resonate with NRI readers."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Revised by gemini-2.5-flash (748\u2192791 words)"
+      ],
+      "revised": true,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "7e1eed8e-c0a0-49c5-b215-cf5de4d54f49",
+      "headline": "Fish Oil Supplements Don't Protect Your Brain From Alzheimer's, a Rigorous Two-Year Trial Confirms",
+      "slug": "fish-oil-omega3-supplements-no-alzheimers-protection-usc-keck-south-asian-brain-health-20260630",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Fish oil capsules spilling from a bottle",
+          "reason": "The photo shows fish oil capsules, which are relevant to the story about fish oil supplements."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the findings to the South Asian diaspora, highlighting the relevance of fish oil supplements in their health practices."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes or insights from South Asian health experts to strengthen the diaspora connection.",
+          "Include more information on alternative dietary approaches that could benefit the diaspora community."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "428f1758-90f3-45c1-819b-a260150c4789",
+      "headline": "Hilton Is Opening Six Hotels in India This Quarter \u2014 and the Luxury Arms Race Is Just Starting",
+      "slug": "hilton-leela-india-luxury-hotel-boom-bengaluru-jaisalmer-nri-20260630",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Jaisalmer Fort and surrounding landscape",
+          "reason": "The photo shows Jaisalmer Fort, relevant to the luxury hotel story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image is relevant to India but does not directly represent the luxury hotel theme discussed in the article."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively addresses the needs and interests of NRIs, particularly in relation to luxury accommodations and destination weddings."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that directly represents luxury hotels or the specific properties mentioned in the article.",
+          "Add more statistics or quotes from industry experts to enhance credibility and depth."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "25618cc8-2cd5-4bd3-810a-fb380bf40cac",
+      "headline": "Air India's Mumbai\u2013Tokyo Haneda Nonstop Is Two Weeks Old \u2014 and Japan Is Now the Airline's Biggest Asia Bet",
+      "slug": "air-india-mumbai-tokyo-haneda-nonstop-japan-nri-20260630",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Tokyo skyline with Mount Fuji",
+          "reason": "The photo shows Tokyo, relevant to the Air India Tokyo route story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image depicts an airplane, which is relevant to the topic of airlines, but does not specifically represent Air India or the Mumbai-Tokyo route."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the new route to the needs of NRIs, particularly in terms of travel convenience and cultural connections."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including a direct quote from an Air India representative or an industry expert to enhance credibility.",
+          "Add more details about the cultural significance of Japan for Indian travelers to strengthen the diaspora angle."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "0f54b729-2d24-424d-bd56-63ee7a824eec",
+      "headline": "India's Wealthy Families Are Buying Out Entire Maldives Resorts \u2014 and Luxury Hospitality Is Redesigning Itself Around Them",
+      "slug": "india-wealthy-families-luxury-maldives-resort-buyout-nri-20260630",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "overwater bungalows in the Maldives",
+          "reason": "The photo subject aligns with the luxury travel theme of the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively discusses the trends in luxury travel among Indian Americans, making it relevant to the diaspora audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include quotes or anecdotes from Indian Americans who have experienced this trend to add a personal touch.",
+          "Consider adding statistics or data to further illustrate the growth of the Indian luxury travel market."
         ],
         "verdict": "pass"
       },
