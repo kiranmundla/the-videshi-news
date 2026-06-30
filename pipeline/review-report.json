@@ -1,39 +1,50 @@
 {
-  "timestamp": "2026-06-30T22:45:45.074390+00:00",
+  "timestamp": "2026-06-30T23:15:22.316557+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 3,
+    "pass": 0,
+    "flag": 2,
     "fail": 0,
     "error": 0
   },
-  "revisions": 1,
+  "revisions": 0,
   "unpublished": 0,
   "articles": [
     {
-      "id": "1873dca2-244e-4e88-9e6c-cf7e3c1dfce1",
-      "headline": "Your Indian Bank Can No Longer Sneak Insurance Into Your Home Loan. The RBI's Mis-Selling Crackdown Starts Tomorrow.",
-      "slug": "rbi-mis-selling-crackdown-july-1-insurance-loans-consumer-protection-nri-20260630",
+      "id": "13c66ca8-0da4-4541-997e-05784856fa44",
+      "headline": "\u20b91 Crore and Empty Theatres on Day One \u2014 Three Weeks Later, Nobody Can Get a Ticket",
+      "slug": "main-vaapas-aaunga-imtiaz-ali-sleeper-hit-73-crore-word-of-mouth-diljit-sharvari-partition-diaspora-nri-20260630",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [
           {
-            "article_id": "e978a72e-2741-4b07-b696-8f6f633164d3",
-            "headline": "The Rate War for NRI Dollars: Indian Banks Are Offering Up t"
+            "article_id": "dea77820-bb20-4f0f-adc1-14f1ecac8871",
+            "headline": "\u20b91 Crore Opening, \u20b965 Crore and Climbing: The Most Beautiful"
           }
         ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Reserve Bank of India headquarters",
-          "reason": "The photo shows the RBI headquarters, relevant to the story about RBI regulations."
+          "what_photo_shows": "film poster for Main Vaapas Aaunga",
+          "reason": "The photo shows a film poster related to the story's topic."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DZp0ukASCVn/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel does not appear to be directly related to the film or its themes, making it irrelevant to the article."
+          },
+          {
+            "url": "https://youtube.com/watch?v=PRUTWluKRW8",
+            "problem": "irrelevant",
+            "explanation": "The YouTube link is not specified to be related to the film or its promotion, which could make it irrelevant."
+          }
+        ],
         "image_match": {
           "score": 9,
           "issue": null
@@ -41,103 +52,19 @@
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively addresses the concerns of NRIs regarding mis-selling in Indian banks, making it highly relevant to the diaspora audience."
+          "note": "The article effectively connects the film's themes of Partition and inherited grief to the experiences of the Indian diaspora, making it relatable."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a quote from an expert or a relevant statistic to strengthen the argument.",
-          "Include a brief section on how NRIs can protect themselves from mis-selling in the future."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "faa8333c-f101-4e1f-a6ec-1f11831b895a",
-      "headline": "India's Tax Revolution Enters Year 10 \u2014 and the Next Phase Is Being Built by Machines",
-      "slug": "india-gst-10-years-tax-revolution-ai-compliance-sitharaman-nri-business-20260630",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "India's new Parliament building",
-          "reason": "The photo shows the new Parliament building, relevant to the GST Council's activities."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 5,
-          "issue": "The image of the Parliament building does not directly relate to the topic of tax reform or GST."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the GST reforms to the experiences of NRIs running businesses in India, highlighting the benefits of a unified tax regime."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that directly relates to the topic of GST or tax reform.",
-          "Expand on the implications of GST reforms for NRIs with specific examples or case studies."
+          "Replace the irrelevant Instagram and YouTube links with embeds that directly relate to the film or its themes.",
+          "Consider adding quotes or reactions from diaspora audiences to enhance the connection to NRI readers."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "37051a11-16cc-40c2-9211-466007ba863f",
-      "headline": "Haaland in the 86th Minute. Norway Break Ivory Coast Hearts in Arlington to Set Up a Date With Brazil.",
-      "slug": "haaland-86th-minute-winner-norway-beat-ivory-coast-2-1-world-cup-round-of-32-arlington-brazil-round-of-16-2026-diaspora-nri",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "football player in white jersey",
-          "reason": "The photo shows a football player, which aligns with the football story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the match to the Indian diaspora by highlighting the significance of the location and upcoming matches."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more quotes from players or coaches to enhance the narrative.",
-          "Include statistics or historical context about Norway and Ivory Coast's performances in previous tournaments."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DZp0ukASCVn/",
+        "Removed irrelevant embed: https://youtube.com/watch?v=PRUTWluKRW8",
         "promoted to published"
       ],
       "revised": false,
@@ -152,7 +79,23 @@
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [],
-        "broken_embeds": [],
+        "broken_embeds": [
+          {
+            "url": "https://x.com/BCCI/status/1805123456789012345",
+            "problem": "broken",
+            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
+          },
+          {
+            "url": "https://x.com/BCCI/status/1805123456789012345",
+            "problem": "broken",
+            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
+          },
+          {
+            "url": "https://instagram.com/p/C8s_d_rR0tX/",
+            "problem": "broken",
+            "detail": "Instagram embed shows removed/broken placeholder"
+          }
+        ],
         "vision_image_match": {
           "verdict": "MATCH",
           "what_photo_shows": "Cricketer in Indian team attire",
@@ -161,7 +104,7 @@
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 6,
+        "overall_score": 7,
         "embed_issues": [],
         "image_match": {
           "score": 2,
@@ -169,73 +112,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 5,
-          "note": "The article mentions NRI cricket fans but lacks depth in connecting the implications of the players' absence to the diaspora experience."
+          "quality": 7,
+          "note": "The article discusses the impact of player injuries on India's cricket performance, which is relevant to NRI fans who follow Indian cricket."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the hero image with one that features either Hardik Pandya or Nitish Kumar Reddy to better match the article's focus.",
-          "Expand on the diaspora angle by discussing how the absence of key players affects NRI fans' engagement with the series."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Revised by gemini-2.5-flash (824\u2192953 words)"
-      ],
-      "revised": true,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "4c02b8c4-7027-46f0-a0d0-7e4f6f4fb600",
-      "headline": "Haaland\u2019s Late Winner Sends Norway Past Ivory Coast and Into a World Cup Showdown With Brazil",
-      "slug": "haaland-late-winner-norway-ivory-coast-world-cup-brazil-20260630",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [
-          {
-            "url": "https://x.com/erlinghaaland/status/1807900000000000000",
-            "problem": "broken",
-            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
-          },
-          {
-            "url": "https://x.com/fifaworldcup/status/1808200000000000000",
-            "problem": "broken",
-            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
-          },
-          {
-            "url": "https://instagram.com/p/C9A-B_yv_sE/",
-            "problem": "broken",
-            "detail": "Instagram embed shows removed/broken placeholder"
-          }
-        ],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Erling Haaland in Norway jersey",
-          "reason": "The photo shows Erling Haaland, relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 6,
-          "note": "The article briefly mentions Indian Americans but lacks depth in connecting the World Cup to the diaspora experience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Expand on the connection between the World Cup and the Indian diaspora, perhaps by including quotes or experiences from Indian American fans.",
-          "Consider adding more context about the significance of the match for Norway and its football history to engage readers further."
+          "Replace the hero image with one that features either Nitish Kumar Reddy or Hardik Pandya to better match the article's focus.",
+          "Add quotes or reactions from NRI fans or cricket analysts to enhance the diaspora connection."
         ],
         "verdict": "flag"
       },
