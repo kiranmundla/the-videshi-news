@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-30T10:45:25.008629+00:00",
+  "timestamp": "2026-06-30T11:15:29.890200+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
+    "pass": 2,
     "flag": 1,
     "fail": 0,
     "error": 0
@@ -11,23 +11,117 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "611bee2f-bea4-493f-a36d-594301fcfbdf",
-      "headline": "Foreign Investors Just Poured a Record $3 Billion Into Indian Bonds in a Single Month. The Tax Break Worked.",
-      "slug": "india-record-3-billion-foreign-bond-inflows-tax-exemption-bloomberg-index-20260630",
+      "id": "606443dd-ba30-4a74-9171-5b0a20f9523d",
+      "headline": "DC's Supergirl Opened in India. Bollywood Didn't Even Blink.",
+      "slug": "supergirl-india-box-office-flop-milly-alcock-dc-welcome-jungle-bollywood-dominates-diaspora-nri-20260630",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "d3f645d6-a026-4170-96c8-0c34b5a867ec",
-            "headline": "India's Central Bank Just Ordered a Kill Switch on Every AI "
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Reserve Bank of India headquarters",
-          "reason": "The photo shows the RBI headquarters, relevant to an Indian economy story."
+          "what_photo_shows": "person speaking at an event",
+          "reason": "The photo shows Milly Alcock, relevant to the story about Supergirl."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/DZ6X7f6HHE1/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not appear to be directly related to the topic of Supergirl or its performance in India."
+          },
+          {
+            "url": "https://youtube.com/watch?v=PI9e89dyLt4",
+            "problem": "irrelevant",
+            "explanation": "The YouTube link does not provide relevant content that enhances the article's discussion about Supergirl's performance in India."
+          }
+        ],
+        "image_match": {
+          "score": 3,
+          "issue": "The image does not match the article's headline or topic, as it features Milly Alcock but does not relate to Supergirl specifically."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the film's reception in India to the diaspora audience's potential interest, highlighting the differences in reception across regions."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the irrelevant Instagram and YouTube links with embeds that provide insights or reviews related to Supergirl's performance in India.",
+          "Use a more relevant hero image that directly relates to Supergirl or the film's themes."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/DZ6X7f6HHE1/",
+        "Removed irrelevant embed: https://youtube.com/watch?v=PI9e89dyLt4",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "c957df2d-c61d-46bb-ad66-53d6089dfbcc",
+      "headline": "YRF Just Admitted the Future Isn't the Multiplex \u2014 It's Your Phone, Held Vertical",
+      "slug": "yrf-rusk-media-investment-vertical-micro-drama-gen-z-bollywood-digital-shift-diaspora-nri-20260630",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Yash Raj Films headquarters",
+          "reason": "The photo shows Yash Raj Films, relevant to the story about their investment."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 5,
+          "issue": "The image is the Yash Raj Films logo, which is relevant but does not visually represent the article's focus on vertical storytelling."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects with NRI parents by discussing changing consumption habits of their teenagers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant hero image that visually represents vertical storytelling or mobile content.",
+          "Add quotes or insights from NRI perspectives on the changing landscape of Bollywood to strengthen the diaspora connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "90c08f88-143a-4e52-b80f-f2278561a4ba",
+      "headline": "The World Cup Comes to Silicon Valley. For NRIs in the Bay Area, It's Already Home.",
+      "slug": "usa-bosnia-world-cup-levis-stadium-santa-clara-bay-area-indian-diaspora-nri-silicon-valley-2026",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Aerial view of Levi's Stadium",
+          "reason": "The photo shows Levi's Stadium, which is relevant to the story about the World Cup match there."
         },
         "inline_image_mismatches": []
       },
@@ -40,64 +134,16 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article discusses measures that could attract NRIs to invest in Indian bonds, which is relevant to the diaspora."
+          "quality": 8,
+          "note": "The article effectively connects the World Cup to the Indian diaspora in the Bay Area, highlighting their unique relationship with football."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes from diaspora investors or experts to strengthen the connection to NRI perspectives.",
-          "Add a section discussing how these changes might specifically benefit NRIs or impact their investment strategies."
+          "Include quotes or anecdotes from local NRIs to enhance the personal connection to the event.",
+          "Add a brief section on how the Indian community is engaging with the World Cup, such as viewing parties or community events."
         ],
         "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "a48404d7-95a8-4422-9655-c686351d96ce",
-      "headline": "India Won't Sign the US Trade Deal Until It Gets a Better Rate Than Pakistan. That's Not Happening Anytime Soon.",
-      "slug": "india-us-trade-deal-frozen-goyal-pakistan-tariff-edge-scotus-greer-20260630",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "28eb0fff-5288-49b3-95d8-cd1d3e8be0df",
-            "headline": "India's Biggest Trade Deal Goes Live in 17 Days. It Has Depl"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Piyush Goyal at an event",
-          "reason": "The photo shows Commerce Minister Piyush Goyal, relevant to the trade story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 5,
-          "issue": "image does not directly relate to the article's topic"
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article connects the trade deal's implications to the Indian diaspora, but could elaborate more on how it affects them specifically."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more specific examples of how the trade deal impacts the Indian diaspora.",
-          "Consider using a more relevant image that directly relates to trade discussions or the US-India relationship."
-        ],
-        "verdict": "flag"
       },
       "actions_taken": [
         "promoted to published"
