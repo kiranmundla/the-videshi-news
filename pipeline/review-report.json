@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-30T09:15:43.786585+00:00",
+  "timestamp": "2026-06-30T09:45:08.889202+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 4,
-    "flag": 1,
+    "pass": 1,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,174 +11,22 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "4a28b69f-6693-4380-805b-fca264dada74",
-      "headline": "\u20b9300 Crore, a Zombie Apocalypse, and Ranveer Singh's Wildest Bet Yet \u2014 Pralay Heads to Australia",
-      "slug": "ranveer-singh-pralay-zombie-thriller-300-crore-australia-shoot-kalyani-priyadarshan-bollywood-debut-jai-mehta-diaspora-nri-20260630",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "1bffde53-41a3-44f0-9366-a7bd15bd8e8b",
-            "headline": "\u20b9300 Crore, Zombies, and a Phone Call: Inside Ranveer Singh'"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Ranveer Singh at a film event",
-          "reason": "The photo shows Ranveer Singh, who is relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the film's genre and production quality to the interests of the NRI audience, highlighting their desire for serious Indian cinema in the zombie genre."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from Ranveer Singh or Jai Mehta to enhance the article's depth.",
-          "Include more details about the filming locations in Australia to engage readers further."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "aa663894-de0d-4a23-b443-da58e988b383",
-      "headline": "Indian IT Is Already Making $12 Billion from AI. The Hard Part Is What Comes Next.",
-      "slug": "nasscom-indian-it-12-billion-ai-revenue-agentic-20260630",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "software developer at computer",
-          "reason": "The photo shows a software developer, relevant to the Indian IT and AI story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image is relevant to technology but lacks a direct connection to AI specifically."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article connects well with NRIs in the IT sector, discussing implications for Indian Americans."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a more specific image related to AI to enhance relevance.",
-          "Include more direct quotes or insights from Indian diaspora professionals in the IT sector to strengthen the diaspora angle."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "a19bbdae-61c0-4a30-b0d5-d2850e62f593",
-      "headline": "Taiwan Just Raided Super Micro's Offices Over $2.5 Billion in Missing Nvidia Chips. India Should Be Watching.",
-      "slug": "taiwan-super-micro-raid-nvidia-chip-smuggling-india-20260630",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Data centre server racks",
-          "reason": "The photo shows server racks relevant to the chip smuggling story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 6,
-          "issue": "image does not directly relate to the article's topic"
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the semiconductor issue to NRIs in the tech industry and investors."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that directly relates to semiconductors or the tech industry to enhance relevance.",
-          "Expand on the implications for NRIs in the semiconductor sector to deepen the diaspora connection."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
       "id": "4ac22b41-fe9f-4c74-a52a-71bf31e5f39e",
       "headline": "OpenAI Just Hired an IIT-IIM Grad to Run India. He Built Uber's Indian Empire First.",
       "slug": "openai-prabhjeet-singh-india-md-uber-iit-20260630",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "aa43ea63-c660-455e-895d-2d5c8f9843ec",
-            "headline": "Washington Just Put a Padlock on GPT-5.6. Indian Developers "
-          },
-          {
-            "article_id": "37f8a1dc-f016-4dae-9b5a-e3cd94e11838",
-            "headline": "OpenAI Poaches Uber India's President to Run Its Second-Larg"
-          },
-          {
-            "article_id": "04fa3ee6-e785-4343-aa41-88d68ff23ebb",
-            "headline": "OpenAI Built Its Own Chip in Nine Months. Nvidia Should Pay "
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MISMATCH",
-          "what_photo_shows": "Sam Altman in a suit",
-          "reason": "The photo shows Sam Altman, not Prabhjeet Singh."
-        },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image description is missing, making it difficult to assess relevance."
+          "score": 5,
+          "issue": "hero image not provided"
         },
         "diaspora_angle": {
           "present": true,
@@ -188,64 +36,12 @@
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Add a relevant image description to improve the image match score.",
-          "Include more direct quotes or insights from Prabhjeet Singh to enhance the article's depth."
+          "Include a relevant hero image that reflects the article's content.",
+          "Provide more specific examples of how NRIs can engage with OpenAI's developments in India."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "Cleared mismatched image (Sam Altman in a suit)",
-        "held: image mismatch"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "image_mismatch": true,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "f0034786-1806-44f6-a879-d6b4a6239403",
-      "headline": "Jr NTR Just Declared War on the Gods \u2014 and Brought Anirudh Along for the Ride",
-      "slug": "jr-ntr-trivikram-lord-murugan-god-of-war-mythological-epic-anirudh-hombale-suriya-diaspora-nri-20260630",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Jr NTR at an event",
-          "reason": "The photo shows Jr NTR, relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/p/DaKxXtQIZmR/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post does not seem to relate directly to the announcement of Jr NTR's film or the themes discussed in the article."
-          }
-        ],
-        "image_match": {
-          "score": 6,
-          "issue": "The image of Jr NTR does not match the article's focus on the mythological themes and the film's announcement."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the film's themes to the cultural significance of Lord Murugan in the diaspora, making it relevant for NRI readers."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the irrelevant Instagram embed with a more relevant source or image related to the film announcement.",
-          "Consider using an image that reflects the mythological themes discussed in the article to enhance visual relevance."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DaKxXtQIZmR/",
         "promoted to published"
       ],
       "revised": false,
