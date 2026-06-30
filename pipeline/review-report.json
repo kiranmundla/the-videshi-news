@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-30T03:15:36.778741+00:00",
+  "timestamp": "2026-06-30T04:15:23.597279+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
-    "flag": 1,
+    "pass": 2,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "7e42690a-b980-440b-a29c-9a1742c6f0a0",
-      "headline": "Apple Just Broke a Decade-Long Rule Because AI Made Hackers Too Fast",
-      "slug": "apple-ios-security-update-ai-cyber-threats-india-cert-in-20260630",
+      "id": "a5193449-f40d-4d3e-89e5-37bc231971c1",
+      "headline": "USCIS Told Green Card Applicants to Go Home. The Consulate Queue Is Nine Months Long",
+      "slug": "uscis-consular-processing-adjustment-status-extraordinary-india-20260630",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "smartphone with digital lock icon",
-          "reason": "The image aligns with the story about smartphone security and AI threats."
+          "what_photo_shows": "United States Embassy in New Delhi",
+          "reason": "The embassy is relevant to the consulate queue topic."
         },
         "inline_image_mismatches": []
       },
@@ -30,19 +30,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image is relevant to technology but does not specifically depict AI or cybersecurity."
+          "score": 9,
+          "issue": "The image of the US Embassy in New Delhi is relevant to the topic of consular processing for green card applicants."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article connects the implications of Apple's decision to the Indian market and cybersecurity landscape, making it relevant for the diaspora."
+          "note": "The article discusses the impact of USCIS policy changes on Indian nationals, directly addressing the concerns of the Indian diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a more specific image related to AI or cybersecurity to enhance relevance.",
-          "Include quotes or insights from Indian cybersecurity experts to strengthen the diaspora connection."
+          "Include quotes or perspectives from affected individuals or immigration attorneys to enhance relatability.",
+          "Add a section on potential solutions or advice for applicants facing these challenges."
         ],
         "verdict": "pass"
       },
@@ -54,70 +54,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "5ab45169-843a-4934-a662-10715ee0a081",
-      "headline": "29 Years After Border, Sunny Deol Called Himself 'Dharmendra's Son' \u2014 and Nobody Could Speak",
-      "slug": "ikka-trailer-sunny-deol-akshaye-khanna-dharmendras-son-border-reunion-netflix-july-10-courtroom-diaspora-nri",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "6c9c6a51-3205-4a63-a87c-4f9106c26a5f",
-            "headline": "The Border Boys Are Back: Sunny Deol and Akshaye Khanna Reun"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Sunny Deol at a film event",
-          "reason": "The photo shows Sunny Deol, who is relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/reel/DaK2tHZqBok/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram reel does not appear to be directly related to the article's subject matter regarding the film 'Ikka' and its launch event."
-          },
-          {
-            "url": "https://youtube.com/watch?v=unf8x_aZg9Y",
-            "problem": "irrelevant",
-            "explanation": "The YouTube link is not contextualized within the article, making it unclear how it relates to the content discussed."
-          }
-        ],
-        "image_match": {
-          "score": 7,
-          "issue": "The image of Sunny Deol is relevant to the article, but it does not depict a scene or moment from the film 'Ikka' or the launch event."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article references the impact of the film 'Border' on Indians at home and abroad, which connects with the diaspora audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the irrelevant Instagram and YouTube links with embeds that are directly related to the film or the launch event.",
-          "Consider adding more context about the significance of the film for the Indian diaspora to enhance the connection."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/reel/DaK2tHZqBok/",
-        "Removed irrelevant embed: https://youtube.com/watch?v=unf8x_aZg9Y",
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "504e9fd4-330d-4403-aa7b-337fb4880296",
-      "headline": "Big Tech Is Buying Into India's Startups \u2014 Without Buying Them",
-      "slug": "big-tech-india-startup-investments-minority-stakes-cred-20260630",
+      "id": "1ce71c50-9bbd-48b8-97f3-35a9f52eef04",
+      "headline": "Tomorrow Is the Last Day to File an H-1B Petition for FY2027. The Rules Have Never Been Harder",
+      "slug": "fy2027-h1b-filing-deadline-june-30-wage-weighted-20260630",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -125,8 +64,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Professionals in a tech meeting",
-          "reason": "The photo shows a technology-focused meeting, relevant to the story about tech investments."
+          "what_photo_shows": "USCIS headquarters groundbreaking ceremony",
+          "reason": "The photo is related to USCIS, which is relevant to the immigration story."
         },
         "inline_image_mismatches": []
       },
@@ -135,61 +74,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image is relevant to the tech theme but lacks a direct connection to the specific topic of startups or investments."
+          "issue": "The image depicts a USCIS groundbreaking ceremony, which is somewhat relevant but does not directly relate to the H-1B petition process."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively discusses the implications for NRI investors and returning founders, making it relevant to the diaspora audience."
+          "note": "The article effectively highlights the implications of H-1B visa changes for Indian tech workers, making it relevant for the Indian diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that directly represents startups or investment activities in India for better alignment with the article's focus.",
-          "Expand on the diaspora angle by including specific examples or quotes from NRI investors to enhance relatability."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "2c280210-41c9-4b1d-95fa-36079daa7f32",
-      "headline": "South Korea Just Bet $576 Billion on Chips. India Has Bet $10 Billion. That Ratio Tells a Story.",
-      "slug": "south-korea-576-billion-chips-samsung-sk-hynix-india-gap-20260630",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "microprocessor circuit board",
-          "reason": "The photo shows a microprocessor, relevant to the chip investment story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the semiconductor industry or the specific topic of the article."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the semiconductor investments to the Indian American community, highlighting their role in the industry."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that directly represents semiconductor technology or the companies mentioned.",
-          "Expand on the implications for NRIs in the semiconductor industry to enhance the diaspora angle."
+          "Consider using a more directly relevant image that illustrates the H-1B petition process or Indian tech workers.",
+          "Add a brief summary or bullet points at the end to recap the key takeaways for readers."
         ],
         "verdict": "pass"
       },
