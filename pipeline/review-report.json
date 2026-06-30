@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-30T20:15:37.710399+00:00",
+  "timestamp": "2026-06-30T20:45:48.395898+00:00",
   "mode": "fix",
   "stats": {
     "pass": 2,
@@ -11,23 +11,61 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "fe18d0bc-70d8-4f7f-b497-1405ee764716",
-      "headline": "Four Bills in Congress Want to End the H-1B. Here Is What Each Would Do to You",
-      "slug": "four-bills-end-h1b-greene-steube-crane-roy-guide-20260630",
+      "id": "31e401dd-c96b-4d6a-aa94-13e4424d2fef",
+      "headline": "The Pentagon Just Cleared Half a Billion Dollars to Keep India's Apaches and Howitzers Battle-Ready",
+      "slug": "pentagon-clears-482-million-india-apache-m777-defence-support-20260630",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "a8a324e4-a007-456c-accc-1b3f579db9eb",
-            "headline": "A Bill in Congress Would End the H-1B-to-Green-Card Pipeline"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "The United States Capitol building",
-          "reason": "The Capitol is relevant to a story about U.S. Congress legislation."
+          "what_photo_shows": "Boeing AH-64D Apache helicopter",
+          "reason": "The photo shows an Apache helicopter, relevant to the story about India's Apaches."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses US-India defense relations, which is relevant to the Indian diaspora interested in geopolitical developments."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include quotes or perspectives from Indian defense analysts to enhance the diaspora connection.",
+          "Add a brief section on how these military developments might impact the Indian diaspora in the US."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "9a7e50e0-acab-42da-bd35-f73b8d7ee9ac",
+      "headline": "200 Indian Americans Walked Into 125 Congressional Offices in One Day. Here's What They Asked For.",
+      "slug": "fiids-capitol-hill-day-200-indian-american-delegates-green-card-critical-minerals-20260630",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "United States Capitol building",
+          "reason": "The photo shows the U.S. Capitol, relevant to a story about advocacy in Congressional offices."
         },
         "inline_image_mismatches": []
       },
@@ -41,56 +79,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses legislative changes that directly impact Indian professionals in the US, making it relevant for the diaspora."
+          "note": "The article effectively highlights the advocacy efforts of the Indian American community, making it relevant to diaspora readers."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes or testimonials from affected individuals to enhance the personal impact of the legislation.",
-          "Add a section on potential responses or actions that the Indian diaspora can take regarding these bills."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "4fc1ed81-7935-4927-8986-e3b54345904d",
-      "headline": "OpenAI Hired More H-1B Workers After the $100,000 Fee. Your Startup Cannot Afford To",
-      "slug": "openai-h1b-100k-fee-two-tier-ai-talent-market-20260630",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Tech professionals in an office",
-          "reason": "The photo aligns with the topic of tech professionals and immigration."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the article's focus on H-1B visa hiring trends."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article discusses the impact of H-1B visa policies on Indian professionals, making it highly relevant to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that visually represents the theme of immigration or H-1B visas to enhance relevance.",
-          "Include more direct quotes or insights from Indian professionals affected by these changes to deepen the personal connection."
+          "Consider adding quotes from participants to enhance the personal connection to the advocacy efforts.",
+          "Include more context on the historical significance of the legislative push to engage readers further."
         ],
         "verdict": "pass"
       },
@@ -111,12 +106,17 @@
         "duplicate_images": [],
         "broken_embeds": [
           {
-            "url": "https://x.com/thevideshi/status/1808462000000000000",
+            "url": "https://x.com/erlinghaaland/status/1807955555555555555",
             "problem": "broken",
             "detail": "react-tweet returned null (deleted/protected/nonexistent)"
           },
           {
-            "url": "https://instagram.com/p/C-i_j_6v4_d/",
+            "url": "https://x.com/erlinghaaland/status/1807955555555555555",
+            "problem": "broken",
+            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
+          },
+          {
+            "url": "https://instagram.com/p/C-c_c_c_c_c/",
             "problem": "broken",
             "detail": "Instagram embed shows removed/broken placeholder"
           }
@@ -124,13 +124,19 @@
         "vision_image_match": {
           "verdict": "MATCH",
           "what_photo_shows": "Erling Haaland in Norway jersey",
-          "reason": "The photo shows Erling Haaland, relevant to the story."
+          "reason": "The photo shows Erling Haaland, relevant to the story about his performance."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 6,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://x.com/FIFAWorldCup/status/1807955555555555555",
+            "problem": "irrelevant",
+            "explanation": "The tweet does not provide context or relevance to the article's main focus on Haaland's performance and the match outcome."
+          }
+        ],
         "image_match": {
           "score": 8,
           "issue": null
@@ -138,19 +144,20 @@
         "diaspora_angle": {
           "present": true,
           "quality": 5,
-          "note": "The article briefly mentions Indian Americans but lacks depth in connecting the World Cup experience to the diaspora."
+          "note": "The article briefly mentions Indian Americans but does not elaborate on their connection to the World Cup or the significance of the event for the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Expand on the significance of the World Cup for Indian Americans to enhance the diaspora angle.",
-          "Include more context or quotes from Indian American fans or players to create a stronger connection."
+          "Expand on the connection to Indian Americans and their interest in the World Cup to strengthen the diaspora angle.",
+          "Remove or replace the irrelevant tweet embed with a more relevant social media post that highlights Haaland's performance."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
-        "Removed 2 broken/hallucinated embed(s)",
-        "Revised by gemini-2.5-flash (966\u21921023 words)"
+        "Removed 3 broken/hallucinated embed(s)",
+        "Removed irrelevant embed: https://x.com/FIFAWorldCup/status/1807955555555555555",
+        "Revised by gemini-2.5-flash (1020\u21921050 words)"
       ],
       "revised": true,
       "unpublished": false,
