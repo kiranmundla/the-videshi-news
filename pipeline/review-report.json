@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-30T13:15:16.305041+00:00",
+  "timestamp": "2026-06-30T13:45:12.180323+00:00",
   "mode": "fix",
   "stats": {
     "pass": 1,
@@ -11,54 +11,47 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "e1c7ff25-7feb-4bf9-8981-ba007c7ad03b",
-      "headline": "A 26-Year-Old YouTuber Made a $750K Horror Film. It Just Crossed $371 Million.",
-      "slug": "obsession-750k-horror-371-million-highest-grossing-original-2020s-vod-streaming-diaspora-nri-20260630",
+      "id": "78a39ab4-e818-42f7-a8d9-f6a5aa077ce0",
+      "headline": "Seven Goals. One Statement. India Demolish Pakistan in London to Send a Message Before the Hockey World Cup.",
+      "slug": "india-demolish-pakistan-7-1-fih-pro-league-london-harmanpreet-hardik-hockey-world-cup-2026-diaspora-nri",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "9b494204-de05-45d5-a6f5-60a10538a7e6",
+            "headline": "Shootout Revenge at Lee Valley. India Edge England 3-2 to En"
+          }
+        ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Promotional image for Obsession film",
-          "reason": "The photo is a promotional image for the film mentioned in the story."
+          "what_photo_shows": "Indian men's national field hockey team",
+          "reason": "The photo shows the Indian men's national field hockey team, relevant to the story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/p/DZs900ZlKWk/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post does not appear to be directly related to the film 'Obsession' or its success, making it irrelevant to the article's topic."
-          },
-          {
-            "url": "https://youtube.com/watch?v=gMC8kkwbIQQ",
-            "problem": "relevant",
-            "explanation": "The YouTube link is relevant as it likely provides additional context or content related to the film 'Obsession'."
-          }
-        ],
+        "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 5,
+          "issue": "The image does not directly relate to the specific match discussed in the article."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article mentions the film's performance in India and its significance for Indian audiences, connecting well with the diaspora."
+          "quality": 8,
+          "note": "The article effectively connects the match to the Indian diaspora in the UK, highlighting their presence and significance."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant Instagram link with a more relevant one, perhaps a trailer or a promotional post related to 'Obsession'.",
-          "Consider adding more context about the film's reception in the Indian market to enhance the diaspora angle."
+          "Consider including a more relevant image that depicts the specific match or players involved.",
+          "Add quotes from players or coaches to enhance the narrative and provide personal insights."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DZs900ZlKWk/",
         "promoted to published"
       ],
       "revised": false,
