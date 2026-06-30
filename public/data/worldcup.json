@@ -1,6 +1,6 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-06-29T23:59:21Z",
+  "last_updated": "2026-06-30T02:00:17Z",
   "stage": "Knockout Stage",
   "hosts": "USA, Mexico & Canada",
   "dates": {
@@ -4200,6 +4200,45 @@
       "url": "https://www.threads.com/@fifaworldcup/post/DaLzaZwj4pJ",
       "account": "@fifaworldcup",
       "caption": "Martinelli's moment 🇧🇷",
+      "date": "2026-06-29",
+      "type": "video"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DaMD-DzCeGK/",
+      "account": "@fifaworldcup",
+      "caption": "Paraguay power into the Round of 16 on penalties! 💪 #FIFAWorldCup",
+      "date": "2026-06-29",
+      "type": "image"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DaMDUMDmRYW",
+      "account": "@fifaworldcup",
+      "caption": "Paraguay win 4-3 on penalties 👀",
+      "date": "2026-06-29"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DaMEMQOmXcu",
+      "account": "@fifaworldcup",
+      "caption": "Paraguay power into the Round of 16 on penalties! 💪",
+      "date": "2026-06-29",
+      "type": "image"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DaMIF1hnGXC/",
+      "account": "@fifaworldcup",
+      "caption": "Paraguay's moment 🇵🇾 #FIFAWorldCup",
+      "date": "2026-06-29",
+      "type": "carousel"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/reel/DaMMA79C_fS/",
+      "account": "@fifaworldcup",
+      "caption": "José Canale. Paraguay's game changer 🇵🇾 #FIFAWorldCup",
       "date": "2026-06-29",
       "type": "video"
     }
