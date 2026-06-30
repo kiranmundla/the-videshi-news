@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-30T05:15:22.005292+00:00",
+  "timestamp": "2026-06-30T06:16:06.889681+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 6,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "0d726f7f-7138-4c9d-b4e1-d295a8d0a28b",
-      "headline": "Srikant Tiwari Isn't Done Yet \u2014 Raj & DK Confirm They're 'Writing Furiously' on The Family Man Season 4",
-      "slug": "family-man-season-4-raj-dk-writing-furiously-manoj-bajpayee-prime-video-where-to-watch-diaspora-nri",
+      "id": "c4ac54b6-a6f9-4afc-be3c-af528782b9bd",
+      "headline": "India's Trade Deal With Britain Takes Effect July 15 \u2014 and 75,000 NRIs Stand to Save on Every UK Posting",
+      "slug": "india-uk-trade-deal-july-mobility-social-security-nri-20260630",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Manoj Bajpayee in formal attire",
-          "reason": "The photo shows Manoj Bajpayee, who plays Srikant Tiwari."
+          "what_photo_shows": "Heathrow Airport Terminal 5 interior",
+          "reason": "The airport is relevant to India-UK travel and trade."
         },
         "inline_image_mismatches": []
       },
@@ -31,18 +31,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image features Manoj Bajpayee, who is relevant to the article, but it does not directly depict a scene or moment from 'The Family Man'."
+          "issue": "The image of Heathrow Airport is relevant to the topic of travel and trade between India and the UK, but it could be more directly related to the trade deal itself."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects with diaspora audiences by highlighting the simultaneous streaming of the show across multiple countries."
+          "quality": 9,
+          "note": "The article effectively connects the trade deal to the interests of NRIs, particularly in terms of mobility and business opportunities."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider including more direct quotes or insights from Raj & DK to enhance the article's depth.",
-          "Add a brief section on the impact of 'The Family Man' on Indian streaming culture to provide more context."
+          "Consider adding a quote from an NRI business leader to enhance the diaspora perspective.",
+          "Include specific examples of how the trade deal might impact individual NRIs or businesses to make it more relatable."
         ],
         "verdict": "pass"
       },
@@ -54,9 +54,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "3c52711c-40c8-4e79-9fe6-9f86fb963b96",
-      "headline": "Gulf Ceasefire Unravels as Iran Fires Missiles at Kuwait and Bahrain. India\u2019s Seafarers Pay the Price.",
-      "slug": "gulf-ceasefire-unravels-iran-missiles-kuwait-bahrain-india-seafarers-20260629",
+      "id": "e35d2ed7-b291-4bc8-b5ee-8babc3798ab5",
+      "headline": "EVA Air Wants to Fly Taipei to Delhi by December \u2014 and It's Coming for Silicon Valley's NRI Engineers",
+      "slug": "eva-air-taipei-delhi-silicon-valley-nri-transit-20260630",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,28 +64,210 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Satellite view of Strait of Hormuz",
-          "reason": "The photo shows the Strait of Hormuz, relevant to the Persian Gulf conflict story."
+          "what_photo_shows": "EVA Air Boeing 787-10 aircraft",
+          "reason": "The photo shows an EVA Air plane, relevant to the airline story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 7,
+        "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 8,
+          "score": 9,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively highlights the impact of geopolitical tensions on Indian seafarers, making it relevant for the diaspora."
+          "note": "The article effectively connects the new flight route to the needs of Indian software engineers in Silicon Valley, making it relevant for the NRI audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes from affected Indian seafarers or their families to enhance emotional engagement.",
-          "Provide a brief background on the significance of Indian seafarers in the Gulf region to strengthen the diaspora connection."
+          "Consider adding quotes from Indian tech workers or industry experts to enhance the diaspora perspective.",
+          "Include more details on the expected impact of this route on travel times compared to existing options."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "6080c40f-103a-4fbe-a31e-312060b963f9",
+      "headline": "A War 5,000 Miles Away Is Slowing India's Chip Dreams. Tata's Dholera Fab Is Hit Hardest.",
+      "slug": "india-semiconductor-delays-west-asia-tata-dholera-20260630",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "9d25a905-cafb-4781-b578-a46dbb55ff4d",
+            "headline": "A War Far From Gujarat Is Threatening India's Chip Ambitions"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "researcher with silicon wafer in fab",
+          "reason": "The photo shows semiconductor fabrication, relevant to the chip story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image of a silicon wafer researcher is relevant but does not directly depict the Tata Dholera fab or the specific context of semiconductor manufacturing in India."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article touches on the potential impact on Indian-American semiconductor engineers considering opportunities in India, which connects to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more direct quotes or insights from industry experts to enhance credibility.",
+          "Add a section discussing potential solutions or government initiatives to mitigate the impact on India's semiconductor ambitions."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "b26a83f2-1744-4b80-ac63-df2d9ef2a901",
+      "headline": "HDFC Bank Just Named a Former Election Chief and Banking Reformer as Its New Chairman \u2014 Here's What NRI Shareholders Should Know",
+      "slug": "hdfc-bank-rajiv-kumar-chairman-former-cec-finance-secretary-governance-reset-nri-shareholders-20260630",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "man in a blue suit speaking",
+          "reason": "The photo plausibly shows Rajiv Kumar, relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses HDFC Bank's governance and its implications for NRI investors, making it relevant for the diaspora audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more specific insights or quotes from Rajiv Kumar regarding his vision for HDFC Bank to enhance the article's depth.",
+          "Add a section that discusses potential impacts of Kumar's appointment on NRI investors' portfolios or investment strategies."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "edd956e7-dc4b-4c5a-8b5d-2081ab5fc4ba",
+      "headline": "Switching to E-Cigarettes After Quitting Smoking May Nearly Double Your Lung Cancer Death Risk, a 4.5-Million-Person Study Finds",
+      "slug": "e-cigarettes-vaping-lung-cancer-death-risk-doubles-nature-medicine-4-million-korean-study-diaspora-20260630",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "b83567af-61eb-49fc-aa09-d0a3a6e7ba29",
+            "headline": "Vaping While You Smoke May Nearly Triple Your Risk of Early-"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "various e-cigarettes on a table",
+          "reason": "The photo shows e-cigarettes, which are relevant to the story about vaping and lung cancer risk."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the study's findings to the Indian diaspora, particularly in the context of vaping trends among Indian Americans."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more statistics or quotes from experts to strengthen the argument.",
+          "Include a section on potential policy implications for the Indian diaspora regarding vaping."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "aba358ce-4988-476d-bd36-f387a72c4c9c",
+      "headline": "80% of People Aren't Getting Enough of the Nutrient That Protects Hearts and Brains \u2014 Even If They Eat Their Five a Day",
+      "slug": "flavanols-deficiency-80-percent-heart-brain-food-function-30000-study-green-tea-south-asian-diaspora-20260630",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "cup of green tea and candle",
+          "reason": "Green tea is mentioned as a source of flavanols in the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 4,
+          "issue": "The image of green tea is relevant but does not directly illustrate the broader topic of flavanols or the specific foods mentioned in the article."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the research findings to the Indian diaspora, highlighting traditional dietary advantages and current trends."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that showcases a variety of flavanol-rich foods to better match the article's content.",
+          "Add a brief summary or conclusion to reinforce the key takeaways for readers."
         ],
         "verdict": "pass"
       },
