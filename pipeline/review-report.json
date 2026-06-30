@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-30T06:45:47.014703+00:00",
+  "timestamp": "2026-06-30T07:15:20.118509+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 6,
-    "flag": 0,
+    "pass": 1,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,148 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "10b738e8-2007-40c9-8fa9-768991a80500",
-      "headline": "The US Judge Handling Adani's Case Just Told Prosecutors Their Explanation Wasn't Good Enough",
-      "slug": "adani-us-judge-garaufis-refuses-dismiss-doj-justify-july-13-20260629",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "decdfb91-ebc7-42c2-9694-f3775db2c747",
-            "headline": "A Brooklyn Judge Just Told the Trump DOJ It Can't Walk Away "
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Gautam Adani in a suit",
-          "reason": "The photo shows Gautam Adani, relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses the implications of the Adani case on NRIs, particularly regarding their investments and exposure to Indian markets."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more context about the implications of the case for NRIs, such as potential impacts on investment strategies or market confidence.",
-          "Include quotes from NRI investors or experts to enhance the diaspora perspective."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "06053eb7-32c9-4798-82cb-e469ffda4bb9",
-      "headline": "India Just Merged Its Two Biggest Power Lenders Into a $130 Billion Giant. Here's What It Means.",
-      "slug": "pfc-rec-merger-130-billion-power-nbfc-india-infrastructure-20260629",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "REC Limited corporate headquarters",
-          "reason": "The photo shows REC Limited headquarters, relevant to the merger story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the merger to NRI investments in India's infrastructure, making it relevant for the diaspora audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from industry experts or stakeholders to enhance credibility.",
-          "Include a brief overview of the historical context of previous mergers in the Indian financial sector for better depth."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "75827485-be64-4d66-90fa-c8cea2c3dea8",
-      "headline": "Mehrotra's Micron Just Posted a $41.5 Billion Quarter. The Man from Kanpur Has Never Had a Hand This Good.",
-      "slug": "micron-mehrotra-41-billion-quarter-hbm-ai-memory-20260630",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "068dbdd3-cb34-4936-9fd7-f277cf658b2a",
-            "headline": "Sanjay Mehrotra's Micron Just Passed Meta in Market Value. H"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "smiling man in a suit",
-          "reason": "The photo plausibly shows the CEO mentioned in the headline."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects Mehrotra's achievements to the Indian diaspora, particularly highlighting the significance of his work for Indian engineers in the semiconductor industry."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more direct quotes from Sanjay Mehrotra to enhance the personal connection and authority of the article.",
-          "Include a brief overview of the implications of Micron's success for the Indian semiconductor industry to strengthen the diaspora angle."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "51f6da6f-df3f-47ba-a1a2-2c77a515e22e",
-      "headline": "India's Monsoon Has Delivered 42% Less Rain Than Normal. Farmers Are Running Out of Time.",
-      "slug": "india-monsoon-42-percent-deficit-el-nino-kharif-sowing-food-prices-nri-20260630",
+      "id": "93422014-40a8-4e0a-9138-081410431afd",
+      "headline": "25 Years After Dil Chahta Hai, Saif Ali Khan and Farhan Akhtar Are Reuniting \u2014 for a Thriller",
+      "slug": "saif-ali-khan-farhan-akhtar-excel-moral-thriller-dil-chahta-hai-25-years-reunion-diaspora-nri-20260630",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -160,66 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MISMATCH",
-          "what_photo_shows": "Monsoon precipitation bar chart",
-          "reason": "The photo shows a chart, not farmers or fields related to the monsoon impact."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 5,
-          "issue": "hero image not provided"
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article connects the monsoon's impact on agriculture to food prices, which is relevant for NRIs sending remittances."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include a relevant hero image to enhance visual appeal and context.",
-          "Expand on the diaspora angle by providing specific examples of how NRIs can support affected farmers or communities."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "Cleared mismatched image (Monsoon precipitation bar chart)",
-        "held: image mismatch"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "image_mismatch": true,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "2c8f5d07-4280-40ed-91b5-cc41facc200c",
-      "headline": "JP Morgan Just Told Indian IT to Brace for Year Two of AI Deflation. The Numbers Are Getting Worse.",
-      "slug": "jp-morgan-indian-it-fy27-guidance-cuts-ai-deflation-year-two-20260630",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "1626081c-96ac-44a5-be6b-1857602b7674",
-            "headline": "India's Tech Job Market Hit a 28-Month Low. Thousands of Ret"
-          },
-          {
-            "article_id": "4d713ecd-5f35-4ab5-a935-7f1ac65b7bb7",
-            "headline": "Nasscom Says AI Will Create a $400 Billion Market for Indian"
-          },
-          {
-            "article_id": "9499af09-c91c-445c-b555-a5d119e60f9f",
-            "headline": "India's IT Giants Just Lost 40 Per Cent of Their H-1B Visas."
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Infosys building and pyramid",
-          "reason": "The photo shows Infosys, relevant to Indian IT companies."
+          "what_photo_shows": "Dil Chahta Hai movie poster",
+          "reason": "The photo shows a movie poster, not Saif Ali Khan."
         },
         "inline_image_mismatches": []
       },
@@ -228,69 +31,80 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image of Infosys is relevant to the article's topic on Indian IT, but it could be more directly related to the specific issues discussed regarding AI deflation."
+          "issue": "The image description is missing, making it difficult to assess relevance."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the implications of the Indian IT slowdown to the lives of Indian nationals on H-1B visas, making it highly relevant for the diaspora audience."
+          "quality": 7,
+          "note": "The article discusses a significant Bollywood reunion, which may resonate with the NRI audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more specific examples of how the slowdown is impacting H-1B visa holders to strengthen the diaspora angle.",
-          "Include a more relevant image that directly illustrates the challenges faced by the Indian IT sector in relation to AI."
+          "Include a relevant image description to improve the image match score.",
+          "Add quotes or insights from diaspora audiences or critics to strengthen the diaspora angle."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "promoted to published"
+        "Cleared mismatched image (Dil Chahta Hai movie poster)",
+        "held: image mismatch"
       ],
       "revised": false,
       "unpublished": false,
+      "image_mismatch": true,
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "95d07af7-6177-4240-a6b8-32293eaf2a66",
-      "headline": "The Tata Breach Just Got Worse. iPhone 18 Pro Supplier Maps and Drop-Test Photos Are Now on the Dark Web.",
-      "slug": "tata-electronics-breach-iphone-18-pro-supplier-maps-dark-web-apple-20260630",
+      "id": "c963a475-3445-4763-8f35-a6af398c5169",
+      "headline": "Priyadarshan Just Walked Out of Hera Pheri 3 \u2014 and Says the Film Will Never Be Made",
+      "slug": "priyadarshan-exits-hera-pheri-3-will-never-be-made-legal-disputes-nadiadwala-akshay-suniel-paresh-diaspora-nri-20260630",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Electronic circuit boards in production",
-          "reason": "The photo subject aligns with the technology and manufacturing theme of the story."
+          "verdict": "MISMATCH",
+          "what_photo_shows": "Hera Pheri movie poster",
+          "reason": "The photo shows a movie poster, not Priyadarshan."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DZ7fcrwNnmS/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel does not appear to be directly related to the article's subject matter regarding the status of *Hera Pheri 3*."
+          }
+        ],
         "image_match": {
-          "score": 6,
-          "issue": "The image does not directly relate to the article's content about the Tata breach and Apple products."
+          "score": 5,
+          "issue": "The image description/entities do not match the article headline and topic as no image URL or description was provided."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the breach to Indian-origin engineers and the implications for India's manufacturing credibility."
+          "quality": 9,
+          "note": "The article effectively connects with the diaspora by discussing the cultural significance of *Hera Pheri* and its impact on NRI identity."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that reflects the topic of the Tata breach and its implications for Apple.",
-          "Add more context about the impact of the breach on the Indian tech industry to enhance the diaspora angle."
+          "Include a relevant image that reflects the article's content about *Hera Pheri 3*.",
+          "Replace or remove the irrelevant Instagram embed to maintain topical relevance."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
-        "promoted to published"
+        "Cleared mismatched image (Hera Pheri movie poster)",
+        "Removed irrelevant embed: https://www.instagram.com/reel/DZ7fcrwNnmS/",
+        "held: image mismatch"
       ],
       "revised": false,
       "unpublished": false,
+      "image_mismatch": true,
       "llm_source": "gpt-4o-mini"
     }
   ]
