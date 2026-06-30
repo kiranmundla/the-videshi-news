@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-30T12:16:17.428113+00:00",
+  "timestamp": "2026-06-30T12:45:34.379941+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 6,
-    "flag": 1,
+    "pass": 3,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "e978a72e-2741-4b07-b696-8f6f633164d3",
-      "headline": "The Rate War for NRI Dollars: Indian Banks Are Offering Up to 7.5% on Foreign Currency Deposits",
-      "slug": "fcnr-rate-war-nri-deposits-banks-7-percent-rbi-september-deadline-20260630",
+      "id": "8aef202a-b7e9-4bc1-9ddf-2f511567bdc9",
+      "headline": "Musaafer's Taj Mahal Comes to Tribeca: Inside New York's Most Opulent Indian Restaurant",
+      "slug": "musaafer-tribeca-new-york-indian-fine-dining-houston-taj-mahal-inspired",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Reserve Bank of India headquarters",
-          "reason": "The photo shows the Reserve Bank of India, relevant to the story on RBI policy changes."
+          "what_photo_shows": "elaborate Indian thali with naan and curries",
+          "reason": "The photo shows Indian cuisine, relevant to the restaurant story."
         },
         "inline_image_mismatches": []
       },
@@ -36,13 +36,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article directly addresses NRIs and their financial interests, making it relevant and engaging for the diaspora audience."
+          "note": "The article connects well with the Indian diaspora by highlighting a culturally rich dining experience that reflects Indian heritage."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include a summary or conclusion section to reinforce key takeaways for NRIs.",
-          "Add a comparison chart or table for quick reference on the rates offered by different banks."
+          "Include quotes or testimonials from diners to enhance the personal connection.",
+          "Add a section on the significance of Indian cuisine in the diaspora context."
         ],
         "verdict": "pass"
       },
@@ -54,9 +54,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "7c375da9-b039-44f4-a22b-d08da8aaf460",
-      "headline": "Five Indian Americans, Five Fields, One State: Inside GOPIO-CT's 20th Anniversary Honours",
-      "slug": "gopio-ct-20th-anniversary-indian-american-honors-connecticut-diaspora-20260630",
+      "id": "3e9ac22f-0ef3-4d7a-9e85-4717e3e0ba5e",
+      "headline": "The Rupee Just Posted Its First Quarterly Gain in Over a Year. Here's What It Took.",
+      "slug": "india-rupee-first-quarterly-gain-five-oil-crash-goldman-upgrade-nri-remittance-20260630",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,194 +64,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "elegantly set awards banquet table",
-          "reason": "The photo shows a banquet setting, matching the event description."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image is relevant but does not specifically depict the event or honorees mentioned in the article."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively highlights the achievements of Indian Americans in Connecticut, connecting well with the diaspora audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider including quotes or reactions from the honorees to add a personal touch.",
-          "Add more context about GOPIO-CT's impact on the local community to enhance the narrative."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "587be9d9-eaf5-4720-85f7-d36724b77f27",
-      "headline": "Half of All OPT Workers Are Indian. The Man Running USCIS Wants to End the Programme",
-      "slug": "opt-stem-indian-students-uscis-edlow-duration-status-end-20260630",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "students walking on university campus",
-          "reason": "The photo shows international students on a campus, relevant to the story about OPT and Indian students."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 5,
-          "issue": "The image does not directly relate to the topic of immigration or OPT workers."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses the impact of immigration policy on Indian students and professionals, which is highly relevant to the Indian diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that reflects the theme of immigration or international students.",
-          "Add quotes or perspectives from Indian students or professionals affected by the proposed changes to enhance the diaspora connection."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "5fc5693f-985c-4cb1-a6ce-db79d0225269",
-      "headline": "One in Four American Doctors Trained Abroad. The Fee Nearly Drove Them Out",
-      "slug": "indian-doctors-aapi-h1b-fee-ruling-rural-healthcare-imgs-20260630",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "doctor examining a patient",
-          "reason": "The photo shows a doctor examining a patient, which aligns with the story about international medical graduates."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the article's focus on American doctors trained abroad."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively highlights the contributions of Indian-origin physicians in the U.S. healthcare system, making a strong connection to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that depicts Indian-origin doctors or healthcare settings.",
-          "Add more statistics or personal stories from Indian-origin physicians to enhance the narrative."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "a26e25ce-6a97-4afd-9eb3-8e27793ffccd",
-      "headline": "Amazon Just Bet $48 Billion on India. Jassy Flew to Delhi to Tell Modi Personally.",
-      "slug": "amazon-48-billion-india-jassy-modi-aws-ai-cloud-20260630",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "14f944bf-a7a6-4075-a160-79b35f1bbc71",
-            "headline": "Amazon Just Dropped Another $13 Billion on India. The Hypers"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A man in a suit outdoors",
-          "reason": "The photo plausibly shows Amazon CEO Andy Jassy, relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image of Andy Jassy is relevant as it features the Amazon CEO, but it could be more directly related to the investment announcement."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the investment to job opportunities and investment exposure for the Indian diaspora, making it relevant to NRI readers."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more visuals or infographics to illustrate the investment impact on the Indian economy.",
-          "Include quotes or reactions from Indian diaspora leaders to enhance the diaspora perspective."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "6f8e28dd-da9b-40bf-8aa2-3b810579452e",
-      "headline": "Arora's Palo Alto Networks Just Hit a $3 Billion Quarter. Then Its Stock Hit an All-Time High.",
-      "slug": "nikesh-arora-palo-alto-3-billion-quarter-all-time-high-20260630",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "749cfbed-6929-41e7-a0e6-3b44831fe427",
-            "headline": "Nikesh Arora's Palo Alto Networks Hit an All-Time High. His "
-          },
-          {
-            "article_id": "289c564b-f908-4976-ad8d-257b00d5491d",
-            "headline": "Nadella, Pichai, and Arora Just Bought a Cricket Team at Lor"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Nikesh Arora at a conference",
-          "reason": "The photo shows Nikesh Arora, relevant to the story."
+          "what_photo_shows": "Indian rupee banknotes",
+          "reason": "The photo shows Indian rupee banknotes, which is relevant to the story about the rupee's gain."
         },
         "inline_image_mismatches": []
       },
@@ -265,13 +79,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses Nikesh Arora's background and the implications of his success for Indian engineers, connecting well with the diaspora audience."
+          "note": "The article effectively connects the rupee's performance to the financial impact on NRIs, making it relevant for the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more quotes from Nikesh Arora or industry experts to enhance credibility.",
-          "Include a brief section on how Palo Alto Networks' success impacts the cybersecurity landscape in India."
+          "Consider adding more data or quotes from NRI perspectives to enhance the diaspora angle.",
+          "Include a brief summary of potential future implications for NRIs based on the rupee's performance."
         ],
         "verdict": "pass"
       },
@@ -283,9 +97,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "a5f34c07-8956-4236-a737-f12c545da5a9",
-      "headline": "India Just Signed a 35-Nation Pact to Secure AI's Silicon Supply Chain. Here's What It Actually Means.",
-      "slug": "india-pax-silica-35-nation-chip-ai-supply-chain-20260630",
+      "id": "9adb7a33-f9a5-4cc7-8394-88c1d0540e73",
+      "headline": "Apple Calls India's Antitrust Case Against It 'Copy-Pasted.' The Regulator Has Heard That Before.",
+      "slug": "apple-accuses-india-cci-copy-pasting-antitrust-app-store-phonpe-paytm-20260630",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -293,8 +107,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "a semiconductor wafer",
-          "reason": "The photo shows a semiconductor wafer, relevant to the silicon supply chain story."
+          "what_photo_shows": "Apple Park headquarters in Cupertino",
+          "reason": "The photo shows Apple's headquarters, relevant to a story about Apple."
         },
         "inline_image_mismatches": []
       },
@@ -308,13 +122,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses the implications of the US-India chip alliance for Indian Americans, highlighting career and investment opportunities."
+          "note": "The article connects the antitrust case to Indian-origin professionals in the tech industry, highlighting the implications for them."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more specific examples of how the semiconductor industry in India is expected to grow and impact the diaspora.",
-          "Add quotes or insights from Indian American professionals in the semiconductor field to enhance the diaspora connection."
+          "Include more direct quotes from the CCI or Apple to enhance credibility.",
+          "Provide additional context on the implications of the case for Indian consumers."
         ],
         "verdict": "pass"
       },
