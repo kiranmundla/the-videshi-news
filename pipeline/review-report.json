@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-30T14:45:44.248832+00:00",
+  "timestamp": "2026-06-30T15:15:38.928808+00:00",
   "mode": "fix",
   "stats": {
     "pass": 4,
-    "flag": 1,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,18 +11,27 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "563c399e-fcce-4769-a8ae-4ae7f10742b7",
-      "headline": "India Spent 17% More in Two Months but Used Less Than a Tenth of Its Deficit Budget. Here's How.",
-      "slug": "india-fiscal-deficit-9-percent-full-year-target-april-may-capex-spending-20260630",
+      "id": "b63c5c8c-4dcb-4180-937f-70506b2d8cdd",
+      "headline": "A 93-Year-Old Oscar Winner Sat Through 8 Hours of Indian Cinema \u2014 and Rajamouli Just Got His Name Carved Into Paris",
+      "slug": "rajamouli-cinematheque-francaise-permanent-seat-costa-gavras-rrr-baahubali-paris-indian-cinema-honour-diaspora-nri-20260630",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "75454d9e-9a95-4883-9abb-303a5a6fcb9b",
+            "headline": "Prabhas Raised Three Fingers. Rana Tried to Stop Him. The In"
+          },
+          {
+            "article_id": "45bda39d-ac99-4b4f-b20d-ade4dd97d75e",
+            "headline": "50,000 Vanars, 3,500 Extras, and the Man Who Made Baahubali "
+          }
+        ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "The Central Secretariat in New Delhi",
-          "reason": "The photo shows a government building relevant to the fiscal policy topic."
+          "what_photo_shows": "SS Rajamouli in RRR attire",
+          "reason": "The photo shows SS Rajamouli, relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -36,13 +45,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article connects well with NRIs by discussing fiscal discipline and investment opportunities in India, which are relevant to the diaspora's interests."
+          "note": "The article effectively connects Rajamouli's achievements to the Indian diaspora, highlighting the significance of his work for NRI audiences."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more direct quotes from economists or financial experts to enhance credibility.",
-          "Include a brief explanation of how fiscal policies directly impact NRIs or their investments in India."
+          "Consider adding more quotes from Costa-Gavras to enhance the emotional impact of the article.",
+          "Include a brief background on the significance of the Cin\u00e9math\u00e8que Fran\u00e7aise for readers unfamiliar with it."
         ],
         "verdict": "pass"
       },
@@ -54,9 +63,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "01119773-5cf0-4ef3-a376-34df89d7621c",
-      "headline": "He Filed 64 Identical Asylum Claims for Indian Clients. ICE Just Made Him the First Attorney It's Ever Fined for It.",
-      "slug": "ice-fines-indian-american-attorney-255k-fraudulent-asylum-claims-doddamani-20260630",
+      "id": "59d7e2d6-7516-4980-9962-2f8ff8ef28aa",
+      "headline": "'If Coding Becomes Automated, Why Are We Needed?' Nilekani Has an Answer.",
+      "slug": "nilekani-infosys-agm-coding-automated-ai-indian-it-20260630",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,8 +73,51 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "interior of an American courthouse",
-          "reason": "The photo shows a courthouse, which is relevant to a legal story."
+          "what_photo_shows": "Nandan Nilekani at an event",
+          "reason": "The photo shows Nandan Nilekani, relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 8,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses the implications of AI in the IT sector, particularly for Indian IT professionals in the US, making it relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more direct quotes or insights from Nilekani to enhance the depth of the article.",
+          "Expand on the potential impact of AI on the job market for NRIs to provide a more comprehensive view."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "b97f4e49-b3c5-4154-b9a1-d1f47058eebd",
+      "headline": "OpenAI Built Its First Chip in Nine Months. It Used AI to Design It.",
+      "slug": "openai-jalapeno-chip-broadcom-nine-months-inference-ai-20260630",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "electronic microchips on a circuit board",
+          "reason": "The photo subject is relevant to the technology story about microchips."
         },
         "inline_image_mismatches": []
       },
@@ -74,18 +126,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image does not directly relate to the specific topic of immigration or asylum claims."
+          "issue": "The image does not directly relate to the specific topic of AI chips or technology."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the implications of the case to the Indian diaspora, highlighting the broader impact on Indian nationals navigating the U.S. immigration system."
+          "quality": 8,
+          "note": "The article effectively connects the OpenAI chip development to the Indian tech community and its implications for Indian IT services."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that depicts immigration or legal proceedings to enhance visual connection to the article's topic.",
-          "Add more quotes or perspectives from immigration experts or affected individuals to provide a more rounded view of the implications of the case."
+          "Consider using a more relevant image that depicts AI technology or semiconductor manufacturing.",
+          "Expand on the implications for the Indian diaspora in terms of investment opportunities or job market changes."
         ],
         "verdict": "pass"
       },
@@ -97,9 +149,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "d7d4d4f1-a131-41e5-ac43-98d8d463de20",
-      "headline": "Modi and Carney Have Met Four Times in Under a Year. Here's What India and Canada Just Agreed To.",
-      "slug": "india-canada-reset-modi-carney-cepa-trade-uranium-defence-diaspora-20260630",
+      "id": "a410abbe-727d-4f2f-8e94-0b676326a1db",
+      "headline": "Krishna's IBM Just Built a Chip Smaller Than One Nanometre. It Packs 100 Billion Transistors.",
+      "slug": "ibm-arvind-krishna-sub-1nm-nanostack-chip-100-billion-transistors-20260630",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -107,8 +159,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A man in a suit and tie",
-          "reason": "The photo plausibly shows a political figure relevant to the diplomacy story."
+          "what_photo_shows": "A man speaking at a conference",
+          "reason": "The photo shows a person who could be the IBM CEO, relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -116,121 +168,23 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image of Arvind Krishna is relevant as it features the CEO of IBM, but it does not directly depict the chip technology discussed."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses the diplomatic relationship between India and Canada, which is relevant to the Indian diaspora in Canada."
+          "note": "The article effectively highlights the achievements of Arvind Krishna, an Indian-American, and connects it to the broader context of Indian-origin leaders in the tech industry."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes or perspectives from Indian-Canadian community leaders to enhance the diaspora connection.",
-          "Provide more context on how these agreements will directly impact the Indian diaspora in Canada."
+          "Include a more direct connection to how this technology impacts the Indian tech landscape or diaspora.",
+          "Consider adding a visual representation of the chip or its architecture to enhance reader understanding."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "2a3b4d6e-3070-447b-ab46-f167012e145d",
-      "headline": "He Called India's Jobless Youth 'Cockroaches.' They Built a Party Around It.",
-      "slug": "cockroach-janta-party-sonam-wangchuk-hunger-strike-neet-exam-youth-movement-20260630",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Sonam Wangchuk speaking at an event",
-          "reason": "The photo shows Sonam Wangchuk, who is mentioned in the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the NEET scandal to the concerns of the diaspora, particularly regarding the integrity of the education system."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more quotes or perspectives from diaspora members to enhance the connection.",
-          "Include a brief background on the NEET exam for readers unfamiliar with the topic."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "a98d3cbf-89a7-4c19-bc88-6c68c54fbfff",
-      "headline": "The FDA Just Said There's 'Little Evidence' Behind the Peptides Millions of Americans Are Injecting",
-      "slug": "fda-peptides-bpc157-safety-risks-wellness-craze-science-evidence-diaspora-health-20260630",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [
-          {
-            "url": "https://x.com/US_FDA/status/1800262145325852028",
-            "problem": "broken",
-            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
-          },
-          {
-            "url": "https://instagram.com/p/C71g_t9u-e6/",
-            "problem": "broken",
-            "detail": "Instagram embed shows removed/broken placeholder"
-          }
-        ],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Peptide compounds in a lab",
-          "reason": "The photo shows peptide compounds, relevant to the story about peptides."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": false,
-          "quality": 0,
-          "note": "The article does not connect to NRI/diaspora readers."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Incorporate a section that discusses how the FDA's findings may impact the Indian diaspora's access to wellness products.",
-          "Add quotes or insights from experts in the Indian wellness community regarding the use of peptides."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Removed 2 broken/hallucinated embed(s)",
         "promoted to published"
       ],
       "revised": false,
