@@ -1,19 +1,19 @@
 {
-  "timestamp": "2026-06-30T04:45:32.771298+00:00",
+  "timestamp": "2026-06-30T05:15:22.005292+00:00",
   "mode": "fix",
   "stats": {
     "pass": 2,
-    "flag": 1,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
-  "revisions": 1,
+  "revisions": 0,
   "unpublished": 0,
   "articles": [
     {
-      "id": "cde4378f-12a4-490f-90a1-8de927791e43",
-      "headline": "Indian Passport Fees Jump Up to 75% From July 1. Here\u2019s What Changes for NRIs.",
-      "slug": "india-passport-fees-hike-july-2026-nri-guide",
+      "id": "0d726f7f-7138-4c9d-b4e1-d295a8d0a28b",
+      "headline": "Srikant Tiwari Isn't Done Yet \u2014 Raj & DK Confirm They're 'Writing Furiously' on The Family Man Season 4",
+      "slug": "family-man-season-4-raj-dk-writing-furiously-manoj-bajpayee-prime-video-where-to-watch-diaspora-nri",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "An Indian passport cover",
-          "reason": "The photo shows an Indian passport, relevant to the story about passport fee changes."
+          "what_photo_shows": "Manoj Bajpayee in formal attire",
+          "reason": "The photo shows Manoj Bajpayee, who plays Srikant Tiwari."
         },
         "inline_image_mismatches": []
       },
@@ -30,19 +30,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image features Manoj Bajpayee, who is relevant to the article, but it does not directly depict a scene or moment from 'The Family Man'."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the passport fee increase to the NRI community, highlighting its implications for their citizenship and residency."
+          "note": "The article effectively connects with diaspora audiences by highlighting the simultaneous streaming of the show across multiple countries."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a quote from an NRI or an expert on the impact of the fee increase to enhance relatability.",
-          "Include a brief section on how NRIs can prepare for the fee changes, such as tips for renewing passports before the deadline."
+          "Consider including more direct quotes or insights from Raj & DK to enhance the article's depth.",
+          "Add a brief section on the impact of 'The Family Man' on Indian streaming culture to provide more context."
         ],
         "verdict": "pass"
       },
@@ -70,7 +70,7 @@
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 6,
+        "overall_score": 7,
         "embed_issues": [],
         "image_match": {
           "score": 8,
@@ -78,57 +78,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article discusses the impact of geopolitical tensions on Indian seafarers, which is relevant to the NRI community."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Add more context on how the geopolitical situation specifically affects Indian seafarers.",
-          "Include quotes or perspectives from Indian seafarers or their families to enhance the human angle."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Revised by gemini-2.5-flash (968\u21921159 words)"
-      ],
-      "revised": true,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "8a159182-7812-4c3c-ae55-6846242bad90",
-      "headline": "No Singles Player. No Sania. But India Isn't Invisible at Wimbledon 2026.",
-      "slug": "wimbledon-2026-no-indian-singles-bhambri-doubles-revathi-paparkar-junior-diaspora-nri",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Wimbledon Centre Court exterior",
-          "reason": "The photo shows Wimbledon Centre Court, relevant to the tennis story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
           "quality": 8,
-          "note": "The article connects well with NRI readers by discussing the viewing options for Wimbledon and highlighting India's participation."
+          "note": "The article effectively highlights the impact of geopolitical tensions on Indian seafarers, making it relevant for the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes or anecdotes from Indian players to enhance the narrative.",
-          "Add a brief section on the historical significance of Indian players at Wimbledon to provide context."
+          "Include more direct quotes from affected Indian seafarers or their families to enhance emotional engagement.",
+          "Provide a brief background on the significance of Indian seafarers in the Gulf region to strengthen the diaspora connection."
         ],
         "verdict": "pass"
       },
