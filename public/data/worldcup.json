@@ -1,6 +1,6 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-06-30T22:00:05Z",
+  "last_updated": "2026-06-30T23:59:14Z",
   "stage": "Knockout Stage",
   "hosts": "USA, Mexico & Canada",
   "dates": {
@@ -1841,7 +1841,8 @@
           "away_code": "SWE",
           "venue": "MetLife Stadium",
           "city": "East Rutherford",
-          "status": "scheduled"
+          "status": "FT",
+          "score": "3-0"
         },
         {
           "id": 79,
@@ -1999,6 +2000,20 @@
     }
   },
   "highlights": [
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DaOnGt7HGp9/",
+      "account": "@fifaworldcup",
+      "caption": "Again and again 📈 #FIFAWorldCup",
+      "date": "2026-06-30"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DaOjh0nikXQ/",
+      "account": "@fifaworldcup",
+      "caption": "A strong performance sees France through 💪 #FIFAWorldCup",
+      "date": "2026-06-30"
+    },
     {
       "platform": "instagram",
       "url": "https://www.instagram.com/p/DaOPkFDnOVV/",
