@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-06-30T12:55:26.803532+00:00",
+  "last_updated": "2026-06-30T13:55:28.636903+00:00",
   "indices": [
     {
       "symbol": "SENSEX",
@@ -21,17 +21,17 @@
       "symbol": "SPX",
       "name": "S&P 500",
       "flag": "\ud83c\uddfa\ud83c\uddf8",
-      "value": 7440.43,
-      "change": 86.41,
-      "change_pct": 1.18
+      "value": 7464.24,
+      "change": 23.81,
+      "change_pct": 0.32
     },
     {
       "symbol": "NASDAQ",
       "name": "Nasdaq",
       "flag": "\ud83c\uddfa\ud83c\uddf8",
-      "value": 25820.14,
-      "change": 522.52,
-      "change_pct": 2.07
+      "value": 25971.04,
+      "change": 150.89,
+      "change_pct": 0.58
     },
     {
       "symbol": "USDINR",
@@ -45,17 +45,17 @@
       "symbol": "GOLD",
       "name": "Gold",
       "flag": "\u2728",
-      "value": 4030.6,
-      "change": 46.8,
-      "change_pct": 1.17
+      "value": 4038.0,
+      "change": 54.2,
+      "change_pct": 1.36
     },
     {
       "symbol": "SILVER",
       "name": "Silver",
       "flag": "\ud83e\ude99",
-      "value": 58.86,
-      "change": 1.17,
-      "change_pct": 2.03
+      "value": 59.53,
+      "change": 1.83,
+      "change_pct": 3.17
     }
   ]
 }
