@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-30T21:45:20.652065+00:00",
+  "timestamp": "2026-06-30T22:15:59.689894+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 0,
+    "pass": 6,
     "flag": 1,
     "fail": 0,
     "error": 0
@@ -11,6 +11,279 @@
   "unpublished": 0,
   "articles": [
     {
+      "id": "f02c1355-c2c1-4ea8-85da-e58ed5c28d0b",
+      "headline": "India's Banks Are the Healthiest in a Generation \u2014 and the RBI's New Stability Report Explains Why Investors Should Care",
+      "slug": "rbi-financial-stability-report-june-2026-banks-npa-below-2-credit-growth-nri-investor-20260630",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "756bbeab-beea-4c57-9d8f-fe170828fc17",
+            "headline": "India's Central Bank Just Gave NRIs a Reason to Move Their D"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Reserve Bank of India building",
+          "reason": "The photo shows the Reserve Bank of India, relevant to the story about India's banks."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article connects well with NRI investors by discussing the implications of the RBI report on Indian bank stocks."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of how NRI investors can navigate the emerging risks mentioned.",
+          "Include a brief summary of the RBI's recommendations for investors based on the report."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "f87b9efe-7502-44d7-aab3-1f2c107d606d",
+      "headline": "Your Gut Bacteria May Reveal Colorectal Cancer Before Symptoms Appear \u2014 and Fiber Could Be the Key to Prevention",
+      "slug": "gut-microbiome-colorectal-cancer-early-detection-fiber-cell-host-microbe-diaspora-20260630",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "assorted raw grains and wholegrains",
+          "reason": "The photo shows dietary fiber, relevant to colorectal protection."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the research findings to the dietary habits of the Indian diaspora, emphasizing the importance of fiber in their traditional diets."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a quote from a health expert or a statistic about colorectal cancer in the Indian diaspora for added credibility.",
+          "Include a brief section on practical dietary tips for NRIs to increase fiber intake."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "0fadeec4-8ddf-44f9-ae99-caf909c260c5",
+      "headline": "Strength Training Cuts Type 2 Diabetes Risk by Up to 62% \u2014 and Consistency Matters More Than Intensity",
+      "slug": "strength-training-cuts-type-2-diabetes-risk-62-percent-jama-study-south-asian-diaspora-20260630",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "woman doing strength training",
+          "reason": "The photo shows strength training, which aligns with the story topic."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the findings to the South Asian diaspora, highlighting specific health risks and lifestyle factors relevant to NRIs."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a quote from a health expert or a personal story from an NRI to enhance relatability.",
+          "Include more specific recommendations for strength training routines tailored for the South Asian community."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "561afc98-5a85-400e-805e-da76790d1cbd",
+      "headline": "SWISS Is Bringing First Class to Bengaluru \u2014 and Bookings Are Open Now",
+      "slug": "swiss-bengaluru-zurich-nonstop-first-class-nri-20260630",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "aea1737b-9e0a-46e5-a552-e08d402ccf24",
+            "headline": "SWISS Will Fly Bengaluru to Zurich Nonstop Starting October "
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "SWISS Boeing 777-300 in flight",
+          "reason": "The photo shows a SWISS aircraft, relevant to the airline story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively highlights the benefits of the new route for the Indian diaspora, particularly those from Karnataka."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include quotes from travelers or industry experts to enhance credibility.",
+          "Add a section on how this new route may impact travel costs or competition among airlines."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "bf14caeb-4554-4b50-93d5-749714c7f396",
+      "headline": "Frankfurt and Paris Just Got Easier \u2014 Germany and France Drop Transit Visas for Indian Passports",
+      "slug": "germany-france-drop-transit-visa-indian-passport-nri-20260630",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Frankfurt Airport terminal",
+          "reason": "The photo shows Frankfurt Airport, relevant to the story about transit visas."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses the impact of visa changes on NRIs traveling between the US and India, making it relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include quotes from travelers or airline representatives to add a personal touch.",
+          "Consider adding a section on how these changes might affect travel trends or airline competition."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "db909e7c-3508-4b2a-8d30-b2b5e27bee7c",
+      "headline": "India's Passport Fees Jump Tomorrow \u2014 Here's the New Price List for Every NRI Family",
+      "slug": "india-passport-fee-hike-july-nri-family-guide-20260630",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "23426d45-ba0f-44f8-b73f-1695b5446c01",
+            "headline": "India's Revamped OCI Portal Is Live \u2014 and There's a $25 Fine"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Indian passport booklet in a wallet",
+          "reason": "The photo shows an Indian passport, relevant to the story about passport fees."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 10,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively addresses the concerns of NRIs regarding passport fees and the implications for family logistics."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a brief section on how NRIs can navigate the passport renewal process from abroad.",
+          "Include a comparison of the new fees with those of other countries to provide context."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
       "id": "4c02b8c4-7027-46f0-a0d0-7e4f6f4fb600",
       "headline": "Haaland\u2019s Late Winner Sends Norway Past Ivory Coast and Into a World Cup Showdown With Brazil",
       "slug": "haaland-late-winner-norway-ivory-coast-world-cup-brazil-20260630",
@@ -18,18 +291,7 @@
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [],
-        "broken_embeds": [
-          {
-            "url": "https://x.com/erlinghaaland/status/1807986064560947674",
-            "problem": "broken",
-            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
-          },
-          {
-            "url": "https://instagram.com/p/C9H8Q-1Sg1Q/",
-            "problem": "broken",
-            "detail": "Instagram embed shows removed/broken placeholder"
-          }
-        ],
+        "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
           "what_photo_shows": "Erling Haaland in Norway jersey",
@@ -52,14 +314,13 @@
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Expand on the significance of the World Cup for Indian Americans to strengthen the diaspora angle.",
-          "Include quotes or reactions from Indian American fans to enhance engagement with the diaspora audience."
+          "Expand on the connection between the World Cup and the Indian diaspora, perhaps by including quotes or experiences from Indian American fans.",
+          "Include more context about how the World Cup is being received in India or among the Indian diaspora to enhance relevance."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
-        "Removed 2 broken/hallucinated embed(s)",
-        "Revised by gemini-2.5-flash (1049\u21921053 words)"
+        "Revised by gemini-2.5-flash (1053\u21921055 words)"
       ],
       "revised": true,
       "unpublished": false,
