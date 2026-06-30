@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-30T08:15:19.070950+00:00",
+  "timestamp": "2026-06-30T08:45:16.578230+00:00",
   "mode": "fix",
   "stats": {
     "pass": 2,
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "a9f6a18b-5944-4f12-83d6-a1bd572f6a24",
-      "headline": "Her Degree Is From Stanford. Her Work Permit Says 'Pending'",
-      "slug": "h4-ead-renewal-crisis-indian-families-work-permit-gap-20260630",
+      "id": "a20eb2f6-754c-47f3-8976-e0ac24517647",
+      "headline": "Iran Is Offering India Oil at $4 a Barrel Below Market Price. India Isn't Sure It Can Say Yes.",
+      "slug": "iran-courts-india-cheap-crude-oil-sanctions-waiver-hormuz-middlemen-nioc-20260630",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "USCIS Employment Authorization Document",
-          "reason": "The photo shows an EAD card, relevant to the immigration story."
+          "what_photo_shows": "A crude oil tanker at sea",
+          "reason": "The photo shows a crude oil tanker, relevant to the story about Iranian oil offers."
         },
         "inline_image_mismatches": []
       },
@@ -35,14 +35,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article discusses the challenges faced by H-4 visa holders, particularly those from India, making it relevant to the Indian diaspora."
+          "quality": 7,
+          "note": "The article discusses India's potential oil trade with Iran, which is relevant to NRIs interested in economic developments affecting India."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include personal anecdotes or quotes from affected individuals to enhance emotional engagement.",
-          "Add statistics or data on the impact of H-4 EAD delays on the Indian diaspora specifically."
+          "Include more direct quotes from Indian officials or experts to enhance credibility.",
+          "Add a brief section on how this oil deal could impact Indian consumers or the economy, making it more relatable to the diaspora."
         ],
         "verdict": "pass"
       },
@@ -54,47 +54,18 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "2f893da9-3f4b-4ee9-9998-647e3cb86da1",
-      "headline": "Eleven Million Cases and Counting. The Green Card Machine Cannot Keep Up",
-      "slug": "uscis-backlog-11-million-cases-processing-crisis-indian-green-card-20260630",
+      "id": "b6ea84c5-89c6-4ce0-8d9f-564b26387354",
+      "headline": "Japan's First Female PM Arrives in India Tomorrow. She's Bringing a $68 Billion Investment Playbook.",
+      "slug": "japan-pm-takaichi-first-india-visit-16th-summit-semiconductors-rare-earths-20260630",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "aa18166c-663c-45a8-b24e-f5f8ce229faa",
-            "headline": "The Receipt That Never Ends. Every Fee Washington Has Added "
-          },
-          {
-            "article_id": "3bfccf08-94f2-4e2f-bf43-2cfdc4773f28",
-            "headline": "The Green Card You Could Get Without Leaving America? USCIS "
-          },
-          {
-            "article_id": "6be85e6d-fc39-4011-ba26-54b94583d20f",
-            "headline": "DHS Says It Will Process Your Visa With AI in 30 Days. Immig"
-          },
-          {
-            "article_id": "faac8aeb-8246-40b8-81c3-1daaa48ee892",
-            "headline": "EB-5 Becomes India's Fastest Green Card Route. The Window Cl"
-          },
-          {
-            "article_id": "d276a8b7-a31d-454e-944f-1d95ef0e1ad8",
-            "headline": "A $100,000 Price Tag on Every H-1B Hire. A Judge Said No. Th"
-          },
-          {
-            "article_id": "7cd205b9-fefe-4bb3-8095-09600ad42101",
-            "headline": "You Used Day 1 CPT in 2019. USCIS Just Found Out"
-          },
-          {
-            "article_id": "68943038-05c3-4686-9959-65c1e60dd9c9",
-            "headline": "EB-2 India Is Shut Until October. The July Visa Bulletin Is "
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "USCIS Application Support Center",
-          "reason": "The photo shows a USCIS center, relevant to the immigration story."
+          "what_photo_shows": "Japanese woman in official portrait",
+          "reason": "The photo plausibly shows the Japanese Prime Minister as described in the story."
         },
         "inline_image_mismatches": []
       },
@@ -107,14 +78,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively addresses the challenges faced by Indian professionals in the green card process, making it relevant to the diaspora audience."
+          "quality": 7,
+          "note": "The article discusses Japan's investment in India, which is relevant to the Indian diaspora interested in economic opportunities."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes or testimonials from Indian professionals affected by the backlog to enhance the human interest angle.",
-          "Include a section on potential solutions or reforms being discussed to address the backlog issue."
+          "Include quotes from officials or experts to enhance credibility.",
+          "Add a section on how this investment could impact the Indian diaspora in Japan."
         ],
         "verdict": "pass"
       },
