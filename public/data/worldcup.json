@@ -1,6 +1,6 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-06-30T18:00:36Z",
+  "last_updated": "2026-06-30T20:00:25Z",
   "stage": "Knockout Stage",
   "hosts": "USA, Mexico & Canada",
   "dates": {
@@ -1827,7 +1827,8 @@
           "away_code": "NOR",
           "venue": "AT&T Stadium",
           "city": "Arlington",
-          "status": "scheduled"
+          "status": "FT",
+          "score": "1-2"
         },
         {
           "id": 78,
@@ -4468,6 +4469,139 @@
       "url": "https://www.threads.com/@fifaworldcup/post/DaNzGemDtTM",
       "account": "@fifaworldcup",
       "caption": "Today's predictions? 🔮",
+      "date": "2026-06-30"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DaOJdYOCoHX/",
+      "account": "@fifaworldcup",
+      "caption": "Norway 2-1 Ivory Coast 🇳🇴🔥 Haaland sends the Vikings through! #FIFAWorldCup",
+      "date": "2026-06-30",
+      "type": "image"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/reel/DaOM3zviMEJ/",
+      "account": "@fifaworldcup",
+      "caption": "Antonio Nusa — Man of the Match 🌟 #FIFAWorldCup",
+      "date": "2026-06-30",
+      "type": "video"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/reel/DaN8ctoCsR8/",
+      "account": "@fifaworldcup",
+      "caption": "🇨🇮 vs 🇳🇴 Match highlights — Ivory Coast 1-2 Norway #FIFAWorldCup",
+      "date": "2026-06-30",
+      "type": "video"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/reel/DaN0kP4NXzr/",
+      "account": "@fifaworldcup",
+      "caption": "🇪🇨 Ecuador — Round of 32 matchday vibes #FIFAWorldCup",
+      "date": "2026-06-30",
+      "type": "video"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DaN1XAtDSLh/",
+      "account": "@fifaworldcup",
+      "caption": "Matchday stars ⭐ #FIFAWorldCup",
+      "date": "2026-06-30",
+      "type": "image"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DaOMGYCCWQ6/",
+      "account": "@fifaworldcup",
+      "caption": "Congratulations, Norway! 🇳🇴 Through to the Round of 16 #FIFAWorldCup",
+      "date": "2026-06-30",
+      "type": "image"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/reel/DaNpJzhtqLa/",
+      "account": "@fifaworldcup",
+      "caption": "World Cup memories 🏆 #FIFAWorldCup",
+      "date": "2026-06-30",
+      "type": "video"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DaOHkNZjuzW",
+      "account": "@fifaworldcup",
+      "caption": "Haaland. 🇳🇴⚽",
+      "date": "2026-06-30"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DaOK7yXjzZj",
+      "account": "@fifaworldcup",
+      "caption": "Viking celebration 🇳🇴🎉 #FIFAWorldCup",
+      "date": "2026-06-30"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DaOJfFUj0bG",
+      "account": "@fifaworldcup",
+      "caption": "Haaland's winner sends Norway through! 🇳🇴 2-1 🇨🇮 #FIFAWorldCup",
+      "date": "2026-06-30"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DaOGMcyjtXY",
+      "account": "@fifaworldcup",
+      "caption": "GOAAAL! Amad Diallo pulls one back for Ivory Coast! 🇨🇮⚡ #FIFAWorldCup",
+      "date": "2026-06-30"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DaOGIu8Dm9m",
+      "account": "@fifaworldcup",
+      "caption": "What a strike! 💥 #FIFAWorldCup",
+      "date": "2026-06-30"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DaOBZ9iDkv9",
+      "account": "@fifaworldcup",
+      "caption": "🇨🇮 1-2 🇳🇴 — Norway take the lead! #FIFAWorldCup",
+      "date": "2026-06-30"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DaN7b0Ij7w3",
+      "account": "@fifaworldcup",
+      "caption": "🇨🇮🆚🇳🇴 Let's go! #FIFAWorldCup",
+      "date": "2026-06-30"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DaOI81AjzkB",
+      "account": "@fifaworldcup",
+      "caption": "Full-time: Ivory Coast 1-2 Norway 🇳🇴✅ #FIFAWorldCup",
+      "date": "2026-06-30"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DaOItYCjwQe",
+      "account": "@fifaworldcup",
+      "caption": "The Flying Viking! 🧤🇳🇴 Incredible save! #FIFAWorldCup",
+      "date": "2026-06-30"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DaOH1etDuQy",
+      "account": "@fifaworldcup",
+      "caption": "Norway are through! Haaland 🐐🇳🇴 #FIFAWorldCup",
+      "date": "2026-06-30"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DaOAB4sDnOS",
+      "account": "@fifaworldcup",
+      "caption": "GOAAAL! Norway strike first! 🇳🇴🔥 #FIFAWorldCup",
       "date": "2026-06-30"
     }
   ],
