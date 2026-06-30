@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-30T01:45:25.300270+00:00",
+  "timestamp": "2026-06-30T02:16:12.738684+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
+    "pass": 8,
     "flag": 1,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "07f20b7a-52d4-455c-b6b3-2f228f2b19be",
-      "headline": "'We Need to Rethink': Muzumdar Demands Strategic Overhaul as India Women's T20 World Cup Failures Become a Pattern",
-      "slug": "india-women-muzumdar-strategic-overhaul-t20-world-cup-2026-harmanpreet-captaincy-nri",
+      "id": "e2781729-114f-4f17-9df7-7af64e2230e4",
+      "headline": "India's Expressway Boom Has Quietly Halved Your Road Trip \u2014 an NRI Summer Guide",
+      "slug": "india-expressway-road-trip-nri-summer-guide-20260630",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Lord's Cricket Ground in London",
-          "reason": "The photo shows a cricket ground relevant to the cricket story."
+          "what_photo_shows": "modern highway near Gurgaon",
+          "reason": "The photo shows a highway relevant to India's expressway network."
         },
         "inline_image_mismatches": []
       },
@@ -30,19 +30,320 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 6,
-          "issue": "The image of Lord's Cricket Ground is relevant to cricket but does not specifically relate to the women's T20 World Cup or the Indian women's team."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article mentions the Indian diaspora in the UK and their expectations, connecting the narrative to the audience."
+          "quality": 8,
+          "note": "The article effectively addresses NRIs by discussing how new expressways impact their travel plans and family visits in India."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes or reactions from diaspora fans to enhance the connection.",
-          "Consider using an image that directly relates to the Indian women's cricket team or the T20 World Cup."
+          "Include more personal anecdotes or testimonials from NRIs who have experienced the new expressways to enhance relatability.",
+          "Add a section on potential challenges or considerations for NRIs when using these expressways, such as toll costs or local driving customs."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "feea7fcc-418f-4c23-8ab0-e4558ca21c8c",
+      "headline": "Air India Brings First Class to Melbourne Starting July 1 \u2014 Using Borrowed Etihad Suites",
+      "slug": "air-india-first-class-melbourne-etihad-suites-july-20260630",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Air India Boeing 777-300ER",
+          "reason": "The photo shows the correct aircraft type mentioned in the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively highlights the significance of the Indian diaspora in Australia and how the new service caters to their needs."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more specific statistics or quotes from Air India executives to enhance credibility.",
+          "Add a section on potential future routes or expansions to engage readers further."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "697ec9e2-3978-418f-a4e8-31862463b8ce",
+      "headline": "Air India Express Is Plotting Its First European Route \u2014 and Georgia Is the Target",
+      "slug": "air-india-express-georgia-europe-budget-carrier-nri-20260630",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Air India Express Boeing 737",
+          "reason": "The photo shows an Air India Express aircraft, relevant to the airline story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the new route to the needs of NRIs, highlighting visa-friendly travel options and the potential for easier connections."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more statistics or data on the increase in Indian travelers to Georgia to strengthen the argument.",
+          "Consider adding quotes from industry experts or airline representatives to provide additional insights."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "981ef6b2-cbb4-46ee-8501-9cc435528103",
+      "headline": "Kotak Mahindra Bank's CEO Just Said He Won't Stay \u2014 and the Stock Dropped 3.3% as a Succession Battle Begins",
+      "slug": "kotak-mahindra-bank-ceo-ashok-vaswani-exit-succession-stock-drop-nri-investor-20260629",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Kotak Mahindra Bank ATM signage",
+          "reason": "The photo shows Kotak Mahindra Bank signage, relevant to the banking story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the implications of leadership changes at Kotak Mahindra Bank, which is relevant to NRI investors who hold shares in the bank."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more direct quotes from analysts or experts to enhance credibility.",
+          "Add a brief overview of how the succession might impact NRI investors specifically."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "18255107-2c0b-418a-8879-c4a988596f5c",
+      "headline": "Exercise Alone Can Tackle Six of the 14 Risk Factors for Dementia \u2014 and May Prevent Half of All Cases",
+      "slug": "exercise-prevents-half-dementia-cases-university-minnesota-14-risk-factors-brain-health-diaspora-20260629",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "older adults exercising outdoors",
+          "reason": "The photo shows older adults exercising, which aligns with the story about exercise and dementia prevention."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the research findings to the Indian diaspora, highlighting the relevance of dementia prevalence in India and the challenges faced by NRI families."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific statistics or studies related to dementia in the Indian context to strengthen the diaspora angle.",
+          "Include quotes or insights from NRI health experts or community leaders to enhance relatability and authority."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "3ad74deb-6ee0-47ac-966f-bc82982e8847",
+      "headline": "Millennials and Gen Z Are Aging Faster Inside Their Bodies \u2014 and It May Be Fueling a Cancer Surge",
+      "slug": "millennials-gen-z-aging-faster-biologically-cancer-risk-nature-medicine-phenoage-diaspora-20260629",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "DNA strand illustration",
+          "reason": "The DNA strand is relevant to biological aging and cancer research."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the findings to the South Asian diaspora, highlighting specific health risks relevant to this community."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific statistics or studies related to the South Asian diaspora to strengthen the connection.",
+          "Include expert opinions or quotes from health professionals within the diaspora to enhance credibility."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "c2754a64-299a-4948-8413-8236ae996fd3",
+      "headline": "Humbled in Belfast, India Arrive in England With Questions They Cannot Ignore",
+      "slug": "india-england-t20-series-preview-ireland-debacle-sooryavanshi-iyer-durham-july-2026-diaspora-nri",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Shreyas Iyer in cricket attire",
+          "reason": "The photo shows Shreyas Iyer, relevant to the cricket story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 6,
+        "embed_issues": [],
+        "image_match": {
+          "score": 5,
+          "issue": "The image of Shreyas Iyer does not directly relate to the article's focus on the team's performance and upcoming matches."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses the Indian cricket team's challenges, which resonates with the diaspora's interest in cricket and their connection to Indian sports."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more context about the significance of the upcoming matches for the Indian diaspora.",
+          "Consider using an image that better represents the team's struggles or the upcoming series against England."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Revised by gemini-2.5-flash (1176\u21921255 words)"
+      ],
+      "revised": true,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "8e6d5376-18db-408c-b995-41080c7c0bf4",
+      "headline": "Martinelli in the 96th Minute. Brazil Break Japanese Hearts in Houston.",
+      "slug": "martinelli-stoppage-time-winner-brazil-beat-japan-2-1-world-cup-round-of-32-houston-2026-diaspora-nri",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Gabriel Martinelli in sports attire",
+          "reason": "The photo shows Gabriel Martinelli, relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article mentions the Indian diaspora in Houston, connecting the local community to the World Cup event."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more direct quotes from players or coaches to enhance the narrative.",
+          "Expand on the significance of the Indian diaspora's involvement in World Cup events."
         ],
         "verdict": "pass"
       },
@@ -61,7 +362,18 @@
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [],
-        "broken_embeds": [],
+        "broken_embeds": [
+          {
+            "url": "https://x.com/VideshiFootball/status/1807876543210987654",
+            "problem": "broken",
+            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
+          },
+          {
+            "url": "https://instagram.com/p/C-aB1cDEfGh/",
+            "problem": "broken",
+            "detail": "Instagram embed shows removed/broken placeholder"
+          }
+        ],
         "vision_image_match": {
           "verdict": "MATCH",
           "what_photo_shows": "Gillette Stadium in Foxborough",
@@ -70,29 +382,30 @@
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 6,
+        "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image of Gillette Stadium is relevant to the article's content about a match held there."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 5,
-          "note": "The article briefly mentions implications for Indian fans, but this connection could be expanded."
+          "quality": 7,
+          "note": "The article discusses a significant football event that may interest the Indian diaspora, particularly those who follow international football."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Expand on the implications of the match for Indian fans to strengthen the diaspora angle.",
-          "Include quotes or reactions from Indian fans or analysts to enhance relatability."
+          "Include quotes or reactions from Indian diaspora fans to enhance the connection.",
+          "Add a brief historical context about Paraguay's football achievements to enrich the narrative."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
-        "Revised by gemini-2.5-flash (942\u21921043 words)"
+        "Removed 2 broken/hallucinated embed(s)",
+        "promoted to published"
       ],
-      "revised": true,
+      "revised": false,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
     }
