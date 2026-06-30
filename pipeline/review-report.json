@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-30T10:15:30.499220+00:00",
+  "timestamp": "2026-06-30T10:45:25.008629+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 4,
-    "flag": 0,
+    "pass": 1,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,104 +11,23 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "343f1031-3532-4370-981a-0908c1e913f0",
-      "headline": "India's Weak Monsoon Is Quietly Making This July the Best Window for NRI Travel in Years",
-      "slug": "india-weak-monsoon-july-nri-travel-window-2026-20260630",
+      "id": "611bee2f-bea4-493f-a36d-594301fcfbdf",
+      "headline": "Foreign Investors Just Poured a Record $3 Billion Into Indian Bonds in a Single Month. The Tax Break Worked.",
+      "slug": "india-record-3-billion-foreign-bond-inflows-tax-exemption-bloomberg-index-20260630",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "traveller in rain gear in Lonavala",
-          "reason": "The photo shows a traveller in monsoon rain gear, relevant to the travel story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image depicts a scenic view that could relate to travel, but it does not specifically represent the Indian monsoon or the regions mentioned in the article."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively addresses NRIs by discussing travel opportunities during the monsoon, which is relevant to their travel plans."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that specifically represents the Indian monsoon or the regions discussed to enhance relevance.",
-          "Add a section that highlights cultural events or festivals happening in July that may attract NRIs."
+        "duplicate_images": [
+          {
+            "article_id": "d3f645d6-a026-4170-96c8-0c34b5a867ec",
+            "headline": "India's Central Bank Just Ordered a Kill Switch on Every AI "
+          }
         ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "3406b635-c266-46dc-9d1f-25d0a3924d55",
-      "headline": "India's Vande Bharat Trains Just Doubled Capacity on a Key South India Route \u2014 and the Sleeper Version Is Next",
-      "slug": "vande-bharat-bengaluru-ernakulam-doubles-sleeper-train-nri-20260630",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Vande Bharat Express train",
-          "reason": "The photo shows a Vande Bharat Express, relevant to the story about these trains."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively addresses NRIs by discussing travel options and improvements in the Indian rail system that are relevant to their travel needs."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more specific examples of how the new train services can benefit NRIs, such as testimonials or quotes from travelers.",
-          "Add a section on how to book tickets online, including links to the IRCTC website for ease of access."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "4ab9923c-04e9-46ff-a7cf-0714ce5eaf7f",
-      "headline": "Foreign Investors Just Poured a Record $3 Billion Into Indian Bonds in a Single Month \u2014 and the Biggest Catalyst Is Still Ahead",
-      "slug": "india-record-3-billion-foreign-bond-inflows-tax-exemption-bloomberg-index-inclusion-nri-investor-20260630",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
           "what_photo_shows": "Reserve Bank of India headquarters",
-          "reason": "The photo shows the Reserve Bank of India, relevant to the economy story."
+          "reason": "The photo shows the RBI headquarters, relevant to an Indian economy story."
         },
         "inline_image_mismatches": []
       },
@@ -121,14 +40,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article discusses implications for NRI investors, making the diaspora angle relevant and well-integrated."
+          "quality": 7,
+          "note": "The article discusses measures that could attract NRIs to invest in Indian bonds, which is relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Expand on the implications for NRI investors to provide more depth.",
-          "Include quotes or insights from NRI investors to enhance relatability."
+          "Include more direct quotes from diaspora investors or experts to strengthen the connection to NRI perspectives.",
+          "Add a section discussing how these changes might specifically benefit NRIs or impact their investment strategies."
         ],
         "verdict": "pass"
       },
@@ -140,40 +59,45 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "aa645b5f-5c11-4021-bccc-7618cd9d35c7",
-      "headline": "Americans Now View Ultra-Processed Foods as Addictive as Alcohol \u2014 and a Bipartisan Majority Wants the Government to Act",
-      "slug": "ultra-processed-food-addiction-tobacco-parallel-cornell-study-bipartisan-policy-nri-diaspora-20260630",
+      "id": "a48404d7-95a8-4422-9655-c686351d96ce",
+      "headline": "India Won't Sign the US Trade Deal Until It Gets a Better Rate Than Pakistan. That's Not Happening Anytime Soon.",
+      "slug": "india-us-trade-deal-frozen-goyal-pakistan-tariff-edge-scotus-greer-20260630",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "28eb0fff-5288-49b3-95d8-cd1d3e8be0df",
+            "headline": "India's Biggest Trade Deal Goes Live in 17 Days. It Has Depl"
+          }
+        ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "supermarket shelves with snacks",
-          "reason": "The photo shows ultra-processed snacks, relevant to the story on UPFs."
+          "what_photo_shows": "Piyush Goyal at an event",
+          "reason": "The photo shows Commerce Minister Piyush Goyal, relevant to the trade story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 8,
+        "overall_score": 7,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 5,
+          "issue": "image does not directly relate to the article's topic"
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the topic of ultra-processed foods to the experiences of South Asian families in the U.S., highlighting the shift from traditional diets."
+          "quality": 7,
+          "note": "The article connects the trade deal's implications to the Indian diaspora, but could elaborate more on how it affects them specifically."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more specific examples of ultra-processed foods commonly consumed by South Asian families to strengthen the diaspora connection.",
-          "Include quotes or insights from South Asian nutritionists or community leaders to provide a more localized perspective."
+          "Include more specific examples of how the trade deal impacts the Indian diaspora.",
+          "Consider using a more relevant image that directly relates to trade discussions or the US-India relationship."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
         "promoted to published"
