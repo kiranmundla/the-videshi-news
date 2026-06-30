@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-30T02:45:23.484630+00:00",
+  "timestamp": "2026-06-30T03:15:36.778741+00:00",
   "mode": "fix",
   "stats": {
     "pass": 3,
-    "flag": 0,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "b7211cb9-c027-4da3-b5ae-b62d0251446b",
-      "headline": "America's New Ambassador to India Says the Visa Crackdown Isn't About India. Here's What He's Not Saying.",
-      "slug": "us-ambassador-sergio-gor-h1b-visa-not-targeted-india-rubio-trade-deal-20260629",
+      "id": "7e42690a-b980-440b-a29c-9a1742c6f0a0",
+      "headline": "Apple Just Broke a Decade-Long Rule Because AI Made Hackers Too Fast",
+      "slug": "apple-ios-security-update-ai-cyber-threats-india-cert-in-20260630",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,96 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "man in suit with U.S. flag",
-          "reason": "The photo plausibly shows a U.S. ambassador, relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 8,
-          "issue": "The image is relevant to the article's topic about the U.S. ambassador and immigration policies."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses immigration policies that directly affect the Indian diaspora, making it relevant and engaging for NRI readers."
-        },
-        "factual_flags": [
-          "The article mentions that Indian nationals received roughly 72 percent of all H-1B visas, which should be verified for accuracy."
-        ],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more direct quotes from the ambassador to enhance credibility.",
-          "Provide additional context on how the visa changes specifically impact the Indian diaspora."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "1fcee1f1-45a3-482b-bdbd-c004ad4dbf25",
-      "headline": "Amazon Just Raised Its India Bet to $48 Billion. The Quick Commerce War It Triggered Is Already Drawing Blood.",
-      "slug": "amazon-48-billion-india-investment-jassy-modi-ai-quick-commerce-20260629",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A man in a suit outdoors",
-          "reason": "The photo plausibly shows Andy Jassy, relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses the implications of Amazon's investment for NRIs invested in Indian markets, making it relevant to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more direct quotes from Indian stakeholders to enhance local perspective.",
-          "Add a brief section on how this investment might affect Indian consumers directly."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "c2754a64-299a-4948-8413-8236ae996fd3",
-      "headline": "Humbled in Belfast, India Arrive in England With Questions They Cannot Ignore",
-      "slug": "india-england-t20-series-preview-ireland-debacle-sooryavanshi-iyer-durham-july-2026-diaspora-nri",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Shreyas Iyer in cricket attire",
-          "reason": "The photo shows Shreyas Iyer, relevant to the cricket story."
+          "what_photo_shows": "smartphone with digital lock icon",
+          "reason": "The image aligns with the story about smartphone security and AI threats."
         },
         "inline_image_mismatches": []
       },
@@ -119,18 +31,165 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image of Shreyas Iyer is relevant as he is mentioned in the article, but it does not directly depict the context of the upcoming matches in England."
+          "issue": "The image is relevant to technology but does not specifically depict AI or cybersecurity."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects with the Indian diaspora by highlighting the significance of the matches in England for Indian fans living there."
+          "note": "The article connects the implications of Apple's decision to the Indian market and cybersecurity landscape, making it relevant for the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider including more direct quotes from players or coaches to enhance the narrative.",
-          "Add a brief overview of the Indian team's performance history in England to provide context."
+          "Consider adding a more specific image related to AI or cybersecurity to enhance relevance.",
+          "Include quotes or insights from Indian cybersecurity experts to strengthen the diaspora connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "5ab45169-843a-4934-a662-10715ee0a081",
+      "headline": "29 Years After Border, Sunny Deol Called Himself 'Dharmendra's Son' \u2014 and Nobody Could Speak",
+      "slug": "ikka-trailer-sunny-deol-akshaye-khanna-dharmendras-son-border-reunion-netflix-july-10-courtroom-diaspora-nri",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "6c9c6a51-3205-4a63-a87c-4f9106c26a5f",
+            "headline": "The Border Boys Are Back: Sunny Deol and Akshaye Khanna Reun"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Sunny Deol at a film event",
+          "reason": "The photo shows Sunny Deol, who is relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DaK2tHZqBok/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel does not appear to be directly related to the article's subject matter regarding the film 'Ikka' and its launch event."
+          },
+          {
+            "url": "https://youtube.com/watch?v=unf8x_aZg9Y",
+            "problem": "irrelevant",
+            "explanation": "The YouTube link is not contextualized within the article, making it unclear how it relates to the content discussed."
+          }
+        ],
+        "image_match": {
+          "score": 7,
+          "issue": "The image of Sunny Deol is relevant to the article, but it does not depict a scene or moment from the film 'Ikka' or the launch event."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article references the impact of the film 'Border' on Indians at home and abroad, which connects with the diaspora audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the irrelevant Instagram and YouTube links with embeds that are directly related to the film or the launch event.",
+          "Consider adding more context about the significance of the film for the Indian diaspora to enhance the connection."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DaK2tHZqBok/",
+        "Removed irrelevant embed: https://youtube.com/watch?v=unf8x_aZg9Y",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "504e9fd4-330d-4403-aa7b-337fb4880296",
+      "headline": "Big Tech Is Buying Into India's Startups \u2014 Without Buying Them",
+      "slug": "big-tech-india-startup-investments-minority-stakes-cred-20260630",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Professionals in a tech meeting",
+          "reason": "The photo shows a technology-focused meeting, relevant to the story about tech investments."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image is relevant to the tech theme but lacks a direct connection to the specific topic of startups or investments."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively discusses the implications for NRI investors and returning founders, making it relevant to the diaspora audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that directly represents startups or investment activities in India for better alignment with the article's focus.",
+          "Expand on the diaspora angle by including specific examples or quotes from NRI investors to enhance relatability."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "2c280210-41c9-4b1d-95fa-36079daa7f32",
+      "headline": "South Korea Just Bet $576 Billion on Chips. India Has Bet $10 Billion. That Ratio Tells a Story.",
+      "slug": "south-korea-576-billion-chips-samsung-sk-hynix-india-gap-20260630",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "microprocessor circuit board",
+          "reason": "The photo shows a microprocessor, relevant to the chip investment story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the semiconductor industry or the specific topic of the article."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the semiconductor investments to the Indian American community, highlighting their role in the industry."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that directly represents semiconductor technology or the companies mentioned.",
+          "Expand on the implications for NRIs in the semiconductor industry to enhance the diaspora angle."
         ],
         "verdict": "pass"
       },
