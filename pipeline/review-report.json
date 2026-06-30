@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-30T00:45:39.005794+00:00",
+  "timestamp": "2026-06-30T01:15:11.988320+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 5,
-    "flag": 1,
+    "pass": 1,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "cf284ab7-46ed-4d16-b66a-13f59ae16f58",
-      "headline": "India Launches Aarogya Setu 2.0, Unveils Sweeping Digital Health Overhaul",
-      "slug": "india-launches-aarogya-setu-2-digital-health-overhaul-nadda-abdm-20260629",
+      "id": "eeaf1bb1-a9c8-42dc-a35c-3738a558801f",
+      "headline": "Half Its Money Came From Abroad \u2014 Carry On Jatta 4 Just Proved Punjabi Cinema Owns the Diaspora",
+      "slug": "carry-on-jatta-4-box-office-21-crore-gippy-grewal-punjabi-diaspora-overseas-canada-uk-2026",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,139 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Union Health Minister JP Nadda",
-          "reason": "The photo shows the correct named person related to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 5,
-          "issue": "irrelevant"
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses a significant digital health initiative in India, which may interest NRIs concerned about healthcare advancements in their home country."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more direct implications or benefits of the Aarogya Setu 2.0 for NRIs or the diaspora community.",
-          "Consider adding quotes from stakeholders or experts to enhance credibility and engagement."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "a63947d0-fd3f-4db6-b432-c247f8c19efd",
-      "headline": "Hyderabad Names Road 'Donald Trump Avenue' in First Such Honour for a US President in India",
-      "slug": "hyderabad-names-road-donald-trump-avenue-us-president-india-telangana-20260629",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "US President Donald Trump",
-          "reason": "The photo shows Donald Trump, relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 8,
-          "issue": "The image of Donald Trump is relevant to the article's topic about the road naming."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses the significance of the road naming for the Indian diaspora, particularly NRIs from Hyderabad."
-        },
-        "factual_flags": [
-          "Trump's claim of being the first US President to have a street named after him in India is contradicted by historical facts."
-        ],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Provide more context on the historical significance of street naming in India to enhance the article's depth.",
-          "Include quotes or reactions from diaspora members to strengthen the connection to the NRI community."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "17552ace-0584-481f-9346-8875868aae14",
-      "headline": "Beyond the Buffet: Indian Food Finally Gets Its Fast-Casual Moment in America",
-      "slug": "beyond-the-buffet-indian-food-finally-gets-its-fast-casual-moment-in-america",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Indian food platter with naan and sauces",
-          "reason": "The photo shows Indian food, relevant to the fast-casual Indian cuisine story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses the growing acceptance and popularity of Indian cuisine in America, which resonates with the Indian diaspora's interest in cultural representation and culinary trends."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include quotes or anecdotes from Indian diaspora members in the US to enhance the personal connection.",
-          "Add a section on how Indian food is being adapted or perceived differently in various regions of the US."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "8d508776-8953-4cf9-afa0-77648144e489",
-      "headline": "From 7-Eleven to James Beard: The Improbable Rise of Chef Suresh Sundas",
-      "slug": "from-7-eleven-to-james-beard-the-improbable-rise-of-chef-suresh-sundas",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Exterior of Daru restaurant",
-          "reason": "The photo shows Daru restaurant, relevant to the story about Chef Suresh Sundas."
+          "what_photo_shows": "A man at an event",
+          "reason": "The photo plausibly shows Gippy Grewal, relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -162,99 +31,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image is relevant to the article but does not specifically depict Chef Suresh Sundas or his restaurants."
+          "issue": "The image features Gippy Grewal, who is relevant to the article, but the context of the image does not directly relate to the film's success or the diaspora theme."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects Sundas's story to the broader South Asian immigrant experience, making it relatable to NRI readers."
+          "note": "The article effectively highlights the connection between the film's success and its appeal to the Punjabi diaspora, making it relevant to NRI readers."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include a more relevant image of Chef Suresh Sundas or his restaurants to enhance visual connection.",
-          "Consider adding quotes or anecdotes from Sundas that specifically highlight his experiences as an immigrant chef."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "49591483-d610-42e2-95cc-c9a9be68d3ba",
-      "headline": "The $5 Alphonso: Inside the Mango Vans Rolling Through America's Indian Neighbourhoods",
-      "slug": "the-5-alphonso-inside-the-mango-vans-rolling-through-americas-indian-neighbourho",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "pile of Alphonso mangoes",
-          "reason": "The photo shows Alphonso mangoes, relevant to the story about mango exports."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the mango season to the cultural identity and rituals of the Indian diaspora, making it relevant and engaging for NRI readers."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from diaspora community members to enhance personal connection.",
-          "Include more statistics or anecdotes about the impact of mango imports on local economies."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "6ad043b8-a133-40ca-8366-4f603b365a1d",
-      "headline": "Belfast Burned. An Indian Woman Fed the Families Left Behind.",
-      "slug": "belfast-riots-indian-community-uk-safety-rangaprasad-20260630",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image should depict community support or the aftermath of the riots to match the article's theme."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the experiences of the Indian diaspora in Northern Ireland to the broader context of anti-immigration violence."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include a relevant image that reflects community support or the impact of the riots.",
-          "Add quotes or testimonials from the Indian community in Northern Ireland to enhance the diaspora perspective."
+          "Consider including more direct quotes or testimonials from diaspora audiences to strengthen the connection.",
+          "Add a brief section on how the film's themes resonate with the diaspora experience."
         ],
         "verdict": "pass"
       },
