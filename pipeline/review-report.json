@@ -1,19 +1,19 @@
 {
-  "timestamp": "2026-06-30T16:15:27.798385+00:00",
+  "timestamp": "2026-06-30T16:45:31.396790+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
-    "flag": 1,
+    "pass": 3,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
-  "revisions": 1,
+  "revisions": 0,
   "unpublished": 0,
   "articles": [
     {
-      "id": "56c32b6c-06c5-41f9-a5f6-3d62d218d7f8",
-      "headline": "His Mother Had Stage 4 Cancer. His Visa Said Don't Move",
-      "slug": "h1b-visa-stamping-trap-family-emergency-india-travel-20260630",
+      "id": "6d90648f-c161-4ed7-a3b7-1957d3728747",
+      "headline": "Hardik Pandya Leaves Mumbai Behind. The BCCI Centre of Excellence Is Now His Permanent Home.",
+      "slug": "hardik-pandya-moves-bengaluru-bcci-centre-of-excellence-permanent-training-base-2027-world-cup-la-olympics-diaspora-nri",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "farewell embrace at airport",
-          "reason": "The photo depicts a farewell embrace at an airport, which aligns with the story about travel and visa issues."
+          "what_photo_shows": "Hardik Pandya smiling in cricket jersey",
+          "reason": "The photo shows Hardik Pandya, who is the subject of the story."
         },
         "inline_image_mismatches": []
       },
@@ -30,19 +30,62 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the specific topic of immigration or the emotional aspect of the article."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively highlights the struggles of H-1B visa holders, resonating with the Indian diaspora's experiences."
+          "quality": 8,
+          "note": "The article effectively connects Hardik Pandya's career decisions to the significance of cricket in the diaspora, particularly with the upcoming Olympics."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that reflects the emotional weight of the story or the immigration theme.",
-          "Add a personal quote or anecdote from Gautam Dey to enhance the emotional connection with readers."
+          "Consider adding quotes from Hardik Pandya or more personal insights to enhance the narrative.",
+          "Include more context about the BCCI Centre of Excellence for readers unfamiliar with it."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "33496880-1f21-4351-829e-86f23d4c75a5",
+      "headline": "The Supreme Court Just Told 250,000 Babies a Year They're Still American. Here's What It Means for H-1B Families.",
+      "slug": "scotus-birthright-citizenship-ruling-trump-v-barbara-h1b-indian-families-20260630",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "The Supreme Court building",
+          "reason": "The photo shows the Supreme Court, relevant to the court ruling story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the Supreme Court ruling to the concerns of H-1B families, particularly within the Indian diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes or reactions from affected families to enhance the emotional connection.",
+          "Include more context on the implications of the ruling for future immigration policies."
         ],
         "verdict": "pass"
       },
@@ -61,16 +104,22 @@
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MISMATCH",
-          "what_photo_shows": "A man in a suit with US flag",
-          "reason": "The photo does not show Sergio Gor."
-        },
+        "broken_embeds": [
+          {
+            "url": "https://x.com/thevideshi/status/1798765432109876543",
+            "problem": "broken",
+            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
+          },
+          {
+            "url": "https://instagram.com/p/C7A8B9CDEfG/",
+            "problem": "broken",
+            "detail": "Instagram embed shows removed/broken placeholder"
+          }
+        ],
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 6,
+        "overall_score": 8,
         "embed_issues": [],
         "image_match": {
           "score": 5,
@@ -78,26 +127,23 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article discusses immigration policies affecting Indian nationals in the US, which is relevant to the diaspora."
+          "quality": 9,
+          "note": "The article effectively addresses the concerns of the Indian diaspora regarding immigration policies."
         },
-        "factual_flags": [
-          "The article mentions a '195 years' backlog for some EB-2 India applicants, which seems exaggerated."
-        ],
+        "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include a relevant hero image to enhance visual appeal and context.",
-          "Clarify the claim about the 195-year backlog to ensure accuracy and credibility."
+          "Include a relevant hero image that reflects the article's theme.",
+          "Provide more data or quotes from Indian professionals to enhance the personal impact of the immigration policies discussed."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
-        "Cleared mismatched image (A man in a suit with US flag)",
-        "Revised by gemini-2.5-flash (673\u2192816 words)"
+        "Removed 2 broken/hallucinated embed(s)",
+        "promoted to published"
       ],
-      "revised": true,
+      "revised": false,
       "unpublished": false,
-      "image_mismatch": true,
       "llm_source": "gpt-4o-mini"
     }
   ]
