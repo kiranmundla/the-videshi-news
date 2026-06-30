@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-30T07:45:26.354537+00:00",
+  "timestamp": "2026-06-30T08:15:19.070950+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
+    "pass": 2,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "05383513-5733-4102-8a7c-bb257fb085ab",
-      "headline": "Diop's Header. Bounou's Save. Morocco Stun the Netherlands in a Monterrey Shootout.",
-      "slug": "morocco-bounou-diop-penalties-netherlands-world-cup-2026-monterrey-round-of-32-canada-houston-diaspora-nri",
+      "id": "a9f6a18b-5944-4f12-83d6-a1bd572f6a24",
+      "headline": "Her Degree Is From Stanford. Her Work Permit Says 'Pending'",
+      "slug": "h4-ead-renewal-crisis-indian-families-work-permit-gap-20260630",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,20 +21,14 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Morocco goalkeeper Yassine Bounou",
-          "reason": "The photo shows the correct named person relevant to the story."
+          "what_photo_shows": "USCIS Employment Authorization Document",
+          "reason": "The photo shows an EAD card, relevant to the immigration story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/p/DaMhbt3kjD3/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post does not appear to be directly related to the match or players discussed in the article."
-          }
-        ],
+        "embed_issues": [],
         "image_match": {
           "score": 9,
           "issue": null
@@ -42,52 +36,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses the significance of Diop's switch to Morocco and the broader implications for diaspora talent, connecting well with NRI readers."
+          "note": "The article discusses the challenges faced by H-4 visa holders, particularly those from India, making it relevant to the Indian diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant Instagram embed with a more relevant one, perhaps highlighting a key moment from the match.",
-          "Consider adding quotes from players or coaches to enhance the narrative and provide more depth."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DaMhbt3kjD3/",
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "93422014-40a8-4e0a-9138-081410431afd",
-      "headline": "25 Years After Dil Chahta Hai, Saif Ali Khan and Farhan Akhtar Are Reuniting \u2014 for a Thriller",
-      "slug": "saif-ali-khan-farhan-akhtar-excel-moral-thriller-dil-chahta-hai-25-years-reunion-diaspora-nri-20260630",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image description is missing, making it difficult to assess its relevance."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses a significant Bollywood reunion, which may resonate with the NRI audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include a relevant image description to improve the image match score.",
-          "Add quotes or insights from diaspora audiences or critics to strengthen the diaspora angle."
+          "Include personal anecdotes or quotes from affected individuals to enhance emotional engagement.",
+          "Add statistics or data on the impact of H-4 EAD delays on the Indian diaspora specifically."
         ],
         "verdict": "pass"
       },
@@ -99,33 +54,67 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "c963a475-3445-4763-8f35-a6af398c5169",
-      "headline": "Priyadarshan Just Walked Out of Hera Pheri 3 \u2014 and Says the Film Will Never Be Made",
-      "slug": "priyadarshan-exits-hera-pheri-3-will-never-be-made-legal-disputes-nadiadwala-akshay-suniel-paresh-diaspora-nri-20260630",
+      "id": "2f893da9-3f4b-4ee9-9998-647e3cb86da1",
+      "headline": "Eleven Million Cases and Counting. The Green Card Machine Cannot Keep Up",
+      "slug": "uscis-backlog-11-million-cases-processing-crisis-indian-green-card-20260630",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "aa18166c-663c-45a8-b24e-f5f8ce229faa",
+            "headline": "The Receipt That Never Ends. Every Fee Washington Has Added "
+          },
+          {
+            "article_id": "3bfccf08-94f2-4e2f-bf43-2cfdc4773f28",
+            "headline": "The Green Card You Could Get Without Leaving America? USCIS "
+          },
+          {
+            "article_id": "6be85e6d-fc39-4011-ba26-54b94583d20f",
+            "headline": "DHS Says It Will Process Your Visa With AI in 30 Days. Immig"
+          },
+          {
+            "article_id": "faac8aeb-8246-40b8-81c3-1daaa48ee892",
+            "headline": "EB-5 Becomes India's Fastest Green Card Route. The Window Cl"
+          },
+          {
+            "article_id": "d276a8b7-a31d-454e-944f-1d95ef0e1ad8",
+            "headline": "A $100,000 Price Tag on Every H-1B Hire. A Judge Said No. Th"
+          },
+          {
+            "article_id": "7cd205b9-fefe-4bb3-8095-09600ad42101",
+            "headline": "You Used Day 1 CPT in 2019. USCIS Just Found Out"
+          },
+          {
+            "article_id": "68943038-05c3-4686-9959-65c1e60dd9c9",
+            "headline": "EB-2 India Is Shut Until October. The July Visa Bulletin Is "
+          }
+        ],
         "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "USCIS Application Support Center",
+          "reason": "The photo shows a USCIS center, relevant to the immigration story."
+        },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "hero image not provided"
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the film's cultural significance to the NRI community."
+          "quality": 8,
+          "note": "The article effectively addresses the challenges faced by Indian professionals in the green card process, making it relevant to the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include a relevant hero image that reflects the article's content.",
-          "Add more quotes or reactions from the diaspora to enhance engagement."
+          "Consider adding quotes or testimonials from Indian professionals affected by the backlog to enhance the human interest angle.",
+          "Include a section on potential solutions or reforms being discussed to address the backlog issue."
         ],
         "verdict": "pass"
       },
