@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-30T20:45:48.395898+00:00",
+  "timestamp": "2026-06-30T21:15:59.582692+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 4,
     "flag": 1,
     "fail": 0,
     "error": 0
@@ -11,61 +11,23 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "31e401dd-c96b-4d6a-aa94-13e4424d2fef",
-      "headline": "The Pentagon Just Cleared Half a Billion Dollars to Keep India's Apaches and Howitzers Battle-Ready",
-      "slug": "pentagon-clears-482-million-india-apache-m777-defence-support-20260630",
+      "id": "104b0d9d-138d-4e5d-8ba8-2a3788ce5fe2",
+      "headline": "He Bet Everything on a Cricket Film Nobody Wanted \u2014 25 Years Later, India Put It on a Stamp",
+      "slug": "lagaan-25th-anniversary-india-post-stamp-aamir-khan-gowariker-lala-amarnath-cricket-biopic-reunion-diaspora-nri-20260630",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Boeing AH-64D Apache helicopter",
-          "reason": "The photo shows an Apache helicopter, relevant to the story about India's Apaches."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses US-India defense relations, which is relevant to the Indian diaspora interested in geopolitical developments."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include quotes or perspectives from Indian defense analysts to enhance the diaspora connection.",
-          "Add a brief section on how these military developments might impact the Indian diaspora in the US."
+        "duplicate_images": [
+          {
+            "article_id": "9a8975da-3606-45df-8587-c8f480477105",
+            "headline": "He Sang to Her Every Day for Two Years \u2014 Now Aamir Khan Is G"
+          }
         ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "9a7e50e0-acab-42da-bd35-f73b8d7ee9ac",
-      "headline": "200 Indian Americans Walked Into 125 Congressional Offices in One Day. Here's What They Asked For.",
-      "slug": "fiids-capitol-hill-day-200-indian-american-delegates-green-card-critical-minerals-20260630",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "United States Capitol building",
-          "reason": "The photo shows the U.S. Capitol, relevant to a story about advocacy in Congressional offices."
+          "what_photo_shows": "Aamir Khan with glasses and mustache",
+          "reason": "The photo shows Aamir Khan, relevant to the Lagaan story."
         },
         "inline_image_mismatches": []
       },
@@ -79,13 +41,142 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively highlights the advocacy efforts of the Indian American community, making it relevant to diaspora readers."
+          "note": "The article effectively connects the film's significance to the Indian diaspora, highlighting its impact on NRIs."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from participants to enhance the personal connection to the advocacy efforts.",
-          "Include more context on the historical significance of the legislative push to engage readers further."
+          "Consider adding quotes from Aamir Khan or Ashutosh Gowariker regarding the film's legacy to enhance the narrative.",
+          "Include more details about the upcoming cricket film to generate additional interest."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "c7641039-959c-4bcd-aaae-752641f51cb2",
+      "headline": "Marvell's Stock Just Jumped 7%. Its Largest Lab Outside California Is in India.",
+      "slug": "marvell-technology-ai-surge-india-rd-hub-optical-20260630",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "semiconductor chip on circuit board",
+          "reason": "The photo is relevant to the tech story about semiconductor development."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to Marvell or its technology focus."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article highlights India's role in Marvell's operations, which is relevant to the Indian diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that reflects Marvell's technology or its Indian operations.",
+          "Add a brief section on how Marvell's advancements could impact the Indian tech landscape or job market."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "688a9779-b7d6-4996-a11d-54dc6318e0e2",
+      "headline": "Amazon Is Spending $1 Billion to Embed AI Engineers Inside Your Company. The Talent Pool Is Heavily Indian.",
+      "slug": "aws-1-billion-forward-deployed-ai-engineers-india-20260630",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "server racks in a data center",
+          "reason": "The photo of server racks is relevant to a tech story about AI and cloud services."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to AI or engineering, but is a generic tech-related image."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively highlights the role of Indian engineers in the tech industry, particularly in relation to Amazon's new initiative."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that directly represents AI engineering or Indian engineers in tech.",
+          "Expand on the implications for Indian engineers in the diaspora, perhaps including quotes or anecdotes from industry professionals."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "1495f11e-244a-45f5-934f-1d9706399cca",
+      "headline": "Narayen Is Leaving Adobe. Both Candidates to Replace Him Are Also Indian.",
+      "slug": "adobe-narayen-wadhwani-chakravarthy-ceo-succession-indian-20260630",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "A man in a suit and glasses",
+          "reason": "The photo plausibly shows Shantanu Narayen, relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the significance of Indian-origin leadership in tech, which resonates with the NRI audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Add more quotes or insights from industry experts to enhance credibility.",
+          "Include a brief section on the potential impact of Narayen's departure on Adobe's future direction."
         ],
         "verdict": "pass"
       },
@@ -106,37 +197,21 @@
         "duplicate_images": [],
         "broken_embeds": [
           {
-            "url": "https://x.com/erlinghaaland/status/1807955555555555555",
+            "url": "https://x.com/ESPNFC/status/1808240428400030062",
             "problem": "broken",
             "detail": "react-tweet returned null (deleted/protected/nonexistent)"
-          },
-          {
-            "url": "https://x.com/erlinghaaland/status/1807955555555555555",
-            "problem": "broken",
-            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
-          },
-          {
-            "url": "https://instagram.com/p/C-c_c_c_c_c/",
-            "problem": "broken",
-            "detail": "Instagram embed shows removed/broken placeholder"
           }
         ],
         "vision_image_match": {
           "verdict": "MATCH",
           "what_photo_shows": "Erling Haaland in Norway jersey",
-          "reason": "The photo shows Erling Haaland, relevant to the story about his performance."
+          "reason": "The photo shows Erling Haaland, relevant to the story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 6,
-        "embed_issues": [
-          {
-            "url": "https://x.com/FIFAWorldCup/status/1807955555555555555",
-            "problem": "irrelevant",
-            "explanation": "The tweet does not provide context or relevance to the article's main focus on Haaland's performance and the match outcome."
-          }
-        ],
+        "embed_issues": [],
         "image_match": {
           "score": 8,
           "issue": null
@@ -144,20 +219,19 @@
         "diaspora_angle": {
           "present": true,
           "quality": 5,
-          "note": "The article briefly mentions Indian Americans but does not elaborate on their connection to the World Cup or the significance of the event for the diaspora."
+          "note": "The article briefly mentions Indian Americans but lacks depth in connecting the World Cup experience to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Expand on the connection to Indian Americans and their interest in the World Cup to strengthen the diaspora angle.",
-          "Remove or replace the irrelevant tweet embed with a more relevant social media post that highlights Haaland's performance."
+          "Expand on the connection to Indian Americans and their engagement with the World Cup.",
+          "Include more context about the significance of the match for the Indian diaspora."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
-        "Removed 3 broken/hallucinated embed(s)",
-        "Removed irrelevant embed: https://x.com/FIFAWorldCup/status/1807955555555555555",
-        "Revised by gemini-2.5-flash (1020\u21921050 words)"
+        "Removed 1 broken/hallucinated embed(s)",
+        "Revised by gemini-2.5-flash (1049\u21921051 words)"
       ],
       "revised": true,
       "unpublished": false,
