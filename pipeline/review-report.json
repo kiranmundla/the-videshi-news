@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-30T09:45:08.889202+00:00",
+  "timestamp": "2026-06-30T10:15:30.499220+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
+    "pass": 4,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,33 +11,167 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "4ac22b41-fe9f-4c74-a52a-71bf31e5f39e",
-      "headline": "OpenAI Just Hired an IIT-IIM Grad to Run India. He Built Uber's Indian Empire First.",
-      "slug": "openai-prabhjeet-singh-india-md-uber-iit-20260630",
+      "id": "343f1031-3532-4370-981a-0908c1e913f0",
+      "headline": "India's Weak Monsoon Is Quietly Making This July the Best Window for NRI Travel in Years",
+      "slug": "india-weak-monsoon-july-nri-travel-window-2026-20260630",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "traveller in rain gear in Lonavala",
+          "reason": "The photo shows a traveller in monsoon rain gear, relevant to the travel story."
+        },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 5,
-          "issue": "hero image not provided"
+          "score": 7,
+          "issue": "The image depicts a scenic view that could relate to travel, but it does not specifically represent the Indian monsoon or the regions mentioned in the article."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses the implications of OpenAI's hiring for Indian tech professionals and NRI investors, making it relevant to the diaspora."
+          "note": "The article effectively addresses NRIs by discussing travel opportunities during the monsoon, which is relevant to their travel plans."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include a relevant hero image that reflects the article's content.",
-          "Provide more specific examples of how NRIs can engage with OpenAI's developments in India."
+          "Consider using an image that specifically represents the Indian monsoon or the regions discussed to enhance relevance.",
+          "Add a section that highlights cultural events or festivals happening in July that may attract NRIs."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "3406b635-c266-46dc-9d1f-25d0a3924d55",
+      "headline": "India's Vande Bharat Trains Just Doubled Capacity on a Key South India Route \u2014 and the Sleeper Version Is Next",
+      "slug": "vande-bharat-bengaluru-ernakulam-doubles-sleeper-train-nri-20260630",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Vande Bharat Express train",
+          "reason": "The photo shows a Vande Bharat Express, relevant to the story about these trains."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses NRIs by discussing travel options and improvements in the Indian rail system that are relevant to their travel needs."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more specific examples of how the new train services can benefit NRIs, such as testimonials or quotes from travelers.",
+          "Add a section on how to book tickets online, including links to the IRCTC website for ease of access."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "4ab9923c-04e9-46ff-a7cf-0714ce5eaf7f",
+      "headline": "Foreign Investors Just Poured a Record $3 Billion Into Indian Bonds in a Single Month \u2014 and the Biggest Catalyst Is Still Ahead",
+      "slug": "india-record-3-billion-foreign-bond-inflows-tax-exemption-bloomberg-index-inclusion-nri-investor-20260630",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Reserve Bank of India headquarters",
+          "reason": "The photo shows the Reserve Bank of India, relevant to the economy story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses implications for NRI investors, making the diaspora angle relevant and well-integrated."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Expand on the implications for NRI investors to provide more depth.",
+          "Include quotes or insights from NRI investors to enhance relatability."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "aa645b5f-5c11-4021-bccc-7618cd9d35c7",
+      "headline": "Americans Now View Ultra-Processed Foods as Addictive as Alcohol \u2014 and a Bipartisan Majority Wants the Government to Act",
+      "slug": "ultra-processed-food-addiction-tobacco-parallel-cornell-study-bipartisan-policy-nri-diaspora-20260630",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "supermarket shelves with snacks",
+          "reason": "The photo shows ultra-processed snacks, relevant to the story on UPFs."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the topic of ultra-processed foods to the experiences of South Asian families in the U.S., highlighting the shift from traditional diets."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of ultra-processed foods commonly consumed by South Asian families to strengthen the diaspora connection.",
+          "Include quotes or insights from South Asian nutritionists or community leaders to provide a more localized perspective."
         ],
         "verdict": "pass"
       },
