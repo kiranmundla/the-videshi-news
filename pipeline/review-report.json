@@ -1,37 +1,28 @@
 {
-  "timestamp": "2026-06-30T15:15:38.928808+00:00",
+  "timestamp": "2026-06-30T16:15:27.798385+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 4,
-    "flag": 0,
+    "pass": 1,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
-  "revisions": 0,
+  "revisions": 1,
   "unpublished": 0,
   "articles": [
     {
-      "id": "b63c5c8c-4dcb-4180-937f-70506b2d8cdd",
-      "headline": "A 93-Year-Old Oscar Winner Sat Through 8 Hours of Indian Cinema \u2014 and Rajamouli Just Got His Name Carved Into Paris",
-      "slug": "rajamouli-cinematheque-francaise-permanent-seat-costa-gavras-rrr-baahubali-paris-indian-cinema-honour-diaspora-nri-20260630",
+      "id": "56c32b6c-06c5-41f9-a5f6-3d62d218d7f8",
+      "headline": "His Mother Had Stage 4 Cancer. His Visa Said Don't Move",
+      "slug": "h1b-visa-stamping-trap-family-emergency-india-travel-20260630",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "75454d9e-9a95-4883-9abb-303a5a6fcb9b",
-            "headline": "Prabhas Raised Three Fingers. Rana Tried to Stop Him. The In"
-          },
-          {
-            "article_id": "45bda39d-ac99-4b4f-b20d-ade4dd97d75e",
-            "headline": "50,000 Vanars, 3,500 Extras, and the Man Who Made Baahubali "
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "SS Rajamouli in RRR attire",
-          "reason": "The photo shows SS Rajamouli, relevant to the story."
+          "what_photo_shows": "farewell embrace at airport",
+          "reason": "The photo depicts a farewell embrace at an airport, which aligns with the story about travel and visa issues."
         },
         "inline_image_mismatches": []
       },
@@ -39,19 +30,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image does not directly relate to the specific topic of immigration or the emotional aspect of the article."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects Rajamouli's achievements to the Indian diaspora, highlighting the significance of his work for NRI audiences."
+          "quality": 9,
+          "note": "The article effectively highlights the struggles of H-1B visa holders, resonating with the Indian diaspora's experiences."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more quotes from Costa-Gavras to enhance the emotional impact of the article.",
-          "Include a brief background on the significance of the Cin\u00e9math\u00e8que Fran\u00e7aise for readers unfamiliar with it."
+          "Consider using a more relevant image that reflects the emotional weight of the story or the immigration theme.",
+          "Add a personal quote or anecdote from Gautam Dey to enhance the emotional connection with readers."
         ],
         "verdict": "pass"
       },
@@ -63,132 +54,50 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "59d7e2d6-7516-4980-9962-2f8ff8ef28aa",
-      "headline": "'If Coding Becomes Automated, Why Are We Needed?' Nilekani Has an Answer.",
-      "slug": "nilekani-infosys-agm-coding-automated-ai-indian-it-20260630",
+      "id": "03bc477f-80ff-4030-9df9-a8c6c15ecc61",
+      "headline": "'Not Targeted at India,' Says America's Newest Ambassador. The Data Tell a Different Story",
+      "slug": "gor-ambassador-h1b-not-targeting-india-data-disagree-20260630",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Nandan Nilekani at an event",
-          "reason": "The photo shows Nandan Nilekani, relevant to the story."
+          "verdict": "MISMATCH",
+          "what_photo_shows": "A man in a suit with US flag",
+          "reason": "The photo does not show Sergio Gor."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 7,
+        "overall_score": 6,
         "embed_issues": [],
         "image_match": {
-          "score": 8,
-          "issue": null
+          "score": 5,
+          "issue": "hero image not provided"
         },
         "diaspora_angle": {
           "present": true,
           "quality": 7,
-          "note": "The article discusses the implications of AI in the IT sector, particularly for Indian IT professionals in the US, making it relevant to the diaspora."
+          "note": "The article discusses immigration policies affecting Indian nationals in the US, which is relevant to the diaspora."
         },
-        "factual_flags": [],
+        "factual_flags": [
+          "The article mentions a '195 years' backlog for some EB-2 India applicants, which seems exaggerated."
+        ],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes or insights from Nilekani to enhance the depth of the article.",
-          "Expand on the potential impact of AI on the job market for NRIs to provide a more comprehensive view."
+          "Include a relevant hero image to enhance visual appeal and context.",
+          "Clarify the claim about the 195-year backlog to ensure accuracy and credibility."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
-        "promoted to published"
+        "Cleared mismatched image (A man in a suit with US flag)",
+        "Revised by gemini-2.5-flash (673\u2192816 words)"
       ],
-      "revised": false,
+      "revised": true,
       "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "b97f4e49-b3c5-4154-b9a1-d1f47058eebd",
-      "headline": "OpenAI Built Its First Chip in Nine Months. It Used AI to Design It.",
-      "slug": "openai-jalapeno-chip-broadcom-nine-months-inference-ai-20260630",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "electronic microchips on a circuit board",
-          "reason": "The photo subject is relevant to the technology story about microchips."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the specific topic of AI chips or technology."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the OpenAI chip development to the Indian tech community and its implications for Indian IT services."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that depicts AI technology or semiconductor manufacturing.",
-          "Expand on the implications for the Indian diaspora in terms of investment opportunities or job market changes."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "a410abbe-727d-4f2f-8e94-0b676326a1db",
-      "headline": "Krishna's IBM Just Built a Chip Smaller Than One Nanometre. It Packs 100 Billion Transistors.",
-      "slug": "ibm-arvind-krishna-sub-1nm-nanostack-chip-100-billion-transistors-20260630",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A man speaking at a conference",
-          "reason": "The photo shows a person who could be the IBM CEO, relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image of Arvind Krishna is relevant as it features the CEO of IBM, but it does not directly depict the chip technology discussed."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively highlights the achievements of Arvind Krishna, an Indian-American, and connects it to the broader context of Indian-origin leaders in the tech industry."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include a more direct connection to how this technology impacts the Indian tech landscape or diaspora.",
-          "Consider adding a visual representation of the chip or its architecture to enhance reader understanding."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
+      "image_mismatch": true,
       "llm_source": "gpt-4o-mini"
     }
   ]
