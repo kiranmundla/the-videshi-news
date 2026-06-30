@@ -1813,7 +1813,8 @@
           "away_code": "MAR",
           "venue": "Estadio BBVA",
           "city": "Monterrey",
-          "status": "scheduled"
+          "status": "FT (Pen.)",
+          "score": "1-1 (2-3 pen.)"
         },
         {
           "id": 77,
