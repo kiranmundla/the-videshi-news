@@ -1,6 +1,6 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-06-30T04:00:33Z",
+  "last_updated": "2026-06-30T05:59:47Z",
   "stage": "Knockout Stage",
   "hosts": "USA, Mexico & Canada",
   "dates": {
@@ -4298,6 +4298,28 @@
       "caption": "José Canale. Paraguay's game changer 🇵🇾 #FIFAWorldCup",
       "date": "2026-06-29",
       "type": "video"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DaMbS31FlQN",
+      "account": "@fifaworldcup",
+      "caption": "It's extra time again! ⏰ Netherlands vs Morocco",
+      "date": "2026-06-29"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DaMhWivFh8-",
+      "account": "@fifaworldcup",
+      "caption": "Netherlands vs Morocco penalty shootout — Morocco win 3-2!",
+      "date": "2026-06-29"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DaMifeKCwSq/",
+      "account": "@fifaworldcup",
+      "caption": "🇲🇦 Morocco win on penalties to advance to the Round of 16! #FIFAWorldCup",
+      "date": "2026-06-29",
+      "type": "image"
     }
   ],
   "tv": {
