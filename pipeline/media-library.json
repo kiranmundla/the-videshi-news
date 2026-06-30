@@ -1,6 +1,6 @@
 {
  "_description": "Media library mirror — high-quality, attribution-clean images+videos for article/reel fallback. Source of truth is the Supabase media_library table; this mirror lets the pipeline read without a DB round-trip.",
- "_updated": "2026-06-29T17:58:59Z",
+ "_updated": "2026-06-30T01:57:06Z",
  "assets": [
   {
    "id": "person--narendra-modi--bfe42b",
@@ -1869,28 +1869,6 @@
    "duration": null,
    "quality_score": 64.1,
    "added_date": "2026-06-23T10:29:56Z",
-   "last_used": null,
-   "times_used": 0
-  },
-  {
-   "id": "thing--oci--3bbaa7",
-   "media_type": "image",
-   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/oci-3bbaa7.jpg",
-   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/oci-3bbaa7.jpg",
-   "subject": "oci",
-   "subject_type": "thing",
-   "caption": "BAe Jetstream 32 PH-OCI of AIS Airlines at Lelystad airport (EHLE) in 2019",
-   "attribution": "Wikimedia Commons / Robbie Klinkenberg, CC BY-SA 4.0",
-   "license": "CC BY-SA 4.0",
-   "source_url": "https://commons.wikimedia.org/wiki/File:AIS_Airlines_BAe_Jetstream_32_PH-OCI_at_EHLE_in_2019.jpg",
-   "tags": [
-    "oci"
-   ],
-   "width": 4032,
-   "height": 2268,
-   "duration": null,
-   "quality_score": 92.0,
-   "added_date": "2026-06-23T10:30:04Z",
    "last_used": null,
    "times_used": 0
   },
@@ -4073,28 +4051,6 @@
    "times_used": 1
   },
   {
-   "id": "thing--indian-tech-leaders--17b241",
-   "media_type": "image",
-   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/indian-tech-leaders-17b241.jpg",
-   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/indian-tech-leaders-17b241.jpg",
-   "subject": "indian tech leaders",
-   "subject_type": "thing",
-   "caption": "U.S. Air Force Gen. Kevin Schneider, Pacific Air Force commander, and Command Chief Master Sgt. Kaite McCool, Pacific Air Forces senior enlisted leader, interact with Indian Army Gen. Anil Chauhan, Chief of Defense, during the Aero India 2025 air show at Yelahanka Air Force Stati",
-   "attribution": "Wikimedia Commons / U.S. Air Force photo by Tech. Sgt. Tarelle Walker, Public domain",
-   "license": "Public domain",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Aero_India_2025_(8871382).jpg",
-   "tags": [
-    "indian tech leaders"
-   ],
-   "width": 4907,
-   "height": 3686,
-   "duration": null,
-   "quality_score": 92.0,
-   "added_date": "2026-06-28T10:30:17Z",
-   "last_used": null,
-   "times_used": 0
-  },
-  {
    "id": "thing--tata-electronics--b1c7ae",
    "media_type": "image",
    "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/tata-electronics-b1c7ae.jpg",
@@ -5061,6 +5017,50 @@
    "added_date": "2026-06-19T05:24:00Z",
    "last_used": "2026-06-29T17:58:59Z",
    "times_used": 5
+  },
+  {
+   "id": "thing--oci--3bbaa7",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/oci-3bbaa7.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/oci-3bbaa7.jpg",
+   "subject": "oci",
+   "subject_type": "thing",
+   "caption": "BAe Jetstream 32 PH-OCI of AIS Airlines at Lelystad airport (EHLE) in 2019",
+   "attribution": "Wikimedia Commons / Robbie Klinkenberg, CC BY-SA 4.0",
+   "license": "CC BY-SA 4.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:AIS_Airlines_BAe_Jetstream_32_PH-OCI_at_EHLE_in_2019.jpg",
+   "tags": [
+    "oci"
+   ],
+   "width": 4032,
+   "height": 2268,
+   "duration": null,
+   "quality_score": 92.0,
+   "added_date": "2026-06-23T10:30:04Z",
+   "last_used": "2026-06-30T01:57:06Z",
+   "times_used": 1
+  },
+  {
+   "id": "thing--indian-tech-leaders--17b241",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/indian-tech-leaders-17b241.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/indian-tech-leaders-17b241.jpg",
+   "subject": "indian tech leaders",
+   "subject_type": "thing",
+   "caption": "U.S. Air Force Gen. Kevin Schneider, Pacific Air Force commander, and Command Chief Master Sgt. Kaite McCool, Pacific Air Forces senior enlisted leader, interact with Indian Army Gen. Anil Chauhan, Chief of Defense, during the Aero India 2025 air show at Yelahanka Air Force Stati",
+   "attribution": "Wikimedia Commons / U.S. Air Force photo by Tech. Sgt. Tarelle Walker, Public domain",
+   "license": "Public domain",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Aero_India_2025_(8871382).jpg",
+   "tags": [
+    "indian tech leaders"
+   ],
+   "width": 4907,
+   "height": 3686,
+   "duration": null,
+   "quality_score": 92.0,
+   "added_date": "2026-06-28T10:30:17Z",
+   "last_used": "2026-06-30T01:57:06Z",
+   "times_used": 1
   }
  ]
 }
