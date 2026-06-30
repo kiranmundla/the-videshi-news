@@ -1,5 +1,14 @@
 [
   {
+    "id": "uscis-signature-rule-july-10",
+    "date": "2026-06-30",
+    "label": "Jun 30, 2026",
+    "headline": "USCIS signature crackdown takes effect July 10 \u2014 DocuSign and digital shortcuts may trigger denials on H-1B and green card filings",
+    "summary": "An interim final rule published May 11 in the Federal Register takes effect July 10, 2026, giving USCIS explicit authority to deny \u2014 not just reject \u2014 immigration benefit requests with invalid signatures. Unlike a rejection (which refunds fees), a denial means the agency keeps the filing fee and the petitioner must start over. Affected filings include H-1B petitions, L-1 transfers, I-140 green card petitions, and I-485 adjustment of status applications. Prohibited formats now include DocuSign, Adobe Sign, copy-pasted digital signature images, rubber stamps, and typed names \u2014 only wet-ink signatures, scanned copies of wet-ink originals, and electronic signatures within USCIS-authorized online systems are accepted. Immigration attorneys warn USCIS may increasingly choose denial over rejection since denial lets the agency retain fees. Employers and HR teams using remote or digital signing workflows \u2014 common in the Indian IT sector \u2014 should audit their practices immediately before the July 10 deadline.",
+    "severity": "high",
+    "source": "USCIS / Federal Register / Holland & Hart / Ogletree Deakins"
+  },
+  {
     "id": "b1b2-wait-times-surge-jun-2026",
     "date": "2026-06-27",
     "label": "Jun 27, 2026",
@@ -125,15 +134,6 @@
     "summary": "Rep. Chip Roy (R-TX) introduced the \"American White-Collar Worker Jobs Act of 2026\" \u2014 would replace the H-1B lottery with wage-based selection, end H-1B as a route to permanent residency, eliminate the OPT program for foreign graduates, and require employers to prove no qualified Americans are available before hiring H-1B workers. Still a bill, not law, but signals escalating Congressional pressure on the program.",
     "severity": "high",
     "source": "US Congress / Rep. Chip Roy"
-  },
-  {
-    "id": "ustraveldocs-outage-jun26",
-    "date": "2026-06-02",
-    "label": "Jun 2, 2026",
-    "headline": "USTravelDocs & CEAC hit by outages \u2014 scheduling and payments disrupted",
-    "summary": "US visa processing websites including USTravelDocs.com and CEAC are experiencing significant technical issues, delaying interview bookings, fee payments, and document uploads. India is among the hardest-hit countries. State Dept working on fix, no timeline given. Applicants advised to retry after 24 hours.",
-    "severity": "medium",
-    "source": "US State Department / USTravelDocs"
   },
   {
     "id": "h1b-100k-premium-processing",
