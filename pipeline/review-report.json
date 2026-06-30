@@ -1,30 +1,24 @@
 {
-  "timestamp": "2026-06-30T14:15:55.753348+00:00",
-  "mode": "fix",
+  "timestamp": "2026-06-30T14:36:24.175594+00:00",
+  "mode": "review",
   "stats": {
-    "pass": 5,
+    "pass": 16,
     "flag": 1,
     "fail": 0,
     "error": 0
   },
-  "revisions": 1,
+  "revisions": 0,
   "unpublished": 0,
   "articles": [
     {
-      "id": "295884ba-e4ce-447a-ad50-d6cba5db108c",
-      "headline": "Indian IT Stocks Just Had Their Worst Month in Years \u2014 and the Threat Isn't Just Cyclical, It's Existential",
-      "slug": "india-nifty-it-stocks-worst-month-accenture-ai-disruption-tcs-infosys-nri-tech-20260630",
+      "id": "0f54b729-2d24-424d-bd56-63ee7a824eec",
+      "headline": "India's Wealthy Families Are Buying Out Entire Maldives Resorts \u2014 and Luxury Hospitality Is Redesigning Itself Around Them",
+      "slug": "india-wealthy-families-luxury-maldives-resort-buyout-nri-20260630",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "stock exchange trading board",
-          "reason": "The photo shows a trading board, relevant to the IT stocks story."
-        },
-        "inline_image_mismatches": []
+        "broken_embeds": []
       },
       "llm_review": {
         "overall_score": 8,
@@ -36,63 +30,88 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the performance of Indian IT stocks to the interests and concerns of NRIs, particularly those working in the sector."
+          "note": "The article effectively connects the trends in luxury travel to the Indian diaspora, particularly Indian Americans, highlighting their unique travel preferences and challenges."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more direct quotes or insights from industry experts to enhance credibility.",
-          "Include a section on potential strategies for NRIs to navigate the current market conditions."
+          "Consider adding quotes or insights from more luxury travel experts to enhance credibility.",
+          "Include specific examples of resorts that have successfully adapted to these changes to provide a more comprehensive view."
         ],
         "verdict": "pass"
       },
-      "actions_taken": [
-        "promoted to published"
-      ],
+      "actions_taken": [],
       "revised": false,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "a98d3cbf-89a7-4c19-bc88-6c68c54fbfff",
-      "headline": "The FDA Just Said There's 'Little Evidence' Behind the Peptides Millions of Americans Are Injecting",
-      "slug": "fda-peptides-bpc157-safety-risks-wellness-craze-science-evidence-diaspora-health-20260630",
+      "id": "25618cc8-2cd5-4bd3-810a-fb380bf40cac",
+      "headline": "Air India's Mumbai\u2013Tokyo Haneda Nonstop Is Two Weeks Old \u2014 and Japan Is Now the Airline's Biggest Asia Bet",
+      "slug": "air-india-mumbai-tokyo-haneda-nonstop-japan-nri-20260630",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Peptide compounds in a lab",
-          "reason": "The photo subject aligns with the story about peptides in wellness."
-        },
-        "inline_image_mismatches": []
+        "broken_embeds": []
       },
       "llm_review": {
-        "overall_score": 6,
+        "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 8,
-          "issue": "The image is relevant to the topic of peptides and wellness, but lacks specific connection to the FDA review."
+          "score": 7,
+          "issue": "The image is relevant to the topic of airlines and travel, but it does not specifically depict Air India or the Tokyo route."
         },
         "diaspora_angle": {
-          "present": false,
-          "quality": 3,
-          "note": "The article does not connect to NRI or diaspora readers, lacking a specific angle that would engage this audience."
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the new route to the needs of NRIs and Indian Americans, highlighting travel convenience and cultural ties."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Incorporate a section that discusses how the FDA's findings may impact the health and wellness trends among the Indian diaspora.",
-          "Add quotes or insights from experts in the field of wellness or peptides that could resonate with NRI readers."
+          "Include a direct quote from an Air India representative or an industry expert to enhance credibility.",
+          "Add more details about the passenger experience on the new route, such as in-flight services or amenities."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
-      "actions_taken": [
-        "Revised by gemini-2.5-flash (748\u2192791 words)"
-      ],
-      "revised": true,
+      "actions_taken": [],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "428f1758-90f3-45c1-819b-a260150c4789",
+      "headline": "Hilton Is Opening Six Hotels in India This Quarter \u2014 and the Luxury Arms Race Is Just Starting",
+      "slug": "hilton-leela-india-luxury-hotel-boom-bengaluru-jaisalmer-nri-20260630",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 6,
+          "issue": "The image does not directly relate to the topic of Hilton hotels or luxury hospitality."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively addresses the needs and interests of NRIs, particularly in relation to luxury accommodations and destination weddings."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that showcases Hilton hotels or luxury hospitality in India.",
+          "Add more statistics or data points about the growth of the hospitality market to strengthen the article's claims."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [],
+      "revised": false,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
     },
@@ -104,13 +123,7 @@
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Fish oil capsules spilling from a bottle",
-          "reason": "The photo shows fish oil capsules, which are relevant to the story about fish oil supplements."
-        },
-        "inline_image_mismatches": []
+        "broken_embeds": []
       },
       "llm_review": {
         "overall_score": 8,
@@ -127,119 +140,25 @@
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes or insights from South Asian health experts to strengthen the diaspora connection.",
-          "Include more information on alternative dietary approaches that could benefit the diaspora community."
+          "Consider adding quotes or insights from South Asian health experts to strengthen the diaspora angle.",
+          "Include more statistics or data on the prevalence of Alzheimer's in South Asian communities to enhance the article's impact."
         ],
         "verdict": "pass"
       },
-      "actions_taken": [
-        "promoted to published"
-      ],
+      "actions_taken": [],
       "revised": false,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "428f1758-90f3-45c1-819b-a260150c4789",
-      "headline": "Hilton Is Opening Six Hotels in India This Quarter \u2014 and the Luxury Arms Race Is Just Starting",
-      "slug": "hilton-leela-india-luxury-hotel-boom-bengaluru-jaisalmer-nri-20260630",
+      "id": "295884ba-e4ce-447a-ad50-d6cba5db108c",
+      "headline": "Indian IT Stocks Just Had Their Worst Month in Years \u2014 and the Threat Isn't Just Cyclical, It's Existential",
+      "slug": "india-nifty-it-stocks-worst-month-accenture-ai-disruption-tcs-infosys-nri-tech-20260630",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Jaisalmer Fort and surrounding landscape",
-          "reason": "The photo shows Jaisalmer Fort, relevant to the luxury hotel story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image is relevant to India but does not directly represent the luxury hotel theme discussed in the article."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively addresses the needs and interests of NRIs, particularly in relation to luxury accommodations and destination weddings."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that directly represents luxury hotels or the specific properties mentioned in the article.",
-          "Add more statistics or quotes from industry experts to enhance credibility and depth."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "25618cc8-2cd5-4bd3-810a-fb380bf40cac",
-      "headline": "Air India's Mumbai\u2013Tokyo Haneda Nonstop Is Two Weeks Old \u2014 and Japan Is Now the Airline's Biggest Asia Bet",
-      "slug": "air-india-mumbai-tokyo-haneda-nonstop-japan-nri-20260630",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Tokyo skyline with Mount Fuji",
-          "reason": "The photo shows Tokyo, relevant to the Air India Tokyo route story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image depicts an airplane, which is relevant to the topic of airlines, but does not specifically represent Air India or the Mumbai-Tokyo route."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the new route to the needs of NRIs, particularly in terms of travel convenience and cultural connections."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider including a direct quote from an Air India representative or an industry expert to enhance credibility.",
-          "Add more details about the cultural significance of Japan for Indian travelers to strengthen the diaspora angle."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "0f54b729-2d24-424d-bd56-63ee7a824eec",
-      "headline": "India's Wealthy Families Are Buying Out Entire Maldives Resorts \u2014 and Luxury Hospitality Is Redesigning Itself Around Them",
-      "slug": "india-wealthy-families-luxury-maldives-resort-buyout-nri-20260630",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "overwater bungalows in the Maldives",
-          "reason": "The photo subject aligns with the luxury travel theme of the story."
-        },
-        "inline_image_mismatches": []
+        "broken_embeds": []
       },
       "llm_review": {
         "overall_score": 8,
@@ -251,19 +170,456 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively discusses the trends in luxury travel among Indian Americans, making it relevant to the diaspora audience."
+          "note": "The article effectively connects the performance of Indian IT stocks to the interests and concerns of NRIs, particularly those working in the IT sector."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes or anecdotes from Indian Americans who have experienced this trend to add a personal touch.",
-          "Consider adding statistics or data to further illustrate the growth of the Indian luxury travel market."
+          "Consider adding more direct quotes from industry experts or analysts to enhance credibility.",
+          "Include a brief section on potential strategies for NRIs to navigate the current market conditions."
         ],
         "verdict": "pass"
       },
-      "actions_taken": [
-        "promoted to published"
-      ],
+      "actions_taken": [],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "78a39ab4-e818-42f7-a8d9-f6a5aa077ce0",
+      "headline": "Seven Goals. One Statement. India Demolish Pakistan in London to Send a Message Before the Hockey World Cup.",
+      "slug": "india-demolish-pakistan-7-1-fih-pro-league-london-harmanpreet-hardik-hockey-world-cup-2026-diaspora-nri",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "9b494204-de05-45d5-a6f5-60a10538a7e6",
+            "headline": "Shootout Revenge at Lee Valley. India Edge England 3-2 to En"
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 5,
+          "issue": "The image does not directly relate to the specific match discussed in the article."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the match to the Indian diaspora in the UK, highlighting their presence and enthusiasm."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including a more relevant image that depicts the specific match or players involved.",
+          "Add quotes from players or coaches to enhance the narrative and provide personal insights."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "e1c7ff25-7feb-4bf9-8981-ba007c7ad03b",
+      "headline": "A 26-Year-Old YouTuber Made a $750K Horror Film. It Just Crossed $371 Million.",
+      "slug": "obsession-750k-horror-371-million-highest-grossing-original-2020s-vod-streaming-diaspora-nri-20260630",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article connects to diaspora audiences by discussing the film's performance in India and its significance in the Indian market."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more quotes or reactions from the diaspora audience regarding the film's success.",
+          "Add a section on how the film's themes resonate with the Indian diaspora."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "9adb7a33-f9a5-4cc7-8394-88c1d0540e73",
+      "headline": "Apple Calls India's Antitrust Case Against It 'Copy-Pasted.' The Regulator Has Heard That Before.",
+      "slug": "apple-accuses-india-cci-copy-pasting-antitrust-app-store-phonpe-paytm-20260630",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article connects the antitrust case to Indian-origin professionals in the tech industry, making it relevant for the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more direct quotes from the CCI or Apple to enhance the article's depth.",
+          "Include a brief overview of the implications of the case for Indian consumers to broaden the audience's understanding."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "3e9ac22f-0ef3-4d7a-9e85-4717e3e0ba5e",
+      "headline": "The Rupee Just Posted Its First Quarterly Gain in Over a Year. Here's What It Took.",
+      "slug": "india-rupee-first-quarterly-gain-five-oil-crash-goldman-upgrade-nri-remittance-20260630",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the rupee's performance to the financial implications for NRIs, particularly regarding remittances and deposit rates."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more data or quotes from NRI perspectives to enhance the diaspora angle.",
+          "Include a brief summary of potential future trends for the rupee to provide readers with a forward-looking perspective."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "8aef202a-b7e9-4bc1-9ddf-2f511567bdc9",
+      "headline": "Musaafer's Taj Mahal Comes to Tribeca: Inside New York's Most Opulent Indian Restaurant",
+      "slug": "musaafer-tribeca-new-york-indian-fine-dining-houston-taj-mahal-inspired",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article highlights the cultural significance of Indian cuisine and architecture, appealing to the diaspora's connection to their heritage."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include quotes from diners or chefs to add personal perspectives.",
+          "Mention any special events or promotions that might attract diaspora readers."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "a5f34c07-8956-4236-a737-f12c545da5a9",
+      "headline": "India Just Signed a 35-Nation Pact to Secure AI's Silicon Supply Chain. Here's What It Actually Means.",
+      "slug": "india-pax-silica-35-nation-chip-ai-supply-chain-20260630",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the implications of the US-India chip alliance for Indian Americans, making it relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of how the semiconductor industry impacts the NRI community.",
+          "Include quotes or insights from NRI professionals in the semiconductor field to enhance the diaspora connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "6f8e28dd-da9b-40bf-8aa2-3b810579452e",
+      "headline": "Arora's Palo Alto Networks Just Hit a $3 Billion Quarter. Then Its Stock Hit an All-Time High.",
+      "slug": "nikesh-arora-palo-alto-3-billion-quarter-all-time-high-20260630",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "749cfbed-6929-41e7-a0e6-3b44831fe427",
+            "headline": "Nikesh Arora's Palo Alto Networks Hit an All-Time High. His "
+          },
+          {
+            "article_id": "289c564b-f908-4976-ad8d-257b00d5491d",
+            "headline": "Nadella, Pichai, and Arora Just Bought a Cricket Team at Lor"
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses Nikesh Arora's background and the implications of his success for Indian engineers, connecting well with the diaspora audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more direct quotes from Nikesh Arora to enhance the personal connection and insight into his leadership style.",
+          "Include a brief overview of Palo Alto Networks' impact on the cybersecurity landscape to provide context for readers unfamiliar with the company."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "a26e25ce-6a97-4afd-9eb3-8e27793ffccd",
+      "headline": "Amazon Just Bet $48 Billion on India. Jassy Flew to Delhi to Tell Modi Personally.",
+      "slug": "amazon-48-billion-india-jassy-modi-aws-ai-cloud-20260630",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "14f944bf-a7a6-4075-a160-79b35f1bbc71",
+            "headline": "Amazon Just Dropped Another $13 Billion on India. The Hypers"
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the investment to job opportunities and investment exposure for NRIs."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of how the investment will impact Indian Americans directly.",
+          "Include quotes or reactions from NRI professionals to enhance the diaspora perspective."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "5fc5693f-985c-4cb1-a6ce-db79d0225269",
+      "headline": "One in Four American Doctors Trained Abroad. The Fee Nearly Drove Them Out",
+      "slug": "indian-doctors-aapi-h1b-fee-ruling-rural-healthcare-imgs-20260630",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly depict doctors or healthcare, which could enhance relevance."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the issue to the Indian diaspora, highlighting the contributions of Indian-origin physicians in the U.S. healthcare system."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including a more relevant image that depicts Indian-origin doctors or healthcare settings.",
+          "Add quotes or testimonials from Indian-origin physicians to strengthen the diaspora connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "587be9d9-eaf5-4720-85f7-d36724b77f27",
+      "headline": "Half of All OPT Workers Are Indian. The Man Running USCIS Wants to End the Programme",
+      "slug": "opt-stem-indian-students-uscis-edlow-duration-status-end-20260630",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 6,
+          "issue": "The image does not directly relate to the topic of immigration or OPT workers."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the impact of immigration policy changes on Indian OPT workers, which is highly relevant to the Indian diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more statistics or quotes from Indian students to strengthen the diaspora connection.",
+          "Consider using a more relevant image that depicts international students or the concept of immigration."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "7c375da9-b039-44f4-a22b-d08da8aaf460",
+      "headline": "Five Indian Americans, Five Fields, One State: Inside GOPIO-CT's 20th Anniversary Honours",
+      "slug": "gopio-ct-20th-anniversary-indian-american-honors-connecticut-diaspora-20260630",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image is relevant but does not directly depict the event or honorees."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively highlights the achievements of Indian Americans and their contributions to the local community, making it relevant for diaspora readers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including quotes or reactions from the honorees to add a personal touch.",
+          "Add more context about the significance of GOPIO-CT's work for the Indian diaspora in Connecticut."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "e978a72e-2741-4b07-b696-8f6f633164d3",
+      "headline": "The Rate War for NRI Dollars: Indian Banks Are Offering Up to 7.5% on Foreign Currency Deposits",
+      "slug": "fcnr-rate-war-nri-deposits-banks-7-percent-rbi-september-deadline-20260630",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article directly addresses NRIs and their financial interests, making it relevant and engaging for the diaspora audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include a brief summary of the potential risks associated with investing in FCNR deposits to provide a balanced view.",
+          "Add a section on how these changes might impact the broader Indian economy to give context to the NRI audience."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [],
       "revised": false,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
