@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-29T23:15:12.186375+00:00",
+  "timestamp": "2026-06-30T00:16:00.170294+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
-    "flag": 0,
+    "pass": 4,
+    "flag": 3,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "8dadecc1-d1d3-48e3-9b94-6945006123c1",
-      "headline": "She's Carrying a Shotgun in Her Wedding Dress \u2014 and Sherlock Has Been Kidnapped",
-      "slug": "enola-holmes-3-millie-bobby-brown-shotgun-wedding-malta-netflix-july-1-where-to-watch-diaspora-nri",
+      "id": "51d3b56b-c14a-40f7-a900-412a341682a6",
+      "headline": "Laid Off in America, Shut Out in India: The H-1B Worker's Double Bind",
+      "slug": "h1b-workers-laid-off-america-india-tech-job-market-low-20260630",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Enola Holmes 3 movie poster",
-          "reason": "The photo is an official release poster for Enola Holmes 3, matching the story topic."
+          "what_photo_shows": "person at workstation with board",
+          "reason": "The photo shows a professional at a workstation, relevant to tech workers' uncertainty."
         },
         "inline_image_mismatches": []
       },
@@ -30,21 +30,286 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image depicts a professional setting, which aligns with the article's focus on tech workers, but it lacks a direct connection to the H-1B visa theme."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article mentions Himesh Patel, a British-Indian actor, which connects to the diaspora audience."
+          "quality": 8,
+          "note": "The article effectively addresses the challenges faced by Indian tech workers in the US and India, resonating with the NRI audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct references to how the film's themes resonate with the Indian diaspora.",
-          "Add quotes or insights from the cast or crew that specifically address the film's appeal to international audiences."
+          "Consider including specific examples or testimonials from H-1B workers to enhance the personal connection.",
+          "Add a section discussing potential solutions or policy changes that could alleviate the issues faced by H-1B workers."
         ],
         "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "aaf1ccd3-e8ec-452b-8de4-b529b4ea86f5",
+      "headline": "Lutnick Promises to 'Change' the H-1B Programme. His Gold Card Has Approved One Person",
+      "slug": "lutnick-gold-card-one-approval-h1b-change-promise-20260630",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "man in suit with flag background",
+          "reason": "The photo plausibly shows Commerce Secretary Howard Lutnick."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 5,
+          "issue": "The image of Howard Lutnick does not directly relate to the H-1B programme or the Gold Card discussion."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the implications of H-1B changes on Indian nationals, which is highly relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including more direct quotes or reactions from Indian diaspora organizations to enhance the connection.",
+          "Add a section summarizing potential impacts on the Indian community to provide a clearer context."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "6ad043b8-a133-40ca-8366-4f603b365a1d",
+      "headline": "Belfast Burned. An Indian Woman Fed the Families Left Behind.",
+      "slug": "belfast-riots-indian-community-uk-safety-rangaprasad-20260630",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MISMATCH",
+          "what_photo_shows": "Historic Belfast street scene",
+          "reason": "The photo shows a historic scene, not related to recent events."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image should reflect the community response or the act of feeding families, but the specific image is not provided."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article connects well with the Indian diaspora by highlighting the actions of an Indian woman in response to local violence, showcasing community resilience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include a relevant image that depicts the community response or the act of feeding families.",
+          "Consider adding quotes or perspectives from other members of the Indian community in Northern Ireland to enrich the narrative."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "Cleared mismatched image (Historic Belfast street scene)",
+        "held: image mismatch"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "image_mismatch": true,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "02ce9219-4df6-45a2-b3b0-2f7b0d03c9a9",
+      "headline": "The Diaspora's Philanthropy Machine Just Turned 25. It Raised a Record $3.8 Million in One Night.",
+      "slug": "aif-gala-record-38-million-diaspora-philanthropy-25-years-20260630",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Bharat Masrani in a suit",
+          "reason": "The photo shows Bharat Masrani, who is mentioned in the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 3,
+          "issue": "irrelevant"
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively highlights the philanthropic contributions of the Indian diaspora and connects it to broader trends in giving."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the hero image with one that is more relevant to the event or the theme of diaspora philanthropy.",
+          "Consider adding quotes or testimonials from attendees to enhance the personal connection to the diaspora experience."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "e4c7ddbc-f2fc-4ebf-8c7d-63b5a9770adf",
+      "headline": "The AI Boom Just Made Your MacBook 42% More Expensive. India Got the Worst of It.",
+      "slug": "apple-macbook-ipad-india-price-hike-ai-memory-shortage-20260630",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "MacBook Air keyboard close-up",
+          "reason": "The photo shows a MacBook Air keyboard, relevant to the story about MacBook price increases."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image of a laptop is relevant but does not specifically depict a MacBook."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the impact of price hikes on NRIs who purchase Apple devices in India, making it relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include specific examples of how NRIs are affected by the price changes, perhaps through anecdotes or quotes.",
+          "Consider adding a comparison of prices in India versus other countries to highlight the disparity more clearly."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "7e0b8dd9-63e5-4192-ac2e-13e86670bb63",
+      "headline": "OpenAI Just Hired Uber India's Boss to Run Its Second-Largest Market",
+      "slug": "openai-prabhjeet-singh-india-md-uber-chatgpt-20260630",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "professionals collaborating in a tech office",
+          "reason": "The photo shows a tech office setting, aligning with the story about OpenAI's India operations."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to OpenAI or the tech industry."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the implications of OpenAI's expansion in India for Indian Americans in tech, making it relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that reflects OpenAI or the tech industry.",
+          "Add a quote from Prabhjeet Singh or another industry expert to enhance credibility."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "289c564b-f908-4976-ad8d-257b00d5491d",
+      "headline": "Nadella, Pichai, and Arora Just Bought a Cricket Team at Lord's. They Paid \u00a3145 Million.",
+      "slug": "nadella-pichai-arora-london-spirit-lords-cricket-hundred-20260630",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "749cfbed-6929-41e7-a0e6-3b44831fe427",
+            "headline": "Nikesh Arora's Palo Alto Networks Hit an All-Time High. His "
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Nikesh Arora speaking at an event",
+          "reason": "The photo shows Nikesh Arora, who is relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 3,
+          "issue": "The image does not match the article's headline and topic, as it features Nikesh Arora at a tech event rather than related to cricket."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the cricket investment to the Indian diaspora, highlighting cultural ties and the significance of cricket to NRIs."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the hero image with one that features cricket or the London Spirit team to better align with the article's topic.",
+          "Consider adding quotes or reactions from the diaspora community regarding the investment to enhance engagement."
+        ],
+        "verdict": "flag"
       },
       "actions_taken": [
         "promoted to published"
