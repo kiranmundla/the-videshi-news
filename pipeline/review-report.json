@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-30T19:45:23.726534+00:00",
+  "timestamp": "2026-06-30T20:15:37.710399+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 0,
+    "pass": 2,
     "flag": 1,
     "fail": 0,
     "error": 0
@@ -11,6 +11,97 @@
   "unpublished": 0,
   "articles": [
     {
+      "id": "fe18d0bc-70d8-4f7f-b497-1405ee764716",
+      "headline": "Four Bills in Congress Want to End the H-1B. Here Is What Each Would Do to You",
+      "slug": "four-bills-end-h1b-greene-steube-crane-roy-guide-20260630",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "a8a324e4-a007-456c-accc-1b3f579db9eb",
+            "headline": "A Bill in Congress Would End the H-1B-to-Green-Card Pipeline"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "The United States Capitol building",
+          "reason": "The Capitol is relevant to a story about U.S. Congress legislation."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses legislative changes that directly impact Indian professionals in the US, making it relevant for the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include quotes or testimonials from affected individuals to enhance the personal impact of the legislation.",
+          "Add a section on potential responses or actions that the Indian diaspora can take regarding these bills."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "4fc1ed81-7935-4927-8986-e3b54345904d",
+      "headline": "OpenAI Hired More H-1B Workers After the $100,000 Fee. Your Startup Cannot Afford To",
+      "slug": "openai-h1b-100k-fee-two-tier-ai-talent-market-20260630",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Tech professionals in an office",
+          "reason": "The photo aligns with the topic of tech professionals and immigration."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the article's focus on H-1B visa hiring trends."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article discusses the impact of H-1B visa policies on Indian professionals, making it highly relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that visually represents the theme of immigration or H-1B visas to enhance relevance.",
+          "Include more direct quotes or insights from Indian professionals affected by these changes to deepen the personal connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
       "id": "4c02b8c4-7027-46f0-a0d0-7e4f6f4fb600",
       "headline": "Haaland\u2019s Late Winner Sends Norway Past Ivory Coast and Into a World Cup Showdown With Brazil",
       "slug": "haaland-late-winner-norway-ivory-coast-world-cup-brazil-20260630",
@@ -18,7 +109,18 @@
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [],
-        "broken_embeds": [],
+        "broken_embeds": [
+          {
+            "url": "https://x.com/thevideshi/status/1808462000000000000",
+            "problem": "broken",
+            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
+          },
+          {
+            "url": "https://instagram.com/p/C-i_j_6v4_d/",
+            "problem": "broken",
+            "detail": "Instagram embed shows removed/broken placeholder"
+          }
+        ],
         "vision_image_match": {
           "verdict": "MATCH",
           "what_photo_shows": "Erling Haaland in Norway jersey",
@@ -41,13 +143,14 @@
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Expand on the connection to Indian Americans and their engagement with the World Cup.",
-          "Include quotes or reactions from Indian American fans to enhance the diaspora angle."
+          "Expand on the significance of the World Cup for Indian Americans to enhance the diaspora angle.",
+          "Include more context or quotes from Indian American fans or players to create a stronger connection."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
-        "Revised by gemini-2.5-flash (911\u2192968 words)"
+        "Removed 2 broken/hallucinated embed(s)",
+        "Revised by gemini-2.5-flash (966\u21921023 words)"
       ],
       "revised": true,
       "unpublished": false,
