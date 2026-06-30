@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-30T00:16:00.170294+00:00",
+  "timestamp": "2026-06-30T00:45:39.005794+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 4,
-    "flag": 3,
+    "pass": 5,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "51d3b56b-c14a-40f7-a900-412a341682a6",
-      "headline": "Laid Off in America, Shut Out in India: The H-1B Worker's Double Bind",
-      "slug": "h1b-workers-laid-off-america-india-tech-job-market-low-20260630",
+      "id": "cf284ab7-46ed-4d16-b66a-13f59ae16f58",
+      "headline": "India Launches Aarogya Setu 2.0, Unveils Sweeping Digital Health Overhaul",
+      "slug": "india-launches-aarogya-setu-2-digital-health-overhaul-nadda-abdm-20260629",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "person at workstation with board",
-          "reason": "The photo shows a professional at a workstation, relevant to tech workers' uncertainty."
+          "what_photo_shows": "Union Health Minister JP Nadda",
+          "reason": "The photo shows the correct named person related to the story."
         },
         "inline_image_mismatches": []
       },
@@ -30,19 +30,64 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image depicts a professional setting, which aligns with the article's focus on tech workers, but it lacks a direct connection to the H-1B visa theme."
+          "score": 5,
+          "issue": "irrelevant"
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively addresses the challenges faced by Indian tech workers in the US and India, resonating with the NRI audience."
+          "quality": 7,
+          "note": "The article discusses a significant digital health initiative in India, which may interest NRIs concerned about healthcare advancements in their home country."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider including specific examples or testimonials from H-1B workers to enhance the personal connection.",
-          "Add a section discussing potential solutions or policy changes that could alleviate the issues faced by H-1B workers."
+          "Include more direct implications or benefits of the Aarogya Setu 2.0 for NRIs or the diaspora community.",
+          "Consider adding quotes from stakeholders or experts to enhance credibility and engagement."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "a63947d0-fd3f-4db6-b432-c247f8c19efd",
+      "headline": "Hyderabad Names Road 'Donald Trump Avenue' in First Such Honour for a US President in India",
+      "slug": "hyderabad-names-road-donald-trump-avenue-us-president-india-telangana-20260629",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "US President Donald Trump",
+          "reason": "The photo shows Donald Trump, relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 8,
+          "issue": "The image of Donald Trump is relevant to the article's topic about the road naming."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses the significance of the road naming for the Indian diaspora, particularly NRIs from Hyderabad."
+        },
+        "factual_flags": [
+          "Trump's claim of being the first US President to have a street named after him in India is contradicted by historical facts."
+        ],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Provide more context on the historical significance of street naming in India to enhance the article's depth.",
+          "Include quotes or reactions from diaspora members to strengthen the connection to the NRI community."
         ],
         "verdict": "pass"
       },
@@ -54,9 +99,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "aaf1ccd3-e8ec-452b-8de4-b529b4ea86f5",
-      "headline": "Lutnick Promises to 'Change' the H-1B Programme. His Gold Card Has Approved One Person",
-      "slug": "lutnick-gold-card-one-approval-h1b-change-promise-20260630",
+      "id": "17552ace-0584-481f-9346-8875868aae14",
+      "headline": "Beyond the Buffet: Indian Food Finally Gets Its Fast-Casual Moment in America",
+      "slug": "beyond-the-buffet-indian-food-finally-gets-its-fast-casual-moment-in-america",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,30 +109,116 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "man in suit with flag background",
-          "reason": "The photo plausibly shows Commerce Secretary Howard Lutnick."
+          "what_photo_shows": "Indian food platter with naan and sauces",
+          "reason": "The photo shows Indian food, relevant to the fast-casual Indian cuisine story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 7,
+        "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 5,
-          "issue": "The image of Howard Lutnick does not directly relate to the H-1B programme or the Gold Card discussion."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses the implications of H-1B changes on Indian nationals, which is highly relevant to the diaspora."
+          "note": "The article discusses the growing acceptance and popularity of Indian cuisine in America, which resonates with the Indian diaspora's interest in cultural representation and culinary trends."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider including more direct quotes or reactions from Indian diaspora organizations to enhance the connection.",
-          "Add a section summarizing potential impacts on the Indian community to provide a clearer context."
+          "Include quotes or anecdotes from Indian diaspora members in the US to enhance the personal connection.",
+          "Add a section on how Indian food is being adapted or perceived differently in various regions of the US."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "8d508776-8953-4cf9-afa0-77648144e489",
+      "headline": "From 7-Eleven to James Beard: The Improbable Rise of Chef Suresh Sundas",
+      "slug": "from-7-eleven-to-james-beard-the-improbable-rise-of-chef-suresh-sundas",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Exterior of Daru restaurant",
+          "reason": "The photo shows Daru restaurant, relevant to the story about Chef Suresh Sundas."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image is relevant to the article but does not specifically depict Chef Suresh Sundas or his restaurants."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects Sundas's story to the broader South Asian immigrant experience, making it relatable to NRI readers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include a more relevant image of Chef Suresh Sundas or his restaurants to enhance visual connection.",
+          "Consider adding quotes or anecdotes from Sundas that specifically highlight his experiences as an immigrant chef."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "49591483-d610-42e2-95cc-c9a9be68d3ba",
+      "headline": "The $5 Alphonso: Inside the Mango Vans Rolling Through America's Indian Neighbourhoods",
+      "slug": "the-5-alphonso-inside-the-mango-vans-rolling-through-americas-indian-neighbourho",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "pile of Alphonso mangoes",
+          "reason": "The photo shows Alphonso mangoes, relevant to the story about mango exports."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the mango season to the cultural identity and rituals of the Indian diaspora, making it relevant and engaging for NRI readers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from diaspora community members to enhance personal connection.",
+          "Include more statistics or anecdotes about the impact of mango imports on local economies."
+        ],
+        "verdict": "pass"
       },
       "actions_taken": [
         "promoted to published"
@@ -105,11 +236,6 @@
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MISMATCH",
-          "what_photo_shows": "Historic Belfast street scene",
-          "reason": "The photo shows a historic scene, not related to recent events."
-        },
         "inline_image_mismatches": []
       },
       "llm_review": {
@@ -117,199 +243,20 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image should reflect the community response or the act of feeding families, but the specific image is not provided."
+          "issue": "The image should depict community support or the aftermath of the riots to match the article's theme."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article connects well with the Indian diaspora by highlighting the actions of an Indian woman in response to local violence, showcasing community resilience."
+          "note": "The article effectively connects the experiences of the Indian diaspora in Northern Ireland to the broader context of anti-immigration violence."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include a relevant image that depicts the community response or the act of feeding families.",
-          "Consider adding quotes or perspectives from other members of the Indian community in Northern Ireland to enrich the narrative."
+          "Include a relevant image that reflects community support or the impact of the riots.",
+          "Add quotes or testimonials from the Indian community in Northern Ireland to enhance the diaspora perspective."
         ],
         "verdict": "pass"
-      },
-      "actions_taken": [
-        "Cleared mismatched image (Historic Belfast street scene)",
-        "held: image mismatch"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "image_mismatch": true,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "02ce9219-4df6-45a2-b3b0-2f7b0d03c9a9",
-      "headline": "The Diaspora's Philanthropy Machine Just Turned 25. It Raised a Record $3.8 Million in One Night.",
-      "slug": "aif-gala-record-38-million-diaspora-philanthropy-25-years-20260630",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Bharat Masrani in a suit",
-          "reason": "The photo shows Bharat Masrani, who is mentioned in the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 3,
-          "issue": "irrelevant"
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively highlights the philanthropic contributions of the Indian diaspora and connects it to broader trends in giving."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the hero image with one that is more relevant to the event or the theme of diaspora philanthropy.",
-          "Consider adding quotes or testimonials from attendees to enhance the personal connection to the diaspora experience."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "e4c7ddbc-f2fc-4ebf-8c7d-63b5a9770adf",
-      "headline": "The AI Boom Just Made Your MacBook 42% More Expensive. India Got the Worst of It.",
-      "slug": "apple-macbook-ipad-india-price-hike-ai-memory-shortage-20260630",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "MacBook Air keyboard close-up",
-          "reason": "The photo shows a MacBook Air keyboard, relevant to the story about MacBook price increases."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image of a laptop is relevant but does not specifically depict a MacBook."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses the impact of price hikes on NRIs who purchase Apple devices in India, making it relevant to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include specific examples of how NRIs are affected by the price changes, perhaps through anecdotes or quotes.",
-          "Consider adding a comparison of prices in India versus other countries to highlight the disparity more clearly."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "7e0b8dd9-63e5-4192-ac2e-13e86670bb63",
-      "headline": "OpenAI Just Hired Uber India's Boss to Run Its Second-Largest Market",
-      "slug": "openai-prabhjeet-singh-india-md-uber-chatgpt-20260630",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "professionals collaborating in a tech office",
-          "reason": "The photo shows a tech office setting, aligning with the story about OpenAI's India operations."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to OpenAI or the tech industry."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses the implications of OpenAI's expansion in India for Indian Americans in tech, making it relevant to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that reflects OpenAI or the tech industry.",
-          "Add a quote from Prabhjeet Singh or another industry expert to enhance credibility."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "289c564b-f908-4976-ad8d-257b00d5491d",
-      "headline": "Nadella, Pichai, and Arora Just Bought a Cricket Team at Lord's. They Paid \u00a3145 Million.",
-      "slug": "nadella-pichai-arora-london-spirit-lords-cricket-hundred-20260630",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "749cfbed-6929-41e7-a0e6-3b44831fe427",
-            "headline": "Nikesh Arora's Palo Alto Networks Hit an All-Time High. His "
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Nikesh Arora speaking at an event",
-          "reason": "The photo shows Nikesh Arora, who is relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 3,
-          "issue": "The image does not match the article's headline and topic, as it features Nikesh Arora at a tech event rather than related to cricket."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the cricket investment to the Indian diaspora, highlighting cultural ties and the significance of cricket to NRIs."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the hero image with one that features cricket or the London Spirit team to better align with the article's topic.",
-          "Consider adding quotes or reactions from the diaspora community regarding the investment to enhance engagement."
-        ],
-        "verdict": "flag"
       },
       "actions_taken": [
         "promoted to published"
