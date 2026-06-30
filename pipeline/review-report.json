@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-30T18:16:04.938908+00:00",
+  "timestamp": "2026-06-30T18:45:32.400588+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 8,
+    "pass": 3,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "3bfefc80-a122-4d6a-8e7d-c09cd5aba2d2",
-      "headline": "Infosys Just Touched \u20b91,000. TCS Lost \u20b92,050. The Worst IT Selloff Since Covid Has a Familiar Villain.",
-      "slug": "infosys-1000-tcs-2050-indian-it-selloff-ai-deflation-20260630",
+      "id": "151959a3-1271-4830-917b-0c62998d2f14",
+      "headline": "India Lifts Emergency Fuel Restrictions Starting July 1 as Oil Prices Collapse",
+      "slug": "india-lifts-fuel-restrictions-july-1-oil-price-drop-windfall-tax-20260630",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,51 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "stock market chart with red candlesticks",
-          "reason": "The photo shows a bearish stock market chart, relevant to the IT selloff story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 6,
-          "issue": "The image does not directly relate to the article's focus on IT stocks and financial analysis."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the impact of the IT sector's performance on NRI investors, particularly in the US."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that reflects the IT sector or stock market.",
-          "Add more data or quotes from industry experts to strengthen the analysis."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "83c145b5-2424-4411-8968-a89385a22259",
-      "headline": "Bajaj Got Ransomware. Tata Got Hacked. Then a Data Centre Burned Down. India Inc Had a Terrible June.",
-      "slug": "bajaj-tata-ransomware-data-centre-fire-india-cybersecurity-20260630",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "cybersecurity professional monitoring systems",
-          "reason": "The photo subject aligns with the cybersecurity theme of the story."
+          "what_photo_shows": "Hindustan Petroleum fuel pump",
+          "reason": "The photo shows a fuel pump in India, relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -74,61 +31,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image does not directly relate to the specific incidents discussed in the article."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses major Indian companies and their cybersecurity issues, which may resonate with the NRI audience concerned about India's technological landscape."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more context on how these cybersecurity incidents could impact the Indian diaspora, especially those involved in tech or business.",
-          "Include expert opinions or quotes to enhance the credibility and depth of the analysis."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "447448b9-a0a8-48d1-bdcb-b9677d0c3dd4",
-      "headline": "India's UPI Just Went Live in Athens. The Payment System That Replaced Cash Now Works in 10 Countries.",
-      "slug": "upi-live-greece-10-countries-eurobank-nri-payments-20260630",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "scanning QR code for payment",
-          "reason": "The photo shows a digital payment, relevant to the UPI story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the UPI payment system or Greece."
+          "issue": "The image does not directly relate to the article's topic of fuel restrictions and oil prices."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the UPI rollout to the travel habits and financial needs of the Indian diaspora."
+          "note": "The article effectively connects the fuel restrictions to the impact on NRI-owned businesses and family interests in India."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that directly represents UPI or the Greek context to enhance relevance.",
-          "Add a brief section on how UPI's expansion could impact NRIs in terms of remittances or business opportunities."
+          "Consider adding a relevant image that depicts fuel stations or oil prices to enhance visual connection to the article's content.",
+          "Provide more specific examples of how NRI businesses were affected to strengthen the diaspora angle."
         ],
         "verdict": "pass"
       },
@@ -140,9 +54,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "a2e8d97f-5f45-4bab-a578-0a0284a23708",
-      "headline": "The Rupee Just Posted Its First Quarterly Gain Since March 2025 \u2014 Here's What Changed and What NRI Investors Should Watch Next",
-      "slug": "india-rupee-first-quarterly-gain-five-quarters-oil-crash-rbi-measures-goldman-sachs-nri-investor-outlook-20260630",
+      "id": "7ddd9f89-eeba-4c45-a24d-1d75e5de687b",
+      "headline": "Indian Families Sold 50 Tonnes of Gold Last Quarter. It\u2019s the Biggest Sell-Off in Years.",
+      "slug": "india-gold-sell-off-50-tonnes-households-price-crash-recycling-boom-20260630",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -150,8 +64,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Bombay Stock Exchange building",
-          "reason": "The photo shows the Bombay Stock Exchange, relevant to the economy story."
+          "what_photo_shows": "pile of gold bullion bars",
+          "reason": "The photo of gold bars is relevant to the gold sell-off story."
         },
         "inline_image_mismatches": []
       },
@@ -160,18 +74,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image of the Bombay Stock Exchange is relevant but does not directly represent the rupee or currency exchange."
+          "issue": "The image does not directly depict gold or related themes, which could enhance the article's visual relevance."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively addresses NRI investors, discussing implications for currency conversion and investments."
+          "note": "The article effectively connects the gold sell-off to the diaspora's potential concerns and actions regarding family heirlooms."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that directly relates to currency or the rupee for better visual alignment.",
-          "Add a brief summary or conclusion that reiterates the key points for NRI investors."
+          "Consider adding a relevant image that visually represents gold or the sell-off to enhance reader engagement.",
+          "Include quotes or perspectives from NRIs to further enrich the diaspora angle."
         ],
         "verdict": "pass"
       },
@@ -183,9 +97,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "6a082350-0236-41ed-a332-af33fe5fa270",
-      "headline": "Exercise Alone Can Address Six of the 14 Modifiable Risk Factors for Dementia, a New Study Finds",
-      "slug": "exercise-prevents-half-dementia-cases-university-minnesota-14-risk-factors-telehealth-rural-nri-brain-health-20260630",
+      "id": "28330988-593d-473b-b1ba-80cca99d0080",
+      "headline": "India Just Raised Passport Fees by Up to 67%. The New Rates Hit Tomorrow.",
+      "slug": "india-passport-fee-hike-july-1-nri-renewal-tatkal-pcc-costs-20260630",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -193,51 +107,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "elderly person exercising indoors",
-          "reason": "The photo aligns with the topic of exercise and dementia prevention."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article connects the findings to the Indian diaspora by discussing the elevated risk factors prevalent in the community."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Expand on the diaspora angle by including specific statistics or studies related to dementia in the Indian community.",
-          "Consider adding quotes or insights from Indian health experts to strengthen the connection to the diaspora."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "aa0ee029-1dfd-43cd-b2a2-5476039f5d51",
-      "headline": "GLP-1 Drugs Like Ozempic Are Now Linked to Smell and Taste Disturbances \u2014 and the Implications Go Beyond Food",
-      "slug": "glp1-ozempic-smell-taste-disturbance-jama-study-900000-patients-sensory-side-effects-nri-diaspora-20260630",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "person injecting medication",
-          "reason": "The photo shows a person using an injector, relevant to GLP-1 drugs."
+          "what_photo_shows": "Indian passport in a travel wallet",
+          "reason": "The photo shows an Indian passport, relevant to the story about passport fees."
         },
         "inline_image_mismatches": []
       },
@@ -251,99 +122,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects the findings to the Indian diaspora, emphasizing the cultural significance of food and the higher prevalence of diabetes in this community."
+          "note": "The article effectively addresses the implications of the fee increase for NRIs, making it relevant and informative for the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more statistics or quotes from experts to strengthen the argument about the implications for the Indian diaspora.",
-          "Include a brief section on potential solutions or alternatives for those affected by these sensory disturbances."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "403df5d5-5bc9-419d-a409-b4a42d5722e8",
-      "headline": "IRCTC's New Temple Train Covers Eight Holy Sites Across Eastern India in Eleven Days \u2014 Starting at \u20b991,370",
-      "slug": "irctc-bharat-gaurav-divine-east-temple-tour-nri-20260630",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Konark Sun Temple in Odisha",
-          "reason": "The photo shows a temple included in the tour mentioned in the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": "The image of the Konarka Temple is relevant to the article's topic about temple tours in Eastern India."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively addresses the needs of NRIs looking to facilitate spiritual experiences for their family members in India."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding testimonials or quotes from previous participants to enhance credibility.",
-          "Include more details about the cultural significance of the temples mentioned to engage readers further."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "7919faf0-5cde-424d-9ee0-be4443041557",
-      "headline": "Mumbai Is Now a Four-Ship Cruise Hub \u2014 and Five Global Luxury Lines Are Booking It for Next Season",
-      "slug": "mumbai-cruise-hub-cordelia-sky-luxury-lines-nri-20260630",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "The Gateway of India in Mumbai",
-          "reason": "The photo shows a landmark near Mumbai's cruise terminal, relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively highlights how the new cruise options in Mumbai can benefit the Indian American diaspora, making it relevant and appealing."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes or testimonials from NRIs who have experienced the cruises to enhance the diaspora connection.",
-          "Include more details about the environmental impact of increased cruise traffic in Mumbai to provide a balanced view."
+          "Consider adding a brief comparison of passport fees in other countries for context.",
+          "Include a quote from a government official or an expert on the impact of these changes."
         ],
         "verdict": "pass"
       },
