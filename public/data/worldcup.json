@@ -1,6 +1,6 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-06-30T13:59:22Z",
+  "last_updated": "2026-06-30T15:58:00Z",
   "stage": "Knockout Stage",
   "hosts": "USA, Mexico & Canada",
   "dates": {
@@ -4409,6 +4409,44 @@
       "url": "https://www.threads.com/@fifaworldcup/post/DaNVpZYCkb3",
       "account": "@fifaworldcup",
       "caption": "More action. More drama.",
+      "date": "2026-06-30"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/reel/DaNbTJGvbBP/",
+      "account": "@fifaworldcup",
+      "caption": "Knockout round Mbappé 🇫🇷😱 #FIFAWorldCup",
+      "date": "2026-06-30",
+      "type": "video"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DaNmsXLD1rX/",
+      "account": "@fifaworldcup",
+      "caption": "This is Brazil. #FIFAWorldCup",
+      "date": "2026-06-30",
+      "type": "image"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DaNpNmcko4J/",
+      "account": "@fifaworldcup",
+      "caption": "El Tri in Mexico City 💚🤍❤️ #FIFAWorldCup",
+      "date": "2026-06-30",
+      "type": "image"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DaNy9vEDn26",
+      "account": "@fifaworldcup",
+      "caption": "🇨🇮🆚🇳🇴 🇫🇷🆚🇸🇪 🇲🇽🆚🇪🇨 — Today's Round of 32 matches",
+      "date": "2026-06-30"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DaNzGemDtTM",
+      "account": "@fifaworldcup",
+      "caption": "Today's predictions? 🔮",
       "date": "2026-06-30"
     }
   ],
