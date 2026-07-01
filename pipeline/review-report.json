@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-01T00:15:51.830044+00:00",
+  "timestamp": "2026-07-01T00:45:52.493002+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 7,
+    "pass": 5,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "54b6a37b-a8d1-453b-b69d-8d684680d79c",
-      "headline": "The India-US Trade Deal Is '99 Per Cent Done.' Nobody Is Talking About Visas",
-      "slug": "india-us-trade-deal-talent-mobility-visa-missing-20260701",
+      "id": "e1280794-6176-4a54-8274-bf99c6020184",
+      "headline": "The Air Fryer Rewrote the Samosa: How NRI Kitchens Became 2026's Viral Recipe Labs",
+      "slug": "the-air-fryer-rewrote-the-samosa-how-nri-kitchens-became-2026-viral-recipe-labs",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,94 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Modi and Trump meeting at G7 Summit",
-          "reason": "The photo shows leaders relevant to India-US relations, fitting the trade deal story."
+          "what_photo_shows": "Golden, crispy samosas on a plate",
+          "reason": "The photo shows samosas, which are relevant to the story about viral Indian recipes."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": "The image of a samosa matches the article's topic well."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the recipes to NRI kitchens and their adaptations."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more statistics or quotes from NRI chefs or influencers to enhance credibility.",
+          "Include a section on how these recipes are being received in India versus abroad for a broader perspective."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "d703fa7e-a110-4ca4-b79c-3889d6452e50",
+      "headline": "Tikka Masala Naan, Bombay Spice Chips, and Beet Tikka Patties: Indian Food Just Swept America's Top Grocery Awards",
+      "slug": "tikka-masala-naan-bombay-spice-chips-beet-tikka-patties-indian-food-nexty-awards",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Indian curries with naan",
+          "reason": "The photo shows Indian food, which aligns with the story about Indian cuisine."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively highlights Indian brands and their founders, connecting to the Indian diaspora's interest in cultural representation and innovation in the food industry."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include quotes or testimonials from consumers or industry experts to enhance credibility.",
+          "Add a section discussing the impact of Indian cuisine on American food culture to deepen the diaspora connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "24e17b9e-e6c3-49e3-8723-bb49bd5c70d8",
+      "headline": "The Quiet Grocery Conquest: Inside Patel Brothers' Push Into America's Fastest-Growing Suburbs",
+      "slug": "the-quiet-grocery-conquest-inside-patel-brothers-push-into-americas-fastest-grow",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MISMATCH",
+          "what_photo_shows": "Indian market with spices",
+          "reason": "The photo shows an Indian market, not a South Asian grocery store in the U.S."
         },
         "inline_image_mismatches": []
       },
@@ -31,100 +117,34 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image depicts a meeting between Modi and Trump, which is relevant but does not directly illustrate the topic of visas or trade agreements."
+          "issue": "The image description is missing, making it difficult to assess its relevance."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively addresses the concerns of Indian Americans regarding visa issues in the context of trade agreements."
+          "note": "The article effectively connects the expansion of Patel Brothers to the growing Indian-American community, highlighting its significance for NRIs."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider including more recent statistics or quotes from Indian American professionals to enhance relatability.",
-          "Add a section that outlines potential future implications for Indian Americans if visa issues remain unaddressed in trade talks."
+          "Include a relevant image description to enhance the image match score.",
+          "Add quotes or testimonials from local NRI customers to strengthen the diaspora connection."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "promoted to published"
+        "Cleared mismatched image (Indian market with spices)",
+        "held: image mismatch"
       ],
       "revised": false,
       "unpublished": false,
+      "image_mismatch": true,
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "a9387eb6-819d-4880-857e-da536b0dea36",
-      "headline": "India's EB-5 Investor Green Cards Just Ran Out. The Escape Hatch Is Closing",
-      "slug": "eb5-india-unreserved-visa-cap-exhausted-fy2026-20260701",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "aa18166c-663c-45a8-b24e-f5f8ce229faa",
-            "headline": "The Receipt That Never Ends. Every Fee Washington Has Added "
-          },
-          {
-            "article_id": "2f893da9-3f4b-4ee9-9998-647e3cb86da1",
-            "headline": "Eleven Million Cases and Counting. The Green Card Machine Ca"
-          },
-          {
-            "article_id": "faac8aeb-8246-40b8-81c3-1daaa48ee892",
-            "headline": "EB-5 Becomes India's Fastest Green Card Route. The Window Cl"
-          },
-          {
-            "article_id": "d276a8b7-a31d-454e-944f-1d95ef0e1ad8",
-            "headline": "A $100,000 Price Tag on Every H-1B Hire. A Judge Said No. Th"
-          },
-          {
-            "article_id": "7cd205b9-fefe-4bb3-8095-09600ad42101",
-            "headline": "You Used Day 1 CPT in 2019. USCIS Just Found Out"
-          },
-          {
-            "article_id": "68943038-05c3-4686-9959-65c1e60dd9c9",
-            "headline": "EB-2 India Is Shut Until October. The July Visa Bulletin Is "
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "USCIS Application Support Center",
-          "reason": "The photo is relevant to the immigration topic."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 6,
-          "issue": "The image is relevant to immigration but does not specifically relate to the EB-5 program."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses the impact of EB-5 visa changes on Indian families, which is highly relevant to the NRI community."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider including more specific examples or testimonials from Indian families affected by the EB-5 visa changes to enhance relatability.",
-          "Use a more directly related image, such as one depicting Indian families or individuals involved in the EB-5 process."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "42252afd-c655-40f4-9985-591394d1e714",
-      "headline": "He Sent \u20b911 Lakh to His Parents. India's Tax Department Took Six Years to Believe It Was a Gift.",
-      "slug": "nri-gift-tax-dispute-11-lakh-parents-itat-documentation-20260701",
+      "id": "a7f0b6bc-1eeb-4c29-a39d-31310ebf5e84",
+      "headline": "Delhi Just Banned New Petrol Scooters From 2028. The EV Mandate That Takes Effect Tomorrow Will Reshape India's Biggest Auto Market.",
+      "slug": "delhi-ev-policy-2-bans-petrol-two-wheelers-2028-electric-mandate-nri-20260630",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -132,8 +152,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "tax documents and smartphone on desk",
-          "reason": "The photo subject aligns with the story about tax issues and NRIs."
+          "what_photo_shows": "electric vehicle charging station in India",
+          "reason": "The photo shows an EV charging station, relevant to the EV mandate story."
         },
         "inline_image_mismatches": []
       },
@@ -141,19 +161,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the article's topic of tax and remittances."
+          "score": 9,
+          "issue": "The image of an electric car charging station is relevant to the topic of electric vehicles, but it could be more directly related to scooters."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively addresses the concerns of NRIs regarding remittances and tax implications."
+          "quality": 7,
+          "note": "The article connects the policy changes to potential impacts on diaspora readers, particularly those with family in Delhi or interests in Indian auto stocks."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that visually represents the theme of remittances or financial transactions.",
-          "Add a brief conclusion summarizing the key takeaways for NRIs to reinforce the article's message."
+          "Consider including more specific examples of how the policy might affect NRIs directly, such as potential investment opportunities or changes in travel plans.",
+          "Add a brief section on how similar policies in other countries have impacted their automotive markets for comparative context."
         ],
         "verdict": "pass"
       },
@@ -165,9 +185,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "809d87dd-6eed-4722-92fa-80af75d9cca2",
-      "headline": "The Diaspora's Highest-Ranking AI Voice in Washington Just Walked Out of the White House",
-      "slug": "sriram-krishnan-white-house-ai-adviser-departure-diaspora-20260701",
+      "id": "96d22f63-6518-4490-95b4-0bb6a2d5cb43",
+      "headline": "India Just Doubled Its Sovereign Infrastructure Bet to \u20b960,000 Crore. Here's Where the Money Is Going.",
+      "slug": "india-doubles-niif-sovereign-infra-fund-60000-crore-infrastructure-20260630",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -175,8 +195,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Man in suit speaking at event",
-          "reason": "The photo plausibly shows Sriram Krishnan, relevant to the story."
+          "what_photo_shows": "Bandra-Worli Sea Link in Mumbai",
+          "reason": "The photo shows a landmark infrastructure project relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -184,161 +204,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to Sriram Krishnan or AI, but is a general image of Washington."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects Krishnan's story to the broader Indian-American diaspora narrative, highlighting their influence in both corporate and governmental spheres."
+          "note": "The article effectively connects the NIIF expansion to potential benefits for NRIs investing in Indian markets."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider including a more relevant image that directly relates to Sriram Krishnan or AI.",
-          "Add quotes or insights from other diaspora figures to enrich the narrative."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "0dbf294d-e746-4ada-aa25-a66af888b8c9",
-      "headline": "FactSet's Indian-Origin CEO Just Plugged Google's AI Directly Into Wall Street's Terminal.",
-      "slug": "factset-viswanathan-google-agentic-ai-wall-street-20260701",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "financial market data on screen",
-          "reason": "The photo's subject is relevant to the financial technology story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the article's focus on AI and finance."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively highlights the achievements of an Indian-origin CEO and connects it to the broader diaspora narrative in the financial sector."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that visually represents AI or finance to better match the article's content.",
-          "Add more specific examples of how the partnership will impact Indian-origin professionals in finance."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "9a38bdd6-d225-49fb-9c15-bf0a3b704551",
-      "headline": "Google Just Opened a Factory That Makes Data for Humanoid Robots. Production Workers Should Pay Attention.",
-      "slug": "apptronik-robot-park-google-deepmind-apollo-humanoid-20260701",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "humanoid robot in digital network",
-          "reason": "The photo aligns with the story about AI-powered humanoid robots."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image depicts a robotic environment, which is relevant to the article's topic about humanoid robots and their training facility."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses the implications for Indian workers in the US logistics and warehousing sectors, making a strong connection to the Indian diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more specific examples of how Indian talent is contributing to robotics development.",
-          "Include quotes or insights from Indian engineers or experts in the field to enhance the diaspora connection."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "4199782a-6579-475a-9f68-876561ffeb5f",
-      "headline": "Pichai's Google Ran Out of GPUs. So It's Paying a Rocket Company $920 Million a Month.",
-      "slug": "pichai-google-gpu-shortage-spacex-meta-gemini-compute-20260701",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "376d36ae-f9ea-49fd-acb5-0b805245f1b0",
-            "headline": "Google Launched Its Best AI Model the Same Week It Lost Two "
-          },
-          {
-            "article_id": "6120b9d9-359f-4a0f-b172-2641c3337f3f",
-            "headline": "Pichai's Google Just Told Meta to Get in Line. The AI Comput"
-          },
-          {
-            "article_id": "ab161d96-ec6e-4375-b721-3cf85ad87b26",
-            "headline": "Pichai's Worst Week: Google Lost a Nobel Laureate, a Transfo"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Sundar Pichai at an event",
-          "reason": "The photo shows Sundar Pichai, relevant to the story about Google."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image of Sundar Pichai is relevant as it relates to Google, but it does not directly illustrate the GPU shortage or the SpaceX deal."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the GPU shortage to Indian tech workers and NRI investors, making it relevant to the diaspora audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider including a relevant image that visually represents the GPU shortage or the partnership with SpaceX.",
-          "Add more context on how this situation affects the global tech landscape, particularly for Indian tech companies."
+          "Consider adding more specific examples of how NRIs can directly benefit from the infrastructure investments.",
+          "Include a brief overview of the potential risks associated with investing in these infrastructure projects."
         ],
         "verdict": "pass"
       },
