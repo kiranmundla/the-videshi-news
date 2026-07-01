@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-01T22:45:33.708526+00:00",
+  "timestamp": "2026-07-01T23:15:24.575055+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 4,
-    "flag": 0,
+    "pass": 0,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "88597169-d769-4669-bd4f-3bcc2e6f24f2",
-      "headline": "India Just Shipped Its First Semiconductor Chips Abroad. The Third Factory Starts This Month.",
-      "slug": "india-first-semiconductor-chip-shipment-cg-semi-sanand-third-plant-july-20260701",
+      "id": "4205d30d-ac2c-42aa-8158-927da180d012",
+      "headline": "Sunny Deol Finally Walked Into Streaming \u2014 and He Brought His Oldest Rival",
+      "slug": "ikka-sunny-deol-ott-debut-netflix-akshaye-khanna-courtroom-border-reunion-diaspora-nri-20260701",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,161 +21,45 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "semiconductor clean room with workers",
-          "reason": "The photo shows a semiconductor clean room, relevant to the chip manufacturing story."
+          "what_photo_shows": "Ikka movie poster with actors",
+          "reason": "The photo shows the official poster for Ikka, which matches the story about the film."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image of a clean room is relevant to semiconductor manufacturing but does not directly depict the specific context of India's semiconductor shipment."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article connects well with NRIs in the semiconductor industry, highlighting opportunities and developments in India that may interest them."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider including more specific examples of how NRIs can engage with or benefit from India's semiconductor advancements.",
-          "Add a more detailed conclusion summarizing the implications of these developments for the global semiconductor market."
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/DaHia-kq2GT/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not appear to be directly related to the article's subject about Sunny Deol's new film 'Ikka' and its streaming release."
+          },
+          {
+            "url": "https://youtube.com/watch?v=unf8x_aZg9Y",
+            "problem": "irrelevant",
+            "explanation": "While the YouTube link is to the trailer of 'Ikka', it is not embedded correctly as a video and should be presented in a more relevant context."
+          }
         ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "4b368fb2-3438-45c5-85d2-898c81f67f41",
-      "headline": "Unbeaten and Unbowed. India Women Win the Nations Cup and Earn Their Way Back to the Pro League.",
-      "slug": "india-women-hockey-nations-cup-champions-2026-beat-new-zealand-pro-league-promotion-nri",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "India women in a hockey match",
-          "reason": "The photo shows Indian women playing hockey, matching the story topic."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article connects well with the diaspora by highlighting the pride in the women's hockey team's achievements and their significance in the context of Indian women's sports."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from players or coaches to enhance the narrative.",
-          "Include more context about the significance of the Pro League for the team's future."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "21b63108-7f61-437d-bc4a-1d4d492a6706",
-      "headline": "Kane Scores Twice, Passes Pel\u00e9. England Survive DR Congo and Head to the Azteca.",
-      "slug": "kane-surpasses-pele-13-world-cup-goals-england-beat-dr-congo-mexico-round-of-16-2026-nri",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "footballer in England jersey",
-          "reason": "The photo shows a footballer in an England jersey, matching the story topic."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article connects well with the Indian diaspora by highlighting the excitement of the World Cup and its accessibility in the U.S."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from players or coaches to enhance the narrative.",
-          "Include more context about the significance of the match for both teams."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "75f90b5e-6fc6-4c79-aa32-93359a2af973",
-      "headline": "The Supreme Court Just Ruled 6-3 That Children of H-1B Parents Born in America Are Citizens. No President Can Change That.",
-      "slug": "supreme-court-upholds-birthright-citizenship-6-3-indian-american-families-celebrate-20260701",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "The United States Supreme Court building",
-          "reason": "The photo shows the Supreme Court, relevant to the court ruling story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 5,
+          "issue": "The image is a film poster but does not directly relate to the article's focus on Sunny Deol's streaming debut."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects the ruling to the Indian American community, highlighting its significance for families navigating immigration challenges."
+          "note": "The article effectively connects the film's streaming availability to the diaspora audience, highlighting the significance of accessibility for NRIs."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more quotes from immigration experts or community leaders to enhance the article's depth.",
-          "Include a brief explanation of the 14th Amendment for readers who may not be familiar with it."
+          "Replace the irrelevant Instagram link with a more relevant embed related to the film or its cast.",
+          "Ensure the YouTube trailer is embedded correctly and contextualized within the article."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/DaHia-kq2GT/",
+        "Removed irrelevant embed: https://youtube.com/watch?v=unf8x_aZg9Y",
         "promoted to published"
       ],
       "revised": false,
