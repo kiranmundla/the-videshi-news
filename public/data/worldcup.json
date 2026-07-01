@@ -1,6 +1,6 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-07-01T08:00:07Z",
+  "last_updated": "2026-07-01T09:59:21Z",
   "stage": "Knockout Stage",
   "hosts": "USA, Mexico & Canada",
   "dates": {
@@ -4783,6 +4783,14 @@
       "account": "@fifaworldcup",
       "caption": "🇲🇽 El Tri 🆚 La Tri 🇪🇨 in Mexico City #FIFAWorldCup",
       "date": "2026-06-30",
+      "type": "video"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/reel/DaPpNopRK1Q/",
+      "account": "@fifaworldcup",
+      "caption": "Just Haaland 😏 @budweiser #FIFAWorldCup #CelebrationOfTheMatch",
+      "date": "2026-07-01",
       "type": "video"
     }
   ],
