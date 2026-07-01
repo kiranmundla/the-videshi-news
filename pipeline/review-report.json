@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-01T04:45:38.912651+00:00",
+  "timestamp": "2026-07-01T05:15:17.903127+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
-    "flag": 1,
+    "pass": 1,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "42bbc342-216f-4757-ac59-022cee23804f",
-      "headline": "Uber India Launches In-App Video Recording and Ambulance Assistance in Industry-First Safety Push",
-      "slug": "uber-india-record-my-ride-video-ambulance-dial-4242-safety-20260630",
+      "id": "e800dc59-edc6-4d54-9153-57308b8ffb71",
+      "headline": "Bollywood\u2019s Screenwriters Are Begging for Love Stories \u2014 But Producers Only Want Blood",
+      "slug": "bollywood-screenwriters-romance-horror-creative-crisis-thr-india-2026-diaspora-nri-20260701",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,94 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "hand holding smartphone with Uber app",
-          "reason": "The photo shows the Uber app, relevant to the story about Uber's new features."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 5,
-          "issue": "irrelevant"
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses safety features in Uber India, which may interest NRIs concerned about safety in India."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that reflects the topic of Uber's safety features.",
-          "Include quotes or perspectives from NRI users or experts to strengthen the diaspora connection."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "3f220fc4-f9aa-40e7-98e6-596c7875b68b",
-      "headline": "India Slashes Windfall Tax on Diesel and Jet Fuel Exports, Raises Petrol Levy From July 1",
-      "slug": "india-windfall-tax-diesel-atf-cut-petrol-hike-july-2026",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Jamnagar Refinery complex at night",
-          "reason": "The photo shows a refinery, relevant to the fuel export tax story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses India's fuel export policies which may interest NRIs involved in trade or investment."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include a brief explanation of how these changes might affect NRI investors or businesses in the fuel sector.",
-          "Add a quote from an economist or industry expert to provide more depth to the analysis."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "89bfaf95-4874-4430-ba52-df563dfb7602",
-      "headline": "'PoK Is Not Part of Pakistan': Thousands Protest in Rawalakot as Azad Kashmir Unrest Enters Fourth Week",
-      "slug": "pok-protests-azad-kashmir-rawalakot-fourth-week-jaac-20260630",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "view of Muzaffarabad cityscape",
-          "reason": "The photo shows Muzaffarabad, relevant to the story about Azad Kashmir unrest."
+          "what_photo_shows": "woman speaking at an event",
+          "reason": "The photo shows a screenwriter relevant to the Bollywood story."
         },
         "inline_image_mismatches": []
       },
@@ -117,61 +31,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image depicts a scenic view of Muzaffarabad, which is relevant to the article's topic but does not directly illustrate the protests or unrest described."
+          "issue": "The image features Alankrita Shrivastava, a prominent screenwriter mentioned in the article, which is relevant to the topic."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article discusses significant political unrest in a region of interest to the Indian diaspora, particularly those with ties to Kashmir. However, it could further emphasize the implications for the diaspora community."
+          "quality": 8,
+          "note": "The article discusses the impact of Bollywood's creative direction on NRIs, connecting diaspora audiences to their cultural roots."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes or perspectives from diaspora members regarding the situation in Kashmir to enhance the connection.",
-          "Consider using an image that directly relates to the protests or unrest to better match the article's content."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "091647e3-a304-46b8-8de7-8c8d1bd6ed4c",
-      "headline": "Iyer Says His 'Hands Are Tied.' India's Biggest Selection Dilemma Heads Into the England Series Unresolved.",
-      "slug": "shreyas-iyer-hands-tied-sooryavanshi-debut-india-england-t20i-backs-world-cup-winners-2026-diaspora-nri",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Shreyas Iyer at an airport",
-          "reason": "The photo shows Shreyas Iyer, relevant to the cricket story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 8,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses a young Indian cricketer, which may resonate with the Indian diaspora interested in cricket and the development of young talent."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more direct quotes from Iyer or other players to enhance engagement.",
-          "Add a brief section on the significance of the England series for the Indian team to provide more context."
+          "Consider adding more direct quotes from the screenwriters to enhance the article's depth.",
+          "Include specific examples of recent romantic films that failed to perform to provide context."
         ],
         "verdict": "pass"
       },
