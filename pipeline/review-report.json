@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-01T16:45:39.099444+00:00",
+  "timestamp": "2026-07-01T17:15:29.642411+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 4,
-    "flag": 0,
+    "pass": 1,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "073a39df-c250-478d-86d0-3e03a1105fb5",
-      "headline": "The IPL's Biggest Boardroom Battle Is Here. Franchise Owners Are Split on How Many Players to Keep.",
-      "slug": "ipl-2027-mega-auction-retention-rules-bcci-owners-split-salary-cap-rtm-impact-player-diaspora-nri",
+      "id": "61574f04-0fee-471c-9025-316863a8b6de",
+      "headline": "Messi Just Went Web-Swinging Through Manhattan \u2014 and the World Cup's Wildest Crossover Wasn't on the Pitch",
+      "slug": "messi-spider-man-brand-new-day-world-cup-promo-tom-holland-india-july-30-diaspora-nri-20260701",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Wankhede Stadium in Mumbai",
-          "reason": "The photo shows Wankhede Stadium, relevant to the IPL boardroom meeting story."
+          "what_photo_shows": "Spider-Man promotional poster",
+          "reason": "The photo is related to Spider-Man, matching the story's Marvel theme."
         },
         "inline_image_mismatches": []
       },
@@ -30,19 +30,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 5,
+          "issue": "The image is related to Spider-Man but does not directly connect to Messi or the World Cup theme."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article connects well with NRI readers by discussing the implications of retention rules on popular players like Kohli and Sharma, which is relevant to their interests."
+          "note": "The article effectively connects the cultural significance of Spider-Man and the World Cup to Indian audiences, highlighting the film's release in multiple languages."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes or perspectives from more franchise owners to provide a broader view of the debate.",
-          "Include a brief explanation of the Impact Player rule for readers who may not be familiar with it."
+          "Consider using an image that features both Messi and Spider-Man to better match the article's content.",
+          "Add more context on how the Indian diaspora is engaging with the World Cup and Spider-Man to strengthen the diaspora angle."
         ],
         "verdict": "pass"
       },
@@ -54,9 +54,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "d1000832-bd10-440f-b5ec-5fd14b8c3a31",
-      "headline": "Quad Foreign Ministers Will Meet in the Philippines This Month. A Trump Visit to India May Follow.",
-      "slug": "quad-foreign-ministers-philippines-asean-trump-india-visit-leaders-summit-20260701",
+      "id": "0e495213-9263-4951-9604-2be1ad062251",
+      "headline": "They Said Romance Was Dead. Cocktail 2 Just Poured Itself \u20b9130 Crore.",
+      "slug": "cocktail-2-100-crore-shahid-kapoor-romcom-vindication-bollywood-box-office-diaspora-nri-20260701",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,118 +64,45 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Quad leaders including Prime Minister Modi",
-          "reason": "The photo shows Quad leaders, relevant to the Quad meeting story."
+          "what_photo_shows": "Shahid Kapoor at an event",
+          "reason": "The photo shows Shahid Kapoor, who is relevant to the story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DZrnDU8ti80/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel does not appear to be directly related to the film 'Cocktail 2' or its themes."
+          },
+          {
+            "url": "https://www.instagram.com/p/DZxKj9gAJDF/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not seem to connect with the article's focus on 'Cocktail 2' or its box office performance."
+          }
+        ],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 5,
+          "issue": "The image does not relate to the film 'Cocktail 2' or its cast, which may confuse readers."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article connects the Quad's developments to the security and economic environment impacting the diaspora, though it could elaborate further on specific implications for NRIs."
+          "quality": 9,
+          "note": "The article effectively connects the film's appeal to diaspora audiences, emphasizing its entertainment value and relevance for date nights."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Expand on how the Quad's initiatives specifically impact the Indian diaspora, perhaps with examples or quotes from diaspora members.",
-          "Include more context on the significance of Trump's potential visit to India for NRIs, such as economic or cultural implications."
+          "Replace the irrelevant Instagram embeds with content that directly relates to 'Cocktail 2'.",
+          "Use a more relevant hero image that features the cast of 'Cocktail 2' or a scene from the film."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "e418d5ff-5e4f-4cf0-a5ac-73a9eeff7c31",
-      "headline": "India Just Opened the World's First Nuclear-Powered Hydrogen Plant. No Other Country Has Done This.",
-      "slug": "india-worlds-first-nuclear-hydrogen-facility-kalpakkam-barc-dae-20260701",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "scientists at a nuclear facility",
-          "reason": "The photo shows a nuclear facility, relevant to the story about a nuclear hydrogen plant."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article connects well with NRIs in clean energy and nuclear engineering, highlighting India's advancements in hydrogen technology."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from diaspora experts in clean energy to enhance the connection.",
-          "Include more details on how this technology could impact global hydrogen markets."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "9d99ecc3-8ce2-4412-b09d-610df0e03448",
-      "headline": "The US-India Trade Deal Is '99% Done.' Here's What's Left \u2014 and What's at Stake.",
-      "slug": "us-india-trade-deal-final-steps-sergio-gor-99-percent-done-20260701",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "US Ambassador to India",
-          "reason": "The photo shows the correct named person relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the trade deal to the interests of the Indian diaspora, highlighting implications for tech professionals and entrepreneurs."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more specific examples of how the trade deal could impact NRI entrepreneurs.",
-          "Include quotes or perspectives from NRI community leaders to enhance the diaspora angle."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DZrnDU8ti80/",
+        "Removed irrelevant embed: https://www.instagram.com/p/DZxKj9gAJDF/",
         "promoted to published"
       ],
       "revised": false,
