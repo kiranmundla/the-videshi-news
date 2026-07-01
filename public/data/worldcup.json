@@ -1,6 +1,6 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-07-01T09:59:21Z",
+  "last_updated": "2026-07-01T12:00:46Z",
   "stage": "Knockout Stage",
   "hosts": "USA, Mexico & Canada",
   "dates": {
@@ -4792,6 +4792,57 @@
       "caption": "Just Haaland 😏 @budweiser #FIFAWorldCup #CelebrationOfTheMatch",
       "date": "2026-07-01",
       "type": "video"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DaMhrj6HzKY/",
+      "account": "@fifaworldcup",
+      "caption": "🇨🇦🇧🇷🇵🇾🇲🇦 #FIFAWorldCup #Qualified",
+      "date": "2026-06-29"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DaMRY2BD_nK/",
+      "account": "@fifaworldcup",
+      "caption": "Unforgettable 🇵🇾 #FIFAWorldCup",
+      "date": "2026-06-29",
+      "type": "carousel"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DaMkVEdn1iA/",
+      "account": "@fifaworldcup",
+      "caption": "Issa Diop takes the honours as your Superior Player of the Match ✨ #FIFAWorldCup #SuperiorPOTM",
+      "date": "2026-06-29"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DaNEhiBkgst/",
+      "account": "@fifaworldcup",
+      "caption": "These two ✨ #FIFAWorldCup",
+      "date": "2026-06-30",
+      "type": "carousel"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DaPKgBtDQ57/",
+      "account": "@fifaworldcup",
+      "caption": "The fans have spoken – Julián Quiñones is your Superior Player of the Match! ⚽ #FIFAWorldCup #SuperiorPOTM",
+      "date": "2026-06-30"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DaPYBiFx0Zc/",
+      "account": "@fifaworldcup",
+      "caption": "Didier Deschamps records the most wins of any Head Coach in #FIFAWorldCup history 🇫🇷",
+      "date": "2026-07-01"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DaOj4JKDhyD",
+      "account": "@fifaworldcup",
+      "caption": "A strong performance sees France through 💪",
+      "date": "2026-06-30"
     }
   ],
   "tv": {
