@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-01T00:45:52.493002+00:00",
+  "timestamp": "2026-07-01T01:15:14.564458+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 5,
-    "flag": 0,
+    "pass": 0,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,67 +11,35 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "e1280794-6176-4a54-8274-bf99c6020184",
-      "headline": "The Air Fryer Rewrote the Samosa: How NRI Kitchens Became 2026's Viral Recipe Labs",
-      "slug": "the-air-fryer-rewrote-the-samosa-how-nri-kitchens-became-2026-viral-recipe-labs",
+      "id": "d42a9e25-bea8-4f49-887b-31dfc71e3036",
+      "headline": "Priyanka Chopra Told Cannes She Hasn't Even Started in Hollywood \u2014 and She Meant Every Word",
+      "slug": "priyanka-chopra-cannes-lions-next-reinvention-hollywood-zac-efron-varanasi-rajamouli-diaspora-nri-20260630",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Golden, crispy samosas on a plate",
-          "reason": "The photo shows samosas, which are relevant to the story about viral Indian recipes."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": "The image of a samosa matches the article's topic well."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the recipes to NRI kitchens and their adaptations."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more statistics or quotes from NRI chefs or influencers to enhance credibility.",
-          "Include a section on how these recipes are being received in India versus abroad for a broader perspective."
+        "duplicate_images": [
+          {
+            "article_id": "c85c4563-7e92-4f68-a5a4-511c1ef52e50",
+            "headline": "\u20b92,507 Crore and Not a Single Hindi Release Since 2019: The "
+          }
         ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "d703fa7e-a110-4ca4-b79c-3889d6452e50",
-      "headline": "Tikka Masala Naan, Bombay Spice Chips, and Beet Tikka Patties: Indian Food Just Swept America's Top Grocery Awards",
-      "slug": "tikka-masala-naan-bombay-spice-chips-beet-tikka-patties-indian-food-nexty-awards",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Indian curries with naan",
-          "reason": "The photo shows Indian food, which aligns with the story about Indian cuisine."
+          "what_photo_shows": "Priyanka Chopra Jonas at event",
+          "reason": "The photo shows Priyanka Chopra Jonas, matching the story subject."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/DaBTDR8k3Lk/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not appear to be directly related to Priyanka Chopra's comments at Cannes or her Hollywood career."
+          }
+        ],
         "image_match": {
           "score": 9,
           "issue": null
@@ -79,148 +47,18 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively highlights Indian brands and their founders, connecting to the Indian diaspora's interest in cultural representation and innovation in the food industry."
+          "note": "The article effectively connects Priyanka Chopra's career to the experiences of the Indian diaspora, particularly in relation to the globalization of entertainment."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes or testimonials from consumers or industry experts to enhance credibility.",
-          "Add a section discussing the impact of Indian cuisine on American food culture to deepen the diaspora connection."
+          "Replace the irrelevant Instagram embed with a more relevant source or quote that directly relates to the Cannes event.",
+          "Consider adding more context about the impact of Priyanka Chopra's work on the Indian diaspora's representation in Hollywood."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "24e17b9e-e6c3-49e3-8723-bb49bd5c70d8",
-      "headline": "The Quiet Grocery Conquest: Inside Patel Brothers' Push Into America's Fastest-Growing Suburbs",
-      "slug": "the-quiet-grocery-conquest-inside-patel-brothers-push-into-americas-fastest-grow",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MISMATCH",
-          "what_photo_shows": "Indian market with spices",
-          "reason": "The photo shows an Indian market, not a South Asian grocery store in the U.S."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image description is missing, making it difficult to assess its relevance."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the expansion of Patel Brothers to the growing Indian-American community, highlighting its significance for NRIs."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include a relevant image description to enhance the image match score.",
-          "Add quotes or testimonials from local NRI customers to strengthen the diaspora connection."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "Cleared mismatched image (Indian market with spices)",
-        "held: image mismatch"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "image_mismatch": true,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "a7f0b6bc-1eeb-4c29-a39d-31310ebf5e84",
-      "headline": "Delhi Just Banned New Petrol Scooters From 2028. The EV Mandate That Takes Effect Tomorrow Will Reshape India's Biggest Auto Market.",
-      "slug": "delhi-ev-policy-2-bans-petrol-two-wheelers-2028-electric-mandate-nri-20260630",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "electric vehicle charging station in India",
-          "reason": "The photo shows an EV charging station, relevant to the EV mandate story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": "The image of an electric car charging station is relevant to the topic of electric vehicles, but it could be more directly related to scooters."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article connects the policy changes to potential impacts on diaspora readers, particularly those with family in Delhi or interests in Indian auto stocks."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider including more specific examples of how the policy might affect NRIs directly, such as potential investment opportunities or changes in travel plans.",
-          "Add a brief section on how similar policies in other countries have impacted their automotive markets for comparative context."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "96d22f63-6518-4490-95b4-0bb6a2d5cb43",
-      "headline": "India Just Doubled Its Sovereign Infrastructure Bet to \u20b960,000 Crore. Here's Where the Money Is Going.",
-      "slug": "india-doubles-niif-sovereign-infra-fund-60000-crore-infrastructure-20260630",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Bandra-Worli Sea Link in Mumbai",
-          "reason": "The photo shows a landmark infrastructure project relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the NIIF expansion to potential benefits for NRIs investing in Indian markets."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more specific examples of how NRIs can directly benefit from the infrastructure investments.",
-          "Include a brief overview of the potential risks associated with investing in these infrastructure projects."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/DaBTDR8k3Lk/",
         "promoted to published"
       ],
       "revised": false,
