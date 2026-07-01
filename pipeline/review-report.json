@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-01T12:46:28.033836+00:00",
+  "timestamp": "2026-07-01T13:15:27.873238+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 4,
-    "flag": 1,
+    "pass": 2,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "89b19915-e40d-453c-98b0-f97c1da11808",
-      "headline": "Vacuum-Sealed Nostalgia: The Gujarati Home Kitchens Feeding America's NRIs",
-      "slug": "gujarati-home-kitchen-snack-economy-nri-diaspora",
+      "id": "df5766e4-04e7-4b4a-aa85-002def07e53c",
+      "headline": "She's Deaf, She's Mute, and She's Bollywood's First Desi Hitwoman",
+      "slug": "baby-do-die-do-huma-qureshi-hitwoman-deaf-mute-ishq-kameena-july-3-alpha-diaspora-nri-20260701",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,51 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Gujarati snacks on a plate",
-          "reason": "The photo shows traditional Gujarati snacks relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the emotional significance of Gujarati snacks to the NRI experience, highlighting the cultural ties and nostalgia associated with food."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes or anecdotes from more NRI customers to enhance the personal connection.",
-          "Include statistics or data on the growth of this cottage industry to provide a clearer picture of its impact."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "922b27ba-b61d-4796-a133-7f46c57336ef",
-      "headline": "The Beard's New Palate: Indian Cuisine's Record Run at America's Most Prestigious Food Awards",
-      "slug": "james-beard-awards-2026-indian-cuisine-historic-year",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "James Beard Foundation Award medallion",
-          "reason": "The medallion is relevant to the James Beard Awards story."
+          "what_photo_shows": "Huma Qureshi at an event",
+          "reason": "The photo shows Huma Qureshi, matching the story subject."
         },
         "inline_image_mismatches": []
       },
@@ -79,13 +36,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the achievements of Indian cuisine to the Indian American community and their growing influence in the culinary landscape."
+          "note": "The article connects well with NRI audiences by discussing the film's appeal and cultural references."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from chefs or industry experts to enhance the narrative.",
-          "Include more statistics or data on the growth of Indian cuisine in America to strengthen the argument."
+          "Consider adding more context about the film's reception or critical reviews to enhance depth.",
+          "Include quotes or insights from Huma Qureshi or the director to provide a personal touch."
         ],
         "verdict": "pass"
       },
@@ -97,135 +54,47 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "da03f2cc-0c04-4fc5-b518-bcaddd3ecfde",
-      "headline": "Tandoori on the Grill: How the Desi Fourth of July Became a Diaspora Tradition",
-      "slug": "desi-fourth-of-july-indian-fusion-bbq-tradition",
+      "id": "dbd9bc40-e6cf-437c-a44b-bb7c9e49a582",
+      "headline": "Vicky Kaushal Has Disappeared \u2014 to Become a God",
+      "slug": "vicky-kaushal-mahavatar-parashurama-18-months-transformation-ranveer-pralay-diaspora-nri-20260701",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Tandoori chicken grilling on skewers",
-          "reason": "The photo shows tandoori chicken on a grill, which aligns with the story about Indian American BBQ traditions."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the Fourth of July celebration to the Indian diaspora experience, highlighting cultural integration and adaptation."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include quotes or anecdotes from Indian American families to add a personal touch.",
-          "Consider adding a section on how these traditions are evolving with younger generations."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "f76c212b-028a-413f-8337-ff70180fab6e",
-      "headline": "India\u2019s Carmakers Just Posted Their Best June Ever. Maruti Crossed 200,000 in a Single Month.",
-      "slug": "india-auto-sales-june-2026-maruti-record-mahindra-hyundai-ev-surge-20260701",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A Maruti Suzuki vehicle on a road",
-          "reason": "The photo shows a Maruti Suzuki vehicle, which is relevant to the story about Maruti's sales."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article connects the performance of Indian car manufacturers to investment opportunities for NRIs, making it relevant for the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more specific examples of how NRIs can invest in the Indian auto sector.",
-          "Include quotes or insights from industry experts to enhance credibility."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "978b67f4-5359-4fda-8797-e1c00046776b",
-      "headline": "Kotak Mahindra Just Bought Deutsche Bank's Entire India Retail Business for $30 Million",
-      "slug": "kotak-mahindra-acquires-deutsche-bank-india-retail-wealth-management-20260701",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Deutsche Bank headquarters in Frankfurt",
-          "reason": "The photo shows Deutsche Bank headquarters, relevant to the story about Deutsche Bank's India retail exit."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [
+        "duplicate_images": [
           {
-            "url": "https://www.instagram.com/p/DaPUfT0CFWt/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post does not relate to the banking sector or the acquisition discussed in the article."
+            "article_id": "d842eef0-5ecc-438e-b144-b32cd9b3a148",
+            "headline": "Vicky Kaushal Has Disappeared \u2014 and He Won't Be Back for 18 "
           }
         ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Vicky Kaushal at a film event",
+          "reason": "The photo shows Vicky Kaushal, who is the subject of the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
         "image_match": {
-          "score": 5,
-          "issue": "The image of Deutsche Bank's headquarters does not directly relate to the retail banking business or the specific acquisition discussed."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the acquisition to NRIs, explaining the implications for their banking relationships."
+          "note": "The article connects well with NRI audiences by referencing their interest in Kaushal's previous works and the potential international appeal of the upcoming films."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant Instagram embed with a relevant article or news post about the acquisition.",
-          "Consider using an image that directly relates to the retail banking aspect or the Kotak Mahindra brand."
+          "Consider adding more direct quotes from Vicky Kaushal or the director to enhance the article's depth.",
+          "Include more context about the significance of the character Parashurama for readers unfamiliar with Hindu mythology."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DaPUfT0CFWt/",
         "promoted to published"
       ],
       "revised": false,
