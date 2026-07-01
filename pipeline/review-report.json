@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-01T12:16:07.851733+00:00",
+  "timestamp": "2026-07-01T12:46:28.033836+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 6,
+    "pass": 4,
     "flag": 1,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "ab13e391-8b1f-48af-a5c8-037bc5989093",
-      "headline": "India and America Are Quietly Building an AI Pact. The Diaspora Is the Bridge.",
-      "slug": "india-us-ai-alliance-diaspora-kwatra-modi-20260701",
+      "id": "89b19915-e40d-453c-98b0-f97c1da11808",
+      "headline": "Vacuum-Sealed Nostalgia: The Gujarati Home Kitchens Feeding America's NRIs",
+      "slug": "gujarati-home-kitchen-snack-economy-nri-diaspora",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Prime Minister Modi with world leaders",
-          "reason": "The photo shows Modi with leaders at an AI summit, relevant to the AI pact story."
+          "what_photo_shows": "Gujarati snacks on a plate",
+          "reason": "The photo shows traditional Gujarati snacks relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -30,19 +30,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 6,
-          "issue": "The image features Prime Minister Modi at an AI Action Summit, which is relevant but does not directly illustrate the specific AI pact discussed in the article."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively highlights the role of the Indian diaspora in bridging AI collaboration between India and the US, making it highly relevant to NRI readers."
+          "note": "The article effectively connects the emotional significance of Gujarati snacks to the NRI experience, highlighting the cultural ties and nostalgia associated with food."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider including more specific examples of how the diaspora is influencing AI developments in both countries.",
-          "Add a concluding section summarizing the potential impacts of the AI pact on the Indian diaspora."
+          "Consider adding quotes or anecdotes from more NRI customers to enhance the personal connection.",
+          "Include statistics or data on the growth of this cottage industry to provide a clearer picture of its impact."
         ],
         "verdict": "pass"
       },
@@ -54,9 +54,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "bb217093-a45e-473f-9589-89730cee86bd",
-      "headline": "SpaceX Joins the Nasdaq-100 on July 7. Your 401(k) Is About to Own a Rocket Company.",
-      "slug": "spacex-nasdaq-100-july-7-nri-401k-index-20260701",
+      "id": "922b27ba-b61d-4796-a133-7f46c57336ef",
+      "headline": "The Beard's New Palate: Indian Cuisine's Record Run at America's Most Prestigious Food Awards",
+      "slug": "james-beard-awards-2026-indian-cuisine-historic-year",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,8 +64,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "SpaceX Falcon 9 rocket launch",
-          "reason": "The photo shows a SpaceX rocket, relevant to the SpaceX story."
+          "what_photo_shows": "James Beard Foundation Award medallion",
+          "reason": "The medallion is relevant to the James Beard Awards story."
         },
         "inline_image_mismatches": []
       },
@@ -79,13 +79,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the topic of SpaceX's Nasdaq inclusion to the interests of NRI investors, particularly regarding their retirement savings."
+          "note": "The article effectively connects the achievements of Indian cuisine to the Indian American community and their growing influence in the culinary landscape."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more specific examples of how SpaceX's operations could impact Indian markets or technology sectors.",
-          "Include a brief overview of how SpaceX's performance might influence the broader tech market, especially for NRI investors."
+          "Consider adding quotes from chefs or industry experts to enhance the narrative.",
+          "Include more statistics or data on the growth of Indian cuisine in America to strengthen the argument."
         ],
         "verdict": "pass"
       },
@@ -97,9 +97,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "0a9918d9-b310-4c53-8743-7459743de2e7",
-      "headline": "Oracle's AI Purge Hit India Hardest. 12,000 Workers Got an Email at 6 AM.",
-      "slug": "oracle-ai-purge-21000-layoffs-india-hub-20260701",
+      "id": "da03f2cc-0c04-4fc5-b518-bcaddd3ecfde",
+      "headline": "Tandoori on the Grill: How the Desi Fourth of July Became a Diaspora Tradition",
+      "slug": "desi-fourth-of-july-indian-fusion-bbq-tradition",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -107,8 +107,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Oracle headquarters in California",
-          "reason": "The photo shows Oracle headquarters, relevant to the story about Oracle job cuts."
+          "what_photo_shows": "Tandoori chicken grilling on skewers",
+          "reason": "The photo shows tandoori chicken on a grill, which aligns with the story about Indian American BBQ traditions."
         },
         "inline_image_mismatches": []
       },
@@ -116,19 +116,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image of Oracle's headquarters is relevant but does not directly illustrate the impact of layoffs on Indian workers."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses the implications of layoffs for H-1B visa holders, which is relevant to the Indian diaspora in the tech industry."
+          "note": "The article effectively connects the Fourth of July celebration to the Indian diaspora experience, highlighting cultural integration and adaptation."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes or reactions from affected employees to add a personal touch.",
-          "Consider adding statistics or insights on the broader impact of these layoffs on the Indian tech job market."
+          "Include quotes or anecdotes from Indian American families to add a personal touch.",
+          "Consider adding a section on how these traditions are evolving with younger generations."
         ],
         "verdict": "pass"
       },
@@ -140,9 +140,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "013e2163-a3e8-4331-b7cf-1d6b1cb9f858",
-      "headline": "GOPIO Tells Trump the $100,000 H-1B Fee Will Hurt America More Than It Hurts India",
-      "slug": "gopio-letter-trump-100k-h1b-fee-american-competitiveness-20260701",
+      "id": "f76c212b-028a-413f-8337-ff70180fab6e",
+      "headline": "India\u2019s Carmakers Just Posted Their Best June Ever. Maruti Crossed 200,000 in a Single Month.",
+      "slug": "india-auto-sales-june-2026-maruti-record-mahindra-hyundai-ev-surge-20260701",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -150,8 +150,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "The White House in Washington, D.C.",
-          "reason": "The White House is relevant to a story about a letter to the White House."
+          "what_photo_shows": "A Maruti Suzuki vehicle on a road",
+          "reason": "The photo shows a Maruti Suzuki vehicle, which is relevant to the story about Maruti's sales."
         },
         "inline_image_mismatches": []
       },
@@ -159,19 +159,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image of the White House is relevant but does not directly connect to the specific topic of H-1B visas."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively highlights the role of the Indian diaspora in the U.S. economy and their advocacy efforts."
+          "quality": 8,
+          "note": "The article connects the performance of Indian car manufacturers to investment opportunities for NRIs, making it relevant for the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that directly relates to the H-1B visa topic or the Indian diaspora.",
-          "Add a quote or perspective from an NRI or Indian-American individual to further enhance the diaspora connection."
+          "Consider adding more specific examples of how NRIs can invest in the Indian auto sector.",
+          "Include quotes or insights from industry experts to enhance credibility."
         ],
         "verdict": "pass"
       },
@@ -183,9 +183,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "84f5afb2-4c8f-42e1-8e15-c726395308a2",
-      "headline": "F-1 Visa Grants to Indian Students Fell 69 Per Cent. The H-1B Pipeline Will Feel It Next",
-      "slug": "f1-visa-indian-students-69-percent-decline-h1b-pipeline-20260701",
+      "id": "978b67f4-5359-4fda-8797-e1c00046776b",
+      "headline": "Kotak Mahindra Just Bought Deutsche Bank's Entire India Retail Business for $30 Million",
+      "slug": "kotak-mahindra-acquires-deutsche-bank-india-retail-wealth-management-20260701",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -193,118 +193,39 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "College students outside university building",
-          "reason": "The photo shows college students, relevant to the student visa topic."
+          "what_photo_shows": "Deutsche Bank headquarters in Frankfurt",
+          "reason": "The photo shows Deutsche Bank headquarters, relevant to the story about Deutsche Bank's India retail exit."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
+        "overall_score": 8,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/DaPUfT0CFWt/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not relate to the banking sector or the acquisition discussed in the article."
+          }
+        ],
         "image_match": {
-          "score": 6,
-          "issue": "The image does not directly relate to the topic of F-1 visas or immigration."
+          "score": 5,
+          "issue": "The image of Deutsche Bank's headquarters does not directly relate to the retail banking business or the specific acquisition discussed."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses the impact of visa changes on Indian students, which is highly relevant to the Indian diaspora."
+          "note": "The article effectively connects the acquisition to NRIs, explaining the implications for their banking relationships."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include a more relevant image that reflects the theme of immigration or Indian students in the US.",
-          "Add quotes or testimonials from affected students to enhance the personal connection to the diaspora."
+          "Replace the irrelevant Instagram embed with a relevant article or news post about the acquisition.",
+          "Consider using an image that directly relates to the retail banking aspect or the Kotak Mahindra brand."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "ecb1966d-826c-47e6-9ce9-4639edfe65aa",
-      "headline": "Three Bay Area Temples Hit in Three Weeks. The Diaspora Is Running Out of Cheeks to Turn.",
-      "slug": "bay-area-hindu-temples-attacked-khalistan-graffiti-diaspora-safety-20260701",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "BAPS Swaminarayan Mandir in California",
-          "reason": "The photo shows a temple similar to those mentioned in the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image of the BAPS Mandir does not directly match the specific temples mentioned in the article."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the incidents to the broader experience and concerns of the Indian diaspora in the U.S."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider including images of the specific temples mentioned for better relevance.",
-          "Add quotes or reactions from local community members to enhance the emotional impact."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "d5eca1d1-be43-42a5-9b6a-6300bcd52774",
-      "headline": "America Turns 250. The Indian Diaspora Is Celebrating with Both Flags.",
-      "slug": "america-250th-indian-diaspora-both-flags-celebrations-20260701",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Indian-American parade with flags",
-          "reason": "The photo shows a parade with Indian flags, matching the celebration theme."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively highlights the Indian diaspora's celebrations and contributions in the context of America's 250th anniversary."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more direct quotes from diaspora members to enhance personal connection.",
-          "Add a section on how the celebrations differ across various regions in the US."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/DaPUfT0CFWt/",
         "promoted to published"
       ],
       "revised": false,
