@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-01T01:15:14.564458+00:00",
+  "timestamp": "2026-07-01T01:45:20.879847+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 0,
-    "flag": 1,
+    "pass": 2,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,35 +11,67 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "d42a9e25-bea8-4f49-887b-31dfc71e3036",
-      "headline": "Priyanka Chopra Told Cannes She Hasn't Even Started in Hollywood \u2014 and She Meant Every Word",
-      "slug": "priyanka-chopra-cannes-lions-next-reinvention-hollywood-zac-efron-varanasi-rajamouli-diaspora-nri-20260630",
+      "id": "fbb2cb00-3c70-4000-a874-9ae0b80d1261",
+      "headline": "She Came Back. She Lost. But Serena Williams at 44 on Centre Court Was the Moment Wimbledon Needed.",
+      "slug": "serena-williams-comeback-wimbledon-2026-centre-court-maya-joint-loss-venus-doubles-farewell-diaspora-nri",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "c85c4563-7e92-4f68-a5a4-511c1ef52e50",
-            "headline": "\u20b92,507 Crore and Not a Single Hindi Release Since 2019: The "
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Priyanka Chopra Jonas at event",
-          "reason": "The photo shows Priyanka Chopra Jonas, matching the story subject."
+          "what_photo_shows": "Serena Williams at Wimbledon",
+          "reason": "The photo shows Serena Williams at Wimbledon, matching the story topic."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/p/DaBTDR8k3Lk/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post does not appear to be directly related to Priyanka Chopra's comments at Cannes or her Hollywood career."
-          }
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article connects to Indian tennis fans by mentioning the significance of tennis in India, but could elaborate more on the diaspora's connection to the Williams sisters."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Expand on the significance of Serena Williams and Venus Williams to Indian tennis fans to strengthen the diaspora angle.",
+          "Include quotes or reactions from Indian tennis players or fans to enhance the local connection."
         ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "79956f5a-8f65-4f94-9494-6d8e82f3f9f8",
+      "headline": "Mbapp\u00e9 Scores Twice. France Demolish Sweden 3-0 and He's Now One Goal From Messi's All-Time Record.",
+      "slug": "mbappe-double-france-sweep-sweden-3-0-world-cup-round-32-messi-record-chase-metlife-nj-2026-diaspora-nri",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Kylian Mbapp\u00e9 in France jersey",
+          "reason": "The photo shows Kylian Mbapp\u00e9, relevant to the story about his World Cup performance."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
         "image_match": {
           "score": 9,
           "issue": null
@@ -47,18 +79,17 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects Priyanka Chopra's career to the experiences of the Indian diaspora, particularly in relation to the globalization of entertainment."
+          "note": "The article effectively connects the World Cup event to Indian-American fans, highlighting the significance of the tournament in their local context."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant Instagram embed with a more relevant source or quote that directly relates to the Cannes event.",
-          "Consider adding more context about the impact of Priyanka Chopra's work on the Indian diaspora's representation in Hollywood."
+          "Consider adding more quotes or reactions from Indian fans to enhance the diaspora connection.",
+          "Include a brief historical context of Indian involvement or interest in football to deepen the narrative."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DaBTDR8k3Lk/",
         "promoted to published"
       ],
       "revised": false,
