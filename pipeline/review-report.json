@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-01T16:15:25.787888+00:00",
+  "timestamp": "2026-07-01T16:45:39.099444+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 4,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "b226650b-b440-48b3-ab3f-a9d88fb9427d",
-      "headline": "You Waited 20 Years for a Green Card. Now Citizenship Costs 75 Per Cent More",
-      "slug": "naturalization-fee-hike-75-percent-n400-waiver-eliminated-20260701",
+      "id": "073a39df-c250-478d-86d0-3e03a1105fb5",
+      "headline": "The IPL's Biggest Boardroom Battle Is Here. Franchise Owners Are Split on How Many Players to Keep.",
+      "slug": "ipl-2027-mega-auction-retention-rules-bcci-owners-split-salary-cap-rtm-impact-player-diaspora-nri",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "person taking an oath at ceremony",
-          "reason": "The photo shows a person taking an oath, which is relevant to a naturalization ceremony."
+          "what_photo_shows": "Wankhede Stadium in Mumbai",
+          "reason": "The photo shows Wankhede Stadium, relevant to the IPL boardroom meeting story."
         },
         "inline_image_mismatches": []
       },
@@ -30,19 +30,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 10,
+          "score": 9,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively highlights the financial burdens faced by Indian immigrants in the U.S. regarding naturalization, making it highly relevant to the diaspora."
+          "quality": 8,
+          "note": "The article connects well with NRI readers by discussing the implications of retention rules on popular players like Kohli and Sharma, which is relevant to their interests."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes or testimonials from affected individuals to add a personal touch.",
-          "Provide a brief comparison with naturalization costs in other countries to give context."
+          "Consider adding quotes or perspectives from more franchise owners to provide a broader view of the debate.",
+          "Include a brief explanation of the Impact Player rule for readers who may not be familiar with it."
         ],
         "verdict": "pass"
       },
@@ -54,9 +54,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "6980cecb-15a7-412a-996c-51c0dc76e9c3",
-      "headline": "It Costs $975 to Appeal Your Own Deportation. The Old Price Was $110",
-      "slug": "immigration-court-appeal-fee-975-eoir-triple-indian-20260701",
+      "id": "d1000832-bd10-440f-b5ec-5fd14b8c3a31",
+      "headline": "Quad Foreign Ministers Will Meet in the Philippines This Month. A Trump Visit to India May Follow.",
+      "slug": "quad-foreign-ministers-philippines-asean-trump-india-visit-leaders-summit-20260701",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,8 +64,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "gavel on US dollars with flag",
-          "reason": "The image relates to legal and financial aspects of immigration."
+          "what_photo_shows": "Quad leaders including Prime Minister Modi",
+          "reason": "The photo shows Quad leaders, relevant to the Quad meeting story."
         },
         "inline_image_mismatches": []
       },
@@ -73,19 +73,105 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 6,
-          "issue": "The image does not directly relate to the topic of immigration or deportation appeals."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively discusses the implications of the fee increase on Indian immigrants, making it relevant to the diaspora."
+          "quality": 7,
+          "note": "The article connects the Quad's developments to the security and economic environment impacting the diaspora, though it could elaborate further on specific implications for NRIs."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that directly represents immigration or legal proceedings to enhance relevance.",
-          "Include quotes or insights from immigration experts or affected individuals to add depth to the narrative."
+          "Expand on how the Quad's initiatives specifically impact the Indian diaspora, perhaps with examples or quotes from diaspora members.",
+          "Include more context on the significance of Trump's potential visit to India for NRIs, such as economic or cultural implications."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "e418d5ff-5e4f-4cf0-a5ac-73a9eeff7c31",
+      "headline": "India Just Opened the World's First Nuclear-Powered Hydrogen Plant. No Other Country Has Done This.",
+      "slug": "india-worlds-first-nuclear-hydrogen-facility-kalpakkam-barc-dae-20260701",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "scientists at a nuclear facility",
+          "reason": "The photo shows a nuclear facility, relevant to the story about a nuclear hydrogen plant."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article connects well with NRIs in clean energy and nuclear engineering, highlighting India's advancements in hydrogen technology."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from diaspora experts in clean energy to enhance the connection.",
+          "Include more details on how this technology could impact global hydrogen markets."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "9d99ecc3-8ce2-4412-b09d-610df0e03448",
+      "headline": "The US-India Trade Deal Is '99% Done.' Here's What's Left \u2014 and What's at Stake.",
+      "slug": "us-india-trade-deal-final-steps-sergio-gor-99-percent-done-20260701",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "US Ambassador to India",
+          "reason": "The photo shows the correct named person relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the trade deal to the interests of the Indian diaspora, highlighting implications for tech professionals and entrepreneurs."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of how the trade deal could impact NRI entrepreneurs.",
+          "Include quotes or perspectives from NRI community leaders to enhance the diaspora angle."
         ],
         "verdict": "pass"
       },
