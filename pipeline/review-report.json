@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-01T21:15:59.403428+00:00",
+  "timestamp": "2026-07-01T22:15:50.195599+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 4,
-    "flag": 1,
+    "pass": 5,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "d0fb7bf4-27e4-4727-b6b0-2fb395bc47b8",
-      "headline": "Ram Charan's \u20b9337 Crore Hit Just Left the Theatre \u2014 and It's Heading Straight to Your Netflix",
-      "slug": "peddi-ram-charan-netflix-ott-janhvi-kapoor-ar-rahman-where-to-watch-diaspora-nri-20260701",
+      "id": "0b6c312e-5e5c-4c8d-b37f-597179dbcaf3",
+      "headline": "Air India's New Maharaja Lounge at SFO Is Its First International Signature Lounge \u2014 and Bay Area NRIs Can Walk In",
+      "slug": "air-india-maharaja-lounge-sfo-bay-area-nri-20260701",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Ram Charan at a film event",
-          "reason": "The photo shows Ram Charan, relevant to the story."
+          "what_photo_shows": "San Francisco International Airport terminal",
+          "reason": "The photo shows SFO, relevant to the Air India lounge story."
         },
         "inline_image_mismatches": []
       },
@@ -36,13 +36,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects with NRI viewers by highlighting the film's availability on Netflix and emphasizing the importance of watching the original Telugu version."
+          "note": "The article effectively highlights the significance of the lounge for the Bay Area's Indian diaspora, connecting it to their travel needs."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more quotes or insights from the director or cast to enhance the depth of the article.",
-          "Include a brief comparison with other recent Telugu films to provide context for its success."
+          "Include quotes from passengers or airline representatives to add a personal touch.",
+          "Add more details about the lounge's opening event or any special features that might attract NRIs."
         ],
         "verdict": "pass"
       },
@@ -54,64 +54,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "c58b6423-4516-4556-97e4-b1c007c6b626",
-      "headline": "Prabhas Praised Alia Bhatt's Trailer. The Internet Decided They're Co-Stars Now.",
-      "slug": "alia-bhatt-kalki-2-prabhas-alpha-trailer-nag-ashwin-new-role-deepika-exit-diaspora-nri-20260701",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "e4496201-1df2-4204-b539-2a35c5a9a621",
-            "headline": "Alia Bhatt Didn't Join the Spy Universe \u2014 She's Here to Take"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Alia Bhatt at an event",
-          "reason": "The photo shows Alia Bhatt, who is relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/p/DaF7ikvDNuT/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post is relevant as it pertains to Prabhas praising Alia Bhatt's trailer, which is the main subject of the article."
-          }
-        ],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article connects well with diaspora audiences by discussing the global impact of the Kalki franchise and its significance in North America and the UK."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more direct quotes from industry insiders to enhance credibility.",
-          "Include a brief background on the Kalki franchise for readers unfamiliar with it."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DaF7ikvDNuT/",
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "fbe28332-f008-4fe1-93cf-0cf71c9ae9f6",
-      "headline": "The World's Central Bankers Just Held a Meeting. Every Conversation Was About AI.",
-      "slug": "ecb-sintra-central-bankers-ai-bubble-dotcom-nri-20260701",
+      "id": "3ec0b0b3-d034-4dc3-a19f-605fa74eecea",
+      "headline": "TSA PreCheck Goes Touchless at 65 Airports \u2014 and NRIs with Global Entry Should Set It Up Now",
+      "slug": "tsa-precheck-touchless-google-wallet-nri-global-entry-20260701",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -119,51 +64,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "man in suit and tie",
-          "reason": "The photo plausibly shows a central banker at a forum."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 3,
-          "issue": "irrelevant"
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the AI boom and its implications for Indian H-1B workers in the US, making it highly relevant for the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the hero image with one that is more relevant to the topic of AI and central banking.",
-          "Consider adding more direct quotes or insights from central bankers that specifically address the implications for the Indian diaspora."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "c62ac360-88aa-47ff-96d9-11ac43ec9dda",
-      "headline": "Apple Is Lobbying Washington to Buy Chips from a Blacklisted Chinese Company. The Price Tag Explains Why.",
-      "slug": "apple-cxmt-chinese-memory-chips-lobbying-dram-20260701",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "RAM sticks and microprocessors",
-          "reason": "The photo shows components relevant to the semiconductor story."
+          "what_photo_shows": "traveler using smartphone at airport",
+          "reason": "The photo aligns with the story about airport security and smartphone use."
         },
         "inline_image_mismatches": []
       },
@@ -172,18 +74,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image does not directly relate to the article's focus on Apple and semiconductor lobbying."
+          "issue": "The image is relevant to air travel but does not specifically depict TSA or the touchless technology."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the semiconductor issue to Indian tech professionals and the broader implications for the Indian market."
+          "quality": 9,
+          "note": "The article effectively connects the TSA PreCheck update to the Indian American community, highlighting the benefits for NRIs."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that depicts Apple or semiconductor technology.",
-          "Expand on the implications for Indian tech professionals to strengthen the diaspora connection."
+          "Consider including a direct quote from a TSA representative or an NRI traveler to add a personal touch.",
+          "Add a brief section on how this technology compares to similar systems in India to enhance the diaspora connection."
         ],
         "verdict": "pass"
       },
@@ -195,23 +97,27 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "8423103b-4bf1-451d-8811-edd9229687d1",
-      "headline": "SK Hynix Is Coming to Nasdaq on July 10. Mehrotra's Micron Just Lost Its American Monopoly.",
-      "slug": "sk-hynix-nasdaq-adr-micron-mehrotra-hbm-memory-20260701",
+      "id": "a9c67323-1ede-4d2f-9495-cc3ad49e14fb",
+      "headline": "Navi Mumbai Airport Opens for International Flights on July 15 \u2014 and NRIs Get a Second Gateway Home",
+      "slug": "navi-mumbai-airport-international-flights-july-nri-20260701",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [
           {
-            "article_id": "75827485-be64-4d66-90fa-c8cea2c3dea8",
-            "headline": "Mehrotra's Micron Just Posted a $41.5 Billion Quarter. The M"
+            "article_id": "206845c3-641f-4a00-8efb-ddbd1fd63f3d",
+            "headline": "Adani Is Spending $2.3 Billion to Build Airport Cities Acros"
+          },
+          {
+            "article_id": "cd71cbda-917d-48aa-87fe-89e5e7697f4f",
+            "headline": "Navi Mumbai's Airport Goes International on July 15 \u2014 and th"
           }
         ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A man in a suit smiling",
-          "reason": "The photo plausibly shows Micron CEO Sanjay Mehrotra, relevant to the story."
+          "what_photo_shows": "Navi Mumbai airport terminal interior",
+          "reason": "The photo shows the Navi Mumbai airport, relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -225,13 +131,99 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses the implications of SK Hynix's listing on Micron, particularly highlighting the interests of Indian tech investors and the significance of Micron's operations in India."
+          "note": "The article effectively highlights the benefits of the new airport for NRIs, making it relevant to the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more direct quotes from industry analysts or experts to enhance credibility.",
-          "Include a brief overview of the implications for Indian investors in the semiconductor sector beyond Micron."
+          "Consider adding quotes from NRIs or experts to enhance the human interest angle.",
+          "Include more details on future international routes to engage readers further."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "dd9d72cd-c58a-4b32-aed6-7a93f59129a1",
+      "headline": "India's GST Collections Just Surged 14% to \u20b91.95 Lakh Crore \u2014 but Imports Are Doing the Heavy Lifting",
+      "slug": "india-gst-collections-surge-14-percent-195-lakh-crore-june-import-domestic-divergence-nri-investor-20260701",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "GST Town Hall meeting in Bengaluru",
+          "reason": "The photo shows a GST-related event, relevant to the story on GST collections."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 8,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses GST data and its implications for NRI investors, making it relevant for the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more specific examples of how NRI investors can leverage the GST data.",
+          "Add a section on potential future trends in GST collections that may affect NRIs."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "7838e860-9ae9-488f-8c3e-4af2a852a69d",
+      "headline": "A Simultaneous Heat Emergency Is Scorching Two Continents \u2014 and Millions of Indian Diaspora Are in Its Path",
+      "slug": "global-heat-emergency-europe-1300-dead-us-heat-dome-july-4-indian-diaspora-safety-20260701",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "People cooling off in a fountain",
+          "reason": "The photo shows people cooling off in heat, relevant to the heatwave story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively highlights the vulnerabilities of Indian diaspora communities in the context of the heat emergency."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more personal stories or quotes from members of the Indian diaspora to enhance relatability.",
+          "Include actionable advice for the diaspora on how to cope with extreme heat."
         ],
         "verdict": "pass"
       },
