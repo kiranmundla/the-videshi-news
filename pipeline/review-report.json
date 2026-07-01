@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-01T20:45:30.817686+00:00",
+  "timestamp": "2026-07-01T21:15:59.403428+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
-    "flag": 0,
+    "pass": 4,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "f7325c0e-221d-46ec-a68e-0274c31a2136",
-      "headline": "Foreign Investors Just Poured a Record $3 Billion Into Indian Bonds in a Single Month. Here's What Changed.",
-      "slug": "foreign-investors-record-3-billion-indian-government-bonds-tax-breaks-bloomberg-index-20260701",
+      "id": "d0fb7bf4-27e4-4727-b6b0-2fb395bc47b8",
+      "headline": "Ram Charan's \u20b9337 Crore Hit Just Left the Theatre \u2014 and It's Heading Straight to Your Netflix",
+      "slug": "peddi-ram-charan-netflix-ott-janhvi-kapoor-ar-rahman-where-to-watch-diaspora-nri-20260701",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Bombay Stock Exchange building",
-          "reason": "The photo shows a key financial landmark relevant to the story about Indian bonds."
+          "what_photo_shows": "Ram Charan at a film event",
+          "reason": "The photo shows Ram Charan, relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -36,13 +36,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses opportunities for NRI investors in the Indian bond market, making it relevant to the diaspora."
+          "note": "The article effectively connects with NRI viewers by highlighting the film's availability on Netflix and emphasizing the importance of watching the original Telugu version."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more specific examples of how NRIs can take advantage of the new bond market opportunities.",
-          "Include a brief comparison of Indian bond yields with those of other countries to provide context for NRIs."
+          "Consider adding more quotes or insights from the director or cast to enhance the depth of the article.",
+          "Include a brief comparison with other recent Telugu films to provide context for its success."
         ],
         "verdict": "pass"
       },
@@ -54,9 +54,64 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "08666b7f-8054-4c5c-8527-b77acdf52410",
-      "headline": "An Indian-Origin CEO Just Raised $800 Million to Challenge Big Tech's AI Monopoly",
-      "slug": "together-ai-800-million-series-c-vipul-ved-prakash-indian-origin-ceo-open-source-20260701",
+      "id": "c58b6423-4516-4556-97e4-b1c007c6b626",
+      "headline": "Prabhas Praised Alia Bhatt's Trailer. The Internet Decided They're Co-Stars Now.",
+      "slug": "alia-bhatt-kalki-2-prabhas-alpha-trailer-nag-ashwin-new-role-deepika-exit-diaspora-nri-20260701",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "e4496201-1df2-4204-b539-2a35c5a9a621",
+            "headline": "Alia Bhatt Didn't Join the Spy Universe \u2014 She's Here to Take"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Alia Bhatt at an event",
+          "reason": "The photo shows Alia Bhatt, who is relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/DaF7ikvDNuT/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post is relevant as it pertains to Prabhas praising Alia Bhatt's trailer, which is the main subject of the article."
+          }
+        ],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article connects well with diaspora audiences by discussing the global impact of the Kalki franchise and its significance in North America and the UK."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more direct quotes from industry insiders to enhance credibility.",
+          "Include a brief background on the Kalki franchise for readers unfamiliar with it."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/DaF7ikvDNuT/",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "fbe28332-f008-4fe1-93cf-0cf71c9ae9f6",
+      "headline": "The World's Central Bankers Just Held a Meeting. Every Conversation Was About AI.",
+      "slug": "ecb-sintra-central-bankers-ai-bubble-dotcom-nri-20260701",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,8 +119,99 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "smiling man in a white shirt",
-          "reason": "The photo plausibly shows the named CEO, fitting the story."
+          "what_photo_shows": "man in suit and tie",
+          "reason": "The photo plausibly shows a central banker at a forum."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 3,
+          "issue": "irrelevant"
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the AI boom and its implications for Indian H-1B workers in the US, making it highly relevant for the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the hero image with one that is more relevant to the topic of AI and central banking.",
+          "Consider adding more direct quotes or insights from central bankers that specifically address the implications for the Indian diaspora."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "c62ac360-88aa-47ff-96d9-11ac43ec9dda",
+      "headline": "Apple Is Lobbying Washington to Buy Chips from a Blacklisted Chinese Company. The Price Tag Explains Why.",
+      "slug": "apple-cxmt-chinese-memory-chips-lobbying-dram-20260701",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "RAM sticks and microprocessors",
+          "reason": "The photo shows components relevant to the semiconductor story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the article's focus on Apple and semiconductor lobbying."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the semiconductor issue to Indian tech professionals and the broader implications for the Indian market."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that depicts Apple or semiconductor technology.",
+          "Expand on the implications for Indian tech professionals to strengthen the diaspora connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "8423103b-4bf1-451d-8811-edd9229687d1",
+      "headline": "SK Hynix Is Coming to Nasdaq on July 10. Mehrotra's Micron Just Lost Its American Monopoly.",
+      "slug": "sk-hynix-nasdaq-adr-micron-mehrotra-hbm-memory-20260701",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "75827485-be64-4d66-90fa-c8cea2c3dea8",
+            "headline": "Mehrotra's Micron Just Posted a $41.5 Billion Quarter. The M"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "A man in a suit smiling",
+          "reason": "The photo plausibly shows Micron CEO Sanjay Mehrotra, relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -79,56 +225,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively highlights the achievements of an Indian-origin entrepreneur, connecting well with the diaspora audience."
+          "note": "The article discusses the implications of SK Hynix's listing on Micron, particularly highlighting the interests of Indian tech investors and the significance of Micron's operations in India."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes or insights from industry experts to enhance credibility.",
-          "Include more context on the implications of this funding for the AI industry and Indian entrepreneurs."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "397394a9-fc5f-4fb9-8f8d-ba2cccb1650d",
-      "headline": "India's New Army Chief Has a Five-Letter Plan to Reshape the World's Largest Volunteer Force",
-      "slug": "india-new-army-chief-dhiraj-seth-vijay-framework-armoured-corps-20260701",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Indian Army General in uniform",
-          "reason": "The photo shows a military officer, matching the defence story topic."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article connects the leadership change to the India-U.S. defense partnership, which is relevant to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Expand on the implications of General Seth's leadership for the Indian diaspora, particularly in relation to defense partnerships.",
-          "Include more direct quotes from General Seth to enhance the article's engagement and authority."
+          "Consider adding more direct quotes from industry analysts or experts to enhance credibility.",
+          "Include a brief overview of the implications for Indian investors in the semiconductor sector beyond Micron."
         ],
         "verdict": "pass"
       },
