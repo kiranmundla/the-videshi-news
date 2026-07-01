@@ -1,6 +1,6 @@
 {
  "_description": "Media library mirror — high-quality, attribution-clean images+videos for article/reel fallback. Source of truth is the Supabase media_library table; this mirror lets the pipeline read without a DB round-trip.",
- "_updated": "2026-07-01T10:33:55Z",
+ "_updated": "2026-07-01T18:05:48Z",
  "assets": [
   {
    "id": "person--narendra-modi--bfe42b",
@@ -2995,28 +2995,6 @@
    "times_used": 0
   },
   {
-   "id": "thing--japan--21630e",
-   "media_type": "image",
-   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/japan-21630e.jpg",
-   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/japan-21630e.jpg",
-   "subject": "japan",
-   "subject_type": "thing",
-   "caption": "Burma, Japanese invasion currency,10 rupees (1942-44)",
-   "attribution": "Wikimedia Commons / National Museum of American History, Public domain",
-   "license": "Public domain",
-   "source_url": "https://commons.wikimedia.org/wiki/File:BUR-16-Japanese_occupation_Burma-10_rupees_(1942-44).jpg",
-   "tags": [
-    "japan"
-   ],
-   "width": 4500,
-   "height": 4407,
-   "duration": null,
-   "quality_score": 92.0,
-   "added_date": "2026-06-25T10:37:01Z",
-   "last_used": null,
-   "times_used": 0
-  },
-  {
    "id": "person--nayanthara--1a8113",
    "media_type": "image",
    "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/person/nayanthara-1a8113.jpg",
@@ -5545,6 +5523,28 @@
    "added_date": "2026-07-01T10:33:55Z",
    "last_used": null,
    "times_used": 0
+  },
+  {
+   "id": "thing--japan--21630e",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/japan-21630e.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/japan-21630e.jpg",
+   "subject": "japan",
+   "subject_type": "thing",
+   "caption": "Burma, Japanese invasion currency,10 rupees (1942-44)",
+   "attribution": "Wikimedia Commons / National Museum of American History, Public domain",
+   "license": "Public domain",
+   "source_url": "https://commons.wikimedia.org/wiki/File:BUR-16-Japanese_occupation_Burma-10_rupees_(1942-44).jpg",
+   "tags": [
+    "japan"
+   ],
+   "width": 4500,
+   "height": 4407,
+   "duration": null,
+   "quality_score": 92.0,
+   "added_date": "2026-06-25T10:37:01Z",
+   "last_used": "2026-07-01T18:05:48Z",
+   "times_used": 1
   }
  ]
 }
