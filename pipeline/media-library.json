@@ -1,6 +1,6 @@
 {
  "_description": "Media library mirror — high-quality, attribution-clean images+videos for article/reel fallback. Source of truth is the Supabase media_library table; this mirror lets the pipeline read without a DB round-trip.",
- "_updated": "2026-07-01T02:08:32Z",
+ "_updated": "2026-07-01T10:33:55Z",
  "assets": [
   {
    "id": "person--narendra-modi--bfe42b",
@@ -5501,6 +5501,50 @@
    "added_date": "2026-06-28T10:34:17Z",
    "last_used": "2026-07-01T02:08:32Z",
    "times_used": 1
+  },
+  {
+   "id": "thing--indian-diaspora--e4c45f",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/indian-diaspora-e4c45f.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/indian-diaspora-e4c45f.jpg",
+   "subject": "indian diaspora",
+   "subject_type": "thing",
+   "caption": "Few of the 25 Overseas Indian Diaspora youths from different countries during a meeting with the Secretary, Ministry of Overseas Indian Affairs Shri S. Krishan Kumar in New Delhi on August 23, 2005.",
+   "attribution": "Wikimedia Commons / Ministry of Overseas Indian Affairs, GODL-India",
+   "license": "GODL-India",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Few_of_the_25_Overseas_Indian_Diaspora_youths_from_different_countries_during_a_meeting_with_the_Secretary,_Ministry_of_Overseas_Indian_Affairs_Shri_S._Krishan_Kumar_in_New_Delhi_on_August_23,_2005.jpg",
+   "tags": [
+    "indian diaspora"
+   ],
+   "width": 3282,
+   "height": 2196,
+   "duration": null,
+   "quality_score": 80.9,
+   "added_date": "2026-07-01T10:33:47Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--doj--5f2531",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/doj-5f2531.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/doj-5f2531.jpg",
+   "subject": "doj",
+   "subject_type": "thing",
+   "caption": "Harry Stonehill is with his family in a foreign land, after he was removed from the Philippines and forced to relinquish his assets due to the bribery scandal or politicians. He mostly spent his remaining years traveling from Spain to Switzerland to other countries in Asia with n",
+   "attribution": "Wikimedia Commons / Imeeromualdezlacson, CC BY-SA 4.0",
+   "license": "CC BY-SA 4.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Harry_Stonehill,_Accused_in_the_Stonehill_Scandal.jpg",
+   "tags": [
+    "doj"
+   ],
+   "width": 2599,
+   "height": 1594,
+   "duration": null,
+   "quality_score": 70.3,
+   "added_date": "2026-07-01T10:33:55Z",
+   "last_used": null,
+   "times_used": 0
   }
  ]
 }
