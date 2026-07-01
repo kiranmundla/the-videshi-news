@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-07-01T18:45:25.817146+00:00",
+  "timestamp": "2026-07-01T19:15:33.590921+00:00",
   "mode": "fix",
   "stats": {
     "pass": 2,
@@ -11,61 +11,23 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "9b092aa5-9408-421f-b901-21d10871bb96",
-      "headline": "The Tata Breach That Exposed Apple's Most Guarded Secrets",
-      "slug": "tata-electronics-data-breach-apple-iphone-18-pro-supplier-secrets-dark-web-20260701",
+      "id": "b557b97c-8049-4c56-bdf2-cdf3bb56a52e",
+      "headline": "Ranveer Singh Is About to Destroy Mumbai \u2014 and Spend \u20b9300 Crore Doing It",
+      "slug": "ranveer-singh-pralay-300-crore-zombie-thriller-kalyani-priyadarshan-bollywood-debut-australia-diaspora-nri-20260701",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "circuit boards in production facility",
-          "reason": "The photo shows electronics manufacturing, relevant to the Tata breach story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 6,
-          "issue": "The image does not directly relate to the article's focus on Tata Electronics and Apple."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses India's role in global manufacturing, which is relevant to the Indian diaspora interested in economic developments."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that directly relates to Tata Electronics or Apple products to enhance relevance.",
-          "Include quotes or perspectives from industry experts or diaspora members to strengthen the connection to the NRI audience."
+        "duplicate_images": [
+          {
+            "article_id": "63aeac1c-ee7c-4dc6-9423-052c92b4c86e",
+            "headline": "\u20b93,000 Crore in Six Months \u2014 Bollywood Just Had Its Most Sav"
+          }
         ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "f955d448-6150-4941-a1ce-d4c63809b018",
-      "headline": "India Just Had Its Driest June in Over a Decade. July May Not Be Much Better.",
-      "slug": "india-driest-june-monsoon-crisis-el-nino-crop-planting-lag-food-security-20260701",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "monsoon clouds over a landscape",
-          "reason": "The photo shows monsoon clouds, relevant to the story about rainfall."
+          "what_photo_shows": "A man in ornate clothing",
+          "reason": "The photo plausibly shows Ranveer Singh, relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -79,17 +41,72 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the impact of the monsoon on agriculture to the NRI diaspora, highlighting remittance flows and family support."
+          "note": "The article effectively connects the film's production in Australia to the Indian diaspora, highlighting its significance for NRI audiences."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more specific examples of how the diaspora can support their families during this crisis.",
-          "Include quotes or insights from diaspora members to enhance the personal connection."
+          "Consider adding more quotes or insights from Ranveer Singh or Jai Mehta to enhance the article's depth.",
+          "Include a brief discussion on the potential impact of this film on the Indian film industry and its reception among international audiences."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "3e2c1a17-f4b9-4844-8136-87443135ede4",
+      "headline": "Arshad Warsi Just Walked Back Into the Hirani-Verse \u2014 and He Brought Everyone",
+      "slug": "pritam-pedro-rajkumar-hirani-streaming-debut-arshad-warsi-vikrant-massey-jiohotstar-july-3-diaspora-nri-20260701",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "e3aab03b-be34-4791-87db-9abfe5366efe",
+            "headline": "He Played Circuit's Son at Six \u2014 Now Vir Hirani Leads Rajkum"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Arshad Warsi smiling outdoors",
+          "reason": "The photo shows Arshad Warsi, relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DZmTzHYsDa3/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel does not appear to be directly related to the article's subject matter regarding the series 'Pritam and Pedro' or its cast."
+          }
+        ],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses the debut of Vir Hirani, who studied in London, which connects to the diaspora audience, but the connection could be more explicit."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the irrelevant Instagram embed with a more relevant one, perhaps related to the series or its trailer.",
+          "Enhance the diaspora angle by including more context about how the series or its themes resonate with NRI audiences."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DZmTzHYsDa3/",
         "promoted to published"
       ],
       "revised": false,
