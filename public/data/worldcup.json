@@ -1,6 +1,6 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-07-01T01:59:32Z",
+  "last_updated": "2026-07-01T04:01:56Z",
   "stage": "Knockout Stage",
   "hosts": "USA, Mexico & Canada",
   "dates": {
@@ -1855,7 +1855,8 @@
           "away_code": "ECU",
           "venue": "Estadio Azteca",
           "city": "Mexico City",
-          "status": "scheduled"
+          "status": "FT",
+          "score": "2-0"
         },
         {
           "id": 80,
@@ -4688,6 +4689,20 @@
       "account": "@fifaworldcup",
       "caption": "GOAAAL! Norway strike first! 🇳🇴🔥 #FIFAWorldCup",
       "date": "2026-06-30"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/reel/DaMIBedPH-t/",
+      "account": "@fifaworldcup",
+      "caption": "A nutmeg you'll want to watch on repeat 🎥✨ #FIFAWorldCup",
+      "date": "2026-06-29"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DaMiIXeisV0/",
+      "account": "@fifaworldcup",
+      "caption": "4/16 ⏳ #FIFAWorldCup",
+      "date": "2026-06-29"
     }
   ],
   "tv": {
