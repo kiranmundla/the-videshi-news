@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-01T08:15:35.735680+00:00",
+  "timestamp": "2026-07-01T08:45:30.201529+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
+    "pass": 2,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,57 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "01713cb7-a1ef-4e45-aaf3-9bf68d3caef1",
-      "headline": "The Supreme Court Just Made It Easier to Turn Away Green Card Holders at the Border",
-      "slug": "scotus-blanche-lau-green-card-border-denial-indian-20260701",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "90e03639-3bb2-41bd-a870-de67ccaceedf",
-            "headline": "Three Rulings, Four Days, One Direction: The Supreme Court J"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "United States Supreme Court building",
-          "reason": "The photo shows the Supreme Court, relevant to the court ruling story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the Supreme Court ruling to the concerns of Indian green card holders, making it relevant for the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from more diverse perspectives, such as immigration advocates or affected individuals, to enrich the narrative.",
-          "Include a brief explanation of the implications of the ruling for non-Indian green card holders to broaden the article's appeal."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "be11e4f2-41e2-4704-9bc9-128fb47c9cc6",
-      "headline": "Your LinkedIn Profile Could Tank Your Visa Interview. The State Department Is Reading It",
-      "slug": "linkedin-social-media-vetting-h1b-visa-india-consulate-20260701",
+      "id": "ce8b759b-3394-46a5-84d9-5ded18c731cb",
+      "headline": "India's Factory Engine Just Hit Its Second-Lowest Gear in Four Years",
+      "slug": "india-manufacturing-pmi-june-2026-second-weakest-four-years-export-orders-soften",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -69,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "LinkedIn logo on smartphone",
-          "reason": "The photo is relevant to the story about LinkedIn profiles affecting visa interviews."
+          "what_photo_shows": "Workers at a manufacturing production line",
+          "reason": "The photo shows a manufacturing setting, relevant to the story about India's manufacturing sector."
         },
         "inline_image_mismatches": []
       },
@@ -79,18 +31,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image is relevant to the topic of LinkedIn and professional networking but lacks a direct connection to visa interviews."
+          "issue": "The image depicts a factory setting, which is relevant to the article's topic on manufacturing, but lacks specific context to the current state of India's manufacturing sector."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article directly addresses the concerns of Indian H-1B visa applicants, making it highly relevant to the diaspora audience."
+          "quality": 8,
+          "note": "The article effectively connects the manufacturing data to the interests of NRIs, particularly those invested in Indian equities and working in related sectors abroad."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include specific examples of LinkedIn posts that could raise red flags to provide more clarity.",
-          "Add a section on how applicants can prepare their LinkedIn profiles to avoid issues."
+          "Consider adding more specific data or examples related to the impact on NRI investments in Indian manufacturing.",
+          "Include a more detailed analysis of how the manufacturing slowdown might affect specific sectors that are of interest to the diaspora."
         ],
         "verdict": "pass"
       },
@@ -102,46 +54,65 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "fcfbfe44-7918-40da-9ec6-69ba76576537",
-      "headline": "China's K Visa Wants India's Best Engineers. Washington Barely Noticed",
-      "slug": "china-k-visa-indian-engineers-global-talent-race-20260701",
+      "id": "d5b9b3b0-a568-4161-b83e-838aa7eefdea",
+      "headline": "OpenAI Just Hired Uber's India Boss to Run Its Second-Largest Market",
+      "slug": "openai-prabhjeet-singh-india-managing-director-uber-chatgpt-100-million-users-20260701",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "4ac22b41-fe9f-4c74-a52a-71bf31e5f39e",
+            "headline": "OpenAI Just Hired an IIT-IIM Grad to Run India. He Built Ube"
+          },
+          {
+            "article_id": "37f8a1dc-f016-4dae-9b5a-e3cd94e11838",
+            "headline": "OpenAI Poaches Uber India's President to Run Its Second-Larg"
+          },
+          {
+            "article_id": "b97f4e49-b3c5-4154-b9a1-d1f47058eebd",
+            "headline": "OpenAI Built Its First Chip in Nine Months. It Used AI to De"
+          },
+          {
+            "article_id": "04fa3ee6-e785-4343-aa41-88d68ff23ebb",
+            "headline": "OpenAI Built Its Own Chip in Nine Months. Nvidia Should Pay "
+          }
+        ],
         "broken_embeds": [],
         "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "open passport with travel stamps",
-          "reason": "The photo of a passport is relevant to the immigration topic."
+          "verdict": "MISMATCH",
+          "what_photo_shows": "a man in a suit",
+          "reason": "The photo shows a person not named Prabhjeet Singh."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 7,
+        "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 8,
-          "issue": "The image does not directly relate to the article's focus on immigration and visas, but it is a generic representation of professionals."
+          "score": 7,
+          "issue": "The image description is missing, making it difficult to assess relevance."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses the implications of China's K visa on Indian professionals, making it relevant to the diaspora audience."
+          "note": "The article discusses the trend of Indian-origin leaders in tech, connecting well with the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes or testimonials from Indian professionals considering the K visa to enhance the personal connection.",
-          "Add a section comparing the K visa with other countries' visa programs to provide a broader context for Indian readers."
+          "Include a relevant image description to enhance the image match score.",
+          "Consider adding quotes or insights from Prabhjeet Singh or industry experts to provide depth."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "promoted to published"
+        "Cleared mismatched image (a man in a suit)",
+        "held: image mismatch"
       ],
       "revised": false,
       "unpublished": false,
+      "image_mismatch": true,
       "llm_source": "gpt-4o-mini"
     }
   ]
