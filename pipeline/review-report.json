@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-01T08:45:30.201529+00:00",
+  "timestamp": "2026-07-01T09:16:23.736027+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 5,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,105 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "ce8b759b-3394-46a5-84d9-5ded18c731cb",
-      "headline": "India's Factory Engine Just Hit Its Second-Lowest Gear in Four Years",
-      "slug": "india-manufacturing-pmi-june-2026-second-weakest-four-years-export-orders-soften",
+      "id": "b294963d-e8d6-443f-aa77-59e0163cc6c1",
+      "headline": "He Took No Upfront Fee. Four Days Later, Akshay Kumar Is Laughing All the Way Past \u20b9100 Crore.",
+      "slug": "welcome-jungle-100-crore-akshay-kumar-profit-sharing-gamble-comeback-franchise-diaspora-nri",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "1c143dcb-7d70-4a25-b4e8-d6551c1acd21",
+            "headline": "He Was the Hero for 30 Years \u2014 Now Akshay Kumar Plays the Mo"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Akshay Kumar at an event",
+          "reason": "The photo shows Akshay Kumar, who is relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the film's success to NRI audiences who have a nostalgic connection to the franchise."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more quotes or reactions from diaspora audiences to enhance the connection.",
+          "Include a brief comparison of Akshay Kumar's recent films to provide context for his comeback."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "c1671651-8e0b-48b9-9aa7-92aba5c2a06d",
+      "headline": "India Just Told Its Banks to Treat Every AI Model Like a Risk Model. The Rules Are Sweeping.",
+      "slug": "rbi-ai-risk-management-guidelines-banks-fintech-20260701",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "f02c1355-c2c1-4ea8-85da-e58ed5c28d0b",
+            "headline": "India's Banks Are the Healthiest in a Generation \u2014 and the R"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Reserve Bank of India building",
+          "reason": "The photo shows the RBI building, relevant to the story about RBI guidelines."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the implications of AI regulations on Indian banks, which is relevant for NRI investors and fintech founders."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Expand on the specific impacts of these regulations on NRI investors and fintech founders to enhance the diaspora angle.",
+          "Include quotes or insights from industry experts or stakeholders to add depth to the analysis."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "81d23322-bdc4-49c1-8ed4-25b1cb5ea4c8",
+      "headline": "AI Tokens Now Cost More Than Some Developers. Companies Are Budgeting Them Like Salaries.",
+      "slug": "ai-token-price-war-enterprise-costs-indian-tech-20260701",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +117,51 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Workers at a manufacturing production line",
-          "reason": "The photo shows a manufacturing setting, relevant to the story about India's manufacturing sector."
+          "what_photo_shows": "server racks in a data center",
+          "reason": "The photo shows server racks relevant to enterprise AI workloads."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 6,
+          "issue": "The image does not clearly relate to AI tokens or the technology industry."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses the implications of AI token costs on Indian tech professionals, making it relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that depicts AI technology or token usage.",
+          "Expand on the implications for Indian tech professionals to strengthen the diaspora connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "d2790aa0-c88a-4505-8b6c-01b58cffc84f",
+      "headline": "Persistent Just Bet \u20ac1 Billion on a German Firm It Barely Knows. The Market Thinks It Overpaid.",
+      "slug": "persistent-nagarro-acquisition-insider-probe-20260701",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "business leaders shaking hands",
+          "reason": "The photo depicts a corporate deal, relevant to the acquisition story."
         },
         "inline_image_mismatches": []
       },
@@ -31,18 +170,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image depicts a factory setting, which is relevant to the article's topic on manufacturing, but lacks specific context to the current state of India's manufacturing sector."
+          "issue": "The image is relevant to the technology theme but does not specifically relate to the article's focus on the acquisition."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the manufacturing data to the interests of NRIs, particularly those invested in Indian equities and working in related sectors abroad."
+          "note": "The article effectively connects the implications of the acquisition to Indian-origin tech professionals and NRI investors."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more specific data or examples related to the impact on NRI investments in Indian manufacturing.",
-          "Include a more detailed analysis of how the manufacturing slowdown might affect specific sectors that are of interest to the diaspora."
+          "Consider using a more specific image related to the acquisition or the companies involved to enhance relevance.",
+          "Expand on the potential impacts of the acquisition on the job market for Indian engineers in the diaspora."
         ],
         "verdict": "pass"
       },
@@ -60,59 +199,35 @@
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "4ac22b41-fe9f-4c74-a52a-71bf31e5f39e",
-            "headline": "OpenAI Just Hired an IIT-IIM Grad to Run India. He Built Ube"
-          },
-          {
-            "article_id": "37f8a1dc-f016-4dae-9b5a-e3cd94e11838",
-            "headline": "OpenAI Poaches Uber India's President to Run Its Second-Larg"
-          },
-          {
-            "article_id": "b97f4e49-b3c5-4154-b9a1-d1f47058eebd",
-            "headline": "OpenAI Built Its First Chip in Nine Months. It Used AI to De"
-          },
-          {
-            "article_id": "04fa3ee6-e785-4343-aa41-88d68ff23ebb",
-            "headline": "OpenAI Built Its Own Chip in Nine Months. Nvidia Should Pay "
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MISMATCH",
-          "what_photo_shows": "a man in a suit",
-          "reason": "The photo shows a person not named Prabhjeet Singh."
-        },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image description is missing, making it difficult to assess relevance."
+          "score": 5,
+          "issue": "missing image description"
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article discusses the trend of Indian-origin leaders in tech, connecting well with the diaspora."
+          "quality": 7,
+          "note": "The article discusses the trend of Indian-origin leaders in tech, which resonates with the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include a relevant image description to enhance the image match score.",
-          "Consider adding quotes or insights from Prabhjeet Singh or industry experts to provide depth."
+          "Include a relevant image with a description that matches the article's content.",
+          "Expand on the implications of Singh's appointment for the Indian tech landscape to enhance the diaspora connection."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "Cleared mismatched image (a man in a suit)",
-        "held: image mismatch"
+        "promoted to published"
       ],
       "revised": false,
       "unpublished": false,
-      "image_mismatch": true,
       "llm_source": "gpt-4o-mini"
     }
   ]
