@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-01T09:16:23.736027+00:00",
+  "timestamp": "2026-07-01T10:15:35.707713+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 5,
+    "pass": 4,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,23 +11,61 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "b294963d-e8d6-443f-aa77-59e0163cc6c1",
-      "headline": "He Took No Upfront Fee. Four Days Later, Akshay Kumar Is Laughing All the Way Past \u20b9100 Crore.",
-      "slug": "welcome-jungle-100-crore-akshay-kumar-profit-sharing-gamble-comeback-franchise-diaspora-nri",
+      "id": "6f4776cb-b0e1-460c-9d40-741a540fb957",
+      "headline": "India's Factory Growth Just Hit a Near Four-Year Low \u2014 and the Warning Signs Go Beyond One Bad Month",
+      "slug": "india-manufacturing-pmi-slips-54-june-2026-demand-cools-export-orders-weakest-39-months-nri-investor-20260701",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "1c143dcb-7d70-4a25-b4e8-d6551c1acd21",
-            "headline": "He Was the Hero for 30 Years \u2014 Now Akshay Kumar Plays the Mo"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Akshay Kumar at an event",
-          "reason": "The photo shows Akshay Kumar, who is relevant to the story."
+          "what_photo_shows": "interior of a manufacturing facility",
+          "reason": "The photo shows a manufacturing facility, which is relevant to the story about India's factory sector."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 8,
+          "issue": "The image is relevant to the topic of manufacturing but lacks specific elements that directly connect to the Indian context."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article provides insights relevant to NRI investors, particularly in the context of Indian manufacturing and economic indicators."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more specific examples of how the manufacturing slowdown impacts NRI investors.",
+          "Add a brief section on potential opportunities for NRIs in the current economic climate."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "d5627239-43aa-49b5-b3b2-f64824c2ffe1",
+      "headline": "The World Cup Knockout Round Starts Today \u2014 an NRI Travel Survival Guide",
+      "slug": "world-cup-knockout-nri-travel-guide-visa-airfare-20260701",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "MetLife Stadium in New Jersey",
+          "reason": "The photo shows a stadium relevant to the World Cup travel story."
         },
         "inline_image_mismatches": []
       },
@@ -41,13 +79,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the film's success to NRI audiences who have a nostalgic connection to the franchise."
+          "note": "The article effectively addresses the needs and concerns of NRIs traveling for the World Cup, making it relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more quotes or reactions from diaspora audiences to enhance the connection.",
-          "Include a brief comparison of Akshay Kumar's recent films to provide context for his comeback."
+          "Include more specific tips for NRIs, such as cultural considerations or local Indian communities in the host cities.",
+          "Add a section on safety tips for NRIs traveling during the tournament."
         ],
         "verdict": "pass"
       },
@@ -59,23 +97,18 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "c1671651-8e0b-48b9-9aa7-92aba5c2a06d",
-      "headline": "India Just Told Its Banks to Treat Every AI Model Like a Risk Model. The Rules Are Sweeping.",
-      "slug": "rbi-ai-risk-management-guidelines-banks-fintech-20260701",
+      "id": "2efe8f59-e410-49bc-9b5f-f2acf1a2f0b9",
+      "headline": "Mumbai Wants to Anchor a Seven-Star Floating Hotel Off Nariman Point \u2014 Here's What NRIs Need to Know",
+      "slug": "mumbai-floating-hotel-nariman-point-marina-nri-20260701",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "f02c1355-c2c1-4ea8-85da-e58ed5c28d0b",
-            "headline": "India's Banks Are the Healthiest in a Generation \u2014 and the R"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Reserve Bank of India building",
-          "reason": "The photo shows the RBI building, relevant to the story about RBI guidelines."
+          "what_photo_shows": "Mumbai skyline and waterfront",
+          "reason": "The photo shows Mumbai's skyline, relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -89,13 +122,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses the implications of AI regulations on Indian banks, which is relevant for NRI investors and fintech founders."
+          "note": "The article effectively connects the floating hotel project to the needs and interests of the NRI community, particularly in terms of travel convenience and accommodation."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Expand on the specific impacts of these regulations on NRI investors and fintech founders to enhance the diaspora angle.",
-          "Include quotes or insights from industry experts or stakeholders to add depth to the analysis."
+          "Consider adding quotes from local officials or stakeholders to enhance credibility.",
+          "Include more specific details about the timeline for the project's completion to provide clearer expectations for NRIs."
         ],
         "verdict": "pass"
       },
@@ -107,9 +140,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "81d23322-bdc4-49c1-8ed4-25b1cb5ea4c8",
-      "headline": "AI Tokens Now Cost More Than Some Developers. Companies Are Budgeting Them Like Salaries.",
-      "slug": "ai-token-price-war-enterprise-costs-indian-tech-20260701",
+      "id": "49ae7b2a-c64a-4804-80f6-df25cd0562cb",
+      "headline": "Medicare Will Now Cover Ozempic and Wegovy for Weight Loss \u2014 Here's Who Qualifies and What It Costs",
+      "slug": "medicare-glp1-bridge-program-launches-july-1-ozempic-wegovy-50-dollars-seniors-nri-diaspora-20260701",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -117,51 +150,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "server racks in a data center",
-          "reason": "The photo shows server racks relevant to enterprise AI workloads."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 6,
-          "issue": "The image does not clearly relate to AI tokens or the technology industry."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses the implications of AI token costs on Indian tech professionals, making it relevant to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that depicts AI technology or token usage.",
-          "Expand on the implications for Indian tech professionals to strengthen the diaspora connection."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "d2790aa0-c88a-4505-8b6c-01b58cffc84f",
-      "headline": "Persistent Just Bet \u20ac1 Billion on a German Firm It Barely Knows. The Market Thinks It Overpaid.",
-      "slug": "persistent-nagarro-acquisition-insider-probe-20260701",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "business leaders shaking hands",
-          "reason": "The photo depicts a corporate deal, relevant to the acquisition story."
+          "what_photo_shows": "syringes held by gloved hand",
+          "reason": "The photo is related to medication administration, relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -170,56 +160,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image is relevant to the technology theme but does not specifically relate to the article's focus on the acquisition."
+          "issue": "The image does not directly relate to the topic of Medicare or weight loss medications."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the implications of the acquisition to Indian-origin tech professionals and NRI investors."
+          "note": "The article effectively connects the Medicare changes to the Indian American diaspora, highlighting specific health risks."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more specific image related to the acquisition or the companies involved to enhance relevance.",
-          "Expand on the potential impacts of the acquisition on the job market for Indian engineers in the diaspora."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "d5b9b3b0-a568-4161-b83e-838aa7eefdea",
-      "headline": "OpenAI Just Hired Uber's India Boss to Run Its Second-Largest Market",
-      "slug": "openai-prabhjeet-singh-india-managing-director-uber-chatgpt-100-million-users-20260701",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 5,
-          "issue": "missing image description"
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses the trend of Indian-origin leaders in tech, which resonates with the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include a relevant image with a description that matches the article's content.",
-          "Expand on the implications of Singh's appointment for the Indian tech landscape to enhance the diaspora connection."
+          "Consider using a more relevant image that reflects Medicare or weight loss medications.",
+          "Add more statistics or quotes from experts to enhance credibility."
         ],
         "verdict": "pass"
       },
