@@ -1,6 +1,6 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-07-01T13:59:38Z",
+  "last_updated": "2026-07-01T18:00:46Z",
   "stage": "Knockout Stage",
   "hosts": "USA, Mexico & Canada",
   "dates": {
@@ -1869,7 +1869,8 @@
           "away_code": "COD",
           "venue": "Mercedes-Benz Stadium",
           "city": "Atlanta",
-          "status": "scheduled"
+          "status": "FT",
+          "score": "2-1"
         },
         {
           "id": 81,
