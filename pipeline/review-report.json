@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-01T06:45:25.675773+00:00",
+  "timestamp": "2026-07-01T07:15:34.480230+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 0,
+    "pass": 1,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "1b91eea3-ba2e-456f-b6b9-9da2fd261fe3",
-      "headline": "Iran and Oman Want to Charge Ships $40 Billion a Year to Pass Through the Strait of Hormuz. India Just Became the Biggest Loser.",
-      "slug": "iran-oman-hormuz-toll-plan-india-oil-imports-shipping-fees-40-billion-20260701",
+      "id": "7cd60e61-37ec-4b2a-b4ae-c249a215cf3d",
+      "headline": "'Where Are the Ladies?' Yash Just Answered \u2014 and All Five of Toxic's Leading Women Are About to Walk Into the Frame",
+      "slug": "toxic-yash-leading-ladies-teaser-nayanthara-kiara-advani-huma-qureshi-tara-sutaria-rukmini-vasanth-august-2026-diaspora-nri-20260701",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,32 +21,39 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "cargo ships and oil tankers",
-          "reason": "The photo shows ships relevant to the Strait of Hormuz story."
+          "what_photo_shows": "Yash at a film event",
+          "reason": "The photo shows Yash, who is relevant to the story's subject."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
+        "overall_score": 8,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DaPUtR9opoF/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel does not appear to be directly related to the article's focus on the film 'Toxic' and its female cast."
+          }
+        ],
         "image_match": {
-          "score": 8,
-          "issue": "The image depicts a maritime scene relevant to the article's topic, but lacks specific visual elements directly related to the Strait of Hormuz."
+          "score": 6,
+          "issue": "The image of Yash does not directly relate to the topic of the leading women in 'Toxic'."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 7,
-          "note": "The article discusses the implications of the toll on Indian Americans and NRIs, connecting the geopolitical issue to the diaspora's financial interests."
+          "note": "The article discusses Yash's global appeal and the film's international release, which connects with the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes from Indian officials or experts to strengthen the connection to India's perspective.",
-          "Clarify the potential impact on remittances for NRIs in the conclusion to enhance the diaspora angle."
+          "Replace the irrelevant Instagram embed with a more relevant promotional material related to the female cast of 'Toxic'.",
+          "Consider using an image that features the female cast or a promotional poster for 'Toxic' to better match the article's focus."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DaPUtR9opoF/",
         "promoted to published"
       ],
       "revised": false,
@@ -54,18 +61,23 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "634094fd-3cb7-49b3-af1a-d6b72c32e86f",
-      "headline": "Eight Arrested in Ayodhya Ram Temple Donation Scam. Now the Supreme Court Is Being Asked to Step In.",
-      "slug": "ayodhya-ram-temple-donation-embezzlement-arrests-cbi-probe-supreme-court-20260630",
+      "id": "9472431b-85f9-4db3-8fd9-09ed825bdb2f",
+      "headline": "Three Months Ago Shahid Kapoor Said No. Now He's Getting \u20b918 Crore to Swap Souls with Janhvi Kapoor.",
+      "slug": "shahid-kapoor-adal-badal-body-swap-comedy-janhvi-kapoor-18-crore-cocktail-2-amit-sharma-amazon-mgm-diaspora-nri-20260701",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "ef552802-ba25-41d2-a26e-6eafa960d313",
+            "headline": "Akshay in All Black, Shahid Looking Like a Painting, and Ana"
+          }
+        ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "The Ram Mandir in Ayodhya",
-          "reason": "The photo shows the Ram Mandir, which is relevant to the story about the Ayodhya Ram Temple donation scam."
+          "what_photo_shows": "Shahid Kapoor at an event",
+          "reason": "The photo shows Shahid Kapoor, who is relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -79,13 +91,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the financial scandal to NRI donors, highlighting their contributions and concerns."
+          "note": "The article effectively connects Shahid Kapoor's appeal and the film's accessibility to NRI audiences, highlighting cultural relevance."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from NRI donors or diaspora organizations to enhance the personal connection.",
-          "Include more context about the Ram Mandir's significance to the diaspora to deepen the engagement."
+          "Consider adding more quotes from Shahid Kapoor or Janhvi Kapoor to enhance the article's depth.",
+          "Include a brief overview of the director's previous works to provide context for readers unfamiliar with Amit Sharma."
         ],
         "verdict": "pass"
       },
