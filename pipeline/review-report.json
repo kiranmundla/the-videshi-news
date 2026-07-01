@@ -1,62 +1,19 @@
 {
-  "timestamp": "2026-07-01T10:15:35.707713+00:00",
+  "timestamp": "2026-07-01T10:45:51.004164+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 4,
-    "flag": 0,
+    "pass": 2,
+    "flag": 2,
     "fail": 0,
     "error": 0
   },
-  "revisions": 0,
+  "revisions": 1,
   "unpublished": 0,
   "articles": [
     {
-      "id": "6f4776cb-b0e1-460c-9d40-741a540fb957",
-      "headline": "India's Factory Growth Just Hit a Near Four-Year Low \u2014 and the Warning Signs Go Beyond One Bad Month",
-      "slug": "india-manufacturing-pmi-slips-54-june-2026-demand-cools-export-orders-weakest-39-months-nri-investor-20260701",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "interior of a manufacturing facility",
-          "reason": "The photo shows a manufacturing facility, which is relevant to the story about India's factory sector."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 8,
-          "issue": "The image is relevant to the topic of manufacturing but lacks specific elements that directly connect to the Indian context."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article provides insights relevant to NRI investors, particularly in the context of Indian manufacturing and economic indicators."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more specific examples of how the manufacturing slowdown impacts NRI investors.",
-          "Add a brief section on potential opportunities for NRIs in the current economic climate."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "d5627239-43aa-49b5-b3b2-f64824c2ffe1",
-      "headline": "The World Cup Knockout Round Starts Today \u2014 an NRI Travel Survival Guide",
-      "slug": "world-cup-knockout-nri-travel-guide-visa-airfare-20260701",
+      "id": "5ead5ca1-9413-4b44-9996-220bf03d84d2",
+      "headline": "The World Cup Bracket Is Set \u2014 and It\u2019s Coming to Your Neighborhood",
+      "slug": "world-cup-2026-round-of-16-bracket-nri-guide-mbappe-haaland-fourth-july-houston-metlife",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -65,7 +22,50 @@
         "vision_image_match": {
           "verdict": "MATCH",
           "what_photo_shows": "MetLife Stadium in New Jersey",
-          "reason": "The photo shows a stadium relevant to the World Cup travel story."
+          "reason": "The photo shows MetLife Stadium, relevant to the World Cup story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 5,
+        "embed_issues": [],
+        "image_match": {
+          "score": 6,
+          "issue": "The image of MetLife Stadium is relevant to the World Cup but does not specifically connect to the article's focus on neighborhood events."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses the World Cup's local impact, which resonates with the diaspora's interest in global events."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more specific examples of how the World Cup will impact local communities, especially in areas with significant NRI populations.",
+          "Enhance the connection to the diaspora by mentioning any local events or gatherings related to the World Cup that NRIs might participate in."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Revised by gemini-2.5-flash (0\u2192719 words)"
+      ],
+      "revised": true,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "61f862f3-094f-4d00-9c4c-604d2334c01e",
+      "headline": "Ashwin in America. Cricket Has Never Had This Kind of Star Power on U.S. Soil.",
+      "slug": "ashwin-mlc-san-francisco-unicorns-2026-midseason-american-cricket-pretorius-bay-area-diaspora-nri",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Ravichandran Ashwin bowling in cricket",
+          "reason": "The photo shows Ravichandran Ashwin, relevant to the story about his cricket debut in the U.S."
         },
         "inline_image_mismatches": []
       },
@@ -79,13 +79,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively addresses the needs and concerns of NRIs traveling for the World Cup, making it relevant to the diaspora."
+          "note": "The article effectively connects Ashwin's presence in Major League Cricket to the Indian diaspora in the Bay Area, highlighting community engagement."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more specific tips for NRIs, such as cultural considerations or local Indian communities in the host cities.",
-          "Add a section on safety tips for NRIs traveling during the tournament."
+          "Consider adding quotes from local fans or community leaders to enhance the diaspora connection.",
+          "Include more statistics or historical context about cricket's growth in the U.S. to provide a broader perspective."
         ],
         "verdict": "pass"
       },
@@ -97,81 +97,97 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "2efe8f59-e410-49bc-9b5f-f2acf1a2f0b9",
-      "headline": "Mumbai Wants to Anchor a Seven-Star Floating Hotel Off Nariman Point \u2014 Here's What NRIs Need to Know",
-      "slug": "mumbai-floating-hotel-nariman-point-marina-nri-20260701",
+      "id": "129e278b-104d-46d6-ba4c-d8e8d2fe9bc9",
+      "headline": "India's First Trade Deal With a Western Economy in Decades Goes Live in Two Weeks. Here's What Changes.",
+      "slug": "india-uk-ceta-trade-deal-july-15-implementation-diaspora-professionals-20260701",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Mumbai skyline and waterfront",
-          "reason": "The photo shows Mumbai's skyline, relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the floating hotel project to the needs and interests of the NRI community, particularly in terms of travel convenience and accommodation."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from local officials or stakeholders to enhance credibility.",
-          "Include more specific details about the timeline for the project's completion to provide clearer expectations for NRIs."
+        "duplicate_images": [
+          {
+            "article_id": "28eb0fff-5288-49b3-95d8-cd1d3e8be0df",
+            "headline": "India's Biggest Trade Deal Goes Live in 17 Days. It Has Depl"
+          },
+          {
+            "article_id": "a48404d7-95a8-4422-9655-c686351d96ce",
+            "headline": "India Won't Sign the US Trade Deal Until It Gets a Better Ra"
+          }
         ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "49ae7b2a-c64a-4804-80f6-df25cd0562cb",
-      "headline": "Medicare Will Now Cover Ozempic and Wegovy for Weight Loss \u2014 Here's Who Qualifies and What It Costs",
-      "slug": "medicare-glp1-bridge-program-launches-july-1-ozempic-wegovy-50-dollars-seniors-nri-diaspora-20260701",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "syringes held by gloved hand",
-          "reason": "The photo is related to medication administration, relevant to the story."
+          "what_photo_shows": "Union Commerce Minister Piyush Goyal",
+          "reason": "The photo shows the correct named person related to the story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/DaGQxSgHyRc/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not appear to relate to the India-UK trade deal or its implications."
+          }
+        ],
         "image_match": {
           "score": 7,
-          "issue": "The image does not directly relate to the topic of Medicare or weight loss medications."
+          "issue": "The image of Piyush Goyal is relevant as he is a key figure in the trade deal, but it does not directly illustrate the trade agreement itself."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the Medicare changes to the Indian American diaspora, highlighting specific health risks."
+          "quality": 9,
+          "note": "The article effectively discusses the implications of the trade deal for the Indian diaspora in the UK, particularly regarding financial savings and professional mobility."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that reflects Medicare or weight loss medications.",
-          "Add more statistics or quotes from experts to enhance credibility."
+          "Replace the irrelevant Instagram embed with a more relevant source or remove it altogether.",
+          "Consider adding a visual representation of the trade deal's impact on the diaspora, such as infographics or charts."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/DaGQxSgHyRc/",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "b81cf847-2eaf-439f-b835-ab3f13f19c62",
+      "headline": "India Just Replaced Its Biggest Rural Jobs Programme. Not Everyone Thinks the Replacement Is an Upgrade.",
+      "slug": "india-mgnrega-replaced-vb-g-ram-g-rural-employment-overhaul-july-2026",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "workers removing mud from dry pond",
+          "reason": "The photo shows MGNREGA workers, relevant to the rural jobs programme story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses a significant policy change that could impact NRIs interested in rural development and employment issues in India."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Expand on how the changes in the rural jobs programme may affect NRIs' investments or interests in rural India.",
+          "Include quotes or perspectives from NRI stakeholders to enhance the diaspora connection."
         ],
         "verdict": "pass"
       },
