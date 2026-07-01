@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-01T05:15:17.903127+00:00",
+  "timestamp": "2026-07-01T06:16:04.066188+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
+    "pass": 7,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "e800dc59-edc6-4d54-9153-57308b8ffb71",
-      "headline": "Bollywood\u2019s Screenwriters Are Begging for Love Stories \u2014 But Producers Only Want Blood",
-      "slug": "bollywood-screenwriters-romance-horror-creative-crisis-thr-india-2026-diaspora-nri-20260701",
+      "id": "b6744c39-21fd-4453-a1ba-3968b5682f4d",
+      "headline": "India Just Had Its Fifth-Driest June Since 1901 \u2014 and the Monsoon Forecast for July Isn't Much Better",
+      "slug": "india-fifth-driest-june-1901-monsoon-deficit-el-nino-inflation-nri-investor-20260701",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,185 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "woman speaking at an event",
-          "reason": "The photo shows a screenwriter relevant to the Bollywood story."
+          "what_photo_shows": "Farmer working in rainy farmland",
+          "reason": "The photo shows Indian farmland during monsoon season, relevant to the story about monsoon impact on agriculture."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the implications of monsoon rainfall on the Indian economy, which is relevant to NRI investors concerned about agricultural and economic stability."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more specific examples of how NRI investors can respond to the monsoon forecast.",
+          "Add quotes from experts or stakeholders to enhance credibility and engagement."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "7ac112b1-1243-4502-b7a9-645c5c9adcff",
+      "headline": "Walking 10,000 Steps a Day Can Offset a Full Day at Your Desk, a 72,000-Person Study Finds",
+      "slug": "walking-10000-steps-offsets-sitting-72000-person-study-desk-workers-diaspora-20260701",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "two people walking up steps",
+          "reason": "The photo shows people walking, which aligns with the story about walking 10,000 steps."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the findings to the South Asian diaspora's lifestyle and health risks."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of how the diaspora can incorporate walking into their daily routines.",
+          "Include quotes or insights from South Asian health experts to strengthen the diaspora connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "02a58c51-ed3b-4c3d-8ccf-ca5a99fedee0",
+      "headline": "South Asians Have the Highest Heart Disease Risk at 45 \u2014 Despite Eating Better and Drinking Less Than Everyone Else",
+      "slug": "south-asians-highest-heart-risk-45-despite-healthier-habits-masala-study-diaspora-20260701",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "doctor checking blood pressure",
+          "reason": "The photo shows a cardiovascular screening, relevant to heart health."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article directly addresses South Asians in the U.S. and provides actionable health advice relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more personal anecdotes or testimonials from South Asians to enhance relatability.",
+          "Include a section on preventive measures or lifestyle changes that can be adopted by the diaspora to mitigate heart disease risk."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "206845c3-641f-4a00-8efb-ddbd1fd63f3d",
+      "headline": "Adani Is Spending $2.3 Billion to Build Airport Cities Across India \u2014 Here's What Changes for NRI Travellers",
+      "slug": "adani-airport-cities-mumbai-ihg-kimpton-nri-20260701",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "cd71cbda-917d-48aa-87fe-89e5e7697f4f",
+            "headline": "Navi Mumbai's Airport Goes International on July 15 \u2014 and th"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Navi Mumbai International Airport interior",
+          "reason": "The photo shows an airport relevant to the story about Adani's airport city plan."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the developments in airport cities to the needs and interests of NRI travelers, highlighting specific benefits."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of how these airport cities will directly impact NRI travelers beyond hotel options.",
+          "Include quotes or insights from NRI travelers or experts to enhance the personal connection to the diaspora audience."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "fc0dec30-53c6-4f2c-a37c-b495d1d98671",
+      "headline": "Flying Home This Summer? India's Mandatory Air Suvidha 2.0 Form Is Now Live for Every International Arrival",
+      "slug": "air-suvidha-health-form-india-ebola-nri-guide-20260701",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Interior of an airport terminal",
+          "reason": "The photo shows an airport terminal, relevant to the travel story."
         },
         "inline_image_mismatches": []
       },
@@ -31,18 +208,109 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image features Alankrita Shrivastava, a prominent screenwriter mentioned in the article, which is relevant to the topic."
+          "issue": "The image depicts an airport terminal, which is relevant to the topic of travel, but does not specifically relate to the Air Suvidha 2.0 form."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article discusses the impact of Bollywood's creative direction on NRIs, connecting diaspora audiences to their cultural roots."
+          "quality": 9,
+          "note": "The article effectively addresses the concerns and needs of NRIs traveling to India, particularly during the peak summer season."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more direct quotes from the screenwriters to enhance the article's depth.",
-          "Include specific examples of recent romantic films that failed to perform to provide context."
+          "Consider including a direct quote from a travel expert or NRI to enhance the personal connection.",
+          "Add a brief section on how the Air Suvidha 2.0 form compares to similar forms in other countries to provide a broader context."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "efd92bc6-4b81-4b57-b748-856cff07f0bf",
+      "headline": "CRED's Kunal Shah Is Now Running WhatsApp. Meta Paid $900 Million for That Handshake.",
+      "slug": "kunal-shah-cred-whatsapp-ceo-meta-900-million-20260701",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "man in Freecharge shirt",
+          "reason": "The photo shows Kunal Shah, relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the appointment of Kunal Shah to the NRI community by highlighting WhatsApp's role in communication between NRIs and their families in India."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of how WhatsApp's features may evolve under Shah's leadership to further engage the diaspora audience.",
+          "Include quotes or insights from Kunal Shah or Meta executives to enhance the article's depth and authority."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "37dd8140-cac9-4f37-b51e-7a8dc4db6a23",
+      "headline": "Qualcomm Just Spent $4 Billion to Break Nvidia's Software Lock. It May Spend $10 Billion More.",
+      "slug": "qualcomm-modular-tenstorrent-nvidia-cuda-ai-data-center-20260701",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "b437deec-3da1-478d-a189-ea7451315ff6",
+            "headline": "Qualcomm Is Spending $14 Billion to Break NVIDIA's Grip on A"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Qualcomm headquarters building",
+          "reason": "The photo shows Qualcomm headquarters, relevant to the Qualcomm story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively highlights Qualcomm's role as a major employer of Indian engineers, connecting the topic to the Indian diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more direct quotes from Qualcomm executives or industry analysts to enhance credibility.",
+          "Include a brief overview of how Qualcomm's AI initiatives compare to competitors like Nvidia and AMD for context."
         ],
         "verdict": "pass"
       },
