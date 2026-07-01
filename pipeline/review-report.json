@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-01T07:45:14.827623+00:00",
+  "timestamp": "2026-07-01T08:15:35.735680+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
+    "pass": 3,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,18 +11,23 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "81151aab-4eff-4635-a1d8-1c0ecb077ede",
-      "headline": "Lightning, Hotel Serenades and Two Ruthless Goals. Mexico Own the Azteca \u2014 and the World Cup Round of 16 Awaits.",
-      "slug": "mexico-2-0-ecuador-azteca-quinones-jimenez-world-cup-round-of-16-bracket-nri-diaspora-2026",
+      "id": "01713cb7-a1ef-4e45-aaf3-9bf68d3caef1",
+      "headline": "The Supreme Court Just Made It Easier to Turn Away Green Card Holders at the Border",
+      "slug": "scotus-blanche-lau-green-card-border-denial-indian-20260701",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "90e03639-3bb2-41bd-a870-de67ccaceedf",
+            "headline": "Three Rulings, Four Days, One Direction: The Supreme Court J"
+          }
+        ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Estadio Azteca aerial view",
-          "reason": "The photo shows Estadio Azteca, relevant to the story."
+          "what_photo_shows": "United States Supreme Court building",
+          "reason": "The photo shows the Supreme Court, relevant to the court ruling story."
         },
         "inline_image_mismatches": []
       },
@@ -36,13 +41,99 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the World Cup to the Indian diaspora by highlighting the locations of matches and the significance for Indian-Americans."
+          "note": "The article effectively connects the Supreme Court ruling to the concerns of Indian green card holders, making it relevant for the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes from players or coaches to enhance the narrative.",
-          "Add a brief historical context about Mexico's previous World Cup performances to enrich the analysis."
+          "Consider adding quotes from more diverse perspectives, such as immigration advocates or affected individuals, to enrich the narrative.",
+          "Include a brief explanation of the implications of the ruling for non-Indian green card holders to broaden the article's appeal."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "be11e4f2-41e2-4704-9bc9-128fb47c9cc6",
+      "headline": "Your LinkedIn Profile Could Tank Your Visa Interview. The State Department Is Reading It",
+      "slug": "linkedin-social-media-vetting-h1b-visa-india-consulate-20260701",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "LinkedIn logo on smartphone",
+          "reason": "The photo is relevant to the story about LinkedIn profiles affecting visa interviews."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image is relevant to the topic of LinkedIn and professional networking but lacks a direct connection to visa interviews."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article directly addresses the concerns of Indian H-1B visa applicants, making it highly relevant to the diaspora audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include specific examples of LinkedIn posts that could raise red flags to provide more clarity.",
+          "Add a section on how applicants can prepare their LinkedIn profiles to avoid issues."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "fcfbfe44-7918-40da-9ec6-69ba76576537",
+      "headline": "China's K Visa Wants India's Best Engineers. Washington Barely Noticed",
+      "slug": "china-k-visa-indian-engineers-global-talent-race-20260701",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "open passport with travel stamps",
+          "reason": "The photo of a passport is relevant to the immigration topic."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 8,
+          "issue": "The image does not directly relate to the article's focus on immigration and visas, but it is a generic representation of professionals."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the implications of China's K visa on Indian professionals, making it relevant to the diaspora audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more direct quotes or testimonials from Indian professionals considering the K visa to enhance the personal connection.",
+          "Add a section comparing the K visa with other countries' visa programs to provide a broader context for Indian readers."
         ],
         "verdict": "pass"
       },
