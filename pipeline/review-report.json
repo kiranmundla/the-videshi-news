@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-01T13:45:14.108575+00:00",
+  "timestamp": "2026-07-01T14:15:49.486640+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
+    "pass": 4,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "fa8c4633-c76f-4db8-b486-62c2e4243ec6",
-      "headline": "Seven Franchises Want Him. Hardik Pandya's Mumbai Indians Chapter Is Heading for Its Final Page.",
-      "slug": "hardik-pandya-ipl-2027-trade-seven-franchises-mumbai-indians-csk-kkr-rr-diaspora-nri",
+      "id": "4f59d92e-ae5b-4924-9b9f-b2bf99344664",
+      "headline": "India's Auto Giants Just Posted Blockbuster June Sales \u2014 Maruti Hit a Record 200K Units While Mahindra Surged 37%",
+      "slug": "india-auto-sales-june-2026-maruti-record-mahindra-surge-suv-monsoon-risk-nri-investor-20260701",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,51 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Cricketer in Indian jersey",
-          "reason": "The photo shows a cricketer, relevant to the cricket story."
+          "what_photo_shows": "A Maruti Suzuki car parked",
+          "reason": "The photo shows a Maruti Suzuki car, relevant to the story about Maruti's sales."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses the performance of Indian auto giants, which may interest NRIs who follow economic trends in India."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more context on how these sales figures impact the Indian economy as a whole, particularly for NRIs.",
+          "Add quotes or insights from industry experts to enhance credibility and depth."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "1d976f56-788b-4f13-8575-68becb0bf1d4",
+      "headline": "The Weedkiller in Your Food May Be Rewiring Your Brain Through Your Gut \u2014 and the 'Safe' Doses Aren't So Safe",
+      "slug": "glyphosate-herbicide-gut-brain-microbiome-anxiety-safe-dose-molecular-psychiatry-diaspora-20260701",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "agricultural spraying in a crop field",
+          "reason": "The photo shows agricultural spraying, relevant to glyphosate use in crops."
         },
         "inline_image_mismatches": []
       },
@@ -36,13 +79,108 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the IPL trade scenario to the interests of NRI cricket fans, highlighting their engagement with the league."
+          "note": "The article effectively connects the issue of glyphosate to the Indian American community by discussing its impact on both American and Indian food systems."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from experts or analysts to enhance credibility.",
-          "Include more context on Hardik Pandya's past performances to provide a fuller picture of his career trajectory."
+          "Consider adding more specific examples of how glyphosate affects traditional Indian foods or farming practices.",
+          "Include quotes or insights from experts in the Indian agricultural sector to enhance credibility and relevance."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "adf32a0c-928b-4cff-bfd4-04e392035556",
+      "headline": "Navi Mumbai Airport Goes International on July 15 \u2014 and NRIs on the Eastern Side Finally Have a Gateway",
+      "slug": "navi-mumbai-airport-international-july-abu-dhabi-nri-20260701",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "206845c3-641f-4a00-8efb-ddbd1fd63f3d",
+            "headline": "Adani Is Spending $2.3 Billion to Build Airport Cities Acros"
+          },
+          {
+            "article_id": "cd71cbda-917d-48aa-87fe-89e5e7697f4f",
+            "headline": "Navi Mumbai's Airport Goes International on July 15 \u2014 and th"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Navi Mumbai airport terminal interior",
+          "reason": "The photo shows the Navi Mumbai airport, relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively highlights the benefits of the new airport for NRIs, particularly in terms of accessibility and reduced travel time."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more specific examples of how the new airport will benefit NRIs beyond just travel time, such as potential economic impacts or increased flight options.",
+          "Add quotes from stakeholders or experts to enhance credibility and provide diverse perspectives on the airport's opening."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "171bb486-b4cf-4a78-8435-7a8b0bf0a87e",
+      "headline": "IndiGo Lite Is Here \u2014 India's Biggest Airline Wants You to Pay Only for What You Carry",
+      "slug": "indigo-lite-cabin-bag-fare-atf-cut-nri-20260701",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "IndiGo Airbus A320neo in flight",
+          "reason": "The photo shows an IndiGo aircraft, relevant to the airline story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the new fare structure to the travel habits and needs of NRIs, particularly in relation to domestic travel in India."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a quote from an industry expert or airline representative to enhance credibility.",
+          "Include a comparison with other airlines' pricing strategies to provide more context."
         ],
         "verdict": "pass"
       },
