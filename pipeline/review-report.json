@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-01T11:15:40.414204+00:00",
+  "timestamp": "2026-07-01T12:16:07.851733+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 4,
-    "flag": 0,
+    "pass": 6,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "f9ffa62c-dc49-49b5-9c96-3f3be737eb12",
-      "headline": "Miranda Priestly Made $678 Million \u2014 Now She's Coming to Your Living Room",
-      "slug": "devil-wears-prada-2-streaming-jiohotstar-meryl-streep-678-million-simone-ashley-where-to-watch-diaspora-nri-20260701",
+      "id": "ab13e391-8b1f-48af-a5c8-037bc5989093",
+      "headline": "India and America Are Quietly Building an AI Pact. The Diaspora Is the Bridge.",
+      "slug": "india-us-ai-alliance-diaspora-kwatra-modi-20260701",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "The Devil Wears Prada 2 poster",
-          "reason": "The photo is related to the movie mentioned in the story."
+          "what_photo_shows": "Prime Minister Modi with world leaders",
+          "reason": "The photo shows Modi with leaders at an AI summit, relevant to the AI pact story."
         },
         "inline_image_mismatches": []
       },
@@ -30,67 +30,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively highlights the film's availability on JioHotstar, catering to Indian audiences and mentioning South Asian representation."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more context about the significance of the film's release for the Indian audience.",
-          "Include quotes or reactions from Indian viewers or critics to enhance the diaspora connection."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "69a3d532-5445-4056-aff8-4b0c341f19a7",
-      "headline": "An Indian God Just Got Invited to Comic-Con \u2014 and He's Bringing Hans Zimmer",
-      "slug": "ramayana-trailer-san-diego-comic-con-ranbir-kapoor-hans-zimmer-ar-rahman-imdb-most-anticipated-diaspora-nri-20260701",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "ef4e27a6-0146-44d9-874a-c7272bbff698",
-            "headline": "Ramayana Is Heading to Comic-Con \u2014 and Ranbir Kapoor Just Be"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A man in a black shirt",
-          "reason": "The photo plausibly shows Ranbir Kapoor, relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 2,
-          "issue": "irrelevant"
+          "score": 6,
+          "issue": "The image features Prime Minister Modi at an AI Action Summit, which is relevant but does not directly illustrate the specific AI pact discussed in the article."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects the significance of the film's debut at Comic-Con to the diaspora audience's cultural heritage and experiences."
+          "note": "The article effectively highlights the role of the Indian diaspora in bridging AI collaboration between India and the US, making it highly relevant to NRI readers."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the hero image with one that is more relevant to the topic of the article, such as an image related to the film or Comic-Con.",
-          "Consider adding more quotes or insights from the producers or directors to enhance the depth of the article."
+          "Consider including more specific examples of how the diaspora is influencing AI developments in both countries.",
+          "Add a concluding section summarizing the potential impacts of the AI pact on the Indian diaspora."
         ],
         "verdict": "pass"
       },
@@ -102,9 +54,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "8e31fb73-89d5-4142-81bc-2f87c3f7e3c2",
-      "headline": "Ishan Kishan Rises to World No.1 in T20I Rankings Ahead of England Series \u2014 Only the Fourth Indian to Reach the Summit",
-      "slug": "ishan-kishan-number-one-t20i-batter-icc-rankings-england-series-20260701",
+      "id": "bb217093-a45e-473f-9589-89730cee86bd",
+      "headline": "SpaceX Joins the Nasdaq-100 on July 7. Your 401(k) Is About to Own a Rocket Company.",
+      "slug": "spacex-nasdaq-100-july-7-nri-401k-index-20260701",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -112,8 +64,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A man in an orange shirt",
-          "reason": "The photo plausibly shows Ishan Kishan, matching the story topic."
+          "what_photo_shows": "SpaceX Falcon 9 rocket launch",
+          "reason": "The photo shows a SpaceX rocket, relevant to the SpaceX story."
         },
         "inline_image_mismatches": []
       },
@@ -127,13 +79,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects Kishan's achievements to the Indian diaspora in the UK, highlighting the significance of his ranking and the series."
+          "note": "The article effectively connects the topic of SpaceX's Nasdaq inclusion to the interests of NRI investors, particularly regarding their retirement savings."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more quotes or reactions from Kishan or cricket analysts to enhance the narrative.",
-          "Include a brief overview of Kishan's previous performances to provide context for his rise to the top."
+          "Consider adding more specific examples of how SpaceX's operations could impact Indian markets or technology sectors.",
+          "Include a brief overview of how SpaceX's performance might influence the broader tech market, especially for NRI investors."
         ],
         "verdict": "pass"
       },
@@ -145,34 +97,190 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "5ead5ca1-9413-4b44-9996-220bf03d84d2",
-      "headline": "The World Cup Bracket Is Set \u2014 and It\u2019s Coming to Your Neighborhood",
-      "slug": "world-cup-2026-round-of-16-bracket-nri-guide-mbappe-haaland-fourth-july-houston-metlife",
+      "id": "0a9918d9-b310-4c53-8743-7459743de2e7",
+      "headline": "Oracle's AI Purge Hit India Hardest. 12,000 Workers Got an Email at 6 AM.",
+      "slug": "oracle-ai-purge-21000-layoffs-india-hub-20260701",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [],
-        "broken_embeds": [
-          {
-            "url": "https://x.com/FIFAWorldCup/status/1754160486339023168",
-            "problem": "broken",
-            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
-          },
-          {
-            "url": "https://x.com/FIFAWorldCup/status/1754160488977250742",
-            "problem": "broken",
-            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
-          },
-          {
-            "url": "https://x.com/FIFAWorldCup/status/1754160491413123389",
-            "problem": "broken",
-            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
-          }
-        ],
+        "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "MetLife Stadium in New Jersey",
-          "reason": "The photo shows MetLife Stadium, relevant to the World Cup story."
+          "what_photo_shows": "Oracle headquarters in California",
+          "reason": "The photo shows Oracle headquarters, relevant to the story about Oracle job cuts."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image of Oracle's headquarters is relevant but does not directly illustrate the impact of layoffs on Indian workers."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the implications of layoffs for H-1B visa holders, which is relevant to the Indian diaspora in the tech industry."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include quotes or reactions from affected employees to add a personal touch.",
+          "Consider adding statistics or insights on the broader impact of these layoffs on the Indian tech job market."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "013e2163-a3e8-4331-b7cf-1d6b1cb9f858",
+      "headline": "GOPIO Tells Trump the $100,000 H-1B Fee Will Hurt America More Than It Hurts India",
+      "slug": "gopio-letter-trump-100k-h1b-fee-american-competitiveness-20260701",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "The White House in Washington, D.C.",
+          "reason": "The White House is relevant to a story about a letter to the White House."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image of the White House is relevant but does not directly connect to the specific topic of H-1B visas."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively highlights the role of the Indian diaspora in the U.S. economy and their advocacy efforts."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that directly relates to the H-1B visa topic or the Indian diaspora.",
+          "Add a quote or perspective from an NRI or Indian-American individual to further enhance the diaspora connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "84f5afb2-4c8f-42e1-8e15-c726395308a2",
+      "headline": "F-1 Visa Grants to Indian Students Fell 69 Per Cent. The H-1B Pipeline Will Feel It Next",
+      "slug": "f1-visa-indian-students-69-percent-decline-h1b-pipeline-20260701",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "College students outside university building",
+          "reason": "The photo shows college students, relevant to the student visa topic."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 6,
+          "issue": "The image does not directly relate to the topic of F-1 visas or immigration."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the impact of visa changes on Indian students, which is highly relevant to the Indian diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include a more relevant image that reflects the theme of immigration or Indian students in the US.",
+          "Add quotes or testimonials from affected students to enhance the personal connection to the diaspora."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "ecb1966d-826c-47e6-9ce9-4639edfe65aa",
+      "headline": "Three Bay Area Temples Hit in Three Weeks. The Diaspora Is Running Out of Cheeks to Turn.",
+      "slug": "bay-area-hindu-temples-attacked-khalistan-graffiti-diaspora-safety-20260701",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "BAPS Swaminarayan Mandir in California",
+          "reason": "The photo shows a temple similar to those mentioned in the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image of the BAPS Mandir does not directly match the specific temples mentioned in the article."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the incidents to the broader experience and concerns of the Indian diaspora in the U.S."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including images of the specific temples mentioned for better relevance.",
+          "Add quotes or reactions from local community members to enhance the emotional impact."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "d5eca1d1-be43-42a5-9b6a-6300bcd52774",
+      "headline": "America Turns 250. The Indian Diaspora Is Celebrating with Both Flags.",
+      "slug": "america-250th-indian-diaspora-both-flags-celebrations-20260701",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Indian-American parade with flags",
+          "reason": "The photo shows a parade with Indian flags, matching the celebration theme."
         },
         "inline_image_mismatches": []
       },
@@ -186,18 +294,17 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the World Cup to the Indian diaspora, highlighting accessibility and community engagement."
+          "note": "The article effectively highlights the Indian diaspora's celebrations and contributions in the context of America's 250th anniversary."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include specific examples of Indian restaurants or community centers that might host watch parties to enhance local relevance.",
-          "Add quotes or anecdotes from members of the Indian diaspora to provide a personal touch and deeper connection."
+          "Include more direct quotes from diaspora members to enhance personal connection.",
+          "Add a section on how the celebrations differ across various regions in the US."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "Removed 3 broken/hallucinated embed(s)",
         "promoted to published"
       ],
       "revised": false,
