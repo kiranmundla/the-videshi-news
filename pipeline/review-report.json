@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-01T03:15:56.723043+00:00",
+  "timestamp": "2026-07-01T04:15:16.698170+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 5,
+    "pass": 2,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,58 +11,42 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "75406767-47cc-4abf-b7c1-f7464e701d05",
-      "headline": "Pathaanon se Kehna \u2014 Ajay Devgn Just Dropped Bollywood's Most Combustible Teaser of the Year",
-      "slug": "chauhaan-ajay-devgn-pathaanon-se-kehna-controversy-kshatriya-parishad-kashmir-aanand-l-rai-diaspora-nri-20260630",
+      "id": "74bcb203-a896-4fbc-b9a7-06905b817d67",
+      "headline": "The DOJ Declared War on Birth Tourism. Indian Visa Holders Should Read the Fine Print",
+      "slug": "doj-birth-tourism-crackdown-indian-visa-holders-20260701",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "85fb8cc2-b4ea-43a3-bee4-a1c17d6491ef",
-            "headline": "800 Women in Pink Sarees, a 60-Foot Waterfall Poster, and Bo"
-          },
-          {
-            "article_id": "1ec46a7a-50b7-4ff7-b49c-63a0e9b24b15",
-            "headline": "Jumma Chumma, a Kashmir Standoff, and Five Words That Broke "
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Ajay Devgn at an event",
-          "reason": "The photo shows Ajay Devgn, who is relevant to the story."
+          "what_photo_shows": "open passport with stamps",
+          "reason": "The photo is relevant to immigration and visa topics."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 7,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/reel/DaAJLxLsEoo/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram reel does not appear to be directly related to the teaser or the themes discussed in the article."
-          }
-        ],
+        "embed_issues": [],
         "image_match": {
-          "score": 8,
-          "issue": null
+          "score": 6,
+          "issue": "The image does not directly relate to the topic of birth tourism or immigration."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 6,
-          "note": "The article touches on Bollywood's political narratives, which may resonate with the diaspora, but lacks a direct connection to NRI experiences."
+          "quality": 8,
+          "note": "The article discusses implications for Indian visa holders and the Indian diaspora regarding U.S. immigration policies."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more context on how the film's themes might resonate with the NRI audience.",
-          "Consider adding quotes or reactions from diaspora members regarding the teaser's political implications."
+          "Consider using an image that directly relates to birth tourism or immigration to enhance relevance.",
+          "Add more specific examples or quotes from Indian nationals affected by these policies to strengthen the diaspora connection."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/reel/DaAJLxLsEoo/",
         "promoted to published"
       ],
       "revised": false,
@@ -70,23 +54,18 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "cf3b82b3-4fd6-4aa0-ab2f-cfd91b123ac3",
-      "headline": "Carmy Quit the Kitchen \u2014 and The Bear Just Served Its Best Season Yet",
-      "slug": "the-bear-season-5-finale-review-sydney-carmy-jiohotstar-best-season-diaspora-nri-20260630",
+      "id": "e4e26809-e804-479a-bee9-92c6523353db",
+      "headline": "The Supreme Court Settled Birthright Citizenship. For Indian H-1B Families, the Relief Is Real but Fragile",
+      "slug": "scotus-birthright-citizenship-indian-h1b-families-20260701",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "733ef5c0-a130-4030-973d-2019cb0f83c2",
-            "headline": "The Bear Just Served Its Final Course \u2014 and the Critics Are "
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "The Bear title screen",
-          "reason": "The photo is related to the TV series 'The Bear' mentioned in the story."
+          "what_photo_shows": "United States Supreme Court building",
+          "reason": "The photo of the Supreme Court building is relevant to a story about a Supreme Court ruling."
         },
         "inline_image_mismatches": []
       },
@@ -100,147 +79,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article connects the show's themes of family and community to the NRI experience, making it relatable for diaspora readers."
+          "note": "The article effectively connects the Supreme Court ruling to the concerns of Indian H-1B families, making it relevant for the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from critics or audience reactions to enhance credibility.",
-          "Include more context about the show's impact on the culinary scene or its cultural significance."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "a87c6a7a-67d8-4ba0-a84c-3e8cbdd82f3b",
-      "headline": "Tata Communications Has Replaced Its CEO, CFO, and CTO in Five Months. A Data Centre Fire Explains Why.",
-      "slug": "tata-communications-cto-chokshi-management-overhaul-data-centre-20260701",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "server racks in a data centre",
-          "reason": "The photo shows server racks, relevant to the data centre fire story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image is relevant to the tech theme but does not specifically depict Tata Communications or data centers."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article connects well with NRI investors by discussing Tata Communications' role in India's digital economy."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider including a more specific image related to Tata Communications or data centers to enhance relevance.",
-          "Expand on the implications of the leadership changes for NRI investors to strengthen the diaspora angle."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "1ed95ccd-366a-449e-81ae-1ffccad2b3da",
-      "headline": "Visa, Mastercard, and Google Just Launched a Stablecoin. It Has 140 Partners and Zero Fees.",
-      "slug": "open-usd-stablecoin-visa-mastercard-google-nri-remittances-20260701",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Bitcoin coin with financial data",
-          "reason": "The photo shows financial elements relevant to a fintech story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image is relevant to fintech but does not specifically depict stablecoins or the companies mentioned."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the stablecoin launch to the potential benefits for the Indian diaspora, particularly in remittances."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider including a more relevant image that directly represents stablecoins or digital currency.",
-          "Add a brief explanation of what a stablecoin is for readers who may not be familiar with the concept."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "656fe6fe-a5ab-4a53-b7aa-4c42c346babd",
-      "headline": "Nadella's Microsoft Is About to Cut 5,700 Jobs. Xbox May Never Recover.",
-      "slug": "microsoft-5700-layoffs-xbox-gaming-nadella-h1b-20260701",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "91c6e03e-1638-456f-82a2-495a3c185e5b",
-            "headline": "Nadella's Microsoft Is Being Sued for Overhyping AI. Indian "
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Microsoft CEO Satya Nadella",
-          "reason": "The photo shows the correct named person related to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the layoffs at Microsoft to the Indian tech diaspora, discussing the implications for H-1B visa holders and Indian IT services firms."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes or perspectives from affected employees or industry experts to enhance the human element of the story.",
-          "Include more data or statistics on the impact of layoffs on the Indian tech workforce to strengthen the diaspora angle."
+          "Consider adding quotes or reactions from Indian diaspora organizations to enhance the community perspective.",
+          "Include more statistics or data on the impact of this ruling specifically on Indian families to strengthen the argument."
         ],
         "verdict": "pass"
       },
