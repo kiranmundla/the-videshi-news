@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-06-30T23:15:22.316557+00:00",
+  "timestamp": "2026-07-01T00:15:51.830044+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 0,
-    "flag": 2,
+    "pass": 7,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,60 +11,42 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "13c66ca8-0da4-4541-997e-05784856fa44",
-      "headline": "\u20b91 Crore and Empty Theatres on Day One \u2014 Three Weeks Later, Nobody Can Get a Ticket",
-      "slug": "main-vaapas-aaunga-imtiaz-ali-sleeper-hit-73-crore-word-of-mouth-diljit-sharvari-partition-diaspora-nri-20260630",
+      "id": "54b6a37b-a8d1-453b-b69d-8d684680d79c",
+      "headline": "The India-US Trade Deal Is '99 Per Cent Done.' Nobody Is Talking About Visas",
+      "slug": "india-us-trade-deal-talent-mobility-visa-missing-20260701",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "dea77820-bb20-4f0f-adc1-14f1ecac8871",
-            "headline": "\u20b91 Crore Opening, \u20b965 Crore and Climbing: The Most Beautiful"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "film poster for Main Vaapas Aaunga",
-          "reason": "The photo shows a film poster related to the story's topic."
+          "what_photo_shows": "Modi and Trump meeting at G7 Summit",
+          "reason": "The photo shows leaders relevant to India-US relations, fitting the trade deal story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/reel/DZp0ukASCVn/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram reel does not appear to be directly related to the film or its themes, making it irrelevant to the article."
-          },
-          {
-            "url": "https://youtube.com/watch?v=PRUTWluKRW8",
-            "problem": "irrelevant",
-            "explanation": "The YouTube link is not specified to be related to the film or its promotion, which could make it irrelevant."
-          }
-        ],
+        "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image depicts a meeting between Modi and Trump, which is relevant but does not directly illustrate the topic of visas or trade agreements."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects the film's themes of Partition and inherited grief to the experiences of the Indian diaspora, making it relatable."
+          "note": "The article effectively addresses the concerns of Indian Americans regarding visa issues in the context of trade agreements."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant Instagram and YouTube links with embeds that directly relate to the film or its themes.",
-          "Consider adding quotes or reactions from diaspora audiences to enhance the connection to NRI readers."
+          "Consider including more recent statistics or quotes from Indian American professionals to enhance relatability.",
+          "Add a section that outlines potential future implications for Indian Americans if visa issues remain unaddressed in trade talks."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/reel/DZp0ukASCVn/",
-        "Removed irrelevant embed: https://youtube.com/watch?v=PRUTWluKRW8",
         "promoted to published"
       ],
       "revised": false,
@@ -72,59 +54,295 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "e447ccba-3098-4604-bfe3-72620b7d4e82",
-      "headline": "No Pandya. No Nitish. India Walk Into England With an All-Rounder Void They Cannot Hide.",
-      "slug": "nitish-kumar-reddy-ruled-out-injury-pandya-rehab-shedge-replacement-india-england-t20i-2026-diaspora-nri",
+      "id": "a9387eb6-819d-4880-857e-da536b0dea36",
+      "headline": "India's EB-5 Investor Green Cards Just Ran Out. The Escape Hatch Is Closing",
+      "slug": "eb5-india-unreserved-visa-cap-exhausted-fy2026-20260701",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [
+        "duplicate_images": [
           {
-            "url": "https://x.com/BCCI/status/1805123456789012345",
-            "problem": "broken",
-            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
+            "article_id": "aa18166c-663c-45a8-b24e-f5f8ce229faa",
+            "headline": "The Receipt That Never Ends. Every Fee Washington Has Added "
           },
           {
-            "url": "https://x.com/BCCI/status/1805123456789012345",
-            "problem": "broken",
-            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
+            "article_id": "2f893da9-3f4b-4ee9-9998-647e3cb86da1",
+            "headline": "Eleven Million Cases and Counting. The Green Card Machine Ca"
           },
           {
-            "url": "https://instagram.com/p/C8s_d_rR0tX/",
-            "problem": "broken",
-            "detail": "Instagram embed shows removed/broken placeholder"
+            "article_id": "faac8aeb-8246-40b8-81c3-1daaa48ee892",
+            "headline": "EB-5 Becomes India's Fastest Green Card Route. The Window Cl"
+          },
+          {
+            "article_id": "d276a8b7-a31d-454e-944f-1d95ef0e1ad8",
+            "headline": "A $100,000 Price Tag on Every H-1B Hire. A Judge Said No. Th"
+          },
+          {
+            "article_id": "7cd205b9-fefe-4bb3-8095-09600ad42101",
+            "headline": "You Used Day 1 CPT in 2019. USCIS Just Found Out"
+          },
+          {
+            "article_id": "68943038-05c3-4686-9959-65c1e60dd9c9",
+            "headline": "EB-2 India Is Shut Until October. The July Visa Bulletin Is "
           }
         ],
+        "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Cricketer in Indian team attire",
-          "reason": "The photo shows a cricketer, relevant to the cricket story."
+          "what_photo_shows": "USCIS Application Support Center",
+          "reason": "The photo is relevant to the immigration topic."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 7,
+        "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 2,
-          "issue": "irrelevant"
+          "score": 6,
+          "issue": "The image is relevant to immigration but does not specifically relate to the EB-5 program."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article discusses the impact of player injuries on India's cricket performance, which is relevant to NRI fans who follow Indian cricket."
+          "quality": 8,
+          "note": "The article discusses the impact of EB-5 visa changes on Indian families, which is highly relevant to the NRI community."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the hero image with one that features either Nitish Kumar Reddy or Hardik Pandya to better match the article's focus.",
-          "Add quotes or reactions from NRI fans or cricket analysts to enhance the diaspora connection."
+          "Consider including more specific examples or testimonials from Indian families affected by the EB-5 visa changes to enhance relatability.",
+          "Use a more directly related image, such as one depicting Indian families or individuals involved in the EB-5 process."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
-        "Removed 3 broken/hallucinated embed(s)",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "42252afd-c655-40f4-9985-591394d1e714",
+      "headline": "He Sent \u20b911 Lakh to His Parents. India's Tax Department Took Six Years to Believe It Was a Gift.",
+      "slug": "nri-gift-tax-dispute-11-lakh-parents-itat-documentation-20260701",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "tax documents and smartphone on desk",
+          "reason": "The photo subject aligns with the story about tax issues and NRIs."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the article's topic of tax and remittances."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively addresses the concerns of NRIs regarding remittances and tax implications."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that visually represents the theme of remittances or financial transactions.",
+          "Add a brief conclusion summarizing the key takeaways for NRIs to reinforce the article's message."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "809d87dd-6eed-4722-92fa-80af75d9cca2",
+      "headline": "The Diaspora's Highest-Ranking AI Voice in Washington Just Walked Out of the White House",
+      "slug": "sriram-krishnan-white-house-ai-adviser-departure-diaspora-20260701",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Man in suit speaking at event",
+          "reason": "The photo plausibly shows Sriram Krishnan, relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to Sriram Krishnan or AI, but is a general image of Washington."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects Krishnan's story to the broader Indian-American diaspora narrative, highlighting their influence in both corporate and governmental spheres."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including a more relevant image that directly relates to Sriram Krishnan or AI.",
+          "Add quotes or insights from other diaspora figures to enrich the narrative."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "0dbf294d-e746-4ada-aa25-a66af888b8c9",
+      "headline": "FactSet's Indian-Origin CEO Just Plugged Google's AI Directly Into Wall Street's Terminal.",
+      "slug": "factset-viswanathan-google-agentic-ai-wall-street-20260701",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "financial market data on screen",
+          "reason": "The photo's subject is relevant to the financial technology story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the article's focus on AI and finance."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively highlights the achievements of an Indian-origin CEO and connects it to the broader diaspora narrative in the financial sector."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that visually represents AI or finance to better match the article's content.",
+          "Add more specific examples of how the partnership will impact Indian-origin professionals in finance."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "9a38bdd6-d225-49fb-9c15-bf0a3b704551",
+      "headline": "Google Just Opened a Factory That Makes Data for Humanoid Robots. Production Workers Should Pay Attention.",
+      "slug": "apptronik-robot-park-google-deepmind-apollo-humanoid-20260701",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "humanoid robot in digital network",
+          "reason": "The photo aligns with the story about AI-powered humanoid robots."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image depicts a robotic environment, which is relevant to the article's topic about humanoid robots and their training facility."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the implications for Indian workers in the US logistics and warehousing sectors, making a strong connection to the Indian diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of how Indian talent is contributing to robotics development.",
+          "Include quotes or insights from Indian engineers or experts in the field to enhance the diaspora connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "4199782a-6579-475a-9f68-876561ffeb5f",
+      "headline": "Pichai's Google Ran Out of GPUs. So It's Paying a Rocket Company $920 Million a Month.",
+      "slug": "pichai-google-gpu-shortage-spacex-meta-gemini-compute-20260701",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "376d36ae-f9ea-49fd-acb5-0b805245f1b0",
+            "headline": "Google Launched Its Best AI Model the Same Week It Lost Two "
+          },
+          {
+            "article_id": "6120b9d9-359f-4a0f-b172-2641c3337f3f",
+            "headline": "Pichai's Google Just Told Meta to Get in Line. The AI Comput"
+          },
+          {
+            "article_id": "ab161d96-ec6e-4375-b721-3cf85ad87b26",
+            "headline": "Pichai's Worst Week: Google Lost a Nobel Laureate, a Transfo"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Sundar Pichai at an event",
+          "reason": "The photo shows Sundar Pichai, relevant to the story about Google."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image of Sundar Pichai is relevant as it relates to Google, but it does not directly illustrate the GPU shortage or the SpaceX deal."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the GPU shortage to Indian tech workers and NRI investors, making it relevant to the diaspora audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including a relevant image that visually represents the GPU shortage or the partnership with SpaceX.",
+          "Add more context on how this situation affects the global tech landscape, particularly for Indian tech companies."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
         "promoted to published"
       ],
       "revised": false,
