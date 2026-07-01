@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-01T07:15:34.480230+00:00",
+  "timestamp": "2026-07-01T07:45:14.827623+00:00",
   "mode": "fix",
   "stats": {
     "pass": 1,
-    "flag": 1,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "7cd60e61-37ec-4b2a-b4ae-c249a215cf3d",
-      "headline": "'Where Are the Ladies?' Yash Just Answered \u2014 and All Five of Toxic's Leading Women Are About to Walk Into the Frame",
-      "slug": "toxic-yash-leading-ladies-teaser-nayanthara-kiara-advani-huma-qureshi-tara-sutaria-rukmini-vasanth-august-2026-diaspora-nri-20260701",
+      "id": "81151aab-4eff-4635-a1d8-1c0ecb077ede",
+      "headline": "Lightning, Hotel Serenades and Two Ruthless Goals. Mexico Own the Azteca \u2014 and the World Cup Round of 16 Awaits.",
+      "slug": "mexico-2-0-ecuador-azteca-quinones-jimenez-world-cup-round-of-16-bracket-nri-diaspora-2026",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,63 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Yash at a film event",
-          "reason": "The photo shows Yash, who is relevant to the story's subject."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/reel/DaPUtR9opoF/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram reel does not appear to be directly related to the article's focus on the film 'Toxic' and its female cast."
-          }
-        ],
-        "image_match": {
-          "score": 6,
-          "issue": "The image of Yash does not directly relate to the topic of the leading women in 'Toxic'."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses Yash's global appeal and the film's international release, which connects with the diaspora audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the irrelevant Instagram embed with a more relevant promotional material related to the female cast of 'Toxic'.",
-          "Consider using an image that features the female cast or a promotional poster for 'Toxic' to better match the article's focus."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/reel/DaPUtR9opoF/",
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "9472431b-85f9-4db3-8fd9-09ed825bdb2f",
-      "headline": "Three Months Ago Shahid Kapoor Said No. Now He's Getting \u20b918 Crore to Swap Souls with Janhvi Kapoor.",
-      "slug": "shahid-kapoor-adal-badal-body-swap-comedy-janhvi-kapoor-18-crore-cocktail-2-amit-sharma-amazon-mgm-diaspora-nri-20260701",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "ef552802-ba25-41d2-a26e-6eafa960d313",
-            "headline": "Akshay in All Black, Shahid Looking Like a Painting, and Ana"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Shahid Kapoor at an event",
-          "reason": "The photo shows Shahid Kapoor, who is relevant to the story."
+          "what_photo_shows": "Estadio Azteca aerial view",
+          "reason": "The photo shows Estadio Azteca, relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -91,13 +36,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects Shahid Kapoor's appeal and the film's accessibility to NRI audiences, highlighting cultural relevance."
+          "note": "The article effectively connects the World Cup to the Indian diaspora by highlighting the locations of matches and the significance for Indian-Americans."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more quotes from Shahid Kapoor or Janhvi Kapoor to enhance the article's depth.",
-          "Include a brief overview of the director's previous works to provide context for readers unfamiliar with Amit Sharma."
+          "Include more direct quotes from players or coaches to enhance the narrative.",
+          "Add a brief historical context about Mexico's previous World Cup performances to enrich the analysis."
         ],
         "verdict": "pass"
       },
