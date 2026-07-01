@@ -1,6 +1,6 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-07-01T12:00:46Z",
+  "last_updated": "2026-07-01T13:59:38Z",
   "stage": "Knockout Stage",
   "hosts": "USA, Mexico & Canada",
   "dates": {
@@ -4843,6 +4843,84 @@
       "account": "@fifaworldcup",
       "caption": "A strong performance sees France through 💪",
       "date": "2026-06-30"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DaOSnKgk9VH/",
+      "account": "@fifaworldcup",
+      "caption": "😄🇳🇴 #FIFAWorldCup",
+      "date": "2026-06-30",
+      "type": "carousel"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DaPHgkFiLx4/",
+      "account": "@fifaworldcup",
+      "caption": "One step closer to the Round of 16… #FIFAWorldCup",
+      "date": "2026-06-30"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DaPJCGDHDPi/",
+      "account": "@fifaworldcup",
+      "caption": "Three more spots are taken in the Round of 16 🙌 #FIFAWorldCup",
+      "date": "2026-06-30",
+      "type": "carousel"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DaPNIyWkYga/",
+      "account": "@fifaworldcup",
+      "caption": "Mexico's first #FIFAWorldCup knockout stage win since 1986 🎊",
+      "date": "2026-06-30",
+      "type": "carousel"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DaPOHejxu7a/",
+      "account": "@fifaworldcup",
+      "caption": "No place like home for Mexico 😤 #FIFAWorldCup",
+      "date": "2026-06-30"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DaPjI2yEf68/",
+      "account": "@fifaworldcup",
+      "caption": "Where knockout stage moments are born 💭 #FIFAWorldCup",
+      "date": "2026-07-01",
+      "type": "carousel"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DaPzisBj_mg/",
+      "account": "@fifaworldcup",
+      "caption": "Knockout round England 🏴󠁧󠁢󠁥󠁮󠁧󠁿🔙 #FIFAWorldCup",
+      "date": "2026-07-01",
+      "type": "carousel"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DaP3E5EjQU_/",
+      "account": "@fifaworldcup",
+      "caption": "The Round of 32 continues… #FIFAWorldCup",
+      "date": "2026-07-01",
+      "type": "carousel"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DaP6b87DdTG/",
+      "account": "@fifaworldcup",
+      "caption": "Three spots in the Round of 16 up for grabs 👀 #FIFAWorldCup",
+      "date": "2026-07-01",
+      "type": "carousel"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/reel/DaQEqnXv8q6/",
+      "account": "@fifaworldcup",
+      "caption": "An unforgettable Belgian knockout round memory 🇧🇪⏰ #FIFAWorldCup",
+      "date": "2026-07-01",
+      "type": "video"
     }
   ],
   "tv": {
