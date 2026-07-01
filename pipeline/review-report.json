@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-01T04:15:16.698170+00:00",
+  "timestamp": "2026-07-01T04:45:38.912651+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 0,
+    "pass": 3,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "74bcb203-a896-4fbc-b9a7-06905b817d67",
-      "headline": "The DOJ Declared War on Birth Tourism. Indian Visa Holders Should Read the Fine Print",
-      "slug": "doj-birth-tourism-crackdown-indian-visa-holders-20260701",
+      "id": "42bbc342-216f-4757-ac59-022cee23804f",
+      "headline": "Uber India Launches In-App Video Recording and Ambulance Assistance in Industry-First Safety Push",
+      "slug": "uber-india-record-my-ride-video-ambulance-dial-4242-safety-20260630",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,30 +21,30 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "open passport with stamps",
-          "reason": "The photo is relevant to immigration and visa topics."
+          "what_photo_shows": "hand holding smartphone with Uber app",
+          "reason": "The photo shows the Uber app, relevant to the story about Uber's new features."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 7,
+        "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 6,
-          "issue": "The image does not directly relate to the topic of birth tourism or immigration."
+          "score": 5,
+          "issue": "irrelevant"
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article discusses implications for Indian visa holders and the Indian diaspora regarding U.S. immigration policies."
+          "quality": 7,
+          "note": "The article discusses safety features in Uber India, which may interest NRIs concerned about safety in India."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that directly relates to birth tourism or immigration to enhance relevance.",
-          "Add more specific examples or quotes from Indian nationals affected by these policies to strengthen the diaspora connection."
+          "Consider using a more relevant image that reflects the topic of Uber's safety features.",
+          "Include quotes or perspectives from NRI users or experts to strengthen the diaspora connection."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
         "promoted to published"
@@ -54,9 +54,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "e4e26809-e804-479a-bee9-92c6523353db",
-      "headline": "The Supreme Court Settled Birthright Citizenship. For Indian H-1B Families, the Relief Is Real but Fragile",
-      "slug": "scotus-birthright-citizenship-indian-h1b-families-20260701",
+      "id": "3f220fc4-f9aa-40e7-98e6-596c7875b68b",
+      "headline": "India Slashes Windfall Tax on Diesel and Jet Fuel Exports, Raises Petrol Levy From July 1",
+      "slug": "india-windfall-tax-diesel-atf-cut-petrol-hike-july-2026",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,8 +64,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "United States Supreme Court building",
-          "reason": "The photo of the Supreme Court building is relevant to a story about a Supreme Court ruling."
+          "what_photo_shows": "Jamnagar Refinery complex at night",
+          "reason": "The photo shows a refinery, relevant to the fuel export tax story."
         },
         "inline_image_mismatches": []
       },
@@ -78,14 +78,100 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the Supreme Court ruling to the concerns of Indian H-1B families, making it relevant for the diaspora."
+          "quality": 7,
+          "note": "The article discusses India's fuel export policies which may interest NRIs involved in trade or investment."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes or reactions from Indian diaspora organizations to enhance the community perspective.",
-          "Include more statistics or data on the impact of this ruling specifically on Indian families to strengthen the argument."
+          "Include a brief explanation of how these changes might affect NRI investors or businesses in the fuel sector.",
+          "Add a quote from an economist or industry expert to provide more depth to the analysis."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "89bfaf95-4874-4430-ba52-df563dfb7602",
+      "headline": "'PoK Is Not Part of Pakistan': Thousands Protest in Rawalakot as Azad Kashmir Unrest Enters Fourth Week",
+      "slug": "pok-protests-azad-kashmir-rawalakot-fourth-week-jaac-20260630",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "view of Muzaffarabad cityscape",
+          "reason": "The photo shows Muzaffarabad, relevant to the story about Azad Kashmir unrest."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image depicts a scenic view of Muzaffarabad, which is relevant to the article's topic but does not directly illustrate the protests or unrest described."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses significant political unrest in a region of interest to the Indian diaspora, particularly those with ties to Kashmir. However, it could further emphasize the implications for the diaspora community."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include quotes or perspectives from diaspora members regarding the situation in Kashmir to enhance the connection.",
+          "Consider using an image that directly relates to the protests or unrest to better match the article's content."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "091647e3-a304-46b8-8de7-8c8d1bd6ed4c",
+      "headline": "Iyer Says His 'Hands Are Tied.' India's Biggest Selection Dilemma Heads Into the England Series Unresolved.",
+      "slug": "shreyas-iyer-hands-tied-sooryavanshi-debut-india-england-t20i-backs-world-cup-winners-2026-diaspora-nri",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Shreyas Iyer at an airport",
+          "reason": "The photo shows Shreyas Iyer, relevant to the cricket story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 8,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses a young Indian cricketer, which may resonate with the Indian diaspora interested in cricket and the development of young talent."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more direct quotes from Iyer or other players to enhance engagement.",
+          "Add a brief section on the significance of the England series for the Indian team to provide more context."
         ],
         "verdict": "pass"
       },
