@@ -1,6 +1,6 @@
 {
  "_description": "Media library mirror — high-quality, attribution-clean images+videos for article/reel fallback. Source of truth is the Supabase media_library table; this mirror lets the pipeline read without a DB round-trip.",
- "_updated": "2026-06-30T10:35:52Z",
+ "_updated": "2026-07-01T00:59:05Z",
  "assets": [
   {
    "id": "person--narendra-modi--bfe42b",
@@ -3303,28 +3303,6 @@
    "times_used": 0
   },
   {
-   "id": "thing--upi--1e440d",
-   "media_type": "image",
-   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/upi-1e440d.jpg",
-   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/upi-1e440d.jpg",
-   "subject": "upi",
-   "subject_type": "thing",
-   "caption": "FPBS Universitas Pendidikan Indonesia",
-   "attribution": "Wikimedia Commons / Devitapra, CC BY-SA 3.0",
-   "license": "CC BY-SA 3.0",
-   "source_url": "https://commons.wikimedia.org/wiki/File:FPBS_Universitas_Pendidikan_Indonesia_-_panoramio.jpg",
-   "tags": [
-    "upi"
-   ],
-   "width": 3648,
-   "height": 2635,
-   "duration": null,
-   "quality_score": 86.5,
-   "added_date": "2026-06-26T10:33:06Z",
-   "last_used": null,
-   "times_used": 0
-  },
-  {
    "id": "thing--icc--e45443",
    "media_type": "image",
    "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/icc-e45443.jpg",
@@ -5501,6 +5479,28 @@
    "added_date": "2026-06-30T10:35:52Z",
    "last_used": null,
    "times_used": 0
+  },
+  {
+   "id": "thing--upi--1e440d",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/upi-1e440d.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/upi-1e440d.jpg",
+   "subject": "upi",
+   "subject_type": "thing",
+   "caption": "FPBS Universitas Pendidikan Indonesia",
+   "attribution": "Wikimedia Commons / Devitapra, CC BY-SA 3.0",
+   "license": "CC BY-SA 3.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:FPBS_Universitas_Pendidikan_Indonesia_-_panoramio.jpg",
+   "tags": [
+    "upi"
+   ],
+   "width": 3648,
+   "height": 2635,
+   "duration": null,
+   "quality_score": 86.5,
+   "added_date": "2026-06-26T10:33:06Z",
+   "last_used": "2026-07-01T00:59:05Z",
+   "times_used": 1
   }
  ]
 }
