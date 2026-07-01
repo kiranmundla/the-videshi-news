@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-01T02:15:40.656823+00:00",
+  "timestamp": "2026-07-01T02:45:18.903667+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 5,
+    "pass": 2,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "a3fbb539-4cc8-4a33-a5bb-b2195494f876",
-      "headline": "Air India May Reverse Its Summer Route Cuts as Gulf Airspace Reopens and Fuel Prices Fall",
-      "slug": "air-india-route-restoration-gulf-airspace-fleet-20260701",
+      "id": "d04bb0ae-bcc7-47df-93d4-b8da6f173d7c",
+      "headline": "Russia Now Supplies More Than Half of India's Oil. June Was the Biggest Month Yet.",
+      "slug": "india-russian-oil-imports-record-june-hormuz-crisis-crude-refiners-20260630",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Air India Boeing 787-8 Dreamliner",
-          "reason": "The photo shows an Air India aircraft, relevant to the airline story."
+          "what_photo_shows": "oil tanker at a port",
+          "reason": "The photo shows an oil tanker, which is relevant to the story about oil imports."
         },
         "inline_image_mismatches": []
       },
@@ -35,14 +35,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively discusses the impact of Air India's route changes on NRI travelers, particularly in relation to peak travel seasons."
+          "quality": 7,
+          "note": "The article discusses India's energy security and economic implications, which are relevant to the Indian diaspora concerned about geopolitical and economic trends."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes or insights from NRI travelers to enhance the diaspora perspective.",
-          "Add a brief section on how these changes might affect travel plans for NRIs during the upcoming festive season."
+          "Include more direct quotes from Indian officials or experts to enhance credibility.",
+          "Add a section discussing the implications of this shift for Indian consumers or businesses."
         ],
         "verdict": "pass"
       },
@@ -54,52 +54,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "b9c4a810-8ec5-4da6-a387-f3930fd0252c",
-      "headline": "72 Million Americans Are Travelling This July 4th \u2014 Here's the NRI Playbook",
-      "slug": "july-4th-travel-guide-nri-national-parks-20260701",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "empty highway through Monument Valley",
-          "reason": "The photo depicts a travel destination relevant to a July 4th travel story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively addresses the travel preferences and considerations of Indian Americans, making it relevant to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more specific tips or resources for Indian Americans traveling during this period.",
-          "Include a section on cultural events or celebrations that might interest NRIs during the July 4th weekend."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "6e9e4d59-c3b0-4304-b26d-a4e17a0ab7f6",
-      "headline": "Global Funds Are Quietly Returning to Indian Stocks \u2014 and the Data Shows the Tide May Finally Be Turning",
-      "slug": "global-funds-revisit-india-equities-oil-rupee-risks-recede-etf-inflows-nri-investor-20260630",
+      "id": "047168fc-92ea-4dc6-81da-95b7a52932df",
+      "headline": "Wall Street Is Buying India Again. The Market Just Overtook Taiwan and South Korea.",
+      "slug": "global-funds-return-india-market-cap-5-trillion-overtakes-taiwan-south-korea-20260630",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -108,12 +65,12 @@
         "vision_image_match": {
           "verdict": "MATCH",
           "what_photo_shows": "Bombay Stock Exchange building",
-          "reason": "The photo shows the Bombay Stock Exchange, relevant to Indian stock market story."
+          "reason": "The photo shows the Bombay Stock Exchange, relevant to the Indian market story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 8,
+        "overall_score": 7,
         "embed_issues": [],
         "image_match": {
           "score": 9,
@@ -122,99 +79,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses investment opportunities in Indian stocks, which is relevant for NRI investors."
+          "note": "The article discusses India's market performance, which is relevant to NRIs interested in investment opportunities."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more specific examples of how NRI investors can capitalize on the current market conditions.",
-          "Add a section on potential risks and how to mitigate them for NRI investors."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "b7999e8f-5f57-49b9-ae93-1380730d2555",
-      "headline": "The FDA Just Cleared an AI Tool That Detects Hidden Heart Disease From a Routine ECG \u2014 and South Asians May Benefit Most",
-      "slug": "fda-clears-echonext-ai-ecg-hidden-heart-disease-structural-screening-south-asian-cardiac-risk-20260630",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "ECG readout with heart rhythm patterns",
-          "reason": "The photo shows an ECG readout, which is relevant to the story about an AI tool for detecting heart disease from ECGs."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the AI tool's implications for the Indian diaspora, highlighting the increased risk of heart disease and the potential for earlier detection."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more specific examples or testimonials from NRI patients who have benefited from similar technologies.",
-          "Add a section discussing potential limitations or challenges in implementing this AI tool in diverse healthcare settings."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "c1ae7459-6d39-4f50-bc45-19ea9bde688d",
-      "headline": "Americans Are Ditching Multivitamins for Targeted Supplements \u2014 and Two of the Fastest-Growing Are Ayurvedic Staples",
-      "slug": "americans-ditching-multivitamins-targeted-supplements-vitamin-d-magnesium-turmeric-jama-diaspora-20260630",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "turmeric capsules on a surface",
-          "reason": "The photo shows turmeric capsules, which are relevant to the story about Ayurvedic supplements."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the supplement trends to the health realities faced by the Indian diaspora, making it relevant for NRI readers."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more specific examples of how Ayurvedic practices are being integrated into Western wellness trends.",
-          "Include quotes or insights from NRI health experts to enhance credibility and relatability."
+          "Include more direct quotes from Indian investors or fund managers to enhance the diaspora connection.",
+          "Add a brief section on how these market changes could impact NRIs financially or in terms of investment opportunities."
         ],
         "verdict": "pass"
       },
