@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-01T17:15:29.642411+00:00",
+  "timestamp": "2026-07-01T18:16:16.982951+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
-    "flag": 1,
+    "pass": 7,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "61574f04-0fee-471c-9025-316863a8b6de",
-      "headline": "Messi Just Went Web-Swinging Through Manhattan \u2014 and the World Cup's Wildest Crossover Wasn't on the Pitch",
-      "slug": "messi-spider-man-brand-new-day-world-cup-promo-tom-holland-india-july-30-diaspora-nri-20260701",
+      "id": "ef4f8b0d-bd84-45e8-a907-d9ab96894ae2",
+      "headline": "Oil Just Posted Its Steepest Quarterly Drop Since 2020 \u2014 and India May Be the Biggest Winner",
+      "slug": "brent-crude-crashes-71-pre-war-levels-steepest-quarterly-drop-since-2020-india-macro-windfall-nri-investor-20260701",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Spider-Man promotional poster",
-          "reason": "The photo is related to Spider-Man, matching the story's Marvel theme."
+          "what_photo_shows": "oil refinery at night",
+          "reason": "The photo shows an oil refinery, relevant to the story about oil prices and India."
         },
         "inline_image_mismatches": []
       },
@@ -30,19 +30,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 5,
-          "issue": "The image is related to Spider-Man but does not directly connect to Messi or the World Cup theme."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the cultural significance of Spider-Man and the World Cup to Indian audiences, highlighting the film's release in multiple languages."
+          "quality": 7,
+          "note": "The article discusses India's economic benefits from falling oil prices, which is relevant to NRIs interested in India's economic landscape."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that features both Messi and Spider-Man to better match the article's content.",
-          "Add more context on how the Indian diaspora is engaging with the World Cup and Spider-Man to strengthen the diaspora angle."
+          "Include more direct quotes from Indian economists or analysts to strengthen the diaspora connection.",
+          "Add a section on how NRIs can potentially benefit from the economic changes discussed."
         ],
         "verdict": "pass"
       },
@@ -54,9 +54,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "0e495213-9263-4951-9604-2be1ad062251",
-      "headline": "They Said Romance Was Dead. Cocktail 2 Just Poured Itself \u20b9130 Crore.",
-      "slug": "cocktail-2-100-crore-shahid-kapoor-romcom-vindication-bollywood-box-office-diaspora-nri-20260701",
+      "id": "6f058fba-c829-40d9-9c39-ced4ad58d541",
+      "headline": "A New Weight-Loss Drug Just Matched Bariatric Surgery \u2014 and It Could Change How South Asians Fight Obesity",
+      "slug": "retatrutide-triumph-1-first-weight-loss-drug-rival-bariatric-surgery-28-percent-ada-2026-south-asian-diaspora-20260701",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,45 +64,252 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Shahid Kapoor at an event",
-          "reason": "The photo shows Shahid Kapoor, who is relevant to the story."
+          "what_photo_shows": "an Ozempic injection pen",
+          "reason": "The photo shows a GLP-1 drug, relevant to the story about weight-loss drugs."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/reel/DZrnDU8ti80/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram reel does not appear to be directly related to the film 'Cocktail 2' or its themes."
-          },
-          {
-            "url": "https://www.instagram.com/p/DZxKj9gAJDF/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post does not seem to connect with the article's focus on 'Cocktail 2' or its box office performance."
-          }
-        ],
+        "embed_issues": [],
         "image_match": {
-          "score": 5,
-          "issue": "The image does not relate to the film 'Cocktail 2' or its cast, which may confuse readers."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects the film's appeal to diaspora audiences, emphasizing its entertainment value and relevance for date nights."
+          "note": "The article effectively highlights the specific health challenges faced by South Asians and discusses how the new drug could significantly impact this demographic."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant Instagram embeds with content that directly relates to 'Cocktail 2'.",
-          "Use a more relevant hero image that features the cast of 'Cocktail 2' or a scene from the film."
+          "Consider adding quotes from South Asian health experts to strengthen the diaspora connection.",
+          "Include more statistics or studies specifically related to South Asians and obesity to enhance the article's relevance."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/reel/DZrnDU8ti80/",
-        "Removed irrelevant embed: https://www.instagram.com/p/DZxKj9gAJDF/",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "157c4780-08c9-4a32-87ff-2f68bd7930e4",
+      "headline": "Your US Visa Unlocks Mexico and the Caribbean \u2014 an NRI Summer Travel Cheat Sheet",
+      "slug": "mexico-caribbean-visa-free-us-visa-nri-summer-20260701",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "beach in Canc\u00fan, Mexico",
+          "reason": "The photo shows a beach in Canc\u00fan, which is relevant to the travel story about Mexico."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects travel opportunities for NRIs, highlighting cost-effective options and cultural experiences."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more specific travel tips or personal anecdotes from NRIs who have traveled to these destinations.",
+          "Add a section on travel insurance or health precautions for NRIs traveling to Mexico and the Caribbean."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "bc73279b-74cf-4353-b4c7-71c5ad18935d",
+      "headline": "Your US Salary, a European Address \u2014 the NRI Guide to Digital Nomad Visas in 2026",
+      "slug": "digital-nomad-visa-nri-guide-portugal-spain-uae-20260701",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Lisbon's waterfront skyline",
+          "reason": "The photo shows Lisbon, which is relevant to the story about Portugal's digital nomad visa."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses NRIs by discussing digital nomad visas and their implications for Indian professionals."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more personal anecdotes or testimonials from NRIs who have utilized digital nomad visas to enhance relatability.",
+          "Add a section on potential challenges NRIs might face when applying for these visas."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "578e5c84-d9ea-40cb-90ba-6eb45d9b1211",
+      "headline": "The US Government Froze Anthropic's Best AI for 17 Days. Then It Unfroze It. The Damage Was Already Done.",
+      "slug": "anthropic-export-ban-lifted-claude-ipo-ai-regulation-20260701",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "06f0f6b6-8218-425b-8833-8598940c1b7c",
+            "headline": "Washington Is About to Unlock Anthropic's Fable 5. India's Q"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Dario Amodei speaking at event",
+          "reason": "The photo shows the CEO of Anthropic, relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the impact of US government actions on Indian AI professionals, making it relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more direct quotes from Indian AI professionals to enhance the diaspora perspective.",
+          "Add a section on how Indian startups can navigate similar regulatory challenges."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "dcb6b30f-19d9-4ce6-8a0d-b3744eb5c3a0",
+      "headline": "Meta Is Building a Cloud Business. The Neoclouds It Hired Are Already Bleeding.",
+      "slug": "meta-cloud-business-ai-compute-coreweave-nebius-20260701",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "server racks in a data centre",
+          "reason": "The photo shows server racks, relevant to the cloud business story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image is relevant to technology but does not specifically represent cloud computing or Meta."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the implications of Meta's cloud business to Indian engineers and the tech ecosystem."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more specific image related to cloud computing or Meta's infrastructure to enhance relevance.",
+          "Add a quote or perspective from an Indian tech expert to strengthen the diaspora connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "da4b60bc-9af9-4cb4-acd9-09dba893f08f",
+      "headline": "A Noida Kid's BASIC Program Led to an $8.3 Billion AI Company. Together AI Just Raised $800 Million.",
+      "slug": "together-ai-800m-vipul-prakash-noida-open-source-20260701",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "smiling man in a white shirt",
+          "reason": "The photo plausibly shows Vipul Ved Prakash, relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 5,
+          "issue": "The image does not directly relate to the article's headline or topic."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects Prakash's journey from India to the global tech landscape, highlighting the significance for the Indian diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that depicts Vipul Ved Prakash or the AI industry.",
+          "Add more quotes or insights from Prakash to enhance the personal connection and narrative."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
         "promoted to published"
       ],
       "revised": false,
