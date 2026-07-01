@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-01T14:45:24.343313+00:00",
+  "timestamp": "2026-07-01T15:15:56.202543+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 0,
+    "pass": 4,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "6ab78923-d9e3-4d00-8d25-3e55fd5b6444",
-      "headline": "India's UPI Just Went Live in Greece. That's 10 Countries and Counting.",
-      "slug": "india-upi-live-greece-10th-country-global-expansion-eurobank-npci-20260701",
+      "id": "4b02c21e-97a2-4cb9-a0f1-f3d4573d4826",
+      "headline": "What to Watch This Week: Sherlock's Kidnapped, the Silos Are Cracking, and the X-Men Are Lost in Time",
+      "slug": "what-to-watch-this-week-july-1-2026",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "customer scanning QR code for payment",
-          "reason": "The photo shows a mobile payment, relevant to UPI expansion."
+          "what_photo_shows": "Rebecca Ferguson at an event",
+          "reason": "Rebecca Ferguson is mentioned in the caption and related to the story topic."
         },
         "inline_image_mismatches": []
       },
@@ -30,19 +30,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image features Rebecca Ferguson, which is relevant to the article's mention of her in 'Silo', but does not directly relate to the other shows discussed."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively highlights the significance of UPI's expansion for the Indian diaspora, particularly in terms of remittances and transaction convenience."
+          "quality": 8,
+          "note": "The article includes Bollywood content and regional language options, appealing to the Indian diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from Indian expatriates or businesses in Greece to provide personal perspectives on the impact of UPI.",
-          "Include a brief comparison of UPI with other international payment systems to enhance understanding of its unique advantages."
+          "Consider adding more images or embeds related to the other shows mentioned to enhance visual engagement.",
+          "Include a brief summary or context for each show that connects to the Indian diaspora or highlights any Indian actors involved."
         ],
         "verdict": "pass"
       },
@@ -54,9 +54,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "c87c12e2-af86-402c-a8b7-76f4663a4ce1",
-      "headline": "Japan's PM Just Landed in India With 150 Business Leaders and a $61 Billion Promise",
-      "slug": "japan-pm-takaichi-india-16th-annual-summit-trade-defence-investment-20260701",
+      "id": "e4496201-1df2-4204-b539-2a35c5a9a621",
+      "headline": "Alia Bhatt Didn't Join the Spy Universe \u2014 She's Here to Take It Over",
+      "slug": "alpha-alia-bhatt-sharvari-yrf-spy-universe-first-female-assassin-bobby-deol-hrithik-cameo-diaspora-nri",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,8 +64,64 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Japanese official in formal attire",
-          "reason": "The photo plausibly shows a Japanese official relevant to the summit."
+          "what_photo_shows": "A woman in a formal dress",
+          "reason": "The photo plausibly shows Alia Bhatt, relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/DaDNJS6jMWP/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not seem to directly relate to the article's focus on Alia Bhatt's role in the Spy Universe."
+          },
+          {
+            "url": "https://youtube.com/watch?v=QRqGwGwo1Y0",
+            "problem": "irrelevant",
+            "explanation": "The YouTube link is a teaser for the film, which is relevant, but the context of its inclusion could be clearer."
+          }
+        ],
+        "image_match": {
+          "score": 8,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 6,
+          "note": "The article discusses a prominent Indian actress and her role in a major film, which may resonate with the diaspora, but lacks deeper connections to NRI experiences."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Clarify the relevance of the embedded YouTube link and Instagram post to enhance reader understanding.",
+          "Include more context on how Alia Bhatt's role may resonate with NRI audiences, perhaps by discussing her global appeal."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/DaDNJS6jMWP/",
+        "Removed irrelevant embed: https://youtube.com/watch?v=QRqGwGwo1Y0",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "6769efe4-1ef3-4976-90d0-6415fbaee435",
+      "headline": "Ford's AI Replaced Its Best Engineers. Then Ford Had to Hire Them All Back.",
+      "slug": "ford-ai-failed-rehires-engineers-galhotra-20260701",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "robotic arms assembling a vehicle",
+          "reason": "The photo shows automation in automotive production, relevant to the story about AI and engineers."
         },
         "inline_image_mismatches": []
       },
@@ -73,19 +129,105 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image is relevant to the topic of engineering and technology but does not specifically depict Ford or AI."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the summit's implications for the Indian diaspora in Japan, particularly in terms of work opportunities and economic partnerships."
+          "quality": 9,
+          "note": "The article effectively connects the story to Indian-origin engineers in the U.S. and highlights the implications for the Indian tech workforce."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from Indian or Japanese officials to enhance the article's depth.",
-          "Include more specific examples of how the investment will directly impact the Indian diaspora in Japan."
+          "Consider including a more specific image related to Ford or AI technology to enhance visual relevance.",
+          "Add quotes or insights from Indian engineers or tech workers to further strengthen the diaspora connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "f8d7011f-7bb6-4b2e-8d71-d0c7bc1b2f43",
+      "headline": "Intel's Former Chief Architect Raised $60 Million to Break Nvidia's Lock on AI. His Weapon Is a Blueprint.",
+      "slug": "raja-koduri-oxmiq-35m-ai-chip-arm-nvidia-20260701",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "macro shot of a CPU chip",
+          "reason": "The photo of a CPU chip is relevant to a semiconductor story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the specific topic of AI or semiconductors."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively highlights Raja Koduri's journey and its significance to the Indian diaspora in the semiconductor industry."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that directly represents AI or semiconductor technology.",
+          "Add more quotes or insights from industry experts to enhance credibility and depth."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "1f9a704c-5848-4687-b7e7-e07566ed91aa",
+      "headline": "India Just Shipped Its First Semiconductor Chips. They Went to Malaysia.",
+      "slug": "india-first-semiconductor-chip-shipment-cg-semi-sanand-20260701",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Close-up of electronic microchips",
+          "reason": "The photo subject is relevant to the semiconductor story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to semiconductor chips but is a general technology image."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the semiconductor development in India to the diaspora, highlighting opportunities for Indian-origin engineers and investors."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that directly represents semiconductor manufacturing or technology.",
+          "Expand on the potential impact of this development on the Indian diaspora's involvement in the semiconductor industry."
         ],
         "verdict": "pass"
       },
