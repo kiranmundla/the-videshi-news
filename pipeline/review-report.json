@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-01T02:45:18.903667+00:00",
+  "timestamp": "2026-07-01T03:15:56.723043+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 5,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,18 +11,82 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "d04bb0ae-bcc7-47df-93d4-b8da6f173d7c",
-      "headline": "Russia Now Supplies More Than Half of India's Oil. June Was the Biggest Month Yet.",
-      "slug": "india-russian-oil-imports-record-june-hormuz-crisis-crude-refiners-20260630",
+      "id": "75406767-47cc-4abf-b7c1-f7464e701d05",
+      "headline": "Pathaanon se Kehna \u2014 Ajay Devgn Just Dropped Bollywood's Most Combustible Teaser of the Year",
+      "slug": "chauhaan-ajay-devgn-pathaanon-se-kehna-controversy-kshatriya-parishad-kashmir-aanand-l-rai-diaspora-nri-20260630",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "85fb8cc2-b4ea-43a3-bee4-a1c17d6491ef",
+            "headline": "800 Women in Pink Sarees, a 60-Foot Waterfall Poster, and Bo"
+          },
+          {
+            "article_id": "1ec46a7a-50b7-4ff7-b49c-63a0e9b24b15",
+            "headline": "Jumma Chumma, a Kashmir Standoff, and Five Words That Broke "
+          }
+        ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "oil tanker at a port",
-          "reason": "The photo shows an oil tanker, which is relevant to the story about oil imports."
+          "what_photo_shows": "Ajay Devgn at an event",
+          "reason": "The photo shows Ajay Devgn, who is relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DaAJLxLsEoo/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel does not appear to be directly related to the teaser or the themes discussed in the article."
+          }
+        ],
+        "image_match": {
+          "score": 8,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 6,
+          "note": "The article touches on Bollywood's political narratives, which may resonate with the diaspora, but lacks a direct connection to NRI experiences."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more context on how the film's themes might resonate with the NRI audience.",
+          "Consider adding quotes or reactions from diaspora members regarding the teaser's political implications."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DaAJLxLsEoo/",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "cf3b82b3-4fd6-4aa0-ab2f-cfd91b123ac3",
+      "headline": "Carmy Quit the Kitchen \u2014 and The Bear Just Served Its Best Season Yet",
+      "slug": "the-bear-season-5-finale-review-sydney-carmy-jiohotstar-best-season-diaspora-nri-20260630",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "733ef5c0-a130-4030-973d-2019cb0f83c2",
+            "headline": "The Bear Just Served Its Final Course \u2014 and the Critics Are "
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "The Bear title screen",
+          "reason": "The photo is related to the TV series 'The Bear' mentioned in the story."
         },
         "inline_image_mismatches": []
       },
@@ -35,14 +99,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article discusses India's energy security and economic implications, which are relevant to the Indian diaspora concerned about geopolitical and economic trends."
+          "quality": 8,
+          "note": "The article connects the show's themes of family and community to the NRI experience, making it relatable for diaspora readers."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes from Indian officials or experts to enhance credibility.",
-          "Add a section discussing the implications of this shift for Indian consumers or businesses."
+          "Consider adding quotes from critics or audience reactions to enhance credibility.",
+          "Include more context about the show's impact on the culinary scene or its cultural significance."
         ],
         "verdict": "pass"
       },
@@ -54,9 +118,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "047168fc-92ea-4dc6-81da-95b7a52932df",
-      "headline": "Wall Street Is Buying India Again. The Market Just Overtook Taiwan and South Korea.",
-      "slug": "global-funds-return-india-market-cap-5-trillion-overtakes-taiwan-south-korea-20260630",
+      "id": "a87c6a7a-67d8-4ba0-a84c-3e8cbdd82f3b",
+      "headline": "Tata Communications Has Replaced Its CEO, CFO, and CTO in Five Months. A Data Centre Fire Explains Why.",
+      "slug": "tata-communications-cto-chokshi-management-overhaul-data-centre-20260701",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,13 +128,104 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Bombay Stock Exchange building",
-          "reason": "The photo shows the Bombay Stock Exchange, relevant to the Indian market story."
+          "what_photo_shows": "server racks in a data centre",
+          "reason": "The photo shows server racks, relevant to the data centre fire story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 7,
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image is relevant to the tech theme but does not specifically depict Tata Communications or data centers."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article connects well with NRI investors by discussing Tata Communications' role in India's digital economy."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including a more specific image related to Tata Communications or data centers to enhance relevance.",
+          "Expand on the implications of the leadership changes for NRI investors to strengthen the diaspora angle."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "1ed95ccd-366a-449e-81ae-1ffccad2b3da",
+      "headline": "Visa, Mastercard, and Google Just Launched a Stablecoin. It Has 140 Partners and Zero Fees.",
+      "slug": "open-usd-stablecoin-visa-mastercard-google-nri-remittances-20260701",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Bitcoin coin with financial data",
+          "reason": "The photo shows financial elements relevant to a fintech story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image is relevant to fintech but does not specifically depict stablecoins or the companies mentioned."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the stablecoin launch to the potential benefits for the Indian diaspora, particularly in remittances."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including a more relevant image that directly represents stablecoins or digital currency.",
+          "Add a brief explanation of what a stablecoin is for readers who may not be familiar with the concept."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "656fe6fe-a5ab-4a53-b7aa-4c42c346babd",
+      "headline": "Nadella's Microsoft Is About to Cut 5,700 Jobs. Xbox May Never Recover.",
+      "slug": "microsoft-5700-layoffs-xbox-gaming-nadella-h1b-20260701",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "91c6e03e-1638-456f-82a2-495a3c185e5b",
+            "headline": "Nadella's Microsoft Is Being Sued for Overhyping AI. Indian "
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Microsoft CEO Satya Nadella",
+          "reason": "The photo shows the correct named person related to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
         "embed_issues": [],
         "image_match": {
           "score": 9,
@@ -78,14 +233,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article discusses India's market performance, which is relevant to NRIs interested in investment opportunities."
+          "quality": 9,
+          "note": "The article effectively connects the layoffs at Microsoft to the Indian tech diaspora, discussing the implications for H-1B visa holders and Indian IT services firms."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes from Indian investors or fund managers to enhance the diaspora connection.",
-          "Add a brief section on how these market changes could impact NRIs financially or in terms of investment opportunities."
+          "Consider adding quotes or perspectives from affected employees or industry experts to enhance the human element of the story.",
+          "Include more data or statistics on the impact of layoffs on the Indian tech workforce to strengthen the diaspora angle."
         ],
         "verdict": "pass"
       },
