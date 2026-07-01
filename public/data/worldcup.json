@@ -1,6 +1,6 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-07-01T06:01:05Z",
+  "last_updated": "2026-07-01T08:00:07Z",
   "stage": "Knockout Stage",
   "hosts": "USA, Mexico & Canada",
   "dates": {
@@ -4752,6 +4752,38 @@
       "account": "@fifaworldcup",
       "caption": "🇨🇮 Côte d'Ivoire 1-2 Norway 🇳🇴 | 🇫🇷 France 3-0 Sweden 🇸🇪 | 🇲🇽 Mexico 2-0 Ecuador 🇪🇨 #FIFAWorldCup",
       "date": "2026-06-30"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/reel/DaMHH9Jo2wg/",
+      "account": "@fifaworldcup",
+      "caption": "Chosen by the fans: Orlando Gill, your Superior Player of the Match 👏 #FIFAWorldCup #SuperiorPOTM",
+      "date": "2026-06-29",
+      "type": "video"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/reel/DaMOtNfCzsZ/",
+      "account": "@fifaworldcup",
+      "caption": "Ready for action in Monterrey! 🇳🇱⛰️🇲🇦 #FIFAWorldCup",
+      "date": "2026-06-29",
+      "type": "video"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/reel/DaMpGczAnnN/",
+      "account": "@fifaworldcup",
+      "caption": "The shootout started with a brick wall 🧱🧤 #FIFAWorldCup",
+      "date": "2026-06-29",
+      "type": "video"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/reel/DaO6z_7CBdj/",
+      "account": "@fifaworldcup",
+      "caption": "🇲🇽 El Tri 🆚 La Tri 🇪🇨 in Mexico City #FIFAWorldCup",
+      "date": "2026-06-30",
+      "type": "video"
     }
   ],
   "tv": {
