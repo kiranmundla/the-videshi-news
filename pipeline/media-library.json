@@ -1,6 +1,6 @@
 {
  "_description": "Media library mirror — high-quality, attribution-clean images+videos for article/reel fallback. Source of truth is the Supabase media_library table; this mirror lets the pipeline read without a DB round-trip.",
- "_updated": "2026-07-01T00:59:05Z",
+ "_updated": "2026-07-01T02:08:32Z",
  "assets": [
   {
    "id": "person--narendra-modi--bfe42b",
@@ -4403,28 +4403,6 @@
    "times_used": 0
   },
   {
-   "id": "thing--business-class--4ee3a6",
-   "media_type": "image",
-   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/business-class-4ee3a6.jpg",
-   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/business-class-4ee3a6.jpg",
-   "subject": "business class",
-   "subject_type": "thing",
-   "caption": "A glass of Champagne in Finnairs new Business Class. The cabin interior transformation is done during years 2022–2023. Finnair is doing long-term brand collaboration with other well recognised Finnish brands like Marimekko pattern napkins and Ultima Thule glasses designed by Timo",
-   "attribution": "Wikimedia Commons / Aaaatu, CC BY-SA 4.0",
-   "license": "CC BY-SA 4.0",
-   "source_url": "https://commons.wikimedia.org/wiki/File:A_glass_of_Champagne_in_new_Finnair_Business_Class.jpg",
-   "tags": [
-    "business class"
-   ],
-   "width": 3721,
-   "height": 2481,
-   "duration": null,
-   "quality_score": 87.7,
-   "added_date": "2026-06-28T10:34:17Z",
-   "last_used": null,
-   "times_used": 0
-  },
-  {
    "id": "thing--germany--0398af",
    "media_type": "image",
    "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/germany-0398af.jpg",
@@ -5500,6 +5478,28 @@
    "quality_score": 86.5,
    "added_date": "2026-06-26T10:33:06Z",
    "last_used": "2026-07-01T00:59:05Z",
+   "times_used": 1
+  },
+  {
+   "id": "thing--business-class--4ee3a6",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/business-class-4ee3a6.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/business-class-4ee3a6.jpg",
+   "subject": "business class",
+   "subject_type": "thing",
+   "caption": "A glass of Champagne in Finnairs new Business Class. The cabin interior transformation is done during years 2022–2023. Finnair is doing long-term brand collaboration with other well recognised Finnish brands like Marimekko pattern napkins and Ultima Thule glasses designed by Timo",
+   "attribution": "Wikimedia Commons / Aaaatu, CC BY-SA 4.0",
+   "license": "CC BY-SA 4.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:A_glass_of_Champagne_in_new_Finnair_Business_Class.jpg",
+   "tags": [
+    "business class"
+   ],
+   "width": 3721,
+   "height": 2481,
+   "duration": null,
+   "quality_score": 87.7,
+   "added_date": "2026-06-28T10:34:17Z",
+   "last_used": "2026-07-01T02:08:32Z",
    "times_used": 1
   }
  ]
