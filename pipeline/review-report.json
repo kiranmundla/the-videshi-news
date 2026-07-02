@@ -1,162 +1,15 @@
 {
-  "timestamp": "2026-07-02T15:16:30.935677+00:00",
+  "timestamp": "2026-07-02T15:45:17.258384+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
+    "pass": 0,
     "flag": 1,
     "fail": 0,
     "error": 0
   },
-  "revisions": 1,
+  "revisions": 0,
   "unpublished": 0,
   "articles": [
-    {
-      "id": "980de418-aad8-4738-bdd2-b58421abf7de",
-      "headline": "India Minted Five Unicorns in Six Months. The Money Is Moving to AI.",
-      "slug": "india-startup-funding-h1-2026-unicorns-ai-surge-20260702",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "office buildings in Bengaluru",
-          "reason": "The photo shows a tech park in Bengaluru, relevant to the startup funding story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 5,
-          "issue": "The image does not directly relate to the article's focus on unicorns and AI startups."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the funding landscape to diaspora investors, highlighting opportunities in the Indian tech scene."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that reflects the theme of unicorns or AI startups.",
-          "Add more specific examples of how NRIs can engage with the Indian tech market."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "1a9b428f-8095-450e-b2af-c6f74d0febd6",
-      "headline": "Nikesh Arora's Palo Alto Networks Just Hit $3 Billion in Quarterly Revenue. Four Banks Raised Their Targets in a Week.",
-      "slug": "nikesh-arora-palo-alto-networks-3b-revenue-ai-security-20260702",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "6f8e28dd-da9b-40bf-8aa2-3b810579452e",
-            "headline": "Arora's Palo Alto Networks Just Hit a $3 Billion Quarter. Th"
-          },
-          {
-            "article_id": "289c564b-f908-4976-ad8d-257b00d5491d",
-            "headline": "Nadella, Pichai, and Arora Just Bought a Cricket Team at Lor"
-          },
-          {
-            "article_id": "2b0b93ca-02f5-44b8-adfd-424aa598b759",
-            "headline": "Nadella, Pichai and Arora Just Bought a Cricket Team at Lord"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "man speaking at TechCrunch Disrupt",
-          "reason": "The photo shows Nikesh Arora, relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article connects well with the Indian diaspora by highlighting Nikesh Arora's Indian roots and the impact of Palo Alto Networks on Indian tech professionals."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from Nikesh Arora or industry analysts to enhance the article's depth.",
-          "Include more context on how Palo Alto Networks' success impacts the broader tech landscape in India."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "a7c3d993-e13b-4044-afb6-04be07baa4f2",
-      "headline": "CRED's Kunal Shah Is Now Running WhatsApp. His First Move Was Killing the Phone Number.",
-      "slug": "kunal-shah-whatsapp-ceo-meta-cred-usernames-20260702",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "b570a243-6064-4ea0-8d96-18169c82fa4b",
-            "headline": "Meta Handed WhatsApp to an Indian Founder. It Paid $900 Mill"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "man in Freecharge shirt",
-          "reason": "The photo plausibly shows Kunal Shah, relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects Kunal Shah's appointment to the interests of the NRI community, particularly in terms of WhatsApp's features that impact their communication."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more direct quotes from Kunal Shah to enhance the article's engagement.",
-          "Include a brief section on potential challenges Shah might face in his new role to provide a balanced perspective."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
     {
       "id": "d761353c-f27e-43b7-82d2-294618e4a207",
       "headline": "Nobody Knows If Ramayana Just Leaked \u2014 and That Might Be the Point",
@@ -174,12 +27,12 @@
         "vision_image_match": {
           "verdict": "MATCH",
           "what_photo_shows": "Ranbir Kapoor smiling",
-          "reason": "The photo shows Ranbir Kapoor, relevant to the story about his role in Ramayana."
+          "reason": "The photo shows Ranbir Kapoor, who is relevant to the story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 6,
+        "overall_score": 7,
         "embed_issues": [],
         "image_match": {
           "score": 3,
@@ -187,21 +40,21 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 5,
-          "note": "The article discusses a major Indian film, which may interest the diaspora, but lacks a direct connection to NRI experiences or perspectives."
+          "quality": 8,
+          "note": "The article effectively connects the Ramayana's cultural significance to the Indian diaspora, discussing their excitement and apprehension regarding the film."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
           "Replace the hero image with one that directly relates to the Ramayana film or its promotional material.",
-          "Enhance the diaspora angle by including quotes or perspectives from NRIs regarding Indian cinema or the Ramayana's cultural significance."
+          "Clarify the timeline of events regarding the leaked footage to avoid confusion for readers."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
-        "Revised by gemini-2.5-flash (870\u2192989 words)"
+        "promoted to published"
       ],
-      "revised": true,
+      "revised": false,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
     }
