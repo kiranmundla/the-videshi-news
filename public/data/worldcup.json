@@ -1,6 +1,6 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-07-02T02:01:03Z",
+  "last_updated": "2026-07-02T04:01:58Z",
   "stage": "Knockout Stage",
   "hosts": "USA, Mexico & Canada",
   "dates": {
@@ -1883,7 +1883,8 @@
           "away_code": "BIH",
           "venue": "Levi's Stadium",
           "city": "Santa Clara",
-          "status": "scheduled"
+          "status": "FT",
+          "score": "2-0"
         },
         {
           "id": 82,
@@ -2003,6 +2004,139 @@
     }
   },
   "highlights": [
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DaO8fFFjg5D",
+      "account": "@fifaworldcup",
+      "caption": "Knockout stage is here 🏆",
+      "date": "2026-07-01"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DaO87S4jn2Y",
+      "account": "@fifaworldcup",
+      "caption": "Round of 32 action continues",
+      "date": "2026-07-01"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DaQkl1SiFyt",
+      "account": "@fifaworldcup",
+      "caption": "Belgium complete the comeback! 🇧🇪",
+      "date": "2026-07-01"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DaRe3euCDwH",
+      "account": "@fifaworldcup",
+      "caption": "USA advance to the Round of 16! 🇺🇸",
+      "date": "2026-07-01"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DaRjUSdlsF5",
+      "account": "@fifaworldcup",
+      "caption": "July 1 Round of 32 Recap",
+      "date": "2026-07-01"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DaRKfsyimMm",
+      "account": "@fifaworldcup",
+      "caption": "🇺🇸 USA 2-0 Bosnia & Herzegovina 🇧🇦 FT",
+      "date": "2026-07-01"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/reel/DaRiH2gIVkl/",
+      "account": "@fifaworldcup",
+      "caption": "Malik Tillman, your Superior Player of the Match 🌟 #FIFAWorldCup",
+      "date": "2026-07-01"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/reel/DaRMFm6CN63/",
+      "account": "@fifaworldcup",
+      "caption": "Every football fan's dream! 🤯🏟️ #FIFAWorldCup",
+      "date": "2026-07-01"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/reel/DaRR36DiXpc/",
+      "account": "@fifaworldcup",
+      "caption": "It's now or never for USA and Bosnia and Herzegovina! 🇺🇸🇧🇦 #FIFAWorldCup",
+      "date": "2026-07-01"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/reel/DaRn3R2lSpS/",
+      "account": "@fifaworldcup",
+      "caption": "Tillman on target 🎯🔥 #FIFAWorldCup",
+      "date": "2026-07-01"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DaRlTC-nHAc/",
+      "account": "@fifaworldcup",
+      "caption": "USA 2-0 Bosnia & Herzegovina — Match highlights 📸 #FIFAWorldCup",
+      "date": "2026-07-01"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DaRextdIJGS/",
+      "account": "@fifaworldcup",
+      "caption": "The Round of 16 is filling up! 👀 #FIFAWorldCup #Qualified",
+      "date": "2026-07-01"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DaRgO2fPRmF/",
+      "account": "@fifaworldcup",
+      "caption": "Round of 32 ✔️ Round of 16 🔜 Canada, Mexico and USA move on at the #FIFAWorldCup!",
+      "date": "2026-07-01"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DaRUBb8HDQ0/",
+      "account": "@fifaworldcup",
+      "caption": "Action packed from start to finish 🫨 #FIFAWorldCup",
+      "date": "2026-07-01"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DaRINbsnxco/",
+      "account": "@fifaworldcup",
+      "caption": "🇨🇦🇧🇷🇵🇾🇲🇦🇳🇴🇫🇷🇲🇽🏴‍☠️🇧🇪 #FIFAWorldCup #Qualified",
+      "date": "2026-07-01"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DaRe1l4C4fR/",
+      "account": "@fifaworldcup",
+      "caption": "The USA are bound for the next round! 🇺🇸 #FIFAWorldCup",
+      "date": "2026-07-01"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DaRe5n_iyuI/",
+      "account": "@fifaworldcup",
+      "caption": "On the way to the Round of 16 🔜 #FIFAWorldCup",
+      "date": "2026-07-01"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DaROQSyiml8/",
+      "account": "@fifaworldcup",
+      "caption": "Leaving it late ⏱️ #FIFAWorldCup",
+      "date": "2026-07-01"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DaRIg-HCWOs/",
+      "account": "@fifaworldcup",
+      "caption": "Belgium complete the comeback to enter the Round of 16! 💪🇧🇪 #FIFAWorldCup",
+      "date": "2026-07-01"
+    },
     {
       "platform": "threads",
       "url": "https://www.threads.com/@fifaworldcup/post/DaPHE3ZFnBA",
