@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-02T17:15:24.094775+00:00",
+  "timestamp": "2026-07-02T18:16:07.152466+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 0,
-    "flag": 2,
+    "pass": 8,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "2bdb9a49-71d8-4de9-b05e-9fa9434b4cb2",
-      "headline": "Five Weekends Will Decide Everything: The Box Office Wars Coming for Bollywood's Second Half",
-      "slug": "bollywood-box-office-clashes-h2-2026-king-srk-toxic-yash-avengers-dune-christmas-diaspora-nri-20260702",
+      "id": "fc2c1f90-0962-40c1-8bad-c48313ef6e0f",
+      "headline": "Nvidia Is Tired of Selling Shovels. Now It Wants a Cut of the Gold.",
+      "slug": "nvidia-revenue-sharing-neocloud-model-ai-20260702",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A man in a suit",
-          "reason": "The photo plausibly shows Shah Rukh Khan, relevant to Bollywood box office story."
+          "what_photo_shows": "A man in a suit and glasses",
+          "reason": "The photo plausibly shows Nvidia CEO Jensen Huang, relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -30,21 +30,21 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 3,
-          "issue": "irrelevant"
+          "score": 7,
+          "issue": "The image of Jensen Huang is relevant to the article's topic about Nvidia and its business strategies."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article discusses films that may resonate with the diaspora, but the connection could be more explicit."
+          "quality": 8,
+          "note": "The article discusses the impact of Nvidia's strategies on Indian engineers and NRI investors, making it relevant to the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the hero image with one that features a Bollywood film or actor relevant to the article's content.",
-          "Enhance the diaspora angle by including quotes or insights from NRIs about their film preferences."
+          "Consider adding more specific examples of how the revenue-sharing model could impact NRI engineers and investors.",
+          "Include quotes or insights from Indian engineers at Nvidia to enhance the diaspora connection."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
         "promoted to published"
@@ -54,23 +54,18 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "efab423e-e7d4-467e-b5e5-454224b4896a",
-      "headline": "He Died in 2007. Nineteen Years Later, Shivam Pandit Just Walked Back.",
-      "slug": "awarapan-2-teaser-emraan-hashmi-shivam-pandit-19-years-disha-patani-mithoon-diaspora-nri-20260702",
+      "id": "8850fd8d-cebb-4d4e-bfa5-cac74bf1538f",
+      "headline": "A Ransomware Gang Just Leaked Apple's iPhone 18 Pro Secrets. The Breach Came Through India.",
+      "slug": "tata-electronics-hack-apple-iphone-18-pro-leak-20260702",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "62c535ce-447e-481f-a6fa-b068212403c2",
-            "headline": "19 Years Later, Shivam Is Back \u2014 and the Awarapan 2 Teaser I"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Emraan Hashmi at an event",
-          "reason": "The photo shows Emraan Hashmi, who is relevant to the story."
+          "what_photo_shows": "Digital security interface on screen",
+          "reason": "The photo's subject is relevant to a story about a digital security breach."
         },
         "inline_image_mismatches": []
       },
@@ -78,27 +73,287 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 3,
-          "issue": "irrelevant"
+          "score": 7,
+          "issue": "The image depicts security software, which is relevant to the topic of a ransomware attack but does not directly relate to Apple or the iPhone."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article connects well with the diaspora audience through references to the original film's music and its emotional significance for NRIs."
+          "note": "The article effectively connects the issue to the Indian diaspora by discussing the implications for India's manufacturing sector and cybersecurity, which are relevant to NRI investors."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the hero image with one that is more relevant to the film or the article's subject.",
-          "Consider adding more context about the original film's impact on the diaspora audience."
+          "Consider using an image that directly relates to Apple or the iPhone to enhance visual relevance.",
+          "Expand on the implications for the Indian tech sector to provide more depth for diaspora readers."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
         "promoted to published"
       ],
       "revised": false,
       "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "752d42d3-7962-4013-9121-4fed05fd0604",
+      "headline": "Palantir's CEO Just Called OpenAI a 'Wealth Tax.' Indian IT Stocks Had Their Best Day in Weeks.",
+      "slug": "palantir-karp-wealth-tax-indian-it-stocks-rally-20260702",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "A man at an AI summit",
+          "reason": "The photo shows a person at an AI summit, matching the story's technology theme."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article connects well with NRI investors by discussing the implications of AI on Indian IT stocks, which are of direct interest to this audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more direct quotes from industry experts or analysts to enhance credibility.",
+          "Include a brief overview of how AI is impacting the global IT landscape to provide broader context."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "912ebecb-6650-4bf0-ad19-cd80830e7e7e",
+      "headline": "Malaysia's Visa-Free Window for Indians Expires in Six Months \u2014 Here's Why NRIs Should Use It",
+      "slug": "malaysia-visa-free-indians-expires-december-nri-guide-20260702",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Petronas Twin Towers in Kuala Lumpur",
+          "reason": "The photo shows a landmark in Malaysia, relevant to the travel story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses NRIs by discussing the visa-free entry and its implications for Indian passport holders living abroad."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include a section on how NRIs can prepare for their trip to Malaysia, such as tips on local customs or must-visit places.",
+          "Add a brief comparison of Malaysia's visa policies with those of other Southeast Asian countries to enhance the context."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "9c01ad5c-5903-463e-b00a-d09656a9dd8e",
+      "headline": "Marriott Chose India for Its 10,000th Hotel \u2014 and It's a Tiger Safari Resort in Rajasthan",
+      "slug": "marriott-10000th-hotel-ranthambore-rajasthan-nri-luxury-20260702",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "landscape of Ranthambore National Park",
+          "reason": "The photo shows Ranthambore National Park, relevant to the story about a resort there."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the opening of the JW Marriott in Ranthambore to the interests of NRIs, highlighting loyalty programs and travel options."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include a quote or perspective from an NRI traveler to enhance the diaspora connection.",
+          "Add more details about the unique features of the JW Marriott Ranthambore to enrich the travel narrative."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "bf2303a5-ee3e-408a-bd2a-3b3c5fe23df8",
+      "headline": "India's Second Vande Bharat Sleeper Has Reached Bengaluru \u2014 and Mumbai Is 13 Hours Away",
+      "slug": "vande-bharat-sleeper-bengaluru-mumbai-final-testing-nri-20260702",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Vande Bharat Sleeper Express train",
+          "reason": "The photo shows a Vande Bharat Sleeper train, relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively highlights the significance of the new train service for NRIs, particularly those with family ties between Bengaluru and Mumbai."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a quote from a railway official or an NRI to enhance the human interest angle.",
+          "Include more details about the amenities on the train to further entice potential travelers."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "2e5cb07c-d173-4859-9e53-465395d624b4",
+      "headline": "India's SIP Investors Refuse to Blink \u2014 \u20b930,000 Crore a Month Keeps Flowing Even as Equity Fund Inflows Drop 40%",
+      "slug": "india-sip-mutual-fund-flows-resilient-equity-inflows-drop-40-percent-amfi-may-2026-nri-investor-20260702",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Bombay Stock Exchange building",
+          "reason": "The photo shows the Bombay Stock Exchange, relevant to the economy story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses NRI investors and their implications in the Indian mutual fund market."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more direct quotes from NRI investors or experts to enhance the diaspora perspective.",
+          "Include a brief explanation of SIPs for readers who may not be familiar with the term."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "0b21f8a4-5fda-46af-8a24-dc8a93d4be0d",
+      "headline": "Just 12 Weeks of Time-Restricted Eating Can Keep Weight Off for a Full Year, a New Study Finds",
+      "slug": "time-restricted-eating-8-hour-window-weight-loss-12-month-followup-university-granada-south-asian-metabolic-risk-20260702",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MISMATCH",
+          "what_photo_shows": "Nuts and a glass of milk",
+          "reason": "The photo does not illustrate time-restricted eating or include a clock."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image description is missing, making it difficult to assess relevance."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the study's findings to the South Asian context and NRI lifestyle."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include a relevant image description to enhance the image match score.",
+          "Consider adding quotes or insights from South Asian health experts to strengthen the diaspora angle."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "Cleared mismatched image (Nuts and a glass of milk)",
+        "held: image mismatch"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "image_mismatch": true,
       "llm_source": "gpt-4o-mini"
     }
   ]
