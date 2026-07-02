@@ -1,6 +1,6 @@
 {
  "_description": "Media library mirror — high-quality, attribution-clean images+videos for article/reel fallback. Source of truth is the Supabase media_library table; this mirror lets the pipeline read without a DB round-trip.",
- "_updated": "2026-07-01T18:05:48Z",
+ "_updated": "2026-07-02T02:05:15Z",
  "assets": [
   {
    "id": "person--narendra-modi--bfe42b",
@@ -1717,28 +1717,6 @@
    "added_date": "2026-06-19T05:23:16Z",
    "last_used": "2026-06-22T16:38:14Z",
    "times_used": 3
-  },
-  {
-   "id": "thing--immigration--5181dc",
-   "media_type": "image",
-   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/immigration-5181dc.jpg",
-   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/immigration-5181dc.jpg",
-   "subject": "immigration",
-   "subject_type": "thing",
-   "caption": "Detention center at U.S. Immigration Station, Angel Island",
-   "attribution": "Wikimedia Commons / E bailey, CC BY-SA 4.0",
-   "license": "CC BY-SA 4.0",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Detention_center_at_U.S._Immigration_Station_Angel_Island.jpg",
-   "tags": [
-    "immigration"
-   ],
-   "width": 4982,
-   "height": 3321,
-   "duration": null,
-   "quality_score": 92.0,
-   "added_date": "2026-06-20T10:30:12Z",
-   "last_used": "2026-06-22T16:39:46Z",
-   "times_used": 1
   },
   {
    "id": "thing--h1b--b8b882",
@@ -5545,6 +5523,28 @@
    "added_date": "2026-06-25T10:37:01Z",
    "last_used": "2026-07-01T18:05:48Z",
    "times_used": 1
+  },
+  {
+   "id": "thing--immigration--5181dc",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/immigration-5181dc.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/immigration-5181dc.jpg",
+   "subject": "immigration",
+   "subject_type": "thing",
+   "caption": "Detention center at U.S. Immigration Station, Angel Island",
+   "attribution": "Wikimedia Commons / E bailey, CC BY-SA 4.0",
+   "license": "CC BY-SA 4.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Detention_center_at_U.S._Immigration_Station_Angel_Island.jpg",
+   "tags": [
+    "immigration"
+   ],
+   "width": 4982,
+   "height": 3321,
+   "duration": null,
+   "quality_score": 92.0,
+   "added_date": "2026-06-20T10:30:12Z",
+   "last_used": "2026-07-02T02:05:15Z",
+   "times_used": 2
   }
  ]
 }
