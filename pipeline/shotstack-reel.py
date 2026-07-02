@@ -770,6 +770,131 @@ Return JSON only:
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
+# QUICK PULSE — STAT EXTRACTION (GPT-4o-mini)
+# ═══════════════════════════════════════════════════════════════════════════════
+
+def generate_pulse_stats(article, force_new=False):
+    """Extract key stats/facts from an article for a Quick Pulse reel.
+
+    Returns a dict with hook_stat, stats, diaspora_bullets, story_mood, hook_line,
+    or None if the article has no meaningful numbers/stats.
+    Caches results to disk.
+    """
+    headline = article.get("headline", "")
+    subheadline = article.get("subheadline", "")
+    body = (article.get("body") or "")[:2000]
+    category = article.get("category", "")
+    slug = article.get("slug", "unknown")
+
+    # Cache check
+    cache_path = BUILD_DIR / f"pulse-stats-{slug}.json"
+    if not force_new and cache_path.exists():
+        try:
+            cached = json.loads(cache_path.read_text())
+            if cached.get("v") == "pulse1" and cached.get("hook_stat"):
+                print(f"  ⚡ Using cached pulse stats")
+                return cached
+        except Exception:
+            pass
+
+    prompt = f"""You extract key stats for a Quick Pulse reel for The Videshi — a fast, punchy, music-only news Short for the Indian diaspora. No voiceover — just bold animated data cards with numbers and facts.
+
+ARTICLE:
+Headline: {headline}
+Subheadline: {subheadline}
+Category: {category}
+Body: {body}
+
+TASK: Extract the most impactful numbers, stats, and facts from this article.
+Every figure MUST come directly from the article — NEVER invent or inflate.
+If the article has NO meaningful numbers or concrete stats, return {{"skip": true}}.
+
+Return JSON:
+{{
+  "hook_stat": {{
+    "big": "<the SINGLE most dramatic number, e.g. $350B, 250,000, 19%>",
+    "sub": "<what that number means, 5-10 words>",
+    "eyebrow": "<2-4 word kicker, e.g. BREAKING, BY THE NUMBERS, THE PRICE TAG>"
+  }},
+  "stats": [
+    {{"big": "<number/value>", "label": "<what it measures, 3-6 words>"}},
+    {{"big": "<number/value>", "label": "<what it measures, 3-6 words>"}},
+    {{"big": "<number/value>", "label": "<what it measures, 3-6 words>"}}
+  ],
+  "diaspora_bullets": [
+    "<NRI/diaspora impact point 1, ~10 words>",
+    "<NRI/diaspora impact point 2, ~10 words>"
+  ],
+  "story_mood": "<one of: triumphant|celebratory|somber|tense|neutral-news|uplifting|cultural|tech|chill>",
+  "hook_line": "<3-5 word ALL CAPS scroll-stopper for the opening frame>"
+}}
+
+RULES:
+- hook_stat.big: Short, punchy (e.g. "$2.6B" not "two point six billion dollars"). Include currency/% symbols.
+- stats: 2-3 supporting numbers. Each must be a DIFFERENT fact from the hook_stat.
+- diaspora_bullets: 2-3 points about why this matters to NRIs/Indians abroad.
+- hook_line: The provocative, thumb-stopping headline. ALL CAPS. Use power words (CRISIS, SHOCK, WIN, DODGED, EXPOSED, SLASHED) where facts support them.
+- story_mood: The dominant emotional tone of the story.
+- If the article is a soft feature, opinion piece, or has fewer than 2 concrete numbers, return {{"skip": true}}.
+"""
+
+    result = None
+
+    # Try OpenAI first
+    if OPENAI_KEY:
+        try:
+            r = requests.post(
+                "https://api.openai.com/v1/chat/completions",
+                headers={"Authorization": f"Bearer {OPENAI_KEY}", "Content-Type": "application/json"},
+                json={
+                    "model": "gpt-4o-mini",
+                    "messages": [{"role": "user", "content": prompt}],
+                    "temperature": 0.7,
+                    "response_format": {"type": "json_object"},
+                },
+                timeout=30,
+            )
+            if r.status_code == 200:
+                result = json.loads(r.json()["choices"][0]["message"]["content"])
+            else:
+                print(f"  ⚠️ OpenAI pulse stats failed ({r.status_code}) — trying Gemini")
+        except Exception as e:
+            print(f"  ⚠️ OpenAI pulse stats error: {e} — trying Gemini")
+
+    # Gemini fallback
+    if not result:
+        result = gemini_json(prompt, max_tokens=1000, temperature=0.7)
+
+    if not result:
+        print("  ❌ Pulse stat extraction failed (both LLMs)")
+        return None
+
+    # If GPT says skip (no stats), return None
+    if result.get("skip"):
+        print(f"  ⚡ Article has no meaningful stats — skipping pulse reel")
+        return None
+
+    # Validate we got the minimum required fields
+    hook = result.get("hook_stat")
+    if not hook or not hook.get("big"):
+        print(f"  ⚡ No hook_stat extracted — skipping pulse reel")
+        return None
+
+    result["v"] = "pulse1"
+
+    # Cache
+    try:
+        cache_path.write_text(json.dumps(result, indent=2))
+        print(f"  💾 Pulse stats cached: {cache_path.name}")
+    except Exception as e:
+        print(f"  ⚠️ Cache write failed: {e}")
+
+    print(f"  ⚡ Hook: {result.get('hook_line', '?')} | {hook.get('big', '?')} — {hook.get('sub', '?')}")
+    print(f"  ⚡ Stats: {len(result.get('stats', []))} | Diaspora bullets: {len(result.get('diaspora_bullets', []))}")
+    return result
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
 # PRE-RENDER GATES — validate before spending Shotstack credits
 # ═══════════════════════════════════════════════════════════════════════════════
 
