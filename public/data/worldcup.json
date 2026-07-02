@@ -1,6 +1,6 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-07-01T20:02:05Z",
+  "last_updated": "2026-07-02T00:00:06Z",
   "stage": "Knockout Stage",
   "hosts": "USA, Mexico & Canada",
   "dates": {
@@ -1896,7 +1896,8 @@
           "away_code": "SEN",
           "venue": "Lumen Field",
           "city": "Seattle",
-          "status": "scheduled"
+          "status": "FT (AET)",
+          "score": "3-2 (AET)"
         },
         {
           "id": 83,
@@ -5105,6 +5106,76 @@
       "caption": "Harry Kane — record-breaking performance 👑 #FIFAWorldCup",
       "date": "2026-07-01",
       "type": "image"
+    },
+    {
+      "platform": "facebook",
+      "url": "https://www.facebook.com/reel/1556281852755703/",
+      "account": "@fifaworldcup",
+      "caption": "",
+      "date": "2026-06-30"
+    },
+    {
+      "platform": "facebook",
+      "url": "https://www.facebook.com/reel/1016439954680940/",
+      "account": "@fifaworldcup",
+      "caption": "",
+      "date": "2026-06-30"
+    },
+    {
+      "platform": "facebook",
+      "url": "https://www.facebook.com/reel/1394105449310968/",
+      "account": "@fifaworldcup",
+      "caption": "",
+      "date": "2026-07-01"
+    },
+    {
+      "platform": "facebook",
+      "url": "https://www.facebook.com/reel/2665741527161256/",
+      "account": "@fifaworldcup",
+      "caption": "",
+      "date": "2026-06-30"
+    },
+    {
+      "platform": "facebook",
+      "url": "https://www.facebook.com/reel/1778630339969180/",
+      "account": "@fifaworldcup",
+      "caption": "",
+      "date": "2026-07-01"
+    },
+    {
+      "platform": "facebook",
+      "url": "https://www.facebook.com/reel/2767163783665133/",
+      "account": "@fifaworldcup",
+      "caption": "",
+      "date": "2026-06-30"
+    },
+    {
+      "platform": "facebook",
+      "url": "https://www.facebook.com/reel/1578680596935161/",
+      "account": "@fifaworldcup",
+      "caption": "",
+      "date": "2026-06-30"
+    },
+    {
+      "platform": "facebook",
+      "url": "https://www.facebook.com/reel/1673143803792386/",
+      "account": "@fifaworldcup",
+      "caption": "",
+      "date": "2026-07-01"
+    },
+    {
+      "platform": "facebook",
+      "url": "https://www.facebook.com/reel/2024027688477973/",
+      "account": "@fifaworldcup",
+      "caption": "",
+      "date": "2026-06-30"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/reel/DaRL2N-Isy0/",
+      "account": "@fifaworldcup",
+      "caption": "",
+      "date": "2026-07-01"
     }
   ],
   "tv": {
