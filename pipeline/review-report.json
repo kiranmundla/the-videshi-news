@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-02T04:15:27.096197+00:00",
+  "timestamp": "2026-07-02T04:45:27.522770+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 3,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,18 +11,23 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "ac4aab1d-41c9-4570-bc9c-dc5c352e5b83",
-      "headline": "Four Countries Tightened Their Borders on the Same Day. Indians Travel to All of Them",
-      "slug": "global-visa-crackdown-july-1-digital-borders-india-20260702",
+      "id": "cf03c983-957b-4290-9b7e-a65e0e2795d2",
+      "headline": "Balogun Scored. Then He Was Sent Off. Ten-Man USA Beat Bosnia 2-0 in the Bay Area to Reach the World Cup Round of 16.",
+      "slug": "usa-beat-bosnia-2-0-balogun-red-card-tillman-free-kick-world-cup-round-of-16-levis-stadium-bay-area-nri-2026",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "90c08f88-143a-4e52-b80f-f2278561a4ba",
+            "headline": "The World Cup Comes to Silicon Valley. For NRIs in the Bay A"
+          }
+        ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "people at an immigration checkpoint",
-          "reason": "The photo shows an immigration checkpoint, relevant to the story about border tightening."
+          "what_photo_shows": "Levi\u2019s Stadium aerial view",
+          "reason": "The photo shows Levi\u2019s Stadium, which is relevant to the story's location."
         },
         "inline_image_mismatches": []
       },
@@ -31,18 +36,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image depicts an airport immigration scene, which is relevant to the article's topic on immigration changes."
+          "issue": "The image depicts Levi's Stadium, which is relevant to the article, but it does not specifically highlight the World Cup event."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses immigration changes affecting Indian nationals, making it relevant to the diaspora audience."
+          "note": "The article connects well with the Indian American community in Silicon Valley, discussing their growing interest in football due to the World Cup."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes or perspectives from Indian travelers or immigration experts to enhance relatability.",
-          "Add a section on how these changes might affect Indian diaspora communities in terms of travel and work opportunities."
+          "Consider adding more direct quotes from players or coaches to enhance the narrative.",
+          "Include statistics or historical context about the USA's performance in previous World Cups to enrich the article."
         ],
         "verdict": "pass"
       },
@@ -54,18 +59,27 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "fe7ee192-9a4b-4772-8e51-27ce274ed5e0",
-      "headline": "EB-2 India Just Went Dark. No Green Cards Until October",
-      "slug": "eb2-india-unavailable-july-visa-bulletin-green-card-20260702",
+      "id": "0b4d6970-9b0b-4d1a-ad52-9203f75044e9",
+      "headline": "India's Bonds Just Had Their Best Month in Seven Years. The World's Biggest Index May Be Next.",
+      "slug": "india-record-foreign-bond-inflows-bloomberg-index-inclusion-tax-reform-20260701",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "c1671651-8e0b-48b9-9aa7-92aba5c2a06d",
+            "headline": "India Just Told Its Banks to Treat Every AI Model Like a Ris"
+          },
+          {
+            "article_id": "f02c1355-c2c1-4ea8-85da-e58ed5c28d0b",
+            "headline": "India's Banks Are the Healthiest in a Generation \u2014 and the R"
+          }
+        ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "open passport with visa stamps",
-          "reason": "The photo of a passport with visa stamps is relevant to the immigration story."
+          "what_photo_shows": "Reserve Bank of India headquarters",
+          "reason": "The photo shows the Reserve Bank of India, relevant to the bond investment story."
         },
         "inline_image_mismatches": []
       },
@@ -73,19 +87,67 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 5,
-          "issue": "The image does not directly relate to the topic of immigration or green cards."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article discusses the impact of visa availability on Indian professionals, which is highly relevant to the NRI community."
+          "quality": 7,
+          "note": "The article discusses tax reforms and bond market changes that directly impact NRIs and diaspora investors, making it relevant."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that visually represents immigration or green card processes to enhance relevance.",
-          "Add a brief section on potential implications for Indian professionals living abroad, which could further engage the diaspora audience."
+          "Expand on how the bond market changes specifically benefit NRI investors.",
+          "Include more data or quotes from diaspora investors to enhance the connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "ca7b8878-8839-4779-99bb-7f71be4d3f18",
+      "headline": "The Supreme Court Just Saved Birthright Citizenship. No Community Had More at Stake Than Indian Americans.",
+      "slug": "scotus-birthright-citizenship-indian-americans-14th-amendment-ruling-20260701",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "75f90b5e-6fc6-4c79-aa32-93359a2af973",
+            "headline": "The Supreme Court Just Ruled 6-3 That Children of H-1B Paren"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "United States Supreme Court building",
+          "reason": "The photo shows the Supreme Court, relevant to the court ruling story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the Supreme Court ruling to the Indian American community, highlighting their unique challenges and the significance of the ruling for them."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more personal stories or quotes from Indian Americans to enhance emotional engagement.",
+          "Provide additional context on the implications of the ruling for future immigration policies."
         ],
         "verdict": "pass"
       },
