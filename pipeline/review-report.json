@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-02T00:16:21.310082+00:00",
+  "timestamp": "2026-07-02T00:45:57.484173+00:00",
   "mode": "fix",
   "stats": {
     "pass": 6,
-    "flag": 1,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,39 +11,18 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "1b21ce05-c4a8-4b9c-867a-df5de0b99356",
-      "headline": "He Filed Fake H-1B Petitions Under UC Davis's Name. Now He Faces Five Years",
-      "slug": "h1b-fraud-uc-davis-rajidi-mada-guilty-plea-20260702",
+      "id": "e72be16f-5889-4732-b568-8611aaef7f6f",
+      "headline": "From a Hotel Lobby in Fort Collins to a Strip Mall in Columbus: Indian Food Is Showing Up Everywhere",
+      "slug": "indian-restaurants-small-city-america-expansion-fort-collins-columbus",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "aa18166c-663c-45a8-b24e-f5f8ce229faa",
-            "headline": "The Receipt That Never Ends. Every Fee Washington Has Added "
-          },
-          {
-            "article_id": "a9387eb6-819d-4880-857e-da536b0dea36",
-            "headline": "India's EB-5 Investor Green Cards Just Ran Out. The Escape H"
-          },
-          {
-            "article_id": "2f893da9-3f4b-4ee9-9998-647e3cb86da1",
-            "headline": "Eleven Million Cases and Counting. The Green Card Machine Ca"
-          },
-          {
-            "article_id": "7cd205b9-fefe-4bb3-8095-09600ad42101",
-            "headline": "You Used Day 1 CPT in 2019. USCIS Just Found Out"
-          },
-          {
-            "article_id": "68943038-05c3-4686-9959-65c1e60dd9c9",
-            "headline": "EB-2 India Is Shut Until October. The July Visa Bulletin Is "
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "USCIS Application Support Center",
-          "reason": "The photo shows a USCIS center, relevant to H-1B visa processing."
+          "what_photo_shows": "Indian dishes on a restaurant table",
+          "reason": "The photo shows Indian food, which aligns with the story about Indian restaurants."
         },
         "inline_image_mismatches": []
       },
@@ -51,19 +30,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image depicts a USCIS Application Support Center, which is relevant to the topic of immigration and H-1B petitions, but it does not directly relate to the specific case discussed."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses issues directly affecting Indian professionals in the U.S. and highlights the implications of visa fraud on the Indian community, making it relevant for the diaspora."
+          "note": "The article discusses the expansion of Indian cuisine in various American cities, which is relevant to the Indian diaspora interested in food culture and community."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes or perspectives from affected Indian professionals to enhance the human element of the story.",
-          "Add a section on how the Indian diaspora can advocate for fair immigration policies in light of such fraud cases."
+          "Include quotes or anecdotes from Indian diaspora members in the U.S. to enhance the personal connection.",
+          "Add a section discussing the impact of these restaurants on local communities and the Indian diaspora."
         ],
         "verdict": "pass"
       },
@@ -75,9 +54,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "4e2760d4-4083-429f-899d-8153b2ca3e16",
-      "headline": "Twelve States Now Punish Employers for Hiring Mistakes. Yours May Be One of Them",
-      "slug": "state-immigration-enforcement-july-1-indiana-fairness-act-20260702",
+      "id": "0523fd5f-e353-4dbf-9dfa-823395f7080a",
+      "headline": "Chicken Stock in Dal Makhani? A Former MasterChef Judge Just Ignited Indian Food's Loudest Fight",
+      "slug": "chicken-stock-dal-makhani-calombaris-masterchef-controversy",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -85,8 +64,58 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Indiana State Capitol building",
-          "reason": "The photo shows the Indiana State Capitol, relevant to the story about Indiana's FAIRNESS Act."
+          "what_photo_shows": "bowl of dal makhani with garnish",
+          "reason": "The photo shows dal makhani, which is relevant to the story about its preparation."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DYsl840zY3X/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel is relevant as it directly pertains to the controversy discussed in the article."
+          }
+        ],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the controversy to the experiences and perspectives of the Indian diaspora, highlighting their advocacy for authentic representation of Indian cuisine."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more quotes or perspectives from diaspora members to enhance the connection.",
+          "Include a brief background on dal makhani for readers unfamiliar with the dish."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DYsl840zY3X/",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "5e8a5ba7-459d-4109-ad9c-2e44aa37a57e",
+      "headline": "India Just Cut Jet Fuel Prices for the First Time Since the Iran War. IndiGo Is Already Passing It On.",
+      "slug": "india-atf-jet-fuel-price-cut-indigo-lite-fares-aviation-iran-war-20260701",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "IndiGo Airbus A320neo aircraft",
+          "reason": "The photo shows an IndiGo aircraft, relevant to the airline story."
         },
         "inline_image_mismatches": []
       },
@@ -94,19 +123,67 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 5,
-          "issue": "The image of the Indiana State Capitol building is relevant to the article's topic about Indiana's new law, but it does not directly illustrate the broader implications for employers or the Indian diaspora."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the implications of state-level immigration laws to the Indian diaspora, particularly H-1B workers and IT staffing firms."
+          "note": "The article effectively connects the jet fuel price cut and IndiGo's fare changes to the financial impact on the diaspora, particularly regarding travel costs."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more illustrative image that directly relates to the impact of the law on employers or the Indian diaspora.",
-          "Add a brief section summarizing the potential long-term effects of these laws on the Indian diaspora to enhance the article's relevance."
+          "Consider adding more quotes from industry experts to enhance credibility.",
+          "Include a brief historical context of jet fuel prices in India to provide readers with a clearer understanding of the significance of this change."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "5bf551c3-5065-4f7b-82e8-e50c103a7c51",
+      "headline": "The Supreme Court Just Killed a 90-Year Rule That Kept Agency Chiefs Safe From the President",
+      "slug": "scotus-overturns-humphreys-executor-presidential-power-independent-agencies-20260701",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "e4e26809-e804-479a-bee9-92c6523353db",
+            "headline": "The Supreme Court Settled Birthright Citizenship. For Indian"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "United States Supreme Court building",
+          "reason": "The photo shows the Supreme Court, relevant to the court ruling story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article connects the Supreme Court ruling to the Indian American community through the example of Rohit Chopra, making it relevant for diaspora readers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more quotes or perspectives from Indian American leaders or organizations to strengthen the diaspora connection.",
+          "Add a brief explanation of the implications of this ruling for NRIs specifically, such as potential impacts on regulatory practices that affect Indian businesses in the U.S."
         ],
         "verdict": "pass"
       },
@@ -126,11 +203,6 @@
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MISMATCH",
-          "what_photo_shows": "military vehicle in parade",
-          "reason": "The photo shows a military vehicle, not related to Agnikul or satellites."
-        },
         "inline_image_mismatches": []
       },
       "llm_review": {
@@ -143,71 +215,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the growth of India's private space sector to NRI investors and professionals."
+          "note": "The article effectively connects the growth of India's private space sector to NRI investors and professionals, highlighting opportunities for the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include a relevant image description to enhance the image match score.",
-          "Consider adding quotes or insights from diaspora professionals to strengthen the diaspora angle."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "Cleared mismatched image (military vehicle in parade)",
-        "held: image mismatch"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "image_mismatch": true,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "a166c698-a52b-448d-b6c1-525fdbecfa7c",
-      "headline": "Google Just Gave Its AI Agent a Desktop. It Costs $100 a Month and It Wants Your Files.",
-      "slug": "google-gemini-spark-macos-desktop-agent-20260702",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "376d36ae-f9ea-49fd-acb5-0b805245f1b0",
-            "headline": "Google Launched Its Best AI Model the Same Week It Lost Two "
-          },
-          {
-            "article_id": "4199782a-6579-475a-9f68-876561ffeb5f",
-            "headline": "Pichai's Google Ran Out of GPUs. So It's Paying a Rocket Com"
-          },
-          {
-            "article_id": "ab161d96-ec6e-4375-b721-3cf85ad87b26",
-            "headline": "Pichai's Worst Week: Google Lost a Nobel Laureate, a Transfo"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Google CEO Sundar Pichai",
-          "reason": "The photo shows Sundar Pichai, relevant to a Google-related story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image of Sundar Pichai is relevant as he is a key figure in Google's AI initiatives, but it could be more directly related to the Gemini Spark product."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively highlights the role of Indian-origin leadership in Google's AI development and the significance of AI adoption in India, making it relevant to the Indian diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more direct quotes or insights from Indian tech professionals to enhance the diaspora connection.",
-          "Consider adding a section on potential implications for Indian businesses using Gemini Spark."
+          "Include a relevant hero image description to improve image match assessment.",
+          "Consider adding quotes or insights from diaspora professionals to enhance the diaspora angle."
         ],
         "verdict": "pass"
       },
@@ -225,26 +239,8 @@
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "4ac22b41-fe9f-4c74-a52a-71bf31e5f39e",
-            "headline": "OpenAI Just Hired an IIT-IIM Grad to Run India. He Built Ube"
-          },
-          {
-            "article_id": "04fa3ee6-e785-4343-aa41-88d68ff23ebb",
-            "headline": "OpenAI Built Its Own Chip in Nine Months. Nvidia Should Pay "
-          },
-          {
-            "article_id": "d5b9b3b0-a568-4161-b83e-838aa7eefdea",
-            "headline": "OpenAI Just Hired Uber's India Boss to Run Its Second-Larges"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MISMATCH",
-          "what_photo_shows": "Sam Altman at a meeting",
-          "reason": "The photo shows Sam Altman, not Prabhjeet Singh."
-        },
         "inline_image_mismatches": []
       },
       "llm_review": {
@@ -252,108 +248,20 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image description is missing, making it difficult to assess its relevance."
+          "issue": "The image description is missing, making it difficult to assess relevance."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects Singh's appointment to the Indian diaspora's influence in the tech industry."
+          "note": "The article effectively connects Singh's appointment to the Indian diaspora's influence in global tech."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include a relevant image description to enhance the image match score.",
-          "Add more specific examples of how Singh's leadership could impact the Indian tech landscape."
+          "Include a relevant hero image description to enhance the article's visual appeal.",
+          "Consider adding quotes or insights from Singh or industry experts to provide more depth."
         ],
         "verdict": "pass"
-      },
-      "actions_taken": [
-        "Cleared mismatched image (Sam Altman at a meeting)",
-        "held: image mismatch"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "image_mismatch": true,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "3eb55e4b-d290-44be-a248-0f1dc811cf3c",
-      "headline": "Leicester's South Asian Arts Festival Turns Fifteen. The City Barely Notices \u2014 It Has Been Living This for Decades.",
-      "slug": "an-indian-summer-leicester-festival-15th-south-asian-arts-20260702",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Traditional South Asian dancer performing",
-          "reason": "The photo shows a traditional South Asian dancer, which aligns with the arts festival theme."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image is visually appealing but does not directly relate to the specific festival or its activities."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the festival to the British Indian diaspora, highlighting its significance in cultural identity."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider including specific images or videos from the festival to enhance engagement.",
-          "Add quotes or testimonials from attendees to provide a personal touch."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "8e7f5c13-d34a-42fe-8f83-2247e2c656f3",
-      "headline": "India Just Killed the Physical OCI Booklet. Five Million Cardholders Can Finally Exhale.",
-      "slug": "india-eoci-card-digital-booklet-eliminated-diaspora-20260702",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Amit Shah speaking at an event",
-          "reason": "The photo shows Amit Shah, who is relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 5,
-          "issue": "irrelevant"
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses changes to the OCI card system, which directly affects the diaspora community."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the hero image with one that directly relates to the OCI card or the digital transformation of the OCI system.",
-          "Consider adding quotes or testimonials from OCI cardholders to enhance the personal connection to the diaspora experience."
-        ],
-        "verdict": "flag"
       },
       "actions_taken": [
         "promoted to published"
