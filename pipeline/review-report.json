@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-02T12:45:29.277923+00:00",
+  "timestamp": "2026-07-02T13:15:46.937916+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
-    "flag": 0,
+    "pass": 2,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "ea5647ed-4046-4355-9b47-8363100d36cb",
-      "headline": "From Pani Puri to Prix Fixe: Sujan Sarkar's Michelin Empire Lands in New York and Phoenix",
-      "slug": "from-pani-puri-to-prix-fixe-sujan-sarkar-michelin-empire-new-york-phoenix",
+      "id": "da0f9cd2-9f05-4ffc-8f91-edfd5540b2c7",
+      "headline": "Silo Season 3 Arrives With a Perfect Score \u2014 and a Revelation That Changes Everything",
+      "slug": "silo-season-3-apple-tv-rebecca-ferguson-perfect-score-100-rotten-tomatoes-streaming-india-nri-20260702",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,64 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Pani puri served in bowls",
-          "reason": "The photo shows pani puri, relevant to the story about Indian cuisine."
+          "what_photo_shows": "Rebecca Ferguson at an event",
+          "reason": "The photo shows Rebecca Ferguson, who is relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [
+          {
+            "url": "https://youtube.com/watch?v=BLBvbMtjyAQ",
+            "problem": "irrelevant",
+            "explanation": "The YouTube link does not provide relevant content related to the article's focus on the series 'Silo'."
+          },
+          {
+            "url": "https://www.instagram.com/reel/DaQ5NONyFRE/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel does not appear to be directly related to the content of the article discussing 'Silo'."
+          }
+        ],
+        "image_match": {
+          "score": 5,
+          "issue": "The image of Rebecca Ferguson does not directly relate to the article's headline about 'Silo' Season 3."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article connects well with the NRI audience by discussing the accessibility of Apple TV+ across multiple countries."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the irrelevant YouTube and Instagram links with embeds that provide trailers or promotional content specifically for 'Silo'.",
+          "Consider using a more relevant hero image that directly features the show or its characters to enhance visual alignment with the article's topic."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://youtube.com/watch?v=BLBvbMtjyAQ",
+        "Removed irrelevant embed: https://www.instagram.com/reel/DaQ5NONyFRE/",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "88df73d1-8b65-4654-b8e5-56e016e75aa9",
+      "headline": "The Rock Just Walked Out of the Ocean \u2014 and This Time, You Can See His Face",
+      "slug": "moana-live-action-dwayne-johnson-maui-disney-india-july-10-hindi-dubbed-family-diaspora-nri-20260702",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Disney live-action Moana poster",
+          "reason": "The poster is relevant to the story about the live-action Moana film."
         },
         "inline_image_mismatches": []
       },
@@ -30,19 +86,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image is relevant to the article but does not feature Dwayne Johnson or the live-action aspect directly."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects Sarkar's achievements to the broader narrative of Indian cuisine's acceptance in America, appealing to the NRI audience."
+          "quality": 9,
+          "note": "The article effectively connects Dwayne Johnson's popularity in India and the strategic release of the film in Hindi, appealing to the Indian diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from patrons or food critics to enhance the narrative.",
-          "Include more details about the cultural significance of the dishes served at Nadu to deepen the connection with the diaspora."
+          "Consider using an image that features Dwayne Johnson or a scene from the live-action film to enhance relevance.",
+          "Add a brief section discussing the cultural significance of Moana in relation to Indian audiences."
         ],
         "verdict": "pass"
       },
@@ -54,9 +110,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "c9d574c5-0efc-4679-9e00-c01662f5e7c9",
-      "headline": "The $24 Bag of Rice: How US Tariffs Are Reshaping the Desi Pantry",
-      "slug": "the-24-bag-of-rice-how-us-tariffs-are-reshaping-the-desi-pantry",
+      "id": "a40f66da-63f8-4630-8f7d-b0bf5d760f09",
+      "headline": "The Director of Vikram Just Picked Up the Gun Himself",
+      "slug": "dc-lokesh-kanagaraj-acting-debut-devdas-wamiqa-gabbi-anirudh-cannes-july-31-diaspora-nri-20260702",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,8 +120,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Assorted Indian spices and grains",
-          "reason": "The photo shows Indian spices and grains, relevant to the story about Indian pantry staples."
+          "what_photo_shows": "man in black shirt",
+          "reason": "The photo plausibly shows Lokesh Kanagaraj, relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -73,62 +129,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image of Lokesh Kanagaraj does match the article's topic, but it could be more directly related to his acting role in DC."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively highlights the impact of US tariffs on Indian American grocery shopping habits, making it relevant to the diaspora."
+          "quality": 9,
+          "note": "The article effectively connects Lokesh Kanagaraj's work to the global Tamil diaspora, highlighting his appeal and the significance of his films in international markets."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more personal anecdotes or quotes from Indian Americans to enhance relatability.",
-          "Add a section discussing potential future trends in the Indian grocery market due to these tariffs."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "cffb7109-a815-4e86-bbb6-938c211da357",
-      "headline": "The Fake Dosa Makers: How AI-Generated Videos Are Weaponising Indian Street Food",
-      "slug": "fake-dosa-makers-ai-generated-videos-weaponising-indian-street-food",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Sev puri chaat on a platter",
-          "reason": "The photo shows Indian street food, which is relevant to the story about AI-generated videos of Indian street food."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 3,
-          "issue": "irrelevant"
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the issue of AI-generated videos to the experiences of Indian Americans and NRIs, highlighting their cultural pride and the challenges they face."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the hero image with one that directly represents Indian street food, such as a dosa or a street vendor preparing food.",
-          "Consider adding more statistics or quotes from diaspora members to strengthen the connection to NRI experiences."
+          "Consider adding more direct quotes from Lokesh Kanagaraj or other filmmakers to enhance the article's depth.",
+          "Include a brief overview of the film's reception or expectations from critics to provide context for diaspora audiences."
         ],
         "verdict": "pass"
       },
