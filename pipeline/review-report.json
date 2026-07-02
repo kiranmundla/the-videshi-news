@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-02T10:46:00.662875+00:00",
+  "timestamp": "2026-07-02T11:15:18.689948+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
-    "flag": 1,
+    "pass": 1,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "0d6bef6b-8dc5-40a0-8127-650d9b3bad7d",
-      "headline": "Gardner and Perry Won't Be Stopped. Australia Crush West Indies to Reach Another Women's T20 World Cup Final.",
-      "slug": "australia-crush-west-indies-womens-t20-world-cup-semifinal-gardner-perry-lords-final-india-eliminated-2026-nri",
+      "id": "ff912ba1-b2b9-45e5-9491-46ca72bbbb72",
+      "headline": "Sharvari Showed Up in a Suit. Ananya Wore \u20b92.3 Crore on Her Wrist. Welcome to Bollywood's Most Stylish Night.",
+      "slug": "bh-style-icons-awards-2026-sharvari-suit-ananya-panday-red-carpet-winners-bollywood-glamour-diaspora-nri-20260702",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Australian cricketer in team uniform",
-          "reason": "The photo shows an Australian cricketer, relevant to the cricket story."
+          "what_photo_shows": "Ananya Panday at an event",
+          "reason": "The photo shows Ananya Panday, relevant to the Bollywood event story."
         },
         "inline_image_mismatches": []
       },
@@ -32,146 +32,17 @@
         "image_match": {
           "score": 9,
           "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article connects well with Indian cricket fans, particularly those in the UK, by discussing India's performance and its implications."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from players or coaches to enhance the narrative.",
-          "Include more context about the significance of the Women's T20 World Cup for the diaspora audience."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "35416ef6-b259-4477-a38e-6021eb651e0c",
-      "headline": "A Cheap Chinese AI Model Is Catching America's Best. India's Tech Sector Is in the Crossfire.",
-      "slug": "china-glm-5-2-ai-model-zhipu-openai-anthropic-india-tech-20260702",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "NVIDIA H100 GPU",
-          "reason": "The photo shows an NVIDIA H100 GPU, relevant to the AI tech story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 6,
-          "issue": "The image of an NVIDIA H100 does not directly relate to the article's focus on the GLM-5.2 AI model."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 7,
-          "note": "The article discusses implications for India's tech sector, which is relevant to the Indian diaspora interested in technology and investment opportunities."
+          "note": "The article connects to the NRI audience through the mention of Bollywood's influence and the global appeal of its stars."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that directly represents the GLM-5.2 AI model or its applications.",
-          "Expand on the implications for the Indian tech sector to provide more depth for diaspora readers."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "4335e976-94ba-4399-865a-89243d5196ee",
-      "headline": "India's Stock Market Just Clawed Back to $5 Trillion. Here's What Turned the Tide.",
-      "slug": "india-stock-market-5-trillion-global-funds-return-oil-crash-rbi-20260702",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "c8f9d429-78c3-44e0-86db-17d3973ee0a6",
-            "headline": "Persistent Systems Just Made India's Biggest Mid-Cap IT Bet "
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Bombay Stock Exchange building",
-          "reason": "The photo shows the Bombay Stock Exchange, relevant to the stock market story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses implications for NRI investors, making it relevant to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more specific examples of how NRI investors can capitalize on the current market situation.",
-          "Add a section discussing potential long-term impacts on the Indian economy and diaspora investments."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "b8a1956b-2f7e-444d-bf06-894d1baba7f6",
-      "headline": "India Is About to Witness Its Biggest-Ever IPO Wave \u2014 From Jio's $3.8 Billion Listing to Carlsberg's Beer Play",
-      "slug": "india-ipo-wave-h2-2026-jio-carlsberg-nse-phonpe-pernod-ricard-nri-investor-20260702",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image description is missing, making it difficult to assess relevance."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses opportunities for NRI investors in the upcoming IPOs, making it relevant to the diaspora audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include a relevant hero image with a description that matches the article's content.",
-          "Expand on the risks associated with investing in these IPOs for a more balanced perspective."
+          "Include more context about the significance of the awards for the diaspora audience.",
+          "Add quotes or reactions from attendees to enhance engagement."
         ],
         "verdict": "pass"
       },
