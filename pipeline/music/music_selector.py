@@ -126,8 +126,15 @@ def _variant_filename(track, target_variant):
 
 
 def select_music(category, story_mood=None, target_variant="30s",
-                 article_id=None, index_path=None):
-    """Pick a music track. See module docstring for full semantics."""
+                 article_id=None, index_path=None, prefer_source=None,
+                 min_energy=None):
+    """Pick a music track. See module docstring for full semantics.
+
+    Optional filters (applied within the chosen family):
+      prefer_source  – e.g. "pixabay"; picks only tracks from this source
+                       within the family if any exist, else uses all.
+      min_energy     – int 1-5; filters to tracks with energy >= this value.
+    """
     index = _load_index(index_path)
     family, _reason = _resolve_family(index, category, story_mood)
     candidates = _tracks_in_family(index, family) if family else []
@@ -137,6 +144,19 @@ def select_music(category, story_mood=None, target_variant="30s",
         family = candidates[0].get("category") if candidates else None
     if not candidates:
         raise RuntimeError("music-index has no tracks")
+
+    # Apply energy floor if set
+    if min_energy is not None:
+        filtered = [t for t in candidates if (t.get("energy") or 0) >= min_energy]
+        if filtered:
+            candidates = filtered
+
+    # Apply source preference if set (soft — falls back to all if none match)
+    if prefer_source:
+        filtered = [t for t in candidates
+                    if t.get("source", "").lower() == prefer_source.lower()]
+        if filtered:
+            candidates = filtered
 
     # deterministic rotation, sorted by filename for a stable ordering
     candidates = sorted(candidates, key=lambda t: t["filename"])

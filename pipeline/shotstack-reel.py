@@ -1774,13 +1774,14 @@ def prepare_music_bed(music_url, total_duration, target_mean_db=-26.0,
         return None
 
 
-def pick_music_for_article(article, story_mood=None):
+def pick_music_for_article(article, story_mood=None, prefer_source=None,
+                           min_energy=None):
     """Mood-driven music selection with deterministic rotation.
 
     Returns (music_url, music_volume, attribution_str). Uses the index-backed
     music_selector when available (keyed off story_mood, falling back to the
     article category, then a safe default), rotating deterministically on the
-    article id so re-renders are stable but different articles vary. Falls back
+    article id so re-renders are stable but articles vary. Falls back
     to the legacy hardcoded CATEGORY_MUSIC dict if the selector is unavailable.
     attribution_str is non-empty ONLY for CC-BY tracks (must be credited).
     """
@@ -1794,6 +1795,8 @@ def pick_music_for_article(article, story_mood=None):
                 story_mood=story_mood,
                 target_variant="30s",
                 article_id=article.get("id"),
+                prefer_source=prefer_source,
+                min_energy=min_energy,
             )
             music_url = ensure_music_uploaded(sel["path"])
             attribution = sel.get("attribution", "") or ""
@@ -5672,42 +5675,44 @@ def build_anchor_reel_timeline(
 # ═════════════════════════════════════════════════════════════════════════════
 
 def _pulse_hook_html(hook_line, category):
-    """Scene 1: Hook frame — bold hook_line text over darkened hero image."""
+    """Scene 1: Hook frame — massive text over darkened hero image (transparent bg)."""
     badge = (category or "NEWS").upper().replace("-", " ")
-    html = f"""<div style="display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;width:100%;height:100%;padding:60px 50px;box-sizing:border-box;">
-  <div style="font-family:Inter;font-size:18px;font-weight:700;color:#D4AF37;letter-spacing:5px;margin-bottom:40px;text-transform:uppercase;">{badge}</div>
-  <div style="font-family:Inter;font-size:72px;font-weight:900;color:#ffffff;line-height:1.1;text-shadow:0 4px 30px rgba(0,0,0,0.8),0 2px 8px rgba(0,0,0,0.6);letter-spacing:1px;">{hook_line}</div>
-  <div style="width:80px;height:4px;background:#D4AF37;margin-top:40px;"></div>
+    html = f"""<div style="display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-start;width:100%;height:100%;padding:0 60px 200px;box-sizing:border-box;">
+  <div style="font-family:Inter;font-size:28px;font-weight:800;color:#D4AF37;letter-spacing:6px;text-transform:uppercase;margin-bottom:30px;text-shadow:0 2px 12px rgba(0,0,0,0.9);">{badge}</div>
+  <div style="font-family:Inter;font-size:96px;font-weight:900;color:#ffffff;line-height:1.05;text-shadow:0 6px 40px rgba(0,0,0,0.95),0 3px 12px rgba(0,0,0,0.8);letter-spacing:-1px;">{hook_line}</div>
+  <div style="width:120px;height:6px;background:#D4AF37;margin-top:36px;border-radius:3px;"></div>
 </div>"""
     return html
 
 
 def _pulse_hero_stat_html(big, sub, eyebrow):
-    """Scene 2: Hero stat card — one massive number on navy background."""
-    html = f"""<div style="display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;width:100%;height:100%;background:linear-gradient(180deg,#0a1628 0%,#0f1f35 50%,#0a1628 100%);padding:60px 50px;box-sizing:border-box;">
-  <div style="font-family:Inter;font-size:18px;font-weight:700;color:#D4AF37;letter-spacing:5px;margin-bottom:50px;text-transform:uppercase;">{eyebrow}</div>
-  <div style="font-family:Inter;font-size:100px;font-weight:900;color:#D4AF37;line-height:1.0;margin-bottom:24px;text-shadow:0 0 40px rgba(212,175,55,0.3);">{big}</div>
-  <div style="font-family:Inter;font-size:30px;font-weight:500;color:rgba(255,255,255,0.85);line-height:1.3;max-width:800px;">{sub}</div>
+    """Scene 2: Hero stat — massive number on translucent card over blurred hero."""
+    html = f"""<div style="display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;width:100%;height:100%;padding:80px 50px;box-sizing:border-box;">
+  <div style="background:rgba(10,22,40,0.85);border-radius:32px;padding:80px 60px;width:90%;max-width:920px;border:2px solid rgba(212,175,55,0.3);">
+    <div style="font-family:Inter;font-size:26px;font-weight:800;color:#D4AF37;letter-spacing:6px;text-transform:uppercase;margin-bottom:40px;text-shadow:0 2px 8px rgba(0,0,0,0.5);">{eyebrow}</div>
+    <div style="font-family:Inter;font-size:160px;font-weight:900;color:#D4AF37;line-height:1.0;margin-bottom:28px;text-shadow:0 0 60px rgba(212,175,55,0.4),0 4px 20px rgba(0,0,0,0.5);">{big}</div>
+    <div style="font-family:Inter;font-size:38px;font-weight:600;color:rgba(255,255,255,0.9);line-height:1.3;">{sub}</div>
+  </div>
 </div>"""
     return html
 
 
 def _pulse_stat_grid_html(stats):
-    """Scene 3: Stat grid — 2-3 stats in a clean grid layout."""
-    tiles_html = ""
+    """Scene 3: Stat grid — 2-3 stats in bold cards over blurred hero."""
     colors = ["#D4AF37", "#4ECDC4", "#FF9933"]
+    tiles_html = ""
     for i, stat in enumerate(stats[:3]):
         big = stat.get("big", "")
         label = stat.get("label", "")
         color = colors[i % len(colors)]
-        tiles_html += f"""<div style="flex:1;min-width:260px;padding:30px 20px;text-align:center;">
-    <div style="font-family:Inter;font-size:64px;font-weight:900;color:{color};line-height:1.1;margin-bottom:12px;">{big}</div>
-    <div style="font-family:Inter;font-size:22px;font-weight:500;color:rgba(255,255,255,0.75);line-height:1.3;">{label}</div>
-  </div>"""
+        tiles_html += f"""<div style="background:rgba(10,22,40,0.85);border-radius:24px;padding:50px 40px;text-align:center;border:2px solid {color}33;flex:1;min-width:380px;">
+      <div style="font-family:Inter;font-size:80px;font-weight:900;color:{color};line-height:1.0;margin-bottom:16px;text-shadow:0 0 30px {color}44;">{big}</div>
+      <div style="font-family:Inter;font-size:28px;font-weight:600;color:rgba(255,255,255,0.85);line-height:1.25;text-transform:uppercase;letter-spacing:1px;">{label}</div>
+    </div>"""
 
-    html = f"""<div style="display:flex;flex-direction:column;justify-content:center;align-items:center;width:100%;height:100%;background:linear-gradient(180deg,#0a1628 0%,#0f1f35 50%,#0a1628 100%);padding:60px 40px;box-sizing:border-box;">
-  <div style="font-family:Inter;font-size:18px;font-weight:700;color:#D4AF37;letter-spacing:5px;margin-bottom:50px;text-transform:uppercase;">BY THE NUMBERS</div>
-  <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:20px;max-width:900px;">
+    html = f"""<div style="display:flex;flex-direction:column;justify-content:center;align-items:center;width:100%;height:100%;padding:80px 50px;box-sizing:border-box;">
+  <div style="font-family:Inter;font-size:26px;font-weight:800;color:#D4AF37;letter-spacing:6px;margin-bottom:50px;text-transform:uppercase;text-shadow:0 2px 12px rgba(0,0,0,0.9);">BY THE NUMBERS</div>
+  <div style="display:flex;flex-direction:column;gap:28px;width:90%;max-width:920px;">
     {tiles_html}
   </div>
 </div>"""
@@ -5715,17 +5720,17 @@ def _pulse_stat_grid_html(stats):
 
 
 def _pulse_diaspora_html(bullets):
-    """Scene 4: Diaspora panel — NRI impact points with saffron accent."""
+    """Scene 4: Diaspora panel — NRI impact in a bold card over blurred hero."""
     bullets_html = ""
     for b in bullets[:3]:
-        bullets_html += f"""<div style="display:flex;align-items:flex-start;gap:14px;margin-bottom:24px;">
-    <div style="width:8px;height:8px;min-width:8px;border-radius:50%;background:#FF9933;margin-top:10px;"></div>
-    <div style="font-family:Inter;font-size:28px;font-weight:500;color:rgba(255,255,255,0.9);line-height:1.35;">{b}</div>
-  </div>"""
+        bullets_html += f"""<div style="display:flex;align-items:flex-start;gap:18px;margin-bottom:28px;">
+      <div style="width:12px;height:12px;min-width:12px;border-radius:50%;background:#FF9933;margin-top:12px;box-shadow:0 0 12px rgba(255,153,51,0.5);"></div>
+      <div style="font-family:Inter;font-size:36px;font-weight:600;color:rgba(255,255,255,0.95);line-height:1.3;">{b}</div>
+    </div>"""
 
-    html = f"""<div style="display:flex;flex-direction:column;justify-content:center;align-items:center;width:100%;height:100%;background:linear-gradient(180deg,#0a1628 0%,#0f1f35 50%,#0a1628 100%);padding:60px 50px;box-sizing:border-box;">
-  <div style="font-family:Inter;font-size:18px;font-weight:700;color:#FF9933;letter-spacing:5px;margin-bottom:50px;text-transform:uppercase;">THE DIASPORA ANGLE</div>
-  <div style="width:100%;max-width:850px;">
+    html = f"""<div style="display:flex;flex-direction:column;justify-content:center;align-items:center;width:100%;height:100%;padding:80px 50px;box-sizing:border-box;">
+  <div style="background:rgba(10,22,40,0.85);border-radius:32px;padding:60px 50px;width:90%;max-width:920px;border-left:8px solid #FF9933;">
+    <div style="font-family:Inter;font-size:26px;font-weight:800;color:#FF9933;letter-spacing:6px;margin-bottom:40px;text-transform:uppercase;">THE DIASPORA ANGLE</div>
     {bullets_html}
   </div>
 </div>"""
@@ -5733,22 +5738,15 @@ def _pulse_diaspora_html(bullets):
 
 
 def _pulse_cta_html():
-    """Scene 5: CTA card — brand, website, social handles."""
-    html = """<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;width:100%;height:100%;background:linear-gradient(180deg,#0a1628 0%,#0f1f35 50%,#0a1628 100%);padding:60px 40px;box-sizing:border-box;">
-  <div style="font-family:Inter;font-size:64px;font-weight:700;color:#D4AF37;letter-spacing:8px;margin-bottom:12px;">THE VIDESHI</div>
-  <div style="font-family:Inter;font-size:22px;color:rgba(255,255,255,0.5);letter-spacing:4px;text-transform:uppercase;margin-bottom:36px;">Global Indian News</div>
-  <div style="width:60px;height:3px;background:#D4AF37;margin-bottom:36px;opacity:0.6;"></div>
-  <div style="font-family:Inter;font-size:36px;font-weight:700;color:#fff;letter-spacing:1px;margin-bottom:30px;">thevideshi.com</div>
-  <div style="font-family:Inter;font-size:46px;font-weight:900;color:#F2C84B;margin-bottom:30px;">@the.videshi</div>
-  <div style="display:flex;flex-direction:column;gap:8px;align-items:center;">
-    <div style="display:flex;gap:20px;align-items:center;justify-content:center;">
-      <span style="font-family:Inter;font-size:18px;color:rgba(255,255,255,0.8);"><span style="color:#D4AF37;font-weight:700;">YT</span> @the.videshi</span>
-      <span style="font-family:Inter;font-size:18px;color:rgba(255,255,255,0.8);"><span style="color:#D4AF37;font-weight:700;">IG</span> @the.videshi</span>
-    </div>
-    <div style="display:flex;gap:20px;align-items:center;justify-content:center;">
-      <span style="font-family:Inter;font-size:18px;color:rgba(255,255,255,0.8);"><span style="color:#D4AF37;font-weight:700;">THREADS</span> @the.videshi</span>
-      <span style="font-family:Inter;font-size:18px;color:rgba(255,255,255,0.8);"><span style="color:#D4AF37;font-weight:700;">X</span> @thevideshi</span>
-    </div>
+    """Scene 5: CTA card — brand + website, clean and big."""
+    html = """<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;width:100%;height:100%;padding:80px 50px;box-sizing:border-box;">
+  <div style="background:rgba(10,22,40,0.88);border-radius:32px;padding:80px 60px;width:90%;max-width:920px;border:2px solid rgba(212,175,55,0.3);">
+    <div style="font-family:Inter;font-size:80px;font-weight:800;color:#D4AF37;letter-spacing:6px;margin-bottom:16px;">THE VIDESHI</div>
+    <div style="font-family:Inter;font-size:28px;color:rgba(255,255,255,0.5);letter-spacing:4px;text-transform:uppercase;margin-bottom:50px;">GLOBAL INDIAN NEWS</div>
+    <div style="width:80px;height:4px;background:#D4AF37;margin:0 auto 50px;border-radius:2px;"></div>
+    <div style="font-family:Inter;font-size:44px;font-weight:700;color:#fff;margin-bottom:24px;">thevideshi.com</div>
+    <div style="font-family:Inter;font-size:50px;font-weight:900;color:#F2C84B;margin-bottom:40px;">@the.videshi</div>
+    <div style="font-family:Inter;font-size:24px;color:rgba(255,255,255,0.6);letter-spacing:2px;">YOUTUBE · INSTAGRAM · THREADS · X</div>
   </div>
 </div>"""
     return html
@@ -5888,17 +5886,18 @@ def build_quick_pulse_timeline(
         "transition": {"in": "fade"},
     })
 
-    # Track 2: Background imagery
-    # Scene 1 uses hero image (darkened via filter); rest are solid navy from HTML
+    # Track 2: Background imagery — hero image runs the FULL duration
+    # (darkened) so every card has a rich visual background, not flat navy.
     bg_clips = []
     if hero_image_url:
         bg_clips.append({
             "asset": {"type": "image", "src": hero_image_url},
-            "start": S1_START,
-            "length": S1_LEN + 0.3,
+            "start": 0.0,
+            "length": total_duration + 0.5,
             "fit": "cover",
-            "effect": "zoomIn",
+            "effect": "zoomInSlow",
             "filter": "darken",
+            "opacity": 0.7,
         })
 
     edit = {
@@ -7124,15 +7123,19 @@ def run_quick_pulse(article, dry_run=False, use_production=False):
     # Slow/brooding families (dramatic-dark, chill-lifestyle, emotional-inspiring)
     # kill the pace of a fast 18-second data-card reel. Override to always use
     # punchy families that match the rapid-cut visual style.
+    # Also prefer Pixabay CC0 tracks (more modern) over Kevin MacLeod.
     _PULSE_MOOD_OVERRIDE = {
         "somber": "tense",          # tense → breaking-news / cinematic-epic (not brooding)
         "chill": "neutral-news",    # neutral-news → breaking-news / tech-corporate
         "cultural": "celebratory",  # keep the energy up
+        "triumphant": "tense",      # anthemic-triumph is all MacLeod → use breaking-news
+        "uplifting": "celebratory", # emotional-inspiring is slow → upbeat-celebration
     }
     raw_mood = pulse_stats.get("story_mood", "neutral-news")
     story_mood = _PULSE_MOOD_OVERRIDE.get(raw_mood, raw_mood)
     music_url, music_volume, _qp_music_attribution = pick_music_for_article(
-        article, story_mood=story_mood
+        article, story_mood=story_mood,
+        prefer_source="pixabay", min_energy=4,
     )
 
     # Step 4: Build timeline
