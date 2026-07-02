@@ -1,19 +1,19 @@
 {
-  "timestamp": "2026-07-02T18:45:25.324699+00:00",
+  "timestamp": "2026-07-02T19:15:32.695218+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
-    "flag": 0,
+    "pass": 1,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
-  "revisions": 0,
+  "revisions": 1,
   "unpublished": 0,
   "articles": [
     {
-      "id": "70e2653e-435b-4d79-b83a-29d210a34b09",
-      "headline": "India's Factories Are Cooling Off. The Warning Signs Are Hard to Ignore.",
-      "slug": "india-manufacturing-pmi-june-2026-four-year-low-export-orders-europe-kpit-20260702",
+      "id": "c105fe6b-5192-4bab-8205-262628f9ef9e",
+      "headline": "17,000 Tickets and a \u20b9100-Crore Gamble: The Spy Universe Has Never Opened This Quietly",
+      "slug": "alpha-alia-bhatt-advance-booking-spy-universe-weakest-opening-yrf-july-3-diaspora-nri-20260702",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,109 +21,89 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Workers in an Indian factory",
-          "reason": "The photo shows workers in a manufacturing setting, relevant to the story about India's manufacturing sector."
+          "what_photo_shows": "theatrical release poster for Alpha",
+          "reason": "The poster is relevant to the story about the film's release."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 8,
+        "overall_score": 6,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/DaQcmVYk8Of/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not seem to relate directly to the article's focus on the film 'Alpha' and its box office performance."
+          },
+          {
+            "url": "https://youtube.com/watch?v=QRqGwGwo1Y0",
+            "problem": "irrelevant",
+            "explanation": "The YouTube link does not provide relevant content related to the article's discussion on the film's opening and box office predictions."
+          }
+        ],
+        "image_match": {
+          "score": 8,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 6,
+          "note": "The article touches on the significance of a female-led franchise in the Indian film industry, which may resonate with diaspora audiences, but the connection could be stronger."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the irrelevant Instagram and YouTube links with embeds that provide insights or trailers related to 'Alpha'.",
+          "Enhance the diaspora angle by including quotes or perspectives from NRI audiences regarding female representation in Indian cinema."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/DaQcmVYk8Of/",
+        "Removed irrelevant embed: https://youtube.com/watch?v=QRqGwGwo1Y0",
+        "Revised by gemini-2.5-flash (727\u2192808 words)"
+      ],
+      "revised": true,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "92e33c31-4557-4855-a183-8155454887c8",
+      "headline": "She Told the World She's Pregnant. Two Days Later, She Showed Up to Fight Shah Rukh Khan.",
+      "slug": "deepika-padukone-pregnant-king-raka-shah-rukh-khan-allu-arjun-body-double-diaspora-nri-20260702",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "20f65f68-8630-420a-b079-2f7ae88b14f3",
+            "headline": "She Announced Her Pregnancy. Forty-Eight Hours Later, She Wa"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Deepika Padukone at public appearance",
+          "reason": "The photo shows the correct named person for the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 7,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 8,
+          "issue": "The image of Deepika Padukone matches the article's topic about her recent projects and pregnancy announcement."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 7,
-          "note": "The article discusses India's manufacturing sector and its implications for global supply chains, which is relevant to the Indian diaspora involved in business and investment."
+          "note": "The article discusses Deepika's significant roles in major films, which may resonate with the diaspora audience interested in Bollywood."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes from industry experts to enhance credibility.",
-          "Add a section discussing potential impacts on NRI investments in Indian manufacturing."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "c2153f97-09c0-41c3-918d-034d8d458662",
-      "headline": "The US Is About to End a 30-Year Student Visa Rule. No Country Has More at Stake Than India.",
-      "slug": "us-f1-student-visa-duration-of-status-rule-opt-cpt-indian-students-20260702",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "students in graduation attire",
-          "reason": "The photo shows a graduation scene relevant to a student-visa story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively highlights the implications of the visa rule change specifically for Indian students, making it relevant for the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include quotes or perspectives from Indian students currently studying in the US to provide a personal touch.",
-          "Add a section discussing potential responses or actions from the Indian government or educational institutions regarding the new rule."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "0b21f8a4-5fda-46af-8a24-dc8a93d4be0d",
-      "headline": "Just 12 Weeks of Time-Restricted Eating Can Keep Weight Off for a Full Year, a New Study Finds",
-      "slug": "time-restricted-eating-8-hour-window-weight-loss-12-month-followup-university-granada-south-asian-metabolic-risk-20260702",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image description is missing, making it difficult to assess relevance."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the study's findings to the South Asian context and NRI lifestyle."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include a relevant image description to enhance the image match score.",
-          "Consider adding quotes or insights from South Asian health experts to strengthen the diaspora angle."
+          "Include more context on how Deepika's pregnancy and career decisions impact the diaspora audience.",
+          "Add quotes or reactions from industry insiders or fans to enhance engagement."
         ],
         "verdict": "pass"
       },
