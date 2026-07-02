@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-02T19:45:33.274538+00:00",
+  "timestamp": "2026-07-02T20:15:22.901755+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
+    "pass": 2,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "2e9fec15-dbf3-4b47-b40b-0bd36a437c82",
-      "headline": "India Will Play Their First Test Series in Sri Lanka Since 2017. Here's What's at Stake.",
-      "slug": "india-sri-lanka-test-series-galle-colombo-august-2026-wtc-diaspora-nri",
+      "id": "063cf9bd-946a-481a-981c-d9f07cb022f7",
+      "headline": "No Oath, No Ceremony. USCIS Scrapped Fourth of July Naturalisations for America's 250th",
+      "slug": "uscis-cancels-fourth-july-naturalization-250th-indian-citizens-20260702",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A man in a beige blazer",
-          "reason": "The photo plausibly shows Shubman Gill, relevant to the cricket story."
+          "what_photo_shows": "people taking citizenship oath outdoors",
+          "reason": "The photo shows a naturalization ceremony, which matches the story topic."
         },
         "inline_image_mismatches": []
       },
@@ -36,13 +36,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article connects well with the NRI community by highlighting the emotional significance of the match coinciding with India's Independence Day and the accessibility of Sri Lanka for Indian fans."
+          "note": "The article discusses the implications of USCIS changes on Indian immigrants, making it relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from players or coaches to enhance the article's depth.",
-          "Include more historical context about India's past performances in Sri Lanka to engage readers further."
+          "Include quotes from Indian immigrants or advocacy groups to enhance the emotional connection.",
+          "Add a section on how these changes specifically impact the Indian diaspora in terms of community response."
         ],
         "verdict": "pass"
       },
@@ -54,18 +54,18 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "305f893f-fbf8-4c61-80ef-5bae4f11a083",
-      "headline": "Ashwin and Dravid Reunite in Dublin. Europe's First ICC-Sanctioned T20 League Just Got Its Star Power.",
-      "slug": "ashwin-dravid-dublin-guardians-etpl-european-t20-premier-league-draft-2026-diaspora-nri",
+      "id": "9b6a5c28-5172-4f08-ac19-36ca168b66a6",
+      "headline": "Adjustment of Status Is Now 'Extraordinary.' Your Green Card Path Just Changed",
+      "slug": "uscis-adjustment-of-status-extraordinary-green-card-india-h1b-20260702",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Ravichandran Ashwin smiling",
-          "reason": "The photo shows Ravichandran Ashwin, who is relevant to the story."
+          "verdict": "MISMATCH",
+          "what_photo_shows": "Ukrainian passports and US dollars",
+          "reason": "The photo shows Ukrainian passports, not US immigration documents."
         },
         "inline_image_mismatches": []
       },
@@ -73,82 +73,29 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 5,
+          "issue": "missing image URL"
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the ETPL to the NRI diaspora in Europe, highlighting the significance of the league for cricket fans in these regions."
+          "note": "The article discusses changes in immigration policy that directly affect Indian nationals, particularly H-1B and F-1 visa holders, which is relevant to the NRI community."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes or reactions from diaspora fans to enhance the connection to the audience.",
-          "Include more details on how the ETPL will impact local cricket development in the regions mentioned."
+          "Include a relevant image that visually represents the topic of immigration or green card processes.",
+          "Add a section summarizing the implications of the policy change for Indian nationals specifically, to enhance the diaspora connection."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "promoted to published"
+        "Cleared mismatched image (Ukrainian passports and US dollars)",
+        "held: image mismatch"
       ],
       "revised": false,
       "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "c105fe6b-5192-4bab-8205-262628f9ef9e",
-      "headline": "17,000 Tickets and a \u20b9100-Crore Gamble: The Spy Universe Has Never Opened This Quietly",
-      "slug": "alpha-alia-bhatt-advance-booking-spy-universe-weakest-opening-yrf-july-3-diaspora-nri-20260702",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [
-          {
-            "url": "https://x.com/yrf/status/1807490218730991820",
-            "problem": "broken",
-            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
-          },
-          {
-            "url": "https://instagram.com/p/C80hD_tS33R",
-            "problem": "broken",
-            "detail": "Instagram embed shows removed/broken placeholder"
-          }
-        ],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Theatrical release poster for Alpha",
-          "reason": "The poster is relevant to the story about the film's release."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses a significant film in the Indian cinema landscape, which may resonate with the diaspora interested in Bollywood and female representation."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include quotes from industry experts or audience reactions to enhance credibility.",
-          "Add a brief section on how this film's performance could influence future female-led projects in Indian cinema."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "Removed 2 broken/hallucinated embed(s)",
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
+      "image_mismatch": true,
       "llm_source": "gpt-4o-mini"
     }
   ]
