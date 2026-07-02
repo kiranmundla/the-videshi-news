@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-02T01:15:22.966688+00:00",
+  "timestamp": "2026-07-02T01:45:13.761592+00:00",
   "mode": "fix",
   "stats": {
     "pass": 1,
-    "flag": 1,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "e43e5738-411b-440d-ae14-7d554f2c2527",
-      "headline": "\u20b93,300 for a Movie Ticket \u2014 and India Is Selling Out Anyway",
-      "slug": "odyssey-nolan-india-premiere-imax-3300-tickets-dhamaal-moved-spider-man-locked-out-diaspora-nri-20260701",
+      "id": "8131fa70-095e-4334-8989-0fabbf702801",
+      "headline": "Tielemans in the 125th Minute. Belgium Came Back From the Dead in Seattle \u2014 and NRIs in the Pacific Northwest Had Front-Row Seats.",
+      "slug": "belgium-tielemans-125th-minute-penalty-comeback-senegal-3-2-world-cup-seattle-nri-diaspora-2026",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Christopher Nolan speaking at an event",
-          "reason": "The photo shows Christopher Nolan, who is relevant to the story about his movie premiere."
+          "what_photo_shows": "Youri Tielemans in Belgium colors",
+          "reason": "The photo shows Youri Tielemans, relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -35,68 +35,18 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article discusses the significance of a major film premiere in India, which is relevant to the Indian diaspora interested in cinema and cultural events."
+          "quality": 8,
+          "note": "The article effectively connects the match to the Indian community in Seattle, highlighting their engagement with the World Cup."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more quotes or reactions from Indian audiences or critics to enhance the local perspective.",
-          "Add a section discussing the implications of high ticket prices on the Indian film industry and audience accessibility."
+          "Consider adding quotes or reactions from local Indian fans to enhance the diaspora connection.",
+          "Include more context about the significance of the match for the Indian community in the Pacific Northwest."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "f3a5864a-6518-4ed0-8427-edcd069fae50",
-      "headline": "Netflix Just Handed Telugu Cinema Its Biggest Stage \u2014 and a Virgin Sex-Ed Teacher Took It",
-      "slug": "super-subbu-netflix-first-telugu-original-sundeep-kishan-mithila-palkar-brahmanandam-sex-ed-comedy-diaspora-nri-20260701",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A man in a light shirt",
-          "reason": "The photo plausibly shows Sundeep Kishan, relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/reel/DZ93TrMqHAT/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram reel does not appear to be directly related to the main topic of the article, which focuses on the Netflix series 'Super Subbu'."
-          }
-        ],
-        "image_match": {
-          "score": 5,
-          "issue": "The image does not directly relate to the article's focus on 'Super Subbu' and its themes."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the significance of 'Super Subbu' to the Telugu diaspora, highlighting its global streaming availability and relevance."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the irrelevant Instagram embed with a more relevant one that showcases the series or its themes.",
-          "Consider using an image that features the cast of 'Super Subbu' or a promotional image from the series to better match the article's content."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/reel/DZ93TrMqHAT/",
         "promoted to published"
       ],
       "revised": false,
