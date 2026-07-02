@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-02T04:45:27.522770+00:00",
+  "timestamp": "2026-07-02T05:15:20.906652+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
+    "pass": 2,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,23 +11,70 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "cf03c983-957b-4290-9b7e-a65e0e2795d2",
-      "headline": "Balogun Scored. Then He Was Sent Off. Ten-Man USA Beat Bosnia 2-0 in the Bay Area to Reach the World Cup Round of 16.",
-      "slug": "usa-beat-bosnia-2-0-balogun-red-card-tillman-free-kick-world-cup-round-of-16-levis-stadium-bay-area-nri-2026",
+      "id": "f25cad14-7cdd-4502-b289-ca6c7220efcc",
+      "headline": "The Gang's Back, the Poster's 60 Feet Tall, and Arshad Warsi Promises It's Funny Again",
+      "slug": "dhamaal-4-trailer-launch-ajay-devgn-arshad-warsi-imagicaa-franchise-comedy-july-10-diaspora-nri-20260702",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Dhamaal 4 movie poster with ensemble cast",
+          "reason": "The photo shows a movie poster related to Dhamaal 4, matching the story topic."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the film's nostalgia to NRI audiences, highlighting its significance in diaspora culture."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more quotes or insights from the cast or crew to enhance the article's depth.",
+          "Include a brief overview of the previous films in the franchise for readers unfamiliar with the series."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "f3d12ea2-86e1-47b0-9bb7-c892a88b005a",
+      "headline": "\u20b91,300 Crore Wasn't Enough. Dhurandhar Just Landed in Japan.",
+      "slug": "dhurandhar-japan-release-ranveer-singh-1300-crore-spy-saga-global-expansion-dangal-record-diaspora-nri-20260702",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [
           {
-            "article_id": "90c08f88-143a-4e52-b80f-f2278561a4ba",
-            "headline": "The World Cup Comes to Silicon Valley. For NRIs in the Bay A"
+            "article_id": "b557b97c-8049-4c56-bdf2-cdf3bb56a52e",
+            "headline": "Ranveer Singh Is About to Destroy Mumbai \u2014 and Spend \u20b9300 Cr"
+          },
+          {
+            "article_id": "63aeac1c-ee7c-4dc6-9423-052c92b4c86e",
+            "headline": "\u20b93,000 Crore in Six Months \u2014 Bollywood Just Had Its Most Sav"
           }
         ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Levi\u2019s Stadium aerial view",
-          "reason": "The photo shows Levi\u2019s Stadium, which is relevant to the story's location."
+          "what_photo_shows": "A man in ornate attire",
+          "reason": "The photo plausibly shows Ranveer Singh, relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -36,118 +83,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image depicts Levi's Stadium, which is relevant to the article, but it does not specifically highlight the World Cup event."
+          "issue": "The image of Ranveer Singh is relevant to the article's topic about the film Dhurandhar, but it does not directly depict the film or its promotional materials."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article connects well with the Indian American community in Silicon Valley, discussing their growing interest in football due to the World Cup."
+          "note": "The article effectively connects the film's international release to the interests of diaspora audiences, emphasizing the significance of Indian cinema's global recognition."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more direct quotes from players or coaches to enhance the narrative.",
-          "Include statistics or historical context about the USA's performance in previous World Cups to enrich the article."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "0b4d6970-9b0b-4d1a-ad52-9203f75044e9",
-      "headline": "India's Bonds Just Had Their Best Month in Seven Years. The World's Biggest Index May Be Next.",
-      "slug": "india-record-foreign-bond-inflows-bloomberg-index-inclusion-tax-reform-20260701",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "c1671651-8e0b-48b9-9aa7-92aba5c2a06d",
-            "headline": "India Just Told Its Banks to Treat Every AI Model Like a Ris"
-          },
-          {
-            "article_id": "f02c1355-c2c1-4ea8-85da-e58ed5c28d0b",
-            "headline": "India's Banks Are the Healthiest in a Generation \u2014 and the R"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Reserve Bank of India headquarters",
-          "reason": "The photo shows the Reserve Bank of India, relevant to the bond investment story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses tax reforms and bond market changes that directly impact NRIs and diaspora investors, making it relevant."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Expand on how the bond market changes specifically benefit NRI investors.",
-          "Include more data or quotes from diaspora investors to enhance the connection."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "ca7b8878-8839-4779-99bb-7f71be4d3f18",
-      "headline": "The Supreme Court Just Saved Birthright Citizenship. No Community Had More at Stake Than Indian Americans.",
-      "slug": "scotus-birthright-citizenship-indian-americans-14th-amendment-ruling-20260701",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "75f90b5e-6fc6-4c79-aa32-93359a2af973",
-            "headline": "The Supreme Court Just Ruled 6-3 That Children of H-1B Paren"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "United States Supreme Court building",
-          "reason": "The photo shows the Supreme Court, relevant to the court ruling story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the Supreme Court ruling to the Indian American community, highlighting their unique challenges and the significance of the ruling for them."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more personal stories or quotes from Indian Americans to enhance emotional engagement.",
-          "Provide additional context on the implications of the ruling for future immigration policies."
+          "Consider including more visuals or promotional materials related to the film to enhance the article's engagement.",
+          "Add quotes or reactions from diaspora audiences to further strengthen the connection with NRI readers."
         ],
         "verdict": "pass"
       },

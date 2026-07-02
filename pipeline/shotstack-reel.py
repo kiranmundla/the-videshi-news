@@ -7120,8 +7120,17 @@ def run_quick_pulse(article, dry_run=False, use_production=False):
         if image_urls:
             hero_image_url = image_urls[0]
 
-    # Step 3: Music (mood-driven, uses the story_mood from GPT stats)
-    story_mood = pulse_stats.get("story_mood")
+    # Step 3: Music — Quick Pulse needs HIGH ENERGY regardless of story mood.
+    # Slow/brooding families (dramatic-dark, chill-lifestyle, emotional-inspiring)
+    # kill the pace of a fast 18-second data-card reel. Override to always use
+    # punchy families that match the rapid-cut visual style.
+    _PULSE_MOOD_OVERRIDE = {
+        "somber": "tense",          # tense → breaking-news / cinematic-epic (not brooding)
+        "chill": "neutral-news",    # neutral-news → breaking-news / tech-corporate
+        "cultural": "celebratory",  # keep the energy up
+    }
+    raw_mood = pulse_stats.get("story_mood", "neutral-news")
+    story_mood = _PULSE_MOOD_OVERRIDE.get(raw_mood, raw_mood)
     music_url, music_volume, _qp_music_attribution = pick_music_for_article(
         article, story_mood=story_mood
     )
