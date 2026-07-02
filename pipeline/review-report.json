@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-02T20:45:25.268089+00:00",
+  "timestamp": "2026-07-02T21:15:32.249459+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
-    "flag": 2,
+    "pass": 3,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "e34b7834-ce80-40ed-b25d-97ec34853727",
-      "headline": "While America Fights Its Data Centers, India Is Rolling Out the Red Carpet. The Numbers Are Staggering.",
-      "slug": "india-data-center-boom-microsoft-google-meta-amazon-ai-investment-20260702",
+      "id": "28a26009-4d34-4bb2-97ae-26ce4f8c7af2",
+      "headline": "Tata Communications Has Replaced Nearly Every Top Executive in Five Months. A Data Centre Fire Explains Why.",
+      "slug": "tata-communications-leadership-overhaul-data-centre-fire-20260702",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,56 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "modern data center server room",
-          "reason": "The photo shows a data center, which is relevant to the story about data centers in India."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 5,
-          "issue": "The image does not directly relate to the article's focus on India's data center growth."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 6,
-          "note": "The article touches on the implications for the Indian diaspora, but the connection could be more explicit."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more direct references to how the data center boom impacts Indian-Americans or the diaspora community.",
-          "Replace the hero image with one that better represents India's data center landscape."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "750790c6-5162-4770-9014-198997457aeb",
-      "headline": "Delhi Just Banned New Petrol Two-Wheelers From 2028. No Indian State Has Gone This Far.",
-      "slug": "delhi-ev-policy-2026-petrol-ban-electric-two-wheeler-charging-infrastructure-20260702",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "a7f0b6bc-1eeb-4c29-a39d-31310ebf5e84",
-            "headline": "Delhi Just Banned New Petrol Scooters From 2028. The EV Mand"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "electric vehicle charging station",
-          "reason": "The photo shows an EV charging station, relevant to the EV policy story."
+          "what_photo_shows": "Server racks in a data centre",
+          "reason": "The photo subject is relevant to the data centre fire story."
         },
         "inline_image_mismatches": []
       },
@@ -78,19 +30,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 3,
-          "issue": "The image depicts an electric car charging station, which is relevant to the topic of electric vehicles but does not directly relate to the focus on two-wheelers."
+          "score": 7,
+          "issue": "The image does not directly relate to the article's focus on Tata Communications and its leadership changes."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article connects the policy to NRIs by highlighting its significance as a signal for India's energy transition, though it could elaborate more on how this impacts diaspora investments or interests."
+          "quality": 8,
+          "note": "The article connects well with NRIs by discussing Tata Communications' significance and implications for the Indian digital economy."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that specifically features two-wheelers or electric two-wheelers to better match the article's focus.",
-          "Expand on the diaspora angle by including specific examples of how NRIs can engage with or benefit from this policy."
+          "Consider using a more relevant image that reflects Tata Communications or its data centers.",
+          "Expand on the implications of the leadership changes for the Indian diaspora, perhaps by including quotes or perspectives from industry experts."
         ],
         "verdict": "pass"
       },
@@ -102,35 +54,97 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "9b6a5c28-5172-4f08-ac19-36ca168b66a6",
-      "headline": "Adjustment of Status Is Now 'Extraordinary.' Your Green Card Path Just Changed",
-      "slug": "uscis-adjustment-of-status-extraordinary-green-card-india-h1b-20260702",
+      "id": "58e6a8c0-0faa-431b-8845-e2946f1cd1b3",
+      "headline": "Sanjay Mehrotra's Micron Just Posted $41 Billion in a Single Quarter. The AI Memory Shortage Is That Bad.",
+      "slug": "micron-mehrotra-41b-record-quarter-ai-memory-hbm-20260702",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "75827485-be64-4d66-90fa-c8cea2c3dea8",
+            "headline": "Mehrotra's Micron Just Posted a $41.5 Billion Quarter. The M"
+          },
+          {
+            "article_id": "8423103b-4bf1-451d-8811-edd9229687d1",
+            "headline": "SK Hynix Is Coming to Nasdaq on July 10. Mehrotra's Micron J"
+          }
+        ],
         "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Sanjay Mehrotra smiling in a suit",
+          "reason": "The photo shows Sanjay Mehrotra, relevant to the story."
+        },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 7,
+        "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 5,
-          "issue": "missing image URL and entities"
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses changes in immigration policy that directly affect Indian tech workers and other NRIs, making it relevant to the diaspora."
+          "note": "The article connects Mehrotra's achievements and Micron's impact on India's semiconductor ambitions, appealing to NRI readers."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include a relevant image that reflects the topic of immigration or green card processes.",
-          "Add more specific examples or quotes from affected individuals to enhance relatability."
+          "Include more direct quotes from Sanjay Mehrotra or industry experts to enhance credibility.",
+          "Add a section discussing potential risks or challenges for Micron to provide a balanced view."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "7eb0363d-e41b-451f-9b79-9c3a52b2f418",
+      "headline": "Aamir Khan Is Getting Married Again \u2014 and This Time, He's Doing It in His Living Room",
+      "slug": "aamir-khan-gauri-spratt-wedding-july-5-third-marriage-living-room-bollywood-diaspora-nri-20260702",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "104b0d9d-138d-4e5d-8ba8-2a3788ce5fe2",
+            "headline": "He Bet Everything on a Cricket Film Nobody Wanted \u2014 25 Years"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Aamir Khan at a public event",
+          "reason": "The photo shows Aamir Khan, matching the story about him."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image features Aamir Khan but does not directly relate to the wedding announcement."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article connects to the Indian diaspora by discussing Aamir Khan's marriage and family dynamics, which resonate with NRI readers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including more details about how the wedding might be perceived by the diaspora community.",
+          "Add a relevant image that directly relates to the wedding announcement for better visual alignment."
+        ],
+        "verdict": "pass"
       },
       "actions_taken": [
         "promoted to published"
