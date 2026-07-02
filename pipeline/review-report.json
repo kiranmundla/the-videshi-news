@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-02T21:15:32.249459+00:00",
+  "timestamp": "2026-07-02T22:15:41.603650+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
+    "pass": 5,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "28a26009-4d34-4bb2-97ae-26ce4f8c7af2",
-      "headline": "Tata Communications Has Replaced Nearly Every Top Executive in Five Months. A Data Centre Fire Explains Why.",
-      "slug": "tata-communications-leadership-overhaul-data-centre-fire-20260702",
+      "id": "feac3a33-bf97-4024-93cf-205d12808ef7",
+      "headline": "Kerala's Monsoon Is Peak Travel Season \u2014 and NRIs Are Paying Double to Visit at the Wrong Time",
+      "slug": "kerala-monsoon-ayurveda-travel-nri-guide-20260702",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,60 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Server racks in a data centre",
-          "reason": "The photo subject is relevant to the data centre fire story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the article's focus on Tata Communications and its leadership changes."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article connects well with NRIs by discussing Tata Communications' significance and implications for the Indian digital economy."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that reflects Tata Communications or its data centers.",
-          "Expand on the implications of the leadership changes for the Indian diaspora, perhaps by including quotes or perspectives from industry experts."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "58e6a8c0-0faa-431b-8845-e2946f1cd1b3",
-      "headline": "Sanjay Mehrotra's Micron Just Posted $41 Billion in a Single Quarter. The AI Memory Shortage Is That Bad.",
-      "slug": "micron-mehrotra-41b-record-quarter-ai-memory-hbm-20260702",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "75827485-be64-4d66-90fa-c8cea2c3dea8",
-            "headline": "Mehrotra's Micron Just Posted a $41.5 Billion Quarter. The M"
-          },
-          {
-            "article_id": "8423103b-4bf1-451d-8811-edd9229687d1",
-            "headline": "SK Hynix Is Coming to Nasdaq on July 10. Mehrotra's Micron J"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Sanjay Mehrotra smiling in a suit",
-          "reason": "The photo shows Sanjay Mehrotra, relevant to the story."
+          "what_photo_shows": "Traditional houseboats on Kerala backwaters",
+          "reason": "The photo shows a relevant travel scene in Kerala during monsoon season."
         },
         "inline_image_mismatches": []
       },
@@ -88,13 +36,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article connects Mehrotra's achievements and Micron's impact on India's semiconductor ambitions, appealing to NRI readers."
+          "note": "The article effectively addresses NRIs by discussing travel timing and costs, making it relevant for the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes from Sanjay Mehrotra or industry experts to enhance credibility.",
-          "Add a section discussing potential risks or challenges for Micron to provide a balanced view."
+          "Include more personal anecdotes or testimonials from NRIs who have experienced monsoon travel in Kerala to enhance relatability.",
+          "Add a section on potential challenges NRIs might face when traveling during the monsoon season, such as weather-related disruptions."
         ],
         "verdict": "pass"
       },
@@ -106,23 +54,18 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "7eb0363d-e41b-451f-9b79-9c3a52b2f418",
-      "headline": "Aamir Khan Is Getting Married Again \u2014 and This Time, He's Doing It in His Living Room",
-      "slug": "aamir-khan-gauri-spratt-wedding-july-5-third-marriage-living-room-bollywood-diaspora-nri-20260702",
+      "id": "55a3554a-74cb-4baa-bead-14ada712d602",
+      "headline": "Puri's Rath Yatra Begins July 16 \u2014 an NRI's Guide to India's Greatest Chariot Festival",
+      "slug": "puri-rath-yatra-2026-nri-travel-guide-20260702",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "104b0d9d-138d-4e5d-8ba8-2a3788ce5fe2",
-            "headline": "He Bet Everything on a Cricket Film Nobody Wanted \u2014 25 Years"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Aamir Khan at a public event",
-          "reason": "The photo shows Aamir Khan, matching the story about him."
+          "what_photo_shows": "Shri Jagannath Temple in Puri",
+          "reason": "The photo shows the temple, relevant to the Rath Yatra story."
         },
         "inline_image_mismatches": []
       },
@@ -130,19 +73,148 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image features Aamir Khan but does not directly relate to the wedding announcement."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article connects to the Indian diaspora by discussing Aamir Khan's marriage and family dynamics, which resonate with NRI readers."
+          "note": "The article effectively addresses NRIs and provides practical advice for attending the festival, making it relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider including more details about how the wedding might be perceived by the diaspora community.",
-          "Add a relevant image that directly relates to the wedding announcement for better visual alignment."
+          "Consider adding personal anecdotes or testimonials from NRIs who have attended the Rath Yatra to enhance relatability.",
+          "Include a section on cultural etiquette or tips for first-time attendees to enrich the reader's experience."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "24b4da7b-2953-47d7-9e23-66e1d122f61a",
+      "headline": "Three Million Travellers Will Pass Through Dubai This Fortnight \u2014 and Most of Them Are Indian",
+      "slug": "dubai-airport-july-rush-india-nri-transit-guide-20260702",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Dubai International Airport Terminal 3 interior",
+          "reason": "The photo shows the interior of Dubai International Airport, relevant to the travel story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the travel experience through Dubai to the Indian diaspora, highlighting the significance of Dubai as a transit hub for Indian Americans."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more personal anecdotes or quotes from Indian travelers to enhance relatability.",
+          "Add a section on cultural or logistical tips for NRIs traveling through Dubai."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "775730ac-0cd8-4287-9a19-41751d360d87",
+      "headline": "India Is 'Very, Very Close' to a Historic US Trade Deal \u2014 but a $500 Billion Target and New Tariffs Stand in the Way",
+      "slug": "india-us-trade-deal-very-close-uk-ceta-july-15-forced-labor-tariff-mission-500-nri-investor-20260702",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Officials signing trade agreement",
+          "reason": "The photo shows officials signing a trade agreement, relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 8,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses trade agreements that directly impact Indian businesses and professionals abroad, making it relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more direct quotes from Indian officials to enhance credibility.",
+          "Add a section on how these trade agreements specifically affect NRIs and their investments."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "74e6722b-5440-4361-a4c7-c54effda88fc",
+      "headline": "Three to Four Cups of Coffee a Day Can Halve Your Risk of Liver Cancer \u2014 and Decaf Works Too",
+      "slug": "coffee-liver-protection-cedars-sinai-354000-study-decaf-south-asian-fatty-liver-20260702",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "cup filled with coffee beans",
+          "reason": "The photo is related to coffee, which is the topic of the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the coffee study to the health concerns of South Asians, particularly regarding non-alcoholic fatty liver disease."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific statistics or studies related to coffee consumption among South Asians to strengthen the diaspora angle.",
+          "Include quotes or insights from South Asian health experts to enhance credibility and relatability."
         ],
         "verdict": "pass"
       },
