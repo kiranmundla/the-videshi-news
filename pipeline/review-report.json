@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-02T22:45:29.978642+00:00",
+  "timestamp": "2026-07-02T23:15:17.758631+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
-    "flag": 0,
+    "pass": 0,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,138 +11,64 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "343e9a87-5d5d-4842-87fc-22a288c2b2a8",
-      "headline": "New US Bill Would End OPT, Kill H-1B Green Card Pathway in Sweeping Overhaul",
-      "slug": "chip-roy-h1b-overhaul-bill-end-opt-green-card-pathway-immigration-20260702",
+      "id": "6d8b7e92-3f76-4273-ba6f-a312a3d32c69",
+      "headline": "Welcome to the Jungle Broke Even Before It Opened. Then It Earned \u20b9137 Crore.",
+      "slug": "welcome-to-the-jungle-137-crore-box-office-profit-akshay-kumar-overseas-diaspora-nri-20260702",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [
           {
-            "article_id": "fe18d0bc-70d8-4f7f-b497-1405ee764716",
-            "headline": "Four Bills in Congress Want to End the H-1B. Here Is What Ea"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "The US Capitol building",
-          "reason": "The photo shows the US Capitol, relevant to a US legislative story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively highlights the impact of the proposed bill on Indian professionals, making it relevant to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include quotes or reactions from Indian professionals or organizations to enhance the diaspora perspective.",
-          "Add a section discussing potential implications for Indian students and professionals in the US."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "79859c00-e267-4234-bfcd-916f5cee8faf",
-      "headline": "Shah Rukh Khan Opens America\u2019s First Franchise-Built Cricket Stadium in Los Angeles",
-      "slug": "shah-rukh-khan-knight-riders-cricket-ground-los-angeles-mlc-olympics-2028-20260702",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
+            "article_id": "b294963d-e8d6-443f-aa77-59e0163cc6c1",
+            "headline": "He Took No Upfront Fee. Four Days Later, Akshay Kumar Is Lau"
+          },
           {
-            "article_id": "2bdb9a49-71d8-4de9-b05e-9fa9434b4cb2",
-            "headline": "Five Weekends Will Decide Everything: The Box Office Wars Co"
+            "article_id": "0932f10a-5f7a-477a-8e1c-f2181c8ba05c",
+            "headline": "Priyadarshan Lost Hera Pheri 3. So He Called Akshay Kumar In"
           }
         ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A man in a suit at an event",
-          "reason": "The photo plausibly shows Shah Rukh Khan, relevant to the story."
+          "what_photo_shows": "Akshay Kumar at an event",
+          "reason": "Akshay Kumar is relevant to a Bollywood film story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DaId7j6N0O7/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel does not appear to be directly related to the film 'Welcome to the Jungle' or its box office performance."
+          },
+          {
+            "url": "https://youtube.com/watch?v=R704yP3dlXw",
+            "problem": "irrelevant",
+            "explanation": "The YouTube link does not provide relevant content that enhances the article's discussion about the film's box office performance."
+          }
+        ],
         "image_match": {
           "score": 3,
-          "issue": "irrelevant"
+          "issue": "The image of Akshay Kumar does not match the article's focus on 'Welcome to the Jungle', which features a large ensemble cast."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects the cricket stadium's opening to the Indian diaspora in America, highlighting its significance for Indian Americans."
+          "note": "The article effectively discusses the film's appeal to NRI audiences and its box office performance in overseas markets."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the hero image with one that features Shah Rukh Khan at the cricket stadium to better match the article's content.",
-          "Consider adding quotes from Indian American fans or community leaders to enhance the diaspora perspective."
+          "Replace the irrelevant Instagram and YouTube links with embeds that directly relate to 'Welcome to the Jungle'.",
+          "Consider using an image that features the ensemble cast of 'Welcome to the Jungle' to better match the article's content."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "0185fcca-76c6-4c42-b848-559d8d7b1403",
-      "headline": "She Walked Back From Injury. She Walked England Into a World Cup Final. Nat Sciver-Brunt's 75 Was the Innings of the Tournament.",
-      "slug": "sciver-brunt-75-england-beat-south-africa-womens-t20-world-cup-semifinal-lords-final-australia-2026-nri",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Nat Sciver-Brunt playing cricket",
-          "reason": "The photo shows Nat Sciver-Brunt, relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article connects to NRIs by discussing the significance of the World Cup and India's early exit, which may resonate with Indian readers."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more direct quotes from Nat Sciver-Brunt to enhance the personal connection.",
-          "Add a brief section on the significance of the final match for the Indian diaspora."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DaId7j6N0O7/",
+        "Removed irrelevant embed: https://youtube.com/watch?v=R704yP3dlXw",
         "promoted to published"
       ],
       "revised": false,
