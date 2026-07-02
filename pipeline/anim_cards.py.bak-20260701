@@ -160,17 +160,11 @@ def render_hero_stat_mp4(big, sub, eyebrow="BY THE NUMBERS", out_dir="/tmp/vides
                 else:
                     disp=big
                 bigf=_font(220,"extrabold")
-                # Dynamic font scaling: shrink if text overflows frame width
-                max_tw=W-120  # 60px padding each side
-                bw=d.textlength(disp,font=bigf)
-                if bw>max_tw:
-                    scaled_sz=max(int(220*(max_tw/bw)),72)
-                    bigf=_font(scaled_sz,"extrabold")
-                    bw=d.textlength(disp,font=bigf)
                 # entrance: rise + fade over first 0.9s
                 ent=clamp01(t/ (0.9/duration))
                 dy=int((1-ease_out_back(ent))*70)
                 # measure & center
+                bw=d.textlength(disp,font=bigf)
                 bx=(W-bw)//2; byc=int(H*0.40)+dy
                 # shadow
                 d.text((bx+4,byc+5),disp,font=bigf,fill=(0,0,0))

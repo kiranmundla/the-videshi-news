@@ -5189,7 +5189,7 @@ def build_anchor_reel_timeline(
 
     # ── Track 2: Logo + TheVideshi.com watermark (every frame) ──
     # Use center position with manual offsets (topRight clips edges unreliably)
-    LOGO_URL = "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/branding/logo-192.png"
+    LOGO_URL = "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/branding/logo-192-transparent.png"
     logo_track = {
         "clips": [
             {
@@ -5801,11 +5801,15 @@ def build_end_card_html(logo_url=None):
   <div style="font-family:Inter;font-size:62px;font-weight:900;color:#F2C84B;letter-spacing:1px;margin-bottom:14px;">@the.videshi</div>
   <div style="font-family:Inter;font-size:27px;font-weight:600;color:rgba(255,255,255,0.82);line-height:1.35;margin-bottom:46px;max-width:760px;">FOR GLOBAL STORIES THAT<br/>IMPACT INDIANS EVERYWHERE</div>
   <div style="font-family:Inter;font-size:40px;font-weight:700;color:#fff;letter-spacing:1px;margin-bottom:40px;">thevideshi.com</div>
-  <div style="display:flex;flex-wrap:wrap;gap:14px 34px;align-items:center;justify-content:center;max-width:900px;">
-    <span style="font-family:Inter;font-size:24px;color:rgba(255,255,255,0.85);"><span style="color:#D4AF37;font-weight:700;">YOUTUBE</span> @the.videshi</span>
-    <span style="font-family:Inter;font-size:24px;color:rgba(255,255,255,0.85);"><span style="color:#D4AF37;font-weight:700;">INSTAGRAM</span> @the.videshi</span>
-    <span style="font-family:Inter;font-size:24px;color:rgba(255,255,255,0.85);"><span style="color:#D4AF37;font-weight:700;">THREADS</span> @the.videshi</span>
-    <span style="font-family:Inter;font-size:24px;color:rgba(255,255,255,0.85);"><span style="color:#D4AF37;font-weight:700;">X</span> @thevideshi</span>
+  <div style="display:flex;flex-direction:column;gap:10px;align-items:center;max-width:900px;">
+    <div style="display:flex;gap:24px;align-items:center;justify-content:center;">
+      <span style="font-family:Inter;font-size:20px;color:rgba(255,255,255,0.85);"><span style="color:#D4AF37;font-weight:700;">YOUTUBE</span> @the.videshi</span>
+      <span style="font-family:Inter;font-size:20px;color:rgba(255,255,255,0.85);"><span style="color:#D4AF37;font-weight:700;">INSTAGRAM</span> @the.videshi</span>
+    </div>
+    <div style="display:flex;gap:24px;align-items:center;justify-content:center;">
+      <span style="font-family:Inter;font-size:20px;color:rgba(255,255,255,0.85);"><span style="color:#D4AF37;font-weight:700;">THREADS</span> @the.videshi</span>
+      <span style="font-family:Inter;font-size:20px;color:rgba(255,255,255,0.85);"><span style="color:#D4AF37;font-weight:700;">X</span> @thevideshi</span>
+    </div>
   </div>
 </div>"""
 
