@@ -1,15 +1,149 @@
 {
-  "timestamp": "2026-07-02T10:15:50.109714+00:00",
+  "timestamp": "2026-07-02T10:46:00.662875+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 5,
-    "flag": 0,
+    "pass": 3,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
   "revisions": 0,
   "unpublished": 0,
   "articles": [
+    {
+      "id": "0d6bef6b-8dc5-40a0-8127-650d9b3bad7d",
+      "headline": "Gardner and Perry Won't Be Stopped. Australia Crush West Indies to Reach Another Women's T20 World Cup Final.",
+      "slug": "australia-crush-west-indies-womens-t20-world-cup-semifinal-gardner-perry-lords-final-india-eliminated-2026-nri",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Australian cricketer in team uniform",
+          "reason": "The photo shows an Australian cricketer, relevant to the cricket story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article connects well with Indian cricket fans, particularly those in the UK, by discussing India's performance and its implications."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from players or coaches to enhance the narrative.",
+          "Include more context about the significance of the Women's T20 World Cup for the diaspora audience."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "35416ef6-b259-4477-a38e-6021eb651e0c",
+      "headline": "A Cheap Chinese AI Model Is Catching America's Best. India's Tech Sector Is in the Crossfire.",
+      "slug": "china-glm-5-2-ai-model-zhipu-openai-anthropic-india-tech-20260702",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "NVIDIA H100 GPU",
+          "reason": "The photo shows an NVIDIA H100 GPU, relevant to the AI tech story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 6,
+          "issue": "The image of an NVIDIA H100 does not directly relate to the article's focus on the GLM-5.2 AI model."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses implications for India's tech sector, which is relevant to the Indian diaspora interested in technology and investment opportunities."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that directly represents the GLM-5.2 AI model or its applications.",
+          "Expand on the implications for the Indian tech sector to provide more depth for diaspora readers."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "4335e976-94ba-4399-865a-89243d5196ee",
+      "headline": "India's Stock Market Just Clawed Back to $5 Trillion. Here's What Turned the Tide.",
+      "slug": "india-stock-market-5-trillion-global-funds-return-oil-crash-rbi-20260702",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "c8f9d429-78c3-44e0-86db-17d3973ee0a6",
+            "headline": "Persistent Systems Just Made India's Biggest Mid-Cap IT Bet "
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Bombay Stock Exchange building",
+          "reason": "The photo shows the Bombay Stock Exchange, relevant to the stock market story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses implications for NRI investors, making it relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more specific examples of how NRI investors can capitalize on the current market situation.",
+          "Add a section discussing potential long-term impacts on the Indian economy and diaspora investments."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
     {
       "id": "b8a1956b-2f7e-444d-bf06-894d1baba7f6",
       "headline": "India Is About to Witness Its Biggest-Ever IPO Wave \u2014 From Jio's $3.8 Billion Listing to Carlsberg's Beer Play",
@@ -19,11 +153,6 @@
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MISMATCH",
-          "what_photo_shows": "officials at a public Wi-Fi launch",
-          "reason": "The photo shows a public Wi-Fi launch event, unrelated to IPOs or capital markets."
-        },
         "inline_image_mismatches": []
       },
       "llm_review": {
@@ -31,192 +160,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "missing image description"
+          "issue": "The image description is missing, making it difficult to assess relevance."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses opportunities for NRI investors in the upcoming IPOs, making it relevant to the diaspora."
+          "note": "The article discusses opportunities for NRI investors in the upcoming IPOs, making it relevant to the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include a relevant hero image that visually represents the IPO theme.",
-          "Expand on the implications of these IPOs for NRI investors, possibly including expert opinions or forecasts."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "Cleared mismatched image (officials at a public Wi-Fi launch)",
-        "held: image mismatch"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "image_mismatch": true,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "03af50c5-eff7-489a-b31b-bac00be2e9ad",
-      "headline": "Living in a Walkable Neighbourhood Could Be as Important for Your Health as Diet or Exercise, a Major New Study Finds",
-      "slug": "walkable-neighborhoods-health-mit-nature-study-urban-design-diaspora-nri-city-choice-20260702",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "walkable path in Central Park",
-          "reason": "The photo shows a walkable green space, relevant to the story on urban wellness."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the study's findings to the South Asian diaspora, particularly regarding social isolation and urban living choices."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more specific examples of walkable neighborhoods in the U.S. that are popular among the Indian diaspora.",
-          "Include quotes or insights from diaspora community members about their experiences with neighborhood choices."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "89fa9e8d-776b-4e2a-8782-96fe2d6c2916",
-      "headline": "Turmeric's Active Compound Can Ease Depression as Effectively as Some Drugs \u2014 and the Evidence Is Growing",
-      "slug": "curcumin-turmeric-eases-depression-apa-2026-meta-analysis-south-asian-diaspora-mental-health-20260702",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "packaged turmeric and spices",
-          "reason": "The photo shows turmeric, relevant to the story on curcumin."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the topic of turmeric and mental health to the South Asian diaspora, addressing cultural stigma and health challenges faced by this community."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more direct quotes from South Asian individuals or experts to enhance relatability.",
-          "Add a section on practical ways for the diaspora to incorporate curcumin into their diets."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "d209d91c-a09c-40ca-be99-554f7068244e",
-      "headline": "Delhi Wants to Be the New Dubai \u2014 and the Numbers Say It Might Be Working",
-      "slug": "delhi-airport-hub-spoke-air-india-easy-connect-nri-20260702",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "interior of an airport terminal",
-          "reason": "The photo shows an airport terminal, relevant to the story about Delhi Airport."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the new travel model to the experiences of NRIs, highlighting the benefits for their travel to and from India."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from travelers or experts to enhance the narrative.",
-          "Include more statistics or comparisons with other global hubs to strengthen the argument."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "dcfa6647-98c7-4c2c-b554-832ff862ae3c",
-      "headline": "Vizag's Airport Is Moving Next Week \u2014 What NRIs Flying Home to Andhra Pradesh Need to Know",
-      "slug": "vizag-airport-bhogapuram-shift-nri-andhra-pradesh-20260702",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Aerial view of airport runway",
-          "reason": "The photo shows an airport runway, relevant to the airport relocation story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively addresses the concerns of NRIs flying home, particularly regarding the new airport's location and its implications for travel."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include a section on transportation options from the new airport to the city to provide more practical information for NRIs.",
-          "Add quotes or testimonials from NRIs about their experiences or concerns regarding the airport change to enhance relatability."
+          "Include a relevant hero image with a description that matches the article's content.",
+          "Expand on the risks associated with investing in these IPOs for a more balanced perspective."
         ],
         "verdict": "pass"
       },
