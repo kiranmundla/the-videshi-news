@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-02T20:15:22.901755+00:00",
+  "timestamp": "2026-07-02T20:45:25.268089+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 0,
+    "pass": 1,
+    "flag": 2,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "063cf9bd-946a-481a-981c-d9f07cb022f7",
-      "headline": "No Oath, No Ceremony. USCIS Scrapped Fourth of July Naturalisations for America's 250th",
-      "slug": "uscis-cancels-fourth-july-naturalization-250th-indian-citizens-20260702",
+      "id": "e34b7834-ce80-40ed-b25d-97ec34853727",
+      "headline": "While America Fights Its Data Centers, India Is Rolling Out the Red Carpet. The Numbers Are Staggering.",
+      "slug": "india-data-center-boom-microsoft-google-meta-amazon-ai-investment-20260702",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,56 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "people taking citizenship oath outdoors",
-          "reason": "The photo shows a naturalization ceremony, which matches the story topic."
+          "what_photo_shows": "modern data center server room",
+          "reason": "The photo shows a data center, which is relevant to the story about data centers in India."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 5,
+          "issue": "The image does not directly relate to the article's focus on India's data center growth."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 6,
+          "note": "The article touches on the implications for the Indian diaspora, but the connection could be more explicit."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more direct references to how the data center boom impacts Indian-Americans or the diaspora community.",
+          "Replace the hero image with one that better represents India's data center landscape."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "750790c6-5162-4770-9014-198997457aeb",
+      "headline": "Delhi Just Banned New Petrol Two-Wheelers From 2028. No Indian State Has Gone This Far.",
+      "slug": "delhi-ev-policy-2026-petrol-ban-electric-two-wheeler-charging-infrastructure-20260702",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "a7f0b6bc-1eeb-4c29-a39d-31310ebf5e84",
+            "headline": "Delhi Just Banned New Petrol Scooters From 2028. The EV Mand"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "electric vehicle charging station",
+          "reason": "The photo shows an EV charging station, relevant to the EV policy story."
         },
         "inline_image_mismatches": []
       },
@@ -30,19 +78,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 3,
+          "issue": "The image depicts an electric car charging station, which is relevant to the topic of electric vehicles but does not directly relate to the focus on two-wheelers."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article discusses the implications of USCIS changes on Indian immigrants, making it relevant to the diaspora."
+          "quality": 7,
+          "note": "The article connects the policy to NRIs by highlighting its significance as a signal for India's energy transition, though it could elaborate more on how this impacts diaspora investments or interests."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes from Indian immigrants or advocacy groups to enhance the emotional connection.",
-          "Add a section on how these changes specifically impact the Indian diaspora in terms of community response."
+          "Consider using an image that specifically features two-wheelers or electric two-wheelers to better match the article's focus.",
+          "Expand on the diaspora angle by including specific examples of how NRIs can engage with or benefit from this policy."
         ],
         "verdict": "pass"
       },
@@ -62,40 +110,33 @@
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MISMATCH",
-          "what_photo_shows": "Ukrainian passports and US dollars",
-          "reason": "The photo shows Ukrainian passports, not US immigration documents."
-        },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 8,
+        "overall_score": 7,
         "embed_issues": [],
         "image_match": {
           "score": 5,
-          "issue": "missing image URL"
+          "issue": "missing image URL and entities"
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses changes in immigration policy that directly affect Indian nationals, particularly H-1B and F-1 visa holders, which is relevant to the NRI community."
+          "note": "The article discusses changes in immigration policy that directly affect Indian tech workers and other NRIs, making it relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include a relevant image that visually represents the topic of immigration or green card processes.",
-          "Add a section summarizing the implications of the policy change for Indian nationals specifically, to enhance the diaspora connection."
+          "Include a relevant image that reflects the topic of immigration or green card processes.",
+          "Add more specific examples or quotes from affected individuals to enhance relatability."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
-        "Cleared mismatched image (Ukrainian passports and US dollars)",
-        "held: image mismatch"
+        "promoted to published"
       ],
       "revised": false,
       "unpublished": false,
-      "image_mismatch": true,
       "llm_source": "gpt-4o-mini"
     }
   ]
