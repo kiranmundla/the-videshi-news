@@ -1,33 +1,28 @@
 {
-  "timestamp": "2026-07-02T08:45:55.533154+00:00",
+  "timestamp": "2026-07-02T09:15:45.721863+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
-    "flag": 2,
+    "pass": 3,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
-  "revisions": 1,
+  "revisions": 0,
   "unpublished": 0,
   "articles": [
     {
-      "id": "110c0576-8767-4983-b96b-a0090383d9cd",
-      "headline": "The RBI Just Named Its Two Biggest Fears. One of Them Is AI.",
-      "slug": "rbi-financial-stability-report-ai-bubble-cyber-threats-banks-resilient-20260702",
+      "id": "88142f1b-9ae3-4976-9846-bbdc4f15ac54",
+      "headline": "UPI Now Processes 757 Million Transactions a Day. Greece Just Became Its 10th Country.",
+      "slug": "upi-757-million-daily-record-greece-10th-country-20260702",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "611bee2f-bea4-493f-a36d-594301fcfbdf",
-            "headline": "Foreign Investors Just Poured a Record $3 Billion Into India"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "RBI headquarters tower in Mumbai",
-          "reason": "The photo shows the RBI headquarters, relevant to the story about RBI's concerns."
+          "what_photo_shows": "customer making digital payment",
+          "reason": "The photo shows a digital payment, relevant to the fintech story."
         },
         "inline_image_mismatches": []
       },
@@ -40,14 +35,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article discusses the implications of RBI's concerns on the Indian economy, which is relevant to the diaspora's interests."
+          "quality": 8,
+          "note": "The article effectively connects UPI's international expansion to the needs of NRIs, highlighting practical benefits for Indian travelers."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes from the RBI report to enhance credibility.",
-          "Add a section on how these risks specifically affect NRIs or their investments."
+          "Include more specific examples of merchants or locations in Greece where UPI is accepted to enhance relatability for NRIs.",
+          "Add a brief section on potential challenges or limitations NRIs might face when using UPI abroad."
         ],
         "verdict": "pass"
       },
@@ -59,9 +54,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "9a58ae9d-1804-432d-9382-9909b77f62e8",
-      "headline": "India Is Now Selling Gasoline to Russia. The World's Energy Map Just Flipped.",
-      "slug": "russia-buys-gasoline-india-ukraine-drone-strikes-energy-reversal-20260702",
+      "id": "05a92b3e-847d-4cc6-bbac-70f6dfba92d2",
+      "headline": "Microsoft Is Building a 3,600-Km Undersea Cable From India to Singapore. Tata Communications Is Helping.",
+      "slug": "microsoft-tata-i2sea-undersea-cable-india-singapore-20260702",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -69,39 +64,32 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Oil tankers at a fuel terminal",
-          "reason": "The photo shows oil tankers, relevant to the energy story."
+          "what_photo_shows": "Server racks in a data center",
+          "reason": "The photo of server racks is relevant to the infrastructure topic of undersea cables and data centers."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/p/DaQRjoSkrcu/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post does not appear to relate to the topic of India's gasoline exports to Russia."
-          }
-        ],
+        "embed_issues": [],
         "image_match": {
-          "score": 6,
-          "issue": "The image depicts a product terminal but does not specifically relate to gasoline or the context of India exporting fuel to Russia."
+          "score": 7,
+          "issue": "The image does not directly relate to the undersea cable topic."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 7,
-          "note": "The article discusses India's role in global energy markets, which is relevant to the Indian diaspora interested in geopolitical and economic developments."
+          "note": "The article discusses opportunities for Indian Americans in technology, connecting the topic to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant Instagram embed with a more relevant source or remove it entirely.",
-          "Consider adding a more specific image that directly relates to the topic of gasoline exports or Indian refineries."
+          "Consider using a more relevant image that depicts undersea cables or data infrastructure.",
+          "Expand on the opportunities for Indian Americans in technology to strengthen the diaspora connection."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DaQRjoSkrcu/",
         "promoted to published"
       ],
       "revised": false,
@@ -109,62 +97,54 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "ab721441-d3c7-4eb3-a227-5b6fc1113860",
-      "headline": "Enola Holmes 3 Review: Millie Bobby Brown's Detective Is All Dressed Up With Nowhere Thrilling to Go",
-      "slug": "enola-holmes-3-netflix-review-millie-bobby-brown-henry-cavill-20260702",
+      "id": "2b0b93ca-02f5-44b8-adfd-424aa598b759",
+      "headline": "Nadella, Pichai and Arora Just Bought a Cricket Team at Lord's. The Price Tag Was \u00a3145 Million.",
+      "slug": "nadella-pichai-arora-london-spirit-cricket-hundred-20260702",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [
           {
-            "article_id": "8dadecc1-d1d3-48e3-9b94-6945006123c1",
-            "headline": "She's Carrying a Shotgun in Her Wedding Dress \u2014 and Sherlock"
-          }
-        ],
-        "broken_embeds": [
-          {
-            "url": "https://x.com/enolaholmes/status/1798765432109876543",
-            "problem": "broken",
-            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
+            "article_id": "6f8e28dd-da9b-40bf-8aa2-3b810579452e",
+            "headline": "Arora's Palo Alto Networks Just Hit a $3 Billion Quarter. Th"
           },
           {
-            "url": "https://instagram.com/p/C7x-o0vIe1K/",
-            "problem": "broken",
-            "detail": "Instagram embed shows removed/broken placeholder"
+            "article_id": "289c564b-f908-4976-ad8d-257b00d5491d",
+            "headline": "Nadella, Pichai, and Arora Just Bought a Cricket Team at Lor"
           }
         ],
+        "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Enola Holmes 3 movie poster",
-          "reason": "The photo is related to the Enola Holmes 3 movie mentioned in the headline."
+          "what_photo_shows": "Nikesh Arora speaking at an event",
+          "reason": "The photo shows Nikesh Arora, who is relevant to the story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 6,
+        "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 8,
-          "issue": null
+          "score": 5,
+          "issue": "The image does not directly relate to cricket or the specific event discussed in the article."
         },
         "diaspora_angle": {
-          "present": false,
-          "quality": 5,
-          "note": "The article does not connect to NRI/diaspora readers; it focuses solely on the film review."
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively highlights the influence of Indian-origin executives in global sports, particularly cricket, which resonates with the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Incorporate a section that discusses the film's relevance or appeal to the Indian diaspora or NRI audience.",
-          "Add quotes or insights from Indian critics or audiences to enhance the article's connection to the diaspora."
+          "Consider using an image that directly relates to cricket or the London Spirit team to enhance relevance.",
+          "Add more context about the significance of cricket in the Indian diaspora to strengthen the connection."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
-        "Removed 2 broken/hallucinated embed(s)",
-        "Revised by gemini-2.5-flash (865\u2192867 words)"
+        "promoted to published"
       ],
-      "revised": true,
+      "revised": false,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
     }
