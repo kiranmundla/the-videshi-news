@@ -1,6 +1,6 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-07-02T16:00:08Z",
+  "last_updated": "2026-07-02T20:00:00Z",
   "stage": "Knockout Stage",
   "hosts": "USA, Mexico & Canada",
   "dates": {
@@ -2004,6 +2004,20 @@
     }
   },
   "highlights": [
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/reel/DaQ0QGRiEs2/",
+      "account": "@fifaworldcup",
+      "caption": "A legend speaks. El Hadji Diouf motivates Senegal. 🇸🇳 #FIFAWorldCup",
+      "date": "2026-07-01"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DaTXDoqmfpE",
+      "account": "@fifaworldcup",
+      "caption": "Oyarzabal 🎯",
+      "date": "2026-07-02"
+    },
     {
       "platform": "threads",
       "url": "https://www.threads.com/@fifaworldcup/post/DaO8fFFjg5D",
