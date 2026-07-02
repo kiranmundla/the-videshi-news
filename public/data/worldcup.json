@@ -1,6 +1,6 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-07-02T09:59:01Z",
+  "last_updated": "2026-07-02T13:59:22Z",
   "stage": "Knockout Stage",
   "hosts": "USA, Mexico & Canada",
   "dates": {
@@ -5604,6 +5604,46 @@
       "account": "@fifaworldcup",
       "caption": "Captain Kane 🏴󠁧󠁢󠁥󠁮󠁧󠁿💥 #FIFAWorldCup",
       "date": "2026-07-02"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DaSb2CbDTM7/",
+      "account": "@fifaworldcup",
+      "caption": "Six teams. Three spots. #FIFAWorldCup",
+      "date": "2026-07-02",
+      "type": "carousel"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DaSfSu2jbs5/",
+      "account": "@fifaworldcup",
+      "caption": "The penultimate day of the Round of 32 📰 #FIFAWorldCup",
+      "date": "2026-07-02",
+      "type": "carousel"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DaSfSUMAcb-",
+      "account": "@fifaworldcup",
+      "caption": "The penultimate day of the Round of 32 📰",
+      "date": "2026-07-02",
+      "type": "image"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DaSpgH-DzjQ/",
+      "account": "@fifaworldcup",
+      "caption": "Ronaldo 🆚 Modrić — Two legends collide on the #FIFAWorldCup stage 🤩",
+      "date": "2026-07-02",
+      "type": "carousel"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/reel/DaSqOxNvWC-/",
+      "account": "@fifaworldcup",
+      "caption": "Spain's last #FIFAWorldCup knockout round win... 🇪🇸🏆",
+      "date": "2026-07-02",
+      "type": "reel"
     }
   ],
   "tv": {
