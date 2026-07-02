@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-02T07:45:28.907067+00:00",
+  "timestamp": "2026-07-02T08:15:41.053148+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
+    "pass": 2,
     "flag": 1,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "1205fb74-1c37-4f1a-a9c7-4b2ebb375645",
-      "headline": "He Conceded a Point He'd Won. Then He Lost the Final He'd Earned. Kidambi Srikanth's Nine-Year Wait Goes On.",
-      "slug": "kidambi-srikanth-us-open-badminton-final-loss-su-li-yang-fullerton-california-sportsmanship-diaspora-nri",
+      "id": "5590b3ae-d32e-48be-99fe-147fc3be20ed",
+      "headline": "A Federal Judge Killed the $100,000 H-1B Fee. The White House Says It Is Coming Back",
+      "slug": "100k-h1b-fee-ruling-appeal-whats-next-india-20260702",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "badminton player in action",
-          "reason": "The photo shows a badminton player, which matches the story about Kidambi Srikanth in a badminton context."
+          "what_photo_shows": "neoclassical government building in DC",
+          "reason": "The photo shows a government building, relevant to a federal court ruling story."
         },
         "inline_image_mismatches": []
       },
@@ -30,19 +30,87 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image does not directly relate to the topic of H-1B visas or immigration."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article connects well with the Indian-American community, highlighting their support for Srikanth during the tournament."
+          "note": "The article discusses the implications of the ruling on Indian H-1B holders, making it relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from Srikanth or his coach to provide more personal insight into his mindset and future plans.",
-          "Include more context about the significance of the US Open in the badminton calendar for a broader audience."
+          "Consider using an image that directly relates to immigration or H-1B visas for better visual alignment.",
+          "Add a quote or perspective from an NRI or diaspora member to enhance the connection to the audience."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "616863da-e588-442a-b199-5a0e9c221ae0",
+      "headline": "EB-2 India Went Dark. Now the Escape Routes Are Getting Crowded Too",
+      "slug": "eb1a-niw-self-petition-surge-india-approval-rates-falling-20260702",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "aa18166c-663c-45a8-b24e-f5f8ce229faa",
+            "headline": "The Receipt That Never Ends. Every Fee Washington Has Added "
+          },
+          {
+            "article_id": "a9387eb6-819d-4880-857e-da536b0dea36",
+            "headline": "India's EB-5 Investor Green Cards Just Ran Out. The Escape H"
+          },
+          {
+            "article_id": "2f893da9-3f4b-4ee9-9998-647e3cb86da1",
+            "headline": "Eleven Million Cases and Counting. The Green Card Machine Ca"
+          },
+          {
+            "article_id": "7cd205b9-fefe-4bb3-8095-09600ad42101",
+            "headline": "You Used Day 1 CPT in 2019. USCIS Just Found Out"
+          },
+          {
+            "article_id": "68943038-05c3-4686-9959-65c1e60dd9c9",
+            "headline": "EB-2 India Is Shut Until October. The July Visa Bulletin Is "
+          },
+          {
+            "article_id": "1b21ce05-c4a8-4b9c-867a-df5de0b99356",
+            "headline": "He Filed Fake H-1B Petitions Under UC Davis's Name. Now He F"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "USCIS Application Support Center",
+          "reason": "The photo shows a USCIS center, relevant to the immigration story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image depicts a USCIS Application Support Center, which is relevant to the topic of immigration but does not directly illustrate the specific challenges faced by Indian professionals in the EB-2 category."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses the concerns of Indian professionals in the U.S. immigration system, making it relevant to the diaspora audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including quotes or insights from more immigration experts to enhance credibility.",
+          "Add a section on potential future changes in immigration policy that could affect Indian professionals."
         ],
         "verdict": "pass"
       },
@@ -66,22 +134,11 @@
             "headline": "She's Carrying a Shotgun in Her Wedding Dress \u2014 and Sherlock"
           }
         ],
-        "broken_embeds": [
-          {
-            "url": "https://x.com/himeshpatel/status/1780517904332824967",
-            "problem": "broken",
-            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
-          },
-          {
-            "url": "https://instagram.com/p/C54l-H4o20g/",
-            "problem": "broken",
-            "detail": "Instagram embed shows removed/broken placeholder"
-          }
-        ],
+        "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
           "what_photo_shows": "Enola Holmes 3 movie poster",
-          "reason": "The photo shows a poster for Enola Holmes 3, matching the story topic."
+          "reason": "The photo is related to the Enola Holmes 3 movie mentioned in the headline."
         },
         "inline_image_mismatches": []
       },
@@ -95,19 +152,18 @@
         "diaspora_angle": {
           "present": false,
           "quality": 5,
-          "note": "The article does not specifically connect to the Indian diaspora or NRI audience."
+          "note": "The article does not connect to NRI/diaspora readers or themes."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Incorporate a section that discusses the film's relevance or appeal to the Indian diaspora, such as any cultural connections or themes.",
-          "Add quotes or insights from Indian critics or audiences to enhance the article's relatability for NRI readers."
+          "Incorporate a section that discusses the film's relevance or appeal to the Indian diaspora, perhaps through themes of family or cultural representation.",
+          "Add quotes or insights from Indian critics or audiences to enhance the article's connection to the diaspora."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
-        "Removed 2 broken/hallucinated embed(s)",
-        "Revised by gemini-2.5-flash (794\u2192857 words)"
+        "Revised by gemini-2.5-flash (857\u2192867 words)"
       ],
       "revised": true,
       "unpublished": false,
