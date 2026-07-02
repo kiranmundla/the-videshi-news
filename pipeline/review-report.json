@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-02T12:38:24.430894+00:00",
+  "timestamp": "2026-07-02T12:45:29.277923+00:00",
   "mode": "fix",
   "stats": {
     "pass": 3,
-    "flag": 1,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "99cd1d21-cd0b-46d0-9918-0fa12187beaf",
-      "headline": "The US and India Are in 'Sensitive' Talks Over Who Gets Access to the World's Most Powerful AI",
-      "slug": "us-india-ai-talks-anthropic-frontier-models-pax-silica-helberg-krishnan-20260702",
+      "id": "ea5647ed-4046-4355-9b47-8363100d36cb",
+      "headline": "From Pani Puri to Prix Fixe: Sujan Sarkar's Michelin Empire Lands in New York and Phoenix",
+      "slug": "from-pani-puri-to-prix-fixe-sujan-sarkar-michelin-empire-new-york-phoenix",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "man in suit with US flag",
-          "reason": "The photo plausibly shows a US official involved in talks."
+          "what_photo_shows": "Pani puri served in bowls",
+          "reason": "The photo shows pani puri, relevant to the story about Indian cuisine."
         },
         "inline_image_mismatches": []
       },
@@ -30,148 +30,105 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 5,
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects Sarkar's achievements to the broader narrative of Indian cuisine's acceptance in America, appealing to the NRI audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from patrons or food critics to enhance the narrative.",
+          "Include more details about the cultural significance of the dishes served at Nadu to deepen the connection with the diaspora."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "c9d574c5-0efc-4679-9e00-c01662f5e7c9",
+      "headline": "The $24 Bag of Rice: How US Tariffs Are Reshaping the Desi Pantry",
+      "slug": "the-24-bag-of-rice-how-us-tariffs-are-reshaping-the-desi-pantry",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Assorted Indian spices and grains",
+          "reason": "The photo shows Indian spices and grains, relevant to the story about Indian pantry staples."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively highlights the impact of US tariffs on Indian American grocery shopping habits, making it relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more personal anecdotes or quotes from Indian Americans to enhance relatability.",
+          "Add a section discussing potential future trends in the Indian grocery market due to these tariffs."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "cffb7109-a815-4e86-bbb6-938c211da357",
+      "headline": "The Fake Dosa Makers: How AI-Generated Videos Are Weaponising Indian Street Food",
+      "slug": "fake-dosa-makers-ai-generated-videos-weaponising-indian-street-food",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Sev puri chaat on a platter",
+          "reason": "The photo shows Indian street food, which is relevant to the story about AI-generated videos of Indian street food."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 3,
           "issue": "irrelevant"
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article discusses US-India relations in AI, which is relevant to the Indian diaspora interested in technology and international relations."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider including quotes or perspectives from Indian diaspora experts in AI to enhance the diaspora angle.",
-          "Use a more relevant image that reflects the topic of AI discussions or US-India relations."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "141e89ab-840b-4654-8c7e-21f49b827f51",
-      "headline": "Delhi Just Banned New Petrol Two-Wheelers From 2028. Only Electric Vehicles Will Be Registered.",
-      "slug": "delhi-ev-policy-2026-petrol-ban-two-wheelers-2028-electric-charging-incentives-20260702",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "a7f0b6bc-1eeb-4c29-a39d-31310ebf5e84",
-            "headline": "Delhi Just Banned New Petrol Scooters From 2028. The EV Mand"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "electric vehicle charging station",
-          "reason": "The photo shows an electric vehicle charging station, relevant to the EV policy story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
           "quality": 8,
-          "note": "The article connects well with NRIs by addressing their concerns about pollution in Delhi and highlighting investment opportunities."
+          "note": "The article effectively connects the issue of AI-generated videos to the experiences of Indian Americans and NRIs, highlighting their cultural pride and the challenges they face."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more statistics or examples of how similar policies have succeeded in other cities or countries.",
-          "Add quotes from experts or stakeholders in the EV industry to enhance credibility."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "11c614d1-054e-4196-934c-15e8d8351f97",
-      "headline": "Three Green Card Categories Just Shut Down for Indians in a Single Month",
-      "slug": "july-2026-visa-bulletin-eb2-eb1-eb5-india-unavailable-green-card-backlog-20260702",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "United States permanent resident card",
-          "reason": "The photo shows a green card, which is relevant to the immigration story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively addresses the impact of immigration changes on Indian professionals in the U.S., making it relevant to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from immigration experts or affected individuals to enhance the article's depth.",
-          "Include a section on potential future changes or advocacy efforts related to these visa categories."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "04e281e3-b331-43a1-92e5-4408f694c25d",
-      "headline": "India's First Private Rocket Is Headed to the Launchpad. The Window Opens July 12.",
-      "slug": "skyroot-vikram-1-private-rocket-launch-india-space-20260702",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image description is missing, making it difficult to assess its relevance to the article."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the developments in India's private space sector to diaspora investors and engineers, highlighting their potential interest and involvement."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include a relevant image description to enhance the image match score.",
-          "Consider adding quotes or insights from diaspora investors to strengthen the connection."
+          "Replace the hero image with one that directly represents Indian street food, such as a dosa or a street vendor preparing food.",
+          "Consider adding more statistics or quotes from diaspora members to strengthen the connection to NRI experiences."
         ],
         "verdict": "pass"
       },
