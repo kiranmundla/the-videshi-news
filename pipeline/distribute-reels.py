@@ -365,6 +365,18 @@ def post_threads(reel, video_url, caption):
 
 def post_x_tweet(reel, video_path, headline, slug):
     """Post to X/Twitter."""
+    # Pre-flight: check spend meter before uploading large video files
+    try:
+        import importlib.util
+        spec = importlib.util.spec_from_file_location("x_spend", os.path.join(os.path.dirname(__file__), "x_spend.py"))
+        if spec and spec.loader:
+            xm = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(xm)
+            pct = xm.current_spend_pct()
+            if pct >= 97:
+                return f"SKIP (X spend at {pct:.0f}% — credits likely depleted, skipping video upload)"
+    except Exception:
+        pass  # spend meter unavailable — proceed anyway
     import tweepy
     
     auth = tweepy.OAuth1UserHandler(
