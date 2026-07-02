@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-02T02:45:27.101090+00:00",
+  "timestamp": "2026-07-02T03:15:44.097010+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 0,
-    "flag": 3,
+    "pass": 5,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "8fb2de07-87d1-470d-a39b-c386453f1b35",
-      "headline": "The EU Is About to Restrict the Raw Materials India Needs Most. New Delhi Is Scrambling for Exemptions.",
-      "slug": "india-eu-scrap-metal-export-ban-steel-tariffs-trade-deal-threat-20260701",
+      "id": "6387cb37-fca5-4248-aa14-7e0374746a5c",
+      "headline": "Ayushmann Khurrana Just Named His Most Secretive Film \u2014 and the Kaala Paani Team Is Behind It",
+      "slug": "ayushmann-khurrana-mupapa-yrf-posham-pa-kaala-paani-sameer-saxena-kerala-thriller-february-2027-diaspora-nri-20260701",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,82 +21,32 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Molten metal being poured",
-          "reason": "The photo shows a steel foundry, relevant to the story on metal export restrictions."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 5,
-          "issue": "The image does not directly relate to the topic of raw materials or trade."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses trade implications for India, which is relevant to the Indian diaspora involved in business and trade."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more specific examples of how these restrictions could impact Indian businesses and the diaspora community.",
-          "Consider using a more relevant image that depicts trade, raw materials, or the EU-India relationship."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "0a1b6f50-559b-4021-a9ff-f09dfa50ee82",
-      "headline": "Oil Just Had Its Worst Quarter Since COVID. India May Be the Biggest Winner.",
-      "slug": "brent-crude-crashes-pre-war-lows-india-import-bill-savings-hormuz-doha-20260701",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "oil tanker near Yemen coast",
-          "reason": "The photo shows an oil tanker, relevant to the oil economy story."
+          "what_photo_shows": "Ayushmann Khurrana at an event",
+          "reason": "The photo shows Ayushmann Khurrana, who is relevant to the story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/p/DaQKUhYGg4c/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post does not relate to the topic of oil prices or India's economic situation."
-          }
-        ],
+        "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image of an oil tanker is relevant to the article's topic, but it lacks a direct connection to the specific economic implications for India discussed in the article."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses the economic implications of oil prices on India, which is relevant to the Indian diaspora concerned about economic trends affecting their homeland."
+          "note": "The article effectively connects Ayushmann Khurrana's appeal to NRI audiences by discussing his relatable themes and the significance of the Kerala shoot."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant Instagram embed with a more relevant source or data visualization related to oil prices or India's economy.",
-          "Enhance the connection between the image and the article's content by including a caption that ties the image to India's economic situation."
+          "Consider adding quotes from Ayushmann Khurrana or the director to enhance the article's depth.",
+          "Include more context about the significance of the film's title 'Mupapa' to engage readers further."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DaQKUhYGg4c/",
         "promoted to published"
       ],
       "revised": false,
@@ -104,35 +54,179 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "d8550bd8-f7d5-4cb1-be96-0804d628da82",
-      "headline": "Nestl\u00e9 Will Strip Artificial Colourings From Every Product on Earth by Year-End \u2014 and It Could Reshape What Indians Eat",
-      "slug": "nestle-removes-artificial-food-colourings-globally-india-maggi-kitkat-fda-clean-label-20260701",
+      "id": "0932f10a-5f7a-477a-8e1c-f2181c8ba05c",
+      "headline": "Priyadarshan Lost Hera Pheri 3. So He Called Akshay Kumar Instead.",
+      "slug": "priyadarshan-akshay-kumar-ninth-film-comedy-thriller-hera-pheri-3-exit-tips-december-2026-diaspora-nri-20260701",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "b294963d-e8d6-443f-aa77-59e0163cc6c1",
+            "headline": "He Took No Upfront Fee. Four Days Later, Akshay Kumar Is Lau"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Akshay Kumar at a film event",
+          "reason": "The photo shows Akshay Kumar, who is relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the nostalgia of Priyadarshan and Akshay Kumar's films to the diaspora experience, making it relatable for NRI readers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more quotes or insights from Priyadarshan or Akshay Kumar to enhance the article's depth.",
+          "Include a brief overview of the impact of the Hera Pheri franchise on Indian cinema to provide additional context."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "4eb5f462-956f-41a3-8a43-d3749509f611",
+      "headline": "Companies Spending the Most on AI Are Hiring the Fastest. The Full Story Is More Complicated.",
+      "slug": "ai-jobs-hiring-ramp-revelio-h1b-indian-tech-workers-20260702",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "AI and machine learning illustration",
+          "reason": "The image depicts AI technology, relevant to the story about AI's impact on hiring."
+        },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 7,
+        "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 5,
-          "issue": "hero image not provided"
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 6,
-          "note": "The article touches on the implications for Indian consumers, which can resonate with NRIs, but the connection could be more explicit."
+          "quality": 8,
+          "note": "The article discusses the implications of AI hiring trends specifically for Indians on H-1B visas, making it relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include a relevant hero image that reflects the topic of artificial colorings in food.",
-          "Expand on the diaspora angle by discussing how these changes might affect Indian cuisine abroad or NRI shopping habits."
+          "Include more statistics or data points to strengthen the argument about the impact of AI on job creation and layoffs.",
+          "Consider adding quotes or insights from Indian professionals in the tech industry to provide a personal perspective on the issues discussed."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "878795b8-b731-4729-a14a-e938dd470aae",
+      "headline": "India Is Building 20 AI Models to Rival ChatGPT. Its Strategy Is to Skip the Arms Race.",
+      "slug": "india-ai-mission-20-homegrown-models-open-source-frontier-20260702",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "modern data center server unit",
+          "reason": "The photo shows a server unit relevant to India's AI infrastructure."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image is relevant to the topic of AI but lacks specific elements that directly connect to the article's focus on India's AI models."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the developments in India's AI strategy to the interests of the Indian diaspora, particularly in terms of opportunities for NRI researchers and investors."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of how the AI models will impact the diaspora community.",
+          "Include quotes or insights from diaspora experts to enhance the connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "a3772749-e609-477b-9004-1fa08e27b556",
+      "headline": "Apple Tells India Its Antitrust Case Was 'Copy-Pasted.' The Fine Could Hit $38 Billion.",
+      "slug": "apple-cci-antitrust-app-store-copy-pasted-38-billion-20260702",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "9adb7a33-f9a5-4cc7-8394-88c1d0540e73",
+            "headline": "Apple Calls India's Antitrust Case Against It 'Copy-Pasted.'"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Aerial view of Apple Park",
+          "reason": "The photo shows Apple's headquarters, relevant to the story about Apple's antitrust case."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the implications of the antitrust case for Indian-origin app developers and startups, which connects well with the diaspora audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more direct quotes from Apple or the CCI to enhance the article's depth.",
+          "Include a brief overview of the implications for consumers in India and the diaspora to broaden the appeal."
+        ],
+        "verdict": "pass"
       },
       "actions_taken": [
         "promoted to published"
