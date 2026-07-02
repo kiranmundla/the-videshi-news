@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-02T08:15:41.053148+00:00",
+  "timestamp": "2026-07-02T08:45:55.533154+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 1,
+    "pass": 1,
+    "flag": 2,
     "fail": 0,
     "error": 0
   },
@@ -11,18 +11,23 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "5590b3ae-d32e-48be-99fe-147fc3be20ed",
-      "headline": "A Federal Judge Killed the $100,000 H-1B Fee. The White House Says It Is Coming Back",
-      "slug": "100k-h1b-fee-ruling-appeal-whats-next-india-20260702",
+      "id": "110c0576-8767-4983-b96b-a0090383d9cd",
+      "headline": "The RBI Just Named Its Two Biggest Fears. One of Them Is AI.",
+      "slug": "rbi-financial-stability-report-ai-bubble-cyber-threats-banks-resilient-20260702",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "611bee2f-bea4-493f-a36d-594301fcfbdf",
+            "headline": "Foreign Investors Just Poured a Record $3 Billion Into India"
+          }
+        ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "neoclassical government building in DC",
-          "reason": "The photo shows a government building, relevant to a federal court ruling story."
+          "what_photo_shows": "RBI headquarters tower in Mumbai",
+          "reason": "The photo shows the RBI headquarters, relevant to the story about RBI's concerns."
         },
         "inline_image_mismatches": []
       },
@@ -30,19 +35,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the topic of H-1B visas or immigration."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article discusses the implications of the ruling on Indian H-1B holders, making it relevant to the diaspora."
+          "quality": 7,
+          "note": "The article discusses the implications of RBI's concerns on the Indian economy, which is relevant to the diaspora's interests."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that directly relates to immigration or H-1B visas for better visual alignment.",
-          "Add a quote or perspective from an NRI or diaspora member to enhance the connection to the audience."
+          "Include more direct quotes from the RBI report to enhance credibility.",
+          "Add a section on how these risks specifically affect NRIs or their investments."
         ],
         "verdict": "pass"
       },
@@ -54,67 +59,49 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "616863da-e588-442a-b199-5a0e9c221ae0",
-      "headline": "EB-2 India Went Dark. Now the Escape Routes Are Getting Crowded Too",
-      "slug": "eb1a-niw-self-petition-surge-india-approval-rates-falling-20260702",
+      "id": "9a58ae9d-1804-432d-9382-9909b77f62e8",
+      "headline": "India Is Now Selling Gasoline to Russia. The World's Energy Map Just Flipped.",
+      "slug": "russia-buys-gasoline-india-ukraine-drone-strikes-energy-reversal-20260702",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "aa18166c-663c-45a8-b24e-f5f8ce229faa",
-            "headline": "The Receipt That Never Ends. Every Fee Washington Has Added "
-          },
-          {
-            "article_id": "a9387eb6-819d-4880-857e-da536b0dea36",
-            "headline": "India's EB-5 Investor Green Cards Just Ran Out. The Escape H"
-          },
-          {
-            "article_id": "2f893da9-3f4b-4ee9-9998-647e3cb86da1",
-            "headline": "Eleven Million Cases and Counting. The Green Card Machine Ca"
-          },
-          {
-            "article_id": "7cd205b9-fefe-4bb3-8095-09600ad42101",
-            "headline": "You Used Day 1 CPT in 2019. USCIS Just Found Out"
-          },
-          {
-            "article_id": "68943038-05c3-4686-9959-65c1e60dd9c9",
-            "headline": "EB-2 India Is Shut Until October. The July Visa Bulletin Is "
-          },
-          {
-            "article_id": "1b21ce05-c4a8-4b9c-867a-df5de0b99356",
-            "headline": "He Filed Fake H-1B Petitions Under UC Davis's Name. Now He F"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "USCIS Application Support Center",
-          "reason": "The photo shows a USCIS center, relevant to the immigration story."
+          "what_photo_shows": "Oil tankers at a fuel terminal",
+          "reason": "The photo shows oil tankers, relevant to the energy story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/DaQRjoSkrcu/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not appear to relate to the topic of India's gasoline exports to Russia."
+          }
+        ],
         "image_match": {
-          "score": 7,
-          "issue": "The image depicts a USCIS Application Support Center, which is relevant to the topic of immigration but does not directly illustrate the specific challenges faced by Indian professionals in the EB-2 category."
+          "score": 6,
+          "issue": "The image depicts a product terminal but does not specifically relate to gasoline or the context of India exporting fuel to Russia."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively addresses the concerns of Indian professionals in the U.S. immigration system, making it relevant to the diaspora audience."
+          "quality": 7,
+          "note": "The article discusses India's role in global energy markets, which is relevant to the Indian diaspora interested in geopolitical and economic developments."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider including quotes or insights from more immigration experts to enhance credibility.",
-          "Add a section on potential future changes in immigration policy that could affect Indian professionals."
+          "Replace the irrelevant Instagram embed with a more relevant source or remove it entirely.",
+          "Consider adding a more specific image that directly relates to the topic of gasoline exports or Indian refineries."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/DaQRjoSkrcu/",
         "promoted to published"
       ],
       "revised": false,
@@ -134,7 +121,18 @@
             "headline": "She's Carrying a Shotgun in Her Wedding Dress \u2014 and Sherlock"
           }
         ],
-        "broken_embeds": [],
+        "broken_embeds": [
+          {
+            "url": "https://x.com/enolaholmes/status/1798765432109876543",
+            "problem": "broken",
+            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
+          },
+          {
+            "url": "https://instagram.com/p/C7x-o0vIe1K/",
+            "problem": "broken",
+            "detail": "Instagram embed shows removed/broken placeholder"
+          }
+        ],
         "vision_image_match": {
           "verdict": "MATCH",
           "what_photo_shows": "Enola Holmes 3 movie poster",
@@ -152,18 +150,19 @@
         "diaspora_angle": {
           "present": false,
           "quality": 5,
-          "note": "The article does not connect to NRI/diaspora readers or themes."
+          "note": "The article does not connect to NRI/diaspora readers; it focuses solely on the film review."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Incorporate a section that discusses the film's relevance or appeal to the Indian diaspora, perhaps through themes of family or cultural representation.",
+          "Incorporate a section that discusses the film's relevance or appeal to the Indian diaspora or NRI audience.",
           "Add quotes or insights from Indian critics or audiences to enhance the article's connection to the diaspora."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
-        "Revised by gemini-2.5-flash (857\u2192867 words)"
+        "Removed 2 broken/hallucinated embed(s)",
+        "Revised by gemini-2.5-flash (865\u2192867 words)"
       ],
       "revised": true,
       "unpublished": false,
