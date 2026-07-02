@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-02T13:15:46.937916+00:00",
+  "timestamp": "2026-07-02T13:45:14.633730+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 1,
+    "pass": 1,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "da0f9cd2-9f05-4ffc-8f91-edfd5540b2c7",
-      "headline": "Silo Season 3 Arrives With a Perfect Score \u2014 and a Revelation That Changes Everything",
-      "slug": "silo-season-3-apple-tv-rebecca-ferguson-perfect-score-100-rotten-tomatoes-streaming-india-nri-20260702",
+      "id": "855ca237-6ac2-4660-8283-4c64e8f14e88",
+      "headline": "Virat Kohli Has Not Played a Single MLC Match \u2014 and Mi New York\u2019s Bench Might Be the Most Star-Studded in Cricket History",
+      "slug": "virat-kohli-mlc-2026-mi-new-york-bench-american-cricket-diaspora-20260702",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,64 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Rebecca Ferguson at an event",
-          "reason": "The photo shows Rebecca Ferguson, who is relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://youtube.com/watch?v=BLBvbMtjyAQ",
-            "problem": "irrelevant",
-            "explanation": "The YouTube link does not provide relevant content related to the article's focus on the series 'Silo'."
-          },
-          {
-            "url": "https://www.instagram.com/reel/DaQ5NONyFRE/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram reel does not appear to be directly related to the content of the article discussing 'Silo'."
-          }
-        ],
-        "image_match": {
-          "score": 5,
-          "issue": "The image of Rebecca Ferguson does not directly relate to the article's headline about 'Silo' Season 3."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article connects well with the NRI audience by discussing the accessibility of Apple TV+ across multiple countries."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the irrelevant YouTube and Instagram links with embeds that provide trailers or promotional content specifically for 'Silo'.",
-          "Consider using a more relevant hero image that directly features the show or its characters to enhance visual alignment with the article's topic."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Removed irrelevant embed: https://youtube.com/watch?v=BLBvbMtjyAQ",
-        "Removed irrelevant embed: https://www.instagram.com/reel/DaQ5NONyFRE/",
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "88df73d1-8b65-4654-b8e5-56e016e75aa9",
-      "headline": "The Rock Just Walked Out of the Ocean \u2014 and This Time, You Can See His Face",
-      "slug": "moana-live-action-dwayne-johnson-maui-disney-india-july-10-hindi-dubbed-family-diaspora-nri-20260702",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Disney live-action Moana poster",
-          "reason": "The poster is relevant to the story about the live-action Moana film."
+          "what_photo_shows": "Virat Kohli in cricket jersey",
+          "reason": "The photo shows Virat Kohli, who is relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -86,62 +30,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image is relevant to the article but does not feature Dwayne Johnson or the live-action aspect directly."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects Dwayne Johnson's popularity in India and the strategic release of the film in Hindi, appealing to the Indian diaspora."
+          "quality": 8,
+          "note": "The article effectively connects with NRI readers by discussing the significance of Kohli's presence in MLC and its impact on Indian American cricket fans."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that features Dwayne Johnson or a scene from the live-action film to enhance relevance.",
-          "Add a brief section discussing the cultural significance of Moana in relation to Indian audiences."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "a40f66da-63f8-4630-8f7d-b0bf5d760f09",
-      "headline": "The Director of Vikram Just Picked Up the Gun Himself",
-      "slug": "dc-lokesh-kanagaraj-acting-debut-devdas-wamiqa-gabbi-anirudh-cannes-july-31-diaspora-nri-20260702",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "man in black shirt",
-          "reason": "The photo plausibly shows Lokesh Kanagaraj, relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image of Lokesh Kanagaraj does match the article's topic, but it could be more directly related to his acting role in DC."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects Lokesh Kanagaraj's work to the global Tamil diaspora, highlighting his appeal and the significance of his films in international markets."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more direct quotes from Lokesh Kanagaraj or other filmmakers to enhance the article's depth.",
-          "Include a brief overview of the film's reception or expectations from critics to provide context for diaspora audiences."
+          "Consider adding quotes from players or coaches to enhance the narrative.",
+          "Include more context about the significance of MLC for the Indian diaspora in the US."
         ],
         "verdict": "pass"
       },
