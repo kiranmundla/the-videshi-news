@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-02T11:15:18.689948+00:00",
+  "timestamp": "2026-07-02T12:18:49.044404+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
-    "flag": 0,
+    "pass": 4,
+    "flag": 3,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "ff912ba1-b2b9-45e5-9491-46ca72bbbb72",
-      "headline": "Sharvari Showed Up in a Suit. Ananya Wore \u20b92.3 Crore on Her Wrist. Welcome to Bollywood's Most Stylish Night.",
-      "slug": "bh-style-icons-awards-2026-sharvari-suit-ananya-panday-red-carpet-winners-bollywood-glamour-diaspora-nri-20260702",
+      "id": "79d63210-a65b-4d57-8c98-b8197dc25205",
+      "headline": "India Has Taken Back 1,076 Deportees This Year. It Is Not Complaining",
+      "slug": "india-deportation-1076-mea-ice-enforcement-nri-20260702",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,94 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Ananya Panday at an event",
-          "reason": "The photo shows Ananya Panday, relevant to the Bollywood event story."
+          "what_photo_shows": "hand holding stamped passport",
+          "reason": "A stamped passport is relevant to immigration and deportation topics."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 6,
+          "issue": "The image does not directly relate to the topic of deportation or immigration."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses deportation statistics and implications for the Indian diaspora, making it relevant for NRI readers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that more closely represents the theme of immigration or deportation.",
+          "Expand on the implications of these deportation statistics for the Indian diaspora to enhance the connection."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "021eb3f9-8929-4496-9a87-4cecbb81d462",
+      "headline": "The EAGLE Act Failed Again. The Green Card Queue Did Not Notice",
+      "slug": "eagle-act-ndaa-green-card-per-country-cap-khanna-20260702",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "A man in a suit with a flag",
+          "reason": "The photo shows a person who could be Representative Ro Khanna, relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 3,
+          "issue": "irrelevant"
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the impact of immigration policy on Indian nationals, which is relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the hero image with one that directly relates to immigration or the EAGLE Act to enhance relevance.",
+          "Consider adding quotes or perspectives from affected individuals in the diaspora to strengthen the personal connection."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "a7cd6946-f4d0-4a44-8196-54a64be4faa4",
+      "headline": "Nine Hundred Young Jains Just Sold Out a Convention in New Jersey. Their Theme: 'The Art of the In-Between.'",
+      "slug": "yja-convention-young-jains-america-new-jersey-in-between-20260702",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Jain community gathering in temple",
+          "reason": "The photo shows a Jain community event, relevant to the Jain convention story."
         },
         "inline_image_mismatches": []
       },
@@ -35,14 +121,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article connects to the NRI audience through the mention of Bollywood's influence and the global appeal of its stars."
+          "quality": 8,
+          "note": "The article effectively connects the convention's theme and activities to the experiences of young Jain Americans, making it relevant for the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more context about the significance of the awards for the diaspora audience.",
-          "Add quotes or reactions from attendees to enhance engagement."
+          "Consider adding quotes from attendees or organizers to provide personal insights and enhance engagement.",
+          "Include more context about the significance of the Jain community in the U.S. to further emphasize the importance of the convention."
         ],
         "verdict": "pass"
       },
@@ -51,6 +137,180 @@
       ],
       "revised": false,
       "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "af09d47c-d988-4b0f-b881-d2321ce96eee",
+      "headline": "Two Thousand Indian-Origin Doctors Just Took Over Tampa's Waterfront. The Timing Was Not an Accident.",
+      "slug": "aapi-convention-tampa-indian-physicians-america-250th-20260702",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "group of healthcare professionals",
+          "reason": "The photo shows healthcare professionals, relevant to the story about Indian-origin doctors."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the convention to the Indian-American community and highlights their contributions and significance in the U.S. healthcare system."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include quotes or anecdotes from attendees to add a personal touch.",
+          "Provide more context on the significance of the AAPI and its impact on healthcare policy."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "c432ca1b-c3b7-4dfe-a2ac-3d918b2661fd",
+      "headline": "Every Big Tech Company Is Building Data Centres in India. The Tax Break Lasts Until 2047.",
+      "slug": "india-data-center-boom-microsoft-google-amazon-tax-break-20260702",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "server racks in a data centre",
+          "reason": "The photo shows server racks, relevant to data centre infrastructure."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses career opportunities for Indian engineers abroad and the implications for NRIs considering a return to India."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include specific examples of how NRIs can take advantage of the opportunities mentioned.",
+          "Add quotes or insights from industry experts to enhance credibility."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "ad38ec60-769f-411d-9e3c-0d83c9ac4d3d",
+      "headline": "India and Japan Just Signed an AI Pact. Their First Target Is a Joint Language Model.",
+      "slug": "india-japan-ai-pact-modi-takaichi-semiconductor-llm-20260702",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Japanese Prime Minister Sanae Takaichi",
+          "reason": "The photo shows the correct named person relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 3,
+          "issue": "irrelevant"
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively discusses opportunities for Indian engineers and NRI investors, making the diaspora angle relevant and insightful."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the hero image with one that directly relates to the AI pact or the leaders involved in the agreement.",
+          "Consider adding more specific examples of how the AI pact will impact the diaspora community."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "04e281e3-b331-43a1-92e5-4408f694c25d",
+      "headline": "India's First Private Rocket Is Headed to the Launchpad. The Window Opens July 12.",
+      "slug": "skyroot-vikram-1-private-rocket-launch-india-space-20260702",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MISMATCH",
+          "what_photo_shows": "group of people at a press conference",
+          "reason": "The photo does not show a rocket or launchpad."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image description is missing, making it difficult to assess its relevance to the article."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the developments in India's private space sector to diaspora investors and engineers, highlighting their potential interest and involvement."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include a relevant image description to enhance the image match score.",
+          "Consider adding quotes or insights from diaspora investors to strengthen the connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "Cleared mismatched image (group of people at a press conference)",
+        "held: image mismatch"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "image_mismatch": true,
       "llm_source": "gpt-4o-mini"
     }
   ]
