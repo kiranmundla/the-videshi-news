@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-02T09:15:45.721863+00:00",
+  "timestamp": "2026-07-02T10:15:50.109714+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
+    "pass": 5,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,54 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "88142f1b-9ae3-4976-9846-bbdc4f15ac54",
-      "headline": "UPI Now Processes 757 Million Transactions a Day. Greece Just Became Its 10th Country.",
-      "slug": "upi-757-million-daily-record-greece-10th-country-20260702",
+      "id": "b8a1956b-2f7e-444d-bf06-894d1baba7f6",
+      "headline": "India Is About to Witness Its Biggest-Ever IPO Wave \u2014 From Jio's $3.8 Billion Listing to Carlsberg's Beer Play",
+      "slug": "india-ipo-wave-h2-2026-jio-carlsberg-nse-phonpe-pernod-ricard-nri-investor-20260702",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MISMATCH",
+          "what_photo_shows": "officials at a public Wi-Fi launch",
+          "reason": "The photo shows a public Wi-Fi launch event, unrelated to IPOs or capital markets."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "missing image description"
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses opportunities for NRI investors in the upcoming IPOs, making it relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include a relevant hero image that visually represents the IPO theme.",
+          "Expand on the implications of these IPOs for NRI investors, possibly including expert opinions or forecasts."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "Cleared mismatched image (officials at a public Wi-Fi launch)",
+        "held: image mismatch"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "image_mismatch": true,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "03af50c5-eff7-489a-b31b-bac00be2e9ad",
+      "headline": "Living in a Walkable Neighbourhood Could Be as Important for Your Health as Diet or Exercise, a Major New Study Finds",
+      "slug": "walkable-neighborhoods-health-mit-nature-study-urban-design-diaspora-nri-city-choice-20260702",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +66,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "customer making digital payment",
-          "reason": "The photo shows a digital payment, relevant to the fintech story."
+          "what_photo_shows": "walkable path in Central Park",
+          "reason": "The photo shows a walkable green space, relevant to the story on urban wellness."
         },
         "inline_image_mismatches": []
       },
@@ -36,13 +81,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects UPI's international expansion to the needs of NRIs, highlighting practical benefits for Indian travelers."
+          "note": "The article effectively connects the study's findings to the South Asian diaspora, particularly regarding social isolation and urban living choices."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more specific examples of merchants or locations in Greece where UPI is accepted to enhance relatability for NRIs.",
-          "Add a brief section on potential challenges or limitations NRIs might face when using UPI abroad."
+          "Consider adding more specific examples of walkable neighborhoods in the U.S. that are popular among the Indian diaspora.",
+          "Include quotes or insights from diaspora community members about their experiences with neighborhood choices."
         ],
         "verdict": "pass"
       },
@@ -54,9 +99,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "05a92b3e-847d-4cc6-bbac-70f6dfba92d2",
-      "headline": "Microsoft Is Building a 3,600-Km Undersea Cable From India to Singapore. Tata Communications Is Helping.",
-      "slug": "microsoft-tata-i2sea-undersea-cable-india-singapore-20260702",
+      "id": "89fa9e8d-776b-4e2a-8782-96fe2d6c2916",
+      "headline": "Turmeric's Active Compound Can Ease Depression as Effectively as Some Drugs \u2014 and the Evidence Is Growing",
+      "slug": "curcumin-turmeric-eases-depression-apa-2026-meta-analysis-south-asian-diaspora-mental-health-20260702",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,8 +109,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Server racks in a data center",
-          "reason": "The photo of server racks is relevant to the infrastructure topic of undersea cables and data centers."
+          "what_photo_shows": "packaged turmeric and spices",
+          "reason": "The photo shows turmeric, relevant to the story on curcumin."
         },
         "inline_image_mismatches": []
       },
@@ -73,19 +118,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the undersea cable topic."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article discusses opportunities for Indian Americans in technology, connecting the topic to the diaspora."
+          "quality": 8,
+          "note": "The article effectively connects the topic of turmeric and mental health to the South Asian diaspora, addressing cultural stigma and health challenges faced by this community."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that depicts undersea cables or data infrastructure.",
-          "Expand on the opportunities for Indian Americans in technology to strengthen the diaspora connection."
+          "Include more direct quotes from South Asian individuals or experts to enhance relatability.",
+          "Add a section on practical ways for the diaspora to incorporate curcumin into their diets."
         ],
         "verdict": "pass"
       },
@@ -97,27 +142,18 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "2b0b93ca-02f5-44b8-adfd-424aa598b759",
-      "headline": "Nadella, Pichai and Arora Just Bought a Cricket Team at Lord's. The Price Tag Was \u00a3145 Million.",
-      "slug": "nadella-pichai-arora-london-spirit-cricket-hundred-20260702",
+      "id": "d209d91c-a09c-40ca-be99-554f7068244e",
+      "headline": "Delhi Wants to Be the New Dubai \u2014 and the Numbers Say It Might Be Working",
+      "slug": "delhi-airport-hub-spoke-air-india-easy-connect-nri-20260702",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "6f8e28dd-da9b-40bf-8aa2-3b810579452e",
-            "headline": "Arora's Palo Alto Networks Just Hit a $3 Billion Quarter. Th"
-          },
-          {
-            "article_id": "289c564b-f908-4976-ad8d-257b00d5491d",
-            "headline": "Nadella, Pichai, and Arora Just Bought a Cricket Team at Lor"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Nikesh Arora speaking at an event",
-          "reason": "The photo shows Nikesh Arora, who is relevant to the story."
+          "what_photo_shows": "interior of an airport terminal",
+          "reason": "The photo shows an airport terminal, relevant to the story about Delhi Airport."
         },
         "inline_image_mismatches": []
       },
@@ -125,19 +161,62 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 5,
-          "issue": "The image does not directly relate to cricket or the specific event discussed in the article."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively highlights the influence of Indian-origin executives in global sports, particularly cricket, which resonates with the diaspora audience."
+          "quality": 9,
+          "note": "The article effectively connects the new travel model to the experiences of NRIs, highlighting the benefits for their travel to and from India."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that directly relates to cricket or the London Spirit team to enhance relevance.",
-          "Add more context about the significance of cricket in the Indian diaspora to strengthen the connection."
+          "Consider adding quotes from travelers or experts to enhance the narrative.",
+          "Include more statistics or comparisons with other global hubs to strengthen the argument."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "dcfa6647-98c7-4c2c-b554-832ff862ae3c",
+      "headline": "Vizag's Airport Is Moving Next Week \u2014 What NRIs Flying Home to Andhra Pradesh Need to Know",
+      "slug": "vizag-airport-bhogapuram-shift-nri-andhra-pradesh-20260702",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Aerial view of airport runway",
+          "reason": "The photo shows an airport runway, relevant to the airport relocation story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses the concerns of NRIs flying home, particularly regarding the new airport's location and its implications for travel."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include a section on transportation options from the new airport to the city to provide more practical information for NRIs.",
+          "Add quotes or testimonials from NRIs about their experiences or concerns regarding the airport change to enhance relatability."
         ],
         "verdict": "pass"
       },
