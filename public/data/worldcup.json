@@ -1,6 +1,6 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-07-02T20:00:00Z",
+  "last_updated": "2026-07-02T22:00:34Z",
   "stage": "Knockout Stage",
   "hosts": "USA, Mexico & Canada",
   "dates": {
@@ -1924,7 +1924,8 @@
           "away_code": "AUT",
           "venue": "SoFi Stadium",
           "city": "Inglewood",
-          "status": "scheduled"
+          "status": "FT",
+          "score": "3-0"
         },
         {
           "id": 85,
@@ -5682,6 +5683,30 @@
       "caption": "Cool. Calm. Cristiano.\n\n#FIFAWorldCup",
       "date": "2026-07-02",
       "type": "reel"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DaTc3BmESUM",
+      "account": "@fifaworldcup",
+      "caption": "Pedro Porro.",
+      "date": "2026-07-02",
+      "type": "image"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DaTgK4uibdp/",
+      "account": "@fifaworldcup",
+      "caption": "🇪🇸 Next stop: Round of 16!\n\n#FIFAWorldCup",
+      "date": "2026-07-02",
+      "type": "carousel"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DaTgOoHD9ct",
+      "account": "@fifaworldcup",
+      "caption": "🇪🇸 Next stop: Round of 16!",
+      "date": "2026-07-02",
+      "type": "image"
     }
   ],
   "tv": {
