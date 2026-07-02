@@ -1,6 +1,6 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-07-02T13:59:22Z",
+  "last_updated": "2026-07-02T16:00:08Z",
   "stage": "Knockout Stage",
   "hosts": "USA, Mexico & Canada",
   "dates": {
@@ -5642,6 +5642,30 @@
       "url": "https://www.instagram.com/reel/DaSqOxNvWC-/",
       "account": "@fifaworldcup",
       "caption": "Spain's last #FIFAWorldCup knockout round win... 🇪🇸🏆",
+      "date": "2026-07-02",
+      "type": "reel"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DaRSMFiCiVA",
+      "account": "@fifaworldcup",
+      "caption": "🇺🇸🆚🇧🇦",
+      "date": "2026-07-01",
+      "type": "image"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DaSwRiEjxUQ/",
+      "account": "@fifaworldcup",
+      "caption": "Lamine 💎\n\n#FIFAWorldCup",
+      "date": "2026-07-02",
+      "type": "carousel"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/reel/DaS3VustHki/",
+      "account": "@fifaworldcup",
+      "caption": "Cool. Calm. Cristiano.\n\n#FIFAWorldCup",
       "date": "2026-07-02",
       "type": "reel"
     }
