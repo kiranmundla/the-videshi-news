@@ -5674,28 +5674,35 @@ def build_anchor_reel_timeline(
 # SHOTSTACK TIMELINE BUILDER — Quick Pulse (no voice)
 # ═════════════════════════════════════════════════════════════════════════════
 
+def _pulse_safe_wrap(inner_html):
+    """Wrap scene content in a Shorts/Reels safe zone (avoids YT buttons right, channel info bottom)."""
+    return f"""<div style="display:flex;flex-direction:column;width:100%;height:100%;padding:120px 60px 300px 60px;box-sizing:border-box;">
+  {inner_html}
+</div>"""
+
+
 def _pulse_hook_html(hook_line, category):
     """Scene 1: Hook frame — massive text over darkened hero image (transparent bg)."""
     badge = (category or "NEWS").upper().replace("-", " ")
-    html = f"""<div style="display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-start;width:100%;height:100%;padding:0 50px 180px;box-sizing:border-box;">
-  <div style="background:rgba(10,22,40,0.92);border-radius:24px;padding:50px 44px;width:100%;border-left:8px solid #D4AF37;">
+    inner = f"""<div style="display:flex;flex-direction:column;justify-content:flex-end;height:100%;">
+  <div style="background:rgba(10,22,40,0.92);border-radius:24px;padding:50px 44px;border-left:8px solid #D4AF37;">
     <div style="font-family:Inter;font-size:32px;font-weight:800;color:#D4AF37;letter-spacing:6px;text-transform:uppercase;margin-bottom:24px;">{badge}</div>
-    <div style="font-family:Inter;font-size:88px;font-weight:900;color:#ffffff;line-height:1.05;letter-spacing:-1px;">{hook_line}</div>
+    <div style="font-family:Inter;font-size:80px;font-weight:900;color:#ffffff;line-height:1.08;letter-spacing:-1px;word-wrap:break-word;overflow-wrap:break-word;">{hook_line}</div>
   </div>
 </div>"""
-    return html
+    return _pulse_safe_wrap(inner)
 
 
 def _pulse_hero_stat_html(big, sub, eyebrow):
     """Scene 2: Hero stat — massive number on solid dark card."""
-    html = f"""<div style="display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;width:100%;height:100%;padding:60px 40px;box-sizing:border-box;">
-  <div style="background:rgba(10,22,40,0.94);border-radius:32px;padding:100px 50px;width:100%;border:3px solid rgba(212,175,55,0.4);">
+    inner = f"""<div style="display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;height:100%;">
+  <div style="background:rgba(10,22,40,0.94);border-radius:32px;padding:80px 44px;border:3px solid rgba(212,175,55,0.4);">
     <div style="font-family:Inter;font-size:32px;font-weight:800;color:#D4AF37;letter-spacing:6px;text-transform:uppercase;margin-bottom:40px;">{eyebrow}</div>
     <div style="font-family:Inter;font-size:180px;font-weight:900;color:#D4AF37;line-height:1.0;margin-bottom:32px;text-shadow:0 0 60px rgba(212,175,55,0.4);">{big}</div>
-    <div style="font-family:Inter;font-size:44px;font-weight:600;color:rgba(255,255,255,0.95);line-height:1.3;">{sub}</div>
+    <div style="font-family:Inter;font-size:44px;font-weight:600;color:#ffffff;line-height:1.3;">{sub}</div>
   </div>
 </div>"""
-    return html
+    return _pulse_safe_wrap(inner)
 
 
 def _pulse_stat_grid_html(stats):
@@ -5706,51 +5713,51 @@ def _pulse_stat_grid_html(stats):
         big = stat.get("big", "")
         label = stat.get("label", "")
         color = colors[i % len(colors)]
-        tiles_html += f"""<div style="background:rgba(10,22,40,0.94);border-radius:24px;padding:44px 40px;text-align:center;border-left:8px solid {color};width:100%;">
-      <div style="font-family:Inter;font-size:96px;font-weight:900;color:{color};line-height:1.0;margin-bottom:12px;">{big}</div>
-      <div style="font-family:Inter;font-size:34px;font-weight:600;color:rgba(255,255,255,0.9);line-height:1.2;text-transform:uppercase;letter-spacing:1px;">{label}</div>
+        tiles_html += f"""<div style="background:rgba(10,22,40,0.94);border-radius:24px;padding:40px 36px;text-align:center;border-left:8px solid {color};">
+      <div style="font-family:Inter;font-size:90px;font-weight:900;color:{color};line-height:1.0;margin-bottom:12px;">{big}</div>
+      <div style="font-family:Inter;font-size:32px;font-weight:600;color:#ffffff;line-height:1.2;text-transform:uppercase;letter-spacing:1px;">{label}</div>
     </div>"""
 
-    html = f"""<div style="display:flex;flex-direction:column;justify-content:center;align-items:center;width:100%;height:100%;padding:60px 40px;box-sizing:border-box;">
-  <div style="font-family:Inter;font-size:32px;font-weight:800;color:#D4AF37;letter-spacing:6px;margin-bottom:40px;text-transform:uppercase;text-shadow:0 2px 12px rgba(0,0,0,0.9);">BY THE NUMBERS</div>
-  <div style="display:flex;flex-direction:column;gap:24px;width:100%;">
+    inner = f"""<div style="display:flex;flex-direction:column;justify-content:center;height:100%;">
+  <div style="font-family:Inter;font-size:32px;font-weight:800;color:#D4AF37;letter-spacing:6px;margin-bottom:40px;text-transform:uppercase;text-align:center;text-shadow:0 2px 12px rgba(0,0,0,0.9);">BY THE NUMBERS</div>
+  <div style="display:flex;flex-direction:column;gap:24px;">
     {tiles_html}
   </div>
 </div>"""
-    return html
+    return _pulse_safe_wrap(inner)
 
 
 def _pulse_diaspora_html(bullets):
     """Scene 4: Diaspora panel — NRI impact in a bold full-width card."""
     bullets_html = ""
     for b in bullets[:3]:
-        bullets_html += f"""<div style="display:flex;align-items:flex-start;gap:20px;margin-bottom:32px;">
+        bullets_html += f"""<div style="display:flex;align-items:flex-start;gap:20px;margin-bottom:28px;">
       <div style="width:16px;height:16px;min-width:16px;border-radius:50%;background:#FF9933;margin-top:14px;box-shadow:0 0 12px rgba(255,153,51,0.5);"></div>
-      <div style="font-family:Inter;font-size:48px;font-weight:600;color:#ffffff;line-height:1.25;">{b}</div>
+      <div style="font-family:Inter;font-size:44px;font-weight:600;color:#ffffff;line-height:1.25;">{b}</div>
     </div>"""
 
-    html = f"""<div style="display:flex;flex-direction:column;justify-content:center;align-items:center;width:100%;height:100%;padding:60px 40px;box-sizing:border-box;">
-  <div style="background:rgba(10,22,40,0.94);border-radius:32px;padding:70px 50px;width:100%;border-left:10px solid #FF9933;">
-    <div style="font-family:Inter;font-size:34px;font-weight:800;color:#FF9933;letter-spacing:6px;margin-bottom:44px;text-transform:uppercase;">THE DIASPORA ANGLE</div>
+    inner = f"""<div style="display:flex;flex-direction:column;justify-content:center;height:100%;">
+  <div style="background:rgba(10,22,40,0.94);border-radius:32px;padding:60px 44px;border-left:10px solid #FF9933;">
+    <div style="font-family:Inter;font-size:34px;font-weight:800;color:#FF9933;letter-spacing:6px;margin-bottom:40px;text-transform:uppercase;">THE DIASPORA ANGLE</div>
     {bullets_html}
   </div>
 </div>"""
-    return html
+    return _pulse_safe_wrap(inner)
 
 
 def _pulse_cta_html():
     """Scene 5: CTA card — brand + website, clean and big."""
-    html = """<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;width:100%;height:100%;padding:60px 40px;box-sizing:border-box;">
-  <div style="background:rgba(10,22,40,0.94);border-radius:32px;padding:90px 50px;width:100%;border:3px solid rgba(212,175,55,0.4);">
-    <div style="font-family:Inter;font-size:88px;font-weight:800;color:#D4AF37;letter-spacing:6px;margin-bottom:16px;">THE VIDESHI</div>
-    <div style="font-family:Inter;font-size:32px;color:rgba(255,255,255,0.5);letter-spacing:4px;text-transform:uppercase;margin-bottom:50px;">GLOBAL INDIAN NEWS</div>
+    inner = """<div style="display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;height:100%;">
+  <div style="background:rgba(10,22,40,0.94);border-radius:32px;padding:80px 44px;border:3px solid rgba(212,175,55,0.4);">
+    <div style="font-family:Inter;font-size:80px;font-weight:800;color:#D4AF37;letter-spacing:4px;margin-bottom:16px;">THE VIDESHI</div>
+    <div style="font-family:Inter;font-size:30px;color:rgba(255,255,255,0.5);letter-spacing:4px;text-transform:uppercase;margin-bottom:50px;">GLOBAL INDIAN NEWS</div>
     <div style="width:80px;height:4px;background:#D4AF37;margin:0 auto 50px;border-radius:2px;"></div>
-    <div style="font-family:Inter;font-size:50px;font-weight:700;color:#fff;margin-bottom:24px;">thevideshi.com</div>
-    <div style="font-family:Inter;font-size:56px;font-weight:900;color:#F2C84B;margin-bottom:40px;">@the.videshi</div>
-    <div style="font-family:Inter;font-size:28px;color:rgba(255,255,255,0.6);letter-spacing:2px;">YOUTUBE · INSTAGRAM · THREADS · X</div>
+    <div style="font-family:Inter;font-size:48px;font-weight:700;color:#fff;margin-bottom:24px;">thevideshi.com</div>
+    <div style="font-family:Inter;font-size:52px;font-weight:900;color:#F2C84B;margin-bottom:40px;">@the.videshi</div>
+    <div style="font-family:Inter;font-size:26px;color:rgba(255,255,255,0.6);letter-spacing:2px;">YOUTUBE · INSTAGRAM · THREADS · X</div>
   </div>
 </div>"""
-    return html
+    return _pulse_safe_wrap(inner)
 
 
 def build_quick_pulse_timeline(
