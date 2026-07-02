@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-02T05:15:20.906652+00:00",
+  "timestamp": "2026-07-02T06:18:29.407579+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 7,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "f25cad14-7cdd-4502-b289-ca6c7220efcc",
-      "headline": "The Gang's Back, the Poster's 60 Feet Tall, and Arshad Warsi Promises It's Funny Again",
-      "slug": "dhamaal-4-trailer-launch-ajay-devgn-arshad-warsi-imagicaa-franchise-comedy-july-10-diaspora-nri-20260702",
+      "id": "0eff7daa-23b7-4a53-b590-0a475b1c1a90",
+      "headline": "Indian Households Just Sold 50 Tonnes of Gold in a Single Quarter \u2014 the Sharpest Spike in Years",
+      "slug": "indian-households-gold-sell-off-50-tonnes-quarter-recycling-boom-nri-investor-20260702",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Dhamaal 4 movie poster with ensemble cast",
-          "reason": "The photo shows a movie poster related to Dhamaal 4, matching the story topic."
+          "what_photo_shows": "Antique Indian nose ring jewellery",
+          "reason": "The photo shows Indian gold jewellery, relevant to the gold selling story."
         },
         "inline_image_mismatches": []
       },
@@ -36,13 +36,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the film's nostalgia to NRI audiences, highlighting its significance in diaspora culture."
+          "note": "The article discusses implications for NRI investors, making it relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more quotes or insights from the cast or crew to enhance the article's depth.",
-          "Include a brief overview of the previous films in the franchise for readers unfamiliar with the series."
+          "Consider adding more specific examples of how NRI investors can leverage the current gold market trends.",
+          "Include a brief historical context of gold investment among NRIs to enhance the diaspora angle."
         ],
         "verdict": "pass"
       },
@@ -54,27 +54,18 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "f3d12ea2-86e1-47b0-9bb7-c892a88b005a",
-      "headline": "\u20b91,300 Crore Wasn't Enough. Dhurandhar Just Landed in Japan.",
-      "slug": "dhurandhar-japan-release-ranveer-singh-1300-crore-spy-saga-global-expansion-dangal-record-diaspora-nri-20260702",
+      "id": "32a00288-ef20-4d43-b410-b149a6bb6ebc",
+      "headline": "Millennials and Gen X Are Aging Faster Biologically Than Their Parents \u2014 and a Major Study Links It to Rising Cancer Rates",
+      "slug": "millennials-gen-x-aging-faster-biologically-nature-medicine-early-onset-cancer-south-asian-risk-20260702",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "b557b97c-8049-4c56-bdf2-cdf3bb56a52e",
-            "headline": "Ranveer Singh Is About to Destroy Mumbai \u2014 and Spend \u20b9300 Cr"
-          },
-          {
-            "article_id": "63aeac1c-ee7c-4dc6-9423-052c92b4c86e",
-            "headline": "\u20b93,000 Crore in Six Months \u2014 Bollywood Just Had Its Most Sav"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A man in ornate attire",
-          "reason": "The photo plausibly shows Ranveer Singh, relevant to the story."
+          "what_photo_shows": "scientists in a laboratory",
+          "reason": "The photo shows a laboratory setting relevant to biological aging research."
         },
         "inline_image_mismatches": []
       },
@@ -82,19 +73,234 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image of Ranveer Singh is relevant to the article's topic about the film Dhurandhar, but it does not directly depict the film or its promotional materials."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the film's international release to the interests of diaspora audiences, emphasizing the significance of Indian cinema's global recognition."
+          "quality": 9,
+          "note": "The article effectively connects the findings of the study to the South Asian diaspora, highlighting specific health risks and implications."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider including more visuals or promotional materials related to the film to enhance the article's engagement.",
-          "Add quotes or reactions from diaspora audiences to further strengthen the connection with NRI readers."
+          "Consider adding more specific statistics or examples related to the South Asian diaspora's health to strengthen the connection.",
+          "Include quotes or insights from health experts to enhance credibility and engagement."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "ac48cfdd-e66b-4468-9da9-9a9113b5fb7d",
+      "headline": "Indian Tech Workers Are Self-Sponsoring Their Green Cards. EB-1A Filings Have Jumped 50%.",
+      "slug": "eb1a-green-card-indian-tech-workers-h1b-self-sponsor-20260702",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "H-1B visa application documents",
+          "reason": "The photo subject is relevant to the immigration story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 6,
+          "issue": "The image is relevant to immigration but does not specifically represent the EB-1A green card topic."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses the concerns of Indian tech workers in the U.S., making it relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more specific image related to the EB-1A visa or Indian tech workers to enhance relevance.",
+          "Add quotes or anecdotes from Indian tech workers who have gone through the EB-1A process to provide a personal touch."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "7c4039c3-3cf3-45b9-8811-22fee28a426f",
+      "headline": "OpenAI's First Hardware Is a Macro Pad for Coders. It Launches July 15.",
+      "slug": "openai-codex-micro-hardware-macro-pad-work-louder-20260702",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "mechanical keyboard and macro pad",
+          "reason": "The photo shows a macro pad and keyboard, relevant to the story about a macro pad for coders."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the product launch to Indian developers, highlighting their significance in the AI coding landscape."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more direct quotes from OpenAI representatives or industry experts to enhance credibility.",
+          "Include a comparison with similar products in the market to provide context for the Codex Micro's unique features."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "b8dc0a92-c1cd-49f1-9d9c-cdab031b1fba",
+      "headline": "JP Morgan Says AI Is Deflating India's IT Giants. It Picked Two Winners.",
+      "slug": "jp-morgan-ai-deflation-indian-it-tcs-infosys-wipro-20260702",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "glass pyramid at Infosys campus",
+          "reason": "The photo shows Infosys, which is relevant to the story about Indian IT companies."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the implications of the IT sector's changes to the NRI community, particularly regarding employment and investment."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of how the changes in the IT sector are impacting NRI families beyond employment, such as effects on education or lifestyle.",
+          "Include quotes or insights from industry experts or diaspora members to enhance the article's depth and relatability."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "de11edd6-7365-4ac8-94a7-ce77b428d330",
+      "headline": "Australia Just Made Immigration a Lot More Expensive \u2014 and Indian Students Are Feeling It First",
+      "slug": "australia-visa-fee-hike-july-indian-students-nri-20260702",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Sydney Opera House and harbour",
+          "reason": "The photo shows an iconic Australian landmark relevant to the immigration story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the immigration fee hikes to the financial implications for Indian American families and professionals considering a move to Australia."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more direct quotes or anecdotes from affected Indian students or families to enhance relatability.",
+          "Add a comparison of the immigration policies of other countries to provide a broader context."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "dc5fc683-652f-485f-8626-e4df09f34e8c",
+      "headline": "Japan Hiked Visa Fees Fivefold \u2014 but Indians Still Pay \u20b9500",
+      "slug": "japan-visa-fee-hike-india-exemption-nri-20260702",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "torii gate path at Fushimi Inari-taisha",
+          "reason": "The photo shows a Japanese landmark relevant to the story about Japan."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses Indian Americans and their travel considerations, making it relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include a quote from a travel expert or an Indian traveler to add a personal touch.",
+          "Provide more context on the historical relationship between India and Japan regarding visa policies."
         ],
         "verdict": "pass"
       },
