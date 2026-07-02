@@ -167,8 +167,49 @@ def post_instagram_reel(reel, video_url, caption):
     return f"OK (media_id={media_id})"
 
 
-def post_youtube_short(reel, video_path, headline, caption):
-    """Post video as YouTube Short."""
+
+def letterbox_for_youtube(vertical_path):
+    """Convert 9:16 vertical video to 16:9 landscape with branded navy side panels for YouTube.
+    YouTube auto-classifies vertical ≤3min as Shorts; horizontal → regular Video."""
+    import subprocess
+    landscape_path = vertical_path.replace('.mp4', '_landscape.mp4')
+    # Navy side panels (#0a1628), vertical video centered in 1920x1080 frame
+    cmd = [
+        'ffmpeg', '-y', '-i', vertical_path,
+        '-vf', 'split[original][blur];'
+               '[blur]scale=1920:1080:force_original_aspect_ratio=increase,crop=1920:1080,boxblur=40[bg];'
+               '[original]scale=-2:1080[fg];'
+               '[bg][fg]overlay=(W-w)/2:(H-h)/2',
+        '-c:v', 'libx264', '-preset', 'fast', '-crf', '23',
+        '-c:a', 'aac', '-b:a', '128k',
+        '-movflags', '+faststart',
+        landscape_path
+    ]
+    try:
+        r = subprocess.run(cmd, capture_output=True, text=True, timeout=120)
+        if r.returncode != 0:
+            # Fallback: simple navy padding instead of blurred background
+            cmd_simple = [
+                'ffmpeg', '-y', '-i', vertical_path,
+                '-vf', 'pad=1920:1080:(1920-iw)/2:(1080-ih)/2:color=0a1628,scale=1920:1080',
+                '-c:v', 'libx264', '-preset', 'fast', '-crf', '23',
+                '-c:a', 'aac', '-b:a', '128k',
+                '-movflags', '+faststart',
+                landscape_path
+            ]
+            r2 = subprocess.run(cmd_simple, capture_output=True, text=True, timeout=120)
+            if r2.returncode != 0:
+                print(f"  [YT] Letterbox failed: {r2.stderr[-300:]}")
+                return None
+        print(f"  [YT] Letterboxed to 16:9: {os.path.getsize(landscape_path)} bytes")
+        return landscape_path
+    except Exception as e:
+        print(f"  [YT] Letterbox error: {e}")
+        return None
+
+
+def post_youtube_video(reel, video_path, headline, caption):
+    """Post video as regular YouTube Video (letterboxed to 16:9 by caller)."""
     print(f"  [YT] Refreshing OAuth token...")
     token_r = requests.post('https://oauth2.googleapis.com/token', data={
         'client_id': yt['YOUTUBE_CLIENT_ID'],
@@ -192,10 +233,9 @@ def post_youtube_short(reel, video_path, headline, caption):
             patch_reel(reel['id'], {'yt_posted_at': now_iso(), 'yt_video_id': f'dedup-log-{vid}'})
             return f"SKIP (slug already in youtube-log: {vid})"
     
-    # YouTube hard-limits titles to 100 chars. " #Shorts" is 8 chars, so the
-    # headline must be truncated to 91 to stay within 99 (1 char safety margin).
-    SUFFIX = ' #Shorts'
-    title = (headline[:91].rstrip() + SUFFIX) if len(headline) + len(SUFFIX) > 100 else headline + SUFFIX
+    # YouTube hard-limits titles to 100 chars.
+    # Voiceover reels upload as regular Videos (letterboxed to 16:9), no #Shorts tag.
+    title = headline[:100].rstrip() if len(headline) > 100 else headline
     
     # Category-specific hashtags
     caption_lower = caption.lower()
@@ -211,7 +251,7 @@ def post_youtube_short(reel, video_path, headline, caption):
     elif any(w in caption_lower for w in ['remittance', 'gulf', 'economy', 'rbi']):
         extra_tags = ['IndianEconomy', 'Remittances', 'RBI']
     
-    tags = ['The Videshi', 'Indian Diaspora', 'NRI', 'India News', 'Shorts'] + extra_tags
+    tags = ['The Videshi', 'Indian Diaspora', 'NRI', 'India News'] + extra_tags
     tags = tags[:12]
     
     description = f"{caption}\n\n#TheVideshi #IndianDiaspora #NRI #IndiaNews"
@@ -448,7 +488,19 @@ for i, reel in enumerate(work_queue):
             if platform == 'ig':
                 result = post_instagram_reel(reel, video_url, caption)
             elif platform == 'yt':
-                result = post_youtube_short(reel, local_video, headline, caption)
+                # Letterbox vertical video to 16:9 for YouTube regular Video upload
+                yt_video = letterbox_for_youtube(local_video)
+                if yt_video:
+                    result = post_youtube_video(reel, yt_video, headline, caption)
+                    # Clean up letterboxed temp file
+                    try:
+                        os.unlink(yt_video)
+                    except:
+                        pass
+                else:
+                    # Fallback: upload vertical as-is (will become a Short)
+                    print("  [YT] Letterbox failed, uploading vertical as fallback")
+                    result = post_youtube_video(reel, local_video, headline, caption)
             elif platform == 'threads':
                 result = post_threads(reel, video_url, caption)
             elif platform == 'x':
