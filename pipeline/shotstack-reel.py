@@ -5677,42 +5677,43 @@ def build_anchor_reel_timeline(
 def _pulse_hook_html(hook_line, category):
     """Scene 1: Hook frame — massive text over darkened hero image (transparent bg)."""
     badge = (category or "NEWS").upper().replace("-", " ")
-    html = f"""<div style="display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-start;width:100%;height:100%;padding:0 60px 200px;box-sizing:border-box;">
-  <div style="font-family:Inter;font-size:28px;font-weight:800;color:#D4AF37;letter-spacing:6px;text-transform:uppercase;margin-bottom:30px;text-shadow:0 2px 12px rgba(0,0,0,0.9);">{badge}</div>
-  <div style="font-family:Inter;font-size:96px;font-weight:900;color:#ffffff;line-height:1.05;text-shadow:0 6px 40px rgba(0,0,0,0.95),0 3px 12px rgba(0,0,0,0.8);letter-spacing:-1px;">{hook_line}</div>
-  <div style="width:120px;height:6px;background:#D4AF37;margin-top:36px;border-radius:3px;"></div>
+    html = f"""<div style="display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-start;width:100%;height:100%;padding:0 50px 180px;box-sizing:border-box;">
+  <div style="background:rgba(10,22,40,0.92);border-radius:24px;padding:50px 44px;width:100%;border-left:8px solid #D4AF37;">
+    <div style="font-family:Inter;font-size:32px;font-weight:800;color:#D4AF37;letter-spacing:6px;text-transform:uppercase;margin-bottom:24px;">{badge}</div>
+    <div style="font-family:Inter;font-size:88px;font-weight:900;color:#ffffff;line-height:1.05;letter-spacing:-1px;">{hook_line}</div>
+  </div>
 </div>"""
     return html
 
 
 def _pulse_hero_stat_html(big, sub, eyebrow):
-    """Scene 2: Hero stat — massive number on translucent card over blurred hero."""
-    html = f"""<div style="display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;width:100%;height:100%;padding:80px 50px;box-sizing:border-box;">
-  <div style="background:rgba(10,22,40,0.85);border-radius:32px;padding:80px 60px;width:90%;max-width:920px;border:2px solid rgba(212,175,55,0.3);">
-    <div style="font-family:Inter;font-size:26px;font-weight:800;color:#D4AF37;letter-spacing:6px;text-transform:uppercase;margin-bottom:40px;text-shadow:0 2px 8px rgba(0,0,0,0.5);">{eyebrow}</div>
-    <div style="font-family:Inter;font-size:160px;font-weight:900;color:#D4AF37;line-height:1.0;margin-bottom:28px;text-shadow:0 0 60px rgba(212,175,55,0.4),0 4px 20px rgba(0,0,0,0.5);">{big}</div>
-    <div style="font-family:Inter;font-size:38px;font-weight:600;color:rgba(255,255,255,0.9);line-height:1.3;">{sub}</div>
+    """Scene 2: Hero stat — massive number on solid dark card."""
+    html = f"""<div style="display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;width:100%;height:100%;padding:60px 40px;box-sizing:border-box;">
+  <div style="background:rgba(10,22,40,0.94);border-radius:32px;padding:100px 50px;width:100%;border:3px solid rgba(212,175,55,0.4);">
+    <div style="font-family:Inter;font-size:32px;font-weight:800;color:#D4AF37;letter-spacing:6px;text-transform:uppercase;margin-bottom:40px;">{eyebrow}</div>
+    <div style="font-family:Inter;font-size:180px;font-weight:900;color:#D4AF37;line-height:1.0;margin-bottom:32px;text-shadow:0 0 60px rgba(212,175,55,0.4);">{big}</div>
+    <div style="font-family:Inter;font-size:44px;font-weight:600;color:rgba(255,255,255,0.95);line-height:1.3;">{sub}</div>
   </div>
 </div>"""
     return html
 
 
 def _pulse_stat_grid_html(stats):
-    """Scene 3: Stat grid — 2-3 stats in bold cards over blurred hero."""
+    """Scene 3: Stat grid — 2-3 stats in bold stacked cards."""
     colors = ["#D4AF37", "#4ECDC4", "#FF9933"]
     tiles_html = ""
     for i, stat in enumerate(stats[:3]):
         big = stat.get("big", "")
         label = stat.get("label", "")
         color = colors[i % len(colors)]
-        tiles_html += f"""<div style="background:rgba(10,22,40,0.85);border-radius:24px;padding:50px 40px;text-align:center;border:2px solid {color}33;flex:1;min-width:380px;">
-      <div style="font-family:Inter;font-size:80px;font-weight:900;color:{color};line-height:1.0;margin-bottom:16px;text-shadow:0 0 30px {color}44;">{big}</div>
-      <div style="font-family:Inter;font-size:28px;font-weight:600;color:rgba(255,255,255,0.85);line-height:1.25;text-transform:uppercase;letter-spacing:1px;">{label}</div>
+        tiles_html += f"""<div style="background:rgba(10,22,40,0.94);border-radius:24px;padding:44px 40px;text-align:center;border-left:8px solid {color};width:100%;">
+      <div style="font-family:Inter;font-size:96px;font-weight:900;color:{color};line-height:1.0;margin-bottom:12px;">{big}</div>
+      <div style="font-family:Inter;font-size:34px;font-weight:600;color:rgba(255,255,255,0.9);line-height:1.2;text-transform:uppercase;letter-spacing:1px;">{label}</div>
     </div>"""
 
-    html = f"""<div style="display:flex;flex-direction:column;justify-content:center;align-items:center;width:100%;height:100%;padding:80px 50px;box-sizing:border-box;">
-  <div style="font-family:Inter;font-size:26px;font-weight:800;color:#D4AF37;letter-spacing:6px;margin-bottom:50px;text-transform:uppercase;text-shadow:0 2px 12px rgba(0,0,0,0.9);">BY THE NUMBERS</div>
-  <div style="display:flex;flex-direction:column;gap:28px;width:90%;max-width:920px;">
+    html = f"""<div style="display:flex;flex-direction:column;justify-content:center;align-items:center;width:100%;height:100%;padding:60px 40px;box-sizing:border-box;">
+  <div style="font-family:Inter;font-size:32px;font-weight:800;color:#D4AF37;letter-spacing:6px;margin-bottom:40px;text-transform:uppercase;text-shadow:0 2px 12px rgba(0,0,0,0.9);">BY THE NUMBERS</div>
+  <div style="display:flex;flex-direction:column;gap:24px;width:100%;">
     {tiles_html}
   </div>
 </div>"""
@@ -5720,17 +5721,17 @@ def _pulse_stat_grid_html(stats):
 
 
 def _pulse_diaspora_html(bullets):
-    """Scene 4: Diaspora panel — NRI impact in a bold card over blurred hero."""
+    """Scene 4: Diaspora panel — NRI impact in a bold full-width card."""
     bullets_html = ""
     for b in bullets[:3]:
-        bullets_html += f"""<div style="display:flex;align-items:flex-start;gap:18px;margin-bottom:28px;">
-      <div style="width:12px;height:12px;min-width:12px;border-radius:50%;background:#FF9933;margin-top:12px;box-shadow:0 0 12px rgba(255,153,51,0.5);"></div>
-      <div style="font-family:Inter;font-size:36px;font-weight:600;color:rgba(255,255,255,0.95);line-height:1.3;">{b}</div>
+        bullets_html += f"""<div style="display:flex;align-items:flex-start;gap:20px;margin-bottom:32px;">
+      <div style="width:16px;height:16px;min-width:16px;border-radius:50%;background:#FF9933;margin-top:14px;box-shadow:0 0 12px rgba(255,153,51,0.5);"></div>
+      <div style="font-family:Inter;font-size:48px;font-weight:600;color:#ffffff;line-height:1.25;">{b}</div>
     </div>"""
 
-    html = f"""<div style="display:flex;flex-direction:column;justify-content:center;align-items:center;width:100%;height:100%;padding:80px 50px;box-sizing:border-box;">
-  <div style="background:rgba(10,22,40,0.85);border-radius:32px;padding:60px 50px;width:90%;max-width:920px;border-left:8px solid #FF9933;">
-    <div style="font-family:Inter;font-size:26px;font-weight:800;color:#FF9933;letter-spacing:6px;margin-bottom:40px;text-transform:uppercase;">THE DIASPORA ANGLE</div>
+    html = f"""<div style="display:flex;flex-direction:column;justify-content:center;align-items:center;width:100%;height:100%;padding:60px 40px;box-sizing:border-box;">
+  <div style="background:rgba(10,22,40,0.94);border-radius:32px;padding:70px 50px;width:100%;border-left:10px solid #FF9933;">
+    <div style="font-family:Inter;font-size:34px;font-weight:800;color:#FF9933;letter-spacing:6px;margin-bottom:44px;text-transform:uppercase;">THE DIASPORA ANGLE</div>
     {bullets_html}
   </div>
 </div>"""
@@ -5739,14 +5740,14 @@ def _pulse_diaspora_html(bullets):
 
 def _pulse_cta_html():
     """Scene 5: CTA card — brand + website, clean and big."""
-    html = """<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;width:100%;height:100%;padding:80px 50px;box-sizing:border-box;">
-  <div style="background:rgba(10,22,40,0.88);border-radius:32px;padding:80px 60px;width:90%;max-width:920px;border:2px solid rgba(212,175,55,0.3);">
-    <div style="font-family:Inter;font-size:80px;font-weight:800;color:#D4AF37;letter-spacing:6px;margin-bottom:16px;">THE VIDESHI</div>
-    <div style="font-family:Inter;font-size:28px;color:rgba(255,255,255,0.5);letter-spacing:4px;text-transform:uppercase;margin-bottom:50px;">GLOBAL INDIAN NEWS</div>
+    html = """<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;width:100%;height:100%;padding:60px 40px;box-sizing:border-box;">
+  <div style="background:rgba(10,22,40,0.94);border-radius:32px;padding:90px 50px;width:100%;border:3px solid rgba(212,175,55,0.4);">
+    <div style="font-family:Inter;font-size:88px;font-weight:800;color:#D4AF37;letter-spacing:6px;margin-bottom:16px;">THE VIDESHI</div>
+    <div style="font-family:Inter;font-size:32px;color:rgba(255,255,255,0.5);letter-spacing:4px;text-transform:uppercase;margin-bottom:50px;">GLOBAL INDIAN NEWS</div>
     <div style="width:80px;height:4px;background:#D4AF37;margin:0 auto 50px;border-radius:2px;"></div>
-    <div style="font-family:Inter;font-size:44px;font-weight:700;color:#fff;margin-bottom:24px;">thevideshi.com</div>
-    <div style="font-family:Inter;font-size:50px;font-weight:900;color:#F2C84B;margin-bottom:40px;">@the.videshi</div>
-    <div style="font-family:Inter;font-size:24px;color:rgba(255,255,255,0.6);letter-spacing:2px;">YOUTUBE · INSTAGRAM · THREADS · X</div>
+    <div style="font-family:Inter;font-size:50px;font-weight:700;color:#fff;margin-bottom:24px;">thevideshi.com</div>
+    <div style="font-family:Inter;font-size:56px;font-weight:900;color:#F2C84B;margin-bottom:40px;">@the.videshi</div>
+    <div style="font-family:Inter;font-size:28px;color:rgba(255,255,255,0.6);letter-spacing:2px;">YOUTUBE · INSTAGRAM · THREADS · X</div>
   </div>
 </div>"""
     return html
@@ -5897,7 +5898,7 @@ def build_quick_pulse_timeline(
             "fit": "cover",
             "effect": "zoomInSlow",
             "filter": "darken",
-            "opacity": 0.7,
+            "opacity": 0.5,
         })
 
     edit = {
