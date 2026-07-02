@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-02T14:15:54.480112+00:00",
+  "timestamp": "2026-07-02T14:45:35.468633+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 5,
-    "flag": 0,
+    "pass": 1,
+    "flag": 2,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "bae2ea2a-4cf0-40a6-a3f3-87ba8dafe16b",
-      "headline": "Ultra-Processed Foods Are Now Linked to a Doubled Risk of Oesophageal Cancer \u2014 and the Threat May Be Greater for Diaspora Indians",
-      "slug": "ultra-processed-food-oesophageal-stomach-cancer-risk-panesoes-study-south-asian-diaspora-20260702",
+      "id": "0b46b06b-f294-41f6-936f-33ebdbbe4533",
+      "headline": "India's Startup Funding Fell 9% in the First Half of 2026. But Five New Unicorns Say That's Not the Whole Story.",
+      "slug": "india-startup-funding-h1-2026-ai-unicorns-bengaluru-vc-20260702",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "bowl of colorful breakfast cereal",
-          "reason": "The photo shows ultra-processed food, relevant to the story on health risks."
+          "what_photo_shows": "young professionals at a tech workspace",
+          "reason": "The photo shows a tech startup environment, which aligns with the story about India's startup ecosystem."
         },
         "inline_image_mismatches": []
       },
@@ -30,62 +30,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 5,
-          "issue": "The image of Froot Loops does not directly represent the broader topic of ultra-processed foods and oesophageal cancer."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the health risks of ultra-processed foods to the dietary habits of diaspora Indians, making it relevant and engaging for the target audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more representative image of ultra-processed foods that aligns with the article's focus on health risks.",
-          "Add a brief section on practical dietary recommendations for diaspora Indians to mitigate the risks associated with ultra-processed foods."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "2cd0a4fd-9435-468e-81ba-0c3fc567b524",
-      "headline": "India's Airport Lounge System Just Got Overhauled \u2014 Here's What NRIs Need to Know Before Flying Home",
-      "slug": "india-airport-lounge-access-overhaul-hdfc-nri-guide-20260702",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "modern airport lounge interior",
-          "reason": "The photo shows an airport lounge, relevant to the story about airport lounge systems."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image does not directly relate to the topic of startup funding or unicorns."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article directly addresses NRIs and their specific challenges with the new lounge access rules, making it relevant and informative for the diaspora."
+          "note": "The article discusses trends in Indian startups, which is relevant to the NRI community interested in investment opportunities and the Indian economy."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include a brief summary of the changes at the beginning for quick reference.",
-          "Add a section with tips for NRIs on how to manage their credit card usage to meet the new requirements."
+          "Consider using an image that visually represents startups or technology to better match the article's content.",
+          "Add a section discussing how these trends might impact NRIs looking to invest in Indian startups."
         ],
         "verdict": "pass"
       },
@@ -97,9 +54,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "20f8cdfe-8bdc-4046-be9a-b9466ac8ebaf",
-      "headline": "Air India Express Eyes Georgia \u2014 and NRIs with a US Visa Can Get In Without One",
-      "slug": "air-india-express-georgia-tbilisi-europe-nri-us-visa-20260702",
+      "id": "534655c8-0cfc-4e2d-99cf-92b32de20d50",
+      "headline": "Delhi Just Banned New Petrol Two-Wheelers Starting 2028. Here's the Full Electrification Timeline.",
+      "slug": "delhi-ev-policy-2026-petrol-ban-two-wheelers-autorickshaw-electric-charging-20260702",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -107,127 +64,89 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Tbilisi cityscape with river",
-          "reason": "The photo shows Tbilisi, which is relevant to the story about Air India Express flights to Tbilisi."
+          "what_photo_shows": "officials at electric vehicle charging event",
+          "reason": "The photo shows an electric vehicle charging event, relevant to the EV policy story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively highlights how the new flight routes will benefit NRIs, particularly those with US visas, making it relevant for the diaspora audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more specific examples of how NRIs can benefit from the new routes, such as potential travel itineraries or testimonials.",
-          "Add a section on cultural or tourism highlights in Georgia that may appeal to Indian travelers."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "0a3b4cda-d95b-4f2c-ba5d-3b52ef03bf0e",
-      "headline": "Air India's Brand-New 787-9 Lands on Mumbai\u2013London \u2014 and It Finally Feels Like a Global Airline",
-      "slug": "air-india-787-9-mumbai-london-dreamliner-premium-economy-nri-20260702",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Air India Boeing 787-9 Dreamliner",
-          "reason": "The photo shows an Air India 787-9, relevant to the story about the airline's new Dreamliner."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively addresses the concerns of NRIs regarding Air India's service quality and its significance for the British Indian community."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include a quote from an NRI traveler or industry expert to enhance the diaspora connection.",
-          "Add a comparison table of Air India's new offerings versus competitors for clearer context."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "c1ebb17d-1730-4420-8c16-8e98fb459d52",
-      "headline": "India Is Emerging as Asia's Safe Haven as the Global AI Selloff Crushes South Korea and Taiwan",
-      "slug": "india-safe-haven-asia-ai-selloff-kospi-crash-oil-drop-it-rebound-nri-investor-20260702",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
+        "embed_issues": [
           {
-            "article_id": "c8f9d429-78c3-44e0-86db-17d3973ee0a6",
-            "headline": "Persistent Systems Just Made India's Biggest Mid-Cap IT Bet "
-          },
-          {
-            "article_id": "4335e976-94ba-4399-865a-89243d5196ee",
-            "headline": "India's Stock Market Just Clawed Back to $5 Trillion. Here's"
+            "url": "https://www.instagram.com/p/DaLKsElDRGA/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not appear to relate directly to the topic of Delhi's ban on petrol two-wheelers or the electrification timeline."
           }
         ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Bombay Stock Exchange building",
-          "reason": "The photo shows the Bombay Stock Exchange, relevant to the story about India's economy."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
         "image_match": {
           "score": 9,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article discusses India's economic position in the context of global markets, which is relevant to the NRI audience."
+          "quality": 7,
+          "note": "The article discusses a significant policy change in India that may impact NRIs interested in environmental issues and automotive trends back home."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes from Indian economists or market analysts to strengthen the local perspective.",
-          "Add a brief section on how these market changes might affect NRIs living abroad, particularly in terms of investment opportunities."
+          "Replace the irrelevant Instagram embed with a more relevant source or visual that discusses the electrification policy.",
+          "Consider adding quotes from experts or stakeholders to enhance the article's depth and authority."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/DaLKsElDRGA/",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "6e8d1288-c27d-4c8a-8fb6-431cdbed81fe",
+      "headline": "India Just Told WhatsApp to Freeze Its Biggest Privacy Update. Half a Billion Users Are in Limbo.",
+      "slug": "india-whatsapp-username-freeze-meity-meta-fraud-concerns-20260702",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "smartphone with social media apps",
+          "reason": "The photo shows a smartphone with WhatsApp, relevant to the tech-policy story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DaLRdYRxWl4/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel does not appear to be related to the topic of WhatsApp's privacy update or the Indian government's intervention."
+          }
+        ],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the topic of WhatsApp or privacy updates."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses a significant policy change affecting a large number of Indian users, which is relevant to the Indian diaspora concerned about privacy and technology."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the irrelevant Instagram embed with a more relevant source or remove it entirely.",
+          "Consider using an image that directly relates to WhatsApp or digital privacy to enhance visual relevance."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DaLRdYRxWl4/",
         "promoted to published"
       ],
       "revised": false,
