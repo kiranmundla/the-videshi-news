@@ -5669,74 +5669,236 @@ def build_anchor_reel_timeline(
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # SHOTSTACK TIMELINE BUILDER — Quick Pulse (no voice)
-# ═══════════════════════════════════════════════════════════════════════════════
+# ═════════════════════════════════════════════════════════════════════════════
+
+def _pulse_hook_html(hook_line, category):
+    """Scene 1: Hook frame — bold hook_line text over darkened hero image."""
+    badge = (category or "NEWS").upper().replace("-", " ")
+    html = f"""<div style="display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;width:100%;height:100%;padding:60px 50px;box-sizing:border-box;">
+  <div style="font-family:Inter;font-size:18px;font-weight:700;color:#D4AF37;letter-spacing:5px;margin-bottom:40px;text-transform:uppercase;">{badge}</div>
+  <div style="font-family:Inter;font-size:72px;font-weight:900;color:#ffffff;line-height:1.1;text-shadow:0 4px 30px rgba(0,0,0,0.8),0 2px 8px rgba(0,0,0,0.6);letter-spacing:1px;">{hook_line}</div>
+  <div style="width:80px;height:4px;background:#D4AF37;margin-top:40px;"></div>
+</div>"""
+    return html
+
+
+def _pulse_hero_stat_html(big, sub, eyebrow):
+    """Scene 2: Hero stat card — one massive number on navy background."""
+    html = f"""<div style="display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;width:100%;height:100%;background:linear-gradient(180deg,#0a1628 0%,#0f1f35 50%,#0a1628 100%);padding:60px 50px;box-sizing:border-box;">
+  <div style="font-family:Inter;font-size:18px;font-weight:700;color:#D4AF37;letter-spacing:5px;margin-bottom:50px;text-transform:uppercase;">{eyebrow}</div>
+  <div style="font-family:Inter;font-size:100px;font-weight:900;color:#D4AF37;line-height:1.0;margin-bottom:24px;text-shadow:0 0 40px rgba(212,175,55,0.3);">{big}</div>
+  <div style="font-family:Inter;font-size:30px;font-weight:500;color:rgba(255,255,255,0.85);line-height:1.3;max-width:800px;">{sub}</div>
+</div>"""
+    return html
+
+
+def _pulse_stat_grid_html(stats):
+    """Scene 3: Stat grid — 2-3 stats in a clean grid layout."""
+    tiles_html = ""
+    colors = ["#D4AF37", "#4ECDC4", "#FF9933"]
+    for i, stat in enumerate(stats[:3]):
+        big = stat.get("big", "")
+        label = stat.get("label", "")
+        color = colors[i % len(colors)]
+        tiles_html += f"""<div style="flex:1;min-width:260px;padding:30px 20px;text-align:center;">
+    <div style="font-family:Inter;font-size:64px;font-weight:900;color:{color};line-height:1.1;margin-bottom:12px;">{big}</div>
+    <div style="font-family:Inter;font-size:22px;font-weight:500;color:rgba(255,255,255,0.75);line-height:1.3;">{label}</div>
+  </div>"""
+
+    html = f"""<div style="display:flex;flex-direction:column;justify-content:center;align-items:center;width:100%;height:100%;background:linear-gradient(180deg,#0a1628 0%,#0f1f35 50%,#0a1628 100%);padding:60px 40px;box-sizing:border-box;">
+  <div style="font-family:Inter;font-size:18px;font-weight:700;color:#D4AF37;letter-spacing:5px;margin-bottom:50px;text-transform:uppercase;">BY THE NUMBERS</div>
+  <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:20px;max-width:900px;">
+    {tiles_html}
+  </div>
+</div>"""
+    return html
+
+
+def _pulse_diaspora_html(bullets):
+    """Scene 4: Diaspora panel — NRI impact points with saffron accent."""
+    bullets_html = ""
+    for b in bullets[:3]:
+        bullets_html += f"""<div style="display:flex;align-items:flex-start;gap:14px;margin-bottom:24px;">
+    <div style="width:8px;height:8px;min-width:8px;border-radius:50%;background:#FF9933;margin-top:10px;"></div>
+    <div style="font-family:Inter;font-size:28px;font-weight:500;color:rgba(255,255,255,0.9);line-height:1.35;">{b}</div>
+  </div>"""
+
+    html = f"""<div style="display:flex;flex-direction:column;justify-content:center;align-items:center;width:100%;height:100%;background:linear-gradient(180deg,#0a1628 0%,#0f1f35 50%,#0a1628 100%);padding:60px 50px;box-sizing:border-box;">
+  <div style="font-family:Inter;font-size:18px;font-weight:700;color:#FF9933;letter-spacing:5px;margin-bottom:50px;text-transform:uppercase;">THE DIASPORA ANGLE</div>
+  <div style="width:100%;max-width:850px;">
+    {bullets_html}
+  </div>
+</div>"""
+    return html
+
+
+def _pulse_cta_html():
+    """Scene 5: CTA card — brand, website, social handles."""
+    html = """<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;width:100%;height:100%;background:linear-gradient(180deg,#0a1628 0%,#0f1f35 50%,#0a1628 100%);padding:60px 40px;box-sizing:border-box;">
+  <div style="font-family:Inter;font-size:64px;font-weight:700;color:#D4AF37;letter-spacing:8px;margin-bottom:12px;">THE VIDESHI</div>
+  <div style="font-family:Inter;font-size:22px;color:rgba(255,255,255,0.5);letter-spacing:4px;text-transform:uppercase;margin-bottom:36px;">Global Indian News</div>
+  <div style="width:60px;height:3px;background:#D4AF37;margin-bottom:36px;opacity:0.6;"></div>
+  <div style="font-family:Inter;font-size:36px;font-weight:700;color:#fff;letter-spacing:1px;margin-bottom:30px;">thevideshi.com</div>
+  <div style="font-family:Inter;font-size:46px;font-weight:900;color:#F2C84B;margin-bottom:30px;">@the.videshi</div>
+  <div style="display:flex;flex-direction:column;gap:8px;align-items:center;">
+    <div style="display:flex;gap:20px;align-items:center;justify-content:center;">
+      <span style="font-family:Inter;font-size:18px;color:rgba(255,255,255,0.8);"><span style="color:#D4AF37;font-weight:700;">YT</span> @the.videshi</span>
+      <span style="font-family:Inter;font-size:18px;color:rgba(255,255,255,0.8);"><span style="color:#D4AF37;font-weight:700;">IG</span> @the.videshi</span>
+    </div>
+    <div style="display:flex;gap:20px;align-items:center;justify-content:center;">
+      <span style="font-family:Inter;font-size:18px;color:rgba(255,255,255,0.8);"><span style="color:#D4AF37;font-weight:700;">THREADS</span> @the.videshi</span>
+      <span style="font-family:Inter;font-size:18px;color:rgba(255,255,255,0.8);"><span style="color:#D4AF37;font-weight:700;">X</span> @thevideshi</span>
+    </div>
+  </div>
+</div>"""
+    return html
+
 
 def build_quick_pulse_timeline(
-    image_urls, music_url, music_volume,
-    headline, subheadline, category, key_stats=None
+    hero_image_url, music_url, music_volume,
+    pulse_stats, category
 ):
-    """Build a Quick Pulse reel — music + bold text + visuals, no voice."""
+    """Build a Quick Pulse reel — music + bold data cards, no voice.
 
-    # Split headline into animated text cards
-    cards = []
-    if key_stats:
-        cards = key_stats[:5]  # Up to 5 stat cards
-    else:
-        # Split headline + subheadline into cards
-        cards = [headline]
-        if subheadline:
-            # Split subheadline into 2-3 chunks
-            words = subheadline.split()
-            mid = len(words) // 2
-            cards.append(" ".join(words[:mid]))
-            cards.append(" ".join(words[mid:]))
+    5 scenes, ~18 seconds total:
+      1. Hook frame (hero image + hook_line)      3.5s
+      2. Hero stat card (one massive number)       3.5s
+      3. Stat grid (2-3 supporting numbers)        4.0s
+      4. Diaspora panel (NRI impact bullets)        3.5s
+      5. CTA card (brand + handles)                3.5s
+    """
+    hook_stat = pulse_stats.get("hook_stat", {})
+    stats = pulse_stats.get("stats", [])
+    diaspora = pulse_stats.get("diaspora_bullets", [])
+    hook_line = pulse_stats.get("hook_line", "BREAKING NEWS")
 
-    card_duration = 3.0
-    total_duration = len(cards) * card_duration + 1.0
-    badge = (category or "NEWS").upper().replace("-", " ")
+    # Scene timings (default 5-scene layout)
+    S1_START, S1_LEN = 0.0, 3.5
+    S2_START, S2_LEN = 3.5, 3.5
+    S3_START, S3_LEN = 7.0, 4.0
+    S4_START, S4_LEN = 11.0, 3.5
+    S5_START, S5_LEN = 14.5, 3.5
+    total_duration = 18.0
 
-    # ── Text cards track (top) ──
-    text_clips = []
-    for i, text in enumerate(cards):
-        text_html = f"""<div class='pulse-card'>
-  <div class='pulse-badge'>{badge}</div>
-  <div class='pulse-text'>{text}</div>
-  <div class='pulse-brand'>THE VIDESHI</div>
-</div>"""
+    has_grid = len(stats) >= 2
+    has_diaspora = len(diaspora) >= 2
 
-        text_css = """
-.pulse-card { display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; width:100%; height:100%; padding:40px; box-sizing:border-box; }
-.pulse-badge { background:#C41E3A; color:#fff; font-family:'Inter'; font-size:16px; font-weight:700; padding:4px 18px; letter-spacing:3px; margin-bottom:24px; }
-.pulse-text { font-family:'Inter'; font-size:48px; font-weight:700; color:#fff; line-height:1.15; text-shadow:0 2px 20px rgba(0,0,0,0.6); }
-.pulse-brand { font-family:'Inter'; font-size:12px; color:rgba(255,255,255,0.3); letter-spacing:4px; margin-top:30px; }
-""".strip()
+    # Adjust timings if panels are missing — redistribute time
+    if not has_grid and not has_diaspora:
+        S1_LEN = 4.0
+        S2_START, S2_LEN = 4.0, 5.0
+        S5_START, S5_LEN = 9.0, 4.0
+        total_duration = 13.0
+    elif not has_grid:
+        S1_LEN = 4.0
+        S2_START, S2_LEN = 4.0, 4.0
+        S4_START, S4_LEN = 8.0, 4.0
+        S5_START, S5_LEN = 12.0, 3.5
+        total_duration = 15.5
+    elif not has_diaspora:
+        S1_LEN = 4.0
+        S2_START, S2_LEN = 4.0, 4.0
+        S3_START, S3_LEN = 8.0, 4.0
+        S5_START, S5_LEN = 12.0, 3.5
+        total_duration = 15.5
 
-        text_clips.append({
+    # ── Build tracks ──
+
+    # Track 1 (top): HTML overlay cards
+    overlay_clips = []
+
+    # Scene 1: Hook text over hero image
+    overlay_clips.append({
+        "asset": {
+            "type": "html",
+            "html": _pulse_hook_html(hook_line, category),
+            "css": "",
+            "width": 1080,
+            "height": 1920,
+        },
+        "start": S1_START,
+        "length": S1_LEN,
+        "position": "center",
+        "transition": {"in": "fade"},
+    })
+
+    # Scene 2: Hero stat card (full-frame, navy bg baked into HTML)
+    overlay_clips.append({
+        "asset": {
+            "type": "html",
+            "html": _pulse_hero_stat_html(
+                hook_stat.get("big", ""),
+                hook_stat.get("sub", ""),
+                hook_stat.get("eyebrow", "BY THE NUMBERS"),
+            ),
+            "css": "",
+            "width": 1080,
+            "height": 1920,
+        },
+        "start": S2_START,
+        "length": S2_LEN,
+        "position": "center",
+        "transition": {"in": "slideRight"},
+    })
+
+    # Scene 3: Stat grid (if we have ≥2 stats)
+    if has_grid:
+        overlay_clips.append({
             "asset": {
                 "type": "html",
-                "html": text_html,
-                "css": text_css,
+                "html": _pulse_stat_grid_html(stats),
+                "css": "",
                 "width": 1080,
-                "height": 800,
+                "height": 1920,
             },
-            "start": round(i * card_duration, 2),
-            "length": card_duration,
+            "start": S3_START,
+            "length": S3_LEN,
             "position": "center",
-            "transition": {"in": "fade", "out": "fade"},
+            "transition": {"in": "slideUp"},
         })
 
-    # ── B-roll track ──
-    n_images = max(len(image_urls), 1)
-    broll_clips = []
-    for i, url in enumerate(image_urls[:len(cards)]):
-        broll_clips.append({
-            "asset": {"type": "image", "src": url},
-            "start": round(i * card_duration, 2),
-            "length": round(card_duration + 0.3, 2),
+    # Scene 4: Diaspora panel (if we have ≥2 bullets)
+    if has_diaspora:
+        overlay_clips.append({
+            "asset": {
+                "type": "html",
+                "html": _pulse_diaspora_html(diaspora),
+                "css": "",
+                "width": 1080,
+                "height": 1920,
+            },
+            "start": S4_START,
+            "length": S4_LEN,
+            "position": "center",
+            "transition": {"in": "slideLeft"},
+        })
+
+    # Scene 5: CTA card
+    overlay_clips.append({
+        "asset": {
+            "type": "html",
+            "html": _pulse_cta_html(),
+            "css": "",
+            "width": 1080,
+            "height": 1920,
+        },
+        "start": S5_START,
+        "length": S5_LEN,
+        "position": "center",
+        "transition": {"in": "fade"},
+    })
+
+    # Track 2: Background imagery
+    # Scene 1 uses hero image (darkened via filter); rest are solid navy from HTML
+    bg_clips = []
+    if hero_image_url:
+        bg_clips.append({
+            "asset": {"type": "image", "src": hero_image_url},
+            "start": S1_START,
+            "length": S1_LEN + 0.3,
             "fit": "cover",
-            "effect": KEN_BURNS_EFFECTS[i % len(KEN_BURNS_EFFECTS)],
+            "effect": "zoomIn",
             "filter": "darken",
-            **({"transition": {"in": "fade"}} if i > 0 else {}),
         })
 
     edit = {
@@ -5744,9 +5906,8 @@ def build_quick_pulse_timeline(
             "background": NAVY,
             "fonts": [{"src": FONT_URL}],
             "tracks": [
-                {"clips": text_clips},
-                {"clips": broll_clips},
-            ],
+                {"clips": overlay_clips},
+            ] + ([{"clips": bg_clips}] if bg_clips else []),
         },
         "output": {
             "format": "mp4",
@@ -5761,8 +5922,7 @@ def build_quick_pulse_timeline(
     # Soundtrack: Quick Pulse has no voiceover, so the music carries the reel —
     # build a louder full-length looped bed (target -18 dB vs -26 dB for voiced
     # reels). Falls back to a raw, looped-but-uncovered track only if the bed
-    # build fails. (See prepare_music_bed for why the one-shot soundtrack alone
-    # left the back half silent.)
+    # build fails.
     if music_url:
         bed_url = prepare_music_bed(music_url, total_duration, target_mean_db=-18.0)
         if bed_url:
@@ -5778,12 +5938,11 @@ def build_quick_pulse_timeline(
                 "volume": min(max(music_volume * 3, 0.25), 0.4),
             }
 
-    # Remove None soundtrack (defensive — the soundtrack key is only set above
-    # when music_url is present, so this just no-ops in the no-music case).
+    # Remove None soundtrack (defensive)
     if edit["timeline"].get("soundtrack") is None:
         edit["timeline"].pop("soundtrack", None)
 
-    return edit
+    return edit, total_duration
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -6928,9 +7087,15 @@ def run_anchor_reel(article, dry_run=False, use_production=False, no_publish=Fal
 
 
 def run_quick_pulse(article, dry_run=False, use_production=False):
-    """Generate a Quick Pulse reel (music + text, no voice)."""
+    """Generate a Quick Pulse reel (music + animated data cards, no voice).
+
+    1. Extract stats via GPT-4o-mini (or Gemini fallback)
+    2. Source hero image for the hook frame
+    3. Pick mood-matched music
+    4. Build a 5-scene data-card timeline (~18s)
+    5. Render, download, upload, register
+    """
     headline = article.get("headline", "Unknown")
-    subheadline = article.get("subheadline", "")
     category = article.get("category", "news")
     slug = article.get("slug", "unknown")
 
@@ -6938,33 +7103,48 @@ def run_quick_pulse(article, dry_run=False, use_production=False):
     print(f"⚡ QUICK PULSE: {headline[:60]}")
     print(f"{'='*60}")
 
-    # Source images
-    image_urls = source_image_urls(article, [], count=4)
-    if not image_urls:
+    # Step 1: Extract stats via GPT
+    pulse_stats = generate_pulse_stats(article)
+    if not pulse_stats:
+        print("  ⚡ Skipping — no usable stats for this article")
         return False
 
-    # Music (mood-driven selection; Quick Pulse has no script so category path)
-    music_url, music_volume, _qp_music_attribution = pick_music_for_article(article, story_mood=None)
+    # Step 2: Source hero image for the hook frame
+    hero_image_url = None
+    hero = article.get("image_url", "")
+    if hero and is_url_downloadable(hero):
+        hero_image_url = hero
+    else:
+        # Fallback: grab any image from same-category articles
+        image_urls = source_image_urls(article, [], count=1)
+        if image_urls:
+            hero_image_url = image_urls[0]
 
-    # Build timeline
-    edit_json = build_quick_pulse_timeline(
-        image_urls=image_urls,
+    # Step 3: Music (mood-driven, uses the story_mood from GPT stats)
+    story_mood = pulse_stats.get("story_mood")
+    music_url, music_volume, _qp_music_attribution = pick_music_for_article(
+        article, story_mood=story_mood
+    )
+
+    # Step 4: Build timeline
+    edit_json, total_duration = build_quick_pulse_timeline(
+        hero_image_url=hero_image_url,
         music_url=music_url,
         music_volume=music_volume,
-        headline=headline,
-        subheadline=subheadline,
+        pulse_stats=pulse_stats,
         category=category,
     )
 
     json_path = BUILD_DIR / f"ss-pulse-{slug}.json"
     with open(json_path, "w") as f:
         json.dump(edit_json, f, indent=2)
+    print(f"  📋 Timeline: {total_duration:.1f}s, {len(edit_json['timeline']['tracks'][0]['clips'])} scenes")
 
     if dry_run:
         print("🏁 DRY RUN — JSON built, not rendering")
         return True
 
-    # Render
+    # Step 5: Render
     render_result = render_reel(edit_json, use_production=use_production)
     if not render_result:
         return False
@@ -6979,7 +7159,14 @@ def run_quick_pulse(article, dry_run=False, use_production=False):
     # Upload & register
     video_url, uploaded_video_path = upload_final_reel(str(final_path), final_name)
     if video_url:
-        caption = build_caption(article)
+        # Build a short, punchy caption for Quick Pulse
+        hook_line = pulse_stats.get("hook_line", "")
+        hook_big = pulse_stats.get("hook_stat", {}).get("big", "")
+        caption = f"{hook_line}\n\n{headline}\n\n"
+        if hook_big:
+            caption += f"{hook_big} — {pulse_stats.get('hook_stat', {}).get('sub', '')}\n\n"
+        caption += f"Full story: https://thevideshi.com/articles/{slug}\n\n"
+        caption += "#indiandiaspora #nri #thevideshi #india #shorts"
         if _qp_music_attribution:
             caption = f"{caption}\n\n🎵 {_qp_music_attribution}"
             print(f"  🎵 Appended CC-BY music credit to caption: {_qp_music_attribution}")
