@@ -1,19 +1,19 @@
 {
-  "timestamp": "2026-07-02T14:45:35.468633+00:00",
+  "timestamp": "2026-07-02T15:16:30.935677+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
-    "flag": 2,
+    "pass": 3,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
-  "revisions": 0,
+  "revisions": 1,
   "unpublished": 0,
   "articles": [
     {
-      "id": "0b46b06b-f294-41f6-936f-33ebdbbe4533",
-      "headline": "India's Startup Funding Fell 9% in the First Half of 2026. But Five New Unicorns Say That's Not the Whole Story.",
-      "slug": "india-startup-funding-h1-2026-ai-unicorns-bengaluru-vc-20260702",
+      "id": "980de418-aad8-4738-bdd2-b58421abf7de",
+      "headline": "India Minted Five Unicorns in Six Months. The Money Is Moving to AI.",
+      "slug": "india-startup-funding-h1-2026-unicorns-ai-surge-20260702",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "young professionals at a tech workspace",
-          "reason": "The photo shows a tech startup environment, which aligns with the story about India's startup ecosystem."
+          "what_photo_shows": "office buildings in Bengaluru",
+          "reason": "The photo shows a tech park in Bengaluru, relevant to the startup funding story."
         },
         "inline_image_mismatches": []
       },
@@ -30,19 +30,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the topic of startup funding or unicorns."
+          "score": 5,
+          "issue": "The image does not directly relate to the article's focus on unicorns and AI startups."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses trends in Indian startups, which is relevant to the NRI community interested in investment opportunities and the Indian economy."
+          "note": "The article effectively connects the funding landscape to diaspora investors, highlighting opportunities in the Indian tech scene."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that visually represents startups or technology to better match the article's content.",
-          "Add a section discussing how these trends might impact NRIs looking to invest in Indian startups."
+          "Consider using a more relevant image that reflects the theme of unicorns or AI startups.",
+          "Add more specific examples of how NRIs can engage with the Indian tech market."
         ],
         "verdict": "pass"
       },
@@ -54,49 +54,55 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "534655c8-0cfc-4e2d-99cf-92b32de20d50",
-      "headline": "Delhi Just Banned New Petrol Two-Wheelers Starting 2028. Here's the Full Electrification Timeline.",
-      "slug": "delhi-ev-policy-2026-petrol-ban-two-wheelers-autorickshaw-electric-charging-20260702",
+      "id": "1a9b428f-8095-450e-b2af-c6f74d0febd6",
+      "headline": "Nikesh Arora's Palo Alto Networks Just Hit $3 Billion in Quarterly Revenue. Four Banks Raised Their Targets in a Week.",
+      "slug": "nikesh-arora-palo-alto-networks-3b-revenue-ai-security-20260702",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "6f8e28dd-da9b-40bf-8aa2-3b810579452e",
+            "headline": "Arora's Palo Alto Networks Just Hit a $3 Billion Quarter. Th"
+          },
+          {
+            "article_id": "289c564b-f908-4976-ad8d-257b00d5491d",
+            "headline": "Nadella, Pichai, and Arora Just Bought a Cricket Team at Lor"
+          },
+          {
+            "article_id": "2b0b93ca-02f5-44b8-adfd-424aa598b759",
+            "headline": "Nadella, Pichai and Arora Just Bought a Cricket Team at Lord"
+          }
+        ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "officials at electric vehicle charging event",
-          "reason": "The photo shows an electric vehicle charging event, relevant to the EV policy story."
+          "what_photo_shows": "man speaking at TechCrunch Disrupt",
+          "reason": "The photo shows Nikesh Arora, relevant to the story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/p/DaLKsElDRGA/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post does not appear to relate directly to the topic of Delhi's ban on petrol two-wheelers or the electrification timeline."
-          }
-        ],
+        "embed_issues": [],
         "image_match": {
           "score": 9,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article discusses a significant policy change in India that may impact NRIs interested in environmental issues and automotive trends back home."
+          "quality": 8,
+          "note": "The article connects well with the Indian diaspora by highlighting Nikesh Arora's Indian roots and the impact of Palo Alto Networks on Indian tech professionals."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant Instagram embed with a more relevant source or visual that discusses the electrification policy.",
-          "Consider adding quotes from experts or stakeholders to enhance the article's depth and authority."
+          "Consider adding quotes from Nikesh Arora or industry analysts to enhance the article's depth.",
+          "Include more context on how Palo Alto Networks' success impacts the broader tech landscape in India."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DaLKsElDRGA/",
         "promoted to published"
       ],
       "revised": false,
@@ -104,52 +110,98 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "6e8d1288-c27d-4c8a-8fb6-431cdbed81fe",
-      "headline": "India Just Told WhatsApp to Freeze Its Biggest Privacy Update. Half a Billion Users Are in Limbo.",
-      "slug": "india-whatsapp-username-freeze-meity-meta-fraud-concerns-20260702",
+      "id": "a7c3d993-e13b-4044-afb6-04be07baa4f2",
+      "headline": "CRED's Kunal Shah Is Now Running WhatsApp. His First Move Was Killing the Phone Number.",
+      "slug": "kunal-shah-whatsapp-ceo-meta-cred-usernames-20260702",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "b570a243-6064-4ea0-8d96-18169c82fa4b",
+            "headline": "Meta Handed WhatsApp to an Indian Founder. It Paid $900 Mill"
+          }
+        ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "smartphone with social media apps",
-          "reason": "The photo shows a smartphone with WhatsApp, relevant to the tech-policy story."
+          "what_photo_shows": "man in Freecharge shirt",
+          "reason": "The photo plausibly shows Kunal Shah, relevant to the story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/reel/DaLRdYRxWl4/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram reel does not appear to be related to the topic of WhatsApp's privacy update or the Indian government's intervention."
-          }
-        ],
+        "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the topic of WhatsApp or privacy updates."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article discusses a significant policy change affecting a large number of Indian users, which is relevant to the Indian diaspora concerned about privacy and technology."
+          "quality": 8,
+          "note": "The article effectively connects Kunal Shah's appointment to the interests of the NRI community, particularly in terms of WhatsApp's features that impact their communication."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant Instagram embed with a more relevant source or remove it entirely.",
-          "Consider using an image that directly relates to WhatsApp or digital privacy to enhance visual relevance."
+          "Consider adding more direct quotes from Kunal Shah to enhance the article's engagement.",
+          "Include a brief section on potential challenges Shah might face in his new role to provide a balanced perspective."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "d761353c-f27e-43b7-82d2-294618e4a207",
+      "headline": "Nobody Knows If Ramayana Just Leaked \u2014 and That Might Be the Point",
+      "slug": "ramayana-leaked-clip-vfx-ranbir-kapoor-ai-deliberate-marketing-controversy-diaspora-nri-20260702",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "69a3d532-5445-4056-aff8-4b0c341f19a7",
+            "headline": "An Indian God Just Got Invited to Comic-Con \u2014 and He's Bring"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Ranbir Kapoor smiling",
+          "reason": "The photo shows Ranbir Kapoor, relevant to the story about his role in Ramayana."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 6,
+        "embed_issues": [],
+        "image_match": {
+          "score": 3,
+          "issue": "The image of Ranbir Kapoor at the airport does not match the article's focus on the Ramayana film and its VFX."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 5,
+          "note": "The article discusses a major Indian film, which may interest the diaspora, but lacks a direct connection to NRI experiences or perspectives."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the hero image with one that directly relates to the Ramayana film or its promotional material.",
+          "Enhance the diaspora angle by including quotes or perspectives from NRIs regarding Indian cinema or the Ramayana's cultural significance."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/reel/DaLRdYRxWl4/",
-        "promoted to published"
+        "Revised by gemini-2.5-flash (870\u2192989 words)"
       ],
-      "revised": false,
+      "revised": true,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
     }
