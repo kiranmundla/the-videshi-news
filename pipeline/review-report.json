@@ -1,28 +1,83 @@
 {
-  "timestamp": "2026-07-03T14:45:31.722330+00:00",
+  "timestamp": "2026-07-03T15:15:42.862201+00:00",
   "mode": "fix",
   "stats": {
     "pass": 3,
-    "flag": 0,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
-  "revisions": 0,
+  "revisions": 1,
   "unpublished": 0,
   "articles": [
     {
-      "id": "e7640b72-66f3-45c3-93d0-b77923efb0e1",
-      "headline": "New Zealand Signed a Trade Deal With India. Then It Quietly Started Writing Immigration Rules That Apply to Indians \u2014 and Only Indians.",
-      "slug": "new-zealand-india-fta-immigration-crackdown-winston-peters-butter-chicken-nri-20260703",
+      "id": "96d237c7-453c-469b-9918-43fc05641b61",
+      "headline": "India's IT Sector Has Lost a Third of Its Value This Year. The Next Two Weeks Will Tell If It's Over.",
+      "slug": "indian-it-nifty-33-crash-q1-tcs-infosys-preview-20260703",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "f0945900-c1a2-45a4-b1d7-fd10c9d4145c",
+            "headline": "AI Hiring in India Just Surged 16%. The Rest of the IT Indus"
+          }
+        ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "New Zealand's Parliament House",
-          "reason": "The photo shows New Zealand's Parliament House, relevant to the story about immigration rules."
+          "what_photo_shows": "glass pyramid at Infosys campus",
+          "reason": "The photo shows Infosys, relevant to the IT sector story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 6,
+        "embed_issues": [],
+        "image_match": {
+          "score": 8,
+          "issue": "The image of the Infosys campus is relevant to the IT sector but does not directly illustrate the article's focus on market value loss."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses implications for NRI investors, making it relevant to the diaspora audience."
+        },
+        "factual_flags": [
+          "The article mentions the year as 2026, which is likely a typographical error since the current year is 2023."
+        ],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Correct the year mentioned in the article to 2023.",
+          "Include more specific insights or quotes from NRI investors to strengthen the diaspora angle."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Revised by gemini-2.5-flash (783\u2192893 words)"
+      ],
+      "revised": true,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "547ade50-289b-4bd5-93aa-29bff547a3bf",
+      "headline": "Meta Wants to Sell Its Spare AI Compute. It Just Spooked the Entire Chip Sector.",
+      "slug": "meta-cloud-excess-compute-chip-selloff-overcapacity-20260703",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "c432ca1b-c3b7-4dfe-a2ac-3d918b2661fd",
+            "headline": "Every Big Tech Company Is Building Data Centres in India. Th"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "server racks in a data center",
+          "reason": "The photo shows server racks, relevant to AI compute and cloud computing."
         },
         "inline_image_mismatches": []
       },
@@ -30,19 +85,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 6,
-          "issue": "The image of the New Zealand Parliament does not directly relate to the immigration rules or the Indian diaspora context."
+          "score": 7,
+          "issue": "The image is relevant to the topic of AI and semiconductors but lacks a direct connection to Meta or the specific events discussed."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses immigration rules affecting Indian nationals, which is highly relevant to the Indian diaspora."
+          "note": "The article effectively highlights the impact of the semiconductor boom on Indian diaspora investors, making it relevant to the audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that directly relates to the Indian diaspora or immigration issues to enhance relevance.",
-          "Add quotes or perspectives from Indian diaspora members to strengthen the connection to the community."
+          "Consider adding more specific examples of how the semiconductor market fluctuations directly affect NRI investors.",
+          "Include a quote or perspective from an NRI investor to enhance the diaspora connection."
         ],
         "verdict": "pass"
       },
@@ -54,35 +109,83 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "db9241ba-fcb5-4cf2-bbfa-1734a3c2ea37",
-      "headline": "Foreign Money Is Leaving India's Stock Market at a Record Pace. For the First Time in Two Decades, Indian Investors Don't Need It.",
-      "slug": "fpi-ownership-20-year-low-dii-overtake-rbi-fsr-nri-equity-limits-raised-20260703",
+      "id": "dba94bf9-9a36-44bf-9afe-e04777dcd5ec",
+      "headline": "Apple's New Siri Runs on Google's Brain. In Europe, It Runs on Nothing.",
+      "slug": "apple-siri-ai-gemini-eu-cook-brussels-20260703",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [
           {
-            "article_id": "4335e976-94ba-4399-865a-89243d5196ee",
-            "headline": "India's Stock Market Just Clawed Back to $5 Trillion. Here's"
-          },
-          {
-            "article_id": "c1ebb17d-1730-4420-8c16-8e98fb459d52",
-            "headline": "India Is Emerging as Asia's Safe Haven as the Global AI Sell"
-          },
-          {
-            "article_id": "f85c97f6-2497-40b8-ad41-728dbe27b17d",
-            "headline": "Asia's AI Bubble Just Popped. India Barely Flinched."
-          },
-          {
-            "article_id": "ddd688b0-c97d-4cf1-a1cd-431ee8b5d687",
-            "headline": "India's Services Engine Just Hit Its Slowest Speed in Sevent"
+            "article_id": "c62ac360-88aa-47ff-96d9-11ac43ec9dda",
+            "headline": "Apple Is Lobbying Washington to Buy Chips from a Blacklisted"
           }
         ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Bombay Stock Exchange building",
-          "reason": "The photo shows the Bombay Stock Exchange, relevant to the stock market story."
+          "what_photo_shows": "A man with glasses smiling",
+          "reason": "The photo plausibly shows Apple CEO Tim Cook, relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image of Tim Cook is relevant as he is mentioned in the article, but it does not directly illustrate the topic of Siri's AI and its implications."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the EU-Apple dispute to Indian engineers and NRI investors, making it relevant for the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a more relevant image that visually represents the AI technology or the partnership between Apple and Google.",
+          "Expand on the implications for Indian engineers and NRI investors to enhance the diaspora connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "c3102e23-caca-4d04-a1e7-e18a616f1b70",
+      "headline": "Ranveer Just Bet \u20b9300 Crore on Zombies. Vicky Just Blocked 18 Months for Gods. Welcome to Bollywood's Biggest Genre Gamble.",
+      "slug": "ranveer-singh-pralay-zombie-vicky-kaushal-mahavatar-deepika-padukone-bollywood-genre-epic-diaspora-nri-20260703",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "b557b97c-8049-4c56-bdf2-cdf3bb56a52e",
+            "headline": "Ranveer Singh Is About to Destroy Mumbai \u2014 and Spend \u20b9300 Cr"
+          },
+          {
+            "article_id": "63aeac1c-ee7c-4dc6-9423-052c92b4c86e",
+            "headline": "\u20b93,000 Crore in Six Months \u2014 Bollywood Just Had Its Most Sav"
+          },
+          {
+            "article_id": "f3d12ea2-86e1-47b0-9bb7-c892a88b005a",
+            "headline": "\u20b91,300 Crore Wasn't Enough. Dhurandhar Just Landed in Japan."
+          },
+          {
+            "article_id": "ca80ab70-06e6-4828-ba7f-f639bb4290f7",
+            "headline": "Bollywood Just Had Its Biggest Six Months Ever. One Man Earn"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Ranveer Singh in traditional attire",
+          "reason": "The photo shows Ranveer Singh, who is mentioned in the headline."
         },
         "inline_image_mismatches": []
       },
@@ -95,57 +198,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article discusses the impact of foreign investment trends on India's stock market, which is relevant to NRIs who may have investments or interests in the Indian market."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more direct quotes from experts or analysts to enhance credibility.",
-          "Add a section on how these trends might affect NRI investments specifically."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "23e85758-9267-44ba-9335-947d634e2dc2",
-      "headline": "Modi Is Heading to Three Countries Next Week. In One of Them, Indians Are Being Told They're Not Welcome.",
-      "slug": "modi-indonesia-australia-new-zealand-tour-anti-indian-nz-diaspora-20260703",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Modi with Australian PM Albanese",
-          "reason": "The photo shows Modi with the Australian PM, relevant to the tour story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image of Modi with Anthony Albanese is relevant but does not directly relate to the specific topic of the article regarding the immigration issues in New Zealand."
-        },
-        "diaspora_angle": {
-          "present": true,
           "quality": 8,
-          "note": "The article effectively highlights the significance of Modi's visit for the Indian diaspora, particularly in Australia, making the connection relevant and natural."
+          "note": "The article effectively connects the developments in Bollywood to the interests of the NRI audience, highlighting the global standards and ambitions of the films."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider including more direct quotes or reactions from Indian diaspora members regarding the immigration issues in New Zealand to enhance the diaspora angle.",
-          "Add a brief conclusion summarizing the implications of Modi's visit for the Indian community in each country."
+          "Consider adding more quotes or insights from industry experts to enhance credibility.",
+          "Include a brief comparison of these films with similar international projects to provide context."
         ],
         "verdict": "pass"
       },
