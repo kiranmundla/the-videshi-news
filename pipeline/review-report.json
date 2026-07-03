@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-03T15:45:15.195437+00:00",
+  "timestamp": "2026-07-03T16:15:35.940877+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
+    "pass": 2,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,34 +11,18 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "96d237c7-453c-469b-9918-43fc05641b61",
-      "headline": "India's IT Sector Has Lost a Third of Its Value This Year. The Next Two Weeks Will Tell If It's Over.",
-      "slug": "indian-it-nifty-33-crash-q1-tcs-infosys-preview-20260703",
+      "id": "e05ed205-3d05-4e53-be32-55307f4417a8",
+      "headline": "Half a Million Tech Jobs and Counting. India's GCC Boom Is Rewriting the H-1B Calculus",
+      "slug": "india-gcc-boom-510000-ai-jobs-h1b-alternative-20260703",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "f0945900-c1a2-45a4-b1d7-fd10c9d4145c",
-            "headline": "AI Hiring in India Just Surged 16%. The Rest of the IT Indus"
-          }
-        ],
-        "broken_embeds": [
-          {
-            "url": "https://x.com/HCLTech/status/1676839352934096896",
-            "problem": "broken",
-            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
-          },
-          {
-            "url": "https://instagram.com/p/CuW9m10g09X/",
-            "problem": "broken",
-            "detail": "Instagram embed shows removed/broken placeholder"
-          }
-        ],
+        "duplicate_images": [],
+        "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "glass pyramid at Infosys campus",
-          "reason": "The photo shows Infosys, relevant to the IT sector story."
+          "what_photo_shows": "software developers in a tech office",
+          "reason": "The photo shows software developers collaborating, which aligns with the tech job growth topic."
         },
         "inline_image_mismatches": []
       },
@@ -46,24 +30,66 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image is relevant to the tech industry but lacks a direct connection to the specific topic of Global Capability Centres."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the performance of Indian IT companies to the economic stability and job prospects for NRI families, making it relevant for the diaspora."
+          "note": "The article discusses the implications of the GCC boom for Indian professionals in the US, providing a relevant perspective for the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more direct quotes or insights from industry experts to enhance credibility.",
-          "Include a brief overview of how the IT sector's performance impacts the broader Indian economy for additional context."
+          "Consider including specific examples of companies that have successfully transitioned to GCCs to enhance the narrative.",
+          "Add quotes or insights from diaspora professionals who have made the switch to GCCs for a more personal touch."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "Removed 2 broken/hallucinated embed(s)",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "57d759b8-523b-49c5-a1a3-85b73e1d7ad7",
+      "headline": "ICE Arrested 10,000 People in Five Days. Worksite Raids Are Next",
+      "slug": "ice-worksite-raids-enforcement-surge-indian-h1b-20260703",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "ICE officers during an operation",
+          "reason": "The photo shows ICE officers, relevant to the immigration enforcement story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 8,
+          "issue": "The image depicts ICE officers, which is relevant to the article's topic on immigration enforcement."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the implications of ICE enforcement on H-1B visa holders, directly connecting to the Indian diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Add more statistics or quotes from experts to strengthen the argument.",
+          "Include a section on potential responses from the Indian community or organizations representing them."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
         "promoted to published"
       ],
       "revised": false,
