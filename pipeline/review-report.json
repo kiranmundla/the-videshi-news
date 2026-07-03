@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-03T11:15:34.730570+00:00",
+  "timestamp": "2026-07-03T12:15:50.253357+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 5,
     "flag": 1,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "143a0685-da30-40c2-a23a-a2040e3f667b",
-      "headline": "Neetu Kapoor Plays a Grandmother Who Wants to Remarry \u2014 and It Just Landed on Netflix",
-      "slug": "dadi-ki-shaadi-netflix-neetu-kapoor-kapil-sharma-riddhima-kapoor-debut-streaming-diaspora-nri-20260703",
+      "id": "1032a729-9955-42e5-aeea-8cb6fd3af74f",
+      "headline": "You Cannot Leave America. The H-1B Travel Trap Is Now Complete",
+      "slug": "h1b-travel-trap-visa-stamping-consulate-backlog-india-20260703",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,39 +21,32 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Neetu Kapoor at an event",
-          "reason": "The photo shows Neetu Kapoor, relevant to the story."
+          "what_photo_shows": "US Embassy in New Delhi",
+          "reason": "The photo shows the US Embassy, relevant to visa appointment backlogs."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/reel/DaUX7AMiM1p/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram reel does not appear to be directly related to the film or its themes, making it irrelevant to the article."
-          }
-        ],
+        "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image of Neetu Kapoor is relevant as it features the actress discussed in the article, but it lacks a direct connection to the film's themes of remarrying and family dynamics."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the film's themes of a grandmother remarrying to the cultural context of NRI families, making it relatable for the diaspora audience."
+          "quality": 8,
+          "note": "The article discusses the challenges faced by Indian H-1B visa holders, directly connecting with the Indian diaspora's concerns about immigration policies."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant Instagram embed with a more relevant social media post that discusses the film or its themes.",
-          "Consider adding a quote from Neetu Kapoor or the director to enhance the personal connection to the film."
+          "Include quotes or anecdotes from affected individuals to enhance emotional engagement.",
+          "Add a section on potential solutions or advocacy efforts to address these issues."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/reel/DaUX7AMiM1p/",
         "promoted to published"
       ],
       "revised": false,
@@ -61,69 +54,62 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "3abff65a-3602-43c8-a5ac-b26ae7cff54a",
-      "headline": "Rajkumar Hirani Finally Made Something for Your Phone \u2014 and He Brought the Munna Bhai Gang",
-      "slug": "pritam-and-pedro-rajkumar-hirani-ott-debut-arshad-warsi-goa-cybercrime-jiohotstar-diaspora-nri-20260703",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "3e2c1a17-f4b9-4844-8136-87443135ede4",
-            "headline": "Arshad Warsi Just Walked Back Into the Hirani-Verse \u2014 and He"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Arshad Warsi outdoors",
-          "reason": "The photo shows Arshad Warsi, who is relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/p/DaS7hXQM_-L/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post does not appear to be directly related to the article's subject matter about the new series 'Pritam and Pedro' and its connection to Rajkumar Hirani."
-          }
-        ],
-        "image_match": {
-          "score": 5,
-          "issue": "The image of Arshad Warsi does not directly match the article's focus on the new series, which features multiple characters and a broader context."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses the availability of the series on JioHotstar for international viewers, which is relevant for the diaspora audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the irrelevant Instagram embed with a more relevant one that showcases the series or its promotional content.",
-          "Consider using an image that features both main characters or a promotional poster for 'Pritam and Pedro' to better align with the article's focus."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DaS7hXQM_-L/",
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "f6f432c5-bdb4-476d-8bcd-0c1282d0f56e",
-      "headline": "CRED's Kunal Shah Is Now Running WhatsApp. Meta Paid $900 Million to Make It Happen.",
-      "slug": "kunal-shah-cred-whatsapp-global-head-meta-900-million-investment-20260703",
+      "id": "4c594b01-75dc-4bb3-b6f9-5e567bad5dcd",
+      "headline": "India Got Britain to Stop Double-Taxing Its Workers. The US Will Not Even Discuss It",
+      "slug": "india-uk-social-security-deal-us-totalization-gap-h1b-20260703",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Piyush Goyal smiling portrait",
+          "reason": "The photo shows Piyush Goyal, relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 3,
+          "issue": "irrelevant"
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the implications of tax agreements for Indian workers abroad, which is relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the hero image with one that is more relevant to the topic of taxation and social security agreements.",
+          "Include quotes or perspectives from Indian diaspora members affected by the lack of a totalization agreement with the US."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "6e90d939-b637-4259-96ad-7f2f6994016f",
+      "headline": "Sitharaman Took India's Chequebook to France. She Is Ending the Trip by Meeting the Diaspora.",
+      "slug": "sitharaman-france-visit-diaspora-india-eu-trade-doubled-20260703",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "A woman in traditional Indian attire",
+          "reason": "The photo plausibly shows Nirmala Sitharaman, relevant to the story."
+        },
         "inline_image_mismatches": []
       },
       "llm_review": {
@@ -131,18 +117,147 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image description is missing, making it difficult to assess relevance."
+          "issue": "The image is relevant to the article as it features Nirmala Sitharaman, but it does not directly depict her meeting with the diaspora."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively highlights the significance of Shah's appointment for the Indian diaspora."
+          "quality": 8,
+          "note": "The article effectively discusses the significance of Sitharaman's meeting with the diaspora and connects it to broader economic themes relevant to NRIs."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include a relevant image description to enhance the image match score.",
-          "Consider adding quotes or reactions from diaspora communities to further enrich the diaspora angle."
+          "Include a quote or anecdote from the diaspora meeting to enhance personal connection.",
+          "Add a brief section on how the diaspora can engage with the initiatives discussed in the article."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "43120651-8a65-4b49-9ed8-1c8f36c4b3ab",
+      "headline": "The USISPF Summit Honoured Three Business Titans. Sunil Mittal Used His Speech to Talk About Five Million Indians Instead.",
+      "slug": "usispf-summit-mittal-diaspora-bridge-kwatra-30-trillion-20260703",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Sunil Bharti Mittal",
+          "reason": "The photo shows Sunil Bharti Mittal, relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the summit's discussions to the Indian diaspora, highlighting their economic impact and involvement in US-India relations."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes or reactions from other attendees to provide a broader perspective on the summit.",
+          "Include more context on the significance of the USISPF and its role in US-India relations for readers unfamiliar with the organization."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "8f6211d9-14b8-44b4-995f-5acde021be6e",
+      "headline": "SK Hynix Wants $29 Billion From Nasdaq. It Could Be the Largest Tech Listing in a Decade.",
+      "slug": "sk-hynix-29-billion-nasdaq-listing-ai-memory-20260703",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "microprocessor circuit board",
+          "reason": "The photo of a microprocessor circuit board is relevant to a tech listing story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the listing to NRI investors and Indian semiconductor engineers, making it relevant for the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more direct quotes from industry analysts or stakeholders to enhance credibility.",
+          "Include a brief overview of the potential risks associated with investing in SK Hynix to provide a balanced perspective."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "023e62e7-ee0e-4207-9e47-fe6c87b04db8",
+      "headline": "Microsoft and Amazon Just Bet $3.5 Billion That They Can Replace Your IT Consulting Firm",
+      "slug": "microsoft-amazon-fde-ai-deployment-indian-it-20260703",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "A man in glasses and a suit",
+          "reason": "The photo plausibly shows Satya Nadella, relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the implications of the FDE model for Indian tech professionals in the US, making it relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of how Indian IT firms might adapt to the new competitive landscape.",
+          "Include quotes or insights from Indian IT leaders to provide a more balanced perspective."
         ],
         "verdict": "pass"
       },
