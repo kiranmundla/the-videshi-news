@@ -70,13 +70,15 @@ export default async function handler(_req: VercelRequest, res: VercelResponse) 
     const now = new Date().toISOString();
     const today = now.split("T")[0];
 
-    // Fetch articles and future events only
-    // Removed: directory listings, classifieds, cars — thin content that
-    // dilutes crawl budget. Google ignored 3,940 directory pages and
-    // 404'd 971 expired events.
-    const [articles, events] = await Promise.all([
+    // Fetch articles, future events, directory listings, and classifieds
+    // Removed: cars (dead section), past events (404 crawl waste)
+    // Kept: directory (real business listings with structured data) and
+    // classifieds (active listings) — potential long-tail SEO value
+    const [articles, events, listings, classifieds] = await Promise.all([
       fetchAll("p2_articles", "slug,headline,published_at,category", "status=eq.published&order=published_at.desc"),
       fetchAll("events", "slug,date,updated_at", `date=gte.${today}&order=date.desc`),
+      fetchAll("directory_listings", "slug,updated_at", "order=updated_at.desc"),
+      fetchAll("classifieds", "slug,updated_at", `status=eq.active&expires_at=gte.${now}&order=created_at.desc`),
     ]);
 
     let xml = `<?xml version="1.0" encoding="UTF-8"?>
@@ -144,6 +146,38 @@ export default async function handler(_req: VercelRequest, res: VercelResponse) 
     <lastmod>${lastmod}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+`;
+    }
+
+    // Directory listing pages — real business listings with structured
+    // data (address, hours, phone, photos, ratings). Long-tail SEO
+    // value for "Indian [profession] in [city]" searches.
+    for (const listing of listings) {
+      if (!listing.slug) continue;
+      const lastmod = listing.updated_at
+        ? new Date(listing.updated_at).toISOString().split("T")[0]
+        : today;
+      xml += `  <url>
+    <loc>${escapeXml(SITE + "/directory/" + listing.slug)}</loc>
+    <lastmod>${lastmod}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+`;
+    }
+
+    // Classified pages (active only)
+    for (const classified of classifieds) {
+      if (!classified.slug) continue;
+      const lastmod = classified.updated_at
+        ? new Date(classified.updated_at).toISOString().split("T")[0]
+        : today;
+      xml += `  <url>
+    <loc>${escapeXml(SITE + "/classifieds/" + classified.slug)}</loc>
+    <lastmod>${lastmod}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
 `;
     }
