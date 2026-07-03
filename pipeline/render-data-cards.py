@@ -303,6 +303,9 @@ def main():
         # Always strip inline Sources line (SourcesPill component handles this)
         body = strip_inline_sources(body)
 
+        # Strip hallucinated placeholder image URLs (LLM sometimes generates these)
+        body = re.sub(r'!\[.*?\]\(https?://(?:example\.com|placeholder\.com|via\.placeholder\.com)[^\)]*\)\n?', '', body)
+
         try:
             new_body = inject_cards_into_body(body, data_cards, key_takeaways)
             if new_body == body:
