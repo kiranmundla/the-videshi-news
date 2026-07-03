@@ -118,6 +118,39 @@ function stripInlineSources(body: string): string {
   return body.replace(/\n*\*?Sources?:\s*[^*\n]+\*?\s*$/i, "").trim();
 }
 
+/** Turn raw sources column into a readable byline string. */
+function formatAuthorFromSources(raw: unknown): string {
+  if (!raw) return "Diaspora Desk";
+  // If it's already a plain string that doesn't look like JSON, use it directly
+  if (typeof raw === "string") {
+    const trimmed = raw.trim();
+    if (!trimmed) return "Diaspora Desk";
+    // Try to parse JSON
+    try {
+      const parsed = JSON.parse(trimmed);
+      return extractNames(parsed);
+    } catch {
+      // Not JSON — use as-is (e.g. "Reuters")
+      return trimmed;
+    }
+  }
+  // Already parsed (array or object)
+  return extractNames(raw);
+}
+
+function extractNames(parsed: unknown): string {
+  if (Array.isArray(parsed)) {
+    const names = parsed
+      .map((s: any) => (typeof s === "string" ? s : s?.name ?? ""))
+      .filter(Boolean);
+    return names.length > 0 ? names.join(", ") : "Diaspora Desk";
+  }
+  if (typeof parsed === "object" && parsed !== null && "name" in (parsed as any)) {
+    return (parsed as any).name || "Diaspora Desk";
+  }
+  return "Diaspora Desk";
+}
+
 function mapRow(row: P2Row): Article {
   return {
     id: row.id,
@@ -140,7 +173,7 @@ function mapRow(row: P2Row): Article {
     nri_angle: row.diaspora_angle ?? undefined,
     article_type: "news",
     tags: Array.isArray(row.tags) ? row.tags : undefined,
-    author: row.sources || "Diaspora Desk",
+    author: formatAuthorFromSources(row.sources),
     featured_score: 0,
     is_pinned_featured: !!row.is_featured,
     pinned_until: null,
