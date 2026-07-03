@@ -3,24 +3,26 @@ import { Link } from "react-router-dom";
 
 /* ── Types ── */
 interface Team { name: string; code: string; flag: string; rank: number; p: number; w: number; d: number; l: number; gf: number; ga: number; pts: number; }
-interface Match { id: number; group: string; date: string; time: string; tz: string; home: string; away: string; venue: string; city: string; status: string; score: string | null; home_code: string; away_code: string; }
-interface WCData { tournament: string; last_updated: string; stage: string; groups: Record<string, Team[]>; matches: Match[]; dates: Record<string, string>; }
+interface Match { id: number; group?: string; round?: string; date: string; time: string; tz: string; home: string; away: string; venue: string; city: string; status: string; score: string | null; home_code: string; away_code: string; article_slug?: string; }
+interface KnockoutRound { dates?: string; date?: string; matches?: Match[] | number; venue?: string; time?: string; tz?: string; }
+interface WCData { tournament: string; last_updated: string; stage: string; groups: Record<string, Team[]>; matches: Match[]; knockout?: Record<string, KnockoutRound>; dates: Record<string, string>; }
 
 type Tab = "upcoming" | "results";
 
 const FLAGS: Record<string, string> = {};
 
+const ROUND_LABELS: Record<string, string> = {
+  round_of_32: "R32",
+  round_of_16: "R16",
+  quarterfinals: "QF",
+  semifinals: "SF",
+  third_place: "3rd",
+  final: "F",
+};
+
 function matchToLocal(dateStr: string, time: string): Date {
   const [h, m] = time.split(":").map(Number);
   return new Date(`${dateStr}T${String(h).padStart(2,"0")}:${String(m).padStart(2,"0")}:00-04:00`);
-}
-
-function localTzAbbr(): string {
-  try {
-    return new Intl.DateTimeFormat("en-US", { timeZoneName: "short" })
-      .formatToParts(new Date())
-      .find(p => p.type === "timeZoneName")?.value || "local";
-  } catch { return "local"; }
 }
 
 function formatMatchTime(d: Date): string {
@@ -30,6 +32,19 @@ function formatMatchTime(d: Date): string {
 function formatShortDate(dateStr: string, time: string): string {
   const d = matchToLocal(dateStr, time);
   return d.toLocaleDateString("en-US", { month: "short", day: "numeric" });
+}
+
+/** Collect all knockout matches from all rounds, tagged with their round key. */
+function getKnockoutMatches(knockout: Record<string, KnockoutRound>): Match[] {
+  const all: Match[] = [];
+  for (const [roundKey, roundData] of Object.entries(knockout)) {
+    if (Array.isArray(roundData.matches)) {
+      for (const m of roundData.matches) {
+        all.push({ ...m, round: roundKey });
+      }
+    }
+  }
+  return all;
 }
 
 export default function WorldCupTracker() {
@@ -45,7 +60,10 @@ export default function WorldCupTracker() {
           for (const t of teams as Team[]) FLAGS[t.code] = t.flag;
         }
         // Default to results tab if we have completed matches
-        const hasResults = d.matches.some((m: Match) => m.status === "FT");
+        const isKnockout = d.stage?.toLowerCase().includes("knockout");
+        const knockoutMatches = isKnockout && d.knockout ? getKnockoutMatches(d.knockout) : [];
+        const allMatches = isKnockout ? knockoutMatches : d.matches;
+        const hasResults = allMatches.some((m: Match) => m.status === "FT" || m.status?.startsWith("FT"));
         if (hasResults) setTab("results");
       })
       .catch(() => {});
@@ -53,8 +71,15 @@ export default function WorldCupTracker() {
 
   if (!data) return null;
 
-  const completed = data.matches.filter(m => m.status === "FT").reverse();
-  const upcoming = data.matches
+  // During knockout stage, show knockout matches; otherwise group matches
+  const isKnockout = data.stage?.toLowerCase().includes("knockout");
+  const knockoutMatches = isKnockout && data.knockout ? getKnockoutMatches(data.knockout) : [];
+  const allMatches = isKnockout ? knockoutMatches : data.matches;
+
+  const completed = allMatches
+    .filter(m => m.status === "FT" || m.status?.startsWith("FT"))
+    .sort((a, b) => matchToLocal(b.date, b.time).getTime() - matchToLocal(a.date, a.time).getTime());
+  const upcoming = allMatches
     .filter(m => m.status === "scheduled")
     .sort((a, b) => matchToLocal(a.date, a.time).getTime() - matchToLocal(b.date, b.time).getTime())
     .slice(0, 4);
@@ -129,16 +154,22 @@ export default function WorldCupTracker() {
         {(tab === "results" ? completed.slice(0, 4) : upcoming).map((m, i, arr) => {
           const scores = m.score?.split("-").map(s => s.trim()) ?? [];
           const pdtTime = matchToLocal(m.date, m.time);
-          // Link finished matches to their individual recap article (only if article exists)
-          const hasArticle = !!m.article_slug;
+          const hasArticle = !!(m as any).article_slug;
           const linkTo = hasArticle
-            ? `/articles/${m.article_slug}`
+            ? `/articles/${(m as any).article_slug}`
             : m.status === "FT"
-            ? undefined  // No link if finished but no article yet
+            ? undefined
             : "/world-cup?tab=schedule";
           const Wrapper = linkTo
             ? ({ children, ...props }: any) => <Link to={linkTo} style={{ textDecoration: "none", color: "inherit" }} {...props}>{children}</Link>
             : ({ children, ...props }: any) => <div {...props}>{children}</div>;
+
+          // Badge: round label for knockout, group letter for group stage
+          const badge = m.round ? (ROUND_LABELS[m.round] || m.round.charAt(0).toUpperCase()) : (m.group || "");
+
+          // For scores with penalty/AET info, clean display
+          const displayScore = m.score || "";
+
           return (
             <Wrapper key={m.id}>
             <div style={{
@@ -151,14 +182,14 @@ export default function WorldCupTracker() {
             onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = "#f8f5f0"; }}
             onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = "transparent"; }}
             >
-              {/* Group badge */}
+              {/* Round/Group badge */}
               <div style={{
                 width: 28, height: 28, borderRadius: 6,
                 background: "#0a3d2e", color: "#c9a84c",
                 display: "flex", alignItems: "center", justifyContent: "center",
-                fontSize: 11, fontWeight: 800, flexShrink: 0,
+                fontSize: badge.length > 2 ? 9 : 11, fontWeight: 800, flexShrink: 0,
               }}>
-                {m.group}
+                {badge}
               </div>
 
               {/* Teams */}
@@ -167,28 +198,30 @@ export default function WorldCupTracker() {
                   <span style={{ fontSize: 14 }}>{FLAGS[m.home_code] || ""}</span>
                   <span style={{
                     fontSize: 13,
-                    fontWeight: m.status === "FT" && scores[0] > scores[1] ? 700 : 500,
-                    color: m.status === "FT" && scores[0] < scores[1] ? "#bbb" : "#2d3436",
+                    fontWeight: m.status?.startsWith("FT") && scores.length === 2 && parseInt(scores[0]) > parseInt(scores[1]) ? 700 : 500,
+                    color: m.status?.startsWith("FT") && scores.length === 2 && parseInt(scores[0]) < parseInt(scores[1]) ? "#bbb" : "#2d3436",
                   }}>{m.home}</span>
                 </div>
                 <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
                   <span style={{ fontSize: 14 }}>{FLAGS[m.away_code] || ""}</span>
                   <span style={{
                     fontSize: 13,
-                    fontWeight: m.status === "FT" && scores[1] > scores[0] ? 700 : 500,
-                    color: m.status === "FT" && scores[1] < scores[0] ? "#bbb" : "#2d3436",
+                    fontWeight: m.status?.startsWith("FT") && scores.length === 2 && parseInt(scores[1]) > parseInt(scores[0]) ? 700 : 500,
+                    color: m.status?.startsWith("FT") && scores.length === 2 && parseInt(scores[1]) < parseInt(scores[0]) ? "#bbb" : "#2d3436",
                   }}>{m.away}</span>
                 </div>
               </div>
 
               {/* Score / Time */}
               <div style={{ textAlign: "center", flexShrink: 0, minWidth: 50 }}>
-                {m.status === "FT" ? (
+                {m.status?.startsWith("FT") ? (
                   <>
                     <div style={{ fontSize: 17, fontWeight: 800, color: "#0a3d2e", fontFamily: "monospace" }}>
-                      {m.score}
+                      {displayScore.split("(")[0].trim()}
                     </div>
-                    <div style={{ fontSize: 9, color: "#999", fontWeight: 600 }}>FT</div>
+                    <div style={{ fontSize: 9, color: "#999", fontWeight: 600 }}>
+                      {displayScore.includes("pen") ? "PEN" : displayScore.includes("AET") ? "AET" : "FT"}
+                    </div>
                   </>
                 ) : (
                   <>
