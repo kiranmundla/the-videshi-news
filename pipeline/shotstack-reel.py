@@ -4829,7 +4829,9 @@ If no article images are available, use "generate" for all scenes."""
 
         print(f"  🖼️ Scene {scene_num}: generating via Responses API...", flush=True)
 
-        gen_prompt = f"Now generate scene {scene_num}'s image. Scene description: {desc}"
+        gen_prompt = (f"Now generate scene {scene_num}'s image. Scene description: {desc}. "
+                      f"Do NOT include The Videshi logo, branding, or any CTA text — "
+                      f"focus only on the article's data/content.")
         try:
             r = requests.post(RESP_URL, headers=RESP_HEADERS, json={
                 "model": "gpt-4o",
