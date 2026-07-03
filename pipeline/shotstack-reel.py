@@ -4707,11 +4707,22 @@ DECISION CRITERIA:
 RULES:
 - NO human faces in GENERATED scenes (real article photos with people are fine)
 - Each scene must be visually DISTINCT from the others
-- For generated scenes: include specific numbers/data from the article in the composition
-- Think like a professional news graphics department
 - NEVER generate a branding, logo, CTA, or "Visit TheVideshi.com" scene — a branded end card
   is automatically appended after all scenes. ALL scenes (including the last) must show
   article content: data visualizations, key takeaways, or relevant editorial imagery
+
+CRITICAL VISUAL STYLE — broadcast news graphics, NOT infographic posters:
+- Each scene is on screen for only 5-8 seconds. The viewer CANNOT read dense text.
+- ONE key visual idea per scene. ONE big number or ONE chart or ONE visual metaphor.
+- Match the voiceover: each scene's image should illustrate ONLY what the narrator is
+  saying during that scene — not the entire article.
+- Minimal text in the image. If showing a number, make it HUGE and alone, not buried
+  in a grid of 6 other stats. Think: "$5 TRILLION" taking up half the frame with a
+  simple upward arrow — not a poster with 10 data points.
+- No slogans, taglines, or motivational text ("MOMENTUM IS BACK", "STRONG. RESILIENT.",
+  etc.) — the voiceover carries the narrative.
+- Clean backgrounds with breathing room. Negative space is good.
+- Style reference: Bloomberg TV lower-thirds and data callouts, not magazine infographics.
 
 Return JSON only:
 {{"scenes": [
@@ -4830,8 +4841,10 @@ If no article images are available, use "generate" for all scenes."""
         print(f"  🖼️ Scene {scene_num}: generating via Responses API...", flush=True)
 
         gen_prompt = (f"Now generate scene {scene_num}'s image. Scene description: {desc}. "
-                      f"Do NOT include The Videshi logo, branding, or any CTA text — "
-                      f"focus only on the article's data/content.")
+                      f"STYLE: Clean broadcast-news graphic. ONE key visual idea, ONE big number "
+                      f"if data is involved. Minimal text, lots of breathing room. "
+                      f"No logos, branding, slogans, or motivational text. "
+                      f"NOT a dense infographic poster.")
         try:
             r = requests.post(RESP_URL, headers=RESP_HEADERS, json={
                 "model": "gpt-4o",
