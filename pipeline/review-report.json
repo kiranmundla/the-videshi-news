@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-03T10:15:45.594922+00:00",
+  "timestamp": "2026-07-03T10:46:08.071863+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 5,
+    "pass": 6,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "73271697-3891-426d-8505-2715b51ec09b",
-      "headline": "Luxury River Cruises Are Coming to the Ganges \u2014 and the NRI Market Is the Prize",
-      "slug": "ganges-hooghly-river-cruise-scenic-viking-nri-20260703",
+      "id": "84751f8d-ed44-43af-b594-94f394e1c7e5",
+      "headline": "India Just Opened Its Nuclear Sector to Private Money for the First Time in Sixty Years. The $214 Billion Race Is On.",
+      "slug": "india-shanti-act-nuclear-private-sector-adani-tata-214-billion-20260703",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Aerial view of the Hooghly River",
-          "reason": "The photo shows the Hooghly River, relevant to the luxury cruises story."
+          "what_photo_shows": "Kudankulam Nuclear Power Plant",
+          "reason": "The photo shows a nuclear power plant, relevant to the nuclear sector story."
         },
         "inline_image_mismatches": []
       },
@@ -36,13 +36,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively highlights the appeal of luxury river cruises to the NRI market, addressing their specific needs and preferences."
+          "note": "The article effectively connects the SHANTI Act to opportunities for the Indian diaspora, particularly in the nuclear engineering sector."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more quotes or testimonials from potential NRI customers to enhance relatability.",
-          "Add a section on how these cruises compare to traditional travel options in India."
+          "Consider adding more specific examples of how diaspora professionals can engage with the Indian nuclear sector.",
+          "Include quotes or insights from diaspora members involved in nuclear energy to enhance the personal connection."
         ],
         "verdict": "pass"
       },
@@ -54,9 +54,54 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "eb3f0732-a86b-4a6b-86f7-d5e2634026a6",
-      "headline": "Real Estate Giants Are Betting $656 Million That NRIs Want Better Hotels at India's Holy Cities",
-      "slug": "india-pilgrimage-hotel-boom-omaxe-ayodhya-nri-20260703",
+      "id": "f6f432c5-bdb4-476d-8bcd-0c1282d0f56e",
+      "headline": "CRED's Kunal Shah Is Now Running WhatsApp. Meta Paid $900 Million to Make It Happen.",
+      "slug": "kunal-shah-cred-whatsapp-global-head-meta-900-million-investment-20260703",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MISMATCH",
+          "what_photo_shows": "man wearing Freecharge shirt",
+          "reason": "The photo shows a person associated with Freecharge, not CRED or WhatsApp."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image description is missing, making it difficult to assess its relevance."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively highlights the significance of Shah's appointment for the Indian diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include a relevant image description to enhance the image match score.",
+          "Consider adding quotes or reactions from diaspora members to further enrich the diaspora angle."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "Cleared mismatched image (man wearing Freecharge shirt)",
+        "held: image mismatch"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "image_mismatch": true,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "5a235e10-0775-484c-84b9-2aa8a3e66c23",
+      "headline": "India Has Now Served Notices to Every Major Messaging App Over Usernames. The Crackdown Is Widening.",
+      "slug": "india-meity-telegram-signal-whatsapp-username-notices-crackdown-20260703",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,8 +109,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "hotel lobby in Bikaner, Rajasthan",
-          "reason": "The photo shows a hotel lobby, relevant to the story about hotels in India."
+          "what_photo_shows": "person texting on WhatsApp",
+          "reason": "The photo shows WhatsApp usage, relevant to the story about messaging apps."
         },
         "inline_image_mismatches": []
       },
@@ -79,13 +124,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the developments in India's hospitality sector to the needs and interests of NRIs, particularly in relation to pilgrimage destinations."
+          "note": "The article effectively connects the regulatory changes to the implications for diaspora Indians using messaging apps."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes or testimonials from NRIs about their experiences with hotel accommodations in holy cities to enhance the diaspora connection.",
-          "Include more data or statistics on the expected impact of these new hotels on local economies or tourism trends."
+          "Consider adding more direct quotes from the platforms involved to enhance credibility.",
+          "Include potential future implications for users if the regulations are enforced."
         ],
         "verdict": "pass"
       },
@@ -97,9 +142,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "76cd6504-a1d7-43b8-95fc-94d9c6c5d39f",
-      "headline": "India Just Hiked Passport Fees for the First Time in 14 Years \u2014 Here's What NRIs Pay Now",
-      "slug": "india-passport-fee-hike-nri-overseas-renewal-guide-20260703",
+      "id": "a00c29b3-bc50-44ad-a3c5-7a5feb295f7e",
+      "headline": "Sumit Nagal Ends a Two-Year Title Drought in Romania. India's No. 1 Says He Questioned Everything.",
+      "slug": "sumit-nagal-intaro-open-challenger-title-romania-two-year-drought-india-tennis-diaspora-nri-2026",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -107,8 +152,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "open passport with travel stamps",
-          "reason": "The photo is relevant to a story about passport fees."
+          "what_photo_shows": "Sumit Nagal playing tennis",
+          "reason": "The photo shows Sumit Nagal, who is the subject of the story."
         },
         "inline_image_mismatches": []
       },
@@ -122,13 +167,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively addresses the impact of passport fee hikes on NRIs, making it relevant to the diaspora audience."
+          "note": "The article effectively connects Nagal's journey to the Indian diaspora, highlighting his international training and the challenges faced by Indian athletes."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes or testimonials from NRIs affected by the fee hike to enhance relatability.",
-          "Include a comparison of passport fees with other countries to provide context."
+          "Consider adding quotes from Nagal's coach or other players to provide additional perspectives on his journey.",
+          "Include more context on the significance of the Intaro Open title within the tennis community."
         ],
         "verdict": "pass"
       },
@@ -140,9 +185,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "e09dd6ec-a1d0-4bcf-926f-acc74546a71a",
-      "headline": "A Weak US Jobs Report Just Took a Fed Rate Hike Off the Table \u2014 and India's Markets Are Surging on the News",
-      "slug": "us-jobs-report-57k-miss-fed-rate-hike-off-table-india-5-trillion-market-it-rally-nri-investor-20260703",
+      "id": "9d7b0e42-22e6-46c0-9bc8-7bb5ec20f173",
+      "headline": "Five Teams, Six Points, and the Tightest MLC Race American Cricket Has Ever Seen",
+      "slug": "mlc-2026-five-teams-six-points-tightest-standings-race-playoff-diaspora-nri",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -150,8 +195,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Bombay Stock Exchange building",
-          "reason": "The photo shows the Bombay Stock Exchange, relevant to India's market story."
+          "what_photo_shows": "Grand Prairie Stadium cricket field",
+          "reason": "The photo shows a cricket stadium relevant to the MLC cricket story."
         },
         "inline_image_mismatches": []
       },
@@ -159,19 +204,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image of Grand Prairie Stadium is relevant to the article's content about Major League Cricket, but it could be more directly related to the specific matches discussed."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article discusses the implications of US economic data on Indian markets, which is relevant to NRI investors."
+          "quality": 9,
+          "note": "The article effectively connects the cricket matches to the Indian diaspora in the U.S., highlighting the significance of the games in areas with large Indian communities."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes or insights from Indian diaspora investors to strengthen the connection.",
-          "Add a brief section on how NRIs can take advantage of the current market conditions."
+          "Consider including more direct quotes or insights from players or coaches to enhance the narrative.",
+          "Add a brief historical context about Major League Cricket to engage readers unfamiliar with the league."
         ],
         "verdict": "pass"
       },
@@ -191,11 +236,6 @@
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MISMATCH",
-          "what_photo_shows": "Two young men by a sign",
-          "reason": "The photo does not show teenagers in a school setting, which is relevant to the story."
-        },
         "inline_image_mismatches": []
       },
       "llm_review": {
@@ -203,7 +243,7 @@
         "embed_issues": [],
         "image_match": {
           "score": 5,
-          "issue": "missing image description"
+          "issue": "description missing"
         },
         "diaspora_angle": {
           "present": true,
@@ -213,18 +253,16 @@
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include a relevant hero image that visually represents the topic of teen mental health and peer influence.",
-          "Provide a more detailed conclusion that summarizes the implications of the study for parents and educators."
+          "Include a relevant image description to enhance the hero image's connection to the article.",
+          "Consider adding more statistics or quotes from the study to strengthen the argument."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "Cleared mismatched image (Two young men by a sign)",
-        "held: image mismatch"
+        "promoted to published"
       ],
       "revised": false,
       "unpublished": false,
-      "image_mismatch": true,
       "llm_source": "gpt-4o-mini"
     }
   ]
