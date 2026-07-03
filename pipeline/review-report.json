@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-03T14:15:57.761767+00:00",
+  "timestamp": "2026-07-03T14:45:31.722330+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 5,
+    "pass": 3,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "25a5384c-4e3c-4c40-8ab9-3de541584ff3",
-      "headline": "Foreign Investors Just Poured a Record $3.4 Billion Into Indian Government Bonds \u2014 and a Bloomberg Index Entry Could Unlock Billions More",
-      "slug": "india-bond-market-record-foreign-inflows-bloomberg-index-inclusion-tax-free-nri-investor-20260703",
+      "id": "e7640b72-66f3-45c3-93d0-b77923efb0e1",
+      "headline": "New Zealand Signed a Trade Deal With India. Then It Quietly Started Writing Immigration Rules That Apply to Indians \u2014 and Only Indians.",
+      "slug": "new-zealand-india-fta-immigration-crackdown-winston-peters-butter-chicken-nri-20260703",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,68 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Indian currency notes and coins",
-          "reason": "The photo of Indian currency is relevant to a story about foreign investment in Indian bonds."
+          "what_photo_shows": "New Zealand's Parliament House",
+          "reason": "The photo shows New Zealand's Parliament House, relevant to the story about immigration rules."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 6,
+          "issue": "The image of the New Zealand Parliament does not directly relate to the immigration rules or the Indian diaspora context."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses immigration rules affecting Indian nationals, which is highly relevant to the Indian diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that directly relates to the Indian diaspora or immigration issues to enhance relevance.",
+          "Add quotes or perspectives from Indian diaspora members to strengthen the connection to the community."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "db9241ba-fcb5-4cf2-bbfa-1734a3c2ea37",
+      "headline": "Foreign Money Is Leaving India's Stock Market at a Record Pace. For the First Time in Two Decades, Indian Investors Don't Need It.",
+      "slug": "fpi-ownership-20-year-low-dii-overtake-rbi-fsr-nri-equity-limits-raised-20260703",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "4335e976-94ba-4399-865a-89243d5196ee",
+            "headline": "India's Stock Market Just Clawed Back to $5 Trillion. Here's"
+          },
+          {
+            "article_id": "c1ebb17d-1730-4420-8c16-8e98fb459d52",
+            "headline": "India Is Emerging as Asia's Safe Haven as the Global AI Sell"
+          },
+          {
+            "article_id": "f85c97f6-2497-40b8-ad41-728dbe27b17d",
+            "headline": "Asia's AI Bubble Just Popped. India Barely Flinched."
+          },
+          {
+            "article_id": "ddd688b0-c97d-4cf1-a1cd-431ee8b5d687",
+            "headline": "India's Services Engine Just Hit Its Slowest Speed in Sevent"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Bombay Stock Exchange building",
+          "reason": "The photo shows the Bombay Stock Exchange, relevant to the stock market story."
         },
         "inline_image_mismatches": []
       },
@@ -36,13 +96,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 7,
-          "note": "The article discusses foreign investment in Indian bonds, which is relevant to NRIs interested in investment opportunities in India."
+          "note": "The article discusses the impact of foreign investment trends on India's stock market, which is relevant to NRIs who may have investments or interests in the Indian market."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes or insights from NRI investors to strengthen the diaspora connection.",
-          "Add a brief section on how these changes might specifically benefit NRI investors."
+          "Include more direct quotes from experts or analysts to enhance credibility.",
+          "Add a section on how these trends might affect NRI investments specifically."
         ],
         "verdict": "pass"
       },
@@ -54,57 +114,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "a039ffa0-9f2a-413e-b85b-7c491226df70",
-      "headline": "Air India Is Reviewing Restoration of US Routes Suspended During the Gulf Crisis",
-      "slug": "air-india-us-routes-restoration-gulf-crisis-nri-20260703",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "25618cc8-2cd5-4bd3-810a-fb380bf40cac",
-            "headline": "Air India's Mumbai\u2013Tokyo Haneda Nonstop Is Two Weeks Old \u2014 a"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Air India aircraft in flight",
-          "reason": "The photo shows an Air India aircraft, relevant to the aviation story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively addresses the impact of route changes on NRIs, particularly in major US cities with significant Indian populations."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include quotes from NRI passengers or travel experts to enhance the personal connection and provide more depth.",
-          "Add a brief section on how these route changes compare to other airlines' offerings for NRIs."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "c11b4df3-c197-4131-a341-cb0e3f85fce1",
-      "headline": "Noida's New Airport Hits 40 Daily Flights in Its First Month \u2014 and International Services Are Coming",
-      "slug": "noida-jewar-airport-40-daily-flights-nri-20260703",
+      "id": "23e85758-9267-44ba-9335-947d634e2dc2",
+      "headline": "Modi Is Heading to Three Countries Next Week. In One of Them, Indians Are Being Told They're Not Welcome.",
+      "slug": "modi-indonesia-australia-new-zealand-tour-anti-indian-nz-diaspora-20260703",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -112,8 +124,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Noida International Airport entrance",
-          "reason": "The photo shows Noida International Airport, relevant to the story about its operations."
+          "what_photo_shows": "Modi with Australian PM Albanese",
+          "reason": "The photo shows Modi with the Australian PM, relevant to the tour story."
         },
         "inline_image_mismatches": []
       },
@@ -121,105 +133,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image of Modi with Anthony Albanese is relevant but does not directly relate to the specific topic of the article regarding the immigration issues in New Zealand."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively discusses the implications of the new airport for NRIs, particularly those with roots in western UP."
+          "note": "The article effectively highlights the significance of Modi's visit for the Indian diaspora, particularly in Australia, making the connection relevant and natural."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more specific details about the expected timeline for international flights to enhance reader interest.",
-          "Include quotes from NRI travelers or stakeholders to provide personal perspectives on the airport's impact."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "be703846-7af8-455f-91a4-d36f6cb4e508",
-      "headline": "Air India Express Restores Its Full Gulf Network \u2014 780 Weekly Flights Across Six Countries",
-      "slug": "air-india-express-full-gulf-network-restored-nri-20260703",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Air India Express Boeing 737 in flight",
-          "reason": "The photo shows an Air India Express aircraft, relevant to the aviation story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively highlights the implications of the restored flights for the Indian diaspora in the Gulf and those transiting through the region."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from airline officials or industry experts to enhance credibility.",
-          "Include more specific data or anecdotes about how the restoration impacts the daily lives of NRIs."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "56847755-ce23-4b31-abd1-3d2dff3a4873",
-      "headline": "Having Weak Muscles and Excess Body Fat Dramatically Raises Your Dementia Risk \u2014 and South Asians May Be Uniquely Vulnerable",
-      "slug": "sarcopenic-obesity-low-muscle-excess-fat-dementia-risk-curtin-lancet-south-asian-skinny-fat-20260703",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "older adult lifting kettlebell",
-          "reason": "The photo shows resistance training, relevant to brain health and muscle strength."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively addresses the unique health risks faced by South Asians, making it highly relevant to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more statistics or data specific to the South Asian diaspora to strengthen the argument.",
-          "Include quotes or testimonials from diaspora members to enhance relatability."
+          "Consider including more direct quotes or reactions from Indian diaspora members regarding the immigration issues in New Zealand to enhance the diaspora angle.",
+          "Add a brief conclusion summarizing the implications of Modi's visit for the Indian community in each country."
         ],
         "verdict": "pass"
       },
