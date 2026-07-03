@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-03T12:15:50.253357+00:00",
+  "timestamp": "2026-07-03T12:48:12.259442+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 5,
-    "flag": 1,
+    "pass": 6,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "1032a729-9955-42e5-aeea-8cb6fd3af74f",
-      "headline": "You Cannot Leave America. The H-1B Travel Trap Is Now Complete",
-      "slug": "h1b-travel-trap-visa-stamping-consulate-backlog-india-20260703",
+      "id": "eafca655-ea53-4a5b-9950-5b9b4bd7644e",
+      "headline": "From a Family Clay Oven to a James Beard Nod: The Immigrant Story Behind Las Vegas's Hottest Indian Restaurant",
+      "slug": "from-a-family-clay-oven-to-james-beard-nod-immigrant-story-behind-las-vegas-hott",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "US Embassy in New Delhi",
-          "reason": "The photo shows the US Embassy, relevant to visa appointment backlogs."
+          "what_photo_shows": "Gourmet tandoori chicken with artistic plating",
+          "reason": "The photo shows contemporary Indian fine dining, matching the restaurant story."
         },
         "inline_image_mismatches": []
       },
@@ -36,13 +36,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses the challenges faced by Indian H-1B visa holders, directly connecting with the Indian diaspora's concerns about immigration policies."
+          "note": "The article effectively connects the immigrant story of the Dhillon family to the broader narrative of Indian cuisine's evolution in America, appealing to diaspora readers."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes or anecdotes from affected individuals to enhance emotional engagement.",
-          "Add a section on potential solutions or advocacy efforts to address these issues."
+          "Consider adding quotes from the Dhillon family or Chef Anand Singh to provide a more personal touch.",
+          "Include more context on the significance of the James Beard nomination for Indian restaurants to enhance the cultural relevance."
         ],
         "verdict": "pass"
       },
@@ -54,9 +54,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "4c594b01-75dc-4bb3-b6f9-5e567bad5dcd",
-      "headline": "India Got Britain to Stop Double-Taxing Its Workers. The US Will Not Even Discuss It",
-      "slug": "india-uk-social-security-deal-us-totalization-gap-h1b-20260703",
+      "id": "49a3f867-0958-48f2-9dcd-8cfa10847797",
+      "headline": "Baked Oats Chaat to Rasmalai Tres Leches: India's Viral Fusion Recipes Are Rewriting the Global Cookbook",
+      "slug": "baked-oats-chaat-to-rasmalai-tres-leches-indias-viral-fusion-recipes-rewriting-g",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,8 +64,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Piyush Goyal smiling portrait",
-          "reason": "The photo shows Piyush Goyal, relevant to the story."
+          "what_photo_shows": "plates of papri chaat with toppings",
+          "reason": "The photo shows a traditional Indian dish, relevant to the fusion food topic."
         },
         "inline_image_mismatches": []
       },
@@ -73,21 +73,21 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 3,
-          "issue": "irrelevant"
+          "score": 6,
+          "issue": "The image of Papri Chaat does not match the headline focus on fusion recipes."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article discusses the implications of tax agreements for Indian workers abroad, which is relevant to the diaspora."
+          "quality": 7,
+          "note": "The article discusses fusion recipes that may appeal to the diaspora's interest in Indian cuisine and global trends."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the hero image with one that is more relevant to the topic of taxation and social security agreements.",
-          "Include quotes or perspectives from Indian diaspora members affected by the lack of a totalization agreement with the US."
+          "Consider including images of the fusion dishes mentioned to enhance visual appeal.",
+          "Add quotes or anecdotes from the featured chefs or food creators to provide a personal touch."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
         "promoted to published"
@@ -97,9 +97,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "6e90d939-b637-4259-96ad-7f2f6994016f",
-      "headline": "Sitharaman Took India's Chequebook to France. She Is Ending the Trip by Meeting the Diaspora.",
-      "slug": "sitharaman-france-visit-diaspora-india-eu-trade-doubled-20260703",
+      "id": "d23206ad-8083-4857-b94b-61d2c4f6f0fd",
+      "headline": "The Kulfi Effect: How Indian Ice Cream Is Winning Over America, One Saffron Scoop at a Time",
+      "slug": "the-kulfi-effect-how-indian-ice-cream-is-winning-over-america-one-saffron-scoop",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -107,8 +107,150 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A woman in traditional Indian attire",
-          "reason": "The photo plausibly shows Nirmala Sitharaman, relevant to the story."
+          "what_photo_shows": "Kulfi on a plate with sauce",
+          "reason": "The photo shows kulfi, which is relevant to the story about Indian ice cream."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the resurgence of Indian ice cream flavors to the NRI experience, highlighting nostalgia and cultural significance."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from more NRI customers to enhance the personal connection.",
+          "Include a brief history of kulfi in America to provide context for its growing popularity."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "09facfa4-3c5c-43b5-b10e-ca874c180a1c",
+      "headline": "India Just Let Four Chinese Power Equipment Firms Bid for Government Contracts. Five Years of Frozen Relations Are Thawing Fast.",
+      "slug": "india-china-power-equipment-firms-government-tenders-exemption-thaw-20260703",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "electrical power substation in Odisha",
+          "reason": "The photo shows a power substation, relevant to the power equipment story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article connects well with NRIs in the tech and energy sectors, discussing implications of the India-China relationship."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of how NRIs in the energy sector might be affected by these changes.",
+          "Include quotes or insights from diaspora experts to enhance the connection with the audience."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "f0945900-c1a2-45a4-b1d7-fd10c9d4145c",
+      "headline": "AI Hiring in India Just Surged 16%. The Rest of the IT Industry Is Shrinking.",
+      "slug": "india-ai-hiring-surges-it-jobs-decline-naukri-report-tcs-workforce-split-20260703",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "glass pyramid at Infosys campus",
+          "reason": "The Infosys campus in Bangalore is relevant to the Indian IT industry story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the trends in India's IT industry to the experiences of NRIs, particularly those on H-1B visas."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more statistics or data points to strengthen the argument about the impact on NRIs.",
+          "Consider adding quotes or insights from Indian IT professionals in the diaspora to provide personal perspectives."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "ddd688b0-c97d-4cf1-a1cd-431ee8b5d687",
+      "headline": "India's Services Engine Just Hit Its Slowest Speed in Seventeen Months. The Hiring Freeze Is the Bigger Story.",
+      "slug": "india-services-pmi-17-month-low-june-2026-hiring-stalls-demand-weakens-20260703",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "4335e976-94ba-4399-865a-89243d5196ee",
+            "headline": "India's Stock Market Just Clawed Back to $5 Trillion. Here's"
+          },
+          {
+            "article_id": "c1ebb17d-1730-4420-8c16-8e98fb459d52",
+            "headline": "India Is Emerging as Asia's Safe Haven as the Global AI Sell"
+          },
+          {
+            "article_id": "f85c97f6-2497-40b8-ad41-728dbe27b17d",
+            "headline": "Asia's AI Bubble Just Popped. India Barely Flinched."
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Bombay Stock Exchange building",
+          "reason": "The photo shows a financial landmark relevant to the economy story."
         },
         "inline_image_mismatches": []
       },
@@ -117,147 +259,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image is relevant to the article as it features Nirmala Sitharaman, but it does not directly depict her meeting with the diaspora."
+          "issue": "The image of the Bombay Stock Exchange is relevant to the economy but does not directly illustrate the services sector specifically."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively discusses the significance of Sitharaman's meeting with the diaspora and connects it to broader economic themes relevant to NRIs."
+          "note": "The article effectively connects the domestic services sector's performance to the implications for NRIs, particularly in the IT industry."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include a quote or anecdote from the diaspora meeting to enhance personal connection.",
-          "Add a brief section on how the diaspora can engage with the initiatives discussed in the article."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "43120651-8a65-4b49-9ed8-1c8f36c4b3ab",
-      "headline": "The USISPF Summit Honoured Three Business Titans. Sunil Mittal Used His Speech to Talk About Five Million Indians Instead.",
-      "slug": "usispf-summit-mittal-diaspora-bridge-kwatra-30-trillion-20260703",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Sunil Bharti Mittal",
-          "reason": "The photo shows Sunil Bharti Mittal, relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the summit's discussions to the Indian diaspora, highlighting their economic impact and involvement in US-India relations."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes or reactions from other attendees to provide a broader perspective on the summit.",
-          "Include more context on the significance of the USISPF and its role in US-India relations for readers unfamiliar with the organization."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "8f6211d9-14b8-44b4-995f-5acde021be6e",
-      "headline": "SK Hynix Wants $29 Billion From Nasdaq. It Could Be the Largest Tech Listing in a Decade.",
-      "slug": "sk-hynix-29-billion-nasdaq-listing-ai-memory-20260703",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "microprocessor circuit board",
-          "reason": "The photo of a microprocessor circuit board is relevant to a tech listing story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the listing to NRI investors and Indian semiconductor engineers, making it relevant for the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more direct quotes from industry analysts or stakeholders to enhance credibility.",
-          "Include a brief overview of the potential risks associated with investing in SK Hynix to provide a balanced perspective."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "023e62e7-ee0e-4207-9e47-fe6c87b04db8",
-      "headline": "Microsoft and Amazon Just Bet $3.5 Billion That They Can Replace Your IT Consulting Firm",
-      "slug": "microsoft-amazon-fde-ai-deployment-indian-it-20260703",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A man in glasses and a suit",
-          "reason": "The photo plausibly shows Satya Nadella, relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses the implications of the FDE model for Indian tech professionals in the US, making it relevant to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more specific examples of how Indian IT firms might adapt to the new competitive landscape.",
-          "Include quotes or insights from Indian IT leaders to provide a more balanced perspective."
+          "Consider using an image that more directly represents the services sector, such as IT or hospitality, to enhance relevance.",
+          "Include more specific data or examples of how the hiring freeze is impacting NRIs in various sectors."
         ],
         "verdict": "pass"
       },
