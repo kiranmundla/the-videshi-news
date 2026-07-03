@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-07-03T07:15:19.828022+00:00",
+  "timestamp": "2026-07-03T07:45:23.016954+00:00",
   "mode": "fix",
   "stats": {
     "pass": 2,
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "8c4f1d62-7bf0-475d-af07-bc0dd4cc1c4b",
-      "headline": "Vikrant Massey Just Became a Producer. His First Bet? A Love Story Set Between Bhopal and Mussoorie.",
-      "slug": "musafir-cafe-vikrant-massey-netflix-production-debut-homemade-stories-romance-bhopal-mussoorie-diaspora-nri-20260703",
+      "id": "93e8ec07-e84a-480a-9382-1795f15f184d",
+      "headline": "India Lost to Ireland. The Rain Stole Chester-le-Street. Old Trafford on Saturday Is Where Iyer's Team Has to Start Answering.",
+      "slug": "india-england-2nd-t20i-old-trafford-manchester-chakaravarthy-sooryavanshi-iyer-preview-nri-2026",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A man in a suit at a film festival",
-          "reason": "The photo plausibly shows Vikrant Massey, relevant to the story."
+          "what_photo_shows": "Old Trafford Cricket Ground exterior",
+          "reason": "The photo shows Old Trafford, relevant to the cricket match story."
         },
         "inline_image_mismatches": []
       },
@@ -36,13 +36,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the content of the series to NRI audiences, highlighting its accessibility on Netflix and its relatable themes."
+          "note": "The article effectively connects the match to the Indian diaspora in the UK, highlighting the cultural significance of the event."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from Vikrant Massey or the director to enhance the personal touch.",
-          "Include more details about the production process or challenges faced by Massey as a first-time producer."
+          "Consider adding quotes from players or coaches to enhance the narrative.",
+          "Include more statistics or historical context about India and England's T20I encounters."
         ],
         "verdict": "pass"
       },
@@ -54,9 +54,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "0e5ec422-7991-4d2b-a296-fc1cda95b8e4",
-      "headline": "Lagaan Turns 25. Aamir Khan Is Taking It Back to the Big Screen \u2014 in Melbourne.",
-      "slug": "lagaan-25th-anniversary-aamir-khan-iffm-melbourne-screening-london-diaspora-nri-20260703",
+      "id": "b4fe69a1-6500-49d7-a159-5615001a2443",
+      "headline": "Messi Has 19 World Cup Goals, a Record No One Else Has Held, and Maybe Two Weeks Left. Cape Verde Stand in His Way.",
+      "slug": "messi-19-goals-all-time-record-argentina-cape-verde-world-cup-round-of-32-miami-nri-2026",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,8 +64,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Aamir Khan in Lagaan movie poster",
-          "reason": "The photo shows Aamir Khan in Lagaan, relevant to the story."
+          "what_photo_shows": "Soccer match with player number 10",
+          "reason": "The photo shows a soccer match, relevant to the World Cup story."
         },
         "inline_image_mismatches": []
       },
@@ -73,19 +73,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 10,
+          "score": 9,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the significance of *Lagaan* to the Indian diaspora in Australia, highlighting its cultural impact and personal resonance."
+          "quality": 8,
+          "note": "The article effectively connects Messi's significance to the Indian diaspora, particularly in South Florida."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes or reactions from diaspora members about the film's impact on their lives.",
-          "Include more details about the significance of the Indian Film Festival of Melbourne for the diaspora community."
+          "Consider adding more direct quotes from Indian diaspora fans to enhance the connection.",
+          "Include a brief history of Cape Verde's football achievements to provide context."
         ],
         "verdict": "pass"
       },
