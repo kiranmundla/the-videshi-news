@@ -138,7 +138,7 @@ export default function WorldCupPage() {
 
   const now = new Date();
   const byDate = groupMatchesByDate(data.matches);
-  const dates = Object.keys(byDate).sort();
+  const dates = Object.keys(byDate).sort((a, b) => b.localeCompare(a));
 
   // Find today or next match day (use local timezone, not UTC)
   const todayStr = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
@@ -248,7 +248,7 @@ export default function WorldCupPage() {
         {/* ═══ SCHEDULE TAB ═══ */}
         {tab === "schedule" && (
           <div>
-            {dates.slice(Math.max(0, startIdx - 1)).map(date => {
+            {dates.map(date => {
               const matches = byDate[date];
               const isToday = date === todayStr;
               const isPast = date < todayStr;
