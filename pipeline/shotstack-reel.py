@@ -545,7 +545,7 @@ HOOK TEXT (shown on screen before voice starts):
 - hook_line1: 3-5 words, ALL CAPS. The "stop scrolling" line. Make it PROVOCATIVE and high-stakes — a threat, a shock, a reversal, or a bold claim. "OIL LIFELINE OPEN" is too flat. "STRAIT CHOKEHOLD BREAKS" or "INDIA DODGED DISASTER" has punch. Use power words (CRISIS, SHOCK, COLLAPSE, WAR, WIN, DODGED, EXPOSED, SLASHED) where the facts support them — but never overstate beyond what the article says.
 - hook_line2: 3-5 words, ALL CAPS. Twists the knife or raises the stakes further — a number, a consequence, or a cliffhanger.
 
-STORYBOARD: Plan 8-12 scenes that match the narration beat-by-beat. For EACH
+STORYBOARD: Plan 8-10 scenes that match the narration beat-by-beat. For EACH
 scene you also act as the visual director: you decide HOW that beat should be
 shown on screen by choosing a "media_plan". You CANNOT browse, fetch, or verify
 anything — you only PLAN. A separate system executes your plan, verifies sources,
@@ -4711,22 +4711,17 @@ RULES:
   is automatically appended after all scenes. ALL scenes (including the last) must show
   article content: data visualizations, key takeaways, or relevant editorial imagery
 
-CRITICAL VISUAL STYLE — cinematic news graphics, visually RICH but focused:
-- Each scene is on screen for only 3-5 seconds. ONE key idea per scene, but make it
-  visually STRIKING — not a plain background with text.
-- Use dramatic visual metaphors, bold imagery, and rich colors. Think cinematic, not
-  corporate. A scene about oil prices → dramatic oil rig silhouette at sunset with one
-  bold price number. A scene about markets → stylized stock chart with glowing lines
-  on a dark city skyline. A scene about policy → bold symbolic imagery (flags, emblems,
-  architectural elements) with the key fact overlaid.
-- Match the voiceover: each scene illustrates what the narrator is saying at that moment.
-- Keep TEXT minimal (1-2 key numbers or a short phrase) but make the VISUAL rich and
-  cinematic. The image should be interesting even without text.
-- No slogans, taglines, or motivational text — the voiceover carries the narrative.
-- Vary the visual approach: mix data visualizations, symbolic imagery, abstract concepts,
-  and dramatic landscapes/settings. NOT every scene should be the same layout.
-- Style reference: high-end documentary title cards, Al Jazeera data viz, Vice News
-  graphics — cinematic, bold, editorial.
+CRITICAL VISUAL STYLE:
+- Each scene is on screen for 3-5 seconds. Make visuals rich, cinematic, and striking.
+- GPT decides how much information belongs in each scene based on the content.
+- Text in the image must be large enough to read on a phone screen. Keep safe margins
+  so nothing is cut off at edges.
+- No slogans, taglines, or motivational text ("MOMENTUM IS BACK", "STRONG. RESILIENT.",
+  etc.) — the voiceover carries the narrative.
+- NEVER generate a branding, logo, or CTA scene — a branded end card is appended
+  automatically.
+- Vary the visual approach across scenes — data visualizations, symbolic imagery,
+  dramatic settings. The reel should feel dynamic, not repetitive.
 
 Return JSON only:
 {{"scenes": [
@@ -4845,11 +4840,8 @@ If no article images are available, use "generate" for all scenes."""
         print(f"  🖼️ Scene {scene_num}: generating via Responses API...", flush=True)
 
         gen_prompt = (f"Now generate scene {scene_num}'s image. Scene description: {desc}. "
-                      f"STYLE: Visually rich and cinematic. Use dramatic imagery, bold colors, "
-                      f"and visual metaphors. Keep text minimal (1-2 key numbers or a short phrase) "
-                      f"but make the visual itself striking and interesting. "
-                      f"No logos, branding, slogans, or motivational text. "
-                      f"NOT a plain background with just text. NOT a dense poster with 10 stats.")
+                      f"Make it visually rich and cinematic. Phone-readable text with safe margins. "
+                      f"No logos, branding, slogans, or motivational text.")
         try:
             r = requests.post(RESP_URL, headers=RESP_HEADERS, json={
                 "model": "gpt-4o",
