@@ -1,6 +1,6 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-07-03T14:01:16Z",
+  "last_updated": "2026-07-03T16:00:15Z",
   "stage": "Knockout Stage",
   "hosts": "USA, Mexico & Canada",
   "dates": {
@@ -6182,6 +6182,52 @@
       "account": "@fifaworldcup",
       "caption": "Vozinha 🇨🇻🤍 #FIFAWorldCup",
       "date": "2026-07-03"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DaUczQtFi_R",
+      "account": "@fifaworldcup",
+      "caption": "You're taking a PK. Where are you putting it?",
+      "date": "2026-07-03",
+      "type": "image"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DaVVG5lybTZ/",
+      "account": "@fifaworldcup",
+      "caption": "Late winners in the Round of 32 😱 #FIFAWorldCup",
+      "date": "2026-07-03"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/reel/DaVboRqCyuS/",
+      "account": "@fifaworldcup",
+      "caption": "Knockout round James 🇨🇴🤩 #FIFAWorldCup",
+      "date": "2026-07-03",
+      "type": "video"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/reel/DaVgMdFiO-L/",
+      "account": "@fifaworldcup",
+      "caption": "The official music video for DNA featuring Andrea Bocelli, David Guetta, EJAE and Megan Thee Stallion is here! 🎧",
+      "date": "2026-07-03",
+      "type": "video"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DaVgMKSjCI0",
+      "account": "@fifaworldcup",
+      "caption": "The official music video for DNA featuring Andrea Bocelli, David Guetta, EJAE and Megan Thee Stallion is here! 🎧",
+      "date": "2026-07-03"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DaVgjG5DzaW",
+      "account": "@fifaworldcup",
+      "caption": "The Round of 16 is almost here 🔥 — Explore the latest ticket availability",
+      "date": "2026-07-03",
+      "type": "image"
     }
   ],
   "tv": {
