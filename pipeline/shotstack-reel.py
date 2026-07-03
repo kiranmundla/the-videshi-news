@@ -4499,18 +4499,144 @@ def generate_themed_image(image_prompt, article_id, idx, out_dir="/tmp/videshi_g
 # understands the article is the same model that generates the image.
 # ═══════════════════════════════════════════════════════════════════════════════
 
+def _extract_article_images(article):
+    """Extract all usable images from an article: hero + inline body images.
+
+    Returns a list of dicts:
+      [{"key": "hero", "url": "...", "caption": "..."},
+       {"key": "body_1", "url": "...", "caption": "..."},
+       {"key": "body_2", "url": "...", "caption": "..."}, ...]
+    Skips data-URIs, SVGs, and very short URLs. Deduplicates by URL.
+    """
+    images = []
+    seen_urls = set()
+
+    # 1. Hero image
+    hero_url = (article.get("image_url") or "").strip()
+    hero_caption = (article.get("image_caption") or "").strip()
+    if hero_url and len(hero_url) > 10 and not hero_url.startswith("data:"):
+        images.append({"key": "hero", "url": hero_url, "caption": hero_caption})
+        seen_urls.add(hero_url)
+
+    # 2. Body inline markdown images: ![caption](url)
+    body = (article.get("body") or "")
+    if body:
+        md_imgs = re.findall(r'!\[([^\]]*)\]\(([^)]+)\)', body)
+        for idx, (alt, url) in enumerate(md_imgs):
+            url = url.strip()
+            if (url and len(url) > 10 and url not in seen_urls
+                    and not url.startswith("data:")
+                    and not url.lower().endswith(".svg")):
+                images.append({
+                    "key": f"body_{idx + 1}",
+                    "url": url,
+                    "caption": (alt or "").strip()
+                })
+                seen_urls.add(url)
+
+    return images
+
+
+def _download_and_crop_for_reel(url, article_id, scene_idx,
+                                out_dir="/tmp/videshi_gen"):
+    """Download an article image, crop/resize to 1080x1920 (9:16 fill), and
+    upload to Supabase. Returns the public URL or None on failure.
+
+    Uses center-crop: the image is resized so its SHORTER dimension fills the
+    target, then the excess is cropped from the center. This avoids letterboxing.
+    Uses GraphicsMagick (gm convert) which is available in this environment.
+    """
+    os.makedirs(out_dir, exist_ok=True)
+    local_dl = os.path.join(out_dir, f"artimg_{article_id}_{scene_idx}_raw")
+    local_out = os.path.join(out_dir, f"artimg_{article_id}_{scene_idx}.jpg")
+
+    TARGET_W, TARGET_H = 1080, 1920
+
+    try:
+        # Download — use curl for reliability (handles wikimedia, pexels, etc.)
+        ua = "TheVideshi/1.0 (thevideshi.com)"
+        result = subprocess.run(
+            ["curl", "-sS", "-L", "--fail", "-A", ua,
+             "-o", local_dl, "--max-time", "30", url],
+            capture_output=True, text=True, timeout=40,
+        )
+        if result.returncode != 0 or not os.path.exists(local_dl):
+            print(f"  ⚠️ Article image download failed: {url[:60]}")
+            return None
+        if os.path.getsize(local_dl) < 2048:
+            print(f"  ⚠️ Article image too small (< 2KB): {url[:60]}")
+            _safe_remove(local_dl)
+            return None
+
+        # Verify it's a real image (not HTML error page)
+        with open(local_dl, "rb") as fh:
+            head = fh.read(16)
+        if not (head[:3] == b"\xff\xd8\xff" or head[:8] == b"\x89PNG\r\n\x1a\n"
+                or head[:6] in (b"GIF87a", b"GIF89a") or head[:4] == b"RIFF"
+                or head[:2] == b"BM"):
+            print(f"  ⚠️ Article image is not a real image file: {url[:60]}")
+            _safe_remove(local_dl)
+            return None
+
+        # Center-crop to 1080x1920 using GraphicsMagick
+        # -resize WxH^ makes shortest side fill target, then -gravity Center -crop trims
+        crop_cmd = (f"gm convert {local_dl} "
+                    f"-resize {TARGET_W}x{TARGET_H}^ "
+                    f"-gravity Center "
+                    f"-crop {TARGET_W}x{TARGET_H}+0+0 "
+                    f"+repage -quality 90 {local_out}")
+        rc = os.system(crop_cmd)
+        if rc != 0 or not os.path.exists(local_out):
+            print(f"  ⚠️ Article image crop failed (rc={rc}): {url[:60]}")
+            _safe_remove(local_dl)
+            return None
+
+        # Upload to Supabase
+        import hashlib
+        with open(local_out, "rb") as fh:
+            _h = hashlib.md5(fh.read()).hexdigest()[:10]
+        storage_path = f"reel-gen/{article_id}/art-scene-{scene_idx}-{_h}.jpg"
+        pub_url = upload_asset(local_out, storage_path, "image/jpeg")
+
+        # Cleanup
+        _safe_remove(local_dl)
+        _safe_remove(local_out)
+
+        if pub_url:
+            print(f"  📸 Article image cropped & uploaded for scene {scene_idx}")
+        return pub_url
+
+    except Exception as e:
+        print(f"  ⚠️ Article image processing error: {e}")
+        _safe_remove(local_dl)
+        _safe_remove(local_out)
+        return None
+
+
+def _safe_remove(path):
+    """Remove a file if it exists, silently ignoring errors."""
+    try:
+        if os.path.exists(path):
+            os.remove(path)
+    except Exception:
+        pass
+
+
 def generate_responses_api_scenes(article, storyboard, article_id,
                                   out_dir="/tmp/videshi_gen"):
-    """Generate all scene images using the OpenAI Responses API.
+    """Generate scene images using a HYBRID approach: real article photos where
+    they fit + AI-generated images (Responses API) for data viz/infographics.
 
-    Takes the existing storyboard (from generate_script) and generates images
+    Takes the existing storyboard (from generate_script) and produces images
     for every scene. Returns (urls, media_meta) in the same format as
     source_reel_media_clean.
 
-    Phase 1: Send the article to GPT-4o (Responses API, text-only) to create
-             detailed image descriptions for each scene.
-    Phase 2: Generate each scene image one at a time, chaining via
-             previous_response_id so each generation has full context.
+    Phase 1: Extract available article images (hero + body inline images).
+             Send article + available images + storyboard to GPT-4o to decide
+             which scenes use a real article photo vs which need AI generation.
+    Phase 2: For each scene:
+             - image_source starts with "article_" → download, crop 1080x1920, upload
+             - image_source == "generate" → generate via Responses API with chaining
     """
     if not OPENAI_KEY:
         print("  ⚠️ No OpenAI key — cannot use Responses API for scenes")
@@ -4525,10 +4651,24 @@ def generate_responses_api_scenes(article, storyboard, article_id,
     body = (article.get("body") or "")[:3000]
 
     n_scenes = len(storyboard)
-    print(f"\n  🎨 Responses API: generating {n_scenes} scene images...")
+    print(f"\n  🎨 Responses API (hybrid): {n_scenes} scenes to source...")
 
-    # ── Phase 1: Plan visual descriptions ──
-    # Use the storyboard narration to guide image planning
+    # ── Extract available article images ──
+    article_images = _extract_article_images(article)
+    print(f"  📷 Found {len(article_images)} article image(s): "
+          f"{', '.join(img['key'] for img in article_images) if article_images else 'none'}")
+
+    # Build image catalog for the planning prompt
+    if article_images:
+        img_catalog_lines = []
+        for img in article_images:
+            cap = f" — {img['caption']}" if img['caption'] else ""
+            img_catalog_lines.append(f"  {img['key']}: {img['url'][:120]}{cap}")
+        img_catalog = "\n".join(img_catalog_lines)
+    else:
+        img_catalog = "  (no article images available — generate all scenes)"
+
+    # ── Phase 1: Plan visual descriptions + image source decisions ──
     scene_descriptions = []
     for s in storyboard:
         narration = s.get("narration", "")
@@ -4547,23 +4687,41 @@ Headline: {headline}
 Subheadline: {subheadline}
 Body: {body}
 
+AVAILABLE ARTICLE IMAGES (real editorial photos from the article):
+{img_catalog}
+
 STORYBOARD (narration per scene):
 {scenes_text}
 
-For each scene, write a DETAILED image description (150-250 chars) that would
-make a visually stunning, data-rich news graphic. Each scene should include
-article-specific imagery — real data numbers, charts, infographic elements,
-contextual visuals (buildings, maps, symbols relevant to the story).
+For each scene, decide whether to use an EXISTING article photo or GENERATE a new image.
+
+DECISION CRITERIA:
+- Use a real article photo when it visually matches the scene's topic (e.g. hero photo
+  of a building/location for an establishing scene, a person's photo for a scene about them)
+- Generate a NEW image when the scene needs data visualization, charts, infographics,
+  abstract concepts, or when no article image is relevant
+- Each article image should be used AT MOST ONCE across all scenes
+- The HOOK scene (scene 1) should prefer the article hero if one exists and is relevant
+- Do NOT use an article image if it would feel off-topic or forced for that scene
 
 RULES:
-- NO human faces in any scene
+- NO human faces in GENERATED scenes (real article photos with people are fine)
 - Each scene must be visually DISTINCT from the others
-- Include specific numbers/data from the article IN the image composition
+- For generated scenes: include specific numbers/data from the article in the composition
 - Think like a professional news graphics department
 
-Return JSON only: {{"scenes": [{{"scene": 1, "image_description": "detailed visual description..."}}]}}"""
+Return JSON only:
+{{"scenes": [
+  {{"scene": 1, "image_source": "hero", "image_description": "brief description of what the photo shows"}},
+  {{"scene": 2, "image_source": "generate", "image_description": "detailed visual description for AI generation (150-250 chars)"}},
+  {{"scene": 3, "image_source": "body_1", "image_description": "brief description of what the photo shows"}},
+  ...
+]}}
 
-    print(f"  📝 Phase 1: Planning image descriptions...", flush=True)
+Valid image_source values: {", ".join(f'"{img["key"]}"' for img in article_images)} for article photos, or "generate" for AI-generated images.
+If no article images are available, use "generate" for all scenes."""
+
+    print(f"  📝 Phase 1: Planning image sources & descriptions...", flush=True)
     try:
         r = requests.post(RESP_URL, headers=RESP_HEADERS, json={
             "model": "gpt-4o",
@@ -4596,33 +4754,77 @@ Return JSON only: {{"scenes": [{{"scene": 1, "image_description": "detailed visu
             clean = clean.rsplit("```", 1)[0]
         image_plan = json.loads(clean)
         planned_scenes = image_plan.get("scenes", [])
-        print(f"  ✅ Phase 1: got {len(planned_scenes)} image descriptions")
+        print(f"  ✅ Phase 1: got {len(planned_scenes)} scene plans")
     except Exception as e:
         print(f"  ⚠️ Phase 1 JSON parse failed: {e}")
         print(f"  Raw: {plan_text[:300]}")
-        # Fall back to using storyboard card_text as image prompts
+        # Fall back: all scenes generated
         planned_scenes = [
-            {"scene": i + 1,
+            {"scene": i + 1, "image_source": "generate",
              "image_description": f"A visually stunning news infographic about: "
                                   f"{s.get('card_text', '')}. {s.get('card_subtext', '')}. "
                                   f"Data-rich, no human faces."}
             for i, s in enumerate(storyboard)
         ]
-        print(f"  ⏩ Using fallback descriptions from storyboard card_text")
+        print(f"  ⏩ Fallback: all scenes will be AI-generated")
 
-    # ── Phase 2: Generate each scene image ──
+    # Build quick lookup for article images by key
+    img_by_key = {img["key"]: img for img in article_images}
+
+    # Summarize the plan
+    n_article = sum(1 for s in planned_scenes if s.get("image_source", "generate") != "generate")
+    n_generate = sum(1 for s in planned_scenes if s.get("image_source", "generate") == "generate")
+    print(f"  📊 Plan: {n_article} article photo(s) + {n_generate} AI-generated scene(s)")
+    for s in planned_scenes:
+        src = s.get("image_source", "generate")
+        desc = (s.get("image_description") or "")[:60]
+        print(f"    Scene {s.get('scene', '?')}: {src} — {desc}...")
+
+    # ── Phase 2: Process each scene ──
     os.makedirs(out_dir, exist_ok=True)
     urls = []
     media_meta = {}
+    used_article_keys = set()  # Track which article images have been used
 
     for i, scene in enumerate(planned_scenes[:n_scenes]):
         desc = scene.get("image_description", "")
+        image_source = (scene.get("image_source") or "generate").strip()
+        scene_num = scene.get("scene", i + 1)
+        t0 = time.time()
+
+        # ── ARTICLE IMAGE PATH ──
+        if image_source != "generate" and image_source in img_by_key and image_source not in used_article_keys:
+            art_img = img_by_key[image_source]
+            print(f"  📸 Scene {scene_num}: using article image '{image_source}'...", flush=True)
+
+            pub_url = _download_and_crop_for_reel(art_img["url"], article_id, i, out_dir)
+            elapsed = time.time() - t0
+
+            if pub_url:
+                urls.append(pub_url)
+                media_meta[pub_url] = {
+                    "type": "image", "duration": 0,
+                    "is_generated": False, "is_article_image": True,
+                    "article_image_key": image_source,
+                    "curated": True, "generic_pexels": False,
+                }
+                used_article_keys.add(image_source)
+                print(f"  ✅ Scene {scene_num} — article photo '{image_source}' ({elapsed:.0f}s)")
+                continue
+            else:
+                print(f"  ⚠️ Scene {scene_num} article image failed — falling back to generate")
+                # Fall through to generation below
+
+        elif image_source != "generate" and image_source in used_article_keys:
+            print(f"  ⚠️ Scene {scene_num}: '{image_source}' already used — falling back to generate")
+        elif image_source != "generate":
+            print(f"  ⚠️ Scene {scene_num}: '{image_source}' not found in article — falling back to generate")
+
+        # ── AI GENERATION PATH ──
         if not desc:
             desc = f"A news infographic scene about {storyboard[i].get('card_text', 'breaking news')}"
 
-        scene_num = scene.get("scene", i + 1)
-        print(f"  🖼️ Phase 2: Generating scene {scene_num}/{n_scenes}...", flush=True)
-        t0 = time.time()
+        print(f"  🖼️ Scene {scene_num}: generating via Responses API...", flush=True)
 
         gen_prompt = f"Now generate scene {scene_num}'s image. Scene description: {desc}"
         try:
@@ -4680,7 +4882,7 @@ Return JSON only: {{"scenes": [{{"scene": 1, "image_description": "detailed visu
                             "curated": True, "generic_pexels": False,
                         }
                         img_saved = True
-                        print(f"  ✅ Scene {scene_num} saved ({elapsed:.0f}s) — "
+                        print(f"  ✅ Scene {scene_num} generated ({elapsed:.0f}s) — "
                               f"{revised[:80]}...")
                     else:
                         print(f"  ⚠️ Scene {scene_num} upload failed")
@@ -4688,7 +4890,10 @@ Return JSON only: {{"scenes": [{{"scene": 1, "image_description": "detailed visu
         if not img_saved:
             print(f"  ⚠️ Scene {scene_num}: no image in response ({elapsed:.0f}s)")
 
-    print(f"\n  🎨 Responses API: {len(urls)}/{n_scenes} scenes generated")
+    n_art_used = sum(1 for m in media_meta.values() if m.get("is_article_image"))
+    n_gen_used = sum(1 for m in media_meta.values() if m.get("is_generated"))
+    print(f"\n  🎨 Responses API (hybrid): {len(urls)}/{n_scenes} scenes ready "
+          f"({n_art_used} article photos, {n_gen_used} AI-generated)")
     return urls, media_meta
 
 
