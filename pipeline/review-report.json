@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-07-03T08:15:20.166608+00:00",
+  "timestamp": "2026-07-03T08:45:24.923974+00:00",
   "mode": "fix",
   "stats": {
     "pass": 2,
@@ -11,18 +11,18 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "fdaa1f25-a14a-434b-a749-c26942e4a433",
-      "headline": "DHS Wants to End 'Duration of Status.' Indian Students Would Lose Their Safety Net",
-      "slug": "duration-of-status-f1-opt-overhaul-indian-students-20260703",
+      "id": "0f23f604-cca1-48f9-abe4-b1e69c535c20",
+      "headline": "India's Refiners Are Redrawing the Oil Map. The Iran War Forced Their Hand.",
+      "slug": "india-refiners-crude-oil-diversification-guyana-brazil-us-middle-east-iran-war-20260703",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "graduates celebrating at commencement",
-          "reason": "The photo shows a graduation scene relevant to the student-visa story."
+          "verdict": "MISMATCH",
+          "what_photo_shows": "award ceremony with three men",
+          "reason": "The photo shows an award ceremony, not related to oil refining or supply chains."
         },
         "inline_image_mismatches": []
       },
@@ -30,51 +30,49 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the topic of immigration or Indian students."
+          "score": 5,
+          "issue": "missing image description"
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively highlights the impact of the proposed rule on Indian students, making it highly relevant to the diaspora."
+          "quality": 7,
+          "note": "The article discusses India's energy strategy, which is relevant to NRIs concerned about global oil markets and India's geopolitical stance."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that directly relates to Indian students or immigration to enhance relevance.",
-          "Add quotes or testimonials from Indian students affected by the proposed rule to provide a personal perspective."
+          "Include a relevant image with a description that matches the article's content.",
+          "Add quotes or insights from diaspora experts or stakeholders in the energy sector to strengthen the diaspora connection."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "promoted to published"
+        "Cleared mismatched image (award ceremony with three men)",
+        "held: image mismatch"
       ],
       "revised": false,
       "unpublished": false,
+      "image_mismatch": true,
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "e7b7c692-d1b3-4ed5-9308-9ab35503a6a6",
-      "headline": "Four Courts Said No. Two Said Yes. The Supreme Court Will Decide Who Gets a Bond Hearing",
-      "slug": "mandatory-detention-circuit-split-scotus-bond-hearing-indian-20260703",
+      "id": "ffd45bce-2003-40cc-9a39-73cf8bd8a980",
+      "headline": "India's GST Revenue Just Hit \u20b91.95 Lakh Crore in a Single Month. The Real Story Is in the Imports.",
+      "slug": "india-gst-collections-surge-14-percent-june-2026-import-revenue-fiscal-strength-20260703",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [
           {
-            "article_id": "e4e26809-e804-479a-bee9-92c6523353db",
-            "headline": "The Supreme Court Settled Birthright Citizenship. For Indian"
-          },
-          {
-            "article_id": "5bf551c3-5065-4f7b-82e8-e50c103a7c51",
-            "headline": "The Supreme Court Just Killed a 90-Year Rule That Kept Agenc"
+            "article_id": "dd9d72cd-c58a-4b32-aed6-7a93f59129a1",
+            "headline": "India's GST Collections Just Surged 14% to \u20b91.95 Lakh Crore "
           }
         ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "United States Supreme Court building",
-          "reason": "The photo shows the Supreme Court, relevant to the story about a Supreme Court decision."
+          "what_photo_shows": "GST event with officials speaking",
+          "reason": "The photo shows a GST-related event, relevant to the story on GST revenue."
         },
         "inline_image_mismatches": []
       },
@@ -88,13 +86,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the legal issues surrounding immigration to the Indian American community, highlighting potential risks for long-term residents."
+          "note": "The article effectively connects the GST revenue data to the interests of the Indian diaspora, highlighting its significance as a real-time economic indicator."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more specific examples of how the ruling could impact Indian Americans in various immigration statuses.",
-          "Include quotes or perspectives from immigration attorneys or affected individuals to enhance the narrative."
+          "Consider adding more specific examples of how the GST revenue impacts NRIs directly, such as implications for investments or business opportunities.",
+          "Include a brief explanation of GST for readers who may not be familiar with the term, especially among the diaspora."
         ],
         "verdict": "pass"
       },
