@@ -6881,7 +6881,7 @@ def build_caption(article):
     return caption
 
 
-def register_reel(article, video_url, video_path, caption, poster_url=None, thumbnail_url=None, qa_score_actual=8, music_attribution=None):
+def register_reel(article, video_url, video_path, caption, poster_url=None, thumbnail_url=None, qa_score_actual=8, music_attribution=None, carousel_images=None):
     """Register in prebuilt_reels for IG/YT posting crons."""
     # Distribution dedup keys entirely on article_id; a row with a null/empty
     # article_id would silently bypass cross-surface dedup and risk a double-post.
@@ -6913,6 +6913,8 @@ def register_reel(article, video_url, video_path, caption, poster_url=None, thum
     # this is a best-effort structured copy and is stripped if the column is absent).
     if music_attribution:
         payload["music_attribution"] = music_attribution
+    if carousel_images:
+        payload["carousel_images"] = carousel_images  # JSON array of scene image URLs
 
     r = requests.post(
         f"{SB_URL}/rest/v1/prebuilt_reels",
@@ -6924,12 +6926,13 @@ def register_reel(article, video_url, video_path, caption, poster_url=None, thum
     if r.status_code in (200, 201):
         print(f"  ✅ Registered in prebuilt_reels")
         return True
-    elif r.status_code == 400 and ("poster_url" in r.text or "thumbnail_url" in r.text or "music_attribution" in r.text):
+    elif r.status_code == 400 and ("poster_url" in r.text or "thumbnail_url" in r.text or "music_attribution" in r.text or "carousel_images" in r.text):
         # Columns don't exist yet — retry without the optional columns
         print(f"  ⚠️ optional column(s) not in DB yet — registering without them")
         payload.pop("poster_url", None)
         payload.pop("thumbnail_url", None)
         payload.pop("music_attribution", None)
+        payload.pop("carousel_images", None)
         r2 = requests.post(
             f"{SB_URL}/rest/v1/prebuilt_reels",
             headers=SB_HEADERS,
@@ -7624,7 +7627,8 @@ def run_anchor_reel(article, dry_run=False, use_production=False, no_publish=Fal
             print(f"  🎵 Appended CC-BY music credit to caption: {reel_music_attribution}")
         register_reel(article, video_url, str(uploaded_video_path), caption,
                       poster_url=uploaded_poster_url, thumbnail_url=uploaded_thumb_url,
-                      qa_score_actual=qa_score, music_attribution=reel_music_attribution or None)
+                      qa_score_actual=qa_score, music_attribution=reel_music_attribution or None,
+                      carousel_images=image_urls)
 
     # 12. Done — distribution handled by videshi-distribute-reels cron
     # (generates once, distributes to IG/YT/Threads/X/FB from prebuilt_reels)
