@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-03T17:45:20.291439+00:00",
+  "timestamp": "2026-07-03T18:16:40.705766+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 0,
+    "pass": 7,
     "flag": 1,
     "fail": 0,
     "error": 0
@@ -10,6 +10,307 @@
   "revisions": 1,
   "unpublished": 0,
   "articles": [
+    {
+      "id": "41f33f88-f166-429d-9caf-38cccd398e67",
+      "headline": "Why Every Fortune 500 Wants an AI Hub in India: GCCs Cross 2,100 and Half a Million Hires",
+      "slug": "fortune-500-ai-hub-india-gcc-cross-2100-half-million-hires-20260703",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "office buildings in tech park",
+          "reason": "The photo shows a tech park, relevant to the story about GCCs in India."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses opportunities for NRIs in the context of the growing GCCs in India, making it relevant for the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more specific examples of how NRIs can leverage the GCC boom for career opportunities.",
+          "Add quotes or insights from NRI professionals who have returned to India or are considering it."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "515bea2a-8668-47d8-bbff-66c38c266ef4",
+      "headline": "India's AI Startup Funding Explodes 317% \u2014 Here's Where the Smart Money Is Going",
+      "slug": "india-ai-startup-funding-explodes-317-percent-h1-2026-20260703",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "a humanoid robot in an office",
+          "reason": "The robot is relevant to the AI technology theme of the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively highlights opportunities for Indian Americans in venture capital and technology, making a strong connection to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of Indian AI startups that have successfully attracted funding to enhance the article's depth.",
+          "Include quotes or insights from diaspora investors to further strengthen the connection to the NRI audience."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "4be0a81a-bf84-4c29-b396-3188fa637e19",
+      "headline": "India's AI Job Paradox: Hiring Surges 16% Even as IT Giants Slash Thousands",
+      "slug": "india-ai-job-paradox-hiring-surges-it-giants-slash-20260703",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "TCS Chairman N. Chandrasekaran",
+          "reason": "The photo shows the correct named person relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 5,
+          "issue": "The image does not directly relate to the article's focus on AI and job market trends."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the job market changes to the Indian diaspora, emphasizing the need for upskilling and the opportunities available."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that reflects AI and technology job trends.",
+          "Expand on the implications for the diaspora with specific examples of how they can adapt to the changing job landscape."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "b4c51e59-8c1a-4ea1-a15c-c76db530b561",
+      "headline": "HCLTech Just Landed a $1.14 Billion AI Deal With a European Giant \u2014 Its Biggest in Three Years",
+      "slug": "hcltech-1-14-billion-ai-deal-european-fortune-global-50-digital-workplace-indian-it-nri-investor-20260703",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "HCLTech headquarters building",
+          "reason": "The photo shows HCLTech headquarters, relevant to the story about HCLTech's business deal."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image is relevant to HCLTech but does not directly illustrate the AI deal discussed."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article connects the deal to NRI investors and Indian-origin professionals, making it relevant for the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include a direct quote from HCLTech or industry experts to enhance credibility.",
+          "Add more context on how this deal impacts the global IT landscape, particularly for NRIs."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "b831d23b-cff0-4dcc-aa5b-b6b3b6e9b446",
+      "headline": "South Asians Face Elevated Heart Risk by Age 45 Despite Healthier Habits \u2014 and the Paradox Runs Deeper Than Diet",
+      "slug": "south-asian-heart-risk-age-45-masala-study-northwestern-prediabetes-hypertension-nri-diaspora-20260703",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "healthcare worker checking blood pressure",
+          "reason": "The photo aligns with the story about health screenings for South Asians."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses the South Asian diaspora's health concerns and provides actionable advice."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more personal stories or testimonials from South Asians affected by these health issues to enhance relatability.",
+          "Include a section on resources or organizations that can help South Asians manage their cardiovascular health."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "a309cfa5-7b56-49aa-bba4-850ebb06cecf",
+      "headline": "InterContinental Mahabalipuram Reopens After a Multi-Million-Dollar Makeover \u2014 and Tamil NRIs Have a New Reason to Visit",
+      "slug": "intercontinental-mahabalipuram-reopens-luxury-nri-20260703",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "The Shore Temple at Mahabalipuram",
+          "reason": "The photo shows a landmark near the resort mentioned in the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the reopening of the resort to the Tamil diaspora's cultural ties to Mahabalipuram."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include quotes or testimonials from Tamil NRIs who have visited the resort to enhance the diaspora connection.",
+          "Add more details about the specific amenities that cater to NRI preferences, such as family-friendly options or cultural events."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "fee0fbff-85a6-47d1-a048-d388baba7a8a",
+      "headline": "IndiGo Launches 'Lite' Fares \u2014 and NRIs Flying Within India Should Pay Attention",
+      "slug": "indigo-lite-fare-cabin-bag-nri-travel-20260703",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "IndiGo Airbus A320 in flight",
+          "reason": "The photo shows an IndiGo aircraft, relevant to the airline story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the fare changes to NRIs, highlighting potential savings for Indian Americans traveling within India."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more specific examples of how NRIs can benefit from the Lite fare, perhaps with a comparison to traditional fares.",
+          "Add a brief section on how these fare changes might affect travel plans for NRIs in the long term."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
     {
       "id": "fe9870c8-0eab-46a9-b5d0-aeed62142a74",
       "headline": "Alpha Opens to a Whimper, Not a Bang: The Spy Universe's Most Expensive Misfire Yet",
@@ -23,26 +324,33 @@
       },
       "llm_review": {
         "overall_score": 6,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://youtube.com/watch?v=QRqGwGwo1Y0",
+            "problem": "irrelevant",
+            "explanation": "The YouTube link does not provide relevant content related to the article's critique of the film."
+          }
+        ],
         "image_match": {
-          "score": 5,
-          "issue": "hero image not provided"
+          "score": 8,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article discusses the film's impact on the Indian diaspora and their cultural connection."
+          "quality": 7,
+          "note": "The article effectively connects the film's performance to the Indian diaspora's cultural experience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include a relevant hero image that reflects the film or its themes.",
-          "Provide more context on how the film's performance affects the diaspora beyond just box office numbers."
+          "Replace the YouTube link with a more relevant embed that discusses the film or its themes.",
+          "Consider adding more quotes or insights from diaspora audiences to strengthen the connection."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
-        "Revised by gemini-2.5-flash (975\u21921039 words)"
+        "Removed irrelevant embed: https://youtube.com/watch?v=QRqGwGwo1Y0",
+        "Revised by gemini-2.5-flash (1039\u21921039 words)"
       ],
       "revised": true,
       "unpublished": false,
