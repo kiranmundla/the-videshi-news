@@ -1,28 +1,37 @@
 {
-  "timestamp": "2026-07-03T16:45:34.263633+00:00",
+  "timestamp": "2026-07-03T17:15:32.273129+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 1,
     "flag": 1,
     "fail": 0,
     "error": 0
   },
-  "revisions": 0,
+  "revisions": 1,
   "unpublished": 0,
   "articles": [
     {
-      "id": "8fa6f95c-58c4-4a73-a3bd-3cf3ff2ecf55",
-      "headline": "Adani and Abu Dhabi Are Building a $11.5 Billion Aluminium Complex in Odisha. It Would Be India's Biggest Foreign Metals Investment Ever.",
-      "slug": "adani-ihc-odisha-aluminium-11-billion-india-largest-metals-fdi-20260703",
+      "id": "198d426c-51a1-4d4f-965f-96d2934c3bb0",
+      "headline": "From Lagaan to Lalkaar: Aamir Khan and Ashutosh Gowarikar Reunite for a Partition-Era Cricket Epic",
+      "slug": "aamir-khan-ashutosh-gowarikar-lalkaar-lala-amarnath-biopic-lagaan-reunion-20260703",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "104b0d9d-138d-4e5d-8ba8-2a3788ce5fe2",
+            "headline": "He Bet Everything on a Cricket Film Nobody Wanted \u2014 25 Years"
+          },
+          {
+            "article_id": "7eb0363d-e41b-451f-9b79-9c3a52b2f418",
+            "headline": "Aamir Khan Is Getting Married Again \u2014 and This Time, He's Do"
+          }
+        ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A man in a suit",
-          "reason": "The photo shows Gautam Adani, relevant to the story."
+          "what_photo_shows": "Aamir Khan with glasses and mustache",
+          "reason": "The photo shows Aamir Khan, who is relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -30,113 +39,72 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 5,
-          "issue": "image does not match the article's topic"
+          "score": 7,
+          "issue": "The image features Aamir Khan but does not directly relate to the film or cricket theme."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article discusses significant foreign investment in India, which is relevant to the NRI community interested in economic developments."
+          "quality": 9,
+          "note": "The article effectively connects Lala Amarnath's story to the NRI audience, particularly those with roots in pre-Partition Punjab."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that directly relates to the aluminium complex or the Adani Group to enhance relevance.",
-          "Add quotes or perspectives from diaspora members or experts to strengthen the connection to the NRI audience."
+          "Consider including more recent images or promotional material related to the film *Lalkaar*.",
+          "Add quotes or reactions from Aamir Khan or Ashutosh Gowarikar to enhance the article's depth."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "fe9870c8-0eab-46a9-b5d0-aeed62142a74",
+      "headline": "Alpha Opens to a Whimper, Not a Bang: The Spy Universe's Most Expensive Misfire Yet",
+      "slug": "alpha-opening-day-box-office-mixed-reviews-spy-universe-lowest-20260703",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MISMATCH",
+          "what_photo_shows": "group of officials at an event",
+          "reason": "The photo shows officials, not related to the film or actors mentioned."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 6,
+        "embed_issues": [],
+        "image_match": {
+          "score": 5,
+          "issue": "hero image not provided"
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 6,
+          "note": "The article discusses a major Bollywood release, which is relevant to the Indian diaspora, but lacks deeper connections to NRI perspectives."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include a relevant hero image that reflects the article's content.",
+          "Enhance the diaspora angle by incorporating quotes or perspectives from NRI audiences regarding the film."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
-        "promoted to published"
+        "Cleared mismatched image (group of officials at an event)",
+        "Revised by gemini-2.5-flash (850\u2192975 words)"
       ],
-      "revised": false,
+      "revised": true,
       "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "68a171c4-7c78-441b-8cc3-e7f9a3c264c9",
-      "headline": "India's Biggest Trade Deal Goes Live in Twelve Days. Here's What Changes for the Diaspora.",
-      "slug": "india-uk-ceta-trade-deal-july-15-diaspora-dcc-social-security-20260703",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Piyush Goyal with UK officials",
-          "reason": "The photo shows Piyush Goyal, relevant to the trade agreement story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively highlights the benefits of the trade deal for the Indian diaspora, particularly regarding social security contributions."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more specific examples of how the trade deal will impact everyday life for the diaspora.",
-          "Add quotes or insights from diaspora members or experts to enhance relatability."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "69fbcb80-008e-46c4-a410-a8634ee42c57",
-      "headline": "India Are In. Pakistan Might Be Out. Cricket's Olympic Return Has Already Redrawn the Map.",
-      "slug": "india-qualified-cricket-la-2028-olympics-pakistan-out-knight-riders-pomona-stadium-diaspora-nri",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "aerial view of cricket ground",
-          "reason": "The photo shows a cricket ground, relevant to the cricket Olympics story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the Olympic cricket event to the Indian diaspora in Los Angeles, highlighting the significance of local matches for the community."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from cricket officials or players to enhance the article's depth.",
-          "Include more context on the historical significance of cricket's return to the Olympics for a broader audience."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
+      "image_mismatch": true,
       "llm_source": "gpt-4o-mini"
     }
   ]
