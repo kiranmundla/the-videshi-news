@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-03T00:45:44.574031+00:00",
+  "timestamp": "2026-07-03T01:15:37.635610+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 5,
-    "flag": 0,
+    "pass": 1,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,85 +11,54 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "b94270f9-0c10-4e69-af1c-2769d342e6a3",
-      "headline": "Haldi Doodh to Herb of the Year: How India's Golden Spice Conquered American Wellness",
-      "slug": "haldi-doodh-to-herb-of-the-year-how-indias-golden-spice-conquered-american-welln",
+      "id": "91a00e25-dcda-4db6-abc7-4c3691ce95f5",
+      "headline": "She Plays a Deaf Hitwoman. Her Brother Produced It. Tomorrow, She Opens Opposite Alia Bhatt.",
+      "slug": "baby-do-die-do-huma-qureshi-deaf-hitwoman-alpha-underdog-saqib-saleem-mumbai-thriller-diaspora-nri-20260702",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "bowl of golden turmeric powder",
-          "reason": "The photo shows turmeric, which is relevant to the story about turmeric being Herb of the Year."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the topic of turmeric to the Indian diaspora's experiences and sentiments regarding cultural appropriation and validation."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more specific examples of how turmeric is used in American cuisine to enhance relatability.",
-          "Include quotes or insights from diaspora members to further enrich the cultural perspective."
+        "duplicate_images": [
+          {
+            "article_id": "df5766e4-04e7-4b4a-aa85-002def07e53c",
+            "headline": "She's Deaf, She's Mute, and She's Bollywood's First Desi Hit"
+          }
         ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "e7c2db7d-f3f3-4aa5-a0a6-7f35d2b8d405",
-      "headline": "Delhi Just Banned New Petrol Two-Wheelers From 2028. The Capital's \u20b915,000 Crore EV Gamble Is Now Live.",
-      "slug": "delhi-ev-policy-2026-petrol-ban-two-wheelers-electric-vehicle-charging-20260702",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "officials at EV charging inauguration",
-          "reason": "The photo shows an EV charging point inauguration, relevant to the EV policy story."
+          "what_photo_shows": "A woman identified as Huma Qureshi",
+          "reason": "The photo shows the correct named person for the story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 7,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DaSyHXIMSU9/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel does not appear to be directly related to the film or its themes, making it less relevant to the article."
+          }
+        ],
         "image_match": {
           "score": 8,
-          "issue": "The image of Nitin Gadkari inaugurating EV charging points is relevant to the article's topic on Delhi's EV policy."
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 7,
-          "note": "The article discusses a significant policy change in India that may interest NRIs concerned about environmental issues and investment opportunities in the Indian EV market."
+          "note": "The article discusses the film's potential limited release overseas, which connects with the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes from experts or stakeholders to enhance credibility.",
-          "Add a section on how this policy might affect NRIs or Indian businesses abroad."
+          "Replace the irrelevant Instagram embed with a more relevant one, perhaps featuring a trailer or promotional content related to the film.",
+          "Expand on the diaspora angle by including insights on how the film might resonate with NRI audiences or its themes of identity and belonging."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DaSyHXIMSU9/",
         "promoted to published"
       ],
       "revised": false,
@@ -97,61 +66,31 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "d13e2f7c-5dcd-4c17-89d4-9bafc44856ca",
-      "headline": "Britannia, Bikano, and Beyond: Indian Snack Brands Storm the American Grocery Aisle",
-      "slug": "britannia-bikano-and-beyond-indian-snack-brands-storm-the-american-grocery-aisle",
+      "id": "ca80ab70-06e6-4828-ba7f-f639bb4290f7",
+      "headline": "Bollywood Just Had Its Biggest Six Months Ever. One Man Earned Nearly Half of It.",
+      "slug": "bollywood-record-2075-crore-first-half-2026-ranveer-singh-dhurandhar-akshay-kumar-diaspora-nri-20260702",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Indian spice mixes on store shelf",
-          "reason": "The photo shows Indian packaged foods, relevant to the story about Indian snack brands in American stores."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly depict Indian snacks or grocery aisles, which could enhance relevance."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects with the Indian diaspora by discussing the availability of familiar brands in American stores and the emotional implications of this mainstreaming."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider including more visuals of the products mentioned to enhance reader engagement.",
-          "Add quotes or testimonials from Indian Americans about their experiences with these brands in the U.S."
+        "duplicate_images": [
+          {
+            "article_id": "b557b97c-8049-4c56-bdf2-cdf3bb56a52e",
+            "headline": "Ranveer Singh Is About to Destroy Mumbai \u2014 and Spend \u20b9300 Cr"
+          },
+          {
+            "article_id": "63aeac1c-ee7c-4dc6-9423-052c92b4c86e",
+            "headline": "\u20b93,000 Crore in Six Months \u2014 Bollywood Just Had Its Most Sav"
+          },
+          {
+            "article_id": "f3d12ea2-86e1-47b0-9bb7-c892a88b005a",
+            "headline": "\u20b91,300 Crore Wasn't Enough. Dhurandhar Just Landed in Japan."
+          }
         ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "1c7e667b-0161-481b-9a0f-be25adda8141",
-      "headline": "India's First Private Rocket Is Ten Days From Orbit. The Startup Behind It Just Became a Unicorn.",
-      "slug": "skyroot-aerospace-vikram-1-india-first-private-orbital-rocket-launch-20260702",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Skyroot's Vikram-S rocket launch",
-          "reason": "The photo shows a Skyroot rocket, relevant to the story about Skyroot Aerospace."
+          "what_photo_shows": "A man in ornate clothing",
+          "reason": "The photo plausibly shows Ranveer Singh, relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -164,52 +103,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article mentions Indian-origin investors and technologists, connecting the topic to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Expand on the diaspora connection to provide more context on how NRIs can engage with or benefit from India's space tech advancements.",
-          "Include quotes or insights from diaspora experts in the space industry to enhance the article's relevance to NRI readers."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "4b05c466-1f23-482b-b626-d7b32d2745b6",
-      "headline": "Indian Immigrants Have Built 96 Billion-Dollar Startups in America. No Other Country Comes Close.",
-      "slug": "indian-immigrants-96-us-unicorns-nfap-founders-20260702",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image description is missing, making it difficult to assess relevance."
-        },
-        "diaspora_angle": {
-          "present": true,
           "quality": 8,
-          "note": "The article effectively connects the achievements of Indian immigrants to the broader Indian diaspora narrative."
+          "note": "The article effectively connects Bollywood's success to NRI audiences, discussing their engagement with films and the theatrical experience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include a relevant image description to enhance the image match score.",
-          "Consider adding quotes or anecdotes from some of the featured entrepreneurs to provide a more personal touch."
+          "Include more specific examples of how NRIs are engaging with Bollywood films, such as box office numbers from specific regions.",
+          "Add quotes or insights from diaspora audiences to enhance the connection with NRI readers."
         ],
         "verdict": "pass"
       },
