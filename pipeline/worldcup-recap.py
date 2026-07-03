@@ -77,6 +77,20 @@ TEAM_WIKI_SLUGS = {
 WC_IMAGE = "https://upload.wikimedia.org/wikipedia/en/thumb/e/e3/2026_FIFA_World_Cup_logo.svg/800px-2026_FIFA_World_Cup_logo.svg.png"
 
 
+def get_social_image(query):
+    """Try to get a real match photo from the WC social image library."""
+    try:
+        sys.path.insert(0, SCRIPT_DIR)
+        from wc_social_images import get_image_for_article
+        result = get_image_for_article(query)
+        if result and result.get("image_url"):
+            print(f"   📸 Social image found: @{result.get('account','?')} — {result['image_url'][:80]}")
+            return result
+    except Exception as e:
+        print(f"   ⚠ Social image lookup failed: {e}")
+    return None
+
+
 def get_wiki_image(team_name):
     """Try to get a Wikipedia image for a team."""
     import requests
@@ -427,11 +441,21 @@ def generate_article(matches, target_date, all_data):
     body += "Follow our [World Cup tracker](/world-cup-2026) for live scores, group standings, and highlights. "
     body += "Attending a match? Check our [NRI guide](/world-cup-2026) for venue tips and ticket links.*\n"
 
-    # Pick image — use the "biggest" winner's team image, or fallback to WC logo
+    # Pick image — try social image library first, then wiki, then WC logo
     best_match = max(matches, key=lambda m: abs(parse_score(m)[0] - parse_score(m)[1]))
     hg, ag = parse_score(best_match)
     featured_team = best_match["home"] if hg >= ag else best_match["away"]
-    image_url = get_wiki_image(featured_team) or WC_IMAGE
+    
+    # Social image library (real match photos from IG/Threads, permanent Supabase URLs)
+    social = get_social_image(f"{best_match['home']} {best_match['away']}")
+    if social:
+        image_url = social["image_url"]
+        image_caption = social.get("caption", "")[:100] or f"FIFA World Cup 2026 — Day {day_number} recap"
+        image_attribution = social.get("attribution", "@fifaworldcup / Instagram")
+    else:
+        image_url = get_wiki_image(featured_team) or WC_IMAGE
+        image_caption = f"FIFA World Cup 2026 — Day {day_number} recap"
+        image_attribution = "Wikimedia Commons"
 
     # Tags
     teams = []
@@ -458,8 +482,8 @@ def generate_article(matches, target_date, all_data):
         "is_editorial": False,
         "published_at": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
         "image_url": image_url,
-        "image_caption": f"FIFA World Cup 2026 — Day {day_number} recap",
-        "image_attribution": "Wikimedia Commons",
+        "image_caption": image_caption,
+        "image_attribution": image_attribution,
         "diaspora_angle": f"World Cup matches in US cities near major NRI communities. {len([m for m in matches if m['city'] in ['San Francisco Bay Area', 'New York/New Jersey', 'Los Angeles', 'Houston', 'Dallas', 'Boston']])} of today's {len(matches)} matches were in cities with large Indian-American populations.",
         "body": body,
         "sources": json.dumps([
@@ -748,14 +772,25 @@ def generate_match_article(match, all_data):
             f"{match['date']}) for all of today's results.*\n"
         )
 
-    # Image: try Wikimedia Commons stadium photo first, then team wiki image
+    # Image: try social images first (real match photos), then Wikimedia, then fallback
     print(f"   🖼️  Sourcing image...")
-    image_url = fetch_stadium_image(venue, city)
-    image_caption = f"{venue} in {city} — venue for {home} vs {away} at the 2026 FIFA World Cup (Wikimedia Commons)"
-    if not image_url:
-        featured_team = home if hg >= ag else away
-        image_url = get_wiki_image(featured_team) or WC_IMAGE
-        image_caption = f"{home} vs {away} — FIFA World Cup 2026, Group {group}"
+    image_attribution = "Wikimedia Commons"
+    
+    # Priority 1: Social image library (real match photos from IG/Threads)
+    social = get_social_image(f"{home} {away}")
+    if social:
+        image_url = social["image_url"]
+        image_caption = social.get("caption", "")[:100] or f"{home} vs {away} — FIFA World Cup 2026"
+        image_attribution = social.get("attribution", "@fifaworldcup / Instagram")
+    else:
+        # Priority 2: Wikimedia Commons stadium photo
+        image_url = fetch_stadium_image(venue, city)
+        image_caption = f"{venue} in {city} — venue for {home} vs {away} at the 2026 FIFA World Cup (Wikimedia Commons)"
+        if not image_url:
+            # Priority 3: Team wiki image
+            featured_team = home if hg >= ag else away
+            image_url = get_wiki_image(featured_team) or WC_IMAGE
+            image_caption = f"{home} vs {away} — FIFA World Cup 2026, Group {group}"
     if image_url:
         print(f"   ✅ Image: {image_url[:80]}...")
 

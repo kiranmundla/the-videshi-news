@@ -9,6 +9,27 @@ Search ALL available sources, then pick the most relevant image for THIS specifi
 
 ## Sources (search ALL, then pick best)
 
+### Source 0: World Cup Social Image Library — BEST for FIFA World Cup 2026 articles
+
+If the article is about the **FIFA World Cup 2026** (match results, knockout rounds, team performances, player highlights, World Cup fan experiences), check this library FIRST. It contains real match photos from @fifaworldcup, @fifa, @usmnt, @foxsports, @espnfc, @brfootball, etc. — all on permanent Supabase URLs.
+
+```bash
+cd ~/workspace/the-videshi-news/pipeline
+set -a; source ~/workspace/.env.supabase; set +a
+python3 wc_social_images.py --query "TEAM1 TEAM2 KEYWORD" --json-out --limit 3
+```
+
+Returns JSON array. Use the `image_url` field (permanent Supabase URL) as the article's `image_url`, and `image_credit` as `image_attribution`. Write your own `image_caption` describing what the photo shows.
+
+Examples:
+- `--query "Brazil Japan goal"` for Brazil vs Japan match article
+- `--query "USA USMNT Tillman"` for USA match article
+- `--teams "France,Sweden"` for match-specific lookup
+
+**These images are already uploaded to Supabase — permanent URLs that never expire.** Skip Wikipedia/Pexels if this returns a relevant result.
+
+If no results, fall through to Source 1/2/3/4 below.
+
 ### Source 1: Wikipedia Person Image — MANDATORY first check for person articles
 If the article is predominantly about a **specific named person** (politician, athlete, celebrity, business leader, etc.), you MUST try Wikipedia first. Do NOT go straight to Pexels for person articles.
 
