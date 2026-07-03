@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-03T03:15:30.333592+00:00",
+  "timestamp": "2026-07-03T04:15:28.230219+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
+    "pass": 2,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "7649bb81-4329-456a-ac20-88fbc2075e42",
-      "headline": "Sai Pallavi and Vijay Sethupathi Have Never Shared a Frame. Mani Ratnam Just Fixed That.",
-      "slug": "mani-ratnam-vijay-sethupathi-sai-pallavi-netflix-20-crore-romance-ar-rahman-production-23-diaspora-nri-20260702",
+      "id": "451c95ff-6fd2-4dc2-a5f6-9b1db0f680de",
+      "headline": "USCIS Is Denying Green Cards Over Old Day 1 CPT Enrolments. The Safety Net Is Gone",
+      "slug": "day-1-cpt-green-card-denial-duration-of-status-india-20260703",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Man on phone, possibly Vijay Sethupathi",
-          "reason": "The photo plausibly shows Vijay Sethupathi, relevant to the story."
+          "what_photo_shows": "graduates holding diplomas",
+          "reason": "The photo is relevant to a story about student visas and immigration."
         },
         "inline_image_mismatches": []
       },
@@ -30,19 +30,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 5,
-          "issue": "image does not feature Sai Pallavi"
+          "score": 7,
+          "issue": "The image does not directly relate to the topic of immigration or green cards."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively highlights the global streaming availability of the film, appealing to diaspora audiences."
+          "quality": 9,
+          "note": "The article discusses the impact of immigration policies on Indian nationals, which is highly relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include an image that features both Sai Pallavi and Vijay Sethupathi to better match the article's headline.",
-          "Consider adding quotes or reactions from the diaspora community regarding the film's release."
+          "Consider using an image that directly represents immigration or the challenges faced by Indian students in the U.S.",
+          "Include quotes or testimonials from affected individuals to enhance the emotional connection and provide personal perspectives."
         ],
         "verdict": "pass"
       },
@@ -54,61 +54,39 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "b282c237-9b4f-4671-b752-49c97aa6c2da",
-      "headline": "ShareChat Just Turned Profitable. Now It Wants $400 Million From Public Markets.",
-      "slug": "sharechat-ipo-400-million-profitable-micro-drama-20260703",
+      "id": "fae798da-570b-4a2a-bd83-25123ccfcedc",
+      "headline": "Eleven Million Cases and Counting. USCIS Cannot Process Its Own Workload",
+      "slug": "uscis-backlog-11-million-cases-processing-freeze-india-20260703",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "person using smartphone apps",
-          "reason": "The photo shows a smartphone with apps, relevant to a tech story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the topic of ShareChat or its IPO."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the IPO of ShareChat to NRI investors, highlighting its significance in the Indian tech ecosystem."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that reflects the theme of ShareChat or its services.",
-          "Expand on the implications of ShareChat's success for NRIs, possibly including quotes or insights from NRI investors."
+        "duplicate_images": [
+          {
+            "article_id": "a9387eb6-819d-4880-857e-da536b0dea36",
+            "headline": "India's EB-5 Investor Green Cards Just Ran Out. The Escape H"
+          },
+          {
+            "article_id": "2f893da9-3f4b-4ee9-9998-647e3cb86da1",
+            "headline": "Eleven Million Cases and Counting. The Green Card Machine Ca"
+          },
+          {
+            "article_id": "1b21ce05-c4a8-4b9c-867a-df5de0b99356",
+            "headline": "He Filed Fake H-1B Petitions Under UC Davis's Name. Now He F"
+          },
+          {
+            "article_id": "616863da-e588-442a-b199-5a0e9c221ae0",
+            "headline": "EB-2 India Went Dark. Now the Escape Routes Are Getting Crow"
+          },
+          {
+            "article_id": "013fe3d7-d671-4d50-8625-f502a1bda945",
+            "headline": "The H-1B Filing Window Just Closed. The First Weighted Lotte"
+          }
         ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "fd1c0aba-3dbe-485d-a155-68470be01b7c",
-      "headline": "Concentrix Lost a Quarter of Its Value This Week. India's Call Centre Industry Is Next.",
-      "slug": "concentrix-crash-ai-bpo-india-call-centre-20260703",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "call centre workers with headsets",
-          "reason": "The photo shows call centre workers, relevant to the call centre industry story."
+          "what_photo_shows": "USCIS Application Support Center",
+          "reason": "The photo shows a USCIS center, relevant to the immigration backlog story."
         },
         "inline_image_mismatches": []
       },
@@ -117,18 +95,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image is relevant to the call center industry but lacks a direct connection to Concentrix or the specific context of the article."
+          "issue": "The image depicts a USCIS Application Support Center, which is relevant to the article's topic on USCIS processing issues."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the impact of Concentrix's decline to Indian Americans and the broader Indian diaspora involved in the IT sector."
+          "quality": 9,
+          "note": "The article effectively highlights the impact of USCIS backlogs on Indian immigrants, making it highly relevant to the NRI audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more specific examples of how the decline in Concentrix's value directly affects Indian call center workers.",
-          "Include quotes or insights from Indian diaspora professionals to enhance the personal connection to the topic."
+          "Consider adding quotes from affected individuals or immigration experts to provide personal perspectives.",
+          "Include potential solutions or recommendations for addressing the backlog to enhance the article's depth."
         ],
         "verdict": "pass"
       },
