@@ -11,16 +11,15 @@ import { CATEGORIES } from "@/lib/categories";
 const NAV_CATEGORIES = [
   { slug: "", label: "Home", path: "/" },
   { slug: "news", label: "News", path: "/news" },
-  { slug: "nri-world", label: "World", path: "/nri-world" },
-  { slug: "sports", label: "Sports", path: "/sports" },
-  { slug: "world-cup", label: "⚽ World Cup", path: "/world-cup" },
-  { slug: "entertainment", label: "Entertainment", path: "/entertainment" },
-  { slug: "technology", label: "Technology", path: "/technology" },
-  { slug: "markets-finance", label: "Markets", path: "/markets-finance" },
-  { slug: "lifestyle-health", label: "Lifestyle", path: "/lifestyle-health" },
-  { slug: "food", label: "Food", path: "/food" },
   { slug: "immigration", label: "Immigration", path: "/immigration" },
+  { slug: "technology", label: "Technology", path: "/technology" },
+  { slug: "sports", label: "Sports", path: "/sports" },
+  { slug: "markets-finance", label: "Markets", path: "/markets-finance" },
+  { slug: "nri-world", label: "World", path: "/nri-world" },
+  { slug: "entertainment", label: "Entertainment", path: "/entertainment" },
+  { slug: "lifestyle-health", label: "Lifestyle", path: "/lifestyle-health" },
   { slug: "travel", label: "Travel", path: "/travel" },
+  { slug: "food", label: "Food", path: "/food" },
   { slug: "cars", label: "Cars", path: "/cars" },
 ];
 
