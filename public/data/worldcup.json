@@ -1,6 +1,6 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-07-03T04:00:00Z",
+  "last_updated": "2026-07-03T06:00:36Z",
   "stage": "Knockout Stage",
   "hosts": "USA, Mexico & Canada",
   "dates": {
@@ -1939,7 +1939,8 @@
           "away_code": "ALG",
           "venue": "BC Place",
           "city": "Vancouver",
-          "status": "scheduled"
+          "status": "FT",
+          "score": "2-0"
         },
         {
           "id": 86,
@@ -1984,7 +1985,106 @@
     },
     "round_of_16": {
       "dates": "July 4–7",
-      "matches": 8
+      "matches": [
+        {
+          "match_num": 49,
+          "home": "Canada",
+          "home_code": "CAN",
+          "away": "Morocco",
+          "away_code": "MAR",
+          "date": "2026-07-04",
+          "time": "12:00",
+          "tz": "ET",
+          "venue": "AT&T Stadium, Dallas",
+          "status": "scheduled"
+        },
+        {
+          "match_num": 50,
+          "home": "Brazil",
+          "home_code": "BRA",
+          "away": "Norway",
+          "away_code": "NOR",
+          "date": "2026-07-04",
+          "time": "16:00",
+          "tz": "ET",
+          "venue": "MetLife Stadium, New York/New Jersey",
+          "status": "scheduled"
+        },
+        {
+          "match_num": 51,
+          "home": "France",
+          "home_code": "FRA",
+          "away": "Paraguay",
+          "away_code": "PAR",
+          "date": "2026-07-05",
+          "time": "12:00",
+          "tz": "ET",
+          "venue": "NRG Stadium, Houston",
+          "status": "scheduled"
+        },
+        {
+          "match_num": 52,
+          "home": "England",
+          "home_code": "ENG",
+          "away": "Mexico",
+          "away_code": "MEX",
+          "date": "2026-07-05",
+          "time": "16:00",
+          "tz": "ET",
+          "venue": "Lincoln Financial Field, Philadelphia",
+          "status": "scheduled"
+        },
+        {
+          "match_num": 53,
+          "home": "USA",
+          "home_code": "USA",
+          "away": "Belgium",
+          "away_code": "BEL",
+          "date": "2026-07-06",
+          "time": "16:00",
+          "tz": "ET",
+          "venue": "Levi's Stadium, Santa Clara",
+          "status": "scheduled"
+        },
+        {
+          "match_num": 54,
+          "home": "Portugal",
+          "home_code": "POR",
+          "away": "Spain",
+          "away_code": "ESP",
+          "date": "2026-07-06",
+          "time": "20:00",
+          "tz": "ET",
+          "venue": "MetLife Stadium, New York/New Jersey",
+          "status": "scheduled"
+        },
+        {
+          "match_num": 55,
+          "home": "Switzerland",
+          "home_code": "SUI",
+          "away": "TBD",
+          "away_code": "TBD",
+          "date": "2026-07-07",
+          "time": "TBD",
+          "tz": "ET",
+          "venue": "BC Place, Vancouver",
+          "status": "scheduled",
+          "note": "Winner of Colombia vs Ghana (July 3)"
+        },
+        {
+          "match_num": 56,
+          "home": "TBD",
+          "home_code": "TBD",
+          "away": "TBD",
+          "away_code": "TBD",
+          "date": "2026-07-07",
+          "time": "TBD",
+          "tz": "ET",
+          "venue": "TBD",
+          "status": "scheduled",
+          "note": "Winner of Argentina/Cape Verde vs Winner of Australia/Egypt (July 3)"
+        }
+      ]
     },
     "quarterfinals": {
       "dates": "July 9–11",
@@ -2006,6 +2106,34 @@
     }
   },
   "highlights": [
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DaT8-SNH2kX/",
+      "account": "@fifaworldcup",
+      "caption": "Four spots up for grabs 👀 #FIFAWorldCup #Qualified",
+      "date": "2026-07-02"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DaUZWtUkzo4/",
+      "account": "@fifaworldcup",
+      "caption": "Your Superior Player of the Match is Breel Embolo ⚽ #FIFAWorldCup",
+      "date": "2026-07-02"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DaUXCVVli7X",
+      "account": "@fifaworldcup",
+      "caption": "🎟️ Switzerland punches its ticket to the Round of 16!",
+      "date": "2026-07-02"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DaUWi82CuTK/",
+      "account": "@fifaworldcup",
+      "caption": "🎟️ Switzerland punches its ticket to the Round of 16! #FIFAWorldCup",
+      "date": "2026-07-02"
+    },
     {
       "platform": "instagram",
       "url": "https://www.instagram.com/reel/DaULbq2CkAb/",
