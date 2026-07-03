@@ -160,7 +160,7 @@ export default function TechBuzz({ category = "tech" }: { category?: "tech" | "w
         {leaders.map((leader, i) => {
           const profileUrl = leader.platform === "x"
             ? `https://x.com/${leader.handle}`
-            : `https://www.threads.net/@${leader.handle}`;
+            : `https://www.threads.com/@${leader.handle}`;
           const postUrl = leader.latestPost?.url || leader.posts[0]?.url || profileUrl;
           const postText = leader.latestPost?.text || leader.posts[0]?.text || leader.posts[0]?.caption || "";
           const hasPost = !!postText;
