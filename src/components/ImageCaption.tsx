@@ -15,7 +15,7 @@ export default function ImageCaption({
 }: Props) {
   const trimmed = (caption ?? "").trim();
   const wordCount = trimmed ? trimmed.split(/\s+/).length : 0;
-  const showCaption = trimmed.length > 0 && wordCount <= 25;
+  const showCaption = trimmed.length > 0 && wordCount <= 50;
 
   if (!showCaption && !credit) return null;
 
