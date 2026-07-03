@@ -510,7 +510,7 @@ LESSONS FROM PAST QA REVIEWS (your previous reels had these issues — fix them 
 
     prompt = f"""You write viral Instagram Reel scripts for The Videshi — news for the Indian diaspora.
 
-This is a VOICE-OVER reel. No anchor on screen. Visuals are B-roll images/video that change every 4-6 seconds.
+This is a VOICE-OVER reel. No anchor on screen. Visuals are B-roll images/video that change every 3-5 seconds.
 {qa_lessons_block}
 ARTICLE:
 Headline: {headline}
@@ -545,7 +545,7 @@ HOOK TEXT (shown on screen before voice starts):
 - hook_line1: 3-5 words, ALL CAPS. The "stop scrolling" line. Make it PROVOCATIVE and high-stakes — a threat, a shock, a reversal, or a bold claim. "OIL LIFELINE OPEN" is too flat. "STRAIT CHOKEHOLD BREAKS" or "INDIA DODGED DISASTER" has punch. Use power words (CRISIS, SHOCK, COLLAPSE, WAR, WIN, DODGED, EXPOSED, SLASHED) where the facts support them — but never overstate beyond what the article says.
 - hook_line2: 3-5 words, ALL CAPS. Twists the knife or raises the stakes further — a number, a consequence, or a cliffhanger.
 
-STORYBOARD: Plan 6-8 scenes that match the narration beat-by-beat. For EACH
+STORYBOARD: Plan 8-12 scenes that match the narration beat-by-beat. For EACH
 scene you also act as the visual director: you decide HOW that beat should be
 shown on screen by choosing a "media_plan". You CANNOT browse, fetch, or verify
 anything — you only PLAN. A separate system executes your plan, verifies sources,
