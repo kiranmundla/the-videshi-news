@@ -5995,20 +5995,19 @@ def build_anchor_reel_timeline(
                         "transition": {"in": "fade", "out": "fade"},
                     })
         else:
-            # Static image — Ken Burns effect for PHOTOS. Key-point CARDS are
-            # full-bleed 1080x1920 text graphics: any zoom/pan (even "zoomIn")
-            # scales past 100% and pushes the edge words off-frame — that's what
-            # clipped "New" on the Neeraj-Sharma card and fed the QA "text
-            # readability" deduction. So cards render STATIC with fit=contain
-            # (whole card always in frame, every word readable); only real photos
-            # get the Ken Burns motion.
+            # Static image — Ken Burns effect for PHOTOS only. Key-point CARDS
+            # and AI-GENERATED scenes are full-bleed text graphics: any zoom/pan
+            # scales past 100% and pushes the edge words off-frame. So cards and
+            # generated scenes render STATIC with fit=cover (no zoom); only real
+            # article photos get the Ken Burns motion.
             is_card = meta.get("is_card")
-            if is_card:
+            is_generated = meta.get("is_generated") or meta.get("is_responses_api")
+            if is_card or is_generated:
                 clip = {
                     "asset": {"type": "image", "src": url},
                     "start": round(hook_duration + (i * per_image), 2),
                     "length": scene_length,
-                    "fit": "contain",
+                    "fit": "cover",
                     # no effect → no zoom crop; text stays fully on-frame
                 }
             else:
