@@ -82,9 +82,17 @@ function parseSources(raw: unknown): Article["sources"] {
       })
       .filter(Boolean) as Article["sources"];
   }
-  // Handle comma-separated string format: "Reuters, Cricbuzz, The Times"
+  // Handle string format: JSON-encoded array or comma-separated names
   if (raw && typeof raw === "string") {
-    const cleaned = raw.replace(/^\*?Sources?:\s*/i, "").replace(/\*$/,"").trim();
+    const trimmed = (raw as string).trim();
+    // Try JSON parse first (handles double-encoded JSONB)
+    if (trimmed.startsWith("[")) {
+      try {
+        const parsed = JSON.parse(trimmed);
+        if (Array.isArray(parsed)) return parseSources(parsed);
+      } catch { /* fall through to comma-split */ }
+    }
+    const cleaned = trimmed.replace(/^\*?Sources?:\s*/i, "").replace(/\*$/,"").trim();
     if (!cleaned) return undefined;
     return cleaned.split(/,\s*/).map((s) => ({ label: s.trim() })).filter((s) => s.label);
   }
