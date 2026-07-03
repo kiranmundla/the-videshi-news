@@ -1,6 +1,6 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-07-03T10:01:33Z",
+  "last_updated": "2026-07-03T11:59:44Z",
   "stage": "Knockout Stage",
   "hosts": "USA, Mexico & Canada",
   "dates": {
@@ -6123,6 +6123,29 @@
       "account": "@fifaworldcup",
       "caption": "Lamine Yamal — Superior Player of the Match 🌟 Spain 3-0 Austria",
       "date": "2026-07-02"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DaTz8gtmaMj",
+      "account": "@fifaworldcup",
+      "caption": "Level at the break between Portugal and Croatia! 🤝",
+      "date": "2026-07-02",
+      "type": "image"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/reel/DaU9BzSPFPW/",
+      "account": "@fifaworldcup",
+      "caption": "CR7 🤩 #FIFAWorldCup #CelebrationOfTheMatch",
+      "date": "2026-07-03"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DaU9PcXD0lh",
+      "account": "@fifaworldcup",
+      "caption": "CR7 🤩 — Celebration of the Match",
+      "date": "2026-07-03",
+      "type": "image"
     }
   ],
   "tv": {
