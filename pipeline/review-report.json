@@ -1,15 +1,152 @@
 {
-  "timestamp": "2026-07-03T22:15:44.431615+00:00",
+  "timestamp": "2026-07-03T22:45:44.253324+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 4,
+    "pass": 3,
     "flag": 1,
     "fail": 0,
     "error": 0
   },
-  "revisions": 1,
+  "revisions": 0,
   "unpublished": 0,
   "articles": [
+    {
+      "id": "2a732428-ee25-4088-bedb-a1c5dfa4c37b",
+      "headline": "India's Operation Amistad Wins Hearts in Earthquake-Shattered Venezuela",
+      "slug": "india-operation-amistad-venezuela-earthquake-relief-iaf-c17-bhishm-20260703",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Indian Air Force aircraft loading supplies",
+          "reason": "The photo shows an Indian Air Force aircraft being loaded, matching the disaster-relief story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 3,
+          "issue": "The image does not match the article's topic of Operation Amistad in Venezuela, as it depicts a different operation in Myanmar."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 6,
+          "note": "The article briefly mentions the significance of the operation for the diaspora, but lacks depth in connecting it to the NRI experience or perspectives."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the hero image with one that directly relates to Operation Amistad or the humanitarian efforts in Venezuela.",
+          "Expand on the diaspora angle by including quotes or perspectives from Indian Americans or NRIs regarding their views on India's humanitarian efforts."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "66e9efef-691a-4419-a8f0-f38a364e2239",
+      "headline": "Salah Chipped a Panenka. Two Australians Missed. Egypt Made History in Dallas.",
+      "slug": "salah-panenka-egypt-beat-australia-penalties-world-cup-dallas-first-knockout-win-nri-2026",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [
+          {
+            "url": "https://www.instagram.com/p/DaWFICCvDef/",
+            "problem": "broken",
+            "detail": "Instagram embed shows removed/broken placeholder"
+          }
+        ],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Mohamed Salah in Egypt football attire",
+          "reason": "The photo shows Mohamed Salah, relevant to the story about Egypt's World Cup win."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article connects the match to the Indian diaspora by mentioning the location of the stadium and the significance of the event for NRIs."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Expand on the diaspora angle to include more specific reactions or connections from the Indian community regarding the match.",
+          "Consider adding quotes or insights from Indian fans or players to enhance the relevance for the diaspora audience."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "Removed 1 broken/hallucinated embed(s)",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "270f86ad-7f36-47ed-9390-1d8a6eb1120d",
+      "headline": "America Turns 250 Tomorrow. No Immigrant Community Has Risen Faster Than Indian Americans.",
+      "slug": "america-250th-birthday-indian-americans-diaspora-july-fourth-2026-20260704",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "UNVERIFIED",
+          "what_photo_shows": "(image unreadable)",
+          "reason": "could not download image: not-an-image"
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 6,
+          "issue": "The image of a celebration does not directly relate to the Indian American community's contributions or experiences."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively highlights the achievements and challenges faced by the Indian American community, making it relevant for diaspora readers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that directly represents the Indian American community or their contributions to the U.S.",
+          "Provide more personal stories or quotes from Indian Americans to enhance the emotional connection with the diaspora audience."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "held: image unverified"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "image_unverified": true,
+      "llm_source": "gpt-4o-mini"
+    },
     {
       "id": "cffec7ee-99b9-460c-8305-29d5944e212c",
       "headline": "India's Services Engine Just Hit Its Slowest Speed in 17 Months \u2014 and Hiring Has Nearly Stalled",
@@ -43,50 +180,7 @@
         "vision_image_match": {
           "verdict": "MATCH",
           "what_photo_shows": "Bombay Stock Exchange building",
-          "reason": "The photo shows a relevant economic landmark in India."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 6,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image of the Bombay Stock Exchange is relevant to the economic topic but does not directly illustrate the services sector."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses implications for NRI investors, making it relevant to the diaspora audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more specific examples of how the slowdown in the services sector may impact NRI investors.",
-          "Consider adding a quote from an NRI investor or expert to strengthen the diaspora connection."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Revised by gemini-2.5-flash (787\u2192946 words)"
-      ],
-      "revised": true,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "2d9a2213-faeb-4b09-97a6-fecb0c9c3ecd",
-      "headline": "A Single Blood Test Can Now Screen for 10 Cancers \u2014 and Zydus and Apollo Are Bringing It to India",
-      "slug": "zydus-apollo-guardant-multi-cancer-blood-test-india-fda-breakthrough-screening-nri-diaspora-20260703",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "technician examining blood sample vial",
-          "reason": "The photo subject aligns with the healthcare diagnostics theme."
+          "reason": "The photo is relevant to an economy story."
         },
         "inline_image_mismatches": []
       },
@@ -94,148 +188,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 6,
+          "issue": "irrelevant"
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the topic of cancer screening to the Indian diaspora, highlighting the relevance of the new test for NRIs."
+          "note": "The article effectively connects the economic slowdown to potential impacts on NRI investors and families in India."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a quote from a diaspora health expert to strengthen the connection to NRI readers.",
-          "Include statistics or studies specifically related to cancer rates among the Indian diaspora for added depth."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "df94a5cc-dc84-42ef-983a-4370fa6731a4",
-      "headline": "Mexico Without a Visa \u2014 Why Indian Americans Are Discovering Canc\u00fan, CDMX, and the Riviera Maya",
-      "slug": "mexico-visa-free-indian-us-visa-cancun-cdmx-nri-20260703",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Aerial view of Canc\u00fan shoreline",
-          "reason": "The photo shows Canc\u00fan, which is relevant to the travel story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": "The image of Canc\u00fan aligns well with the article's focus on travel destinations in Mexico."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively addresses the travel interests and needs of Indian Americans, particularly regarding visa policies."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include personal anecdotes or testimonials from Indian Americans who have traveled to Mexico to enhance relatability.",
-          "Add a section on cultural considerations or tips for Indian travelers visiting Mexico."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "e239cae5-d025-4892-9fd2-9d6d435c7d68",
-      "headline": "The World Cup Is Happening in Your Backyard \u2014 An NRI's Guide to Catching a Match",
-      "slug": "world-cup-2026-nri-guide-tickets-host-cities-20260703",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "2026 FIFA World Cup stadium",
-          "reason": "The photo shows a stadium relevant to the World Cup story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the World Cup to the Indian American community, highlighting geographical advantages and cultural relevance."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more specific tips for NRIs on how to navigate the ticket purchasing process.",
-          "Add a section on cultural events or gatherings among the Indian American community during the World Cup."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "78d757fd-39a6-4e17-82f3-6ca60d226333",
-      "headline": "Every US National Park Is Free This Weekend \u2014 Here's an NRI Family's Game Plan",
-      "slug": "national-parks-free-july-4-america-250-nri-family-20260703",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Grand Prismatic Spring at Yellowstone",
-          "reason": "The photo shows a national park site relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the national parks' free entry to Indian American families, providing relevant travel suggestions."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more specific tips or personal anecdotes from NRI families who have visited these parks to enhance relatability.",
-          "Consider adding links to official park websites for real-time updates on conditions and reservations."
+          "Consider using a more relevant image that reflects the services sector or economic activity in India.",
+          "Add more specific examples of how the slowdown might affect NRIs directly, such as potential impacts on remittances or investment opportunities."
         ],
         "verdict": "pass"
       },
