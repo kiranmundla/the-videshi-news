@@ -209,7 +209,7 @@ def letterbox_for_youtube(vertical_path):
 
 
 def post_youtube_video(reel, video_path, headline, caption):
-    """Post video as regular YouTube Video (letterboxed to 16:9 by caller)."""
+    """Post video to YouTube as a regular Video (vertical, no letterboxing)."""
     print(f"  [YT] Refreshing OAuth token...")
     token_r = requests.post('https://oauth2.googleapis.com/token', data={
         'client_id': yt['YOUTUBE_CLIENT_ID'],
@@ -500,19 +500,10 @@ for i, reel in enumerate(work_queue):
             if platform == 'ig':
                 result = post_instagram_reel(reel, video_url, caption)
             elif platform == 'yt':
-                # Letterbox vertical video to 16:9 for YouTube regular Video upload
-                yt_video = letterbox_for_youtube(local_video)
-                if yt_video:
-                    result = post_youtube_video(reel, yt_video, headline, caption)
-                    # Clean up letterboxed temp file
-                    try:
-                        os.unlink(yt_video)
-                    except:
-                        pass
-                else:
-                    # Fallback: upload vertical as-is (will become a Short)
-                    print("  [YT] Letterbox failed, uploading vertical as fallback")
-                    result = post_youtube_video(reel, local_video, headline, caption)
+                # Upload vertical as-is — YouTube handles vertical natively.
+                # On mobile: plays full-screen. On desktop: YouTube adds clean pillarboxing.
+                # No more manual letterboxing (looked terrible on phone).
+                result = post_youtube_video(reel, local_video, headline, caption)
             elif platform == 'threads':
                 result = post_threads(reel, video_url, caption)
             elif platform == 'x':
