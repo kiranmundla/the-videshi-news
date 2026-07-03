@@ -1,6 +1,6 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-07-03T16:00:15Z",
+  "last_updated": "2026-07-03T18:01:24Z",
   "stage": "Knockout Stage",
   "hosts": "USA, Mexico & Canada",
   "dates": {
@@ -6228,6 +6228,29 @@
       "caption": "The Round of 16 is almost here 🔥 — Explore the latest ticket availability",
       "date": "2026-07-03",
       "type": "image"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DaVmxVmFge4",
+      "account": "@fifaworldcup",
+      "caption": "🇦🇺Australia 🆚 🇪🇬Egypt\n🇦🇷Argentina 🆚 🇨🇻Cabo Verde\n🇨🇴Colombia 🆚 🇬🇭Ghana",
+      "date": "2026-07-03",
+      "type": "image"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DaVnqPmFlxY",
+      "account": "@fifaworldcup",
+      "caption": "Lionel Messi: 6 goals in 3 games. Will he add to his tally today? 🇦🇷 #FIFAWorldCup",
+      "date": "2026-07-03"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/reel/DaVoRVDilD0/",
+      "account": "@fifaworldcup",
+      "caption": "Lay's Fan of the Match — Unforgettable memories for Mario 🇪🇸 #FIFAWorldCup",
+      "date": "2026-07-03",
+      "type": "video"
     }
   ],
   "tv": {
