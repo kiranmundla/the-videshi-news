@@ -10,27 +10,26 @@ type Props = {
 export default function ImageCaption({
   caption,
   credit,
-  size: _size = "sm",
+  size = "sm",
   align = "left",
 }: Props) {
   const trimmed = (caption ?? "").trim();
-  // Hide caption entirely if it exceeds 8 words — never truncate.
   const wordCount = trimmed ? trimmed.split(/\s+/).length : 0;
   const showCaption = trimmed.length > 0 && wordCount <= 25;
 
   if (!showCaption && !credit) return null;
 
   const alignCls = align === "center" ? "text-center" : "text-left";
-  const parts: string[] = [];
-  if (showCaption) parts.push(trimmed);
-  if (credit) parts.push(credit);
+  const fontSize = size === "md" ? "13px" : "12px";
 
   return (
     <figcaption
-      className={`mt-2 leading-snug ${alignCls} max-w-full italic`}
-      style={{ fontSize: "11px", color: "#888" }}
+      className={`mt-2 leading-snug ${alignCls} max-w-full`}
+      style={{ fontSize, color: "#555" }}
     >
-      {parts.join(" · ")}
+      {showCaption && <span className="italic">{trimmed}</span>}
+      {showCaption && credit && <span> · </span>}
+      {credit && <span style={{ color: "#888" }}>{credit}</span>}
     </figcaption>
   );
 }

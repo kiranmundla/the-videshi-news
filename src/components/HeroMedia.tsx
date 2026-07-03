@@ -209,16 +209,8 @@ export default function HeroMedia({ url, alt, credit, caption, category }: HeroM
         />
       </div>
       <div className="text-center">
-        <ImageCaption caption={caption} credit={null} size="md" align="center" />
+        <ImageCaption caption={caption} credit={credit} size="md" align="center" />
       </div>
-      {credit && (
-        <p
-          className="mt-2 text-right italic"
-          style={{ fontSize: "11px", color: "#888" }}
-        >
-          Photo: {credit}
-        </p>
-      )}
     </figure>
   );
 }
