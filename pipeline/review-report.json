@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-07-03T07:45:23.016954+00:00",
+  "timestamp": "2026-07-03T08:15:20.166608+00:00",
   "mode": "fix",
   "stats": {
     "pass": 2,
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "93e8ec07-e84a-480a-9382-1795f15f184d",
-      "headline": "India Lost to Ireland. The Rain Stole Chester-le-Street. Old Trafford on Saturday Is Where Iyer's Team Has to Start Answering.",
-      "slug": "india-england-2nd-t20i-old-trafford-manchester-chakaravarthy-sooryavanshi-iyer-preview-nri-2026",
+      "id": "fdaa1f25-a14a-434b-a749-c26942e4a433",
+      "headline": "DHS Wants to End 'Duration of Status.' Indian Students Would Lose Their Safety Net",
+      "slug": "duration-of-status-f1-opt-overhaul-indian-students-20260703",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Old Trafford Cricket Ground exterior",
-          "reason": "The photo shows Old Trafford, relevant to the cricket match story."
+          "what_photo_shows": "graduates celebrating at commencement",
+          "reason": "The photo shows a graduation scene relevant to the student-visa story."
         },
         "inline_image_mismatches": []
       },
@@ -30,19 +30,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image does not directly relate to the topic of immigration or Indian students."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the match to the Indian diaspora in the UK, highlighting the cultural significance of the event."
+          "quality": 9,
+          "note": "The article effectively highlights the impact of the proposed rule on Indian students, making it highly relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from players or coaches to enhance the narrative.",
-          "Include more statistics or historical context about India and England's T20I encounters."
+          "Consider using an image that directly relates to Indian students or immigration to enhance relevance.",
+          "Add quotes or testimonials from Indian students affected by the proposed rule to provide a personal perspective."
         ],
         "verdict": "pass"
       },
@@ -54,18 +54,27 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "b4fe69a1-6500-49d7-a159-5615001a2443",
-      "headline": "Messi Has 19 World Cup Goals, a Record No One Else Has Held, and Maybe Two Weeks Left. Cape Verde Stand in His Way.",
-      "slug": "messi-19-goals-all-time-record-argentina-cape-verde-world-cup-round-of-32-miami-nri-2026",
+      "id": "e7b7c692-d1b3-4ed5-9308-9ab35503a6a6",
+      "headline": "Four Courts Said No. Two Said Yes. The Supreme Court Will Decide Who Gets a Bond Hearing",
+      "slug": "mandatory-detention-circuit-split-scotus-bond-hearing-indian-20260703",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "e4e26809-e804-479a-bee9-92c6523353db",
+            "headline": "The Supreme Court Settled Birthright Citizenship. For Indian"
+          },
+          {
+            "article_id": "5bf551c3-5065-4f7b-82e8-e50c103a7c51",
+            "headline": "The Supreme Court Just Killed a 90-Year Rule That Kept Agenc"
+          }
+        ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Soccer match with player number 10",
-          "reason": "The photo shows a soccer match, relevant to the World Cup story."
+          "what_photo_shows": "United States Supreme Court building",
+          "reason": "The photo shows the Supreme Court, relevant to the story about a Supreme Court decision."
         },
         "inline_image_mismatches": []
       },
@@ -79,13 +88,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects Messi's significance to the Indian diaspora, particularly in South Florida."
+          "note": "The article effectively connects the legal issues surrounding immigration to the Indian American community, highlighting potential risks for long-term residents."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more direct quotes from Indian diaspora fans to enhance the connection.",
-          "Include a brief history of Cape Verde's football achievements to provide context."
+          "Consider adding more specific examples of how the ruling could impact Indian Americans in various immigration statuses.",
+          "Include quotes or perspectives from immigration attorneys or affected individuals to enhance the narrative."
         ],
         "verdict": "pass"
       },
