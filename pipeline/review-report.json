@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-07-03T06:45:19.830591+00:00",
+  "timestamp": "2026-07-03T07:15:19.828022+00:00",
   "mode": "fix",
   "stats": {
     "pass": 2,
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "bf9a7e02-f5f0-4a76-916c-b3c1e2ded28a",
-      "headline": "Delhi Just Banned New Petrol Two-Wheelers From 2028. No Indian City Has Gone This Far.",
-      "slug": "delhi-ev-policy-2026-petrol-two-wheeler-ban-2028-electric-rickshaw-15000-crore-20260703",
+      "id": "8c4f1d62-7bf0-475d-af07-bc0dd4cc1c4b",
+      "headline": "Vikrant Massey Just Became a Producer. His First Bet? A Love Story Set Between Bhopal and Mussoorie.",
+      "slug": "musafir-cafe-vikrant-massey-netflix-production-debut-homemade-stories-romance-bhopal-mussoorie-diaspora-nri-20260703",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,51 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "electric vehicle charging station event",
-          "reason": "The photo shows an electric vehicle charging station, relevant to the story about EV policy."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article connects the air quality issue to NRIs visiting Delhi, but could elaborate more on how this policy impacts them directly."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Expand on the diaspora angle by including specific examples of how NRIs might be affected by the air quality and vehicle policies.",
-          "Consider adding quotes from experts or stakeholders to enhance credibility and depth."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "bcb1ec39-e6ac-4e4e-a63c-39273e3ae9d4",
-      "headline": "America Just Added Its Fewest Jobs Since February. India\u2019s IT Stocks Are Rallying.",
-      "slug": "us-jobs-miss-57000-june-2026-india-it-stocks-rally-rupee-fed-rate-hike-odds-drop-20260703",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "trading floor at New York Stock Exchange",
-          "reason": "The photo is relevant to the economic story about job numbers and stock markets."
+          "what_photo_shows": "A man in a suit at a film festival",
+          "reason": "The photo plausibly shows Vikrant Massey, relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -79,13 +36,56 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the U.S. job market situation to the Indian diaspora, particularly Indian Americans in tech and professional services."
+          "note": "The article effectively connects the content of the series to NRI audiences, highlighting its accessibility on Netflix and its relatable themes."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more specific examples of how the job market changes are affecting Indian Americans directly.",
-          "Include quotes or insights from Indian diaspora leaders or experts to enhance the diaspora perspective."
+          "Consider adding quotes from Vikrant Massey or the director to enhance the personal touch.",
+          "Include more details about the production process or challenges faced by Massey as a first-time producer."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "0e5ec422-7991-4d2b-a296-fc1cda95b8e4",
+      "headline": "Lagaan Turns 25. Aamir Khan Is Taking It Back to the Big Screen \u2014 in Melbourne.",
+      "slug": "lagaan-25th-anniversary-aamir-khan-iffm-melbourne-screening-london-diaspora-nri-20260703",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Aamir Khan in Lagaan movie poster",
+          "reason": "The photo shows Aamir Khan in Lagaan, relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 10,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the significance of *Lagaan* to the Indian diaspora in Australia, highlighting its cultural impact and personal resonance."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes or reactions from diaspora members about the film's impact on their lives.",
+          "Include more details about the significance of the Indian Film Festival of Melbourne for the diaspora community."
         ],
         "verdict": "pass"
       },
