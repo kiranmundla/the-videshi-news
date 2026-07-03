@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "last_refresh": "2026-07-03T04:01:51.448269+00:00",
+  "last_refresh": "2026-07-03T10:00:39.366249+00:00",
   "posts": {
     "https://www.instagram.com/p/DaRjWN7lLD0/": {
       "account": "usmnt",
@@ -295,6 +295,62 @@
       "likes": 168,
       "image_count": 4,
       "scraped_at": "2026-07-03T04:01:47.473502+00:00"
+    },
+    "https://www.instagram.com/p/DaTdoAaDvCi/": {
+      "account": "brfootball",
+      "platform": "instagram",
+      "likes": 14235,
+      "image_count": 4,
+      "scraped_at": "2026-07-03T10:00:01.892344+00:00"
+    },
+    "https://www.instagram.com/p/DaUMMqpj0ou/": {
+      "account": "brfootball",
+      "platform": "instagram",
+      "likes": 16006,
+      "image_count": 4,
+      "scraped_at": "2026-07-03T10:00:06.970399+00:00"
+    },
+    "https://www.threads.com/@fifaworldcup/post/DaUqHcJCjD7": {
+      "account": "fifaworldcup",
+      "platform": "threads",
+      "likes": 33,
+      "image_count": 1,
+      "scraped_at": "2026-07-03T10:00:12.155513+00:00"
+    },
+    "https://www.instagram.com/reel/DaQd-9VipKg/": {
+      "account": "tmztv",
+      "platform": "instagram",
+      "likes": 52257,
+      "image_count": 4,
+      "scraped_at": "2026-07-03T10:00:14.629628+00:00"
+    },
+    "https://www.instagram.com/p/DaUk5b-CDZg/": {
+      "account": "gianni_infantino",
+      "platform": "instagram",
+      "likes": 3651,
+      "image_count": 4,
+      "scraped_at": "2026-07-03T10:00:19.393493+00:00"
+    },
+    "https://www.instagram.com/p/DaNppCIjbuH/": {
+      "account": "easternmirror",
+      "platform": "instagram",
+      "likes": 643,
+      "image_count": 4,
+      "scraped_at": "2026-07-03T10:00:23.361100+00:00"
+    },
+    "https://www.instagram.com/p/DaQwE3EEh_W/": {
+      "account": "mansworldindia",
+      "platform": "instagram",
+      "likes": 204,
+      "image_count": 4,
+      "scraped_at": "2026-07-03T10:00:28.912806+00:00"
+    },
+    "https://www.instagram.com/p/DaMacj9Eh5A/": {
+      "account": "gqsingapore",
+      "platform": "instagram",
+      "likes": 22,
+      "image_count": 4,
+      "scraped_at": "2026-07-03T10:00:34.868076+00:00"
     }
   },
   "images": [
@@ -1909,6 +1965,346 @@
       "scraped_at": "2026-07-03T04:01:47.473492+00:00",
       "account": "theathletichq",
       "likes": 168,
+      "trusted": false,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-dfw5-1.cdninstagram.com/v/t39.30808-6/734455794_1638849684264597_534278861358133409_n.jpg?stp=c327.0.983.982a_dst-jpg_e35_s640x640_tt6&_nc_cat=105&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0FST1VTRUxfSVRFTS5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=cWgO5U3ciDYQ7kNvwEojvkR&_nc_oc=AdrwfUm19cTJBqR1rVuJbm69z-2--lH9OkPtn9XDSkBE4Ft_JQbOxZKSxmeVkoxkDGN9AP1eHzbBD4lj3-K7qdqA&_nc_zt=23&_nc_ht=scontent-dfw5-1.cdninstagram.com&_nc_gid=mca-exOMaXx8Aab-h_xdcg&_nc_ss=7860f&oh=00_AQA2vM-vC0C3Q4aweLqtCqJyEAFzdo0BMkuMisf-XbcqzA&oe=6A4D5A34",
+      "post_url": "https://www.instagram.com/p/DaTdoAaDvCi/",
+      "platform": "instagram",
+      "caption": "14K likes, 64 comments - brfootball on July 2, 2026: \"First international goal for Pedro Porro and it doubles Spain's lead \ud83d\udc4a\". ",
+      "scraped_at": "2026-07-03T10:00:01.891819+00:00",
+      "account": "brfootball",
+      "likes": 14235,
+      "trusted": true,
+      "permanent_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/wc-social/ig-brfootball-614c9e1c9b16.jpg",
+      "width": 640,
+      "height": 639,
+      "size_bytes": 61514
+    },
+    {
+      "cdn_url": "https://scontent-dfw5-3.cdninstagram.com/v/t39.30808-6/736314268_1638988370917395_5128393121933068043_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=1&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=_DW2FUlBS6YQ7kNvwHRAoUk&_nc_oc=AdrBZPeIerWmqMrhHtOVstnTwQipxkwb9mQuAnUzps00XjkQXSu_8yJZ2ZppbXQIwrvrWPrO6uFODSujuwdabaRZ&_nc_zt=23&_nc_ht=scontent-dfw5-3.cdninstagram.com&_nc_gid=BJacQNYmwWLsSOiWFf9upg&_nc_ss=7860f&oh=00_AQBBV5fM0ng6x-JRrVQGdCvDX2UPnKkc162NWSQNDCBg-w&oe=6A4D4636",
+      "post_url": "https://www.instagram.com/p/DaTdoAaDvCi/",
+      "platform": "instagram",
+      "caption": "14K likes, 64 comments - brfootball on July 2, 2026: \"First international goal for Pedro Porro and it doubles Spain's lead \ud83d\udc4a\". ",
+      "scraped_at": "2026-07-03T10:00:01.891854+00:00",
+      "account": "brfootball",
+      "likes": 14235,
+      "trusted": true,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-dfw5-3.cdninstagram.com/v/t39.30808-6/730354114_1637090851107147_8131389073952418641_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=1&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=xktNOIRUirkQ7kNvwHLSRMm&_nc_oc=AdrhjE4VXOCX0xjqaNZEcR63b3iE_JBfQPRYh9HzO0E8SejO97K3e7oi0c6uB8In7iESGq5_srun_XjKTl074Avr&_nc_zt=23&_nc_ht=scontent-dfw5-3.cdninstagram.com&_nc_gid=BJacQNYmwWLsSOiWFf9upg&_nc_ss=7860f&oh=00_AQCZj20-xP-WDgqrW8SSSykLI8BDyZPeIwsGg2DPbjuBnQ&oe=6A4D5D31",
+      "post_url": "https://www.instagram.com/p/DaTdoAaDvCi/",
+      "platform": "instagram",
+      "caption": "14K likes, 64 comments - brfootball on July 2, 2026: \"First international goal for Pedro Porro and it doubles Spain's lead \ud83d\udc4a\". ",
+      "scraped_at": "2026-07-03T10:00:01.891861+00:00",
+      "account": "brfootball",
+      "likes": 14235,
+      "trusted": true,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-dfw6-2.cdninstagram.com/v/t39.30808-6/732464111_1634522434697322_6306515345324315262_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=110&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=w7Go10Wyk3AQ7kNvwGH2zV-&_nc_oc=AdpwE1EWGRV8eSzMoFQ25WJeWeQy2JvCaKcmU9CbDEgMgSyLCCjSLQSGaxqSrVFrdzZmuos_esM0sVsM9JFXe-0O&_nc_zt=23&_nc_ht=scontent-dfw6-2.cdninstagram.com&_nc_gid=BJacQNYmwWLsSOiWFf9upg&_nc_ss=7860f&oh=00_AQAMv3E6pqrPk19_324a6UOGugi19w8sZERHspByhRQqOQ&oe=6A4D6F90",
+      "post_url": "https://www.instagram.com/p/DaTdoAaDvCi/",
+      "platform": "instagram",
+      "caption": "14K likes, 64 comments - brfootball on July 2, 2026: \"First international goal for Pedro Porro and it doubles Spain's lead \ud83d\udc4a\". ",
+      "scraped_at": "2026-07-03T10:00:01.891866+00:00",
+      "account": "brfootball",
+      "likes": 14235,
+      "trusted": true,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-dfw5-3.cdninstagram.com/v/t39.30808-6/738593939_1639123607570538_2875512544783260109_n.jpg?stp=c327.0.983.982a_dst-jpg_e35_s640x640_tt6&_nc_cat=1&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0FST1VTRUxfSVRFTS5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=5Rbe4zqpgxkQ7kNvwESIuxx&_nc_oc=AdqlVVGh5MVWIt0ZcF1uT-PD7unDlu4_8mG4eK90aSqXcWDOnRrL4kb_75xg11Qx61w-NX3Ih2w-BrWURefSGQrg&_nc_zt=23&_nc_ht=scontent-dfw5-3.cdninstagram.com&_nc_gid=7vnvEtzPrudPy_PJls1yAg&_nc_ss=7860f&oh=00_AQBlMRHeWKVrcan90hLb03amvM2G5C8WdPRdyQqkr-cC0w&oe=6A4D42E3",
+      "post_url": "https://www.instagram.com/p/DaUMMqpj0ou/",
+      "platform": "instagram",
+      "caption": "16K likes, 115 comments - brfootball on July 2, 2026: \"Breel Embolo puts Switzerland ahead.\n\nWhat a run by Johan Manzambi for the assist, his fifth G/A of the World Cup \ud83d\ude2e\u200d\ud83d\udca8\". ",
+      "scraped_at": "2026-07-03T10:00:06.967413+00:00",
+      "account": "brfootball",
+      "likes": 16006,
+      "trusted": true,
+      "permanent_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/wc-social/ig-brfootball-812004ac2d02.jpg",
+      "width": 640,
+      "height": 639,
+      "size_bytes": 47444
+    },
+    {
+      "cdn_url": "https://scontent-dfw5-3.cdninstagram.com/v/t39.30808-6/736314268_1638988370917395_5128393121933068043_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=1&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=_DW2FUlBS6YQ7kNvwGkrgfu&_nc_oc=Adp0N9GgDp_fJ7X46lbbs6oQpsh4Mz8iYm-ofQmy8H2475vSa054geLaom5z5hcxmsRc3_zeo5QPYcbQVKJcoPNV&_nc_zt=23&_nc_ht=scontent-dfw5-3.cdninstagram.com&_nc_gid=yBVnNpFEu00yjKofQ2Yy2w&_nc_ss=7860f&oh=00_AQAbuJ7MQwYb68vxdPG7IGBZt2E6loK5kcmA9YPDNdWcVg&oe=6A4D4636",
+      "post_url": "https://www.instagram.com/p/DaUMMqpj0ou/",
+      "platform": "instagram",
+      "caption": "16K likes, 115 comments - brfootball on July 2, 2026: \"Breel Embolo puts Switzerland ahead.\n\nWhat a run by Johan Manzambi for the assist, his fifth G/A of the World Cup \ud83d\ude2e\u200d\ud83d\udca8\". ",
+      "scraped_at": "2026-07-03T10:00:06.967444+00:00",
+      "account": "brfootball",
+      "likes": 16006,
+      "trusted": true,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-dfw5-1.cdninstagram.com/v/t39.30808-6/730354114_1637090851107147_8131389073952418641_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=111&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=xktNOIRUirkQ7kNvwH7KUOM&_nc_oc=Adpo6NG-wzSkJe9DtD2colnGDuQ2mOTTyktpBlb7vKkx1cwPAfauu7ymfNeJK5BJf8XHYFcEjNpe2jfYtrklA8UJ&_nc_zt=23&_nc_ht=scontent-dfw5-1.cdninstagram.com&_nc_gid=yBVnNpFEu00yjKofQ2Yy2w&_nc_ss=7860f&oh=00_AQAOjP7NTqQVELdt9vhDAV2sNYbAcVu1dUQf8RvOFhJCUw&oe=6A4D5D31",
+      "post_url": "https://www.instagram.com/p/DaUMMqpj0ou/",
+      "platform": "instagram",
+      "caption": "16K likes, 115 comments - brfootball on July 2, 2026: \"Breel Embolo puts Switzerland ahead.\n\nWhat a run by Johan Manzambi for the assist, his fifth G/A of the World Cup \ud83d\ude2e\u200d\ud83d\udca8\". ",
+      "scraped_at": "2026-07-03T10:00:06.967450+00:00",
+      "account": "brfootball",
+      "likes": 16006,
+      "trusted": true,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-dfw6-2.cdninstagram.com/v/t39.30808-6/732464111_1634522434697322_6306515345324315262_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=110&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=w7Go10Wyk3AQ7kNvwGVRIRv&_nc_oc=AdrwvM77n6FxBJwsICNILvN0tUzjKRgnKXKMnB1DBdh5C5kvCtZAaLbOhdmwdbOpl96YXZh0sP6wtqw7pnZdBQ-A&_nc_zt=23&_nc_ht=scontent-dfw6-2.cdninstagram.com&_nc_gid=yBVnNpFEu00yjKofQ2Yy2w&_nc_ss=7860f&oh=00_AQBaLW6WosFZJDn0q6u_0q_0OVYBZbccPs1ISzej8wbrpg&oe=6A4D6F90",
+      "post_url": "https://www.instagram.com/p/DaUMMqpj0ou/",
+      "platform": "instagram",
+      "caption": "16K likes, 115 comments - brfootball on July 2, 2026: \"Breel Embolo puts Switzerland ahead.\n\nWhat a run by Johan Manzambi for the assist, his fifth G/A of the World Cup \ud83d\ude2e\u200d\ud83d\udca8\". ",
+      "scraped_at": "2026-07-03T10:00:06.967453+00:00",
+      "account": "brfootball",
+      "likes": 16006,
+      "trusted": true,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-dfw6-2.cdninstagram.com/v/t51.71878-15/730420809_1030366872808344_3681592486458818529_n.jpg?stp=cmp1_dst-jpg_e35_s640x640_tt6&_nc_cat=109&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=LPBVIdj4toIQ7kNvwGqdPs5&_nc_oc=Adp-7TCnq7Q0-Uem-F74ax3oa5w_tgfrT0Enrp2ieapOtaH8OFofmCFpg5lfHn8Bjk-44kJC0wc9sC_J8pGCVguB&_nc_zt=23&_nc_ht=scontent-dfw6-2.cdninstagram.com&_nc_gid=S9dUIClg2vdqBDgfZet48g&_nc_ss=7820f&oh=00_AQBxSEM7kPII_X1WEofK381_FTUFfqLY2elVQVOvkuj69g&oe=6A4D6412",
+      "post_url": "https://www.threads.com/@fifaworldcup/post/DaUqHcJCjD7",
+      "platform": "threads",
+      "caption": "July 2 Matchday Recap",
+      "scraped_at": "2026-07-03T10:00:12.155478+00:00",
+      "account": "fifaworldcup",
+      "likes": 33,
+      "trusted": true,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-dfw5-1.cdninstagram.com/v/t51.82787-15/731808176_18606118189040406_8535616944069971568_n.jpg?stp=cmp1_dst-jpg_e35_s640x640_tt6&_nc_cat=106&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0xJUFMuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=DP2HAiBIAxcQ7kNvwEfWHCq&_nc_oc=Adr7uOUg1Kut-kriN-equAFOjlT4QplbzuMMGjKDbWzwAWDzS3kUi0OKJbM62CGzTdfT8Vj1Q3oTzM3gHgle4-D-&_nc_zt=23&_nc_ht=scontent-dfw5-1.cdninstagram.com&_nc_gid=2MQLCr_W8vDApOaXwmG5XQ&_nc_ss=7860f&oh=00_AQAX9KXOAafZS2rqQtBwR7hFMCWj7Ow1gkXS92MX1wNAxg&oe=6A4D56AD",
+      "post_url": "https://www.instagram.com/reel/DaQd-9VipKg/",
+      "platform": "instagram",
+      "caption": "52K likes, 807 comments - tmztv on July 1, 2026: \"\ud83e\udd73\u26bd Mexico fans took over entire streets Tuesday night, celebrating their soccer team's huge victory in the 2026 FIFA World Cup ... and police got involved.\". ",
+      "scraped_at": "2026-07-03T10:00:14.626616+00:00",
+      "account": "tmztv",
+      "likes": 52257,
+      "trusted": false,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-dfw5-1.cdninstagram.com/v/t51.71878-15/730313442_1331960268449930_1748688797085429834_n.jpg?stp=dst-jpg_e15_tt6&_nc_cat=106&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkNMSVBTLnhwaWRzLjY0MC5zZHIudmlkZW9fYWRkaXRpb25hbF9jb3Zlcl9mcmFtZS5DMyJ9&_nc_ohc=euZMl1mh1wMQ7kNvwGHJiex&_nc_oc=AdqCpfGCUDs61fBgbhLIgG2UxHG9TmqeVofy7QeZCix3i2GCZnFO809TQVxnKCb-6nhCRJPhlEKBGemY-8Sf1O4Y&_nc_zt=23&_nc_ht=scontent-dfw5-1.cdninstagram.com&_nc_gid=-j3icRFYvHHeNLl-fwu_ng&_nc_ss=7860f&oh=00_AQCnZW_AnT1ABrNs_sRbRZYVLphbsTZUZwnHapXIRRSg9Q&oe=6A4D505B",
+      "post_url": "https://www.instagram.com/reel/DaQd-9VipKg/",
+      "platform": "instagram",
+      "caption": "52K likes, 807 comments - tmztv on July 1, 2026: \"\ud83e\udd73\u26bd Mexico fans took over entire streets Tuesday night, celebrating their soccer team's huge victory in the 2026 FIFA World Cup ... and police got involved.\". ",
+      "scraped_at": "2026-07-03T10:00:14.626646+00:00",
+      "account": "tmztv",
+      "likes": 52257,
+      "trusted": false,
+      "permanent_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/wc-social/ig-tmztv-258b0226e8f6.jpg",
+      "width": 640,
+      "height": 1136,
+      "size_bytes": 102838
+    },
+    {
+      "cdn_url": "https://scontent-dfw5-3.cdninstagram.com/v/t51.82787-15/730904957_18606582910040406_6421675883758520365_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=1&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0FST1VTRUxfSVRFTS5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=TDfEtXESsbIQ7kNvwHXF-VL&_nc_oc=AdokGzIslsOy-FmxSdEm4KmZqUN_pBtN0SXChpyQrNEVf8UmxdJ1H3h-Kxy_tbYQO240GAiyQKi5SYA8M_T23Om-&_nc_zt=23&_nc_ht=scontent-dfw5-3.cdninstagram.com&_nc_gid=-j3icRFYvHHeNLl-fwu_ng&_nc_ss=7860f&oh=00_AQCfPo-QmF8Swr4WVDt8Qul8f8JeCKGf7WVuu4ezW8xCfQ&oe=6A4D6BB1",
+      "post_url": "https://www.instagram.com/reel/DaQd-9VipKg/",
+      "platform": "instagram",
+      "caption": "52K likes, 807 comments - tmztv on July 1, 2026: \"\ud83e\udd73\u26bd Mexico fans took over entire streets Tuesday night, celebrating their soccer team's huge victory in the 2026 FIFA World Cup ... and police got involved.\". ",
+      "scraped_at": "2026-07-03T10:00:14.626652+00:00",
+      "account": "tmztv",
+      "likes": 52257,
+      "trusted": false,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-dfw5-3.cdninstagram.com/v/t51.82787-15/736396784_18606577597040406_2261940225700468344_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=1&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0FST1VTRUxfSVRFTS5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=pf5VcSeRzxYQ7kNvwGFO7ft&_nc_oc=AdpONKex9dzU1ml7v6YGr_omm2u5jEVKPZVQ9tkN1YvxMa0EGxvVjfObBHlqS6h5cI7NIYkZo_nR-6sSpOKEtRos&_nc_zt=23&_nc_ht=scontent-dfw5-3.cdninstagram.com&_nc_gid=-j3icRFYvHHeNLl-fwu_ng&_nc_ss=7860f&oh=00_AQDlJr9SPKOYDowmBFm_DYM-IM-rBUmogaA0-jUIbW4zpA&oe=6A4D604E",
+      "post_url": "https://www.instagram.com/reel/DaQd-9VipKg/",
+      "platform": "instagram",
+      "caption": "52K likes, 807 comments - tmztv on July 1, 2026: \"\ud83e\udd73\u26bd Mexico fans took over entire streets Tuesday night, celebrating their soccer team's huge victory in the 2026 FIFA World Cup ... and police got involved.\". ",
+      "scraped_at": "2026-07-03T10:00:14.626657+00:00",
+      "account": "tmztv",
+      "likes": 52257,
+      "trusted": false,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-dfw5-3.cdninstagram.com/v/t51.82787-15/731602553_18019958222902645_3761901385552446689_n.jpg?stp=c216.0.648.648a_dst-jpg_e35_s640x640_tt6&_nc_cat=1&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0FST1VTRUxfSVRFTS5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=R5tLhaSnHpoQ7kNvwFnPslw&_nc_oc=AdotwBoxYooiJfxRkoJjRn8cPOVQNq0ou3xpdccO-_SriJnuyzLvej74DdHVDmxziihI5lyNkMDP50yPj1k1ohY8&_nc_zt=23&_nc_ht=scontent-dfw5-3.cdninstagram.com&_nc_gid=fleL3lpUAEsxZKGT6bcu7w&_nc_ss=7860f&oh=00_AQCOeK5X0gJ_tPKOGTXVbHjO6c7HhNsci4_C8F3uYx7XzA&oe=6A4D4CD7",
+      "post_url": "https://www.instagram.com/p/DaUk5b-CDZg/",
+      "platform": "instagram",
+      "caption": "3,770 likes, 0 comments - gianni_infantino on July 2, 2026: \"Two excellent goals and a result to remember for \ud83c\udde8\ud83c\udded @swissnatimen, who punched their ticket to the Round of 16. \ud83c\udde9\ud83c\uddff @lesverts.faf put up a strong challenge and bowed out with plenty of positives. \ud83d\udc4f\n\n#FootballUnitesTheWorld\". ",
+      "scraped_at": "2026-07-03T10:00:19.393433+00:00",
+      "account": "gianni_infantino",
+      "likes": 3651,
+      "trusted": false,
+      "permanent_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/wc-social/ig-gianni_infantino-fd52293cc113.jpg",
+      "width": 640,
+      "height": 640,
+      "size_bytes": 52375
+    },
+    {
+      "cdn_url": "https://scontent-dfw6-2.cdninstagram.com/v/t51.71878-15/731176470_1046018431416212_5681110254517809543_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=110&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0xJUFMuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=S8IT1CR115oQ7kNvwExvFBK&_nc_oc=AdoOzI9elE6Ct96P1sOaB5FkEGt5UMFp48M1PKZUh1S0_ZoNqwRNrsFHQncRaY1oTzLMr9E-ID1CFmnYvfrFUMxG&_nc_zt=23&_nc_ht=scontent-dfw6-2.cdninstagram.com&_nc_gid=-IBQ1lB7C_7KDvTB3Yy_7g&_nc_ss=7860f&oh=00_AQAPNJQNhGFlfTonuONhRAZt2CFK70FuqfFTHC0OI78sAA&oe=6A4D7523",
+      "post_url": "https://www.instagram.com/p/DaUk5b-CDZg/",
+      "platform": "instagram",
+      "caption": "3,770 likes, 0 comments - gianni_infantino on July 2, 2026: \"Two excellent goals and a result to remember for \ud83c\udde8\ud83c\udded @swissnatimen, who punched their ticket to the Round of 16. \ud83c\udde9\ud83c\uddff @lesverts.faf put up a strong challenge and bowed out with plenty of positives. \ud83d\udc4f\n\n#FootballUnitesTheWorld\". ",
+      "scraped_at": "2026-07-03T10:00:19.393463+00:00",
+      "account": "gianni_infantino",
+      "likes": 3651,
+      "trusted": false,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-dfw5-3.cdninstagram.com/v/t51.71878-15/731350606_1048168637879590_3325833288838371145_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=1&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0xJUFMuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=Gnacroqa6FcQ7kNvwG_DTpY&_nc_oc=AdoMkTEbNvsF9JPtWlBotoan6QBM7PwSObwTrvCVo-_0-AtIUauhk_G6-q1By5vHkSu60LJTTpPdPK9i8zWJv11-&_nc_zt=23&_nc_ht=scontent-dfw5-3.cdninstagram.com&_nc_gid=-IBQ1lB7C_7KDvTB3Yy_7g&_nc_ss=7860f&oh=00_AQC814VlNAX9kcectCAI4KICrhl4vpXybi0J_bgFnLRGww&oe=6A4D4280",
+      "post_url": "https://www.instagram.com/p/DaUk5b-CDZg/",
+      "platform": "instagram",
+      "caption": "3,770 likes, 0 comments - gianni_infantino on July 2, 2026: \"Two excellent goals and a result to remember for \ud83c\udde8\ud83c\udded @swissnatimen, who punched their ticket to the Round of 16. \ud83c\udde9\ud83c\uddff @lesverts.faf put up a strong challenge and bowed out with plenty of positives. \ud83d\udc4f\n\n#FootballUnitesTheWorld\". ",
+      "scraped_at": "2026-07-03T10:00:19.393468+00:00",
+      "account": "gianni_infantino",
+      "likes": 3651,
+      "trusted": false,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-dfw5-3.cdninstagram.com/v/t51.82787-15/733127143_18019943306902645_7585119880024303001_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=1&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=iohw_po9hEkQ7kNvwGQQinE&_nc_oc=AdrXT3D5f--ZSuxI6_UWpzWDwjOWioS_jleTpQozL9N9sFe7YlxTD0eM3N9aViAqrLF4nBw0lLAApjtgaGasCUkH&_nc_zt=23&_nc_ht=scontent-dfw5-3.cdninstagram.com&_nc_gid=-IBQ1lB7C_7KDvTB3Yy_7g&_nc_ss=7860f&oh=00_AQBrotjLxHQ87lpQVU5LmuDQwMKNPF1X_GnmGjXSwmNBMg&oe=6A4D6B6D",
+      "post_url": "https://www.instagram.com/p/DaUk5b-CDZg/",
+      "platform": "instagram",
+      "caption": "3,770 likes, 0 comments - gianni_infantino on July 2, 2026: \"Two excellent goals and a result to remember for \ud83c\udde8\ud83c\udded @swissnatimen, who punched their ticket to the Round of 16. \ud83c\udde9\ud83c\uddff @lesverts.faf put up a strong challenge and bowed out with plenty of positives. \ud83d\udc4f\n\n#FootballUnitesTheWorld\". ",
+      "scraped_at": "2026-07-03T10:00:19.393483+00:00",
+      "account": "gianni_infantino",
+      "likes": 3651,
+      "trusted": false,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-ord5-1.cdninstagram.com/v/t39.30808-6/732845884_1530882889053060_1382207157770583949_n.jpg?stp=c216.0.648.648a_dst-jpg_e35_s640x640_tt6&_nc_cat=108&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0FST1VTRUxfSVRFTS5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=yN235jW7lhgQ7kNvwE9eec0&_nc_oc=Ado3IYsyJfaaQUxgalwnCutuRGXYK-9cAe4jMcPSqCQkqAjKEXQsH-Fxifnxxm6VLPd9J3hDMkAQe5B2uXsFAMri&_nc_zt=23&_nc_ht=scontent-ord5-1.cdninstagram.com&_nc_gid=9i7-tgs2GZCQVp50smO3Eg&_nc_ss=7860f&oh=00_AQDJQPe3yirqIqDmiYs0Xg8zXhWAo5N5M3vCPGkgsX0_YQ&oe=6A4D76B4",
+      "post_url": "https://www.instagram.com/p/DaNppCIjbuH/",
+      "platform": "instagram",
+      "caption": "669 likes, 0 comments - easternmirror on June 30, 2026: \"Tears of joy and sorrow, the FIFA World Cup knockout stage to round of 16 has it all.\n\nHere are latest standings and more:\n\nWho is your star player?\n\nRead more at www.easternmirrornagaland.com/sports or click links in bio\". ",
+      "scraped_at": "2026-07-03T10:00:23.361007+00:00",
+      "account": "easternmirror",
+      "likes": 643,
+      "trusted": false,
+      "permanent_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/wc-social/ig-easternmirror-6af53d972f06.jpg",
+      "width": 640,
+      "height": 640,
+      "size_bytes": 57177
+    },
+    {
+      "cdn_url": "https://scontent-ord5-2.cdninstagram.com/v/t39.30808-6/735482917_1533539388787410_5525341944072414241_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=103&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=FYwMKZM3-SEQ7kNvwHShJtE&_nc_oc=AdosxvdxI88Uhy8yoC3Uy2ixKDV8WubQX5DyTkGH-QlO5DfXMjMM6pOFSqNz0Du5L7oZR4nfggJhyDQfFsdzOhYf&_nc_zt=23&_nc_ht=scontent-ord5-2.cdninstagram.com&_nc_gid=8mxFclo_YuEZPuPh3Vaj7g&_nc_ss=7820f&oh=00_AQDumR9GwHIdQpaEJ1zXf-vQVzT8IpfcTjB5-cLEQ5QI3g&oe=6A4D55F9",
+      "post_url": "https://www.instagram.com/p/DaNppCIjbuH/",
+      "platform": "instagram",
+      "caption": "669 likes, 0 comments - easternmirror on June 30, 2026: \"Tears of joy and sorrow, the FIFA World Cup knockout stage to round of 16 has it all.\n\nHere are latest standings and more:\n\nWho is your star player?\n\nRead more at www.easternmirrornagaland.com/sports or click links in bio\". ",
+      "scraped_at": "2026-07-03T10:00:23.361075+00:00",
+      "account": "easternmirror",
+      "likes": 643,
+      "trusted": false,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-ord5-3.cdninstagram.com/v/t39.30808-6/733539037_1532889598852389_7957836222684280567_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=107&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=kGVDQExbuMYQ7kNvwFnIuHp&_nc_oc=AdqN5G_7t6HyeUo_9l34umCsGjIn0id4PDpLUMeKiA1Gk4FNk7-cMEA-RPJBKe8KNA6zUZ1rwUcxs2xXBfjGtASi&_nc_zt=23&_nc_ht=scontent-ord5-3.cdninstagram.com&_nc_gid=8mxFclo_YuEZPuPh3Vaj7g&_nc_ss=7820f&oh=00_AQAfCbxFReVq7ijUTg7UJuKxE4RWm1S7MtsIrq-sl1NXdg&oe=6A4D6C31",
+      "post_url": "https://www.instagram.com/p/DaNppCIjbuH/",
+      "platform": "instagram",
+      "caption": "669 likes, 0 comments - easternmirror on June 30, 2026: \"Tears of joy and sorrow, the FIFA World Cup knockout stage to round of 16 has it all.\n\nHere are latest standings and more:\n\nWho is your star player?\n\nRead more at www.easternmirrornagaland.com/sports or click links in bio\". ",
+      "scraped_at": "2026-07-03T10:00:23.361082+00:00",
+      "account": "easternmirror",
+      "likes": 643,
+      "trusted": false,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-ord5-2.cdninstagram.com/v/t39.30808-6/730354119_1532749492199733_9109330490869704801_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=103&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=MMIlcJyih9AQ7kNvwHQ7Rls&_nc_oc=Adpx7OX5OjEwVk_V503HroUufVIKx0nVCEtM4x1LjqRYH0dhHxfjY0yezdyqHXcq4xMIT2xxs1YmTqMcq75OlL7Z&_nc_zt=23&_nc_ht=scontent-ord5-2.cdninstagram.com&_nc_gid=8mxFclo_YuEZPuPh3Vaj7g&_nc_ss=7820f&oh=00_AQDAVo4x5QJUnxRm7PHEx9sN4__7d7416H-8pF3ZsEM_gw&oe=6A4D66E3",
+      "post_url": "https://www.instagram.com/p/DaNppCIjbuH/",
+      "platform": "instagram",
+      "caption": "669 likes, 0 comments - easternmirror on June 30, 2026: \"Tears of joy and sorrow, the FIFA World Cup knockout stage to round of 16 has it all.\n\nHere are latest standings and more:\n\nWho is your star player?\n\nRead more at www.easternmirrornagaland.com/sports or click links in bio\". ",
+      "scraped_at": "2026-07-03T10:00:23.361086+00:00",
+      "account": "easternmirror",
+      "likes": 643,
+      "trusted": false,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-dfw6-2.cdninstagram.com/v/t51.82787-15/731069705_18607428058015637_4207498870295600865_n.jpg?stp=c216.0.648.648a_dst-jpg_e35_s640x640_tt6&_nc_cat=110&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0FST1VTRUxfSVRFTS5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=KXoybo1-RDsQ7kNvwHOQRYQ&_nc_oc=AdqZaO7yIv2NG1vYZi8bPMGC6zaaUcljBSa2icYLnOysgnmplLy7jglK40tSUEdTeHGHeB9xWb9ycfSYOeY2tAPY&_nc_zt=23&_nc_ht=scontent-dfw6-2.cdninstagram.com&_nc_gid=1tGQA7KR_snF-aBwz0OfQQ&_nc_ss=7860f&oh=00_AQBXZscqN_vmmCGDp3gH8z6g8fq9zcv5IUU9tpmcwjSYOA&oe=6A4D720A",
+      "post_url": "https://www.instagram.com/p/DaQwE3EEh_W/",
+      "platform": "instagram",
+      "caption": "233 likes, 0 comments - mansworldindia on July 1, 2026: \"Kylian Mbappe's brace against Sweden last night sent France to the Round of 16, but also made him the leading goalscorer in the knockout stages of the FIFA World Cup. Swipe through to see the entire list.\n\n[Kylian Mbappe, FIFA World Cup, France Football]\". ",
+      "scraped_at": "2026-07-03T10:00:28.912757+00:00",
+      "account": "mansworldindia",
+      "likes": 204,
+      "trusted": false,
+      "permanent_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/wc-social/ig-mansworldindia-49db960fe21d.jpg",
+      "width": 640,
+      "height": 640,
+      "size_bytes": 32279
+    },
+    {
+      "cdn_url": "https://scontent-dfw5-2.cdninstagram.com/v/t51.82787-15/658988079_18582509815015637_3040978298533677809_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=100&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=8fQL4uT7jUQQ7kNvwF_y-B6&_nc_oc=AdpC5QH3NBUS1nhkWjkJ5EgX8BeqBvqG8AnC2caxhGHr63yuJXZGoqYMUms1u0Cy_dnFpYnu8Q1zBxqK1Q5opd67&_nc_zt=23&_nc_ht=scontent-dfw5-2.cdninstagram.com&_nc_gid=n6iboBZ65urzShf1YUR5hw&_nc_ss=7860f&oh=00_AQCJ8cvWkx7bzGFZo9vj-fmXA5IVLPj9cp85K5dH7oqKpg&oe=6A4D53CC",
+      "post_url": "https://www.instagram.com/p/DaQwE3EEh_W/",
+      "platform": "instagram",
+      "caption": "233 likes, 0 comments - mansworldindia on July 1, 2026: \"Kylian Mbappe's brace against Sweden last night sent France to the Round of 16, but also made him the leading goalscorer in the knockout stages of the FIFA World Cup. Swipe through to see the entire list.\n\n[Kylian Mbappe, FIFA World Cup, France Football]\". ",
+      "scraped_at": "2026-07-03T10:00:28.912786+00:00",
+      "account": "mansworldindia",
+      "likes": 204,
+      "trusted": false,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-dfw5-1.cdninstagram.com/v/t51.82787-15/658823225_18582512509015637_6935899670379618796_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=111&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0FST1VTRUxfSVRFTS5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=DYfk5tLSkTgQ7kNvwGD7PY7&_nc_oc=AdruKxpWOJHmZvS5C3c3Krvnw5KIAxW1h8XvHKQxWx0_mANrgifeHPb44-Ya4KVYIYT-DZvTxFbIIKkL_gZH4bQ7&_nc_zt=23&_nc_ht=scontent-dfw5-1.cdninstagram.com&_nc_gid=n6iboBZ65urzShf1YUR5hw&_nc_ss=7860f&oh=00_AQAINuVFUsNg0hGJUqBpO5XW4YBsH8BXok_t_UMRr988aQ&oe=6A4D626C",
+      "post_url": "https://www.instagram.com/p/DaQwE3EEh_W/",
+      "platform": "instagram",
+      "caption": "233 likes, 0 comments - mansworldindia on July 1, 2026: \"Kylian Mbappe's brace against Sweden last night sent France to the Round of 16, but also made him the leading goalscorer in the knockout stages of the FIFA World Cup. Swipe through to see the entire list.\n\n[Kylian Mbappe, FIFA World Cup, France Football]\". ",
+      "scraped_at": "2026-07-03T10:00:28.912793+00:00",
+      "account": "mansworldindia",
+      "likes": 204,
+      "trusted": false,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-dfw6-2.cdninstagram.com/v/t51.82787-15/657387167_18582539659015637_8340237895586635796_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=110&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0xJUFMuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=3sdUB8YRrqIQ7kNvwGE0X02&_nc_oc=AdqeMn4DpXZrmZ8cINUdzhawPH6h1bcQpu2KF2u3VlignvlyyBylSOEMOuxBsAtQHsALZTIRz1rOOR1Jw5N4PEdG&_nc_zt=23&_nc_ht=scontent-dfw6-2.cdninstagram.com&_nc_gid=n6iboBZ65urzShf1YUR5hw&_nc_ss=7860f&oh=00_AQBF8gUY9QrIPR49Phyuedn4gB-Ro9bURSyagT0onNPqmA&oe=6A4D549F",
+      "post_url": "https://www.instagram.com/p/DaQwE3EEh_W/",
+      "platform": "instagram",
+      "caption": "233 likes, 0 comments - mansworldindia on July 1, 2026: \"Kylian Mbappe's brace against Sweden last night sent France to the Round of 16, but also made him the leading goalscorer in the knockout stages of the FIFA World Cup. Swipe through to see the entire list.\n\n[Kylian Mbappe, FIFA World Cup, France Football]\". ",
+      "scraped_at": "2026-07-03T10:00:28.912797+00:00",
+      "account": "mansworldindia",
+      "likes": 204,
+      "trusted": false,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-dfw6-1.cdninstagram.com/v/t51.82787-15/730949163_17863592025636696_8693264910941983544_n.jpg?stp=c216.0.648.648a_dst-jpg_e35_s640x640_tt6&_nc_cat=101&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0FST1VTRUxfSVRFTS5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=l-PfM290DQ4Q7kNvwHuhUDZ&_nc_oc=AdqZ5wUCT1SEfcly1rqrtdZVKcv0I1hTkp9IoU4-a9lHPkSSRlJCfik5UxzF9bXUk5x02ftE2ZrJ_cwov0YCDexs&_nc_zt=23&_nc_ht=scontent-dfw6-1.cdninstagram.com&_nc_gid=I-POrc2A5mfUZwnvqZdpgw&_nc_ss=7860f&oh=00_AQAY56Mg_MFmp8mFTyY0jRrMzyN4wGeThCcxriss6_NVtw&oe=6A4D6A47",
+      "post_url": "https://www.instagram.com/p/DaMacj9Eh5A/",
+      "platform": "instagram",
+      "caption": "24 likes, 0 comments - gqsingapore on June 29, 2026: \"For football fans, the four-year wait felt like a lifetime. But boy, did the world\u2019s biggest international football tournament deliver in its opening stages. \n\nAs the Round of 32 commences, we take a look back at the headlines from the past 17 days of international football action.\n\nImages courtesy of Getty.\n-\n#GQSingapore #fifaworldcup #fwc26\"",
+      "scraped_at": "2026-07-03T10:00:34.868003+00:00",
+      "account": "gqsingapore",
+      "likes": 22,
+      "trusted": false,
+      "permanent_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/wc-social/ig-gqsingapore-1ce5cecd8957.jpg",
+      "width": 640,
+      "height": 640,
+      "size_bytes": 38073
+    },
+    {
+      "cdn_url": "https://scontent-dfw5-1.cdninstagram.com/v/t51.82787-15/734101255_17863927932636696_236942739589526533_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=106&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0FST1VTRUxfSVRFTS5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=k5MEoXcw8LQQ7kNvwEwUb8-&_nc_oc=Adr2RxQiU-sNJkHJcPeXccwOrzisNA3DA_aOicKe7-QXGit7sbfUk8fjwfJ4VURnXobPRclxxdqcutcEMQVPWcDM&_nc_zt=23&_nc_ht=scontent-dfw5-1.cdninstagram.com&_nc_gid=HSMCEytyyhmm8InPpFbJng&_nc_ss=7820f&oh=00_AQCGaMYWYN56A8Gxuc2dd-XZ7jjht25VLFci8UiASEOmzQ&oe=6A4D6592",
+      "post_url": "https://www.instagram.com/p/DaMacj9Eh5A/",
+      "platform": "instagram",
+      "caption": "24 likes, 0 comments - gqsingapore on June 29, 2026: \"For football fans, the four-year wait felt like a lifetime. But boy, did the world\u2019s biggest international football tournament deliver in its opening stages. \n\nAs the Round of 32 commences, we take a look back at the headlines from the past 17 days of international football action.\n\nImages courtesy of Getty.\n-\n#GQSingapore #fifaworldcup #fwc26\"",
+      "scraped_at": "2026-07-03T10:00:34.868033+00:00",
+      "account": "gqsingapore",
+      "likes": 22,
+      "trusted": false,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-dfw5-2.cdninstagram.com/v/t51.82787-15/731185634_17863827138636696_1656938458078248205_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=100&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0FST1VTRUxfSVRFTS5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=KmSzi-m843MQ7kNvwEocpMP&_nc_oc=AdrYeW8ty8Q-ROZ37mBSEOf3-cgpMR0NvfpLzCPolUwJod-Y3AhC0tn4TFVIdwBWVIolV8gD-2sSNk3HMDaZqHtm&_nc_zt=23&_nc_ht=scontent-dfw5-2.cdninstagram.com&_nc_gid=HSMCEytyyhmm8InPpFbJng&_nc_ss=7820f&oh=00_AQAvmNJxq8E6SHQ5EOCS8MEq6ho-ja-0QNxY3ZU0KDTHRw&oe=6A4D530E",
+      "post_url": "https://www.instagram.com/p/DaMacj9Eh5A/",
+      "platform": "instagram",
+      "caption": "24 likes, 0 comments - gqsingapore on June 29, 2026: \"For football fans, the four-year wait felt like a lifetime. But boy, did the world\u2019s biggest international football tournament deliver in its opening stages. \n\nAs the Round of 32 commences, we take a look back at the headlines from the past 17 days of international football action.\n\nImages courtesy of Getty.\n-\n#GQSingapore #fifaworldcup #fwc26\"",
+      "scraped_at": "2026-07-03T10:00:34.868041+00:00",
+      "account": "gqsingapore",
+      "likes": 22,
+      "trusted": false,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-dfw5-2.cdninstagram.com/v/t51.82787-15/733890413_17863826598636696_7789709456272995752_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=107&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=XJTEvNKOz4cQ7kNvwGBqaa9&_nc_oc=AdoDwNZy45oC-Z7YhmXfxnCuLAUS8lkCfV4CFEexkpwxOKtDe6aLVD6PzBs1pjemUYSrF7v8rSYdBqx-NPL1YLYe&_nc_zt=23&_nc_ht=scontent-dfw5-2.cdninstagram.com&_nc_gid=HSMCEytyyhmm8InPpFbJng&_nc_ss=7820f&oh=00_AQA2y4aWDU2MEzVMe1Bc9qFPQKF4t_y2csW5VIL_NpN-MQ&oe=6A4D6A89",
+      "post_url": "https://www.instagram.com/p/DaMacj9Eh5A/",
+      "platform": "instagram",
+      "caption": "24 likes, 0 comments - gqsingapore on June 29, 2026: \"For football fans, the four-year wait felt like a lifetime. But boy, did the world\u2019s biggest international football tournament deliver in its opening stages. \n\nAs the Round of 32 commences, we take a look back at the headlines from the past 17 days of international football action.\n\nImages courtesy of Getty.\n-\n#GQSingapore #fifaworldcup #fwc26\"",
+      "scraped_at": "2026-07-03T10:00:34.868065+00:00",
+      "account": "gqsingapore",
+      "likes": 22,
       "trusted": false,
       "permanent_url": null
     }

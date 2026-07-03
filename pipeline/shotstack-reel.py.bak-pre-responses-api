@@ -4373,99 +4373,45 @@ def source_storyboard_images(article, storyboard, count=8):
 #   C) Scene 0 (hook) = article hero if it passes resolution, else generate/card.
 # ═══════════════════════════════════════════════════════════════════════════════
 
-# DEPRECATED (2026-07-03): _BRAND_GEN_SUFFIX killed as part of the Responses API
-# visual overhaul. The old suffix forced every gpt-image-1 prompt into a generic
-# navy/gold illustration style, preventing rich composed scenes. The Responses API
-# now generates contextual, article-specific visuals without style constraints.
-_BRAND_GEN_SUFFIX = ""  # kept as empty string so any residual references don't crash
+# Locked house-style suffix appended to EVERY gpt-image-1 prompt so all generated
+# images stay visually consistent and brand-safe. Text is NEVER baked in (it goes
+# on PIL cards), and no real identifiable person is ever depicted.
+_BRAND_GEN_SUFFIX = (
+    " — Rendered as a refined editorial illustration in The Videshi house style: "
+    "a rich mid-tone navy background (#22305a) with luminous antique gold (#d4b25e) "
+    "accents, delicate Indian jaali lattice linework framing the vertical margins, "
+    "subtle aged-paper grain texture, a bright warm cinematic glow lighting the "
+    "center of the composition so the scene reads clearly and is NOT dark or murky, "
+    "high-end magazine art-direction. Keep the overall image well-lit and vibrant, "
+    "not shadowy. Flat stylized vector-meets-painterly look, NOT a photograph and "
+    "NOT photorealistic. Absolutely NO text, letters, words, numbers, captions, or "
+    "logos anywhere. NO real or identifiable human faces. Vertical 9:16 composition "
+    "with clear empty space in the upper-middle and lower thirds for overlaid text."
+)
 
 
-def generate_themed_image(image_prompt, article_id, idx, out_dir="/tmp/videshi_gen",
-                          previous_response_id=None):
-    """Generate an article-specific scene image using the OpenAI Responses API
-    with integrated image_generation tool. Falls back to legacy gpt-image-1 if
-    the Responses API fails.
-
-    When previous_response_id is provided, the model retains full article context
-    from the planning phase, producing contextually richer images.
-
-    Returns the public URL (or None on any failure). Never raises."""
+def generate_themed_image(image_prompt, article_id, idx, out_dir="/tmp/videshi_gen"):
+    """Generate a brand-themed editorial illustration with gpt-image-1, upload it,
+    and return the public URL (or None on any failure). The locked brand suffix is
+    appended so output is consistent + brand-safe. Never raises."""
     if not image_prompt or not OPENAI_KEY:
         return None
     try:
         os.makedirs(out_dir, exist_ok=True)
-
-        # ── PRIMARY: Responses API with image_generation tool ──
-        resp_url = "https://api.openai.com/v1/responses"
-        resp_headers = {"Authorization": f"Bearer {OPENAI_KEY}",
-                        "Content-Type": "application/json"}
-        resp_body = {
-            "model": "gpt-4o",
-            "input": f"Generate this scene image: {image_prompt}. No human faces.",
-            "tools": [{"type": "image_generation", "size": "1024x1536",
-                        "quality": "high"}],
-            "tool_choice": {"type": "image_generation"},
-        }
-        if previous_response_id:
-            resp_body["previous_response_id"] = previous_response_id
-
-        r = requests.post(resp_url, headers=resp_headers, json=resp_body,
-                          timeout=300)
-
-        if r.status_code == 200:
-            resp_data = r.json()
-            for out in resp_data.get("output", []):
-                if out.get("type") == "image_generation_call":
-                    b64 = out.get("result", "")
-                    if b64:
-                        import base64 as _b64
-                        png = _b64.b64decode(b64)
-                        local_png = os.path.join(out_dir,
-                                                 f"gen_{article_id}_{idx}.png")
-                        local_jpg = os.path.join(out_dir,
-                                                 f"gen_{article_id}_{idx}.jpg")
-                        with open(local_png, "wb") as fh:
-                            fh.write(png)
-                        # Compress for faster Shotstack download
-                        os.system(f"gm convert {local_png} -quality 85 {local_jpg}")
-                        upload_path = local_jpg if os.path.exists(local_jpg) else local_png
-                        storage_path = f"reel-gen/{article_id}/scene-{idx}.png"
-                        url = upload_asset(upload_path, storage_path, "image/png")
-                        for f in (local_png, local_jpg):
-                            try:
-                                os.remove(f)
-                            except Exception:
-                                pass
-                        # Return (url, response_id) tuple when chaining is needed
-                        _new_id = resp_data.get("id")
-                        if previous_response_id is not None:
-                            return url, _new_id
-                        return url
-            print(f"  ⚠️ Responses API returned 200 but no image data")
-        else:
-            print(f"  ⚠️ Responses API failed ({r.status_code}): {r.text[:160]}")
-
-        # ── FALLBACK: Legacy gpt-image-1 (no brand suffix) ──
-        print(f"  ⏩ Falling back to legacy gpt-image-1 for scene {idx}")
-        full_prompt = image_prompt.strip().rstrip(".") + ". No human faces. Vertical 9:16."
+        full_prompt = image_prompt.strip().rstrip(".") + "." + _BRAND_GEN_SUFFIX
         r = requests.post(
             "https://api.openai.com/v1/images/generations",
-            headers={"Authorization": f"Bearer {OPENAI_KEY}",
-                     "Content-Type": "application/json"},
+            headers={"Authorization": f"Bearer {OPENAI_KEY}", "Content-Type": "application/json"},
             json={"model": "gpt-image-1", "prompt": full_prompt[:3900],
                   "size": "1024x1536", "n": 1},
             timeout=120,
         )
         if r.status_code != 200:
-            print(f"  ⚠️ gpt-image-1 also failed ({r.status_code}): {r.text[:160]}")
-            if previous_response_id is not None:
-                return None, previous_response_id
+            print(f"  ⚠️ gpt-image-1 failed ({r.status_code}): {r.text[:160]}")
             return None
         data = r.json().get("data", [])
         if not data or not data[0].get("b64_json"):
             print("  ⚠️ gpt-image-1 returned no image data")
-            if previous_response_id is not None:
-                return None, previous_response_id
             return None
         import base64
         png = base64.b64decode(data[0]["b64_json"])
@@ -4478,218 +4424,10 @@ def generate_themed_image(image_prompt, article_id, idx, out_dir="/tmp/videshi_g
             os.remove(local)
         except Exception:
             pass
-        if previous_response_id is not None:
-            return url, previous_response_id
         return url
     except Exception as e:
         print(f"  ⚠️ generate_themed_image error: {e}")
-        if previous_response_id is not None:
-            return None, previous_response_id
         return None
-
-
-# ═══════════════════════════════════════════════════════════════════════════════
-# RESPONSES API — FULL SCENE IMAGE GENERATION (Approach B)
-# ═══════════════════════════════════════════════════════════════════════════════
-# Two-phase pipeline:
-#   Phase 1: GPT-4o plans a storyboard (text only, no image generation)
-#   Phase 2: For each scene, generate the image via Responses API with
-#            previous_response_id for full article context continuity.
-# This is the same architecture ChatGPT uses internally — the model that
-# understands the article is the same model that generates the image.
-# ═══════════════════════════════════════════════════════════════════════════════
-
-def generate_responses_api_scenes(article, storyboard, article_id,
-                                  out_dir="/tmp/videshi_gen"):
-    """Generate all scene images using the OpenAI Responses API.
-
-    Takes the existing storyboard (from generate_script) and generates images
-    for every scene. Returns (urls, media_meta) in the same format as
-    source_reel_media_clean.
-
-    Phase 1: Send the article to GPT-4o (Responses API, text-only) to create
-             detailed image descriptions for each scene.
-    Phase 2: Generate each scene image one at a time, chaining via
-             previous_response_id so each generation has full context.
-    """
-    if not OPENAI_KEY:
-        print("  ⚠️ No OpenAI key — cannot use Responses API for scenes")
-        return None, None
-
-    RESP_URL = "https://api.openai.com/v1/responses"
-    RESP_HEADERS = {"Authorization": f"Bearer {OPENAI_KEY}",
-                    "Content-Type": "application/json"}
-
-    headline = article.get("headline", "")
-    subheadline = article.get("subheadline", "")
-    body = (article.get("body") or "")[:3000]
-
-    n_scenes = len(storyboard)
-    print(f"\n  🎨 Responses API: generating {n_scenes} scene images...")
-
-    # ── Phase 1: Plan visual descriptions ──
-    # Use the storyboard narration to guide image planning
-    scene_descriptions = []
-    for s in storyboard:
-        narration = s.get("narration", "")
-        card_text = s.get("card_text", "")
-        card_subtext = s.get("card_subtext", "")
-        scene_descriptions.append(
-            f"Scene {s.get('scene', '?')}: Narration: \"{narration}\" "
-            f"| Key point: \"{card_text}\" — {card_subtext}"
-        )
-    scenes_text = "\n".join(scene_descriptions)
-
-    plan_prompt = f"""You are designing visuals for a news Instagram Reel by The Videshi.
-
-ARTICLE:
-Headline: {headline}
-Subheadline: {subheadline}
-Body: {body}
-
-STORYBOARD (narration per scene):
-{scenes_text}
-
-For each scene, write a DETAILED image description (150-250 chars) that would
-make a visually stunning, data-rich news graphic. Each scene should include
-article-specific imagery — real data numbers, charts, infographic elements,
-contextual visuals (buildings, maps, symbols relevant to the story).
-
-RULES:
-- NO human faces in any scene
-- Each scene must be visually DISTINCT from the others
-- Include specific numbers/data from the article IN the image composition
-- Think like a professional news graphics department
-
-Return JSON only: {{"scenes": [{{"scene": 1, "image_description": "detailed visual description..."}}]}}"""
-
-    print(f"  📝 Phase 1: Planning image descriptions...", flush=True)
-    try:
-        r = requests.post(RESP_URL, headers=RESP_HEADERS, json={
-            "model": "gpt-4o",
-            "input": plan_prompt,
-        }, timeout=120)
-    except Exception as e:
-        print(f"  ⚠️ Responses API Phase 1 failed: {e}")
-        return None, None
-
-    if r.status_code != 200:
-        print(f"  ⚠️ Responses API Phase 1 status {r.status_code}: {r.text[:200]}")
-        return None, None
-
-    plan_resp = r.json()
-    prev_id = plan_resp.get("id")
-
-    # Extract text
-    plan_text = ""
-    for out in plan_resp.get("output", []):
-        if out.get("type") == "message":
-            for c in out.get("content", []):
-                if c.get("type") == "output_text":
-                    plan_text = c["text"]
-
-    # Parse JSON
-    try:
-        clean = plan_text.strip()
-        if clean.startswith("```"):
-            clean = clean.split("\n", 1)[1]
-            clean = clean.rsplit("```", 1)[0]
-        image_plan = json.loads(clean)
-        planned_scenes = image_plan.get("scenes", [])
-        print(f"  ✅ Phase 1: got {len(planned_scenes)} image descriptions")
-    except Exception as e:
-        print(f"  ⚠️ Phase 1 JSON parse failed: {e}")
-        print(f"  Raw: {plan_text[:300]}")
-        # Fall back to using storyboard card_text as image prompts
-        planned_scenes = [
-            {"scene": i + 1,
-             "image_description": f"A visually stunning news infographic about: "
-                                  f"{s.get('card_text', '')}. {s.get('card_subtext', '')}. "
-                                  f"Data-rich, no human faces."}
-            for i, s in enumerate(storyboard)
-        ]
-        print(f"  ⏩ Using fallback descriptions from storyboard card_text")
-
-    # ── Phase 2: Generate each scene image ──
-    os.makedirs(out_dir, exist_ok=True)
-    urls = []
-    media_meta = {}
-
-    for i, scene in enumerate(planned_scenes[:n_scenes]):
-        desc = scene.get("image_description", "")
-        if not desc:
-            desc = f"A news infographic scene about {storyboard[i].get('card_text', 'breaking news')}"
-
-        scene_num = scene.get("scene", i + 1)
-        print(f"  🖼️ Phase 2: Generating scene {scene_num}/{n_scenes}...", flush=True)
-        t0 = time.time()
-
-        gen_prompt = f"Now generate scene {scene_num}'s image. Scene description: {desc}"
-        try:
-            r = requests.post(RESP_URL, headers=RESP_HEADERS, json={
-                "model": "gpt-4o",
-                "input": gen_prompt,
-                "previous_response_id": prev_id,
-                "tools": [{"type": "image_generation", "size": "1024x1536",
-                            "quality": "high"}],
-                "tool_choice": {"type": "image_generation"},
-            }, timeout=300)
-        except Exception as e:
-            print(f"  ⚠️ Scene {scene_num} request failed: {e}")
-            continue
-
-        elapsed = time.time() - t0
-        if r.status_code != 200:
-            print(f"  ⚠️ Scene {scene_num} failed ({r.status_code}, {elapsed:.0f}s): "
-                  f"{r.text[:200]}")
-            continue
-
-        resp_data = r.json()
-        # Chain context for next scene
-        prev_id = resp_data.get("id", prev_id)
-
-        img_saved = False
-        for out in resp_data.get("output", []):
-            if out.get("type") == "image_generation_call":
-                b64 = out.get("result", "")
-                revised = out.get("revised_prompt", "")
-                if b64:
-                    import base64 as _b64
-                    raw = _b64.b64decode(b64)
-                    local_png = os.path.join(out_dir,
-                                             f"resp_{article_id}_{i}.png")
-                    local_jpg = os.path.join(out_dir,
-                                             f"resp_{article_id}_{i}.jpg")
-                    with open(local_png, "wb") as fh:
-                        fh.write(raw)
-                    # Compress
-                    os.system(f"gm convert {local_png} -quality 85 {local_jpg}")
-                    upload_file = local_jpg if os.path.exists(local_jpg) else local_png
-                    storage_path = f"reel-gen/{article_id}/resp-scene-{i}.png"
-                    url = upload_asset(upload_file, storage_path, "image/png")
-                    for f in (local_png, local_jpg):
-                        try:
-                            os.remove(f)
-                        except Exception:
-                            pass
-                    if url:
-                        urls.append(url)
-                        media_meta[url] = {
-                            "type": "image", "duration": 0,
-                            "is_generated": True, "is_responses_api": True,
-                            "curated": True, "generic_pexels": False,
-                        }
-                        img_saved = True
-                        print(f"  ✅ Scene {scene_num} saved ({elapsed:.0f}s) — "
-                              f"{revised[:80]}...")
-                    else:
-                        print(f"  ⚠️ Scene {scene_num} upload failed")
-
-        if not img_saved:
-            print(f"  ⚠️ Scene {scene_num}: no image in response ({elapsed:.0f}s)")
-
-    print(f"\n  🎨 Responses API: {len(urls)}/{n_scenes} scenes generated")
-    return urls, media_meta
 
 
 def _card_background_url(scene, article, article_id, idx, used_in_this_reel,
@@ -5802,66 +5540,46 @@ def build_anchor_reel_timeline(
 
     broll_track = {"clips": broll_clips}
 
-    # ── CTA: Branded end card ──
-    # PRIMARY: Static designed PNG (pixel-perfect logo + tagline + URL)
-    # FALLBACK: HTML overlay (for backward compat if PNG not available)
-    endcard_url = get_endcard_url()
-    if endcard_url:
-        end_card_track = {
-            "clips": [
-                {
-                    "asset": {
-                        "type": "image",
-                        "src": endcard_url,
-                    },
-                    "start": round(cta_start, 2),
-                    "length": CTA_DURATION,
-                    "fit": "cover",
-                    "position": "center",
-                    "transition": {"in": "fade"},
+    # ── CTA: Branded end card (HTML overlay on dark background) — animated slide up ──
+    end_html, end_css = build_end_card_html(logo_url=LOGO_URL)
+    end_card_track = {
+        "clips": [
+            {
+                "asset": {
+                    "type": "html",
+                    "html": end_html,
+                    "css": end_css,
+                    "width": 1080,
+                    "height": 1920,
                 },
-            ]
-        }
-    else:
-        # Fallback to the old HTML end card
-        end_html, end_css = build_end_card_html(logo_url=LOGO_URL)
-        end_card_track = {
-            "clips": [
-                {
-                    "asset": {
-                        "type": "html",
-                        "html": end_html,
-                        "css": end_css,
-                        "width": 1080,
-                        "height": 1920,
-                    },
-                    "start": round(cta_start, 2),
-                    "length": CTA_DURATION,
-                    "position": "center",
-                    "transition": {"in": "slideUp"},
-                    "offset": {
-                        "x": 0,
-                        "y": [
-                            {"from": -0.03, "to": 0, "start": 0, "length": 0.4,
-                             "interpolation": "bezier", "easing": "easeOutCubic"},
-                        ],
-                    },
+                "start": round(cta_start, 2),
+                "length": CTA_DURATION,
+                "position": "center",
+                "transition": {"in": "slideUp"},
+                "offset": {
+                    "x": 0,
+                    "y": [
+                        {"from": -0.03, "to": 0, "start": 0, "length": 0.4,
+                         "interpolation": "bezier", "easing": "easeOutCubic"},
+                    ],
                 },
-                # Logo as a real image clip (HTML <img> does not render in Shotstack).
-                {
-                    "asset": {
-                        "type": "image",
-                        "src": LOGO_URL,
-                    },
-                    "start": round(cta_start, 2),
-                    "length": CTA_DURATION,
-                    "position": "center",
-                    "offset": {"x": 0, "y": 0.34},
-                    "scale": 0.22,
-                    "transition": {"in": "fade"},
+            },
+            # Logo as a real image clip (HTML <img> does not render in Shotstack).
+            # Centered near the top of the end card, above the "THE VIDESHI" wordmark.
+            {
+                "asset": {
+                    "type": "image",
+                    "src": LOGO_URL,
                 },
-            ]
-        }
+                "start": round(cta_start, 2),
+                "length": CTA_DURATION,
+                "position": "center",
+                "offset": {"x": 0, "y": 0.34},
+                "scale": 0.22,
+                "transition": {"in": "fade"},
+            },
+        ]
+    }
 
     # ── Track 6 (BOTTOM): Voice-over audio with alias ──
     voice_track = {
@@ -6344,31 +6062,6 @@ def download_reel(url, output_path, retries=3):
 # ═══════════════════════════════════════════════════════════════════════════════
 
 CTA_DURATION = 4.0  # Branded end card — enough time to read site + social handles
-
-# ── Static end card (designed PNG with logo, tagline, URL) ──
-# The designed PNG at pipeline/assets/endcard.png is the primary end card.
-# It gets uploaded to Supabase once and cached. The HTML fallback
-# (build_end_card_html) is kept for backward compatibility but the static
-# image is preferred — it's pixel-perfect and doesn't depend on Shotstack's
-# HTML renderer.
-_ENDCARD_PNG = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                            "assets", "endcard.png")
-_ENDCARD_URL_CACHE = [None]  # mutable default for lazy upload
-
-
-def get_endcard_url():
-    """Upload the designed end card PNG to Supabase (once) and return its
-    public URL. Falls back to None if the file doesn't exist or upload fails."""
-    if _ENDCARD_URL_CACHE[0]:
-        return _ENDCARD_URL_CACHE[0]
-    if not os.path.exists(_ENDCARD_PNG):
-        print(f"  ⚠️ Static end card not found at {_ENDCARD_PNG}")
-        return None
-    url = upload_asset(_ENDCARD_PNG, "branding/endcard-v1.png", "image/png")
-    if url:
-        _ENDCARD_URL_CACHE[0] = url
-        print(f"  ✅ End card uploaded: {url[:60]}...")
-    return url
 
 # Social handles
 SOCIAL_HANDLES = {
@@ -7176,35 +6869,15 @@ def run_anchor_reel(article, dry_run=False, use_production=False, no_publish=Fal
     if isinstance(script_data.get("social_search"), dict):
         article["_social_search"] = script_data["social_search"]
     media_meta = {}
-
-    # ── PRIMARY: Responses API integrated image generation (Approach B) ──
-    # Produces dramatically richer visuals because the same model that understands
-    # the article generates the images — no information lost between steps.
-    # Env var VIDESHI_REEL_RESPONSES_API=0 disables this path (falls to CLEAN mode).
-    USE_RESPONSES_API = os.environ.get("VIDESHI_REEL_RESPONSES_API", "1") != "0"
-    if storyboard and USE_RESPONSES_API and OPENAI_KEY:
-        print("  🚀 RESPONSES API mode: integrated GPT-4o image generation")
-        resp_urls, resp_meta = generate_responses_api_scenes(
-            article, storyboard, article.get("id", ""))
-        if resp_urls and len(resp_urls) >= 3:
-            image_urls = resp_urls
-            media_meta = resp_meta or {}
-            print(f"  ✅ Responses API produced {len(image_urls)} scene images")
-        else:
-            print(f"  ⚠️ Responses API produced only {len(resp_urls) if resp_urls else 0} "
-                  f"images — falling back to CLEAN mode")
-            USE_RESPONSES_API = False  # fall through to CLEAN
-
     REEL_CLEAN = os.environ.get("VIDESHI_REEL_CLEAN", "1") != "0"
-    if not USE_RESPONSES_API or not media_meta:
-        if storyboard and REEL_CLEAN:
-            print("  🧹 CLEAN mode (approach 1): article hero + own embeds + GPT cards only")
-            image_urls, media_meta = source_reel_media_clean(article, storyboard)
-        elif storyboard:
-            image_urls, media_meta = source_storyboard_images(article, storyboard)
-        else:
-            print("  ⚠️ No storyboard in script — falling back to legacy image_queries")
-            image_urls = source_image_urls(article, script_data.get("image_queries", []))
+    if storyboard and REEL_CLEAN:
+        print("  🧹 CLEAN mode (approach 1): article hero + own embeds + GPT cards only")
+        image_urls, media_meta = source_reel_media_clean(article, storyboard)
+    elif storyboard:
+        image_urls, media_meta = source_storyboard_images(article, storyboard)
+    else:
+        print("  ⚠️ No storyboard in script — falling back to legacy image_queries")
+        image_urls = source_image_urls(article, script_data.get("image_queries", []))
     if not image_urls:
         print("❌ No images found")
         return False
