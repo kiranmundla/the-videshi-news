@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-02T23:15:17.758631+00:00",
+  "timestamp": "2026-07-03T00:15:59.402290+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 0,
-    "flag": 1,
+    "pass": 6,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,64 +11,276 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "6d8b7e92-3f76-4273-ba6f-a312a3d32c69",
-      "headline": "Welcome to the Jungle Broke Even Before It Opened. Then It Earned \u20b9137 Crore.",
-      "slug": "welcome-to-the-jungle-137-crore-box-office-profit-akshay-kumar-overseas-diaspora-nri-20260702",
+      "id": "76f4ac92-cb57-4a84-ac25-2610bdccd952",
+      "headline": "Fifteen Thousand Indian Engineers Left America This Year. The Rest Are Watching",
+      "slug": "indian-tech-reverse-migration-15000-leaving-us-20260703",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "b294963d-e8d6-443f-aa77-59e0163cc6c1",
-            "headline": "He Took No Upfront Fee. Four Days Later, Akshay Kumar Is Lau"
-          },
-          {
-            "article_id": "0932f10a-5f7a-477a-8e1c-f2181c8ba05c",
-            "headline": "Priyadarshan Lost Hera Pheri 3. So He Called Akshay Kumar In"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Akshay Kumar at an event",
-          "reason": "Akshay Kumar is relevant to a Bollywood film story."
+          "what_photo_shows": "traveller with luggage at airport",
+          "reason": "The photo of a traveller at an airport matches the immigration story theme."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/reel/DaId7j6N0O7/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram reel does not appear to be directly related to the film 'Welcome to the Jungle' or its box office performance."
-          },
-          {
-            "url": "https://youtube.com/watch?v=R704yP3dlXw",
-            "problem": "irrelevant",
-            "explanation": "The YouTube link does not provide relevant content that enhances the article's discussion about the film's box office performance."
-          }
-        ],
+        "embed_issues": [],
         "image_match": {
-          "score": 3,
-          "issue": "The image of Akshay Kumar does not match the article's focus on 'Welcome to the Jungle', which features a large ensemble cast."
+          "score": 7,
+          "issue": "The image does not directly relate to the article's focus on Indian engineers leaving America."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively discusses the film's appeal to NRI audiences and its box office performance in overseas markets."
+          "quality": 8,
+          "note": "The article discusses the challenges faced by Indian engineers in the US and the opportunities in India, which resonates with the NRI audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant Instagram and YouTube links with embeds that directly relate to 'Welcome to the Jungle'.",
-          "Consider using an image that features the ensemble cast of 'Welcome to the Jungle' to better match the article's content."
+          "Consider using a more relevant image that depicts Indian engineers or the tech industry.",
+          "Add quotes or anecdotes from Indian engineers who have made the move back to India to enhance the personal connection."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/reel/DaId7j6N0O7/",
-        "Removed irrelevant embed: https://youtube.com/watch?v=R704yP3dlXw",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "013fe3d7-d671-4d50-8625-f502a1bda945",
+      "headline": "The H-1B Filing Window Just Closed. The First Weighted Lottery Changed Everything",
+      "slug": "h1b-fy2027-weighted-lottery-filing-deadline-closes-20260703",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "a9387eb6-819d-4880-857e-da536b0dea36",
+            "headline": "India's EB-5 Investor Green Cards Just Ran Out. The Escape H"
+          },
+          {
+            "article_id": "2f893da9-3f4b-4ee9-9998-647e3cb86da1",
+            "headline": "Eleven Million Cases and Counting. The Green Card Machine Ca"
+          },
+          {
+            "article_id": "1b21ce05-c4a8-4b9c-867a-df5de0b99356",
+            "headline": "He Filed Fake H-1B Petitions Under UC Davis's Name. Now He F"
+          },
+          {
+            "article_id": "616863da-e588-442a-b199-5a0e9c221ae0",
+            "headline": "EB-2 India Went Dark. Now the Escape Routes Are Getting Crow"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "USCIS Application Support Center",
+          "reason": "The photo shows a USCIS center, relevant to the immigration topic."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 6,
+          "issue": "The image depicts a USCIS Application Support Center, which is relevant but not directly related to the H-1B lottery process."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article discusses the implications of the H-1B lottery changes specifically for Indian applicants, making it highly relevant for the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more directly related image that illustrates the H-1B lottery process or Indian professionals in the tech industry.",
+          "Add a brief section on potential future changes to the H-1B process or how Indian applicants can adapt to the new system."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "4b05c466-1f23-482b-b626-d7b32d2745b6",
+      "headline": "Indian Immigrants Have Built 96 Billion-Dollar Startups in America. No Other Country Comes Close.",
+      "slug": "indian-immigrants-96-us-unicorns-nfap-founders-20260702",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MISMATCH",
+          "what_photo_shows": "office with red cups and computers",
+          "reason": "The photo shows a casual office setup, not related to Indian entrepreneurs or startups."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 5,
+          "issue": "missing image description"
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively highlights the entrepreneurial shift within the Indian diaspora, connecting past and present immigrant experiences."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include a relevant hero image that visually represents the theme of Indian entrepreneurs in the US.",
+          "Provide more specific examples of how the changing immigration policies may impact future Indian entrepreneurs."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "Cleared mismatched image (office with red cups and computers)",
+        "held: image mismatch"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "image_mismatch": true,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "42dfa69f-cdae-420c-ae7a-ecefa5afb175",
+      "headline": "Carnegie Names Four Indian Americans to Its 'Great Immigrants' List \u2014 on the Eve of America's 250th Birthday",
+      "slug": "carnegie-great-immigrants-indian-americans-july-4th-20260702",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "A man speaking at an event",
+          "reason": "The photo plausibly shows Nikesh Arora, relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the achievements of Indian Americans to broader themes of immigration and the current challenges faced by the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes or reactions from the honorees or community leaders to enhance engagement.",
+          "Include more context on the significance of the Carnegie list for the Indian diaspora."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "866fb181-f54e-43ee-9d32-eae942863e8c",
+      "headline": "Zuckerberg Just Admitted Meta's AI Bets 'Haven't Come to Fruition.' The Stock Fell 5%.",
+      "slug": "zuckerberg-meta-ai-agents-slower-town-hall-20260702",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Mark Zuckerberg smiling in a suit",
+          "reason": "The photo shows Mark Zuckerberg, relevant to the story about Meta."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the impact of Meta's restructuring on Indian engineers, connecting well with the diaspora audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more direct quotes from Zuckerberg to enhance credibility.",
+          "Add a brief overview of Meta's AI initiatives for readers unfamiliar with the topic."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "b47af492-30fe-4931-9093-b2e2359d56b0",
+      "headline": "Oracle Cut 21,000 Jobs Last Year. Nearly Half Were in India.",
+      "slug": "oracle-21000-jobs-cut-india-ai-infrastructure-20260702",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Oracle Corporation headquarters aerial view",
+          "reason": "The photo shows Oracle's headquarters, relevant to the story about Oracle job cuts."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image is relevant to Oracle but does not specifically depict the job cuts or Indian operations."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the impact of Oracle's layoffs on Indian tech workers, including those on H-1B visas in the US, which is relevant to the NRI audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include quotes or reactions from affected employees or industry experts to add depth.",
+          "Consider adding a section on potential future trends in the Indian tech job market post-layoffs."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
         "promoted to published"
       ],
       "revised": false,
