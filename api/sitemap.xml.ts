@@ -14,16 +14,6 @@ const SITE = "https://www.thevideshi.com";
 const STATIC_PAGES = [
   { loc: "/", priority: "1.0", changefreq: "hourly" },
   { loc: "/events", priority: "0.8", changefreq: "daily" },
-
-  { loc: "/directory", priority: "0.8", changefreq: "daily" },
-
-  { loc: "/classifieds", priority: "0.8", changefreq: "daily" },
-
-  { loc: "/cars", priority: "0.8", changefreq: "weekly" },
-  { loc: "/cars/guide/first-car-in-america", priority: "0.6", changefreq: "monthly" },
-  { loc: "/cars/guide/lease-vs-buy", priority: "0.6", changefreq: "monthly" },
-  { loc: "/cars/guide/insurance-for-new-immigrants", priority: "0.6", changefreq: "monthly" },
-  { loc: "/cars/guide/best-family-suvs", priority: "0.6", changefreq: "monthly" },
   { loc: "/about", priority: "0.5", changefreq: "monthly" },
   { loc: "/contact", priority: "0.5", changefreq: "monthly" },
   { loc: "/privacy", priority: "0.3", changefreq: "yearly" },
@@ -38,7 +28,6 @@ const STATIC_PAGES = [
   { loc: "/immigration/guides", priority: "0.6", changefreq: "weekly" },
   { loc: "/stories", priority: "0.6", changefreq: "weekly" },
   { loc: "/world-cup", priority: "0.9", changefreq: "hourly" },
-  { loc: "/search", priority: "0.4", changefreq: "monthly" },
 ];
 
 const CATEGORIES = [
@@ -79,13 +68,13 @@ export default async function handler(_req: VercelRequest, res: VercelResponse) 
     const now = new Date().toISOString();
     const today = now.split("T")[0];
 
-    // Fetch all data in parallel
-    const [articles, events, listings, classifieds, cars] = await Promise.all([
+    // Fetch articles and future events only
+    // Removed: directory listings, classifieds, cars — thin content that
+    // dilutes crawl budget. Google ignored 3,940 directory pages and
+    // 404'd 971 expired events.
+    const [articles, events] = await Promise.all([
       fetchAll("p2_articles", "slug,headline,published_at,category", "status=eq.published&order=published_at.desc"),
-      fetchAll("events", "slug,date,updated_at", "order=date.desc"),
-      fetchAll("directory_listings", "slug,updated_at", "order=updated_at.desc"),
-      fetchAll("classifieds", "slug,updated_at", `status=eq.active&expires_at=gte.${now}&order=created_at.desc`),
-      fetchAll("cars", "slug,updated_at", "order=sort_order.asc"),
+      fetchAll("events", "slug,date,updated_at", `date=gte.${today}&order=date.desc`),
     ]);
 
     let xml = `<?xml version="1.0" encoding="UTF-8"?>
@@ -141,62 +130,17 @@ export default async function handler(_req: VercelRequest, res: VercelResponse) 
 `;
     }
 
-    // Event pages (include past events so Google doesn't 404 them)
+    // Event pages (future events only — past events removed from sitemap
+    // to stop 404 crawl waste)
     for (const event of events) {
       if (!event.slug) continue;
       const lastmod = event.updated_at
         ? new Date(event.updated_at).toISOString().split("T")[0]
         : today;
-      const isFuture = event.date >= today;
       xml += `  <url>
     <loc>${escapeXml(SITE + "/events/" + event.slug)}</loc>
     <lastmod>${lastmod}</lastmod>
-    <changefreq>${isFuture ? "weekly" : "monthly"}</changefreq>
-    <priority>${isFuture ? "0.7" : "0.4"}</priority>
-  </url>
-`;
-    }
-
-    // Directory listing pages
-    for (const listing of listings) {
-      if (!listing.slug) continue;
-      const lastmod = listing.updated_at
-        ? new Date(listing.updated_at).toISOString().split("T")[0]
-        : today;
-      xml += `  <url>
-    <loc>${escapeXml(SITE + "/directory/" + listing.slug)}</loc>
-    <lastmod>${lastmod}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-`;
-    }
-
-    // Classified pages
-    for (const classified of classifieds) {
-      if (!classified.slug) continue;
-      const lastmod = classified.updated_at
-        ? new Date(classified.updated_at).toISOString().split("T")[0]
-        : today;
-      xml += `  <url>
-    <loc>${escapeXml(SITE + "/classifieds/" + classified.slug)}</loc>
-    <lastmod>${lastmod}</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-`;
-    }
-
-    // Car pages
-    for (const car of cars) {
-      if (!car.slug) continue;
-      const lastmod = car.updated_at
-        ? new Date(car.updated_at).toISOString().split("T")[0]
-        : today;
-      xml += `  <url>
-    <loc>${escapeXml(SITE + "/cars/" + car.slug)}</loc>
-    <lastmod>${lastmod}</lastmod>
-    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 `;
