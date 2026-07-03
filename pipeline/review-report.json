@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-03T12:48:12.259442+00:00",
+  "timestamp": "2026-07-03T13:15:15.693421+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 6,
+    "pass": 1,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "eafca655-ea53-4a5b-9950-5b9b4bd7644e",
-      "headline": "From a Family Clay Oven to a James Beard Nod: The Immigrant Story Behind Las Vegas's Hottest Indian Restaurant",
-      "slug": "from-a-family-clay-oven-to-james-beard-nod-immigrant-story-behind-las-vegas-hott",
+      "id": "5a0f5e39-1f99-4c12-ab4e-f51efd7ed650",
+      "headline": "He Woke Up Alone in Space. $683 Million Later, He Just Landed on Your Couch.",
+      "slug": "project-hail-mary-prime-video-ryan-gosling-streaming-4th-july-weekend-diaspora-nri-20260703",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,256 +21,28 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Gourmet tandoori chicken with artistic plating",
-          "reason": "The photo shows contemporary Indian fine dining, matching the restaurant story."
+          "what_photo_shows": "Ryan Gosling in Project Hail Mary",
+          "reason": "The photo shows Ryan Gosling in a role related to the story topic."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 8,
+        "overall_score": 7,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 8,
+          "issue": "The image is relevant to the article's topic, depicting the film Project Hail Mary, but could be more directly tied to the specific themes discussed."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the immigrant story of the Dhillon family to the broader narrative of Indian cuisine's evolution in America, appealing to diaspora readers."
+          "note": "The article connects well with diaspora readers by highlighting the accessibility of the film on Prime Video across various global locations."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from the Dhillon family or Chef Anand Singh to provide a more personal touch.",
-          "Include more context on the significance of the James Beard nomination for Indian restaurants to enhance the cultural relevance."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "49a3f867-0958-48f2-9dcd-8cfa10847797",
-      "headline": "Baked Oats Chaat to Rasmalai Tres Leches: India's Viral Fusion Recipes Are Rewriting the Global Cookbook",
-      "slug": "baked-oats-chaat-to-rasmalai-tres-leches-indias-viral-fusion-recipes-rewriting-g",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "plates of papri chaat with toppings",
-          "reason": "The photo shows a traditional Indian dish, relevant to the fusion food topic."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 6,
-          "issue": "The image of Papri Chaat does not match the headline focus on fusion recipes."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses fusion recipes that may appeal to the diaspora's interest in Indian cuisine and global trends."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider including images of the fusion dishes mentioned to enhance visual appeal.",
-          "Add quotes or anecdotes from the featured chefs or food creators to provide a personal touch."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "d23206ad-8083-4857-b94b-61d2c4f6f0fd",
-      "headline": "The Kulfi Effect: How Indian Ice Cream Is Winning Over America, One Saffron Scoop at a Time",
-      "slug": "the-kulfi-effect-how-indian-ice-cream-is-winning-over-america-one-saffron-scoop",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Kulfi on a plate with sauce",
-          "reason": "The photo shows kulfi, which is relevant to the story about Indian ice cream."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the resurgence of Indian ice cream flavors to the NRI experience, highlighting nostalgia and cultural significance."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from more NRI customers to enhance the personal connection.",
-          "Include a brief history of kulfi in America to provide context for its growing popularity."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "09facfa4-3c5c-43b5-b10e-ca874c180a1c",
-      "headline": "India Just Let Four Chinese Power Equipment Firms Bid for Government Contracts. Five Years of Frozen Relations Are Thawing Fast.",
-      "slug": "india-china-power-equipment-firms-government-tenders-exemption-thaw-20260703",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "electrical power substation in Odisha",
-          "reason": "The photo shows a power substation, relevant to the power equipment story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article connects well with NRIs in the tech and energy sectors, discussing implications of the India-China relationship."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more specific examples of how NRIs in the energy sector might be affected by these changes.",
-          "Include quotes or insights from diaspora experts to enhance the connection with the audience."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "f0945900-c1a2-45a4-b1d7-fd10c9d4145c",
-      "headline": "AI Hiring in India Just Surged 16%. The Rest of the IT Industry Is Shrinking.",
-      "slug": "india-ai-hiring-surges-it-jobs-decline-naukri-report-tcs-workforce-split-20260703",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "glass pyramid at Infosys campus",
-          "reason": "The Infosys campus in Bangalore is relevant to the Indian IT industry story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the trends in India's IT industry to the experiences of NRIs, particularly those on H-1B visas."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more statistics or data points to strengthen the argument about the impact on NRIs.",
-          "Consider adding quotes or insights from Indian IT professionals in the diaspora to provide personal perspectives."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "ddd688b0-c97d-4cf1-a1cd-431ee8b5d687",
-      "headline": "India's Services Engine Just Hit Its Slowest Speed in Seventeen Months. The Hiring Freeze Is the Bigger Story.",
-      "slug": "india-services-pmi-17-month-low-june-2026-hiring-stalls-demand-weakens-20260703",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "4335e976-94ba-4399-865a-89243d5196ee",
-            "headline": "India's Stock Market Just Clawed Back to $5 Trillion. Here's"
-          },
-          {
-            "article_id": "c1ebb17d-1730-4420-8c16-8e98fb459d52",
-            "headline": "India Is Emerging as Asia's Safe Haven as the Global AI Sell"
-          },
-          {
-            "article_id": "f85c97f6-2497-40b8-ad41-728dbe27b17d",
-            "headline": "Asia's AI Bubble Just Popped. India Barely Flinched."
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Bombay Stock Exchange building",
-          "reason": "The photo shows a financial landmark relevant to the economy story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image of the Bombay Stock Exchange is relevant to the economy but does not directly illustrate the services sector specifically."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the domestic services sector's performance to the implications for NRIs, particularly in the IT industry."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that more directly represents the services sector, such as IT or hospitality, to enhance relevance.",
-          "Include more specific data or examples of how the hiring freeze is impacting NRIs in various sectors."
+          "Include more direct references to how the film's themes resonate with the Indian diaspora.",
+          "Consider adding quotes from Indian critics or audiences to enhance the diaspora connection."
         ],
         "verdict": "pass"
       },
