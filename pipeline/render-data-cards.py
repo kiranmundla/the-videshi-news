@@ -96,7 +96,8 @@ def render_card_html(card):
         html += f'<div class="vdc-footer">{source}</div>\n'
 
     html += '</div>'
-    return html
+    # Collapse to single line to prevent markdown parser from splitting the block
+    return html.replace('\n', '')
 
 
 def render_takeaways_html(takeaways):
@@ -106,8 +107,9 @@ def render_takeaways_html(takeaways):
     html += '<div class="vdc-takeaways-title">Key Takeaways</div>\n<ul>\n'
     for t in takeaways:
         html += f'<li>{_esc(t)}</li>\n'
-    html += '</ul>\n</div>'
-    return html
+    html += '</ul></div>'
+    # Collapse to single line to prevent markdown parser from splitting the block
+    return html.replace('\n', '')
 
 
 def has_cards_already(body):
@@ -115,22 +117,58 @@ def has_cards_already(body):
 
 
 def strip_old_cards(body):
-    """Remove previously injected card blocks — both class-based and old inline-style versions."""
-    # Class-based vdc cards
-    body = re.sub(r'\n*<!-- data-card -->\s*<div class="vdc[^"]*"[\s\S]*?</div>\s*</div>\s*', '', body)
-    body = re.sub(r'\n*<!-- data-card -->\s*<div class="vdc-takeaways[\s\S]*?</ul>\s*</div>\s*', '', body)
-    # Old inline-style cards from v1 (outer wrappers)
-    body = re.sub(r'\n*<!-- data-card -->\s*<div style="background:#f9fafb[\s\S]*?</ul>\s*</div>\s*', '', body)
-    body = re.sub(r'\n*<!-- data-card -->\s*<div style="background:linear-gradient[\s\S]*?</div>\s*</div>\s*', '', body)
-    # Orphaned inline-style child divs (stat grids, footers) left behind by partial stripping
+    """Remove ALL injected card content — markers, vdc-class divs, and old inline-style fragments."""
+    # Remove card markers
+    body = body.replace(CARD_MARKER, '')
+    # Remove ALL divs with vdc classes by balanced div matching
+    while True:
+        m = re.search(r'<div class="vdc', body)
+        if not m:
+            break
+        depth = 0
+        i = m.start()
+        end = len(body)
+        while i < len(body):
+            if body[i:i+4] == '<div':
+                depth += 1
+                i += 4
+            elif body[i:i+6] == '</div>':
+                depth -= 1
+                i += 6
+                if depth == 0:
+                    end = i
+                    break
+            else:
+                i += 1
+        body = body[:m.start()] + body[end:]
+    # Remove old inline-style card fragments
     body = re.sub(r'<div style="display:grid;grid-template-columns:[^"]*">[\s\S]*?</div>\s*</div>\s*</div>\s*</div>', '', body)
     body = re.sub(r'<div style="font-size:10px;color:rgba\(255,255,255,0\.25\)[^"]*">[^<]*</div>', '', body)
     body = re.sub(r'<div style="background:rgba\(255,255,255,0\.04\)[^"]*">[\s\S]*?</div>\s*</div>', '', body)
-    # Empty grid shells
     body = re.sub(r'<div style="display:grid;grid-template-columns:[^"]*">\s*</div>\s*</div>', '', body)
-    # Clean up excessive blank lines
+    # Clean up ALL orphaned closing </div> tags (unbalanced)
+    body = re.sub(r'^(\s*</div>\s*)+', '', body)
+    # Remove </div> tags that have no matching <div> opener
+    clean_parts = []
+    depth = 0
+    i = 0
+    while i < len(body):
+        if body[i:i+4] == '<div':
+            depth += 1
+            clean_parts.append('<div')
+            i += 4
+        elif body[i:i+6] == '</div>':
+            if depth > 0:
+                depth -= 1
+                clean_parts.append('</div>')
+            # else: orphaned closer, skip it
+            i += 6
+        else:
+            clean_parts.append(body[i])
+            i += 1
+    body = ''.join(clean_parts)
     body = re.sub(r'\n{3,}', '\n\n', body)
-    return body
+    return body.strip()
 
 
 def inject_cards_into_body(body, data_cards, key_takeaways):
