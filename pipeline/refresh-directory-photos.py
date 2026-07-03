@@ -97,18 +97,35 @@ def main():
     total_skipped = 0
     
     while True:
-        r = requests.get(f"{SUPABASE_URL}/rest/v1/directory_listings",
-            headers=HEADERS,
-            params={
-                "select": "id,name,google_place_id,image_url",
-                "google_place_id": "not.is.null",
-                "image_url": "like.*maps.googleapis.com*",
-                "order": "id",
-                "limit": str(BATCH_SIZE),
-                "offset": str(offset)
-            },
-            timeout=15)
-        listings = r.json()
+        for attempt in range(3):
+            try:
+                r = requests.get(f"{SUPABASE_URL}/rest/v1/directory_listings",
+                    headers=HEADERS,
+                    params={
+                        "select": "id,name,google_place_id,image_url",
+                        "google_place_id": "not.is.null",
+                        "image_url": "like.*maps.googleapis.com*",
+                        "order": "id",
+                        "limit": str(BATCH_SIZE),
+                        "offset": str(offset)
+                    },
+                    timeout=15)
+                listings = r.json()
+                break
+            except Exception as e:
+                if attempt < 2:
+                    print(f"  ⚠️  Batch fetch retry {attempt+1}: {e}")
+                    time.sleep(5 * (attempt + 1))
+                else:
+                    print(f"  ❌ Batch fetch failed after 3 tries: {e}")
+                    listings = None
+        
+        if listings is None:
+            # Skip this batch, try next
+            offset += BATCH_SIZE
+            if offset > 5000:  # safety cap
+                break
+            continue
         if not listings:
             break
         
