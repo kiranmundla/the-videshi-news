@@ -626,5 +626,15 @@
     "errors": 0,
     "hero_slug": "the-24-bag-of-rice-how-us-tariffs-are-reshaping-the-desi-pantry",
     "story_count": 5
+  },
+  {
+    "type": "daily",
+    "sent_at": "2026-07-03T13:55:57.688142+00:00Z",
+    "subject": "The Videshi Daily \u2014 July 03, 2026",
+    "subscribers": 4,
+    "sent": 4,
+    "errors": 0,
+    "hero_slug": "h1b-travel-trap-visa-stamping-consulate-backlog-india-20260703",
+    "story_count": 5
   }
 ]
