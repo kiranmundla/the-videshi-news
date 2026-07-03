@@ -161,4 +161,40 @@
 /* Prevent horizontal page overflow on mobile */
 html, body { overflow-x: hidden; }
 
+/* ── Data cards (injected into article body by enrich pipeline) ── */
+.vdc { background: linear-gradient(135deg, #0B1D3A 0%, #132d54 100%); border-radius: 12px; padding: 24px; margin: 28px 0; box-shadow: 0 4px 20px rgba(11,29,58,0.3); position: relative; overflow: hidden; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+.vdc-glow { position: absolute; top: -50%; right: -20%; width: 300px; height: 300px; background: radial-gradient(circle, rgba(212,168,67,0.06) 0%, transparent 70%); pointer-events: none; }
+.vdc-title { font-size: 12px; font-weight: 700; color: #D4A843; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid rgba(212,168,67,0.2); }
+.vdc-hero { display: flex; align-items: baseline; gap: 10px; margin-bottom: 16px; flex-wrap: wrap; }
+.vdc-hero-num { font-size: 38px; font-weight: 800; color: #D4A843; line-height: 1; letter-spacing: -1px; }
+.vdc-hero-trend { font-size: 16px; font-weight: 700; color: #4ade80; }
+.vdc-hero-trend-neg { font-size: 16px; font-weight: 700; color: #f87171; }
+.vdc-hero-label { font-size: 13px; color: rgba(255,255,255,0.6); width: 100%; }
+.vdc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.vdc-stat { background: rgba(255,255,255,0.04); border-radius: 8px; padding: 12px 14px; border-left: 3px solid rgba(212,168,67,0.4); }
+.vdc-stat-val { font-size: 18px; font-weight: 800; color: #fff; margin-bottom: 2px; }
+.vdc-stat-lbl { font-size: 11px; color: rgba(255,255,255,0.45); line-height: 1.3; }
+.vdc-bar-row { display: flex; align-items: center; margin-bottom: 6px; }
+.vdc-bar-name { width: 110px; text-align: right; padding-right: 10px; flex-shrink: 0; font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.7); }
+.vdc-bar-track { flex: 1; height: 22px; background: rgba(255,255,255,0.05); border-radius: 4px; overflow: hidden; }
+.vdc-bar-fill { height: 100%; background: linear-gradient(90deg, #D4A843, #e8c36a); border-radius: 4px; display: flex; align-items: center; padding-left: 8px; font-size: 11px; font-weight: 700; color: #0B1D3A; min-width: 50px; }
+.vdc-bar-fill-neg { height: 100%; background: linear-gradient(90deg, #f87171, #ef4444); border-radius: 4px; display: flex; align-items: center; padding-left: 8px; font-size: 11px; font-weight: 700; color: #0B1D3A; min-width: 50px; }
+.vdc-tl { margin: 8px 0; border-left: 2px solid rgba(212,168,67,0.3); padding-left: 16px; }
+.vdc-tl-item { margin-bottom: 12px; position: relative; }
+.vdc-tl-dot { position: absolute; left: -21px; top: 6px; width: 10px; height: 10px; border-radius: 50%; background: #D4A843; }
+.vdc-tl-date { font-size: 11px; font-weight: 700; color: #D4A843; margin-bottom: 2px; }
+.vdc-tl-event { font-size: 12px; color: rgba(255,255,255,0.65); line-height: 1.4; }
+.vdc-bullet { font-size: 12px; color: rgba(255,255,255,0.6); padding: 5px 0 5px 16px; position: relative; line-height: 1.4; }
+.vdc-bullet-arrow { position: absolute; left: 3px; color: #D4A843; font-weight: 700; }
+.vdc-badge { display: inline-block; background: rgba(212,168,67,0.15); color: #D4A843; font-weight: 700; font-size: 11px; padding: 1px 6px; border-radius: 3px; margin-right: 4px; }
+.vdc-footer { font-size: 10px; color: rgba(255,255,255,0.25); margin-top: 10px; padding-top: 8px; border-top: 1px solid rgba(255,255,255,0.06); }
+.vdc-takeaways { background: #f9fafb; border-radius: 10px; padding: 16px 20px; margin: 24px 0; border-left: 3px solid #D4A843; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+.vdc-takeaways-title { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: #999; margin: 0 0 10px; font-weight: 700; }
+.article-prose .vdc-takeaways ul { margin: 0; padding: 0 0 0 16px; list-style: disc; }
+.article-prose .vdc-takeaways li { font-size: 13px; color: #333; line-height: 1.5; margin-bottom: 4px; }
+/* Override article-prose defaults inside data cards */
+.article-prose .vdc p, .article-prose .vdc div { margin-bottom: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+.article-prose .vdc ul { margin: 0; padding: 0; list-style: none; }
+.article-prose .vdc li { font-size: 12px; color: rgba(255,255,255,0.6); line-height: 1.4; }
+
 /* ── Custom tweet card — all styling is inline, this is just for the old class cleanup ── */
