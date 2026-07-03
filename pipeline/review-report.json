@@ -1,19 +1,19 @@
 {
-  "timestamp": "2026-07-03T20:15:19.100042+00:00",
+  "timestamp": "2026-07-03T20:45:44.549575+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 0,
+    "pass": 1,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
-  "revisions": 0,
+  "revisions": 1,
   "unpublished": 0,
   "articles": [
     {
-      "id": "b79cd0f1-3de5-484d-a653-86db99b98fb8",
-      "headline": "Trump's Gold Card Has 59 Real Applicants. The Green Card Backlog Has a Million Indians",
-      "slug": "gold-card-59-applicants-indian-green-card-backlog-per-country-20260703",
+      "id": "cf5d3bfc-7ad0-43c5-99be-13bf3d523421",
+      "headline": "Modi Was Personally Invited to Khamenei's Funeral. India Sent a Deputy Minister Instead.",
+      "slug": "india-khamenei-funeral-delegation-iran-diplomacy-balancing-act-20260703",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,28 +21,28 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "'We the People' scroll on flag",
-          "reason": "The image symbolizes constitutional themes relevant to immigration."
+          "what_photo_shows": "Ayatollah Ali Khamenei portrait",
+          "reason": "The photo shows Ayatollah Ali Khamenei, relevant to the story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 8,
+        "overall_score": 7,
         "embed_issues": [],
         "image_match": {
-          "score": 6,
-          "issue": "The image does not directly relate to the topic of immigration or the Gold Card program."
+          "score": 8,
+          "issue": "The image of Khamenei is relevant to the article's topic, but it could be more directly related to the funeral context."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article discusses the impact of the Gold Card program on Indian nationals, directly addressing the concerns of the Indian diaspora."
+          "quality": 7,
+          "note": "The article discusses India's diplomatic relations with Iran, which is relevant to the Indian diaspora's interests in geopolitical developments."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that more closely represents the theme of immigration or the Gold Card program.",
-          "Add a brief section summarizing the implications of the Gold Card program specifically for Indian nationals to enhance clarity."
+          "Include more direct quotes from Indian officials or analysts to enhance credibility.",
+          "Provide a brief background on the significance of Khamenei's leadership for readers unfamiliar with Iranian politics."
         ],
         "verdict": "pass"
       },
@@ -54,55 +54,48 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "dbafcf6c-1353-49e3-bf1d-5afd9788a03f",
-      "headline": "Your American-Born Child Is Still American. The Supreme Court Made Sure of That",
-      "slug": "scotus-birthright-citizenship-indian-h1b-families-20260703",
+      "id": "92bf6c17-240e-4396-b85b-222afd66057d",
+      "headline": "India Just Logged Its Driest June in Fifteen Years. The Next Two Weeks Will Decide What Millions of Farmers Eat.",
+      "slug": "india-driest-june-monsoon-crisis-el-nino-kharif-sowing-food-inflation-20260703",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "01713cb7-a1ef-4e45-aaf3-9bf68d3caef1",
-            "headline": "The Supreme Court Just Made It Easier to Turn Away Green Car"
-          },
-          {
-            "article_id": "67551255-b437-4529-ac4a-bd2f96fd3e94",
-            "headline": "The Supreme Court Handed Trump Three Immigration Wins in One"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "United States Supreme Court building",
-          "reason": "The photo shows the Supreme Court, relevant to the story about a Supreme Court decision."
+          "verdict": "MISMATCH",
+          "what_photo_shows": "flooded paddy field in Karnataka",
+          "reason": "The photo shows flooding, not drought conditions."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 8,
+        "overall_score": 6,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 5,
+          "issue": "hero image not provided"
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the Supreme Court ruling to the Indian American community, highlighting its significance for H-1B professionals and the broader implications for immigration."
+          "quality": 7,
+          "note": "The article discusses the impact of monsoon failures on food prices and rural incomes, which can resonate with diaspora readers who send remittances."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from more diverse voices within the Indian American community to enrich the perspective.",
-          "Include a brief explanation of the implications of the ruling for future immigration policies to provide more context."
+          "Include a relevant hero image that reflects the article's theme.",
+          "Expand on the diaspora angle by providing specific examples of how remittances are affected by agricultural outcomes."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
-        "promoted to published"
+        "Cleared mismatched image (flooded paddy field in Karnataka)",
+        "Revised by gemini-2.5-flash (879\u21921015 words)"
       ],
-      "revised": false,
+      "revised": true,
       "unpublished": false,
+      "image_mismatch": true,
       "llm_source": "gpt-4o-mini"
     }
   ]
