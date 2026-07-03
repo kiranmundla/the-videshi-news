@@ -100,8 +100,8 @@ function CategoryNavBar() {
             })}
           </div>
 
-          {/* Row 2 — feature sections (fixed, evenly spaced) */}
-          <div className="flex items-center justify-around border-t" style={{ borderColor: "hsl(var(--rule) / 0.4)" }}>
+          {/* Row 2 — feature sections (scrollable, compact) */}
+          <div className="flex items-center overflow-x-auto scrollbar-none -mx-1 px-1 gap-0 border-t" style={{ borderColor: "hsl(var(--rule) / 0.4)" }}>
             {NAV_SECTIONS.map((sec) => {
               const isActive = routeSlug === sec.slug;
               return (
@@ -109,7 +109,7 @@ function CategoryNavBar() {
                   key={sec.slug}
                   to={sec.path}
                   ref={isActive ? activeRef : undefined}
-                  className={`flex items-center gap-1 px-2 py-2 text-[0.65rem] tracking-[0.1em] transition-colors relative whitespace-nowrap ${
+                  className={`flex items-center gap-1 shrink-0 px-3 py-2 text-[0.65rem] tracking-[0.1em] transition-colors relative whitespace-nowrap ${
                     isActive
                       ? "text-primary font-semibold"
                       : "text-foreground/55 hover:text-foreground"
