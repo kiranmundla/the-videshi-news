@@ -31,6 +31,13 @@ const NAV_SECTIONS = [
   { slug: "classifieds", label: "Classifieds", path: "/classifieds", icon: "📌" },
 ];
 
+/* Row 3 — live happenings (conditional, only renders when non-empty) */
+const LIVE_HAPPENINGS = [
+  { slug: "world-cup", label: "FIFA World Cup", path: "/world-cup", icon: "⚽" },
+  // { slug: "ipl", label: "IPL 2026", path: "/sports", icon: "🏏" },
+  // { slug: "elections", label: "Elections", path: "/news", icon: "🗳️" },
+];
+
 function CategoryNavBar() {
   const { pathname } = useLocation();
   const navRef = useRef<HTMLDivElement>(null);
@@ -123,6 +130,43 @@ function CategoryNavBar() {
               );
             })}
           </div>
+
+          {/* Row 3 — live happenings (conditional, dark accent strip) */}
+          {LIVE_HAPPENINGS.length > 0 && (
+            <div
+              className="flex items-center overflow-x-auto scrollbar-none gap-0 px-1 -mx-1"
+              style={{ background: "linear-gradient(135deg, #0B1D3A, #132d54)" }}
+            >
+              <span className="shrink-0 flex items-center gap-1 pl-3 pr-1 py-1.5 text-[0.6rem] tracking-[0.08em] text-red-400 font-semibold uppercase">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500" />
+                </span>
+                Live
+              </span>
+              {LIVE_HAPPENINGS.map((h) => {
+                const isActive = routeSlug === h.slug;
+                return (
+                  <Link
+                    key={h.slug}
+                    to={h.path}
+                    ref={isActive ? activeRef : undefined}
+                    className={`flex items-center gap-1 shrink-0 px-3 py-1.5 text-[0.65rem] tracking-[0.1em] transition-colors relative whitespace-nowrap ${
+                      isActive
+                        ? "text-amber-300 font-semibold"
+                        : "text-white/70 hover:text-white"
+                    }`}
+                  >
+                    <span className="text-[0.7rem]">{h.icon}</span>
+                    <span className="smallcaps">{h.label}</span>
+                    {isActive && (
+                      <span className="absolute bottom-0 left-2 right-2 h-[2px] bg-amber-400 rounded-full" />
+                    )}
+                  </Link>
+                );
+              })}
+            </div>
+          )}
         </div>
       </nav>
       {/* Spacer when stuck to prevent content jump */}
