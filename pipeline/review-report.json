@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-03T16:15:35.940877+00:00",
+  "timestamp": "2026-07-03T16:45:34.263633+00:00",
   "mode": "fix",
   "stats": {
     "pass": 2,
-    "flag": 0,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "e05ed205-3d05-4e53-be32-55307f4417a8",
-      "headline": "Half a Million Tech Jobs and Counting. India's GCC Boom Is Rewriting the H-1B Calculus",
-      "slug": "india-gcc-boom-510000-ai-jobs-h1b-alternative-20260703",
+      "id": "8fa6f95c-58c4-4a73-a3bd-3cf3ff2ecf55",
+      "headline": "Adani and Abu Dhabi Are Building a $11.5 Billion Aluminium Complex in Odisha. It Would Be India's Biggest Foreign Metals Investment Ever.",
+      "slug": "adani-ihc-odisha-aluminium-11-billion-india-largest-metals-fdi-20260703",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "software developers in a tech office",
-          "reason": "The photo shows software developers collaborating, which aligns with the tech job growth topic."
+          "what_photo_shows": "A man in a suit",
+          "reason": "The photo shows Gautam Adani, relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -30,19 +30,62 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image is relevant to the tech industry but lacks a direct connection to the specific topic of Global Capability Centres."
+          "score": 5,
+          "issue": "image does not match the article's topic"
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article discusses the implications of the GCC boom for Indian professionals in the US, providing a relevant perspective for the diaspora."
+          "quality": 7,
+          "note": "The article discusses significant foreign investment in India, which is relevant to the NRI community interested in economic developments."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider including specific examples of companies that have successfully transitioned to GCCs to enhance the narrative.",
-          "Add quotes or insights from diaspora professionals who have made the switch to GCCs for a more personal touch."
+          "Consider using an image that directly relates to the aluminium complex or the Adani Group to enhance relevance.",
+          "Add quotes or perspectives from diaspora members or experts to strengthen the connection to the NRI audience."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "68a171c4-7c78-441b-8cc3-e7f9a3c264c9",
+      "headline": "India's Biggest Trade Deal Goes Live in Twelve Days. Here's What Changes for the Diaspora.",
+      "slug": "india-uk-ceta-trade-deal-july-15-diaspora-dcc-social-security-20260703",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Piyush Goyal with UK officials",
+          "reason": "The photo shows Piyush Goyal, relevant to the trade agreement story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively highlights the benefits of the trade deal for the Indian diaspora, particularly regarding social security contributions."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more specific examples of how the trade deal will impact everyday life for the diaspora.",
+          "Add quotes or insights from diaspora members or experts to enhance relatability."
         ],
         "verdict": "pass"
       },
@@ -54,9 +97,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "57d759b8-523b-49c5-a1a3-85b73e1d7ad7",
-      "headline": "ICE Arrested 10,000 People in Five Days. Worksite Raids Are Next",
-      "slug": "ice-worksite-raids-enforcement-surge-indian-h1b-20260703",
+      "id": "69fbcb80-008e-46c4-a410-a8634ee42c57",
+      "headline": "India Are In. Pakistan Might Be Out. Cricket's Olympic Return Has Already Redrawn the Map.",
+      "slug": "india-qualified-cricket-la-2028-olympics-pakistan-out-knight-riders-pomona-stadium-diaspora-nri",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,28 +107,28 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "ICE officers during an operation",
-          "reason": "The photo shows ICE officers, relevant to the immigration enforcement story."
+          "what_photo_shows": "aerial view of cricket ground",
+          "reason": "The photo shows a cricket ground, relevant to the cricket Olympics story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 7,
+        "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 8,
-          "issue": "The image depicts ICE officers, which is relevant to the article's topic on immigration enforcement."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses the implications of ICE enforcement on H-1B visa holders, directly connecting to the Indian diaspora."
+          "note": "The article effectively connects the Olympic cricket event to the Indian diaspora in Los Angeles, highlighting the significance of local matches for the community."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Add more statistics or quotes from experts to strengthen the argument.",
-          "Include a section on potential responses from the Indian community or organizations representing them."
+          "Consider adding quotes from cricket officials or players to enhance the article's depth.",
+          "Include more context on the historical significance of cricket's return to the Olympics for a broader audience."
         ],
         "verdict": "pass"
       },

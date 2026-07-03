@@ -4709,6 +4709,9 @@ RULES:
 - Each scene must be visually DISTINCT from the others
 - For generated scenes: include specific numbers/data from the article in the composition
 - Think like a professional news graphics department
+- NEVER generate a branding, logo, CTA, or "Visit TheVideshi.com" scene — a branded end card
+  is automatically appended after all scenes. ALL scenes (including the last) must show
+  article content: data visualizations, key takeaways, or relevant editorial imagery
 
 Return JSON only:
 {{"scenes": [
