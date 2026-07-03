@@ -119,9 +119,17 @@ def strip_old_cards(body):
     # Class-based vdc cards
     body = re.sub(r'\n*<!-- data-card -->\s*<div class="vdc[^"]*"[\s\S]*?</div>\s*</div>\s*', '', body)
     body = re.sub(r'\n*<!-- data-card -->\s*<div class="vdc-takeaways[\s\S]*?</ul>\s*</div>\s*', '', body)
-    # Old inline-style cards from v1
+    # Old inline-style cards from v1 (outer wrappers)
     body = re.sub(r'\n*<!-- data-card -->\s*<div style="background:#f9fafb[\s\S]*?</ul>\s*</div>\s*', '', body)
     body = re.sub(r'\n*<!-- data-card -->\s*<div style="background:linear-gradient[\s\S]*?</div>\s*</div>\s*', '', body)
+    # Orphaned inline-style child divs (stat grids, footers) left behind by partial stripping
+    body = re.sub(r'<div style="display:grid;grid-template-columns:[^"]*">[\s\S]*?</div>\s*</div>\s*</div>\s*</div>', '', body)
+    body = re.sub(r'<div style="font-size:10px;color:rgba\(255,255,255,0\.25\)[^"]*">[^<]*</div>', '', body)
+    body = re.sub(r'<div style="background:rgba\(255,255,255,0\.04\)[^"]*">[\s\S]*?</div>\s*</div>', '', body)
+    # Empty grid shells
+    body = re.sub(r'<div style="display:grid;grid-template-columns:[^"]*">\s*</div>\s*</div>', '', body)
+    # Clean up excessive blank lines
+    body = re.sub(r'\n{3,}', '\n\n', body)
     return body
 
 
