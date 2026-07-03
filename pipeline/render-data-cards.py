@@ -155,13 +155,11 @@ def inject_cards_into_body(body, data_cards, key_takeaways):
 
     insertions = {}
 
-    # Takeaways + after_lead cards → after 2nd paragraph
-    if takeaways_html or after_lead:
-        idx = content_indices[min(1, n_content - 1)]
-        insertions.setdefault(idx, [])
-        if takeaways_html:
-            insertions[idx].append(takeaways_html)
-        insertions[idx].extend(after_lead)
+    # Takeaways + after_lead cards → prepended to top of body (right after hero image)
+    prepend_blocks = []
+    if takeaways_html:
+        prepend_blocks.append(takeaways_html)
+    prepend_blocks.extend(after_lead)
 
     # Mid-article cards → after ~60% of content
     if mid_article:
@@ -181,7 +179,11 @@ def inject_cards_into_body(body, data_cards, key_takeaways):
         insertions.setdefault(idx, [])
         insertions[idx].extend(before_conclusion)
 
+    # Build final body: prepend takeaways/after_lead at top, then body with mid/conclusion insertions
     result = []
+    if prepend_blocks:
+        result.append("\n\n".join(prepend_blocks))
+        result.append("\n\n")
     for i, part in enumerate(paras):
         result.append(part)
         if i in insertions:
