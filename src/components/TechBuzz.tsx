@@ -139,7 +139,7 @@ export default function TechBuzz({ category = "tech" }: { category?: "tech" | "w
           </>
         ) : (
           <>
-            <h2 className="font-serif text-lg font-bold tracking-tight">Power Pulse</h2>
+            <h2 className="font-serif text-lg font-bold tracking-tight">World Pulse</h2>
             <span className="text-xs text-muted-foreground ml-1">What world leaders are saying</span>
           </>
         )}
