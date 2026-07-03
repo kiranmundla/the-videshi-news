@@ -417,6 +417,7 @@ export default function Index() {
 
       <Masthead />
       <CategoryPills />
+      <div className="mt-3" />
       <MarketTicker />
 
       <main className="container flex-1 pt-6 md:pt-8">
