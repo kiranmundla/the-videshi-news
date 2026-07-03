@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-03T10:46:08.071863+00:00",
+  "timestamp": "2026-07-03T11:15:34.730570+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 6,
-    "flag": 0,
+    "pass": 2,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "84751f8d-ed44-43af-b594-94f394e1c7e5",
-      "headline": "India Just Opened Its Nuclear Sector to Private Money for the First Time in Sixty Years. The $214 Billion Race Is On.",
-      "slug": "india-shanti-act-nuclear-private-sector-adani-tata-214-billion-20260703",
+      "id": "143a0685-da30-40c2-a23a-a2040e3f667b",
+      "headline": "Neetu Kapoor Plays a Grandmother Who Wants to Remarry \u2014 and It Just Landed on Netflix",
+      "slug": "dadi-ki-shaadi-netflix-neetu-kapoor-kapil-sharma-riddhima-kapoor-debut-streaming-diaspora-nri-20260703",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,32 +21,94 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Kudankulam Nuclear Power Plant",
-          "reason": "The photo shows a nuclear power plant, relevant to the nuclear sector story."
+          "what_photo_shows": "Neetu Kapoor at an event",
+          "reason": "The photo shows Neetu Kapoor, relevant to the story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DaUX7AMiM1p/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel does not appear to be directly related to the film or its themes, making it irrelevant to the article."
+          }
+        ],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image of Neetu Kapoor is relevant as it features the actress discussed in the article, but it lacks a direct connection to the film's themes of remarrying and family dynamics."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the SHANTI Act to opportunities for the Indian diaspora, particularly in the nuclear engineering sector."
+          "quality": 9,
+          "note": "The article effectively connects the film's themes of a grandmother remarrying to the cultural context of NRI families, making it relatable for the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more specific examples of how diaspora professionals can engage with the Indian nuclear sector.",
-          "Include quotes or insights from diaspora members involved in nuclear energy to enhance the personal connection."
+          "Replace the irrelevant Instagram embed with a more relevant social media post that discusses the film or its themes.",
+          "Consider adding a quote from Neetu Kapoor or the director to enhance the personal connection to the film."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DaUX7AMiM1p/",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "3abff65a-3602-43c8-a5ac-b26ae7cff54a",
+      "headline": "Rajkumar Hirani Finally Made Something for Your Phone \u2014 and He Brought the Munna Bhai Gang",
+      "slug": "pritam-and-pedro-rajkumar-hirani-ott-debut-arshad-warsi-goa-cybercrime-jiohotstar-diaspora-nri-20260703",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "3e2c1a17-f4b9-4844-8136-87443135ede4",
+            "headline": "Arshad Warsi Just Walked Back Into the Hirani-Verse \u2014 and He"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Arshad Warsi outdoors",
+          "reason": "The photo shows Arshad Warsi, who is relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/DaS7hXQM_-L/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not appear to be directly related to the article's subject matter about the new series 'Pritam and Pedro' and its connection to Rajkumar Hirani."
+          }
+        ],
+        "image_match": {
+          "score": 5,
+          "issue": "The image of Arshad Warsi does not directly match the article's focus on the new series, which features multiple characters and a broader context."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses the availability of the series on JioHotstar for international viewers, which is relevant for the diaspora audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the irrelevant Instagram embed with a more relevant one that showcases the series or its promotional content.",
+          "Consider using an image that features both main characters or a promotional poster for 'Pritam and Pedro' to better align with the article's focus."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/DaS7hXQM_-L/",
         "promoted to published"
       ],
       "revised": false,
@@ -62,11 +124,6 @@
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MISMATCH",
-          "what_photo_shows": "man wearing Freecharge shirt",
-          "reason": "The photo shows a person associated with Freecharge, not CRED or WhatsApp."
-        },
         "inline_image_mismatches": []
       },
       "llm_review": {
@@ -74,7 +131,7 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image description is missing, making it difficult to assess its relevance."
+          "issue": "The image description is missing, making it difficult to assess relevance."
         },
         "diaspora_angle": {
           "present": true,
@@ -85,176 +142,7 @@
         "duplicate_embeds": [],
         "suggestions": [
           "Include a relevant image description to enhance the image match score.",
-          "Consider adding quotes or reactions from diaspora members to further enrich the diaspora angle."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "Cleared mismatched image (man wearing Freecharge shirt)",
-        "held: image mismatch"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "image_mismatch": true,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "5a235e10-0775-484c-84b9-2aa8a3e66c23",
-      "headline": "India Has Now Served Notices to Every Major Messaging App Over Usernames. The Crackdown Is Widening.",
-      "slug": "india-meity-telegram-signal-whatsapp-username-notices-crackdown-20260703",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "person texting on WhatsApp",
-          "reason": "The photo shows WhatsApp usage, relevant to the story about messaging apps."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the regulatory changes to the implications for diaspora Indians using messaging apps."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more direct quotes from the platforms involved to enhance credibility.",
-          "Include potential future implications for users if the regulations are enforced."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "a00c29b3-bc50-44ad-a3c5-7a5feb295f7e",
-      "headline": "Sumit Nagal Ends a Two-Year Title Drought in Romania. India's No. 1 Says He Questioned Everything.",
-      "slug": "sumit-nagal-intaro-open-challenger-title-romania-two-year-drought-india-tennis-diaspora-nri-2026",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Sumit Nagal playing tennis",
-          "reason": "The photo shows Sumit Nagal, who is the subject of the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects Nagal's journey to the Indian diaspora, highlighting his international training and the challenges faced by Indian athletes."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from Nagal's coach or other players to provide additional perspectives on his journey.",
-          "Include more context on the significance of the Intaro Open title within the tennis community."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "9d7b0e42-22e6-46c0-9bc8-7bb5ec20f173",
-      "headline": "Five Teams, Six Points, and the Tightest MLC Race American Cricket Has Ever Seen",
-      "slug": "mlc-2026-five-teams-six-points-tightest-standings-race-playoff-diaspora-nri",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Grand Prairie Stadium cricket field",
-          "reason": "The photo shows a cricket stadium relevant to the MLC cricket story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image of Grand Prairie Stadium is relevant to the article's content about Major League Cricket, but it could be more directly related to the specific matches discussed."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the cricket matches to the Indian diaspora in the U.S., highlighting the significance of the games in areas with large Indian communities."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider including more direct quotes or insights from players or coaches to enhance the narrative.",
-          "Add a brief historical context about Major League Cricket to engage readers unfamiliar with the league."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "c48a1715-393d-428f-93ba-5622cd03ce57",
-      "headline": "Your Teen's Friends May Shape Their Mental Health More Than You Think \u2014 A 600,000-Person Study Shows How",
-      "slug": "teen-peer-mental-health-jama-psychiatry-finland-600000-social-transmission-diaspora-nri-parents-20260703",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 5,
-          "issue": "description missing"
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the study's findings to the experiences of Indian diaspora families, highlighting cultural differences in perceptions of mental health."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include a relevant image description to enhance the hero image's connection to the article.",
-          "Consider adding more statistics or quotes from the study to strengthen the argument."
+          "Consider adding quotes or reactions from diaspora communities to further enrich the diaspora angle."
         ],
         "verdict": "pass"
       },
