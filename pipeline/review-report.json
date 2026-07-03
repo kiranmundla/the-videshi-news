@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-03T13:15:15.693421+00:00",
+  "timestamp": "2026-07-03T13:45:22.963090+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
+    "pass": 2,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "5a0f5e39-1f99-4c12-ab4e-f51efd7ed650",
-      "headline": "He Woke Up Alone in Space. $683 Million Later, He Just Landed on Your Couch.",
-      "slug": "project-hail-mary-prime-video-ryan-gosling-streaming-4th-july-weekend-diaspora-nri-20260703",
+      "id": "8290bb2a-7e91-4835-8b13-080efbe5573d",
+      "headline": "Sriram Balaji Is India's Last Man Standing at Wimbledon. The Chennai Doubles Specialist Is Making the Most of It.",
+      "slug": "sriram-balaji-wimbledon-2026-doubles-chennai-india-demoliner-roland-garros-diaspora-nri",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,28 +21,71 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Ryan Gosling in Project Hail Mary",
-          "reason": "The photo shows Ryan Gosling in a role related to the story topic."
+          "what_photo_shows": "Sriram Balaji playing tennis",
+          "reason": "The photo shows the correct named person related to the story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 7,
+        "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 8,
-          "issue": "The image is relevant to the article's topic, depicting the film Project Hail Mary, but could be more directly tied to the specific themes discussed."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article connects well with diaspora readers by highlighting the accessibility of the film on Prime Video across various global locations."
+          "note": "The article highlights an Indian player's achievements at Wimbledon, which resonates with the Indian diaspora's interest in sports and national representation."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct references to how the film's themes resonate with the Indian diaspora.",
-          "Consider adding quotes from Indian critics or audiences to enhance the diaspora connection."
+          "Include quotes from Balaji or his partner to add a personal touch and enhance reader engagement.",
+          "Provide more context on the significance of Balaji's achievements in relation to Indian tennis history."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "3b521558-a44d-44a5-bb8c-ec2f56e27a32",
+      "headline": "Nagelsmann Is Out. Klopp Is In. Germany's World Cup Reckoning Just Produced Football's Biggest Coaching Move.",
+      "slug": "nagelsmann-quits-klopp-germany-manager-world-cup-exit-paraguay-dfb-2026-nri",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "J\u00fcrgen Klopp in Liverpool attire",
+          "reason": "The photo shows J\u00fcrgen Klopp, who is relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses significant coaching changes in football, which may interest the Indian diaspora, especially those following international football."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include quotes or reactions from Indian football fans or analysts to strengthen the diaspora connection.",
+          "Add a brief section on how these coaching changes might impact Indian football or Indian players abroad."
         ],
         "verdict": "pass"
       },
