@@ -26,9 +26,9 @@ const NAV_CATEGORIES = [
 /* Row 2 — feature / community sections (fixed, no scroll) */
 const NAV_SECTIONS = [
   { slug: "events", label: "Events", path: "/events", icon: "📅" },
-  { slug: "stories", label: "Voices", path: "/stories", icon: "🎙️" },
   { slug: "directory", label: "Directory", path: "/directory", icon: "📒" },
   { slug: "classifieds", label: "Classifieds", path: "/classifieds", icon: "📌" },
+  { slug: "stories", label: "Voices", path: "/stories", icon: "🎙️" },
 ];
 
 /* Row 3 — live happenings (conditional, only renders when non-empty) */

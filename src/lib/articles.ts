@@ -107,17 +107,15 @@ function parseGalleryImages(raw: unknown): GalleryImage[] | null {
 }
 
 function deriveExcerpt(subheadline: string | null, body: string): string {
-
-/* Strip trailing *Sources: ...* line baked into article body markdown */
-function stripInlineSources(body: string): string {
-  return body.replace(/\n*\*?Sources?:\s*[^*\n]+\*?\s*$/i, "").trim();
-}
-
-
   if (subheadline && subheadline.trim()) return subheadline.trim();
   const plain = (body ?? "").replace(/[#*_>`~\-]+/g, "").trim();
   if (!plain) return "";
   return plain.length > 220 ? plain.slice(0, 217).trimEnd() + "…" : plain;
+}
+
+/* Strip trailing *Sources: ...* line baked into article body markdown */
+function stripInlineSources(body: string): string {
+  return body.replace(/\n*\*?Sources?:\s*[^*\n]+\*?\s*$/i, "").trim();
 }
 
 function mapRow(row: P2Row): Article {
