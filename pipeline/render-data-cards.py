@@ -116,6 +116,11 @@ def has_cards_already(body):
     return CARD_MARKER in body
 
 
+def strip_inline_sources(body):
+    """Remove inline '*Sources: ...*' lines — the SourcesPill component handles this."""
+    return re.sub(r'\n\*?Sources?:\s*.+\*?\n', '\n', body, flags=re.IGNORECASE)
+
+
 def strip_old_cards(body):
     """Remove ALL injected card content — markers, vdc-class divs, and old inline-style fragments."""
     # Remove card markers
@@ -294,6 +299,9 @@ def main():
         # Strip old cards if re-rendering
         if has_cards_already(body):
             body = strip_old_cards(body)
+
+        # Always strip inline Sources line (SourcesPill component handles this)
+        body = strip_inline_sources(body)
 
         try:
             new_body = inject_cards_into_body(body, data_cards, key_takeaways)
