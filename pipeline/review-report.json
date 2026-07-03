@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-03T13:45:22.963090+00:00",
+  "timestamp": "2026-07-03T14:15:57.761767+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 5,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "8290bb2a-7e91-4835-8b13-080efbe5573d",
-      "headline": "Sriram Balaji Is India's Last Man Standing at Wimbledon. The Chennai Doubles Specialist Is Making the Most of It.",
-      "slug": "sriram-balaji-wimbledon-2026-doubles-chennai-india-demoliner-roland-garros-diaspora-nri",
+      "id": "25a5384c-4e3c-4c40-8ab9-3de541584ff3",
+      "headline": "Foreign Investors Just Poured a Record $3.4 Billion Into Indian Government Bonds \u2014 and a Bloomberg Index Entry Could Unlock Billions More",
+      "slug": "india-bond-market-record-foreign-inflows-bloomberg-index-inclusion-tax-free-nri-investor-20260703",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,51 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Sriram Balaji playing tennis",
-          "reason": "The photo shows the correct named person related to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article highlights an Indian player's achievements at Wimbledon, which resonates with the Indian diaspora's interest in sports and national representation."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include quotes from Balaji or his partner to add a personal touch and enhance reader engagement.",
-          "Provide more context on the significance of Balaji's achievements in relation to Indian tennis history."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "3b521558-a44d-44a5-bb8c-ec2f56e27a32",
-      "headline": "Nagelsmann Is Out. Klopp Is In. Germany's World Cup Reckoning Just Produced Football's Biggest Coaching Move.",
-      "slug": "nagelsmann-quits-klopp-germany-manager-world-cup-exit-paraguay-dfb-2026-nri",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "J\u00fcrgen Klopp in Liverpool attire",
-          "reason": "The photo shows J\u00fcrgen Klopp, who is relevant to the story."
+          "what_photo_shows": "Indian currency notes and coins",
+          "reason": "The photo of Indian currency is relevant to a story about foreign investment in Indian bonds."
         },
         "inline_image_mismatches": []
       },
@@ -79,13 +36,190 @@
         "diaspora_angle": {
           "present": true,
           "quality": 7,
-          "note": "The article discusses significant coaching changes in football, which may interest the Indian diaspora, especially those following international football."
+          "note": "The article discusses foreign investment in Indian bonds, which is relevant to NRIs interested in investment opportunities in India."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes or reactions from Indian football fans or analysts to strengthen the diaspora connection.",
-          "Add a brief section on how these coaching changes might impact Indian football or Indian players abroad."
+          "Include more direct quotes or insights from NRI investors to strengthen the diaspora connection.",
+          "Add a brief section on how these changes might specifically benefit NRI investors."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "a039ffa0-9f2a-413e-b85b-7c491226df70",
+      "headline": "Air India Is Reviewing Restoration of US Routes Suspended During the Gulf Crisis",
+      "slug": "air-india-us-routes-restoration-gulf-crisis-nri-20260703",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "25618cc8-2cd5-4bd3-810a-fb380bf40cac",
+            "headline": "Air India's Mumbai\u2013Tokyo Haneda Nonstop Is Two Weeks Old \u2014 a"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Air India aircraft in flight",
+          "reason": "The photo shows an Air India aircraft, relevant to the aviation story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses the impact of route changes on NRIs, particularly in major US cities with significant Indian populations."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include quotes from NRI passengers or travel experts to enhance the personal connection and provide more depth.",
+          "Add a brief section on how these route changes compare to other airlines' offerings for NRIs."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "c11b4df3-c197-4131-a341-cb0e3f85fce1",
+      "headline": "Noida's New Airport Hits 40 Daily Flights in Its First Month \u2014 and International Services Are Coming",
+      "slug": "noida-jewar-airport-40-daily-flights-nri-20260703",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Noida International Airport entrance",
+          "reason": "The photo shows Noida International Airport, relevant to the story about its operations."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively discusses the implications of the new airport for NRIs, particularly those with roots in western UP."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific details about the expected timeline for international flights to enhance reader interest.",
+          "Include quotes from NRI travelers or stakeholders to provide personal perspectives on the airport's impact."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "be703846-7af8-455f-91a4-d36f6cb4e508",
+      "headline": "Air India Express Restores Its Full Gulf Network \u2014 780 Weekly Flights Across Six Countries",
+      "slug": "air-india-express-full-gulf-network-restored-nri-20260703",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Air India Express Boeing 737 in flight",
+          "reason": "The photo shows an Air India Express aircraft, relevant to the aviation story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively highlights the implications of the restored flights for the Indian diaspora in the Gulf and those transiting through the region."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from airline officials or industry experts to enhance credibility.",
+          "Include more specific data or anecdotes about how the restoration impacts the daily lives of NRIs."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "56847755-ce23-4b31-abd1-3d2dff3a4873",
+      "headline": "Having Weak Muscles and Excess Body Fat Dramatically Raises Your Dementia Risk \u2014 and South Asians May Be Uniquely Vulnerable",
+      "slug": "sarcopenic-obesity-low-muscle-excess-fat-dementia-risk-curtin-lancet-south-asian-skinny-fat-20260703",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "older adult lifting kettlebell",
+          "reason": "The photo shows resistance training, relevant to brain health and muscle strength."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively addresses the unique health risks faced by South Asians, making it highly relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more statistics or data specific to the South Asian diaspora to strengthen the argument.",
+          "Include quotes or testimonials from diaspora members to enhance relatability."
         ],
         "verdict": "pass"
       },
