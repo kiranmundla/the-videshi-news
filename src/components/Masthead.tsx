@@ -222,16 +222,16 @@ export default function Masthead() {
     <header className="bg-background relative">
       <div className="container">
         <div className="flex items-end justify-between pt-8 pb-4 md:pt-10 md:pb-5">
-          <Link to="/" className="flex flex-col">
-            <div className="flex items-center gap-3">
-              <img src="/logo.jpg" alt="The Videshi" className="h-10 md:h-14 w-auto rounded-sm" width="56" height="56" decoding="async" />
+          <Link to="/" className="flex items-center gap-3">
+            <img src="/logo.jpg" alt="The Videshi" className="h-14 md:h-16 w-auto rounded-sm" width="64" height="64" decoding="async" />
+            <div className="flex flex-col">
               <h1 className="font-serif font-black tracking-tight text-foreground leading-none text-[2rem] md:text-[3.25rem] lg:text-[3.75rem] whitespace-nowrap">
                 The Videshi
               </h1>
+              <p className="italic text-muted-foreground text-[0.7rem] md:text-sm mt-0.5">
+                News for the global Indian diaspora
+              </p>
             </div>
-            <p className="italic text-muted-foreground text-[0.7rem] md:text-sm mt-1 pl-[3.25rem] md:pl-[4.25rem]">
-              News for the global Indian diaspora
-            </p>
           </Link>
 
           {/* Mobile search icon */}
