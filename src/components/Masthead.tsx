@@ -7,6 +7,7 @@ import { CATEGORIES } from "@/lib/categories";
 /* Persistent nav shown below the masthead on every page.
    Becomes sticky when user scrolls past it. */
 
+/* Row 1 — editorial content categories (scrollable) */
 const NAV_CATEGORIES = [
   { slug: "", label: "Home", path: "/" },
   { slug: "news", label: "News", path: "/news" },
@@ -20,11 +21,15 @@ const NAV_CATEGORIES = [
   { slug: "food", label: "Food", path: "/food" },
   { slug: "immigration", label: "Immigration", path: "/immigration" },
   { slug: "travel", label: "Travel", path: "/travel" },
-  { slug: "events", label: "Events", path: "/events" },
-  { slug: "stories", label: "Voices", path: "/stories" },
   { slug: "cars", label: "Cars", path: "/cars" },
-  { slug: "directory", label: "Directory", path: "/directory" },
-  { slug: "classifieds", label: "Classifieds", path: "/classifieds" },
+];
+
+/* Row 2 — feature / community sections (fixed, no scroll) */
+const NAV_SECTIONS = [
+  { slug: "events", label: "Events", path: "/events", icon: "📅" },
+  { slug: "stories", label: "Voices", path: "/stories", icon: "🎙️" },
+  { slug: "directory", label: "Directory", path: "/directory", icon: "📒" },
+  { slug: "classifieds", label: "Classifieds", path: "/classifieds", icon: "📌" },
 ];
 
 function CategoryNavBar() {
@@ -89,6 +94,31 @@ function CategoryNavBar() {
                   {cat.label}
                   {isActive && (
                     <span className="absolute bottom-0 left-3 right-3 h-[2px] bg-primary rounded-full" />
+                  )}
+                </Link>
+              );
+            })}
+          </div>
+
+          {/* Row 2 — feature sections (fixed, evenly spaced) */}
+          <div className="flex items-center justify-around border-t" style={{ borderColor: "hsl(var(--rule) / 0.4)" }}>
+            {NAV_SECTIONS.map((sec) => {
+              const isActive = routeSlug === sec.slug;
+              return (
+                <Link
+                  key={sec.slug}
+                  to={sec.path}
+                  ref={isActive ? activeRef : undefined}
+                  className={`flex items-center gap-1 px-2 py-2 text-[0.65rem] tracking-[0.1em] transition-colors relative whitespace-nowrap ${
+                    isActive
+                      ? "text-primary font-semibold"
+                      : "text-foreground/55 hover:text-foreground"
+                  }`}
+                >
+                  <span className="text-[0.7rem]">{sec.icon}</span>
+                  <span className="smallcaps">{sec.label}</span>
+                  {isActive && (
+                    <span className="absolute bottom-0 left-2 right-2 h-[2px] bg-primary rounded-full" />
                   )}
                 </Link>
               );
