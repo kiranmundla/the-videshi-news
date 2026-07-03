@@ -123,7 +123,7 @@ def main():
         if listings is None:
             # Skip this batch, try next
             offset += BATCH_SIZE
-            if offset > 5000:  # safety cap
+            if offset > 10000:  # safety cap
                 break
             continue
         if not listings:

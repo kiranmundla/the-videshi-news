@@ -1,170 +1,83 @@
 {
-  "timestamp": "2026-07-03T21:16:07.917641+00:00",
+  "timestamp": "2026-07-03T22:15:44.431615+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 5,
-    "flag": 0,
+    "pass": 4,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
-  "revisions": 0,
+  "revisions": 1,
   "unpublished": 0,
   "articles": [
     {
-      "id": "01123bea-1d2f-44c3-b341-6adf5cc49b8f",
-      "headline": "Dhurandhar Just Crossed \u20b93,100 Crore. Now It's Coming for Japan.",
-      "slug": "dhurandhar-japan-release-july-10-ranveer-singh-3100-crore-franchise-bollywood-global-diaspora-nri-20260703",
+      "id": "cffec7ee-99b9-460c-8305-29d5944e212c",
+      "headline": "India's Services Engine Just Hit Its Slowest Speed in 17 Months \u2014 and Hiring Has Nearly Stalled",
+      "slug": "india-services-pmi-17-month-low-june-2026-domestic-demand-hiring-stall-export-resilience-nri-investor-20260703",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [
           {
-            "article_id": "b557b97c-8049-4c56-bdf2-cdf3bb56a52e",
-            "headline": "Ranveer Singh Is About to Destroy Mumbai \u2014 and Spend \u20b9300 Cr"
+            "article_id": "4335e976-94ba-4399-865a-89243d5196ee",
+            "headline": "India's Stock Market Just Clawed Back to $5 Trillion. Here's"
           },
           {
-            "article_id": "f3d12ea2-86e1-47b0-9bb7-c892a88b005a",
-            "headline": "\u20b91,300 Crore Wasn't Enough. Dhurandhar Just Landed in Japan."
+            "article_id": "ddd688b0-c97d-4cf1-a1cd-431ee8b5d687",
+            "headline": "India's Services Engine Just Hit Its Slowest Speed in Sevent"
           },
           {
-            "article_id": "ca80ab70-06e6-4828-ba7f-f639bb4290f7",
-            "headline": "Bollywood Just Had Its Biggest Six Months Ever. One Man Earn"
+            "article_id": "db9241ba-fcb5-4cf2-bbfa-1734a3c2ea37",
+            "headline": "Foreign Money Is Leaving India's Stock Market at a Record Pa"
           },
           {
-            "article_id": "c3102e23-caca-4d04-a1e7-e18a616f1b70",
-            "headline": "Ranveer Just Bet \u20b9300 Crore on Zombies. Vicky Just Blocked 1"
+            "article_id": "c1ebb17d-1730-4420-8c16-8e98fb459d52",
+            "headline": "India Is Emerging as Asia's Safe Haven as the Global AI Sell"
+          },
+          {
+            "article_id": "f85c97f6-2497-40b8-ad41-728dbe27b17d",
+            "headline": "Asia's AI Bubble Just Popped. India Barely Flinched."
           }
         ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A man in ornate clothing",
-          "reason": "The photo shows Ranveer Singh, relevant to the story."
+          "what_photo_shows": "Bombay Stock Exchange building",
+          "reason": "The photo shows a relevant economic landmark in India."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 8,
+        "overall_score": 6,
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image of Ranveer Singh is relevant to the article's topic, but it could be more directly related to the film 'Dhurandhar: The Revenge'."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the film's release in Japan to the emotional experience of the Indian diaspora, particularly NRIs in Japan."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider including more specific details about the film's plot or themes to enhance reader engagement.",
-          "Add quotes or reactions from the NRI community in Japan to provide a more personal touch."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "1f6edb41-b392-4e9a-a9bf-c84c3c29b7d2",
-      "headline": "She Beat Myositis, Rebuilt Her Career, and Married the Man Behind The Family Man. Now Samantha Is Becoming a Mother.",
-      "slug": "samantha-ruth-prabhu-pregnancy-raj-nidimoru-baby-bump-family-man-maternity-leave-diaspora-nri-20260703",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "woman in red saree at event",
-          "reason": "The photo shows Samantha Ruth Prabhu, matching the story subject."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
+          "issue": "The image of the Bombay Stock Exchange is relevant to the economic topic but does not directly illustrate the services sector."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 7,
-          "note": "The article discusses Samantha's career and personal life, which resonates with the diaspora audience, especially regarding her film's international release."
+          "note": "The article discusses implications for NRI investors, making it relevant to the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes from Samantha to enhance the personal connection.",
-          "Add a brief section on how her story might inspire other NRIs facing challenges."
+          "Include more specific examples of how the slowdown in the services sector may impact NRI investors.",
+          "Consider adding a quote from an NRI investor or expert to strengthen the diaspora connection."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
-        "promoted to published"
+        "Revised by gemini-2.5-flash (787\u2192946 words)"
       ],
-      "revised": false,
+      "revised": true,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "f497e2e4-173a-449d-9cfe-efdc54216770",
-      "headline": "India's Central Bank Just Called AI the Biggest Cyber Threat to Banking. Here's What That Means for Your Money.",
-      "slug": "rbi-ai-cyber-threat-banking-nri-upi-security-20260703",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "09f8e6a7-347f-4f21-85cb-d448141d5cba",
-            "headline": "India Scrapped Taxes on Its Bonds. $3.4 Billion Poured In Wi"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Reserve Bank of India building",
-          "reason": "The photo shows the Reserve Bank of India, relevant to the story on RBI's cybersecurity concerns."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the RBI's cybersecurity concerns to NRIs, highlighting the implications for their banking activities in India."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more specific examples of AI threats that have already impacted the banking sector to enhance the urgency of the message.",
-          "Consider adding quotes from cybersecurity experts or RBI officials to provide authoritative perspectives."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "db71d23b-b53f-4325-b00c-68f1158b8be5",
-      "headline": "Every AI Lab Wants Its Own Chip Now. The Race to Dethrone Nvidia Just Got Three-Way.",
-      "slug": "ai-labs-custom-chip-race-anthropic-samsung-openai-broadcom-20260703",
+      "id": "2d9a2213-faeb-4b09-97a6-fecb0c9c3ecd",
+      "headline": "A Single Blood Test Can Now Screen for 10 Cancers \u2014 and Zydus and Apollo Are Bringing It to India",
+      "slug": "zydus-apollo-guardant-multi-cancer-blood-test-india-fda-breakthrough-screening-nri-diaspora-20260703",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -172,8 +85,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "semiconductor processor chip on circuit board",
-          "reason": "The photo subject is relevant to the semiconductor and AI chip story."
+          "what_photo_shows": "technician examining blood sample vial",
+          "reason": "The photo subject aligns with the healthcare diagnostics theme."
         },
         "inline_image_mismatches": []
       },
@@ -187,13 +100,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses the implications for Indian engineers in the semiconductor industry, connecting well with the diaspora audience."
+          "note": "The article effectively connects the topic of cancer screening to the Indian diaspora, highlighting the relevance of the new test for NRIs."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more specific examples of Indian companies involved in semiconductor manufacturing to strengthen the diaspora connection.",
-          "Add quotes or insights from industry experts to enhance credibility and depth."
+          "Consider adding a quote from a diaspora health expert to strengthen the connection to NRI readers.",
+          "Include statistics or studies specifically related to cancer rates among the Indian diaspora for added depth."
         ],
         "verdict": "pass"
       },
@@ -205,25 +118,62 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "92bf6c17-240e-4396-b85b-222afd66057d",
-      "headline": "India Just Logged Its Driest June in Fifteen Years. The Next Two Weeks Will Decide What Millions of Farmers Eat.",
-      "slug": "india-driest-june-monsoon-crisis-el-nino-kharif-sowing-food-inflation-20260703",
+      "id": "df94a5cc-dc84-42ef-983a-4370fa6731a4",
+      "headline": "Mexico Without a Visa \u2014 Why Indian Americans Are Discovering Canc\u00fan, CDMX, and the Riviera Maya",
+      "slug": "mexico-visa-free-indian-us-visa-cancun-cdmx-nri-20260703",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [],
-        "broken_embeds": [
-          {
-            "url": "https://x.com/thevideshi/status/1799981234567890123",
-            "problem": "broken",
-            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
-          },
-          {
-            "url": "https://instagram.com/p/C4s_zJtP_1r/",
-            "problem": "broken",
-            "detail": "Instagram embed shows removed/broken placeholder"
-          }
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Aerial view of Canc\u00fan shoreline",
+          "reason": "The photo shows Canc\u00fan, which is relevant to the travel story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": "The image of Canc\u00fan aligns well with the article's focus on travel destinations in Mexico."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses the travel interests and needs of Indian Americans, particularly regarding visa policies."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include personal anecdotes or testimonials from Indian Americans who have traveled to Mexico to enhance relatability.",
+          "Add a section on cultural considerations or tips for Indian travelers visiting Mexico."
         ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "e239cae5-d025-4892-9fd2-9d6d435c7d68",
+      "headline": "The World Cup Is Happening in Your Backyard \u2014 An NRI's Guide to Catching a Match",
+      "slug": "world-cup-2026-nri-guide-tickets-host-cities-20260703",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "2026 FIFA World Cup stadium",
+          "reason": "The photo shows a stadium relevant to the World Cup story."
+        },
         "inline_image_mismatches": []
       },
       "llm_review": {
@@ -236,18 +186,60 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the impact of the monsoon on agriculture to the financial pressures faced by diaspora families, making it relevant for NRI readers."
+          "note": "The article effectively connects the World Cup to the Indian American community, highlighting geographical advantages and cultural relevance."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more direct quotes from farmers or agricultural experts to enhance the narrative.",
-          "Include potential government responses or measures being taken to mitigate the impact of the drought."
+          "Include more specific tips for NRIs on how to navigate the ticket purchasing process.",
+          "Add a section on cultural events or gatherings among the Indian American community during the World Cup."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "Removed 2 broken/hallucinated embed(s)",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "78d757fd-39a6-4e17-82f3-6ca60d226333",
+      "headline": "Every US National Park Is Free This Weekend \u2014 Here's an NRI Family's Game Plan",
+      "slug": "national-parks-free-july-4-america-250-nri-family-20260703",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Grand Prismatic Spring at Yellowstone",
+          "reason": "The photo shows a national park site relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the national parks' free entry to Indian American families, providing relevant travel suggestions."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more specific tips or personal anecdotes from NRI families who have visited these parks to enhance relatability.",
+          "Consider adding links to official park websites for real-time updates on conditions and reservations."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
         "promoted to published"
       ],
       "revised": false,
