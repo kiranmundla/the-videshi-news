@@ -4431,7 +4431,7 @@ def generate_themed_image(image_prompt, article_id, idx, out_dir="/tmp/videshi_g
                         upload_path = local_jpg if os.path.exists(local_jpg) else local_png
                         storage_path = f"reel-gen/{article_id}/scene-{idx}.png"
                         url = upload_asset(upload_path, storage_path, "image/png")
-                        for f in (local_png, local_jpg):
+                        for f in (local_png, local_jpg, upscaled):
                             try:
                                 os.remove(f)
                             except Exception:
@@ -4879,8 +4879,21 @@ If no article images are available, use "generate" for all scenes."""
                                              f"resp_{article_id}_{i}.jpg")
                     with open(local_png, "wb") as fh:
                         fh.write(raw)
+                    # Upscale to 1080x1920 (API max is 1024x1536) with
+                    # Lanczos sharpening so generated scenes match the
+                    # reel's native resolution and don't look soft.
+                    upscaled = os.path.join(out_dir,
+                                            f"resp_{article_id}_{i}_up.png")
+                    os.system(
+                        f"gm convert {local_png} -resize 1080x1920! "
+                        f"-filter Lanczos -unsharp 0.5x0.5+0.8+0 "
+                        f"{upscaled}")
+                    if os.path.exists(upscaled) and os.path.getsize(upscaled) > 1024:
+                        src_for_compress = upscaled
+                    else:
+                        src_for_compress = local_png
                     # Compress
-                    os.system(f"gm convert {local_png} -quality 85 {local_jpg}")
+                    os.system(f"gm convert {src_for_compress} -quality 90 {local_jpg}")
                     upload_file = local_jpg if os.path.exists(local_jpg) else local_png
                     storage_path = f"reel-gen/{article_id}/resp-scene-{i}.png"
                     url = upload_asset(upload_file, storage_path, "image/png")
