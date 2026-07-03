@@ -557,12 +557,14 @@ function MatchCard({ match, isPast, isToday, onHighlights }: { match: Match; isP
       onMouseEnter={e => { if (isFinished) (e.currentTarget as HTMLElement).style.boxShadow = "0 4px 12px rgba(0,0,0,0.08)"; }}
       onMouseLeave={e => { (e.currentTarget as HTMLElement).style.boxShadow = isToday ? `0 0 0 1px ${COLORS.gold}33` : "none"; }}
     >
-      {/* Group badge */}
+      {/* Group/Round badge */}
       <div style={{
-        width: 36, height: 36, borderRadius: 8,
-        background: COLORS.darkGreen, color: COLORS.gold,
+        minWidth: 36, height: 36, borderRadius: 8,
+        background: match.group.startsWith("R") ? "#8B4513" : COLORS.darkGreen,
+        color: COLORS.gold,
         display: "flex", alignItems: "center", justifyContent: "center",
-        fontSize: 13, fontWeight: 800, flexShrink: 0,
+        fontSize: match.group.length > 2 ? 10 : 13, fontWeight: 800, flexShrink: 0,
+        padding: "0 6px",
       }}>
         {match.group}
       </div>
