@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-03T19:15:24.148562+00:00",
+  "timestamp": "2026-07-03T19:45:42.089138+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
+    "pass": 2,
     "flag": 1,
     "fail": 0,
     "error": 0
@@ -11,18 +11,29 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "a5ed3916-d2ac-4994-9af7-00c171aebf0d",
-      "headline": "Salman Khan\u2019s Most Praised Film Can\u2019t Get Released \u2014 Because India\u2019s Censors Won\u2019t Say Yes or No",
-      "slug": "salman-khan-maatrubhumi-cbfc-withholds-certificate-galwan-war-drama-bollywood-20260703",
+      "id": "0f10530b-552c-4cea-86de-15477eeb941c",
+      "headline": "Ronaldo vs Yamal. Portugal vs Spain. The Biggest World Cup Knockout Clash Lands in Dallas on Monday.",
+      "slug": "ronaldo-yamal-portugal-spain-world-cup-round-of-16-dallas-att-stadium-nri-diaspora-2026",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "79c27853-cb88-4e3e-a7eb-c7400afc779c",
+            "headline": "Ronaldo Scores His First World Cup Knockout Goal. Then Ramos"
+          }
+        ],
+        "broken_embeds": [
+          {
+            "url": "https://www.instagram.com/p/DaSb2CbDTM7/",
+            "problem": "broken",
+            "detail": "Instagram embed shows removed/broken placeholder"
+          }
+        ],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A man at a film event",
-          "reason": "The photo plausibly shows Salman Khan, relevant to the story."
+          "what_photo_shows": "Cristiano Ronaldo in Portugal jersey",
+          "reason": "The photo shows Cristiano Ronaldo, relevant to the story about Portugal vs Spain."
         },
         "inline_image_mismatches": []
       },
@@ -30,19 +41,63 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image features Salman Khan but does not directly relate to the film 'Maatrubhumi' or its themes."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the film's subject matter to the emotional resonance it holds for the Indian diaspora, particularly regarding national security."
+          "quality": 8,
+          "note": "The article effectively connects the significance of the match to the Indian American community in Dallas, highlighting the growing popularity of football among NRIs."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider including a more relevant image that directly relates to the film 'Maatrubhumi' or its themes.",
-          "Add quotes or reactions from diaspora audiences to enhance the connection further."
+          "Consider adding quotes or reactions from local Indian American fans to enhance the diaspora connection.",
+          "Include more details about the historical context of Portugal vs Spain matches to enrich the narrative."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "Removed 1 broken/hallucinated embed(s)",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "e82019a5-8b2f-418d-9976-7533760339ff",
+      "headline": "Kohli Is Back. Rohit Is Back. Bumrah Is Back. Gill Will Lead India Into England \u2014 and Toward the 2027 World Cup.",
+      "slug": "india-odi-squad-england-kohli-rohit-bumrah-gill-captain-2027-world-cup-nri-2026",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Shubman Gill in a blazer",
+          "reason": "The photo shows Shubman Gill, who is relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the cricket series to the NRI community, highlighting their cultural presence and enthusiasm during the matches."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more quotes or insights from players or coaches to enhance the narrative.",
+          "Include a brief historical context of India-England cricket series to engage readers further."
         ],
         "verdict": "pass"
       },
@@ -54,9 +109,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "3b66e3ed-00a0-4884-94b4-3159693ef525",
-      "headline": "Two OTT Flops and a Famous Last Name: Maddock Just Bet Diwali on Ibrahim Ali Khan",
-      "slug": "ibrahim-ali-khan-diler-diwali-2026-maddock-marathon-sreeleela-pataudi-diaspora-nri-20260703",
+      "id": "c3ce06ae-d033-4baf-b2a3-2f49d9b52f87",
+      "headline": "A Partition Love Story Opened to Nothing. Three Weeks Later, It Won't Stop Growing.",
+      "slug": "main-vaapas-aaunga-sleeper-hit-diljit-dosanjh-imtiaz-ali-partition-ar-rahman-box-office-diaspora-nri-20260703",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,32 +119,45 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Sreeleela, co-star in Diler",
-          "reason": "The photo shows Sreeleela, who is relevant to the story as a co-star."
+          "what_photo_shows": "person in a turban and suit",
+          "reason": "The photo shows Diljit Dosanjh, who is relevant to the story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://youtube.com/watch?v=PRUTWluKRW8",
+            "problem": "irrelevant",
+            "explanation": "The YouTube link does not appear to be directly related to the film or its themes."
+          },
+          {
+            "url": "https://www.instagram.com/reel/DZp0ukASCVn/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel does not seem to connect to the film's narrative or promotional content."
+          }
+        ],
         "image_match": {
-          "score": 3,
-          "issue": "irrelevant"
+          "score": 7,
+          "issue": "The image of Diljit Dosanjh is relevant as he is a key actor in the film, but it does not directly represent the film's themes of Partition."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article discusses the Pataudi-Khan dynasty, which connects to the diaspora's interest in Bollywood legacies."
+          "quality": 9,
+          "note": "The article effectively connects the film's themes of Partition to the personal experiences of diaspora audiences."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the hero image with one that directly relates to Ibrahim Ali Khan or the film 'Diler'.",
-          "Include more insights or quotes from industry experts to enhance credibility."
+          "Replace the irrelevant YouTube and Instagram links with content that directly relates to the film or its themes.",
+          "Consider adding more context about the film's reception in international markets to enhance the diaspora angle."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
+        "Removed irrelevant embed: https://youtube.com/watch?v=PRUTWluKRW8",
+        "Removed irrelevant embed: https://www.instagram.com/reel/DZp0ukASCVn/",
         "promoted to published"
       ],
       "revised": false,
