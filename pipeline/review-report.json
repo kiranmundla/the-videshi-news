@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-03T04:15:28.230219+00:00",
+  "timestamp": "2026-07-03T04:45:42.279317+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 4,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "451c95ff-6fd2-4dc2-a5f6-9b1db0f680de",
-      "headline": "USCIS Is Denying Green Cards Over Old Day 1 CPT Enrolments. The Safety Net Is Gone",
-      "slug": "day-1-cpt-green-card-denial-duration-of-status-india-20260703",
+      "id": "1c31c974-d960-471a-94f7-83f107abb4f1",
+      "headline": "England Have Never Won a T20 World Cup at Home. Australia Have Never Lost a Final. Something Breaks at Lord's on Sunday.",
+      "slug": "women-t20-world-cup-2026-final-england-australia-lords-india-test-historic-nri",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "graduates holding diplomas",
-          "reason": "The photo is relevant to a story about student visas and immigration."
+          "what_photo_shows": "England cricketer in action",
+          "reason": "The photo shows an England cricketer, relevant to the Women's T20 World Cup story."
         },
         "inline_image_mismatches": []
       },
@@ -30,19 +30,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the topic of immigration or green cards."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article discusses the impact of immigration policies on Indian nationals, which is highly relevant to the diaspora."
+          "quality": 8,
+          "note": "The article connects well with Indian-origin fans in the UK, highlighting the significance of the events at Lord's."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that directly represents immigration or the challenges faced by Indian students in the U.S.",
-          "Include quotes or testimonials from affected individuals to enhance the emotional connection and provide personal perspectives."
+          "Consider adding quotes from players or coaches to enhance the narrative.",
+          "Include more statistics or historical context about the significance of the match for both teams."
         ],
         "verdict": "pass"
       },
@@ -54,39 +54,111 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "fae798da-570b-4a2a-bd83-25123ccfcedc",
-      "headline": "Eleven Million Cases and Counting. USCIS Cannot Process Its Own Workload",
-      "slug": "uscis-backlog-11-million-cases-processing-freeze-india-20260703",
+      "id": "1ed34842-e57f-4241-a105-85262a7dfd87",
+      "headline": "Oyarzabal Scores Twice. Spain Cruise Past Austria at SoFi and Haven't Conceded a Goal All Tournament.",
+      "slug": "spain-3-0-austria-oyarzabal-double-sofi-los-angeles-world-cup-portugal-round-of-16-nri-2026",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "a9387eb6-819d-4880-857e-da536b0dea36",
-            "headline": "India's EB-5 Investor Green Cards Just Ran Out. The Escape H"
-          },
-          {
-            "article_id": "2f893da9-3f4b-4ee9-9998-647e3cb86da1",
-            "headline": "Eleven Million Cases and Counting. The Green Card Machine Ca"
-          },
-          {
-            "article_id": "1b21ce05-c4a8-4b9c-867a-df5de0b99356",
-            "headline": "He Filed Fake H-1B Petitions Under UC Davis's Name. Now He F"
-          },
-          {
-            "article_id": "616863da-e588-442a-b199-5a0e9c221ae0",
-            "headline": "EB-2 India Went Dark. Now the Escape Routes Are Getting Crow"
-          },
-          {
-            "article_id": "013fe3d7-d671-4d50-8625-f502a1bda945",
-            "headline": "The H-1B Filing Window Just Closed. The First Weighted Lotte"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "USCIS Application Support Center",
-          "reason": "The photo shows a USCIS center, relevant to the immigration backlog story."
+          "what_photo_shows": "Spain football player celebrating goal",
+          "reason": "The photo shows a Spain player, relevant to the football match story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/DaTdd2OmhcA/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not appear to be directly related to the match or the players discussed in the article."
+          }
+        ],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the World Cup event to the Indian diaspora in the U.S., highlighting their engagement and presence at the matches."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the irrelevant Instagram embed with a more relevant social media post related to the match.",
+          "Consider adding more quotes or reactions from players or coaches to enhance the narrative."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/DaTdd2OmhcA/",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "55f649bf-6987-4ba2-a37b-d2864212b489",
+      "headline": "India Is Sending Its Top Trade Bodies to Washington Next Week. They're Going to Fight a $30 Billion Tariff.",
+      "slug": "india-challenges-us-forced-labor-tariff-ustr-section-301-hearing-ficci-cii-20260703",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Winder Building in Washington, D.C.",
+          "reason": "The Winder Building is relevant as it houses the USTR, related to the trade story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses trade implications that could affect the Indian diaspora involved in business and trade."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include quotes or perspectives from diaspora members or businesses affected by the tariffs to enhance the diaspora angle.",
+          "Add a brief section on how these tariffs could impact Indian consumers or businesses in the US."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "bf36934d-8943-4a0e-b82f-ea20f2d81f43",
+      "headline": "HCLTech Just Landed a $1.14 Billion AI Deal With a European Giant. It's the Biggest New Contract in Years.",
+      "slug": "hcltech-1-14-billion-ai-deal-european-firm-biggest-new-contract-20260703",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "man in business suit smiling",
+          "reason": "The photo plausibly shows HCLTech CEO, relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -95,18 +167,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image depicts a USCIS Application Support Center, which is relevant to the article's topic on USCIS processing issues."
+          "issue": "The image of C. Vijayakumar is relevant as he is the CEO of HCLTech, but it could be more directly related to the AI deal."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively highlights the impact of USCIS backlogs on Indian immigrants, making it highly relevant to the NRI audience."
+          "quality": 8,
+          "note": "The article discusses a significant business deal in the Indian IT sector, which is relevant to the NRI community interested in India's economic developments."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from affected individuals or immigration experts to provide personal perspectives.",
-          "Include potential solutions or recommendations for addressing the backlog to enhance the article's depth."
+          "Include a quote from a diaspora expert or analyst to strengthen the connection to the NRI audience.",
+          "Add more context about how this deal impacts the global perception of Indian IT firms."
         ],
         "verdict": "pass"
       },
