@@ -1,6 +1,6 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-07-03T00:00:13Z",
+  "last_updated": "2026-07-03T01:59:56Z",
   "stage": "Knockout Stage",
   "hosts": "USA, Mexico & Canada",
   "dates": {
@@ -1911,7 +1911,8 @@
           "away_code": "CRO",
           "venue": "BMO Field",
           "city": "Toronto",
-          "status": "scheduled"
+          "status": "FT",
+          "score": "2-1"
         },
         {
           "id": 84,
@@ -2005,6 +2006,48 @@
     }
   },
   "highlights": [
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DaT7awElih2",
+      "account": "@fifaworldcup",
+      "caption": "🇵🇹 Portugal take the lead in stoppage time!",
+      "date": "2026-07-02"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DaT4Ul8luLG",
+      "account": "@fifaworldcup",
+      "caption": "Cristiano Ronaldo's first FIFA World Cup knockout goal has Portugal level!",
+      "date": "2026-07-02"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/reel/DaTk0WsiLYp/",
+      "account": "@fifaworldcup",
+      "caption": "Lamine Yamal takes the honours as your Superior Player of the Match 🌟 #FIFAWorldCup",
+      "date": "2026-07-02"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DaTgK4uibdp/",
+      "account": "@fifaworldcup",
+      "caption": "🇪🇸 Next stop: Round of 16! #FIFAWorldCup",
+      "date": "2026-07-02"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DaSfSu2jbs5/",
+      "account": "@fifaworldcup",
+      "caption": "The penultimate day of the Round of 32 📰 #FIFAWorldCup",
+      "date": "2026-07-02"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DaTFgAYCCvz",
+      "account": "@fifaworldcup",
+      "caption": "🇪🇸🆚🇦🇹 🇵🇹🆚🇭🇷 🇨🇭🆚🇩🇿 Today's Round of 32 matchups",
+      "date": "2026-07-02"
+    },
     {
       "platform": "instagram",
       "url": "https://www.instagram.com/reel/DaQ0QGRiEs2/",
