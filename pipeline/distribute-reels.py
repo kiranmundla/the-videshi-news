@@ -234,7 +234,7 @@ def post_youtube_video(reel, video_path, headline, caption):
             return f"SKIP (slug already in youtube-log: {vid})"
     
     # YouTube hard-limits titles to 100 chars.
-    # Voiceover reels upload as regular Videos (letterboxed to 16:9), no #Shorts tag.
+    # Voiceover reels upload as regular Videos (vertical, no letterboxing), no #Shorts tag.
     title = headline[:100].rstrip() if len(headline) > 100 else headline
     
     # Category-specific hashtags
