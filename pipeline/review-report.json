@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-03T08:45:24.923974+00:00",
+  "timestamp": "2026-07-03T09:15:42.103815+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 4,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,68 +11,74 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "0f23f604-cca1-48f9-abe4-b1e69c535c20",
-      "headline": "India's Refiners Are Redrawing the Oil Map. The Iran War Forced Their Hand.",
-      "slug": "india-refiners-crude-oil-diversification-guyana-brazil-us-middle-east-iran-war-20260703",
+      "id": "f7182f25-0a39-4b69-b4fc-453783a96e97",
+      "headline": "She Sang at the World Cup. Then She Walked Onto the TODAY Stage. Nora Fatehi Is Having the Summer of Her Life.",
+      "slug": "nora-fatehi-today-show-fifa-world-cup-siir-siir-most-googled-bollywood-star-diaspora-nri-20260703",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
-          "verdict": "MISMATCH",
-          "what_photo_shows": "award ceremony with three men",
-          "reason": "The photo shows an award ceremony, not related to oil refining or supply chains."
+          "verdict": "MATCH",
+          "what_photo_shows": "woman in black dress",
+          "reason": "The photo plausibly shows Nora Fatehi, matching the story topic."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DaQeUCxsJcC/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel does not appear to be directly related to Nora Fatehi's performance at the World Cup or her appearance on the TODAY show."
+          },
+          {
+            "url": "https://www.instagram.com/p/DaM1LOTjBgo/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not seem to connect with the main narrative of Nora Fatehi's achievements or performances discussed in the article."
+          }
+        ],
         "image_match": {
-          "score": 5,
-          "issue": "missing image description"
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article discusses India's energy strategy, which is relevant to NRIs concerned about global oil markets and India's geopolitical stance."
+          "quality": 8,
+          "note": "The article effectively highlights Nora Fatehi's Canadian-Moroccan background and her rise in the Indian entertainment industry, appealing to the diaspora's sense of pride."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include a relevant image with a description that matches the article's content.",
-          "Add quotes or insights from diaspora experts or stakeholders in the energy sector to strengthen the diaspora connection."
+          "Replace the irrelevant Instagram embeds with content that directly relates to Nora Fatehi's performances or achievements.",
+          "Consider adding quotes or reactions from diaspora audiences to enhance the connection with NRI readers."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "Cleared mismatched image (award ceremony with three men)",
-        "held: image mismatch"
+        "Removed irrelevant embed: https://www.instagram.com/reel/DaQeUCxsJcC/",
+        "Removed irrelevant embed: https://www.instagram.com/p/DaM1LOTjBgo/",
+        "promoted to published"
       ],
       "revised": false,
       "unpublished": false,
-      "image_mismatch": true,
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "ffd45bce-2003-40cc-9a39-73cf8bd8a980",
-      "headline": "India's GST Revenue Just Hit \u20b91.95 Lakh Crore in a Single Month. The Real Story Is in the Imports.",
-      "slug": "india-gst-collections-surge-14-percent-june-2026-import-revenue-fiscal-strength-20260703",
+      "id": "145b4c83-9f17-4d49-8c49-23cd58700ba7",
+      "headline": "HCLTech Just Won a $1.14 Billion AI Deal in Europe. Indian IT's Worst Year Might Be Turning.",
+      "slug": "hcltech-114-billion-ai-deal-europe-indian-it-recovery-20260703",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "dd9d72cd-c58a-4b32-aed6-7a93f59129a1",
-            "headline": "India's GST Collections Just Surged 14% to \u20b91.95 Lakh Crore "
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "GST event with officials speaking",
-          "reason": "The photo shows a GST-related event, relevant to the story on GST revenue."
+          "what_photo_shows": "HCLTech's SEZ campus in Noida",
+          "reason": "The photo shows HCLTech's campus, relevant to the company's AI deal."
         },
         "inline_image_mismatches": []
       },
@@ -86,13 +92,107 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the GST revenue data to the interests of the Indian diaspora, highlighting its significance as a real-time economic indicator."
+          "note": "The article discusses the implications of HCLTech's deal for Indian professionals abroad, making it relevant for the NRI audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more specific examples of how the GST revenue impacts NRIs directly, such as implications for investments or business opportunities.",
-          "Include a brief explanation of GST for readers who may not be familiar with the term, especially among the diaspora."
+          "Consider adding quotes from industry experts or analysts to enhance credibility.",
+          "Include more data or statistics about the impact of AI on the IT sector to provide deeper insights."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "7e6fbcd0-f4bc-49ee-8540-12194c2e1fbd",
+      "headline": "OpenAI Just Offered the US Government a 5% Stake. It Wants Every AI Company to Do the Same.",
+      "slug": "openai-5-percent-stake-government-ai-sovereign-wealth-fund-20260703",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "4ac22b41-fe9f-4c74-a52a-71bf31e5f39e",
+            "headline": "OpenAI Just Hired an IIT-IIM Grad to Run India. He Built Ube"
+          },
+          {
+            "article_id": "d5b9b3b0-a568-4161-b83e-838aa7eefdea",
+            "headline": "OpenAI Just Hired Uber's India Boss to Run Its Second-Larges"
+          },
+          {
+            "article_id": "7c4039c3-3cf3-45b9-8811-22fee28a426f",
+            "headline": "OpenAI's First Hardware Is a Macro Pad for Coders. It Launch"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "A man in a suit and tie",
+          "reason": "The photo plausibly shows Sam Altman, relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the proposal to Indian-origin professionals in the US, highlighting their potential impact and concerns."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more direct quotes from Sriram Krishnan to enhance the Indian angle.",
+          "Include a brief explanation of the implications for Indian tech companies to strengthen the diaspora connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "0f23f604-cca1-48f9-abe4-b1e69c535c20",
+      "headline": "India's Refiners Are Redrawing the Oil Map. The Iran War Forced Their Hand.",
+      "slug": "india-refiners-crude-oil-diversification-guyana-brazil-us-middle-east-iran-war-20260703",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 5,
+          "issue": "The image description is missing, making it difficult to assess relevance."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses India's energy strategy, which is relevant to NRIs concerned about global oil markets and geopolitical impacts."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Add a relevant image description to improve the image match score.",
+          "Include more direct implications for the Indian diaspora, such as how changes in oil prices might affect remittances or living costs abroad."
         ],
         "verdict": "pass"
       },
