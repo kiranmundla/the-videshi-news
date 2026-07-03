@@ -177,13 +177,14 @@ def generate_slides(plan, prev_id, output_dir):
             resp = r.json()
             prev_id = resp.get("id", prev_id)
 
-            # Extract image
+            # Extract image from image_generation_call output
             img_b64 = None
             for item in resp.get("output", []):
-                if item.get("type") == "message":
-                    for c in item.get("content", []):
-                        if c.get("type") == "image" and c.get("image_base64"):
-                            img_b64 = c["image_base64"]
+                if item.get("type") == "image_generation_call":
+                    b64 = item.get("result", "")
+                    if b64:
+                        img_b64 = b64
+                        break
 
             if not img_b64:
                 print(f"  ⚠️ No image returned for slide {num}", flush=True)
