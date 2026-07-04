@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-04T20:15:26.275944+00:00",
+  "timestamp": "2026-07-04T21:15:18.943647+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 0,
+    "pass": 1,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "931a10bf-9382-4546-90b4-b985dcd7c7a7",
-      "headline": "Your Instagram Is Now Part of Your Visa Interview. Consular Officers Have Been Scrolling Since December",
-      "slug": "social-media-vetting-h1b-visa-stamp-online-presence-review-20260704",
+      "id": "5288ba32-c7ea-47af-afad-e2b45b10a10a",
+      "headline": "Pichai's Google Just Admitted Its Climate Goals Are Slipping. Amazon's Numbers Are Worse.",
+      "slug": "google-amazon-ai-emissions-surge-climate-goals-pichai-20260704",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,28 +21,28 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "open passport with travel stamps",
-          "reason": "The photo of a passport with travel stamps is relevant to a visa interview story."
+          "what_photo_shows": "Google server racks in data centre",
+          "reason": "The photo shows Google server racks, relevant to the data centre and emissions topic."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 8,
+        "overall_score": 7,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image is relevant to the topic of visa interviews but lacks a direct connection to social media."
+          "score": 8,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively addresses the impact of the new visa policy on Indian professionals, making it highly relevant to the diaspora."
+          "quality": 7,
+          "note": "The article discusses Indian-origin executives, which connects to the diaspora, but the focus is primarily on corporate climate issues."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider including a quote from an affected individual or a personal story to enhance relatability.",
-          "Add more statistics or data on the impact of the policy on visa processing times to strengthen the argument."
+          "Include more direct quotes or perspectives from the Indian diaspora regarding the impact of these companies' climate goals.",
+          "Add a section discussing how these climate issues might affect Indian consumers or businesses."
         ],
         "verdict": "pass"
       },
@@ -54,18 +54,23 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "015d6992-65c6-44cb-a099-530e9d1cae08",
-      "headline": "Indiana Can Now Shut Down Your Business for Hiring Wrong. Ten States and Counting",
-      "slug": "indiana-fairness-act-e-verify-state-enforcement-indian-business-20260704",
+      "id": "2030e478-6729-4adf-aa8e-7d7afa543db5",
+      "headline": "Every Big Tech Giant Wants a Data Centre in India. The Government Just Made It Tax-Free Until 2047.",
+      "slug": "india-data-centre-boom-microsoft-google-zero-tax-2047-20260704",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "e34b7834-ce80-40ed-b25d-97ec34853727",
+            "headline": "While America Fights Its Data Centers, India Is Rolling Out "
+          }
+        ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Indiana State Capitol building",
-          "reason": "The photo shows the Indiana State Capitol, relevant to the story about Indiana law."
+          "what_photo_shows": "server racks in data centre",
+          "reason": "The photo shows server racks, relevant to a data centre story."
         },
         "inline_image_mismatches": []
       },
@@ -73,21 +78,21 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image of the Indiana State Capitol is relevant but does not directly illustrate the article's focus on immigration enforcement laws."
+          "score": 5,
+          "issue": "The image does not depict a data center in India, which is the focus of the article."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively highlights the impact of Indiana's immigration laws on the Indian American community, making it highly relevant for diaspora readers."
+          "quality": 8,
+          "note": "The article effectively connects the topic to Indian American technology professionals, highlighting job and investment opportunities."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a relevant infographic or chart that illustrates the impact of the new law on Indian businesses.",
-          "Include quotes or testimonials from Indian business owners affected by the law to provide a personal perspective."
+          "Replace the hero image with one that depicts a data center in India to better match the article's content.",
+          "Expand on the investment story section to provide more specific examples of how diaspora investors can engage with the Indian data center market."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
         "promoted to published"
