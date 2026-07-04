@@ -4382,100 +4382,105 @@ _BRAND_GEN_SUFFIX = ""  # kept as empty string so any residual references don't 
 
 def generate_themed_image(image_prompt, article_id, idx, out_dir="/tmp/videshi_gen",
                           previous_response_id=None):
-    """Generate an article-specific scene image using Gemini 2.5 Flash Image
-    as the primary model. Falls back to OpenAI gpt-image-1 if Gemini fails.
+    """Generate an article-specific scene image using the OpenAI Responses API
+    with integrated image_generation tool. Falls back to legacy gpt-image-1 if
+    the Responses API fails.
 
-    Returns the public URL (or None on any failure). Never raises.
-    When previous_response_id is not None, returns (url, response_id) tuple."""
-    if not image_prompt or (not GEMINI_KEY and not OPENAI_KEY):
+    When previous_response_id is provided, the model retains full article context
+    from the planning phase, producing contextually richer images.
+
+    Returns the public URL (or None on any failure). Never raises."""
+    if not image_prompt or not OPENAI_KEY:
         return None
     try:
         os.makedirs(out_dir, exist_ok=True)
+
+        # ── PRIMARY: Responses API with image_generation tool ──
+        resp_url = "https://api.openai.com/v1/responses"
+        resp_headers = {"Authorization": f"Bearer {OPENAI_KEY}",
+                        "Content-Type": "application/json"}
+        resp_body = {
+            "model": "gpt-4o",
+            "input": f"Generate this scene image: {image_prompt}. No human faces.",
+            "tools": [{"type": "image_generation", "size": "1024x1536",
+                        "quality": "high"}],
+            "tool_choice": {"type": "image_generation"},
+        }
+        if previous_response_id:
+            resp_body["previous_response_id"] = previous_response_id
+
+        r = requests.post(resp_url, headers=resp_headers, json=resp_body,
+                          timeout=300)
+
+        if r.status_code == 200:
+            resp_data = r.json()
+            for out in resp_data.get("output", []):
+                if out.get("type") == "image_generation_call":
+                    b64 = out.get("result", "")
+                    if b64:
+                        import base64 as _b64
+                        png = _b64.b64decode(b64)
+                        local_png = os.path.join(out_dir,
+                                                 f"gen_{article_id}_{idx}.png")
+                        local_jpg = os.path.join(out_dir,
+                                                 f"gen_{article_id}_{idx}.jpg")
+                        with open(local_png, "wb") as fh:
+                            fh.write(png)
+                        # Compress for faster Shotstack download
+                        os.system(f"gm convert {local_png} -quality 85 {local_jpg}")
+                        upload_path = local_jpg if os.path.exists(local_jpg) else local_png
+                        storage_path = f"reel-gen/{article_id}/scene-{idx}.png"
+                        url = upload_asset(upload_path, storage_path, "image/png")
+                        for f in (local_png, local_jpg, upscaled):
+                            try:
+                                os.remove(f)
+                            except Exception:
+                                pass
+                        # Return (url, response_id) tuple when chaining is needed
+                        _new_id = resp_data.get("id")
+                        if previous_response_id is not None:
+                            return url, _new_id
+                        return url
+            print(f"  ⚠️ Responses API returned 200 but no image data")
+        else:
+            print(f"  ⚠️ Responses API failed ({r.status_code}): {r.text[:160]}")
+
+        # ── FALLBACK: Legacy gpt-image-1 (no brand suffix) ──
+        print(f"  ⏩ Falling back to legacy gpt-image-1 for scene {idx}")
         full_prompt = image_prompt.strip().rstrip(".") + ". No human faces. Vertical 9:16."
-
-        # ── PRIMARY: Gemini 2.5 Flash Image ──
-        if GEMINI_KEY:
-            import subprocess as _sp
-            gem_payload = json.dumps({
-                "contents": [{"parts": [{"text": full_prompt}]}],
-                "generationConfig": {"responseModalities": ["IMAGE", "TEXT"]}
-            })
-            gem_url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image:generateContent?key={GEMINI_KEY}"
-            gem_r = _sp.run(
-                ["curl", "-s", "-X", "POST", gem_url,
-                 "-H", "Content-Type: application/json",
-                 "-d", gem_payload, "--max-time", "90"],
-                capture_output=True, timeout=120
-            )
-            if gem_r.returncode == 0 and gem_r.stdout:
-                gem_data = json.loads(gem_r.stdout)
-                for cand in gem_data.get("candidates", []):
-                    for part in cand.get("content", {}).get("parts", []):
-                        if "inlineData" in part:
-                            import base64 as _b64
-                            png = _b64.b64decode(part["inlineData"]["data"])
-                            local_png = os.path.join(out_dir,
-                                                     f"gem_{article_id}_{idx}.png")
-                            local_jpg = os.path.join(out_dir,
-                                                     f"gem_{article_id}_{idx}.jpg")
-                            with open(local_png, "wb") as fh:
-                                fh.write(png)
-                            os.system(f"gm convert {local_png} -quality 85 {local_jpg}")
-                            upload_path = local_jpg if os.path.exists(local_jpg) else local_png
-                            storage_path = f"reel-gen/{article_id}/scene-{idx}.png"
-                            url = upload_asset(upload_path, storage_path, "image/png")
-                            for f in (local_png, local_jpg):
-                                try:
-                                    os.remove(f)
-                                except Exception:
-                                    pass
-                            if previous_response_id is not None:
-                                return url, previous_response_id
-                            return url
-                print(f"  ⚠️ Gemini returned 200 but no image data")
-            else:
-                print(f"  ⚠️ Gemini curl failed (rc={gem_r.returncode})")
-
-        # ── FALLBACK: Legacy gpt-image-1 ──
-        if OPENAI_KEY:
-            print(f"  ⏩ Falling back to gpt-image-1 for scene {idx}")
-            r = requests.post(
-                "https://api.openai.com/v1/images/generations",
-                headers={"Authorization": f"Bearer {OPENAI_KEY}",
-                         "Content-Type": "application/json"},
-                json={"model": "gpt-image-1", "prompt": full_prompt[:3900],
-                      "size": "1024x1536", "n": 1},
-                timeout=120,
-            )
-            if r.status_code != 200:
-                print(f"  ⚠️ gpt-image-1 also failed ({r.status_code}): {r.text[:160]}")
-                if previous_response_id is not None:
-                    return None, previous_response_id
-                return None
-            data = r.json().get("data", [])
-            if not data or not data[0].get("b64_json"):
-                print("  ⚠️ gpt-image-1 returned no image data")
-                if previous_response_id is not None:
-                    return None, previous_response_id
-                return None
-            import base64
-            png = base64.b64decode(data[0]["b64_json"])
-            local = os.path.join(out_dir, f"gen_{article_id}_{idx}.png")
-            with open(local, "wb") as fh:
-                fh.write(png)
-            storage_path = f"reel-gen/{article_id}/scene-{idx}.png"
-            url = upload_asset(local, storage_path, "image/png")
-            try:
-                os.remove(local)
-            except Exception:
-                pass
+        r = requests.post(
+            "https://api.openai.com/v1/images/generations",
+            headers={"Authorization": f"Bearer {OPENAI_KEY}",
+                     "Content-Type": "application/json"},
+            json={"model": "gpt-image-1", "prompt": full_prompt[:3900],
+                  "size": "1024x1536", "n": 1},
+            timeout=120,
+        )
+        if r.status_code != 200:
+            print(f"  ⚠️ gpt-image-1 also failed ({r.status_code}): {r.text[:160]}")
             if previous_response_id is not None:
-                return url, previous_response_id
-            return url
-
+                return None, previous_response_id
+            return None
+        data = r.json().get("data", [])
+        if not data or not data[0].get("b64_json"):
+            print("  ⚠️ gpt-image-1 returned no image data")
+            if previous_response_id is not None:
+                return None, previous_response_id
+            return None
+        import base64
+        png = base64.b64decode(data[0]["b64_json"])
+        local = os.path.join(out_dir, f"gen_{article_id}_{idx}.png")
+        with open(local, "wb") as fh:
+            fh.write(png)
+        storage_path = f"reel-gen/{article_id}/scene-{idx}.png"
+        url = upload_asset(local, storage_path, "image/png")
+        try:
+            os.remove(local)
+        except Exception:
+            pass
         if previous_response_id is not None:
-            return None, previous_response_id
-        return None
+            return url, previous_response_id
+        return url
     except Exception as e:
         print(f"  ⚠️ generate_themed_image error: {e}")
         if previous_response_id is not None:
@@ -4721,7 +4726,7 @@ CRITICAL VISUAL STYLE:
 Return JSON only:
 {{"scenes": [
   {{"scene": 1, "image_source": "hero", "image_description": "brief description of what the photo shows"}},
-  {{"scene": 2, "image_source": "generate", "image_description": "detailed visual description for AI generation (200-350 chars — include subject, mood, setting, color palette, composition style)"}},
+  {{"scene": 2, "image_source": "generate", "image_description": "detailed visual description for AI generation (150-250 chars)"}},
   {{"scene": 3, "image_source": "body_1", "image_description": "brief description of what the photo shows"}},
   ...
 ]}}
@@ -4832,154 +4837,86 @@ If no article images are available, use "generate" for all scenes."""
         if not desc:
             desc = f"A news infographic scene about {storyboard[i].get('card_text', 'breaking news')}"
 
-        print(f"  🖼️ Scene {scene_num}: generating via Gemini Image...", flush=True)
+        print(f"  🖼️ Scene {scene_num}: generating via Responses API...", flush=True)
 
-        gen_prompt = (f"{desc}. "
-                      f"Photorealistic, cinematic, vertical 9:16 for mobile reels. "
-                      f"No human faces. No logos, branding, slogans, or motivational text.")
+        gen_prompt = (f"Now generate scene {scene_num}'s image. Scene description: {desc}. "
+                      f"Make it visually rich and cinematic. Phone-readable text with safe margins. "
+                      f"No logos, branding, slogans, or motivational text.")
+        try:
+            r = requests.post(RESP_URL, headers=RESP_HEADERS, json={
+                "model": "gpt-4o",
+                "input": gen_prompt,
+                "previous_response_id": prev_id,
+                "tools": [{"type": "image_generation", "size": "1024x1536",
+                            "quality": "high"}],
+                "tool_choice": {"type": "image_generation"},
+            }, timeout=300)
+        except Exception as e:
+            print(f"  ⚠️ Scene {scene_num} request failed: {e}")
+            continue
 
-        # ── PRIMARY: Gemini 2.5 Flash Image ──
-        gemini_ok = False
-        if GEMINI_KEY:
-            try:
-                import subprocess as _sp
-                gem_payload = json.dumps({
-                    "contents": [{"parts": [{"text": gen_prompt}]}],
-                    "generationConfig": {"responseModalities": ["IMAGE", "TEXT"]}
-                })
-                gem_url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image:generateContent?key={GEMINI_KEY}"
-                gem_r = _sp.run(
-                    ["curl", "-s", "-X", "POST", gem_url,
-                     "-H", "Content-Type: application/json",
-                     "-d", gem_payload, "--max-time", "90"],
-                    capture_output=True, timeout=120
-                )
-                if gem_r.returncode == 0 and gem_r.stdout:
-                    gem_data = json.loads(gem_r.stdout)
-                    for cand in gem_data.get("candidates", []):
-                        for part in cand.get("content", {}).get("parts", []):
-                            if "inlineData" in part:
-                                import base64 as _b64
-                                raw = _b64.b64decode(part["inlineData"]["data"])
-                                mime = part["inlineData"].get("mimeType", "image/png")
-                                local_png = os.path.join(out_dir,
-                                                         f"gem_{article_id}_{i}.png")
-                                local_jpg = os.path.join(out_dir,
-                                                         f"gem_{article_id}_{i}.jpg")
-                                with open(local_png, "wb") as fh:
-                                    fh.write(raw)
-                                # Upscale to 1080x1920 with Lanczos sharpening
-                                upscaled = os.path.join(out_dir,
-                                                        f"gem_{article_id}_{i}_up.png")
-                                os.system(
-                                    f"gm convert {local_png} -resize 1080x1920! "
-                                    f"-filter Lanczos -unsharp 0.5x0.5+0.8+0 "
-                                    f"{upscaled}")
-                                if os.path.exists(upscaled) and os.path.getsize(upscaled) > 1024:
-                                    src_for_compress = upscaled
-                                else:
-                                    src_for_compress = local_png
-                                # Compress
-                                os.system(f"gm convert {src_for_compress} -quality 90 {local_jpg}")
-                                upload_file = local_jpg if os.path.exists(local_jpg) else local_png
-                                storage_path = f"reel-gen/{article_id}/gem-scene-{i}.png"
-                                url = upload_asset(upload_file, storage_path, "image/png")
-                                for f in (local_png, local_jpg, upscaled):
-                                    try:
-                                        os.remove(f)
-                                    except Exception:
-                                        pass
-                                if url:
-                                    urls.append(url)
-                                    media_meta[url] = {
-                                        "type": "image", "duration": 0,
-                                        "is_generated": True, "is_gemini": True,
-                                        "curated": True, "generic_pexels": False,
-                                    }
-                                    elapsed = time.time() - t0
-                                    print(f"  ✅ Scene {scene_num} generated via Gemini ({elapsed:.0f}s)")
-                                    gemini_ok = True
-                                else:
-                                    print(f"  ⚠️ Scene {scene_num} Gemini upload failed")
-                                break
-                        if gemini_ok:
-                            break
-                    if not gemini_ok:
-                        print(f"  ⚠️ Scene {scene_num}: Gemini returned no image data")
-                else:
-                    print(f"  ⚠️ Scene {scene_num}: Gemini curl failed (rc={gem_r.returncode})")
-            except Exception as e:
-                print(f"  ⚠️ Scene {scene_num} Gemini error: {e}")
+        elapsed = time.time() - t0
+        if r.status_code != 200:
+            print(f"  ⚠️ Scene {scene_num} failed ({r.status_code}, {elapsed:.0f}s): "
+                  f"{r.text[:200]}")
+            continue
 
-        # ── FALLBACK: OpenAI Responses API ──
-        if not gemini_ok and OPENAI_KEY:
-            print(f"  ⏩ Scene {scene_num}: falling back to OpenAI Responses API...")
-            try:
-                r = requests.post(RESP_URL, headers=RESP_HEADERS, json={
-                    "model": "gpt-4o",
-                    "input": f"Generate this scene image: {gen_prompt}",
-                    "previous_response_id": prev_id,
-                    "tools": [{"type": "image_generation", "size": "1024x1536",
-                                "quality": "high"}],
-                    "tool_choice": {"type": "image_generation"},
-                }, timeout=300)
-            except Exception as e:
-                print(f"  ⚠️ Scene {scene_num} OpenAI fallback failed: {e}")
-                continue
+        resp_data = r.json()
+        # Chain context for next scene
+        prev_id = resp_data.get("id", prev_id)
 
-            elapsed = time.time() - t0
-            if r.status_code != 200:
-                print(f"  ⚠️ Scene {scene_num} OpenAI failed ({r.status_code}, {elapsed:.0f}s): "
-                      f"{r.text[:200]}")
-                continue
+        img_saved = False
+        for out in resp_data.get("output", []):
+            if out.get("type") == "image_generation_call":
+                b64 = out.get("result", "")
+                revised = out.get("revised_prompt", "")
+                if b64:
+                    import base64 as _b64
+                    raw = _b64.b64decode(b64)
+                    local_png = os.path.join(out_dir,
+                                             f"resp_{article_id}_{i}.png")
+                    local_jpg = os.path.join(out_dir,
+                                             f"resp_{article_id}_{i}.jpg")
+                    with open(local_png, "wb") as fh:
+                        fh.write(raw)
+                    # Upscale to 1080x1920 (API max is 1024x1536) with
+                    # Lanczos sharpening so generated scenes match the
+                    # reel's native resolution and don't look soft.
+                    upscaled = os.path.join(out_dir,
+                                            f"resp_{article_id}_{i}_up.png")
+                    os.system(
+                        f"gm convert {local_png} -resize 1080x1920! "
+                        f"-filter Lanczos -unsharp 0.5x0.5+0.8+0 "
+                        f"{upscaled}")
+                    if os.path.exists(upscaled) and os.path.getsize(upscaled) > 1024:
+                        src_for_compress = upscaled
+                    else:
+                        src_for_compress = local_png
+                    # Compress
+                    os.system(f"gm convert {src_for_compress} -quality 90 {local_jpg}")
+                    upload_file = local_jpg if os.path.exists(local_jpg) else local_png
+                    storage_path = f"reel-gen/{article_id}/resp-scene-{i}.png"
+                    url = upload_asset(upload_file, storage_path, "image/png")
+                    for f in (local_png, local_jpg):
+                        try:
+                            os.remove(f)
+                        except Exception:
+                            pass
+                    if url:
+                        urls.append(url)
+                        media_meta[url] = {
+                            "type": "image", "duration": 0,
+                            "is_generated": True, "is_responses_api": True,
+                            "curated": True, "generic_pexels": False,
+                        }
+                        img_saved = True
+                        print(f"  ✅ Scene {scene_num} generated ({elapsed:.0f}s) — "
+                              f"{revised[:80]}...")
+                    else:
+                        print(f"  ⚠️ Scene {scene_num} upload failed")
 
-            resp_data = r.json()
-            prev_id = resp_data.get("id", prev_id)
-
-            for out in resp_data.get("output", []):
-                if out.get("type") == "image_generation_call":
-                    b64 = out.get("result", "")
-                    if b64:
-                        import base64 as _b64
-                        raw = _b64.b64decode(b64)
-                        local_png = os.path.join(out_dir,
-                                                 f"resp_{article_id}_{i}.png")
-                        local_jpg = os.path.join(out_dir,
-                                                 f"resp_{article_id}_{i}.jpg")
-                        with open(local_png, "wb") as fh:
-                            fh.write(raw)
-                        upscaled = os.path.join(out_dir,
-                                                f"resp_{article_id}_{i}_up.png")
-                        os.system(
-                            f"gm convert {local_png} -resize 1080x1920! "
-                            f"-filter Lanczos -unsharp 0.5x0.5+0.8+0 "
-                            f"{upscaled}")
-                        if os.path.exists(upscaled) and os.path.getsize(upscaled) > 1024:
-                            src_for_compress = upscaled
-                        else:
-                            src_for_compress = local_png
-                        os.system(f"gm convert {src_for_compress} -quality 90 {local_jpg}")
-                        upload_file = local_jpg if os.path.exists(local_jpg) else local_png
-                        storage_path = f"reel-gen/{article_id}/resp-scene-{i}.png"
-                        url = upload_asset(upload_file, storage_path, "image/png")
-                        for f in (local_png, local_jpg):
-                            try:
-                                os.remove(f)
-                            except Exception:
-                                pass
-                        if url:
-                            urls.append(url)
-                            media_meta[url] = {
-                                "type": "image", "duration": 0,
-                                "is_generated": True, "is_responses_api": True,
-                                "curated": True, "generic_pexels": False,
-                            }
-                            print(f"  ✅ Scene {scene_num} generated via OpenAI fallback ({elapsed:.0f}s)")
-                        else:
-                            print(f"  ⚠️ Scene {scene_num} OpenAI upload failed")
-
-        if not gemini_ok and not OPENAI_KEY:
-            print(f"  ⚠️ Scene {scene_num}: no image API available")
+        if not img_saved:
+            print(f"  ⚠️ Scene {scene_num}: no image in response ({elapsed:.0f}s)")
 
     n_art_used = sum(1 for m in media_meta.values() if m.get("is_article_image"))
     n_gen_used = sum(1 for m in media_meta.values() if m.get("is_generated"))
