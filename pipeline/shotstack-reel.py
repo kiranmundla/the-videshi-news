@@ -482,7 +482,7 @@ def generate_script(article, force_new=False):
     slug = article.get("slug", "unknown")
 
     # Script cache — reuse if already generated
-    SCRIPT_CACHE_VERSION = "clean6"  # bump to invalidate old caches (clean6: integrated-first infographic prompts)
+    SCRIPT_CACHE_VERSION = "clean7"  # bump to invalidate old caches (clean7: Gemini gets full article body for rich infographics)
     cache_path = BUILD_DIR / f"script-{slug}.json"
     if not force_new and cache_path.exists():
         try:
@@ -4492,7 +4492,7 @@ _BRAND_GEN_SUFFIX = ""  # kept as empty string so any residual references don't 
 
 
 def generate_themed_image(image_prompt, article_id, idx, out_dir="/tmp/videshi_gen",
-                          previous_response_id=None):
+                          previous_response_id=None, article_body=None):
     """Generate an article-specific scene image using Gemini 2.5 Flash Image
     as the primary model. Falls back to OpenAI gpt-image-1 if Gemini fails.
 
@@ -4502,7 +4502,28 @@ def generate_themed_image(image_prompt, article_id, idx, out_dir="/tmp/videshi_g
         return None
     try:
         os.makedirs(out_dir, exist_ok=True)
-        full_prompt = image_prompt.strip().rstrip(".") + ". No human faces. Vertical 9:16."
+
+        # Build a rich prompt with article context so Gemini can create
+        # data-dense infographics (not just mood illustrations)
+        scene_direction = image_prompt.strip().rstrip(".")
+        if article_body:
+            # Give Gemini the full article so it can extract and visualize ALL
+            # the numbers, stats, comparisons, and data points
+            body_text = article_body[:4000]  # cap to avoid token overflow
+            full_prompt = (
+                f"Create a RICH DATA INFOGRAPHIC for a news reel scene. "
+                f"Pack in as many numbers, charts, comparison panels, stat callouts, "
+                f"icons, and data visualizations as possible. Think magazine-quality "
+                f"infographic — every inch should communicate data.\n\n"
+                f"VISUAL DIRECTION: {scene_direction}\n\n"
+                f"FULL ARTICLE (extract ALL relevant numbers and data):\n{body_text}\n\n"
+                f"RULES: No human faces. Vertical 9:16 portrait format. "
+                f"Dark navy/editorial color palette with gold accents. "
+                f"Make it DENSE with data — multiple stat panels, charts, icons, "
+                f"comparison layouts. NOT a simple illustration with one number."
+            )
+        else:
+            full_prompt = scene_direction + ". No human faces. Vertical 9:16."
 
         # ── PRIMARY: Gemini 2.5 Flash Image ──
         if GEMINI_KEY:
@@ -5634,7 +5655,8 @@ def source_reel_media_clean(article, storyboard, count=8):
         #   data_viz="overlay": image is bg, card text overlaid on top
         if plan == "generate" and scene.get("image_prompt"):
             data_viz = (scene.get("data_viz") or "integrated").strip().lower()
-            gurl = generate_themed_image(scene.get("image_prompt"), article_id, i)
+            gurl = generate_themed_image(scene.get("image_prompt"), article_id, i,
+                                         article_body=article.get("body", ""))
             if gurl:
                 if data_viz == "integrated":
                     # Image IS the scene — stat is part of the visual
