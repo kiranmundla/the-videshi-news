@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-04T13:45:11.453998+00:00",
+  "timestamp": "2026-07-04T14:15:29.920418+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 0,
-    "flag": 1,
+    "pass": 2,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,27 +11,18 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "c11062dc-2bc8-438a-9082-44fbe97b554f",
-      "headline": "India and Japan Just Signed Their Biggest Tech Pact in a Decade. Semiconductors Are at the Centre.",
-      "slug": "india-japan-ai-semiconductor-pact-modi-takaichi-summit-20260704",
+      "id": "9ccdde07-426e-4e0f-a0c0-e11b04d513be",
+      "headline": "Canada Rejected Three in Four Indian Student Visas. Now It Wants the Power to Cancel the Rest",
+      "slug": "canada-74-percent-rejection-indian-students-bill-c12-20260704",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "82d56a33-6a04-49ea-ac4b-1af0040913c3",
-            "headline": "Modi Is Taking His Diaspora Playbook to Three Countries in S"
-          },
-          {
-            "article_id": "a0b4569c-d3e8-4bd5-b7c9-89a954e7fb50",
-            "headline": "India and Japan Just Agreed to Build a Warship Antenna Toget"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Prime Minister Narendra Modi",
-          "reason": "The photo shows Narendra Modi, who is relevant to the story."
+          "what_photo_shows": "Simon Fraser University campus",
+          "reason": "The university campus is relevant to a student visa story."
         },
         "inline_image_mismatches": []
       },
@@ -39,21 +30,81 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 3,
-          "issue": "irrelevant"
+          "score": 7,
+          "issue": "The image does not directly relate to the topic of immigration or Indian students in Canada."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article discusses opportunities for NRIs in India's tech sector, making the diaspora angle relevant."
+          "quality": 9,
+          "note": "The article effectively addresses the concerns of the Indian diaspora regarding changes in Canadian immigration policies."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the hero image with one that is more relevant to the topic of semiconductors or the India-Japan tech pact.",
-          "Expand on the potential impacts of the tech pact on the Indian diaspora, particularly in terms of investment and job opportunities."
+          "Consider using a more relevant image that reflects the theme of immigration or Indian students in Canada.",
+          "Add more statistics or quotes from affected students to enhance the emotional impact of the article."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "c1159a2e-7fae-47ae-8899-452e1bf8061c",
+      "headline": "Ten Thousand Students Flagged. The OPT Pipeline That Built Silicon Valley Is Under Siege",
+      "slug": "opt-fraud-crackdown-four-front-attack-indian-students-20260704",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "616863da-e588-442a-b199-5a0e9c221ae0",
+            "headline": "EB-2 India Went Dark. Now the Escape Routes Are Getting Crow"
+          },
+          {
+            "article_id": "1b21ce05-c4a8-4b9c-867a-df5de0b99356",
+            "headline": "He Filed Fake H-1B Petitions Under UC Davis's Name. Now He F"
+          },
+          {
+            "article_id": "013fe3d7-d671-4d50-8625-f502a1bda945",
+            "headline": "The H-1B Filing Window Just Closed. The First Weighted Lotte"
+          },
+          {
+            "article_id": "fae798da-570b-4a2a-bd83-25123ccfcedc",
+            "headline": "Eleven Million Cases and Counting. USCIS Cannot Process Its "
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "USCIS Application Support Center",
+          "reason": "The photo shows a USCIS center, relevant to immigration and visa processes."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image depicts a USCIS Application Support Center, which is relevant to the topic of immigration and OPT, but it does not directly illustrate the specific issues discussed in the article."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively highlights the impact of OPT changes on Indian students, making it highly relevant to the NRI audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including quotes or perspectives from affected students to enhance the human element of the story.",
+          "Add a section discussing potential responses or actions from the Indian government or diaspora organizations regarding these changes."
+        ],
+        "verdict": "pass"
       },
       "actions_taken": [
         "promoted to published"
