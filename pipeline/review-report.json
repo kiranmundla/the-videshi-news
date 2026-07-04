@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-04T00:45:43.286571+00:00",
+  "timestamp": "2026-07-04T01:15:13.107723+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 4,
+    "pass": 1,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "86264e9a-a48a-4945-9042-15300650faa5",
-      "headline": "From Darjeeling to 2,000 Walmarts: Indian Tea Gets Its Zero-Tariff American Moment",
-      "slug": "from-darjeeling-to-2000-walmarts-indian-tea-gets-its-zero-tariff-american-moment",
+      "id": "eecb3b44-f0d9-445a-b408-caf1546fb447",
+      "headline": "Mahesh Bhatt Has Put the Camera Down for Good. This Time, He Means It.",
+      "slug": "mahesh-bhatt-retirement-directing-arth-saaransh-aashiqui-sadak-bollywood-legacy-diaspora-nri-20260703",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "glass of Indian masala chai",
-          "reason": "The photo of masala chai is relevant to the story about Indian tea."
+          "what_photo_shows": "an older man in black shirt",
+          "reason": "The photo plausibly shows Mahesh Bhatt, matching the story topic."
         },
         "inline_image_mismatches": []
       },
@@ -36,142 +36,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses Indian tea's growing presence in the US market, which resonates with the Indian diaspora interested in cultural products."
+          "note": "The article effectively connects Mahesh Bhatt's work to the emotional experiences of the Indian diaspora, particularly through references to his films and their impact on NRI audiences."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes or insights from diaspora members or Indian tea enthusiasts in the US to strengthen the connection.",
-          "Add more statistics or data on the consumption of Indian tea among the diaspora to enhance the article's depth."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "e1d8fdce-b1c7-451b-9048-a8a2bd63dbca",
-      "headline": "Liquid Gold Rush: How Ghee Became a $62 Billion Global Phenomenon \u2014 and Why Your Nani Saw It Coming",
-      "slug": "liquid-gold-rush-how-ghee-became-a-62-billion-global-phenomenon-and-why-your-nan",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A jar of homemade ghee",
-          "reason": "The photo shows ghee, which is relevant to the story about its global market."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses the global rise of ghee and its cultural significance, connecting well with the Indian diaspora's experiences and perspectives."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more personal anecdotes or quotes from diaspora members to enhance relatability.",
-          "Add a section on how ghee is being used in modern Indian cooking or fusion recipes to engage readers further."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "5661fef6-4f2e-41ba-a649-c08fd0d23c70",
-      "headline": "Eight Men Arrested for Stealing Donations From the Ram Mandir. A Court Is Being Asked to Call In the CBI.",
-      "slug": "ayodhya-ram-mandir-donation-embezzlement-eight-arrested-cbi-pil-20260703",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Shri Ram Janmabhoomi Mandir in Ayodhya",
-          "reason": "The photo shows the temple relevant to the embezzlement story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the scandal to NRIs by highlighting their contributions and the implications of the investigation for overseas donors."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from NRI donors or diaspora organizations to enhance the connection to the audience.",
-          "Include more context about the Ram Mandir's significance to the diaspora to deepen the engagement."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "4916583d-3583-4dcb-8f9a-125aceb06e72",
-      "headline": "India and Japan Just Signed Their First Defence Co-Development Deal. It Is the Start of Something Much Bigger.",
-      "slug": "india-japan-summit-takaichi-modi-defense-ai-unicorn-pacts-61-billion-20260703",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Two leaders at Rashtrapati Bhavan",
-          "reason": "The photo shows leaders from India and Japan, matching the summit context."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses the implications of the India-Japan defense deal, which can resonate with the Indian diaspora interested in geopolitical developments and their impact on India."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Expand on the implications of the defense deal for the Indian diaspora, particularly in terms of job opportunities or investment prospects.",
-          "Include quotes or perspectives from diaspora members or experts to enhance the connection to the NRI audience."
+          "Consider adding more direct quotes from Mahesh Bhatt or his associates to enhance the narrative.",
+          "Include a brief overview of Bhatt's influence on contemporary filmmakers to provide additional context."
         ],
         "verdict": "pass"
       },
