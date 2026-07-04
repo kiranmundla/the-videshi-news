@@ -7479,7 +7479,9 @@ def run_anchor_reel(article, dry_run=False, use_production=False, no_publish=Fal
     # Produces dramatically richer visuals because the same model that understands
     # the article generates the images — no information lost between steps.
     # Env var VIDESHI_REEL_RESPONSES_API=0 disables this path (falls to CLEAN mode).
-    USE_RESPONSES_API = os.environ.get("VIDESHI_REEL_RESPONSES_API", "1") != "0"
+    # Default to CLEAN mode (respects media_plan: cards, social, media_library,
+    # generate). Responses API mode (all AI images) only if explicitly forced.
+    USE_RESPONSES_API = os.environ.get("VIDESHI_REEL_RESPONSES_API", "0") == "1"
     if storyboard and USE_RESPONSES_API and OPENAI_KEY:
         print("  🚀 RESPONSES API mode: integrated GPT-4o image generation")
         resp_urls, resp_meta = generate_responses_api_scenes(
