@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-07-04T05:15:19.223995+00:00",
+  "timestamp": "2026-07-04T08:15:18.537602+00:00",
   "mode": "fix",
   "stats": {
     "pass": 2,
@@ -11,47 +11,38 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "86139904-91d3-41bd-afdb-362d6407da84",
-      "headline": "India's Central Bank Told Parliament: Don't Legalize Crypto. Not Now, Not Yet.",
-      "slug": "rbi-parliament-crypto-vda-ban-nri-india-20260704",
+      "id": "c320f4e2-f49e-47d3-9e67-6a7764b19f7f",
+      "headline": "America Rejected 61 Per Cent of Indian Student Visas Last Year. The Pipeline Is Bleeding Out",
+      "slug": "f1-student-visa-rejection-61-percent-indian-shorelight-20260704",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "c1671651-8e0b-48b9-9aa7-92aba5c2a06d",
-            "headline": "India Just Told Its Banks to Treat Every AI Model Like a Ris"
-          },
-          {
-            "article_id": "0b4d6970-9b0b-4d1a-ad52-9203f75044e9",
-            "headline": "India's Bonds Just Had Their Best Month in Seven Years. The "
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Reserve Bank of India headquarters",
-          "reason": "The photo shows the RBI headquarters, relevant to the story about its crypto stance."
+          "what_photo_shows": "hand holding passport with visa stamps",
+          "reason": "The photo of a passport with visa stamps is relevant to a story about student visa rejections."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 8,
+        "overall_score": 7,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 8,
+          "issue": "The image depicts students, which is relevant to the topic of student visas, but it does not specifically represent Indian students or the American context."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively discusses the implications of RBI's stance on NRIs, making it relevant to the diaspora audience."
+          "note": "The article discusses the impact of visa rejections on Indian students, which is highly relevant to the Indian diaspora, particularly those considering education in the US."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more statistics or data points to strengthen the argument regarding the crypto user base in India.",
-          "Include quotes from NRI investors or experts to provide a personal perspective on the RBI's stance."
+          "Include quotes or perspectives from Indian students or diaspora members to enhance relatability.",
+          "Add more data or examples of how this trend affects specific Indian communities or regions."
         ],
         "verdict": "pass"
       },
@@ -63,9 +54,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "63e6cc52-7985-4d7d-909a-cbb7c830f556",
-      "headline": "Tesla Just Had Its Best Quarter in Two Years. Wall Street Sold It Anyway.",
-      "slug": "tesla-record-q2-deliveries-stock-drop-nri-investors-20260704",
+      "id": "73093328-8e6e-4d76-b73d-29fd7c945806",
+      "headline": "An Immigration Appeal Now Costs $975. That Is Not a Typo",
+      "slug": "eoir-immigration-court-fees-triple-appeal-deportation-975-20260704",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -73,28 +64,28 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Tesla Model Y in a parking garage",
-          "reason": "The photo shows a Tesla Model Y, relevant to the story about Tesla's deliveries."
+          "what_photo_shows": "judge with gavel and documents",
+          "reason": "The photo depicts a courtroom setting relevant to immigration appeals."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 8,
+        "overall_score": 7,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 8,
+          "issue": "The image is relevant to immigration but does not specifically depict the topic of immigration appeals."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article connects well with NRI investors by discussing Tesla's relevance and implications for their portfolios."
+          "note": "The article discusses how the proposed fee increases specifically impact Indian Americans, making it relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more data or quotes from Indian-American investors to strengthen the diaspora connection.",
-          "Include a brief overview of Tesla's impact on the Indian market or potential future developments to enhance relevance for NRI readers."
+          "Include more specific examples or testimonials from Indian Americans affected by the proposed fee increases.",
+          "Consider adding a section on potential advocacy or actions that the diaspora can take in response to these changes."
         ],
         "verdict": "pass"
       },
