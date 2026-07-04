@@ -1960,8 +1960,8 @@
       "away": "Cape Verde",
       "venue": "Hard Rock Stadium",
       "city": "Miami, FL",
-      "status": "scheduled",
-      "score": null,
+      "status": "FT (AET)",
+      "score": "3-2 (AET)",
       "home_code": "ARG",
       "away_code": "CPV"
     },
@@ -1975,8 +1975,8 @@
       "away": "Ghana",
       "venue": "Arrowhead Stadium",
       "city": "Kansas City, MO",
-      "status": "scheduled",
-      "score": null,
+      "status": "FT",
+      "score": "1-0",
       "home_code": "COL",
       "away_code": "GHA"
     },
