@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-04T16:15:23.364464+00:00",
+  "timestamp": "2026-07-04T16:45:15.347358+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 1,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "77bb1b7e-11ea-444e-9b5f-6d30a55fb677",
-      "headline": "India's Banks Are Offering NRIs Up to 7% on Dollar Deposits \u2014 and SBI's Leveraged Product Promises 11.25%",
-      "slug": "india-nri-fcnr-deposits-rates-surge-rbi-hedging-subsidy-sbi-leveraged-product-bank-margins-20260704",
+      "id": "08034d48-d9f4-43c1-97c0-e916e40e3889",
+      "headline": "Trump Used America\u2019s 250th Birthday to Call Immigrants a \u2018Communist Menace.\u2019 The Diaspora Heard Every Word.",
+      "slug": "trump-mount-rushmore-newcomers-communist-speech-immigrant-diaspora-20260704",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Indian rupee notes and coins",
-          "reason": "The photo of Indian currency is relevant to a banking story about deposit rates."
+          "what_photo_shows": "Mount Rushmore in South Dakota",
+          "reason": "The photo shows Mount Rushmore, which is relevant to the story's location."
         },
         "inline_image_mismatches": []
       },
@@ -36,56 +36,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article directly addresses NRIs and their investment options, making it relevant to the diaspora audience."
+          "note": "The article effectively connects Trump's rhetoric to the experiences and perspectives of the Indian American community."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes or testimonials from NRIs who have benefited from these banking products to enhance relatability.",
-          "Include a brief comparison of the benefits of FCNR deposits versus other investment options available to NRIs."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "97b5a93a-f42d-4d46-a368-d0883495ce52",
-      "headline": "Five Extra Minutes of Sleep and Two Minutes of Exercise a Day Could Add a Full Year to Your Life",
-      "slug": "small-changes-sleep-exercise-diet-add-decade-life-lancet-span-uk-biobank-south-asian-diaspora-20260704",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "woman with fruits and vegetables",
-          "reason": "The photo shows healthy foods, aligning with the wellness topic."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the study's findings to the health challenges faced by the South Asian diaspora, making it relevant and engaging for this audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more specific examples of how South Asians can implement the study's findings in their daily lives.",
-          "Include quotes or insights from health experts to enhance credibility and provide additional context."
+          "Consider adding more direct quotes from Indian American leaders or community members to enhance the diaspora perspective.",
+          "Include statistics or studies that illustrate the impact of anti-immigrant rhetoric on the Indian American community."
         ],
         "verdict": "pass"
       },
