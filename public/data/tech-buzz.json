@@ -15,7 +15,7 @@
           "timestamp": "2026-06-26"
         }
       ],
-      "last_refreshed": "2026-06-30T23:56:23Z",
+      "last_refreshed": "2026-07-04T23:56:26Z",
       "pool": [
         {
           "id": "2070554251462639753",
@@ -58,7 +58,7 @@
           "timestamp": "2026-06-26"
         }
       ],
-      "pool_idx": 3
+      "pool_idx": 0
     },
     {
       "name": "PMO India",
@@ -75,7 +75,7 @@
           "timestamp": "2026-06-25"
         }
       ],
-      "last_refreshed": "2026-06-30T23:56:23Z",
+      "last_refreshed": "2026-07-04T23:56:26Z",
       "pool": [
         {
           "id": "2070450230097859047",
@@ -118,7 +118,7 @@
           "timestamp": "2026-06-25"
         }
       ],
-      "pool_idx": 3
+      "pool_idx": 0
     },
     {
       "name": "Amit Shah",
@@ -135,7 +135,7 @@
           "timestamp": "2026-06-26"
         }
       ],
-      "last_refreshed": "2026-06-30T23:56:23Z",
+      "last_refreshed": "2026-07-04T23:56:26Z",
       "pool": [
         {
           "id": "2070514403297181860",
@@ -178,7 +178,7 @@
           "timestamp": "2026-06-26"
         }
       ],
-      "pool_idx": 3
+      "pool_idx": 0
     },
     {
       "name": "Rahul Gandhi",
@@ -195,7 +195,7 @@
           "timestamp": "2026-06-25"
         }
       ],
-      "last_refreshed": "2026-06-30T23:56:23Z",
+      "last_refreshed": "2026-07-04T23:56:26Z",
       "pool": [
         {
           "id": "2070483554283442580",
@@ -238,7 +238,7 @@
           "timestamp": "2026-06-24"
         }
       ],
-      "pool_idx": 3
+      "pool_idx": 0
     },
     {
       "name": "Yogi Adityanath",
@@ -255,7 +255,7 @@
           "timestamp": "2026-06-26"
         }
       ],
-      "last_refreshed": "2026-06-30T23:56:23Z",
+      "last_refreshed": "2026-07-04T23:56:26Z",
       "pool": [
         {
           "id": "2070529228794388697",
@@ -298,7 +298,7 @@
           "timestamp": "2026-06-26"
         }
       ],
-      "pool_idx": 3
+      "pool_idx": 0
     },
     {
       "name": "Arvind Kejriwal",
@@ -315,7 +315,7 @@
           "timestamp": "2026-06-26"
         }
       ],
-      "last_refreshed": "2026-06-30T23:56:23Z",
+      "last_refreshed": "2026-07-04T23:56:26Z",
       "pool": [
         {
           "id": "2070529427893788784",
@@ -350,7 +350,7 @@
           "timestamp": "2026-06-26"
         }
       ],
-      "pool_idx": 3
+      "pool_idx": 0
     },
     {
       "name": "S Jaishankar",
@@ -367,7 +367,7 @@
           "timestamp": "2026-06-26"
         }
       ],
-      "last_refreshed": "2026-06-30T23:56:23Z",
+      "last_refreshed": "2026-07-04T23:56:26Z",
       "pool": [
         {
           "id": "2070514618007687294",
@@ -402,7 +402,7 @@
           "timestamp": "2026-06-26"
         }
       ],
-      "pool_idx": 3
+      "pool_idx": 0
     },
     {
       "name": "Nirmala Sitharaman",
@@ -418,7 +418,7 @@
           "timestamp": "2026-06-20"
         }
       ],
-      "last_refreshed": "2026-06-30T23:56:23Z",
+      "last_refreshed": "2026-07-04T23:56:26Z",
       "pool": [
         {
           "text": "Thank you for the warm hospitality extended to me. Lively conversation and Assamese home-made food will be etched in my memory. 🙏🏽 https://t.co/mzO6ndjz3d",
@@ -445,7 +445,7 @@
           "timestamp": "2026-06-06"
         }
       ],
-      "last_refreshed": "2026-06-30T23:56:23Z",
+      "last_refreshed": "2026-07-04T23:56:26Z",
       "pool": [
         {
           "id": "2063089644431188468",
@@ -473,7 +473,7 @@
           "timestamp": "2026-06-20"
         }
       ],
-      "last_refreshed": "2026-06-30T23:56:23Z",
+      "last_refreshed": "2026-07-04T23:56:26Z",
       "pool": [
         {
           "id": "2069671476853399904",
@@ -516,7 +516,7 @@
           "timestamp": "2026-06-20"
         }
       ],
-      "pool_idx": 3
+      "pool_idx": 0
     },
     {
       "name": "Ratan Tata",
@@ -529,17 +529,17 @@
           "caption": "Follow @ratantata for the latest updates.",
           "url": "https://x.com/ratantata",
           "thumbnail": "",
-          "timestamp": "2026-06-30"
+          "timestamp": "2026-07-04"
         }
       ],
-      "last_refreshed": "2026-06-30T23:56:23Z",
+      "last_refreshed": "2026-07-04T23:56:26Z",
       "pool": [
         {
           "text": "Follow @ratantata for the latest updates.",
           "caption": "Follow @ratantata for the latest updates.",
           "url": "https://x.com/ratantata",
           "thumbnail": "",
-          "timestamp": "2026-06-30"
+          "timestamp": "2026-07-04"
         }
       ],
       "pool_idx": 0
@@ -559,7 +559,7 @@
           "timestamp": "2026-06-25"
         }
       ],
-      "last_refreshed": "2026-06-30T23:56:23Z",
+      "last_refreshed": "2026-07-04T23:56:26Z",
       "pool": [
         {
           "id": "2070126496933667241",
@@ -602,7 +602,7 @@
           "timestamp": "2026-06-25"
         }
       ],
-      "pool_idx": 3
+      "pool_idx": 0
     },
     {
       "name": "Donald Trump",
@@ -619,7 +619,7 @@
           "timestamp": "2026-06-20"
         }
       ],
-      "last_refreshed": "2026-06-30T23:56:23Z",
+      "last_refreshed": "2026-07-04T23:56:26Z",
       "pool": [
         {
           "id": "2068370042018767262",
@@ -667,11 +667,11 @@
       "platform": "x",
       "posts": [
         {
-          "id": "2070945153515409604",
-          "text": "Great time at Dutton Ranch in Belmont County, arrived straight here from Zanesville. Here’s how we bring down healthcare costs, electric bills, and property taxes at the same time: prosecute Medicaid fraud, produce more energy, &amp; slash government bloat. https://t.co/4H0OtvrNYU",
-          "caption": "Great time at Dutton Ranch in Belmont County, arrived straight here from Zanesville. Here’s how we bring down healthcare costs, electric bills, and property taxes at the same time: prosecute Medicaid fraud, produce more energy, &amp; slash government bloat. https://t.co/4H0OtvrNYU",
-          "url": "https://x.com/VivekGRamaswamy/status/2070945153515409604",
-          "thumbnail": "https://pbs.twimg.com/media/HL15nftb0AAePJ6.jpg",
+          "id": "2070892690842243314",
+          "text": "10 Things I’ll Do for Ohio:\n\n1. Slash your property taxes.\n2. Abolish your state income tax.\n3. Cut your electric bills.\n4. Prosecute Medicaid fraud.\n5. Bring higher standards to our schools.\n6. Slice your healthcare costs.\n7. Bring high-paying jobs back to our state.\n8. Put https://t.co/lMwGJjOO1H",
+          "caption": "10 Things I’ll Do for Ohio:\n\n1. Slash your property taxes.\n2. Abolish your state income tax.\n3. Cut your electric bills.\n4. Prosecute Medicaid fraud.\n5. Bring higher standards to our schools.\n6. Slice your healthcare costs.\n7. Bring high-paying jobs back to our state.\n8. Put https://t.co/lMwGJjOO1H",
+          "url": "https://x.com/VivekGRamaswamy/status/2070892690842243314",
+          "thumbnail": "",
           "timestamp": "2026-06-27"
         }
       ],
@@ -710,7 +710,7 @@
           "timestamp": "2026-06-27"
         }
       ],
-      "pool_idx": 2
+      "pool_idx": 3
     },
     {
       "name": "Usha Vance",
@@ -719,12 +719,12 @@
       "platform": "x",
       "posts": [
         {
-          "id": "2068695768626540722",
-          "text": "Happy Father’s Day! JD loves reading stories to our kids, so we recorded one to share with all of you. Join us on Storytime with the Second Lady for @VP reading his favorite part of \"Winnie the Pooh.\" https://t.co/VnIoBPx0b7",
-          "caption": "Happy Father’s Day! JD loves reading stories to our kids, so we recorded one to share with all of you. Join us on Storytime with the Second Lady for @VP reading his favorite part of \"Winnie the Pooh.\" https://t.co/VnIoBPx0b7",
-          "url": "https://x.com/SLOTUS/status/2068695768626540722",
-          "thumbnail": "https://pbs.twimg.com/media/HLV71m-XMAA7KCM.jpg",
-          "timestamp": "2026-06-21"
+          "id": "2069857037303816372",
+          "text": "And here’s the receipt! https://t.co/tgICmpbapQ",
+          "caption": "And here’s the receipt! https://t.co/tgICmpbapQ",
+          "url": "https://x.com/SLOTUS/status/2069857037303816372",
+          "thumbnail": "https://pbs.twimg.com/media/HLmcAXOXEAADEKm.jpg",
+          "timestamp": "2026-06-24"
         }
       ],
       "last_refreshed": "2026-07-01T23:56:30Z",
@@ -754,7 +754,7 @@
           "timestamp": "2026-06-21"
         }
       ],
-      "pool_idx": 2
+      "pool_idx": 0
     },
     {
       "name": "Kash Patel",
@@ -789,11 +789,11 @@
       "platform": "x",
       "posts": [
         {
-          "id": "2070247292976742825",
-          "text": "I have been in shock ever since I heard the news of Om Malik's passing. Om was one of the nicest people I met when I first came to the Bay Area.  Everyone has a story of Om doing them a favor - I have several. He is someone to emulate and look up to.\n\nI had fallen out of touch https://t.co/JSdLNxFjvn",
-          "caption": "I have been in shock ever since I heard the news of Om Malik's passing. Om was one of the nicest people I met when I first came to the Bay Area.  Everyone has a story of Om doing them a favor - I have several. He is someone to emulate and look up to.\n\nI had fallen out of touch https://t.co/JSdLNxFjvn",
-          "url": "https://x.com/SriramK/status/2070247292976742825",
-          "thumbnail": "https://pbs.twimg.com/media/HLr-qrpWUAAP3rx.jpg",
+          "id": "2070125214315303404",
+          "text": "The Pope captures something that every tech company that has tried to determine “what is right” - whether it be in content moderation or algorithms -  has discovered. \n\nThere are an infinite number of choices that reflect the creators and it is hubris to ever think there is one https://t.co/YZxZrTuwhe",
+          "caption": "The Pope captures something that every tech company that has tried to determine “what is right” - whether it be in content moderation or algorithms -  has discovered. \n\nThere are an infinite number of choices that reflect the creators and it is hubris to ever think there is one https://t.co/YZxZrTuwhe",
+          "url": "https://x.com/SriramK/status/2070125214315303404",
+          "thumbnail": "",
           "timestamp": "2026-06-25"
         }
       ],
@@ -840,7 +840,7 @@
           "timestamp": "2026-06-24"
         }
       ],
-      "pool_idx": 2
+      "pool_idx": 3
     },
     {
       "name": "Ajay Banga",
@@ -875,12 +875,12 @@
       "platform": "x",
       "posts": [
         {
-          "id": "2068598578214285549",
-          "text": "Being a dad is my greatest joy.\n\nToday, I’m thinking about my dad, and the father I am to my children because of him.\n\nHappy Father’s Day.",
-          "caption": "Being a dad is my greatest joy.\n\nToday, I’m thinking about my dad, and the father I am to my children because of him.\n\nHappy Father’s Day.",
-          "url": "https://x.com/Keir_Starmer/status/2068598578214285549",
+          "id": "2068420853042217360",
+          "text": "Absolutely appalling.\n\nNo one should face violence on our streets. The suspect appears to be motivated by anti-Muslim hatred. I will not tolerate this - he will face the full force of the law.\n\nMy thoughts are with those who are injured and I thank the police and the emergency",
+          "caption": "Absolutely appalling.\n\nNo one should face violence on our streets. The suspect appears to be motivated by anti-Muslim hatred. I will not tolerate this - he will face the full force of the law.\n\nMy thoughts are with those who are injured and I thank the police and the emergency",
+          "url": "https://x.com/Keir_Starmer/status/2068420853042217360",
           "thumbnail": "",
-          "timestamp": "2026-06-21"
+          "timestamp": "2026-06-20"
         }
       ],
       "last_refreshed": "2026-07-01T23:56:30Z",
@@ -926,7 +926,7 @@
           "timestamp": "2026-06-20"
         }
       ],
-      "pool_idx": 2
+      "pool_idx": 3
     },
     {
       "name": "Anthony Albanese",
@@ -935,12 +935,12 @@
       "platform": "x",
       "posts": [
         {
-          "id": "2070324448872608120",
-          "text": "Pubs are full. Fed Square is packed. TVs around the country are locked to SBS.\n\n28 million Australians are cheering you on.\n\nGood luck @Socceroos.",
-          "caption": "Pubs are full. Fed Square is packed. TVs around the country are locked to SBS.\n\n28 million Australians are cheering you on.\n\nGood luck @Socceroos.",
-          "url": "https://x.com/AlboMP/status/2070324448872608120",
+          "id": "2070277003929063536",
+          "text": "Too many young Australians can't buy their first home. We're determined to fix that. https://t.co/cqYnFkOhnj",
+          "caption": "Too many young Australians can't buy their first home. We're determined to fix that. https://t.co/cqYnFkOhnj",
+          "url": "https://x.com/AlboMP/status/2070277003929063536",
           "thumbnail": "",
-          "timestamp": "2026-06-26"
+          "timestamp": "2026-06-25"
         }
       ],
       "last_refreshed": "2026-07-01T23:56:30Z",
@@ -986,7 +986,7 @@
           "timestamp": "2026-06-25"
         }
       ],
-      "pool_idx": 2
+      "pool_idx": 3
     },
     {
       "name": "Emmanuel Macron",
@@ -995,11 +995,11 @@
       "platform": "x",
       "posts": [
         {
-          "id": "2070206971660079174",
-          "text": "À Antibes pour le 36e sommet franco-italien, avec la Présidente du Conseil des ministres Giorgia Meloni : l’Italie et la France avancent, entre elles et en Europe, quand elles bâtissent ensemble.\n\nRéponse aux crises internationales, prochain budget de l’Union européenne, défense, https://t.co/WOdnOkNEmV",
-          "caption": "À Antibes pour le 36e sommet franco-italien, avec la Présidente du Conseil des ministres Giorgia Meloni : l’Italie et la France avancent, entre elles et en Europe, quand elles bâtissent ensemble.\n\nRéponse aux crises internationales, prochain budget de l’Union européenne, défense, https://t.co/WOdnOkNEmV",
-          "url": "https://x.com/EmmanuelMacron/status/2070206971660079174",
-          "thumbnail": "https://pbs.twimg.com/media/HLraKQyWAAAORYC.jpg",
+          "id": "2070162535450316841",
+          "text": "Ce matin à Vélizy-Villacoublay, aux côtés du Maire et des équipes du Centre communal d'action sociale, j’ai voulu saluer la mobilisation exemplaire de nos services publics pour les plus vulnérables, en particulier nos aînés.\n\nDans le contexte que nous traversons, l’engagement",
+          "caption": "Ce matin à Vélizy-Villacoublay, aux côtés du Maire et des équipes du Centre communal d'action sociale, j’ai voulu saluer la mobilisation exemplaire de nos services publics pour les plus vulnérables, en particulier nos aînés.\n\nDans le contexte que nous traversons, l’engagement",
+          "url": "https://x.com/EmmanuelMacron/status/2070162535450316841",
+          "thumbnail": "",
           "timestamp": "2026-06-25"
         }
       ],
@@ -1046,7 +1046,7 @@
           "timestamp": "2026-06-25"
         }
       ],
-      "pool_idx": 2
+      "pool_idx": 3
     },
     {
       "name": "Mohammed bin Rashid",
@@ -1055,12 +1055,12 @@
       "platform": "x",
       "posts": [
         {
-          "id": "2067502655296114776",
-          "text": "بقيادة أخي الشيخ محمد بن زايد تواصل دولة الإمارات ترسيخ مكانتها بين أكثر دول العالم تنافسية .. ووفق أحدث تقرير للتنافسية العالمية 2026 حلّت الإمارات في المركز الخامس عالمياً وحافظت على ريادتها الإقليمية للعام العاشر على التوالي . . جاءت الأولى عالمياً في الأداء الاقتصادي ، وتصدرت https://t.co/HNaWWDp6Op",
-          "caption": "بقيادة أخي الشيخ محمد بن زايد تواصل دولة الإمارات ترسيخ مكانتها بين أكثر دول العالم تنافسية .. ووفق أحدث تقرير للتنافسية العالمية 2026 حلّت الإمارات في المركز الخامس عالمياً وحافظت على ريادتها الإقليمية للعام العاشر على التوالي . . جاءت الأولى عالمياً في الأداء الاقتصادي ، وتصدرت https://t.co/HNaWWDp6Op",
-          "url": "https://x.com/HHShkMohd/status/2067502655296114776",
-          "thumbnail": "https://pbs.twimg.com/media/HLE-tCIa8AEtCWd.jpg",
-          "timestamp": "2026-06-18"
+          "id": "2068584624230728129",
+          "text": "في يوم الأب... نستذكر فضلهم .. نستذكر سيرتهم ومسيرتهم .. نحن ما زرعوا .. نحن ما صنعوا وبنوا .. نحن ما تركوا .. رحمهم الله .. وحفظ الله من بقي منهم . https://t.co/m5HJDgmLwn",
+          "caption": "في يوم الأب... نستذكر فضلهم .. نستذكر سيرتهم ومسيرتهم .. نحن ما زرعوا .. نحن ما صنعوا وبنوا .. نحن ما تركوا .. رحمهم الله .. وحفظ الله من بقي منهم . https://t.co/m5HJDgmLwn",
+          "url": "https://x.com/HHShkMohd/status/2068584624230728129",
+          "thumbnail": "",
+          "timestamp": "2026-06-21"
         }
       ],
       "last_refreshed": "2026-07-01T23:56:30Z",
@@ -1082,7 +1082,7 @@
           "timestamp": "2026-06-18"
         }
       ],
-      "pool_idx": 1
+      "pool_idx": 0
     },
     {
       "name": "Elon Musk",
@@ -1175,12 +1175,12 @@
       "platform": "x",
       "posts": [
         {
-          "id": "2066911399494963335",
-          "text": "Copilot Cowork is now generally available worldwide, now with multi-model support!\n\nEvery organization can put long-running agents to work on complex, multi-step tasks, grounded in your organization's unique knowledge and know-how. https://t.co/1fJNjGOs5o",
-          "caption": "Copilot Cowork is now generally available worldwide, now with multi-model support!\n\nEvery organization can put long-running agents to work on complex, multi-step tasks, grounded in your organization's unique knowledge and know-how. https://t.co/1fJNjGOs5o",
-          "url": "https://x.com/satyanadella/status/2066911399494963335",
+          "id": "2070180313654063255",
+          "text": "Today we’re bringing skills to Copilot for Excel, giving teams a new way to scale their expertise across every workbook. https://t.co/DfD1nfPEO3",
+          "caption": "Today we’re bringing skills to Copilot for Excel, giving teams a new way to scale their expertise across every workbook. https://t.co/DfD1nfPEO3",
+          "url": "https://x.com/satyanadella/status/2070180313654063255",
           "thumbnail": "",
-          "timestamp": "2026-06-16"
+          "timestamp": "2026-06-25"
         }
       ],
       "last_refreshed": "2026-07-02T23:56:24Z",
@@ -1210,7 +1210,7 @@
           "timestamp": "2026-06-16"
         }
       ],
-      "pool_idx": 2
+      "pool_idx": 0
     },
     {
       "name": "Sam Altman",
@@ -1219,12 +1219,12 @@
       "platform": "x",
       "posts": [
         {
-          "id": "2067427421083652131",
-          "text": "noam is one of the people I have most wanted to work with since the very beginning of openai.\n\nonly took 10 years.\n\ni think it will be worth the wait! https://t.co/Hj2fjCywjv",
-          "caption": "noam is one of the people I have most wanted to work with since the very beginning of openai.\n\nonly took 10 years.\n\ni think it will be worth the wait! https://t.co/Hj2fjCywjv",
-          "url": "https://x.com/sama/status/2067427421083652131",
-          "thumbnail": "",
-          "timestamp": "2026-06-18"
+          "id": "2069121360744550796",
+          "text": "We want to help all companies be secure, working with the USG and the security ecosystem.\n\n*The full version of GPT-5.5-Cyber is here; state of the art performance on CyberGym.\n\n*Patch The Planet and Codex Security will help solve security problems instead of just finding them. https://t.co/otyCFHJR4d",
+          "caption": "We want to help all companies be secure, working with the USG and the security ecosystem.\n\n*The full version of GPT-5.5-Cyber is here; state of the art performance on CyberGym.\n\n*Patch The Planet and Codex Security will help solve security problems instead of just finding them. https://t.co/otyCFHJR4d",
+          "url": "https://x.com/sama/status/2069121360744550796",
+          "thumbnail": "https://pbs.twimg.com/media/HLb-oXnagAEXv7z.png",
+          "timestamp": "2026-06-22"
         }
       ],
       "last_refreshed": "2026-07-02T23:56:24Z",
@@ -1254,7 +1254,7 @@
           "timestamp": "2026-06-18"
         }
       ],
-      "pool_idx": 2
+      "pool_idx": 0
     },
     {
       "name": "Tim Cook",
@@ -1263,12 +1263,12 @@
       "platform": "x",
       "posts": [
         {
-          "id": "2067260758380159191",
-          "text": "I hear it’s the next Martha’s Vineyard. https://t.co/AHE0Pw35q4",
-          "caption": "I hear it’s the next Martha’s Vineyard. https://t.co/AHE0Pw35q4",
-          "url": "https://x.com/tim_cook/status/2067260758380159191",
-          "thumbnail": "",
-          "timestamp": "2026-06-17"
+          "id": "2069189000158642490",
+          "text": "With an unmatched ear and an unwavering belief in artists, Clive Davis was a champion for music and creativity. May he rest in peace. https://t.co/ukZrHTUnEZ",
+          "caption": "With an unmatched ear and an unwavering belief in artists, Clive Davis was a champion for music and creativity. May he rest in peace. https://t.co/ukZrHTUnEZ",
+          "url": "https://x.com/tim_cook/status/2069189000158642490",
+          "thumbnail": "https://pbs.twimg.com/media/HLc8bXvaMAAWzOq.jpg",
+          "timestamp": "2026-06-22"
         }
       ],
       "last_refreshed": "2026-07-02T23:56:24Z",
@@ -1298,7 +1298,7 @@
           "timestamp": "2026-06-17"
         }
       ],
-      "pool_idx": 2
+      "pool_idx": 0
     },
     {
       "name": "Jensen Huang",
@@ -1307,10 +1307,10 @@
       "platform": "x",
       "posts": [
         {
-          "id": "2070186658289308065",
-          "text": "Walk the #BIO2026 show floor with Kimberly Powell, NVIDIA VP of Healthcare, as she shares what’s exciting about the latest BioNeMo toolkit announcement. \n\nBioNeMo is helping bring AI-driven biology and drug discovery closer to the next experiment, with tools for researchers and https://t.co/miKWx9VYd1",
-          "caption": "Walk the #BIO2026 show floor with Kimberly Powell, NVIDIA VP of Healthcare, as she shares what’s exciting about the latest BioNeMo toolkit announcement. \n\nBioNeMo is helping bring AI-driven biology and drug discovery closer to the next experiment, with tools for researchers and https://t.co/miKWx9VYd1",
-          "url": "https://x.com/nvidia/status/2070186658289308065",
+          "id": "2069990854589333805",
+          "text": "Science is getting an AI lab partner. 🧬 https://t.co/FlQvTs7qug https://t.co/Zkc18E0B7P",
+          "caption": "Science is getting an AI lab partner. 🧬 https://t.co/FlQvTs7qug https://t.co/Zkc18E0B7P",
+          "url": "https://x.com/nvidia/status/2069990854589333805",
           "thumbnail": "",
           "timestamp": "2026-06-25"
         }
@@ -1358,7 +1358,7 @@
           "timestamp": "2026-06-24"
         }
       ],
-      "pool_idx": 1
+      "pool_idx": 2
     },
     {
       "name": "Nandan Nilekani",
@@ -1451,12 +1451,12 @@
       "platform": "x",
       "posts": [
         {
-          "id": "2067672531356569835",
-          "text": "The San Jose Semaphore that sits at the top of Adobe’s Almaden Tower was solved after three years! Watch the full story of conception by artist Ben Rubin to the final solve by Brian Vincent at https://t.co/q7vo7gi1Ve https://t.co/G0oJfa2cPR",
-          "caption": "The San Jose Semaphore that sits at the top of Adobe’s Almaden Tower was solved after three years! Watch the full story of conception by artist Ben Rubin to the final solve by Brian Vincent at https://t.co/q7vo7gi1Ve https://t.co/G0oJfa2cPR",
-          "url": "https://x.com/Adobe/status/2067672531356569835",
+          "id": "2069165566313558444",
+          "text": "Shoutout to everyone working remotely on the beach today to kick off summer and #CannesLiones @nobodysausage https://t.co/49QwV18Ahx",
+          "caption": "Shoutout to everyone working remotely on the beach today to kick off summer and #CannesLiones @nobodysausage https://t.co/49QwV18Ahx",
+          "url": "https://x.com/Adobe/status/2069165566313558444",
           "thumbnail": "",
-          "timestamp": "2026-06-18"
+          "timestamp": "2026-06-22"
         }
       ],
       "last_refreshed": "2026-07-02T23:56:24Z",
@@ -1478,7 +1478,7 @@
           "timestamp": "2026-06-18"
         }
       ],
-      "pool_idx": 1
+      "pool_idx": 0
     },
     {
       "name": "Parag Agrawal",
@@ -1765,12 +1765,12 @@
       "platform": "x",
       "posts": [
         {
-          "id": "2069779557893509249",
-          "text": "Success in the One-Day format ✅\nNow onto the Multi-Day Series, starting tomorrow! 🙌\n\n#SLAvINDA\n\n📸 SLC https://t.co/g6rP1NHZ9t",
-          "caption": "Success in the One-Day format ✅\nNow onto the Multi-Day Series, starting tomorrow! 🙌\n\n#SLAvINDA\n\n📸 SLC https://t.co/g6rP1NHZ9t",
-          "url": "https://x.com/BCCI/status/2069779557893509249",
-          "thumbnail": "https://pbs.twimg.com/media/HLlT3qMX0AAu8cD.jpg",
-          "timestamp": "2026-06-24"
+          "id": "2070127196979798077",
+          "text": "Stumps on Day 1 ‼️\n\n1⃣3⃣2⃣ from Sai Sudharsan \n6⃣8⃣* from Dhruv Jurel \n5⃣3⃣* from Shaik Rasheed \n\nA superb opening day for India A as they finish on 3⃣3⃣3⃣/4 in Galle 🙌\n\n#SLAvINDA | 📸 SLC https://t.co/QO7SLuvtYd",
+          "caption": "Stumps on Day 1 ‼️\n\n1⃣3⃣2⃣ from Sai Sudharsan \n6⃣8⃣* from Dhruv Jurel \n5⃣3⃣* from Shaik Rasheed \n\nA superb opening day for India A as they finish on 3⃣3⃣3⃣/4 in Galle 🙌\n\n#SLAvINDA | 📸 SLC https://t.co/QO7SLuvtYd",
+          "url": "https://x.com/BCCI/status/2070127196979798077",
+          "thumbnail": "https://pbs.twimg.com/media/HLqRZfsaMAAST5u.jpg",
+          "timestamp": "2026-06-25"
         }
       ],
       "last_refreshed": "2026-07-03T23:56:27Z",
@@ -1816,7 +1816,7 @@
           "timestamp": "2026-06-23"
         }
       ],
-      "pool_idx": 0
+      "pool_idx": 1
     },
     {
       "name": "ICC",
@@ -1825,10 +1825,10 @@
       "platform": "x",
       "posts": [
         {
-          "id": "2070256667141533810",
-          "text": "Tazmin Brits stole the show with a brilliant century as South Africa powered past the Netherlands at the Women's #T20WorldCup 💪\n\nDon't miss the match highlights 🎥\n\nhttps://t.co/963SJFmA5m",
-          "caption": "Tazmin Brits stole the show with a brilliant century as South Africa powered past the Netherlands at the Women's #T20WorldCup 💪\n\nDon't miss the match highlights 🎥\n\nhttps://t.co/963SJFmA5m",
-          "url": "https://x.com/ICC/status/2070256667141533810",
+          "id": "2070261928476483958",
+          "text": "A day of high stakes and big performances as India and South Africa kept their #T20WorldCup semi-final dreams alive 💪\n\nRead about the play ✍️\n\nhttps://t.co/MofsZ3nTpX",
+          "caption": "A day of high stakes and big performances as India and South Africa kept their #T20WorldCup semi-final dreams alive 💪\n\nRead about the play ✍️\n\nhttps://t.co/MofsZ3nTpX",
+          "url": "https://x.com/ICC/status/2070261928476483958",
           "thumbnail": "",
           "timestamp": "2026-06-25"
         }
@@ -1868,7 +1868,7 @@
           "timestamp": "2026-06-25"
         }
       ],
-      "pool_idx": 0
+      "pool_idx": 1
     },
     {
       "name": "IPL",
@@ -1905,12 +1905,12 @@
       "platform": "x",
       "posts": [
         {
-          "id": "2068600175959183515",
-          "text": "Grateful to receive the Best Athlete of the Year 2025 award at the Indian Athletics Awards! Was inspiring to meet such incredible current and former athletes of the country! Thank you @afiindia for the honour 🙏🇮🇳 https://t.co/oIE7hO8cuQ",
-          "caption": "Grateful to receive the Best Athlete of the Year 2025 award at the Indian Athletics Awards! Was inspiring to meet such incredible current and former athletes of the country! Thank you @afiindia for the honour 🙏🇮🇳 https://t.co/oIE7hO8cuQ",
-          "url": "https://x.com/Neeraj_chopra1/status/2068600175959183515",
-          "thumbnail": "https://pbs.twimg.com/media/HLUk5HGaEAAedFj.jpg",
-          "timestamp": "2026-06-21"
+          "id": "2068215770044322200",
+          "text": "Happy to be back on the field. 85.69m felt good, and ready for the season ahead! 🙏 https://t.co/aVSBsjrmpQ",
+          "caption": "Happy to be back on the field. 85.69m felt good, and ready for the season ahead! 🙏 https://t.co/aVSBsjrmpQ",
+          "url": "https://x.com/Neeraj_chopra1/status/2068215770044322200",
+          "thumbnail": "",
+          "timestamp": "2026-06-20"
         }
       ],
       "last_refreshed": "2026-07-03T23:56:27Z",
@@ -1932,7 +1932,7 @@
           "timestamp": "2026-06-20"
         }
       ],
-      "pool_idx": 0
+      "pool_idx": 1
     },
     {
       "name": "PV Sindhu",
@@ -2047,6 +2047,6 @@
       "pool_idx": 0
     }
   ],
-  "lastUpdated": "2026-07-03T23:56:38Z",
-  "last_updated": "2026-07-03T23:56:38Z"
+  "lastUpdated": "2026-07-04T23:56:34Z",
+  "last_updated": "2026-07-04T23:56:34Z"
 }
