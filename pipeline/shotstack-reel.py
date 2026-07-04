@@ -482,7 +482,7 @@ def generate_script(article, force_new=False):
     slug = article.get("slug", "unknown")
 
     # Script cache — reuse if already generated
-    SCRIPT_CACHE_VERSION = "clean5"  # bump to invalidate old caches (clean5: + card_style anim payloads + story_mood)
+    SCRIPT_CACHE_VERSION = "clean6"  # bump to invalidate old caches (clean6: integrated-first infographic prompts)
     cache_path = BUILD_DIR / f"script-{slug}.json"
     if not force_new and cache_path.exists():
         try:
@@ -535,12 +535,16 @@ SCRIPT RULES:
 7. LENGTH: 120-160 words. That's 45-65 seconds spoken. Enough to actually inform, not just tease.
 8. SPECIFICS: Include at least 3-4 concrete numbers, names, or details from the article. Vague summaries = failed script.
 9. NO "Welcome to The Videshi", NO emoji, NO hashtags.
-10. ALWAYS end with a spoken call-to-action. The CTA MUST mention the website URL:
+10. ALWAYS end the script with a spoken call-to-action. The CTA MUST mention the website URL:
    - "Full story at thevideshi dot com"
    - "More at thevideshi dot com"
    - "Read the full breakdown at thevideshi dot com"
    Do NOT say "Follow The Videshi for more" — that's too vague. Always direct to the website.
    This is the LAST line of the script. It must be there every time.
+   IMPORTANT: The spoken CTA plays OVER the branded end card (which is appended
+   automatically). Do NOT create a separate CTA scene in your storyboard — the
+   end card already handles the visual. Your last STORYBOARD scene should be the
+   last DATA beat, not a CTA.
 
 HOOK TEXT (shown on screen before voice starts):
 - hook_line1: 3-5 words, ALL CAPS. The "stop scrolling" line. Make it PROVOCATIVE and high-stakes — a threat, a shock, a reversal, or a bold claim. "OIL LIFELINE OPEN" is too flat. "STRAIT CHOKEHOLD BREAKS" or "INDIA DODGED DISASTER" has punch. Use power words (CRISIS, SHOCK, COLLAPSE, WAR, WIN, DODGED, EXPOSED, SLASHED) where the facts support them — but never overstate beyond what the article says.
@@ -552,8 +556,9 @@ shown on screen by choosing a "media_plan". You CANNOT browse, fetch, or verify
 anything — you only PLAN. A separate system executes your plan, verifies sources,
 and silently falls back to a branded card if your choice can't be fulfilled.
 - Scene 1 = the HOOK. scene_role "hook".
-- Middle scenes = the narration beats. scene_role "beat".
-- The LAST scene = the closing call-to-action. scene_role "cta".
+- All other scenes = narration data beats. scene_role "beat".
+- Do NOT include a CTA/closing scene — the branded end card is appended
+  automatically. Your last scene should be the last DATA beat.
 - More scenes = more visual variety = better retention. Each scene should look
   DIFFERENT. Use "generate" for most mid-reel scenes (each gets a unique AI
   image). Mix data_viz "integrated" (big stat baked into the image) and "overlay"
@@ -595,27 +600,35 @@ For each scene, provide:
       "social_hint" with the handle (no @) or the person/org name + topic. The
       executor will try to fetch a recent on-topic post; if none exists it falls
       back to your card_text. Never pick "social" for scene 1 or the final CTA.
-    • "generate" — a custom GENERATED editorial illustration. TWO sub-modes:
-      (a) DATA-INTEGRATED: for scenes with ONE BIG STAT (a dollar amount, a
-          percentage, a count), include the number in the image_prompt so
-          Gemini bakes it into the visual as part of an infographic-style
-          illustration. Example prompt: "a bold typographic illustration showing
-          $61 BILLION with stylized arrows flowing between India and Japan flags,
-          dark editorial mood". The number IS the visual — punchy, scroll-stopping.
-          Use this for 2-3 scenes per reel where a single stat dominates.
-      (b) MOOD BACKGROUND: for scenes where you want a unique atmospheric image
-          BEHIND a text overlay. Do NOT include numbers in the prompt — just the
-          topic/mood. The card_text + card_subtext will be overlaid on top by the
-          renderer. Example: "a symbolic illustration of naval radar technology
-          and maritime defense, dark moody tones".
-      Add "data_viz": "integrated" for sub-mode (a), or "data_viz": "overlay"
-      for sub-mode (b). Default is "overlay" if omitted.
+    • "generate" — a custom GENERATED data infographic. The DEFAULT and
+      PREFERRED mode. Every "generate" scene should be a DATA-RICH infographic
+      with numbers, charts, comparison panels, or stat callouts BAKED INTO the
+      image itself. Think news-magazine infographic, not a mood photo.
+      ALWAYS set "data_viz": "integrated" (this is the default if omitted).
+      INCLUDE key stats, numbers, percentages, dollar amounts, rankings, and
+      comparison data prominently in the image_prompt. The data IS the visual.
+      Examples:
+        - "Infographic: $61 BILLION investment target. Bar chart showing trade
+          growth from $27.5B current to $61B by 2030. India and Japan flags as
+          anchors. Dark navy editorial style with gold accents."
+        - "Data visualization: UNICORN radar project. Split panel — India
+          provides naval platforms (warship icon), Japan provides radar tech
+          (satellite dish icon). Connected by arrows. Dark editorial mood."
+        - "Infographic: 3 key pacts signed. Timeline layout — Defense deal,
+          AI cooperation, Semiconductor alliance. Each with an icon and date.
+          Navy background, clean data layout."
+      Pack MULTIPLE data points into each scene when the article supports it.
+      A single headline + subtext is NOT enough — dig out the numbers.
+      Only use "data_viz": "overlay" as a LAST RESORT when a scene genuinely
+      has zero numbers or stats (rare — almost every beat has data to show).
       Use "generate" for MOST mid-reel scenes (4-6 out of 8). Each scene gets
       its OWN unique image — visual variety is key.
-    • "media_library" — show a real curated photo from our in-house library IF the
-      beat is about a concrete, common, photographable Indian subject (a city
-      skyline, currency, a generic crowd, a flag). Add a "media_subject" (2-4
-      words, concrete, India-anchored). If nothing fits, executor falls to card.
+    • "media_library" — RARELY USED. Only if you are certain a high-quality
+      curated photo exists for an extremely specific, concrete Indian subject
+      (e.g. "Virat Kohli", "Indian rupee notes"). In practice, prefer "generate"
+      for almost all scenes — it gives a unique, on-topic image every time.
+      If you use this, add a "media_subject" (2-4 words). If nothing fits,
+      executor falls to card.
     • "card" — a branded data card with card_text + card_subtext, optionally
       upgraded to an animated data card via card_style. Use this for animated
       stat_grid / hero_stat / diaspora_panel beats (the motion graphics), and as
@@ -658,27 +671,31 @@ The three styles and their payloads:
                         "bullets": ["<fact with number>","<fact>","<fact>","<fact>","<fact>"]}}
     (3-5 bullets, each should carry a concrete fact, not vague impact statements)
 
-GENERATE RULES (only when media_plan = "generate") — write "image_prompt" as an
-EDITORIAL ILLUSTRATION brief:
-- It MUST be a stylized, abstract, or symbolic illustration — NOT a photograph,
-  NOT photoreal.
+GENERATE RULES (only when media_plan = "generate") — write "image_prompt" as a
+DATA INFOGRAPHIC brief:
+- It MUST be an infographic-style illustration — charts, comparison panels,
+  stat callouts, icon grids, timelines, flow diagrams. NOT a mood photo,
+  NOT a cinematic illustration, NOT just a pretty background.
 - ABSOLUTELY NO real, identifiable person (no politician, celebrity, athlete —
   no faces of named people). NO depiction of a real news event staged as if it
   were a real photo. NO logos of real companies.
-- For data_viz "integrated": INCLUDE the key stat/number prominently in the
-  prompt (e.g. "$61B", "19%", "₹4,400cr"). The number should be the visual
-  centerpiece — bold, typographic, integrated with symbolic elements. Think
-  infographic-meets-editorial-art. Example: "a bold typographic illustration
-  with $61 BILLION in large gold text, stylized arrows flowing between Indian
-  and Japanese flag elements, dark navy editorial mood with subtle grid lines".
-- For data_viz "overlay" (or omitted): NO text, letters, words, or numbers
-  anywhere in the image (text is overlaid separately). Describe symbolic/
-  conceptual visuals: objects, documents, silhouettes, landscapes, geometric
-  motifs, light. e.g. "naval radar dishes and warship silhouettes against a
-  dramatic ocean sunset, dark moody editorial tones". Keep it to ONE concept.
+- ALWAYS include numbers, stats, and data points in the prompt. Every scene
+  should visualize data from the article — dollar amounts, percentages, counts,
+  rankings, comparisons, growth figures. The data IS the visual.
+- Describe the LAYOUT: "bar chart showing X vs Y", "split panel comparing A
+  and B", "timeline with 3 milestones", "stat grid with 4 key figures",
+  "pie chart breakdown". Give the AI a concrete data visualization to render.
+- Example: "Data infographic: $61 BILLION investment target by 2030. Bar chart
+  showing growth from $27.5B (2025-26) to $61B target. India flag and Japan
+  flag as anchors on each side. Below: 3 icon panels — Defense (shield icon),
+  AI (chip icon), Semiconductors (circuit icon). Dark navy background, gold
+  accent numbers, clean editorial layout."
+- For the rare scene with genuinely no stats (data_viz "overlay"): NO text or
+  numbers in the image. Describe symbolic visuals only. This should be 0-1
+  scenes per reel at most.
 - Do NOT specify colors, borders, or framing — a fixed house style is appended
-  automatically. Just describe the SUBJECT and MOOD in 1-2 sentences.
-- For both modes: 200-350 characters for image_description.
+  automatically. Just describe the DATA LAYOUT, SUBJECT, and MOOD.
+- 200-400 characters for image_description.
 
 SOCIAL SEARCH (top-level "social_search") — you are also the SEARCH EDITOR. We
 will search X and Threads for REAL public posts (photos AND video clips) about
@@ -1961,6 +1978,58 @@ def _image_looks_like_diagram(path):
         return False
     except Exception:
         return False
+
+
+def _precrop_hero_9x16(url, article_id):
+    """Download the hero image, center-crop it to 9:16 (1080x1920) if it's
+    landscape, re-upload, and return the new URL. Shotstack's fit=cover should
+    handle this, but in practice landscape heroes can appear squeezed. Pre-cropping
+    guarantees a clean vertical fill. On any failure returns the original URL."""
+    try:
+        from PIL import Image
+        local = f"/tmp/videshi_hero_precrop_{article_id}.jpg"
+        ua = "TheVideshi/1.0 (thevideshi.com)"
+        result = subprocess.run(
+            ["curl", "-sS", "-L", "--fail", "-A", ua, "-o", local, "--max-time", "30", url],
+            capture_output=True, text=True, timeout=40,
+        )
+        if result.returncode != 0 or not os.path.exists(local):
+            return url
+        img = Image.open(local).convert("RGB")
+        w, h = img.size
+        target_ratio = 9 / 16  # 0.5625
+        current_ratio = w / h
+        if current_ratio > target_ratio:
+            # Landscape — crop width to fit 9:16, keeping vertical center
+            new_w = int(h * target_ratio)
+            x0 = (w - new_w) // 2
+            img = img.crop((x0, 0, x0 + new_w, h))
+        elif current_ratio < target_ratio:
+            # Taller than 9:16 — crop height
+            new_h = int(w / target_ratio)
+            y0 = (h - new_h) // 2
+            img = img.crop((0, y0, w, y0 + new_h))
+        # Resize to exactly 1080x1920
+        img = img.resize((1080, 1920), Image.LANCZOS)
+        out_path = f"/tmp/videshi_hero_cropped_{article_id}.jpg"
+        img.save(out_path, "JPEG", quality=92)
+        import hashlib
+        with open(out_path, "rb") as fh:
+            ch = hashlib.md5(fh.read()).hexdigest()[:10]
+        storage_path = f"reel-broll/{article_id}/hero-9x16-{ch}.jpg"
+        cropped_url = upload_asset(out_path, storage_path, "image/jpeg")
+        for p in (local, out_path):
+            try:
+                os.remove(p)
+            except Exception:
+                pass
+        if cropped_url:
+            print(f"  ✂️ Hero pre-cropped to 9:16 (1080×1920)")
+            return cropped_url
+        return url
+    except Exception as e:
+        print(f"  ⚠️ Hero pre-crop failed ({e}) — using original")
+        return url
 
 
 def mirror_to_supabase(url, article_id, scene_idx, reject_diagrams=False):
@@ -3641,6 +3710,9 @@ def source_storyboard_images(article, storyboard, count=8):
             hero = ""
     if hero and is_url_downloadable(hero) and hero not in used_in_this_reel:
         hero = mirror_to_supabase(hero, article_id, 0)
+        # Pre-crop landscape heroes to 9:16 so Shotstack doesn't squeeze them.
+        # Download → PIL center-crop → re-upload to same path.
+        hero = _precrop_hero_9x16(hero, article_id)
         matched_urls[0] = hero
         used_in_this_reel.add(hero)
         media_meta[hero] = {"type": "image", "duration": 0}
@@ -5561,7 +5633,7 @@ def source_reel_media_clean(article, storyboard, count=8):
         #   data_viz="integrated": image IS the scene (stat baked into visual)
         #   data_viz="overlay": image is bg, card text overlaid on top
         if plan == "generate" and scene.get("image_prompt"):
-            data_viz = (scene.get("data_viz") or "overlay").strip().lower()
+            data_viz = (scene.get("data_viz") or "integrated").strip().lower()
             gurl = generate_themed_image(scene.get("image_prompt"), article_id, i)
             if gurl:
                 if data_viz == "integrated":
@@ -5590,6 +5662,7 @@ def source_reel_media_clean(article, storyboard, count=8):
                         if curl:
                             url = curl
                             meta = {"type": "image", "duration": 0, "is_card": True,
+                                    "card_has_bg": True, "is_generated": True,
                                     "curated": True, "generic_pexels": False}
                             n_card += 1
                             n_gen += 1
