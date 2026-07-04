@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-07-04T15:15:29.784402+00:00",
+  "timestamp": "2026-07-04T16:15:23.364464+00:00",
   "mode": "fix",
   "stats": {
     "pass": 2,
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "8415ee0f-87eb-4301-8964-1284ef04a63b",
-      "headline": "Fireworks, Then Football. The World Cup Takes Over the Fourth of July \u2014 and NRIs Have the Best Seats in the House.",
-      "slug": "world-cup-fourth-of-july-canada-morocco-houston-france-paraguay-philadelphia-nri-2026",
+      "id": "77bb1b7e-11ea-444e-9b5f-6d30a55fb677",
+      "headline": "India's Banks Are Offering NRIs Up to 7% on Dollar Deposits \u2014 and SBI's Leveraged Product Promises 11.25%",
+      "slug": "india-nri-fcnr-deposits-rates-surge-rbi-hedging-subsidy-sbi-leveraged-product-bank-margins-20260704",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "FIFA World Cup 2026 bracket",
-          "reason": "The photo shows a World Cup bracket, relevant to the story about the World Cup."
+          "what_photo_shows": "Indian rupee notes and coins",
+          "reason": "The photo of Indian currency is relevant to a banking story about deposit rates."
         },
         "inline_image_mismatches": []
       },
@@ -36,13 +36,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the World Cup matches to the Indian American community, highlighting their unique experience during the Fourth of July."
+          "note": "The article directly addresses NRIs and their investment options, making it relevant to the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes or reactions from Indian American fans to enhance the diaspora connection.",
-          "Add a brief historical context about the significance of the Fourth of July for NRIs."
+          "Consider adding quotes or testimonials from NRIs who have benefited from these banking products to enhance relatability.",
+          "Include a brief comparison of the benefits of FCNR deposits versus other investment options available to NRIs."
         ],
         "verdict": "pass"
       },
@@ -54,9 +54,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "dd345e7f-b64a-497b-a7a1-ba3cecfc10e2",
-      "headline": "He's 15 Years and 99 Days Old. Vaibhav Sooryavanshi Just Broke Sachin Tendulkar's 36-Year Record.",
-      "slug": "vaibhav-sooryavanshi-youngest-india-debut-sachin-tendulkar-record-old-trafford-england-t20i-nri-2026",
+      "id": "97b5a93a-f42d-4d46-a368-d0883495ce52",
+      "headline": "Five Extra Minutes of Sleep and Two Minutes of Exercise a Day Could Add a Full Year to Your Life",
+      "slug": "small-changes-sleep-exercise-diet-add-decade-life-lancet-span-uk-biobank-south-asian-diaspora-20260704",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,8 +64,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "young cricketer with Prime Minister",
-          "reason": "The photo shows Vaibhav Sooryavanshi, relevant to the story."
+          "what_photo_shows": "woman with fruits and vegetables",
+          "reason": "The photo shows healthy foods, aligning with the wellness topic."
         },
         "inline_image_mismatches": []
       },
@@ -79,13 +79,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects Sooryavanshi's debut to the NRI audience, highlighting the significance of his achievements in the context of the IPL era."
+          "note": "The article effectively connects the study's findings to the health challenges faced by the South Asian diaspora, making it relevant and engaging for this audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from Sooryavanshi or his teammates to provide a more personal touch.",
-          "Include more statistics or comparisons to other young cricketers to enhance the context of his achievement."
+          "Consider adding more specific examples of how South Asians can implement the study's findings in their daily lives.",
+          "Include quotes or insights from health experts to enhance credibility and provide additional context."
         ],
         "verdict": "pass"
       },
