@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-04T16:45:15.347358+00:00",
+  "timestamp": "2026-07-04T17:15:37.575099+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
-    "flag": 0,
+    "pass": 3,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "08034d48-d9f4-43c1-97c0-e916e40e3889",
-      "headline": "Trump Used America\u2019s 250th Birthday to Call Immigrants a \u2018Communist Menace.\u2019 The Diaspora Heard Every Word.",
-      "slug": "trump-mount-rushmore-newcomers-communist-speech-immigrant-diaspora-20260704",
+      "id": "cd997f03-4247-4af4-ad3e-c70ec0fa1f99",
+      "headline": "The Dhamaal Boys Are Back. This Time, There's a Mountain of Gold and Absolutely Zero Common Sense.",
+      "slug": "dhamaal-4-ajay-devgn-arshad-warsi-treasure-hunt-comedy-july-10-nolan-diaspora-20260704",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,108 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Mount Rushmore in South Dakota",
-          "reason": "The photo shows Mount Rushmore, which is relevant to the story's location."
+          "what_photo_shows": "Ajay Devgn at an event",
+          "reason": "The photo shows Ajay Devgn, who is relevant to the Dhamaal 4 story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DaF2Y2qIhwq/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel does not appear to be directly related to the Dhamaal franchise or the content of the article."
+          },
+          {
+            "url": "https://youtube.com/watch?v=IG-eByZdz6Y",
+            "problem": "duplicate",
+            "explanation": "The YouTube link to the trailer is mentioned in the body and should not be repeated."
+          }
+        ],
+        "image_match": {
+          "score": 5,
+          "issue": "The image of Ajay Devgn does not directly relate to the article's focus on the Dhamaal franchise."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article connects the film to the diaspora by referencing it as 'comfort food' for Indian families, which resonates with NRI audiences."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [
+          "https://youtube.com/watch?v=IG-eByZdz6Y"
+        ],
+        "suggestions": [
+          "Replace the irrelevant Instagram link with a more relevant social media post related to the Dhamaal franchise.",
+          "Consider using a more relevant image that directly connects to the Dhamaal franchise for better visual alignment."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DaF2Y2qIhwq/",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "7b8c515e-b7b6-4fbe-968b-80317018f55c",
+      "headline": "Indian Travellers Are Ditching the Mediterranean This Summer \u2014 and Heading for Scandinavia Instead",
+      "slug": "indian-travelers-europe-heatwave-scandinavia-alps-nri-20260704",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Swiss Alps in summer",
+          "reason": "The photo shows the Swiss Alps, which aligns with the story about Indian travelers choosing cooler European destinations."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image depicts a scenic landscape, which aligns with the travel theme, but does not specifically represent Scandinavia."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the travel trends to NRIs, discussing their travel preferences and logistical considerations."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include specific examples of popular Scandinavian destinations to enhance the article's depth.",
+          "Consider adding quotes or testimonials from NRIs who have traveled to these destinations recently for a personal touch."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "44ae5211-84f7-4d62-8147-e86f983e9b4c",
+      "headline": "India's Valley of Flowers Just Entered Peak Bloom \u2014 and Most NRIs Have Never Heard of It",
+      "slug": "valley-of-flowers-peak-bloom-nri-monsoon-trek-guide-20260704",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Valley with wildflowers and mountains",
+          "reason": "The photo shows a valley with wildflowers, matching the Valley of Flowers story."
         },
         "inline_image_mismatches": []
       },
@@ -36,17 +136,76 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects Trump's rhetoric to the experiences and perspectives of the Indian American community."
+          "note": "The article effectively connects the Valley of Flowers to NRI families visiting India, particularly during the American summer break."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more direct quotes from Indian American leaders or community members to enhance the diaspora perspective.",
-          "Include statistics or studies that illustrate the impact of anti-immigrant rhetoric on the Indian American community."
+          "Consider adding more personal anecdotes or testimonials from NRIs who have visited the Valley of Flowers to enhance relatability.",
+          "Include a section on how to prepare for the trek, such as recommended fitness routines or gear lists."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "ebf4aa71-75db-42b2-8915-20bc569776d6",
+      "headline": "Akshay Kumar and Priyadarshan Are Reuniting for a Ninth Time. The Title Alone Will Give You Goosebumps.",
+      "slug": "akshay-kumar-priyadarshan-wicked-sunny-ninth-film-mujhse-shaadi-karogi-comedy-thriller-20260704",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "0932f10a-5f7a-477a-8e1c-f2181c8ba05c",
+            "headline": "Priyadarshan Lost Hera Pheri 3. So He Called Akshay Kumar In"
+          },
+          {
+            "article_id": "6d8b7e92-3f76-4273-ba6f-a312a3d32c69",
+            "headline": "Welcome to the Jungle Broke Even Before It Opened. Then It E"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Akshay Kumar at an event",
+          "reason": "The photo shows Akshay Kumar, who is relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DaUXGxWM4W4/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel does not appear to be directly related to the article's subject matter about Akshay Kumar and Priyadarshan's new film."
+          }
+        ],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the film's significance to NRI audiences, referencing their nostalgia and cultural impact."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the irrelevant Instagram embed with a more relevant source or remove it altogether.",
+          "Consider adding quotes or insights from Akshay Kumar or Priyadarshan about their collaboration to enhance the article's depth."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DaUXGxWM4W4/",
         "promoted to published"
       ],
       "revised": false,
