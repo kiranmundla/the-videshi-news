@@ -4755,7 +4755,9 @@ def generate_themed_image(image_prompt, article_id, idx, out_dir="/tmp/videshi_g
 
         return _ret(None, previous_response_id)
     except Exception as e:
+        import traceback as _tb
         print(f"  ⚠️ generate_themed_image error: {e}")
+        _tb.print_exc()
         return _ret(None, previous_response_id)
 
 
