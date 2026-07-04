@@ -39,7 +39,7 @@
    ],
    "first_seen": "2026-06-19T05:23:04Z",
    "article_id": "735ab1c5-f47c-401c-95c2-015ff88c59cc",
-   "priority": 38
+   "priority": 40
   },
   {
    "subject": "lawsuit",
@@ -132,26 +132,6 @@
    "priority": 4
   },
   {
-   "subject": "road trip",
-   "subject_type": "thing",
-   "tags": [
-    "road trip"
-   ],
-   "first_seen": "2026-06-19T10:29:23Z",
-   "article_id": "a992d41d-2356-4326-a7af-02bfbe3bb330",
-   "priority": 2
-  },
-  {
-   "subject": "national parks",
-   "subject_type": "thing",
-   "tags": [
-    "national parks"
-   ],
-   "first_seen": "2026-06-19T10:29:23Z",
-   "article_id": "a992d41d-2356-4326-a7af-02bfbe3bb330",
-   "priority": 2
-  },
-  {
    "subject": "family",
    "subject_type": "thing",
    "tags": [
@@ -170,16 +150,6 @@
    "first_seen": "2026-06-19T10:29:23Z",
    "article_id": "901b9a70-0e82-4f56-84c0-5f9773fb887d",
    "priority": 2
-  },
-  {
-   "subject": "ola electric",
-   "subject_type": "thing",
-   "tags": [
-    "ola electric"
-   ],
-   "first_seen": "2026-06-19T10:29:23Z",
-   "article_id": "901b9a70-0e82-4f56-84c0-5f9773fb887d",
-   "priority": 3
   },
   {
    "subject": "tvs motor",
@@ -210,26 +180,6 @@
    "first_seen": "2026-06-19T10:29:23Z",
    "article_id": "f9485a57-e2b8-4cab-a94d-c743bf9358e5",
    "priority": 5
-  },
-  {
-   "subject": "offshoring",
-   "subject_type": "thing",
-   "tags": [
-    "offshoring"
-   ],
-   "first_seen": "2026-06-19T10:29:23Z",
-   "article_id": "1498f12d-0136-4cca-8d8e-a1077990240a",
-   "priority": 3
-  },
-  {
-   "subject": "premium processing",
-   "subject_type": "thing",
-   "tags": [
-    "premium processing"
-   ],
-   "first_seen": "2026-06-19T10:29:23Z",
-   "article_id": "6cfa7dec-c0d6-4a10-bb11-37099112f160",
-   "priority": 3
   },
   {
    "subject": "vietnam",
@@ -270,16 +220,6 @@
    "first_seen": "2026-06-19T10:29:23Z",
    "article_id": "8de72ac4-0887-43f6-8ee8-340b29a1a9a5",
    "priority": 2
-  },
-  {
-   "subject": "markets",
-   "subject_type": "thing",
-   "tags": [
-    "markets"
-   ],
-   "first_seen": "2026-06-19T10:29:23Z",
-   "article_id": "e1f52d92-325d-4344-957f-09c5e1cd1f0c",
-   "priority": 3
   },
   {
    "subject": "politics",
@@ -400,16 +340,6 @@
    "first_seen": "2026-06-20T10:29:23Z",
    "article_id": "288af0ec-6b10-49ad-bda4-86ca4ef6c9bc",
    "priority": 4
-  },
-  {
-   "subject": "turkey",
-   "subject_type": "thing",
-   "tags": [
-    "turkey"
-   ],
-   "first_seen": "2026-06-20T10:29:23Z",
-   "article_id": "a5d32a10-221c-4852-bf65-0bea3a350ebc",
-   "priority": 3
   },
   {
    "subject": "san francisco bay area",
@@ -689,7 +619,7 @@
    ],
    "first_seen": "2026-06-21T10:29:30Z",
    "article_id": "c0def06a-bfa5-458b-9d57-9048d774691a",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "consular services",
@@ -939,7 +869,7 @@
    ],
    "first_seen": "2026-06-21T10:29:30Z",
    "article_id": "14b1f4ac-109d-42cf-9999-ee66548fa494",
-   "priority": 8
+   "priority": 9
   },
   {
    "subject": "F 1",
@@ -950,16 +880,6 @@
    "first_seen": "2026-06-22T10:29:23Z",
    "article_id": "8e84313e-4fea-4175-bbb8-efa61f959b49",
    "priority": 2
-  },
-  {
-   "subject": "Broadcom",
-   "subject_type": "thing",
-   "tags": [
-    "broadcom"
-   ],
-   "first_seen": "2026-06-22T10:29:23Z",
-   "article_id": "3dc08e97-0352-46d9-ba78-d8d1ad989eec",
-   "priority": 3
   },
   {
    "subject": "Hock Tan",
@@ -1202,16 +1122,6 @@
    "priority": 2
   },
   {
-   "subject": "sk hynix",
-   "subject_type": "thing",
-   "tags": [
-    "sk hynix"
-   ],
-   "first_seen": "2026-06-22T10:29:23Z",
-   "article_id": "600ce843-76d5-4cd0-b283-1a700970301a",
-   "priority": 3
-  },
-  {
    "subject": "jio",
    "subject_type": "thing",
    "tags": [
@@ -1240,16 +1150,6 @@
    "first_seen": "2026-06-22T10:29:23Z",
    "article_id": "cad5c570-0cb0-4a9e-9274-3f2f0585612e",
    "priority": 2
-  },
-  {
-   "subject": "digital india",
-   "subject_type": "thing",
-   "tags": [
-    "digital india"
-   ],
-   "first_seen": "2026-06-22T10:29:23Z",
-   "article_id": "cad5c570-0cb0-4a9e-9274-3f2f0585612e",
-   "priority": 3
   },
   {
    "subject": "telecom",
@@ -1632,16 +1532,6 @@
    "priority": 2
   },
   {
-   "subject": "Mumbai Indians",
-   "subject_type": "thing",
-   "tags": [
-    "mumbai indians"
-   ],
-   "first_seen": "2026-06-23T10:29:22Z",
-   "article_id": "385053f5-7727-4c91-9754-f868a95d3829",
-   "priority": 3
-  },
-  {
    "subject": "eb2",
    "subject_type": "thing",
    "tags": [
@@ -1649,7 +1539,7 @@
    ],
    "first_seen": "2026-06-23T10:29:22Z",
    "article_id": "a88f63cc-1e23-42c6-88a5-2d2ae13eea74",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "eb3",
@@ -1689,7 +1579,7 @@
    ],
    "first_seen": "2026-06-23T10:29:22Z",
    "article_id": "724bfdae-0721-4e43-8ed4-1b15021edbcc",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "ibm",
@@ -1830,16 +1720,6 @@
    "first_seen": "2026-06-24T10:29:22Z",
    "article_id": "61f8eaa4-924a-46a4-9d48-e26a476944e7",
    "priority": 2
-  },
-  {
-   "subject": "adjustment of status",
-   "subject_type": "thing",
-   "tags": [
-    "adjustment of status"
-   ],
-   "first_seen": "2026-06-24T10:29:22Z",
-   "article_id": "6fd530da-8153-492f-adb6-c0f8a1a39301",
-   "priority": 3
   },
   {
    "subject": "dual intent",
@@ -2062,16 +1942,6 @@
    "priority": 3
   },
   {
-   "subject": "gemini",
-   "subject_type": "thing",
-   "tags": [
-    "gemini"
-   ],
-   "first_seen": "2026-06-25T10:29:22Z",
-   "article_id": "3401300b-a4a7-4742-890d-aa7d86fbc367",
-   "priority": 3
-  },
-  {
    "subject": "automation",
    "subject_type": "thing",
    "tags": [
@@ -2146,16 +2016,6 @@
    "subject_type": "thing",
    "tags": [
     "img"
-   ],
-   "first_seen": "2026-06-25T10:29:22Z",
-   "article_id": "db04bb27-e3fa-4bab-ac51-6f4914bcc722",
-   "priority": 3
-  },
-  {
-   "subject": "healthcare",
-   "subject_type": "thing",
-   "tags": [
-    "healthcare"
    ],
    "first_seen": "2026-06-25T10:29:22Z",
    "article_id": "db04bb27-e3fa-4bab-ac51-6f4914bcc722",
@@ -3029,7 +2889,7 @@
    ],
    "first_seen": "2026-06-27T10:29:26Z",
    "article_id": "c6103023-e8db-4ba3-9ca5-06650845df1a",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "niw",
@@ -3220,16 +3080,6 @@
    "first_seen": "2026-06-28T05:35:23Z",
    "article_id": "f1630d5c-33a3-447c-8730-3cd8f874e53c",
    "priority": 2
-  },
-  {
-   "subject": "india fintech",
-   "subject_type": "thing",
-   "tags": [
-    "india fintech"
-   ],
-   "first_seen": "2026-06-28T05:35:23Z",
-   "article_id": "462b06f2-29e3-491a-89cd-bbf04840e2ae",
-   "priority": 3
   },
   {
    "subject": "insurance technology",
@@ -3562,16 +3412,6 @@
    "priority": 3
   },
   {
-   "subject": "scotus",
-   "subject_type": "thing",
-   "tags": [
-    "scotus"
-   ],
-   "first_seen": "2026-06-28T10:29:23Z",
-   "article_id": "90e03639-3bb2-41bd-a870-de67ccaceedf",
-   "priority": 3
-  },
-  {
    "subject": "eb 5",
    "subject_type": "thing",
    "tags": [
@@ -3666,16 +3506,6 @@
    "subject_type": "thing",
    "tags": [
     "sergio gor"
-   ],
-   "first_seen": "2026-06-28T10:29:23Z",
-   "article_id": "5337f8db-16e6-4172-a090-d806c1d40481",
-   "priority": 3
-  },
-  {
-   "subject": "immigration policy",
-   "subject_type": "thing",
-   "tags": [
-    "immigration policy"
    ],
    "first_seen": "2026-06-28T10:29:23Z",
    "article_id": "5337f8db-16e6-4172-a090-d806c1d40481",
@@ -4202,16 +4032,6 @@
    "priority": 2
   },
   {
-   "subject": "india semiconductor",
-   "subject_type": "thing",
-   "tags": [
-    "india semiconductor"
-   ],
-   "first_seen": "2026-06-30T10:29:23Z",
-   "article_id": "a19bbdae-61c0-4a30-b0d5-d2850e62f593",
-   "priority": 3
-  },
-  {
    "subject": "work permit",
    "subject_type": "thing",
    "tags": [
@@ -4302,16 +4122,6 @@
    "priority": 2
   },
   {
-   "subject": "india chips",
-   "subject_type": "thing",
-   "tags": [
-    "india chips"
-   ],
-   "first_seen": "2026-06-30T10:29:23Z",
-   "article_id": "6080c40f-103a-4fbe-a31e-312060b963f9",
-   "priority": 3
-  },
-  {
    "subject": "eva air",
    "subject_type": "thing",
    "tags": [
@@ -4359,16 +4169,6 @@
    ],
    "first_seen": "2026-06-30T10:29:23Z",
    "article_id": "1ce71c50-9bbd-48b8-97f3-35a9f52eef04",
-   "priority": 2
-  },
-  {
-   "subject": "unicorns",
-   "subject_type": "thing",
-   "tags": [
-    "unicorns"
-   ],
-   "first_seen": "2026-06-30T10:29:23Z",
-   "article_id": "504e9fd4-330d-4403-aa7b-337fb4880296",
    "priority": 2
   },
   {
@@ -4809,7 +4609,7 @@
    ],
    "first_seen": "2026-07-01T10:29:26Z",
    "article_id": "e4e26809-e804-479a-bee9-92c6523353db",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "birth tourism",
@@ -5009,7 +4809,7 @@
    ],
    "first_seen": "2026-07-02T10:29:24Z",
    "article_id": "5590b3ae-d32e-48be-99fe-147fc3be20ed",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "indian passport",
@@ -5409,7 +5209,7 @@
    ],
    "first_seen": "2026-07-03T10:29:24Z",
    "article_id": "e7b7c692-d1b3-4ed5-9308-9ab35503a6a6",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "stem opt",
@@ -5650,7 +5450,577 @@
    "first_seen": "2026-07-03T10:29:24Z",
    "article_id": "e8115467-cccf-43a3-a22f-0e24908878b4",
    "priority": 2
+  },
+  {
+   "subject": "immigration court",
+   "subject_type": "thing",
+   "tags": [
+    "immigration court"
+   ],
+   "first_seen": "2026-07-04T10:29:23Z",
+   "article_id": "73093328-8e6e-4d76-b73d-29fd7c945806",
+   "priority": 2
+  },
+  {
+   "subject": "eoir",
+   "subject_type": "thing",
+   "tags": [
+    "eoir"
+   ],
+   "first_seen": "2026-07-04T10:29:23Z",
+   "article_id": "73093328-8e6e-4d76-b73d-29fd7c945806",
+   "priority": 2
+  },
+  {
+   "subject": "deportation",
+   "subject_type": "thing",
+   "tags": [
+    "deportation"
+   ],
+   "first_seen": "2026-07-04T10:29:23Z",
+   "article_id": "73093328-8e6e-4d76-b73d-29fd7c945806",
+   "priority": 2
+  },
+  {
+   "subject": "student visa",
+   "subject_type": "thing",
+   "tags": [
+    "student visa"
+   ],
+   "first_seen": "2026-07-04T10:29:23Z",
+   "article_id": "c320f4e2-f49e-47d3-9e67-6a7764b19f7f",
+   "priority": 2
+  },
+  {
+   "subject": "rejection rate",
+   "subject_type": "thing",
+   "tags": [
+    "rejection rate"
+   ],
+   "first_seen": "2026-07-04T10:29:23Z",
+   "article_id": "c320f4e2-f49e-47d3-9e67-6a7764b19f7f",
+   "priority": 2
+  },
+  {
+   "subject": "shorelight",
+   "subject_type": "thing",
+   "tags": [
+    "shorelight"
+   ],
+   "first_seen": "2026-07-04T10:29:23Z",
+   "article_id": "c320f4e2-f49e-47d3-9e67-6a7764b19f7f",
+   "priority": 2
+  },
+  {
+   "subject": "higher education",
+   "subject_type": "thing",
+   "tags": [
+    "higher education"
+   ],
+   "first_seen": "2026-07-04T10:29:23Z",
+   "article_id": "c320f4e2-f49e-47d3-9e67-6a7764b19f7f",
+   "priority": 2
+  },
+  {
+   "subject": "wall street",
+   "subject_type": "thing",
+   "tags": [
+    "wall street"
+   ],
+   "first_seen": "2026-07-04T10:29:23Z",
+   "article_id": "63e6cc52-7985-4d7d-909a-cbb7c830f556",
+   "priority": 2
+  },
+  {
+   "subject": "cryptocurrency",
+   "subject_type": "thing",
+   "tags": [
+    "cryptocurrency"
+   ],
+   "first_seen": "2026-07-04T10:29:23Z",
+   "article_id": "86139904-91d3-41bd-afdb-362d6407da84",
+   "priority": 2
+  },
+  {
+   "subject": "digital rupee",
+   "subject_type": "thing",
+   "tags": [
+    "digital rupee"
+   ],
+   "first_seen": "2026-07-04T10:29:23Z",
+   "article_id": "86139904-91d3-41bd-afdb-362d6407da84",
+   "priority": 2
+  },
+  {
+   "subject": "jayapal",
+   "subject_type": "thing",
+   "tags": [
+    "jayapal"
+   ],
+   "first_seen": "2026-07-04T10:29:23Z",
+   "article_id": "ffc27fdc-aa04-4488-98ea-a28278c46598",
+   "priority": 2
+  },
+  {
+   "subject": "padilla",
+   "subject_type": "thing",
+   "tags": [
+    "padilla"
+   ],
+   "first_seen": "2026-07-04T10:29:23Z",
+   "article_id": "ffc27fdc-aa04-4488-98ea-a28278c46598",
+   "priority": 2
+  },
+  {
+   "subject": "legislation",
+   "subject_type": "thing",
+   "tags": [
+    "legislation"
+   ],
+   "first_seen": "2026-07-04T10:29:23Z",
+   "article_id": "b37c8c04-0fce-4004-b20f-48ae68823827",
+   "priority": 2
+  },
+  {
+   "subject": "chip roy",
+   "subject_type": "thing",
+   "tags": [
+    "chip roy"
+   ],
+   "first_seen": "2026-07-04T10:29:23Z",
+   "article_id": "b37c8c04-0fce-4004-b20f-48ae68823827",
+   "priority": 2
+  },
+  {
+   "subject": "immigration reform",
+   "subject_type": "thing",
+   "tags": [
+    "immigration reform"
+   ],
+   "first_seen": "2026-07-04T10:29:23Z",
+   "article_id": "b37c8c04-0fce-4004-b20f-48ae68823827",
+   "priority": 2
+  },
+  {
+   "subject": "british indians",
+   "subject_type": "thing",
+   "tags": [
+    "british indians"
+   ],
+   "first_seen": "2026-07-04T10:29:23Z",
+   "article_id": "6abdd2cb-381c-4ea5-be49-dfab1d5f8578",
+   "priority": 2
+  },
+  {
+   "subject": "fisi",
+   "subject_type": "thing",
+   "tags": [
+    "fisi"
+   ],
+   "first_seen": "2026-07-04T10:29:23Z",
+   "article_id": "6abdd2cb-381c-4ea5-be49-dfab1d5f8578",
+   "priority": 2
+  },
+  {
+   "subject": "advocacy",
+   "subject_type": "thing",
+   "tags": [
+    "advocacy"
+   ],
+   "first_seen": "2026-07-04T10:29:23Z",
+   "article_id": "6abdd2cb-381c-4ea5-be49-dfab1d5f8578",
+   "priority": 2
+  },
+  {
+   "subject": "aha",
+   "subject_type": "thing",
+   "tags": [
+    "aha"
+   ],
+   "first_seen": "2026-07-04T10:29:23Z",
+   "article_id": "426f780a-6b78-47f4-88aa-038970d48d87",
+   "priority": 2
+  },
+  {
+   "subject": "cardiology",
+   "subject_type": "thing",
+   "tags": [
+    "cardiology"
+   ],
+   "first_seen": "2026-07-04T10:29:23Z",
+   "article_id": "426f780a-6b78-47f4-88aa-038970d48d87",
+   "priority": 2
+  },
+  {
+   "subject": "achievement",
+   "subject_type": "thing",
+   "tags": [
+    "achievement"
+   ],
+   "first_seen": "2026-07-04T10:29:23Z",
+   "article_id": "426f780a-6b78-47f4-88aa-038970d48d87",
+   "priority": 2
+  },
+  {
+   "subject": "micron india",
+   "subject_type": "thing",
+   "tags": [
+    "micron india"
+   ],
+   "first_seen": "2026-07-04T10:29:23Z",
+   "article_id": "0f9bf379-72e8-4eed-85a7-9212831541e8",
+   "priority": 2
+  },
+  {
+   "subject": "july 4",
+   "subject_type": "thing",
+   "tags": [
+    "july 4"
+   ],
+   "first_seen": "2026-07-04T10:29:23Z",
+   "article_id": "70467e32-d23e-44e0-a7ba-dc212678f551",
+   "priority": 3
+  },
+  {
+   "subject": "america 250",
+   "subject_type": "thing",
+   "tags": [
+    "america 250"
+   ],
+   "first_seen": "2026-07-04T10:29:23Z",
+   "article_id": "70467e32-d23e-44e0-a7ba-dc212678f551",
+   "priority": 3
+  },
+  {
+   "subject": "nfap",
+   "subject_type": "thing",
+   "tags": [
+    "nfap"
+   ],
+   "first_seen": "2026-07-04T10:29:23Z",
+   "article_id": "70467e32-d23e-44e0-a7ba-dc212678f551",
+   "priority": 3
+  },
+  {
+   "subject": "venezuela earthquake",
+   "subject_type": "thing",
+   "tags": [
+    "venezuela earthquake"
+   ],
+   "first_seen": "2026-07-04T10:29:23Z",
+   "article_id": "2a732428-ee25-4088-bedb-a1c5dfa4c37b",
+   "priority": 2
+  },
+  {
+   "subject": "operation amistad",
+   "subject_type": "thing",
+   "tags": [
+    "operation amistad"
+   ],
+   "first_seen": "2026-07-04T10:29:23Z",
+   "article_id": "2a732428-ee25-4088-bedb-a1c5dfa4c37b",
+   "priority": 2
+  },
+  {
+   "subject": "indian air force",
+   "subject_type": "thing",
+   "tags": [
+    "indian air force"
+   ],
+   "first_seen": "2026-07-04T10:29:23Z",
+   "article_id": "2a732428-ee25-4088-bedb-a1c5dfa4c37b",
+   "priority": 2
+  },
+  {
+   "subject": "humanitarian relief",
+   "subject_type": "thing",
+   "tags": [
+    "humanitarian relief"
+   ],
+   "first_seen": "2026-07-04T10:29:23Z",
+   "article_id": "2a732428-ee25-4088-bedb-a1c5dfa4c37b",
+   "priority": 2
+  },
+  {
+   "subject": "bhishm",
+   "subject_type": "thing",
+   "tags": [
+    "bhishm"
+   ],
+   "first_seen": "2026-07-04T10:29:23Z",
+   "article_id": "2a732428-ee25-4088-bedb-a1c5dfa4c37b",
+   "priority": 2
+  },
+  {
+   "subject": "disaster response",
+   "subject_type": "thing",
+   "tags": [
+    "disaster response"
+   ],
+   "first_seen": "2026-07-04T10:29:23Z",
+   "article_id": "2a732428-ee25-4088-bedb-a1c5dfa4c37b",
+   "priority": 2
+  },
+  {
+   "subject": "jaishankar",
+   "subject_type": "thing",
+   "tags": [
+    "jaishankar"
+   ],
+   "first_seen": "2026-07-04T10:29:23Z",
+   "article_id": "2a732428-ee25-4088-bedb-a1c5dfa4c37b",
+   "priority": 2
+  },
+  {
+   "subject": "sports travel",
+   "subject_type": "thing",
+   "tags": [
+    "sports travel"
+   ],
+   "first_seen": "2026-07-04T10:29:23Z",
+   "article_id": "e239cae5-d025-4892-9fd2-9d6d435c7d68",
+   "priority": 2
+  },
+  {
+   "subject": "mexico",
+   "subject_type": "thing",
+   "tags": [
+    "mexico"
+   ],
+   "first_seen": "2026-07-04T10:29:23Z",
+   "article_id": "df94a5cc-dc84-42ef-983a-4370fa6731a4",
+   "priority": 2
+  },
+  {
+   "subject": "visa free",
+   "subject_type": "thing",
+   "tags": [
+    "visa free"
+   ],
+   "first_seen": "2026-07-04T10:29:23Z",
+   "article_id": "df94a5cc-dc84-42ef-983a-4370fa6731a4",
+   "priority": 2
+  },
+  {
+   "subject": "cancun",
+   "subject_type": "thing",
+   "tags": [
+    "cancun"
+   ],
+   "first_seen": "2026-07-04T10:29:23Z",
+   "article_id": "df94a5cc-dc84-42ef-983a-4370fa6731a4",
+   "priority": 2
+  },
+  {
+   "subject": "caribbean",
+   "subject_type": "thing",
+   "tags": [
+    "caribbean"
+   ],
+   "first_seen": "2026-07-04T10:29:23Z",
+   "article_id": "df94a5cc-dc84-42ef-983a-4370fa6731a4",
+   "priority": 2
+  },
+  {
+   "subject": "El Niño",
+   "subject_type": "thing",
+   "tags": [
+    "el niño"
+   ],
+   "first_seen": "2026-07-04T10:29:23Z",
+   "article_id": "92bf6c17-240e-4396-b85b-222afd66057d",
+   "priority": 2
+  },
+  {
+   "subject": "kharif",
+   "subject_type": "thing",
+   "tags": [
+    "kharif"
+   ],
+   "first_seen": "2026-07-04T10:29:23Z",
+   "article_id": "92bf6c17-240e-4396-b85b-222afd66057d",
+   "priority": 2
+  },
+  {
+   "subject": "food inflation",
+   "subject_type": "thing",
+   "tags": [
+    "food inflation"
+   ],
+   "first_seen": "2026-07-04T10:29:23Z",
+   "article_id": "92bf6c17-240e-4396-b85b-222afd66057d",
+   "priority": 2
+  },
+  {
+   "subject": "agriculture",
+   "subject_type": "thing",
+   "tags": [
+    "agriculture"
+   ],
+   "first_seen": "2026-07-04T10:29:23Z",
+   "article_id": "92bf6c17-240e-4396-b85b-222afd66057d",
+   "priority": 2
+  },
+  {
+   "subject": "rice exports",
+   "subject_type": "thing",
+   "tags": [
+    "rice exports"
+   ],
+   "first_seen": "2026-07-04T10:29:23Z",
+   "article_id": "92bf6c17-240e-4396-b85b-222afd66057d",
+   "priority": 2
+  },
+  {
+   "subject": "IMD",
+   "subject_type": "thing",
+   "tags": [
+    "imd"
+   ],
+   "first_seen": "2026-07-04T10:29:23Z",
+   "article_id": "92bf6c17-240e-4396-b85b-222afd66057d",
+   "priority": 2
+  },
+  {
+   "subject": "drought",
+   "subject_type": "thing",
+   "tags": [
+    "drought"
+   ],
+   "first_seen": "2026-07-04T10:29:23Z",
+   "article_id": "92bf6c17-240e-4396-b85b-222afd66057d",
+   "priority": 2
+  },
+  {
+   "subject": "ai security",
+   "subject_type": "thing",
+   "tags": [
+    "ai security"
+   ],
+   "first_seen": "2026-07-04T10:29:23Z",
+   "article_id": "f497e2e4-173a-449d-9cfe-efdc54216770",
+   "priority": 2
+  },
+  {
+   "subject": "nri banking",
+   "subject_type": "thing",
+   "tags": [
+    "nri banking"
+   ],
+   "first_seen": "2026-07-04T10:29:23Z",
+   "article_id": "f497e2e4-173a-449d-9cfe-efdc54216770",
+   "priority": 2
+  },
+  {
+   "subject": "Khamenei",
+   "subject_type": "thing",
+   "tags": [
+    "khamenei"
+   ],
+   "first_seen": "2026-07-04T10:29:23Z",
+   "article_id": "cf5d3bfc-7ad0-43c5-99be-13bf3d523421",
+   "priority": 2
+  },
+  {
+   "subject": "Iran",
+   "subject_type": "thing",
+   "tags": [
+    "iran"
+   ],
+   "first_seen": "2026-07-04T10:29:23Z",
+   "article_id": "cf5d3bfc-7ad0-43c5-99be-13bf3d523421",
+   "priority": 2
+  },
+  {
+   "subject": "funeral",
+   "subject_type": "thing",
+   "tags": [
+    "funeral"
+   ],
+   "first_seen": "2026-07-04T10:29:23Z",
+   "article_id": "cf5d3bfc-7ad0-43c5-99be-13bf3d523421",
+   "priority": 2
+  },
+  {
+   "subject": "diplomacy",
+   "subject_type": "thing",
+   "tags": [
+    "diplomacy"
+   ],
+   "first_seen": "2026-07-04T10:29:23Z",
+   "article_id": "cf5d3bfc-7ad0-43c5-99be-13bf3d523421",
+   "priority": 2
+  },
+  {
+   "subject": "Chabahar",
+   "subject_type": "thing",
+   "tags": [
+    "chabahar"
+   ],
+   "first_seen": "2026-07-04T10:29:23Z",
+   "article_id": "cf5d3bfc-7ad0-43c5-99be-13bf3d523421",
+   "priority": 2
+  },
+  {
+   "subject": "Strait of Hormuz",
+   "subject_type": "thing",
+   "tags": [
+    "strait of hormuz"
+   ],
+   "first_seen": "2026-07-04T10:29:23Z",
+   "article_id": "cf5d3bfc-7ad0-43c5-99be-13bf3d523421",
+   "priority": 2
+  },
+  {
+   "subject": "fourteenth amendment",
+   "subject_type": "thing",
+   "tags": [
+    "fourteenth amendment"
+   ],
+   "first_seen": "2026-07-04T10:29:23Z",
+   "article_id": "dbafcf6c-1353-49e3-bf1d-5afd9788a03f",
+   "priority": 2
+  },
+  {
+   "subject": "gold card",
+   "subject_type": "thing",
+   "tags": [
+    "gold card"
+   ],
+   "first_seen": "2026-07-04T10:29:23Z",
+   "article_id": "b79cd0f1-3de5-484d-a653-86db99b98fb8",
+   "priority": 2
+  },
+  {
+   "subject": "per country cap",
+   "subject_type": "thing",
+   "tags": [
+    "per country cap"
+   ],
+   "first_seen": "2026-07-04T10:29:23Z",
+   "article_id": "b79cd0f1-3de5-484d-a653-86db99b98fb8",
+   "priority": 2
+  },
+  {
+   "subject": "eb1",
+   "subject_type": "thing",
+   "tags": [
+    "eb1"
+   ],
+   "first_seen": "2026-07-04T10:29:23Z",
+   "article_id": "b79cd0f1-3de5-484d-a653-86db99b98fb8",
+   "priority": 2
+  },
+  {
+   "subject": "indian immigrant",
+   "subject_type": "thing",
+   "tags": [
+    "indian immigrant"
+   ],
+   "first_seen": "2026-07-04T10:29:23Z",
+   "article_id": "b79cd0f1-3de5-484d-a653-86db99b98fb8",
+   "priority": 2
   }
  ],
- "_updated": "2026-07-03T10:29:24Z"
+ "_updated": "2026-07-04T10:29:23Z"
 }
