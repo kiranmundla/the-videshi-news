@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-07-04T09:15:23.551697+00:00",
+  "timestamp": "2026-07-04T12:15:29.206308+00:00",
   "mode": "fix",
   "stats": {
     "pass": 2,
@@ -11,18 +11,23 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "6d029168-4f37-46d0-8713-dc890d49b257",
-      "headline": "What to Watch This Week: A Hirani OTT Debut, Ryan Gosling in Space, and Netflix's First Telugu Original",
-      "slug": "what-to-watch-this-week-july-4-2026",
+      "id": "82d56a33-6a04-49ea-ac4b-1af0040913c3",
+      "headline": "Modi Is Taking His Diaspora Playbook to Three Countries in Six Days. In One of Them, It Will Be Tested.",
+      "slug": "modi-indo-pacific-tour-australia-new-zealand-diaspora-20260704",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "a0b4569c-d3e8-4bd5-b7c9-89a954e7fb50",
+            "headline": "India and Japan Just Agreed to Build a Warship Antenna Toget"
+          }
+        ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Rajkumar Hirani",
-          "reason": "The photo shows Rajkumar Hirani, relevant to the story."
+          "what_photo_shows": "Prime Minister Narendra Modi",
+          "reason": "The photo shows Narendra Modi, relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -30,19 +35,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image features Rajkumar Hirani, which is relevant to the article's content about his OTT debut."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses films that are likely to resonate with NRI audiences, particularly the mention of family dynamics in 'Dadi Ki Shaadi' which is relatable for diaspora readers."
+          "note": "The article effectively discusses Modi's engagement with the Indian diaspora in multiple countries, highlighting the significance of these interactions."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more context on how these films specifically relate to NRI audiences.",
-          "Include a brief summary or review of the Telugu original to enhance its appeal to a broader audience."
+          "Include more direct quotes or perspectives from diaspora members to enhance the personal connection.",
+          "Add a brief conclusion summarizing the potential impact of Modi's visit on the diaspora and bilateral relations."
         ],
         "verdict": "pass"
       },
@@ -54,9 +59,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "b4ef2171-fcfe-40c0-a691-4f46e3a15d99",
-      "headline": "America's 250th Birthday Was the Hottest on Record. Literally.",
-      "slug": "america-250th-birthday-heat-wave-july-4-power-grid-emergency-20260704",
+      "id": "f4be962e-386e-4442-98fe-7aa3c638710a",
+      "headline": "Indiaspora Just Catalogued 250 Milestones of Indian American Life. The Timing Is Not a Coincidence.",
+      "slug": "indiaspora-250-milestones-indian-american-july-4th-20260704",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,28 +69,28 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "fireworks near Washington Monument",
-          "reason": "The photo shows Fourth of July celebrations, relevant to the story topic."
+          "what_photo_shows": "man at a diaspora event",
+          "reason": "The photo shows a person at a diaspora event, matching the story topic."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 7,
+        "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 8,
-          "issue": "The image depicts a Fourth of July celebration, which is relevant to the article's topic about America's birthday and the heatwave during the celebrations."
+          "score": 7,
+          "issue": "The image of M.R. Rangaswami is relevant as he is mentioned in the article, but it could be more directly related to the broader theme of Indian American milestones."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article connects the heatwave's impact on celebrations in the U.S. to the Indian diaspora's concerns about climate challenges in India, making it relevant for NRI readers."
+          "quality": 9,
+          "note": "The article effectively connects the achievements of Indian Americans to the broader narrative of their contributions to the U.S., making it relevant for diaspora readers."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes or perspectives from members of the Indian diaspora regarding their experiences with climate issues.",
-          "Add a brief section on how climate change is affecting celebrations or events in India to strengthen the diaspora connection."
+          "Consider including more direct quotes or anecdotes from Indian Americans to enhance personal connection.",
+          "Add a section discussing the impact of these milestones on the current Indian American community."
         ],
         "verdict": "pass"
       },
