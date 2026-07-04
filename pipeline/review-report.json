@@ -1,13 +1,13 @@
 {
-  "timestamp": "2026-07-04T13:15:29.436281+00:00",
+  "timestamp": "2026-07-04T13:45:11.453998+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 0,
     "flag": 1,
     "fail": 0,
     "error": 0
   },
-  "revisions": 1,
+  "revisions": 0,
   "unpublished": 0,
   "articles": [
     {
@@ -31,12 +31,12 @@
         "vision_image_match": {
           "verdict": "MATCH",
           "what_photo_shows": "Prime Minister Narendra Modi",
-          "reason": "The photo shows the correct named person related to the story."
+          "reason": "The photo shows Narendra Modi, who is relevant to the story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 6,
+        "overall_score": 8,
         "embed_issues": [],
         "image_match": {
           "score": 3,
@@ -44,102 +44,16 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 5,
-          "note": "The article touches on the implications for NRIs but lacks depth in connecting the tech pact to the diaspora's interests."
+          "quality": 7,
+          "note": "The article discusses opportunities for NRIs in India's tech sector, making the diaspora angle relevant."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the hero image with one that is more relevant to the semiconductor and technology theme.",
-          "Expand on the implications of the tech pact for NRIs, particularly in terms of investment opportunities or job prospects."
+          "Replace the hero image with one that is more relevant to the topic of semiconductors or the India-Japan tech pact.",
+          "Expand on the potential impacts of the tech pact on the Indian diaspora, particularly in terms of investment and job opportunities."
         ],
         "verdict": "flag"
-      },
-      "actions_taken": [
-        "Revised by gemini-2.5-flash (759\u2192951 words)"
-      ],
-      "revised": true,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "7fb3d430-2104-48c1-a5e2-f0523e386b4c",
-      "headline": "Microsoft and Tata Are Laying a 3,600-Kilometre Cable Under the Indian Ocean. The AI Race Demands It.",
-      "slug": "microsoft-tata-i2sea-undersea-cable-india-singapore-ai-20260704",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "server racks in a data centre",
-          "reason": "The photo shows infrastructure relevant to the submarine cable story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the specific topic of submarine cables or AI infrastructure."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the infrastructure development to the interests of NRIs, particularly in terms of access to AI services and investment opportunities."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that depicts submarine cables or AI infrastructure to enhance visual connection to the article's topic.",
-          "Expand on the implications for NRIs in terms of specific opportunities or challenges they might face with this new infrastructure."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "dbbcd21a-a731-42d4-8038-206b6657157c",
-      "headline": "Intel's Former Chief Architect Just Raised $60 Million to Build a GPU That Doesn't Need Nvidia.",
-      "slug": "raja-koduri-oxmiq-ai-chip-gpu-arm-series-a-20260704",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "closeup of a microchip on circuit board",
-          "reason": "The photo subject aligns with the semiconductor and AI chip theme of the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the specific topic of GPUs or semiconductors."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively highlights the achievements of an Indian-origin engineer and connects it to the aspirations of Indian engineers in the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that directly represents GPUs or semiconductor technology to enhance relevance.",
-          "Add more quotes or insights from Raja Koduri to provide a deeper understanding of his vision and the implications for the industry."
-        ],
-        "verdict": "pass"
       },
       "actions_taken": [
         "promoted to published"
