@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-07-04T14:15:29.920418+00:00",
+  "timestamp": "2026-07-04T15:15:29.784402+00:00",
   "mode": "fix",
   "stats": {
     "pass": 2,
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "9ccdde07-426e-4e0f-a0c0-e11b04d513be",
-      "headline": "Canada Rejected Three in Four Indian Student Visas. Now It Wants the Power to Cancel the Rest",
-      "slug": "canada-74-percent-rejection-indian-students-bill-c12-20260704",
+      "id": "8415ee0f-87eb-4301-8964-1284ef04a63b",
+      "headline": "Fireworks, Then Football. The World Cup Takes Over the Fourth of July \u2014 and NRIs Have the Best Seats in the House.",
+      "slug": "world-cup-fourth-of-july-canada-morocco-houston-france-paraguay-philadelphia-nri-2026",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Simon Fraser University campus",
-          "reason": "The university campus is relevant to a student visa story."
+          "what_photo_shows": "FIFA World Cup 2026 bracket",
+          "reason": "The photo shows a World Cup bracket, relevant to the story about the World Cup."
         },
         "inline_image_mismatches": []
       },
@@ -30,19 +30,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the topic of immigration or Indian students in Canada."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively addresses the concerns of the Indian diaspora regarding changes in Canadian immigration policies."
+          "quality": 8,
+          "note": "The article effectively connects the World Cup matches to the Indian American community, highlighting their unique experience during the Fourth of July."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that reflects the theme of immigration or Indian students in Canada.",
-          "Add more statistics or quotes from affected students to enhance the emotional impact of the article."
+          "Include quotes or reactions from Indian American fans to enhance the diaspora connection.",
+          "Add a brief historical context about the significance of the Fourth of July for NRIs."
         ],
         "verdict": "pass"
       },
@@ -54,35 +54,18 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "c1159a2e-7fae-47ae-8899-452e1bf8061c",
-      "headline": "Ten Thousand Students Flagged. The OPT Pipeline That Built Silicon Valley Is Under Siege",
-      "slug": "opt-fraud-crackdown-four-front-attack-indian-students-20260704",
+      "id": "dd345e7f-b64a-497b-a7a1-ba3cecfc10e2",
+      "headline": "He's 15 Years and 99 Days Old. Vaibhav Sooryavanshi Just Broke Sachin Tendulkar's 36-Year Record.",
+      "slug": "vaibhav-sooryavanshi-youngest-india-debut-sachin-tendulkar-record-old-trafford-england-t20i-nri-2026",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "616863da-e588-442a-b199-5a0e9c221ae0",
-            "headline": "EB-2 India Went Dark. Now the Escape Routes Are Getting Crow"
-          },
-          {
-            "article_id": "1b21ce05-c4a8-4b9c-867a-df5de0b99356",
-            "headline": "He Filed Fake H-1B Petitions Under UC Davis's Name. Now He F"
-          },
-          {
-            "article_id": "013fe3d7-d671-4d50-8625-f502a1bda945",
-            "headline": "The H-1B Filing Window Just Closed. The First Weighted Lotte"
-          },
-          {
-            "article_id": "fae798da-570b-4a2a-bd83-25123ccfcedc",
-            "headline": "Eleven Million Cases and Counting. USCIS Cannot Process Its "
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "USCIS Application Support Center",
-          "reason": "The photo shows a USCIS center, relevant to immigration and visa processes."
+          "what_photo_shows": "young cricketer with Prime Minister",
+          "reason": "The photo shows Vaibhav Sooryavanshi, relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -90,19 +73,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image depicts a USCIS Application Support Center, which is relevant to the topic of immigration and OPT, but it does not directly illustrate the specific issues discussed in the article."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively highlights the impact of OPT changes on Indian students, making it highly relevant to the NRI audience."
+          "quality": 8,
+          "note": "The article effectively connects Sooryavanshi's debut to the NRI audience, highlighting the significance of his achievements in the context of the IPL era."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider including quotes or perspectives from affected students to enhance the human element of the story.",
-          "Add a section discussing potential responses or actions from the Indian government or diaspora organizations regarding these changes."
+          "Consider adding quotes from Sooryavanshi or his teammates to provide a more personal touch.",
+          "Include more statistics or comparisons to other young cricketers to enhance the context of his achievement."
         ],
         "verdict": "pass"
       },
