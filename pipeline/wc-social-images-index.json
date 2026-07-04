@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "last_refresh": "2026-07-04T10:07:38.147666+00:00",
+  "last_refresh": "2026-07-04T16:01:42.543864+00:00",
   "posts": {
     "https://www.instagram.com/p/DaRjWN7lLD0/": {
       "account": "usmnt",
@@ -1142,6 +1142,55 @@
       "likes": 3,
       "image_count": 1,
       "scraped_at": "2026-07-04T10:07:35.900520+00:00"
+    },
+    "https://www.instagram.com/reel/DaX_D7WCEs7/": {
+      "account": "fifaworldcup",
+      "platform": "instagram",
+      "likes": 34165,
+      "image_count": 4,
+      "scraped_at": "2026-07-04T16:00:59.624505+00:00"
+    },
+    "https://www.instagram.com/reel/DaW1sVIo1Wd/": {
+      "account": "fifaworldcup",
+      "platform": "instagram",
+      "likes": 113012,
+      "image_count": 4,
+      "scraped_at": "2026-07-04T16:01:06.553321+00:00"
+    },
+    "https://www.instagram.com/p/DaX2oeaCPDa/": {
+      "account": "fifa",
+      "platform": "instagram",
+      "likes": 9273,
+      "image_count": 4,
+      "scraped_at": "2026-07-04T16:01:11.369417+00:00"
+    },
+    "https://www.instagram.com/p/DaYA6-LiMdO/": {
+      "account": "fifa",
+      "platform": "instagram",
+      "likes": 4658,
+      "image_count": 4,
+      "scraped_at": "2026-07-04T16:01:27.004160+00:00"
+    },
+    "https://www.instagram.com/p/DaXXiM9EQOQ/": {
+      "account": "fifaworldcup",
+      "platform": "instagram",
+      "likes": 204616,
+      "image_count": 4,
+      "scraped_at": "2026-07-04T16:01:31.723000+00:00"
+    },
+    "https://www.instagram.com/reel/DaWdF4CMtxt/": {
+      "account": "iam_kcee",
+      "platform": "instagram",
+      "likes": 22491,
+      "image_count": 4,
+      "scraped_at": "2026-07-04T16:01:35.669929+00:00"
+    },
+    "https://www.instagram.com/p/DaW6QtDlpyH/": {
+      "account": "reuterssport",
+      "platform": "instagram",
+      "likes": 200,
+      "image_count": 4,
+      "scraped_at": "2026-07-04T16:01:38.587699+00:00"
     }
   },
   "images": [
@@ -6742,6 +6791,338 @@
       "width": 1350,
       "height": 1687,
       "size_bytes": 211156
+    },
+    {
+      "cdn_url": "https://scontent-ord5-2.cdninstagram.com/v/t51.71878-15/729674328_2651980858537036_5441366465118867879_n.jpg?stp=cmp1_dst-jpg_e35_s640x640_tt6&_nc_cat=1&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0xJUFMuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=kA2v2r7QZr8Q7kNvwFPifid&_nc_oc=Adpg9hhI4FZmCKjss_woTI43sPiAJu0bdwD0NnNICYvoK1t529or4E8HG3iMQYnyQYF-o8U_isCSsF9-STHaYxnu&_nc_zt=23&_nc_ht=scontent-ord5-2.cdninstagram.com&_nc_gid=RtpeRN0A0_OxGMqq7PE-_A&_nc_ss=7860f&oh=00_AQBiEnT1osPvfdT0Vw5NcC4lgaB5gifM8-3YdXKzTP1WtA&oe=6A4EEC0A",
+      "post_url": "https://www.instagram.com/reel/DaX_D7WCEs7/",
+      "platform": "instagram",
+      "caption": "35K likes, 1,228 comments - fifaworldcup on July 4, 2026: \"Which goal deserves a spot in the final? \ud83d\udc40 Vote now for your Goal of the Round! \ud83d\uddf3\ufe0f\u26bd play.fifa.com\n#FIFAWorldCup #Hyundai #HGOTT\". ",
+      "scraped_at": "2026-07-04T16:00:59.624279+00:00",
+      "account": "fifaworldcup",
+      "likes": 34165,
+      "trusted": true,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-ord5-2.cdninstagram.com/v/t51.71878-15/730381931_2102835353603819_1107929694677175441_n.jpg?stp=dst-jpg_e15_tt6&_nc_cat=1&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkNMSVBTLnhwaWRzLjY0MC5zZHIudmlkZW9fYWRkaXRpb25hbF9jb3Zlcl9mcmFtZS5DMyJ9&_nc_ohc=e990RZjzPSMQ7kNvwFojayn&_nc_oc=Adp3ljsR6R3Afv7oZnM5MKG0wrutUtSh3qS82k7mb-XzKt4g7rpCkAy6FrOYqucw8kRUL2icPLSSIMtwAheEW6ZN&_nc_zt=23&_nc_ht=scontent-ord5-2.cdninstagram.com&_nc_gid=63i6DZJAtbNgOyICF8Dezg&_nc_ss=7860f&oh=00_AQA2aGLaeu5grsGC1yQLyKpc3tjWXkePIByIyG-Fe4YDgQ&oe=6A4EE741",
+      "post_url": "https://www.instagram.com/reel/DaX_D7WCEs7/",
+      "platform": "instagram",
+      "caption": "35K likes, 1,228 comments - fifaworldcup on July 4, 2026: \"Which goal deserves a spot in the final? \ud83d\udc40 Vote now for your Goal of the Round! \ud83d\uddf3\ufe0f\u26bd play.fifa.com\n#FIFAWorldCup #Hyundai #HGOTT\". ",
+      "scraped_at": "2026-07-04T16:00:59.624321+00:00",
+      "account": "fifaworldcup",
+      "likes": 34165,
+      "trusted": true,
+      "permanent_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/wc-social/ig-fifaworldcup-c0e18a63e7a5.jpg",
+      "width": 640,
+      "height": 1136,
+      "size_bytes": 121865
+    },
+    {
+      "cdn_url": "https://scontent-ord5-2.cdninstagram.com/v/t51.82787-15/735504605_18608261941061984_3936997147660737396_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=1&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=rSrtYPnWwWYQ7kNvwGfUo0-&_nc_oc=AdojFxRaQkZ6ZqOuCqID4hgIefpTml6OHt-ZU8DfK3V0R6h4ckrEmeyoDlboImqtPaoLPvJx9Um2zOA60bEZWlEv&_nc_zt=23&_nc_ht=scontent-ord5-2.cdninstagram.com&_nc_gid=63i6DZJAtbNgOyICF8Dezg&_nc_ss=7860f&oh=00_AQAp-2WD0pZr1L7ax5UDFzTlX4kLIwuD-gei0xkl1To-zQ&oe=6A4F0005",
+      "post_url": "https://www.instagram.com/reel/DaX_D7WCEs7/",
+      "platform": "instagram",
+      "caption": "35K likes, 1,228 comments - fifaworldcup on July 4, 2026: \"Which goal deserves a spot in the final? \ud83d\udc40 Vote now for your Goal of the Round! \ud83d\uddf3\ufe0f\u26bd play.fifa.com\n#FIFAWorldCup #Hyundai #HGOTT\". ",
+      "scraped_at": "2026-07-04T16:00:59.624328+00:00",
+      "account": "fifaworldcup",
+      "likes": 34165,
+      "trusted": true,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-ord5-2.cdninstagram.com/v/t51.82787-15/729716619_18608257033061984_3228186666187852935_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=1&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=wUzAWAv-6bkQ7kNvwH7mrFo&_nc_oc=AdrPS8H2kQe5WLSpEE3doJcKu1fY9sri1cgcow4Aa1EInNTN47VvGPI2OJFrEIiPJj3Ka2swqD8WUdVX5q6wMw3I&_nc_zt=23&_nc_ht=scontent-ord5-2.cdninstagram.com&_nc_gid=63i6DZJAtbNgOyICF8Dezg&_nc_ss=7860f&oh=00_AQBY-B5AkGS7C5OHaTEoA0-6KwYL53BTpAgGxKPQRYxH-A&oe=6A4F07C8",
+      "post_url": "https://www.instagram.com/reel/DaX_D7WCEs7/",
+      "platform": "instagram",
+      "caption": "35K likes, 1,228 comments - fifaworldcup on July 4, 2026: \"Which goal deserves a spot in the final? \ud83d\udc40 Vote now for your Goal of the Round! \ud83d\uddf3\ufe0f\u26bd play.fifa.com\n#FIFAWorldCup #Hyundai #HGOTT\". ",
+      "scraped_at": "2026-07-04T16:00:59.624332+00:00",
+      "account": "fifaworldcup",
+      "likes": 34165,
+      "trusted": true,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-ord5-2.cdninstagram.com/v/t51.82787-15/731168259_18608270740061984_770434241121984864_n.jpg?stp=cmp1_dst-jpg_e35_s640x640_tt6&_nc_cat=1&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0xJUFMuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=F23m9KIYKNUQ7kNvwGEia3A&_nc_oc=AdrrTAapw10AHBPaO8_UJE0VPFBJQOAtdDJI0d5kaxWnwMwckVoJCqBht9cwanzNBGHppT6fnvkLkWO8wbHQCihS&_nc_zt=23&_nc_ht=scontent-ord5-2.cdninstagram.com&_nc_gid=bJH9APHopqT1amOjiOMGtA&_nc_ss=7860f&oh=00_AQDvgGJBTAfEHGt7s0kwbImUEadOJZBIRDqe-haz2CgZ5Q&oe=6A4EF07C",
+      "post_url": "https://www.instagram.com/reel/DaW1sVIo1Wd/",
+      "platform": "instagram",
+      "caption": "113K likes, 2,312 comments - fifaworldcup on July 3, 2026: \"An unforgettable evening \ud83c\udde6\ud83c\uddf7\n#FIFAWorldCup #CelebrationOfTheMatch\". ",
+      "scraped_at": "2026-07-04T16:01:06.552933+00:00",
+      "account": "fifaworldcup",
+      "likes": 113012,
+      "trusted": true,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-ord5-2.cdninstagram.com/v/t51.71878-15/734531558_1581175370386066_5985082600725211869_n.jpg?stp=dst-jpg_e15_tt6&_nc_cat=1&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkNMSVBTLnhwaWRzLjY0MC5zZHIudmlkZW9fYWRkaXRpb25hbF9jb3Zlcl9mcmFtZS5DMyJ9&_nc_ohc=RyE5xEyZrdIQ7kNvwG7L2V4&_nc_oc=AdrvY1xNWTxU2KD8W550Tfm5ltegk-7ZDCQH4P6Aat_R01FjJOgsJl0U6H_bvuTmAmrz0ARMEF7p1qA0uerXqTbz&_nc_zt=23&_nc_ht=scontent-ord5-2.cdninstagram.com&_nc_gid=E5_HpkiH1dvGfsxTlcfT_A&_nc_ss=7860f&oh=00_AQCDAW1fjTTNh5iWS2KjBR26LUTLmbdhSpDBOryLUQqxQw&oe=6A4F0CB1",
+      "post_url": "https://www.instagram.com/reel/DaW1sVIo1Wd/",
+      "platform": "instagram",
+      "caption": "113K likes, 2,312 comments - fifaworldcup on July 3, 2026: \"An unforgettable evening \ud83c\udde6\ud83c\uddf7\n#FIFAWorldCup #CelebrationOfTheMatch\". ",
+      "scraped_at": "2026-07-04T16:01:06.552963+00:00",
+      "account": "fifaworldcup",
+      "likes": 113012,
+      "trusted": true,
+      "permanent_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/wc-social/ig-fifaworldcup-95c0802ed3e4.jpg",
+      "width": 640,
+      "height": 1136,
+      "size_bytes": 88951
+    },
+    {
+      "cdn_url": "https://scontent-ord5-2.cdninstagram.com/v/t51.82787-15/735504605_18608261941061984_3936997147660737396_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=1&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=rSrtYPnWwWYQ7kNvwHoWCm4&_nc_oc=AdqjvbvXKZn-vhNvcUbn5IsGtJFBEnMRigiFM-EhWfLycEaevDE0bu0DAIUDLzTNhlrXNn25G5SIkUR3FF5q8Ewx&_nc_zt=23&_nc_ht=scontent-ord5-2.cdninstagram.com&_nc_gid=E5_HpkiH1dvGfsxTlcfT_A&_nc_ss=7860f&oh=00_AQBdGvOxH_k5zxIYxgvWxBhfVbINWo1g1deQgmSkAb3iTw&oe=6A4F0005",
+      "post_url": "https://www.instagram.com/reel/DaW1sVIo1Wd/",
+      "platform": "instagram",
+      "caption": "113K likes, 2,312 comments - fifaworldcup on July 3, 2026: \"An unforgettable evening \ud83c\udde6\ud83c\uddf7\n#FIFAWorldCup #CelebrationOfTheMatch\". ",
+      "scraped_at": "2026-07-04T16:01:06.552974+00:00",
+      "account": "fifaworldcup",
+      "likes": 113012,
+      "trusted": true,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-ord5-2.cdninstagram.com/v/t51.82787-15/729716619_18608257033061984_3228186666187852935_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=1&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=wUzAWAv-6bkQ7kNvwHkzpNH&_nc_oc=AdpdOnE3_E2m-bRFsbTnoYDS9hmhG_YSxy8JVp2wrXDJ-4ILB_kkT7-YO9_XW_JQYO_JTtDwDgVHG03Vfv9BsEVa&_nc_zt=23&_nc_ht=scontent-ord5-2.cdninstagram.com&_nc_gid=E5_HpkiH1dvGfsxTlcfT_A&_nc_ss=7860f&oh=00_AQCJb75q8Zyl4fGVngHIR_LPbckl8WnJXn6F4cjlB-gC2g&oe=6A4F07C8",
+      "post_url": "https://www.instagram.com/reel/DaW1sVIo1Wd/",
+      "platform": "instagram",
+      "caption": "113K likes, 2,312 comments - fifaworldcup on July 3, 2026: \"An unforgettable evening \ud83c\udde6\ud83c\uddf7\n#FIFAWorldCup #CelebrationOfTheMatch\". ",
+      "scraped_at": "2026-07-04T16:01:06.552978+00:00",
+      "account": "fifaworldcup",
+      "likes": 113012,
+      "trusted": true,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-dfw5-3.cdninstagram.com/v/t51.82787-15/731526670_18101517836593118_5258977137864942711_n.jpg?stp=c216.0.648.648a_dst-jpg_e35_s640x640_tt6&_nc_cat=1&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0FST1VTRUxfSVRFTS5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=MYBv-1cxqAsQ7kNvwGO4-b6&_nc_oc=AdrhAjJPpNvVU7Z7NOjmtWJujqpx4bzz-EkVxQrEWrmGv1ITcaFkZHhZVw9ENRwxh7XQbK_iFzd0hw5QgUUWoZZ-&_nc_zt=23&_nc_ht=scontent-dfw5-3.cdninstagram.com&_nc_gid=DNS_8v3beOKgp3vbT4Dr9Q&_nc_ss=7860f&oh=00_AQDCJL2IMDPBwzCScoXzM4lhlKb0Xt2mD4HnPp702HKLUg&oe=6A4EE915",
+      "post_url": "https://www.instagram.com/p/DaX2oeaCPDa/",
+      "platform": "instagram",
+      "caption": "9,326 likes, 139 comments - fifa on July 3, 2026: \"Round of 32 \u2705\n\nLooking back at an action-packed opening round of knockout fixtures \ud83d\ude0d\". ",
+      "scraped_at": "2026-07-04T16:01:11.369166+00:00",
+      "account": "fifa",
+      "likes": 9273,
+      "trusted": true,
+      "permanent_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/wc-social/ig-fifa-b8c707185309.jpg",
+      "width": 640,
+      "height": 640,
+      "size_bytes": 56860
+    },
+    {
+      "cdn_url": "https://scontent-dfw5-1.cdninstagram.com/v/t51.82787-15/721466289_18098064623593118_6750107153801528420_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=105&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=aRbnWDWCgW4Q7kNvwHe3yax&_nc_oc=Adq18AJ5YNZuOtD5FR8FxmSZ2ZsD5sW1im15sra3Yslfptx3d2i0Wo9hTwzxIo2iGHaODLtZ_teT9uGJIsb034jw&_nc_zt=23&_nc_ht=scontent-dfw5-1.cdninstagram.com&_nc_gid=D8AJ69rLVE6dL7c2a_eyoQ&_nc_ss=7860f&oh=00_AQDNe-ytygj3qmhEORNEdf7e39kUdYXsBFRMx5oxuOgFRw&oe=6A4F0D8B",
+      "post_url": "https://www.instagram.com/p/DaX2oeaCPDa/",
+      "platform": "instagram",
+      "caption": "9,326 likes, 139 comments - fifa on July 3, 2026: \"Round of 32 \u2705\n\nLooking back at an action-packed opening round of knockout fixtures \ud83d\ude0d\". ",
+      "scraped_at": "2026-07-04T16:01:11.369200+00:00",
+      "account": "fifa",
+      "likes": 9273,
+      "trusted": true,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-dfw6-2.cdninstagram.com/v/t51.82787-15/731049153_18101522054593118_4768844027861103118_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=109&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0FST1VTRUxfSVRFTS5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=YZFprLYnMB0Q7kNvwHEEe4V&_nc_oc=Adp4vnRBz017IP-QckqYrNjvjwQ2pFZaEfAC4vyAenyYcyBtuObNY52_tQnbfuXnunzBQIEjfiEfDa8xquJINH7n&_nc_zt=23&_nc_ht=scontent-dfw6-2.cdninstagram.com&_nc_gid=D8AJ69rLVE6dL7c2a_eyoQ&_nc_ss=7860f&oh=00_AQBGzu04UEnFK0xH4oaesd3O7PIOMi5_zC1VXZHI1pRTrg&oe=6A4EFAA0",
+      "post_url": "https://www.instagram.com/p/DaX2oeaCPDa/",
+      "platform": "instagram",
+      "caption": "9,326 likes, 139 comments - fifa on July 3, 2026: \"Round of 32 \u2705\n\nLooking back at an action-packed opening round of knockout fixtures \ud83d\ude0d\". ",
+      "scraped_at": "2026-07-04T16:01:11.369206+00:00",
+      "account": "fifa",
+      "likes": 9273,
+      "trusted": true,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-dfw6-1.cdninstagram.com/v/t51.82787-15/731985428_18101599187593118_2909410371304286160_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=101&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0xJUFMuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=4R_01eh7ZioQ7kNvwGcfSOv&_nc_oc=AdrlCe0e2on22K3usD_Wjy02FQXARTOV6SGGktawHsNy-Q4HyEcPxGFhh4vjkQ-LqJPfyYIb6kKOX-qtvmKd3N42&_nc_zt=23&_nc_ht=scontent-dfw6-1.cdninstagram.com&_nc_gid=D8AJ69rLVE6dL7c2a_eyoQ&_nc_ss=7860f&oh=00_AQAIgEKFYKK-F-ddvEGApO7E_PCbt1rvczmcswNP-1RnSQ&oe=6A4F1A4B",
+      "post_url": "https://www.instagram.com/p/DaX2oeaCPDa/",
+      "platform": "instagram",
+      "caption": "9,326 likes, 139 comments - fifa on July 3, 2026: \"Round of 32 \u2705\n\nLooking back at an action-packed opening round of knockout fixtures \ud83d\ude0d\". ",
+      "scraped_at": "2026-07-04T16:01:11.369210+00:00",
+      "account": "fifa",
+      "likes": 9273,
+      "trusted": true,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-dfw5-3.cdninstagram.com/v/t51.82787-15/731185570_18101520389593118_4823030380016357732_n.jpg?stp=c216.0.648.648a_dst-jpg_e35_s640x640_tt6&_nc_cat=1&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0FST1VTRUxfSVRFTS5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=QRIvdZr2Vy4Q7kNvwEF7qIH&_nc_oc=Adra1R8p3WtLdRQ8j-Jk7Np3toHvAdGYrMbx3uCF_-L75i_QSgPbGxHtKE0YS3NPW67qPKEFXccB_4Zls_-XW2zg&_nc_zt=23&_nc_ht=scontent-dfw5-3.cdninstagram.com&_nc_gid=O7VBzF31nSZlsUOJPa_RAg&_nc_ss=7860f&oh=00_AQAvs3-AfKx3iro0paJC_lOH43XyGQxIR1yLFRRAesgIyg&oe=6A4F1B92",
+      "post_url": "https://www.instagram.com/p/DaYA6-LiMdO/",
+      "platform": "instagram",
+      "caption": "4,861 likes, 44 comments - fifa on July 3, 2026: \"Goals across all 16 host cities! \ud83d\ude0d\n\nSwipe to see the number of goals scored at each stadium so far \ud83d\udc49\". ",
+      "scraped_at": "2026-07-04T16:01:27.003675+00:00",
+      "account": "fifa",
+      "likes": 4658,
+      "trusted": true,
+      "permanent_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/wc-social/ig-fifa-ab3d26f2af0b.jpg",
+      "width": 640,
+      "height": 640,
+      "size_bytes": 85731
+    },
+    {
+      "cdn_url": "https://scontent-dfw5-1.cdninstagram.com/v/t51.82787-15/721466289_18098064623593118_6750107153801528420_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=105&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=aRbnWDWCgW4Q7kNvwH1Nkvu&_nc_oc=Adq3LkNd3n6pzkV7bZzgRQ0780tJwLnobIbhZ9At8xKBKOho44yuhY5hMzDS0iNR8Yg8uA0P4srrr2Zl0HiVhMWW&_nc_zt=23&_nc_ht=scontent-dfw5-1.cdninstagram.com&_nc_gid=xbnxWicDvzjGPorfDKIDAw&_nc_ss=7860f&oh=00_AQA8mpnXMGQK8GeyfyC6GeaMBeoQKKRrvlWMiTvCBfnOIg&oe=6A4F0D8B",
+      "post_url": "https://www.instagram.com/p/DaYA6-LiMdO/",
+      "platform": "instagram",
+      "caption": "4,861 likes, 44 comments - fifa on July 3, 2026: \"Goals across all 16 host cities! \ud83d\ude0d\n\nSwipe to see the number of goals scored at each stadium so far \ud83d\udc49\". ",
+      "scraped_at": "2026-07-04T16:01:27.003708+00:00",
+      "account": "fifa",
+      "likes": 4658,
+      "trusted": true,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-dfw6-2.cdninstagram.com/v/t51.82787-15/731049153_18101522054593118_4768844027861103118_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=109&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0FST1VTRUxfSVRFTS5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=YZFprLYnMB0Q7kNvwFk2NID&_nc_oc=AdpdHqh5q5WMjH9vjy090_NoNhTlph_tAUJtZWlRKZ5p4hjl8eWEiK8rSKUfOWc9GhviUoo44wJOxtNO8ajT8Gjo&_nc_zt=23&_nc_ht=scontent-dfw6-2.cdninstagram.com&_nc_gid=xbnxWicDvzjGPorfDKIDAw&_nc_ss=7860f&oh=00_AQAKKpbJXH04u-vPSbSODWSYHSvETrkrzYrul6MPuOUkhQ&oe=6A4EFAA0",
+      "post_url": "https://www.instagram.com/p/DaYA6-LiMdO/",
+      "platform": "instagram",
+      "caption": "4,861 likes, 44 comments - fifa on July 3, 2026: \"Goals across all 16 host cities! \ud83d\ude0d\n\nSwipe to see the number of goals scored at each stadium so far \ud83d\udc49\". ",
+      "scraped_at": "2026-07-04T16:01:27.003714+00:00",
+      "account": "fifa",
+      "likes": 4658,
+      "trusted": true,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-dfw6-1.cdninstagram.com/v/t51.82787-15/731985428_18101599187593118_2909410371304286160_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=101&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0xJUFMuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=4R_01eh7ZioQ7kNvwFkc3KR&_nc_oc=AdrFSXnYDjTCAy25HVYFkZOGNkzscyNkeSeoh23TLaMa0XVnYJicwWj85ktQ0c3-5eu0WZTKaADDyplGj4ThHiEN&_nc_zt=23&_nc_ht=scontent-dfw6-1.cdninstagram.com&_nc_gid=xbnxWicDvzjGPorfDKIDAw&_nc_ss=7860f&oh=00_AQDarzow7UXfElpUZJV7f_1GfncUs83F8tfyr-LXTR4CFQ&oe=6A4F1A4B",
+      "post_url": "https://www.instagram.com/p/DaYA6-LiMdO/",
+      "platform": "instagram",
+      "caption": "4,861 likes, 44 comments - fifa on July 3, 2026: \"Goals across all 16 host cities! \ud83d\ude0d\n\nSwipe to see the number of goals scored at each stadium so far \ud83d\udc49\". ",
+      "scraped_at": "2026-07-04T16:01:27.003717+00:00",
+      "account": "fifa",
+      "likes": 4658,
+      "trusted": true,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-dfw5-3.cdninstagram.com/v/t51.82787-15/731423071_18608316697061984_306289180317216894_n.jpg?stp=cmp1_dst-jpg_e35_s640x640_tt6&_nc_cat=1&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0FST1VTRUxfSVRFTS5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=pBcS70AGu64Q7kNvwH5f_S6&_nc_oc=AdqptdYY81zc76c3uhnHHo87hvo1I8_ZgcQEGMVM4TPy3hemWSNne67DuBy9VOULHgYJk0EDpldY4zWLErAQ2Os7&_nc_zt=23&_nc_ht=scontent-dfw5-3.cdninstagram.com&_nc_gid=_OTTjxk8uFUSXZeN_5uChw&_nc_ss=7860f&oh=00_AQDgmwt_rE9CGsBfAvgeBHAQq-y5VMtgEftJLLkPwBI2WA&oe=6A4F0677",
+      "post_url": "https://www.instagram.com/p/DaXXiM9EQOQ/",
+      "platform": "instagram",
+      "caption": "205K likes, 675 comments - fifaworldcup on July 4, 2026: \"Unforgettable Round of 16 goals \ud83e\udd2f\n\n#FIFAWorldCup\". ",
+      "scraped_at": "2026-07-04T16:01:31.722712+00:00",
+      "account": "fifaworldcup",
+      "likes": 204616,
+      "trusted": true,
+      "permanent_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/wc-social/ig-fifaworldcup-81ea269ba6ab.jpg",
+      "width": 640,
+      "height": 640,
+      "size_bytes": 45800
+    },
+    {
+      "cdn_url": "https://scontent-dfw5-3.cdninstagram.com/v/t51.82787-15/735504605_18608261941061984_3936997147660737396_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=1&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=rSrtYPnWwWYQ7kNvwGd7iiX&_nc_oc=AdpN2hBj9h64OPCqVW0dhz89_zer8pJb4zealB-_XwnST28ZDEtj9A6YsSNsV6eIgaWr6ow1_Xak-n5i3R4WLtoC&_nc_zt=23&_nc_ht=scontent-dfw5-3.cdninstagram.com&_nc_gid=-4gnyilM8LFq14Qab5nTzA&_nc_ss=7860f&oh=00_AQANl99R3B2QtQfPoBJqV4c4047kfsBEc_A6Bn8196uLPg&oe=6A4F0005",
+      "post_url": "https://www.instagram.com/p/DaXXiM9EQOQ/",
+      "platform": "instagram",
+      "caption": "205K likes, 675 comments - fifaworldcup on July 4, 2026: \"Unforgettable Round of 16 goals \ud83e\udd2f\n\n#FIFAWorldCup\". ",
+      "scraped_at": "2026-07-04T16:01:31.722746+00:00",
+      "account": "fifaworldcup",
+      "likes": 204616,
+      "trusted": true,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-dfw5-3.cdninstagram.com/v/t51.82787-15/729716619_18608257033061984_3228186666187852935_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=1&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=wUzAWAv-6bkQ7kNvwEXyyFA&_nc_oc=AdorPzjxSrnsXtkRkqlWhU7r1rEuYXY1DMhIYow0pQGdBtfSL7ZmhYQMrtJV9HZuzDK-dzaTwzh-DksjkthJmC0r&_nc_zt=23&_nc_ht=scontent-dfw5-3.cdninstagram.com&_nc_gid=-4gnyilM8LFq14Qab5nTzA&_nc_ss=7860f&oh=00_AQBGH1CLSW9sDhRKoZlTgkirqe6sYoYwvBz75j_kEJ1Niw&oe=6A4F07C8",
+      "post_url": "https://www.instagram.com/p/DaXXiM9EQOQ/",
+      "platform": "instagram",
+      "caption": "205K likes, 675 comments - fifaworldcup on July 4, 2026: \"Unforgettable Round of 16 goals \ud83e\udd2f\n\n#FIFAWorldCup\". ",
+      "scraped_at": "2026-07-04T16:01:31.722751+00:00",
+      "account": "fifaworldcup",
+      "likes": 204616,
+      "trusted": true,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-dfw5-1.cdninstagram.com/v/t51.82787-15/731423172_18608431135061984_8573317068348058482_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=106&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0FST1VTRUxfSVRFTS5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=3naAqq63n8UQ7kNvwGeHW5L&_nc_oc=AdqrYFJdBXpT88BX8ktuKIapJr7Y6sJMl6jBoYmobXcCe254yj8KRo-saCydGNHqSTdrxQNCcRBRGmE4Y62-eHQo&_nc_zt=23&_nc_ht=scontent-dfw5-1.cdninstagram.com&_nc_gid=-4gnyilM8LFq14Qab5nTzA&_nc_ss=7860f&oh=00_AQCzZvjntca8_2V7HoY5EEkOzF22kFLAOhn0Hj5LKIQbag&oe=6A4EE835",
+      "post_url": "https://www.instagram.com/p/DaXXiM9EQOQ/",
+      "platform": "instagram",
+      "caption": "205K likes, 675 comments - fifaworldcup on July 4, 2026: \"Unforgettable Round of 16 goals \ud83e\udd2f\n\n#FIFAWorldCup\". ",
+      "scraped_at": "2026-07-04T16:01:31.722755+00:00",
+      "account": "fifaworldcup",
+      "likes": 204616,
+      "trusted": true,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-dfw6-2.cdninstagram.com/v/t51.82787-15/735355543_18602607628039395_2940904240211337928_n.jpg?stp=cmp1_dst-jpg_e35_s640x640_tt6&_nc_cat=110&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0xJUFMuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=_R9rRUXUzxEQ7kNvwExJCGH&_nc_oc=Adq_iv6rVEjQzafIZQkerPP7AMo8e2hwyNzG8EfT4rKmomGWnZJ0O6NzDHWRn9abWn05gMxF37zZDJ1bYJtwEer7&_nc_zt=23&_nc_ht=scontent-dfw6-2.cdninstagram.com&_nc_gid=FcU7KH4Y-lW0-VstK3_xrg&_nc_ss=7820f&oh=00_AQCFPFk63xahk3ZPhOEQpn08hL8kWLR4NSnBKoaCSd7k0w&oe=6A4EFD23",
+      "post_url": "https://www.instagram.com/reel/DaWdF4CMtxt/",
+      "platform": "instagram",
+      "caption": "23K likes, 649 comments - iam_kcee on July 3, 2026: \"What God cannot do does not exist now this is the best game so far in this World Cup 2026 E shock you \ud83d\ude02\ud83d\ude02\ud83d\ude02\ud83d\ude02\ud83c\udf7e\ud83c\udf7e\ud83c\udf7e\ud83c\udf7e Africa is flying high tonight\". ",
+      "scraped_at": "2026-07-04T16:01:35.669872+00:00",
+      "account": "iam_kcee",
+      "likes": 22491,
+      "trusted": false,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-dfw6-2.cdninstagram.com/v/t51.71878-15/733062995_1499126088153598_2117005418804971795_n.jpg?stp=dst-jpg_e15_tt6&_nc_cat=109&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkNMSVBTLnhwaWRzLjY0MC5zZHIudmlkZW9fYWRkaXRpb25hbF9jb3Zlcl9mcmFtZS5DMyJ9&_nc_ohc=t7vBqo7bPnoQ7kNvwFP9mG_&_nc_oc=AdpadTlVaep7k8cqDh7mLuriaOUJiUXlN3b82n6qwXE_8vIeqR8-aGIINMh39IdSkU9tS-oo6p0AH0IVBRffx69_&_nc_zt=23&_nc_ht=scontent-dfw6-2.cdninstagram.com&_nc_gid=1jP7BQ9LXgYg2X20zASqzg&_nc_ss=7860f&oh=00_AQDnNTu6xJi_MGkgg5NirboCXGOY_IXqPh3iPAy91pTbPg&oe=6A4EF4C3",
+      "post_url": "https://www.instagram.com/reel/DaWdF4CMtxt/",
+      "platform": "instagram",
+      "caption": "23K likes, 649 comments - iam_kcee on July 3, 2026: \"What God cannot do does not exist now this is the best game so far in this World Cup 2026 E shock you \ud83d\ude02\ud83d\ude02\ud83d\ude02\ud83d\ude02\ud83c\udf7e\ud83c\udf7e\ud83c\udf7e\ud83c\udf7e Africa is flying high tonight\". ",
+      "scraped_at": "2026-07-04T16:01:35.669902+00:00",
+      "account": "iam_kcee",
+      "likes": 22491,
+      "trusted": false,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-dfw6-2.cdninstagram.com/v/t51.71878-15/495721529_695813083199477_1782652314591795473_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=109&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0xJUFMuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=XXa_JscbOEQQ7kNvwEvYQ3q&_nc_oc=Adqg7aYQC8IrcuCAyt8potEcDhMaDkKMRHkf24vKUzyQv6CYaRY92g84v_THUElr4VggY7LqnRasKEgS_mDieurN&_nc_zt=23&_nc_ht=scontent-dfw6-2.cdninstagram.com&_nc_gid=1jP7BQ9LXgYg2X20zASqzg&_nc_ss=7860f&oh=00_AQCCVgLeXjwmKIXAtce1UmjBaqrb9irWFREJ4XTgksuGsw&oe=6A4F0935",
+      "post_url": "https://www.instagram.com/reel/DaWdF4CMtxt/",
+      "platform": "instagram",
+      "caption": "23K likes, 649 comments - iam_kcee on July 3, 2026: \"What God cannot do does not exist now this is the best game so far in this World Cup 2026 E shock you \ud83d\ude02\ud83d\ude02\ud83d\ude02\ud83d\ude02\ud83c\udf7e\ud83c\udf7e\ud83c\udf7e\ud83c\udf7e Africa is flying high tonight\". ",
+      "scraped_at": "2026-07-04T16:01:35.669908+00:00",
+      "account": "iam_kcee",
+      "likes": 22491,
+      "trusted": false,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-dfw5-2.cdninstagram.com/v/t51.71878-15/726977447_1337492747808024_7848037533841839100_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=104&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0xJUFMuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=iUCufa6LxIYQ7kNvwH4xNrO&_nc_oc=AdpJN-8NZSLP0IbEZL5AWcT3WwizmynXgLfbWz08l6yWlvjJNpfIMtb2ML5U5OGYeI861fFrndncf7d4Zik5jgnf&_nc_zt=23&_nc_ht=scontent-dfw5-2.cdninstagram.com&_nc_gid=1jP7BQ9LXgYg2X20zASqzg&_nc_ss=7860f&oh=00_AQCVRFaGcnJ6TYBOwU6AG1rCUuuhPsyP6kdDCRjKQdAkMA&oe=6A4EEB20",
+      "post_url": "https://www.instagram.com/reel/DaWdF4CMtxt/",
+      "platform": "instagram",
+      "caption": "23K likes, 649 comments - iam_kcee on July 3, 2026: \"What God cannot do does not exist now this is the best game so far in this World Cup 2026 E shock you \ud83d\ude02\ud83d\ude02\ud83d\ude02\ud83d\ude02\ud83c\udf7e\ud83c\udf7e\ud83c\udf7e\ud83c\udf7e Africa is flying high tonight\". ",
+      "scraped_at": "2026-07-04T16:01:35.669912+00:00",
+      "account": "iam_kcee",
+      "likes": 22491,
+      "trusted": false,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-ord5-1.cdninstagram.com/v/t51.82787-15/723961386_18596153467037763_3589278194039296532_n.jpg?stp=c195.0.586.586a_dst-jpg_e35_s640x640_tt6&_nc_cat=106&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0FST1VTRUxfSVRFTS5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=qHD6B5w-ePAQ7kNvwGdUIcX&_nc_oc=AdpdON9E6VE-aZAzqfnuxv8JrsRpHcpMJR5kux5--n2Z7IYPRsqPakfkLG90oyd5blSMJOY03kLmDGz3kAI2FSmh&_nc_zt=23&_nc_ht=scontent-ord5-1.cdninstagram.com&_nc_gid=-2PYCMGmlrGYgTT7FqXj-A&_nc_ss=7860f&oh=00_AQC2nC9f8OVvtxI-A5lhJIVQELBRdm1970dP1h2M5inV0A&oe=6A4EF1E6",
+      "post_url": "https://www.instagram.com/p/DaW6QtDlpyH/",
+      "platform": "instagram",
+      "caption": "209 likes, 1 comments - reuterssport on July 3, 2026: \"Football - FIFA World Cup 2026 - Round of 32 - Colombia v Ghana - Kansas City Stadium, Kansas City, Missouri, U.S. and Bogota, Colombia #ghana #colombia #wc2026 #worldcuo @siphiwesibekopix @bernadett_sz Sergio Acero Jay Biggerstaff - Imagn Images via Reuters  @cloudiagreco\". ",
+      "scraped_at": "2026-07-04T16:01:38.587636+00:00",
+      "account": "reuterssport",
+      "likes": 200,
+      "trusted": false,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-ord5-1.cdninstagram.com/v/t51.82787-15/731068072_18596126935037763_2546871049612923668_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=101&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0FST1VTRUxfSVRFTS5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=IQ0LPWcq5TwQ7kNvwEzhigW&_nc_oc=Adpbs0NCbGojOyubm80TPqgydgIPahSomXVDad2wlzmMd7zpUIzcCAAXv9EVyEiQuzGnpABr0a6KZVh526DCF40Y&_nc_zt=23&_nc_ht=scontent-ord5-1.cdninstagram.com&_nc_gid=OyVESaXgIVB654jo8u4m-Q&_nc_ss=7860f&oh=00_AQB41q3OG8uNsr3k2s_FjLxNpZ5IoARQfw_hyICPZ8Fglg&oe=6A4EF5D4",
+      "post_url": "https://www.instagram.com/p/DaW6QtDlpyH/",
+      "platform": "instagram",
+      "caption": "209 likes, 1 comments - reuterssport on July 3, 2026: \"Football - FIFA World Cup 2026 - Round of 32 - Colombia v Ghana - Kansas City Stadium, Kansas City, Missouri, U.S. and Bogota, Colombia #ghana #colombia #wc2026 #worldcuo @siphiwesibekopix @bernadett_sz Sergio Acero Jay Biggerstaff - Imagn Images via Reuters  @cloudiagreco\". ",
+      "scraped_at": "2026-07-04T16:01:38.587675+00:00",
+      "account": "reuterssport",
+      "likes": 200,
+      "trusted": false,
+      "permanent_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/wc-social/ig-reuterssport-bd3208088872.jpg",
+      "width": 640,
+      "height": 420,
+      "size_bytes": 68131
+    },
+    {
+      "cdn_url": "https://scontent-ord5-2.cdninstagram.com/v/t51.82787-15/730452644_18596056678037763_915172131272118886_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=103&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0FST1VTRUxfSVRFTS5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=XWIbyYC-_TsQ7kNvwHen57P&_nc_oc=Adr70QVReTc6cJpuUhVP2HQfmPPeqDLOBLtrocZG4wjrEXO-Y0qVXEuY50vvlJ3QrilDXLuCXhABsq_9N0cc9d9T&_nc_zt=23&_nc_ht=scontent-ord5-2.cdninstagram.com&_nc_gid=OyVESaXgIVB654jo8u4m-Q&_nc_ss=7860f&oh=00_AQBMsQM0ykv1osq95670-y6fd66ZsKO-9rCSxi-zQlPrjw&oe=6A4EFF11",
+      "post_url": "https://www.instagram.com/p/DaW6QtDlpyH/",
+      "platform": "instagram",
+      "caption": "209 likes, 1 comments - reuterssport on July 3, 2026: \"Football - FIFA World Cup 2026 - Round of 32 - Colombia v Ghana - Kansas City Stadium, Kansas City, Missouri, U.S. and Bogota, Colombia #ghana #colombia #wc2026 #worldcuo @siphiwesibekopix @bernadett_sz Sergio Acero Jay Biggerstaff - Imagn Images via Reuters  @cloudiagreco\". ",
+      "scraped_at": "2026-07-04T16:01:38.587681+00:00",
+      "account": "reuterssport",
+      "likes": 200,
+      "trusted": false,
+      "permanent_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/wc-social/ig-reuterssport-bbbb367d85fa.jpg",
+      "width": 640,
+      "height": 441,
+      "size_bytes": 41974
+    },
+    {
+      "cdn_url": "https://scontent-ord5-1.cdninstagram.com/v/t51.82787-15/730941468_18595850959037763_5591449378644360713_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=101&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0FST1VTRUxfSVRFTS5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=qyJ-Irni-6IQ7kNvwFmUjuF&_nc_oc=AdoSh2TwSneGbvTFbn-7KShpM5C4p36CvkUPA3Hqy4ysHXndf8nsE1qbFX8HRinZ1kHrV-IGvjm9KLKOjfySNqh8&_nc_zt=23&_nc_ht=scontent-ord5-1.cdninstagram.com&_nc_gid=OyVESaXgIVB654jo8u4m-Q&_nc_ss=7860f&oh=00_AQB2AwVDSEI0lqP1vb-zGkLyxcsHIWNCdFMU0OmjF1XeEA&oe=6A4F181D",
+      "post_url": "https://www.instagram.com/p/DaW6QtDlpyH/",
+      "platform": "instagram",
+      "caption": "209 likes, 1 comments - reuterssport on July 3, 2026: \"Football - FIFA World Cup 2026 - Round of 32 - Colombia v Ghana - Kansas City Stadium, Kansas City, Missouri, U.S. and Bogota, Colombia #ghana #colombia #wc2026 #worldcuo @siphiwesibekopix @bernadett_sz Sergio Acero Jay Biggerstaff - Imagn Images via Reuters  @cloudiagreco\". ",
+      "scraped_at": "2026-07-04T16:01:38.587685+00:00",
+      "account": "reuterssport",
+      "likes": 200,
+      "trusted": false,
+      "permanent_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/wc-social/ig-reuterssport-cddf934eb7f7.jpg",
+      "width": 640,
+      "height": 432,
+      "size_bytes": 40108
     }
   ]
 }
