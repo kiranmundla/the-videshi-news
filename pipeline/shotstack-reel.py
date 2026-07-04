@@ -53,12 +53,13 @@ except Exception as _e:
 
 def _coerce_tiles(raw):
     """Normalize a GPT stat_grid `tiles` payload into [(value, label, color), ...]
-    assigning the 4 brand accent colors in order (GPT never picks colors)."""
+    assigning brand accent colors in order (GPT never picks colors)."""
     if not _ANIM_OK or not isinstance(raw, list):
         return []
-    palette = [_ANIM.BLUE, _ANIM.GREEN_BR, _ANIM.SAFFRON, _ANIM.GOLD_BR]
+    palette = [_ANIM.BLUE, _ANIM.GREEN_BR, _ANIM.SAFFRON, _ANIM.GOLD_BR,
+               (100, 180, 230), (180, 120, 200)]  # extra 2 for 5-6 tile grids
     out = []
-    for idx, tile in enumerate(raw[:4]):
+    for idx, tile in enumerate(raw[:6]):
         val = lab = None
         if isinstance(tile, (list, tuple)) and len(tile) >= 2:
             val, lab = str(tile[0]), str(tile[1])
@@ -553,31 +554,40 @@ and silently falls back to a branded card if your choice can't be fulfilled.
 - Scene 1 = the HOOK. scene_role "hook".
 - Middle scenes = the narration beats. scene_role "beat".
 - The LAST scene = the closing call-to-action. scene_role "cta".
-- More scenes = more visual variety = better retention. Vary the media_plan
-  across scenes — a reel that is ALL identical cards reads as monotonous. Mix in
-  a generated illustration or a social embed where the beat supports it.
+- More scenes = more visual variety = better retention. Each scene should look
+  DIFFERENT. Use "generate" for most mid-reel scenes (each gets a unique AI
+  image). Mix data_viz "integrated" (big stat baked into the image) and "overlay"
+  (topic image with text card on top). Use "card" with card_style for animated
+  motion graphics (stat_grid, hero_stat, diaspora_panel). Scene 1 uses the hero
+  photo when available. A reel with visual variety AND dense data wins.
 
 For each scene, provide:
 - "narration": the exact words spoken during that scene (copy from script).
 - "scene_role": one of "hook" | "beat" | "cta".
 - "card_text": MANDATORY for EVERY scene (it's the on-screen text for "card"
   scenes AND the safe fallback if any richer plan fails). A SHORT, punchy key
-  point distilling the beat — 4 to 9 words, the essence of what's narrated, the
+  point distilling the beat — 6 to 12 words, the essence of what's narrated, the
   way you'd headline it on a card. Title-case-ish, no trailing period. Lead with
-  the number/name when there is one. Examples: "Telugu Worker Forced To Pay
-  $30,000", "Federal Lawsuit Filed In Michigan", "Every H-1B Holder Is At Risk".
+  the number/name when there is one. Pack in a concrete detail — a number, a
+  name, a place. Examples: "Telugu Worker Forced To Pay $30,000 For H-1B",
+  "Federal Lawsuit Filed In Michigan District Court", "19% Of H-1B Holders Now
+  At Risk Of Deportation".
 - "card_subtext": MANDATORY for EVERY scene. A SUPPORTING context line that sits
   UNDER the card_text headline — it adds the concrete detail the headline alone
   can't carry (the who/where/why/how-much/what-next), so the card reads like a
-  newspaper headline + standfirst instead of a lone phrase. 9 to 18 words, one
-  sentence, plain sentence case, no trailing period. It MUST add NEW information,
-  never just reword card_text. Pair examples (headline → subtext):
-    • "Telugu Worker Forced To Pay $30,000" → "He paid a staffing agent to keep
-      his H-1B status, then sued under federal trafficking law"
-    • "Now The Way Out Costs $100,000" → "A new consular fee makes leaving and
-      re-entering on H-1B unaffordable for most laid-off Indians"
-    • "Every H-1B Holder Is At Risk" → "Lawyers warn the pay-to-stay scheme
-      mirrors quiet pressure thousands of visa workers already face"
+  newspaper headline + standfirst instead of a lone phrase. 12 to 25 words, one
+  or two sentences, plain sentence case, no trailing period. PACK IN DATA: names,
+  numbers, percentages, dollar amounts, dates, comparisons. It MUST add NEW
+  information, never just reword card_text. Pair examples (headline → subtext):
+    • "Telugu Worker Forced To Pay $30,000 For H-1B" → "He paid a staffing agent
+      to keep his visa status for three years, then filed a federal trafficking
+      lawsuit in Texas that could set precedent for 600,000 H-1B holders"
+    • "India-Japan $61 Billion Investment Target By 2030" → "Up from $42 billion
+      in 2024. Covers semiconductors, AI, critical minerals, and stealth naval
+      tech — Japan's first co-development pact outside the Five Eyes"
+    • "Every H-1B Holder Is At Risk Of Pay-To-Stay" → "Lawyers warn the scheme
+      mirrors quiet pressure thousands of visa workers already face. USCIS data
+      shows 68% of denied extensions were Indians in FY2025"
 - "media_plan": one of "social" | "generate" | "card" | "media_library":    • "social" — show a REAL social post (X or Threads) from a public figure /
       official account central to THIS story, in a branded attributed frame. Only
       choose this when the beat is literally about what a specific named person or
@@ -585,25 +595,43 @@ For each scene, provide:
       "social_hint" with the handle (no @) or the person/org name + topic. The
       executor will try to fetch a recent on-topic post; if none exists it falls
       back to your card_text. Never pick "social" for scene 1 or the final CTA.
-    • "generate" — show a custom GENERATED editorial illustration for an abstract
-      or scene-setting beat (a concept, a mood, a setting) that no card or real
-      photo captures well. Add an "image_prompt" (see GENERATE RULES). Great for
-      the hook background and for conceptual beats. Use sparingly: 1-3 per reel.
+    • "generate" — a custom GENERATED editorial illustration. TWO sub-modes:
+      (a) DATA-INTEGRATED: for scenes with ONE BIG STAT (a dollar amount, a
+          percentage, a count), include the number in the image_prompt so
+          Gemini bakes it into the visual as part of an infographic-style
+          illustration. Example prompt: "a bold typographic illustration showing
+          $61 BILLION with stylized arrows flowing between India and Japan flags,
+          dark editorial mood". The number IS the visual — punchy, scroll-stopping.
+          Use this for 2-3 scenes per reel where a single stat dominates.
+      (b) MOOD BACKGROUND: for scenes where you want a unique atmospheric image
+          BEHIND a text overlay. Do NOT include numbers in the prompt — just the
+          topic/mood. The card_text + card_subtext will be overlaid on top by the
+          renderer. Example: "a symbolic illustration of naval radar technology
+          and maritime defense, dark moody tones".
+      Add "data_viz": "integrated" for sub-mode (a), or "data_viz": "overlay"
+      for sub-mode (b). Default is "overlay" if omitted.
+      Use "generate" for MOST mid-reel scenes (4-6 out of 8). Each scene gets
+      its OWN unique image — visual variety is key.
     • "media_library" — show a real curated photo from our in-house library IF the
       beat is about a concrete, common, photographable Indian subject (a city
       skyline, currency, a generic crowd, a flag). Add a "media_subject" (2-4
       words, concrete, India-anchored). If nothing fits, executor falls to card.
-    • "card" — the default. A clean branded text card showing card_text. Choose
-      this whenever unsure; it is always safe and on-brand.
+    • "card" — a branded data card with card_text + card_subtext, optionally
+      upgraded to an animated data card via card_style. Use this for animated
+      stat_grid / hero_stat / diaspora_panel beats (the motion graphics), and as
+      fallback. For plain text-heavy data WITHOUT animation, prefer "generate"
+      with data_viz "overlay" instead — it gets a unique AI background rather
+      than a flat navy card.
 
 ANIMATED DATA CARDS (optional "card_style") — for a "card" beat that is really
 ABOUT NUMBERS or the diaspora-impact, you may upgrade it to an animated data
 card by adding a "card_style" plus its structured payload. These render as
 motion graphics (counting numbers, staggered tiles, bullets sliding in) and are
 far more engaging than a plain text card for stat-heavy beats. RULES:
-- Use card_style on AT MOST 2-3 scenes total, ONLY on genuine number/stat beats
-  or the single diaspora-impact beat. NEVER on scene 1 (the hook) or the final
-  CTA. Most scenes should have NO card_style.
+- Use card_style on 3-5 scenes total — be AGGRESSIVE about finding numbers and
+  stats in the article to visualize. Almost every news article has numbers worth
+  showing: dollar amounts, percentages, headcounts, dates, rankings, growth
+  rates. DIG THEM OUT. NEVER on scene 1 (the hook) or the final CTA.
 - Every figure MUST come from THIS article's verified facts — never invent or
   inflate a number. If you're unsure of a number, do NOT use a stat card.
 - card_text and card_subtext remain MANDATORY on the scene (they are the safe
@@ -612,34 +640,45 @@ far more engaging than a plain text card for stat-heavy beats. RULES:
 The three styles and their payloads:
   • "hero_stat" — ONE signature number that counts up huge on screen. Payload:
     "hero_stat": {{"big": "<short stat, e.g. $1.3T or 19% or ₹4,400cr>",
-                   "sub": "<one-line meaning of that number>",
+                   "sub": "<one-line meaning of that number, 10-20 words with context>",
                    "eyebrow": "<2-4 word kicker, e.g. BY THE NUMBERS>"}}
-  • "stat_grid" — 2-4 key figures as a tile grid. Payload:
+  • "stat_grid" — 2-6 key figures as a tile grid. Payload:
     "stat_grid": {{"tiles": [["$135","IPO price / share"],
                              ["$85.7B","raised — largest ever"],
-                             ["+19%","first-day pop"], ["$2.66T","valuation"]],
-                   "eyebrow": "<kicker>"}}  (2 to 4 tiles; each = [value, label])
+                             ["+19%","first-day pop"], ["$2.66T","valuation"],
+                             ["4th","largest IPO in history"],
+                             ["12,000","new jobs expected"]],
+                   "eyebrow": "<kicker>"}}  (2 to 6 tiles; each = [value, label])
+    PACK as many real numbers from the article as you can (up to 6). Each tile is
+    a number + a short label. More tiles = more data = better reel.
   • "diaspora_panel" — saffron India/NRI impact panel. RESERVE for the explicit
     diaspora-impact beat. Payload:
     "diaspora_panel": {{"title": "<panel headline>",
-                        "subtitle": "<one supporting line>",
-                        "bullets": ["<fact>","<fact>","<fact>"]}}  (3-4 bullets)
+                        "subtitle": "<one supporting line with a number if possible>",
+                        "bullets": ["<fact with number>","<fact>","<fact>","<fact>","<fact>"]}}
+    (3-5 bullets, each should carry a concrete fact, not vague impact statements)
 
 GENERATE RULES (only when media_plan = "generate") — write "image_prompt" as an
-EDITORIAL ILLUSTRATION brief, never a photo:
+EDITORIAL ILLUSTRATION brief:
 - It MUST be a stylized, abstract, or symbolic illustration — NOT a photograph,
   NOT photoreal.
 - ABSOLUTELY NO real, identifiable person (no politician, celebrity, athlete —
   no faces of named people). NO depiction of a real news event staged as if it
-  were a real photo. NO logos of real companies. NO text, letters, words, or
-  numbers anywhere in the image (all text lives on separate cards).
-- Describe symbolic/conceptual visuals: objects, documents, silhouettes,
-  landscapes, geometric motifs, light. e.g. "a lone silhouetted figure dwarfed by
-  towering faceless office buildings, oppressive scale, symbolizing worker
-  powerlessness" or "an official-looking legal document partially torn,
-  dramatic shadow, symbolizing a lawsuit". Keep it to ONE clear concept.
+  were a real photo. NO logos of real companies.
+- For data_viz "integrated": INCLUDE the key stat/number prominently in the
+  prompt (e.g. "$61B", "19%", "₹4,400cr"). The number should be the visual
+  centerpiece — bold, typographic, integrated with symbolic elements. Think
+  infographic-meets-editorial-art. Example: "a bold typographic illustration
+  with $61 BILLION in large gold text, stylized arrows flowing between Indian
+  and Japanese flag elements, dark navy editorial mood with subtle grid lines".
+- For data_viz "overlay" (or omitted): NO text, letters, words, or numbers
+  anywhere in the image (text is overlaid separately). Describe symbolic/
+  conceptual visuals: objects, documents, silhouettes, landscapes, geometric
+  motifs, light. e.g. "naval radar dishes and warship silhouettes against a
+  dramatic ocean sunset, dark moody editorial tones". Keep it to ONE concept.
 - Do NOT specify colors, borders, or framing — a fixed house style is appended
   automatically. Just describe the SUBJECT and MOOD in 1-2 sentences.
+- For both modes: 200-350 characters for image_description.
 
 SOCIAL SEARCH (top-level "social_search") — you are also the SEARCH EDITOR. We
 will search X and Threads for REAL public posts (photos AND video clips) about
@@ -3407,7 +3446,7 @@ def source_storyboard_images(article, storyboard, count=8):
     headline = article.get("headline", "")
 
     # Minimum resolution for article images (shortest side)
-    MIN_IMAGE_DIM = 1000
+    MIN_IMAGE_DIM = 600  # lowered: hero works as bg even at landscape res (crop-to-fill)
 
     def check_image_resolution(url):
         """HEAD-check an image and return (width, height) or None if unreachable/too small."""
@@ -4994,8 +5033,10 @@ def _card_background_url(scene, article, article_id, idx, used_in_this_reel,
     card reads like the SpaceX image-overlay style, not a flat navy slide). Order:
       1) curated media-library photo for the scene's media_subject/visual (FREE,
          preferred) — generic-but-on-topic is fine per Kiran.
-      2) a brand-styled gpt-image-1 illustration, but only while gen_budget[0] > 0
-         (caps OpenAI spend per reel; decremented on use).
+      2) a brand-styled Gemini illustration — EVERY card scene should get a unique
+         AI-generated background so no two cards look the same. gen_budget is
+         uncapped for card backgrounds (Gemini is ~$0.04/image, worth it for
+         visual variety).
     Returns (url|None, used_generation_bool). Bare foreign-geo subjects are skipped
     (documented off-topic trap). Never raises."""
     # 1) media library (free)
@@ -5019,13 +5060,16 @@ def _card_background_url(scene, article, article_id, idx, used_in_this_reel,
                     except Exception:
                         pass
                     return au, False
-    # 2) generated illustration (budgeted)
-    if gen_budget[0] > 0:
+    # 2) generated illustration (uncapped — Gemini is cheap, every card deserves a unique bg)
+    if True:
         prompt = (scene.get("image_prompt") or "").strip()
         if not prompt:
-            seed = (scene.get("visual") or "").strip() or (article.get("headline") or "").strip()
+            # Build a scene-specific prompt from the card's own content
+            card_text = (scene.get("card_text") or "").strip()
+            visual = (scene.get("visual") or "").strip()
+            seed = visual or card_text or (article.get("headline") or "").strip()
             if seed:
-                prompt = "a symbolic editorial scene evoking " + seed
+                prompt = f"a symbolic editorial illustration evoking: {seed}. Dark moody tones suitable for text overlay, no text or words in the image."
         if prompt:
             gurl = generate_themed_image(prompt, article_id, f"cardbg{idx}")
             if gurl:
@@ -5241,7 +5285,7 @@ def source_reel_media_clean(article, storyboard, count=8):
     article_id = article.get("id", "")
     body = article.get("body", "") or ""
 
-    MIN_IMAGE_DIM = 1000
+    MIN_IMAGE_DIM = 600  # lowered: hero works as bg even at landscape res (crop-to-fill)
 
     def check_image_resolution(url):
         try:
@@ -5513,15 +5557,45 @@ def source_reel_media_clean(article, storyboard, count=8):
         url = None
         meta = None
 
-        # "generate" — gpt-image-1 branded editorial illustration.
+        # "generate" — Gemini editorial illustration. Two sub-modes:
+        #   data_viz="integrated": image IS the scene (stat baked into visual)
+        #   data_viz="overlay": image is bg, card text overlaid on top
         if plan == "generate" and scene.get("image_prompt"):
+            data_viz = (scene.get("data_viz") or "overlay").strip().lower()
             gurl = generate_themed_image(scene.get("image_prompt"), article_id, i)
             if gurl:
-                url = gurl
-                meta = {"type": "image", "duration": 0, "is_generated": True,
-                        "curated": True, "generic_pexels": False}
-                n_gen += 1
-                print(f"  🖌️ Scene {i+1}: generated illustration — \"{scene.get('image_prompt','')[:48]}\"")
+                if data_viz == "integrated":
+                    # Image IS the scene — stat is part of the visual
+                    url = gurl
+                    meta = {"type": "image", "duration": 0, "is_generated": True,
+                            "curated": True, "generic_pexels": False}
+                    n_gen += 1
+                    print(f"  🖌️ Scene {i+1}: data-integrated illustration — \"{scene.get('image_prompt','')[:48]}\"")
+                else:
+                    # Overlay mode: render card with this image as background
+                    local = render_keypoint_card(scene, category, article, i,
+                                                 bg_url=gurl)
+                    if local:
+                        try:
+                            with open(local, "rb") as _fh:
+                                _ch = hashlib.md5(_fh.read()).hexdigest()[:10]
+                        except Exception:
+                            _ch = str(int(time.time()))
+                        storage_path = f"reel-cards/{article_id}/scene-{i}-{_ch}.png"
+                        curl = upload_asset(local, storage_path, "image/png")
+                        try:
+                            os.remove(local)
+                        except Exception:
+                            pass
+                        if curl:
+                            url = curl
+                            meta = {"type": "image", "duration": 0, "is_card": True,
+                                    "curated": True, "generic_pexels": False}
+                            n_card += 1
+                            n_gen += 1
+                            print(f"  🎨 Scene {i+1}: data-overlay card — \"{scene.get('card_text','')[:40]}\"")
+                    if url is None:
+                        print(f"  ⚠️ Scene {i+1}: overlay card render failed — falling to card")
             else:
                 print(f"  ⚠️ Scene {i+1}: generate failed — falling to card")
 

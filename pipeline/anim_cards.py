@@ -204,16 +204,20 @@ def render_hero_stat_mp4(big, sub, eyebrow="BY THE NUMBERS", out_dir="/tmp/vides
 # ════════════════════════════════════════════════════════════════════════════
 def render_stat_grid_mp4(tiles, eyebrow="THE DEAL IN FIGURES", out_dir="/tmp/videshi_anim",
                          duration=3.8, pad_to=12.0):
-    """tiles: list of up to 4 (big, label, accent_rgb)."""
+    """tiles: list of up to 6 (big, label, accent_rgb)."""
     from PIL import Image, ImageDraw
     try:
         os.makedirs(out_dir, exist_ok=True)
         n=int(duration*FPS)
-        tiles=tiles[:4]
+        tiles=tiles[:6]
         # precompute count-up parse per tile
         parsed=[_parse_number(t[0]) for t in tiles]
         MX=90
-        gw=(W-2*MX-30)//2; gh=300; gap=30; gy=int(H*0.34)
+        # Dynamic grid layout: 2 cols, up to 3 rows
+        n_tiles=len(tiles)
+        cols=2; rows=(n_tiles+1)//2
+        gw=(W-2*MX-30)//2; gh=240 if rows>=3 else 300; gap=24 if rows>=3 else 30
+        gy=int(H*0.28) if rows>=3 else int(H*0.34)
         with tempfile.TemporaryDirectory() as fd:
             base=_bg()
             # title block drawn once per frame (cheap)
@@ -242,14 +246,14 @@ def render_stat_grid_mp4(tiles, eyebrow="THE DEAL IN FIGURES", out_dir="/tmp/vid
                         disp=_fmt_number(prefix,val*ease_out_cubic(cu),suffix,dec,hc)
                     else:
                         disp=big
-                    nf=_font(92,"extrabold")
+                    nf=_font(72 if rows>=3 else 92,"extrabold")
                     # shrink font if too wide
-                    while d.textlength(disp,font=nf)>gw-56 and nf.size>52:
+                    while d.textlength(disp,font=nf)>gw-56 and nf.size>44:
                         nf=_font(nf.size-6,"extrabold")
-                    d.text((x+34,yy+46),disp,font=nf,fill=(20,30,50))
-                    lf=_font(32,"semibold")
+                    d.text((x+34,yy+(32 if rows>=3 else 46)),disp,font=nf,fill=(20,30,50))
+                    lf=_font(28 if rows>=3 else 32,"semibold")
                     for j,ln in enumerate(_wrap(d,lab,lf,gw-60)):
-                        d.text((x+34,yy+168+j*40)," ".join(ln),font=lf,fill=(74,88,108))
+                        d.text((x+34,yy+(130 if rows>=3 else 168)+j*(34 if rows>=3 else 40))," ".join(ln),font=lf,fill=(74,88,108))
                 _wordmark(d)
                 img.save(os.path.join(fd,f"f_{fi:04d}.png"))
             out=os.path.join(out_dir,f"grid_{abs(hash(str(tiles)))%10**8}.mp4")
@@ -268,7 +272,7 @@ def render_diaspora_panel_mp4(title, subtitle, bullets, eyebrow="THE DIASPORA AN
     try:
         os.makedirs(out_dir, exist_ok=True)
         n=int(duration*FPS)
-        MX=90; bullets=bullets[:4]
+        MX=90; bullets=bullets[:5]
         with tempfile.TemporaryDirectory() as fd:
             base=_bg()
             # measure panel layout once
