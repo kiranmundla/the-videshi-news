@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-04T00:16:02.457124+00:00",
+  "timestamp": "2026-07-04T00:45:43.286571+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 6,
+    "pass": 4,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "a4c0da12-5a23-40c9-aa8c-1906a1f00987",
-      "headline": "Indian Immigrants Built 96 US Unicorns. The Visa Pipeline That Made It Possible Is Collapsing",
-      "slug": "indian-founders-96-unicorns-h1b-pipeline-collapsing-nfap-20260704",
+      "id": "86264e9a-a48a-4945-9042-15300650faa5",
+      "headline": "From Darjeeling to 2,000 Walmarts: Indian Tea Gets Its Zero-Tariff American Moment",
+      "slug": "from-darjeeling-to-2000-walmarts-indian-tea-gets-its-zero-tariff-american-moment",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,94 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "diverse team in tech office",
-          "reason": "The photo aligns with the story about tech professionals and immigration."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the topic of Indian immigrants or unicorns."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively highlights the contributions of Indian immigrants to the US economy, which resonates with the NRI audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that depicts Indian immigrants or entrepreneurship.",
-          "Add quotes or anecdotes from Indian entrepreneurs to enhance the personal connection to the diaspora."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "70467e32-d23e-44e0-a7ba-dc212678f551",
-      "headline": "America Turns 250. A Million Indians Are Still Waiting for Green Cards",
-      "slug": "america-250th-birthday-indian-immigrants-green-card-wait-20260704",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Statue of Liberty and American flag",
-          "reason": "The photo is relevant to the topic of immigration in America."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the topic of immigration or green cards."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively highlights the struggles of Indian immigrants in the U.S. and connects with the Indian diaspora's experiences."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that directly represents the theme of immigration or the struggles faced by Indian immigrants.",
-          "Add more personal anecdotes or quotes from Indian immigrants to enhance the emotional connection with the diaspora audience."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "0f9bf379-72e8-4eed-85a7-9212831541e8",
-      "headline": "South Korea Just Bet $591 Billion on Chips. India's Semiconductor Dream Looks Like a Rounding Error.",
-      "slug": "south-korea-591-billion-semiconductor-india-chip-20260704",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "semiconductor wafer",
-          "reason": "The photo shows a semiconductor wafer, relevant to the chip manufacturing story."
+          "what_photo_shows": "glass of Indian masala chai",
+          "reason": "The photo of masala chai is relevant to the story about Indian tea."
         },
         "inline_image_mismatches": []
       },
@@ -122,13 +36,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the semiconductor developments in South Korea and India to the Indian diaspora, particularly highlighting opportunities for Indian engineers and the implications for reverse migration."
+          "note": "The article discusses Indian tea's growing presence in the US market, which resonates with the Indian diaspora interested in cultural products."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more specific examples of how Indian engineers are contributing to semiconductor advancements in the US.",
-          "Add a section discussing potential challenges India may face in scaling its semiconductor industry compared to South Korea."
+          "Include quotes or insights from diaspora members or Indian tea enthusiasts in the US to strengthen the connection.",
+          "Add more statistics or data on the consumption of Indian tea among the diaspora to enhance the article's depth."
         ],
         "verdict": "pass"
       },
@@ -140,27 +54,18 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "5ce08044-06ed-45f2-b446-1abfea431094",
-      "headline": "Pichai's Google Just Put an AI Agent on Your Mac. It Sorts Your Files, Books Tables and Orders Groceries.",
-      "slug": "google-gemini-spark-mac-ai-agent-pichai-20260704",
+      "id": "e1d8fdce-b1c7-451b-9048-a8a2bd63dbca",
+      "headline": "Liquid Gold Rush: How Ghee Became a $62 Billion Global Phenomenon \u2014 and Why Your Nani Saw It Coming",
+      "slug": "liquid-gold-rush-how-ghee-became-a-62-billion-global-phenomenon-and-why-your-nan",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "4199782a-6579-475a-9f68-876561ffeb5f",
-            "headline": "Pichai's Google Ran Out of GPUs. So It's Paying a Rocket Com"
-          },
-          {
-            "article_id": "a166c698-a52b-448d-b6c1-525fdbecfa7c",
-            "headline": "Google Just Gave Its AI Agent a Desktop. It Costs $100 a Mon"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Sundar Pichai at an event",
-          "reason": "The photo shows Sundar Pichai, relevant to the Google AI story."
+          "what_photo_shows": "A jar of homemade ghee",
+          "reason": "The photo shows ghee, which is relevant to the story about its global market."
         },
         "inline_image_mismatches": []
       },
@@ -174,13 +79,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects Sundar Pichai's leadership and the implications for Indian Americans in tech, making it relevant for the diaspora."
+          "note": "The article discusses the global rise of ghee and its cultural significance, connecting well with the Indian diaspora's experiences and perspectives."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more quotes or insights from industry experts to enhance credibility.",
-          "Include a section on potential challenges or criticisms of the new AI agent to provide a balanced view."
+          "Include more personal anecdotes or quotes from diaspora members to enhance relatability.",
+          "Add a section on how ghee is being used in modern Indian cooking or fusion recipes to engage readers further."
         ],
         "verdict": "pass"
       },
@@ -192,9 +97,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "426f780a-6b78-47f4-88aa-038970d48d87",
-      "headline": "Two Duke Cardiologists Now Lead the American Heart Association. Both Are Children of Indian Immigrants.",
-      "slug": "duke-cardiologists-patel-shah-aha-leadership-indian-american-20260704",
+      "id": "5661fef6-4f2e-41ba-a649-c08fd0d23c70",
+      "headline": "Eight Men Arrested for Stealing Donations From the Ram Mandir. A Court Is Being Asked to Call In the CBI.",
+      "slug": "ayodhya-ram-mandir-donation-embezzlement-eight-arrested-cbi-pil-20260703",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -202,57 +107,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "healthcare professional with stethoscope",
-          "reason": "The photo is on-topic for a cardiology story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 5,
-          "issue": "The image does not directly relate to the article's focus on cardiology or the specific individuals mentioned."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively highlights the achievements of Indian-American cardiologists and their significance to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that reflects cardiology or the individuals discussed.",
-          "Add quotes or anecdotes from the cardiologists to enhance personal connection and engagement."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "6abdd2cb-381c-4ea5-be49-dfab1d5f8578",
-      "headline": "They Started Fighting for India in Westminster During the Emergency. Fifty Years Later, They Want Blue Plaques.",
-      "slug": "fisi-uk-golden-jubilee-50-years-westminster-diaspora-20260704",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [
-          {
-            "url": "https://x.com/FISI_UK/status/1939728192640274520",
-            "problem": "broken",
-            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
-          }
-        ],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "The Bhavan Indian Arts Centre",
-          "reason": "The photo shows the venue for the FISI UK Golden Jubilee, relevant to the story."
+          "what_photo_shows": "Shri Ram Janmabhoomi Mandir in Ayodhya",
+          "reason": "The photo shows the temple relevant to the embezzlement story."
         },
         "inline_image_mismatches": []
       },
@@ -266,18 +122,60 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the historical activism of the Indian diaspora in the UK to contemporary issues, making it relevant for NRI readers."
+          "note": "The article effectively connects the scandal to NRIs by highlighting their contributions and the implications of the investigation for overseas donors."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes or testimonials from diaspora members to enhance personal connection.",
-          "Include more context on the significance of the Blue Plaque campaign for the diaspora."
+          "Consider adding quotes from NRI donors or diaspora organizations to enhance the connection to the audience.",
+          "Include more context about the Ram Mandir's significance to the diaspora to deepen the engagement."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "Removed 1 broken/hallucinated embed(s)",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "4916583d-3583-4dcb-8f9a-125aceb06e72",
+      "headline": "India and Japan Just Signed Their First Defence Co-Development Deal. It Is the Start of Something Much Bigger.",
+      "slug": "india-japan-summit-takaichi-modi-defense-ai-unicorn-pacts-61-billion-20260703",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Two leaders at Rashtrapati Bhavan",
+          "reason": "The photo shows leaders from India and Japan, matching the summit context."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses the implications of the India-Japan defense deal, which can resonate with the Indian diaspora interested in geopolitical developments and their impact on India."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Expand on the implications of the defense deal for the Indian diaspora, particularly in terms of job opportunities or investment prospects.",
+          "Include quotes or perspectives from diaspora members or experts to enhance the connection to the NRI audience."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
         "promoted to published"
       ],
       "revised": false,
