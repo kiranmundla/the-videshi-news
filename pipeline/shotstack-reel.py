@@ -482,7 +482,7 @@ def generate_script(article, force_new=False):
     slug = article.get("slug", "unknown")
 
     # Script cache — reuse if already generated
-    SCRIPT_CACHE_VERSION = "clean7"  # bump to invalidate old caches (clean7: Gemini gets full article body for rich infographics)
+    SCRIPT_CACHE_VERSION = "clean8"  # bump to invalidate old caches (clean8: no-repeat + visual-variety storyboard rules, scene_direction in Gemini prompt)
     cache_path = BUILD_DIR / f"script-{slug}.json"
     if not force_new and cache_path.exists():
         try:
@@ -558,9 +558,24 @@ and silently falls back to a branded card if your choice can't be fulfilled.
 - Scene 1 = the HOOK. scene_role "hook".
 - All other scenes = narration data beats. scene_role "beat".
 - Do NOT include a CTA/closing scene — the branded end card is appended
-  automatically. Your last scene should be the last DATA beat.
-- More scenes = more visual variety = better retention. Each scene should look
-  DIFFERENT. Use "generate" for most mid-reel scenes (each gets a unique AI
+  automatically. Your last scene should be the last DATA beat. If your last
+  storyboard scene says "full story at" or "thevideshi" or is a CTA, you FAILED.
+- ZERO INFORMATION REPETITION (critical): Every scene must add NEW facts the
+  viewer has not seen yet. Before writing each scene, mentally check: "Has this
+  fact, stat, or claim already appeared in an earlier scene's card_text,
+  card_subtext, or narration?" If yes, SKIP it and find a different fact from
+  the article. The hook may preview the story's theme, but no body scene should
+  restate the hook or each other. The article has MANY facts — spread them
+  across scenes so each one teaches something new. A reel where two scenes say
+  the same thing in different words has FAILED.
+- VISUAL VARIETY (critical): Each scene must use a DIFFERENT visual rendering
+  approach. Never use the same chart type or layout in consecutive scenes.
+  Rotate across these: comparison table, route/timeline map, stat grid with
+  icons, bar/pie chart, split-panel (A vs B), process/flow diagram, annotated
+  photo composite, data dashboard. If scene 3 is a comparison table, scene 4
+  must NOT also be a comparison table. In your image_prompt, explicitly name
+  the chart/layout type so each scene looks visually distinct.
+- Use "generate" for most mid-reel scenes (each gets a unique AI
   image). Mix data_viz "integrated" (big stat baked into the image) and "overlay"
   (topic image with text card on top). Use "card" with card_style for animated
   motion graphics (stat_grid, hero_stat, diaspora_panel). Scene 1 uses the hero
@@ -623,6 +638,11 @@ For each scene, provide:
       has zero numbers or stats (rare — almost every beat has data to show).
       Use "generate" for MOST mid-reel scenes (4-6 out of 8). Each scene gets
       its OWN unique image — visual variety is key.
+      CRITICAL: Each scene's image_prompt MUST describe a DIFFERENT layout type
+      than the previous scene. If scene 3 is a "comparison table", scene 4 must
+      be a "bar chart" or "route map" or "stat dashboard" — NEVER the same
+      layout type twice in a row. And the DATA in each scene must be DIFFERENT
+      facts — never re-visualize something already shown in an earlier scene.
     • "media_library" — RARELY USED. Only if you are certain a high-quality
       curated photo exists for an extremely specific, concrete Indian subject
       (e.g. "Virat Kohli", "Indian rupee notes"). In practice, prefer "generate"
@@ -968,13 +988,21 @@ def pre_render_script_qa(script_data, article):
     storyboard = script_data.get("storyboard", [])
     word_count = len(script.split())
 
+    # Build scene summary for dedup checking
+    scene_summary = ""
+    for i, sc in enumerate(storyboard):
+        ct = sc.get("card_text", "")
+        cs = sc.get("card_subtext", "")
+        mp = sc.get("media_plan", "")
+        scene_summary += f"  Scene {i+1} [{mp}]: {ct} — {cs}\n"
+
     prompt = f"""You quality-check reel scripts for The Videshi (Indian diaspora news).
 
 ARTICLE: {headline}
 HOOK: {hook1} / {hook2}
 SCRIPT ({word_count} words): {script}
-STORYBOARD SCENES: {len(storyboard)}
-
+STORYBOARD SCENES ({len(storyboard)}):
+{scene_summary}
 Score 1-10 on:
 1. HOOK POWER: Does it grab in 3 seconds? Bold, surprising, specific?
 2. SCRIPT QUALITY: Informative, well-paced, NRI-relevant? Does it deliver actual substance (key facts, numbers, context) — not just a restated headline?
@@ -982,12 +1010,15 @@ Score 1-10 on:
 4. CTA: Must end with "thevideshi dot com" or "thevideshi.com". Present?
 5. STORYBOARD: Are scene visuals concrete and photographable? (no abstract concepts)
 6. SPELLING: Is "TheVideshi" / "thevideshi.com" spelled correctly throughout?
+7. INFORMATION REPETITION: Do any two scenes' card_text or card_subtext say the same thing in different words? Each scene must carry UNIQUE information. Repeated content = deduct 2 points.
+8. LAST SCENE CHECK: Is the last storyboard scene a CTA ("full story", "thevideshi")? If so, deduct 2 points — the endcard handles the CTA, last scene must be data.
 
 HARD FAILS (auto-score 0):
 - "TheVideshi" misspelled anywhere (Vidashi, Vidashee, Divaji, etc.)
 - No CTA at the end
 - Script under 60 words or over 200 words
 - Script is just a restated headline with no additional facts or context
+- Two or more scenes with essentially the same information
 
 Return JSON only:
 {{"score": <1-10>, "passed": <true if score >= 7>, "issues": ["issue1"], "fix_suggestions": ["suggestion1"]}}"""
@@ -4607,13 +4638,18 @@ def generate_themed_image(image_prompt, article_id, idx, out_dir="/tmp/videshi_g
                 f"Now create a single vertical 9:16 infographic scene for a news video reel.\n\n"
                 f"Article:\n{headline}\n{subheadline}\n\n"
                 f"{body_text}\n\n"
+                f"THIS SCENE'S FOCUS (scene {idx + 1}):\n"
+                f"{scene_direction}\n\n"
+                f"This is ONE scene in a multi-scene reel. Focus ONLY on the specific "
+                f"data and topic described above — do NOT try to summarize the whole "
+                f"article. Other scenes cover other aspects.\n\n"
                 f"IMPORTANT — EXACT TEXT SPELLING:\n"
                 f"When you include text in the image, copy names, numbers, and words "
                 f"EXACTLY from the article above. Double-check every letter of every "
                 f"name before rendering. Misspelled names are unacceptable.\n\n"
                 f"Goals:\n"
                 f"- Visually compelling and vibrant — must grab attention on a phone screen\n"
-                f"- Key data and takeaway from this article instantly graspable in 3-4 seconds\n"
+                f"- Key data and takeaway instantly graspable in 3-4 seconds\n"
                 f"- Choose colors and visual style that fit THIS story's topic and mood"
             )
 
