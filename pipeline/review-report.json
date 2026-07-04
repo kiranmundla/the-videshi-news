@@ -1,19 +1,19 @@
 {
-  "timestamp": "2026-07-04T08:15:18.537602+00:00",
+  "timestamp": "2026-07-04T08:45:25.399356+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 0,
+    "pass": 1,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
-  "revisions": 0,
+  "revisions": 1,
   "unpublished": 0,
   "articles": [
     {
-      "id": "c320f4e2-f49e-47d3-9e67-6a7764b19f7f",
-      "headline": "America Rejected 61 Per Cent of Indian Student Visas Last Year. The Pipeline Is Bleeding Out",
-      "slug": "f1-student-visa-rejection-61-percent-indian-shorelight-20260704",
+      "id": "b4ef2171-fcfe-40c0-a691-4f46e3a15d99",
+      "headline": "America's 250th Birthday Was the Hottest on Record. Literally.",
+      "slug": "america-250th-birthday-heat-wave-july-4-power-grid-emergency-20260704",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,42 +21,42 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "hand holding passport with visa stamps",
-          "reason": "The photo of a passport with visa stamps is relevant to a story about student visa rejections."
+          "what_photo_shows": "fireworks near Washington Monument",
+          "reason": "The photo shows Fourth of July celebrations, relevant to the story's topic."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 7,
+        "overall_score": 6,
         "embed_issues": [],
         "image_match": {
-          "score": 8,
-          "issue": "The image depicts students, which is relevant to the topic of student visas, but it does not specifically represent Indian students or the American context."
+          "score": 7,
+          "issue": "The image of the Washington Monument is relevant to the Fourth of July celebrations but does not directly illustrate the heat wave aspect discussed in the article."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article discusses the impact of visa rejections on Indian students, which is highly relevant to the Indian diaspora, particularly those considering education in the US."
+          "quality": 5,
+          "note": "The article briefly mentions Indian Americans but does not elaborate on their specific experiences or perspectives related to the heat wave or Independence Day."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes or perspectives from Indian students or diaspora members to enhance relatability.",
-          "Add more data or examples of how this trend affects specific Indian communities or regions."
+          "Expand on the diaspora angle by including specific experiences or reactions of Indian Americans to the heat wave or Independence Day celebrations.",
+          "Consider adding more context or data about how climate change is affecting weather patterns, particularly in relation to the Indian diaspora's concerns."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
-        "promoted to published"
+        "Revised by gemini-2.5-flash (744\u2192834 words)"
       ],
-      "revised": false,
+      "revised": true,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "73093328-8e6e-4d76-b73d-29fd7c945806",
-      "headline": "An Immigration Appeal Now Costs $975. That Is Not a Typo",
-      "slug": "eoir-immigration-court-fees-triple-appeal-deportation-975-20260704",
+      "id": "5935629c-5081-490f-951e-2be543bd7b52",
+      "headline": "India's Own Attorney General Called E20 Fuel an 'Experiment.' The Government Spent the Next 48 Hours in Damage Control.",
+      "slug": "india-e20-ethanol-experiment-backlash-attorney-general-protest-20260704",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,8 +64,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "judge with gavel and documents",
-          "reason": "The photo depicts a courtroom setting relevant to immigration appeals."
+          "what_photo_shows": "BPCL petrol pump in India",
+          "reason": "The photo shows a BPCL petrol pump, relevant to the E20 fuel story."
         },
         "inline_image_mismatches": []
       },
@@ -74,18 +74,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 8,
-          "issue": "The image is relevant to immigration but does not specifically depict the topic of immigration appeals."
+          "issue": "The image of a petrol pump is relevant to the topic of fuel and E20."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article discusses how the proposed fee increases specifically impact Indian Americans, making it relevant to the diaspora."
+          "quality": 7,
+          "note": "The article connects the E20 controversy to NRIs by discussing its implications for those who visit India, though it could elaborate more on how this affects their experiences."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more specific examples or testimonials from Indian Americans affected by the proposed fee increases.",
-          "Consider adding a section on potential advocacy or actions that the diaspora can take in response to these changes."
+          "Expand on the diaspora angle to include specific impacts on NRIs visiting India.",
+          "Include more data or quotes from experts to strengthen the argument against the E20 policy."
         ],
         "verdict": "pass"
       },
