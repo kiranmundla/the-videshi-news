@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-04T02:15:21.811892+00:00",
+  "timestamp": "2026-07-04T05:15:19.223995+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
-    "flag": 1,
+    "pass": 2,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,18 +11,27 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "b37c8c04-0fce-4004-b20f-48ae68823827",
-      "headline": "Four Bills. One Target. Congress Is Coming for the H-1B Programme",
-      "slug": "four-bills-h1b-programme-congress-roy-crane-greene-20260704",
+      "id": "86139904-91d3-41bd-afdb-362d6407da84",
+      "headline": "India's Central Bank Told Parliament: Don't Legalize Crypto. Not Now, Not Yet.",
+      "slug": "rbi-parliament-crypto-vda-ban-nri-india-20260704",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "c1671651-8e0b-48b9-9aa7-92aba5c2a06d",
+            "headline": "India Just Told Its Banks to Treat Every AI Model Like a Ris"
+          },
+          {
+            "article_id": "0b4d6970-9b0b-4d1a-ad52-9203f75044e9",
+            "headline": "India's Bonds Just Had Their Best Month in Seven Years. The "
+          }
+        ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "US Immigration and Customs Enforcement building",
-          "reason": "The photo is relevant to the immigration topic of the story."
+          "what_photo_shows": "Reserve Bank of India headquarters",
+          "reason": "The photo shows the RBI headquarters, relevant to the story about its crypto stance."
         },
         "inline_image_mismatches": []
       },
@@ -30,21 +39,21 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 5,
-          "issue": "irrelevant"
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses legislative changes that directly impact Indian professionals, making it relevant to the diaspora."
+          "note": "The article effectively discusses the implications of RBI's stance on NRIs, making it relevant to the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that reflects the H-1B visa theme or Indian professionals in the U.S.",
-          "Add quotes or perspectives from Indian professionals affected by these bills to enhance the human angle."
+          "Consider adding more statistics or data points to strengthen the argument regarding the crypto user base in India.",
+          "Include quotes from NRI investors or experts to provide a personal perspective on the RBI's stance."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
         "promoted to published"
@@ -54,9 +63,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "ffc27fdc-aa04-4488-98ea-a28278c46598",
-      "headline": "Forty Democrats Told USCIS to Reverse Its Green Card Memo. The Agency Has Not Responded",
-      "slug": "democrats-challenge-uscis-adjustment-of-status-memo-jayapal-20260704",
+      "id": "63e6cc52-7985-4d7d-909a-cbb7c830f556",
+      "headline": "Tesla Just Had Its Best Quarter in Two Years. Wall Street Sold It Anyway.",
+      "slug": "tesla-record-q2-deliveries-stock-drop-nri-investors-20260704",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,8 +73,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "United States Capitol building at dusk",
-          "reason": "The Capitol is relevant to a story about U.S. immigration policy."
+          "what_photo_shows": "Tesla Model Y in a parking garage",
+          "reason": "The photo shows a Tesla Model Y, relevant to the story about Tesla's deliveries."
         },
         "inline_image_mismatches": []
       },
@@ -73,19 +82,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 5,
-          "issue": "The image of the Capitol does not directly relate to the immigration topic or the specific content of the article."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article discusses the impact of immigration policy on Indian nationals, making it highly relevant to the diaspora."
+          "quality": 8,
+          "note": "The article connects well with NRI investors by discussing Tesla's relevance and implications for their portfolios."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that reflects the immigration theme or the specific issues discussed in the article.",
-          "Add a brief section summarizing the potential implications of the memo for Indian immigrants to enhance clarity."
+          "Consider adding more data or quotes from Indian-American investors to strengthen the diaspora connection.",
+          "Include a brief overview of Tesla's impact on the Indian market or potential future developments to enhance relevance for NRI readers."
         ],
         "verdict": "pass"
       },
