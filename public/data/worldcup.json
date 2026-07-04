@@ -1,6 +1,6 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-07-04T10:00:00Z",
+  "last_updated": "2026-07-04T12:00:24Z",
   "stage": "Knockout Stage",
   "hosts": "USA, Mexico & Canada",
   "dates": {
@@ -2312,8 +2312,7 @@
           "time": "12:00",
           "tz": "ET",
           "venue": "Mercedes-Benz Stadium, Atlanta",
-          "status": "scheduled",
-          "note": "Winner of Argentina/Cape Verde vs Egypt"
+          "status": "scheduled"
         },
         {
           "match_num": 96,
@@ -2325,8 +2324,7 @@
           "time": "16:00",
           "tz": "ET",
           "venue": "BC Place, Vancouver",
-          "status": "scheduled",
-          "note": "Winner of Colombia vs Ghana"
+          "status": "scheduled"
         }
       ]
     },
@@ -6893,6 +6891,55 @@
       "url": "https://www.threads.com/@fifaworldcup/post/DaXPzF7ijVS",
       "account": "@fifaworldcup",
       "caption": "July 3 Matchday Recap",
+      "date": "2026-07-04"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DaXZaLaRBKW/",
+      "account": "@fifaworldcup",
+      "caption": "Movement on the all-time appearances table after the latest round of games 📈",
+      "date": "2026-07-04"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DaXctggx7XK/",
+      "account": "@fifaworldcup",
+      "caption": "The leading creators heading into the Round of 16 🪄",
+      "date": "2026-07-04"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DaXjsMCAOo1/",
+      "account": "@fifaworldcup",
+      "caption": "This France attack 😰",
+      "date": "2026-07-04"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DaXldJEDYjj/",
+      "account": "@fifaworldcup",
+      "caption": "Big fixtures, big performances needed 💪",
+      "date": "2026-07-04"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/reel/DaXlSwkvrRi/",
+      "account": "@fifaworldcup",
+      "caption": "Vozinha. A name this World Cup won't forget. 💙",
+      "date": "2026-07-04"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DaXo5z7jVTm/",
+      "account": "@fifaworldcup",
+      "caption": "Four teams. Two places in the Quarter-Final up for grabs 🎟️",
+      "date": "2026-07-04"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DaXo48Uiftn",
+      "account": "@fifaworldcup",
+      "caption": "Four teams. Two places in the Quarter-Final up for grabs 🎟️",
       "date": "2026-07-04"
     }
   ],
