@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-03T23:47:42.723077+00:00",
+  "timestamp": "2026-07-04T00:16:02.457124+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
-    "flag": 1,
+    "pass": 6,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,64 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "e4784b36-ee2b-44f6-8d30-a0aab5b775f9",
-      "headline": "Nayanthara, Kiara, Tara, Huma, Rukmini: Five Queens Just Entered the World of Toxic",
-      "slug": "yash-toxic-teaser-ladies-nayanthara-kiara-advani-tara-sutaria-huma-qureshi-august-26-20260703",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [
-          {
-            "url": "https://x.com/KvnProductions/status/1798367468305731998",
-            "problem": "broken",
-            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
-          },
-          {
-            "url": "https://x.com/taran_adarsh/status/1798367746430335272",
-            "problem": "broken",
-            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
-          }
-        ],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Yash, actor in film promotion",
-          "reason": "The photo shows Yash, relevant to the film story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 2,
-          "issue": "irrelevant"
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses a pan-Indian film that may interest NRIs, especially those connected to the Indian film industry."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the hero image with one that features the film's cast or a relevant scene from 'Toxic'.",
-          "Include more context on how the film's themes resonate with the diaspora experience."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Removed 2 broken/hallucinated embed(s)",
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "270f86ad-7f36-47ed-9390-1d8a6eb1120d",
-      "headline": "America Turns 250 Tomorrow. No Immigrant Community Has Risen Faster Than Indian Americans.",
-      "slug": "america-250th-birthday-indian-americans-diaspora-july-fourth-2026-20260704",
+      "id": "a4c0da12-5a23-40c9-aa8c-1906a1f00987",
+      "headline": "Indian Immigrants Built 96 US Unicorns. The Visa Pipeline That Made It Possible Is Collapsing",
+      "slug": "indian-founders-96-unicorns-h1b-pipeline-collapsing-nfap-20260704",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -76,8 +21,94 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "July Fourth celebration setup",
-          "reason": "The photo shows a July Fourth celebration, which aligns with the story's focus on Indian Americans in the U.S."
+          "what_photo_shows": "diverse team in tech office",
+          "reason": "The photo aligns with the story about tech professionals and immigration."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the topic of Indian immigrants or unicorns."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively highlights the contributions of Indian immigrants to the US economy, which resonates with the NRI audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that depicts Indian immigrants or entrepreneurship.",
+          "Add quotes or anecdotes from Indian entrepreneurs to enhance the personal connection to the diaspora."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "70467e32-d23e-44e0-a7ba-dc212678f551",
+      "headline": "America Turns 250. A Million Indians Are Still Waiting for Green Cards",
+      "slug": "america-250th-birthday-indian-immigrants-green-card-wait-20260704",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Statue of Liberty and American flag",
+          "reason": "The photo is relevant to the topic of immigration in America."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the topic of immigration or green cards."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively highlights the struggles of Indian immigrants in the U.S. and connects with the Indian diaspora's experiences."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that directly represents the theme of immigration or the struggles faced by Indian immigrants.",
+          "Add more personal anecdotes or quotes from Indian immigrants to enhance the emotional connection with the diaspora audience."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "0f9bf379-72e8-4eed-85a7-9212831541e8",
+      "headline": "South Korea Just Bet $591 Billion on Chips. India's Semiconductor Dream Looks Like a Rounding Error.",
+      "slug": "south-korea-591-billion-semiconductor-india-chip-20260704",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "semiconductor wafer",
+          "reason": "The photo shows a semiconductor wafer, relevant to the chip manufacturing story."
         },
         "inline_image_mismatches": []
       },
@@ -91,17 +122,162 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the Indian American community's achievements and challenges to the broader context of American identity, making it relevant for diaspora readers."
+          "note": "The article effectively connects the semiconductor developments in South Korea and India to the Indian diaspora, particularly highlighting opportunities for Indian engineers and the implications for reverse migration."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more personal stories or quotes from Indian Americans to enhance relatability.",
-          "Add a section discussing the future outlook for Indian Americans in the U.S. post-250th anniversary."
+          "Include more specific examples of how Indian engineers are contributing to semiconductor advancements in the US.",
+          "Add a section discussing potential challenges India may face in scaling its semiconductor industry compared to South Korea."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "5ce08044-06ed-45f2-b446-1abfea431094",
+      "headline": "Pichai's Google Just Put an AI Agent on Your Mac. It Sorts Your Files, Books Tables and Orders Groceries.",
+      "slug": "google-gemini-spark-mac-ai-agent-pichai-20260704",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "4199782a-6579-475a-9f68-876561ffeb5f",
+            "headline": "Pichai's Google Ran Out of GPUs. So It's Paying a Rocket Com"
+          },
+          {
+            "article_id": "a166c698-a52b-448d-b6c1-525fdbecfa7c",
+            "headline": "Google Just Gave Its AI Agent a Desktop. It Costs $100 a Mon"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Sundar Pichai at an event",
+          "reason": "The photo shows Sundar Pichai, relevant to the Google AI story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects Sundar Pichai's leadership and the implications for Indian Americans in tech, making it relevant for the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more quotes or insights from industry experts to enhance credibility.",
+          "Include a section on potential challenges or criticisms of the new AI agent to provide a balanced view."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "426f780a-6b78-47f4-88aa-038970d48d87",
+      "headline": "Two Duke Cardiologists Now Lead the American Heart Association. Both Are Children of Indian Immigrants.",
+      "slug": "duke-cardiologists-patel-shah-aha-leadership-indian-american-20260704",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "healthcare professional with stethoscope",
+          "reason": "The photo is on-topic for a cardiology story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 5,
+          "issue": "The image does not directly relate to the article's focus on cardiology or the specific individuals mentioned."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively highlights the achievements of Indian-American cardiologists and their significance to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that reflects cardiology or the individuals discussed.",
+          "Add quotes or anecdotes from the cardiologists to enhance personal connection and engagement."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "6abdd2cb-381c-4ea5-be49-dfab1d5f8578",
+      "headline": "They Started Fighting for India in Westminster During the Emergency. Fifty Years Later, They Want Blue Plaques.",
+      "slug": "fisi-uk-golden-jubilee-50-years-westminster-diaspora-20260704",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [
+          {
+            "url": "https://x.com/FISI_UK/status/1939728192640274520",
+            "problem": "broken",
+            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
+          }
+        ],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "The Bhavan Indian Arts Centre",
+          "reason": "The photo shows the venue for the FISI UK Golden Jubilee, relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the historical activism of the Indian diaspora in the UK to contemporary issues, making it relevant for NRI readers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes or testimonials from diaspora members to enhance personal connection.",
+          "Include more context on the significance of the Blue Plaque campaign for the diaspora."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "Removed 1 broken/hallucinated embed(s)",
         "promoted to published"
       ],
       "revised": false,
