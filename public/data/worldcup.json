@@ -1,6 +1,6 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-07-04T02:00:00Z",
+  "last_updated": "2026-07-04T04:57:00Z",
   "stage": "Knockout Stage",
   "hosts": "USA, Mexico & Canada",
   "dates": {
@@ -2208,7 +2208,8 @@
           "away_code": "GHA",
           "venue": "Arrowhead Stadium",
           "city": "Kansas City",
-          "status": "scheduled"
+          "status": "FT",
+          "score": "1-0"
         },
         {
           "id": 88,
@@ -2318,8 +2319,8 @@
           "match_num": 96,
           "home": "Switzerland",
           "home_code": "SUI",
-          "away": "TBD",
-          "away_code": "TBD",
+          "away": "Colombia",
+          "away_code": "COL",
           "date": "2026-07-07",
           "time": "16:00",
           "tz": "ET",
@@ -6638,6 +6639,14 @@
       "platform": "instagram",
       "url": "https://www.instagram.com/reel/DaWiS4QIy-_/",
       "account": "@fifaworldcup",
+      "date": "2026-07-04",
+      "type": "video"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/reel/DaWmFUWCtES/",
+      "account": "@fifaworldcup",
+      "caption": "Game on in Kansas City! 🇨🇴🇬🇭 #FIFAWorldCup",
       "date": "2026-07-04",
       "type": "video"
     }
