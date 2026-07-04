@@ -1,6 +1,6 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-07-04T15:58:47Z",
+  "last_updated": "2026-07-04T17:59:53Z",
   "stage": "Knockout Stage",
   "hosts": "USA, Mexico & Canada",
   "dates": {
@@ -7060,6 +7060,14 @@
       "account": "@fifaworldcup",
       "caption": "Which goal deserves a spot in the final? Vote now for your Goal of the Round! ⚽",
       "date": "2026-07-04"
+    },
+    {
+      "platform": "facebook",
+      "url": "https://www.facebook.com/reel/1056135487098725/",
+      "account": "@fifaworldcup",
+      "caption": "Which goal deserves a spot in the final? Vote now for your Goal of the Round! ⚽",
+      "date": "2026-07-04",
+      "type": "video"
     }
   ],
   "tv": {
