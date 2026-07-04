@@ -4491,60 +4491,163 @@ def source_storyboard_images(article, storyboard, count=8):
 _BRAND_GEN_SUFFIX = ""  # kept as empty string so any residual references don't crash
 
 
+def _download_image_for_gemini(url, outpath):
+    """Download an image URL to a local path for Gemini input. Returns True on success."""
+    try:
+        r = subprocess.run(
+            ["curl", "-s", "-L", "-o", outpath, "--max-time", "15",
+             "-A", "TheVideshi/1.0 (thevideshi.com)", url],
+            capture_output=True, timeout=20
+        )
+        return os.path.exists(outpath) and os.path.getsize(outpath) > 1000
+    except Exception:
+        return False
+
+
+def _img_to_b64(path):
+    """Read a local image file and return base64 string."""
+    import base64 as _b64
+    with open(path, "rb") as f:
+        return _b64.b64encode(f.read()).decode()
+
+
+# Permanent style reference storyboards for Gemini image generation
+_GEMINI_REF_1 = PIPELINE_DIR / "assets" / "gemini-ref-storyboard-1.jpg"
+_GEMINI_REF_2 = PIPELINE_DIR / "assets" / "gemini-ref-storyboard-2.jpg"
+
+
 def generate_themed_image(image_prompt, article_id, idx, out_dir="/tmp/videshi_gen",
-                          previous_response_id=None, article_body=None):
-    """Generate an article-specific scene image using Gemini 2.5 Flash Image
-    as the primary model. Falls back to OpenAI gpt-image-1 if Gemini fails.
+                          previous_response_id=None, article_body=None,
+                          article=None):
+    """Generate an article-specific scene image using Gemini 2.5 Flash Image.
+
+    Uses the article's own photos (hero + body images) plus two style reference
+    storyboards to produce vibrant, data-rich infographic scenes with real
+    photography composed in. Falls back to OpenAI gpt-image-1 if Gemini fails.
 
     Returns the public URL (or None on any failure). Never raises.
     When previous_response_id is not None, returns (url, response_id) tuple."""
     if not image_prompt or (not GEMINI_KEY and not OPENAI_KEY):
-        return None
+        return _ret(None, previous_response_id)
     try:
         os.makedirs(out_dir, exist_ok=True)
+        import base64 as _b64
 
-        # Build a rich prompt with article context so Gemini can create
-        # data-dense infographics (not just mood illustrations)
         scene_direction = image_prompt.strip().rstrip(".")
-        if article_body:
-            # Give Gemini the full article so it can extract and visualize ALL
-            # the numbers, stats, comparisons, and data points
-            body_text = article_body[:4000]  # cap to avoid token overflow
-            full_prompt = (
-                f"Create a RICH DATA INFOGRAPHIC for a news reel scene. "
-                f"Pack in as many numbers, charts, comparison panels, stat callouts, "
-                f"icons, and data visualizations as possible. Think magazine-quality "
-                f"infographic — every inch should communicate data.\n\n"
-                f"VISUAL DIRECTION: {scene_direction}\n\n"
-                f"FULL ARTICLE (extract ALL relevant numbers and data):\n{body_text}\n\n"
-                f"RULES: No human faces. Vertical 9:16 portrait format. "
-                f"Dark navy/editorial color palette with gold accents. "
-                f"Make it DENSE with data — multiple stat panels, charts, icons, "
-                f"comparison layouts. NOT a simple illustration with one number."
-            )
-        else:
-            full_prompt = scene_direction + ". No human faces. Vertical 9:16."
+        body_text = (article_body or "")[:3000]
+        headline = (article or {}).get("headline", "") or scene_direction
+        subheadline = (article or {}).get("subheadline", "") or ""
 
-        # ── PRIMARY: Gemini 2.5 Flash Image ──
+        # ── Collect article photos ──
+        article_img_paths = []  # local paths of downloaded article images
+        if article:
+            hero_url = (article.get("image_url") or "").strip()
+            if hero_url:
+                hero_path = os.path.join(out_dir, f"hero_{article_id}_{idx}.jpg")
+                if _download_image_for_gemini(hero_url, hero_path):
+                    article_img_paths.append(hero_path)
+
+            # Extract body images from markdown
+            abody = (article.get("body") or "")
+            body_img_urls = re.findall(r'!\[.*?\]\((https?://[^\)]+)\)', abody)
+            for bi, burl in enumerate(body_img_urls[:2]):  # max 2 body images
+                bp = os.path.join(out_dir, f"body_{article_id}_{idx}_{bi}.jpg")
+                if _download_image_for_gemini(burl, bp):
+                    article_img_paths.append(bp)
+
+        # ── Build Gemini multimodal request ──
         if GEMINI_KEY:
-            import subprocess as _sp
-            gem_payload = json.dumps({
-                "contents": [{"parts": [{"text": full_prompt}]}],
+            parts = []
+
+            # Style reference storyboards
+            has_refs = False
+            if _GEMINI_REF_1.exists() and _GEMINI_REF_2.exists():
+                for ref_path in [_GEMINI_REF_1, _GEMINI_REF_2]:
+                    parts.append({
+                        "inlineData": {
+                            "mimeType": "image/jpeg",
+                            "data": _img_to_b64(str(ref_path))
+                        }
+                    })
+                has_refs = True
+
+            # Article photos
+            for aimg_path in article_img_paths:
+                parts.append({
+                    "inlineData": {
+                        "mimeType": "image/jpeg",
+                        "data": _img_to_b64(aimg_path)
+                    }
+                })
+
+            # Build prompt — minimal, let Gemini decide
+            img_count = len(article_img_paths)
+            ref_intro = (
+                "Here are two reference storyboards showing the visual quality, "
+                "brightness, and style I want for individual reel scenes. Study them "
+                "carefully — notice the bright colors, photographic backgrounds, "
+                "bold readable text, and how each panel has ONE clear message.\n\n"
+            ) if has_refs else ""
+
+            photo_intro = ""
+            if img_count == 1:
+                photo_intro = (
+                    "The next image is the article's hero photo. "
+                    "Use it or compose around it if relevant.\n\n"
+                )
+            elif img_count >= 2:
+                photo_intro = (
+                    f"The next {img_count} images are photos from the article "
+                    f"(hero + inline). Use them or compose around them.\n\n"
+                )
+
+            prompt = (
+                f"{ref_intro}"
+                f"{photo_intro}"
+                f"Now create a single vertical 9:16 infographic scene for a news video reel.\n\n"
+                f"Article:\n{headline}\n{subheadline}\n\n"
+                f"{body_text}\n\n"
+                f"IMPORTANT — EXACT TEXT SPELLING:\n"
+                f"When you include text in the image, copy names, numbers, and words "
+                f"EXACTLY from the article above. Double-check every letter of every "
+                f"name before rendering. Misspelled names are unacceptable.\n\n"
+                f"Goals:\n"
+                f"- Visually compelling and vibrant — must grab attention on a phone screen\n"
+                f"- Key data and takeaway from this article instantly graspable in 3-4 seconds\n"
+                f"- Choose colors and visual style that fit THIS story's topic and mood"
+            )
+
+            parts.append({"text": prompt})
+
+            gem_payload = {
+                "contents": [{"parts": parts}],
                 "generationConfig": {"responseModalities": ["IMAGE", "TEXT"]}
-            })
+            }
+
+            # Write payload to file (too large for -d inline with images)
+            payload_path = os.path.join(out_dir, f"payload_{article_id}_{idx}.json")
+            with open(payload_path, "w") as fh:
+                json.dump(gem_payload, fh)
+
             gem_url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image:generateContent?key={GEMINI_KEY}"
-            gem_r = _sp.run(
+            gem_r = subprocess.run(
                 ["curl", "-s", "-X", "POST", gem_url,
                  "-H", "Content-Type: application/json",
-                 "-d", gem_payload, "--max-time", "90"],
-                capture_output=True, timeout=120
+                 "-d", f"@{payload_path}", "--max-time", "120"],
+                capture_output=True, timeout=150
             )
+
+            # Cleanup payload file
+            try:
+                os.remove(payload_path)
+            except Exception:
+                pass
+
             if gem_r.returncode == 0 and gem_r.stdout:
                 gem_data = json.loads(gem_r.stdout)
                 for cand in gem_data.get("candidates", []):
                     for part in cand.get("content", {}).get("parts", []):
                         if "inlineData" in part:
-                            import base64 as _b64
                             png = _b64.b64decode(part["inlineData"]["data"])
                             local_png = os.path.join(out_dir,
                                                      f"gem_{article_id}_{idx}.png")
@@ -4561,37 +4664,48 @@ def generate_themed_image(image_prompt, article_id, idx, out_dir="/tmp/videshi_g
                                     os.remove(f)
                                 except Exception:
                                     pass
-                            if previous_response_id is not None:
-                                return url, previous_response_id
-                            return url
+                            # Cleanup downloaded article images
+                            for aimg in article_img_paths:
+                                try:
+                                    os.remove(aimg)
+                                except Exception:
+                                    pass
+                            return _ret(url, previous_response_id)
                 print(f"  ⚠️ Gemini returned 200 but no image data")
             else:
-                print(f"  ⚠️ Gemini curl failed (rc={gem_r.returncode})")
+                stderr_snip = (gem_r.stderr or b"").decode()[:100]
+                print(f"  ⚠️ Gemini curl failed (rc={gem_r.returncode}) {stderr_snip}")
 
-        # ── FALLBACK: Legacy gpt-image-1 ──
+        # Cleanup downloaded article images
+        for aimg in article_img_paths:
+            try:
+                os.remove(aimg)
+            except Exception:
+                pass
+
+        # ── FALLBACK: Legacy gpt-image-1 (text-only prompt) ──
         if OPENAI_KEY:
             print(f"  ⏩ Falling back to gpt-image-1 for scene {idx}")
+            fallback_prompt = (
+                f"{scene_direction}. Vertical 9:16 portrait format. "
+                f"News infographic style, vibrant colors."
+            )
             r = requests.post(
                 "https://api.openai.com/v1/images/generations",
                 headers={"Authorization": f"Bearer {OPENAI_KEY}",
                          "Content-Type": "application/json"},
-                json={"model": "gpt-image-1", "prompt": full_prompt[:3900],
+                json={"model": "gpt-image-1", "prompt": fallback_prompt[:3900],
                       "size": "1024x1536", "n": 1},
                 timeout=120,
             )
             if r.status_code != 200:
                 print(f"  ⚠️ gpt-image-1 also failed ({r.status_code}): {r.text[:160]}")
-                if previous_response_id is not None:
-                    return None, previous_response_id
-                return None
+                return _ret(None, previous_response_id)
             data = r.json().get("data", [])
             if not data or not data[0].get("b64_json"):
                 print("  ⚠️ gpt-image-1 returned no image data")
-                if previous_response_id is not None:
-                    return None, previous_response_id
-                return None
-            import base64
-            png = base64.b64decode(data[0]["b64_json"])
+                return _ret(None, previous_response_id)
+            png = _b64.b64decode(data[0]["b64_json"])
             local = os.path.join(out_dir, f"gen_{article_id}_{idx}.png")
             with open(local, "wb") as fh:
                 fh.write(png)
@@ -4601,18 +4715,19 @@ def generate_themed_image(image_prompt, article_id, idx, out_dir="/tmp/videshi_g
                 os.remove(local)
             except Exception:
                 pass
-            if previous_response_id is not None:
-                return url, previous_response_id
-            return url
+            return _ret(url, previous_response_id)
 
-        if previous_response_id is not None:
-            return None, previous_response_id
-        return None
+        return _ret(None, previous_response_id)
     except Exception as e:
         print(f"  ⚠️ generate_themed_image error: {e}")
-        if previous_response_id is not None:
-            return None, previous_response_id
-        return None
+        return _ret(None, previous_response_id)
+
+
+def _ret(url, prev_id):
+    """Helper to return consistently based on whether caller wants a tuple."""
+    if prev_id is not None:
+        return url, prev_id
+    return url
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -5164,7 +5279,8 @@ def _card_background_url(scene, article, article_id, idx, used_in_this_reel,
             if seed:
                 prompt = f"a symbolic editorial illustration evoking: {seed}. Dark moody tones suitable for text overlay, no text or words in the image."
         if prompt:
-            gurl = generate_themed_image(prompt, article_id, f"cardbg{idx}")
+            gurl = generate_themed_image(prompt, article_id, f"cardbg{idx}",
+                                         article=article)
             if gurl:
                 gen_budget[0] -= 1
                 return gurl, True
@@ -5497,7 +5613,8 @@ def source_reel_media_clean(article, storyboard, count=8):
                 if _hseed:
                     _hprompt = ("a symbolic editorial scene evoking " + _hseed)
             if _hprompt:
-                _hgurl = generate_themed_image(_hprompt, article_id, 0)
+                _hgurl = generate_themed_image(_hprompt, article_id, 0,
+                                               article=article)
                 if _hgurl:
                     matched_urls[0] = _hgurl
                     used_in_this_reel.add(_hgurl)
@@ -5656,7 +5773,8 @@ def source_reel_media_clean(article, storyboard, count=8):
         if plan == "generate" and scene.get("image_prompt"):
             data_viz = (scene.get("data_viz") or "integrated").strip().lower()
             gurl = generate_themed_image(scene.get("image_prompt"), article_id, i,
-                                         article_body=article.get("body", ""))
+                                         article_body=article.get("body", ""),
+                                         article=article)
             if gurl:
                 if data_viz == "integrated":
                     # Image IS the scene — stat is part of the visual

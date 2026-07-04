@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-04T17:15:37.575099+00:00",
+  "timestamp": "2026-07-04T18:15:28.945385+00:00",
   "mode": "fix",
   "stats": {
     "pass": 3,
-    "flag": 1,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "cd997f03-4247-4af4-ad3e-c70ec0fa1f99",
-      "headline": "The Dhamaal Boys Are Back. This Time, There's a Mountain of Gold and Absolutely Zero Common Sense.",
-      "slug": "dhamaal-4-ajay-devgn-arshad-warsi-treasure-hunt-comedy-july-10-nolan-diaspora-20260704",
+      "id": "7dcfef1a-80f0-4230-8c8c-f153c584417d",
+      "headline": "From Toddy Shops to Tribeca: How Kerala Became America's Most Wanted Regional Cuisine",
+      "slug": "from-toddy-shops-to-tribeca-how-kerala-became-americas-most-wanted-regional-cuis",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,46 +21,32 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Ajay Devgn at an event",
-          "reason": "The photo shows Ajay Devgn, who is relevant to the Dhamaal 4 story."
+          "what_photo_shows": "Kerala sadya feast on banana leaf",
+          "reason": "The photo shows a traditional Kerala meal, relevant to the story about Kerala cuisine."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/reel/DaF2Y2qIhwq/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram reel does not appear to be directly related to the Dhamaal franchise or the content of the article."
-          },
-          {
-            "url": "https://youtube.com/watch?v=IG-eByZdz6Y",
-            "problem": "duplicate",
-            "explanation": "The YouTube link to the trailer is mentioned in the body and should not be repeated."
-          }
-        ],
+        "embed_issues": [],
         "image_match": {
-          "score": 5,
-          "issue": "The image of Ajay Devgn does not directly relate to the article's focus on the Dhamaal franchise."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article connects the film to the diaspora by referencing it as 'comfort food' for Indian families, which resonates with NRI audiences."
+          "quality": 8,
+          "note": "The article connects well with the diaspora by highlighting the rise of Keralan cuisine in America, appealing to NRIs interested in their regional food culture."
         },
         "factual_flags": [],
-        "duplicate_embeds": [
-          "https://youtube.com/watch?v=IG-eByZdz6Y"
-        ],
+        "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant Instagram link with a more relevant social media post related to the Dhamaal franchise.",
-          "Consider using a more relevant image that directly connects to the Dhamaal franchise for better visual alignment."
+          "Include quotes or anecdotes from NRIs who have experienced Keralan cuisine in America to strengthen the diaspora connection.",
+          "Add a section discussing the cultural significance of Keralan cuisine to further engage readers."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/reel/DaF2Y2qIhwq/",
         "promoted to published"
       ],
       "revised": false,
@@ -68,9 +54,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "7b8c515e-b7b6-4fbe-968b-80317018f55c",
-      "headline": "Indian Travellers Are Ditching the Mediterranean This Summer \u2014 and Heading for Scandinavia Instead",
-      "slug": "indian-travelers-europe-heatwave-scandinavia-alps-nri-20260704",
+      "id": "0cd98f19-afb7-4cd9-aa3e-686a1a517758",
+      "headline": "The British-Indian Invasion: Michelin-Starred Gymkhana and Cult-Favourite Dishoom Set Sights on America",
+      "slug": "the-british-indian-invasion-michelin-starred-gymkhana-and-cult-favourite-dishoom",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -78,8 +64,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Swiss Alps in summer",
-          "reason": "The photo shows the Swiss Alps, which aligns with the story about Indian travelers choosing cooler European destinations."
+          "what_photo_shows": "Dishoom location with retro aesthetic",
+          "reason": "The photo shows Dishoom's signature aesthetic, relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -88,18 +74,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image depicts a scenic landscape, which aligns with the travel theme, but does not specifically represent Scandinavia."
+          "issue": "The image of Dishoom Beach Bar is relevant but does not directly represent the Michelin-starred Gymkhana, which is a key focus of the article."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the travel trends to NRIs, discussing their travel preferences and logistical considerations."
+          "note": "The article effectively connects the expansion of Indian cuisine in the US to the global Indian diaspora, highlighting its growing significance."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include specific examples of popular Scandinavian destinations to enhance the article's depth.",
-          "Consider adding quotes or testimonials from NRIs who have traveled to these destinations recently for a personal touch."
+          "Consider using an image that directly represents Gymkhana to better align with the article's focus.",
+          "Add quotes or perspectives from diaspora members to enhance the connection to the NRI community."
         ],
         "verdict": "pass"
       },
@@ -111,9 +97,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "44ae5211-84f7-4d62-8147-e86f983e9b4c",
-      "headline": "India's Valley of Flowers Just Entered Peak Bloom \u2014 and Most NRIs Have Never Heard of It",
-      "slug": "valley-of-flowers-peak-bloom-nri-monsoon-trek-guide-20260704",
+      "id": "68c7e49e-a714-447b-ad92-a193c6be7b87",
+      "headline": "The Naan Next Door: Indian Food Finally Cracks America's Fast-Casual Code",
+      "slug": "the-naan-next-door-indian-food-finally-cracks-americas-fast-casual-code",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -121,8 +107,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Valley with wildflowers and mountains",
-          "reason": "The photo shows a valley with wildflowers, matching the Valley of Flowers story."
+          "what_photo_shows": "bowl of chicken tikka masala",
+          "reason": "The photo shows chicken tikka masala, relevant to the story about Indian fast-casual chains."
         },
         "inline_image_mismatches": []
       },
@@ -135,77 +121,18 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the Valley of Flowers to NRI families visiting India, particularly during the American summer break."
+          "quality": 7,
+          "note": "The article discusses the evolution of Indian cuisine in America, which is relevant to the Indian diaspora, particularly in terms of cultural representation and culinary adaptation."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more personal anecdotes or testimonials from NRIs who have visited the Valley of Flowers to enhance relatability.",
-          "Include a section on how to prepare for the trek, such as recommended fitness routines or gear lists."
+          "Expand on the diaspora angle by including quotes or perspectives from Indian Americans about their experiences with these fast-casual restaurants.",
+          "Provide more statistics or data on the growth of Indian fast-casual dining to strengthen the argument."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "ebf4aa71-75db-42b2-8915-20bc569776d6",
-      "headline": "Akshay Kumar and Priyadarshan Are Reuniting for a Ninth Time. The Title Alone Will Give You Goosebumps.",
-      "slug": "akshay-kumar-priyadarshan-wicked-sunny-ninth-film-mujhse-shaadi-karogi-comedy-thriller-20260704",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "0932f10a-5f7a-477a-8e1c-f2181c8ba05c",
-            "headline": "Priyadarshan Lost Hera Pheri 3. So He Called Akshay Kumar In"
-          },
-          {
-            "article_id": "6d8b7e92-3f76-4273-ba6f-a312a3d32c69",
-            "headline": "Welcome to the Jungle Broke Even Before It Opened. Then It E"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Akshay Kumar at an event",
-          "reason": "The photo shows Akshay Kumar, who is relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/reel/DaUXGxWM4W4/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram reel does not appear to be directly related to the article's subject matter about Akshay Kumar and Priyadarshan's new film."
-          }
-        ],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the film's significance to NRI audiences, referencing their nostalgia and cultural impact."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the irrelevant Instagram embed with a more relevant source or remove it altogether.",
-          "Consider adding quotes or insights from Akshay Kumar or Priyadarshan about their collaboration to enhance the article's depth."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/reel/DaUXGxWM4W4/",
         "promoted to published"
       ],
       "revised": false,
