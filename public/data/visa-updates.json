@@ -1,5 +1,14 @@
 [
   {
+    "id": "scotus-birthright-citizenship-upheld",
+    "date": "2026-07-01",
+    "label": "Jul 1, 2026",
+    "headline": "Supreme Court upholds birthright citizenship 6-3 \u2014 strikes down Trump executive order as unconstitutional",
+    "summary": "In a landmark ruling on the final day of its term, the Supreme Court struck down President Trump's executive order that sought to deny automatic citizenship to children born in the US to non-citizen parents. Chief Justice Roberts, writing for a five-member majority, held that the 14th Amendment's Citizenship Clause \u2014 granting citizenship to all persons born on US soil and \"subject to the jurisdiction thereof\" \u2014 cannot be overridden by executive action, citing the 1898 precedent United States v. Wong Kim Ark. Justice Kavanaugh concurred on statutory grounds, suggesting Congress could legislate changes but the president cannot act alone. The ruling is especially significant for Indian families navigating years-long green card backlogs on H-1B, H-4, L-1, and other temporary visas, where children are frequently born in the US long before their parents obtain permanent residency. Trump called the decision \"too bad for our country\" and urged Congress to pass legislation ending birthright citizenship \u2014 a move that would face even steeper constitutional hurdles.",
+    "severity": "high",
+    "source": "US Supreme Court (Trump v. Barbara) / NBC News / Brookings / Reuters"
+  },
+  {
     "id": "uscis-signature-rule-july-10",
     "date": "2026-06-30",
     "label": "Jun 30, 2026",
@@ -162,15 +171,6 @@
     "severity": "high",
     "source": "Dept. of Homeland Security",
     "url": "/immigration"
-  },
-  {
-    "id": "eb2-india-exhausted",
-    "date": "2026-05-27",
-    "label": "May 27, 2026",
-    "headline": "EB-2 India green card quota fully exhausted for FY2026",
-    "summary": "All EB-2 immigrant visa numbers for India used up. Final Action Date retrogressed to Sep 2013. No new EB-2 green cards for Indians until FY2027 begins Oct 2026.",
-    "severity": "high",
-    "source": "US State Department"
   },
   {
     "id": "interview-waiver-eliminated",
