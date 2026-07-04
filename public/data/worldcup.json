@@ -1,6 +1,6 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-07-04T17:59:53Z",
+  "last_updated": "2026-07-04T19:59:24Z",
   "stage": "Knockout Stage",
   "hosts": "USA, Mexico & Canada",
   "dates": {
@@ -2240,7 +2240,9 @@
           "time": "13:00",
           "tz": "ET",
           "venue": "NRG Stadium, Houston",
-          "status": "scheduled"
+          "status": "FT",
+          "score": "0-3",
+          "winner": "Morocco"
         },
         {
           "match_num": 89,
@@ -7068,6 +7070,34 @@
       "caption": "Which goal deserves a spot in the final? Vote now for your Goal of the Round! ⚽",
       "date": "2026-07-04",
       "type": "video"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DaYUpGnlrUN",
+      "account": "@fifaworldcup",
+      "caption": "🇨🇦 Canada and Morocco are level at the break ⚖️",
+      "date": "2026-07-04"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DaYckd9CKw7",
+      "account": "@fifaworldcup",
+      "caption": "Rahimi makes it three 🇲🇦",
+      "date": "2026-07-04"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DaYdM3fCXkf/",
+      "account": "@fifaworldcup",
+      "caption": "Morocco secure their place in the last eight! 💫 #FIFAWorldCup",
+      "date": "2026-07-04"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DaYdUI6GYYt",
+      "account": "@fifaworldcup",
+      "caption": "Morocco secure their place in the last eight! 💫",
+      "date": "2026-07-04"
     }
   ],
   "tv": {
