@@ -1,6 +1,6 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-07-03T22:01:29Z",
+  "last_updated": "2026-07-04T00:00:01Z",
   "stage": "Knockout Stage",
   "hosts": "USA, Mexico & Canada",
   "dates": {
@@ -6547,6 +6547,83 @@
       "caption": "The fans have spoken – Mohamed Salah is your Superior Player of the Match! 👑",
       "date": "2026-07-03",
       "type": "image"
+    },
+    {
+      "platform": "facebook",
+      "url": "https://www.facebook.com/reel/1033938166060616/",
+      "account": "@fifaworldcup",
+      "date": "2026-07-02",
+      "type": "video",
+      "caption": "Captain Kane 🏴󠁧󠁢󠁥󠁮󠁧󠁿💥 #FIFAWorldCup"
+    },
+    {
+      "platform": "facebook",
+      "url": "https://www.facebook.com/reel/1003027985778390/",
+      "account": "@fifaworldcup",
+      "date": "2026-07-03",
+      "type": "video",
+      "caption": "Knockout round James 🇨🇴🤩 #FIFAWorldCup"
+    },
+    {
+      "platform": "facebook",
+      "url": "https://www.facebook.com/reel/2832504160423311/",
+      "account": "@fifaworldcup",
+      "date": "2026-07-03",
+      "type": "video",
+      "caption": "Cristiano. Spain. 2018. 🔥 #FIFAWorldCup"
+    },
+    {
+      "platform": "facebook",
+      "url": "https://www.facebook.com/reel/28390400887228774/",
+      "account": "@fifaworldcup",
+      "date": "2026-07-02",
+      "type": "video",
+      "caption": "Spain's last #FIFAWorldCup knockout round win... 🇪🇸🏆"
+    },
+    {
+      "platform": "facebook",
+      "url": "https://www.facebook.com/reel/1486281113295972/",
+      "account": "@fifaworldcup",
+      "date": "2026-07-03",
+      "type": "video"
+    },
+    {
+      "platform": "facebook",
+      "url": "https://www.facebook.com/reel/1673530333864953/",
+      "account": "@fifaworldcup",
+      "date": "2026-07-02",
+      "type": "video",
+      "caption": "Another classic Belgium comeback on this day in 2018 🇧🇪 #FIFAWorldCup"
+    },
+    {
+      "platform": "facebook",
+      "url": "https://www.facebook.com/reel/1741329973563591/",
+      "account": "@fifaworldcup",
+      "date": "2026-07-02",
+      "type": "video",
+      "caption": "Lamine Yamal, your Superior Player of the Match 🌟 Spain 3-0 Austria #FIFAWorldCup"
+    },
+    {
+      "platform": "facebook",
+      "url": "https://www.facebook.com/reel/2099712284300295/",
+      "account": "@fifaworldcup",
+      "date": "2026-07-02",
+      "type": "video"
+    },
+    {
+      "platform": "facebook",
+      "url": "https://www.facebook.com/reel/1503053751024779/",
+      "account": "@fifaworldcup",
+      "date": "2026-07-02",
+      "type": "video",
+      "caption": "Cool. Calm. Cristiano.\n\n#FIFAWorldCup"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/reel/DaWICJ_CxJN/",
+      "account": "@fifaworldcup",
+      "date": "2026-07-03",
+      "type": "video"
     }
   ],
   "tv": {
