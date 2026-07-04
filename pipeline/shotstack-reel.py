@@ -6946,7 +6946,7 @@ def get_endcard_url():
     if not os.path.exists(_ENDCARD_PNG):
         print(f"  ⚠️ Static end card not found at {_ENDCARD_PNG}")
         return None
-    url = upload_asset(_ENDCARD_PNG, "branding/endcard-v1.png", "image/png")
+    url = upload_asset(_ENDCARD_PNG, "branding/endcard-v2.png", "image/png")
     if url:
         _ENDCARD_URL_CACHE[0] = url
         print(f"  ✅ End card uploaded: {url[:60]}...")
