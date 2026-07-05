@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-04T21:15:18.943647+00:00",
+  "timestamp": "2026-07-05T00:15:22.302237+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
-    "flag": 1,
+    "pass": 2,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "5288ba32-c7ea-47af-afad-e2b45b10a10a",
-      "headline": "Pichai's Google Just Admitted Its Climate Goals Are Slipping. Amazon's Numbers Are Worse.",
-      "slug": "google-amazon-ai-emissions-surge-climate-goals-pichai-20260704",
+      "id": "ea5a7182-98e9-4fe2-aa45-c9ed31badc29",
+      "headline": "They Read the News from Memory, Without Teleprompters. Now a New York Library Is Making Sure the Diaspora Remembers.",
+      "slug": "indian-diaspora-center-doordarshan-tv-symposium-elmont-20260705",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,28 +21,28 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Google server racks in data centre",
-          "reason": "The photo shows Google server racks, relevant to the data centre and emissions topic."
+          "what_photo_shows": "panel discussion at cultural event",
+          "reason": "The photo shows a panel discussion, which fits the symposium context."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 7,
+        "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 8,
+          "score": 9,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article discusses Indian-origin executives, which connects to the diaspora, but the focus is primarily on corporate climate issues."
+          "quality": 8,
+          "note": "The article effectively connects the historical context of Indian television to the experiences of the Indian diaspora, making it relevant and engaging."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes or perspectives from the Indian diaspora regarding the impact of these companies' climate goals.",
-          "Add a section discussing how these climate issues might affect Indian consumers or businesses."
+          "Include quotes or anecdotes from attendees to enhance the personal connection to the diaspora experience.",
+          "Add a brief section on how the evolution of Indian television has influenced the diaspora's cultural identity."
         ],
         "verdict": "pass"
       },
@@ -54,23 +54,18 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "2030e478-6729-4adf-aa8e-7d7afa543db5",
-      "headline": "Every Big Tech Giant Wants a Data Centre in India. The Government Just Made It Tax-Free Until 2047.",
-      "slug": "india-data-centre-boom-microsoft-google-zero-tax-2047-20260704",
+      "id": "6715bf92-c61a-4a44-8984-09e752403cfe",
+      "headline": "A New Jersey Temple Has Screened 15,000 People for Free. Now It Wants to Become a Permanent Clinic.",
+      "slug": "nj-balaji-temple-health-camp-fqhc-indian-american-20260705",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "e34b7834-ce80-40ed-b25d-97ec34853727",
-            "headline": "While America Fights Its Data Centers, India Is Rolling Out "
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "server racks in data centre",
-          "reason": "The photo shows server racks, relevant to a data centre story."
+          "what_photo_shows": "blood glucose screening at health fair",
+          "reason": "The photo shows a health screening, relevant to the health camp story."
         },
         "inline_image_mismatches": []
       },
@@ -78,21 +73,21 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 5,
-          "issue": "The image does not depict a data center in India, which is the focus of the article."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the topic to Indian American technology professionals, highlighting job and investment opportunities."
+          "note": "The article effectively connects the health initiative to the South Asian community in the U.S., highlighting cultural and health issues relevant to NRIs."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the hero image with one that depicts a data center in India to better match the article's content.",
-          "Expand on the investment story section to provide more specific examples of how diaspora investors can engage with the Indian data center market."
+          "Include quotes or testimonials from participants to enhance the human interest angle.",
+          "Add more statistics or studies to further emphasize the health disparities faced by the South Asian community."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
         "promoted to published"
