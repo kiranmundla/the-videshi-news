@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-07-05T14:15:26.452164+00:00",
+  "timestamp": "2026-07-05T15:15:30.425524+00:00",
   "mode": "fix",
   "stats": {
     "pass": 2,
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "d6203b79-4013-48d0-9202-b6f3094ecef7",
-      "headline": "The Bill That Made Immigration Expensive Turns One. Here Is What Indian Families Now Pay",
-      "slug": "one-big-beautiful-bill-anniversary-immigration-fees-indian-h1b-20260705",
+      "id": "fa3d0bae-be75-400c-a3a5-54f660aaf532",
+      "headline": "Ounahi Scores Twice. Morocco End Canada's World Cup on the Fourth of July.",
+      "slug": "morocco-3-0-canada-ounahi-brace-world-cup-round-of-16-houston-quarterfinals-nri-2026",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,60 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "US passport and hundred-dollar bills",
-          "reason": "The photo illustrates the financial aspect of immigration costs."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 5,
-          "issue": "The image does not directly relate to the topic of immigration fees or Indian families."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively discusses the financial impact of immigration fees on Indian families, making it highly relevant to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that depicts immigration or Indian families to enhance visual connection.",
-          "Add a brief conclusion summarizing the implications of these fees on Indian families and potential future changes."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "c44473c3-32c5-40be-bc5b-a93137e9d15c",
-      "headline": "Two in Three EB-1A Petitions Still Pass. The NIW Is a Different Story",
-      "slug": "niw-eb1a-approval-rates-crash-mukherji-indian-professionals-20260705",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "b79cd0f1-3de5-484d-a653-86db99b98fb8",
-            "headline": "Trump's Gold Card Has 59 Real Applicants. The Green Card Bac"
-          },
-          {
-            "article_id": "9b6a5c28-5172-4f08-ac19-36ca168b66a6",
-            "headline": "Adjustment of Status Is Now 'Extraordinary.' Your Green Card"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "US permanent resident card",
-          "reason": "The photo shows a green card, relevant to the immigration story."
+          "what_photo_shows": "Azzedine Ounahi in Morocco jersey",
+          "reason": "The photo shows Azzedine Ounahi, relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -88,13 +36,56 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses immigration pathways specifically relevant to Indian professionals, making it highly relevant for the diaspora audience."
+          "note": "The article effectively connects the World Cup performance of Canada to the Indian diaspora in Canada, highlighting their pride and engagement with the event."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more personal stories or testimonials from Indian professionals who have navigated the EB-1A or NIW processes to enhance relatability.",
-          "Include a brief overview of the implications of the recent court ruling for the broader immigrant community, not just Indian professionals."
+          "Consider adding quotes or reactions from NRI fans to enhance the diaspora angle.",
+          "Include more context about the significance of the match for Canadian soccer history."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "b85f4e11-5860-4a19-b006-aede2cff1ca8",
+      "headline": "Bethell's Unbeaten 76 Sinks India at Old Trafford. Bishnoi's 29-Run Over Hands England a 1-0 Series Lead.",
+      "slug": "bethell-76-england-beat-india-2nd-t20i-old-trafford-bishnoi-29-run-over-series-1-0-nri-2026",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "cricket ground with scoreboard",
+          "reason": "The photo shows a cricket ground, relevant to the cricket match story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the match outcome to the Indian diaspora, highlighting the emotional impact on fans in various countries."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from players or coaches to enhance the narrative.",
+          "Include more context about the significance of the match for the series."
         ],
         "verdict": "pass"
       },
