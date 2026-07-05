@@ -120,13 +120,6 @@
     "added_date": "2026-05-01"
   },
   {
-    "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/snapshots/indian-temple-festival-36849624.jpg",
-    "label": "Vibrant traditional Indian festival with performers in elaborate costumes and makeup, showcasing cultural heritage. · 📷 Pavan Prasad",
-    "source": "pexels",
-    "added_date": "2026-05-27",
-    "pexels_id": 36849624
-  },
-  {
     "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/snapshots/indian-temple-festival-36849636.jpg",
     "label": "Colorful scene of people in traditional attire celebrating a Hindu festival at a temple. · 📷 Pavan Prasad",
     "source": "pexels",
@@ -258,5 +251,12 @@
     "source": "pexels",
     "added_date": "2026-06-28",
     "pexels_id": 35763760
+  },
+  {
+    "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/snapshots/kerala-houseboat-backwaters-17928231.jpg",
+    "label": "Scenic view of a traditional Kerala houseboat cruising through lush backwaters. · 📷 Pritam Sengupta",
+    "source": "pexels",
+    "added_date": "2026-07-05",
+    "pexels_id": 17928231
   }
 ]
