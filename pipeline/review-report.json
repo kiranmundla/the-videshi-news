@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-05T00:15:22.302237+00:00",
+  "timestamp": "2026-07-05T00:45:23.345614+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 0,
+    "pass": 1,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "ea5a7182-98e9-4fe2-aa45-c9ed31badc29",
-      "headline": "They Read the News from Memory, Without Teleprompters. Now a New York Library Is Making Sure the Diaspora Remembers.",
-      "slug": "indian-diaspora-center-doordarshan-tv-symposium-elmont-20260705",
+      "id": "9fbef74a-b84a-4f8c-9675-0a5fd3cbd8a7",
+      "headline": "Britain Is About to Get Its Seventh Prime Minister in a Decade. The 1.8 Million Indians There Are Watching Closely.",
+      "slug": "uk-pm-andy-burnham-starmer-resignation-india-diaspora-ceta-trade-deal-20260704",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "panel discussion at cultural event",
-          "reason": "The photo shows a panel discussion, which fits the symposium context."
+          "what_photo_shows": "Andy Burnham at an event",
+          "reason": "The photo shows Andy Burnham, relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -30,21 +30,22 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 5,
+          "issue": "irrelevant",
+          "explanation": "The image of Andy Burnham does not directly relate to the article's focus on the Indian diaspora's perspective on UK politics."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the historical context of Indian television to the experiences of the Indian diaspora, making it relevant and engaging."
+          "note": "The article effectively connects the political changes in the UK to the interests of the Indian diaspora, particularly regarding the CETA."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes or anecdotes from attendees to enhance the personal connection to the diaspora experience.",
-          "Add a brief section on how the evolution of Indian television has influenced the diaspora's cultural identity."
+          "Consider using a more relevant image that reflects the Indian diaspora's perspective or the significance of the CETA.",
+          "Add quotes or insights from members of the Indian community in the UK to enhance the diaspora angle."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
         "promoted to published"
@@ -54,9 +55,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "6715bf92-c61a-4a44-8984-09e752403cfe",
-      "headline": "A New Jersey Temple Has Screened 15,000 People for Free. Now It Wants to Become a Permanent Clinic.",
-      "slug": "nj-balaji-temple-health-camp-fqhc-indian-american-20260705",
+      "id": "7275ef3e-47be-405a-9e82-1b3d2727467a",
+      "headline": "Hundreds of Masked White Nationalists Marched Through Washington on America's 250th Birthday. They Chanted 'Reclaim America.'",
+      "slug": "patriot-front-white-nationalists-march-dc-july-4-250th-birthday-diaspora-20260704",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,8 +65,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "blood glucose screening at health fair",
-          "reason": "The photo shows a health screening, relevant to the health camp story."
+          "what_photo_shows": "Patriot Front members marching with flags",
+          "reason": "The photo shows Patriot Front members, matching the story's subject."
         },
         "inline_image_mismatches": []
       },
@@ -79,13 +80,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the health initiative to the South Asian community in the U.S., highlighting cultural and health issues relevant to NRIs."
+          "note": "The article effectively connects the event to the Indian American community, highlighting the implications of white nationalist rhetoric on their sense of belonging."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes or testimonials from participants to enhance the human interest angle.",
-          "Add more statistics or studies to further emphasize the health disparities faced by the South Asian community."
+          "Consider adding more direct quotes from Indian American leaders or community members to enhance the diaspora perspective.",
+          "Include a brief historical context of the Indian American community's experiences with nativism to deepen the analysis."
         ],
         "verdict": "pass"
       },
