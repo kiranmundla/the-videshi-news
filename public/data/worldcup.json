@@ -1,6 +1,6 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-07-04T21:58:58Z",
+  "last_updated": "2026-07-05T00:00:05Z",
   "stage": "Knockout Stage",
   "hosts": "USA, Mexico & Canada",
   "dates": {
@@ -22,25 +22,25 @@
         "code": "MEX",
         "flag": "🇲🇽",
         "rank": 14,
-        "p": 3,
-        "w": 3,
+        "p": 4,
+        "w": 4,
         "d": 0,
         "l": 0,
-        "gf": 6,
+        "gf": 8,
         "ga": 0,
-        "pts": 9
+        "pts": 12
       },
       {
         "name": "South Africa",
         "code": "RSA",
         "flag": "🇿🇦",
         "rank": 60,
-        "p": 3,
+        "p": 4,
         "w": 1,
         "d": 1,
-        "l": 1,
+        "l": 2,
         "gf": 2,
-        "ga": 3,
+        "ga": 4,
         "pts": 4
       },
       {
@@ -76,38 +76,38 @@
         "code": "SUI",
         "flag": "🇨🇭",
         "rank": 19,
-        "p": 3,
-        "w": 2,
+        "p": 4,
+        "w": 3,
         "d": 1,
         "l": 0,
-        "gf": 7,
+        "gf": 9,
         "ga": 3,
-        "pts": 7
+        "pts": 10
       },
       {
         "name": "Canada",
         "code": "CAN",
         "flag": "🇨🇦",
         "rank": 30,
-        "p": 3,
-        "w": 1,
+        "p": 4,
+        "w": 2,
         "d": 1,
         "l": 1,
-        "gf": 8,
+        "gf": 9,
         "ga": 3,
-        "pts": 4
+        "pts": 7
       },
       {
         "name": "Bosnia & Herzegovina",
         "code": "BIH",
         "flag": "🇧🇦",
         "rank": 64,
-        "p": 3,
+        "p": 4,
         "w": 1,
         "d": 1,
-        "l": 1,
+        "l": 2,
         "gf": 5,
-        "ga": 6,
+        "ga": 8,
         "pts": 4
       },
       {
@@ -130,26 +130,26 @@
         "code": "BRA",
         "flag": "🇧🇷",
         "rank": 6,
-        "p": 3,
-        "w": 2,
+        "p": 4,
+        "w": 3,
         "d": 1,
         "l": 0,
-        "gf": 7,
-        "ga": 1,
-        "pts": 7
+        "gf": 9,
+        "ga": 2,
+        "pts": 10
       },
       {
         "name": "Morocco",
         "code": "MAR",
         "flag": "🇲🇦",
         "rank": 7,
-        "p": 3,
+        "p": 4,
         "w": 2,
-        "d": 1,
+        "d": 2,
         "l": 0,
-        "gf": 6,
-        "ga": 3,
-        "pts": 7
+        "gf": 7,
+        "ga": 4,
+        "pts": 8
       },
       {
         "name": "Scotland",
@@ -184,39 +184,39 @@
         "code": "USA",
         "flag": "🇺🇸",
         "rank": 17,
-        "p": 3,
-        "w": 2,
+        "p": 4,
+        "w": 3,
         "d": 0,
         "l": 1,
-        "gf": 8,
+        "gf": 10,
         "ga": 4,
-        "pts": 6
+        "pts": 9
       },
       {
         "name": "Australia",
         "code": "AUS",
         "flag": "🇦🇺",
         "rank": 27,
-        "p": 3,
+        "p": 4,
         "w": 1,
-        "d": 1,
+        "d": 2,
         "l": 1,
-        "gf": 2,
-        "ga": 2,
-        "pts": 4
+        "gf": 3,
+        "ga": 3,
+        "pts": 5
       },
       {
         "name": "Paraguay",
         "code": "PAR",
         "flag": "🇵🇾",
         "rank": 40,
-        "p": 3,
+        "p": 4,
         "w": 1,
-        "d": 1,
+        "d": 2,
         "l": 1,
-        "gf": 2,
-        "ga": 4,
-        "pts": 4
+        "gf": 3,
+        "ga": 5,
+        "pts": 5
       },
       {
         "name": "Turkey",
@@ -238,25 +238,25 @@
         "code": "GER",
         "flag": "🇩🇪",
         "rank": 10,
-        "p": 3,
+        "p": 4,
         "w": 2,
-        "d": 0,
+        "d": 1,
         "l": 1,
-        "gf": 10,
-        "ga": 4,
-        "pts": 6
+        "gf": 11,
+        "ga": 5,
+        "pts": 7
       },
       {
         "name": "Ivory Coast",
         "code": "CIV",
         "flag": "🇨🇮",
         "rank": 33,
-        "p": 3,
+        "p": 4,
         "w": 2,
         "d": 0,
-        "l": 1,
-        "gf": 4,
-        "ga": 2,
+        "l": 2,
+        "gf": 5,
+        "ga": 4,
         "pts": 6
       },
       {
@@ -264,12 +264,12 @@
         "code": "ECU",
         "flag": "🇪🇨",
         "rank": 23,
-        "p": 3,
+        "p": 4,
         "w": 1,
         "d": 1,
-        "l": 1,
+        "l": 2,
         "gf": 2,
-        "ga": 2,
+        "ga": 4,
         "pts": 4
       },
       {
@@ -292,25 +292,25 @@
         "code": "NED",
         "flag": "🇳🇱",
         "rank": 8,
-        "p": 3,
+        "p": 4,
         "w": 2,
-        "d": 1,
+        "d": 2,
         "l": 0,
-        "gf": 10,
-        "ga": 4,
-        "pts": 7
+        "gf": 11,
+        "ga": 5,
+        "pts": 8
       },
       {
         "name": "Japan",
         "code": "JPN",
         "flag": "🇯🇵",
         "rank": 18,
-        "p": 3,
+        "p": 4,
         "w": 1,
         "d": 2,
-        "l": 0,
-        "gf": 7,
-        "ga": 3,
+        "l": 1,
+        "gf": 8,
+        "ga": 5,
         "pts": 5
       },
       {
@@ -318,12 +318,12 @@
         "code": "SWE",
         "flag": "🇸🇪",
         "rank": 38,
-        "p": 3,
+        "p": 4,
         "w": 1,
         "d": 1,
-        "l": 1,
+        "l": 2,
         "gf": 7,
-        "ga": 7,
+        "ga": 10,
         "pts": 4
       },
       {
@@ -346,26 +346,26 @@
         "code": "BEL",
         "flag": "🇧🇪",
         "rank": 9,
-        "p": 3,
-        "w": 1,
+        "p": 4,
+        "w": 2,
         "d": 2,
         "l": 0,
-        "gf": 6,
-        "ga": 2,
-        "pts": 5
+        "gf": 9,
+        "ga": 4,
+        "pts": 8
       },
       {
         "name": "Egypt",
         "code": "EGY",
         "flag": "🇪🇬",
         "rank": 29,
-        "p": 3,
+        "p": 4,
         "w": 1,
-        "d": 2,
+        "d": 3,
         "l": 0,
-        "gf": 5,
-        "ga": 3,
-        "pts": 5
+        "gf": 6,
+        "ga": 4,
+        "pts": 6
       },
       {
         "name": "Iran",
@@ -400,25 +400,25 @@
         "code": "ESP",
         "flag": "🇪🇸",
         "rank": 2,
-        "p": 3,
-        "w": 2,
+        "p": 4,
+        "w": 3,
         "d": 1,
         "l": 0,
-        "gf": 5,
+        "gf": 8,
         "ga": 0,
-        "pts": 7
+        "pts": 10
       },
       {
         "name": "Cape Verde",
         "code": "CPV",
         "flag": "🇨🇻",
         "rank": 67,
-        "p": 3,
+        "p": 4,
         "w": 0,
         "d": 3,
-        "l": 0,
-        "gf": 2,
-        "ga": 2,
+        "l": 1,
+        "gf": 4,
+        "ga": 5,
         "pts": 3
       },
       {
@@ -454,38 +454,38 @@
         "code": "FRA",
         "flag": "🇫🇷",
         "rank": 3,
-        "p": 3,
-        "w": 3,
+        "p": 4,
+        "w": 4,
         "d": 0,
         "l": 0,
-        "gf": 10,
+        "gf": 13,
         "ga": 2,
-        "pts": 9
+        "pts": 12
       },
       {
         "name": "Norway",
         "code": "NOR",
         "flag": "🇳🇴",
         "rank": 31,
-        "p": 3,
-        "w": 2,
+        "p": 4,
+        "w": 3,
         "d": 0,
         "l": 1,
-        "gf": 8,
-        "ga": 7,
-        "pts": 6
+        "gf": 10,
+        "ga": 8,
+        "pts": 9
       },
       {
         "name": "Senegal",
         "code": "SEN",
         "flag": "🇸🇳",
         "rank": 15,
-        "p": 3,
+        "p": 4,
         "w": 1,
         "d": 0,
-        "l": 2,
-        "gf": 8,
-        "ga": 6,
+        "l": 3,
+        "gf": 10,
+        "ga": 9,
         "pts": 3
       },
       {
@@ -508,25 +508,25 @@
         "code": "ARG",
         "flag": "🇦🇷",
         "rank": 1,
-        "p": 3,
-        "w": 3,
+        "p": 4,
+        "w": 4,
         "d": 0,
         "l": 0,
-        "gf": 8,
-        "ga": 1,
-        "pts": 9
+        "gf": 11,
+        "ga": 3,
+        "pts": 12
       },
       {
         "name": "Austria",
         "code": "AUT",
         "flag": "🇦🇹",
         "rank": 24,
-        "p": 3,
+        "p": 4,
         "w": 1,
         "d": 1,
-        "l": 1,
+        "l": 2,
         "gf": 6,
-        "ga": 6,
+        "ga": 9,
         "pts": 4
       },
       {
@@ -534,12 +534,12 @@
         "code": "ALG",
         "flag": "🇩🇿",
         "rank": 28,
-        "p": 3,
+        "p": 4,
         "w": 1,
         "d": 1,
-        "l": 1,
+        "l": 2,
         "gf": 5,
-        "ga": 7,
+        "ga": 9,
         "pts": 4
       },
       {
@@ -562,38 +562,38 @@
         "code": "COL",
         "flag": "🇨🇴",
         "rank": 13,
-        "p": 3,
-        "w": 2,
+        "p": 4,
+        "w": 3,
         "d": 1,
         "l": 0,
-        "gf": 4,
+        "gf": 5,
         "ga": 1,
-        "pts": 7
+        "pts": 10
       },
       {
         "name": "Portugal",
         "code": "POR",
         "flag": "🇵🇹",
         "rank": 5,
-        "p": 3,
-        "w": 1,
+        "p": 4,
+        "w": 2,
         "d": 2,
         "l": 0,
-        "gf": 6,
-        "ga": 1,
-        "pts": 5
+        "gf": 8,
+        "ga": 2,
+        "pts": 8
       },
       {
         "name": "DR Congo",
         "code": "COD",
         "flag": "🇨🇩",
         "rank": 45,
-        "p": 3,
+        "p": 4,
         "w": 1,
         "d": 1,
-        "l": 1,
-        "gf": 4,
-        "ga": 3,
+        "l": 2,
+        "gf": 5,
+        "ga": 5,
         "pts": 4
       },
       {
@@ -616,25 +616,25 @@
         "code": "ENG",
         "flag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
         "rank": 4,
-        "p": 3,
-        "w": 2,
+        "p": 4,
+        "w": 3,
         "d": 1,
         "l": 0,
-        "gf": 6,
-        "ga": 2,
-        "pts": 7
+        "gf": 8,
+        "ga": 3,
+        "pts": 10
       },
       {
         "name": "Croatia",
         "code": "CRO",
         "flag": "🇭🇷",
         "rank": 11,
-        "p": 3,
+        "p": 4,
         "w": 2,
         "d": 0,
-        "l": 1,
-        "gf": 5,
-        "ga": 5,
+        "l": 2,
+        "gf": 6,
+        "ga": 7,
         "pts": 6
       },
       {
@@ -642,12 +642,12 @@
         "code": "GHA",
         "flag": "🇬🇭",
         "rank": 73,
-        "p": 3,
+        "p": 4,
         "w": 1,
         "d": 1,
-        "l": 1,
+        "l": 2,
         "gf": 2,
-        "ga": 2,
+        "ga": 3,
         "pts": 4
       },
       {
@@ -2254,7 +2254,9 @@
           "time": "17:00",
           "tz": "ET",
           "venue": "Lincoln Financial Field, Philadelphia",
-          "status": "scheduled"
+          "status": "FT",
+          "score": "0-1",
+          "winner": "France"
         },
         {
           "match_num": 91,
@@ -7132,6 +7134,114 @@
       "url": "https://www.threads.com/@fifaworldcup/post/DaYdUI6GYYt",
       "account": "@fifaworldcup",
       "caption": "Morocco secure their place in the last eight! 💫",
+      "date": "2026-07-04"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DaY4sHXiVjV/",
+      "account": "@fifaworldcup",
+      "date": "2026-07-04"
+    },
+    {
+      "platform": "facebook",
+      "url": "https://www.facebook.com/fifaworldcup/posts/pfbid0uFcTkRyE8cfqYGB5hQfkVAnEzfAkM6HuHfbbRQajmjtKwLwb3CktmA61qxN8JwRql",
+      "account": "@fifaworldcup",
+      "date": "2026-07-04"
+    },
+    {
+      "platform": "facebook",
+      "url": "https://www.facebook.com/fifaworldcup/posts/pfbid032kNpfGJxNxhBhJoQPFMJDYXNzzoDEaUXfkPHY8wQXYzjmiRBYCfzrHjMRfKDfbTAl",
+      "account": "@fifaworldcup",
+      "date": "2026-07-04"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DaY4vv9GRr8",
+      "account": "@fifaworldcup",
+      "date": "2026-07-04"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DaYw95TDz7w",
+      "account": "@fifaworldcup",
+      "date": "2026-07-04"
+    },
+    {
+      "platform": "facebook",
+      "url": "https://www.facebook.com/fifaworldcup/posts/pfbid08kkzkDiLjsRihmdfNgCZcqULEJ2sipeSsZzfbtjV7FrYpDwiM586vat1wJiVoD2Ll",
+      "account": "@fifaworldcup",
+      "date": "2026-07-04"
+    },
+    {
+      "platform": "facebook",
+      "url": "https://www.facebook.com/reel/2105730663625480/",
+      "account": "@fifaworldcup",
+      "date": "2026-07-04"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DaY4g28mQEn",
+      "account": "@fifaworldcup",
+      "date": "2026-07-04"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DaY4c49inHJ/",
+      "account": "@fifaworldcup",
+      "date": "2026-07-04"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DaY4IoiinD6/",
+      "account": "@fifaworldcup",
+      "date": "2026-07-04"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/reel/DaYqCSziYad/",
+      "account": "@fifaworldcup",
+      "date": "2026-07-04"
+    },
+    {
+      "platform": "facebook",
+      "url": "https://www.facebook.com/fifaworldcup/posts/pfbid02RxPjCNKPxpz3XhfYgcrywzsc8HWDXSARUCjasosbxqPnbi8r7ntQPAjr29x12xAVl",
+      "account": "@fifaworldcup",
+      "date": "2026-07-04"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DaYHe34iEAH",
+      "account": "@fifaworldcup",
+      "date": "2026-07-04"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DaY0ztsivfA",
+      "account": "@fifaworldcup",
+      "date": "2026-07-04"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/reel/DaY8pV9C4vi/",
+      "account": "@fifaworldcup",
+      "date": "2026-07-04"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DaY60Q0GeBE",
+      "account": "@fifaworldcup",
+      "date": "2026-07-04"
+    },
+    {
+      "platform": "facebook",
+      "url": "https://www.facebook.com/fifaworldcup/posts/pfbid06SDH8XszzQyHkeuXq11T8m2PYo35eLskpAtZXbEohAmCaRknjfDFAxez5SqyjoZ5l",
+      "account": "@fifaworldcup",
+      "date": "2026-07-04"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DaY4RykCPoH",
+      "account": "@fifaworldcup",
       "date": "2026-07-04"
     }
   ],
