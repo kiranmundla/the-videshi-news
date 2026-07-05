@@ -482,7 +482,7 @@ def generate_script(article, force_new=False):
     slug = article.get("slug", "unknown")
 
     # Script cache — reuse if already generated
-    SCRIPT_CACHE_VERSION = "clean8"  # bump to invalidate old caches (clean8: no-repeat + visual-variety storyboard rules, scene_direction in Gemini prompt)
+    SCRIPT_CACHE_VERSION = "clean9"  # bump to invalidate old caches (clean9: str+int fix, CTA stripping, hook auto-scale, overflow protection)
     cache_path = BUILD_DIR / f"script-{slug}.json"
     if not force_new and cache_path.exists():
         try:
@@ -832,6 +832,29 @@ Return JSON only:
     else:
         result = json.loads(r.json()["choices"][0]["message"]["content"])
     result["v"] = SCRIPT_CACHE_VERSION
+
+    # ── Deterministic CTA scene stripping ──
+    # GPT sometimes generates a closing CTA scene despite being told not to.
+    # The branded endcard handles the CTA, so strip any last storyboard scene
+    # that looks like one.
+    _sb = result.get("storyboard") or []
+    if _sb:
+        _last = _sb[-1]
+        _last_ct = (_last.get("card_text") or "").lower()
+        _last_cs = (_last.get("card_subtext") or "").lower()
+        _last_ip = (_last.get("image_prompt") or "").lower()
+        _last_role = (_last.get("scene_role") or "").lower()
+        _cta_signals = ("full story", "thevideshi", "read more", "further details",
+                        "learn more", "visit us", "dot com", ".com", "check out")
+        _is_cta = (_last_role == "cta"
+                   or any(sig in _last_ct for sig in _cta_signals)
+                   or any(sig in _last_cs for sig in _cta_signals)
+                   or any(sig in _last_ip for sig in _cta_signals))
+        if _is_cta:
+            _sb.pop()
+            result["storyboard"] = _sb
+            print(f"  🚫 Stripped CTA last scene: \"{_last.get('card_text', '')[:50]}\"")
+
     print(f"  📝 Script: {len(result['script'].split())} words")
     print(f"  📝 Hook: {result.get('hook_line1', '')} / {result.get('hook_line2', '')}")
 
@@ -1627,8 +1650,9 @@ def build_script_captions(words, script_text, hook_duration):
         inner = _render_caption_html(text.split())
         html = (
             f"<div style=\"display:flex;align-items:flex-end;justify-content:center;"
-            f"width:100%;height:100%;padding:0 24px 0 24px;\">"
+            f"width:100%;height:100%;padding:0 24px 0 24px;box-sizing:border-box;\">"
             f"<div style=\"background:#06080F;border-radius:14px;padding:16px 30px;"
+            f"max-width:100%;overflow-wrap:break-word;word-break:break-word;"
             f"border:2px solid rgba(212,175,55,0.55);"
             f"box-shadow:0 6px 28px rgba(0,0,0,0.85);"
             f"font-family:Inter;font-size:42px;font-weight:900;"
@@ -4638,7 +4662,7 @@ def generate_themed_image(image_prompt, article_id, idx, out_dir="/tmp/videshi_g
                 f"Now create a single vertical 9:16 infographic scene for a news video reel.\n\n"
                 f"Article:\n{headline}\n{subheadline}\n\n"
                 f"{body_text}\n\n"
-                f"THIS SCENE'S FOCUS (scene {idx + 1}):\n"
+                f"THIS SCENE'S FOCUS (scene {idx if isinstance(idx, str) else idx + 1}):\n"
                 f"{scene_direction}\n\n"
                 f"This is ONE scene in a multi-scene reel. Focus ONLY on the specific "
                 f"data and topic described above — do NOT try to summarize the whole "
@@ -6038,11 +6062,33 @@ def source_image_urls(article, image_queries, count=5):
 def build_hook_html(hook_line1, hook_line2, category):
     """Build HTML for the 3-second hook frame overlay."""
     badge = (category or "NEWS").upper().replace("-", " ")
+
+    # Auto-scale font sizes based on text length to prevent clipping.
+    # On a 1080px frame with 60px side padding = 960px available.
+    # Inter 900 at ~84px averages ~52px/char → safe up to ~18 chars.
+    l1_len = len(hook_line1 or "")
+    l2_len = len(hook_line2 or "")
+    if l1_len <= 16:
+        l1_size = 84
+    elif l1_len <= 22:
+        l1_size = 68
+    elif l1_len <= 30:
+        l1_size = 56
+    else:
+        l1_size = 46
+
+    if l2_len <= 20:
+        l2_size = 56
+    elif l2_len <= 30:
+        l2_size = 44
+    else:
+        l2_size = 36
+
     # Use inline styles for maximum compatibility with Shotstack's HTML renderer
-    html = f"""<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;width:100%;height:100%;padding:40px;box-sizing:border-box;background:radial-gradient(ellipse 90% 55% at 50% 52%, rgba(0,0,0,0.62) 0%, rgba(0,0,0,0.45) 45%, rgba(0,0,0,0.18) 78%, rgba(0,0,0,0.08) 100%);">
+    html = f"""<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;width:100%;height:100%;padding:40px 60px;box-sizing:border-box;background:radial-gradient(ellipse 90% 55% at 50% 52%, rgba(0,0,0,0.62) 0%, rgba(0,0,0,0.45) 45%, rgba(0,0,0,0.18) 78%, rgba(0,0,0,0.08) 100%);">
   <div style="background:#C41E3A;color:#fff;font-family:Inter;font-size:28px;font-weight:700;padding:10px 32px;letter-spacing:5px;margin-bottom:50px;box-shadow:0 4px 24px rgba(0,0,0,0.7);">{badge}</div>
-  <div style="font-family:Inter;font-size:84px;font-weight:900;color:#fff;line-height:1.0;margin-bottom:24px;text-shadow:0 4px 40px rgba(0,0,0,1),0 2px 10px rgba(0,0,0,1),0 0 80px rgba(0,0,0,0.85);">{hook_line1}</div>
-  <div style="font-family:Inter;font-size:56px;font-weight:700;color:#F2C84B;line-height:1.1;text-shadow:0 3px 22px rgba(0,0,0,1),0 1px 4px rgba(0,0,0,1);">{hook_line2}</div>
+  <div style="font-family:Inter;font-size:{l1_size}px;font-weight:900;color:#fff;line-height:1.05;margin-bottom:24px;max-width:100%;overflow-wrap:break-word;text-shadow:0 4px 40px rgba(0,0,0,1),0 2px 10px rgba(0,0,0,1),0 0 80px rgba(0,0,0,0.85);">{hook_line1}</div>
+  <div style="font-family:Inter;font-size:{l2_size}px;font-weight:700;color:#F2C84B;line-height:1.1;max-width:100%;overflow-wrap:break-word;text-shadow:0 3px 22px rgba(0,0,0,1),0 1px 4px rgba(0,0,0,1);">{hook_line2}</div>
   <div style="font-family:Inter;font-size:16px;color:rgba(255,255,255,0.3);letter-spacing:6px;margin-top:60px;">THE VIDESHI</div>
 </div>"""
 

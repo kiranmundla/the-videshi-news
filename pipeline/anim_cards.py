@@ -313,7 +313,13 @@ def render_diaspora_panel_mp4(title, subtitle, bullets, eyebrow="THE DIASPORA AN
                         _plabel = "THE DIASPORA ANGLE"
                     d.text((MX+50,pyy+40),_plabel[:26].upper(),
                            font=_font(52,"extrabold"),fill=WHITE)
-                    d.text((MX+50,pyy+110),subtitle,font=_font(36,"semibold"),fill=GOLD_BR)
+                    # Wrap subtitle so long text doesn't clip off-screen
+                    _sfont = _font(36, "semibold")
+                    _slines = _wrap(d, subtitle, _sfont, W - 2*MX - 130) if subtitle else []
+                    _sy = pyy + 110
+                    for _sl in _slines:
+                        d.text((MX+50, _sy), " ".join(_sl), font=_sfont, fill=GOLD_BR)
+                        _sy += 46
                     yy=pyy+pad_top
                     for bi,bl in enumerate(blines):
                         bent=clamp01((t*duration-0.7-bi*0.22)/0.5)
