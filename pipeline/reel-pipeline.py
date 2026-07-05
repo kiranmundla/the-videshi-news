@@ -134,7 +134,7 @@ def fetch_article(article_id):
     print(f"PHASE 1: Fetching article {article_id[:8]}...")
     print(f"{'='*60}")
     
-    cols = "id,headline,subheadline,slug,category,body,image_url,source_urls"
+    cols = "id,headline,subheadline,slug,category,body,image_url"
     r = requests.get(
         f"{SB_URL}/rest/v1/p2_articles?id=eq.{article_id}&select={cols}",
         headers=SB_HEADERS, timeout=15
@@ -173,20 +173,36 @@ OUTPUT FORMAT (JSON):
         {{
             "voiceover": "spoken text for this scene (punchy, conversational)",
             "onscreen": "SHORT HEADLINE (2-5 words, scene topic)",
-            "image_prompt": "detailed image generation prompt for this scene (cinematic, editorial, no text in image)"
+            "image_prompt": "VERY detailed, self-contained image generation prompt (see rules below)"
         }}
     ]
 }}
 
-RULES:
+IMAGE PROMPT RULES — THIS IS CRITICAL:
+The image prompts will be pasted into ChatGPT by someone who does NOT have the article.
+Each prompt must be completely SELF-CONTAINED with all the context needed to generate the right image.
+
+Each image_prompt MUST:
+- Start with: "Create a single cinematic vertical 9:16 news photograph."
+- Include 3-5 sentences of RICH, SPECIFIC visual description — exact subjects, environments, objects, compositions, camera angles, lighting
+- Reference CONCRETE details from the article (specific numbers, real places, real concepts, real institutions) — bake the article knowledge INTO the prompt
+- Specify atmosphere/mood in the description
+- End with: "Style: BBC documentary photography, Reuters editorial realism, ultra realistic, cinematic lighting, professional DSLR, dramatic scale, emotional storytelling. No text. No captions. No logos. No watermarks. No graphics. Single standalone image only."
+- Each scene must be visually COMPLETELY DIFFERENT from every other scene (different composition, different subject, different environment, different camera angle)
+
+Example of a GOOD prompt:
+"Create a single cinematic vertical 9:16 news photograph. A mysterious silhouette standing in front of Mount Rushmore at dawn. The monument partially hidden by fog. Dramatic golden sunlight breaking through clouds. The silhouette is unidentifiable, symbolizing the question of who belongs among America's greatest figures. Atmosphere: mysterious, thought-provoking, historic. Style: BBC documentary photography, Reuters editorial realism, ultra realistic, cinematic lighting, professional DSLR, dramatic scale, emotional storytelling. No text. No captions. No logos. No watermarks. No graphics. Single standalone image only."
+
+Example of a BAD prompt:
+"A concerned Indian professional looking at documents, dramatic lighting" — TOO VAGUE, no context, no specifics.
+
+STORYBOARD RULES:
 - 6-8 scenes total
 - Scene 0 must be a HOOK question that grabs attention
 - Last scene should be a thought-provoking closing
 - Total voiceover: 100-120 words (25-35 seconds)
 - Each scene voiceover: 10-20 words
-- Image prompts: cinematic, editorial photography style, rich colors, dramatic lighting
-- NEVER include text/words/letters in image prompts
-- Focus on the DIASPORA angle - how this affects Indians abroad
+- Focus on the DIASPORA angle — how this affects Indians abroad
 - On-screen text: 2-5 words, uppercase topic label
 
 Return ONLY valid JSON, no markdown."""
@@ -237,7 +253,7 @@ def generate_images_api(scenes, article_id, build_dir):
             headers={"Authorization": f"Bearer {OPENAI_KEY}", "Content-Type": "application/json"},
             json={
                 "model": "gpt-image-1",
-                "prompt": scene["image_prompt"],
+                "prompt": scene.get("image_prompt", scene.get("scene_focus", "")),
                 "n": 1,
                 "size": "1024x1536",  # portrait
                 "quality": "high"
@@ -249,7 +265,7 @@ def generate_images_api(scenes, article_id, build_dir):
             error_msg = r.text[:200]
             if "safety" in error_msg.lower() or "content_policy" in error_msg.lower():
                 print(f"  ⚠️  Scene {i} blocked by safety filter")
-                print(f"     Prompt: {scene['image_prompt'][:100]}...")
+                print(f"     Prompt: {scene.get('image_prompt', scene.get('scene_focus', ''))[:100]}...")
                 print(f"     → Use --manual-images to provide this scene")
                 scene["image_url"] = None
                 continue
@@ -293,6 +309,43 @@ def generate_images_api(scenes, article_id, build_dir):
     return True
 
 
+def watermark_image(img_path, logo_path=None):
+    """Add Videshi logo watermark to top-right corner of an image."""
+    from PIL import Image
+    
+    if logo_path is None:
+        logo_path = os.path.expanduser("~/workspace/the-videshi-news/public/logo-512.png")
+    
+    if not os.path.exists(logo_path):
+        print(f"  ⚠️  Logo not found at {logo_path}, skipping watermark")
+        return img_path
+    
+    img = Image.open(img_path).convert("RGBA")
+    logo = Image.open(logo_path).convert("RGBA")
+    
+    # Size logo to ~8% of image width
+    logo_size = int(img.width * 0.08)
+    logo = logo.resize((logo_size, logo_size), Image.LANCZOS)
+    
+    # Make semi-transparent (70% opacity)
+    logo_data = logo.getdata()
+    new_data = [(r, g, b, int(a * 0.7)) for r, g, b, a in logo_data]
+    logo.putdata(new_data)
+    
+    # Position: top-right corner with padding
+    padding = int(img.width * 0.03)
+    x = img.width - logo_size - padding
+    y = padding
+    
+    # Paste with transparency
+    img.paste(logo, (x, y), logo)
+    
+    # Save back as RGB (for JPEG)
+    out = img.convert("RGB")
+    out.save(img_path, "JPEG", quality=92)
+    return img_path
+
+
 def load_manual_images(scenes, image_dir, article_id):
     """Load manually provided images (from ChatGPT)."""
     print(f"\n{'='*60}")
@@ -309,6 +362,10 @@ def load_manual_images(scenes, image_dir, article_id):
     
     for i, scene in enumerate(scenes):
         img_path = os.path.join(image_dir, image_files[i])
+        
+        # Watermark with Videshi logo
+        watermark_image(img_path)
+        
         with open(img_path, "rb") as f:
             img_bytes = f.read()
         
@@ -320,7 +377,7 @@ def load_manual_images(scenes, image_dir, article_id):
         )
         
         scene["image_url"] = f"{STORAGE_BASE}/{storage_path}"
-        print(f"  ✅ Scene {i}: {image_files[i]} → uploaded")
+        print(f"  ✅ Scene {i}: {image_files[i]} → watermarked + uploaded")
     
     return True
 
@@ -594,7 +651,7 @@ def build_music_only_reel(scenes, music_url, build_dir):
         html = (
             '<div style="'
             "display:flex;flex-direction:column;align-items:center;justify-content:center;"
-            "width:100%;height:100%;padding:20px;box-sizing:border-box;"
+            "width:100%;height:100%;padding:30px 20px;box-sizing:border-box;"
             '">'
             # Category label
             '<div style="'
@@ -605,18 +662,17 @@ def build_music_only_reel(scenes, music_url, build_dir):
             f'">{headline}</div>'
             # Voiceover as readable text
             '<div style="'
-            "font-family:'Inter',sans-serif;font-size:42px;font-weight:900;"
+            "font-family:'Inter',sans-serif;font-size:38px;font-weight:900;"
             "color:#FFFFFF;text-align:center;line-height:1.2;"
             "text-shadow:0 0 12px rgba(0,0,0,0.95),0 0 30px rgba(0,0,0,0.8),"
             "3px 3px 6px rgba(0,0,0,0.9),-3px -3px 6px rgba(0,0,0,0.9);"
-            "max-width:900px;"
             f'">{vo}</div>'
             '</div>'
         )
         text_clips.append({
-            "asset": {"type": "html", "html": html, "width": 1080, "height": 500},
+            "asset": {"type": "html", "html": html, "width": 700, "height": 450},
             "start": round(start, 2), "length": scene_dur,
-            "fit": "none", "position": "bottom", "offset": {"y": 0.06},
+            "fit": "none", "position": "bottom", "offset": {"x": -0.04, "y": 0.22},
             "transition": {"in": "fade"}
         })
     
@@ -711,10 +767,10 @@ def build_reel(scenes, words, vo_url, voice_duration, music_url, endcard_cta_url
                 f'">{text}</div>'
             )
             caption_clips.append({
-                "asset": {"type": "html", "html": html, "width": 1080, "height": 120},
+                "asset": {"type": "html", "html": html, "width": 700, "height": 120},
                 "start": round(pill_start, 2),
                 "length": round(max(pill_end - pill_start, 0.3), 2),
-                "fit": "none", "position": "bottom", "offset": {"y": 0.04}
+                "fit": "none", "position": "bottom", "offset": {"x": -0.04, "y": 0.20}
             })
             pill_words = []
     
@@ -732,9 +788,9 @@ def build_reel(scenes, words, vo_url, voice_duration, music_url, endcard_cta_url
             f'">{scene["onscreen"]}</div>'
         )
         text_clips.append({
-            "asset": {"type": "html", "html": html, "width": 1080, "height": 80},
+            "asset": {"type": "html", "html": html, "width": 700, "height": 80},
             "start": round(s, 2), "length": round(e - s, 2),
-            "fit": "none", "position": "bottom", "offset": {"y": 0.10}
+            "fit": "none", "position": "bottom", "offset": {"x": -0.04, "y": 0.26}
         })
     
     # ── SCENE IMAGES + ENDCARD ──
@@ -1056,7 +1112,7 @@ def main():
     parser.add_argument("--manual-images", help="Directory with manually generated scene images")
     parser.add_argument("--skip-distribute", action="store_true", help="Skip distribution")
     parser.add_argument("--carousel-only", action="store_true", help="Only build carousel (skip reel)")
-    parser.add_argument("--skip-images", action="store_true", help="Skip image generation (use existing)")
+    parser.add_argument("--prompts-only", action="store_true", help="Stop after generating storyboard prompts (Step 1)")
     parser.add_argument("--build-dir", help="Build directory (default: /tmp/reel-build-<id>)")
     args = parser.parse_args()
     
@@ -1082,23 +1138,53 @@ def main():
     # Phase 2: Storyboard
     scenes = generate_storyboard(article)
     
-    # Phase 3: Images
-    if args.manual_images:
-        load_manual_images(scenes, args.manual_images, article_id)
-    elif not args.skip_images:
-        success = generate_images_api(scenes, article_id, build_dir)
-        if not success:
-            # Save storyboard for manual image generation
-            sb_path = f"{build_dir}/storyboard.json"
-            with open(sb_path, "w") as f:
-                json.dump({"article_id": article_id, "scenes": scenes}, f, indent=2)
-            print(f"\n📋 Storyboard saved to {sb_path}")
-            print(f"   Generate images manually, then re-run with --manual-images /path/")
-            sys.exit(1)
-    
-    # Save scenes data
+    # Save scenes + prompts
     with open(f"{build_dir}/scenes.json", "w") as f:
         json.dump({"article_id": article_id, "scenes": scenes}, f, indent=2)
+    
+    # Output ChatGPT prompts
+    prompts_path = f"{build_dir}/chatgpt-prompts.txt"
+    with open(prompts_path, "w") as f:
+        f.write(f"ARTICLE: {article['headline']}\n")
+        f.write(f"ID: {article_id}\n")
+        f.write(f"SCENES: {len(scenes)}\n")
+        f.write(f"{'='*60}\n\n")
+        f.write("Paste each prompt into ChatGPT one at a time.\n")
+        f.write("Save each image as scene-0.jpg, scene-1.jpg, etc.\n\n")
+        for i, scene in enumerate(scenes):
+            f.write(f"{'─'*60}\n")
+            f.write(f"SCENE {i} — {scene['onscreen']}\n")
+            f.write(f"{'─'*60}\n")
+            f.write(f"Voiceover: {scene['voiceover']}\n\n")
+            f.write(f"IMAGE PROMPT (paste this into ChatGPT):\n\n")
+            f.write(f"{scene['image_prompt']}\n\n")
+    
+    print(f"\n  📋 ChatGPT prompts saved: {prompts_path}")
+    
+    if args.prompts_only:
+        # Copy prompts to workspace for easy access
+        import shutil
+        slug_short = article["slug"][:50] if article.get("slug") else article_id[:8]
+        out_prompts = os.path.expanduser(f"~/workspace/your_files/prompts-{slug_short}.txt")
+        shutil.copy(prompts_path, out_prompts)
+        print(f"\n{'='*60}")
+        print(f"✅ STEP 1 COMPLETE — PROMPTS READY")
+        print(f"{'='*60}")
+        print(f"  Prompts: {out_prompts}")
+        print(f"  Scenes:  {len(scenes)}")
+        print(f"\n  Next: paste each prompt into ChatGPT, save images,")
+        print(f"  then run:")
+        print(f"    python3 reel-pipeline.py --article-id {article_id} --manual-images /path/to/images/")
+        print()
+        return
+    
+    # Phase 3: Images (manual only)
+    if args.manual_images:
+        load_manual_images(scenes, args.manual_images, article_id)
+    else:
+        print("\n❌ Image generation requires --manual-images or --prompts-only")
+        print(f"   Run with --prompts-only first, then --manual-images /path/")
+        sys.exit(1)
     
     # Phase 8: Carousel (can run before reel since it's independent)
     carousel_slides = build_carousel(scenes, build_dir)
@@ -1169,7 +1255,7 @@ def main():
             "video_path": reel_storage,
             "video_url": video_url,
             "caption": caption[:2200],
-            "source": "heygen",
+            "source": "pipeline",
             "qa_passed": True,
             "status": "ready"
         }
