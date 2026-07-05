@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-05T20:15:29.118795+00:00",
+  "timestamp": "2026-07-05T21:15:44.176339+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 3,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,66 +11,18 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "39a8b3b2-ce84-42ef-b7db-93875492e25c",
-      "headline": "Pay $750 and Skip the Line. The State Department Is Selling Faster Visa Appointments",
-      "slug": "state-department-750-expedited-visa-appointment-indian-families-20260705",
+      "id": "e541cf0a-b2df-46f4-86a2-e9ab4e947942",
+      "headline": "India's First Private Orbital Rocket Is Ready to Fly. The Launch Window Opens in a Week.",
+      "slug": "skyroot-vikram-1-india-first-private-orbital-rocket-launch-20260705",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "open passport with visa stamps",
-          "reason": "The photo of a passport with visa stamps is relevant to a story about visa appointments."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the topic of visa appointments or the State Department."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively discusses the impact of the new visa appointment system on Indian families and the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that directly relates to visa appointments or the U.S. consulate experience.",
-          "Add a section discussing potential reactions from the Indian diaspora regarding the new fee structure."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "470bf798-b971-4009-bd53-0106577da1d1",
-      "headline": "Your Green Card No Longer Guarantees Re-Entry. The Supreme Court Made Sure of That",
-      "slug": "scotus-blanche-lau-green-card-reentry-risk-indian-americans-20260705",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "dbafcf6c-1353-49e3-bf1d-5afd9788a03f",
-            "headline": "Your American-Born Child Is Still American. The Supreme Cour"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "United States Supreme Court building",
-          "reason": "The photo shows the Supreme Court, relevant to the court ruling story."
+          "verdict": "UNVERIFIED",
+          "what_photo_shows": "(image unreadable)",
+          "reason": "could not download image: not-an-image"
         },
         "inline_image_mismatches": []
       },
@@ -84,13 +36,100 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively highlights the implications of the Supreme Court ruling specifically for Indian Americans, connecting it to their frequent travel to India."
+          "note": "The article effectively connects the developments in India's private space sector to the diaspora of Indian aerospace engineers abroad."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from immigration attorneys or affected individuals to provide personal perspectives.",
-          "Include more statistics or data on the number of Indian Americans affected by this ruling to strengthen the argument."
+          "Consider adding quotes or insights from diaspora engineers to enhance the personal connection.",
+          "Include more details about the potential impact of Skyroot on the global space market."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "held: image unverified"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "image_unverified": true,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "7947fbd0-6ab4-4768-ad8f-014244d3e3a0",
+      "headline": "A Chinese Lab Built an AI Model That Rivals Claude and GPT. It Used Zero Nvidia Chips.",
+      "slug": "zai-glm-52-chinese-ai-model-huawei-open-source-20260705",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "abstract neural network visualization",
+          "reason": "The image matches the story about AI models and neural networks."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the implications of a new AI model for Indian developers and IT companies, making it relevant for the Indian diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more direct quotes from Indian tech leaders to strengthen the diaspora connection.",
+          "Add a section on how Indian developers can specifically leverage GLM-5.2 in their projects."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "9beed5da-371d-4038-9268-09d16f2b660a",
+      "headline": "Foxconn Just Had Its Best Quarter in Years. India Is the Reason Wall Street Should Care.",
+      "slug": "foxconn-q2-ai-revenue-india-manufacturing-expansion-20260705",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Foxconn's Dingpu manufacturing plant",
+          "reason": "The photo shows a Foxconn plant, relevant to the story on Foxconn's manufacturing."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image depicts a Foxconn plant, which is relevant to the article's topic about Foxconn's operations, but it does not specifically represent the Indian context discussed."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects Foxconn's operations in India to the interests of the Indian diaspora, highlighting economic opportunities and implications for NRIs."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including more specific examples of how the Indian diaspora can benefit from Foxconn's expansion in India.",
+          "Add a quote from an industry expert or a diaspora leader to enhance credibility and engagement."
         ],
         "verdict": "pass"
       },
