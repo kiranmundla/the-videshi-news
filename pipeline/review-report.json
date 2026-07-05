@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-05T12:15:29.948280+00:00",
+  "timestamp": "2026-07-05T13:15:31.935932+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 3,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "759311ea-de75-4b77-9715-099909bd7a1b",
-      "headline": "Long Island's India Day Parade Turns Fifteen. The Guest List Now Includes State Senators.",
-      "slug": "india-day-parade-usa-15th-curtain-raiser-mineola-long-island-20260705",
+      "id": "1b25c10f-c34b-4ebe-be5d-a516e343b38a",
+      "headline": "Anthropic Just Hired the Co-Creator of AlphaFold. It Wants to Discover Drugs, Not Just Chat.",
+      "slug": "anthropic-claude-science-drug-discovery-jumper-ipo-20260705",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Indian tricolor flags waving",
-          "reason": "The photo shows Indian flags, which aligns with the India Day Parade theme."
+          "what_photo_shows": "laboratory equipment for pharmaceutical research",
+          "reason": "The photo shows lab equipment relevant to drug discovery, matching the story's topic."
         },
         "inline_image_mismatches": []
       },
@@ -31,18 +31,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image does not directly relate to the India Day Parade or its cultural significance."
+          "issue": "The image does not directly relate to drug discovery or AI, but is visually appealing."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively highlights the significance of the India Day Parade for the Indian American community, making it relevant for diaspora readers."
+          "note": "The article connects the Indian pharmaceutical industry and Indian-origin scientists to the topic, making it relevant for the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more visuals or videos from past parades to enhance engagement.",
-          "Include quotes or testimonials from attendees to provide a personal touch."
+          "Consider adding more visuals related to drug discovery or AI to enhance the article's relevance.",
+          "Include quotes or insights from Indian researchers in the field to strengthen the diaspora connection."
         ],
         "verdict": "pass"
       },
@@ -54,23 +54,18 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "48715c06-d33e-48a8-addd-4c8932daa2c3",
-      "headline": "One Hundred and Thirty Hindu Americans Walked Into Congress on the Fourth of July Eve. Seven Lawmakers Walked Out Allies.",
-      "slug": "cohna-hindu-advocacy-day-capitol-hill-america-250-hinduphobia-20260705",
+      "id": "12a27fde-6806-4459-9c8c-c17a60517339",
+      "headline": "TSMC Is Raising Chip Prices Again. Every Device You Own Will Feel It.",
+      "slug": "tsmc-3nm-price-hike-arizona-expansion-ai-demand-20260705",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "343e9a87-5d5d-4842-87fc-22a288c2b2a8",
-            "headline": "New US Bill Would End OPT, Kill H-1B Green Card Pathway in S"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "United States Capitol Building",
-          "reason": "The photo shows the Capitol, relevant to the advocacy event in Congress."
+          "what_photo_shows": "TSMC's Fab 12B facility in Taiwan",
+          "reason": "The photo shows a TSMC facility, relevant to the chip price story."
         },
         "inline_image_mismatches": []
       },
@@ -84,13 +79,56 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the Hindu American community's advocacy efforts to broader themes of representation and religious freedom, which resonate with the diaspora."
+          "note": "The article discusses implications for NRI investors, connecting the topic to the Indian diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes or perspectives from the attendees to provide a more personal touch.",
-          "Add a brief background on CoHNA for readers unfamiliar with the organization."
+          "Include more specific examples of how the price increases will affect everyday devices for consumers.",
+          "Add quotes from industry experts or analysts to enhance credibility and depth."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "299a085a-8b9b-4915-9df5-199819dcfd41",
+      "headline": "An Indian Founder Just Bet $30 Million That Microsoft Office Needs to Be Rebuilt From Scratch",
+      "slug": "bhavin-turakhia-neo-ai-enterprise-microsoft-challenge-20260705",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "man holding a phone, smiling",
+          "reason": "The photo plausibly shows Bhavin Turakhia, relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image of Bhavin Turakhia is relevant as he is the subject of the article, but it does not directly illustrate the concept of the new AI-native platform."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article connects well with NRI readers by highlighting the achievements of an Indian-origin founder and the implications for Indian tech professionals in the US."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including a visual representation of the Neo platform to enhance reader understanding.",
+          "Add quotes or insights from industry experts to provide additional perspectives on the significance of Turakhia's venture."
         ],
         "verdict": "pass"
       },
