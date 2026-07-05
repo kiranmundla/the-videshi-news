@@ -1,153 +1,15 @@
 {
-  "timestamp": "2026-07-05T17:15:49.400811+00:00",
+  "timestamp": "2026-07-05T17:45:11.730163+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 5,
-    "flag": 1,
+    "pass": 1,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
   "revisions": 0,
   "unpublished": 0,
   "articles": [
-    {
-      "id": "c761b963-8dc1-45be-9967-d1f90a5fc5e5",
-      "headline": "Aamir Khan Is Married. The First Photo Is Everything.",
-      "slug": "aamir-khan-gauri-spratt-wedding-first-photo-pali-hill-mumbai-ceremony-diaspora-nri-20260705",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "7eb0363d-e41b-451f-9b79-9c3a52b2f418",
-            "headline": "Aamir Khan Is Getting Married Again \u2014 and This Time, He's Do"
-          },
-          {
-            "article_id": "198d426c-51a1-4d4f-965f-96d2934c3bb0",
-            "headline": "From Lagaan to Lalkaar: Aamir Khan and Ashutosh Gowarikar Re"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Aamir Khan at a public event",
-          "reason": "The photo shows Aamir Khan, who is the subject of the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 5,
-          "issue": "The image does not depict the wedding or Aamir Khan's marriage, which is the main topic of the article."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article connects well with the diaspora by highlighting Aamir Khan's significance and impact on NRIs."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the hero image with one that directly relates to Aamir Khan's wedding.",
-          "Provide more context on how Aamir Khan's marriage resonates with the diaspora experience."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "7e12c407-9fa2-4149-87fe-d50d2a14bf89",
-      "headline": "Preity Zinta Just Sued Google and Meta. The Reason Should Terrify Every Woman Online.",
-      "slug": "preity-zinta-deepfake-lawsuit-bombay-high-court-google-meta-ai-bollywood-diaspora-nri-20260705",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "woman posing against brick wall",
-          "reason": "The photo plausibly shows Preity Zinta, relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the issue to NRIs by referencing Preity Zinta's impact on their lives and the broader implications of the case."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more context about the implications of deepfake technology on women's rights globally.",
-          "Include quotes or reactions from other diaspora members or experts to enhance the connection with the NRI audience."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "dfe5f3c3-0dd9-4fb2-807d-568c263fbad7",
-      "headline": "India's Monsoon Is Now a Luxury Season \u2014 and the Western Ghats Are Booked Solid",
-      "slug": "india-monsoon-luxury-villa-western-ghats-nri-20260705",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Monsoon clouds over Western Ghats",
-          "reason": "The photo shows the Western Ghats during monsoon, relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively highlights how NRIs miss out on the monsoon season, making it relevant to the diaspora audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more specific examples of how NRIs can plan their trips around the monsoon season.",
-          "Add quotes or testimonials from travelers who have experienced monsoon travel to enhance credibility."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
     {
       "id": "e9bfad4a-0669-47fe-be7d-4354abe7970c",
       "headline": "India's East Coast Just Got Its First International Cruise Season \u2014 and You Can Sail to Singapore Without a Visa",
@@ -157,11 +19,6 @@
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MISMATCH",
-          "what_photo_shows": "ship at Kochi port, Kerala",
-          "reason": "The photo shows Kochi port, not related to Chennai or the cruise story."
-        },
         "inline_image_mismatches": []
       },
       "llm_review": {
@@ -169,117 +26,22 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "hero image not provided"
+          "issue": "The image description is missing, making it difficult to assess relevance."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects the cruise options to the needs of the Indian diaspora, particularly NRIs visiting family in Chennai."
+          "note": "The article effectively connects the cruise options to the Indian diaspora, particularly NRIs visiting family in Chennai."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include a relevant hero image that showcases the cruise experience or Chennai port.",
-          "Add quotes or testimonials from travelers or industry experts to enhance credibility and engagement."
+          "Include a relevant image description to enhance the image match score.",
+          "Consider adding quotes or testimonials from travelers or industry experts to enrich the narrative."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "Cleared mismatched image (ship at Kochi port, Kerala)",
-        "held: image mismatch"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "image_mismatch": true,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "eb20d5db-6ddb-4735-95eb-ecfc9c7e320f",
-      "headline": "Riyadh Air Picks Mumbai as Its First Indian Destination \u2014 Daily Flights Start August 4",
-      "slug": "riyadh-air-mumbai-india-daily-flights-august-20260705",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Riyadh Air Boeing 787-9 Dreamliner",
-          "reason": "The photo shows the airline and aircraft model mentioned in the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the new route to the needs of the NRI community, highlighting family connections and travel convenience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from airline representatives or travel experts to enhance credibility.",
-          "Include more statistics or data on the impact of this route on travel patterns for NRIs."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "c695c2ce-ff4b-4849-a2e1-4de7f2ce8d70",
-      "headline": "The July Visa Bulletin Just Shut the Door on India's EB-2 Green Cards. It Will Not Reopen Until October.",
-      "slug": "july-2026-visa-bulletin-eb2-india-unavailable-eb1-retrogression-green-card-20260705",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [
-          {
-            "url": "https://x.com/smerin/status/1800619623690627584",
-            "problem": "broken",
-            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
-          },
-          {
-            "url": "https://x.com/smerin/status/1800620021950275898",
-            "problem": "broken",
-            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
-          }
-        ],
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 5,
-          "issue": "hero image not provided"
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively addresses the concerns of the Indian diaspora regarding visa issues."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include a relevant hero image that reflects the topic of immigration and green cards.",
-          "Consider adding quotes from immigration experts or affected individuals to enhance the narrative."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "Removed 2 broken/hallucinated embed(s)",
         "promoted to published"
       ],
       "revised": false,
