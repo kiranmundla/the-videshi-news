@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-05T17:45:11.730163+00:00",
+  "timestamp": "2026-07-05T18:15:36.825765+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
+    "pass": 3,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,14 +11,105 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "e9bfad4a-0669-47fe-be7d-4354abe7970c",
-      "headline": "India's East Coast Just Got Its First International Cruise Season \u2014 and You Can Sail to Singapore Without a Visa",
-      "slug": "cordelia-cruise-chennai-southeast-asia-singapore-visa-free-20260705",
+      "id": "09a04196-5d77-4a1c-883e-bb462a8169ce",
+      "headline": "Your Mother's Haldi Doodh Is Now a $7 Turmeric Latte",
+      "slug": "your-mothers-haldi-doodh-is-now-a-7-turmeric-latte",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Fresh turmeric plant",
+          "reason": "The photo shows turmeric, which is relevant to the turmeric latte story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 3,
+          "issue": "The image does not match the article's topic about turmeric lattes or haldi doodh."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the trend of turmeric lattes to the experiences and sentiments of the NRI community."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the hero image with one that depicts a turmeric latte or haldi doodh to better match the article's content.",
+          "Consider adding more personal anecdotes or quotes from NRIs to enhance the connection to the diaspora experience."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "b72b8ba3-236f-458d-ac2e-95ad6c3b07c6",
+      "headline": "The Chipotle of Indian Food Is No Longer a Punchline",
+      "slug": "the-chipotle-of-indian-food-is-no-longer-a-punchline",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Indian food served on a banana leaf",
+          "reason": "The photo shows Indian food, which is relevant to the story about Indian fast-casual dining."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the growth of Indian cuisine in America to the experiences and sentiments of the Indian diaspora, highlighting both validation and concerns about cultural authenticity."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include quotes or anecdotes from diaspora members to enhance the personal connection.",
+          "Add more statistics or data points to strengthen the argument about the growth of Indian cuisine."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "2b92f50c-f693-4adc-8a68-bc9ce58b7536",
+      "headline": "From Michelin Stars to Grocery Aisles: Gymkhana Brings Premium Indian Sauces to America",
+      "slug": "from-michelin-stars-to-grocery-aisles-gymkhana-brings-premium-indian-sauces-to-a",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Indian curry dish with spices",
+          "reason": "The photo shows Indian cuisine, relevant to the story about Indian sauces."
+        },
         "inline_image_mismatches": []
       },
       "llm_review": {
@@ -26,18 +117,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image description is missing, making it difficult to assess relevance."
+          "issue": "The image depicts a dish (Brinjal Bhaji) that is not directly related to the sauces being discussed in the article."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects the cruise options to the Indian diaspora, particularly NRIs visiting family in Chennai."
+          "note": "The article effectively connects the product launch to the experiences and expectations of the NRI community, highlighting a shift towards premium Indian food options."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include a relevant image description to enhance the image match score.",
-          "Consider adding quotes or testimonials from travelers or industry experts to enrich the narrative."
+          "Consider using an image that directly represents the Gymkhana sauces or a related dish to enhance relevance.",
+          "Add a quote or testimonial from an NRI consumer to strengthen the diaspora connection."
         ],
         "verdict": "pass"
       },
