@@ -482,7 +482,7 @@ def generate_script(article, force_new=False):
     slug = article.get("slug", "unknown")
 
     # Script cache — reuse if already generated
-    SCRIPT_CACHE_VERSION = "clean9"  # bump to invalidate old caches (clean9: str+int fix, CTA stripping, hook auto-scale, overflow protection)
+    SCRIPT_CACHE_VERSION = "overlay1"  # bump: all generate scenes now use overlay mode (Gemini bg + PIL text)
     cache_path = BUILD_DIR / f"script-{slug}.json"
     if not force_new and cache_path.exists():
         try:
@@ -615,34 +615,27 @@ For each scene, provide:
       "social_hint" with the handle (no @) or the person/org name + topic. The
       executor will try to fetch a recent on-topic post; if none exists it falls
       back to your card_text. Never pick "social" for scene 1 or the final CTA.
-    • "generate" — a custom GENERATED data infographic. The DEFAULT and
-      PREFERRED mode. Every "generate" scene should be a DATA-RICH infographic
-      with numbers, charts, comparison panels, or stat callouts BAKED INTO the
-      image itself. Think news-magazine infographic, not a mood photo.
-      ALWAYS set "data_viz": "integrated" (this is the default if omitted).
-      INCLUDE key stats, numbers, percentages, dollar amounts, rankings, and
-      comparison data prominently in the image_prompt. The data IS the visual.
+    • "generate" — a custom GENERATED background image. The DEFAULT and
+      PREFERRED mode. Gemini will create a vivid, atmospheric background photo
+      or illustration matching the scene's topic. Text and data will be overlaid
+      separately by the pipeline — DO NOT describe text, labels, or data
+      layout in the image_prompt. Instead describe the VISUAL MOOD and SUBJECT:
       Examples:
-        - "Infographic: $61 BILLION investment target. Bar chart showing trade
-          growth from $27.5B current to $61B by 2030. India and Japan flags as
-          anchors. Dark navy editorial style with gold accents."
-        - "Data visualization: UNICORN radar project. Split panel — India
-          provides naval platforms (warship icon), Japan provides radar tech
-          (satellite dish icon). Connected by arrows. Dark editorial mood."
-        - "Infographic: 3 key pacts signed. Timeline layout — Defense deal,
-          AI cooperation, Semiconductor alliance. Each with an icon and date.
-          Navy background, clean data layout."
-      Pack MULTIPLE data points into each scene when the article supports it.
-      A single headline + subtext is NOT enough — dig out the numbers.
-      Only use "data_viz": "overlay" as a LAST RESORT when a scene genuinely
-      has zero numbers or stats (rare — almost every beat has data to show).
+        - "Dramatic photo of trade ships at a busy port with Indian and Japanese
+          flags, twilight lighting, warm golden tones"
+        - "Aerial view of Silicon Valley tech campus at sunset, modern glass
+          buildings, vibrant sky"
+        - "Close-up of someone holding an Indian passport at an airport counter,
+          warm lighting, shallow depth of field"
+      The image_prompt should describe a SCENE, not a chart or infographic.
+      The pipeline will overlay the key data (card_text, card_subtext) on top
+      of this background using clean, readable text rendering.
       Use "generate" for MOST mid-reel scenes (4-6 out of 8). Each scene gets
       its OWN unique image — visual variety is key.
-      CRITICAL: Each scene's image_prompt MUST describe a DIFFERENT layout type
-      than the previous scene. If scene 3 is a "comparison table", scene 4 must
-      be a "bar chart" or "route map" or "stat dashboard" — NEVER the same
-      layout type twice in a row. And the DATA in each scene must be DIFFERENT
-      facts — never re-visualize something already shown in an earlier scene.
+      CRITICAL: Each scene's image_prompt MUST describe a DIFFERENT visual
+      than the previous scene — different subject, angle, palette, mood.
+      And the DATA in each scene's card_text must be DIFFERENT facts —
+      never repeat something already shown in an earlier scene.
     • "media_library" — RARELY USED. Only if you are certain a high-quality
       curated photo exists for an extremely specific, concrete Indian subject
       (e.g. "Virat Kohli", "Indian rupee notes"). In practice, prefer "generate"
@@ -4659,22 +4652,25 @@ def generate_themed_image(image_prompt, article_id, idx, out_dir="/tmp/videshi_g
             prompt = (
                 f"{ref_intro}"
                 f"{photo_intro}"
-                f"Now create a single vertical 9:16 infographic scene for a news video reel.\n\n"
+                f"Now create a single vertical 9:16 BACKGROUND IMAGE for a news video reel.\n"
+                f"Text will be overlaid separately — DO NOT put any text, labels, titles, "
+                f"captions, statistics, numbers, or words in the image.\n\n"
                 f"Article:\n{headline}\n{subheadline}\n\n"
                 f"{body_text}\n\n"
                 f"THIS SCENE'S FOCUS (scene {idx if isinstance(idx, str) else idx + 1}):\n"
                 f"{scene_direction}\n\n"
                 f"This is ONE scene in a multi-scene reel. Focus ONLY on the specific "
-                f"data and topic described above — do NOT try to summarize the whole "
+                f"topic described above — do NOT try to summarize the whole "
                 f"article. Other scenes cover other aspects.\n\n"
-                f"IMPORTANT — EXACT TEXT SPELLING:\n"
-                f"When you include text in the image, copy names, numbers, and words "
-                f"EXACTLY from the article above. Double-check every letter of every "
-                f"name before rendering. Misspelled names are unacceptable.\n\n"
                 f"Goals:\n"
                 f"- Visually compelling and vibrant — must grab attention on a phone screen\n"
-                f"- Key data and takeaway instantly graspable in 3-4 seconds\n"
-                f"- Choose colors and visual style that fit THIS story's topic and mood"
+                f"- Evocative mood photo or illustration that captures the scene's theme\n"
+                f"- Choose colors and visual style that fit THIS story's topic and mood\n\n"
+                f"CRITICAL RULES:\n"
+                f"- NO TEXT of any kind in the image — no titles, labels, stats, watermarks\n"
+                f"- NO production metadata (music, text style, transitions)\n"
+                f"- NO storyboard or mood board layouts\n"
+                f"- ONE clean photographic or illustrated scene only"
             )
 
             parts.append({"text": prompt})
@@ -5829,11 +5825,12 @@ def source_reel_media_clean(article, storyboard, count=8):
         url = None
         meta = None
 
-        # "generate" — Gemini editorial illustration. Two sub-modes:
-        #   data_viz="integrated": image IS the scene (stat baked into visual)
-        #   data_viz="overlay": image is bg, card text overlaid on top
+        # "generate" — Gemini editorial illustration.
+        # Always use overlay mode: Gemini generates a background image,
+        # our PIL renderer overlays clean text on top. Gemini cannot
+        # reliably render text in images (misspellings, metadata leaks).
         if plan == "generate" and scene.get("image_prompt"):
-            data_viz = (scene.get("data_viz") or "integrated").strip().lower()
+            data_viz = "overlay"  # forced — integrated mode produces garbled text
             gurl = generate_themed_image(scene.get("image_prompt"), article_id, i,
                                          article_body=article.get("body", ""),
                                          article=article)
