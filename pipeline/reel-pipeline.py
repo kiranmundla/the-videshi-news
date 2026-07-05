@@ -182,16 +182,36 @@ IMAGE PROMPT RULES — THIS IS CRITICAL:
 The image prompts will be pasted into ChatGPT by someone who does NOT have the article.
 Each prompt must be completely SELF-CONTAINED with all the context needed to generate the right image.
 
+FIRST, decide the visual approach based on the article content:
+
+**DATA-CENTRIC articles** (immigration policy, visa bulletins, market moves, financial analysis, statistics-heavy stories, policy comparisons):
+Use INFOGRAPHIC-STYLE prompts. These should produce clean data visualizations, NOT photographs.
+Each image_prompt MUST:
+- Start with: "Create a single vertical 9:16 infographic panel for a news reel."
+- Describe a SPECIFIC data visualization: a comparison table, a trend chart, a stat callout card, a timeline, a bar chart, a before/after comparison, a breakdown diagram
+- Keep each scene visually clean — don't overload a single frame with too many numbers or data points. A viewer should be able to absorb the key takeaway in 3-4 seconds on a phone
+- Include the EXACT real numbers, dates, categories, and labels from the article — bake all data INTO the prompt
+- Specify the visual style: clean, modern, dark or navy background, bold colored accents (gold, red, white), large readable typography, professional news-magazine aesthetic
+- End with: "Style: clean data journalism infographic, modern news magazine, bold typography, high contrast, professional layout. Phone-readable at a glance."
+- Mix different visualization types across scenes: one big stat, one chart, one comparison, one breakdown — each scene visually distinct
+
+Example of a GOOD data-centric prompt:
+"Create a single vertical 9:16 infographic panel for a news reel. A clean comparison table titled 'July 2026 Visa Bulletin' showing Employment-Based Final Action Dates. Columns: Category, All Other Countries, India. Rows: EB-1 (15MAY23 vs 15MAY23), EB-2 (15JAN23 vs UNAVAILABLE in bold red), EB-3 (01JAN13 vs 01NOV12), EB-5 Unreserved (01APR22 vs UNAVAILABLE in red). Dark navy background, white and gold text, red highlight on 'UNAVAILABLE' cells. Source line: 'U.S. Department of State — Visa Bulletin July 2026'. Style: clean data journalism infographic, modern news magazine, bold typography, high contrast, professional layout. Phone-readable at a glance."
+
+**NARRATIVE articles** (human interest, entertainment, travel, profiles, events):
+Use PHOTOGRAPHIC prompts as before.
 Each image_prompt MUST:
 - Start with: "Create a single cinematic vertical 9:16 news photograph."
 - Include 3-5 sentences of RICH, SPECIFIC visual description — exact subjects, environments, objects, compositions, camera angles, lighting
 - Reference CONCRETE details from the article (specific numbers, real places, real concepts, real institutions) — bake the article knowledge INTO the prompt
 - Specify atmosphere/mood in the description
 - End with: "Style: BBC documentary photography, Reuters editorial realism, ultra realistic, cinematic lighting, professional DSLR, dramatic scale, emotional storytelling. No text. No captions. No logos. No watermarks. No graphics. Single standalone image only."
-- Each scene must be visually COMPLETELY DIFFERENT from every other scene (different composition, different subject, different environment, different camera angle)
 
-Example of a GOOD prompt:
-"Create a single cinematic vertical 9:16 news photograph. A mysterious silhouette standing in front of Mount Rushmore at dawn. The monument partially hidden by fog. Dramatic golden sunlight breaking through clouds. The silhouette is unidentifiable, symbolizing the question of who belongs among America's greatest figures. Atmosphere: mysterious, thought-provoking, historic. Style: BBC documentary photography, Reuters editorial realism, ultra realistic, cinematic lighting, professional DSLR, dramatic scale, emotional storytelling. No text. No captions. No logos. No watermarks. No graphics. Single standalone image only."
+**HYBRID**: Many articles benefit from MIXING both approaches. For example, open with a dramatic photograph, then show 2-3 data panels, then close with a photograph. Use your judgment based on the article content.
+
+ACROSS ALL APPROACHES:
+- Each scene must be visually COMPLETELY DIFFERENT from every other scene
+- Reference CONCRETE details from the article
 
 Example of a BAD prompt:
 "A concerned Indian professional looking at documents, dramatic lighting" — TOO VAGUE, no context, no specifics.
