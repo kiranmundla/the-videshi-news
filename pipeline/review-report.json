@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-05T08:15:25.956410+00:00",
+  "timestamp": "2026-07-05T08:45:15.266776+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 0,
+    "pass": 0,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "dd92b9f2-3727-42fb-bc7a-86912f145fdb",
-      "headline": "Three Courts. Three Answers. The $100,000 H-1B Fee Is Heading for the Supreme Court",
-      "slug": "100000-h1b-fee-circuit-split-supreme-court-indian-doctors-20260705",
+      "id": "5dec47d0-527d-4e8c-b177-97dda31869d7",
+      "headline": "Trump Accounts Just Went Live. For Indian-American Families, the Math Is Extraordinarily Good.",
+      "slug": "trump-accounts-launch-july-4-indian-american-families-wealth-building-20260705",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,90 +21,30 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "hand holding passport with visa stamps",
-          "reason": "The photo reflects the bureaucratic journey related to H-1B visas, matching the immigration story."
+          "what_photo_shows": "U.S. Treasury Department building",
+          "reason": "The photo shows the U.S. Treasury Department, relevant to the Trump Accounts program."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 8,
+        "overall_score": 7,
         "embed_issues": [],
         "image_match": {
           "score": 5,
-          "issue": "The image does not directly relate to the topic of H-1B visas or immigration law."
+          "issue": "The image of the Treasury Department does not directly relate to the specific topic of Trump Accounts or the investment program discussed."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses the implications of the H-1B fee on Indian workers, which is relevant to the Indian diaspora."
+          "note": "The article effectively connects the investment program to Indian-American families, highlighting their unique circumstances and financial behaviors."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that depicts immigration or H-1B visa themes.",
-          "Add a brief section summarizing the potential impact of the ruling on Indian professionals and companies employing them."
+          "Consider using a more relevant image that directly represents the Trump Accounts program or investment opportunities.",
+          "Add a brief section discussing potential implications or criticisms of the program to provide a more balanced view."
         ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "54be977b-411e-4a32-a126-eb68b4ce9117",
-      "headline": "The State Department Shut EB-2 India for the Year. One Million People Just Hit a Wall",
-      "slug": "eb2-india-unavailable-july-visa-bulletin-green-card-wall-20260705",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "c1159a2e-7fae-47ae-8899-452e1bf8061c",
-            "headline": "Ten Thousand Students Flagged. The OPT Pipeline That Built S"
-          },
-          {
-            "article_id": "616863da-e588-442a-b199-5a0e9c221ae0",
-            "headline": "EB-2 India Went Dark. Now the Escape Routes Are Getting Crow"
-          },
-          {
-            "article_id": "013fe3d7-d671-4d50-8625-f502a1bda945",
-            "headline": "The H-1B Filing Window Just Closed. The First Weighted Lotte"
-          },
-          {
-            "article_id": "fae798da-570b-4a2a-bd83-25123ccfcedc",
-            "headline": "Eleven Million Cases and Counting. USCIS Cannot Process Its "
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "USCIS Application Support Center",
-          "reason": "The photo shows a USCIS center relevant to green card applications."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image is relevant to immigration but does not specifically depict EB-2 or Indian immigration."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses the impact of immigration policies on Indian nationals, which is highly relevant to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider including more personal stories or testimonials from affected individuals to enhance emotional engagement.",
-          "Add a section on potential future changes or advocacy efforts that could impact the situation for Indian immigrants."
-        ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
         "promoted to published"
