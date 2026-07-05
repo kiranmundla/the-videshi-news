@@ -115,8 +115,15 @@ def source_commons_image(subject, candidates_needed, max_per):
         artist, lic, desc = _commons_attr(ii)
         if not _is_free_license(lic):
             continue
-        # full-res original URL (best quality); fall back to a large thumb
-        src = ii.get("url") or ii.get("thumburl")
+        # Use 2000px-wide thumb for large originals to avoid multi-minute
+        # downloads of 50+ MB files (Commons 12k×16k originals etc.).
+        # The thumb from iiurlwidth=2000 is still well above our 1600px gate.
+        max_download_side = 5000  # prefer thumb above this
+        if (w and h and max(w, h) > max_download_side
+                and ii.get("thumburl")):
+            src = ii.get("thumburl")
+        else:
+            src = ii.get("url") or ii.get("thumburl")
         if not src:
             continue
         title = ii.get("_title", "").replace("File:", "").rsplit(".", 1)[0]
@@ -307,7 +314,7 @@ def persist(cand, subject_type, tags, dry=False):
 
     with tempfile.TemporaryDirectory() as td:
         local = os.path.join(td, f"asset.{ext}")
-        if not store.curl_download(src, local, timeout=150):
+        if not store.curl_download(src, local, timeout=60):
             return None
 
         thumb_url = None
