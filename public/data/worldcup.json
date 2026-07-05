@@ -1,6 +1,6 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-07-05T22:05:30Z",
+  "last_updated": "2026-07-05T23:58:44Z",
   "stage": "Round of 16",
   "hosts": "USA, Mexico & Canada",
   "dates": {
@@ -7671,6 +7671,30 @@
       "url": "https://www.instagram.com/reel/Daa22F7ClU9/",
       "account": "@fifaworldcup",
       "date": "2026-07-05"
+    },
+    {
+      "platform": "facebook",
+      "url": "https://www.facebook.com/fifaworldcup/posts/pfbid037LXEZAbip7UGCWd1f8GNzcE7xwnAhELM6MgZrbWWaweotr66xzBcuhvcA26gbhoEl",
+      "account": "@fifaworldcup",
+      "date": "2026-07-05"
+    },
+    {
+      "platform": "facebook",
+      "url": "https://www.facebook.com/fifaworldcup/posts/pfbid0TvqzQkYGVNg3CJiJwrM4GHJPNQPBucPSLWGcqFMyE4Qt17MfQVErpHyXYa4i5UfNl",
+      "account": "@fifaworldcup",
+      "date": "2026-07-05"
+    },
+    {
+      "platform": "facebook",
+      "url": "https://www.facebook.com/fifaworldcup/posts/pfbid0GuRMXNCvj1CNMgVVbjAqNdzUe3y4kDL3EMRxxknPddq5D1qs2WAwUCFHEbuUocJpl",
+      "account": "@fifaworldcup",
+      "date": "2026-07-05"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DaYmgLoHNoe/",
+      "account": "@fifaworldcup",
+      "date": "2026-07-04"
     }
   ],
   "tv": {
