@@ -1,15 +1,103 @@
 {
-  "timestamp": "2026-07-05T16:15:24.620970+00:00",
+  "timestamp": "2026-07-05T16:45:35.711321+00:00",
   "mode": "fix",
   "stats": {
     "pass": 2,
-    "flag": 0,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
-  "revisions": 0,
+  "revisions": 1,
   "unpublished": 0,
   "articles": [
+    {
+      "id": "ba789823-cb73-419e-a9b3-a59f79f033d1",
+      "headline": "India Wants Access to Anthropic's Most Powerful AI. Washington Is Listening \u2014 Carefully.",
+      "slug": "india-us-anthropic-frontier-ai-project-glasswing-cybersecurity-pax-silica-20260705",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "abstract image of a microchip",
+          "reason": "The photo is a generic but on-topic representation for a technology story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to AI or technology, but is visually appealing."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses India's negotiations with the US, which is relevant to the Indian diaspora interested in technology and international relations."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that directly represents AI or technology.",
+          "Add a brief section on how these developments might impact the Indian diaspora in the tech industry."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "c695c2ce-ff4b-4849-a2e1-4de7f2ce8d70",
+      "headline": "The July Visa Bulletin Just Shut the Door on India's EB-2 Green Cards. It Will Not Reopen Until October.",
+      "slug": "july-2026-visa-bulletin-eb2-india-unavailable-eb1-retrogression-green-card-20260705",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MISMATCH",
+          "what_photo_shows": "woman sitting on a stage",
+          "reason": "The photo does not relate to immigration or USCIS headquarters."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 6,
+        "embed_issues": [],
+        "image_match": {
+          "score": 5,
+          "issue": "hero image not provided"
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article directly addresses the concerns of Indian professionals in the U.S. regarding visa issues."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include a relevant hero image that reflects the topic of immigration and visas.",
+          "Provide more context on the implications of the EB-2 unavailability for Indian professionals, possibly including personal stories or quotes from affected individuals."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Cleared mismatched image (woman sitting on a stage)",
+        "Revised by gemini-2.5-flash (892\u21921010 words)"
+      ],
+      "revised": true,
+      "unpublished": false,
+      "image_mismatch": true,
+      "llm_source": "gpt-4o-mini"
+    },
     {
       "id": "b7eec4a6-4542-475a-9d7b-cd1911be79d8",
       "headline": "India's Biggest Healthcare IPO Is Coming \u2014 Manipal Health Just Got SEBI's Green Light for a $1.2 Billion Listing",
@@ -19,11 +107,6 @@
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MISMATCH",
-          "what_photo_shows": "Shivam Hospital building",
-          "reason": "The photo shows a different hospital name, not Manipal Health."
-        },
         "inline_image_mismatches": []
       },
       "llm_review": {
@@ -31,63 +114,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 5,
-          "issue": "missing image description"
+          "issue": "missing image URL"
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the IPO to NRI investors, highlighting the relevance of healthcare investments."
+          "note": "The article effectively connects the IPO to NRI investors, highlighting the relevance of India's healthcare sector to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include a relevant hero image to enhance visual appeal.",
-          "Provide a more detailed analysis of how the IPO might specifically impact NRI investors."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "Cleared mismatched image (Shivam Hospital building)",
-        "held: image mismatch"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "image_mismatch": true,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "39392ca7-25c7-4b36-8ca5-d2ab89f77681",
-      "headline": "An Anti-Inflammatory Diet Can Cut Dementia Risk by Nearly a Third \u2014 Even After Alzheimer's Has Begun in Your Brain",
-      "slug": "anti-inflammatory-diet-dementia-risk-jama-study-alzheimer-biomarkers-south-asian-turmeric-spices-20260705",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Turmeric powder with a wooden spoon",
-          "reason": "Turmeric is a spice linked to anti-inflammatory diets, relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the findings of the study to traditional South Asian dietary practices, making it relevant for the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more specific examples of anti-inflammatory meals that are popular in South Asian cuisine.",
-          "Include quotes from experts or researchers to enhance credibility and engagement."
+          "Add a relevant hero image to enhance visual appeal.",
+          "Consider including more specific examples of how NRIs can benefit from the IPO."
         ],
         "verdict": "pass"
       },
