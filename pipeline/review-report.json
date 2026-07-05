@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-05T00:45:23.345614+00:00",
+  "timestamp": "2026-07-05T01:15:25.494774+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
-    "flag": 1,
+    "pass": 2,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,68 +11,35 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "9fbef74a-b84a-4f8c-9675-0a5fd3cbd8a7",
-      "headline": "Britain Is About to Get Its Seventh Prime Minister in a Decade. The 1.8 Million Indians There Are Watching Closely.",
-      "slug": "uk-pm-andy-burnham-starmer-resignation-india-diaspora-ceta-trade-deal-20260704",
+      "id": "302543b2-9400-4997-b4ad-a719ccb27c90",
+      "headline": "Disney Just Turned Its Biggest Animated Hit Into a Live-Action Blockbuster. India Gets It July 10.",
+      "slug": "moana-live-action-disney-dwayne-johnson-india-july-10-moana-3-confirmed-diaspora-nri-20260704",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Andy Burnham at an event",
-          "reason": "The photo shows Andy Burnham, relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 5,
-          "issue": "irrelevant",
-          "explanation": "The image of Andy Burnham does not directly relate to the article's focus on the Indian diaspora's perspective on UK politics."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the political changes in the UK to the interests of the Indian diaspora, particularly regarding the CETA."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that reflects the Indian diaspora's perspective or the significance of the CETA.",
-          "Add quotes or insights from members of the Indian community in the UK to enhance the diaspora angle."
+        "duplicate_images": [
+          {
+            "article_id": "88df73d1-8b65-4654-b8e5-56e016e75aa9",
+            "headline": "The Rock Just Walked Out of the Ocean \u2014 and This Time, You C"
+          }
         ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "7275ef3e-47be-405a-9e82-1b3d2727467a",
-      "headline": "Hundreds of Masked White Nationalists Marched Through Washington on America's 250th Birthday. They Chanted 'Reclaim America.'",
-      "slug": "patriot-front-white-nationalists-march-dc-july-4-250th-birthday-diaspora-20260704",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Patriot Front members marching with flags",
-          "reason": "The photo shows Patriot Front members, matching the story's subject."
+          "what_photo_shows": "Promotional poster for live-action Moana",
+          "reason": "The photo is a promotional poster for Disney's live-action Moana, matching the story topic."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DaQrxc1g2XN/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel does not appear to be directly related to the live-action Moana film or its release."
+          }
+        ],
         "image_match": {
           "score": 9,
           "issue": null
@@ -80,17 +47,68 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the event to the Indian American community, highlighting the implications of white nationalist rhetoric on their sense of belonging."
+          "note": "The article effectively connects the film's release to Indian families in the diaspora, highlighting its dual-language availability and competitive release date."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more direct quotes from Indian American leaders or community members to enhance the diaspora perspective.",
-          "Include a brief historical context of the Indian American community's experiences with nativism to deepen the analysis."
+          "Replace the irrelevant Instagram embed with a more relevant one that showcases the live-action film or its cast.",
+          "Consider adding more context about the significance of the film's release in India for the diaspora audience."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DaQrxc1g2XN/",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "13ca9565-29d0-432e-962b-1676cc108f41",
+      "headline": "The Border Boys Are Back. This Time, the Battlefield Is a Courtroom.",
+      "slug": "ikka-sunny-deol-akshaye-khanna-netflix-courtroom-thriller-border-reunion-july-10-diaspora-nri-20260704",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Sunny Deol at an event",
+          "reason": "The photo shows Sunny Deol, who is relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DZzGcy9sZfJ/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post is a personal comment from Sunny Deol to a co-star, which does not directly relate to the article's main focus on the film 'Ikka' and its courtroom drama."
+          }
+        ],
+        "image_match": {
+          "score": 7,
+          "issue": "The image of Sunny Deol does match the article's focus on him, but it lacks a direct connection to the courtroom theme discussed in the article."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the film's release to the NRI audience, emphasizing the accessibility of the film on Netflix and its nostalgic value."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the irrelevant Instagram embed with a more relevant clip or promotional material related to the film 'Ikka'.",
+          "Consider adding a quote or insight from the director or producers to enhance the depth of the article."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DZzGcy9sZfJ/",
         "promoted to published"
       ],
       "revised": false,
