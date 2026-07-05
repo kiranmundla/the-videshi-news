@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-07-05T05:15:21.396982+00:00",
+  "timestamp": "2026-07-05T08:15:25.956410+00:00",
   "mode": "fix",
   "stats": {
     "pass": 2,
@@ -11,23 +11,18 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "4ff0f787-c328-429e-8a3b-da2ad7a8702d",
-      "headline": "Nvidia Doesn't Just Want to Sell You GPUs Anymore. It Wants a Cut of Your Revenue, Too.",
-      "slug": "nvidia-revenue-sharing-ai-factory-model-yotta-india-20260705",
+      "id": "dd92b9f2-3727-42fb-bc7a-86912f145fdb",
+      "headline": "Three Courts. Three Answers. The $100,000 H-1B Fee Is Heading for the Supreme Court",
+      "slug": "100000-h1b-fee-circuit-split-supreme-court-indian-doctors-20260705",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "fc2c1f90-0962-40c1-8bad-c48313ef6e0f",
-            "headline": "Nvidia Is Tired of Selling Shovels. Now It Wants a Cut of th"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "an older man in a suit",
-          "reason": "The photo plausibly shows Nvidia CEO Jensen Huang, relevant to the story."
+          "what_photo_shows": "hand holding passport with visa stamps",
+          "reason": "The photo reflects the bureaucratic journey related to H-1B visas, matching the immigration story."
         },
         "inline_image_mismatches": []
       },
@@ -35,19 +30,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image of Jensen Huang is relevant as he is the CEO of Nvidia, but it does not directly illustrate the article's focus on the new revenue-sharing model."
+          "score": 5,
+          "issue": "The image does not directly relate to the topic of H-1B visas or immigration law."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the topic to Indian-origin engineers and startups, highlighting the relevance of Nvidia's model to the Indian tech ecosystem."
+          "note": "The article discusses the implications of the H-1B fee on Indian workers, which is relevant to the Indian diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider including more visuals or infographics that illustrate the revenue-sharing model for better reader engagement.",
-          "Add quotes or insights from Indian startup founders to enhance the diaspora connection and provide real-world context."
+          "Consider using a more relevant image that depicts immigration or H-1B visa themes.",
+          "Add a brief section summarizing the potential impact of the ruling on Indian professionals and companies employing them."
         ],
         "verdict": "pass"
       },
@@ -59,18 +54,35 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "3a98e333-6716-4485-99ef-a845bcf58a70",
-      "headline": "A Ransomware Gang Just Leaked Apple's iPhone 18 Pro Secrets From a Tata Factory. India Is Investigating.",
-      "slug": "tata-electronics-breach-apple-iphone-18-pro-india-20260705",
+      "id": "54be977b-411e-4a32-a126-eb68b4ce9117",
+      "headline": "The State Department Shut EB-2 India for the Year. One Million People Just Hit a Wall",
+      "slug": "eb2-india-unavailable-july-visa-bulletin-green-card-wall-20260705",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "c1159a2e-7fae-47ae-8899-452e1bf8061c",
+            "headline": "Ten Thousand Students Flagged. The OPT Pipeline That Built S"
+          },
+          {
+            "article_id": "616863da-e588-442a-b199-5a0e9c221ae0",
+            "headline": "EB-2 India Went Dark. Now the Escape Routes Are Getting Crow"
+          },
+          {
+            "article_id": "013fe3d7-d671-4d50-8625-f502a1bda945",
+            "headline": "The H-1B Filing Window Just Closed. The First Weighted Lotte"
+          },
+          {
+            "article_id": "fae798da-570b-4a2a-bd83-25123ccfcedc",
+            "headline": "Eleven Million Cases and Counting. USCIS Cannot Process Its "
+          }
+        ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "smartphone circuit boards in factory",
-          "reason": "The photo subject aligns with the story about leaked iPhone component designs."
+          "what_photo_shows": "USCIS Application Support Center",
+          "reason": "The photo shows a USCIS center relevant to green card applications."
         },
         "inline_image_mismatches": []
       },
@@ -78,19 +90,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image is relevant to immigration but does not specifically depict EB-2 or Indian immigration."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the breach to the concerns of Indian-origin engineers and NRI investors, making it relevant to the diaspora."
+          "note": "The article discusses the impact of immigration policies on Indian nationals, which is highly relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from industry experts or analysts to enhance credibility.",
-          "Include more details on the potential implications for Tata Electronics and the broader Indian manufacturing sector."
+          "Consider including more personal stories or testimonials from affected individuals to enhance emotional engagement.",
+          "Add a section on potential future changes or advocacy efforts that could impact the situation for Indian immigrants."
         ],
         "verdict": "pass"
       },
