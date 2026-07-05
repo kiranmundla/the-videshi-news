@@ -4631,10 +4631,11 @@ def generate_themed_image(image_prompt, article_id, idx, out_dir="/tmp/videshi_g
             # Build prompt — minimal, let Gemini decide
             img_count = len(article_img_paths)
             ref_intro = (
-                "Here are two reference storyboards showing the visual quality, "
-                "brightness, and style I want for individual reel scenes. Study them "
-                "carefully — notice the bright colors, photographic backgrounds, "
-                "bold readable text, and how each panel has ONE clear message.\n\n"
+                "Here are two reference images showing the visual quality, "
+                "brightness, and mood I want for the BACKGROUND of a reel scene. "
+                "Study them carefully — notice the bright colors, vivid photographic "
+                "style, strong composition, and cinematic lighting. "
+                "Match this visual quality but DO NOT include any text.\n\n"
             ) if has_refs else ""
 
             photo_intro = ""
