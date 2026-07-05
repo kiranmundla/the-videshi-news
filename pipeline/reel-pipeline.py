@@ -1144,12 +1144,22 @@ def main():
     # Phase 1: Fetch article
     article = fetch_article(article_id)
     
-    # Phase 2: Storyboard
-    scenes = generate_storyboard(article)
-    
-    # Save scenes + prompts
-    with open(f"{build_dir}/scenes.json", "w") as f:
-        json.dump({"article_id": article_id, "scenes": scenes}, f, indent=2)
+    # Phase 2: Storyboard (reuse cached if available)
+    scenes_cache = f"{build_dir}/scenes.json"
+    if os.path.exists(scenes_cache) and not args.prompts_only:
+        with open(scenes_cache) as f:
+            cached = json.load(f)
+        scenes = cached["scenes"] if isinstance(cached, dict) and "scenes" in cached else cached
+        print(f"\n{'='*60}")
+        print(f"PHASE 2: Reusing cached storyboard ({len(scenes)} scenes)")
+        print(f"{'='*60}")
+        for i, s in enumerate(scenes):
+            print(f"     Scene {i}: [{s['onscreen']}] {s['voiceover'][:60]}...")
+    else:
+        scenes = generate_storyboard(article)
+        # Save scenes
+        with open(scenes_cache, "w") as f:
+            json.dump({"article_id": article_id, "scenes": scenes}, f, indent=2)
     
     # Output ChatGPT prompts
     prompts_path = f"{build_dir}/chatgpt-prompts.txt"
@@ -1203,8 +1213,31 @@ def main():
         print(f"   {build_dir}/carousel/")
         return
     
-    # Phase 4: TTS
-    vo_url, voice_duration, vo_mp3 = generate_tts(scenes, article_id, build_dir)
+    # Phase 4: TTS (reuse cached if available)
+    vo_mp3_cache = f"{build_dir}/voiceover.mp3"
+    if os.path.exists(vo_mp3_cache) and os.path.getsize(vo_mp3_cache) > 1000:
+        print(f"\n{'='*60}")
+        print(f"PHASE 4: Reusing cached voiceover")
+        print(f"{'='*60}")
+        dur = float(subprocess.run(
+            ["ffprobe", "-v", "error", "-show_entries", "format=duration",
+             "-of", "default=noprint_wrappers=1:nokey=1", vo_mp3_cache],
+            capture_output=True, text=True
+        ).stdout.strip())
+        # Upload to Supabase (in case it's not there)
+        storage_path = f"reel-gen/{article_id}/voiceover.mp3"
+        with open(vo_mp3_cache, "rb") as f:
+            requests.post(
+                f"{SB_URL}/storage/v1/object/article-images/{storage_path}",
+                headers={**SB_HEADERS, "Content-Type": "audio/mpeg", "x-upsert": "true"},
+                data=f.read(), timeout=30
+            )
+        vo_url = f"{STORAGE_BASE}/{storage_path}"
+        voice_duration = dur
+        vo_mp3 = vo_mp3_cache
+        print(f"  ✅ Voiceover: {dur:.1f}s (cached)")
+    else:
+        vo_url, voice_duration, vo_mp3 = generate_tts(scenes, article_id, build_dir)
     
     # Endcard CTA
     endcard_cta_url, endcard_cta_dur = ensure_endcard_cta()
