@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-05T09:15:16.279435+00:00",
+  "timestamp": "2026-07-05T12:15:29.948280+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
+    "pass": 2,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,24 +11,66 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "3d4e4b94-b5c2-4d81-863c-0ebef2a4ba43",
-      "headline": "Rajinikanth Just Walked Out of the Shadows. October 15 Belongs to Him.",
-      "slug": "jailer-2-rajinikanth-october-15-dussehra-mohanlal-hrithik-vidya-balan-chiranjeevi-clash-diaspora-nri-20260705",
+      "id": "759311ea-de75-4b77-9715-099909bd7a1b",
+      "headline": "Long Island's India Day Parade Turns Fifteen. The Guest List Now Includes State Senators.",
+      "slug": "india-day-parade-usa-15th-curtain-raiser-mineola-long-island-20260705",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [],
-        "broken_embeds": [
-          {
-            "url": "https://www.instagram.com/reel/DaSmFAPvqg/",
-            "problem": "broken",
-            "detail": "Instagram embed shows removed/broken placeholder"
-          }
-        ],
+        "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Rajinikanth at an event",
-          "reason": "The photo shows Rajinikanth, who is relevant to the story."
+          "what_photo_shows": "Indian tricolor flags waving",
+          "reason": "The photo shows Indian flags, which aligns with the India Day Parade theme."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the India Day Parade or its cultural significance."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively highlights the significance of the India Day Parade for the Indian American community, making it relevant for diaspora readers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more visuals or videos from past parades to enhance engagement.",
+          "Include quotes or testimonials from attendees to provide a personal touch."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "48715c06-d33e-48a8-addd-4c8932daa2c3",
+      "headline": "One Hundred and Thirty Hindu Americans Walked Into Congress on the Fourth of July Eve. Seven Lawmakers Walked Out Allies.",
+      "slug": "cohna-hindu-advocacy-day-capitol-hill-america-250-hinduphobia-20260705",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "343e9a87-5d5d-4842-87fc-22a288c2b2a8",
+            "headline": "New US Bill Would End OPT, Kill H-1B Green Card Pathway in S"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "United States Capitol Building",
+          "reason": "The photo shows the Capitol, relevant to the advocacy event in Congress."
         },
         "inline_image_mismatches": []
       },
@@ -42,18 +84,17 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the film's release to the diaspora audience, emphasizing its global significance."
+          "note": "The article effectively connects the Hindu American community's advocacy efforts to broader themes of representation and religious freedom, which resonate with the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more quotes or insights from the cast or crew to enhance the article's depth.",
-          "Include a brief overview of the first Jailer film for readers who may not be familiar with it."
+          "Include quotes or perspectives from the attendees to provide a more personal touch.",
+          "Add a brief background on CoHNA for readers unfamiliar with the organization."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "Removed 1 broken/hallucinated embed(s)",
         "promoted to published"
       ],
       "revised": false,
