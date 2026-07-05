@@ -1,0 +1,18 @@
+[
+ {
+  "ts": "2026-07-05T07:21:30.703169Z",
+  "article_id": "08034d48-d9f4-43c1-97c0-e916e40e3889",
+  "scene": 1,
+  "model": "gemini-flash",
+  "size": "9:16",
+  "cost_usd": 0.02
+ },
+ {
+  "ts": "2026-07-05T07:22:54.003878Z",
+  "article_id": "08034d48-d9f4-43c1-97c0-e916e40e3889",
+  "scene": 3,
+  "model": "gpt-image-1",
+  "size": "1024x1536",
+  "cost_usd": 0.08
+ }
+]
